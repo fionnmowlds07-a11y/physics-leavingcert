@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Electricity & Magnetism — Leaving Cert Study Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Deca:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f8f6f2;
+    --card: #ffffff;
+    --text: #1a1a2e;
+    --text-light: #555570;
+    --accent1: #e63946;
+    --accent2: #2196f3;
+    --accent3: #ff9800;
+    --accent4: #4caf50;
+    --accent5: #9c27b0;
+    --border: #e0dcd4;
+    --highlight: #fff3e0;
+    --highlight-border: #ff9800;
+    --def-bg: #e8f4fd;
+    --def-border: #2196f3;
+    --formula-bg: #fff8e1;
+    --formula-border: #ffc107;
+    --example-bg: #f1f8e9;
+    --example-border: #4caf50;
+    --tip-bg: #fce4ec;
+    --tip-border: #e91e63;
+    --shadow: 0 2px 12px rgba(0,0,0,0.08);
+    --radius: 12px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Lexend', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 17px;
+    line-height: 1.7;
+  }
+
+  /* SIDEBAR */
+  #sidebar {
+    position: fixed;
+    left: 0; top: 0; bottom: 0;
+    width: 280px;
+    background: var(--card);
+    border-right: 2px solid var(--border);
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 40px 0;
+    transition: transform 0.3s ease;
+  }
+
+  .sidebar-header {
+    background: var(--accent2);
+    color: white;
+    padding: 20px 18px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .sidebar-header h2 { font-size: 18px; text-transform: none; letter-spacing: 0; margin-top: 4px; font-weight: 700; }
+
+  .chapter-group { margin-top: 8px; }
+  .chapter-label {
+    padding: 10px 18px 4px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-light);
+  }
+  .nav-item {
+    display: block;
+    padding: 9px 18px 9px 28px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+    text-decoration: none;
+    border-left: 3px solid transparent;
+    transition: all 0.2s;
+  }
+  .nav-item:hover { background: #f0f0f8; border-left-color: var(--accent2); }
+  .nav-item.active { background: #e8f4fd; border-left-color: var(--accent2); color: var(--accent2); font-weight: 600; }
+
+  /* MAIN */
+  #main {
+    margin-left: 280px;
+    padding: 0;
+    min-height: 100vh;
+  }
+
+  .top-bar {
+    background: white;
+    border-bottom: 2px solid var(--border);
+    padding: 16px 40px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+  .top-bar h1 { font-size: 20px; font-weight: 700; color: var(--accent2); }
+  .menu-btn {
+    display: none;
+    background: none; border: none; cursor: pointer;
+    font-size: 22px; color: var(--text);
+  }
+  .progress-bar {
+    flex: 1;
+    height: 6px;
+    background: var(--border);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent2), var(--accent4));
+    border-radius: 3px;
+    transition: width 0.5s ease;
+    width: 0%;
+  }
+
+  /* CONTENT SECTIONS */
+  .section {
+    display: none;
+    padding: 40px;
+    max-width: 860px;
+    animation: fadeIn 0.3s ease;
+  }
+  .section.active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+  .section-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 6px;
+    line-height: 1.2;
+  }
+  .section-subtitle {
+    font-size: 15px;
+    color: var(--text-light);
+    margin-bottom: 32px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--border);
+  }
+  .chapter-badge {
+    display: inline-block;
+    background: var(--accent2);
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  h3 {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text);
+    margin: 32px 0 12px;
+  }
+  p { margin-bottom: 14px; }
+
+  /* CARDS */
+  .definition {
+    background: var(--def-bg);
+    border-left: 5px solid var(--def-border);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    padding: 16px 20px;
+    margin: 16px 0;
+  }
+  .definition .def-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent2);
+    margin-bottom: 6px;
+  }
+  .definition .def-text {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.5;
+  }
+
+  .formula-box {
+    background: var(--formula-bg);
+    border: 2px solid var(--formula-border);
+    border-radius: var(--radius);
+    padding: 18px 22px;
+    margin: 16px 0;
+  }
+  .formula-box .f-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent3);
+    margin-bottom: 8px;
+  }
+  .formula-box .formula {
+    font-size: 22px;
+    font-weight: 700;
+    font-family: 'Courier New', monospace;
+    color: var(--text);
+    margin: 6px 0;
+  }
+  .formula-box .f-vars {
+    font-size: 13px;
+    color: var(--text-light);
+    margin-top: 8px;
+    line-height: 1.8;
+  }
+  .formula-box .f-vars span { font-weight: 600; color: var(--text); }
+
+  .example-box {
+    background: var(--example-bg);
+    border: 2px solid var(--example-border);
+    border-radius: var(--radius);
+    padding: 20px 22px;
+    margin: 20px 0;
+  }
+  .example-box .ex-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent4);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .example-box .ex-q {
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 14px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #c8e6c9;
+    font-size: 15px;
+  }
+  .example-box .step {
+    background: white;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin: 8px 0;
+    border-left: 3px solid var(--accent4);
+  }
+  .example-box .step-num {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--accent4);
+    letter-spacing: 0.05em;
+    margin-bottom: 4px;
+  }
+  .example-box .step-content {
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.6;
+    font-family: 'Courier New', monospace;
+  }
+
+  .tip-box {
+    background: var(--tip-bg);
+    border-left: 5px solid var(--tip-border);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    padding: 14px 18px;
+    margin: 14px 0;
+    font-size: 14px;
+  }
+  .tip-box strong { color: var(--tip-border); }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px;
+    margin: 16px 0;
+  }
+  .info-card {
+    background: white;
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+    box-shadow: var(--shadow);
+  }
+  .info-card .ic-title {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--accent2);
+    margin-bottom: 8px;
+  }
+  .info-card .ic-val {
+    font-size: 20px;
+    font-weight: 700;
+    font-family: 'Courier New', monospace;
+    color: var(--text);
+  }
+  .info-card .ic-sub { font-size: 12px; color: var(--text-light); margin-top: 4px; }
+
+  /* QUIZ */
+  .quiz-section {
+    background: white;
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    margin: 24px 0;
+  }
+  .quiz-q {
+    font-weight: 600;
+    margin-bottom: 14px;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  .quiz-options { display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px; }
+  .quiz-opt {
+    display: block;
+    background: var(--bg);
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    padding: 11px 16px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s;
+    text-align: left;
+    width: 100%;
+    font-family: 'Lexend', sans-serif;
+  }
+  .quiz-opt:hover { background: #eef2ff; border-color: var(--accent2); }
+  .quiz-opt.correct { background: #e8f5e9; border-color: var(--accent4); color: #2e7d32; }
+  .quiz-opt.wrong { background: #ffebee; border-color: var(--accent1); color: #b71c1c; }
+  .quiz-feedback {
+    display: none;
+    background: #f3e5f5;
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 14px;
+    color: var(--text);
+    margin-top: 8px;
+    border-left: 4px solid var(--accent5);
+  }
+  .quiz-feedback.show { display: block; }
+
+  /* NAV BUTTONS */
+  .section-nav {
+    display: flex;
+    gap: 12px;
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 2px solid var(--border);
+    flex-wrap: wrap;
+  }
+  .nav-btn {
+    padding: 12px 24px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-family: 'Lexend', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+  .nav-btn-prev { background: var(--bg); color: var(--text); border: 2px solid var(--border); }
+  .nav-btn-prev:hover { background: #e8e8f0; }
+  .nav-btn-next { background: var(--accent2); color: white; }
+  .nav-btn-next:hover { background: #1976d2; }
+
+  /* HOME HERO */
+  .hero {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    color: white;
+    padding: 60px 40px;
+    margin-bottom: 0;
+  }
+  .hero h1 { font-size: 42px; font-weight: 700; margin-bottom: 12px; }
+  .hero p { font-size: 18px; color: rgba(255,255,255,0.8); max-width: 560px; line-height: 1.6; }
+  
+  .topics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    padding: 40px;
+  }
+  .topic-card {
+    background: white;
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: var(--shadow);
+  }
+  .topic-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.12); border-color: var(--accent2); }
+  .topic-card .tc-icon { font-size: 28px; margin-bottom: 10px; }
+  .topic-card .tc-title { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+  .topic-card .tc-sub { font-size: 12px; color: var(--text-light); }
+  .topic-card .tc-ch { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent2); margin-top: 8px; }
+
+  @media (max-width: 768px) {
+    #sidebar { transform: translateX(-100%); }
+    #sidebar.open { transform: translateX(0); }
+    #main { margin-left: 0; }
+    .menu-btn { display: block; }
+    .section { padding: 24px 20px; }
+    .section-title { font-size: 24px; }
+    .topics-grid { grid-template-columns: 1fr 1fr; padding: 20px; }
+    .hero { padding: 40px 20px; }
+    .hero h1 { font-size: 28px; }
+    .top-bar { padding: 14px 20px; }
+  }
+
+  .overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    z-index: 99;
+  }
+  .overlay.show { display: block; }
+</style>
+</head>
+<body>
+
+<div id="overlay" class="overlay" onclick="closeSidebar()"></div>
+
+<nav id="sidebar">
+  <div class="sidebar-header">
+    <div>Leaving Cert Physics</div>
+    <h2>⚡ Electricity & Magnetism</h2>
+  </div>
+  <div class="chapter-group">
+    <div class="chapter-label">Start Here</div>
+    <a class="nav-item active" onclick="showSection('home')">🏠 Overview & Topics</a>
+  </div>
+  <div class="chapter-group">
+    <div class="chapter-label">Part 1: Magnets & Fields</div>
+    <a class="nav-item" onclick="showSection('c1-1')">🧲 Magnets & Magnetic Fields</a>
+    <a class="nav-item" onclick="showSection('c1-2')">🔄 Current & Magnetic Fields</a>
+  </div>
+  <div class="chapter-group">
+    <div class="chapter-label">Part 2: Current in a Magnetic Field</div>
+    <a class="nav-item" onclick="showSection('c2-1')">✋ Force on a Conductor</a>
+    <a class="nav-item" onclick="showSection('c2-2')">💨 Force on a Moving Charge</a>
+  </div>
+  <div class="chapter-group">
+    <div class="chapter-label">Part 3: Electromagnetic Induction</div>
+    <a class="nav-item" onclick="showSection('c3-1')">⚡ Induction & Magnetic Flux</a>
+    <a class="nav-item" onclick="showSection('c3-2')">📜 Faraday's & Lenz's Laws</a>
+    <a class="nav-item" onclick="showSection('c3-3')">🔌 AC & Transformers</a>
+  </div>
+  <div class="chapter-group">
+    <div class="chapter-label">Exam Prep</div>
+    <a class="nav-item" onclick="showSection('calcs')">📐 Calculations</a>
+    <a class="nav-item" onclick="showSection('definitions')">📖 All Definitions</a>
+    <a class="nav-item" onclick="showSection('formulas')">⚠️ All Formulas</a>
+    <a class="nav-item" onclick="showSection('quiz')">✅ Practice Quiz</a>
+  </div>
+</nav>
+
+<main id="main">
+  <div class="top-bar">
+    <button class="menu-btn" onclick="openSidebar()">☰</button>
+    <h1 id="page-title">Overview</h1>
+    <div class="progress-bar"><div id="progress-fill" class="progress-fill"></div></div>
+    <div id="progress-text" style="font-size:13px; font-weight:600; color:var(--text-light);">0 / 11</div>
+  </div>
+
+  <div id="home" class="section active" style="padding:0; max-width:100%;">
+    <div class="hero">
+      <h1>Electricity & Magnetism</h1>
+      <p>Master the fundamental forces that power our modern world. From basic magnets to complex electromagnetic induction and transformers. A fully comprehensive Leaving Cert guide.</p>
+    </div>
+    <div class="topics-grid">
+      <div class="topic-card" onclick="showSection('c1-1')">
+        <div class="tc-icon">🧲</div>
+        <div class="tc-title">Magnets & Fields</div>
+        <div class="tc-sub">Magnetic poles and field lines</div>
+      </div>
+      <div class="topic-card" onclick="showSection('c2-1')">
+        <div class="tc-icon">✋</div>
+        <div class="tc-title">Force on a Conductor</div>
+        <div class="tc-sub">Fleming's Left Hand Rule and F=BIL</div>
+      </div>
+      <div class="topic-card" onclick="showSection('c3-1')">
+        <div class="tc-icon">⚡</div>
+        <div class="tc-title">Electromagnetic Induction</div>
+        <div class="tc-sub">Generating electricity from motion</div>
+      </div>
+      <div class="topic-card" onclick="showSection('c3-3')">
+        <div class="tc-icon">🔌</div>
+        <div class="tc-title">Transformers & AC</div>
+        <div class="tc-sub">Step-up, step-down, and mutual induction</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="c1-1" class="section">
+    <div class="chapter-badge">Part 1 — Magnets & Fields</div>
+    <h2 class="section-title">🧲 Magnets & Magnetic Fields</h2>
+    <p class="section-subtitle">Understanding the basics of magnetism and the invisible fields that surround magnets.</p>
+    
+    <p>Magnetic poles always exist in pairs, called the <strong>north pole</strong> and the <strong>south pole</strong>. A basic but essential rule to remember is: <strong>Like poles repel, unlike poles attract.</strong></p>
+
+    <div class="definition">
+      <div class="def-label">📖 Definition — Magnetic Field</div>
+      <div class="def-text">A magnetic field is any region of space where magnetic forces can be felt.</div>
+    </div>
+
+    <div class="tip-box">
+      <strong>🧠 Exam Tip:</strong> You must always remember that magnetic field lines go from the <strong>North Pole to the South Pole</strong>. When drawing them, don't forget the arrows!
+    </div>
+
+    <h3>Demonstrating Magnetic Fields</h3>
+    <p>We can demonstrate the existence of a magnetic field using <strong>iron filings</strong> (which line up along the field) or small <strong>plotting compasses</strong>.</p>
+
+    <div class="section-nav">
+      <button class="nav-btn nav-btn-next" onclick="showSection('c1-2')">Next: Current & Magnetic Fields →</button>
+    </div>
+  </div>
+
+  <div id="c1-2" class="section">
+    <div class="chapter-badge">Part 1 — Magnets & Fields</div>
+    <h2 class="section-title">🔄 Current & Magnetic Fields</h2>
+    <p class="section-subtitle">Electricity and magnetism are linked! A flowing current creates a magnetic field.</p>
+
+    <p>When an electric current flows through a wire, a magnetic field is generated around it. The shape of this field depends on the shape of the wire.</p>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="ic-title">Straight Wire</div>
+        <div class="ic-sub">The magnetic field forms concentric circles around the wire.</div>
+      </div>
+      <div class="info-card">
+        <div class="ic-title">Loop of Wire</div>
+        <div class="ic-sub">The field lines are concentrated in the centre of the loop.</div>
+      </div>
+      <div class="info-card">
+        <div class="ic-title">Solenoid</div>
+        <div class="ic-sub">A coil of wire. The field is uniform inside and looks like a bar magnet on the outside.</div>
+      </div>
+    </div>
+
+    <h3>Right Hand Grip Rule</h3>
+    <p>To determine the direction of the magnetic field due to a current in a straight wire, we use the <strong>Right Hand Grip Rule</strong>:</p>
+    <ol style="margin-left:20px; line-height:2.2;">
+      <li>Grip the conductor in your right hand.</li>
+      <li>Point your <strong>thumb</strong> in the direction of the <strong>current</strong>.</li>
+      <li>Your <strong>fingers</strong> will curl in the direction of the <strong>magnetic field lines</strong>.</li>
+    </ol>
+
+    <div class="section-nav">
+      <button class="nav-btn nav-btn-prev" onclick="showSection('c1-1')">← Previous</button>
+      <button class="nav-btn nav-btn-next" onclick="showSection('c2-1')">Next: Force on a Conductor →</button>
+    </div>
+  </div>
+
+  <div id="c2-1" class="section">
+    <div class="chapter-badge">Part 2 — Current in a Magnetic Field</div>
+    <h2 class="section-title">✋ Force on a Conductor</h2>
+    <p class="section-subtitle">What happens when you put a wire carrying a current into a magnetic field? It experiences a force!</p>
+
+    <p>A current-carrying conductor in a magnetic field experiences a force. The size of this force depends on three things: the strength of the magnetic field, the size of the current, and the length of the conductor.</p>
+
+    <div class="formula-box">
+      <div class="f-label">⚠️ Formula — Force on a Conductor</div>
+      <div class="formula">F = BIL</div>
+      <div class="f-vars">
+        <span>F</span> = Force (Newtons, N)<br>
+        <span>B</span> = Magnetic Flux Density (Tesla, T)<br>
+        <span>I</span> = Current (Amperes, A)<br>
+        <span>L</span> = Length of conductor in the field (metres, m)
+      </div>
+    </div>
+
+    <h3>Fleming’s Left Hand Rule</h3>
+    <p>To find the direction of the force, we use Fleming's Left Hand Rule. Point your fingers at right angles to each other:</p>
+    <ul style="margin-left:20px; line-height:2.2;">
+      <li><strong>T</strong>humb = Direction of <strong>T</strong>hrust (Force)</li>
+      <li><strong>F</strong>irst Finger = Direction of magnetic <strong>F</strong>ield (North to South)</li>
+      <li>Se<strong>c</strong>ond Finger = Direction of <strong>C</strong>urrent</li>
+    </ul>
+
+    <div class="tip-box">
+      <strong>💡 Application:</strong> Devices that rely on the principle that a current-carrying conductor in a magnetic field experiences a force include the <strong>electric motor</strong>, the <strong>galvanometer</strong>, and the <strong>loudspeaker</strong>.
+    </div>
+
+    <div class="definition">
+      <div class="def-label">📖 Definition — The Ampere</div>
+      <div class="def-text">A current-carrying conductor in a magnetic field experiences a force. Two parallel wires will exert a force on each other. This is the principle on which the definition of the ampere is based.</div>
+    </div>
+
+    <div class="section-nav">
+      <button class="nav-btn nav-btn-prev" onclick="showSection('c1-2')">← Previous</button>
+      <button class="nav-btn nav-btn-next" onclick="showSection('c2-2')">Next: Force on a Moving Charge →</button>
+    </div>
+  </div>
+
+  <div id="c2-2" class="section">
+    <div class="chapter-badge">Part 2 — Current in a Magnetic Field</div>
+    <h2 class="section-title">💨 Force on a Moving Charge</h2>
+    <p class="section-subtitle">Individual moving charges (like electrons) also experience a force when they fly through a magnetic field.</p>
+
+    <p>Current is just flowing charge. So, if a wire carrying current experiences a force, an individual charged particle moving through a magnetic field will also experience a force.</p>
+
+    <div class="formula-box">
+      <div class="f-label">⚠️ Formula — Force on a Moving Charge</div>
+      <div class="formula">F = qvB</div>
+      <div class="f-vars">
+        <span>F</span> = Force (Newtons, N)<br>
+        <span>q</span> = Charge of the particle (Coulombs, C)<br>
+        <span>v</span> = Velocity of the particle (m/s)<br>
+        <span>B</span> = Magnetic Flux Density (Tesla, T)
+      </div>
+    </div>
+
+    <p>Because the force is always at right angles to the direction of motion (thanks to Fleming's Left Hand Rule), it acts as a centripetal force, causing the particle to move in a <strong>circular path</strong>!</p>
+
+    <div class="section-nav">
+      <button class="nav-btn nav-btn-prev" onclick="showSection('c2-1')">← Previous</button>
+      <button class="nav-btn nav-btn-next" onclick="showSection('c3-1')">Next: Induction & Magnetic Flux →</button>
+    </div>
+  </div>
+
+  <div id="c3-1" class="section">
+    <div class="chapter-badge">Part 3 — Electromagnetic Induction</div>
+    <h2 class="section-title">⚡ Induction & Magnetic Flux</h2>
+    <p class="section-subtitle">If electricity can create magnetism, can magnetism create electricity? Yes!</p>
+
+    <div class="definition">
+      <div class="def-label">📖 Definition — Electromagnetic Induction</div>
+      <div class="def-text">Electromagnetic induction occurs when an EMF (electromotive force / voltage) is induced in a coil due to a changing magnetic flux.</div>
+    </div>
+
+    <p>Michael Faraday discovered that moving a magnet in and out of a coil of wire generates electricity. The needle on a connected galvanometer deflects, showing that an EMF is induced, which in turn produces a current.</p>
+
+    <h3>Magnetic Flux</h3>
+    <p>To calculate the induced EMF, we first need to understand <strong>Magnetic Flux</strong>. You can visualise this as the number of magnetic field lines passing through a given area.</p>
+
+    <div class="formula-box">
+      <div class="f-label">⚠️ Formula — Magnetic Flux</div>
+      <div class="formula">Φ = BA</div>
+      <div class="f-vars">
+        <span>Φ (Phi)</span> = Magnetic Flux (Webers, Wb)<br>
+        <span>B</span> = Magnetic Flux Density (Tesla, T)<br>
+        <span>A</span> = Cross-sectional area (m²)
+      </div>
+    </div>
+
+    <div class="section-nav">
+      <button class="nav-btn nav-btn-prev" onclick="showSection('c2-2')">← Previous</button>
+      <button class="nav-btn nav-btn-next" onclick="showSection('c3-2')">Next: Faraday's & Lenz's Laws →</button>
+    </div>
+  </div>
+
+  <div id="c3-2" class="section">
+    <div class="chapter-badge">Part 3 — Electromagnetic Induction</div>
+    <h2 class="section-title">📜 Faraday's & Lenz's Laws</h2>
+    <p class="section-subtitle">The two golden rules that govern how and why electricity is induced.</p>
+
+    <div class="definition">
+      <div class="def-label">📖 Definition — Faraday's Law of Electromagnetic Induction</div>
+      <div class="def-text">Faraday's Law states that the magnitude of the induced EMF is directly proportional to the rate of change of magnetic flux.</div>
+    </div>
+
+    <p>Basically: if you move the magnet faster, or use a stronger magnet, or a coil with more turns, you get a larger voltage!</p>
+
+    <div class="definition" style="border-left-color:var(--accent1); background:#ffebee;">
+      <div class="def-label" style="color:var(--accent1);">📖 Definition — Lenz's Law of Electromagnetic Induction</div>
+      <div class="def-text">Lenz's Law states that the direction of the induced EMF is always such as to oppose the change producing it.</div>
+    </div>
+
+    <p>Lenz's law is essentially conservation of energy. If you push a North pole into a coil, the coil will induce a current that creates a North pole at that end to repel your magnet. You have to do <em>work</em> (push hard) to overcome this repulsion, and that work is converted into electrical energy!</p>
+
+    <div class="section-nav">
+      <button class="nav-btn nav-btn-prev" onclick="showSection('c3-1')">← Previous</button>
+      <button class="nav-btn nav-btn-next" onclick="showSection('c3-3')">Next: AC & Transformers →</button>
+    </div>
+  </div>
+
+  <div id="c3-3" class="section">
+    <div class="chapter-badge">Part 3 — Electromagnetic Induction</div>
+    <h2 class="section-title">🔌 AC & Transformers</h2>
+    <p class="section-subtitle">How we manipulate voltages for long-distance power transmission.</p>
+
+    <h3>Mutual Induction</h3>
+    <p>An alternating current (AC) in one coil creates a constantly changing magnetic field. If a second coil is placed nearby, this changing magnetic flux induces an alternating EMF in the second coil. This is called <strong>mutual induction</strong>.</p>
+
+    <div class="definition">
+      <div class="def-label">📖 Definition — Mutual Induction</div>
+      <div class="def-text">Mutual induction is the process where a changing current in one coil induces an EMF in a second nearby coil.</div>
+    </div>
+
+    <h3>Transformers</h3>
+    <p>Transformers use mutual induction to step up (increase) or step down (decrease) AC voltages. They only work with Alternating Current (AC) because direct current (DC) would create a steady magnetic field, which wouldn't induce an EMF.</p>
+
+    <div class="formula-box">
+      <div class="f-label">⚠️ Formula — Transformer Equation</div>
+      <div class="formula">Vs / Vp = Ns / Np</div>
+      <div class="f-vars">
+        <span>Vs</span> = Voltage in Secondary Coil<br>
+        <span>Vp</span> = Voltage in Primary Coil<br>
+        <span>Ns</span> = Number of turns in Secondary Coil<br>
+        <span>Np</span> = Number of turns in Primary Coil
+      </div>
+    </div>
+
+    <p>Why use transformers? High voltage is used when transmitting electricity over national grids because high voltage means low current, which vastly reduces heat loss in the wires (improving efficiency).</p>
+
+    <div class="section-nav">
+      <button class="nav-btn nav-btn-prev" onclick="showSection('c3-2')">← Previous</button>
+      <button class="nav-btn nav-btn-next" onclick="showSection('calcs')">Next: Calculations →</button>
+    </div>
+  </div>
+
+  <div id="calcs" class="section">
+    <div class="chapter-badge">Exam Prep</div>
+    <h2 class="section-title">📐 Calculations</h2>
+    <p class="section-subtitle">Step-by-step examples of typical Leaving Cert questions.</p>
+
+    <div class="example-box">
+      <div class="ex-label">🧮 Example 1 — Force on a Conductor</div>
+      <div class="ex-q"><strong>Q:</strong> A conductor of length 50 cm is carrying a current of 5 A. It is placed at right angles to a magnetic field of flux density 3 T. Calculate the force on the conductor.</div>
+      <div class="step"><div class="step-num">Step 1 — Identify variables and ensure correct units</div><div class="step-content">L = 50 cm = 0.5 m<br>I = 5 A<br>B = 3 T</div></div>
+      <div class="step"><div class="step-num">Step 2 — Use the formula F = BIL</div><div class="step-content">F = (3)(5)(0.5)<br>F = 7.5 N</div></div>
+    </div>
+
+    <div class="example-box">
+      <div class="ex-label">🧮 Example 2 — Magnetic Flux</div>
+      <div class="ex-q"><strong>Q:</strong> A square coil of side 5 cm lies perpendicular to a magnetic field of flux density 4.0 T. The coil consists of 200 turns of wire. What is the magnetic flux cutting the coil?</div>
+      <div class="step"><div class="step-num">Step 1 — Calculate Area in m²</div><div class="step-content">Side = 5 cm = 0.05 m<br>Area = 0.05 × 0.05 = 0.0025 m²</div></div>
+      <div class="step"><div class="step-num">Step 2 — Apply flux formula Φ = BA</div><div class="step-content">B = 4.0 T<br>Φ = (4.0)(0.0025) = 0.01 Wb</div></div>
+      <div class="step"><div class="step-num">Note!</div><div class="step-content">The formula Φ = BA calculates the flux for ONE turn. The question asks for the flux cutting the coil. For 200 turns, it's 200 × 0.01 = 2 Wb.</div></div>
+    </div>
+
+    <div class="example-box">
+      <div class="ex-label">🧮 Example 3 — Transformer</div>
+      <div class="ex-q"><strong>Q:</strong> There are 150 turns in the primary coil of a transformer and 3000 turns in the secondary coil. Calculate the output voltage when 12 V AC is connected across the primary coil.</div>
+      <div class="step"><div class="step-num">Step 1 — Identify variables</div><div class="step-content">Np = 150<br>Ns = 3000<br>Vp = 12 V<br>Vs = ?</div></div>
+      <div class="step"><div class="step-num">Step 2 — Rearrange and solve Vs / Vp = Ns / Np</div><div class="step-content">Vs = (Ns / Np) × Vp<br>Vs = (3000 / 150) × 12<br>Vs = 20 × 12 = 240 V</div></div>
+    </div>
+
+    <div class="section-nav">
+      <button class="nav-btn nav-btn-prev" onclick="showSection('c3-3')">← Previous</button>
+      <button class="nav-btn nav-btn-next" onclick="showSection('definitions')">Next: Definitions →</button>
+    </div>
+  </div>
+
+  <div id="definitions" class="section">
+    <div class="chapter-badge">Exam Prep</div>
+    <h2 class="section-title">📖 All Definitions</h2>
+    <p class="section-subtitle">Learn these off by heart for the exam!</p>
+
+    <div class="definition"><div class="def-label">Magnetic Field</div><div class="def-text">A magnetic field is any region of space where magnetic forces can be felt.</div></div>
+    <div class="definition"><div class="def-label">Magnetic Flux (Φ)</div><div class="def-text">Magnetic flux is defined as the product of magnetic flux density and the cross-sectional area perpendicular to the direction of the magnetic flux density.</div></div>
+    <div class="definition"><div class="def-label">Electromagnetic Induction</div><div class="def-text">Electromagnetic induction occurs when an emf is induced in a coil due to a changing magnetic flux.</div></div>
+    <div class="definition"><div class="def-label">Faraday's Law of Electromagnetic Induction</div><div class="def-text">The magnitude of the induced EMF is directly proportional to the rate of change of magnetic flux.</div></div>
+    <div class="definition"><div class="def-label">Lenz's Law of Electromagnetic Induction</div><div class="def-text">The direction of the induced EMF is always such as to oppose the change producing it.</div></div>
+    <div class="definition"><div class="def-label">Mutual Induction</div><div class="def-text">An alternating current in one coil results in an induced EMF in a second nearby coil.</div></div>
+    <div class="definition"><div class="def-label">Self Induction</div><div class="def-text">A changing magnetic field in a coil induces an EMF in the coil itself that opposes the changing current.</div></div>
+
+    <div class="section-nav">
+      <button class="nav-btn nav-btn-prev" onclick="showSection('calcs')">← Previous</button>
+      <button class="nav-btn nav-btn-next" onclick="showSection('formulas')">Next: Formulas →</button>
+    </div>
+  </div>
+
+  <div id="formulas" class="section">
+    <div class="chapter-badge">Exam Prep</div>
+    <h2 class="section-title">⚠️ All Formulas</h2>
+    <p class="section-subtitle">The mathematical toolkit for Electricity & Magnetism.</p>
+
+    <div class="formula-box"><div class="f-label">Force on a conductor in a magnetic field</div><div class="formula">F = BIL</div><div class="f-vars"><span>F</span>=Force (N), <span>B</span>=Flux Density (T), <span>I</span>=Current (A), <span>L</span>=Length (m)</div></div>
+    
+    <div class="formula-box"><div class="f-label">Force on a moving charge in a magnetic field</div><div class="formula">F = qvB</div><div class="f-vars"><span>F</span>=Force (N), <span>q</span>=Charge (C), <span>v</span>=Velocity (m/s), <span>B</span>=Flux Density (T)</div></div>
+    
+    <div class="formula-box"><div class="f-label">Magnetic Flux</div><div class="formula">Φ = BA</div><div class="f-vars"><span>Φ</span>=Flux (Wb), <span>B</span>=Flux Density (T), <span>A</span>=Area (m²)</div></div>
+    
+    <div class="formula-box"><div class="f-label">Transformer Equation</div><div class="formula">Vs / Vp = Ns / Np</div><div class="f-vars"><span>V</span>=Voltage, <span>N</span>=Number of turns. (s=secondary, p=primary)</div></div>
+
+    <div class="section-nav">
+      <button class="nav-btn nav-btn-prev" onclick="showSection('definitions')">← Previous</button>
+      <button class="nav-btn nav-btn-next" onclick="showSection('quiz')">Next: Practice Quiz →</button>
+    </div>
+  </div>
+
+  <div id="quiz" class="section">
+    <div class="chapter-badge">Exam Prep</div>
+    <h2 class="section-title">✅ Practice Quiz</h2>
+    <p class="section-subtitle">Test your knowledge of the core concepts.</p>
+    <div id="quiz-container"></div>
+  </div>
+
+</main>
+
+<script>
+  const totalSections = 11;
+  const visited = new Set();
+
+  function showSection(id) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    
+    document.querySelectorAll('.nav-item').forEach(n => {
+      n.classList.remove('active');
+      if(n.getAttribute('onclick').includes(`'${id}'`)) n.classList.add('active');
+    });
+
+    const titles = {
+      'home': 'Overview',
+      'c1-1': 'Magnets & Magnetic Fields',
+      'c1-2': 'Current & Magnetic Fields',
+      'c2-1': 'Force on a Conductor',
+      'c2-2': 'Force on a Moving Charge',
+      'c3-1': 'Induction & Magnetic Flux',
+      'c3-2': 'Faraday & Lenz',
+      'c3-3': 'AC & Transformers',
+      'calcs': 'Calculations',
+      'definitions': 'All Definitions',
+      'formulas': 'All Formulas',
+      'quiz': 'Practice Quiz'
+    };
+    document.getElementById('page-title').textContent = titles[id] || 'Electricity & Magnetism';
+
+    visited.add(id);
+    const pct = Math.round((visited.size / totalSections) * 100);
+    document.getElementById('progress-fill').style.width = pct + '%';
+    document.getElementById('progress-text').textContent = visited.size + ' / ' + totalSections;
+    
+    window.scrollTo(0, 0);
+    closeSidebar();
+  }
+
+  function openSidebar() {
+    document.getElementById('sidebar').classList.add('open');
+    document.getElementById('overlay').classList.add('show');
+  }
+
+  function closeSidebar() {
+    document.getElementById('sidebar').classList.remove('open');
+    document.getElementById('overlay').classList.remove('show');
+  }
+
+  const questions = [
+    {
+      q: "What rule is used to find the direction of the force on a current-carrying conductor in a magnetic field?",
+      opts: ["Right Hand Grip Rule", "Faraday's Law", "Fleming's Left Hand Rule", "Lenz's Law"],
+      ans: 2,
+      exp: "Fleming's Left Hand Rule gives the direction of the force (thrust), field, and current."
+    },
+    {
+      q: "Why are high voltages used for transmitting electricity?",
+      opts: ["It travels faster", "It reduces the current, which minimizes heat loss", "It creates a stronger magnetic field", "It increases the resistance"],
+      ans: 1,
+      exp: "High voltage = Low current. A lower current results in significantly less energy lost as heat in the power lines."
+    },
+    {
+      q: "What does Lenz's Law state?",
+      opts: ["Force is proportional to current", "Voltage equals current times resistance", "The direction of an induced EMF opposes the change producing it", "Magnetic flux equals BA"],
+      ans: 2,
+      exp: "Lenz's law states that the induced EMF will always try to oppose the movement or change that created it."
+    },
+    {
+      q: "Which device relies on the principle that a current-carrying conductor in a magnetic field experiences a force?",
+      opts: ["Transformer", "Electric Motor", "Battery", "Resistor"],
+      ans: 1,
+      exp: "An electric motor uses this exact principle to convert electrical energy into rotational kinetic energy."
+    }
+  ];
+
+  const qc = document.getElementById('quiz-container');
+  questions.forEach((q, i) => {
+    let html = `<div class="quiz-section">
+      <div class="quiz-q">${i+1}. ${q.q}</div>
+      <div class="quiz-options">`;
+    q.opts.forEach((opt, j) => {
+      let isCorrect = (j === q.ans);
+      html += `<button class="quiz-opt" data-correct="${isCorrect}" onclick="checkAnswer(this, ${isCorrect}, '${q.exp}')">${opt}</button>`;
+    });
+    html += `</div><div class="quiz-feedback"></div></div>`;
+    qc.innerHTML += html;
+  });
+
+  function checkAnswer(btn, isCorrect, exp) {
+    const parent = btn.parentElement;
+    if (parent.classList.contains('answered')) return;
+    parent.classList.add('answered');
+    
+    Array.from(parent.children).forEach(child => {
+      if (child.classList.contains('quiz-opt')) {
+        child.style.pointerEvents = 'none';
+        if (child.dataset.correct === "true") child.classList.add('correct');
+      }
+    });
+    
+    if (!isCorrect) btn.classList.add('wrong');
+    
+    const feedback = parent.parentElement.querySelector('.quiz-feedback');
+    feedback.innerHTML = `<strong>${isCorrect ? '✅ Correct!' : '❌ Incorrect.'}</strong> ${exp}`;
+    feedback.classList.add('show');
+  }
+</script>
+<a href="Home.html" class="return-home-btn">
+  <span style="font-size: 18px;">🏠</span> Back to Hub
+</a>
+<style>
+  .return-home-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: var(--text);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-family: 'Lexend', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+  .return-home-btn:hover {
+    transform: translateY(-5px);
+    background: var(--accent2); /* Turns bright blue on hover */
+    box-shadow: 0 8px 25px rgba(33, 150, 243, 0.4);
+  }
+  @media (max-width: 768px) {
+    .return-home-btn {
+      bottom: 20px;
+      right: 20px;
+      padding: 10px 18px;
+      font-size: 14px;
+    }
+  }
+</style>
+</body>
+</html>

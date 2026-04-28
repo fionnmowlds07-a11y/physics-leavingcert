@@ -1,0 +1,1956 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modern Physics — Leaving Cert Study Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Deca:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f8f6f2;
+    --card: #ffffff;
+    --text: #1a1a2e;
+    --text-light: #555570;
+    --accent1: #e63946;
+    --accent2: #2196f3;
+    --accent3: #ff9800;
+    --accent4: #4caf50;
+    --accent5: #9c27b0;
+    --border: #e0dcd4;
+    --highlight: #fff3e0;
+    --highlight-border: #ff9800;
+    --def-bg: #e8f4fd;
+    --def-border: #2196f3;
+    --formula-bg: #fff8e1;
+    --formula-border: #ffc107;
+    --example-bg: #f1f8e9;
+    --example-border: #4caf50;
+    --tip-bg: #fce4ec;
+    --tip-border: #e91e63;
+    --shadow: 0 2px 12px rgba(0,0,0,0.08);
+    --radius: 12px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Lexend', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 17px;
+    line-height: 1.7;
+  }
+
+  /* SIDEBAR */
+  #sidebar {
+    position: fixed;
+    left: 0; top: 0; bottom: 0;
+    width: 280px;
+    background: var(--card);
+    border-right: 2px solid var(--border);
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 40px 0;
+    transition: transform 0.3s ease;
+  }
+
+  .sidebar-header {
+    background: var(--accent1);
+    color: white;
+    padding: 20px 18px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .sidebar-header h2 { font-size: 18px; text-transform: none; letter-spacing: 0; margin-top: 4px; font-weight: 700; }
+
+  .chapter-group { margin-top: 8px; }
+  .chapter-label {
+    padding: 10px 18px 4px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-light);
+  }
+  .nav-item {
+    display: block;
+    padding: 9px 18px 9px 28px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+    text-decoration: none;
+    border-left: 3px solid transparent;
+    transition: all 0.2s;
+  }
+  .nav-item:hover { background: #f0f0f8; border-left-color: var(--accent2); }
+  .nav-item.active { background: #e8f4fd; border-left-color: var(--accent1); color: var(--accent1); font-weight: 600; }
+
+  /* MAIN */
+  #main {
+    margin-left: 280px;
+    padding: 0;
+    min-height: 100vh;
+  }
+
+  .top-bar {
+    background: white;
+    border-bottom: 2px solid var(--border);
+    padding: 16px 40px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+  .top-bar h1 { font-size: 20px; font-weight: 700; color: var(--accent1); }
+  .menu-btn {
+    display: none;
+    background: none; border: none; cursor: pointer;
+    font-size: 22px; color: var(--text);
+  }
+  .progress-bar {
+    flex: 1;
+    height: 6px;
+    background: var(--border);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent1), var(--accent2));
+    border-radius: 3px;
+    transition: width 0.5s ease;
+    width: 0%;
+  }
+
+  /* CONTENT SECTIONS */
+  .section {
+    display: none;
+    padding: 40px;
+    max-width: 860px;
+    animation: fadeIn 0.3s ease;
+  }
+  .section.active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+  .section-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 6px;
+    line-height: 1.2;
+  }
+  .section-subtitle {
+    font-size: 15px;
+    color: var(--text-light);
+    margin-bottom: 32px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--border);
+  }
+  .chapter-badge {
+    display: inline-block;
+    background: var(--accent1);
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  h3 {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text);
+    margin: 32px 0 12px;
+  }
+  h4 {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--accent1);
+    margin: 20px 0 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    font-size: 13px;
+  }
+  p { margin-bottom: 14px; }
+
+  /* CARDS */
+  .definition {
+    background: var(--def-bg);
+    border-left: 5px solid var(--def-border);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    padding: 16px 20px;
+    margin: 16px 0;
+  }
+  .definition .def-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent2);
+    margin-bottom: 6px;
+  }
+  .definition .def-text {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.5;
+  }
+
+  .formula-box {
+    background: var(--formula-bg);
+    border: 2px solid var(--formula-border);
+    border-radius: var(--radius);
+    padding: 18px 22px;
+    margin: 16px 0;
+  }
+  .formula-box .f-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent3);
+    margin-bottom: 8px;
+  }
+  .formula-box .formula {
+    font-size: 22px;
+    font-weight: 700;
+    font-family: 'Courier New', monospace;
+    color: var(--text);
+    margin: 6px 0;
+  }
+  .formula-box .f-vars {
+    font-size: 13px;
+    color: var(--text-light);
+    margin-top: 8px;
+    line-height: 1.8;
+  }
+  .formula-box .f-vars span { font-weight: 600; color: var(--text); }
+
+  .example-box {
+    background: var(--example-bg);
+    border: 2px solid var(--example-border);
+    border-radius: var(--radius);
+    padding: 20px 22px;
+    margin: 20px 0;
+  }
+  .example-box .ex-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent4);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .example-box .ex-q {
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 14px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #c8e6c9;
+    font-size: 15px;
+  }
+  .example-box .step {
+    background: white;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin: 8px 0;
+    border-left: 3px solid var(--accent4);
+  }
+  .example-box .step-num {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--accent4);
+    letter-spacing: 0.05em;
+    margin-bottom: 4px;
+  }
+  .example-box .step-content {
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.6;
+    font-family: 'Courier New', monospace;
+  }
+  .example-box .ex-ans {
+    background: #dcedc8;
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-top: 10px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #2e7d32;
+  }
+
+  .tip-box {
+    background: var(--tip-bg);
+    border-left: 5px solid var(--tip-border);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    padding: 14px 18px;
+    margin: 14px 0;
+    font-size: 14px;
+  }
+  .tip-box strong { color: var(--tip-border); }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px;
+    margin: 16px 0;
+  }
+  .info-card {
+    background: white;
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+    box-shadow: var(--shadow);
+  }
+  .info-card .ic-title {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--accent1);
+    margin-bottom: 8px;
+  }
+  .info-card .ic-val {
+    font-size: 20px;
+    font-weight: 700;
+    font-family: 'Courier New', monospace;
+    color: var(--text);
+  }
+  .info-card .ic-sub { font-size: 12px; color: var(--text-light); margin-top: 4px; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 14px;
+  }
+  th {
+    background: var(--text);
+    color: white;
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 600;
+  }
+  td { padding: 10px 14px; border-bottom: 1px solid var(--border); }
+  tr:nth-child(even) td { background: #f8f8fc; }
+
+  /* QUIZ */
+  .quiz-section {
+    background: white;
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    margin: 24px 0;
+  }
+  .quiz-section h3 { margin-top: 0; color: var(--accent5); }
+  .quiz-q {
+    font-weight: 600;
+    margin-bottom: 14px;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  .quiz-options { display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px; }
+  .quiz-opt {
+    display: block;
+    background: var(--bg);
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    padding: 11px 16px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s;
+    text-align: left;
+    width: 100%;
+    font-family: 'Lexend', sans-serif;
+  }
+  .quiz-opt:hover { background: #eef2ff; border-color: var(--accent2); }
+  .quiz-opt.correct { background: #e8f5e9; border-color: var(--accent4); color: #2e7d32; }
+  .quiz-opt.wrong { background: #ffebee; border-color: var(--accent1); color: #b71c1c; }
+  .quiz-feedback {
+    display: none;
+    background: #f3e5f5;
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 14px;
+    color: var(--text);
+    margin-top: 8px;
+    border-left: 4px solid var(--accent5);
+  }
+  .quiz-feedback.show { display: block; }
+  .quiz-next {
+    margin-top: 12px;
+    background: var(--accent2);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Lexend', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    display: none;
+  }
+  .quiz-next.show { display: inline-block; }
+
+  /* NAV BUTTONS */
+  .section-nav {
+    display: flex;
+    gap: 12px;
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 2px solid var(--border);
+    flex-wrap: wrap;
+  }
+  .nav-btn {
+    padding: 12px 24px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-family: 'Lexend', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+  .nav-btn-prev { background: var(--bg); color: var(--text); border: 2px solid var(--border); }
+  .nav-btn-prev:hover { background: #e8e8f0; }
+  .nav-btn-next { background: var(--accent1); color: white; }
+  .nav-btn-next:hover { background: #c62828; }
+
+  /* PARTICLES TABLE SPECIAL */
+  .particle-row-proton td { color: #c62828; }
+  .particle-row-neutron td { color: #1565c0; }
+  .particle-row-electron td { color: #2e7d32; }
+
+  .radiation-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 14px;
+    margin: 16px 0;
+  }
+  .rad-card {
+    border-radius: var(--radius);
+    padding: 18px;
+    text-align: center;
+    box-shadow: var(--shadow);
+  }
+  .rad-alpha { background: #fff3e0; border: 2px solid #ff9800; }
+  .rad-beta { background: #e3f2fd; border: 2px solid #2196f3; }
+  .rad-gamma { background: #f3e5f5; border: 2px solid #9c27b0; }
+  .rad-card .rad-sym { font-size: 36px; font-weight: 700; margin-bottom: 8px; }
+  .rad-alpha .rad-sym { color: #e65100; }
+  .rad-beta .rad-sym { color: #0d47a1; }
+  .rad-gamma .rad-sym { color: #4a148c; }
+  .rad-card .rad-name { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+  .rad-card .rad-info { font-size: 12px; color: var(--text-light); line-height: 1.6; }
+
+  /* ATOM DIAGRAM */
+  .diagram-container {
+    background: white;
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    margin: 16px 0;
+    text-align: center;
+  }
+  .diagram-container svg { max-width: 100%; height: auto; }
+
+  /* HOME HERO */
+  .hero {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    color: white;
+    padding: 60px 40px;
+    margin-bottom: 0;
+  }
+  .hero h1 { font-size: 42px; font-weight: 700; margin-bottom: 12px; }
+  .hero p { font-size: 18px; color: rgba(255,255,255,0.8); max-width: 560px; line-height: 1.6; }
+  .topics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    padding: 40px;
+  }
+  .topic-card {
+    background: white;
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: var(--shadow);
+  }
+  .topic-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.12); border-color: var(--accent2); }
+  .topic-card .tc-icon { font-size: 28px; margin-bottom: 10px; }
+  .topic-card .tc-title { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+  .topic-card .tc-sub { font-size: 12px; color: var(--text-light); }
+  .topic-card .tc-ch { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent1); margin-top: 8px; }
+
+  .exam-tip {
+    background: #fff8e1;
+    border: 2px solid #ffc107;
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    margin: 16px 0;
+    font-size: 14px;
+  }
+  .exam-tip strong { color: #f57f17; }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    #sidebar { transform: translateX(-100%); }
+    #sidebar.open { transform: translateX(0); }
+    #main { margin-left: 0; }
+    .menu-btn { display: block; }
+    .section { padding: 24px 20px; }
+    .section-title { font-size: 24px; }
+    .radiation-grid { grid-template-columns: 1fr; }
+    .topics-grid { grid-template-columns: 1fr 1fr; padding: 20px; }
+    .hero { padding: 40px 20px; }
+    .hero h1 { font-size: 28px; }
+    .top-bar { padding: 14px 20px; }
+  }
+
+  .overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    z-index: 99;
+  }
+  .overlay.show { display: block; }
+</style>
+</head>
+<body>
+
+<div id="overlay" class="overlay" onclick="closeSidebar()"></div>
+
+<!-- SIDEBAR -->
+<nav id="sidebar">
+  <div class="sidebar-header">
+    <div>Leaving Cert Physics</div>
+    <h2>⚛️ Modern Physics</h2>
+  </div>
+  <div class="chapter-group">
+    <div class="chapter-label">Start Here</div>
+    <a class="nav-item active" onclick="showSection('home')">🏠 Overview & Topics</a>
+  </div>
+  <div class="chapter-group">
+    <div class="chapter-label">Chapter 21 — The Electron</div>
+    <a class="nav-item" onclick="showSection('c21-1')">⚡ The Electron & Energy</a>
+    <a class="nav-item" onclick="showSection('c21-2')">🔥 Thermionic Emission & CRT</a>
+    <a class="nav-item" onclick="showSection('c21-3')">☢️ X-Rays</a>
+    <a class="nav-item" onclick="showSection('c21-4')">💡 Photoelectric Effect</a>
+    <a class="nav-item" onclick="showSection('c21-5')">📐 Calculations: Chapter 21</a>
+    <a class="nav-item" onclick="showSection('c21-quiz')">✅ Quiz: Chapter 21</a>
+  </div>
+  <div class="chapter-group">
+    <div class="chapter-label">Chapter 22 — The Nucleus</div>
+    <a class="nav-item" onclick="showSection('c22-1')">🔬 Atom Structure & Rutherford</a>
+    <a class="nav-item" onclick="showSection('c22-2')">🌈 Bohr Model & Spectra</a>
+    <a class="nav-item" onclick="showSection('c22-3')">☢️ Radioactivity</a>
+    <a class="nav-item" onclick="showSection('c22-4')">💥 Nuclear Decay Equations</a>
+    <a class="nav-item" onclick="showSection('c22-5')">⏱ Half-Life & Decay</a>
+    <a class="nav-item" onclick="showSection('c22-6')">⚛️ Fission & Fusion</a>
+    <a class="nav-item" onclick="showSection('c22-7')">🏭 Nuclear Reactors</a>
+    <a class="nav-item" onclick="showSection('c22-8')">📐 Calculations: Chapter 22</a>
+    <a class="nav-item" onclick="showSection('c22-quiz')">✅ Quiz: Chapter 22</a>
+  </div>
+  <div class="chapter-group">
+    <div class="chapter-label">Revision</div>
+    <a class="nav-item" onclick="showSection('formulas')">📋 All Formulas</a>
+    <a class="nav-item" onclick="showSection('definitions')">📖 All Definitions</a>
+  </div>
+</nav>
+
+<!-- MAIN CONTENT -->
+<div id="main">
+  <div class="top-bar">
+    <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+    <h1 id="page-title">Modern Physics</h1>
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+    <span id="progress-text" style="font-size:12px;color:var(--text-light);white-space:nowrap;font-weight:600;">0 / 16</span>
+  </div>
+
+  <!-- HOME -->
+  <div id="home" class="section active">
+    <div class="hero" style="margin:-40px -40px 0 -40px;padding:60px 40px;">
+      <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#64b5f6;margin-bottom:12px;">Leaving Certificate Physics</div>
+      <h1>Modern Physics</h1>
+      <p>Everything you need to know for the Leaving Cert — explained simply, with worked examples. No confusing jargon!</p>
+      <div style="margin-top:24px;display:flex;gap:10px;flex-wrap:wrap;">
+        <span style="background:rgba(255,255,255,0.15);padding:6px 14px;border-radius:20px;font-size:13px;font-weight:600;">⚡ Chapter 21: The Electron</span>
+        <span style="background:rgba(255,255,255,0.15);padding:6px 14px;border-radius:20px;font-size:13px;font-weight:600;">⚛️ Chapter 22: The Nucleus</span>
+      </div>
+    </div>
+    <div class="topics-grid">
+      <div class="topic-card" onclick="showSection('c21-1')">
+        <div class="tc-icon">⚡</div>
+        <div class="tc-title">The Electron</div>
+        <div class="tc-sub">Charge, mass, energy units (eV)</div>
+        <div class="tc-ch">Chapter 21</div>
+      </div>
+      <div class="topic-card" onclick="showSection('c21-2')">
+        <div class="tc-icon">📺</div>
+        <div class="tc-title">Cathode Ray Tube</div>
+        <div class="tc-sub">Thermionic emission, how a CRT works</div>
+        <div class="tc-ch">Chapter 21</div>
+      </div>
+      <div class="topic-card" onclick="showSection('c21-3')">
+        <div class="tc-icon">🩻</div>
+        <div class="tc-title">X-Rays</div>
+        <div class="tc-sub">Production, properties, uses, hazards</div>
+        <div class="tc-ch">Chapter 21</div>
+      </div>
+      <div class="topic-card" onclick="showSection('c21-4')">
+        <div class="tc-icon">💡</div>
+        <div class="tc-title">Photoelectric Effect</div>
+        <div class="tc-sub">Photons, Einstein's law, threshold frequency</div>
+        <div class="tc-ch">Chapter 21</div>
+      </div>
+      <div class="topic-card" onclick="showSection('c22-1')">
+        <div class="tc-icon">🔬</div>
+        <div class="tc-title">Atomic Structure</div>
+        <div class="tc-sub">Rutherford's gold foil experiment</div>
+        <div class="tc-ch">Chapter 22</div>
+      </div>
+      <div class="topic-card" onclick="showSection('c22-2')">
+        <div class="tc-icon">🌈</div>
+        <div class="tc-title">Bohr Model & Spectra</div>
+        <div class="tc-sub">Energy levels, emission line spectra</div>
+        <div class="tc-ch">Chapter 22</div>
+      </div>
+      <div class="topic-card" onclick="showSection('c22-3')">
+        <div class="tc-icon">☢️</div>
+        <div class="tc-title">Radioactivity</div>
+        <div class="tc-sub">Alpha, beta, gamma — properties</div>
+        <div class="tc-ch">Chapter 22</div>
+      </div>
+      <div class="topic-card" onclick="showSection('c22-5')">
+        <div class="tc-icon">⏱</div>
+        <div class="tc-title">Half-Life</div>
+        <div class="tc-sub">Half-life, decay constant, activity</div>
+        <div class="tc-ch">Chapter 22</div>
+      </div>
+      <div class="topic-card" onclick="showSection('c22-6')">
+        <div class="tc-icon">💥</div>
+        <div class="tc-title">Fission & Fusion</div>
+        <div class="tc-sub">Nuclear reactions, E=mc², chain reactions</div>
+        <div class="tc-ch">Chapter 22</div>
+      </div>
+      <div class="topic-card" onclick="showSection('formulas')">
+        <div class="tc-icon">📋</div>
+        <div class="tc-title">All Formulas</div>
+        <div class="tc-sub">Quick reference sheet</div>
+        <div class="tc-ch">Revision</div>
+      </div>
+    </div>
+    <div style="padding:0 40px 40px;">
+      <div class="tip-box">
+        <strong>💡 How to use this guide:</strong> Click any topic in the sidebar or above. Each section has simple explanations, key definitions to learn off, formulas with examples, and a quiz at the end. Work through them in order!
+      </div>
+    </div>
+  </div>
+
+  <!-- C21-1: THE ELECTRON & ENERGY -->
+  <div id="c21-1" class="section">
+    <div class="chapter-badge">Chapter 21 — The Electron</div>
+    <h2 class="section-title">⚡ The Electron & Energy</h2>
+    <p class="section-subtitle">Learn about what makes up an atom, what an electron is, and how we measure really tiny amounts of energy.</p>
+
+    <h3>🔵 Subatomic Particles</h3>
+    <p>Every atom is made of three tiny particles. Think of it like this: the atom is like a tiny solar system — the <strong>nucleus</strong> is the sun in the middle, and <strong>electrons</strong> are like planets orbiting around it.</p>
+    <table>
+      <tr><th>Particle</th><th>Mass</th><th>Charge</th><th>Where?</th></tr>
+      <tr class="particle-row-proton"><td><strong>Proton</strong></td><td>1 u</td><td>+1</td><td>In the nucleus</td></tr>
+      <tr class="particle-row-neutron"><td><strong>Neutron</strong></td><td>1 u</td><td>0 (none)</td><td>In the nucleus</td></tr>
+      <tr class="particle-row-electron"><td><strong>Electron</strong></td><td>1/1840 u</td><td>−1</td><td>Orbits the nucleus</td></tr>
+    </table>
+    <p>👉 <strong>u = unified atomic mass unit.</strong> 1 u = 1.66 × 10⁻²⁷ kg (incredibly small!)</p>
+    <p>In a neutral atom, the number of electrons equals the number of protons — so the charges cancel out.</p>
+
+    <h3>⚡ The Electron in Detail</h3>
+    <div class="definition">
+      <div class="def-label">📖 Definition — Electron</div>
+      <div class="def-text">An electron is an indivisible quantity of charge that orbits the nucleus of an atom.</div>
+    </div>
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="ic-title">Charge</div>
+        <div class="ic-val">−1.6 × 10⁻¹⁹ C</div>
+        <div class="ic-sub">Negative charge (coulombs)</div>
+      </div>
+      <div class="info-card">
+        <div class="ic-title">Mass</div>
+        <div class="ic-val">9.1 × 10⁻³¹ kg</div>
+        <div class="ic-sub">Extremely light!</div>
+      </div>
+      <div class="info-card">
+        <div class="ic-title">Charge (simpler)</div>
+        <div class="ic-val">−e</div>
+        <div class="ic-sub">We often just call it "−1"</div>
+      </div>
+    </div>
+    <div class="tip-box">
+      <strong>🧠 Why negative?</strong> Because electrons are attracted to positive things (like the nucleus) and repelled by negative things. This is why electrons stay orbiting the nucleus — opposite charges attract!
+    </div>
+
+    <h3>🔋 Energy of an Electron</h3>
+    <p>When an electron is in an electric field (between two charged plates, like a battery), it can be speeded up — it gains <strong>kinetic energy</strong>. The amount of energy depends on the <strong>voltage</strong> (how strong the electric field is).</p>
+    <div class="formula-box">
+      <div class="f-label">⚠️ Formula — Energy of a Charged Particle</div>
+      <div class="formula">E = qV</div>
+      <div class="f-vars">
+        <span>E</span> = energy (joules, J)<br>
+        <span>q</span> = charge on the particle (coulombs, C)<br>
+        <span>V</span> = voltage (volts, V)
+      </div>
+    </div>
+
+    <h3>⚡ The Electronvolt (eV)</h3>
+    <p>The amounts of energy involved with electrons are <em>incredibly tiny</em>. A joule is way too big a unit! So physicists invented a smaller unit: the <strong>electronvolt</strong>.</p>
+    <div class="definition">
+      <div class="def-label">📖 Definition — Electronvolt</div>
+      <div class="def-text">1 eV is the energy gained (or lost) by an electron when it moves through a potential difference (voltage) of 1 volt.</div>
+    </div>
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="ic-title">1 eV =</div>
+        <div class="ic-val">1.6 × 10⁻¹⁹ J</div>
+      </div>
+      <div class="info-card">
+        <div class="ic-title">1 keV =</div>
+        <div class="ic-val">1 000 eV</div>
+      </div>
+      <div class="info-card">
+        <div class="ic-title">1 MeV =</div>
+        <div class="ic-val">1 000 000 eV</div>
+      </div>
+      <div class="info-card">
+        <div class="ic-title">1 GeV =</div>
+        <div class="ic-val">10⁹ eV</div>
+      </div>
+    </div>
+    <div class="formula-box">
+      <div class="f-label">Converting eV → Joules</div>
+      <div class="formula">E(J) = E(eV) × 1.6 × 10⁻¹⁹</div>
+      <div class="f-vars">Multiply by 1.6 × 10⁻¹⁹ to convert from eV to joules</div>
+    </div>
+
+    <h3>⚡ Energy Conversion Formula</h3>
+    <p>When an electron is accelerated through a voltage, all its potential energy converts to kinetic energy. This gives us a very important formula:</p>
+    <div class="formula-box">
+      <div class="f-label">⚠️ Formula — Energy Conversion in Electric Field</div>
+      <div class="formula">qV = ½mv²</div>
+      <div class="f-vars">
+        <span>q</span> = charge on the particle (1.6 × 10⁻¹⁹ C for electron)<br>
+        <span>V</span> = voltage (volts)<br>
+        <span>m</span> = mass of electron (9.1 × 10⁻³¹ kg)<br>
+        <span>v</span> = velocity/speed of the electron (m/s)
+      </div>
+    </div>
+    <div class="tip-box">
+      <strong>💡 Think of it like this:</strong> The electrical energy (qV) ALL turns into movement energy (½mv²). It's like converting a battery's energy into speed — none is wasted in this idealised case!
+    </div>
+
+    <div class="section-nav">
+      <button class="nav-btn nav-btn-next" onclick="showSection('c21-2')">Next: Thermionic Emission & CRT →</button>
+    </div>
+  </div>
+
+  <!-- C21-2: THERMIONIC EMISSION & CRT -->
+  <div id="c21-2" class="section">
+    <div class="chapter-badge">Chapter 21 — The Electron</div>
+    <h2 class="section-title">🔥 Thermionic Emission & the Cathode Ray Tube</h2>
+    <p class="section-subtitle">How do we get a beam of electrons? By heating metal! This is what old TVs used to work.</p>
+
+    <h3>🌡️ Thermionic Emission</h3>
+    <div class="definition">
+      <div class="def-label">📖 Definition — Thermionic Emission</div>
+      <div class="def-text">Thermionic emission is the emission of electrons from the surface of a hot metal.</div>
+    </div>
+    <p>Think of metal as a sea of free electrons swimming around between the atoms. Normally they don't have enough energy to escape. But when you <strong>heat the metal to over 800°C</strong>, the electrons gain so much energy they can break free from the surface — like water evaporating!</p>
+    <div class="definition">
+      <div class="def-label">📖 Definition — Work Function (Φ)</div>
+      <div class="def-text">The work function (Φ) of a metal is the minimum energy needed to remove the loosest electrons from the surface of that metal.</div>
+    </div>
+    <div class="tip-box">
+      <strong>🧠 Easy way to remember:</strong> Work function = the "entrance fee" for escaping the metal. If the electron doesn't have enough energy to pay the fee, it stays inside!
+    </div>
+
+    <h3>📺 The Cathode Ray Tube (CRT)</h3>
+    <p>A cathode ray tube uses thermionic emission to make a <strong>beam of electrons</strong> that can be controlled and directed at a screen. Old TVs and computer monitors used CRTs!</p>
+    <div class="diagram-container">
+      <svg viewBox="0 0 600 220" xmlns="http://www.w3.org/2000/svg" style="max-width:560px;">
+        <!-- Glass tube outline -->
+        <path d="M30,40 L420,40 Q580,40 580,110 Q580,180 420,180 L30,180 Z" fill="#e3f2fd" stroke="#1565c0" stroke-width="2" fill-opacity="0.4"/>
+        <!-- Filament -->
+        <rect x="35" y="85" width="20" height="50" rx="4" fill="#ff9800" stroke="#e65100" stroke-width="1.5"/>
+        <text x="45" y="152" text-anchor="middle" font-size="11" fill="#e65100" font-family="Lexend,sans-serif">Filament</text>
+        <!-- Cathode -->
+        <rect x="65" y="80" width="15" height="60" rx="3" fill="#9e9e9e" stroke="#424242" stroke-width="1.5"/>
+        <text x="72" y="155" text-anchor="middle" font-size="11" fill="#424242" font-family="Lexend,sans-serif">Cathode</text>
+        <!-- Anode -->
+        <rect x="130" y="75" width="15" height="70" rx="3" fill="#795548" stroke="#3e2723" stroke-width="1.5"/>
+        <path d="M140,100 L140,120" stroke="white" stroke-width="3"/>
+        <text x="138" y="158" text-anchor="middle" font-size="11" fill="#3e2723" font-family="Lexend,sans-serif">Anode</text>
+        <!-- Electron beam -->
+        <line x1="145" y1="110" x2="530" y2="110" stroke="#2196f3" stroke-width="2.5" stroke-dasharray="8,4"/>
+        <polygon points="530,106 540,110 530,114" fill="#2196f3"/>
+        <text x="330" y="100" text-anchor="middle" font-size="12" fill="#1565c0" font-weight="700" font-family="Lexend,sans-serif">Electron beam →</text>
+        <!-- Y-plates -->
+        <rect x="240" y="62" width="50" height="20" rx="3" fill="#ffc107" stroke="#f57f17" stroke-width="1.5"/>
+        <rect x="240" y="138" width="50" height="20" rx="3" fill="#ffc107" stroke="#f57f17" stroke-width="1.5"/>
+        <text x="265" y="55" text-anchor="middle" font-size="10" fill="#f57f17" font-family="Lexend,sans-serif">Y-plates</text>
+        <!-- X-plates -->
+        <rect x="330" y="62" width="50" height="20" rx="3" fill="#4caf50" stroke="#2e7d32" stroke-width="1.5"/>
+        <rect x="330" y="138" width="50" height="20" rx="3" fill="#4caf50" stroke="#2e7d32" stroke-width="1.5"/>
+        <text x="355" y="55" text-anchor="middle" font-size="10" fill="#2e7d32" font-family="Lexend,sans-serif">X-plates</text>
+        <!-- Screen -->
+        <ellipse cx="548" cy="110" rx="20" ry="65" fill="#b2dfdb" stroke="#00695c" stroke-width="2"/>
+        <text x="548" y="185" text-anchor="middle" font-size="10" fill="#00695c" font-family="Lexend,sans-serif">Screen</text>
+        <!-- Labels -->
+        <text x="55" y="30" text-anchor="middle" font-size="11" fill="#e65100" font-family="Lexend,sans-serif" font-weight="700">Low voltage (heats filament)</text>
+        <text x="200" y="30" text-anchor="middle" font-size="11" fill="#1565c0" font-family="Lexend,sans-serif" font-weight="700">High voltage (accelerates e⁻)</text>
+      </svg>
+      <p style="font-size:13px;color:var(--text-light);margin-top:8px;">Structure of a Cathode Ray Tube</p>
+    </div>
+    <h4>Parts of the CRT:</h4>
+    <table>
+      <tr><th>Part</th><th>What it does</th></tr>
+      <tr><td><strong>Filament</strong></td><td>Heated by a low voltage — it heats up the cathode</td></tr>
+      <tr><td><strong>Cathode</strong></td><td>Gets hot and emits electrons (thermionic emission)</td></tr>
+      <tr><td><strong>Anode</strong></td><td>Has a high positive voltage — attracts and accelerates electrons. Has a hole so electrons can pass through.</td></tr>
+      <tr><td><strong>Y-plates</strong></td><td>Deflect the beam UP or DOWN (vertical)</td></tr>
+      <tr><td><strong>X-plates</strong></td><td>Deflect the beam LEFT or RIGHT (horizontal)</td></tr>
+      <tr><td><strong>Fluorescent screen</strong></td><td>Glows where electrons hit it — producing a bright spot (scintillation)</td></tr>
+      <tr><td><strong>Vacuum</strong></td><td>No air inside — so electrons aren't stopped by gas molecules</td></tr>
+    </table>
+
+    <h3>🧲 Deflection of Electrons</h3>
+    <p>Because electrons are negatively charged, they are deflected by both <strong>electric fields</strong> and <strong>magnetic fields</strong>:</p>
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="ic-title">Electric Field</div>
+        <div class="ic-val">→ Parabola</div>
+        <div class="ic-sub">Attracted to +ve plate, repelled from −ve plate. Path curves like throwing a ball sideways.</div>
+      </div>
+      <div class="info-card">
+        <div class="ic-title">Magnetic Field</div>
+        <div class="ic-val">→ Circle</div>
+        <div class="ic-sub">Force is always perpendicular to motion. This makes the electrons travel in a circle!</div>
+      </div>
+    </div>
+
+    <h3>🧮 Force in a Magnetic Field</h3>
+    <div class="formula-box">
+      <div class="f-label">⚠️ Formula — Force on Charged Particle in Magnetic Field</div>
+      <div class="formula">F = qvB</div>
+      <div class="f-vars">
+        <span>F</span> = force (newtons, N)<br>
+        <span>q</span> = charge (coulombs, C)<br>
+        <span>v</span> = velocity/speed (m/s)<br>
+        <span>B</span> = magnetic flux density (tesla, T)
+      </div>
+    </div>
+    <p>When the electron moves in a circle in the magnetic field, the magnetic force = centripetal force:</p>
+    <div class="formula-box">
+      <div class="f-label">Circular Motion in Magnetic Field (Higher Level)</div>
+      <div class="formula">qvB = mv²/r</div>
+      <div class="f-vars">
+        <span>r</span> = radius of circular path (m)<br>
+        Rearranging: <span>r = mv/(qB)</span>
+      </div>
+    </div>
+
+    <h3>📡 Applications of the CRT</h3>
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="ic-title">CRO (Oscilloscope)</div>
+        <div class="ic-sub">Displays electrical signals on a screen. Used in science labs.</div>
+      </div>
+      <div class="info-card">
+        <div class="ic-title">ECG</div>
+        <div class="ic-sub">Electrocardiogram — shows electrical signals from the heart</div>
+      </div>
+      <div class="info-card">
+        <div class="ic-title">EEG</div>
+        <div class="ic-sub">Electroencephalogram — shows electrical activity in the brain</div>
+      </div>
+      <div class="info-card">
+        <div class="ic-title">Old TVs</div>
+        <div class="ic-sub">Used three electron beams (red, blue, green) to produce colour images</div>
+      </div>
+    </div>
+
+    <h3>🧪 Properties of Cathode Rays</h3>
+    <p>Cathode rays (beams of electrons) have these important properties:</p>
+    <ul style="margin-left:20px;line-height:2.2;">
+      <li>Travel in <strong>straight lines</strong> from the cathode</li>
+      <li>Have <strong>kinetic energy</strong></li>
+      <li>Are <strong>deflected</strong> by electric and magnetic fields (proving negative charge)</li>
+      <li>Cause certain substances (like zinc sulphide) to <strong>fluoresce</strong> (glow)</li>
+      <li>Produce <strong>X-rays</strong> when hitting a metal target at high speed</li>
+    </ul>
+
+    <div class="section-nav">
+      <button class="nav-btn nav-btn-prev" onclick="showSection('c21-1')">← Previous</button>
+      <button class="nav-btn nav-btn-next" onclick="showSection('c21-3')">Next: X-Rays →</button>
+    </div>
+  </div>
+
+  <!-- C21-3: X-RAYS -->
+  <div id="c21-3" class="section">
+    <div class="chapter-badge">Chapter 21 — The Electron</div>
+    <h2 class="section-title">🩻 X-Rays</h2>
+    <p class="section-subtitle">X-rays are like super-powered light that can pass through your body. Here's how they're made and used.</p>
+
+    <div class="definition">
+      <div class="def-label">📖 Definition — X-Rays</div>
+      <div class="def-text">X-rays are electromagnetic radiation of extremely high frequency (and short wavelength).</div>
+    </div>
+
+    <h3>🔧 How X-Rays are Produced</h3>
+    <p>X-rays are produced in the <strong>same way as a CRT</strong> but in reverse — instead of using electrons to make light on a screen, we <strong>smash electrons into a metal target</strong> to produce X-rays.</p>
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="ic-title">Step 1</div>
+        <div class="ic-sub">Filament heats cathode → thermionic emission (electrons released)</div>
+      </div>
+      <div class="info-card">
+        <div class="ic-title">Step 2</div>
+        <div class="ic-sub">Very high voltage (>50 kV) accelerates electrons at high speed toward the anode</div>
+      </div>
+      <div class="info-card">
+        <div class="ic-title">Step 3</div>
+        <div class="ic-sub">Electrons smash into tungsten target in the anode</div>
+      </div>
+      <div class="info-card">
+        <div class="ic-title">Step 4</div>
+        <div class="ic-sub">Only 1% of energy makes X-rays. 99% produces heat (so there's oil cooling!)</div>
+      </div>
+    </div>
+    <div class="tip-box">
+      <strong>💡 X-rays are the INVERSE of the photoelectric effect!</strong><br>
+      • <strong>X-ray production:</strong> Electrons IN → X-rays OUT<br>
+      • <strong>Photoelectric effect:</strong> Light IN → Electrons OUT
+    </div>
+
+    <h3>🔩 The X-Ray Tube</h3>
+    <table>
+      <tr><th>Component</th><th>Purpose</th></tr>
+      <tr><td>Hot cathode</td><td>Produces electrons by thermionic emission</td></tr>
+      <tr><td>Vacuum</td><td>Nothing slows down the electrons</td></tr>
+      <tr><td>Tungsten target</td><td>Hard metal that produces X-rays when hit</td></tr>
+      <tr><td>High anode voltage (&gt;50 kV)</td><td>Accelerates electrons to high speed</td></tr>
+      <tr><td>Lead shield</td><td>Protects the operator — only lets X-rays out through a small window</td></tr>
+      <tr><td>Oil coolant</td><td>Removes the 99% of energy that becomes heat</td></tr>
+    </table>
+
+    <h3>✨ Properties of X-Rays</h3>
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="ic-title">Electromagnetic</div>
+        <div class="ic-sub">They are EM waves — high frequency, short wavelength</div>
+      </div>
+      <div class="info-card">
+        <div class="ic-title">Penetration</div>
+        <div class="ic-sub">Pass through soft tissue (muscle) but NOT through dense material (bone, metal)</div>
+      </div>
+      <div class="info-card">
+        <div class="ic-title">Ionisation</div>
+        <div class="ic-sub">They knock electrons off atoms — creating ions. This can damage DNA!</div>
+      </div>
+      <div class="info-card">
+        <div class="ic-title">Travel at c</div>
+        <div class="ic-sub">Speed of light = 3 × 10⁸ m/s (they're light!)</div>
+      </div>
+    </div>
+
+    <h3>🏥 Uses of X-Rays</h3>
+    <ul style="margin-left:20px;line-height:2.4;">
+      <li><strong>Medicine:</strong> Detecting broken bones, cracks — bone absorbs X-rays (shows white on image)</li>
+      <li><strong>Industry:</strong> Detecting cracks in metals, welds that can't be seen from outside</li>
+      <li><strong>Security:</strong> Airport luggage scanners</li>
+    </ul>
+
+    <h3>☣️ Hazards of X-Rays</h3>
+    <p>X-rays are dangerous because they <strong>ionise cells in living tissue</strong>. This means they can damage DNA, causing cells to mutate and potentially leading to cancer.</p>
+    <div class="exam-tip">
+      <strong>🎯 Exam question:</strong> "Why is lead shielding placed over the testes/ovaries when getting an X-ray?" <br>
+      <strong>Answer:</strong> Lead shielding protects the reproductive organs from X-ray radiation, which could damage reproductive cells (which are particularly sensitive to ionising radiation). This prevents potential genetic damage.
+    </div>
+
+    <div class="section-nav">
+      <button class="nav-btn nav-btn-prev" onclick="showSection('c21-2')">← Previous</button>
+      <button class="nav-btn nav-btn-next" onclick="showSection('c21-4')">Next: Photoelectric Effect →</button>
+    </div>
+  </div>
+
+  <!-- C21-4: PHOTOELECTRIC EFFECT -->
+  <div id="c21-4" class="section">
+    <div class="chapter-badge">Chapter 21 — The Electron</div>
+    <h2 class="section-title">💡 The Photoelectric Effect</h2>
+    <p class="section-subtitle">What happens when you shine light on a metal? Sometimes electrons fly out! Einstein figured out why — and it changed physics forever.</p>
+
+    <div class="definition">
+      <div class="def-label">📖 Definition — Photoelectric Effect</div>
+      <div class="def-text">The photoelectric effect is the emission of electrons from the surface of a metal due to electromagnetic radiation of a suitable frequency hitting the metal.</div>
+    </div>
+
+    <h3>💡 What is a Photon?</h3>
+    <div class="definition">
+      <div class="def-label">📖 Definition — Photon</div>
+      <div class="def-text">A photon is a bundle (or packet) of light energy.</div>
+    </div>
+    <p>Einstein realised that light isn't just a wave — it also comes in <strong>packets called photons</strong>. Each photon carries a specific amount of energy that depends on its frequency.</p>
+    <div class="formula-box">
+      <div class="f-label">⚠️ Formula — Energy of a Photon</div>
+      <div class="formula">E = hf</div>
+      <div class="f-vars">
+        <span>E</span> = energy of the photon (joules, J)<br>
+        <span>h</span> = Planck's constant = 6.6 × 10⁻³⁴ J·s (given in exam)<br>
+        <span>f</span> = frequency of the light (Hz)
+      </div>
+    </div>
+    <div class="tip-box">
+      <strong>🧠 Key idea:</strong> Higher frequency light = more energetic photons. This is why UV light (high frequency) can cause sunburn but visible light (lower frequency) doesn't — UV photons carry more energy!
+    </div>
+
+    <h3>💥 How the Photoelectric Effect Works</h3>
+    <p>When a photon hits a metal surface, it gives ALL its energy to ONE electron. If the photon's energy is greater than the work function (Φ), the electron can escape. If not — nothing happens!</p>
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="ic-title">Photon energy &lt; Φ</div>
+        <div class="ic-val">❌ No emission</div>
+        <div class="ic-sub">Electron can't escape, even with lots of photons!</div>
+      </div>
+      <div class="info-card">
+        <div class="ic-title">Photon energy ≥ Φ</div>
+        <div class="ic-val">✅ Emission!</div>
+        <div class="ic-sub">Electron escapes. Extra energy becomes kinetic energy.</div>
+      </div>
+    </div>
+
+    <h3>🔁 Effect of Frequency vs Intensity</h3>
+    <table>
+      <tr><th>Change this...</th><th>Effect on electrons emitted</th></tr>
+      <tr><td>Higher <strong>frequency</strong></td><td>Each electron emitted has MORE kinetic energy (moves faster)</td></tr>
+      <tr><td>Higher <strong>intensity</strong> (brighter light)</td><td>MORE electrons are emitted per second (but same energy each)</td></tr>
+    </table>
+    <div class="tip-box">
+      <strong>🧠 Analogy:</strong> Imagine throwing balls at a wall to knock bricks out. The <strong>frequency</strong> = how hard each ball is thrown. The <strong>intensity</strong> = how many balls you throw per second. Harder throws = more energy per brick. More balls = more bricks knocked out.
+    </div>
+
+    <h3>📐 Threshold Frequency (f₀)</h3>
+    <div class="definition">
+      <div class="def-label">📖 Definition — Threshold Frequency</div>
+      <div class="def-text">The threshold frequency (f₀) is the minimum frequency of electromagnetic radiation needed to cause photoelectric emission from a given metal.</div>
+    </div>
+    <div class="formula-box">
+      <div class="f-label">Work Function Formula</div>
+      <div class="formula">Φ = hf₀</div>
+      <div class="f-vars">
+        <span>Φ</span> = work function (J)<br>
+        <span>h</span> = Planck's constant<br>
+        <span>f₀</span> = threshold frequency (Hz)
+      </div>
+    </div>
+
+    <h3>⚡ Einstein's Photoelectric Law (Higher Level)</h3>
+    <div class="definition">
+      <div class="def-label">📖 Einstein's Photoelectric Law</div>
+      <div class="def-text">The energy of the fastest emitted electron equals the difference between the energy of the photon and the work function of the metal.</div>
+    </div>
+    <div class="formula-box">
+      <div class="f-label">⚠️ Formula — Einstein's Photoelectric Equation (HL)</div>
+      <div class="formula">hf = Φ + ½mv²<sub>max</sub></div>
+      <div class="f-vars">
+        <span>hf</span> = energy of incoming photon<br>
+        <span>Φ</span> = work function of the metal (energy to escape)<br>
+        <span>½mv²<sub>max</sub></span> = maximum kinetic energy of emitted electron
+      </div>
+    </div>
+    <div class="tip-box">
+      <strong>💡 Plain English version:</strong> Photon energy = Work to escape + Leftover speed energy. The photon pays the "entry fee" (work function) and gives the rest to the electron as speed!
+    </div>
+
+    <h3>📱 Photocell</h3>
+    <p>A photocell is a device that uses the photoelectric effect to <strong>convert light into electric current</strong>. Light hits the cathode → electrons are released → they flow to the anode → current flows!</p>
+    <p><strong>Applications:</strong> Burglar alarms, smoke detectors, automatic doors, light meters, solar panels, optical soundtracks in films.</p>
+
+    <div class="section-nav">
+      <button class="nav-btn nav-btn-prev" onclick="showSection('c21-3')">← Previous</button>
+      <button class="nav-btn nav-btn-next" onclick="showSection('c21-5')">Next: Worked Examples →</button>
+    </div>
+  </div>
+
+  <!-- C21-5: CALCULATIONS -->
+  <div id="c21-5" class="section">
+    <div class="chapter-badge">Chapter 21 — Worked Examples</div>
+    <h2 class="section-title">📐 Calculations: Chapter 21</h2>
+    <p class="section-subtitle">Step-by-step worked examples from your textbook — I'll explain exactly what's happening at each stage.</p>
+
+    <div class="example-box">
+      <div class="ex-label">🧮 Example 1 — Converting MeV to Joules</div>
+      <div class="ex-q"><strong>Q:</strong> What is the energy of 5.6 MeV in joules?</div>
+      <div class="step"><div class="step-num">Step 1 — Convert MeV to eV</div><div class="step-content">5.6 MeV = 5.6 × 10⁶ eV<br><em>(1 MeV = 1,000,000 eV = 10⁶ eV)</em></div></div>
+      <div class="step"><div class="step-num">Step 2 — Use conversion formula: E(J) = E(eV) × 1.6 × 10⁻¹⁹</div><div class="step-content">E(J) = (5.6 × 10⁶) × (1.6 × 10⁻¹⁹)<br>E(J) = 8.96 × 10⁻¹³ J</div></div>
+      <div class="ex-ans">✅ Answer: 8.96 × 10⁻¹³ joules</div>
+    </div>
+
+    <div class="example-box">
+      <div class="ex-label">🧮 Example 2 — Finding Velocity of Electron (from voltage)</div>
+      <div class="ex-q"><strong>Q:</strong> An electron (charge = 1.6 × 10⁻¹⁹ C, mass = 9.1 × 10⁻³¹ kg) has 1 eV of kinetic energy. Find its velocity.</div>
+      <div class="step"><div class="step-num">Step 1 — Convert energy to joules</div><div class="step-content">1 eV = 1.6 × 10⁻¹⁹ J</div></div>
+      <div class="step"><div class="step-num">Step 2 — Use qV = ½mv². The KE = 1.6 × 10⁻¹⁹ J</div><div class="step-content">1.6 × 10⁻¹⁹ = ½ × (9.1 × 10⁻³¹) × v²</div></div>
+      <div class="step"><div class="step-num">Step 3 — Rearrange for v</div><div class="step-content">v² = 2 × (1.6 × 10⁻¹⁹) / (9.1 × 10⁻³¹)<br>v² = 3.52 × 10¹¹<br>v = √(3.52 × 10¹¹) = 5.93 × 10⁵ m/s</div></div>
+      <div class="ex-ans">✅ Answer: 5.93 × 10⁵ m/s (about 593,000 m/s!)</div>
+    </div>
+
+    <div class="example-box">
+      <div class="ex-label">🧮 Example 3 — Force & Radius in Magnetic Field (HL)</div>
+      <div class="ex-q"><strong>Q:</strong> An electron (v = 4 × 10⁷ m/s) enters a magnetic field (B = 5 × 10⁻² T) at right angles. Find: (i) the force, (ii) the radius of its circular path. (q = 1.6 × 10⁻¹⁹ C, m = 9.1 × 10⁻³¹ kg)</div>
+      <div class="step"><div class="step-num">Part (i) — Force: F = qvB</div><div class="step-content">F = (1.6 × 10⁻¹⁹)(4 × 10⁷)(5 × 10⁻²)<br>F = 3.2 × 10⁻¹³ N</div></div>
+      <div class="step"><div class="step-num">Part (ii) — Radius: Set F = mv²/r, so r = mv²/F</div><div class="step-content">r = (9.1 × 10⁻³¹)(4 × 10⁷)² / (3.2 × 10⁻¹³)<br>r = (9.1 × 10⁻³¹)(16 × 10¹⁴) / (3.2 × 10⁻¹³)<br>r = 4.55 × 10⁻³ m</div></div>
+      <div class="ex-ans">✅ Force = 3.2 × 10⁻¹³ N, Radius = 4.55 × 10⁻³ m (about 4.5 mm)</div>
+    </div>
+
+    <div class="example-box">
+      <div class="ex-label">🧮 Example 4 — Energy of a Photon</div>
+      <div class="ex-q"><strong>Q:</strong> Calculate the energy of a photon of violet light with wavelength 420 nm. (h = 6.6 × 10⁻³⁴ Js, c = 3.0 × 10⁸ m/s)</div>
+      <div class="step"><div class="step-num">Step 1 — Find frequency using c = fλ</div><div class="step-content">f = c / λ = (3 × 10⁸) / (420 × 10⁻⁹) = (3 × 10⁸) / (4.2 × 10⁻⁷)<br>f = 7.14 × 10¹⁴ Hz</div></div>
+      <div class="step"><div class="step-num">Step 2 — Find energy using E = hf</div><div class="step-content">E = (6.6 × 10⁻³⁴)(7.14 × 10¹⁴) = 4.71 × 10⁻¹⁹ J</div></div>
+      <div class="ex-ans">✅ Answer: 4.71 × 10⁻¹⁹ J (or about 2.9 eV)</div>
+    </div>
+
+    <div class="example-box">
+      <div class="ex-label">🧮 Example 5 — Threshold Frequency & Max Velocity (HL)</div>
+      <div class="ex-q"><strong>Q:</strong> Zinc has work function 4.3 eV. UV light of wavelength 240 nm shines on it. Find: (i) threshold frequency, (ii) max velocity of emitted electrons.</div>
+      <div class="step"><div class="step-num">Part (i) — Convert work function to Joules</div><div class="step-content">Φ = 4.3 × 1.6 × 10⁻¹⁹ = 6.88 × 10⁻¹⁹ J</div></div>
+      <div class="step"><div class="step-num">Then use Φ = hf₀ to find threshold frequency</div><div class="step-content">f₀ = Φ/h = (6.88 × 10⁻¹⁹) / (6.6 × 10⁻³⁴) = 1.04 × 10¹⁵ Hz</div></div>
+      <div class="step"><div class="step-num">Part (ii) — Find frequency of 240 nm light</div><div class="step-content">f = c/λ = (3 × 10⁸)/(2.4 × 10⁻⁷) = 1.25 × 10¹⁵ Hz</div></div>
+      <div class="step"><div class="step-num">Apply Einstein's photoelectric equation: hf = Φ + ½mv²</div><div class="step-content">(6.6×10⁻³⁴)(1.25×10¹⁵) = (6.88×10⁻¹⁹) + ½(9.1×10⁻³¹)v²<br>8.25×10⁻¹⁹ = 6.88×10⁻¹⁹ + ½(9.1×10⁻³¹)v²<br>1.37×10⁻¹⁹ = ½(9.1×10⁻³¹)v²<br>v² = (2 × 1.37×10⁻¹⁹)/(9.1×10⁻³¹) = 3.01×10¹¹<br>v = 5.48 × 10⁵ m/s</div></div>
+      <div class="ex-ans">✅ f₀ = 1.04 × 10¹⁵ Hz, v_max = 5.48 × 10⁵ m/s</div>
+    </div>
+
+    <div class="section-nav">
+      <button class="nav-btn nav-btn-prev" onclick="showSection('c21-4')">← Previous</button>
+      <button class="nav-btn nav-btn-next" onclick="showSection('c21-quiz')">Next: Quiz →</button>
+    </div>
+  </div>
+
+  <!-- C21 QUIZ -->
+  <div id="c21-quiz" class="section">
+    <div class="chapter-badge">Chapter 21 — Quiz</div>
+    <h2 class="section-title">✅ Quiz: Chapter 21</h2>
+    <p class="section-subtitle">Test yourself! Click on the answer you think is correct.</p>
+    <div id="quiz21-container"></div>
+    <div class="section-nav">
+      <button class="nav-btn nav-btn-prev" onclick="showSection('c21-5')">← Back to Examples</button>
+      <button class="nav-btn nav-btn-next" onclick="showSection('c22-1')">Next: The Nucleus →</button>
+    </div>
+  </div>
+
+  <!-- C22-1: ATOMIC STRUCTURE -->
+  <div id="c22-1" class="section">
+    <div class="chapter-badge">Chapter 22 — The Nucleus</div>
+    <h2 class="section-title">🔬 Atomic Structure & Rutherford's Experiment</h2>
+    <p class="section-subtitle">How did scientists figure out what's inside an atom? Rutherford's gold foil experiment changed everything!</p>
+
+    <h3>🍮 The Old Model — "Plum Pudding"</h3>
+    <p>Before 1909, scientists thought the atom was like a <strong>plum pudding</strong> — a uniform blob of positive charge with electrons scattered through it like raisins. This was J.J. Thomson's model.</p>
+
+    <h3>🥇 Rutherford's Gold Foil Experiment (1909)</h3>
+    <p>Ernest Rutherford fired <strong>alpha particles</strong> (helium nuclei — fast, positive, heavy) at a very thin sheet of gold foil. He expected them to pass straight through (based on the plum pudding model).</p>
+    <div class="info-grid">
+      <div class="info-card" style="border-color:var(--accent4);">
+        <div class="ic-title">What he expected</div>
+        <div class="ic-sub">All particles pass straight through (plum pudding model)</div>
+      </div>
+      <div class="info-card" style="border-color:var(--accent1);">
+        <div class="ic-title">What actually happened</div>
+        <div class="ic-sub">Most went straight through BUT a few bounced back at large angles!</div>
+      </div>
+    </div>
+    <div class="tip-box">
+      <strong>🧠 Rutherford said:</strong> "It was as incredible as if you fired a 15-inch shell at a piece of paper and it came back and hit you!"
+    </div>
+    <h4>Conclusions from the experiment:</h4>
+    <ul style="margin-left:20px;line-height:2.4;">
+      <li>Most of the atom is <strong>empty space</strong> (most particles passed straight through)</li>
+      <li>There is a very small, <strong>dense positive core</strong> called the <strong>nucleus</strong></li>
+      <li>Electrons orbit the nucleus at a distance</li>
+      <li>Radius of nucleus ≈ 10⁻¹⁵ m; radius of atom ≈ 10⁻¹⁰ m (nucleus is 100,000× smaller!)</li>
+    </ul>
+    <div class="exam-tip">
+      <strong>🎯 Exam question:</strong> "Why was the experiment carried out in a vacuum?"<br>
+      <strong>Answer:</strong> To prevent the alpha particles from colliding with air molecules (which would scatter them), and because the range of alpha particles in air is very short.
+    </div>
+
+    <h3>🔢 The Nucleus</h3>
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="ic-title">Atomic Number (Z)</div>
+        <div class="ic-val">Z</div>
+        <div class="ic-sub">Number of protons in the nucleus (defines the element)</div>
+      </div>
+      <div class="info-card">
+        <div class="ic-title">Mass Number (A)</div>
+        <div class="ic-val">A</div>
+        <div class="ic-sub">Total number of protons + neutrons (nucleons)</div>
+      </div>
+      <div class="info-card">
+        <div class="ic-title">Neutron Number</div>
+        <div class="ic-val">A − Z</div>
+        <div class="ic-sub">Number of neutrons = mass number minus atomic number</div>
+      </div>
+    </div>
+    <div class="formula-box">
+      <div class="f-label">Chemical Symbol Notation</div>
+      <div class="formula">ᴬ_Z X</div>
+      <div class="f-vars">
+        <span>X</span> = chemical symbol (e.g., C for Carbon)<br>
+        <span>A</span> = mass number (top number)<br>
+        <span>Z</span> = atomic number (bottom number)<br>
+        Example: ¹²₆C = Carbon with 6 protons and 6 neutrons
+      </div>
+    </div>
+
+    <h3>🧬 Isotopes</h3>
+    <div class="definition">
+      <div class="def-label">📖 Definition — Isotopes</div>
+      <div class="def-text">Isotopes are atoms of the same element with the same number of protons but different numbers of neutrons (different mass numbers).</div>
+    </div>
+    <p><strong>Example:</strong> Carbon-12 (¹²₆C) and Carbon-14 (¹⁴₆C) are both carbon but with different neutron numbers. Carbon-14 is radioactive and used in carbon dating!</p>
+
+    <div class="section-nav">
+      <button class="nav-btn nav-btn-prev" onclick="showSection('c21-quiz')">← Previous</button>
+      <button class="nav-btn nav-btn-next" onclick="showSection('c22-2')">Next: Bohr Model & Spectra →</button>
+    </div>
+  </div>
+
+  <!-- C22-2: BOHR MODEL & SPECTRA -->
+  <div id="c22-2" class="section">
+    <div class="chapter-badge">Chapter 22 — The Nucleus</div>
+    <h2 class="section-title">🌈 Bohr Model & Emission Spectra</h2>
+    <p class="section-subtitle">Niels Bohr figured out why atoms glow in specific colours. Each element has its own "colour fingerprint"!</p>
+
+    <h3>🪐 The Bohr Model of the Atom</h3>
+    <p>Niels Bohr (1913) proposed that electrons orbit the nucleus in <strong>fixed circular paths called energy levels</strong> (or shells). Each orbit is at a specific distance from the nucleus:</p>
+    <ul style="margin-left:20px;line-height:2.2;">
+      <li>Smallest orbit = lowest energy level</li>
+      <li>Larger orbits = higher energy levels</li>
+      <li>Electrons can jump between levels if they absorb or emit the right amount of energy</li>
+    </ul>
+    <div class="tip-box">
+      <strong>🧠 Think of it like steps on a staircase</strong> — electrons can only be on a step, never between steps. To jump up, they need energy. When they jump down, they release energy as light!
+    </div>
+
+    <h3>🌈 Emission Line Spectra</h3>
+    <p>When energy is given to a gas (e.g., by heating it or passing electricity through it), electrons jump to higher energy levels. When they <strong>fall back down</strong>, they emit a photon of light with a specific frequency.</p>
+    <div class="formula-box">
+      <div class="f-label">⚠️ Formula — Emission Line Spectra</div>
+      <div class="formula">hf = E₂ − E₁</div>
+      <div class="f-vars">
+        <span>h</span> = Planck's constant<br>
+        <span>f</span> = frequency of emitted radiation<br>
+        <span>E₂</span> = higher energy level (electron starts here)<br>
+        <span>E₁</span> = lower energy level (electron ends here)<br>
+        The difference in energy is emitted as a photon of light
+      </div>
+    </div>
+    <p>Since each element has different energy levels, each element emits different specific frequencies — giving a unique <strong>"barcode" of colours</strong> called an emission line spectrum.</p>
+    <div class="example-box">
+      <div class="ex-label">🌈 Practical Use of Line Spectra</div>
+      <div class="ex-q">Identifying elements in distant stars! By looking at the light from a star through a spectrometer, we can identify which elements are present — even though the star is billions of km away!</div>
+    </div>
+
+    <h3>☀️ Continuous Spectra</h3>
+    <p>When a solid metal is heated (like the filament in a light bulb), the electrons gain a <strong>continuous range</strong> of energies — so they emit ALL frequencies of light. This produces a <strong>rainbow (continuous spectrum)</strong>, not individual lines.</p>
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="ic-title">Emission Line Spectrum</div>
+        <div class="ic-sub">Specific lines of colour. From hot gases. Each element has unique lines.</div>
+      </div>
+      <div class="info-card">
+        <div class="ic-title">Continuous Spectrum</div>
+        <div class="ic-sub">Full rainbow. From hot solids/liquids. All frequencies present.</div>
+      </div>
+    </div>
+
+    <div class="section-nav">
+      <button class="nav-btn nav-btn-prev" onclick="showSection('c22-1')">← Previous</button>
+      <button class="nav-btn nav-btn-next" onclick="showSection('c22-3')">Next: Radioactivity →</button>
+    </div>
+  </div>
+
+  <!-- C22-3: RADIOACTIVITY -->
+  <div id="c22-3" class="section">
+    <div class="chapter-badge">Chapter 22 — The Nucleus</div>
+    <h2 class="section-title">☢️ Radioactivity</h2>
+    <p class="section-subtitle">Some atoms are unstable and break apart, releasing energy and particles. This is radioactivity!</p>
+
+    <div class="definition">
+      <div class="def-label">📖 Definition — Radioactivity</div>
+      <div class="def-text">Radioactivity is the spontaneous emission of radiation due to the natural disintegration of an unstable nucleus.</div>
+    </div>
+    <div class="definition">
+      <div class="def-label">📖 Definition — Radiation</div>
+      <div class="def-text">Radiation is the emission of particles of matter or photons of energy from a nucleus.</div>
+    </div>
+    <div class="tip-box">
+      <strong>🧠 Key word: SPONTANEOUS</strong> — it happens by itself, randomly, without any trigger. You can't make a radioactive atom decay faster by heating it, pressurising it, etc.
+    </div>
+
+    <h3>Three Types of Radiation</h3>
+    <div class="radiation-grid">
+      <div class="rad-card rad-alpha">
+        <div class="rad-sym">α</div>
+        <div class="rad-name">Alpha Radiation</div>
+        <div class="rad-info">
+          <strong>What it is:</strong> Helium nucleus (2 protons + 2 neutrons)<br><br>
+          <strong>Charge:</strong> +2<br>
+          <strong>Mass:</strong> 4 u (heavy!)<br><br>
+          <strong>Ionisation:</strong> Very high ⬆️<br>
+          <strong>Penetration:</strong> Very low ⬇️<br>
+          <strong>Stopped by:</strong> Paper or a few cm of air
+        </div>
+      </div>
+      <div class="rad-card rad-beta">
+        <div class="rad-sym">β</div>
+        <div class="rad-name">Beta Radiation</div>
+        <div class="rad-info">
+          <strong>What it is:</strong> Fast electron emitted from nucleus<br><br>
+          <strong>Charge:</strong> −1<br>
+          <strong>Mass:</strong> 1/1840 u (very light)<br><br>
+          <strong>Ionisation:</strong> Medium<br>
+          <strong>Penetration:</strong> Medium<br>
+          <strong>Stopped by:</strong> A few mm of aluminium
+        </div>
+      </div>
+      <div class="rad-card rad-gamma">
+        <div class="rad-sym">γ</div>
+        <div class="rad-name">Gamma Radiation</div>
+        <div class="rad-info">
+          <strong>What it is:</strong> High-energy EM radiation (photon)<br><br>
+          <strong>Charge:</strong> 0 (none)<br>
+          <strong>Mass:</strong> 0 (massless!)<br><br>
+          <strong>Ionisation:</strong> Low<br>
+          <strong>Penetration:</strong> Very high ⬆️<br>
+          <strong>Stopped by:</strong> Several cm of lead
+        </div>
+      </div>
+    </div>
+
+    <div class="tip-box">
+      <strong>🧠 Memory trick for penetration:</strong> Alpha = A for "A tiny bit" (stopped by paper), Beta = Better than alpha (stopped by aluminium), Gamma = Goes through almost everything (stopped by lead). <strong>A-B-G</strong> = increasing penetration!
+    </div>
+    <div class="tip-box">
+      <strong>🧠 Ionisation vs Penetration are OPPOSITES:</strong> The more ionising a particle is, the LESS penetrating it is. Alpha is very ionising but barely penetrates. Gamma barely ionises but goes through everything!
+    </div>
+
+    <h3>Deflection in Electric & Magnetic Fields</h3>
+    <table>
+      <tr><th>Radiation</th><th>Deflection in E-field</th><th>Deflection in B-field</th></tr>
+      <tr><td><strong>Alpha (α)</strong></td><td>Deflected toward −ve plate (small deflection — heavy)</td><td>Deflected (circular path)</td></tr>
+      <tr><td><strong>Beta (β)</strong></td><td>Deflected toward +ve plate (larger deflection — light)</td><td>Deflected in opposite direction to alpha</td></tr>
+      <tr><td><strong>Gamma (γ)</strong></td><td>NOT deflected (no charge)</td><td>NOT deflected (no charge)</td></tr>
+    </table>
+
+    <h3>☢️ Background Radiation</h3>
+    <div class="definition">
+      <div class="def-label">📖 Definition — Background Radiation</div>
+      <div class="def-text">Background radiation is radiation that comes from environmental sources including the Earth's crust, the atmosphere, cosmic rays, and radioisotopes.</div>
+    </div>
+    <p>We are all exposed to low levels of radiation all the time from natural sources (radon gas, granite rocks, cosmic rays from space). This is called background radiation and is generally harmless at normal levels.</p>
+
+    <h3>🔬 Ionisation</h3>
+    <div class="definition">
+      <div class="def-label">📖 Definition — Ionisation</div>
+      <div class="def-text">Ionisation is the charging of a neutral atom or molecule when it loses or gains one or more electrons.</div>
+    </div>
+    <p>All three types of radiation can ionise atoms — but α does it most, γ does it least. Ionising radiation is dangerous to living cells because it damages DNA.</p>
+
+    <div class="section-nav">
+      <button class="nav-btn nav-btn-prev" onclick="showSection('c22-2')">← Previous</button>
+      <button class="nav-btn nav-btn-next" onclick="showSection('c22-4')">Next: Nuclear Decay Equations →</button>
+    </div>
+  </div>
+
+  <!-- C22-4: NUCLEAR DECAY EQUATIONS -->
+  <div id="c22-4" class="section">
+    <div class="chapter-badge">Chapter 22 — The Nucleus</div>
+    <h2 class="section-title">💥 Nuclear Decay Equations</h2>
+    <p class="section-subtitle">When an atom decays, it turns into a different element! Learn how to write and balance nuclear equations.</p>
+
+    <h3>📐 Rules for Nuclear Equations</h3>
+    <p>In a nuclear equation, two things must be conserved (stay the same on both sides):</p>
+    <div class="info-grid">
+      <div class="info-card" style="border-color:var(--accent2);">
+        <div class="ic-title">Mass Numbers (top)</div>
+        <div class="ic-sub">The sum of all mass numbers (A) on the left = sum on the right</div>
+      </div>
+      <div class="info-card" style="border-color:var(--accent1);">
+        <div class="ic-title">Atomic Numbers (bottom)</div>
+        <div class="ic-sub">The sum of all atomic numbers (Z) on the left = sum on the right</div>
+      </div>
+    </div>
+
+    <h3>🔴 Alpha Decay</h3>
+    <div class="definition">
+      <div class="def-label">📖 Definition — Alpha Emission</div>
+      <div class="def-text">Alpha emission is the emission of a helium nucleus (²He or α) from a large, unstable atom.</div>
+    </div>
+    <div class="formula-box">
+      <div class="f-label">Alpha Decay — What happens to the nucleus?</div>
+      <div class="formula">Mass number: −4 &nbsp;&nbsp; Atomic number: −2</div>
+      <div class="f-vars">The atom loses 2 protons and 2 neutrons → becomes a completely different element!<br>
+      <strong>Example:</strong> Uranium-238 → Thorium-234 + Alpha<br>
+      ²³⁸₉₂U → ²³⁴₉₀Th + ⁴₂He</div>
+    </div>
+    <div class="example-box">
+      <div class="ex-label">📝 How to check this equation</div>
+      <div class="ex-q">²³⁸₉₂U → ²³⁴₉₀Th + ⁴₂He</div>
+      <div class="step"><div class="step-num">Check mass numbers (top): LEFT = 238, RIGHT = 234 + 4 = 238 ✅</div><div class="step-content">They balance!</div></div>
+      <div class="step"><div class="step-num">Check atomic numbers (bottom): LEFT = 92, RIGHT = 90 + 2 = 92 ✅</div><div class="step-content">They balance!</div></div>
+      <div class="ex-ans">✅ Valid equation — both sides conserve mass number and atomic number</div>
+    </div>
+
+    <h3>🔵 Beta Decay</h3>
+    <div class="definition">
+      <div class="def-label">📖 Definition — Beta Emission</div>
+      <div class="def-text">Beta emission is the emission of an electron (⁻¹e or β) when a neutron decays into a proton inside the nucleus.</div>
+    </div>
+    <div class="formula-box">
+      <div class="f-label">Beta Decay — What happens to the nucleus?</div>
+      <div class="formula">Mass number: 0 &nbsp;&nbsp; Atomic number: +1</div>
+      <div class="f-vars">A neutron → proton + electron (emitted). Mass number unchanged, atomic number increases by 1!<br>
+      <strong>Example:</strong> Carbon-14 → Nitrogen-14 + Beta<br>
+      ¹⁴₆C → ¹⁴₇N + ⁰₋₁e</div>
+    </div>
+    <div class="tip-box">
+      <strong>🧠 Beta emission in plain English:</strong> A neutron inside the nucleus splits into a proton (stays in nucleus) and an electron (shoots out at high speed as beta particle). One more proton = different element!
+    </div>
+
+    <h3>🟣 Gamma Emission</h3>
+    <p>Gamma radiation is just <strong>energy released from an excited nucleus</strong> — no particles are emitted. So:</p>
+    <div class="formula-box">
+      <div class="f-label">Gamma Emission</div>
+      <div class="formula">Mass number: 0 &nbsp;&nbsp; Atomic number: 0</div>
+      <div class="f-vars">Gamma emission does NOT change the element. It just releases excess energy.<br>
+      It usually happens AFTER alpha or beta decay when the new nucleus is left in an excited state.</div>
+    </div>
+
+    <div class="section-nav">
+      <button class="nav-btn nav-btn-prev" onclick="showSection('c22-3')">← Previous</button>
+      <button class="nav-btn nav-btn-next" onclick="showSection('c22-5')">Next: Half-Life →</button>
+    </div>
+  </div>
+
+  <!-- C22-5: HALF-LIFE -->
+  <div id="c22-5" class="section">
+    <div class="chapter-badge">Chapter 22 — The Nucleus</div>
+    <h2 class="section-title">⏱ Half-Life & Radioactive Decay</h2>
+    <p class="section-subtitle">Radioactive decay is random — but we can measure how quickly a sample decays using half-life.</p>
+
+    <div class="definition">
+      <div class="def-label">📖 Definition — Half-Life (T½)</div>
+      <div class="def-text">The half-life is the time it takes for half of the radioactive nuclei in a sample to decay.</div>
+    </div>
+    <div class="tip-box">
+      <strong>🧠 Think of it like halving a pizza:</strong> Every half-life, you eat half of what's left. After 1 half-life = ½ left. After 2 = ¼. After 3 = ⅛. And so on!
+    </div>
+
+    <h3>📉 How Half-Life Works</h3>
+    <table>
+      <tr><th>Number of Half-Lives</th><th>Fraction of Sample Remaining</th></tr>
+      <tr><td>0</td><td>1 (all of it)</td></tr>
+      <tr><td>1</td><td>½</td></tr>
+      <tr><td>2</td><td>¼ (= 1/2²)</td></tr>
+      <tr><td>3</td><td>⅛ (= 1/2³)</td></tr>
+      <tr><td>n</td><td>1/2ⁿ</td></tr>
+    </table>
+
+    <h3>📊 Activity</h3>
+    <div class="definition">
+      <div class="def-label">📖 Definition — Activity (A)</div>
+      <div class="def-text">The activity of a radioactive source is the number of decays (disintegrations) per second. Measured in becquerels (Bq). 1 Bq = 1 decay per second.</div>
+    </div>
+    <div class="definition">
+      <div class="def-label">📖 Definition — Decay Constant (λ)</div>
+      <div class="def-text">The decay constant (λ) is the probability that an individual nucleus will decay in one second.</div>
+    </div>
+
+    <h3>🔢 Key Formulas</h3>
+    <div class="formula-box">
+      <div class="f-label">⚠️ Law of Radioactive Decay (HL)</div>
+      <div class="formula">A = λN</div>
+      <div class="f-vars">
+        <span>A</span> = activity (Bq = decays per second)<br>
+        <span>λ</span> = decay constant (s⁻¹)<br>
+        <span>N</span> = number of undecayed nuclei in the sample
+      </div>
+    </div>
+    <div class="formula-box">
+      <div class="f-label">⚠️ Half-Life & Decay Constant (HL)</div>
+      <div class="formula">T½ = ln2 / λ = 0.693 / λ</div>
+      <div class="f-vars">
+        <span>T½</span> = half-life (seconds)<br>
+        <span>λ</span> = decay constant (s⁻¹)<br>
+        <span>ln2 = 0.693</span> (natural log of 2)
+      </div>
+    </div>
+
+    <h3>🌍 Uses of Radioactive Decay</h3>
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="ic-title">Carbon Dating</div>
+        <div class="ic-sub">Carbon-14 (half-life 5,730 years) used to date ancient organic materials</div>
+      </div>
+      <div class="info-card">
+        <div class="ic-title">Medical Tracers</div>
+        <div class="ic-sub">Short half-life isotopes injected to track blood flow or diagnose disease</div>
+      </div>
+      <div class="info-card">
+        <div class="ic-title">Nuclear Power</div>
+        <div class="ic-sub">Long half-life uranium used as fuel in nuclear reactors</div>
+      </div>
+      <div class="info-card">
+        <div class="ic-title">Smoke Detectors</div>
+        <div class="ic-sub">Americium-241 ionises air — smoke interrupts the current, triggering alarm</div>
+      </div>
+    </div>
+
+    <div class="section-nav">
+      <button class="nav-btn nav-btn-prev" onclick="showSection('c22-4')">← Previous</button>
+      <button class="nav-btn nav-btn-next" onclick="showSection('c22-6')">Next: Fission & Fusion →</button>
+    </div>
+  </div>
+
+  <!-- C22-6: FISSION & FUSION -->
+  <div id="c22-6" class="section">
+    <div class="chapter-badge">Chapter 22 — The Nucleus</div>
+    <h2 class="section-title">💥 Fission & Fusion</h2>
+    <p class="section-subtitle">Two ways to get ENORMOUS amounts of energy from atoms — splitting them or joining them!</p>
+
+    <h3>🔀 E = mc² — Einstein's Equation</h3>
+    <p>Einstein showed that mass and energy are two forms of the same thing. A tiny amount of mass can be converted into an enormous amount of energy!</p>
+    <div class="formula-box">
+      <div class="f-label">⚠️ Mass-Energy Equivalence</div>
+      <div class="formula">E = mc²</div>
+      <div class="f-vars">
+        <span>E</span> = energy (joules)<br>
+        <span>m</span> = mass lost/converted (kg)<br>
+        <span>c</span> = speed of light = 3 × 10⁸ m/s<br><br>
+        Because c² = 9 × 10¹⁶, even a tiny mass produces ENORMOUS energy!
+      </div>
+    </div>
+    <div class="tip-box">
+      <strong>🧠 Why is nuclear energy so powerful?</strong> Because c² is such a huge number (90,000,000,000,000,000). So even losing 1 kg of mass would release 9 × 10¹⁶ joules — enough to power a city for years!
+    </div>
+
+    <h3>💥 Nuclear Fission</h3>
+    <div class="definition">
+      <div class="def-label">📖 Definition — Nuclear Fission</div>
+      <div class="def-text">Nuclear fission is the splitting of a large nucleus into two smaller nuclei (of roughly equal mass), with the emission of neutrons and release of energy.</div>
+    </div>
+    <div class="example-box">
+      <div class="ex-label">Example — Fission of Uranium-235</div>
+      <div class="ex-q">A slow neutron hits Uranium-235, which splits into Xenon-143 and Strontium-90 plus 3 neutrons and energy:</div>
+      <div class="step"><div class="step-num">The equation</div><div class="step-content">²³⁵₉₂U + ¹₀n → ¹⁴³₅₄Xe + ⁹⁰₃₈Sr + 3(¹₀n) + energy</div></div>
+      <div class="step"><div class="step-num">Check mass numbers: 235+1 = 236 = 143+90+3(1) = 236 ✅</div><div class="step-content">They balance!</div></div>
+    </div>
+
+    <h3>⛓️ Chain Reactions</h3>
+    <div class="definition">
+      <div class="def-label">📖 Definition — Chain Reaction</div>
+      <div class="def-text">A chain reaction is a reaction where at least one neutron is released during each fission reaction, which then causes further fissions — it is self-sustaining.</div>
+    </div>
+    <div class="definition">
+      <div class="def-label">📖 Definition — Critical Mass</div>
+      <div class="def-text">Critical mass is the minimum amount of fissile material needed for chain reactions to occur.</div>
+    </div>
+
+    <h3>🌟 Nuclear Fusion</h3>
+    <div class="definition">
+      <div class="def-label">📖 Definition — Nuclear Fusion</div>
+      <div class="def-text">Nuclear fusion is the combining of two small nuclei to form a single larger nucleus, with the release of energy.</div>
+    </div>
+    <p>Fusion is what powers the <strong>Sun!</strong> Hydrogen isotopes (deuterium and tritium) are fused together at extremely high temperatures to form helium, releasing enormous energy.</p>
+    <div class="info-grid">
+      <div class="info-card" style="border-color:var(--accent1);">
+        <div class="ic-title">Fission vs Fusion</div>
+        <div class="ic-sub" style="font-size:13px;line-height:1.8;">
+          <strong>Fission:</strong> Split large atoms (uranium). Used in nuclear power plants. Produces radioactive waste.<br><br>
+          <strong>Fusion:</strong> Join small atoms (hydrogen). Powers stars. Much cleaner but extremely hard to control on Earth.
+        </div>
+      </div>
+    </div>
+
+    <div class="exam-tip">
+      <strong>🎯 Why is it hard to achieve fusion on Earth?</strong><br>
+      To fuse nuclei, you need extremely high temperatures (millions of degrees) to overcome the repulsion between the positively charged nuclei. This requires more energy to initiate than current technology can sustain.
+    </div>
+
+    <div class="section-nav">
+      <button class="nav-btn nav-btn-prev" onclick="showSection('c22-5')">← Previous</button>
+      <button class="nav-btn nav-btn-next" onclick="showSection('c22-7')">Next: Nuclear Reactors →</button>
+    </div>
+  </div>
+
+  <!-- C22-7: NUCLEAR REACTORS -->
+  <div id="c22-7" class="section">
+    <div class="chapter-badge">Chapter 22 — The Nucleus</div>
+    <h2 class="section-title">🏭 Nuclear Reactors</h2>
+    <p class="section-subtitle">A nuclear reactor is basically a very controlled fission chain reaction used to generate electricity.</p>
+
+    <h3>⚙️ Components of a Nuclear Reactor</h3>
+    <table>
+      <tr><th>Component</th><th>Function</th></tr>
+      <tr><td><strong>Fuel rods</strong></td><td>Usually uranium-235 — the source of fission energy</td></tr>
+      <tr><td><strong>Moderator</strong></td><td>Slows down fast neutrons so they can cause more fission (e.g., graphite or heavy water)</td></tr>
+      <tr><td><strong>Control rods</strong></td><td>Absorb neutrons to control the reaction speed (e.g., boron rods). Push in = slow down, pull out = speed up</td></tr>
+      <tr><td><strong>Coolant</strong></td><td>Removes heat from the reactor and transfers it to a generator (water or CO₂)</td></tr>
+      <tr><td><strong>Shielding</strong></td><td>Thick concrete and lead walls protect workers from radiation</td></tr>
+      <tr><td><strong>Heat exchanger</strong></td><td>Transfers heat from coolant to make steam that drives turbines to generate electricity</td></tr>
+    </table>
+    <div class="tip-box">
+      <strong>🧠 Control rods = brakes on the reaction.</strong> The more control rods pushed in, the more neutrons are absorbed, the slower the reaction. Pull them out = more neutrons = more fission = more energy (but dangerous if pulled out too fast — like Chernobyl!).
+    </div>
+
+    <h3>♻️ Advantages and Disadvantages</h3>
+    <div class="info-grid">
+      <div class="info-card" style="border-color:var(--accent4);">
+        <div class="ic-title">✅ Advantages</div>
+        <div class="ic-sub" style="line-height:2;">No greenhouse gases produced<br>Produces massive amounts of energy from small amounts of fuel<br>Reliable — not dependent on weather</div>
+      </div>
+      <div class="info-card" style="border-color:var(--accent1);">
+        <div class="ic-title">❌ Disadvantages</div>
+        <div class="ic-sub" style="line-height:2;">Radioactive waste (dangerous for thousands of years)<br>Risk of accidents (e.g., Chernobyl, Fukushima)<br>Very expensive to build and decommission</div>
+      </div>
+    </div>
+
+    <div class="section-nav">
+      <button class="nav-btn nav-btn-prev" onclick="showSection('c22-6')">← Previous</button>
+      <button class="nav-btn nav-btn-next" onclick="showSection('c22-8')">Next: Worked Examples →</button>
+    </div>
+  </div>
+
+  <!-- C22-8: CALCULATIONS -->
+  <div id="c22-8" class="section">
+    <div class="chapter-badge">Chapter 22 — Worked Examples</div>
+    <h2 class="section-title">📐 Calculations: Chapter 22</h2>
+    <p class="section-subtitle">Step-by-step worked examples for nuclear calculations.</p>
+
+    <div class="example-box">
+      <div class="ex-label">🧮 Example 1 — Half-Life: Fraction Remaining</div>
+      <div class="ex-q"><strong>Q:</strong> Carbon-14 has a half-life of 5,730 years. How much of a sample remains after 11,460 years?</div>
+      <div class="step"><div class="step-num">Step 1 — Find how many half-lives have passed</div><div class="step-content">Number of half-lives = Time elapsed / Half-life = 11,460 / 5,730 = 2 half-lives</div></div>
+      <div class="step"><div class="step-num">Step 2 — Apply the halving rule</div><div class="step-content">After 1 half-life: ½ remains<br>After 2 half-lives: ½ × ½ = ¼ remains</div></div>
+      <div class="ex-ans">✅ Answer: ¼ (one quarter) of the original sample remains</div>
+    </div>
+
+    <div class="example-box">
+      <div class="ex-label">🧮 Example 2 — Decay Constant & Activity (HL)</div>
+      <div class="ex-q"><strong>Q:</strong> Carbon-14 half-life = 5,730 years. (i) Find the decay constant. (ii) Find the activity of a sample with 5.2 × 10¹¹ atoms.</div>
+      <div class="step"><div class="step-num">Step 1 — Convert half-life to seconds</div><div class="step-content">T½ = 5730 × 365 × 24 × 60 × 60 = 5730 × 3.156 × 10⁷ = 1.807 × 10¹¹ s</div></div>
+      <div class="step"><div class="step-num">Step 2 — Find decay constant: λ = ln2 / T½ = 0.693 / T½</div><div class="step-content">λ = 0.693 / (1.807 × 10¹¹) = 3.83 × 10⁻¹² s⁻¹</div></div>
+      <div class="step"><div class="step-num">Step 3 — Find activity: A = λN</div><div class="step-content">A = (3.83 × 10⁻¹²) × (5.2 × 10¹¹)<br>A ≈ 2.0 Bq</div></div>
+      <div class="ex-ans">✅ λ = 3.83 × 10⁻¹² s⁻¹, Activity = 2.0 Bq (2 decays per second)</div>
+    </div>
+
+    <div class="example-box">
+      <div class="ex-label">🧮 Example 3 — E = mc² Calculation</div>
+      <div class="ex-q"><strong>Q:</strong> 80 MJ of energy are released in a nuclear reaction. Calculate the loss of mass. (c = 3 × 10⁸ m/s)</div>
+      <div class="step"><div class="step-num">Step 1 — Convert energy to joules</div><div class="step-content">E = 80 MJ = 80 × 10⁶ J = 8 × 10⁷ J</div></div>
+      <div class="step"><div class="step-num">Step 2 — Rearrange E = mc² for mass</div><div class="step-content">m = E / c² = (8 × 10⁷) / (3 × 10⁸)²<br>m = (8 × 10⁷) / (9 × 10¹⁶)<br>m = 8.89 × 10⁻¹⁰ kg</div></div>
+      <div class="ex-ans">✅ Mass lost = 8.89 × 10⁻¹⁰ kg (less than a millionth of a gram, yet produces 80 million joules!)</div>
+    </div>
+
+    <div class="example-box">
+      <div class="ex-label">🧮 Example 4 — Completing a Nuclear Equation</div>
+      <div class="ex-q"><strong>Q:</strong> Complete this alpha decay equation: ²²⁶₈₈Ra → ??? + ⁴₂He</div>
+      <div class="step"><div class="step-num">Step 1 — Find mass number of daughter nucleus</div><div class="step-content">226 = A + 4 → A = 226 − 4 = 222</div></div>
+      <div class="step"><div class="step-num">Step 2 — Find atomic number of daughter nucleus</div><div class="step-content">88 = Z + 2 → Z = 88 − 2 = 86</div></div>
+      <div class="step"><div class="step-num">Step 3 — Look up element with Z=86 (Radon = Rn)</div><div class="step-content">²²⁶₈₈Ra → ²²²₈₆Rn + ⁴₂He</div></div>
+      <div class="ex-ans">✅ Radium-226 decays to Radon-222 by alpha emission</div>
+    </div>
+
+    <div class="section-nav">
+      <button class="nav-btn nav-btn-prev" onclick="showSection('c22-7')">← Previous</button>
+      <button class="nav-btn nav-btn-next" onclick="showSection('c22-quiz')">Next: Quiz →</button>
+    </div>
+  </div>
+
+  <!-- C22 QUIZ -->
+  <div id="c22-quiz" class="section">
+    <div class="chapter-badge">Chapter 22 — Quiz</div>
+    <h2 class="section-title">✅ Quiz: Chapter 22</h2>
+    <p class="section-subtitle">Test yourself on The Nucleus!</p>
+    <div id="quiz22-container"></div>
+    <div class="section-nav">
+      <button class="nav-btn nav-btn-prev" onclick="showSection('c22-8')">← Back to Examples</button>
+      <button class="nav-btn nav-btn-next" onclick="showSection('formulas')">Next: All Formulas →</button>
+    </div>
+  </div>
+
+  <!-- ALL FORMULAS -->
+  <div id="formulas" class="section">
+    <h2 class="section-title">📋 All Formulas — Quick Reference</h2>
+    <p class="section-subtitle">Every formula you need for the Modern Physics Leaving Cert exam. Learn these off!</p>
+
+    <h3>Chapter 21 — The Electron</h3>
+    <div class="formula-box"><div class="f-label">Energy of a charged particle in electric field</div><div class="formula">E = qV</div><div class="f-vars"><span>E</span>=energy (J), <span>q</span>=charge (C), <span>V</span>=voltage (V)</div></div>
+    <div class="formula-box"><div class="f-label">Energy conversion — potential to kinetic</div><div class="formula">qV = ½mv²</div><div class="f-vars"><span>q</span>=charge, <span>V</span>=voltage, <span>m</span>=mass, <span>v</span>=velocity</div></div>
+    <div class="formula-box"><div class="f-label">Convert eV to Joules</div><div class="formula">E(J) = E(eV) × 1.6 × 10⁻¹⁹</div></div>
+    <div class="formula-box"><div class="f-label">Force on charged particle in magnetic field</div><div class="formula">F = qvB</div><div class="f-vars"><span>F</span>=force (N), <span>q</span>=charge (C), <span>v</span>=velocity (m/s), <span>B</span>=magnetic flux density (T)</div></div>
+    <div class="formula-box"><div class="f-label">Energy of a photon</div><div class="formula">E = hf</div><div class="f-vars"><span>E</span>=energy (J), <span>h</span>=Planck's constant=6.6×10⁻³⁴ Js, <span>f</span>=frequency (Hz)</div></div>
+    <div class="formula-box" style="border-color:#f59e0b;background:#fff7ed;"><div class="f-label" style="color:#b45309;">⭐ Einstein's Photoelectric Equation (HL)</div><div class="formula">hf = Φ + ½mv²<sub>max</sub></div><div class="f-vars"><span>hf</span>=photon energy, <span>Φ</span>=work function, <span>½mv²</span>=KE of electron</div></div>
+    <div class="formula-box"><div class="f-label">Work Function</div><div class="formula">Φ = hf₀</div><div class="f-vars"><span>Φ</span>=work function (J), <span>f₀</span>=threshold frequency (Hz)</div></div>
+
+    <h3>Chapter 22 — The Nucleus</h3>
+    <div class="formula-box"><div class="f-label">Emission line spectra</div><div class="formula">hf = E₂ − E₁</div><div class="f-vars">Energy of photon emitted = difference between energy levels</div></div>
+    <div class="formula-box"><div class="f-label">Mass-energy equivalence</div><div class="formula">E = mc²</div><div class="f-vars"><span>E</span>=energy (J), <span>m</span>=mass (kg), <span>c</span>=3×10⁸ m/s</div></div>
+    <div class="formula-box" style="border-color:#f59e0b;background:#fff7ed;"><div class="f-label" style="color:#b45309;">⭐ Law of Radioactive Decay (HL)</div><div class="formula">A = λN</div><div class="f-vars"><span>A</span>=activity (Bq), <span>λ</span>=decay constant (s⁻¹), <span>N</span>=number of undecayed nuclei</div></div>
+    <div class="formula-box" style="border-color:#f59e0b;background:#fff7ed;"><div class="f-label" style="color:#b45309;">⭐ Half-life & Decay Constant (HL)</div><div class="formula">T½ = ln2/λ = 0.693/λ</div><div class="f-vars"><span>T½</span>=half-life (s), <span>λ</span>=decay constant (s⁻¹)</div></div>
+
+    <div class="info-grid" style="margin-top:24px;">
+      <div class="info-card">
+        <div class="ic-title">Planck's constant</div>
+        <div class="ic-val">h = 6.6×10⁻³⁴ Js</div>
+      </div>
+      <div class="info-card">
+        <div class="ic-title">Electron charge</div>
+        <div class="ic-val">e = 1.6×10⁻¹⁹ C</div>
+      </div>
+      <div class="info-card">
+        <div class="ic-title">Electron mass</div>
+        <div class="ic-val">m = 9.1×10⁻³¹ kg</div>
+      </div>
+      <div class="info-card">
+        <div class="ic-title">Speed of light</div>
+        <div class="ic-val">c = 3×10⁸ m/s</div>
+      </div>
+    </div>
+    <div class="tip-box" style="margin-top:20px;">
+      <strong>⭐ Higher Level only formulas are marked with a star.</strong> Ordinary Level students don't need those ones! All others are needed by everyone.
+    </div>
+
+    <div class="section-nav">
+      <button class="nav-btn nav-btn-prev" onclick="showSection('c22-quiz')">← Back to Quiz</button>
+      <button class="nav-btn nav-btn-next" onclick="showSection('definitions')">Next: All Definitions →</button>
+    </div>
+  </div>
+
+  <!-- ALL DEFINITIONS -->
+  <div id="definitions" class="section">
+    <h2 class="section-title">📖 All Definitions — Learn These Off!</h2>
+    <p class="section-subtitle">These are the definitions you need to be able to write in the exam. Learn them word-for-word!</p>
+
+    <h3>Chapter 21 — The Electron</h3>
+    <div class="definition"><div class="def-label">Electron</div><div class="def-text">An electron is an indivisible quantity of charge that orbits the nucleus of an atom.</div></div>
+    <div class="definition"><div class="def-label">Electronvolt (eV)</div><div class="def-text">The electronvolt is the energy gained or lost by an electron when it moves through a potential difference of 1 volt. 1 eV = 1.6 × 10⁻¹⁹ J.</div></div>
+    <div class="definition"><div class="def-label">Thermionic Emission</div><div class="def-text">Thermionic emission is the emission of electrons from the surface of a hot metal.</div></div>
+    <div class="definition"><div class="def-label">Work Function (Φ)</div><div class="def-text">The work function of a metal is the minimum energy needed to remove the loosest electrons from the surface of that metal.</div></div>
+    <div class="definition"><div class="def-label">X-Rays</div><div class="def-text">X-rays are electromagnetic radiation of extremely high frequency (short wavelength).</div></div>
+    <div class="definition"><div class="def-label">Photoelectric Effect</div><div class="def-text">The photoelectric effect is the emission of electrons from the surface of a metal due to electromagnetic radiation of a suitable frequency hitting the metal.</div></div>
+    <div class="definition"><div class="def-label">Photon</div><div class="def-text">A photon is a bundle (packet) of light energy.</div></div>
+    <div class="definition"><div class="def-label">Threshold Frequency (f₀)</div><div class="def-text">The threshold frequency is the minimum frequency of electromagnetic radiation needed to cause photoelectric emission from a given metal.</div></div>
+    <div class="definition"><div class="def-label">Einstein's Photoelectric Law (HL)</div><div class="def-text">The energy of the fastest emitted electron equals the difference between the energy of the photon and the work function of the metal.</div></div>
+
+    <h3>Chapter 22 — The Nucleus</h3>
+    <div class="definition"><div class="def-label">Isotopes</div><div class="def-text">Isotopes are atoms of the same element (same number of protons) but with different numbers of neutrons (different mass numbers).</div></div>
+    <div class="definition"><div class="def-label">Radioactivity</div><div class="def-text">Radioactivity is the spontaneous emission of radiation due to the natural disintegration of an unstable nucleus.</div></div>
+    <div class="definition"><div class="def-label">Radiation</div><div class="def-text">Radiation is the emission of particles of matter or photons of energy from a nucleus.</div></div>
+    <div class="definition"><div class="def-label">Alpha Emission (α)</div><div class="def-text">Alpha emission is the emission of a helium nucleus (²He) from a large, unstable atom.</div></div>
+    <div class="definition"><div class="def-label">Beta Emission (β)</div><div class="def-text">Beta emission is the emission of an electron when a neutron decays into a proton inside the nucleus.</div></div>
+    <div class="definition"><div class="def-label">Ionisation</div><div class="def-text">Ionisation is the charging of a neutral atom or molecule when it loses or gains one or more electrons.</div></div>
+    <div class="definition"><div class="def-label">Penetration</div><div class="def-text">Penetration is the distance radiation travels through a medium.</div></div>
+    <div class="definition"><div class="def-label">Background Radiation</div><div class="def-text">Background radiation is radiation that comes from environmental sources including the Earth's crust, the atmosphere, cosmic rays, and radioisotopes.</div></div>
+    <div class="definition"><div class="def-label">Half-Life (T½)</div><div class="def-text">The half-life is the time it takes for half of the radioactive nuclei in a sample to decay.</div></div>
+    <div class="definition"><div class="def-label">Activity (A)</div><div class="def-text">The activity of a radioactive source is the number of decays (disintegrations) per second. Unit: becquerel (Bq).</div></div>
+    <div class="definition"><div class="def-label">Decay Constant (λ) (HL)</div><div class="def-text">The decay constant is the probability that an individual nucleus will decay in one second.</div></div>
+    <div class="definition"><div class="def-label">Nuclear Fission</div><div class="def-text">Nuclear fission is the splitting of a large nucleus into two smaller nuclei (of roughly equal mass), with the emission of neutrons and release of energy.</div></div>
+    <div class="definition"><div class="def-label">Chain Reaction</div><div class="def-text">A chain reaction is a reaction where at least one neutron is released during each fission reaction, causing further fissions — it is self-sustaining.</div></div>
+    <div class="definition"><div class="def-label">Critical Mass</div><div class="def-text">Critical mass is the minimum amount of fissile material needed for chain reactions to occur.</div></div>
+    <div class="definition"><div class="def-label">Nuclear Fusion</div><div class="def-text">Nuclear fusion is the combining of two small nuclei to form a single larger nucleus, with the release of energy.</div></div>
+
+    <div class="tip-box" style="margin-top:24px;">
+      <strong>🎯 Exam tip:</strong> For definitions, use the exact wording above. Examiners are looking for key words like "spontaneous", "minimum frequency", "indivisible", etc. Missing one key word can cost you marks!
+    </div>
+
+    <div class="section-nav">
+      <button class="nav-btn nav-btn-prev" onclick="showSection('formulas')">← Back to Formulas</button>
+      <button class="nav-btn nav-btn-next" onclick="showSection('home')">🏠 Back to Home</button>
+    </div>
+  </div>
+
+</div><!-- end main -->
+
+<script>
+// Track visited sections
+const visited = new Set(['home']);
+const totalSections = 16;
+
+const quiz21 = [
+  { q: "What is the charge on an electron?", opts: ["−1.6 × 10⁻¹⁹ C", "+1.6 × 10⁻¹⁹ C", "−9.1 × 10⁻³¹ C", "0 C"], ans: 0, exp: "Electrons have a negative charge of 1.6 × 10⁻¹⁹ coulombs." },
+  { q: "1 MeV is equal to how many eV?", opts: ["1,000 eV", "1,000,000 eV", "100 eV", "10 eV"], ans: 1, exp: "1 MeV = 1 mega electronvolt = 10⁶ eV = 1,000,000 eV." },
+  { q: "What is thermionic emission?", opts: ["Emission of X-rays from metal", "Emission of electrons from surface of a hot metal", "Emission of photons when metal is heated", "Emission of alpha particles from nucleus"], ans: 1, exp: "Thermionic emission is the emission of electrons from the surface of a hot metal. The metal must be heated above ~800°C." },
+  { q: "Which component in an X-ray tube slows down electrons? ", opts: ["Anode", "Cathode", "Lead shield", "Tungsten target"], ans: 3, exp: "Electrons are accelerated INTO the tungsten target — they don't slow down before it. The lead shield contains the radiation. The tungsten target is where electrons hit and produce X-rays." },
+  { q: "What does increasing the FREQUENCY of light do in the photoelectric effect?", opts: ["Emits more electrons per second", "Emits electrons with more kinetic energy", "Has no effect", "Stops emission altogether"], ans: 1, exp: "Higher frequency = more energetic photons = each emitted electron has more kinetic energy (moves faster). Intensity affects HOW MANY electrons are emitted." },
+  { q: "What is the work function?", opts: ["The energy of a photon", "The kinetic energy of emitted electrons", "The minimum energy to remove an electron from a metal surface", "Planck's constant"], ans: 2, exp: "The work function (Φ) is the minimum energy needed to remove the loosest electrons from the surface of a metal." },
+  { q: "What is a photon?", opts: ["A type of electron", "A bundle of light energy", "A neutron in the nucleus", "A unit of voltage"], ans: 1, exp: "A photon is a bundle (or packet) of light energy. Einstein proposed light travels as photons." },
+  { q: "The formula for the energy of a photon is:", opts: ["E = qV", "E = hf", "E = mc²", "E = ½mv²"], ans: 1, exp: "E = hf, where h = Planck's constant and f = frequency of light." }
+];
+
+const quiz22 = [
+  { q: "What did Rutherford's gold foil experiment prove?", opts: ["The atom is solid throughout", "The atom is mostly empty space with a small dense nucleus", "Electrons are in fixed orbits only", "Atoms are made of plum pudding"], ans: 1, exp: "Most alpha particles passed straight through, but a few bounced back — proving a tiny, dense, positively charged nucleus surrounded by mostly empty space." },
+  { q: "What is the mass number?", opts: ["Number of protons only", "Number of neutrons only", "Total number of protons + neutrons", "Number of electrons"], ans: 2, exp: "The mass number (A) is the total number of protons AND neutrons (nucleons) in the nucleus." },
+  { q: "Isotopes are atoms with the same number of _____ but different numbers of _____.", opts: ["Neutrons / Protons", "Protons / Neutrons", "Electrons / Protons", "Nucleons / Electrons"], ans: 1, exp: "Isotopes have the same atomic number (same protons, same element) but different mass numbers (different neutrons)." },
+  { q: "Which radiation has the highest penetration?", opts: ["Alpha (α)", "Beta (β)", "Gamma (γ)", "They're all the same"], ans: 2, exp: "Gamma radiation has the highest penetration — it requires several centimetres of lead to stop it. Alpha barely penetrates (stopped by paper)." },
+  { q: "In alpha decay, the mass number decreases by:", opts: ["2", "4", "1", "0"], ans: 1, exp: "Alpha particle = ⁴₂He. Mass number decreases by 4 (2 protons + 2 neutrons lost). Atomic number decreases by 2." },
+  { q: "What is the half-life of a radioactive sample?", opts: ["Time for all nuclei to decay", "Time for half the nuclei to decay", "Time for the activity to double", "Time for one atom to decay"], ans: 1, exp: "Half-life (T½) is the time for half of the radioactive nuclei in a sample to decay." },
+  { q: "If a sample has a half-life of 10 years, what fraction remains after 30 years?", opts: ["1/2", "1/4", "1/8", "1/16"], ans: 2, exp: "30 years = 3 half-lives. After each half-life we halve: 1 → 1/2 → 1/4 → 1/8. So 1/8 remains." },
+  { q: "Nuclear fission is:", opts: ["Two nuclei combining to form one larger nucleus", "A large nucleus splitting into two smaller ones", "An electron being emitted from a nucleus", "A gamma ray being absorbed by a nucleus"], ans: 1, exp: "Fission = splitting. A large nucleus (like U-235) splits into two smaller nuclei plus neutrons plus energy." }
+];
+
+function buildQuiz(questions, containerId) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  container.innerHTML = '';
+  questions.forEach((q, i) => {
+    const div = document.createElement('div');
+    div.className = 'quiz-section';
+    div.id = `q${containerId}-${i}`;
+    div.innerHTML = `
+      <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--accent5);margin-bottom:8px;">Question ${i+1} of ${questions.length}</div>
+      <div class="quiz-q">${q.q}</div>
+      <div class="quiz-options">
+        ${q.opts.map((opt, j) => `<button class="quiz-opt" onclick="answerQ('${containerId}',${i},${j})">${opt}</button>`).join('')}
+      </div>
+      <div class="quiz-feedback" id="fb${containerId}-${i}">💡 ${q.exp}</div>
+    `;
+    container.appendChild(div);
+  });
+}
+
+function answerQ(containerId, qIdx, chosen) {
+  const questions = containerId === 'quiz21-container' ? quiz21 : quiz22;
+  const q = questions[qIdx];
+  const qDiv = document.getElementById(`q${containerId}-${qIdx}`);
+  const buttons = qDiv.querySelectorAll('.quiz-opt');
+  const fb = document.getElementById(`fb${containerId}-${qIdx}`);
+  buttons.forEach((btn, j) => {
+    btn.disabled = true;
+    if (j === q.ans) btn.classList.add('correct');
+    else if (j === chosen && chosen !== q.ans) btn.classList.add('wrong');
+  });
+  fb.classList.add('show');
+}
+
+// Navigation
+const sectionOrder = ['home','c21-1','c21-2','c21-3','c21-4','c21-5','c21-quiz','c22-1','c22-2','c22-3','c22-4','c22-5','c22-6','c22-7','c22-8','c22-quiz','formulas','definitions'];
+
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  const target = document.getElementById(id);
+  if (target) { target.classList.add('active'); }
+  document.querySelectorAll('.nav-item').forEach(n => {
+    if (n.getAttribute('onclick') && n.getAttribute('onclick').includes(`'${id}'`)) n.classList.add('active');
+  });
+  document.getElementById('page-title').textContent = {
+    'home': 'Modern Physics',
+    'c21-1': 'The Electron & Energy',
+    'c21-2': 'Thermionic Emission & CRT',
+    'c21-3': 'X-Rays',
+    'c21-4': 'Photoelectric Effect',
+    'c21-5': 'Calculations: Ch. 21',
+    'c21-quiz': 'Quiz: Chapter 21',
+    'c22-1': 'Atomic Structure',
+    'c22-2': 'Bohr Model & Spectra',
+    'c22-3': 'Radioactivity',
+    'c22-4': 'Nuclear Decay Equations',
+    'c22-5': 'Half-Life & Decay',
+    'c22-6': 'Fission & Fusion',
+    'c22-7': 'Nuclear Reactors',
+    'c22-8': 'Calculations: Ch. 22',
+    'c22-quiz': 'Quiz: Chapter 22',
+    'formulas': 'All Formulas',
+    'definitions': 'All Definitions'
+  }[id] || 'Modern Physics';
+
+  visited.add(id);
+  const pct = Math.round((visited.size / totalSections) * 100);
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-text').textContent = visited.size + ' / ' + totalSections;
+
+  window.scrollTo(0, 0);
+  closeSidebar();
+}
+
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('overlay').classList.toggle('show');
+}
+
+function closeSidebar() {
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('overlay').classList.remove('show');
+}
+
+// Build quizzes on load
+buildQuiz(quiz21, 'quiz21-container');
+buildQuiz(quiz22, 'quiz22-container');
+</script>
+</body>
+<a href="Home.html" class="return-home-btn">
+  <span style="font-size: 18px;">🏠</span> Back to Hub
+</a>
+<style>
+  .return-home-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: var(--text);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-family: 'Lexend', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+  .return-home-btn:hover {
+    transform: translateY(-5px);
+    background: var(--accent2); /* Turns bright blue on hover */
+    box-shadow: 0 8px 25px rgba(33, 150, 243, 0.4);
+  }
+  @media (max-width: 768px) {
+    .return-home-btn {
+      bottom: 20px;
+      right: 20px;
+      padding: 10px 18px;
+      font-size: 14px;
+    }
+  }
+</style>
+</html>

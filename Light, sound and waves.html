@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Waves, Sound & Light — Leaving Cert Study Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Deca:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f8f6f2;
+    --card: #ffffff;
+    --text: #1a1a2e;
+    --text-light: #555570;
+    --accent1: #e63946;
+    --accent2: #2196f3;
+    --accent3: #ff9800;
+    --accent4: #4caf50;
+    --accent5: #9c27b0;
+    --border: #e0dcd4;
+    --highlight: #fff3e0;
+    --highlight-border: #ff9800;
+    --def-bg: #e8f4fd;
+    --def-border: #2196f3;
+    --formula-bg: #fff8e1;
+    --formula-border: #ffc107;
+    --example-bg: #f1f8e9;
+    --example-border: #4caf50;
+    --tip-bg: #fce4ec;
+    --tip-border: #e91e63;
+    --shadow: 0 2px 12px rgba(0,0,0,0.08);
+    --radius: 12px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Lexend', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 17px;
+    line-height: 1.7;
+  }
+
+  /* SIDEBAR */
+  #sidebar {
+    position: fixed;
+    left: 0; top: 0; bottom: 0;
+    width: 280px;
+    background: var(--card);
+    border-right: 2px solid var(--border);
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 40px 0;
+    transition: transform 0.3s ease;
+  }
+
+  .sidebar-header {
+    background: var(--accent2);
+    color: white;
+    padding: 20px 18px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .sidebar-header h2 { font-size: 18px; text-transform: none; letter-spacing: 0; margin-top: 4px; font-weight: 700; }
+
+  .chapter-group { margin-top: 8px; }
+  .chapter-label {
+    padding: 10px 18px 4px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-light);
+  }
+  .nav-item {
+    display: block;
+    padding: 9px 18px 9px 28px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+    text-decoration: none;
+    border-left: 3px solid transparent;
+    transition: all 0.2s;
+  }
+  .nav-item:hover { background: #f0f0f8; border-left-color: var(--accent2); }
+  .nav-item.active { background: #e8f4fd; border-left-color: var(--accent2); color: var(--accent2); font-weight: 600; }
+
+  /* MAIN */
+  #main {
+    margin-left: 280px;
+    padding: 0;
+    min-height: 100vh;
+  }
+
+  .top-bar {
+    background: white;
+    border-bottom: 2px solid var(--border);
+    padding: 16px 40px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+  .top-bar h1 { font-size: 20px; font-weight: 700; color: var(--accent2); }
+  .menu-btn {
+    display: none;
+    background: none; border: none; cursor: pointer;
+    font-size: 22px; color: var(--text);
+  }
+  .progress-bar {
+    flex: 1;
+    height: 6px;
+    background: var(--border);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent2), var(--accent4));
+    border-radius: 3px;
+    transition: width 0.5s ease;
+    width: 0%;
+  }
+
+  /* CONTENT SECTIONS */
+  .section {
+    display: none;
+    padding: 40px;
+    max-width: 860px;
+    animation: fadeIn 0.3s ease;
+  }
+  .section.active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+  .section-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 6px;
+    line-height: 1.2;
+  }
+  .section-subtitle {
+    font-size: 15px;
+    color: var(--text-light);
+    margin-bottom: 32px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--border);
+  }
+  .chapter-badge {
+    display: inline-block;
+    background: var(--accent2);
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  h3 {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text);
+    margin: 32px 0 12px;
+  }
+  p { margin-bottom: 14px; }
+
+  /* CARDS */
+  .definition {
+    background: var(--def-bg);
+    border-left: 5px solid var(--def-border);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    padding: 16px 20px;
+    margin: 16px 0;
+  }
+  .definition .def-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent2);
+    margin-bottom: 6px;
+  }
+  .definition .def-text {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.5;
+  }
+
+  .formula-box {
+    background: var(--formula-bg);
+    border: 2px solid var(--formula-border);
+    border-radius: var(--radius);
+    padding: 18px 22px;
+    margin: 16px 0;
+  }
+  .formula-box .f-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent3);
+    margin-bottom: 8px;
+  }
+  .formula-box .formula {
+    font-size: 22px;
+    font-weight: 700;
+    font-family: 'Courier New', monospace;
+    color: var(--text);
+    margin: 6px 0;
+  }
+  .formula-box .f-vars {
+    font-size: 13px;
+    color: var(--text-light);
+    margin-top: 8px;
+    line-height: 1.8;
+  }
+  .formula-box .f-vars span { font-weight: 600; color: var(--text); }
+
+  .example-box {
+    background: var(--example-bg);
+    border: 2px solid var(--example-border);
+    border-radius: var(--radius);
+    padding: 20px 22px;
+    margin: 20px 0;
+  }
+  .example-box .ex-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent4);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .example-box .ex-q {
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 14px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #c8e6c9;
+    font-size: 15px;
+  }
+  .example-box .step {
+    background: white;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin: 8px 0;
+    border-left: 3px solid var(--accent4);
+  }
+  .example-box .step-num {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--accent4);
+    letter-spacing: 0.05em;
+    margin-bottom: 4px;
+  }
+  .example-box .step-content {
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.6;
+    font-family: 'Courier New', monospace;
+  }
+
+  .tip-box {
+    background: var(--tip-bg);
+    border-left: 5px solid var(--tip-border);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    padding: 14px 18px;
+    margin: 14px 0;
+    font-size: 14px;
+  }
+  .tip-box strong { color: var(--tip-border); }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px;
+    margin: 16px 0;
+  }
+  .info-card {
+    background: white;
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+    box-shadow: var(--shadow);
+  }
+  .info-card .ic-title {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--accent2);
+    margin-bottom: 8px;
+  }
+  .info-card .ic-val {
+    font-size: 20px;
+    font-weight: 700;
+    font-family: 'Courier New', monospace;
+    color: var(--text);
+  }
+  .info-card .ic-sub { font-size: 12px; color: var(--text-light); margin-top: 4px; }
+
+  /* QUIZ */
+  .quiz-section {
+    background: white;
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    margin: 24px 0;
+  }
+  .quiz-q {
+    font-weight: 600;
+    margin-bottom: 14px;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  .quiz-options { display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px; }
+  .quiz-opt {
+    display: block;
+    background: var(--bg);
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    padding: 11px 16px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s;
+    text-align: left;
+    width: 100%;
+    font-family: 'Lexend', sans-serif;
+  }
+  .quiz-opt:hover { background: #eef2ff; border-color: var(--accent2); }
+  .quiz-opt.correct { background: #e8f5e9; border-color: var(--accent4); color: #2e7d32; }
+  .quiz-opt.wrong { background: #ffebee; border-color: var(--accent1); color: #b71c1c; }
+  .quiz-feedback {
+    display: none;
+    background: #f3e5f5;
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 14px;
+    color: var(--text);
+    margin-top: 8px;
+    border-left: 4px solid var(--accent5);
+  }
+  .quiz-feedback.show { display: block; }
+
+  /* NAV BUTTONS */
+  .section-nav {
+    display: flex;
+    gap: 12px;
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 2px solid var(--border);
+    flex-wrap: wrap;
+  }
+  .nav-btn {
+    padding: 12px 24px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-family: 'Lexend', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+  .nav-btn-prev { background: var(--bg); color: var(--text); border: 2px solid var(--border); }
+  .nav-btn-prev:hover { background: #e8e8f0; }
+  .nav-btn-next { background: var(--accent2); color: white; }
+  .nav-btn-next:hover { background: #1976d2; }
+
+  /* HOME HERO */
+  .hero {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    color: white;
+    padding: 60px 40px;
+    margin-bottom: 0;
+  }
+  .hero h1 { font-size: 42px; font-weight: 700; margin-bottom: 12px; }
+  .hero p { font-size: 18px; color: rgba(255,255,255,0.8); max-width: 560px; line-height: 1.6; }
+  
+  .topics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    padding: 40px;
+  }
+  .topic-card {
+    background: white;
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: var(--shadow);
+  }
+  .topic-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.12); border-color: var(--accent2); }
+  .topic-card .tc-icon { font-size: 28px; margin-bottom: 10px; }
+  .topic-card .tc-title { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+  .topic-card .tc-sub { font-size: 12px; color: var(--text-light); }
+
+  @media (max-width: 768px) {
+    #sidebar { transform: translateX(-100%); }
+    #sidebar.open { transform: translateX(0); }
+    #main { margin-left: 0; }
+    .menu-btn { display: block; }
+    .section { padding: 24px 20px; }
+    .section-title { font-size: 24px; }
+    .topics-grid { grid-template-columns: 1fr 1fr; padding: 20px; }
+    .hero { padding: 40px 20px; }
+    .hero h1 { font-size: 28px; }
+    .top-bar { padding: 14px 20px; }
+  }
+
+  .overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    z-index: 99;
+  }
+  .overlay.show { display: block; }
+</style>
+</head>
+<body>
+
+<div id="overlay" class="overlay" onclick="closeSidebar()"></div>
+
+<nav id="sidebar">
+  <div class="sidebar-header">
+    <div>Leaving Cert Physics</div>
+    <h2>🌊 Waves, Sound & Light</h2>
+  </div>
+  
+  <div class="chapter-group">
+    <div class="chapter-label">Start Here</div>
+    <a class="nav-item active" onclick="showSection('home')">🏠 Overview & Topics</a>
+  </div>
+  
+  <div class="chapter-group">
+    <div class="chapter-label">Part 1: Waves</div>
+    <a class="nav-item" onclick="showSection('w-1')">🌊 Intro to Waves</a>
+    <a class="nav-item" onclick="showSection('w-2')">📏 Properties & Interference</a>
+    <a class="nav-item" onclick="showSection('w-3')">🚨 Standing Waves & Doppler</a>
+  </div>
+
+  <div class="chapter-group">
+    <div class="chapter-label">Part 2: Sound</div>
+    <a class="nav-item" onclick="showSection('s-1')">🔔 Sound & Resonance</a>
+    <a class="nav-item" onclick="showSection('s-2')">🔊 Intensity & Decibels</a>
+    <a class="nav-item" onclick="showSection('s-3')">🎷 Harmonics & Pipes</a>
+  </div>
+
+  <div class="chapter-group">
+    <div class="chapter-label">Part 3: Light</div>
+    <a class="nav-item" onclick="showSection('l-1')">🔦 Diffraction & Gratings</a>
+    <a class="nav-item" onclick="showSection('l-2')">🌈 Polarisation & Colour</a>
+    <a class="nav-item" onclick="showSection('l-3')">📻 Electromagnetic Spectrum</a>
+  </div>
+
+  <div class="chapter-group">
+    <div class="chapter-label">Exam Prep</div>
+    <a class="nav-item" onclick="showSection('calcs')">📐 Calculations</a>
+    <a class="nav-item" onclick="showSection('definitions')">📖 All Definitions</a>
+    <a class="nav-item" onclick="showSection('formulas')">⚠️ All Formulas</a>
+    <a class="nav-item" onclick="showSection('quiz')">✅ Practice Quiz</a>
+  </div>
+</nav>
+
+<main id="main">
+  <div class="top-bar">
+    <button class="menu-btn" onclick="openSidebar()">☰</button>
+    <h1 id="page-title">Overview</h1>
+    <div class="progress-bar"><div id="progress-fill" class="progress-fill"></div></div>
+    <div id="progress-text" style="font-size:13px; font-weight:600; color:var(--text-light);">0 / 14</div>
+  </div>
+
+  <div id="home" class="section active" style="padding:0; max-width:100%;">
+    <div class="hero">
+      <h1>Waves, Sound & Light</h1>
+      <p>Dive into how energy travels! From the rippling of water and the music we hear, to the invisible spectrum of light and radio waves all around us. A complete guide to mastering this Leaving Cert unit.</p>
+    </div>
+    <div class="topics-grid">
+      <div class="topic-card" onclick="showSection('w-1')">
+        <div class="tc-icon">🌊</div>
+        <div class="tc-title">Waves</div>
+        <div class="tc-sub">Transverse vs Longitudinal and wave properties.</div>
+      </div>
+      <div class="topic-card" onclick="showSection('w-3')">
+        <div class="tc-icon">🚨</div>
+        <div class="tc-title">The Doppler Effect</div>
+        <div class="tc-sub">Why passing sirens change their pitch.</div>
+      </div>
+      <div class="topic-card" onclick="showSection('s-1')">
+        <div class="tc-icon">🎸</div>
+        <div class="tc-title">Sound & Resonance</div>
+        <div class="tc-sub">How instruments make sound and can break glass.</div>
+      </div>
+      <div class="topic-card" onclick="showSection('l-2')">
+        <div class="tc-icon">🌈</div>
+        <div class="tc-title">Light & Colours</div>
+        <div class="tc-sub">Dispersion, Polarisation, and the EM Spectrum.</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="w-1" class="section">
+    <div class="chapter-badge">Part 1 — Waves</div>
+    <h2 class="section-title">🌊 Intro to Waves</h2>
+    <p class="section-subtitle">What exactly is a wave? Simply put, it's how energy travels from A to B.</p>
+    
+    <p>Imagine doing a "Mexican Wave" in a stadium. You stand up and sit down. You don't run across the stadium, but the "wave" travels all the way around! This is what all waves do:</p>
+
+    <div class="definition">
+      <div class="def-label">📖 Definition — Wave</div>
+      <div class="def-text">A wave is a means of transferring energy by oscillations (vibrations) from one place to another, without transferring matter.</div>
+    </div>
+
+    <h3>The Two Types of Waves</h3>
+    <p>Waves fall into two categories depending on <strong>how</strong> they vibrate compared to the direction they are traveling.</p>
+
+    <div class="info-grid">
+      <div class="info-card" style="border-color:var(--accent2);">
+        <div class="ic-title">Transverse Waves</div>
+        <div class="ic-sub">The vibration is <strong>perpendicular</strong> (at right angles) to the direction the wave travels.<br><br><em>Example: Light waves, Water ripples, A shaken rope.</em></div>
+      </div>
+      <div class="info-card" style="border-color:var(--accent4);">
+        <div class="ic-title">Longitudinal Waves</div>
+        <div class="ic-sub">The vibration is <strong>parallel</strong> to the direction the wave travels. They squish together and pull apart.<br><br><em>Example: Sound waves.</em></div>
+      </div>
+    </div>
+
+    <div class="tip-box">
+      <strong>🧠 Memory Trick:</strong> Think of a slinky. If you wiggle it up and down, that's a <strong>Transverse</strong> wave. If you push and pull it directly forward and back, that's a <strong>Longitudinal</strong> wave!
+    </div>
+
+    <div class="section-nav">
+      <button class="nav-btn nav-btn-next" onclick="showSection('w-2')">Next: Properties & Interference →</button>
+    </div>
+  </div>
+
+  <div id="w-2" class="section">
+    <div class="chapter-badge">Part 1 — Waves</div>
+    <h2 class="section-title">📏 Properties & Interference</h2>
+    <p class="section-subtitle">The anatomy of a wave and what happens when they collide.</p>
+
+    <h3>Wave Anatomy</h3>
+    <ul style="margin-left:20px; line-height:2.2;">
+      <li><strong>Amplitude:</strong> The maximum distance the wave moves from its resting position (how tall the wave is). Determines loudness in sound!</li>
+      <li><strong>Wavelength (λ):</strong> The distance from one crest (top) to the next crest. Measured in metres.</li>
+      <li><strong>Frequency (f):</strong> The number of waves that pass a point every second. Measured in Hertz (Hz).</li>
+    </ul>
+
+    <div class="formula-box">
+      <div class="f-label">⚠️ Formula — Wave Speed</div>
+      <div class="formula">c = fλ</div>
+      <div class="f-vars">
+        <span>c</span> = Speed of the wave (m/s)<br>
+        <span>f</span> = Frequency (Hz)<br>
+        <span>λ</span> = Wavelength (m)
+      </div>
+    </div>
+
+    <h3>Interference</h3>
+    <p>What happens when two waves meet? They interfere with each other!</p>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="ic-title" style="color:var(--accent4)">Constructive Interference</div>
+        <div class="ic-sub">When two waves meet and their crests line up perfectly. They add together to make one <strong>bigger</strong> wave (larger amplitude).</div>
+      </div>
+      <div class="info-card">
+        <div class="ic-title" style="color:var(--accent1)">Destructive Interference</div>
+        <div class="ic-sub">When two waves meet and the crest of one lines up with the trough (bottom) of another. They <strong>cancel each other out</strong>. Noise-cancelling headphones use this!</div>
+      </div>
+    </div>
+
+    <div class="section-nav">
+      <button class="nav-btn nav-btn-prev" onclick="showSection('w-1')">← Previous</button>
+      <button class="nav-btn nav-btn-next" onclick="showSection('w-3')">Next: Standing Waves & Doppler →</button>
+    </div>
+  </div>
+
+  <div id="w-3" class="section">
+    <div class="chapter-badge">Part 1 — Waves</div>
+    <h2 class="section-title">🚨 Standing Waves & Doppler Effect</h2>
+    <p class="section-subtitle">When waves get trapped, or when the source starts moving.</p>
+
+    <h3>Stationary (Standing) Waves</h3>
+    <p>If you pluck a guitar string, the wave travels to the end, reflects back, and interferes with itself. This creates a pattern that looks like it's standing still.</p>
+    <ul style="margin-left:20px; line-height:2.2;">
+      <li><strong>Nodes:</strong> The points that don't move at all (destructive interference).</li>
+      <li><strong>Antinodes:</strong> The points that bounce up and down the most (constructive interference).</li>
+    </ul>
+    
+    <div class="tip-box">
+      <strong>⚠️ Exam Rule:</strong> The distance between two consecutive nodes is always <strong>half a wavelength (λ/2)</strong>! The distance from a node to an antinode is <strong>λ/4</strong>.
+    </div>
+
+    <h3>The Doppler Effect</h3>
+    <p>Have you ever noticed how an ambulance siren sounds high-pitched as it drives toward you, but suddenly drops to a lower pitch as it drives away? That's the Doppler Effect!</p>
+
+    <div class="definition">
+      <div class="def-label">📖 Definition — The Doppler Effect</div>
+      <div class="def-text">The apparent change in the frequency of a wave due to the relative motion between the source of the wave and the observer.</div>
+    </div>
+
+    <p><strong>Why does this happen?</strong> As the ambulance moves towards you, it "catches up" to its own sound waves, squishing them together. Squished waves = shorter wavelength = higher frequency = higher pitch. When it drives away, the waves get stretched out behind it.</p>
+
+    <div class="section-nav">
+      <button class="nav-btn nav-btn-prev" onclick="showSection('w-2')">← Previous</button>
+      <button class="nav-btn nav-btn-next" onclick="showSection('s-1')">Next: Sound & Resonance →</button>
+    </div>
+  </div>
+
+  <div id="s-1" class="section">
+    <div class="chapter-badge">Part 2 — Sound</div>
+    <h2 class="section-title">🔔 Sound & Resonance</h2>
+    <p class="section-subtitle">How sound travels, and how it can be used to shatter glass.</p>
+
+    <p>Sound is a <strong>longitudinal wave</strong>. It travels by making the molecules in the air vibrate back and forth, passing the energy to the next molecule. This means <strong>sound needs a medium</strong> to travel through. It cannot travel through a vacuum (like space)!</p>
+
+    <h3>Natural Frequency & Resonance</h3>
+    <p>Every object (a guitar string, a wine glass, a bridge) has a specific frequency it naturally "wants" to vibrate at. This is its <strong>Natural Frequency</strong>.</p>
+
+    <div class="definition">
+      <div class="def-label">📖 Definition — Resonance</div>
+      <div class="def-text">Resonance is the transfer of energy between two bodies with the same natural frequency, causing the second body to vibrate with a large amplitude.</div>
+    </div>
+
+    <p><strong>Example:</strong> If an opera singer sings a really loud note that perfectly matches the natural frequency of a wine glass, the sound waves force the glass to vibrate violently. It absorbs so much energy through resonance that it shatters!</p>
+
+    <h3>Characteristics of a Musical Note</h3>
+    <ul style="margin-left:20px; line-height:2.2;">
+      <li><strong>Pitch:</strong> Depends on the <strong>frequency</strong> of the wave.</li>
+      <li><strong>Loudness:</strong> Depends on the <strong>amplitude</strong> of the wave.</li>
+      <li><strong>Quality (Timbre):</strong> Depends on the <strong>number of harmonics (overtones)</strong> present. This is why a guitar and a piano playing the exact same note sound different.</li>
+    </ul>
+
+    <div class="section-nav">
+      <button class="nav-btn nav-btn-prev" onclick="showSection('w-3')">← Previous</button>
+      <button class="nav-btn nav-btn-next" onclick="showSection('s-2')">Next: Intensity & Decibels →</button>
+    </div>
+  </div>
+
+  <div id="s-2" class="section">
+    <div class="chapter-badge">Part 2 — Sound</div>
+    <h2 class="section-title">🔊 Intensity & Decibels</h2>
+    <p class="section-subtitle">How we measure the volume and power of sound.</p>
+
+    <p>When sound travels, it spreads out over an area. Sound Intensity is just a measure of how much power is hitting a certain area.</p>
+
+    <div class="definition">
+      <div class="def-label">📖 Definition — Threshold of Hearing</div>
+      <div class="def-text">The lowest sound intensity that the average human ear can detect at a frequency of 1000 Hz.</div>
+    </div>
+
+    <p>Humans can only hear sounds between <strong>20 Hz and 20,000 Hz</strong>. These are called our "frequency limits of audibility". Anything above 20,000 Hz is called <em>ultrasound</em>.</p>
+
+    <h3>The Decibel Scale & dB(A)</h3>
+    <p>Because human hearing covers such a massive range of sound intensities, we use a logarithmic scale called the <strong>Decibel (dB)</strong> scale. </p>
+    
+    <p><strong>The dB(A) Scale:</strong> The human ear isn't equally sensitive to all frequencies (we hear middle frequencies much better than really low or really high ones). The dB(A) scale is an adjusted scale that is weighted to match the response of the human ear. This is the scale used by health and safety authorities when measuring noise pollution.</p>
+
+    <div class="tip-box">
+      <strong>⚠️ Exam Rule:</strong> If Sound Intensity doubles, the Sound Intensity Level increases by exactly <strong>3 dB</strong>. 
+    </div>
+
+    <div class="section-nav">
+      <button class="nav-btn nav-btn-prev" onclick="showSection('s-1')">← Previous</button>
+      <button class="nav-btn nav-btn-next" onclick="showSection('s-3')">Next: Harmonics & Pipes →</button>
+    </div>
+  </div>
+
+  <div id="s-3" class="section">
+    <div class="chapter-badge">Part 2 — Sound</div>
+    <h2 class="section-title">🎷 Harmonics & Pipes</h2>
+    <p class="section-subtitle">How musical instruments actually create their notes.</p>
+
+    <p>When you pluck a string, it doesn't just vibrate as one big wave (the fundamental frequency). It also vibrates in halves, thirds, and quarters at the same time! These extra, higher frequencies are called <strong>harmonics</strong>. They are integer multiples of the fundamental frequency.</p>
+
+    <h3>Sound in Pipes (Wind Instruments)</h3>
+    <p>Wind instruments (like a flute or clarinet) create sound by setting up standing waves in the air inside the pipe.</p>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="ic-title">Open Pipes</div>
+        <div class="ic-sub">A pipe open at both ends (like a flute or tin whistle). It must have an <strong>antinode</strong> at both ends. They produce <strong>all</strong> harmonics.</div>
+      </div>
+      <div class="info-card">
+        <div class="ic-title">Closed Pipes</div>
+        <div class="ic-sub">A pipe closed at one end (like blowing across a bottle). The closed end forces a <strong>node</strong>, and the open end has an <strong>antinode</strong>. They only produce <strong>odd</strong> harmonics.</div>
+      </div>
+    </div>
+
+    <div class="section-nav">
+      <button class="nav-btn nav-btn-prev" onclick="showSection('s-2')">← Previous</button>
+      <button class="nav-btn nav-btn-next" onclick="showSection('l-1')">Next: Diffraction & Gratings →</button>
+    </div>
+  </div>
+
+  <div id="l-1" class="section">
+    <div class="chapter-badge">Part 3 — Light</div>
+    <h2 class="section-title">🔦 Diffraction & Gratings</h2>
+    <p class="section-subtitle">Proving that light behaves like a wave!</p>
+
+    <p>For a long time, scientists argued if light was a particle or a wave. Thomas Young proved it was a wave using his famous Slits experiment, because only waves can undergo <strong>diffraction and interference</strong>.</p>
+
+    <div class="definition">
+      <div class="def-label">📖 Definition — Diffraction</div>
+      <div class="def-text">The spreading out of a wave after passing through a gap or around an obstacle.</div>
+    </div>
+
+    <p>We use a <strong>Diffraction Grating</strong> (a piece of transparent material with thousands of tiny black lines engraved on it) to see this. When you shine a laser through it, the light spreads out from each slit and interferes, creating a pattern of bright dots on a screen.</p>
+
+    <div class="formula-box">
+      <div class="f-label">⚠️ Formula — Diffraction Grating</div>
+      <div class="formula">nλ = d sinθ</div>
+      <div class="f-vars">
+        <span>n</span> = Order of the image (1st dot, 2nd dot, etc)<br>
+        <span>λ (lambda)</span> = Wavelength of the light<br>
+        <span>d</span> = Distance between lines on the grating<br>
+        <span>θ (theta)</span> = Angle from the center line to the dot
+      </div>
+    </div>
+
+    <div class="tip-box">
+      <strong>💡 Note:</strong> <em>Monochromatic</em> light means light of one wavelength (one colour) only, like a red laser.
+    </div>
+
+    <div class="section-nav">
+      <button class="nav-btn nav-btn-prev" onclick="showSection('s-3')">← Previous</button>
+      <button class="nav-btn nav-btn-next" onclick="showSection('l-2')">Next: Polarisation & Colour →</button>
+    </div>
+  </div>
+
+  <div id="l-2" class="section">
+    <div class="chapter-badge">Part 3 — Light</div>
+    <h2 class="section-title">🌈 Polarisation & Colour</h2>
+    <p class="section-subtitle">Sunglasses, rainbows, and how TVs trick your eyes.</p>
+
+    <h3>Polarisation</h3>
+    <p>A normal light wave vibrates in all directions (up, down, left, right). A <strong>polarised</strong> wave vibrates in one plane only. Polaroid sunglasses work by acting like vertical "slits" that block all the horizontal light (glare off the road or water).</p>
+    
+    <div class="tip-box">
+      <strong>🔥 Crucial Exam Fact:</strong> Polarisation proves that light is a <strong>transverse</strong> wave. Longitudinal waves (like sound) CANNOT be polarised!
+    </div>
+
+    <h3>Dispersion</h3>
+    <p>White light is actually a mix of all the colours of the rainbow. <strong>Dispersion</strong> is the breaking up of white light into these constituent colours (producing a spectrum). A glass prism does this because different colours bend (refract) by different amounts. A rainbow is dispersion in nature!</p>
+
+    <h3>Primary and Secondary Colours</h3>
+    <ul style="margin-left:20px; line-height:2.2;">
+      <li><strong>Primary Colours:</strong> Red, Green, Blue. Mixing these creates all other colours. (This is how TV and phone screens work).</li>
+      <li><strong>Secondary Colours:</strong> Cyan, Yellow, Magenta. Made by mixing two primary colours.</li>
+      <li><strong>Complementary Colours:</strong> A primary and a secondary colour that, when mixed, give white light! (e.g., Blue + Yellow = White).</li>
+    </ul>
+
+    <div class="section-nav">
+      <button class="nav-btn nav-btn-prev" onclick="showSection('l-1')">← Previous</button>
+      <button class="nav-btn nav-btn-next" onclick="showSection('l-3')">Next: Electromagnetic Spectrum →</button>
+    </div>
+  </div>
+
+  <div id="l-3" class="section">
+    <div class="chapter-badge">Part 3 — Light</div>
+    <h2 class="section-title">📻 Electromagnetic Spectrum</h2>
+    <p class="section-subtitle">Visible light is just a tiny sliver of reality.</p>
+
+    <p>There are many "invisible" light waves around us. Together, they form the Electromagnetic Spectrum. They all travel at the exact same speed in a vacuum (the speed of light: 3 × 10⁸ m/s) but have different wavelengths.</p>
+
+    <p>From shortest wavelength (highest energy) to longest wavelength (lowest energy):</p>
+    
+    <div class="info-grid">
+      <div class="info-card"><div class="ic-title">Gamma Rays</div><div class="ic-sub">Cancer treatment, very penetrating.</div></div>
+      <div class="info-card"><div class="ic-title">X-Rays</div><div class="ic-sub">Photographing bones, detecting metal flaws.</div></div>
+      <div class="info-card"><div class="ic-title">Ultraviolet (UV)</div><div class="ic-sub">Causes sunburn, detects forged money. Detected using fluorescent material.</div></div>
+      <div class="info-card"><div class="ic-title">Visible Light</div><div class="ic-sub">What human eyes can see.</div></div>
+      <div class="info-card"><div class="ic-title">Infrared (IR)</div><div class="ic-sub">Heat radiation. Used in night vision cameras and TV remotes. Detected with a thermometer.</div></div>
+      <div class="info-card"><div class="ic-title">Microwaves</div><div class="ic-sub">Cooking, mobile phones, radar.</div></div>
+      <div class="info-card"><div class="ic-title">Radio Waves</div><div class="ic-sub">Broadcasting TV and radio signals.</div></div>
+    </div>
+
+    <div class="section-nav">
+      <button class="nav-btn nav-btn-prev" onclick="showSection('l-2')">← Previous</button>
+      <button class="nav-btn nav-btn-next" onclick="showSection('calcs')">Next: Calculations →</button>
+    </div>
+  </div>
+
+  <div id="calcs" class="section">
+    <div class="chapter-badge">Exam Prep</div>
+    <h2 class="section-title">📐 Calculations</h2>
+    <p class="section-subtitle">Step-by-step examples of typical Leaving Cert questions.</p>
+
+    <div class="example-box">
+      <div class="ex-label">🧮 Example 1 — Wave Speed</div>
+      <div class="ex-q"><strong>Q:</strong> A wave has a frequency of 20 Hz. If the wavelength is 1.5 m, calculate the velocity of the wave.</div>
+      <div class="step"><div class="step-num">Step 1 — Formula</div><div class="step-content">c = fλ</div></div>
+      <div class="step"><div class="step-num">Step 2 — Solve</div><div class="step-content">c = (20)(1.5) = 30 m/s</div></div>
+    </div>
+
+    <div class="example-box">
+      <div class="ex-label">🧮 Example 2 — Doppler Effect</div>
+      <div class="ex-q"><strong>Q:</strong> An ambulance siren emits a frequency of 750 Hz. When traveling towards an observer, the frequency detected is 820 Hz. Calculate the speed of the ambulance. (Speed of sound = 340 m/s).</div>
+      <div class="step"><div class="step-num">Step 1 — Formula (Minus for approaching!)</div><div class="step-content">f' = f(c) / (c - u)</div></div>
+      <div class="step"><div class="step-num">Step 2 — Plug in values and cross multiply</div><div class="step-content">820 = (750 × 340) / (340 - u)<br>820(340 - u) = 255000<br>278800 - 820u = 255000</div></div>
+      <div class="step"><div class="step-num">Step 3 — Solve for u</div><div class="step-content">23800 = 820u<br>u = 29 m/s</div></div>
+    </div>
+
+    <div class="example-box">
+      <div class="ex-label">🧮 Example 3 — Tension in a String</div>
+      <div class="ex-q"><strong>Q:</strong> A stretched string vibrates at 205 Hz when the tension is 5 N. Calculate the fundamental frequency when tension is increased to 10 N.</div>
+      <div class="step"><div class="step-num">Step 1 — The Rule</div><div class="step-content">Frequency is proportional to the square root of tension (f ∝ √T).</div></div>
+      <div class="step"><div class="step-num">Step 2 — Solve</div><div class="step-content">Tension increased by a factor of 2 (from 5 to 10).<br>Therefore, frequency increases by a factor of √2.<br>f_new = √2 × 205 = 290 Hz.</div></div>
+    </div>
+
+    <div class="example-box">
+      <div class="ex-label">🧮 Example 4 — Diffraction Grating</div>
+      <div class="ex-q"><strong>Q:</strong> A diffraction grating has 80 lines per mm. Find the grating constant 'd' in metres.</div>
+      <div class="step"><div class="step-num">Step 1 — Find lines per meter</div><div class="step-content">80 lines in 1 mm.<br>Therefore, 80,000 lines in 1 metre.</div></div>
+      <div class="step"><div class="step-num">Step 2 — Calculate d</div><div class="step-content">d = 1 / Number of lines per metre<br>d = 1 / 80000 = 1.25 × 10⁻⁵ m.</div></div>
+    </div>
+
+    <div class="section-nav">
+      <button class="nav-btn nav-btn-prev" onclick="showSection('l-3')">← Previous</button>
+      <button class="nav-btn nav-btn-next" onclick="showSection('definitions')">Next: Definitions →</button>
+    </div>
+  </div>
+
+  <div id="definitions" class="section">
+    <div class="chapter-badge">Exam Prep</div>
+    <h2 class="section-title">📖 All Definitions</h2>
+    <p class="section-subtitle">Learn these off by heart for the exam!</p>
+
+    <div class="definition"><div class="def-label">Transverse Wave</div><div class="def-text">A wave where the direction of oscillation is perpendicular to the direction in which the wave travels.</div></div>
+    <div class="definition"><div class="def-label">Longitudinal Wave</div><div class="def-text">A wave where the direction of oscillation is parallel to the direction in which the wave travels.</div></div>
+    <div class="definition"><div class="def-label">Diffraction</div><div class="def-text">The spreading out of a wave after passing through a gap or around an obstacle.</div></div>
+    <div class="definition"><div class="def-label">Polarisation</div><div class="def-text">A polarised wave is one which vibrates in one plane only.</div></div>
+    <div class="definition"><div class="def-label">Dispersion</div><div class="def-text">The breaking up of white light into its constituent colours.</div></div>
+    <div class="definition"><div class="def-label">Natural Frequency</div><div class="def-text">The frequency at which an object will vibrate if free to do so.</div></div>
+    <div class="definition"><div class="def-label">Resonance</div><div class="def-text">The transfer of energy between two bodies with the same natural frequency, causing the second body to vibrate with a large amplitude.</div></div>
+    <div class="definition"><div class="def-label">The Doppler Effect</div><div class="def-text">The apparent change in the frequency of a wave due to the relative motion between the source of the wave and the observer.</div></div>
+    <div class="definition"><div class="def-label">Threshold of Hearing</div><div class="def-text">The lowest sound intensity that the average human ear can detect at a frequency of 1000 Hz.</div></div>
+    <div class="definition"><div class="def-label">Complementary Colours</div><div class="def-text">Pairs of colours consisting of a primary and a secondary colour, such that when combined they give white light.</div></div>
+
+    <div class="section-nav">
+      <button class="nav-btn nav-btn-prev" onclick="showSection('calcs')">← Previous</button>
+      <button class="nav-btn nav-btn-next" onclick="showSection('formulas')">Next: Formulas →</button>
+    </div>
+  </div>
+
+  <div id="formulas" class="section">
+    <div class="chapter-badge">Exam Prep</div>
+    <h2 class="section-title">⚠️ All Formulas</h2>
+    <p class="section-subtitle">The mathematical toolkit for this unit.</p>
+
+    <div class="formula-box"><div class="f-label">Wave Equation</div><div class="formula">c = fλ</div><div class="f-vars"><span>c</span>=speed, <span>f</span>=frequency, <span>λ</span>=wavelength</div></div>
+    <div class="formula-box"><div class="f-label">Frequency & Period</div><div class="formula">f = 1 / T</div><div class="f-vars"><span>T</span>=Periodic Time</div></div>
+    <div class="formula-box"><div class="f-label">The Doppler Effect</div><div class="formula">f' = f(c) / (c ± u)</div><div class="f-vars">Use <span>minus</span> for approaching, <span>plus</span> for moving away.</div></div>
+    <div class="formula-box"><div class="f-label">Diffraction Grating</div><div class="formula">nλ = d sinθ</div><div class="f-vars"><span>n</span>=order, <span>d</span>=grating constant, <span>θ</span>=angle</div></div>
+    <div class="formula-box"><div class="f-label">Grating Constant (d)</div><div class="formula">d = 1 / N</div><div class="f-vars"><span>N</span> = Number of lines per metre</div></div>
+
+    <div class="section-nav">
+      <button class="nav-btn nav-btn-prev" onclick="showSection('definitions')">← Previous</button>
+      <button class="nav-btn nav-btn-next" onclick="showSection('quiz')">Next: Practice Quiz →</button>
+    </div>
+  </div>
+
+  <div id="quiz" class="section">
+    <div class="chapter-badge">Exam Prep</div>
+    <h2 class="section-title">✅ Practice Quiz</h2>
+    <p class="section-subtitle">Test your knowledge of the core concepts.</p>
+    <div id="quiz-container"></div>
+  </div>
+
+</main>
+
+<script>
+  const totalSections = 14;
+  const visited = new Set();
+
+  function showSection(id) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    
+    document.querySelectorAll('.nav-item').forEach(n => {
+      n.classList.remove('active');
+      if(n.getAttribute('onclick').includes(`'${id}'`)) n.classList.add('active');
+    });
+
+    const titles = {
+      'home': 'Overview',
+      'w-1': 'Intro to Waves',
+      'w-2': 'Properties & Interference',
+      'w-3': 'Standing Waves & Doppler',
+      's-1': 'Sound & Resonance',
+      's-2': 'Intensity & Decibels',
+      's-3': 'Harmonics & Pipes',
+      'l-1': 'Diffraction & Gratings',
+      'l-2': 'Polarisation & Colour',
+      'l-3': 'Electromagnetic Spectrum',
+      'calcs': 'Calculations',
+      'definitions': 'All Definitions',
+      'formulas': 'All Formulas',
+      'quiz': 'Practice Quiz'
+    };
+    document.getElementById('page-title').textContent = titles[id] || 'Waves, Sound & Light';
+
+    visited.add(id);
+    const pct = Math.round((visited.size / totalSections) * 100);
+    document.getElementById('progress-fill').style.width = pct + '%';
+    document.getElementById('progress-text').textContent = visited.size + ' / ' + totalSections;
+    
+    window.scrollTo(0, 0);
+    closeSidebar();
+  }
+
+  function openSidebar() {
+    document.getElementById('sidebar').classList.add('open');
+    document.getElementById('overlay').classList.add('show');
+  }
+
+  function closeSidebar() {
+    document.getElementById('sidebar').classList.remove('open');
+    document.getElementById('overlay').classList.remove('show');
+  }
+
+  const questions = [
+    {
+      q: "Which of the following is an example of a longitudinal wave?",
+      opts: ["Light waves", "Water ripples", "Sound waves", "Radio waves"],
+      ans: 2,
+      exp: "Sound is a longitudinal wave, meaning the air molecules vibrate parallel to the direction of the wave."
+    },
+    {
+      q: "What phenomenon proves that light is a transverse wave?",
+      opts: ["Diffraction", "Polarisation", "Interference", "Dispersion"],
+      ans: 1,
+      exp: "Only transverse waves can be polarised (forced to vibrate in one plane). Since light can be polarised, it must be transverse!"
+    },
+    {
+      q: "If an ambulance is driving away from you, how does the frequency you hear change according to the Doppler Effect?",
+      opts: ["It gets higher", "It stays the same", "It gets lower", "It gets louder"],
+      ans: 2,
+      exp: "When the source is moving away, the waves get stretched out behind it, resulting in a longer wavelength and a lower frequency (pitch)."
+    },
+    {
+      q: "Which property of a wave determines the loudness of a sound?",
+      opts: ["Frequency", "Amplitude", "Wavelength", "Speed"],
+      ans: 1,
+      exp: "Loudness depends on amplitude. Frequency determines the pitch!"
+    },
+    {
+      q: "What is the physical reason an opera singer can shatter a glass with their voice?",
+      opts: ["Interference", "Refraction", "Polarisation", "Resonance"],
+      ans: 3,
+      exp: "Resonance happens when the singer's note matches the natural frequency of the glass, transferring massive amounts of energy to it."
+    }
+  ];
+
+  const qc = document.getElementById('quiz-container');
+  questions.forEach((q, i) => {
+    let html = `<div class="quiz-section">
+      <div class="quiz-q">${i+1}. ${q.q}</div>
+      <div class="quiz-options">`;
+    q.opts.forEach((opt, j) => {
+      let isCorrect = (j === q.ans);
+      html += `<button class="quiz-opt" data-correct="${isCorrect}" onclick="checkAnswer(this, ${isCorrect}, '${q.exp}')">${opt}</button>`;
+    });
+    html += `</div><div class="quiz-feedback"></div></div>`;
+    qc.innerHTML += html;
+  });
+
+  function checkAnswer(btn, isCorrect, exp) {
+    const parent = btn.parentElement;
+    if (parent.classList.contains('answered')) return;
+    parent.classList.add('answered');
+    
+    Array.from(parent.children).forEach(child => {
+      if (child.classList.contains('quiz-opt')) {
+        child.style.pointerEvents = 'none';
+        if (child.dataset.correct === "true") child.classList.add('correct');
+      }
+    });
+    
+    if (!isCorrect) btn.classList.add('wrong');
+    
+    const feedback = parent.parentElement.querySelector('.quiz-feedback');
+    feedback.innerHTML = `<strong>${isCorrect ? '✅ Correct!' : '❌ Incorrect.'}</strong> ${exp}`;
+    feedback.classList.add('show');
+  }
+  
+</script>
+<a href="Home.html" class="return-home-btn">
+  <span style="font-size: 18px;">🏠</span> Back to Hub
+</a>
+<style>
+  .return-home-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: var(--text);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-family: 'Lexend', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+  .return-home-btn:hover {
+    transform: translateY(-5px);
+    background: var(--accent2); /* Turns bright blue on hover */
+    box-shadow: 0 8px 25px rgba(33, 150, 243, 0.4);
+  }
+  @media (max-width: 768px) {
+    .return-home-btn {
+      bottom: 20px;
+      right: 20px;
+      padding: 10px 18px;
+      font-size: 14px;
+    }
+  }
+</style>
+</body>
+</html>

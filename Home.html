@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Physics Hub — Leaving Cert Study Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Deca:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f8f6f2;
+    --card: #ffffff;
+    --text: #1a1a2e;
+    --text-light: #555570;
+    --accent1: #e63946; /* Red for Magnetism */
+    --accent2: #2196f3; /* Blue for Waves */
+    --accent3: #ff9800; /* Orange for Electricity */
+    --accent4: #4caf50; /* Green */
+    --accent5: #9c27b0; /* Purple for Modern Physics */
+    --border: #e0dcd4;
+    --shadow: 0 4px 20px rgba(0,0,0,0.06);
+    --shadow-hover: 0 12px 30px rgba(0,0,0,0.12);
+    --radius: 16px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Lexend', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 17px;
+    line-height: 1.7;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* TOP NAV BAR */
+  .top-bar {
+    background: white;
+    border-bottom: 2px solid var(--border);
+    padding: 16px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+  }
+  .top-bar h1 { 
+    font-size: 22px; 
+    font-weight: 700; 
+    color: var(--text); 
+    letter-spacing: 0.02em;
+  }
+  .top-bar span { color: var(--accent2); }
+
+  /* HERO SECTION */
+  .hero {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    color: white;
+    padding: 80px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: url('data:image/svg+xml;utf8,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+    opacity: 0.6;
+    pointer-events: none;
+  }
+  .hero h2 { 
+    font-size: 48px; 
+    font-weight: 700; 
+    margin-bottom: 16px; 
+    animation: slideDown 0.6s ease-out;
+  }
+  .hero p { 
+    font-size: 20px; 
+    color: rgba(255,255,255,0.85); 
+    max-width: 700px; 
+    margin: 0 auto; 
+    line-height: 1.6;
+    animation: fadeIn 1s ease-out;
+  }
+
+  /* DASHBOARD GRID */
+  .dashboard {
+    flex: 1;
+    padding: 60px 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .section-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 30px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .topics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 24px;
+  }
+
+  /* MODULE CARDS */
+  .module-card {
+    background: var(--card);
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    padding: 32px 24px;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: var(--shadow);
+    position: relative;
+    overflow: hidden;
+    animation: slideUp 0.5s ease-out backwards;
+  }
+  
+  /* Staggered animation for cards */
+  .module-card:nth-child(1) { animation-delay: 0.1s; }
+  .module-card:nth-child(2) { animation-delay: 0.2s; }
+  .module-card:nth-child(3) { animation-delay: 0.3s; }
+  .module-card:nth-child(4) { animation-delay: 0.4s; }
+
+  .module-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 6px;
+    transition: height 0.3s ease;
+  }
+
+  .module-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-hover);
+    border-color: transparent;
+  }
+  .module-card:hover::before { height: 12px; }
+
+  /* Card Specific Colors */
+  .card-waves::before { background: var(--accent2); }
+  .card-waves:hover { border-color: var(--accent2); }
+  .card-waves .mc-icon { color: var(--accent2); background: #e8f4fd; }
+
+  .card-elec::before { background: var(--accent3); }
+  .card-elec:hover { border-color: var(--accent3); }
+  .card-elec .mc-icon { color: var(--accent3); background: #fff3e0; }
+
+  .card-mag::before { background: var(--accent1); }
+  .card-mag:hover { border-color: var(--accent1); }
+  .card-mag .mc-icon { color: var(--accent1); background: #ffebee; }
+
+  .card-mod::before { background: var(--accent5); }
+  .card-mod:hover { border-color: var(--accent5); }
+  .card-mod .mc-icon { color: var(--accent5); background: #f3e5f5; }
+
+  .mc-icon {
+    font-size: 42px;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease;
+  }
+  .module-card:hover .mc-icon {
+    transform: scale(1.1) rotate(5deg);
+  }
+
+  .mc-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 10px;
+  }
+  .mc-desc {
+    font-size: 14px;
+    color: var(--text-light);
+    line-height: 1.6;
+  }
+  .mc-action {
+    margin-top: 24px;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text);
+    opacity: 0.6;
+    transition: opacity 0.2s;
+  }
+  .module-card:hover .mc-action { opacity: 1; }
+
+  /* ANIMATIONS */
+  @keyframes slideDown { 
+    from { opacity: 0; transform: translateY(-20px); } 
+    to { opacity: 1; transform: translateY(0); } 
+  }
+  @keyframes slideUp { 
+    from { opacity: 0; transform: translateY(20px); } 
+    to { opacity: 1; transform: translateY(0); } 
+  }
+  @keyframes fadeIn { 
+    from { opacity: 0; } 
+    to { opacity: 1; } 
+  }
+
+  @media (max-width: 768px) {
+    .hero { padding: 50px 20px; }
+    .hero h2 { font-size: 32px; }
+    .hero p { font-size: 16px; }
+    .dashboard { padding: 40px 20px; }
+    .topics-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="top-bar">
+    <h1>Leaving Cert <span>Physics</span></h1>
+  </div>
+
+  <div class="hero">
+    <h2>Welcome to your Study Hub</h2>
+    <p>Select a module below to launch your interactive notes. Master the concepts, learn the definitions, and ace the calculations.</p>
+  </div>
+
+  <main class="dashboard">
+    <div class="section-title">Select a Module</div>
+    
+    <div class="topics-grid">
+      
+      <a href="Light, sound and waves.html" class="module-card card-waves">
+        <div class="mc-icon">🌊</div>
+        <div class="mc-title">Light, Sound & Waves</div>
+        <div class="mc-desc">Explore the properties of transverse and longitudinal waves, the Doppler effect, optics, and the electromagnetic spectrum.</div>
+        <div class="mc-action">Start Module →</div>
+      </a>
+
+      <a href="Electricity and current.html" class="module-card card-elec">
+        <div class="mc-icon">⚡</div>
+        <div class="mc-title">Electricity & Current</div>
+        <div class="mc-desc">Master voltage, resistance, Ohm's law, resistivity, and learn how domestic circuits keep our homes safe and powered.</div>
+        <div class="mc-action">Start Module →</div>
+      </a>
+
+      <a href="Magnetism.html" class="module-card card-mag">
+        <div class="mc-icon">🧲</div>
+        <div class="mc-title">Magnetism</div>
+        <div class="mc-desc">Discover magnetic fields, the force on a conductor, electromagnetic induction, Faraday's Law, and how transformers work.</div>
+        <div class="mc-action">Start Module →</div>
+      </a>
+
+      <a href="Modern physics.html" class="module-card card-mod">
+        <div class="mc-icon">⚛️</div>
+        <div class="mc-title">Modern Physics</div>
+        <div class="mc-desc">Dive into the structure of the atom, the photoelectric effect, X-rays, radioactivity, half-life, and nuclear reactions.</div>
+        <div class="mc-action">Start Module →</div>
+      </a>
+
+    </div>
+  </main>
+
+</body>
+</html>
