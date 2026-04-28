@@ -1,0 +1,1295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mechanics — Leaving Cert Study Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Deca:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f5f7fa;
+    --card: #ffffff;
+    --text: #1a1a2e;
+    --text-light: #5a5a7a;
+    --accent1: #0057b7;
+    --accent2: #e63946;
+    --accent3: #f4a261;
+    --accent4: #2a9d8f;
+    --accent5: #7209b7;
+    --border: #dde3ee;
+    --def-bg: #eef6ff;
+    --def-border: #0057b7;
+    --formula-bg: #fff8e8;
+    --formula-border: #f4a261;
+    --example-bg: #effaf5;
+    --example-border: #2a9d8f;
+    --tip-bg: #fff0f3;
+    --tip-border: #e63946;
+    --shadow: 0 2px 14px rgba(0,0,40,0.07);
+    --radius: 12px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Lexend', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 17px;
+    line-height: 1.7;
+  }
+
+  /* SIDEBAR */
+  #sidebar {
+    position: fixed; left: 0; top: 0; bottom: 0;
+    width: 285px;
+    background: var(--card);
+    border-right: 2px solid var(--border);
+    overflow-y: auto;
+    z-index: 100;
+    padding-bottom: 40px;
+    transition: transform 0.3s ease;
+  }
+  .sidebar-header {
+    background: var(--accent1);
+    color: white;
+    padding: 20px 18px;
+  }
+  .sidebar-header .sh-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.8; }
+  .sidebar-header h2 { font-size: 18px; font-weight: 700; margin-top: 4px; }
+
+  .chapter-group { margin-top: 8px; }
+  .chapter-label {
+    padding: 10px 18px 4px;
+    font-size: 11px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--text-light);
+  }
+  .nav-item {
+    display: block; padding: 9px 18px 9px 26px;
+    cursor: pointer; font-size: 14px; font-weight: 500;
+    color: var(--text); text-decoration: none;
+    border-left: 3px solid transparent;
+    transition: all 0.2s;
+  }
+  .nav-item:hover { background: #eef3ff; border-left-color: var(--accent1); }
+  .nav-item.active { background: #eef3ff; border-left-color: var(--accent2); color: var(--accent2); font-weight: 600; }
+
+  /* MAIN */
+  #main { margin-left: 285px; min-height: 100vh; }
+  .top-bar {
+    background: white; border-bottom: 2px solid var(--border);
+    padding: 16px 40px; display: flex; align-items: center; gap: 12px;
+    position: sticky; top: 0; z-index: 50;
+  }
+  .top-bar h1 { font-size: 19px; font-weight: 700; color: var(--accent1); }
+  .menu-btn { display: none; background: none; border: none; cursor: pointer; font-size: 22px; color: var(--text); }
+  .progress-bar { flex: 1; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent1), var(--accent4)); border-radius: 3px; transition: width 0.5s ease; width: 0%; }
+
+  /* SECTIONS */
+  .section { display: none; padding: 40px; max-width: 880px; animation: fadeIn 0.3s ease; }
+  .section.active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+  .section-title { font-size: 30px; font-weight: 700; margin-bottom: 6px; line-height: 1.2; }
+  .section-subtitle { font-size: 15px; color: var(--text-light); margin-bottom: 32px; padding-bottom: 20px; border-bottom: 2px solid var(--border); }
+  .chapter-badge {
+    display: inline-block; background: var(--accent1); color: white;
+    font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px;
+    margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.05em;
+  }
+  h3 { font-size: 21px; font-weight: 700; margin: 30px 0 12px; }
+  h4 { font-size: 13px; font-weight: 700; color: var(--accent2); margin: 18px 0 8px; text-transform: uppercase; letter-spacing: 0.04em; }
+  p { margin-bottom: 14px; }
+  ul, ol { margin-left: 22px; margin-bottom: 14px; line-height: 2; }
+
+  .definition {
+    background: var(--def-bg); border-left: 5px solid var(--def-border);
+    border-radius: 0 var(--radius) var(--radius) 0; padding: 14px 18px; margin: 14px 0;
+  }
+  .definition .def-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent1); margin-bottom: 6px; }
+  .definition .def-text { font-size: 16px; font-weight: 600; color: var(--text); line-height: 1.5; }
+
+  .formula-box {
+    background: var(--formula-bg); border: 2px solid var(--formula-border);
+    border-radius: var(--radius); padding: 18px 22px; margin: 14px 0;
+  }
+  .formula-box .f-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent3); margin-bottom: 8px; }
+  .formula-box .formula { font-size: 22px; font-weight: 700; font-family: 'Courier New', monospace; color: var(--text); margin: 6px 0; }
+  .formula-box .f-vars { font-size: 13px; color: var(--text-light); margin-top: 8px; line-height: 1.9; }
+  .formula-box .f-vars span { font-weight: 700; color: var(--text); }
+
+  .example-box {
+    background: var(--example-bg); border: 2px solid var(--example-border);
+    border-radius: var(--radius); padding: 20px 22px; margin: 20px 0;
+  }
+  .example-box .ex-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent4); margin-bottom: 10px; }
+  .example-box .ex-q { font-weight: 600; margin-bottom: 14px; padding-bottom: 12px; border-bottom: 1px solid #b2dfdb; font-size: 15px; }
+  .example-box .step { background: white; border-radius: 8px; padding: 11px 16px; margin: 8px 0; border-left: 3px solid var(--accent4); }
+  .example-box .step-num { font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--accent4); letter-spacing: 0.05em; margin-bottom: 4px; }
+  .example-box .step-content { font-size: 14px; font-family: 'Courier New', monospace; line-height: 1.7; }
+  .example-box .ex-ans { background: #d4edda; border-radius: 8px; padding: 10px 14px; margin-top: 10px; font-weight: 600; font-size: 14px; color: #155724; }
+
+  .tip-box {
+    background: var(--tip-bg); border-left: 5px solid var(--tip-border);
+    border-radius: 0 var(--radius) var(--radius) 0; padding: 13px 17px; margin: 13px 0; font-size: 14px;
+  }
+  .tip-box strong { color: var(--tip-border); }
+
+  .exam-tip {
+    background: #fff9e6; border: 2px solid #f4a261; border-radius: var(--radius);
+    padding: 14px 18px; margin: 14px 0; font-size: 14px;
+  }
+  .exam-tip strong { color: #d4700a; }
+
+  table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 14px; }
+  th { background: var(--text); color: white; padding: 10px 14px; text-align: left; font-weight: 600; }
+  td { padding: 10px 14px; border-bottom: 1px solid var(--border); }
+  tr:nth-child(even) td { background: #f8f9fc; }
+
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 14px; margin: 14px 0; }
+  .info-card { background: white; border: 2px solid var(--border); border-radius: var(--radius); padding: 15px; box-shadow: var(--shadow); }
+  .info-card .ic-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent2); margin-bottom: 6px; }
+  .info-card .ic-val { font-size: 19px; font-weight: 700; font-family: 'Courier New', monospace; color: var(--text); }
+  .info-card .ic-sub { font-size: 12px; color: var(--text-light); margin-top: 4px; line-height: 1.5; }
+
+  /* QUIZ */
+  .quiz-section { background: white; border: 2px solid var(--border); border-radius: var(--radius); padding: 22px; margin: 20px 0; }
+  .quiz-section h3 { margin-top: 0; color: var(--accent5); font-size: 18px; }
+  .quiz-q { font-weight: 600; margin-bottom: 14px; font-size: 16px; line-height: 1.5; }
+  .quiz-options { display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px; }
+  .quiz-opt {
+    display: block; background: var(--bg); border: 2px solid var(--border); border-radius: 8px;
+    padding: 11px 16px; cursor: pointer; font-size: 14px; font-weight: 500;
+    transition: all 0.2s; text-align: left; width: 100%; font-family: 'Lexend', sans-serif;
+  }
+  .quiz-opt:hover { background: #eef3ff; border-color: var(--accent1); }
+  .quiz-opt.correct { background: #e8f5e9; border-color: var(--accent4); color: #155724; }
+  .quiz-opt.wrong { background: #ffebee; border-color: var(--accent2); color: #b71c1c; }
+  .quiz-feedback { display: none; background: #f3e5f5; border-radius: 8px; padding: 12px 16px; font-size: 14px; margin-top: 8px; border-left: 4px solid var(--accent5); }
+  .quiz-feedback.show { display: block; }
+
+  /* NAV BUTTONS */
+  .section-nav { display: flex; gap: 12px; margin-top: 40px; padding-top: 24px; border-top: 2px solid var(--border); flex-wrap: wrap; }
+  .nav-btn { padding: 12px 24px; border-radius: 8px; border: none; cursor: pointer; font-family: 'Lexend', sans-serif; font-size: 14px; font-weight: 600; transition: all 0.2s; }
+  .nav-btn-prev { background: var(--bg); color: var(--text); border: 2px solid var(--border); }
+  .nav-btn-prev:hover { background: #e8e8f5; }
+  .nav-btn-next { background: var(--accent1); color: white; }
+  .nav-btn-next:hover { opacity: 0.9; }
+
+  /* HOME */
+  .hero { background: linear-gradient(135deg, #0a1628 0%, #0d2461 60%, #0057b7 100%); color: white; padding: 60px 40px; }
+  .hero h1 { font-size: 40px; font-weight: 700; margin-bottom: 12px; }
+  .hero p { font-size: 17px; color: rgba(255,255,255,0.82); max-width: 580px; line-height: 1.7; }
+  .hero-badges { margin-top: 22px; display: flex; gap: 10px; flex-wrap: wrap; }
+  .hero-badge { background: rgba(255,255,255,0.15); padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+  .topics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 16px; padding: 36px 40px 40px; }
+  .topic-card { background: white; border: 2px solid var(--border); border-radius: var(--radius); padding: 18px; cursor: pointer; transition: all 0.2s; box-shadow: var(--shadow); }
+  .topic-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,40,0.12); border-color: var(--accent1); }
+  .topic-card .tc-icon { font-size: 26px; margin-bottom: 9px; }
+  .topic-card .tc-title { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+  .topic-card .tc-sub { font-size: 12px; color: var(--text-light); }
+  .topic-card .tc-ch { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent1); margin-top: 8px; }
+
+  /* UVAST TABLE */
+  .uvast-table { background: white; border: 2px solid var(--border); border-radius: var(--radius); padding: 20px; margin: 16px 0; }
+  .uvast-row { display: flex; align-items: center; padding: 8px 0; border-bottom: 1px solid #eee; font-size: 14px; }
+  .uvast-row:last-child { border-bottom: none; }
+  .uvast-letter { font-size: 20px; font-weight: 700; font-family: 'Courier New', monospace; width: 40px; color: var(--accent1); }
+  .uvast-meaning { flex: 1; color: var(--text); }
+  .uvast-unit { color: var(--text-light); font-size: 13px; font-family: 'Courier New', monospace; }
+
+  .overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 99; }
+  .overlay.show { display: block; }
+
+  @media (max-width: 768px) {
+    #sidebar { transform: translateX(-100%); }
+    #sidebar.open { transform: translateX(0); }
+    #main { margin-left: 0; }
+    .menu-btn { display: block; }
+    .section { padding: 22px 18px; }
+    .section-title { font-size: 24px; }
+    .topics-grid { grid-template-columns: 1fr 1fr; padding: 20px; }
+    .hero { padding: 36px 18px; }
+    .hero h1 { font-size: 28px; }
+    .top-bar { padding: 14px 18px; }
+  }
+</style>
+</head>
+<body>
+
+<div id="overlay" class="overlay" onclick="closeSidebar()"></div>
+
+<nav id="sidebar">
+  <div class="sidebar-header">
+    <div class="sh-label">Leaving Cert Physics</div>
+    <h2>⚙️ Mechanics</h2>
+  </div>
+  <div class="chapter-group">
+    <div class="chapter-label">Start Here</div>
+    <a class="nav-item active" onclick="showSection('home')">🏠 Overview</a>
+  </div>
+  <div class="chapter-group">
+    <div class="chapter-label">Booklet I — Motion</div>
+    <a class="nav-item" onclick="showSection('m1-1')">📏 Speed, Velocity & Displacement</a>
+    <a class="nav-item" onclick="showSection('m1-2')">📈 Acceleration & Graphs</a>
+    <a class="nav-item" onclick="showSection('m1-3')">🧮 Equations of Motion (UVAST)</a>
+    <a class="nav-item" onclick="showSection('m1-4')">🍎 Gravity & Free Fall</a>
+    <a class="nav-item" onclick="showSection('m1-5')">💪 Force & Newton's Laws</a>
+    <a class="nav-item" onclick="showSection('m1-6')">🎯 Momentum & Collisions</a>
+    <a class="nav-item" onclick="showSection('m1-7')">⚡ Impulse & Weight</a>
+    <a class="nav-item" onclick="showSection('m1-calc')">📐 Calculations: Booklet I</a>
+    <a class="nav-item" onclick="showSection('m1-quiz')">✅ Quiz: Booklet I</a>
+  </div>
+  <div class="chapter-group">
+    <div class="chapter-label">Booklet II — Energy, Pressure, Gravity</div>
+    <a class="nav-item" onclick="showSection('m2-1')">⚡ Work, Energy & Power</a>
+    <a class="nav-item" onclick="showSection('m2-2')">🔋 Conservation of Energy</a>
+    <a class="nav-item" onclick="showSection('m2-3')">🪣 Density & Pressure</a>
+    <a class="nav-item" onclick="showSection('m2-4')">🌊 Archimedes & Boyle's Law</a>
+    <a class="nav-item" onclick="showSection('m2-5')">🌍 Gravity & Newton's Law</a>
+    <a class="nav-item" onclick="showSection('m2-6')">⚖️ Moment of a Force</a>
+    <a class="nav-item" onclick="showSection('m2-calc')">📐 Calculations: Booklet II</a>
+    <a class="nav-item" onclick="showSection('m2-quiz')">✅ Quiz: Booklet II</a>
+  </div>
+  <div class="chapter-group">
+    <div class="chapter-label">Booklet III — Advanced</div>
+    <a class="nav-item" onclick="showSection('m3-1')">➡️ Vectors</a>
+    <a class="nav-item" onclick="showSection('m3-2')">🔄 Circular Motion</a>
+    <a class="nav-item" onclick="showSection('m3-3')">🌙 Satellite Orbits</a>
+    <a class="nav-item" onclick="showSection('m3-4')">〰️ Simple Harmonic Motion</a>
+    <a class="nav-item" onclick="showSection('m3-5')">🌀 Hooke's Law & Springs</a>
+    <a class="nav-item" onclick="showSection('m3-calc')">📐 Calculations: Booklet III</a>
+    <a class="nav-item" onclick="showSection('m3-quiz')">✅ Quiz: Booklet III</a>
+  </div>
+  <div class="chapter-group">
+    <div class="chapter-label">Revision</div>
+    <a class="nav-item" onclick="showSection('all-formulas')">📋 All Formulas</a>
+    <a class="nav-item" onclick="showSection('all-defs')">📖 All Definitions</a>
+  </div>
+</nav>
+
+<div id="main">
+  <div class="top-bar">
+    <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+    <h1 id="page-title">Mechanics</h1>
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+    <span id="progress-text" style="font-size:12px;color:var(--text-light);white-space:nowrap;font-weight:600;">0 / 24</span>
+  </div>
+
+  <!-- HOME -->
+  <div id="home" class="section active">
+    <div class="hero" style="margin:-40px -40px 0 -40px;">
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:rgba(255,255,255,0.6);margin-bottom:10px;">Leaving Certificate Physics</div>
+      <h1>⚙️ Mechanics</h1>
+      <p>Your complete guide to motion, forces, energy, pressure, gravity, circular motion and more — explained simply with worked examples.</p>
+      <div class="hero-badges">
+        <span class="hero-badge">📘 Booklet I: Motion & Forces</span>
+        <span class="hero-badge">📗 Booklet II: Energy, Pressure & Gravity</span>
+        <span class="hero-badge">📙 Booklet III: Vectors, Circular Motion & SHM</span>
+      </div>
+    </div>
+    <div class="topics-grid">
+      <div class="topic-card" onclick="showSection('m1-1')"><div class="tc-icon">📏</div><div class="tc-title">Speed & Velocity</div><div class="tc-sub">Displacement, speed, distance-time graphs</div><div class="tc-ch">Booklet I</div></div>
+      <div class="topic-card" onclick="showSection('m1-3')"><div class="tc-icon">🧮</div><div class="tc-title">Equations of Motion</div><div class="tc-sub">UVAST method, 3 key equations</div><div class="tc-ch">Booklet I</div></div>
+      <div class="topic-card" onclick="showSection('m1-5')"><div class="tc-icon">💪</div><div class="tc-title">Newton's Laws</div><div class="tc-sub">Force, mass, F=ma, free body diagrams</div><div class="tc-ch">Booklet I</div></div>
+      <div class="topic-card" onclick="showSection('m1-6')"><div class="tc-icon">🎯</div><div class="tc-title">Momentum</div><div class="tc-sub">Conservation of momentum, collisions</div><div class="tc-ch">Booklet I</div></div>
+      <div class="topic-card" onclick="showSection('m2-1')"><div class="tc-icon">⚡</div><div class="tc-title">Work, Energy & Power</div><div class="tc-sub">KE, PE, efficiency, solar constant</div><div class="tc-ch">Booklet II</div></div>
+      <div class="topic-card" onclick="showSection('m2-3')"><div class="tc-icon">🪣</div><div class="tc-title">Density & Pressure</div><div class="tc-sub">Pascal, Archimedes, Boyle's Law</div><div class="tc-ch">Booklet II</div></div>
+      <div class="topic-card" onclick="showSection('m2-5')"><div class="tc-icon">🌍</div><div class="tc-title">Gravity</div><div class="tc-sub">Newton's law of gravitation, g=GM/d²</div><div class="tc-ch">Booklet II</div></div>
+      <div class="topic-card" onclick="showSection('m2-6')"><div class="tc-icon">⚖️</div><div class="tc-title">Moments & Equilibrium</div><div class="tc-sub">Turning effect, levers, torque</div><div class="tc-ch">Booklet II</div></div>
+      <div class="topic-card" onclick="showSection('m3-1')"><div class="tc-icon">➡️</div><div class="tc-title">Vectors</div><div class="tc-sub">Resolving, inclined planes, projectiles</div><div class="tc-ch">Booklet III</div></div>
+      <div class="topic-card" onclick="showSection('m3-2')"><div class="tc-icon">🔄</div><div class="tc-title">Circular Motion</div><div class="tc-sub">Angular velocity, centripetal force</div><div class="tc-ch">Booklet III</div></div>
+      <div class="topic-card" onclick="showSection('m3-4')"><div class="tc-icon">〰️</div><div class="tc-title">SHM</div><div class="tc-sub">Simple harmonic motion, pendulums</div><div class="tc-ch">Booklet III</div></div>
+      <div class="topic-card" onclick="showSection('all-formulas')"><div class="tc-icon">📋</div><div class="tc-title">All Formulas</div><div class="tc-sub">Quick reference sheet</div><div class="tc-ch">Revision</div></div>
+    </div>
+    <div style="padding: 0 40px 40px;">
+      <div class="tip-box"><strong>💡 How to use this guide:</strong> Work through each section in order using the sidebar. Every section has simple explanations, key definitions to learn, formulas, and worked examples. Quizzes test you at the end of each booklet!</div>
+    </div>
+  </div>
+
+  <!-- M1-1: SPEED, VELOCITY, DISPLACEMENT -->
+  <div id="m1-1" class="section">
+    <div class="chapter-badge">Booklet I — Motion</div>
+    <h2 class="section-title">📏 Speed, Velocity & Displacement</h2>
+    <p class="section-subtitle">The difference between distance and displacement, and between speed and velocity, is one of the most important ideas in all of mechanics.</p>
+
+    <h3>📐 Displacement vs Distance</h3>
+    <div class="definition"><div class="def-label">📖 Definition — Displacement</div><div class="def-text">Displacement is the straight-line distance between two points, in a given direction.</div></div>
+    <p><strong>Distance</strong> is how far you actually travel along a path. <strong>Displacement</strong> is "as the crow flies" — the straight-line measurement from start to finish, with a direction.</p>
+    <div class="tip-box"><strong>🧠 Example:</strong> If you run halfway around a circular track of radius 100 m, the distance you travelled is 100π ≈ 314 m. But your displacement is only 200 m (the diameter) — the straight line from start to finish.</div>
+
+    <h3>⚡ Speed vs Velocity</h3>
+    <div class="definition"><div class="def-label">📖 Definition — Speed</div><div class="def-text">Speed is the rate of change of distance with respect to time. (Speed = distance ÷ time)</div></div>
+    <div class="definition"><div class="def-label">📖 Definition — Velocity</div><div class="def-text">Velocity is the rate of change of displacement with respect to time. (Velocity = displacement ÷ time)</div></div>
+    <div class="info-grid">
+      <div class="info-card"><div class="ic-title">Speed</div><div class="ic-val">scalar</div><div class="ic-sub">Just a number — no direction. E.g. "60 km/h"</div></div>
+      <div class="info-card"><div class="ic-title">Velocity</div><div class="ic-val">vector</div><div class="ic-sub">Number AND direction. E.g. "60 km/h north"</div></div>
+      <div class="info-card"><div class="ic-title">Unit of both</div><div class="ic-val">m s⁻¹</div><div class="ic-sub">Metres per second (m/s)</div></div>
+    </div>
+    <div class="tip-box"><strong>🧠 Key trick:</strong> If you run a full lap of a circular track and finish where you started, your average velocity is <strong>ZERO</strong> (displacement = 0). But your average speed is definitely not zero!</div>
+
+    <h3>📊 Distance-Time Graphs</h3>
+    <p>On a distance-time graph, the <strong>slope (gradient)</strong> of the graph = speed. A steeper slope = faster speed. A flat (horizontal) line = object is stopped.</p>
+
+    <h3>⚡ Instantaneous vs Average Speed</h3>
+    <p><strong>Average speed</strong> = total distance ÷ total time (for the whole journey). <strong>Instantaneous speed</strong> = speed at one exact moment (what a speedometer shows).</p>
+
+    <h3>🕰️ Ticker Tape Timer</h3>
+    <p>A ticker tape timer makes 50 dots per second on a paper tape. The time between adjacent dots = 1/50 = <strong>0.02 seconds</strong>.</p>
+    <ul>
+      <li>To measure speed: measure the distance between 11 dots (= 10 intervals), divide by (10 × 0.02) = 0.2 s</li>
+      <li>If dots are equally spaced → constant speed. If getting farther apart → accelerating.</li>
+    </ul>
+    <div class="exam-tip"><strong>🎯 Exam tip:</strong> Always use 10 intervals (11 dots) rather than 2 dots to reduce percentage error — a single measurement is less reliable than an average over 10 intervals.</div>
+    <div class="section-nav">
+      <button class="nav-btn nav-btn-next" onclick="showSection('m1-2')">Next: Acceleration & Graphs →</button>
+    </div>
+  </div>
+
+  <!-- M1-2: ACCELERATION & GRAPHS -->
+  <div id="m1-2" class="section">
+    <div class="chapter-badge">Booklet I — Motion</div>
+    <h2 class="section-title">📈 Acceleration & Velocity-Time Graphs</h2>
+    <p class="section-subtitle">Acceleration is about changing velocity. Velocity-time graphs are one of the most important tools in mechanics.</p>
+
+    <div class="definition"><div class="def-label">📖 Definition — Acceleration</div><div class="def-text">Acceleration is the rate of change of velocity with respect to time.</div></div>
+    <div class="formula-box">
+      <div class="f-label">Formula — Acceleration</div>
+      <div class="formula">a = (v − u) / t</div>
+      <div class="f-vars"><span>a</span> = acceleration (m s⁻²) &nbsp;&nbsp; <span>v</span> = final velocity (m s⁻¹) &nbsp;&nbsp; <span>u</span> = initial velocity (m s⁻¹) &nbsp;&nbsp; <span>t</span> = time (s)</div>
+    </div>
+    <p>The unit of acceleration is the <strong>metre per second squared (m s⁻²)</strong>.</p>
+
+    <h3>📊 Velocity-Time (v-t) Graphs</h3>
+    <p>On a velocity-time graph:</p>
+    <ul>
+      <li><strong>Slope (gradient)</strong> = acceleration</li>
+      <li><strong>Area under the graph</strong> = distance travelled</li>
+      <li>Flat horizontal line = constant velocity (zero acceleration)</li>
+      <li>Sloping up = accelerating &nbsp;&nbsp;&nbsp; Sloping down = decelerating</li>
+    </ul>
+    <div class="tip-box"><strong>🧠 Finding the area:</strong> Break the graph into triangles and rectangles. Area of triangle = ½ × base × height. Area of rectangle = base × height.</div>
+
+    <h3>🧪 Measuring Acceleration — Ticker Tape</h3>
+    <p>To measure acceleration using ticker tape:</p>
+    <ol>
+      <li>Measure 5 intervals near the start of tape → calculate initial velocity u = s₁/t₁</li>
+      <li>Measure 5 intervals near the end of tape → calculate final velocity v = s₂/t₂</li>
+      <li>Measure time t from the centre of u to the centre of v</li>
+      <li>Calculate a = (v − u) / t</li>
+    </ol>
+    <div class="exam-tip"><strong>🎯 Experiment: Measuring Acceleration due to Gravity (g)</strong><br>
+      Apparatus: Millisecond timer, metal ball bearing, trapdoor, electromagnet.<br>
+      Method: Release ball → timer starts → ball hits trapdoor → timer stops. Repeat for different heights s. Plot graph of s vs t². Slope = g/2, so g = 2 × slope.<br>
+      Precaution: Use paper between ball and electromagnet to ensure clean release. Take smallest t for each s (excess time = residual magnetism in electromagnet).
+    </div>
+    <div class="section-nav">
+      <button class="nav-btn nav-btn-prev" onclick="showSection('m1-1')">← Previous</button>
+      <button class="nav-btn nav-btn-next" onclick="showSection('m1-3')">Next: Equations of Motion →</button>
+    </div>
+  </div>
+
+  <!-- M1-3: EQUATIONS OF MOTION -->
+  <div id="m1-3" class="section">
+    <div class="chapter-badge">Booklet I — Motion</div>
+    <h2 class="section-title">🧮 Equations of Motion — UVAST</h2>
+    <p class="section-subtitle">Three equations that link five quantities. Learn the UVAST method and you can solve any motion problem.</p>
+
+    <h3>The 5 UVAST Variables</h3>
+    <div class="uvast-table">
+      <div class="uvast-row"><div class="uvast-letter">U</div><div class="uvast-meaning">Initial velocity (speed at the START)</div><div class="uvast-unit">m s⁻¹</div></div>
+      <div class="uvast-row"><div class="uvast-letter">V</div><div class="uvast-meaning">Final velocity (speed at the END)</div><div class="uvast-unit">m s⁻¹</div></div>
+      <div class="uvast-row"><div class="uvast-letter">A</div><div class="uvast-meaning">Acceleration</div><div class="uvast-unit">m s⁻²</div></div>
+      <div class="uvast-row"><div class="uvast-letter">S</div><div class="uvast-meaning">Displacement (distance travelled)</div><div class="uvast-unit">m</div></div>
+      <div class="uvast-row"><div class="uvast-letter">T</div><div class="uvast-meaning">Time</div><div class="uvast-unit">s</div></div>
+    </div>
+
+    <h3>The Three Equations</h3>
+    <div class="formula-box"><div class="f-label">⚠️ Equation 1</div><div class="formula">v = u + at</div><div class="f-vars">Use when you know/want: v, u, a, t (not s)</div></div>
+    <div class="formula-box"><div class="f-label">⚠️ Equation 2</div><div class="formula">s = ut + ½at²</div><div class="f-vars">Use when you know/want: s, u, a, t (not v)</div></div>
+    <div class="formula-box"><div class="f-label">⚠️ Equation 3</div><div class="formula">v² = u² + 2as</div><div class="f-vars">Use when you know/want: v, u, a, s (not t)</div></div>
+    <div class="formula-box"><div class="f-label">Bonus Formula</div><div class="formula">s = (u + v)/2 × t</div><div class="f-vars">Also useful — average velocity × time</div></div>
+
+    <h3>🪄 The UVAST Method</h3>
+    <ol style="line-height:2.2;">
+      <li>Write U, V, A, S, T down the left-hand side of your page</li>
+      <li>Fill in the values you know. Put <strong>?</strong> beside what you want to find</li>
+      <li>Write out all 3 equations</li>
+      <li>Choose the equation that has exactly ONE unknown</li>
+      <li>Substitute and solve</li>
+    </ol>
+    <div class="tip-box"><strong>🧠 Magic rule:</strong> You need exactly 3 known values to find the 4th and 5th. Once you know 3, you can work out everything!</div>
+    <div class="tip-box"><strong>⚠️ Signs matter!</strong> Pick a positive direction (e.g. upward = positive). Anything going the opposite way gets a minus sign. For objects thrown upward, g = −9.8 m s⁻².</div>
+    <div class="tip-box"><strong>🍎 At the highest point:</strong> v = 0 (velocity is zero at the peak). The object is still accelerating downward at 9.8 m s⁻² even at the top!</div>
+    <div class="section-nav">
+      <button class="nav-btn nav-btn-prev" onclick="showSection('m1-2')">← Previous</button>
+      <button class="nav-btn nav-btn-next" onclick="showSection('m1-4')">Next: Gravity & Free Fall →</button>
+    </div>
+  </div>
+
+  <!-- M1-4: GRAVITY -->
+  <div id="m1-4" class="section">
+    <div class="chapter-badge">Booklet I — Motion</div>
+    <h2 class="section-title">🍎 Gravity & Free Fall</h2>
+    <p class="section-subtitle">On Earth, every falling object accelerates downward at the same rate — regardless of mass!</p>
+
+    <div class="definition"><div class="def-label">📖 Definition — Acceleration due to Gravity (g)</div><div class="def-text">The acceleration due to gravity is the acceleration experienced by all objects in free fall near the surface of the Earth, caused by the Earth's gravitational attraction.</div></div>
+    <div class="info-card" style="max-width:300px;"><div class="ic-title">Value of g on Earth</div><div class="ic-val">g = 9.8 m s⁻²</div><div class="ic-sub">Always acting downward</div></div>
+
+    <h3>📌 Key Rules for Gravity Problems</h3>
+    <ul>
+      <li>If object is <strong>released from rest</strong>: u = 0</li>
+      <li>At the <strong>highest point</strong>: v = 0</li>
+      <li>If something moves UP, take up as positive → a = −9.8 m s⁻²</li>
+      <li>Objects of different mass fall at THE SAME rate (in the absence of air resistance)</li>
+      <li>A stone thrown upward is <strong>still accelerating downward</strong> even while it's moving up!</li>
+    </ul>
+    <div class="tip-box"><strong>🧠 Why does direction of acceleration confuse people?</strong> The direction of acceleration is determined by the direction of the FORCE causing it — not the direction of motion. Gravity always acts down, so the acceleration is always downward — even when the object is moving upward!</div>
+
+    <h3>🌕 Moon vs Earth</h3>
+    <p>On the Moon, g ≈ 1.6 m s⁻². Objects still fall — but much more slowly. You could throw a stone 6× higher on the Moon with the same initial speed!</p>
+    <div class="section-nav">
+      <button class="nav-btn nav-btn-prev" onclick="showSection('m1-3')">← Previous</button>
+      <button class="nav-btn nav-btn-next" onclick="showSection('m1-5')">Next: Force & Newton's Laws →</button>
+    </div>
+  </div>
+
+  <!-- M1-5: FORCE AND NEWTON'S LAWS -->
+  <div id="m1-5" class="section">
+    <div class="chapter-badge">Booklet I — Motion</div>
+    <h2 class="section-title">💪 Force & Newton's Laws</h2>
+    <p class="section-subtitle">Newton figured out three simple laws that describe how forces and motion are related. They're still used by NASA today!</p>
+
+    <div class="definition"><div class="def-label">📖 Definition — Force</div><div class="def-text">A force is anything which has the potential to cause an object to accelerate. Unit: newton (N).</div></div>
+
+    <h3>⚖️ Newton's Three Laws</h3>
+    <div class="definition"><div class="def-label">📖 Newton's First Law</div><div class="def-text">Every object will continue to travel at constant velocity unless an unbalanced external force acts on it.</div></div>
+    <div class="tip-box"><strong>🧠 Simple version:</strong> Objects keep doing what they're doing unless a force changes it. If it's moving, it keeps moving. If it's still, it stays still. Inertia!</div>
+
+    <div class="definition"><div class="def-label">📖 Newton's Second Law</div><div class="def-text">The rate of change of an object's momentum is directly proportional to the force which caused it, and takes place in the direction of the force.</div></div>
+    <div class="formula-box"><div class="f-label">⚠️ F = ma (special case of 2nd Law)</div><div class="formula">F = ma</div><div class="f-vars"><span>F</span> = net force (N) &nbsp;&nbsp; <span>m</span> = mass (kg) &nbsp;&nbsp; <span>a</span> = acceleration (m s⁻²)</div></div>
+    <div class="tip-box"><strong>⚠️ Always remember:</strong> AN UNBALANCED FORCE PRODUCES AN ACCELERATION</div>
+
+    <div class="definition"><div class="def-label">📖 Newton's Third Law</div><div class="def-text">When objects interact they exert equal but opposite forces on each other.</div></div>
+    <div class="tip-box"><strong>🚀 Rocket example:</strong> The rocket pushes gas downward (action). The gas pushes the rocket upward (reaction). Equal and opposite forces!</div>
+
+    <h3>🧮 Net Force (Resultant Force)</h3>
+    <p>The net force is the sum of all forces acting. Forces in the same direction add together. Forces in opposite directions subtract.</p>
+    <div class="example-box">
+      <div class="ex-label">Example</div>
+      <div class="ex-q">Forces of 8 N right and 6 N left → Net force = 8 − 6 = 2 N to the right</div>
+    </div>
+
+    <h3>🪨 Friction</h3>
+    <div class="definition"><div class="def-label">📖 Friction</div><div class="def-text">Friction is a force which opposes the relative motion between two objects.</div></div>
+    <p>Friction is calculated using: Net force = Engine force − Friction force. If an object moves at CONSTANT velocity, the net force = 0, so friction = engine force.</p>
+
+    <h3>🌊 Terminal Velocity</h3>
+    <p>A skydiver accelerates downward because gravity > air resistance. As speed increases, air resistance grows. Eventually air resistance = gravity → net force = 0 → constant speed = <strong>terminal velocity</strong> (≈ 100 m/s).</p>
+
+    <h3>⚖️ Mass vs Weight</h3>
+    <div class="info-grid">
+      <div class="info-card"><div class="ic-title">Mass</div><div class="ic-val">kg</div><div class="ic-sub">How much matter. Does NOT change with location. Measured in kg.</div></div>
+      <div class="info-card"><div class="ic-title">Weight</div><div class="ic-val">N</div><div class="ic-sub">The gravitational force on the object. W = mg. Changes on the Moon!</div></div>
+    </div>
+    <div class="formula-box"><div class="f-label">Weight</div><div class="formula">W = mg</div><div class="f-vars"><span>W</span> = weight (N) &nbsp;&nbsp; <span>m</span> = mass (kg) &nbsp;&nbsp; <span>g</span> = 9.8 N kg⁻¹ on Earth</div></div>
+    <div class="section-nav">
+      <button class="nav-btn nav-btn-prev" onclick="showSection('m1-4')">← Previous</button>
+      <button class="nav-btn nav-btn-next" onclick="showSection('m1-6')">Next: Momentum →</button>
+    </div>
+  </div>
+
+  <!-- M1-6: MOMENTUM -->
+  <div id="m1-6" class="section">
+    <div class="chapter-badge">Booklet I — Motion</div>
+    <h2 class="section-title">🎯 Momentum & Collisions</h2>
+    <p class="section-subtitle">Momentum is like "quantity of motion". It's a vector, and in any collision it's always conserved!</p>
+
+    <div class="definition"><div class="def-label">📖 Definition — Momentum</div><div class="def-text">Momentum (ρ) = mass × velocity. Unit: kg m s⁻¹ or N s.</div></div>
+    <div class="formula-box"><div class="f-label">Formula</div><div class="formula">ρ = mv</div><div class="f-vars"><span>ρ</span> = momentum (kg m s⁻¹) &nbsp;&nbsp; <span>m</span> = mass (kg) &nbsp;&nbsp; <span>v</span> = velocity (m s⁻¹)</div></div>
+
+    <h3>🔁 Principle of Conservation of Momentum</h3>
+    <div class="definition"><div class="def-label">📖 Definition</div><div class="def-text">In any interaction, the total momentum before the interaction equals the total momentum afterwards, provided no external forces act on the system.</div></div>
+    <div class="tip-box"><strong>⚠️ Don't forget:</strong> The phrase "provided no external forces act on the system" is worth marks in the exam — don't leave it out!</div>
+
+    <h3>Three Types of Collision</h3>
+    <div class="info-grid">
+      <div class="info-card" style="border-color:var(--accent1);"><div class="ic-title">Hit 'n Bounce</div><div class="ic-sub">Objects collide and separate.<br>m₁u₁ + m₂u₂ = m₁v₁ + m₂v₂</div></div>
+      <div class="info-card" style="border-color:var(--accent4);"><div class="ic-title">Hit 'n Stick</div><div class="ic-sub">Objects stick together after collision (coalesce). One combined velocity v₃.<br>m₁u₁ + m₂u₂ = (m₁+m₂)v₃</div></div>
+      <div class="info-card" style="border-color:var(--accent2);"><div class="ic-title">Explosion</div><div class="ic-sub">Objects start at rest (total p = 0). They fly apart with equal and opposite momentum.<br>0 = m₁v₁ + m₂v₂</div></div>
+    </div>
+    <div class="tip-box"><strong>⚠️ Directions matter!</strong> Momentum is a vector. If two objects move in opposite directions, one gets a negative sign. This is how the gun recoil and explosion type questions work — the total momentum is still zero!</div>
+    <div class="tip-box"><strong>💡 Kinetic energy in collisions:</strong> Momentum IS conserved in collisions. Kinetic energy is NOT (some is converted to heat and sound). This is important for exam questions!</div>
+
+    <h3>🔬 Experiment: Verifying Conservation of Momentum</h3>
+    <p>Two trolleys on a track — Trolley A (moving) collides with Trolley B (stationary). They coalesce via velcro. Use ticker tape to measure velocity before and after. Show that m₁u₁ ≈ (m₁+m₂)v₃.</p>
+    <div class="exam-tip"><strong>🎯 Precautions:</strong> Tilt the track slightly to compensate for friction so trolleys move at constant velocity. Ensure the track is smooth and doesn't sag.</div>
+    <div class="section-nav">
+      <button class="nav-btn nav-btn-prev" onclick="showSection('m1-5')">← Previous</button>
+      <button class="nav-btn nav-btn-next" onclick="showSection('m1-7')">Next: Impulse & Weight →</button>
+    </div>
+  </div>
+
+  <!-- M1-7: IMPULSE -->
+  <div id="m1-7" class="section">
+    <div class="chapter-badge">Booklet I — Motion</div>
+    <h2 class="section-title">⚡ Impulse & the Newton</h2>
+    <p class="section-subtitle">Impulse explains why airbags save lives — and why cricketers pull their hands back when catching.</p>
+
+    <div class="definition"><div class="def-label">📖 Definition — Impulse</div><div class="def-text">Impulse is the change in momentum. Impulse = Ft = mv − mu</div></div>
+    <div class="formula-box">
+      <div class="f-label">⚠️ Impulse Formula</div>
+      <div class="formula">Ft = mv − mu</div>
+      <div class="f-vars">
+        <span>F</span> = force (N) &nbsp;&nbsp; <span>t</span> = time of contact (s)<br>
+        <span>mv − mu</span> = change in momentum (kg m s⁻¹)
+      </div>
+    </div>
+    <div class="tip-box">
+      <strong>🛡️ How airbags save lives:</strong> From the formula Ft = mv − mu, the change in momentum (right-hand side) is FIXED (it depends on the crash). But Ft on the left can vary — if the time t increases (airbag slows the head down gradually), then the force F must decrease. Less force = less injury. This is also why there are crumple zones in cars!
+    </div>
+
+    <h3>🏏 Cricket / Golf Examples</h3>
+    <p>A cricket player pulls their hands back when catching the ball. This increases the contact time t, which from Ft = mv − mu means the force F on their hands is smaller → less pain, easier to hold on!</p>
+    <p>A golfer follows through with their swing → increases contact time → more impulse → ball goes faster.</p>
+
+    <div class="definition"><div class="def-label">📖 The Newton (unit of force)</div><div class="def-text">One newton is the force which causes a body of mass 1 kg to undergo an acceleration of 1 m s⁻².</div></div>
+
+    <h3>🧠 Newton's Laws and Concussion</h3>
+    <p>When a rugby player gets tackled: skull stops suddenly (Newton's 1st Law) but brain keeps moving forward until it hits the skull. Force = rate of change of momentum (Newton's 2nd Law). The skull exerts an equal force back on the brain (Newton's 3rd Law). A helmet increases the impact time → reduces force → reduces concussion risk.</p>
+    <div class="section-nav">
+      <button class="nav-btn nav-btn-prev" onclick="showSection('m1-6')">← Previous</button>
+      <button class="nav-btn nav-btn-next" onclick="showSection('m1-calc')">Next: Calculations →</button>
+    </div>
+  </div>
+
+  <!-- M1 CALC -->
+  <div id="m1-calc" class="section">
+    <div class="chapter-badge">Booklet I — Worked Examples</div>
+    <h2 class="section-title">📐 Calculations: Booklet I</h2>
+    <p class="section-subtitle">Step-by-step worked examples from your notes. Pay attention to the UVAST method!</p>
+
+    <div class="example-box">
+      <div class="ex-label">Example 1 — Basic Acceleration</div>
+      <div class="ex-q"><strong>Q:</strong> A car accelerates from 10 m s⁻¹ to 30 m s⁻¹ in 5 s. Find the acceleration.</div>
+      <div class="step"><div class="step-num">Write UVAST</div><div class="step-content">U = 10 m s⁻¹, V = 30 m s⁻¹, A = ?, S = —, T = 5 s</div></div>
+      <div class="step"><div class="step-num">Use v = u + at</div><div class="step-content">30 = 10 + a(5)<br>a = (30−10)/5 = 4 m s⁻²</div></div>
+      <div class="ex-ans">✅ Acceleration = 4 m s⁻²</div>
+    </div>
+
+    <div class="example-box">
+      <div class="ex-label">Example 2 — Distance from Rest</div>
+      <div class="ex-q"><strong>Q:</strong> A car starts from rest with acceleration 6 m s⁻². Find the distance in 12 s.</div>
+      <div class="step"><div class="step-num">UVAST: U=0, V=?, A=6, S=?, T=12</div><div class="step-content">Use s = ut + ½at²</div></div>
+      <div class="step"><div class="step-num">Substitute</div><div class="step-content">s = (0)(12) + ½(6)(12²)<br>s = 0 + 3 × 144 = 432 m</div></div>
+      <div class="ex-ans">✅ Distance = 432 m</div>
+    </div>
+
+    <div class="example-box">
+      <div class="ex-label">Example 3 — Object Thrown Upward</div>
+      <div class="ex-q"><strong>Q:</strong> A stone is thrown upward at 20 m s⁻¹. How high after 2 s?</div>
+      <div class="step"><div class="step-num">UVAST: U=20, V=?, A=−9.8, S=?, T=2</div><div class="step-content">Taking up as positive, a = −9.8 m s⁻²</div></div>
+      <div class="step"><div class="step-num">s = ut + ½at²</div><div class="step-content">s = (20)(2) + ½(−9.8)(2²)<br>s = 40 − 19.6 = 20.4 m</div></div>
+      <div class="ex-ans">✅ Height after 2 s = 20.4 m</div>
+    </div>
+
+    <div class="example-box">
+      <div class="ex-label">Example 4 — Newton's Laws</div>
+      <div class="ex-q"><strong>Q:</strong> A car (750 kg) accelerates at 1.2 m s⁻². Engine force = 2000 N. Find: (i) net force, (ii) friction force.</div>
+      <div class="step"><div class="step-num">Part (i) — Net force: F = ma</div><div class="step-content">F_net = (750)(1.2) = 900 N</div></div>
+      <div class="step"><div class="step-num">Part (ii) — Friction: F_net = F_engine − F_friction</div><div class="step-content">900 = 2000 − F_friction<br>F_friction = 2000 − 900 = 1100 N</div></div>
+      <div class="ex-ans">✅ Net force = 900 N, Friction = 1100 N</div>
+    </div>
+
+    <div class="example-box">
+      <div class="ex-label">Example 5 — Hit 'n Stick Collision</div>
+      <div class="ex-q"><strong>Q:</strong> Trolley A (12 kg, 3.5 m s⁻¹) hits stationary Trolley B (12 kg). They stick. Find common velocity.</div>
+      <div class="step"><div class="step-num">Conservation of momentum: m₁u₁ + m₂u₂ = (m₁+m₂)v₃</div><div class="step-content">(12)(3.5) + (12)(0) = (12+12)(v₃)<br>42 = 24v₃</div></div>
+      <div class="step"><div class="step-num">Solve for v₃</div><div class="step-content">v₃ = 42/24 = 1.75 m s⁻¹</div></div>
+      <div class="ex-ans">✅ Common velocity = 1.75 m s⁻¹</div>
+    </div>
+
+    <div class="example-box">
+      <div class="ex-label">Example 6 — Impulse (Golf Ball)</div>
+      <div class="ex-q"><strong>Q:</strong> Force of 5300 N on a golf ball (45 g) for 0.54 ms. Find speed of ball.</div>
+      <div class="step"><div class="step-num">Use Ft = mv − mu. Ball starts at rest (u=0)</div><div class="step-content">F = 5300 N, t = 0.54 × 10⁻³ s, m = 0.045 kg</div></div>
+      <div class="step"><div class="step-num">Substitute</div><div class="step-content">(5300)(0.54 × 10⁻³) = (0.045)(v) − 0<br>2.862 = 0.045v<br>v = 63.6 m s⁻¹</div></div>
+      <div class="ex-ans">✅ Speed = 63.6 m s⁻¹</div>
+    </div>
+    <div class="section-nav">
+      <button class="nav-btn nav-btn-prev" onclick="showSection('m1-7')">← Previous</button>
+      <button class="nav-btn nav-btn-next" onclick="showSection('m1-quiz')">Next: Quiz →</button>
+    </div>
+  </div>
+
+  <!-- M1 QUIZ -->
+  <div id="m1-quiz" class="section">
+    <div class="chapter-badge">Booklet I — Quiz</div>
+    <h2 class="section-title">✅ Quiz: Booklet I</h2>
+    <p class="section-subtitle">Test yourself on Motion, Forces and Momentum!</p>
+    <div id="quiz1-container"></div>
+    <div class="section-nav">
+      <button class="nav-btn nav-btn-prev" onclick="showSection('m1-calc')">← Back to Examples</button>
+      <button class="nav-btn nav-btn-next" onclick="showSection('m2-1')">Next: Work & Energy →</button>
+    </div>
+  </div>
+
+  <!-- M2-1: WORK, ENERGY, POWER -->
+  <div id="m2-1" class="section">
+    <div class="chapter-badge">Booklet II — Energy & Power</div>
+    <h2 class="section-title">⚡ Work, Energy & Power</h2>
+    <p class="section-subtitle">Three closely related concepts that explain how forces transfer energy and how fast machines work.</p>
+
+    <h3>🔧 Work</h3>
+    <div class="definition"><div class="def-label">📖 Definition — Work</div><div class="def-text">Work is defined as the product of force and displacement. W = F × s. Unit: joule (J).</div></div>
+    <div class="formula-box"><div class="f-label">Formula — Work</div><div class="formula">W = F × s</div><div class="f-vars"><span>W</span> = work done (J) &nbsp;&nbsp; <span>F</span> = force (N) &nbsp;&nbsp; <span>s</span> = displacement (m)</div></div>
+
+    <h3>⚡ Energy</h3>
+    <div class="definition"><div class="def-label">📖 Definition — Energy</div><div class="def-text">Energy is the ability to do work. Unit: joule (J).</div></div>
+    <div class="formula-box"><div class="f-label">Kinetic Energy (energy of motion)</div><div class="formula">EK = ½mv²</div><div class="f-vars"><span>EK</span> = kinetic energy (J) &nbsp;&nbsp; <span>m</span> = mass (kg) &nbsp;&nbsp; <span>v</span> = velocity (m s⁻¹)</div></div>
+    <div class="formula-box"><div class="f-label">Potential Energy (energy of position)</div><div class="formula">EP = mgh</div><div class="f-vars"><span>EP</span> = potential energy (J) &nbsp;&nbsp; <span>m</span> = mass (kg) &nbsp;&nbsp; <span>g</span> = 9.8 N kg⁻¹ &nbsp;&nbsp; <span>h</span> = height (m)</div></div>
+
+    <h3>🔌 Power</h3>
+    <div class="definition"><div class="def-label">📖 Definition — Power</div><div class="def-text">Power is the rate at which work is done. Unit: watt (W). 1 W = 1 J s⁻¹.</div></div>
+    <div class="formula-box"><div class="f-label">Formula — Power</div><div class="formula">P = W/t = E/t = Fv</div><div class="f-vars"><span>P</span> = power (W) &nbsp;&nbsp; <span>W</span> = work done (J) &nbsp;&nbsp; <span>t</span> = time (s)</div></div>
+
+    <h3>💡 Percentage Efficiency</h3>
+    <div class="formula-box"><div class="f-label">Efficiency</div><div class="formula">% Efficiency = (useful power out / power in) × 100</div><div class="f-vars">No machine is 100% efficient — some energy is always lost as heat.</div></div>
+
+    <h3>☀️ The Solar Constant</h3>
+    <div class="definition"><div class="def-label">📖 The Solar Constant</div><div class="def-text">The solar constant is the energy from the Sun falling on each square metre of the Earth's surface per second. Value ≈ 1360 W m⁻².</div></div>
+    <div class="tip-box"><strong>🧮 How to use it:</strong> Total energy = solar constant × area × time (in seconds). E.g. if solar constant = 1360 W m⁻², area = 5 m², time = 60 s: Energy = 1360 × 5 × 60 = 408,000 J.</div>
+
+    <h3>🔌 The Kilowatt-Hour (kWh)</h3>
+    <p>Used on electricity bills. 1 kWh = energy used by a 1000 W appliance in 1 hour.</p>
+    <div class="formula-box"><div class="f-label">kWh Calculation</div><div class="formula">No. of kWh = kilowatts × hours</div><div class="f-vars">Cost = kWh × price per unit</div></div>
+    <div class="section-nav">
+      <button class="nav-btn nav-btn-prev" onclick="showSection('m1-quiz')">← Previous</button>
+      <button class="nav-btn nav-btn-next" onclick="showSection('m2-2')">Next: Conservation of Energy →</button>
+    </div>
+  </div>
+
+  <!-- M2-2: CONSERVATION OF ENERGY -->
+  <div id="m2-2" class="section">
+    <div class="chapter-badge">Booklet II — Energy</div>
+    <h2 class="section-title">🔋 Principle of Conservation of Energy</h2>
+    <p class="section-subtitle">Energy can never be created or destroyed — it just changes form!</p>
+
+    <div class="definition"><div class="def-label">📖 Principle of Conservation of Energy</div><div class="def-text">Energy cannot be created or destroyed — it can only be converted from one form to another.</div></div>
+    <div class="tip-box"><strong>🎢 Roller coaster example:</strong> At the top (low speed, high height) → lots of PE, little KE. At the bottom (high speed, low height) → lots of KE, little PE. Total energy stays the same (ignoring friction).</div>
+
+    <h3>📐 Key Energy Equation</h3>
+    <div class="formula-box">
+      <div class="f-label">Loss in PE = Gain in KE (for freely falling object)</div>
+      <div class="formula">mgh = ½mv²</div>
+      <div class="f-vars">Can divide both sides by m: gh = ½v² &nbsp;&nbsp; So: v = √(2gh)</div>
+    </div>
+    <div class="tip-box"><strong>🎯 Work-Energy Theorem:</strong> The work done on an object equals the change in its energy. Fs = ½mv² (if starting from rest). This shows that stopping distance is proportional to v² — doubling speed means 4× the stopping distance!</div>
+
+    <h3>🏀 Bouncing Ball Example</h3>
+    <p>A ball at height 3 m has PE = mgh. When it hits the ground, all PE → KE. If it loses 6 J on bounce, the remaining KE becomes PE for the next bounce. New height = remaining KE / (mg).</p>
+    <div class="section-nav">
+      <button class="nav-btn nav-btn-prev" onclick="showSection('m2-1')">← Previous</button>
+      <button class="nav-btn nav-btn-next" onclick="showSection('m2-3')">Next: Density & Pressure →</button>
+    </div>
+  </div>
+
+  <!-- M2-3: DENSITY & PRESSURE -->
+  <div id="m2-3" class="section">
+    <div class="chapter-badge">Booklet II — Density & Pressure</div>
+    <h2 class="section-title">🪣 Density & Pressure</h2>
+    <p class="section-subtitle">Why does a boat float? Why does a thumb tack work? It's all about density and pressure!</p>
+
+    <h3>🧊 Density</h3>
+    <div class="definition"><div class="def-label">📖 Definition — Density</div><div class="def-text">Density is defined as mass per unit volume. ρ = m/V. Unit: kg m⁻³.</div></div>
+    <div class="formula-box"><div class="f-label">Formula — Density</div><div class="formula">ρ = m / V</div><div class="f-vars"><span>ρ</span> (rho) = density (kg m⁻³) &nbsp;&nbsp; <span>m</span> = mass (kg) &nbsp;&nbsp; <span>V</span> = volume (m³)</div></div>
+    <div class="tip-box"><strong>⚠️ Unit conversion:</strong> 1 m³ = 1,000,000 cm³ = 10⁶ cm³. Be careful when converting between cm³ and m³!</div>
+
+    <h3>🔵 Pressure</h3>
+    <div class="definition"><div class="def-label">📖 Definition — Pressure</div><div class="def-text">Pressure is defined as force per unit area. P = F/A. Unit: pascal (Pa). Pressure is a SCALAR quantity (no direction).</div></div>
+    <div class="formula-box"><div class="f-label">Formula — Pressure</div><div class="formula">P = F / A</div><div class="f-vars"><span>P</span> = pressure (Pa) &nbsp;&nbsp; <span>F</span> = force (N) &nbsp;&nbsp; <span>A</span> = area (m²)</div></div>
+    <div class="tip-box"><strong>🧠 Why does a thumb tack work?</strong> The force is the same whether you push on the flat head or the point. But the area at the point is tiny, so the pressure there is enormous — enough to penetrate wood!</div>
+
+    <h3>💧 Pressure in a Fluid</h3>
+    <div class="formula-box"><div class="f-label">Pressure in a Fluid</div><div class="formula">ΔP = ρgΔh</div><div class="f-vars"><span>ΔP</span> = change in pressure (Pa) &nbsp;&nbsp; <span>ρ</span> = density (kg m⁻³) &nbsp;&nbsp; <span>g</span> = 9.8 m s⁻² &nbsp;&nbsp; <span>Δh</span> = depth (m)</div></div>
+    <p>Pressure in a fluid increases with depth. This is why your ears hurt when you dive deep underwater!</p>
+    <div class="section-nav">
+      <button class="nav-btn nav-btn-prev" onclick="showSection('m2-2')">← Previous</button>
+      <button class="nav-btn nav-btn-next" onclick="showSection('m2-4')">Next: Archimedes & Boyle's Law →</button>
+    </div>
+  </div>
+
+  <!-- M2-4: ARCHIMEDES & BOYLE'S LAW -->
+  <div id="m2-4" class="section">
+    <div class="chapter-badge">Booklet II — Pressure</div>
+    <h2 class="section-title">🌊 Archimedes' Principle & Boyle's Law</h2>
+    <p class="section-subtitle">Why do ships float? Why does a balloon shrink when you squeeze it? Archimedes and Boyle have the answers.</p>
+
+    <div class="definition"><div class="def-label">📖 Archimedes' Principle</div><div class="def-text">When an object is immersed in a fluid, the upthrust it experiences is equal to the weight of the displaced fluid.</div></div>
+    <div class="definition"><div class="def-label">📖 Law of Flotation</div><div class="def-text">A floating object displaces a weight of fluid equal to its own weight.</div></div>
+    <div class="tip-box"><strong>🧠 Simple version:</strong> An object floats if it displaces fluid that weighs MORE than the object itself. A ship is made of steel (dense) but it's mostly hollow air, so the average density of the ship is less than water → it floats!</div>
+
+    <h3>🫧 Boyle's Law</h3>
+    <div class="definition"><div class="def-label">📖 Boyle's Law</div><div class="def-text">At constant temperature, the volume of a fixed mass of gas is inversely proportional to its pressure.</div></div>
+    <div class="formula-box"><div class="f-label">⚠️ Boyle's Law Formula</div><div class="formula">P₁V₁ = P₂V₂</div><div class="f-vars">Pressure 1 × Volume 1 = Pressure 2 × Volume 2 (at constant temperature)</div></div>
+    <div class="tip-box"><strong>🧠 Simple explanation:</strong> Squeeze a balloon — volume goes down, pressure goes up. The product PV stays the same! It's like a seesaw — when P goes up, V goes down proportionally.</div>
+
+    <h3>🧪 Experiment: Verifying Boyle's Law</h3>
+    <p>Use Boyle's Law apparatus — compress air with a screw. Record pressure and volume at each step (7+ readings). Plot P against 1/V → straight line through origin → verifies that P ∝ 1/V.</p>
+    <div class="exam-tip"><strong>🎯 Why wait between adjustments?</strong> Changing pressure quickly generates heat which changes the temperature. Wait for gas to return to room temperature before recording. Boyle's Law only applies at CONSTANT temperature!</div>
+    <div class="section-nav">
+      <button class="nav-btn nav-btn-prev" onclick="showSection('m2-3')">← Previous</button>
+      <button class="nav-btn nav-btn-next" onclick="showSection('m2-5')">Next: Gravity →</button>
+    </div>
+  </div>
+
+  <!-- M2-5: GRAVITY -->
+  <div id="m2-5" class="section">
+    <div class="chapter-badge">Booklet II — Gravity</div>
+    <h2 class="section-title">🌍 Newton's Law of Gravitation</h2>
+    <p class="section-subtitle">Every object in the universe attracts every other object. Newton figured out the exact mathematical rule.</p>
+
+    <div class="definition"><div class="def-label">📖 Newton's Law of Universal Gravitation</div><div class="def-text">Any two point masses in the universe attract each other with a force that is directly proportional to the product of their masses and inversely proportional to the square of the distance between them.</div></div>
+    <div class="formula-box">
+      <div class="f-label">⚠️ Newton's Law of Gravitation</div>
+      <div class="formula">F = Gm₁m₂ / d²</div>
+      <div class="f-vars">
+        <span>F</span> = gravitational force (N)<br>
+        <span>G</span> = universal gravitational constant = 6.7 × 10⁻¹¹ N m² kg⁻² (in your tables)<br>
+        <span>m₁, m₂</span> = the two masses (kg)<br>
+        <span>d</span> = distance between centres of the masses (m)
+      </div>
+    </div>
+
+    <h3>🧮 Gravitational Field Strength at Any Point</h3>
+    <div class="formula-box">
+      <div class="f-label">⚠️ Gravitational Field Strength</div>
+      <div class="formula">g = GM / d²</div>
+      <div class="f-vars"><span>g</span> = gravitational field strength at distance d from centre of planet (N kg⁻¹)<br>
+      <span>M</span> = mass of the planet (kg) &nbsp;&nbsp; <span>d</span> = distance from centre (m)</div>
+    </div>
+    <div class="tip-box"><strong>🌙 Key facts:</strong> Mass stays the same wherever you go. Weight changes because g changes. On the Moon, g ≈ 1.6 m s⁻², so you weigh about 1/6 of your Earth weight — but your mass is still the same!</div>
+
+    <h3>⚖️ Mass vs Weight — Summary</h3>
+    <table>
+      <tr><th>Property</th><th>Mass</th><th>Weight</th></tr>
+      <tr><td>What is it?</td><td>Amount of matter (inertia)</td><td>Gravitational force on the object</td></tr>
+      <tr><td>Unit</td><td>kg</td><td>N (newton)</td></tr>
+      <tr><td>Changes on Moon?</td><td>No — stays the same</td><td>Yes — much less (W = mg)</td></tr>
+      <tr><td>Measured by</td><td>Balance scales</td><td>Spring scales (newton meter)</td></tr>
+    </table>
+    <div class="section-nav">
+      <button class="nav-btn nav-btn-prev" onclick="showSection('m2-4')">← Previous</button>
+      <button class="nav-btn nav-btn-next" onclick="showSection('m2-6')">Next: Moments →</button>
+    </div>
+  </div>
+
+  <!-- M2-6: MOMENTS -->
+  <div id="m2-6" class="section">
+    <div class="chapter-badge">Booklet II — Moments</div>
+    <h2 class="section-title">⚖️ Moment of a Force</h2>
+    <p class="section-subtitle">A force doesn't just push — it can also rotate things. The turning effect of a force is called its moment.</p>
+
+    <div class="definition"><div class="def-label">📖 Moment of a Force</div><div class="def-text">The moment of a force = force × perpendicular distance from the force to the fulcrum (pivot point). Unit: N m.</div></div>
+    <div class="formula-box"><div class="f-label">Formula</div><div class="formula">Moment = F × d</div><div class="f-vars"><span>F</span> = force (N) &nbsp;&nbsp; <span>d</span> = perpendicular distance to the fulcrum (m)</div></div>
+
+    <h3>🔧 Torque (Moment of a Couple)</h3>
+    <div class="definition"><div class="def-label">📖 A Couple</div><div class="def-text">A couple is two equal but opposite parallel forces acting on an object (e.g. turning a steering wheel).</div></div>
+    <div class="formula-box"><div class="f-label">Torque (Moment of a Couple)</div><div class="formula">Torque = F × d (between the two forces)</div></div>
+
+    <h3>📏 Two Laws of Equilibrium</h3>
+    <div class="info-grid">
+      <div class="info-card" style="border-color:var(--accent1);"><div class="ic-title">First Law</div><div class="ic-sub">The vector sum of all forces acting on a body in equilibrium is zero. (Total forces up = Total forces down)</div></div>
+      <div class="info-card" style="border-color:var(--accent4);"><div class="ic-title">Second Law</div><div class="ic-sub">The sum of the clockwise moments about any point equals the sum of the anticlockwise moments.</div></div>
+    </div>
+    <div class="tip-box"><strong>🧠 How to identify clockwise vs anticlockwise:</strong> Imagine the object is pinned at the fulcrum and the only force acting is the one you're looking at. Would it rotate clockwise or anticlockwise? That's your answer!</div>
+    <div class="exam-tip"><strong>🎯 Common mistake:</strong> The distance in F × d is the distance from the FORCE to the FULCRUM — not from the force to the end of the ruler or to another force. Always measure from force to pivot!</div>
+    <div class="section-nav">
+      <button class="nav-btn nav-btn-prev" onclick="showSection('m2-5')">← Previous</button>
+      <button class="nav-btn nav-btn-next" onclick="showSection('m2-calc')">Next: Calculations →</button>
+    </div>
+  </div>
+
+  <!-- M2 CALC -->
+  <div id="m2-calc" class="section">
+    <div class="chapter-badge">Booklet II — Worked Examples</div>
+    <h2 class="section-title">📐 Calculations: Booklet II</h2>
+    <p class="section-subtitle">Energy, pressure, gravity and moments — worked step by step.</p>
+
+    <div class="example-box">
+      <div class="ex-label">Example 1 — Kinetic Energy → Height</div>
+      <div class="ex-q"><strong>Q:</strong> A 0.005 kg stone is thrown upward at 15 m s⁻¹. Find the maximum height.</div>
+      <div class="step"><div class="step-num">Use conservation of energy: KE → PE at the top</div><div class="step-content">½mv² = mgh &nbsp;&nbsp; (mass cancels!)<br>½(15)² = (9.8)h<br>½(225) = 9.8h<br>h = 112.5/9.8 = 11.48 m</div></div>
+      <div class="ex-ans">✅ Maximum height = 11.48 m</div>
+    </div>
+
+    <div class="example-box">
+      <div class="ex-label">Example 2 — Power</div>
+      <div class="ex-q"><strong>Q:</strong> A crane lifts a 7000 N load to a height of 4 m in 20 s. Find the power output.</div>
+      <div class="step"><div class="step-num">Work done = Force × displacement</div><div class="step-content">W = 7000 × 4 = 28,000 J</div></div>
+      <div class="step"><div class="step-num">Power = Work / Time</div><div class="step-content">P = 28,000 / 20 = 1,400 W</div></div>
+      <div class="ex-ans">✅ Power = 1,400 W</div>
+    </div>
+
+    <div class="example-box">
+      <div class="ex-label">Example 3 — Boyle's Law</div>
+      <div class="ex-q"><strong>Q:</strong> Balloon volume = 2 m³ at P = 1000 hPa. Finds volume at P = 500 hPa (constant temperature).</div>
+      <div class="step"><div class="step-num">P₁V₁ = P₂V₂</div><div class="step-content">(1000)(2) = (500)(V₂)<br>V₂ = 2000/500 = 4 m³</div></div>
+      <div class="ex-ans">✅ New volume = 4 m³ (halving pressure doubles volume)</div>
+    </div>
+
+    <div class="example-box">
+      <div class="ex-label">Example 4 — Gravity on Moon</div>
+      <div class="ex-q"><strong>Q:</strong> Find g on the Moon. Radius = 1.7 × 10⁶ m, Mass = 7 × 10²² kg.</div>
+      <div class="step"><div class="step-num">Use g = GM/d²</div><div class="step-content">g = (6.7 × 10⁻¹¹)(7 × 10²²) / (1.7 × 10⁶)²<br>g = (4.69 × 10¹²) / (2.89 × 10¹²)<br>g = 1.62 m s⁻²</div></div>
+      <div class="ex-ans">✅ g on Moon ≈ 1.6 m s⁻²</div>
+    </div>
+
+    <div class="example-box">
+      <div class="ex-label">Example 5 — Moments</div>
+      <div class="ex-q"><strong>Q:</strong> Metre stick suspended at 20 cm mark. 2 N weight at 15 cm. Weight W acts at 50 cm. Find W.</div>
+      <div class="step"><div class="step-num">Clockwise moments = Anticlockwise moments</div><div class="step-content">The 2N force is at 15cm, fulcrum at 20cm → distance = 5cm = 0.05m (anticlockwise)<br>W is at 50cm, fulcrum at 20cm → distance = 30cm = 0.30m (clockwise)</div></div>
+      <div class="step"><div class="step-num">Set them equal</div><div class="step-content">W × 0.30 = 2 × 0.05<br>W = 0.10/0.30 = 0.33 N</div></div>
+      <div class="ex-ans">✅ W = 0.33 N</div>
+    </div>
+    <div class="section-nav">
+      <button class="nav-btn nav-btn-prev" onclick="showSection('m2-6')">← Previous</button>
+      <button class="nav-btn nav-btn-next" onclick="showSection('m2-quiz')">Next: Quiz →</button>
+    </div>
+  </div>
+
+  <!-- M2 QUIZ -->
+  <div id="m2-quiz" class="section">
+    <div class="chapter-badge">Booklet II — Quiz</div>
+    <h2 class="section-title">✅ Quiz: Booklet II</h2>
+    <p class="section-subtitle">Test yourself on Energy, Pressure, Gravity and Moments!</p>
+    <div id="quiz2-container"></div>
+    <div class="section-nav">
+      <button class="nav-btn nav-btn-prev" onclick="showSection('m2-calc')">← Back to Examples</button>
+      <button class="nav-btn nav-btn-next" onclick="showSection('m3-1')">Next: Vectors →</button>
+    </div>
+  </div>
+
+  <!-- M3-1: VECTORS -->
+  <div id="m3-1" class="section">
+    <div class="chapter-badge">Booklet III — Vectors</div>
+    <h2 class="section-title">➡️ Vectors</h2>
+    <p class="section-subtitle">Scalars just have size. Vectors have size AND direction. This distinction unlocks all of mechanics!</p>
+
+    <table>
+      <tr><th>Scalars (magnitude only)</th><th>Vectors (magnitude AND direction)</th></tr>
+      <tr><td>Mass, distance, speed, energy, time, power, temperature</td><td>Displacement, velocity, acceleration, force, momentum, weight</td></tr>
+    </table>
+
+    <h3>🔀 Resolving a Vector into Components</h3>
+    <p>Any vector at an angle can be split into two perpendicular components (usually horizontal and vertical).</p>
+    <div class="formula-box">
+      <div class="f-label">Resolving a Vector</div>
+      <div class="formula">Horizontal: v_H = v cos θ</div>
+      <div class="formula">Vertical: v_V = v sin θ</div>
+      <div class="f-vars"><span>v</span> = magnitude of vector &nbsp;&nbsp; <span>θ</span> = angle to the horizontal</div>
+    </div>
+    <div class="tip-box"><strong>🧠 Memory trick:</strong> cos is for the adjacent (horizontal) side. sin is for the opposite (vertical) side. cos = close to horizontal, sin = shooting up!</div>
+
+    <h3>🔗 Adding Two Perpendicular Vectors</h3>
+    <p>To find the resultant of two perpendicular vectors: use Pythagoras for the magnitude, and tan for the angle.</p>
+    <div class="formula-box">
+      <div class="f-label">Resultant Vector</div>
+      <div class="formula">R = √(a² + b²)</div>
+      <div class="formula">θ = tan⁻¹(opposite/adjacent)</div>
+    </div>
+
+    <h3>⛷️ Inclined Plane</h3>
+    <p>On an inclined plane at angle θ, the component of gravity pulling the object DOWN the slope is:</p>
+    <div class="formula-box"><div class="f-label">Component down the slope</div><div class="formula">F = mg sin θ</div><div class="f-vars">Acceleration down slope: a = g sin θ (independent of mass!)</div></div>
+
+    <h3>🏹 Projectile Motion</h3>
+    <p>When an object is launched at an angle, treat horizontal and vertical motion separately. The horizontal velocity doesn't change (no force in that direction). The vertical velocity changes due to gravity.</p>
+    <div class="tip-box"><strong>🧠 Key:</strong> Horizontal: s = (v cos θ)t (constant speed, no acceleration). Vertical: use UVAST with u = v sin θ and a = −9.8 m s⁻².</div>
+    <div class="section-nav">
+      <button class="nav-btn nav-btn-prev" onclick="showSection('m2-quiz')">← Previous</button>
+      <button class="nav-btn nav-btn-next" onclick="showSection('m3-2')">Next: Circular Motion →</button>
+    </div>
+  </div>
+
+  <!-- M3-2: CIRCULAR MOTION -->
+  <div id="m3-2" class="section">
+    <div class="chapter-badge">Booklet III — Circular Motion</div>
+    <h2 class="section-title">🔄 Circular Motion</h2>
+    <p class="section-subtitle">Going in a circle at constant speed? You're still accelerating! Here's why — and how to calculate it.</p>
+
+    <div class="definition"><div class="def-label">📖 Angular Velocity (ω)</div><div class="def-text">Angular velocity is the rate of change of angle with respect to time. Symbol: ω (omega). Unit: rad s⁻¹.</div></div>
+    <div class="formula-box"><div class="f-label">Formula — Angular Velocity</div><div class="formula">ω = θ/t &nbsp;&nbsp;&nbsp; v = rω</div><div class="f-vars"><span>ω</span> = angular velocity (rad s⁻¹) &nbsp;&nbsp; <span>v</span> = linear speed (m s⁻¹) &nbsp;&nbsp; <span>r</span> = radius (m)</div></div>
+
+    <h3>🔵 Why is Circular Motion Accelerating?</h3>
+    <p>Velocity is a vector — it has DIRECTION as well as speed. Even though the speed stays constant, the DIRECTION keeps changing as the object goes around the circle. Changing velocity = acceleration!</p>
+    <div class="definition"><div class="def-label">📖 Centripetal Force</div><div class="def-text">The force acting towards the centre required to keep an object moving in a circle.</div></div>
+    <div class="definition"><div class="def-label">📖 Centripetal Acceleration</div><div class="def-text">The acceleration of a body moving in a circle, directed towards the centre of the circle.</div></div>
+
+    <h3>📐 Centripetal Formulas</h3>
+    <div class="formula-box">
+      <div class="f-label">⚠️ Centripetal Acceleration & Force</div>
+      <div class="formula">a = v²/r = ω²r</div>
+      <div class="formula">F = mv²/r = mω²r</div>
+      <div class="f-vars"><span>v</span> = linear speed &nbsp;&nbsp; <span>r</span> = radius &nbsp;&nbsp; <span>ω</span> = angular velocity &nbsp;&nbsp; <span>m</span> = mass</div>
+    </div>
+    <div class="formula-box"><div class="f-label">Relationship between T and ω</div><div class="formula">T = 2π/ω &nbsp;&nbsp;&nbsp; ω = 2π/T</div><div class="f-vars"><span>T</span> = periodic time (time for one complete circle) (s)</div></div>
+    <div class="tip-box"><strong>🧵 What provides centripetal force?</strong> It's not a new type of force — it's just a name for whatever force is pointing towards the centre. For a ball on a string = tension. For a planet = gravity. For a car on a bend = friction. There is NO "centrifugal force" outward — that feeling is just inertia!</div>
+    <div class="section-nav">
+      <button class="nav-btn nav-btn-prev" onclick="showSection('m3-1')">← Previous</button>
+      <button class="nav-btn nav-btn-next" onclick="showSection('m3-3')">Next: Satellite Orbits →</button>
+    </div>
+  </div>
+
+  <!-- M3-3: SATELLITES -->
+  <div id="m3-3" class="section">
+    <div class="chapter-badge">Booklet III — Satellite Orbits</div>
+    <h2 class="section-title">🌙 Satellite Orbits</h2>
+    <p class="section-subtitle">Kepler figured out the rules of planetary orbits. Newton proved them using his own gravity equations!</p>
+
+    <h3>🛰️ Deriving the Satellite Period Formula</h3>
+    <p>For a satellite in orbit, the gravitational force provides the centripetal force. By equating Fg = Fc and using v = 2πR/T, we get:</p>
+    <div class="formula-box">
+      <div class="f-label">⚠️ Periodic Time of a Satellite</div>
+      <div class="formula">T² = 4π²R³ / GM</div>
+      <div class="f-vars">
+        <span>T</span> = orbital period (s) &nbsp;&nbsp; <span>R</span> = orbital radius from CENTRE of planet (m)<br>
+        <span>G</span> = 6.7 × 10⁻¹¹ N m² kg⁻² &nbsp;&nbsp; <span>M</span> = mass of the planet (kg)
+      </div>
+    </div>
+    <div class="formula-box">
+      <div class="f-label">Orbital Velocity (not in tables — need to know!)</div>
+      <div class="formula">v² = GM/R</div>
+    </div>
+
+    <h3>📡 Geostationary Satellites</h3>
+    <div class="definition"><div class="def-label">📖 Geostationary Satellite</div><div class="def-text">A geostationary satellite remains over one fixed position on Earth. It orbits at the same rate as Earth rotates → periodic time = 24 hours, height ≈ 36,000 km above equator.</div></div>
+    <p>Uses: telecommunications, weather satellites, GPS. They're always in the same position in the sky, so a fixed satellite dish can receive their signal.</p>
+    <div class="exam-tip"><strong>🎯 Key exam point:</strong> r in the satellite formula is the distance from the CENTRE OF EARTH to the satellite. Always add the Earth's radius (6.37 × 10⁶ m) to the altitude above the surface!</div>
+    <div class="section-nav">
+      <button class="nav-btn nav-btn-prev" onclick="showSection('m3-2')">← Previous</button>
+      <button class="nav-btn nav-btn-next" onclick="showSection('m3-4')">Next: Simple Harmonic Motion →</button>
+    </div>
+  </div>
+
+  <!-- M3-4: SHM -->
+  <div id="m3-4" class="section">
+    <div class="chapter-badge">Booklet III — SHM</div>
+    <h2 class="section-title">〰️ Simple Harmonic Motion (SHM)</h2>
+    <p class="section-subtitle">SHM describes the back-and-forth motion of pendulums, springs, and vibrating strings. It's all about restoring forces!</p>
+
+    <div class="definition"><div class="def-label">📖 Definition — SHM</div><div class="def-text">An object moves with simple harmonic motion if its acceleration towards a fixed point is directly proportional to its displacement from that fixed point.</div></div>
+    <div class="formula-box"><div class="f-label">Mathematical Expression for SHM</div><div class="formula">a = −ω²x</div><div class="f-vars"><span>a</span> = acceleration (m s⁻²) &nbsp;&nbsp; <span>ω</span> = angular frequency (rad s⁻¹) &nbsp;&nbsp; <span>x</span> = displacement (m)<br>The minus sign means acceleration is always towards the centre (opposite to displacement)</div></div>
+
+    <h3>📊 SHM at Equilibrium vs Extremes</h3>
+    <table>
+      <tr><th>Position</th><th>Displacement</th><th>Velocity</th><th>Acceleration</th><th>Force</th></tr>
+      <tr><td>Equilibrium (centre)</td><td>0 (zero)</td><td>maximum</td><td>0 (zero)</td><td>0 (zero)</td></tr>
+      <tr><td>Extreme position</td><td>maximum (amplitude)</td><td>0 (zero)</td><td>maximum</td><td>maximum</td></tr>
+    </table>
+    <div class="tip-box"><strong>🧠 Why is velocity zero at the extremes?</strong> The object has stopped for an instant before reversing direction — just like a ball thrown upward stops at the top.</div>
+    <div class="tip-box"><strong>🧠 Why is acceleration maximum at the extremes?</strong> The restoring force is greatest when the displacement is greatest (F ∝ x). More force = more acceleration!</div>
+
+    <h3>⏱️ Period and Frequency</h3>
+    <div class="formula-box">
+      <div class="f-label">Period and Frequency of SHM</div>
+      <div class="formula">T = 2π/ω &nbsp;&nbsp;&nbsp; f = ω/(2π) &nbsp;&nbsp;&nbsp; T = 1/f</div>
+      <div class="f-vars"><span>T</span> = period (time for one oscillation) (s) &nbsp;&nbsp; <span>f</span> = frequency (Hz)</div>
+    </div>
+    <div class="section-nav">
+      <button class="nav-btn nav-btn-prev" onclick="showSection('m3-3')">← Previous</button>
+      <button class="nav-btn nav-btn-next" onclick="showSection('m3-5')">Next: Hooke's Law & Springs →</button>
+    </div>
+  </div>
+
+  <!-- M3-5: HOOKE'S LAW -->
+  <div id="m3-5" class="section">
+    <div class="chapter-badge">Booklet III — Hooke's Law</div>
+    <h2 class="section-title">🌀 Hooke's Law & Springs</h2>
+    <p class="section-subtitle">Stretch a spring and it pulls back. The harder you stretch, the harder it pulls. That's Hooke's Law!</p>
+
+    <div class="definition"><div class="def-label">📖 Hooke's Law</div><div class="def-text">When a force is exerted to extend or compress a spring, the restoring force is proportional to the displacement (extension or compression). F = −ks</div></div>
+    <div class="formula-box"><div class="f-label">⚠️ Hooke's Law</div><div class="formula">F = −ks</div><div class="f-vars"><span>F</span> = restoring force (N) &nbsp;&nbsp; <span>k</span> = spring constant (N m⁻¹) &nbsp;&nbsp; <span>s</span> = extension (m)</div></div>
+    <div class="tip-box"><strong>🧠 Hooke's Law IS SHM!</strong> A spring obeys F = −ks. From F=ma: ma = −ks → a = −(k/m)s. Compare to a = −ω²s and we get: ω = √(k/m). So any spring executes SHM!</div>
+
+    <h3>📐 Key Formula for Spring+Mass SHM</h3>
+    <div class="formula-box">
+      <div class="f-label">⚠️ Angular Frequency of Spring</div>
+      <div class="formula">ω = √(k/m)</div>
+      <div class="f-vars"><span>k</span> = spring constant &nbsp;&nbsp; <span>m</span> = mass on spring (kg)</div>
+    </div>
+    <div class="formula-box">
+      <div class="f-label">Period of Spring Oscillation</div>
+      <div class="formula">T = 2π/ω = 2π√(m/k)</div>
+    </div>
+
+    <h3>⚖️ At Equilibrium: mg = k(extension)</h3>
+    <p>When a mass hangs on a spring at rest, the weight pulling down = the spring force pulling up:</p>
+    <div class="formula-box"><div class="f-label">Equilibrium Condition</div><div class="formula">mg = k × extension</div><div class="f-vars">Use this to find k (if you know the extension) or the extension (if you know k)</div></div>
+
+    <h3>⚠️ Important Distinction</h3>
+    <ul>
+      <li>In F = −k(extension): <strong>extension</strong> = stretch from original natural length</li>
+      <li>In a = −ω²s: <strong>s</strong> = distance from the EQUILIBRIUM POSITION (not the natural length)</li>
+    </ul>
+    <div class="exam-tip"><strong>🎯 Maximum acceleration</strong> occurs at maximum displacement (amplitude). Maximum velocity occurs at the equilibrium position (where acceleration = 0, velocity = 0 at extremes).</div>
+    <div class="section-nav">
+      <button class="nav-btn nav-btn-prev" onclick="showSection('m3-4')">← Previous</button>
+      <button class="nav-btn nav-btn-next" onclick="showSection('m3-calc')">Next: Calculations →</button>
+    </div>
+  </div>
+
+  <!-- M3 CALC -->
+  <div id="m3-calc" class="section">
+    <div class="chapter-badge">Booklet III — Worked Examples</div>
+    <h2 class="section-title">📐 Calculations: Booklet III</h2>
+    <p class="section-subtitle">Vectors, circular motion, satellites, SHM and Hooke's Law — all worked step by step.</p>
+
+    <div class="example-box">
+      <div class="ex-label">Example 1 — Circular Motion: Force & Radius</div>
+      <div class="ex-q"><strong>Q:</strong> Hammer thrower (7.26 kg) swings in a circle, period T = 0.8 s, radius = 2 m. Find (i) ω, (ii) centripetal acceleration, (iii) kinetic energy.</div>
+      <div class="step"><div class="step-num">Part (i): ω = 2π/T</div><div class="step-content">ω = 2π/0.8 = 7.85 rad s⁻¹</div></div>
+      <div class="step"><div class="step-num">Part (ii): a = ω²r</div><div class="step-content">a = (7.85)² × 2 = 61.6 × 2 = 123.4 m s⁻² towards centre</div></div>
+      <div class="step"><div class="step-num">Part (iii): v = rω, then KE = ½mv²</div><div class="step-content">v = (2)(7.85) = 15.7 m s⁻¹<br>KE = ½(7.26)(15.7)² = 895 J</div></div>
+      <div class="ex-ans">✅ ω = 7.85 rad s⁻¹, a = 123.4 m s⁻², KE = 895 J</div>
+    </div>
+
+    <div class="example-box">
+      <div class="ex-label">Example 2 — Satellite: Finding Mass of a Planet</div>
+      <div class="ex-q"><strong>Q:</strong> Phobos orbits Mars: radius = 9.4 × 10⁶ m, period = 7.6 hours. Find the mass of Mars.</div>
+      <div class="step"><div class="step-num">Convert T to seconds</div><div class="step-content">T = 7.6 × 60 × 60 = 27,360 s</div></div>
+      <div class="step"><div class="step-num">Rearrange T² = 4π²R³/GM for M</div><div class="step-content">M = 4π²R³ / (GT²)<br>M = 4π²(9.4×10⁶)³ / [(6.7×10⁻¹¹)(27,360)²]<br>M ≈ 6.5 × 10²³ kg</div></div>
+      <div class="ex-ans">✅ Mass of Mars ≈ 6.5 × 10²³ kg</div>
+    </div>
+
+    <div class="example-box">
+      <div class="ex-label">Example 3 — Spring: Finding k and Period</div>
+      <div class="ex-q"><strong>Q:</strong> Spring natural length 25 mm. Object mass 20 g attached. (i) Find new length. (ii) Find period of oscillation. (k = 12 N m⁻¹)</div>
+      <div class="step"><div class="step-num">Part (i): At equilibrium mg = k × extension</div><div class="step-content">mg = (0.02)(9.8) = 0.196 N<br>0.196 = 12 × extension<br>extension = 0.0163 m<br>New length = 25 + 16.3 = 41.3 mm</div></div>
+      <div class="step"><div class="step-num">Part (ii): ω = √(k/m), then T = 2π/ω</div><div class="step-content">ω = √(12/0.02) = √600 = 24.5 rad s⁻¹<br>T = 2π/24.5 = 0.256 s</div></div>
+      <div class="ex-ans">✅ New length = 41.3 mm, Period = 0.256 s</div>
+    </div>
+
+    <div class="example-box">
+      <div class="ex-label">Example 4 — SHM: Max Force & Frequency</div>
+      <div class="ex-q"><strong>Q:</strong> Body (250 g) vibrates: a = −16s. Amplitude = 5 cm. Find (i) frequency, (ii) max force.</div>
+      <div class="step"><div class="step-num">From a = −ω²s, identify ω</div><div class="step-content">ω² = 16 → ω = 4 rad s⁻¹</div></div>
+      <div class="step"><div class="step-num">Find frequency: f = ω/(2π)</div><div class="step-content">f = 4/(2π) = 0.637 Hz</div></div>
+      <div class="step"><div class="step-num">Max force: at max displacement (amplitude = 0.05 m)</div><div class="step-content">a_max = ω²s_max = 16 × 0.05 = 0.8 m s⁻²<br>F_max = ma = (0.25)(0.8) = 0.2 N</div></div>
+      <div class="ex-ans">✅ f = 0.637 Hz, F_max = 0.2 N</div>
+    </div>
+    <div class="section-nav">
+      <button class="nav-btn nav-btn-prev" onclick="showSection('m3-5')">← Previous</button>
+      <button class="nav-btn nav-btn-next" onclick="showSection('m3-quiz')">Next: Quiz →</button>
+    </div>
+  </div>
+
+  <!-- M3 QUIZ -->
+  <div id="m3-quiz" class="section">
+    <div class="chapter-badge">Booklet III — Quiz</div>
+    <h2 class="section-title">✅ Quiz: Booklet III</h2>
+    <p class="section-subtitle">Test yourself on Vectors, Circular Motion, Satellites and SHM!</p>
+    <div id="quiz3-container"></div>
+    <div class="section-nav">
+      <button class="nav-btn nav-btn-prev" onclick="showSection('m3-calc')">← Back to Examples</button>
+      <button class="nav-btn nav-btn-next" onclick="showSection('all-formulas')">Next: All Formulas →</button>
+    </div>
+  </div>
+
+  <!-- ALL FORMULAS -->
+  <div id="all-formulas" class="section">
+    <h2 class="section-title">📋 All Formulas — Quick Reference</h2>
+    <p class="section-subtitle">Every formula you need for the Mechanics Leaving Cert exam.</p>
+
+    <h3>Booklet I — Motion & Forces</h3>
+    <div class="formula-box"><div class="f-label">Equations of Motion</div><div class="formula">v = u + at &nbsp;&nbsp; s = ut + ½at² &nbsp;&nbsp; v² = u² + 2as &nbsp;&nbsp; s = (u+v)t/2</div></div>
+    <div class="formula-box"><div class="f-label">Newton's Second Law</div><div class="formula">F = ma &nbsp;&nbsp; Weight: W = mg</div></div>
+    <div class="formula-box"><div class="f-label">Momentum & Impulse</div><div class="formula">ρ = mv &nbsp;&nbsp;&nbsp; Ft = mv − mu</div></div>
+
+    <h3>Booklet II — Energy, Pressure, Gravity</h3>
+    <div class="formula-box"><div class="f-label">Work & Energy</div><div class="formula">W = Fs &nbsp;&nbsp; EK = ½mv² &nbsp;&nbsp; EP = mgh</div></div>
+    <div class="formula-box"><div class="f-label">Power & Efficiency</div><div class="formula">P = W/t = Fv &nbsp;&nbsp;&nbsp; % Efficiency = (P_out/P_in) × 100</div></div>
+    <div class="formula-box"><div class="f-label">Density & Pressure</div><div class="formula">ρ = m/V &nbsp;&nbsp; P = F/A &nbsp;&nbsp; ΔP = ρgΔh &nbsp;&nbsp; P₁V₁ = P₂V₂</div></div>
+    <div class="formula-box"><div class="f-label">Gravity</div><div class="formula">F = Gm₁m₂/d² &nbsp;&nbsp;&nbsp; g = GM/d²</div></div>
+    <div class="formula-box"><div class="f-label">Moments</div><div class="formula">Moment = F × d (perpendicular distance to fulcrum)</div></div>
+
+    <h3>Booklet III — Advanced Mechanics</h3>
+    <div class="formula-box"><div class="f-label">Vectors</div><div class="formula">Horizontal: v_H = v cosθ &nbsp;&nbsp;&nbsp; Vertical: v_V = v sinθ</div></div>
+    <div class="formula-box"><div class="f-label">Circular Motion</div><div class="formula">v = rω &nbsp;&nbsp; a = v²/r = ω²r &nbsp;&nbsp; F = mv²/r = mω²r &nbsp;&nbsp; T = 2π/ω</div></div>
+    <div class="formula-box"><div class="f-label">Satellite Orbits</div><div class="formula">T² = 4π²R³/GM &nbsp;&nbsp;&nbsp; v² = GM/R</div></div>
+    <div class="formula-box"><div class="f-label">SHM</div><div class="formula">a = −ω²x &nbsp;&nbsp; T = 2π/ω &nbsp;&nbsp; f = ω/2π &nbsp;&nbsp; T = 1/f</div></div>
+    <div class="formula-box" style="border-color:#7209b7;background:#f8f0ff;"><div class="f-label" style="color:#7209b7;">Hooke's Law & Springs</div><div class="formula">F = −ks &nbsp;&nbsp; ω = √(k/m) &nbsp;&nbsp; T = 2π√(m/k) &nbsp;&nbsp; mg = k(extension)</div></div>
+
+    <div class="info-grid" style="margin-top:22px;">
+      <div class="info-card"><div class="ic-title">G (Universal)</div><div class="ic-val">6.7×10⁻¹¹</div><div class="ic-sub">N m² kg⁻²</div></div>
+      <div class="info-card"><div class="ic-title">g (Earth)</div><div class="ic-val">9.8 m s⁻²</div><div class="ic-sub">N kg⁻¹ (or m s⁻²)</div></div>
+      <div class="info-card"><div class="ic-title">R (Earth)</div><div class="ic-val">6.37×10⁶ m</div></div>
+      <div class="info-card"><div class="ic-title">M (Earth)</div><div class="ic-val">6.0×10²⁴ kg</div></div>
+    </div>
+    <div class="section-nav">
+      <button class="nav-btn nav-btn-next" onclick="showSection('all-defs')">Next: All Definitions →</button>
+    </div>
+  </div>
+
+  <!-- ALL DEFINITIONS -->
+  <div id="all-defs" class="section">
+    <h2 class="section-title">📖 All Definitions — Learn These Off!</h2>
+    <p class="section-subtitle">These are word-for-word definitions for the exam. Memorise the key words!</p>
+
+    <h3>Booklet I — Motion & Forces</h3>
+    <div class="definition"><div class="def-label">Displacement</div><div class="def-text">Displacement is the straight-line distance between two points, in a given direction.</div></div>
+    <div class="definition"><div class="def-label">Velocity</div><div class="def-text">Velocity is the rate of change of displacement with respect to time.</div></div>
+    <div class="definition"><div class="def-label">Acceleration</div><div class="def-text">Acceleration is the rate of change of velocity with respect to time.</div></div>
+    <div class="definition"><div class="def-label">Acceleration due to Gravity (g)</div><div class="def-text">The acceleration due to gravity is the acceleration of objects in free fall near the Earth's surface due to the gravitational attraction of the Earth. Value: 9.8 m s⁻².</div></div>
+    <div class="definition"><div class="def-label">Force</div><div class="def-text">A force is anything which has the potential to cause an object to accelerate. Unit: newton (N).</div></div>
+    <div class="definition"><div class="def-label">The Newton</div><div class="def-text">One newton is the force which causes a body of mass 1 kg to undergo an acceleration of 1 m s⁻².</div></div>
+    <div class="definition"><div class="def-label">Newton's First Law</div><div class="def-text">Every object will continue to travel at constant velocity unless an unbalanced external force acts on it.</div></div>
+    <div class="definition"><div class="def-label">Newton's Second Law</div><div class="def-text">The rate of change of an object's momentum is directly proportional to the force which caused it, and takes place in the direction of the force.</div></div>
+    <div class="definition"><div class="def-label">Newton's Third Law</div><div class="def-text">When objects interact, they exert equal but opposite forces on each other.</div></div>
+    <div class="definition"><div class="def-label">Momentum</div><div class="def-text">Momentum = mass × velocity. Symbol: ρ. Unit: kg m s⁻¹.</div></div>
+    <div class="definition"><div class="def-label">Principle of Conservation of Momentum</div><div class="def-text">In any interaction, the total momentum before equals the total momentum afterwards, provided no external forces act on the system.</div></div>
+    <div class="definition"><div class="def-label">Impulse</div><div class="def-text">Impulse is the change in momentum. Impulse = Ft = mv − mu.</div></div>
+    <div class="definition"><div class="def-label">Friction</div><div class="def-text">Friction is a force which opposes the relative motion between two objects.</div></div>
+
+    <h3>Booklet II — Energy, Pressure, Gravity</h3>
+    <div class="definition"><div class="def-label">Work</div><div class="def-text">Work is defined as the product of force and displacement. Unit: joule (J).</div></div>
+    <div class="definition"><div class="def-label">Energy</div><div class="def-text">Energy is the ability to do work. Unit: joule (J).</div></div>
+    <div class="definition"><div class="def-label">Principle of Conservation of Energy</div><div class="def-text">Energy cannot be created or destroyed — it can only be converted from one form to another.</div></div>
+    <div class="definition"><div class="def-label">Power</div><div class="def-text">Power is the rate at which work is done. Unit: watt (W). 1 W = 1 J s⁻¹.</div></div>
+    <div class="definition"><div class="def-label">Solar Constant</div><div class="def-text">The solar constant is the energy from the Sun falling on each square metre of the Earth's surface per second. Unit: W m⁻².</div></div>
+    <div class="definition"><div class="def-label">Density</div><div class="def-text">Density is defined as mass per unit volume. ρ = m/V. Unit: kg m⁻³.</div></div>
+    <div class="definition"><div class="def-label">Pressure</div><div class="def-text">Pressure is defined as force per unit area. P = F/A. Unit: pascal (Pa). Pressure is a scalar quantity.</div></div>
+    <div class="definition"><div class="def-label">Archimedes' Principle</div><div class="def-text">When an object is immersed in a fluid, the upthrust it experiences is equal to the weight of the displaced fluid.</div></div>
+    <div class="definition"><div class="def-label">Law of Flotation</div><div class="def-text">A floating object displaces a weight of fluid equal to its own weight.</div></div>
+    <div class="definition"><div class="def-label">Boyle's Law</div><div class="def-text">At constant temperature, the volume of a fixed mass of gas is inversely proportional to its pressure.</div></div>
+    <div class="definition"><div class="def-label">Newton's Law of Universal Gravitation</div><div class="def-text">Any two point masses attract each other with a force directly proportional to the product of their masses and inversely proportional to the square of the distance between them.</div></div>
+    <div class="definition"><div class="def-label">Moment of a Force</div><div class="def-text">The moment of a force = force × perpendicular distance from the force to the fulcrum. Unit: N m.</div></div>
+
+    <h3>Booklet III — Advanced Mechanics</h3>
+    <div class="definition"><div class="def-label">Angular Velocity (ω)</div><div class="def-text">Angular velocity is the rate of change of angle with respect to time. Unit: rad s⁻¹.</div></div>
+    <div class="definition"><div class="def-label">Centripetal Force</div><div class="def-text">The force acting towards the centre required to keep an object moving in a circle.</div></div>
+    <div class="definition"><div class="def-label">Centripetal Acceleration</div><div class="def-text">The acceleration of a body moving in a circle, directed towards the centre of the circle.</div></div>
+    <div class="definition"><div class="def-label">Simple Harmonic Motion (SHM)</div><div class="def-text">An object moves with simple harmonic motion if its acceleration towards a fixed point is directly proportional to its displacement from that fixed point.</div></div>
+    <div class="definition"><div class="def-label">Hooke's Law</div><div class="def-text">When a force is exerted to extend or compress a spring, the restoring force is proportional to the displacement. F = −ks.</div></div>
+
+    <div class="tip-box" style="margin-top:24px;"><strong>🎯 Exam tip:</strong> For definitions, the key words are everything. Words like "rate of change", "proportional", "provided no external forces", "fixed point", "perpendicular distance" are the ones that earn marks. Missing one key phrase can cost you half the marks!</div>
+    <div class="section-nav">
+      <button class="nav-btn nav-btn-prev" onclick="showSection('all-formulas')">← Back to Formulas</button>
+      <button class="nav-btn nav-btn-next" onclick="showSection('home')">🏠 Back to Home</button>
+    </div>
+  </div>
+
+</div><!-- end main -->
+
+<script>
+const visited = new Set(['home']);
+const total = 24;
+
+const q1 = [
+  { q: "What is the difference between displacement and distance?", opts:["They are the same thing","Displacement is the straight-line distance with direction; distance is the total path length","Distance is the straight-line distance; displacement is the path length","Displacement has no direction"], ans:1, exp:"Displacement is the straight-line distance from start to finish in a given direction. Distance is the total length of the path actually followed." },
+  { q: "A car accelerates from rest at 4 m s⁻². How far does it travel in 5 seconds?", opts:["20 m","40 m","50 m","100 m"], ans:2, exp:"Using s = ut + ½at²: s = 0 + ½(4)(25) = 50 m." },
+  { q: "Which equation of motion would you use when you don't know or need the time (t)?", opts:["v = u + at","s = ut + ½at²","v² = u² + 2as","s = (u+v)t/2"], ans:2, exp:"v² = u² + 2as contains v, u, a, and s — no time t. Use this when t is unknown or irrelevant." },
+  { q: "State Newton's Third Law of Motion.", opts:["An unbalanced force produces an acceleration","The rate of change of momentum is proportional to force","Objects in equal forces remain stationary","When objects interact they exert equal but opposite forces on each other"], ans:3, exp:"Newton's Third Law: every action has an equal and opposite reaction. Rocket pushes gas down; gas pushes rocket up." },
+  { q: "Two trolleys (A: 12 kg, B: 12 kg) collide and stick. A had velocity 3.5 m s⁻¹, B was stationary. What is the common velocity after?", opts:["3.5 m s⁻¹","2.1 m s⁻¹","1.75 m s⁻¹","7.0 m s⁻¹"], ans:2, exp:"m₁u₁ = (m₁+m₂)v₃ → (12)(3.5) = (24)v₃ → v₃ = 42/24 = 1.75 m s⁻¹." },
+  { q: "Why do airbags reduce injury in a crash?", opts:["They absorb energy by getting smaller","They increase the stopping distance","They increase the contact time so the force is reduced","They reduce the momentum of the passenger"], ans:2, exp:"Ft = mv − mu. The change in momentum is fixed. Increasing t means F decreases. Airbag increases time of impact → reduces force on head." },
+  { q: "At the highest point of a projectile's path, which is true?", opts:["Both velocity and acceleration are zero","Velocity is zero but acceleration is 9.8 m s⁻² downward","Both are at maximum","Velocity is maximum and acceleration is zero"], ans:1, exp:"At the highest point, vertical velocity = 0 (stopped momentarily). But gravity still acts, so acceleration = 9.8 m s⁻² downward." },
+  { q: "What must be conserved in any collision provided no external forces act?", opts:["Kinetic energy","Speed","Momentum","Force"], ans:2, exp:"The Principle of Conservation of Momentum states total momentum before = total momentum after, provided no external forces act." }
+];
+
+const q2 = [
+  { q: "Define kinetic energy.", opts:["Energy an object has due to its position","Energy an object has due to its motion","Energy transferred by a force","The rate of doing work"], ans:1, exp:"Kinetic energy is the energy an object has due to its motion. EK = ½mv²." },
+  { q: "A 50 kg student runs up stairs of height 3 m in 4 seconds. What is their power output?", opts:["600 W","1470 W","367.5 W","150 W"], ans:2, exp:"Work done = mgh = (50)(9.8)(3) = 1470 J. Power = W/t = 1470/4 = 367.5 W." },
+  { q: "What does Boyle's Law state?", opts:["At constant temperature, pressure is inversely proportional to volume for a fixed mass of gas","At constant pressure, volume increases with temperature","At constant volume, pressure increases with temperature","Pressure and volume are always proportional"], ans:0, exp:"Boyle's Law: P ∝ 1/V at constant temperature for a fixed mass of gas. P₁V₁ = P₂V₂." },
+  { q: "Archimedes' Principle states that the upthrust on an immersed object equals...", opts:["The weight of the object","The volume of fluid displaced","The weight of fluid displaced","The density of the fluid"], ans:2, exp:"Archimedes: upthrust = weight of displaced fluid (not volume, but WEIGHT of the displaced fluid!)." },
+  { q: "Calculate the pressure at 25 m depth in water (density = 1000 kg m⁻³).", opts:["250 Pa","2450 Pa","24,500 Pa","245,000 Pa"], ans:2, exp:"ΔP = ρgΔh = (1000)(9.8)(25) = 245,000 Pa. But wait — 2450 is at 0.25m. At 25m: (1000)(9.8)(25) = 245,000 Pa." },
+  { q: "What is the Second Law of Equilibrium?", opts:["Total forces up = total forces down","Sum of clockwise moments = sum of anticlockwise moments","Net force is always zero","All forces are equal"], ans:1, exp:"The Second Law of Equilibrium states that the sum of the clockwise moments about any point equals the sum of the anticlockwise moments." },
+  { q: "Newton's Law of Gravitation says gravitational force is proportional to...", opts:["Mass only","1/d (distance)","Product of masses / square of distance","Product of masses × distance"], ans:2, exp:"F = Gm₁m₂/d². Force ∝ m₁m₂ (product of masses) and ∝ 1/d² (inverse square of distance)." },
+  { q: "If a 2 kW heater runs for 3 hours, how many kWh does it use?", opts:["6 kWh","2 kWh","0.67 kWh","5 kWh"], ans:0, exp:"kWh = kilowatts × hours = 2 × 3 = 6 kWh." }
+];
+
+const q3 = [
+  { q: "A velocity of 50 m s⁻¹ acts at 30° to the horizontal. What is the horizontal component?", opts:["25 m s⁻¹","43.3 m s⁻¹","50 m s⁻¹","28.9 m s⁻¹"], ans:1, exp:"Horizontal = v cos θ = 50 × cos 30° = 50 × 0.866 = 43.3 m s⁻¹." },
+  { q: "Define angular velocity.", opts:["The speed of rotation in m s⁻¹","The rate of change of angle with respect to time","The velocity of a particle on the outer edge of a rotating disc","The centripetal acceleration"], ans:1, exp:"Angular velocity (ω) is the rate of change of angle with respect to time. Unit: rad s⁻¹." },
+  { q: "An object moves in a circle at constant speed. Does it have acceleration?", opts:["No — speed is constant","No — only changing direction doesn't count","Yes — velocity is changing because direction changes","Only when the speed changes"], ans:2, exp:"Velocity is a vector. Even at constant SPEED, the direction changes continuously, so the velocity changes → there is acceleration (centripetal, directed towards centre)." },
+  { q: "What formula gives the period of a satellite in orbit?", opts:["T = 2πr/v","T² = 4π²R³/GM","T = GM/v²","T = mv²/r"], ans:1, exp:"T² = 4π²R³/GM — Kepler's Third Law, derived by equating centripetal force with gravitational force." },
+  { q: "For an object in SHM, where is the velocity maximum?", opts:["At the extreme positions","At the equilibrium (centre) position","Velocity is always constant in SHM","Halfway between equilibrium and extreme"], ans:1, exp:"Velocity is maximum at the equilibrium (centre) position where displacement = 0 and force = 0. At the extremes, the object momentarily stops (v = 0)." },
+  { q: "Hooke's Law states F = −ks. What does k represent?", opts:["The kinetic energy","The frequency of oscillation","The spring constant (stiffness) in N m⁻¹","The amplitude of vibration"], ans:2, exp:"k is the spring constant — a measure of how stiff the spring is. Unit: N m⁻¹. Stiffer spring = larger k = higher frequency of oscillation." },
+  { q: "What is the formula for angular frequency of a spring-mass system?", opts:["ω = km","ω = mg/k","ω = √(k/m)","ω = 2πf/m"], ans:2, exp:"ω = √(k/m). Stiffer spring (bigger k) → higher ω (faster oscillation). Heavier mass (bigger m) → lower ω (slower oscillation)." },
+  { q: "A geostationary satellite has what orbital period?", opts:["1 hour","12 hours","24 hours","One month"], ans:2, exp:"A geostationary satellite has the same period as Earth's rotation = 24 hours. This keeps it over the same spot on Earth." }
+];
+
+function buildQuiz(questions, containerId) {
+  const c = document.getElementById(containerId);
+  if (!c) return;
+  c.innerHTML = '';
+  questions.forEach((q, i) => {
+    const d = document.createElement('div');
+    d.className = 'quiz-section';
+    d.id = `q-${containerId}-${i}`;
+    d.innerHTML = `<div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--accent5);margin-bottom:8px;">Question ${i+1} of ${questions.length}</div>
+      <div class="quiz-q">${q.q}</div>
+      <div class="quiz-options">${q.opts.map((opt, j) => `<button class="quiz-opt" onclick="answerQ('${containerId}',${i},${j})">${opt}</button>`).join('')}</div>
+      <div class="quiz-feedback" id="fb-${containerId}-${i}">💡 ${q.exp}</div>`;
+    c.appendChild(d);
+  });
+}
+
+function answerQ(cid, qi, chosen) {
+  const all = [q1, q2, q3];
+  const qsets = {'quiz1-container':q1,'quiz2-container':q2,'quiz3-container':q3};
+  const q = qsets[cid][qi];
+  const d = document.getElementById(`q-${cid}-${qi}`);
+  const btns = d.querySelectorAll('.quiz-opt');
+  const fb = document.getElementById(`fb-${cid}-${qi}`);
+  btns.forEach((btn, j) => {
+    btn.disabled = true;
+    if (j === q.ans) btn.classList.add('correct');
+    else if (j === chosen && chosen !== q.ans) btn.classList.add('wrong');
+  });
+  fb.classList.add('show');
+}
+
+const titles = {
+  'home':'Mechanics','m1-1':'Speed, Velocity & Displacement','m1-2':'Acceleration & Graphs',
+  'm1-3':'Equations of Motion','m1-4':'Gravity & Free Fall','m1-5':'Force & Newton\'s Laws',
+  'm1-6':'Momentum & Collisions','m1-7':'Impulse & Weight','m1-calc':'Calculations: Booklet I',
+  'm1-quiz':'Quiz: Booklet I','m2-1':'Work, Energy & Power','m2-2':'Conservation of Energy',
+  'm2-3':'Density & Pressure','m2-4':'Archimedes & Boyle\'s Law','m2-5':'Gravity',
+  'm2-6':'Moments','m2-calc':'Calculations: Booklet II','m2-quiz':'Quiz: Booklet II',
+  'm3-1':'Vectors','m3-2':'Circular Motion','m3-3':'Satellite Orbits',
+  'm3-4':'Simple Harmonic Motion','m3-5':'Hooke\'s Law','m3-calc':'Calculations: Booklet III',
+  'm3-quiz':'Quiz: Booklet III','all-formulas':'All Formulas','all-defs':'All Definitions'
+};
+
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  const t = document.getElementById(id);
+  if (t) t.classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(n => {
+    if (n.getAttribute('onclick') && n.getAttribute('onclick').includes(`'${id}'`)) n.classList.add('active');
+  });
+  document.getElementById('page-title').textContent = titles[id] || 'Mechanics';
+  visited.add(id);
+  const pct = Math.round((visited.size / total) * 100);
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-text').textContent = visited.size + ' / ' + total;
+  window.scrollTo(0, 0);
+  closeSidebar();
+}
+
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('overlay').classList.toggle('show');
+}
+function closeSidebar() {
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('overlay').classList.remove('show');
+}
+
+buildQuiz(q1, 'quiz1-container');
+buildQuiz(q2, 'quiz2-container');
+buildQuiz(q3, 'quiz3-container');
+</script>
+</body>
+</html>
