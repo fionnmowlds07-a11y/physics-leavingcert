@@ -1291,7 +1291,10 @@ buildQuiz(q1, 'quiz1-container');
 buildQuiz(q2, 'quiz2-container');
 buildQuiz(q3, 'quiz3-container');
 </script>
-  <style>
+<a href="Home.html" class="return-home-btn">
+  <span style="font-size: 18px;">🏠</span> Back to Hub
+</a>
+<style>
   .return-home-btn {
     position: fixed;
     bottom: 30px;
@@ -1313,7 +1316,7 @@ buildQuiz(q3, 'quiz3-container');
   }
   .return-home-btn:hover {
     transform: translateY(-5px);
-    background: var(--accent2);
+    background: var(--accent2); /* Turns bright blue on hover */
     box-shadow: 0 8px 25px rgba(33, 150, 243, 0.4);
   }
   @media (max-width: 768px) {
@@ -1326,4 +1329,5 @@ buildQuiz(q3, 'quiz3-container');
   }
 </style>
 </body>
+  
 </html>
