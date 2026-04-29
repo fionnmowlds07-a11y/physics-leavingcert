@@ -18,6 +18,8 @@
     --accent5: #9c27b0; /* Purple for Modern Physics */
     --accent6: #00bcd4; /* Cyan for Particle Physics */
     --accent7: #3f51b5; /* Indigo for Optics */
+    --accent8: #ff7043; /* Deep Orange for Heat */
+    --accent9: #607d8b; /* Slate for Experiments */
     --border: #e0dcd4;
     --shadow: 0 4px 20px rgba(0,0,0,0.06);
     --shadow-hover: 0 12px 30px rgba(0,0,0,0.12);
@@ -140,6 +142,8 @@
   .module-card:nth-child(5) { animation-delay: 0.3s; }
   .module-card:nth-child(6) { animation-delay: 0.35s; }
   .module-card:nth-child(7) { animation-delay: 0.4s; }
+  .module-card:nth-child(8) { animation-delay: 0.45s; }
+  .module-card:nth-child(9) { animation-delay: 0.5s; }
 
   .module-card::before {
     content: '';
@@ -185,6 +189,14 @@
   .card-optics:hover { border-color: var(--accent7); }
   .card-optics .mc-icon { color: var(--accent7); background: #e8eaf6; }
 
+  .card-heat::before { background: var(--accent8); }
+  .card-heat:hover { border-color: var(--accent8); }
+  .card-heat .mc-icon { color: var(--accent8); background: #fbe9e7; }
+
+  .card-exp::before { background: var(--accent9); }
+  .card-exp:hover { border-color: var(--accent9); }
+  .card-exp .mc-icon { color: var(--accent9); background: #eceff1; }
+
   .mc-icon {
     font-size: 42px;
     width: 80px;
@@ -222,6 +234,23 @@
     transition: opacity 0.2s;
   }
   .module-card:hover .mc-action { opacity: 1; }
+
+  /* COMING SOON BANNER */
+  .banner-soon {
+    position: absolute;
+    top: 20px;
+    right: -32px;
+    background: #ffc107; /* Yellow */
+    color: #1a1a2e;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 6px 35px;
+    transform: rotate(45deg);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    z-index: 10;
+  }
 
   /* ABOUT ME SECTION */
   .about-section {
@@ -359,6 +388,21 @@
         <div class="mc-icon">🔦</div>
         <div class="mc-title">Geometric Optics</div>
         <div class="mc-desc">Master the laws of reflection and refraction, lens formulas, ray diagrams, and the physics of the human eye.</div>
+        <div class="mc-action">Start Module →</div>
+      </a>
+
+      <a href="Heat.html" class="module-card card-heat">
+        <div class="banner-soon">Coming Soon</div>
+        <div class="mc-icon">🔥</div>
+        <div class="mc-title">Heat & Temperature</div>
+        <div class="mc-desc">Understand temperature scales, heat capacity, latent heat, and the mechanisms of heat transfer.</div>
+        <div class="mc-action">Start Module →</div>
+      </a>
+
+      <a href="Experiments.html" class="module-card card-exp">
+        <div class="mc-icon">🧪</div>
+        <div class="mc-title">Experiments</div>
+        <div class="mc-desc">Review all mandatory Leaving Cert Physics experiments, including methods, diagrams, and calculations.</div>
         <div class="mc-action">Start Module →</div>
       </a>
 
