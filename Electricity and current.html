@@ -34,17 +34,17 @@ a{text-decoration:none;color:inherit;}
 /* ─── SIDEBAR ──────────────────────────── */
 #sidebar{
   position:fixed;top:0;left:0;bottom:0;width:268px;
-  background:var(--text);color:#e8e8f0;overflow-y:auto;z-index:100;
+  background:var(--surface);border-right:2px solid var(--border);overflow-y:auto;z-index:100;
   display:flex;flex-direction:column;transition:transform .3s;
 }
-.sb-brand{padding:22px 20px 16px;border-bottom:1px solid rgba(255,255,255,.08);}
-.sb-brand .label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--yellow);opacity:.8;}
+.sb-brand{padding:22px 20px 16px;background:var(--blue);color:#fff;}
+.sb-brand .label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.8);}
 .sb-brand h2{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;margin-top:4px;line-height:1.2;color:#fff;}
 
-.ch-label{padding:14px 20px 5px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.35);}
-.nav-item{display:block;padding:8px 20px 8px 28px;font-size:13px;font-weight:500;color:rgba(255,255,255,.65);cursor:pointer;border-left:3px solid transparent;transition:all .15s;line-height:1.4;}
-.nav-item:hover{color:#fff;background:rgba(255, 255, 255, 0.06);}
-.nav-item.active{color:var(--yellow);border-left-color:var(--yellow);background:rgba(245,200,66,.07);}
+.ch-label{padding:14px 20px 5px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);}
+.nav-item{display:block;padding:8px 20px 8px 28px;font-size:13px;font-weight:500;color:var(--text);cursor:pointer;border-left:3px solid transparent;transition:all .15s;line-height:1.4;}
+.nav-item:hover{background:var(--bg);border-left-color:var(--border);}
+.nav-item.active{color:var(--blue);border-left-color:var(--blue);background:var(--blue-bg);font-weight:600;}
 
 /* ─── MAIN ──────────────────────────────── */
 #main{margin-left:268px;min-height:100vh;}
@@ -167,7 +167,6 @@ tr:nth-child(even) td{background:#f8f8fc;}
 <body>
 <div id="overlay" onclick="closeSidebar()"></div>
 
-<!-- ══ SIDEBAR ══════════════════════════════ -->
 <nav id="sidebar">
   <div class="sb-brand">
     <div class="label">Leaving Cert Physics</div>
@@ -211,7 +210,6 @@ tr:nth-child(even) td{background:#f8f8fc;}
   </div>
 </nav>
 
-<!-- ══ MAIN ══════════════════════════════════ -->
 <div id="main">
   <div class="topbar">
     <button class="menu-btn" onclick="toggleSidebar()">☰</button>
@@ -220,7 +218,6 @@ tr:nth-child(even) td{background:#f8f8fc;}
     <span class="pscore" id="pscore">0 / 22</span>
   </div>
 
-<!-- ══ HOME ══════════════════════════════════ -->
 <div id="home" class="section active">
   <div class="hero">
     <div class="hl">Leaving Certificate Physics</div>
@@ -251,7 +248,6 @@ tr:nth-child(even) td{background:#f8f8fc;}
   </div>
 </div>
 
-<!-- ══ S1-1: STATIC ELECTRICITY ═════════════ -->
 <div id="s1-1" class="section">
   <div class="ch-pill">Booklet I — Static Electricity</div>
   <h2 class="sec-title">⚡ Static Electricity &amp; Charge</h2>
@@ -297,7 +293,6 @@ tr:nth-child(even) td{background:#f8f8fc;}
   <div class="sec-nav"><button class="nbtn nbtn-next" onclick="show('s1-2')">Next: Gold Leaf Electroscope →</button></div>
 </div>
 
-<!-- ══ S1-2: GLE ══════════════════════════ -->
 <div id="s1-2" class="section">
   <div class="ch-pill">Booklet I — Static Electricity</div>
   <h2 class="sec-title">🔮 The Gold Leaf Electroscope</h2>
@@ -323,7 +318,6 @@ tr:nth-child(even) td{background:#f8f8fc;}
   <div class="sec-nav"><button class="nbtn nbtn-prev" onclick="show('s1-1')">← Previous</button><button class="nbtn nbtn-next" onclick="show('s1-3')">Next: Coulomb's Law →</button></div>
 </div>
 
-<!-- ══ S1-3: COULOMB'S LAW ════════════════ -->
 <div id="s1-3" class="section">
   <div class="ch-pill">Booklet I — Static Electricity</div>
   <h2 class="sec-title">📐 Coulomb's Law</h2>
@@ -354,7 +348,6 @@ tr:nth-child(even) td{background:#f8f8fc;}
   <div class="sec-nav"><button class="nbtn nbtn-prev" onclick="show('s1-2')">← Previous</button><button class="nbtn nbtn-next" onclick="show('s1-4')">Next: Electric Fields →</button></div>
 </div>
 
-<!-- ══ S1-4: ELECTRIC FIELDS ═════════════ -->
 <div id="s1-4" class="section">
   <div class="ch-pill">Booklet I — Static Electricity</div>
   <h2 class="sec-title">🌐 Electric Fields &amp; Field Strength</h2>
@@ -396,7 +389,6 @@ tr:nth-child(even) td{background:#f8f8fc;}
   <div class="sec-nav"><button class="nbtn nbtn-prev" onclick="show('s1-3')">← Previous</button><button class="nbtn nbtn-next" onclick="show('s1-5')">Next: Potential Difference →</button></div>
 </div>
 
-<!-- ══ S1-5: POTENTIAL DIFFERENCE ═════════ -->
 <div id="s1-5" class="section">
   <div class="ch-pill">Booklet I — Potential Difference</div>
   <h2 class="sec-title">🔋 Potential Difference &amp; The Volt</h2>
@@ -417,7 +409,6 @@ tr:nth-child(even) td{background:#f8f8fc;}
   <div class="sec-nav"><button class="nbtn nbtn-prev" onclick="show('s1-4')">← Previous</button><button class="nbtn nbtn-next" onclick="show('s1-6')">Next: Capacitors →</button></div>
 </div>
 
-<!-- ══ S1-6: CAPACITORS ═══════════════════ -->
 <div id="s1-6" class="section">
   <div class="ch-pill">Booklet I — Capacitance</div>
   <h2 class="sec-title">💾 Capacitors &amp; Capacitance</h2>
@@ -467,7 +458,6 @@ tr:nth-child(even) td{background:#f8f8fc;}
   <div class="sec-nav"><button class="nbtn nbtn-prev" onclick="show('s1-5')">← Previous</button><button class="nbtn nbtn-next" onclick="show('s1-calc')">Next: Calculations →</button></div>
 </div>
 
-<!-- ══ S1-CALC ════════════════════════════ -->
 <div id="s1-calc" class="section">
   <div class="ch-pill">Booklet I — Worked Examples</div>
   <h2 class="sec-title">📐 Calculations: Booklet I</h2>
@@ -507,7 +497,6 @@ tr:nth-child(even) td{background:#f8f8fc;}
   <div class="sec-nav"><button class="nbtn nbtn-prev" onclick="show('s1-6')">← Previous</button><button class="nbtn nbtn-next" onclick="show('s1-quiz')">Next: Quiz →</button></div>
 </div>
 
-<!-- ══ S1-QUIZ ════════════════════════════ -->
 <div id="s1-quiz" class="section">
   <div class="ch-pill">Booklet I — Quiz</div>
   <h2 class="sec-title">✅ Quiz: Booklet I</h2>
@@ -516,7 +505,6 @@ tr:nth-child(even) td{background:#f8f8fc;}
   <div class="sec-nav"><button class="nbtn nbtn-prev" onclick="show('s1-calc')">← Back to Examples</button><button class="nbtn nbtn-next" onclick="show('s2-1')">Next: Current &amp; Charge →</button></div>
 </div>
 
-<!-- ══ S2-1: CURRENT & CHARGE ════════════ -->
 <div id="s2-1" class="section">
   <div class="ch-pill">Booklet II — Current Electricity</div>
   <h2 class="sec-title">🔌 Current &amp; Charge</h2>
@@ -554,7 +542,6 @@ tr:nth-child(even) td{background:#f8f8fc;}
   <div class="sec-nav"><button class="nbtn nbtn-prev" onclick="show('s1-quiz')">← Previous</button><button class="nbtn nbtn-next" onclick="show('s2-2')">Next: Resistance &amp; Ohm's Law →</button></div>
 </div>
 
-<!-- ══ S2-2: RESISTANCE & OHM'S LAW ═════ -->
 <div id="s2-2" class="section">
   <div class="ch-pill">Booklet II — Current Electricity</div>
   <h2 class="sec-title">⚙️ Resistance &amp; Ohm's Law</h2>
@@ -581,7 +568,6 @@ tr:nth-child(even) td{background:#f8f8fc;}
   <div class="sec-nav"><button class="nbtn nbtn-prev" onclick="show('s2-1')">← Previous</button><button class="nbtn nbtn-next" onclick="show('s2-3')">Next: Circuit Rules →</button></div>
 </div>
 
-<!-- ══ S2-3: CIRCUIT RULES ═══════════════ -->
 <div id="s2-3" class="section">
   <div class="ch-pill">Booklet II — Current Electricity</div>
   <h2 class="sec-title">🔗 Series &amp; Parallel Circuits</h2>
@@ -615,7 +601,6 @@ tr:nth-child(even) td{background:#f8f8fc;}
   <div class="sec-nav"><button class="nbtn nbtn-prev" onclick="show('s2-2')">← Previous</button><button class="nbtn nbtn-next" onclick="show('s2-4')">Next: Resistivity →</button></div>
 </div>
 
-<!-- ══ S2-4: RESISTIVITY ══════════════════ -->
 <div id="s2-4" class="section">
   <div class="ch-pill">Booklet II — Current Electricity</div>
   <h2 class="sec-title">🧱 Resistivity</h2>
@@ -647,7 +632,6 @@ tr:nth-child(even) td{background:#f8f8fc;}
   <div class="sec-nav"><button class="nbtn nbtn-prev" onclick="show('s2-3')">← Previous</button><button class="nbtn nbtn-next" onclick="show('s2-5')">Next: Joule's Law →</button></div>
 </div>
 
-<!-- ══ S2-5: HEATING EFFECT ══════════════ -->
 <div id="s2-5" class="section">
   <div class="ch-pill">Booklet II — Current Electricity</div>
   <h2 class="sec-title">🌡️ Heating Effect &amp; Joule's Law</h2>
@@ -674,7 +658,6 @@ tr:nth-child(even) td{background:#f8f8fc;}
   <div class="sec-nav"><button class="nbtn nbtn-prev" onclick="show('s2-4')">← Previous</button><button class="nbtn nbtn-next" onclick="show('s2-6')">Next: Domestic Circuits →</button></div>
 </div>
 
-<!-- ══ S2-6: DOMESTIC CIRCUITS ═══════════ -->
 <div id="s2-6" class="section">
   <div class="ch-pill">Booklet II — Current Electricity</div>
   <h2 class="sec-title">🏠 Domestic Electric Circuits</h2>
@@ -707,7 +690,6 @@ tr:nth-child(even) td{background:#f8f8fc;}
   <div class="sec-nav"><button class="nbtn nbtn-prev" onclick="show('s2-5')">← Previous</button><button class="nbtn nbtn-next" onclick="show('s2-calc')">Next: Calculations →</button></div>
 </div>
 
-<!-- ══ S2-CALC ════════════════════════════ -->
 <div id="s2-calc" class="section">
   <div class="ch-pill">Booklet II — Worked Examples</div>
   <h2 class="sec-title">📐 Calculations: Booklet II</h2>
@@ -749,7 +731,6 @@ tr:nth-child(even) td{background:#f8f8fc;}
   <div class="sec-nav"><button class="nbtn nbtn-prev" onclick="show('s2-6')">← Previous</button><button class="nbtn nbtn-next" onclick="show('s2-quiz')">Next: Quiz →</button></div>
 </div>
 
-<!-- ══ S2-QUIZ ════════════════════════════ -->
 <div id="s2-quiz" class="section">
   <div class="ch-pill">Booklet II — Quiz</div>
   <h2 class="sec-title">✅ Quiz: Booklet II</h2>
@@ -758,7 +739,6 @@ tr:nth-child(even) td{background:#f8f8fc;}
   <div class="sec-nav"><button class="nbtn nbtn-prev" onclick="show('s2-calc')">← Back to Examples</button><button class="nbtn nbtn-next" onclick="show('s3-1')">Next: Magnetism →</button></div>
 </div>
 
-<!-- ══ S3-1: MAGNETS ══════════════════════ -->
 <div id="s3-1" class="section">
   <div class="ch-pill">Booklet III — Magnetism</div>
   <h2 class="sec-title">🧲 Magnets &amp; Magnetic Fields</h2>
@@ -792,7 +772,6 @@ tr:nth-child(even) td{background:#f8f8fc;}
   <div class="sec-nav"><button class="nbtn nbtn-prev" onclick="show('s2-quiz')">← Previous</button><button class="nbtn nbtn-next" onclick="show('s3-2')">Next: Force on Current →</button></div>
 </div>
 
-<!-- ══ S3-2: FORCE ON CURRENT ════════════ -->
 <div id="s3-2" class="section">
   <div class="ch-pill">Booklet III — Magnetism</div>
   <h2 class="sec-title">💡 Force on a Current in a Magnetic Field</h2>
@@ -839,7 +818,6 @@ tr:nth-child(even) td{background:#f8f8fc;}
   <div class="sec-nav"><button class="nbtn nbtn-prev" onclick="show('s3-1')">← Previous</button><button class="nbtn nbtn-next" onclick="show('s3-3')">Next: Electromagnetic Induction →</button></div>
 </div>
 
-<!-- ══ S3-3: ELECTROMAGNETIC INDUCTION ═══ -->
 <div id="s3-3" class="section">
   <div class="ch-pill">Booklet III — Electromagnetic Induction</div>
   <h2 class="sec-title">⚡ Electromagnetic Induction</h2>
@@ -879,7 +857,6 @@ tr:nth-child(even) td{background:#f8f8fc;}
   <div class="sec-nav"><button class="nbtn nbtn-prev" onclick="show('s3-2')">← Previous</button><button class="nbtn nbtn-next" onclick="show('s3-4')">Next: Transformers &amp; AC →</button></div>
 </div>
 
-<!-- ══ S3-4: TRANSFORMERS & AC ════════════ -->
 <div id="s3-4" class="section">
   <div class="ch-pill">Booklet III — Electromagnetic Induction</div>
   <h2 class="sec-title">🔄 Transformers &amp; Alternating Current</h2>
@@ -914,7 +891,6 @@ tr:nth-child(even) td{background:#f8f8fc;}
   <div class="sec-nav"><button class="nbtn nbtn-prev" onclick="show('s3-3')">← Previous</button><button class="nbtn nbtn-next" onclick="show('s3-calc')">Next: Calculations →</button></div>
 </div>
 
-<!-- ══ S3-CALC ════════════════════════════ -->
 <div id="s3-calc" class="section">
   <div class="ch-pill">Booklet III — Worked Examples</div>
   <h2 class="sec-title">📐 Calculations: Booklet III</h2>
@@ -958,7 +934,6 @@ tr:nth-child(even) td{background:#f8f8fc;}
   <div class="sec-nav"><button class="nbtn nbtn-prev" onclick="show('s3-4')">← Previous</button><button class="nbtn nbtn-next" onclick="show('s3-quiz')">Next: Quiz →</button></div>
 </div>
 
-<!-- ══ S3-QUIZ ════════════════════════════ -->
 <div id="s3-quiz" class="section">
   <div class="ch-pill">Booklet III — Quiz</div>
   <h2 class="sec-title">✅ Quiz: Booklet III</h2>
@@ -967,7 +942,6 @@ tr:nth-child(even) td{background:#f8f8fc;}
   <div class="sec-nav"><button class="nbtn nbtn-prev" onclick="show('s3-calc')">← Back to Examples</button><button class="nbtn nbtn-next" onclick="show('allf')">Next: All Formulas →</button></div>
 </div>
 
-<!-- ══ ALL FORMULAS ═══════════════════════ -->
 <div id="allf" class="section">
   <h2 class="sec-title">📋 All Formulas — Quick Reference</h2>
   <p class="sec-sub">Every formula you need for the Electricity Leaving Cert exam. Learn them!</p>
@@ -1001,7 +975,6 @@ tr:nth-child(even) td{background:#f8f8fc;}
   <div class="sec-nav"><button class="nbtn nbtn-next" onclick="show('alld')">Next: All Definitions →</button></div>
 </div>
 
-<!-- ══ ALL DEFINITIONS ════════════════════ -->
 <div id="alld" class="section">
   <h2 class="sec-title">📖 All Definitions — Learn These Off!</h2>
   <p class="sec-sub">Word-for-word definitions. The key words are everything — miss one and lose marks!</p>
@@ -1037,9 +1010,7 @@ tr:nth-child(even) td{background:#f8f8fc;}
   <div class="sec-nav"><button class="nbtn nbtn-prev" onclick="show('allf')">← Back to Formulas</button><button class="nbtn nbtn-next" onclick="show('home')">🏠 Back to Home</button></div>
 </div>
 
-</div><!-- end main -->
-
-<script>
+</div><script>
 // ── DATA ──────────────────────────────────────
 const visited = new Set(['home']);
 const TOTAL = 22;
@@ -1150,7 +1121,7 @@ buildQuiz(Q1,'q1-container');
 buildQuiz(Q2,'q2-container');
 buildQuiz(Q3,'q3-container');
 </script>
-<a href="index.html" class="return-home-btn">
+<a href="Home.html" class="return-home-btn">
   <span style="font-size: 18px;">🏠</span> Back to Hub
 </a>
 <style>
@@ -1175,8 +1146,8 @@ buildQuiz(Q3,'q3-container');
   }
   .return-home-btn:hover {
     transform: translateY(-5px);
-    background: var(--accent2); /* Turns bright blue on hover */
-    box-shadow: 0 8px 25px rgba(33, 150, 243, 0.4);
+    background: var(--blue);
+    box-shadow: 0 8px 25px rgba(37, 99, 235, 0.4);
   }
   @media (max-width: 768px) {
     .return-home-btn {
