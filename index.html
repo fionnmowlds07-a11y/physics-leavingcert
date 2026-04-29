@@ -16,6 +16,7 @@
     --accent3: #ff9800; /* Orange for Electricity */
     --accent4: #4caf50; /* Green for Mechanics */
     --accent5: #9c27b0; /* Purple for Modern Physics */
+    --accent6: #00bcd4; /* Cyan for Particle Physics */
     --border: #e0dcd4;
     --shadow: 0 4px 20px rgba(0,0,0,0.06);
     --shadow-hover: 0 12px 30px rgba(0,0,0,0.12);
@@ -136,6 +137,7 @@
   .module-card:nth-child(3) { animation-delay: 0.3s; }
   .module-card:nth-child(4) { animation-delay: 0.4s; }
   .module-card:nth-child(5) { animation-delay: 0.5s; }
+  .module-card:nth-child(6) { animation-delay: 0.6s; }
 
   .module-card::before {
     content: '';
@@ -172,6 +174,10 @@
   .card-mech::before { background: var(--accent4); }
   .card-mech:hover { border-color: var(--accent4); }
   .card-mech .mc-icon { color: var(--accent4); background: #e8f5e9; }
+
+  .card-particle::before { background: var(--accent6); }
+  .card-particle:hover { border-color: var(--accent6); }
+  .card-particle .mc-icon { color: var(--accent6); background: #e0f7fa; }
 
   .mc-icon {
     font-size: 42px;
@@ -333,6 +339,13 @@
         <div class="mc-icon">⚙️</div>
         <div class="mc-title">Mechanics</div>
         <div class="mc-desc">Explore velocity, Newton's laws, momentum, energy, gravity, circular motion, and simple harmonic motion.</div>
+        <div class="mc-action">Start Module →</div>
+      </a>
+
+      <a href="Particle physics.html" class="module-card card-particle">
+        <div class="mc-icon">🌀</div>
+        <div class="mc-title">Particle Physics</div>
+        <div class="mc-desc">Explore the fundamental building blocks of the universe: quarks, leptons, neutrinos, and the four fundamental forces.</div>
         <div class="mc-action">Start Module →</div>
       </a>
 
