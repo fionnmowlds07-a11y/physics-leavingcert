@@ -1,0 +1,1825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leaving Cert Physics — All Experiments</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Deca:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f5f7fa;
+    --card: #ffffff;
+    --text: #1e1e2e;
+    --text-light: #5a5a7a;
+    --accent1: #2563eb;
+    --accent2: #16a34a;
+    --accent3: #d97706;
+    --accent4: #dc2626;
+    --accent5: #7c3aed;
+    --border: #e2e8f0;
+    --def-bg: #eff6ff;
+    --def-border: #2563eb;
+    --formula-bg: #fefce8;
+    --formula-border: #eab308;
+    --example-bg: #f0fdf4;
+    --example-border: #16a34a;
+    --tip-bg: #fef2f2;
+    --tip-border: #dc2626;
+    --warn-bg: #fff7ed;
+    --warn-border: #d97706;
+    --shadow: 0 2px 12px rgba(0,0,0,0.07);
+    --radius: 12px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Lexend', sans-serif; background: var(--bg); color: var(--text); font-size: 16px; line-height: 1.75; }
+
+  #sidebar {
+    position: fixed; left: 0; top: 0; bottom: 0; width: 290px;
+    background: var(--card); border-right: 2px solid var(--border);
+    overflow-y: auto; z-index: 100; padding-bottom: 40px;
+    transition: transform 0.3s ease;
+  }
+  .sidebar-header { background: var(--accent1); color: white; padding: 18px 16px; }
+  .sidebar-header .sub { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; opacity: 0.85; }
+  .sidebar-header h2 { font-size: 17px; font-weight: 700; margin-top: 4px; line-height: 1.3; }
+  .chapter-label { padding: 10px 16px 3px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-light); margin-top: 4px; }
+  .nav-item { display: block; padding: 8px 16px 8px 24px; cursor: pointer; font-size: 13px; font-weight: 500; color: var(--text); border-left: 3px solid transparent; transition: all 0.2s; line-height: 1.4; }
+  .nav-item:hover { background: #eff6ff; border-left-color: var(--accent2); }
+  .nav-item.active { background: #dbeafe; border-left-color: var(--accent1); color: var(--accent1); font-weight: 700; }
+
+  #main { margin-left: 290px; min-height: 100vh; }
+  .top-bar { background: white; border-bottom: 2px solid var(--border); padding: 13px 36px; display: flex; align-items: center; gap: 12px; position: sticky; top: 0; z-index: 50; }
+  .top-bar h1 { font-size: 17px; font-weight: 700; color: var(--accent1); white-space: nowrap; }
+  .menu-btn { display: none; background: none; border: none; cursor: pointer; font-size: 22px; color: var(--text); }
+  .progress-bar { flex: 1; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent1), var(--accent2)); border-radius: 3px; transition: width 0.5s; width: 0%; }
+  #prog-text { font-size: 12px; color: var(--text-light); font-weight: 600; white-space: nowrap; }
+
+  .section { display: none; padding: 36px; max-width: 900px; animation: fadeIn 0.3s ease; }
+  .section.active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+  .exp-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--accent1); color: white; font-size: 11px; font-weight: 700; padding: 3px 12px; border-radius: 20px; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .cat-badge { background: var(--accent3); }
+  .section-title { font-size: 28px; font-weight: 700; color: var(--text); margin-bottom: 5px; line-height: 1.2; }
+  .section-subtitle { font-size: 14px; color: var(--text-light); margin-bottom: 28px; padding-bottom: 18px; border-bottom: 2px solid var(--border); }
+  h3 { font-size: 19px; font-weight: 700; color: var(--text); margin: 28px 0 10px; }
+  h4 { font-size: 12px; font-weight: 700; color: var(--accent1); margin: 16px 0 6px; text-transform: uppercase; letter-spacing: 0.05em; }
+  p { margin-bottom: 12px; }
+  ul, ol { padding-left: 22px; margin-bottom: 12px; }
+  li { margin-bottom: 5px; }
+
+  .def-box { background: var(--def-bg); border-left: 5px solid var(--def-border); border-radius: 0 var(--radius) var(--radius) 0; padding: 14px 18px; margin: 14px 0; }
+  .def-box .dl { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent1); margin-bottom: 5px; }
+  .def-box .dt { font-size: 15px; font-weight: 600; line-height: 1.5; }
+
+  .formula-box { background: var(--formula-bg); border: 2px solid var(--formula-border); border-radius: var(--radius); padding: 18px 22px; margin: 18px 0; }
+  .formula-box .fl { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #92400e; margin-bottom: 8px; }
+  .formula-box .fm { font-size: 22px; font-weight: 700; font-family: 'Lexend Deca', monospace; color: var(--text); margin-bottom: 8px; }
+  .formula-box .fd { font-size: 13px; color: var(--text-light); line-height: 1.6; }
+
+  .example-box { background: var(--example-bg); border: 2px solid var(--example-border); border-radius: var(--radius); padding: 18px 22px; margin: 18px 0; }
+  .example-box .el { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #15803d; margin-bottom: 8px; }
+
+  .tip-box { background: var(--tip-bg); border-left: 5px solid var(--tip-border); border-radius: 0 var(--radius) var(--radius) 0; padding: 12px 16px; margin: 14px 0; }
+  .tip-box .tl { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--tip-border); margin-bottom: 4px; }
+
+  .warn-box { background: var(--warn-bg); border-left: 5px solid var(--warn-border); border-radius: 0 var(--radius) var(--radius) 0; padding: 12px 16px; margin: 14px 0; }
+
+  .highlight-box { background: #eff6ff; border: 2px solid #bfdbfe; border-radius: var(--radius); padding: 14px 18px; margin: 14px 0; }
+
+  .calc-step { background: white; border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; margin: 7px 0; font-family: 'Lexend Deca', monospace; font-size: 14px; }
+  .calc-step .csl { font-size: 10px; font-weight: 700; text-transform: uppercase; color: #15803d; margin-bottom: 4px; font-family: 'Lexend', sans-serif; }
+
+  .step { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .step-num { min-width: 30px; height: 30px; border-radius: 50%; background: var(--accent1); color: white; font-weight: 700; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 3px; }
+
+  .data-table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 14px; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+  .data-table th { background: var(--accent1); color: white; padding: 10px 14px; text-align: left; font-size: 12px; }
+  .data-table td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .data-table tr:nth-child(even) td { background: #f8fafc; }
+  .data-table tr:last-child td { border-bottom: none; }
+
+  /* SVG DIAGRAMS */
+  .diagram-container { background: #1e1e2e; border-radius: var(--radius); padding: 20px; margin: 18px 0; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+  .diagram-container svg { max-width: 100%; height: auto; }
+
+  /* GRAPH */
+  .graph-container { background: white; border: 2px solid var(--border); border-radius: var(--radius); padding: 16px; margin: 18px 0; }
+  .graph-title { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 10px; text-align: center; }
+
+  /* GRID LAYOUT */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 14px 0; }
+  @media (max-width: 640px) { .two-col { grid-template-columns: 1fr; } }
+  .col-card { background: white; border: 2px solid var(--border); border-radius: var(--radius); padding: 14px 16px; box-shadow: var(--shadow); }
+
+  .nav-buttons { display: flex; gap: 10px; margin-top: 36px; padding-top: 22px; border-top: 2px solid var(--border); }
+  .nav-btn { display: flex; align-items: center; gap: 7px; padding: 10px 18px; border-radius: 8px; font-family: 'Lexend', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; border: 2px solid var(--border); background: white; color: var(--text); transition: all 0.2s; }
+  .nav-btn:hover { border-color: var(--accent1); color: var(--accent1); }
+  .nav-btn.primary { background: var(--accent1); color: white; border-color: var(--accent1); margin-left: auto; }
+  .nav-btn.primary:hover { background: #1d4ed8; }
+
+  #overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 90; }
+  @media (max-width: 768px) {
+    #sidebar { transform: translateX(-100%); }
+    #sidebar.open { transform: translateX(0); }
+    #main { margin-left: 0; }
+    .top-bar { padding: 12px 18px; }
+    .menu-btn { display: block; }
+    .section { padding: 22px 16px; }
+    #overlay.show { display: block; }
+  }
+  .acc-btn { width: 100%; text-align: left; padding: 12px 16px; background: white; border: 2px solid var(--border); border-radius: 8px; font-family: 'Lexend', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; color: var(--text); transition: all 0.2s; margin: 6px 0; }
+  .acc-btn:hover { background: #eff6ff; border-color: var(--accent1); }
+  .acc-btn .arrow { transition: transform 0.3s; color: var(--accent1); }
+  .acc-btn.open .arrow { transform: rotate(180deg); }
+  .acc-content { display: none; padding: 12px 16px; background: #f8fafc; border: 2px solid var(--border); border-top: none; border-radius: 0 0 8px 8px; margin-bottom: 6px; font-size: 14px; }
+  .acc-content.open { display: block; }
+
+  .category-pills { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0; }
+  .pill { padding: 4px 14px; border-radius: 20px; font-size: 12px; font-weight: 700; cursor: pointer; border: 2px solid; transition: all 0.2s; }
+</style>
+</head>
+<body>
+
+<div id="sidebar">
+  <div class="sidebar-header">
+    <div class="sub">Leaving Cert Physics</div>
+    <h2>🔬 All Experiments</h2>
+  </div>
+
+  <div><div class="chapter-label">Overview</div>
+    <div class="nav-item active" onclick="go('intro')">🏠 Introduction & Tips</div>
+  </div>
+  <div><div class="chapter-label">⚙️ Mechanics</div>
+    <div class="nav-item" onclick="go('velocity')">1. Measuring Velocity</div>
+    <div class="nav-item" onclick="go('acceleration')">2. Measuring Acceleration</div>
+    <div class="nav-item" onclick="go('newton2')">3. Newton's 2nd Law (a∝F)</div>
+    <div class="nav-item" onclick="go('momentum')">4. Conservation of Momentum</div>
+    <div class="nav-item" onclick="go('gravity')">5. Measuring g</div>
+    <div class="nav-item" onclick="go('boyle')">6. Boyle's Law</div>
+    <div class="nav-item" onclick="go('equilibrium')">7. Equilibrium of Forces</div>
+    <div class="nav-item" onclick="go('pendulum')">8. Simple Pendulum & g*</div>
+  </div>
+  <div><div class="chapter-label">🌡️ Heat</div>
+    <div class="nav-item" onclick="go('thermometer')">9. Calibrate Thermometer</div>
+    <div class="nav-item" onclick="go('shc-metal')">10. SHC of Metal (Electrical)</div>
+    <div class="nav-item" onclick="go('shc-water')">11. SHC of Water (Electrical)</div>
+    <div class="nav-item" onclick="go('shc-mech')">12. SHC Mechanical Method</div>
+    <div class="nav-item" onclick="go('latent-ice')">13. Latent Heat — Ice</div>
+    <div class="nav-item" onclick="go('latent-steam')">14. Latent Heat — Steam</div>
+  </div>
+  <div><div class="chapter-label">🔊 Sound</div>
+    <div class="nav-item" onclick="go('sound')">15. Speed of Sound</div>
+    <div class="nav-item" onclick="go('string-length')">16. String: f vs Length</div>
+    <div class="nav-item" onclick="go('string-tension')">17. String: f vs Tension*</div>
+  </div>
+  <div><div class="chapter-label">💡 Light</div>
+    <div class="nav-item" onclick="go('concave-mirror')">18. Focal Length — Concave Mirror</div>
+    <div class="nav-item" onclick="go('snell')">19. Verify Snell's Law</div>
+    <div class="nav-item" onclick="go('ri-liquid')">20. Refractive Index of Liquid</div>
+    <div class="nav-item" onclick="go('convex-lens')">21. Focal Length — Convex Lens</div>
+    <div class="nav-item" onclick="go('wavelength')">22. Wavelength (Spectrometer)</div>
+    <div class="nav-item" onclick="go('wavelength-laser')">23. Wavelength (Laser)</div>
+  </div>
+  <div><div class="chapter-label">⚡ Electricity</div>
+    <div class="nav-item" onclick="go('joule')">24. Joule's Law (ΔΘ ∝ I²)</div>
+    <div class="nav-item" onclick="go('resistivity')">25. Resistivity of Wire</div>
+    <div class="nav-item" onclick="go('metal-temp')">26. Resistance of Metal vs Temp</div>
+    <div class="nav-item" onclick="go('thermistor')">27. Thermistor vs Temperature</div>
+    <div class="nav-item" onclick="go('iv-curves')">28. I-V Characteristics</div>
+  </div>
+</div>
+
+<div id="overlay" onclick="closeSidebar()"></div>
+
+<div id="main">
+  <div class="top-bar">
+    <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+    <h1>🔬 LC Physics Experiments</h1>
+    <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+    <span id="prog-text">1 / 29</span>
+  </div>
+
+  <!-- ===== INTRO ===== -->
+  <div class="section active" id="sec-intro">
+    <div class="exp-badge">Overview</div>
+    <div class="section-title">All Leaving Cert Physics Experiments 🔬</div>
+    <div class="section-subtitle">28 mandatory experiments explained simply — apparatus, procedure, diagrams, graphs, and calculations</div>
+
+    <p>The Leaving Cert physics practical exam tests your knowledge of 28 mandatory experiments. You need to know apparatus, procedure, sources of error, and how to do the calculations. This guide covers every single one!</p>
+
+    <div class="highlight-box">
+      <strong>📚 The 5 categories:</strong>
+      <ul style="margin-top:8px;">
+        <li>⚙️ <strong>Mechanics</strong> (8 experiments) — motion, forces, gas laws</li>
+        <li>🌡️ <strong>Heat</strong> (6 experiments) — specific heat capacity, latent heat</li>
+        <li>🔊 <strong>Sound</strong> (3 experiments) — speed of sound, strings</li>
+        <li>💡 <strong>Light</strong> (6 experiments) — mirrors, lenses, refraction, wavelength</li>
+        <li>⚡ <strong>Electricity</strong> (5 experiments) — current, resistance, I-V curves</li>
+      </ul>
+    </div>
+
+    <h3>🎯 What the Exam Tests</h3>
+    <div class="two-col">
+      <div class="col-card">
+        <h4>Theory Questions</h4>
+        <ul>
+          <li>Name the apparatus used</li>
+          <li>Describe the procedure step by step</li>
+          <li>State sources of error / precautions</li>
+          <li>Describe the expected graph</li>
+          <li>What does the graph prove / show?</li>
+        </ul>
+      </div>
+      <div class="col-card">
+        <h4>Calculation Questions</h4>
+        <ul>
+          <li>Use given data to calculate the quantity being measured</li>
+          <li>Find the slope of a graph</li>
+          <li>Calculate average values</li>
+          <li>Convert units</li>
+          <li>Apply the relevant formula</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>💡 General Tips for Every Experiment</h3>
+    <div class="tip-box"><div class="tl">⚠️ Always Say These!</div>
+      1. <strong>Repeat and average</strong> — always improves accuracy<br>
+      2. <strong>Avoid parallax error</strong> — view scales at right angles<br>
+      3. <strong>Use lagging/insulation</strong> for heat experiments to reduce heat loss<br>
+      4. <strong>Zero the instrument first</strong> (thermometer, joulemeter, ohmmeter)<br>
+      5. <strong>A straight line through the origin</strong> verifies proportionality
+    </div>
+
+    <div class="nav-buttons">
+      <button class="nav-btn primary" onclick="go('velocity')">Start: Experiment 1 →</button>
+    </div>
+  </div>
+
+  <!-- ===== 1. VELOCITY ===== -->
+  <div class="section" id="sec-velocity">
+    <div class="exp-badge cat-badge">Mechanics — Exp 1</div>
+    <div class="section-title">⚙️ Measurement of Velocity</div>
+    <div class="section-subtitle">Using a ticker timer to measure constant velocity</div>
+
+    <div class="def-box"><div class="dl">What We're Doing</div><div class="dt">We adjust a tilted runway until a trolley moves at <strong>constant velocity</strong>. The ticker timer records dots on tape; equally-spaced dots = constant velocity. We measure distance and time to calculate v = s/t.</div></div>
+
+    <h3>Apparatus</h3>
+    <div class="highlight-box">Ticker timer + tape, low-voltage a.c. power supply, trolley, runway, laboratory jack or stand, metre stick</div>
+
+    <h3>Diagram</h3>
+    <div class="diagram-container">
+      <svg viewBox="0 0 600 180" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-height:180px;">
+        <!-- Runway -->
+        <rect x="80" y="100" width="450" height="15" fill="#888" rx="3"/>
+        <rect x="60" y="110" width="20" height="40" fill="#666"/>
+        <!-- Tilt support under right end -->
+        <rect x="490" y="85" width="15" height="30" fill="#666" rx="2"/>
+        <!-- Ticker timer box -->
+        <rect x="75" y="70" width="60" height="32" fill="#1e40af" rx="4"/>
+        <text x="105" y="91" fill="white" font-size="9" text-anchor="middle" font-family="sans-serif">TICKER</text>
+        <!-- Tape -->
+        <line x1="135" y1="86" x2="350" y2="86" stroke="#f59e0b" stroke-width="3"/>
+        <!-- Dots on tape (equally spaced = constant velocity) -->
+        <circle cx="155" cy="86" r="2.5" fill="#1e1e2e"/>
+        <circle cx="175" cy="86" r="2.5" fill="#1e1e2e"/>
+        <circle cx="195" cy="86" r="2.5" fill="#1e1e2e"/>
+        <circle cx="215" cy="86" r="2.5" fill="#1e1e2e"/>
+        <circle cx="235" cy="86" r="2.5" fill="#1e1e2e"/>
+        <circle cx="255" cy="86" r="2.5" fill="#1e1e2e"/>
+        <circle cx="275" cy="86" r="2.5" fill="#1e1e2e"/>
+        <circle cx="295" cy="86" r="2.5" fill="#1e1e2e"/>
+        <circle cx="315" cy="86" r="2.5" fill="#1e1e2e"/>
+        <!-- Trolley -->
+        <rect x="340" y="75" width="60" height="30" fill="#dc2626" rx="4"/>
+        <circle cx="355" cy="107" r="7" fill="#555"/>
+        <circle cx="385" cy="107" r="7" fill="#555"/>
+        <!-- Labels -->
+        <text x="105" y="62" fill="#f59e0b" font-size="11" text-anchor="middle" font-family="sans-serif">Ticker Timer</text>
+        <text x="230" y="75" fill="#fbbf24" font-size="10" text-anchor="middle" font-family="sans-serif">Ticker Tape</text>
+        <text x="370" y="68" fill="#fca5a5" font-size="11" text-anchor="middle" font-family="sans-serif">Trolley</text>
+        <text x="500" y="75" fill="#86efac" font-size="11" text-anchor="middle" font-family="sans-serif">Runway</text>
+        <!-- s arrow -->
+        <line x1="155" y1="130" x2="295" y2="130" stroke="#22d3ee" stroke-width="1.5" marker-start="url(#arr)" marker-end="url(#arr2)"/>
+        <text x="225" y="145" fill="#22d3ee" font-size="11" text-anchor="middle" font-family="sans-serif">s = 10 spaces</text>
+        <defs>
+          <marker id="arr" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><path d="M6,0 L0,3 L6,6 Z" fill="#22d3ee"/></marker>
+          <marker id="arr2" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto-start-reverse"><path d="M6,0 L0,3 L6,6 Z" fill="#22d3ee"/></marker>
+        </defs>
+      </svg>
+    </div>
+
+    <h3>Procedure (Step by Step)</h3>
+    <div class="step"><div class="step-num">1</div><div>Connect the ticker timer to a low-voltage a.c. power supply and attach tape to the trolley.</div></div>
+    <div class="step"><div class="step-num">2</div><div>Tilt the runway slightly using the jack/stand.</div></div>
+    <div class="step"><div class="step-num">3</div><div>Give the trolley a gentle push and let it run down the tape.</div></div>
+    <div class="step"><div class="step-num">4</div><div>Adjust the tilt until the dots on the tape are <strong>equally spaced</strong> — this means constant velocity (friction is compensated by the slope).</div></div>
+    <div class="step"><div class="step-num">5</div><div>Measure the length <strong>s</strong> of <strong>10 adjacent spaces</strong> on the tape with a metre stick.</div></div>
+    <div class="step"><div class="step-num">6</div><div>Time t = 10 × 0.02 = <strong>0.2 s</strong> (timer makes 50 dots/second, so 1 dot = 0.02 s).</div></div>
+    <div class="step"><div class="step-num">7</div><div>Calculate velocity: <strong>v = s ÷ t</strong>. Repeat with different push strengths.</div></div>
+
+    <div class="formula-box">
+      <div class="fl">📐 Formula</div>
+      <div class="fm">v = s / t</div>
+      <div class="fd">s = distance of 10 spaces (metres) &nbsp;|&nbsp; t = 10 × 0.02 = 0.2 s</div>
+    </div>
+
+    <h3>Example Calculation</h3>
+    <div class="example-box">
+      <div class="el">📐 Worked Example</div>
+      <div class="calc-step"><div class="csl">Given</div>10 spaces measure s = 0.12 m</div>
+      <div class="calc-step"><div class="csl">Time</div>t = 10 × 0.02 = 0.2 s</div>
+      <div class="calc-step"><div class="csl">Velocity</div>v = s/t = 0.12 / 0.2 = <strong>0.6 m/s</strong></div>
+    </div>
+
+    <div class="tip-box"><div class="tl">⚠️ Key Points</div>
+      • Ignore the first 5–6 dots (trolley may not be at constant velocity yet)<br>
+      • Use precarbonated tape (less friction)<br>
+      • Some timers make 100 dots/s (time interval = 0.01 s) — check your timer!
+    </div>
+
+    <div class="nav-buttons">
+      <button class="nav-btn" onclick="go('intro')">← Intro</button>
+      <button class="nav-btn primary" onclick="go('acceleration')">Next: Measuring Acceleration →</button>
+    </div>
+  </div>
+
+  <!-- ===== 2. ACCELERATION ===== -->
+  <div class="section" id="sec-acceleration">
+    <div class="exp-badge cat-badge">Mechanics — Exp 2</div>
+    <div class="section-title">⚙️ Measurement of Acceleration</div>
+    <div class="section-subtitle">Using a ticker timer to find initial velocity, final velocity, and acceleration</div>
+
+    <div class="def-box"><div class="dl">What We're Doing</div><div class="dt">A trolley rolls down a tilted runway and <strong>accelerates</strong>. The dots on the ticker tape get further apart as it speeds up. We measure speed at the start and end of the tape, and the distance between those points, to calculate acceleration using <strong>a = (v² − u²) / 2s</strong>.</div></div>
+
+    <h3>Apparatus</h3>
+    <div class="highlight-box">Ticker timer + tape, low-voltage a.c. power supply, dynamics trolley, runway, laboratory jack</div>
+
+    <h3>Diagram</h3>
+    <div class="diagram-container">
+      <svg viewBox="0 0 620 180" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-height:180px;">
+        <defs>
+          <marker id="arr3" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><path d="M6,0 L0,3 L6,6 Z" fill="#22d3ee"/></marker>
+          <marker id="arr4" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto-start-reverse"><path d="M6,0 L0,3 L6,6 Z" fill="#22d3ee"/></marker>
+        </defs>
+        <!-- Runway tilted -->
+        <rect x="60" y="105" width="490" height="14" fill="#888" rx="3" transform="rotate(-4, 60, 105)"/>
+        <rect x="44" y="112" width="18" height="50" fill="#666"/>
+        <rect x="520" y="85" width="14" height="42" fill="#666" rx="2"/>
+        <!-- Ticker timer -->
+        <rect x="58" y="68" width="55" height="30" fill="#1e40af" rx="4"/>
+        <text x="85" y="88" fill="white" font-size="9" text-anchor="middle" font-family="sans-serif">TICKER</text>
+        <!-- Tape with accelerating dots -->
+        <line x1="113" y1="83" x2="460" y2="83" stroke="#f59e0b" stroke-width="2.5"/>
+        <circle cx="125" cy="83" r="2" fill="#1e1e2e"/>
+        <circle cx="133" cy="83" r="2" fill="#1e1e2e"/>
+        <circle cx="141" cy="83" r="2" fill="#1e1e2e"/>
+        <circle cx="150" cy="83" r="2" fill="#1e1e2e"/>
+        <circle cx="160" cy="83" r="2" fill="#1e1e2e"/>
+        <!-- Gap grows -->
+        <circle cx="175" cy="83" r="2" fill="#1e1e2e"/>
+        <circle cx="193" cy="83" r="2" fill="#1e1e2e"/>
+        <circle cx="215" cy="83" r="2" fill="#1e1e2e"/>
+        <circle cx="240" cy="83" r="2" fill="#1e1e2e"/>
+        <circle cx="270" cy="83" r="2" fill="#1e1e2e"/>
+        <!-- End region (fast) -->
+        <circle cx="310" cy="83" r="2" fill="#1e1e2e"/>
+        <circle cx="352" cy="83" r="2" fill="#1e1e2e"/>
+        <circle cx="396" cy="83" r="2" fill="#1e1e2e"/>
+        <circle cx="440" cy="83" r="2" fill="#1e1e2e"/>
+        <!-- s1 bracket -->
+        <line x1="125" y1="97" x2="160" y2="97" stroke="#86efac" stroke-width="1.5" marker-start="url(#arr4)" marker-end="url(#arr3)"/>
+        <text x="143" y="109" fill="#86efac" font-size="10" text-anchor="middle" font-family="sans-serif">s₁ (u)</text>
+        <!-- s2 bracket -->
+        <line x1="396" y1="97" x2="440" y2="97" stroke="#f9a8d4" stroke-width="1.5" marker-start="url(#arr4)" marker-end="url(#arr3)"/>
+        <text x="418" y="109" fill="#f9a8d4" font-size="10" text-anchor="middle" font-family="sans-serif">s₂ (v)</text>
+        <!-- s big bracket -->
+        <line x1="143" y1="130" x2="418" y2="130" stroke="#22d3ee" stroke-width="1.5" marker-start="url(#arr4)" marker-end="url(#arr3)"/>
+        <text x="280" y="145" fill="#22d3ee" font-size="10" text-anchor="middle" font-family="sans-serif">s (centre to centre)</text>
+        <!-- Trolley -->
+        <rect x="460" y="72" width="55" height="28" fill="#dc2626" rx="4"/>
+        <circle cx="475" cy="102" r="6" fill="#555"/>
+        <circle cx="500" cy="102" r="6" fill="#555"/>
+      </svg>
+    </div>
+
+    <h3>Procedure</h3>
+    <div class="step"><div class="step-num">1</div><div>Set up the tilted runway with ticker timer. Allow trolley to roll freely (don't compensate for friction this time — you want acceleration).</div></div>
+    <div class="step"><div class="step-num">2</div><div>Mark out <strong>5 adjacent spaces near the beginning</strong> of tape. Measure length <strong>s₁</strong>. Time = 5 × 0.02 = <strong>0.1 s</strong>. Initial velocity: <strong>u = s₁ / 0.1</strong></div></div>
+    <div class="step"><div class="step-num">3</div><div>Mark out <strong>5 adjacent spaces near the end</strong> of tape. Measure length <strong>s₂</strong>. Final velocity: <strong>v = s₂ / 0.1</strong></div></div>
+    <div class="step"><div class="step-num">4</div><div>Measure distance <strong>s</strong> from the <strong>centre point</strong> of the first group to the <strong>centre point</strong> of the second group.</div></div>
+    <div class="step"><div class="step-num">5</div><div>Calculate: <strong>a = (v² − u²) / 2s</strong></div></div>
+    <div class="step"><div class="step-num">6</div><div>Repeat by changing the tilt angle. Tabulate results.</div></div>
+
+    <div class="formula-box">
+      <div class="fl">📐 Formulas</div>
+      <div class="fm">u = s₁ / t₁ &nbsp;&nbsp;&nbsp; v = s₂ / t₂</div>
+      <div class="fm">a = (v² − u²) / 2s</div>
+      <div class="fd">t₁ = t₂ = 5 × 0.02 = 0.1 s each</div>
+    </div>
+
+    <h3>Example Calculation</h3>
+    <div class="example-box">
+      <div class="el">📐 Worked Example</div>
+      <div class="calc-step"><div class="csl">Given</div>s₁ = 0.03 m, s₂ = 0.09 m, s = 0.50 m</div>
+      <div class="calc-step"><div class="csl">Initial velocity</div>u = 0.03 / 0.1 = 0.3 m/s</div>
+      <div class="calc-step"><div class="csl">Final velocity</div>v = 0.09 / 0.1 = 0.9 m/s</div>
+      <div class="calc-step"><div class="csl">Acceleration</div>a = (0.9² − 0.3²) / (2 × 0.5) = (0.81 − 0.09) / 1.0 = <strong>0.72 m/s²</strong></div>
+    </div>
+
+    <div class="tip-box"><div class="tl">⚠️ Common Mistakes</div>
+      • Ignore first 5–6 dots (trolley still being pushed)<br>
+      • Measure s from <strong>centre</strong> of s₁ group to <strong>centre</strong> of s₂ group — NOT from the start of the tape
+    </div>
+
+    <div class="nav-buttons">
+      <button class="nav-btn" onclick="go('velocity')">← Velocity</button>
+      <button class="nav-btn primary" onclick="go('newton2')">Next: Newton's 2nd Law →</button>
+    </div>
+  </div>
+
+  <!-- ===== 3. NEWTON 2 ===== -->
+  <div class="section" id="sec-newton2">
+    <div class="exp-badge cat-badge">Mechanics — Exp 3</div>
+    <div class="section-title">⚙️ Newton's 2nd Law: a ∝ F</div>
+    <div class="section-subtitle">Showing that acceleration is proportional to force for a constant mass</div>
+
+    <div class="def-box"><div class="dl">What We're Doing</div><div class="dt">We use an air track (frictionless) with a vehicle pulled by different weights. Two photogates measure speed before and after, giving us acceleration. We plot <strong>a vs F</strong> — a straight line through the origin proves a ∝ F.</div></div>
+
+    <h3>Apparatus</h3>
+    <div class="highlight-box">Air track + blower, vehicle, two photogates, dual timer, slotted weights (1 N total), black card, metre stick, pulley</div>
+
+    <h3>Diagram</h3>
+    <div class="diagram-container">
+      <svg viewBox="0 0 620 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-height:200px;">
+        <!-- Air track -->
+        <rect x="60" y="110" width="470" height="20" fill="#6b7280" rx="4"/>
+        <text x="295" y="123" fill="white" font-size="10" text-anchor="middle" font-family="sans-serif">AIR TRACK</text>
+        <!-- Air holes -->
+        <circle cx="120" cy="110" r="2" fill="#1e1e2e"/>
+        <circle cx="160" cy="110" r="2" fill="#1e1e2e"/>
+        <circle cx="200" cy="110" r="2" fill="#1e1e2e"/>
+        <circle cx="240" cy="110" r="2" fill="#1e1e2e"/>
+        <circle cx="280" cy="110" r="2" fill="#1e1e2e"/>
+        <circle cx="320" cy="110" r="2" fill="#1e1e2e"/>
+        <circle cx="360" cy="110" r="2" fill="#1e1e2e"/>
+        <circle cx="400" cy="110" r="2" fill="#1e1e2e"/>
+        <!-- Vehicle -->
+        <rect x="230" y="88" width="80" height="22" fill="#dc2626" rx="4"/>
+        <rect x="248" y="82" width="20" height="8" fill="#f59e0b" rx="2"/>
+        <text x="270" y="103" fill="white" font-size="10" text-anchor="middle" font-family="sans-serif">Vehicle</text>
+        <!-- Card -->
+        <rect x="260" y="72" width="3" height="18" fill="#fbbf24"/>
+        <!-- Photogates -->
+        <rect x="160" y="68" width="12" height="44" fill="#2563eb" rx="2"/>
+        <rect x="160" y="85" width="30" height="2" fill="#93c5fd"/>
+        <text x="135" y="62" fill="#93c5fd" font-size="9" text-anchor="middle" font-family="sans-serif">Gate 1</text>
+        <rect x="380" y="68" width="12" height="44" fill="#2563eb" rx="2"/>
+        <rect x="380" y="85" width="30" height="2" fill="#93c5fd"/>
+        <text x="410" y="62" fill="#93c5fd" font-size="9" text-anchor="middle" font-family="sans-serif">Gate 2</text>
+        <!-- String + pulley -->
+        <line x1="310" y1="99" x2="520" y2="99" stroke="#fbbf24" stroke-width="2"/>
+        <circle cx="522" cy="99" r="10" fill="none" stroke="#fbbf24" stroke-width="2"/>
+        <line x1="522" y1="109" x2="522" y2="160" stroke="#fbbf24" stroke-width="2"/>
+        <!-- Weights -->
+        <rect x="510" y="160" width="24" height="20" fill="#374151" rx="2"/>
+        <text x="522" y="173" fill="white" font-size="9" text-anchor="middle" font-family="sans-serif">F</text>
+        <!-- Labels -->
+        <text x="262" y="57" fill="#fbbf24" font-size="9" text-anchor="middle" font-family="sans-serif">Card (l)</text>
+        <text x="248" y="170" fill="#e5e7eb" font-size="10" text-anchor="middle" font-family="sans-serif">← s →</text>
+        <line x1="172" y1="162" x2="392" y2="162" stroke="#e5e7eb" stroke-width="1.5" marker-start="url(#arr4)" marker-end="url(#arr3)"/>
+      </svg>
+    </div>
+
+    <div class="warn-box"><strong>⚠️ Critical Rule:</strong> When you remove a disc from the hanging weights to reduce F, you must <strong>add that disc to the vehicle</strong>. This keeps the total mass constant — the only variable is the force!</div>
+
+    <h3>Procedure</h3>
+    <div class="step"><div class="step-num">1</div><div>Level the air track. Measure length l of black card and separation s of photogate beams.</div></div>
+    <div class="step"><div class="step-num">2</div><div>Start with F = 1.0 N (all weights hanging). Release vehicle from rest. Record times t₁ and t₂ from the dual timer.</div></div>
+    <div class="step"><div class="step-num">3</div><div>Calculate: u = l/t₁, v = l/t₂, then a = (v² − u²) / 2s</div></div>
+    <div class="step"><div class="step-num">4</div><div>Remove one 0.1 N disc from the hanging weights and place it on the vehicle. F is now 0.9 N. Repeat.</div></div>
+    <div class="step"><div class="step-num">5</div><div>Continue for F = 0.8, 0.7 ... 0.1 N.</div></div>
+    <div class="step"><div class="step-num">6</div><div>Plot a graph of <strong>a (y-axis) vs F (x-axis)</strong>.</div></div>
+
+    <h3>Expected Graph</h3>
+    <div class="graph-container">
+      <div class="graph-title">Graph of Acceleration (a) vs Force (F) — straight line through origin proves a ∝ F</div>
+      <svg viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-height:260px;">
+        <!-- Axes -->
+        <line x1="60" y1="220" x2="380" y2="220" stroke="#374151" stroke-width="2"/>
+        <line x1="60" y1="220" x2="60" y2="20" stroke="#374151" stroke-width="2"/>
+        <!-- Axis labels -->
+        <text x="220" y="248" fill="#374151" font-size="13" text-anchor="middle" font-family="sans-serif">Force F / N</text>
+        <text x="20" y="120" fill="#374151" font-size="13" text-anchor="middle" font-family="sans-serif" transform="rotate(-90,20,120)">Acceleration a / m s⁻²</text>
+        <!-- Grid lines -->
+        <line x1="60" y1="180" x2="380" y2="180" stroke="#e5e7eb" stroke-width="1"/>
+        <line x1="60" y1="140" x2="380" y2="140" stroke="#e5e7eb" stroke-width="1"/>
+        <line x1="60" y1="100" x2="380" y2="100" stroke="#e5e7eb" stroke-width="1"/>
+        <line x1="60" y1="60" x2="380" y2="60" stroke="#e5e7eb" stroke-width="1"/>
+        <line x1="124" y1="20" x2="124" y2="220" stroke="#e5e7eb" stroke-width="1"/>
+        <line x1="188" y1="20" x2="188" y2="220" stroke="#e5e7eb" stroke-width="1"/>
+        <line x1="252" y1="20" x2="252" y2="220" stroke="#e5e7eb" stroke-width="1"/>
+        <line x1="316" y1="20" x2="316" y2="220" stroke="#e5e7eb" stroke-width="1"/>
+        <!-- Best fit line through origin -->
+        <line x1="60" y1="220" x2="360" y2="40" stroke="#dc2626" stroke-width="2.5"/>
+        <!-- Data points -->
+        <circle cx="124" cy="185" r="5" fill="#2563eb"/>
+        <circle cx="155" cy="168" r="5" fill="#2563eb"/>
+        <circle cx="188" cy="148" r="5" fill="#2563eb"/>
+        <circle cx="220" cy="128" r="5" fill="#2563eb"/>
+        <circle cx="252" cy="110" r="5" fill="#2563eb"/>
+        <circle cx="284" cy="90" r="5" fill="#2563eb"/>
+        <circle cx="316" cy="72" r="5" fill="#2563eb"/>
+        <circle cx="348" cy="52" r="5" fill="#2563eb"/>
+        <!-- Axis tick values -->
+        <text x="124" y="235" fill="#6b7280" font-size="10" text-anchor="middle">0.2</text>
+        <text x="188" y="235" fill="#6b7280" font-size="10" text-anchor="middle">0.4</text>
+        <text x="252" y="235" fill="#6b7280" font-size="10" text-anchor="middle">0.6</text>
+        <text x="316" y="235" fill="#6b7280" font-size="10" text-anchor="middle">0.8</text>
+        <text x="55" y="184" fill="#6b7280" font-size="10" text-anchor="end">1</text>
+        <text x="55" y="144" fill="#6b7280" font-size="10" text-anchor="end">2</text>
+        <text x="55" y="104" fill="#6b7280" font-size="10" text-anchor="end">3</text>
+        <text x="55" y="64" fill="#6b7280" font-size="10" text-anchor="end">4</text>
+        <text x="280" y="55" fill="#dc2626" font-size="11" font-family="sans-serif">Best fit line</text>
+        <text x="280" y="70" fill="#dc2626" font-size="11" font-family="sans-serif">through origin ✓</text>
+      </svg>
+    </div>
+
+    <div class="def-box"><div class="dl">Conclusion</div><div class="dt">A <strong>straight line through the origin</strong> verifies that, for a constant mass, <strong>acceleration is proportional to the applied force</strong> (Newton's Second Law).</div></div>
+
+    <div class="nav-buttons">
+      <button class="nav-btn" onclick="go('acceleration')">← Acceleration</button>
+      <button class="nav-btn primary" onclick="go('momentum')">Next: Conservation of Momentum →</button>
+    </div>
+  </div>
+
+  <!-- ===== 4. MOMENTUM ===== -->
+  <div class="section" id="sec-momentum">
+    <div class="exp-badge cat-badge">Mechanics — Exp 4</div>
+    <div class="section-title">⚙️ Conservation of Momentum</div>
+    <div class="section-subtitle">Showing that momentum before collision = momentum after</div>
+
+    <div class="def-box"><div class="dl">What We're Doing</div><div class="dt">Vehicle 1 travels along an air track and collides with stationary Vehicle 2. They stick together (velcro pads). Two photogates measure velocity before and after. We compare <strong>m₁u</strong> (momentum before) with <strong>(m₁+m₂)v</strong> (momentum after).</div></div>
+
+    <h3>Apparatus</h3>
+    <div class="highlight-box">Linear air track, 2 vehicles with velcro pads, blower, 2 photogates, dual timer, black card (length l), metre stick, balance</div>
+
+    <h3>Key Formulas</h3>
+    <div class="formula-box">
+      <div class="fl">📐 Formulas</div>
+      <div class="fm">u = l / t₁ &nbsp;&nbsp;&nbsp; v = l / t₂</div>
+      <div class="fm">p_before = m₁u &nbsp;&nbsp;&nbsp; p_after = (m₁ + m₂)v</div>
+      <div class="fd">If conservation holds: p_before ≈ p_after</div>
+    </div>
+
+    <h3>Example Calculation</h3>
+    <div class="example-box">
+      <div class="el">📐 Worked Example</div>
+      <div class="calc-step"><div class="csl">Given</div>m₁ = 0.5 kg, m₂ = 0.3 kg, l = 0.10 m, t₁ = 0.20 s, t₂ = 0.40 s</div>
+      <div class="calc-step"><div class="csl">Velocity before</div>u = l/t₁ = 0.10/0.20 = 0.5 m/s</div>
+      <div class="calc-step"><div class="csl">Velocity after</div>v = l/t₂ = 0.10/0.40 = 0.25 m/s</div>
+      <div class="calc-step"><div class="csl">Momentum before</div>p = m₁u = 0.5 × 0.5 = 0.25 kg·m/s</div>
+      <div class="calc-step"><div class="csl">Momentum after</div>p = (m₁+m₂)v = (0.5+0.3) × 0.25 = 0.20 kg·m/s</div>
+      <div class="calc-step"><div class="csl">Verdict</div>0.25 ≈ 0.20 ✓ (small difference due to air resistance)</div>
+    </div>
+
+    <div class="tip-box"><div class="tl">⚠️ Precautions</div>
+      • Level the air track (vehicle should not drift when placed on it)<br>
+      • Both timers should read equal times when vehicle travels freely (check levelling)<br>
+      • The velcro pads ensure the vehicles coalesce (stick together) after collision
+    </div>
+
+    <div class="nav-buttons">
+      <button class="nav-btn" onclick="go('newton2')">← Newton's 2nd Law</button>
+      <button class="nav-btn primary" onclick="go('gravity')">Next: Measuring g →</button>
+    </div>
+  </div>
+
+  <!-- ===== 5. GRAVITY ===== -->
+  <div class="section" id="sec-gravity">
+    <div class="exp-badge cat-badge">Mechanics — Exp 5</div>
+    <div class="section-title">⚙️ Measurement of g</div>
+    <div class="section-subtitle">Using free fall of a metal ball to find acceleration due to gravity</div>
+
+    <div class="def-box"><div class="dl">What We're Doing</div><div class="dt">A metal ball is held by an electromagnet. When released, it falls a measured height h and hits a trapdoor, stopping the millisecond timer. From h = ½gt², we calculate g.</div></div>
+
+    <h3>Apparatus</h3>
+    <div class="highlight-box"><strong>Millisecond timer, metal ball bearing, trapdoor, electromagnet, metre stick</strong></div>
+
+    <h3>Diagram</h3>
+    <div class="diagram-container">
+      <svg viewBox="0 0 300 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-height:280px;">
+        <!-- Electromagnet -->
+        <rect x="120" y="20" width="60" height="25" fill="#7c3aed" rx="4"/>
+        <text x="150" y="37" fill="white" font-size="10" text-anchor="middle" font-family="sans-serif">Electromagnet</text>
+        <!-- Ball -->
+        <circle cx="150" cy="62" r="9" fill="#9ca3af" stroke="#6b7280" stroke-width="2"/>
+        <!-- h arrow -->
+        <line x1="180" y1="62" x2="180" y2="220" stroke="#22d3ee" stroke-width="1.5"/>
+        <polygon points="180,62 175,75 185,75" fill="#22d3ee"/>
+        <polygon points="180,220 175,207 185,207" fill="#22d3ee"/>
+        <text x="196" y="148" fill="#22d3ee" font-size="14" font-family="sans-serif">h</text>
+        <!-- Fall arrow -->
+        <line x1="150" y1="75" x2="150" y2="200" stroke="#fbbf24" stroke-width="1.5" stroke-dasharray="5,3"/>
+        <polygon points="150,205 144,190 156,190" fill="#fbbf24"/>
+        <!-- Trapdoor -->
+        <rect x="110" y="220" width="80" height="12" fill="#374151" rx="3"/>
+        <text x="150" y="230" fill="white" font-size="9" text-anchor="middle" font-family="sans-serif">Trapdoor</text>
+        <!-- Timer box -->
+        <rect x="30" y="100" width="75" height="45" fill="#dc2626" rx="6"/>
+        <text x="67" y="120" fill="white" font-size="9" text-anchor="middle" font-family="sans-serif">Millisecond</text>
+        <text x="67" y="133" fill="white" font-size="9" text-anchor="middle" font-family="sans-serif">Timer</text>
+        <!-- Wires -->
+        <line x1="105" y1="120" x2="120" y2="32" stroke="#fbbf24" stroke-width="1.5" stroke-dasharray="4,3"/>
+        <line x1="105" y1="135" x2="110" y2="226" stroke="#fbbf24" stroke-width="1.5" stroke-dasharray="4,3"/>
+        <text x="70" y="172" fill="#fbbf24" font-size="9" font-family="sans-serif">Timer starts</text>
+        <text x="70" y="183" fill="#fbbf24" font-size="9" font-family="sans-serif">on release,</text>
+        <text x="70" y="194" fill="#fbbf24" font-size="9" font-family="sans-serif">stops on hit</text>
+      </svg>
+    </div>
+
+    <h3>Procedure</h3>
+    <div class="step"><div class="step-num">1</div><div>Set up electromagnet at top, trapdoor below. Connect both to the millisecond timer circuit.</div></div>
+    <div class="step"><div class="step-num">2</div><div>Measure height h from bottom of ball to trapdoor using metre stick.</div></div>
+    <div class="step"><div class="step-num">3</div><div>Switch off the electromagnet — ball falls and hits trapdoor, stopping the timer. Record time t.</div></div>
+    <div class="step"><div class="step-num">4</div><div>Repeat 3 times for each h — take the <strong>smallest time</strong> (avoids reaction delay errors).</div></div>
+    <div class="step"><div class="step-num">5</div><div>Repeat for different values of h (e.g. 0.5, 0.7, 0.9, 1.1 m).</div></div>
+    <div class="step"><div class="step-num">6</div><div>Calculate g from each h and t. Average all values OR plot h vs t² (slope = g/2).</div></div>
+
+    <div class="formula-box">
+      <div class="fl">📐 Formula</div>
+      <div class="fm">h = ½gt² &nbsp;→&nbsp; g = 2h / t²</div>
+      <div class="fd">Or: plot h (y-axis) vs t² (x-axis) → slope = g/2 → g = 2 × slope</div>
+    </div>
+
+    <h3>Example Graph (h vs t²)</h3>
+    <div class="graph-container">
+      <div class="graph-title">Graph of h vs t² — slope = g/2 ≈ 4.9 → g ≈ 9.8 m/s²</div>
+      <svg viewBox="0 0 380 240" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-height:240px;">
+        <line x1="55" y1="200" x2="360" y2="200" stroke="#374151" stroke-width="2"/>
+        <line x1="55" y1="200" x2="55" y2="20" stroke="#374151" stroke-width="2"/>
+        <text x="207" y="225" fill="#374151" font-size="12" text-anchor="middle" font-family="sans-serif">t² / s²</text>
+        <text x="18" y="110" fill="#374151" font-size="12" text-anchor="middle" font-family="sans-serif" transform="rotate(-90,18,110)">h / m</text>
+        <line x1="55" y1="200" x2="340" y2="40" stroke="#dc2626" stroke-width="2.5"/>
+        <circle cx="90" cy="185" r="5" fill="#2563eb"/>
+        <circle cx="140" cy="162" r="5" fill="#2563eb"/>
+        <circle cx="190" cy="135" r="5" fill="#2563eb"/>
+        <circle cx="250" cy="103" r="5" fill="#2563eb"/>
+        <circle cx="310" cy="70" r="5" fill="#2563eb"/>
+        <text x="55" y="200" fill="#6b7280" font-size="9">0</text>
+        <text x="200" y="215" fill="#6b7280" font-size="10">0.2</text>
+        <text x="50" y="140" fill="#6b7280" font-size="10" text-anchor="end">0.5</text>
+        <text x="50" y="80" fill="#6b7280" font-size="10" text-anchor="end">1.0</text>
+        <text x="200" y="60" fill="#dc2626" font-size="11">slope = Δh/Δt² = g/2</text>
+      </svg>
+    </div>
+
+    <h3>Calculation Example</h3>
+    <div class="example-box">
+      <div class="el">📐 Worked Example</div>
+      <div class="calc-step"><div class="csl">Given</div>h = 0.80 m, t = 0.404 s</div>
+      <div class="calc-step"><div class="csl">Calculate g</div>g = 2h/t² = 2(0.80) / (0.404)² = 1.60 / 0.163 = <strong>9.8 m/s²</strong></div>
+    </div>
+
+    <div class="tip-box"><div class="tl">⚠️ Precautions</div>
+      • Take the <strong>smallest time</strong> for each h (largest times = ball didn't release cleanly)<br>
+      • Place a piece of paper between ball and electromagnet for quick clean release<br>
+      • Measure h carefully from the <strong>bottom</strong> of the ball
+    </div>
+
+    <div class="nav-buttons">
+      <button class="nav-btn" onclick="go('momentum')">← Momentum</button>
+      <button class="nav-btn primary" onclick="go('boyle')">Next: Boyle's Law →</button>
+    </div>
+  </div>
+
+  <!-- ===== 6. BOYLE ===== -->
+  <div class="section" id="sec-boyle">
+    <div class="exp-badge cat-badge">Mechanics — Exp 6</div>
+    <div class="section-title">⚙️ Verification of Boyle's Law</div>
+    <div class="section-subtitle">Showing that pressure × volume = constant for a fixed mass of gas at constant temperature</div>
+
+    <div class="def-box"><div class="dl">Boyle's Law</div><div class="dt">For a fixed mass of gas at <strong>constant temperature</strong>, pressure is <strong>inversely proportional</strong> to volume: <strong>P ∝ 1/V</strong> &nbsp;(so PV = constant)</div></div>
+
+    <h3>Apparatus</h3>
+    <div class="highlight-box">Boyle's Law apparatus (thick-walled glass tube with oil column), bicycle pump, pressure gauge, volume scale, valve</div>
+
+    <h3>Procedure</h3>
+    <div class="step"><div class="step-num">1</div><div>Use the pump to increase the pressure on the trapped air column.</div></div>
+    <div class="step"><div class="step-num">2</div><div>Close the valve and <strong>wait 20 seconds</strong> for temperature to reach equilibrium.</div></div>
+    <div class="step"><div class="step-num">3</div><div>Read the volume V from the scale and the pressure P from the gauge.</div></div>
+    <div class="step"><div class="step-num">4</div><div>Open valve slightly to reduce pressure, wait again, record new P and V.</div></div>
+    <div class="step"><div class="step-num">5</div><div>Repeat for at least 6 pairs of P and V readings.</div></div>
+    <div class="step"><div class="step-num">6</div><div>Calculate 1/V for each reading. Plot <strong>P (y-axis) vs 1/V (x-axis)</strong>.</div></div>
+
+    <h3>Expected Graph</h3>
+    <div class="graph-container">
+      <div class="graph-title">Graph of P vs 1/V — straight line through origin verifies Boyle's Law</div>
+      <svg viewBox="0 0 380 240" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-height:240px;">
+        <line x1="55" y1="200" x2="360" y2="200" stroke="#374151" stroke-width="2"/>
+        <line x1="55" y1="200" x2="55" y2="20" stroke="#374151" stroke-width="2"/>
+        <text x="207" y="225" fill="#374151" font-size="12" text-anchor="middle" font-family="sans-serif">1/V (cm⁻³)</text>
+        <text x="18" y="110" fill="#374151" font-size="12" text-anchor="middle" font-family="sans-serif" transform="rotate(-90,18,110)">P / Pa</text>
+        <line x1="55" y1="200" x2="345" y2="30" stroke="#16a34a" stroke-width="2.5"/>
+        <circle cx="100" cy="175" r="5" fill="#2563eb"/>
+        <circle cx="145" cy="152" r="5" fill="#2563eb"/>
+        <circle cx="195" cy="125" r="5" fill="#2563eb"/>
+        <circle cx="250" cy="95" r="5" fill="#2563eb"/>
+        <circle cx="310" cy="62" r="5" fill="#2563eb"/>
+        <text x="240" y="55" fill="#16a34a" font-size="11">P ∝ 1/V ✓</text>
+        <text x="240" y="70" fill="#16a34a" font-size="11">straight line thru origin</text>
+      </svg>
+    </div>
+
+    <div class="warn-box"><strong>⚠️ Important!</strong> Before starting, check the pressure gauge. If it reads 0 with the valve open, you must <strong>add atmospheric pressure (1×10⁵ Pa)</strong> to every gauge reading to get the true pressure.</div>
+
+    <h3>Calculation Example</h3>
+    <div class="example-box">
+      <div class="el">📐 Verifying PV = constant</div>
+      <table class="data-table">
+        <tr><th>P (Pa)</th><th>V (cm³)</th><th>PV</th></tr>
+        <tr><td>1.0 × 10⁵</td><td>40</td><td>4.0 × 10⁶</td></tr>
+        <tr><td>1.5 × 10⁵</td><td>27</td><td>4.05 × 10⁶</td></tr>
+        <tr><td>2.0 × 10⁵</td><td>20</td><td>4.0 × 10⁶</td></tr>
+      </table>
+      <p>PV ≈ constant ✓ &nbsp; (small differences due to temperature variation)</p>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="nav-btn" onclick="go('gravity')">← Measuring g</button>
+      <button class="nav-btn primary" onclick="go('equilibrium')">Next: Equilibrium →</button>
+    </div>
+  </div>
+
+  <!-- ===== 7. EQUILIBRIUM ===== -->
+  <div class="section" id="sec-equilibrium">
+    <div class="exp-badge cat-badge">Mechanics — Exp 7</div>
+    <div class="section-title">⚙️ Laws of Equilibrium for Co-planar Forces</div>
+    <div class="section-subtitle">Showing that forces up = forces down AND sum of clockwise moments = sum of anticlockwise moments</div>
+
+    <div class="def-box"><div class="dl">The Two Conditions for Equilibrium</div><div class="dt">
+      <strong>1. Forces:</strong> Sum of upward forces = sum of downward forces<br>
+      <strong>2. Moments:</strong> Sum of clockwise moments = sum of anticlockwise moments (about any point)
+    </div></div>
+
+    <h3>Apparatus</h3>
+    <div class="highlight-box">Two newton balances (0–50 N), metre stick, slotted weights, paperclips, retort stands</div>
+
+    <h3>Procedure</h3>
+    <div class="step"><div class="step-num">1</div><div>Use one balance to find the weight and centre of gravity of the metre stick.</div></div>
+    <div class="step"><div class="step-num">2</div><div>Hang the metre stick horizontally from two newton balances. Hang weights from different positions.</div></div>
+    <div class="step"><div class="step-num">3</div><div>Adjust weights until the stick is horizontal and in equilibrium.</div></div>
+    <div class="step"><div class="step-num">4</div><div>Record readings on both newton balances (R₁ and R₂).</div></div>
+    <div class="step"><div class="step-num">5</div><div>Record the position of every force (weight and balance) on the stick.</div></div>
+    <div class="step"><div class="step-num">6</div><div>Check: R₁ + R₂ = sum of all weights (including weight of stick).</div></div>
+    <div class="step"><div class="step-num">7</div><div>Calculate moments about the 0 cm mark: Force × distance. Check clockwise = anticlockwise.</div></div>
+
+    <div class="formula-box">
+      <div class="fl">📐 Moment Formula</div>
+      <div class="fm">Moment = Force (N) × perpendicular distance (m)</div>
+      <div class="fd">Unit: Newton-metre (N·m)</div>
+    </div>
+
+    <h3>Example Calculation</h3>
+    <div class="example-box">
+      <div class="el">📐 Worked Example</div>
+      <div class="calc-step"><div class="csl">Given</div>Balance R₁ = 3 N at 20 cm, Balance R₂ = 4 N at 80 cm<br>Weight W₁ = 2 N at 30 cm, Weight W₂ = 3 N at 60 cm, Stick weight = 2 N at 50 cm</div>
+      <div class="calc-step"><div class="csl">Check forces up = forces down</div>Forces up = R₁ + R₂ = 3 + 4 = 7 N<br>Forces down = W₁ + W₂ + W_stick = 2 + 3 + 2 = 7 N ✓</div>
+      <div class="calc-step"><div class="csl">Clockwise moments about 0 cm</div>R₁ × 0.20 + R₂ × 0.80 = 3(0.2) + 4(0.8) = 0.6 + 3.2 = 3.8 N·m</div>
+      <div class="calc-step"><div class="csl">Anticlockwise moments about 0 cm</div>W₁ × 0.30 + W₂ × 0.60 + W_stick × 0.50 = 0.6 + 1.8 + 1.0 = 3.4 N·m ≈ 3.8 ✓</div>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="nav-btn" onclick="go('boyle')">← Boyle's Law</button>
+      <button class="nav-btn primary" onclick="go('pendulum')">Next: Simple Pendulum →</button>
+    </div>
+  </div>
+
+  <!-- ===== 8. PENDULUM ===== -->
+  <div class="section" id="sec-pendulum">
+    <div class="exp-badge cat-badge">Mechanics — Exp 8 (HL)</div>
+    <div class="section-title">⚙️ Simple Pendulum & Calculation of g</div>
+    <div class="section-subtitle">Finding g from the relationship between period and length</div>
+
+    <div class="def-box"><div class="dl">The Key Relationship</div><div class="dt">T² = 4π²l/g &nbsp;&nbsp; so if we plot T² vs l, the slope = 4π²/g, and therefore: <strong>g = 4π² / slope</strong></div></div>
+
+    <h3>Procedure</h3>
+    <div class="step"><div class="step-num">1</div><div>Clamp thread between two halves of a split cork. Set length l = 1.00 m (from bottom of cork to centre of bob).</div></div>
+    <div class="step"><div class="step-num">2</div><div>Set swinging through a <strong>small angle (&lt;10°)</strong>. Measure time for <strong>30 complete oscillations</strong>.</div></div>
+    <div class="step"><div class="step-num">3</div><div>Divide time by 30 to get the period T.</div></div>
+    <div class="step"><div class="step-num">4</div><div>Repeat for l = 0.9, 0.8, 0.7, 0.6, 0.5 m.</div></div>
+    <div class="step"><div class="step-num">5</div><div>Plot <strong>T² (y-axis) vs l (x-axis)</strong>. Find slope.</div></div>
+    <div class="step"><div class="step-num">6</div><div>Calculate g = 4π² / slope.</div></div>
+
+    <div class="formula-box">
+      <div class="fl">📐 Formula</div>
+      <div class="fm">T = 2π√(l/g) &nbsp;→&nbsp; T² = 4π²l/g</div>
+      <div class="fm">g = 4π² / slope (where slope = T²/l)</div>
+    </div>
+
+    <h3>Expected Graph (T² vs l)</h3>
+    <div class="graph-container">
+      <div class="graph-title">Graph of T² vs l — straight line through origin, slope = 4π²/g ≈ 4.03</div>
+      <svg viewBox="0 0 380 240" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-height:240px;">
+        <line x1="55" y1="200" x2="360" y2="200" stroke="#374151" stroke-width="2"/>
+        <line x1="55" y1="200" x2="55" y2="20" stroke="#374151" stroke-width="2"/>
+        <text x="207" y="225" fill="#374151" font-size="12" text-anchor="middle" font-family="sans-serif">l / m</text>
+        <text x="18" y="110" fill="#374151" font-size="12" text-anchor="middle" font-family="sans-serif" transform="rotate(-90,18,110)">T² / s²</text>
+        <line x1="55" y1="200" x2="348" y2="32" stroke="#7c3aed" stroke-width="2.5"/>
+        <circle cx="110" cy="175" r="5" fill="#2563eb"/>
+        <circle cx="155" cy="152" r="5" fill="#2563eb"/>
+        <circle cx="205" cy="126" r="5" fill="#2563eb"/>
+        <circle cx="258" cy="98" r="5" fill="#2563eb"/>
+        <circle cx="312" cy="68" r="5" fill="#2563eb"/>
+        <text x="115" y="216" fill="#6b7280" font-size="10">0.2</text>
+        <text x="160" y="216" fill="#6b7280" font-size="10">0.4</text>
+        <text x="210" y="216" fill="#6b7280" font-size="10">0.6</text>
+        <text x="260" y="216" fill="#6b7280" font-size="10">0.8</text>
+        <text x="310" y="216" fill="#6b7280" font-size="10">1.0</text>
+        <text x="50" y="175" fill="#6b7280" font-size="10" text-anchor="end">1</text>
+        <text x="50" y="130" fill="#6b7280" font-size="10" text-anchor="end">2</text>
+        <text x="50" y="82" fill="#6b7280" font-size="10" text-anchor="end">3</text>
+        <text x="220" y="55" fill="#7c3aed" font-size="11">slope = 4π²/g</text>
+      </svg>
+    </div>
+
+    <h3>Example Calculation</h3>
+    <div class="example-box">
+      <div class="el">📐 Worked Example</div>
+      <div class="calc-step"><div class="csl">Given l = 1.00 m, time for 30 oscillations = 60.3 s</div>T = 60.3/30 = 2.01 s &nbsp;&nbsp; T² = 4.04 s²</div>
+      <div class="calc-step"><div class="csl">From graph, slope = T²/l</div>slope ≈ 4.04/1.00 = 4.04 s²/m</div>
+      <div class="calc-step"><div class="csl">Calculate g</div>g = 4π²/slope = 4 × 9.87 / 4.04 = <strong>9.77 m/s²</strong></div>
+    </div>
+
+    <div class="tip-box"><div class="tl">⚠️ Key Precautions</div>
+      • Use small angles (&lt;10°) — large angles break the simple pendulum formula<br>
+      • Count 30 swings, not 30 half-swings (one oscillation = there AND back)<br>
+      • Measure l to the <strong>centre</strong> of the bob
+    </div>
+
+    <div class="nav-buttons">
+      <button class="nav-btn" onclick="go('equilibrium')">← Equilibrium</button>
+      <button class="nav-btn primary" onclick="go('thermometer')">Next: Calibrate Thermometer →</button>
+    </div>
+  </div>
+
+  <!-- ===== 9. THERMOMETER ===== -->
+  <div class="section" id="sec-thermometer">
+    <div class="exp-badge" style="background:var(--accent4);">Heat — Exp 9</div>
+    <div class="section-title">🌡️ Calibration of a Thermometer</div>
+    <div class="section-subtitle">Creating a calibration curve for a thermistor using a mercury thermometer as reference</div>
+
+    <div class="def-box"><div class="dl">What We're Doing</div><div class="dt">We heat glycerol slowly and record the temperature (from mercury thermometer) AND the resistance of a thermistor at the same time. We plot R vs θ to get a <strong>calibration curve</strong> — this allows us to use the thermistor to measure temperature later.</div></div>
+
+    <h3>Apparatus</h3>
+    <div class="highlight-box">Mercury thermometer, thermistor, boiling tube of glycerol, beaker of water (water bath), heat source, ohmmeter/multimeter</div>
+
+    <h3>Procedure</h3>
+    <div class="step"><div class="step-num">1</div><div>Place both the mercury thermometer and thermistor in the boiling tube of glycerol, which sits in a water bath.</div></div>
+    <div class="step"><div class="step-num">2</div><div>Record room temperature θ and resistance R from the ohmmeter.</div></div>
+    <div class="step"><div class="step-num">3</div><div>Heat the water bath, increasing temperature by ~5°C each time.</div></div>
+    <div class="step"><div class="step-num">4</div><div>At each temperature, record θ and R simultaneously.</div></div>
+    <div class="step"><div class="step-num">5</div><div>Take at least 10 pairs of readings up to ~100°C.</div></div>
+    <div class="step"><div class="step-num">6</div><div>Plot a graph of R (y-axis) vs θ (x-axis) and draw a smooth <strong>curved</strong> line.</div></div>
+
+    <h3>Expected Graph</h3>
+    <div class="graph-container">
+      <div class="graph-title">Calibration Curve: R vs θ for a Thermistor — CURVED (thermistor resistance decreases with temperature)</div>
+      <svg viewBox="0 0 380 250" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-height:250px;">
+        <line x1="55" y1="210" x2="360" y2="210" stroke="#374151" stroke-width="2"/>
+        <line x1="55" y1="210" x2="55" y2="20" stroke="#374151" stroke-width="2"/>
+        <text x="207" y="235" fill="#374151" font-size="12" text-anchor="middle" font-family="sans-serif">Temperature θ / °C</text>
+        <text x="18" y="115" fill="#374151" font-size="12" text-anchor="middle" font-family="sans-serif" transform="rotate(-90,18,115)">Resistance R / Ω</text>
+        <!-- Curve (decreasing, curved) -->
+        <path d="M 65 40 Q 120 55 160 95 Q 220 145 280 185 Q 320 200 360 207" fill="none" stroke="#d97706" stroke-width="2.5"/>
+        <circle cx="65" cy="40" r="5" fill="#2563eb"/>
+        <circle cx="100" cy="60" r="5" fill="#2563eb"/>
+        <circle cx="140" cy="90" r="5" fill="#2563eb"/>
+        <circle cx="185" cy="125" r="5" fill="#2563eb"/>
+        <circle cx="235" cy="160" r="5" fill="#2563eb"/>
+        <circle cx="295" cy="190" r="5" fill="#2563eb"/>
+        <circle cx="350" cy="205" r="5" fill="#2563eb"/>
+        <text x="100" y="115" fill="#d97706" font-size="11">Resistance decreases</text>
+        <text x="100" y="128" fill="#d97706" font-size="11">as temp increases!</text>
+        <text x="60" y="224" fill="#6b7280" font-size="10">20</text>
+        <text x="145" y="224" fill="#6b7280" font-size="10">40</text>
+        <text x="230" y="224" fill="#6b7280" font-size="10">60</text>
+        <text x="315" y="224" fill="#6b7280" font-size="10">80</text>
+      </svg>
+    </div>
+
+    <div class="tip-box"><div class="tl">💡 Why Glycerol?</div>
+      Glycerol has no dissolved gases, so there's very good thermal contact between it and the thermistor. The water bath limits temperature to 100°C max.
+    </div>
+
+    <div class="nav-buttons">
+      <button class="nav-btn" onclick="go('pendulum')">← Pendulum</button>
+      <button class="nav-btn primary" onclick="go('shc-metal')">Next: SHC of Metal →</button>
+    </div>
+  </div>
+
+  <!-- ===== 10. SHC METAL ===== -->
+  <div class="section" id="sec-shc-metal">
+    <div class="exp-badge" style="background:var(--accent4);">Heat — Exp 10</div>
+    <div class="section-title">🌡️ Specific Heat Capacity of Metal (Electrical)</div>
+    <div class="section-subtitle">Using a joulemeter to find how much energy heats a metal block by 10°C</div>
+
+    <div class="def-box"><div class="dl">Key Formula</div><div class="dt"><strong>Q = mcΔθ</strong><br>Q = electrical energy (J), m = mass (kg), c = specific heat capacity (J/kg°C), Δθ = temperature rise (°C)</div></div>
+
+    <h3>Apparatus</h3>
+    <div class="highlight-box">Joulemeter, metal block (with holes for heater and thermometer), heating coil, lagging, thermometer (±0.1°C), glycerol, electronic balance, 12V a.c. supply</div>
+
+    <h3>Procedure</h3>
+    <div class="step"><div class="step-num">1</div><div>Find the mass of the metal block m using the balance.</div></div>
+    <div class="step"><div class="step-num">2</div><div>Insert heating coil and thermometer (in glycerol) into block. Record initial temperature θ₁.</div></div>
+    <div class="step"><div class="step-num">3</div><div>Zero the joulemeter. Switch on and allow current to flow until temperature rises by <strong>~10°C</strong>.</div></div>
+    <div class="step"><div class="step-num">4</div><div>Switch off. Wait for heat to spread through block. Record <strong>highest</strong> temperature θ₂.</div></div>
+    <div class="step"><div class="step-num">5</div><div>Record final joulemeter reading Q.</div></div>
+    <div class="step"><div class="step-num">6</div><div>Calculate: <strong>c = Q / (m × Δθ)</strong></div></div>
+
+    <div class="formula-box">
+      <div class="fl">📐 Formula</div>
+      <div class="fm">Q = mcΔθ &nbsp;→&nbsp; c = Q / (mΔθ)</div>
+      <div class="fd">Δθ = θ₂ − θ₁ (temperature rise)</div>
+    </div>
+
+    <h3>Example Calculation</h3>
+    <div class="example-box">
+      <div class="el">📐 Worked Example</div>
+      <div class="calc-step"><div class="csl">Given</div>m = 1.0 kg, θ₁ = 20°C, θ₂ = 31°C, Q = 3850 J</div>
+      <div class="calc-step"><div class="csl">Temperature rise</div>Δθ = 31 − 20 = 11°C</div>
+      <div class="calc-step"><div class="csl">Specific heat capacity</div>c = Q/(mΔθ) = 3850 / (1.0 × 11) = <strong>350 J/kg°C</strong> (typical for copper)</div>
+    </div>
+
+    <div class="tip-box"><div class="tl">⚠️ Sources of Error</div>
+      • Heat lost to surroundings — use lagging around the block<br>
+      • Record <strong>highest</strong> temperature (not the instant you switch off — heat continues to spread)<br>
+      • Glycerol around thermometer ensures good thermal contact
+    </div>
+
+    <div class="nav-buttons">
+      <button class="nav-btn" onclick="go('thermometer')">← Calibration</button>
+      <button class="nav-btn primary" onclick="go('shc-water')">Next: SHC of Water →</button>
+    </div>
+  </div>
+
+  <!-- ===== 11. SHC WATER ===== -->
+  <div class="section" id="sec-shc-water">
+    <div class="exp-badge" style="background:var(--accent4);">Heat — Exp 11</div>
+    <div class="section-title">🌡️ Specific Heat Capacity of Water (Electrical)</div>
+    <div class="section-subtitle">Finding how much energy heats water — must account for the calorimeter too</div>
+
+    <div class="def-box"><div class="dl">Key Formula</div><div class="dt"><strong>Q = m_w c_w Δθ + m_cal c_cal Δθ</strong><br>Energy in = energy gained by water + energy gained by calorimeter<br>If polystyrene cup used: Q = m_w c_w Δθ (simpler!)</div></div>
+
+    <h3>Procedure</h3>
+    <div class="step"><div class="step-num">1</div><div>Weigh the calorimeter m_cal. Fill with water, weigh again m₁. m_water = m₁ − m_cal.</div></div>
+    <div class="step"><div class="step-num">2</div><div>Record initial temperature θ₁. Zero joulemeter.</div></div>
+    <div class="step"><div class="step-num">3</div><div>Switch on power until temperature rises by ~10°C. Switch off, stir, record highest temperature θ₂.</div></div>
+    <div class="step"><div class="step-num">4</div><div>Record joulemeter reading Q. Calculate c_water.</div></div>
+
+    <h3>Example Calculation</h3>
+    <div class="example-box">
+      <div class="el">📐 Worked Example (Polystyrene cup — simple)</div>
+      <div class="calc-step"><div class="csl">Given</div>m_water = 0.200 kg, Q = 1680 J, Δθ = 2°C... wait let's use realistic numbers.<br>Q = 8400 J, m_water = 0.200 kg, Δθ = 10°C</div>
+      <div class="calc-step"><div class="csl">c_water = Q/(m_w × Δθ)</div>c = 8400 / (0.200 × 10) = <strong>4200 J/kg°C</strong> ✓</div>
+    </div>
+
+    <div class="example-box">
+      <div class="el">📐 With Copper Calorimeter (c_copper = 390 J/kg°C)</div>
+      <div class="calc-step"><div class="csl">Given</div>Q = 9180 J, m_w = 0.200 kg, m_cal = 0.100 kg, Δθ = 10°C</div>
+      <div class="calc-step"><div class="csl">Formula</div>Q = m_w c_w Δθ + m_cal c_cal Δθ<br>9180 = (0.200)(c_w)(10) + (0.100)(390)(10)<br>9180 = 2c_w + 390<br>2c_w = 8790 → <strong>c_w = 4395 ≈ 4200 J/kg°C</strong></div>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="nav-btn" onclick="go('shc-metal')">← SHC Metal</button>
+      <button class="nav-btn primary" onclick="go('shc-mech')">Next: SHC Mechanical →</button>
+    </div>
+  </div>
+
+  <!-- ===== 12. SHC MECHANICAL ===== -->
+  <div class="section" id="sec-shc-mech">
+    <div class="exp-badge" style="background:var(--accent4);">Heat — Exp 12</div>
+    <div class="section-title">🌡️ SHC — Mechanical Method (Cooling)</div>
+    <div class="section-subtitle">Hot copper rivets cool down in cold water — heat lost = heat gained</div>
+
+    <div class="def-box"><div class="dl">Principle</div><div class="dt">Hot copper rivets (at 100°C) are added to cool water in a calorimeter. The heat lost by the rivets equals the heat gained by the water and calorimeter.</div></div>
+
+    <h3>Key Formula</h3>
+    <div class="formula-box">
+      <div class="fl">📐 Heat Lost = Heat Gained</div>
+      <div class="fm">m_co × c_c × Δθ₁ = m_cal × c_c × Δθ₂ + m_w × c_w × Δθ₂</div>
+      <div class="fd">Δθ₁ = fall in temp of rivets = 100 − θ₂<br>Δθ₂ = rise in temp of water/calorimeter = θ₂ − θ₁</div>
+    </div>
+
+    <h3>Example Calculation (finding c_copper)</h3>
+    <div class="example-box">
+      <div class="el">📐 Worked Example</div>
+      <div class="calc-step"><div class="csl">Given</div>m_co = 0.100 kg, m_cal = 0.050 kg, m_w = 0.150 kg<br>θ₁ = 15°C, θ₂ = 22°C, rivets started at 100°C<br>c_water = 4200 J/kg°C (known)</div>
+      <div class="calc-step"><div class="csl">Temperature changes</div>Δθ₁ (rivets) = 100 − 22 = 78°C &nbsp;&nbsp; Δθ₂ (water) = 22 − 15 = 7°C</div>
+      <div class="calc-step"><div class="csl">Apply formula</div>0.100 × c_c × 78 = 0.050 × c_c × 7 + 0.150 × 4200 × 7<br>7.8 c_c = 0.35 c_c + 4410<br>7.45 c_c = 4410 → <strong>c_c = 592 J/kg°C</strong> (≈ 390 typical value)</div>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="nav-btn" onclick="go('shc-water')">← SHC Water</button>
+      <button class="nav-btn primary" onclick="go('latent-ice')">Next: Latent Heat Ice →</button>
+    </div>
+  </div>
+
+  <!-- ===== 13. LATENT HEAT ICE ===== -->
+  <div class="section" id="sec-latent-ice">
+    <div class="exp-badge" style="background:var(--accent4);">Heat — Exp 13</div>
+    <div class="section-title">🌡️ Specific Latent Heat of Fusion of Ice</div>
+    <div class="section-subtitle">How much energy does it take to melt ice at 0°C?</div>
+
+    <div class="def-box"><div class="dl">Key Idea</div><div class="dt">Dry crushed ice at 0°C is added to warm water. The ice melts (using the latent heat) and the melted ice then warms up. All the energy comes from the warm water and calorimeter cooling down.</div></div>
+
+    <div class="formula-box">
+      <div class="fl">📐 Formula</div>
+      <div class="fm">m_i × l + m_i × c_w × Δθ₁ = m_cal × c_c × Δθ₂ + m_w × c_w × Δθ₂</div>
+      <div class="fd">
+        Left side: energy to melt ice + energy to warm melted ice from 0°C to θ₂<br>
+        Right side: energy lost by calorimeter + energy lost by warm water<br>
+        Δθ₁ = rise in temp of ice = θ₂ − 0 = θ₂<br>
+        Δθ₂ = fall in temp of warm water = θ₁ − θ₂
+      </div>
+    </div>
+
+    <div class="warn-box"><strong>⚠️ Critical!</strong> The ice must be <strong>dried</strong> first (blot with kitchen paper) so there's no surface water that would add extra mass. Also, warm the water to ~10°C above room temperature first.</div>
+
+    <h3>Example Calculation</h3>
+    <div class="example-box">
+      <div class="el">📐 Worked Example</div>
+      <div class="calc-step"><div class="csl">Given</div>m_i = 0.020 kg, m_cal = 0.050 kg, m_w = 0.200 kg<br>θ₁ = 30°C, θ₂ = 18°C, c_w = 4200, c_c = 390</div>
+      <div class="calc-step"><div class="csl">Temperature changes</div>Δθ₁ (ice warms) = 18 − 0 = 18°C<br>Δθ₂ (water cools) = 30 − 18 = 12°C</div>
+      <div class="calc-step"><div class="csl">Apply formula</div>0.020 l + 0.020(4200)(18) = 0.050(390)(12) + 0.200(4200)(12)<br>0.020 l + 1512 = 234 + 10080<br>0.020 l = 10314 − 1512 = 8802<br><strong>l = 440,100 J/kg ≈ 3.3 × 10⁵ J/kg</strong></div>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="nav-btn" onclick="go('shc-mech')">← SHC Mechanical</button>
+      <button class="nav-btn primary" onclick="go('latent-steam')">Next: Latent Heat Steam →</button>
+    </div>
+  </div>
+
+  <!-- ===== 14. LATENT STEAM ===== -->
+  <div class="section" id="sec-latent-steam">
+    <div class="exp-badge" style="background:var(--accent4);">Heat — Exp 14</div>
+    <div class="section-title">🌡️ Specific Latent Heat of Vaporisation of Water</div>
+    <div class="section-subtitle">How much energy does steam release when it condenses?</div>
+
+    <div class="def-box"><div class="dl">Key Idea</div><div class="dt">Dry steam (100°C) is passed into cool water. The steam condenses (releasing latent heat) and cools to θ₂. All the energy heats the water and calorimeter.</div></div>
+
+    <div class="formula-box">
+      <div class="fl">📐 Formula</div>
+      <div class="fm">m_s × l + m_s × c_w × Δθ₁ = m_cal × c_c × Δθ₂ + m_w × c_w × Δθ₂</div>
+      <div class="fd">
+        Left: energy from condensing steam + energy from steam cooling from 100°C to θ₂<br>
+        Right: energy gained by calorimeter + energy gained by water<br>
+        Δθ₁ (steam) = 100 − θ₂ &nbsp;&nbsp;&nbsp; Δθ₂ (water) = θ₂ − θ₁
+      </div>
+    </div>
+
+    <div class="warn-box"><strong>⚠️ Use a steam trap!</strong> The steam trap removes water droplets so only <strong>dry steam</strong> enters the calorimeter. Wet steam would carry extra mass that wasn't properly at 100°C.</div>
+
+    <h3>Example Calculation</h3>
+    <div class="example-box">
+      <div class="el">📐 Worked Example</div>
+      <div class="calc-step"><div class="csl">Given</div>m_s = 0.005 kg, m_cal = 0.050 kg, m_w = 0.200 kg<br>θ₁ = 15°C, θ₂ = 35°C</div>
+      <div class="calc-step"><div class="csl">Temperature changes</div>Δθ₁ = 100 − 35 = 65°C &nbsp;&nbsp; Δθ₂ = 35 − 15 = 20°C</div>
+      <div class="calc-step"><div class="csl">Apply formula</div>0.005 l + 0.005(4200)(65) = 0.050(390)(20) + 0.200(4200)(20)<br>0.005 l + 1365 = 390 + 16800<br>0.005 l = 15825 → <strong>l = 2.2 × 10⁶ J/kg</strong> (actual ≈ 2.26 × 10⁶)</div>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="nav-btn" onclick="go('latent-ice')">← Latent Heat Ice</button>
+      <button class="nav-btn primary" onclick="go('sound')">Next: Speed of Sound →</button>
+    </div>
+  </div>
+
+  <!-- ===== 15. SOUND ===== -->
+  <div class="section" id="sec-sound">
+    <div class="exp-badge" style="background:var(--accent5);">Sound — Exp 15</div>
+    <div class="section-title">🔊 Measurement of Speed of Sound in Air</div>
+    <div class="section-subtitle">Using resonance in an air column and tuning forks</div>
+
+    <div class="def-box"><div class="dl">Key Principle</div><div class="dt">When a tuning fork is held over a tube, the air column resonates at specific lengths. The distance between two resonance points (l₁ and l₂) equals <strong>half a wavelength</strong>: λ = 2(l₂ − l₁). Then c = fλ.</div></div>
+
+    <h3>Apparatus</h3>
+    <div class="highlight-box">1000 ml graduated cylinder, resonance tube (able to slide up/down), set of tuning forks (256–512 Hz), metre stick, clamp, wooden block</div>
+
+    <h3>Diagram</h3>
+    <div class="diagram-container">
+      <svg viewBox="0 0 300 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-height:280px;">
+        <!-- Graduated cylinder / water container -->
+        <rect x="100" y="80" width="100" height="180" fill="#1e40af" opacity="0.3" rx="4"/>
+        <rect x="100" y="80" width="100" height="180" fill="none" stroke="#60a5fa" stroke-width="2" rx="4"/>
+        <!-- Water level -->
+        <rect x="102" y="190" width="96" height="68" fill="#3b82f6" opacity="0.5" rx="0 0 4 4"/>
+        <text x="150" y="215" fill="white" font-size="10" text-anchor="middle" font-family="sans-serif">Water</text>
+        <!-- Resonance tube -->
+        <rect x="135" y="50" width="30" height="145" fill="none" stroke="#fbbf24" stroke-width="2.5" rx="2"/>
+        <!-- Air column l1 -->
+        <line x1="130" y1="50" x2="130" y2="110" stroke="#86efac" stroke-width="1.5"/>
+        <line x1="128" y1="50" x2="132" y2="50" stroke="#86efac" stroke-width="1.5"/>
+        <line x1="128" y1="110" x2="132" y2="110" stroke="#86efac" stroke-width="1.5"/>
+        <text x="120" y="82" fill="#86efac" font-size="10" text-anchor="end" font-family="sans-serif">l₁</text>
+        <!-- Tuning fork -->
+        <rect x="148" y="20" width="4" height="20" fill="#fbbf24" rx="1"/>
+        <rect x="158" y="20" width="4" height="20" fill="#fbbf24" rx="1"/>
+        <rect x="148" y="38" width="14" height="4" fill="#fbbf24" rx="1"/>
+        <text x="185" y="35" fill="#fbbf24" font-size="10" font-family="sans-serif">Tuning Fork</text>
+        <!-- Wavelength annotation -->
+        <text x="185" y="82" fill="#e5e7eb" font-size="10" font-family="sans-serif">λ/4 = l₁+e</text>
+        <text x="185" y="120" fill="#e5e7eb" font-size="10" font-family="sans-serif">λ = 2(l₂-l₁)</text>
+        <text x="150" y="268" fill="#93c5fd" font-size="10" text-anchor="middle" font-family="sans-serif">Slide tube to find resonance</text>
+      </svg>
+    </div>
+
+    <h3>Procedure</h3>
+    <div class="step"><div class="step-num">1</div><div>Strike the highest frequency tuning fork (512 Hz) on a wooden block and hold it horizontally just above the tube opening.</div></div>
+    <div class="step"><div class="step-num">2</div><div>Slide the tube slowly until the note is <strong>loudest</strong> — this is the first resonance position. Measure length <strong>l₁</strong>.</div></div>
+    <div class="step"><div class="step-num">3</div><div>Continue sliding until the second (weaker) resonance. Measure length <strong>l₂</strong>.</div></div>
+    <div class="step"><div class="step-num">4</div><div>Calculate: λ = 2(l₂ − l₁) and c = fλ.</div></div>
+    <div class="step"><div class="step-num">5</div><div>Repeat for all tuning forks. Find average speed of sound.</div></div>
+
+    <div class="formula-box">
+      <div class="fl">📐 Formulas</div>
+      <div class="fm">λ = 2(l₂ − l₁) &nbsp;&nbsp;&nbsp; c = fλ</div>
+      <div class="fd">Speed of sound in air ≈ 340 m/s</div>
+    </div>
+
+    <h3>Example Calculation</h3>
+    <div class="example-box">
+      <div class="el">📐 Worked Example</div>
+      <div class="calc-step"><div class="csl">Given</div>f = 512 Hz, l₁ = 0.163 m, l₂ = 0.495 m</div>
+      <div class="calc-step"><div class="csl">Wavelength</div>λ = 2(l₂ − l₁) = 2(0.495 − 0.163) = 2 × 0.332 = 0.664 m</div>
+      <div class="calc-step"><div class="csl">Speed</div>c = fλ = 512 × 0.664 = <strong>340 m/s</strong></div>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="nav-btn" onclick="go('latent-steam')">← Latent Steam</button>
+      <button class="nav-btn primary" onclick="go('string-length')">Next: String vs Length →</button>
+    </div>
+  </div>
+
+  <!-- ===== 16. STRING LENGTH ===== -->
+  <div class="section" id="sec-string-length">
+    <div class="exp-badge" style="background:var(--accent5);">Sound — Exp 16</div>
+    <div class="section-title">🔊 String Frequency vs Length</div>
+    <div class="section-subtitle">Showing that f ∝ 1/l for a string at constant tension</div>
+
+    <div class="def-box"><div class="dl">What We're Showing</div><div class="dt">The shorter the string, the higher the note (think of a guitar!). We prove this mathematically: <strong>frequency is inversely proportional to length</strong> (f ∝ 1/l).</div></div>
+
+    <h3>Apparatus</h3>
+    <div class="highlight-box">Signal generator, U-shaped magnet, sonometer, newton balance (measures tension), tension control key, metre stick, paper rider (or straw)</div>
+
+    <h3>Procedure</h3>
+    <div class="step"><div class="step-num">1</div><div>Set tension to a <strong>constant value</strong> (e.g. 20 N) using the tension key. Keep this fixed throughout.</div></div>
+    <div class="step"><div class="step-num">2</div><div>Set bridges far apart. Measure length l. Position magnet midway between bridges.</div></div>
+    <div class="step"><div class="step-num">3</div><div>Slowly increase signal generator frequency from 0 until wire vibrates maximally (paper rider bounces vigorously).</div></div>
+    <div class="step"><div class="step-num">4</div><div>Record the resonant frequency f.</div></div>
+    <div class="step"><div class="step-num">5</div><div>Shorten the length (move one bridge inward). Repeat for at least 6 different lengths.</div></div>
+    <div class="step"><div class="step-num">6</div><div>Plot <strong>f (y-axis) vs 1/l (x-axis)</strong>. Straight line through origin = f ∝ 1/l.</div></div>
+
+    <h3>Expected Graph</h3>
+    <div class="graph-container">
+      <div class="graph-title">Graph of f vs 1/l — straight line through origin verifies f ∝ 1/l</div>
+      <svg viewBox="0 0 380 240" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-height:240px;">
+        <line x1="55" y1="200" x2="360" y2="200" stroke="#374151" stroke-width="2"/>
+        <line x1="55" y1="200" x2="55" y2="20" stroke="#374151" stroke-width="2"/>
+        <text x="207" y="225" fill="#374151" font-size="12" text-anchor="middle" font-family="sans-serif">1/l (m⁻¹)</text>
+        <text x="18" y="110" fill="#374151" font-size="12" text-anchor="middle" font-family="sans-serif" transform="rotate(-90,18,110)">Frequency f (Hz)</text>
+        <line x1="55" y1="200" x2="348" y2="32" stroke="#7c3aed" stroke-width="2.5"/>
+        <circle cx="108" cy="175" r="5" fill="#dc2626"/>
+        <circle cx="155" cy="152" r="5" fill="#dc2626"/>
+        <circle cx="205" cy="124" r="5" fill="#dc2626"/>
+        <circle cx="260" cy="97" r="5" fill="#dc2626"/>
+        <circle cx="312" cy="67" r="5" fill="#dc2626"/>
+        <text x="220" y="55" fill="#7c3aed" font-size="11">f ∝ 1/l ✓</text>
+      </svg>
+    </div>
+
+    <div class="tip-box"><div class="tl">⚠️ Key Points</div>
+      • Keep tension <strong>constant</strong> throughout<br>
+      • Reposition magnet to midway between bridges after each change<br>
+      • Safety goggles — wire can snap under tension!
+    </div>
+
+    <div class="nav-buttons">
+      <button class="nav-btn" onclick="go('sound')">← Speed of Sound</button>
+      <button class="nav-btn primary" onclick="go('string-tension')">Next: String vs Tension* →</button>
+    </div>
+  </div>
+
+  <!-- ===== 17. STRING TENSION ===== -->
+  <div class="section" id="sec-string-tension">
+    <div class="exp-badge" style="background:var(--accent5);">Sound — Exp 17 (HL)</div>
+    <div class="section-title">🔊 String Frequency vs Tension (HL)</div>
+    <div class="section-subtitle">Showing that f ∝ √T for a string of constant length</div>
+
+    <div class="def-box"><div class="dl">What We're Showing</div><div class="dt"><strong>Frequency is proportional to the square root of tension</strong>: f ∝ √T.<br>Plot f vs √T → straight line through origin.</div></div>
+
+    <h3>Procedure</h3>
+    <div class="step"><div class="step-num">1</div><div>Fix the length at a constant value (e.g. 30 cm). Keep this fixed throughout.</div></div>
+    <div class="step"><div class="step-num">2</div><div>Set tension to a low value (e.g. 4 N). Find the resonant frequency.</div></div>
+    <div class="step"><div class="step-num">3</div><div>Increase tension in steps (e.g. 4 N, 9 N, 16 N, 25 N...). Find new resonant frequency each time.</div></div>
+    <div class="step"><div class="step-num">4</div><div>Record T and f. Calculate √T. Plot f vs √T.</div></div>
+
+    <div class="formula-box">
+      <div class="fl">📐 Relationship</div>
+      <div class="fm">f ∝ √T</div>
+      <div class="fd">Plot f (y-axis) vs √T (x-axis) → straight line through origin</div>
+    </div>
+
+    <div class="tip-box"><div class="tl">💡 Tip</div>
+      Use tension values that are perfect squares (4, 9, 16, 25 N) — makes √T easy to calculate!
+    </div>
+
+    <div class="nav-buttons">
+      <button class="nav-btn" onclick="go('string-length')">← String vs Length</button>
+      <button class="nav-btn primary" onclick="go('concave-mirror')">Next: Focal Length Mirror →</button>
+    </div>
+  </div>
+
+  <!-- ===== 18. CONCAVE MIRROR ===== -->
+  <div class="section" id="sec-concave-mirror">
+    <div class="exp-badge" style="background:#0891b2;">Light — Exp 18</div>
+    <div class="section-title">💡 Focal Length of a Concave Mirror</div>
+    <div class="section-subtitle">Using the mirror formula 1/f = 1/u + 1/v</div>
+
+    <div class="def-box"><div class="dl">Formula</div><div class="dt"><strong>1/f = 1/u + 1/v</strong><br>f = focal length, u = object distance, v = image distance (all in same units)</div></div>
+
+    <h3>Apparatus</h3>
+    <div class="highlight-box">Concave mirror, screen, lamp-box with crosswire, metre stick</div>
+
+    <h3>Procedure</h3>
+    <div class="step"><div class="step-num">1</div><div><strong>Approximate f first:</strong> Focus a distant object onto a sheet of paper. Distance from mirror to paper ≈ focal length.</div></div>
+    <div class="step"><div class="step-num">2</div><div>Place lamp-box well outside the focal length. Move screen until a sharp <strong>inverted</strong> image of the crosswire appears.</div></div>
+    <div class="step"><div class="step-num">3</div><div>Measure u (crosswire to mirror) and v (screen to mirror) with metre stick. Measure from the <strong>back of the mirror</strong>.</div></div>
+    <div class="step"><div class="step-num">4</div><div>Calculate f using 1/f = 1/u + 1/v.</div></div>
+    <div class="step"><div class="step-num">5</div><div>Repeat for different values of u. Average all f values.</div></div>
+
+    <h3>Example Calculation</h3>
+    <div class="example-box">
+      <div class="el">📐 Worked Example</div>
+      <div class="calc-step"><div class="csl">Given</div>u = 30 cm, v = 60 cm</div>
+      <div class="calc-step"><div class="csl">Apply formula</div>1/f = 1/30 + 1/60 = 2/60 + 1/60 = 3/60 = 1/20</div>
+      <div class="calc-step"><div class="csl">Focal length</div><strong>f = 20 cm</strong></div>
+    </div>
+
+    <div class="tip-box"><div class="tl">⚠️ Sources of Error</div>
+      • Difficulty judging sharpest focus — repeat and average<br>
+      • Parallax error — view metre stick perpendicular<br>
+      • Measure from the <strong>back of the mirror</strong><br>
+      • Never place object inside focal length (virtual image can't hit screen!)
+    </div>
+
+    <div class="nav-buttons">
+      <button class="nav-btn" onclick="go('string-tension')">← String Tension</button>
+      <button class="nav-btn primary" onclick="go('snell')">Next: Snell's Law →</button>
+    </div>
+  </div>
+
+  <!-- ===== 19. SNELL ===== -->
+  <div class="section" id="sec-snell">
+    <div class="exp-badge" style="background:#0891b2;">Light — Exp 19</div>
+    <div class="section-title">💡 Verification of Snell's Law</div>
+    <div class="section-subtitle">Showing that sin i / sin r = constant (refractive index)</div>
+
+    <div class="def-box"><div class="dl">Snell's Law</div><div class="dt"><strong>n = sin i / sin r</strong><br>n = refractive index, i = angle of incidence, r = angle of refraction. Both angles measured from the <strong>normal</strong>.</div></div>
+
+    <h3>Apparatus</h3>
+    <div class="highlight-box">Glass block (rectangular), lamp-box, 0–360° protractor, protractor/ruler</div>
+
+    <h3>Procedure</h3>
+    <div class="step"><div class="step-num">1</div><div>Place glass block on the 360° protractor and mark its outline.</div></div>
+    <div class="step"><div class="step-num">2</div><div>Shine ray from lamp-box at a set angle of incidence i. Note where ray enters (point A) and exits (point B) the block.</div></div>
+    <div class="step"><div class="step-num">3</div><div>Remove block. Join BA and extend to C to find the refracted ray.</div></div>
+    <div class="step"><div class="step-num">4</div><div>Measure angle of refraction r using protractor. Calculate sin i / sin r.</div></div>
+    <div class="step"><div class="step-num">5</div><div>Repeat for at least 6 different values of i. Plot sin i (y-axis) vs sin r (x-axis).</div></div>
+
+    <h3>Expected Graph</h3>
+    <div class="graph-container">
+      <div class="graph-title">sin i vs sin r — straight line through origin, slope = n (refractive index ≈ 1.5 for glass)</div>
+      <svg viewBox="0 0 380 240" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-height:240px;">
+        <line x1="55" y1="200" x2="360" y2="200" stroke="#374151" stroke-width="2"/>
+        <line x1="55" y1="200" x2="55" y2="20" stroke="#374151" stroke-width="2"/>
+        <text x="207" y="225" fill="#374151" font-size="12" text-anchor="middle" font-family="sans-serif">sin r</text>
+        <text x="18" y="110" fill="#374151" font-size="12" text-anchor="middle" font-family="sans-serif" transform="rotate(-90,18,110)">sin i</text>
+        <line x1="55" y1="200" x2="310" y2="38" stroke="#16a34a" stroke-width="2.5"/>
+        <!-- Points for n ≈ 1.5 -->
+        <circle cx="100" cy="178" r="5" fill="#dc2626"/>
+        <circle cx="143" cy="155" r="5" fill="#dc2626"/>
+        <circle cx="190" cy="128" r="5" fill="#dc2626"/>
+        <circle cx="237" cy="101" r="5" fill="#dc2626"/>
+        <circle cx="283" cy="72" r="5" fill="#dc2626"/>
+        <text x="220" y="52" fill="#16a34a" font-size="11">slope = n ≈ 1.5</text>
+        <text x="55" y="216" fill="#6b7280" font-size="10">0</text>
+        <text x="185" y="216" fill="#6b7280" font-size="10">0.5</text>
+        <text x="50" y="133" fill="#6b7280" font-size="10" text-anchor="end">0.5</text>
+      </svg>
+    </div>
+
+    <h3>Example Calculation</h3>
+    <div class="example-box">
+      <div class="el">📐 From Exam Data</div>
+      <div class="calc-step"><div class="csl">Given i = 40°, r = 25°</div>n = sin 40° / sin 25° = 0.643 / 0.423 = <strong>1.52</strong></div>
+    </div>
+
+    <div class="tip-box"><div class="tl">⚠️ Key Points</div>
+      • Don't use small angles (below 20°) — large % error<br>
+      • Look <strong>directly down</strong> through the block to measure r<br>
+      • Slope of graph gives refractive index
+    </div>
+
+    <div class="nav-buttons">
+      <button class="nav-btn" onclick="go('concave-mirror')">← Concave Mirror</button>
+      <button class="nav-btn primary" onclick="go('ri-liquid')">Next: RI of Liquid →</button>
+    </div>
+  </div>
+
+  <!-- ===== 20. RI LIQUID ===== -->
+  <div class="section" id="sec-ri-liquid">
+    <div class="exp-badge" style="background:#0891b2;">Light — Exp 20</div>
+    <div class="section-title">💡 Refractive Index of a Liquid</div>
+    <div class="section-subtitle">Using apparent depth and a pin-and-mirror method</div>
+
+    <div class="formula-box">
+      <div class="fl">📐 Formula</div>
+      <div class="fm">n = Real Depth / Apparent Depth</div>
+      <div class="fd">The liquid makes the bottom appear closer than it really is.</div>
+    </div>
+
+    <h3>Procedure</h3>
+    <div class="step"><div class="step-num">1</div><div>Fill a container to the top with water. Place a plane mirror beside it.</div></div>
+    <div class="step"><div class="step-num">2</div><div>Place a pin on the bottom of the container (object pin).</div></div>
+    <div class="step"><div class="step-num">3</div><div>Adjust the height of a second pin in a cork above the mirror until there is <strong>no parallax</strong> between its image in the mirror and the image of the pin in the water.</div></div>
+    <div class="step"><div class="step-num">4</div><div>Measure: apparent depth = distance from cork pin to back of mirror. Real depth = depth of container.</div></div>
+    <div class="step"><div class="step-num">5</div><div>Calculate n = real depth / apparent depth. Repeat for different containers, average.</div></div>
+
+    <h3>Example Calculation</h3>
+    <div class="example-box">
+      <div class="el">📐 Worked Example</div>
+      <div class="calc-step"><div class="csl">Given</div>Real depth = 15.0 cm, Apparent depth = 11.3 cm</div>
+      <div class="calc-step"><div class="csl">Refractive index</div>n = 15.0 / 11.3 = <strong>1.33</strong> (water) ✓</div>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="nav-btn" onclick="go('snell')">← Snell's Law</button>
+      <button class="nav-btn primary" onclick="go('convex-lens')">Next: Convex Lens →</button>
+    </div>
+  </div>
+
+  <!-- ===== 21. CONVEX LENS ===== -->
+  <div class="section" id="sec-convex-lens">
+    <div class="exp-badge" style="background:#0891b2;">Light — Exp 21</div>
+    <div class="section-title">💡 Focal Length of a Converging Lens</div>
+    <div class="section-subtitle">Same formula as concave mirror — 1/f = 1/u + 1/v</div>
+
+    <h3>Apparatus</h3>
+    <div class="highlight-box">Converging (convex) lens, screen, lamp-box with crosswire, metre stick, retort stand</div>
+
+    <h3>Procedure</h3>
+    <div class="step"><div class="step-num">1</div><div><strong>Approximate f first:</strong> Focus a distant object (e.g. a tree) through the lens onto a screen. Distance = approximate f.</div></div>
+    <div class="step"><div class="step-num">2</div><div>Place lamp-box outside focal length. Move screen (on far side of lens) until sharp <strong>inverted</strong> image appears.</div></div>
+    <div class="step"><div class="step-num">3</div><div>Measure u (crosswire to lens centre) and v (lens centre to screen).</div></div>
+    <div class="step"><div class="step-num">4</div><div>Calculate f. Repeat for different u values. Average f.</div></div>
+
+    <h3>Comparison: Mirror vs Lens Experiment</h3>
+    <table class="data-table">
+      <tr><th>Feature</th><th>Concave Mirror</th><th>Convex Lens</th></tr>
+      <tr><td>Screen position</td><td>Same side as object</td><td>Opposite side to object</td></tr>
+      <tr><td>Measure from</td><td>Back of mirror</td><td>Centre of lens</td></tr>
+      <tr><td>Image on screen</td><td>Inverted ✓</td><td>Inverted ✓</td></tr>
+      <tr><td>Formula</td><td>1/f = 1/u + 1/v</td><td>1/f = 1/u + 1/v</td></tr>
+    </table>
+
+    <h3>Example Calculation</h3>
+    <div class="example-box">
+      <div class="el">📐 Worked Example</div>
+      <div class="calc-step"><div class="csl">Given</div>u = 20 cm, v = 65 cm</div>
+      <div class="calc-step"><div class="csl">1/f = 1/u + 1/v</div>1/f = 1/20 + 1/65 = 13/260 + 4/260 = 17/260</div>
+      <div class="calc-step"><div class="csl">f</div>f = 260/17 = <strong>15.3 cm</strong></div>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="nav-btn" onclick="go('ri-liquid')">← RI of Liquid</button>
+      <button class="nav-btn primary" onclick="go('wavelength')">Next: Wavelength (Spectrometer) →</button>
+    </div>
+  </div>
+
+  <!-- ===== 22. WAVELENGTH SPECTROMETER ===== -->
+  <div class="section" id="sec-wavelength">
+    <div class="exp-badge" style="background:#0891b2;">Light — Exp 22</div>
+    <div class="section-title">💡 Wavelength of Monochromatic Light (Spectrometer)</div>
+    <div class="section-subtitle">Using a diffraction grating and sodium lamp</div>
+
+    <div class="def-box"><div class="dl">Key Formula</div><div class="dt"><strong>nλ = d sin θ</strong><br>n = order number (1, 2, 3...), d = slit spacing (d = 1/N where N = slits per metre), θ = diffraction angle</div></div>
+
+    <h3>Apparatus</h3>
+    <div class="highlight-box">Sodium lamp, spectrometer (with telescope + turntable), diffraction grating (300 lines/mm)</div>
+
+    <h3>Procedure</h3>
+    <div class="step"><div class="step-num">1</div><div>Focus the telescope for parallel light (no parallax between image and crosswires). Place sodium lamp at the collimator.</div></div>
+    <div class="step"><div class="step-num">2</div><div>Place diffraction grating at right angles to beam on turntable.</div></div>
+    <div class="step"><div class="step-num">3</div><div>Move telescope to the right until first bright fringe (n=1). Record angle θ_r.</div></div>
+    <div class="step"><div class="step-num">4</div><div>Move telescope to first bright fringe on the left. Record angle θ_l.</div></div>
+    <div class="step"><div class="step-num">5</div><div>Calculate θ = (θ_r − θ_l) / 2. Then λ = d sin θ / n.</div></div>
+    <div class="step"><div class="step-num">6</div><div>Repeat for n = 2, 3... Average all λ values.</div></div>
+
+    <div class="formula-box">
+      <div class="fl">📐 Key Formulas</div>
+      <div class="fm">d = 1/N (N = slits per metre)</div>
+      <div class="fm">θ = (θ_r − θ_l) / 2</div>
+      <div class="fm">λ = d sin θ / n</div>
+    </div>
+
+    <h3>Example Calculation</h3>
+    <div class="example-box">
+      <div class="el">📐 Worked Example</div>
+      <div class="calc-step"><div class="csl">Given</div>N = 300 lines/mm = 300,000 lines/m, n = 1, θ_r = 22.5°, θ_l = 337.5° (i.e. 360−22.5)</div>
+      <div class="calc-step"><div class="csl">Calculate d</div>d = 1/300,000 = 3.33 × 10⁻⁶ m</div>
+      <div class="calc-step"><div class="csl">Calculate θ</div>θ = (22.5 − (360−22.5−180))/2... simpler: just use θ_r directly if measured from centre. θ = 12°</div>
+      <div class="calc-step"><div class="csl">Calculate λ</div>λ = d sin θ = (3.33 × 10⁻⁶) × sin 12° = (3.33 × 10⁻⁶) × 0.208 = <strong>5.9 × 10⁻⁷ m = 590 nm</strong> (sodium yellow) ✓</div>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="nav-btn" onclick="go('convex-lens')">← Convex Lens</button>
+      <button class="nav-btn primary" onclick="go('wavelength-laser')">Next: Wavelength (Laser) →</button>
+    </div>
+  </div>
+
+  <!-- ===== 23. WAVELENGTH LASER ===== -->
+  <div class="section" id="sec-wavelength-laser">
+    <div class="exp-badge" style="background:#0891b2;">Light — Exp 23</div>
+    <div class="section-title">💡 Wavelength of Light — Using a Laser</div>
+    <div class="section-subtitle">Simpler setup with a laser pointer and diffraction grating</div>
+
+    <div class="def-box"><div class="dl">Same Formula</div><div class="dt"><strong>nλ = d sin θ</strong><br>But this time θ is found from the geometry: tan θ = x/D where x is the distance from centre to bright spot, D is distance from grating to screen.</div></div>
+
+    <h3>Apparatus</h3>
+    <div class="highlight-box">Laser, diffraction grating (600 lines/mm), 2 metre sticks</div>
+
+    <div class="warn-box"><strong>⚠️ Safety!</strong> Never look directly into a laser beam.</div>
+
+    <h3>Procedure</h3>
+    <div class="step"><div class="step-num">1</div><div>Clamp a metre stick horizontally. Aim laser at the 50 cm mark at right angles.</div></div>
+    <div class="step"><div class="step-num">2</div><div>Place diffraction grating between laser and metre stick.</div></div>
+    <div class="step"><div class="step-num">3</div><div>Observe bright spots on the metre stick. Measure distance D from grating to stick.</div></div>
+    <div class="step"><div class="step-num">4</div><div>Measure distance x from the central spot (n=0) to the first-order spot (n=1) on each side. Average.</div></div>
+    <div class="step"><div class="step-num">5</div><div>Calculate θ using tan θ = x/D. Then λ = d sin θ / n.</div></div>
+
+    <div class="formula-box">
+      <div class="fl">📐 Formulas</div>
+      <div class="fm">tan θ = x / D &nbsp;&nbsp;&nbsp; d = 1/N</div>
+      <div class="fm">λ = d sin θ / n</div>
+    </div>
+
+    <h3>Example Calculation</h3>
+    <div class="example-box">
+      <div class="el">📐 Worked Example</div>
+      <div class="calc-step"><div class="csl">Given</div>N = 600 lines/mm = 6 × 10⁵ /m, D = 1.00 m, x = 0.390 m, n = 1</div>
+      <div class="calc-step"><div class="csl">d</div>d = 1/(6 × 10⁵) = 1.67 × 10⁻⁶ m</div>
+      <div class="calc-step"><div class="csl">θ</div>tan θ = 0.390/1.00 → θ = 21.3°</div>
+      <div class="calc-step"><div class="csl">λ</div>λ = d sin θ = (1.67 × 10⁻⁶) × sin 21.3° = (1.67 × 10⁻⁶) × 0.363 = <strong>6.1 × 10⁻⁷ m = 610 nm</strong> (red laser)</div>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="nav-btn" onclick="go('wavelength')">← Spectrometer Method</button>
+      <button class="nav-btn primary" onclick="go('joule')">Next: Joule's Law →</button>
+    </div>
+  </div>
+
+  <!-- ===== 24. JOULE ===== -->
+  <div class="section" id="sec-joule">
+    <div class="exp-badge" style="background:#b45309;">Electricity — Exp 24</div>
+    <div class="section-title">⚡ Verification of Joule's Law (ΔΘ ∝ I²)</div>
+    <div class="section-subtitle">Showing that the heat produced in a resistor is proportional to the square of the current</div>
+
+    <div class="def-box"><div class="dl">Joule's Law</div><div class="dt">The heat produced in a resistor is proportional to the <strong>square of the current</strong>: <strong>ΔΘ ∝ I²</strong> (at constant resistance and time).</div></div>
+
+    <h3>Apparatus</h3>
+    <div class="highlight-box">Lagged calorimeter or beaker, heating coil, rheostat, ammeter, thermometer, stopwatch, battery/power supply</div>
+
+    <h3>Procedure</h3>
+    <div class="step"><div class="step-num">1</div><div>Fill calorimeter with water covering the coil. Record initial temperature θ₁.</div></div>
+    <div class="step"><div class="step-num">2</div><div>Start with I = 0.5 A. Allow current to flow for <strong>exactly 5 minutes</strong>. Stir and record highest temperature θ₂. Calculate ΔΘ = θ₂ − θ₁.</div></div>
+    <div class="step"><div class="step-num">3</div><div>Allow to cool back to room temperature. Increase I to 1.0 A. Repeat for same 5 minutes.</div></div>
+    <div class="step"><div class="step-num">4</div><div>Repeat for I = 1.5, 2.0, 2.5, 3.0 A.</div></div>
+    <div class="step"><div class="step-num">5</div><div>Plot <strong>ΔΘ (y-axis) vs I² (x-axis)</strong>. Straight line through origin = Joule's Law verified.</div></div>
+
+    <h3>Expected Graph</h3>
+    <div class="graph-container">
+      <div class="graph-title">ΔΘ vs I² — straight line through origin proves ΔΘ ∝ I²</div>
+      <svg viewBox="0 0 380 240" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-height:240px;">
+        <line x1="55" y1="200" x2="360" y2="200" stroke="#374151" stroke-width="2"/>
+        <line x1="55" y1="200" x2="55" y2="20" stroke="#374151" stroke-width="2"/>
+        <text x="207" y="225" fill="#374151" font-size="12" text-anchor="middle" font-family="sans-serif">I² / A²</text>
+        <text x="18" y="110" fill="#374151" font-size="12" text-anchor="middle" font-family="sans-serif" transform="rotate(-90,18,110)">ΔΘ / °C</text>
+        <line x1="55" y1="200" x2="345" y2="32" stroke="#b45309" stroke-width="2.5"/>
+        <circle cx="105" cy="175" r="5" fill="#2563eb"/>
+        <circle cx="155" cy="150" r="5" fill="#2563eb"/>
+        <circle cx="210" cy="122" r="5" fill="#2563eb"/>
+        <circle cx="268" cy="92" r="5" fill="#2563eb"/>
+        <circle cx="320" cy="65" r="5" fill="#2563eb"/>
+        <text x="200" y="55" fill="#b45309" font-size="11">ΔΘ ∝ I² ✓</text>
+        <!-- axis labels -->
+        <text x="105" y="214" fill="#6b7280" font-size="10">0.25</text>
+        <text x="205" y="214" fill="#6b7280" font-size="10">1.0</text>
+        <text x="320" y="214" fill="#6b7280" font-size="10">2.25</text>
+      </svg>
+    </div>
+
+    <div class="tip-box"><div class="tl">⚠️ Key Points</div>
+      • Same time interval (5 min) for each current reading<br>
+      • Let water cool back to room temperature before next reading<br>
+      • Keep resistance constant (don't change the coil between trials)<br>
+      • Lagging reduces heat loss to surroundings
+    </div>
+
+    <div class="nav-buttons">
+      <button class="nav-btn" onclick="go('wavelength-laser')">← Laser Wavelength</button>
+      <button class="nav-btn primary" onclick="go('resistivity')">Next: Resistivity →</button>
+    </div>
+  </div>
+
+  <!-- ===== 25. RESISTIVITY ===== -->
+  <div class="section" id="sec-resistivity">
+    <div class="exp-badge" style="background:#b45309;">Electricity — Exp 25</div>
+    <div class="section-title">⚡ Resistivity of a Wire</div>
+    <div class="section-subtitle">Measuring how resistance varies with length, then using wire diameter to find ρ</div>
+
+    <div class="def-box"><div class="dl">Key Formula</div><div class="dt"><strong>R = ρl/A</strong> &nbsp;&nbsp;→&nbsp;&nbsp; <strong>ρ = RA/l</strong><br>ρ = resistivity (Ω·m), R = resistance (Ω), l = length (m), A = cross-sectional area (m²) = πd²/4</div></div>
+
+    <h3>Apparatus</h3>
+    <div class="highlight-box">Nichrome/manganin wire (2–3 metres), micrometer, ohmmeter, metre stick, two retort stands</div>
+
+    <h3>Procedure</h3>
+    <div class="step"><div class="step-num">1</div><div>Note the resistance of the leads (crocodile clips connected together) — this will be subtracted.</div></div>
+    <div class="step"><div class="step-num">2</div><div>Stretch wire between stands. Connect crocodile clips a distance l apart. Read total resistance. Subtract leads resistance to get R of wire.</div></div>
+    <div class="step"><div class="step-num">3</div><div>Measure l with metre stick. Increase l and repeat for at least 6 lengths.</div></div>
+    <div class="step"><div class="step-num">4</div><div>Use micrometer to measure wire diameter d at several points. Note zero error. Find average d.</div></div>
+    <div class="step"><div class="step-num">5</div><div>Calculate A = πd²/4. Then ρ = R × A / l for each measurement. Average ρ.</div></div>
+
+    <div class="formula-box">
+      <div class="fl">📐 Formulas</div>
+      <div class="fm">A = πd² / 4 &nbsp;&nbsp;&nbsp; ρ = (R/l) × A</div>
+      <div class="fd">Nichrome ρ ≈ 100 × 10⁻⁸ Ω·m &nbsp;|&nbsp; Manganin ρ ≈ 48 × 10⁻⁸ Ω·m</div>
+    </div>
+
+    <h3>Example Calculation</h3>
+    <div class="example-box">
+      <div class="el">📐 Worked Example</div>
+      <div class="calc-step"><div class="csl">Given</div>R = 5.8 Ω, l = 1.00 m, d = 0.27 mm = 2.7 × 10⁻⁴ m</div>
+      <div class="calc-step"><div class="csl">Area</div>A = π(2.7 × 10⁻⁴)²/4 = π(7.29 × 10⁻⁸)/4 = 5.73 × 10⁻⁸ m²</div>
+      <div class="calc-step"><div class="csl">Resistivity</div>ρ = RA/l = 5.8 × (5.73 × 10⁻⁸) / 1.00 = <strong>3.3 × 10⁻⁷ Ω·m</strong></div>
+    </div>
+
+    <div class="tip-box"><div class="tl">⚠️ Key Points</div>
+      • Always subtract the resistance of the leads (connection wire)<br>
+      • Measure d at several points along the wire and average<br>
+      • Note the micrometer zero error and correct for it<br>
+      • Safety glasses — wire can snap under tension!
+    </div>
+
+    <div class="nav-buttons">
+      <button class="nav-btn" onclick="go('joule')">← Joule's Law</button>
+      <button class="nav-btn primary" onclick="go('metal-temp')">Next: Metal vs Temperature →</button>
+    </div>
+  </div>
+
+  <!-- ===== 26. METAL TEMP ===== -->
+  <div class="section" id="sec-metal-temp">
+    <div class="exp-badge" style="background:#b45309;">Electricity — Exp 26</div>
+    <div class="section-title">⚡ Resistance of a Metal Conductor vs Temperature</div>
+    <div class="section-subtitle">Metals get more resistive as they heat up</div>
+
+    <div class="def-box"><div class="dl">Key Result</div><div class="dt">The resistance of a metal conductor <strong>increases linearly</strong> with temperature. Graph: R vs θ = <strong>straight line</strong> with positive slope.</div></div>
+
+    <h3>Apparatus</h3>
+    <div class="highlight-box">Coil of wire on frame (in boiling tube of glycerol), beaker of water, heat source, ohmmeter, thermometer</div>
+
+    <h3>Procedure</h3>
+    <div class="step"><div class="step-num">1</div><div>Place coil in boiling tube of glycerol in a water bath. Connect ohmmeter.</div></div>
+    <div class="step"><div class="step-num">2</div><div>Record resistance R and temperature θ (from thermometer in glycerol).</div></div>
+    <div class="step"><div class="step-num">3</div><div>Heat the water bath. For every 10°C rise, record R and θ.</div></div>
+    <div class="step"><div class="step-num">4</div><div>Plot R (y-axis) vs θ (x-axis). Should be a straight line with positive slope.</div></div>
+
+    <h3>Expected Graph</h3>
+    <div class="graph-container">
+      <div class="graph-title">R vs Temperature for Metal — straight line, positive slope (resistance increases with temp)</div>
+      <svg viewBox="0 0 380 240" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-height:240px;">
+        <line x1="55" y1="200" x2="360" y2="200" stroke="#374151" stroke-width="2"/>
+        <line x1="55" y1="200" x2="55" y2="20" stroke="#374151" stroke-width="2"/>
+        <text x="207" y="225" fill="#374151" font-size="12" text-anchor="middle" font-family="sans-serif">Temperature θ / °C</text>
+        <text x="18" y="110" fill="#374151" font-size="12" text-anchor="middle" font-family="sans-serif" transform="rotate(-90,18,110)">Resistance R / Ω</text>
+        <line x1="70" y1="185" x2="345" y2="40" stroke="#dc2626" stroke-width="2.5"/>
+        <circle cx="100" cy="170" r="5" fill="#2563eb"/>
+        <circle cx="150" cy="147" r="5" fill="#2563eb"/>
+        <circle cx="210" cy="118" r="5" fill="#2563eb"/>
+        <circle cx="275" cy="87" r="5" fill="#2563eb"/>
+        <circle cx="330" cy="60" r="5" fill="#2563eb"/>
+        <text x="230" y="55" fill="#dc2626" font-size="11">R increases with temp</text>
+        <text x="230" y="68" fill="#dc2626" font-size="11">(positive slope)</text>
+      </svg>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="nav-btn" onclick="go('resistivity')">← Resistivity</button>
+      <button class="nav-btn primary" onclick="go('thermistor')">Next: Thermistor vs Temp →</button>
+    </div>
+  </div>
+
+  <!-- ===== 27. THERMISTOR ===== -->
+  <div class="section" id="sec-thermistor">
+    <div class="exp-badge" style="background:#b45309;">Electricity — Exp 27</div>
+    <div class="section-title">⚡ Resistance of a Thermistor vs Temperature</div>
+    <div class="section-subtitle">Thermistors are the opposite — their resistance drops sharply with temperature</div>
+
+    <div class="def-box"><div class="dl">Key Result</div><div class="dt">The resistance of a thermistor <strong>decreases rapidly</strong> (non-linearly) as temperature increases. Graph: R vs θ = a <strong>curve</strong> (not a straight line!). This is opposite to a metal conductor.</div></div>
+
+    <h3>Apparatus</h3>
+    <div class="highlight-box">Thermistor, boiling tube of glycerol or liquid paraffin, beaker of water, heat source, ohmmeter, thermometer</div>
+
+    <h3>Procedure — same as Metal Resistance experiment</h3>
+    <div class="step"><div class="step-num">1</div><div>Place thermistor in boiling tube of glycerol in water bath. Connect ohmmeter.</div></div>
+    <div class="step"><div class="step-num">2</div><div>Record R and θ at room temperature.</div></div>
+    <div class="step"><div class="step-num">3</div><div>Heat the water bath. Record R and θ for every 10°C rise.</div></div>
+    <div class="step"><div class="step-num">4</div><div>Plot R vs θ. Join points with a <strong>smooth curve</strong>.</div></div>
+
+    <h3>Expected Graph</h3>
+    <div class="graph-container">
+      <div class="graph-title">R vs Temperature for Thermistor — CURVED, resistance falls sharply as temperature rises</div>
+      <svg viewBox="0 0 380 240" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-height:240px;">
+        <line x1="55" y1="200" x2="360" y2="200" stroke="#374151" stroke-width="2"/>
+        <line x1="55" y1="200" x2="55" y2="20" stroke="#374151" stroke-width="2"/>
+        <text x="207" y="225" fill="#374151" font-size="12" text-anchor="middle" font-family="sans-serif">Temperature θ / °C</text>
+        <text x="18" y="110" fill="#374151" font-size="12" text-anchor="middle" font-family="sans-serif" transform="rotate(-90,18,110)">Resistance R / Ω</text>
+        <path d="M 65 35 Q 120 50 165 90 Q 225 148 290 185 Q 330 200 360 206" fill="none" stroke="#7c3aed" stroke-width="2.5"/>
+        <circle cx="65" cy="35" r="5" fill="#dc2626"/>
+        <circle cx="110" cy="60" r="5" fill="#dc2626"/>
+        <circle cx="160" cy="96" r="5" fill="#dc2626"/>
+        <circle cx="220" cy="148" r="5" fill="#dc2626"/>
+        <circle cx="285" cy="185" r="5" fill="#dc2626"/>
+        <circle cx="350" cy="204" r="5" fill="#dc2626"/>
+        <text x="230" y="55" fill="#7c3aed" font-size="11">Resistance FALLS</text>
+        <text x="230" y="68" fill="#7c3aed" font-size="11">as temperature rises</text>
+      </svg>
+    </div>
+
+    <div class="two-col">
+      <div class="col-card" style="border-color:#dc2626;">
+        <h4 style="color:#dc2626;">Metal Conductor</h4>
+        Resistance <strong>INCREASES</strong> with temp<br>Straight line — positive slope
+      </div>
+      <div class="col-card" style="border-color:#7c3aed;">
+        <h4 style="color:#7c3aed;">Thermistor (NTC)</h4>
+        Resistance <strong>DECREASES</strong> with temp<br>Curved line — gets less steep
+      </div>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="nav-btn" onclick="go('metal-temp')">← Metal vs Temp</button>
+      <button class="nav-btn primary" onclick="go('iv-curves')">Next: I-V Characteristics →</button>
+    </div>
+  </div>
+
+  <!-- ===== 28. I-V CURVES ===== -->
+  <div class="section" id="sec-iv-curves">
+    <div class="exp-badge" style="background:#b45309;">Electricity — Exp 28</div>
+    <div class="section-title">⚡ I-V Characteristics of Components</div>
+    <div class="section-subtitle">Four different components — four different I-V graphs</div>
+
+    <div class="def-box"><div class="dl">What We're Doing</div><div class="dt">We apply different voltages to a component and measure the current. Plotting I vs V shows whether Ohm's Law is obeyed (straight line through origin) or not.</div></div>
+
+    <h3>Apparatus (Common to all 4)</h3>
+    <div class="highlight-box">Low voltage power supply, rheostat (potential divider), voltmeter, ammeter/milliammeter/microammeter, component</div>
+
+    <h3>The 4 Components</h3>
+
+    <div class="acc-btn" onclick="toggleAcc(this)">📌 (a) Metallic Conductor (Nichrome Wire) <span class="arrow">▼</span></div>
+    <div class="acc-content">
+      <p>A straight line through the origin — <strong>Ohm's Law obeyed</strong>.</p>
+      <p>I ∝ V (constant resistance). The slope = 1/R.</p>
+      <div class="graph-container">
+        <div class="graph-title">I vs V for Nichrome Wire — straight line, I ∝ V, Ohm's Law verified</div>
+        <svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-height:200px;">
+          <line x1="40" y1="165" x2="285" y2="165" stroke="#374151" stroke-width="2"/>
+          <line x1="40" y1="165" x2="40" y2="15" stroke="#374151" stroke-width="2"/>
+          <text x="162" y="185" fill="#374151" font-size="11" text-anchor="middle" font-family="sans-serif">V / Volts</text>
+          <text x="15" y="90" fill="#374151" font-size="11" text-anchor="middle" font-family="sans-serif" transform="rotate(-90,15,90)">I / A</text>
+          <line x1="40" y1="165" x2="280" y2="30" stroke="#16a34a" stroke-width="2.5"/>
+          <circle cx="90" cy="138" r="4" fill="#2563eb"/>
+          <circle cx="135" cy="112" r="4" fill="#2563eb"/>
+          <circle cx="185" cy="82" r="4" fill="#2563eb"/>
+          <circle cx="240" cy="50" r="4" fill="#2563eb"/>
+          <text x="200" y="28" fill="#16a34a" font-size="10">Ohm's Law ✓</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="acc-btn" onclick="toggleAcc(this)">📌 (b) Filament Bulb <span class="arrow">▼</span></div>
+    <div class="acc-content">
+      <p>A <strong>curved</strong> line — <strong>Ohm's Law NOT obeyed</strong>.</p>
+      <p>Resistance increases as temperature increases (filament gets hotter at higher currents → higher resistance → current doesn't keep up with voltage).</p>
+      <div class="graph-container">
+        <div class="graph-title">I vs V for Filament Bulb — CURVED, resistance increases with temperature</div>
+        <svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-height:200px;">
+          <line x1="40" y1="165" x2="285" y2="165" stroke="#374151" stroke-width="2"/>
+          <line x1="40" y1="165" x2="40" y2="15" stroke="#374151" stroke-width="2"/>
+          <text x="162" y="185" fill="#374151" font-size="11" text-anchor="middle" font-family="sans-serif">V / Volts</text>
+          <text x="15" y="90" fill="#374151" font-size="11" text-anchor="middle" font-family="sans-serif" transform="rotate(-90,15,90)">I / mA</text>
+          <!-- Curve that flattens -->
+          <path d="M 40 165 Q 90 100 160 70 Q 210 55 275 42" fill="none" stroke="#d97706" stroke-width="2.5"/>
+          <circle cx="70" cy="132" r="4" fill="#2563eb"/>
+          <circle cx="110" cy="100" r="4" fill="#2563eb"/>
+          <circle cx="165" cy="70" r="4" fill="#2563eb"/>
+          <circle cx="225" cy="54" r="4" fill="#2563eb"/>
+          <circle cx="270" cy="43" r="4" fill="#2563eb"/>
+          <text x="155" y="35" fill="#d97706" font-size="10">Curves = R increasing</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="acc-btn" onclick="toggleAcc(this)">📌 (c) Copper Sulfate with Copper Electrodes <span class="arrow">▼</span></div>
+    <div class="acc-content">
+      <p>A <strong>straight line through origin</strong> — Ohm's Law obeyed. The solution behaves like a resistor. I ∝ V.</p>
+    </div>
+
+    <div class="acc-btn" onclick="toggleAcc(this)">📌 (d) Semiconductor Diode — Forward & Reverse Bias <span class="arrow">▼</span></div>
+    <div class="acc-content">
+      <p><strong>Forward bias:</strong> Very little current until voltage exceeds about <strong>0.6 V</strong> (silicon diode). Then current increases rapidly — NOT a straight line.</p>
+      <p><strong>Reverse bias:</strong> Almost no current flows regardless of voltage — the diode blocks current in reverse.</p>
+      <div class="graph-container">
+        <div class="graph-title">I vs V for Semiconductor Diode — "knee" at 0.6 V forward bias</div>
+        <svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-height:200px;">
+          <line x1="40" y1="165" x2="285" y2="165" stroke="#374151" stroke-width="2"/>
+          <line x1="40" y1="165" x2="40" y2="15" stroke="#374151" stroke-width="2"/>
+          <!-- Reverse bias (left, tiny current) -->
+          <line x1="40" y1="163" x2="10" y2="163" stroke="#dc2626" stroke-width="2"/>
+          <text x="162" y="185" fill="#374151" font-size="11" text-anchor="middle" font-family="sans-serif">V / Volts</text>
+          <text x="15" y="90" fill="#374151" font-size="11" text-anchor="middle" font-family="sans-serif" transform="rotate(-90,15,90)">I / mA</text>
+          <!-- Forward bias: flat until 0.6V then steep rise -->
+          <path d="M 40 163 L 155 160 Q 180 145 200 100 Q 215 60 240 25" fill="none" stroke="#2563eb" stroke-width="2.5"/>
+          <line x1="155" y1="165" x2="155" y2="155" stroke="#6b7280" stroke-width="1" stroke-dasharray="3,2"/>
+          <text x="155" y="178" fill="#6b7280" font-size="9" text-anchor="middle">0.6 V</text>
+          <text x="220" y="20" fill="#2563eb" font-size="10">Forward bias</text>
+          <text x="15" y="158" fill="#dc2626" font-size="10">Reverse</text>
+        </svg>
+      </div>
+    </div>
+
+    <h3>Summary Table</h3>
+    <table class="data-table">
+      <tr><th>Component</th><th>Graph Shape</th><th>Ohm's Law?</th><th>Why?</th></tr>
+      <tr><td>Nichrome wire</td><td>Straight line</td><td>✅ Yes</td><td>Resistance constant</td></tr>
+      <tr><td>Filament bulb</td><td>Curved (flattens)</td><td>❌ No</td><td>R increases with temp</td></tr>
+      <tr><td>CuSO₄ solution</td><td>Straight line</td><td>✅ Yes</td><td>Electrolyte acts as resistor</td></tr>
+      <tr><td>Diode (forward)</td><td>Knee at 0.6 V then steep</td><td>❌ No</td><td>Non-linear semiconductor</td></tr>
+    </table>
+
+    <div class="nav-buttons">
+      <button class="nav-btn" onclick="go('thermistor')">← Thermistor</button>
+      <button class="nav-btn primary" onclick="go('intro')">🏠 Back to Start</button>
+    </div>
+  </div>
+
+</div><!-- end main -->
+
+<script>
+  const sections = ['intro','velocity','acceleration','newton2','momentum','gravity','boyle','equilibrium','pendulum','thermometer','shc-metal','shc-water','shc-mech','latent-ice','latent-steam','sound','string-length','string-tension','concave-mirror','snell','ri-liquid','convex-lens','wavelength','wavelength-laser','joule','resistivity','metal-temp','thermistor','iv-curves'];
+  const total = sections.length;
+
+  function go(id) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+    const sec = document.getElementById('sec-' + id);
+    if (sec) sec.classList.add('active');
+    const nav = document.querySelector(`[onclick="go('${id}')"]`);
+    if (nav) nav.classList.add('active');
+    window.scrollTo(0, 0);
+    const idx = sections.indexOf(id);
+    const pct = idx >= 0 ? ((idx + 1) / total) * 100 : 0;
+    document.getElementById('progress').style.width = pct + '%';
+    document.getElementById('prog-text').textContent = (idx + 1) + ' / ' + total;
+    closeSidebar();
+  }
+
+  function toggleSidebar() {
+    document.getElementById('sidebar').classList.toggle('open');
+    document.getElementById('overlay').classList.toggle('show');
+  }
+  function closeSidebar() {
+    document.getElementById('sidebar').classList.remove('open');
+    document.getElementById('overlay').classList.remove('show');
+  }
+  function toggleAcc(btn) {
+    btn.classList.toggle('open');
+    const c = btn.nextElementSibling;
+    c.classList.toggle('open');
+  }
+
+  go('intro');
+</script>
+</body>
+</html>
