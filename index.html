@@ -17,6 +17,7 @@
     --accent4: #4caf50; /* Green for Mechanics */
     --accent5: #9c27b0; /* Purple for Modern Physics */
     --accent6: #00bcd4; /* Cyan for Particle Physics */
+    --accent7: #3f51b5; /* Indigo for Optics */
     --border: #e0dcd4;
     --shadow: 0 4px 20px rgba(0,0,0,0.06);
     --shadow-hover: 0 12px 30px rgba(0,0,0,0.12);
@@ -133,11 +134,12 @@
   
   /* Staggered animation for cards */
   .module-card:nth-child(1) { animation-delay: 0.1s; }
-  .module-card:nth-child(2) { animation-delay: 0.2s; }
-  .module-card:nth-child(3) { animation-delay: 0.3s; }
-  .module-card:nth-child(4) { animation-delay: 0.4s; }
-  .module-card:nth-child(5) { animation-delay: 0.5s; }
-  .module-card:nth-child(6) { animation-delay: 0.6s; }
+  .module-card:nth-child(2) { animation-delay: 0.15s; }
+  .module-card:nth-child(3) { animation-delay: 0.2s; }
+  .module-card:nth-child(4) { animation-delay: 0.25s; }
+  .module-card:nth-child(5) { animation-delay: 0.3s; }
+  .module-card:nth-child(6) { animation-delay: 0.35s; }
+  .module-card:nth-child(7) { animation-delay: 0.4s; }
 
   .module-card::before {
     content: '';
@@ -178,6 +180,10 @@
   .card-particle::before { background: var(--accent6); }
   .card-particle:hover { border-color: var(--accent6); }
   .card-particle .mc-icon { color: var(--accent6); background: #e0f7fa; }
+
+  .card-optics::before { background: var(--accent7); }
+  .card-optics:hover { border-color: var(--accent7); }
+  .card-optics .mc-icon { color: var(--accent7); background: #e8eaf6; }
 
   .mc-icon {
     font-size: 42px;
@@ -346,6 +352,13 @@
         <div class="mc-icon">🌀</div>
         <div class="mc-title">Particle Physics</div>
         <div class="mc-desc">Explore the fundamental building blocks of the universe: quarks, leptons, neutrinos, and the four fundamental forces.</div>
+        <div class="mc-action">Start Module →</div>
+      </a>
+
+      <a href="Optics.html" class="module-card card-optics">
+        <div class="mc-icon">🔦</div>
+        <div class="mc-title">Geometric Optics</div>
+        <div class="mc-desc">Master the laws of reflection and refraction, lens formulas, ray diagrams, and the physics of the human eye.</div>
         <div class="mc-action">Start Module →</div>
       </a>
 
