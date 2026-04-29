@@ -20,6 +20,7 @@
     --accent7: #3f51b5; /* Indigo for Optics */
     --accent8: #ff7043; /* Deep Orange for Heat */
     --accent9: #607d8b; /* Slate for Experiments */
+    --accent10: #009688; /* Teal for DEB Papers */
     --border: #e0dcd4;
     --shadow: 0 4px 20px rgba(0,0,0,0.06);
     --shadow-hover: 0 12px 30px rgba(0,0,0,0.12);
@@ -144,6 +145,7 @@
   .module-card:nth-child(7) { animation-delay: 0.4s; }
   .module-card:nth-child(8) { animation-delay: 0.45s; }
   .module-card:nth-child(9) { animation-delay: 0.5s; }
+  .module-card:nth-child(10) { animation-delay: 0.55s; }
 
   .module-card::before {
     content: '';
@@ -196,6 +198,10 @@
   .card-exp::before { background: var(--accent9); }
   .card-exp:hover { border-color: var(--accent9); }
   .card-exp .mc-icon { color: var(--accent9); background: #eceff1; }
+
+  .card-deb::before { background: var(--accent10); }
+  .card-deb:hover { border-color: var(--accent10); }
+  .card-deb .mc-icon { color: var(--accent10); background: #e0f2f1; }
 
   .mc-icon {
     font-size: 42px;
@@ -404,6 +410,13 @@
         <div class="mc-title">Experiments</div>
         <div class="mc-desc">Review all mandatory Leaving Cert Physics experiments, including methods, diagrams, and calculations.</div>
         <div class="mc-action">Start Module →</div>
+      </a>
+
+      <a href="https://sites.google.com/view/mr-freneys-teaching-resources/subjects/leaving-cert-physics/exam-papers-and-marking-schemes" target="_blank" class="module-card card-deb">
+        <div class="mc-icon">📝</div>
+        <div class="mc-title">DEB Pre Papers</div>
+        <div class="mc-desc">Access past pre-Leaving Cert exam papers and marking schemes to test your knowledge and prepare for exams.</div>
+        <div class="mc-action">View Papers ↗</div>
       </a>
 
     </div>
