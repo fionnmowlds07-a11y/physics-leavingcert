@@ -1,0 +1,1699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Geometrical Optics — Leaving Cert Study Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Deca:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f7f9fc;
+    --card: #ffffff;
+    --text: #1a1a2e;
+    --text-light: #555570;
+    --accent1: #0077b6;
+    --accent2: #00b4d8;
+    --accent3: #ff9800;
+    --accent4: #4caf50;
+    --accent5: #e91e63;
+    --border: #dce8f0;
+    --def-bg: #e8f4fd;
+    --def-border: #0077b6;
+    --formula-bg: #fff8e1;
+    --formula-border: #ffc107;
+    --example-bg: #f1f8e9;
+    --example-border: #4caf50;
+    --tip-bg: #fce4ec;
+    --tip-border: #e91e63;
+    --warn-bg: #fff3e0;
+    --warn-border: #ff9800;
+    --shadow: 0 2px 12px rgba(0,0,0,0.07);
+    --radius: 12px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Lexend', sans-serif; background: var(--bg); color: var(--text); font-size: 17px; line-height: 1.75; }
+
+  #sidebar {
+    position: fixed; left: 0; top: 0; bottom: 0; width: 280px;
+    background: var(--card); border-right: 2px solid var(--border);
+    overflow-y: auto; z-index: 100; padding-bottom: 40px;
+    transition: transform 0.3s ease;
+  }
+  .sidebar-header { background: var(--accent1); color: white; padding: 20px 18px; }
+  .sidebar-header .sub { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; opacity: 0.85; }
+  .sidebar-header h2 { font-size: 19px; font-weight: 700; margin-top: 4px; line-height: 1.3; }
+  .chapter-label { padding: 12px 18px 4px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.09em; color: var(--text-light); }
+  .nav-item { display: block; padding: 9px 18px 9px 28px; cursor: pointer; font-size: 14px; font-weight: 500; color: var(--text); border-left: 3px solid transparent; transition: all 0.2s; }
+  .nav-item:hover { background: #e8f4fd; border-left-color: var(--accent2); }
+  .nav-item.active { background: #dbeeff; border-left-color: var(--accent1); color: var(--accent1); font-weight: 700; }
+
+  #main { margin-left: 280px; min-height: 100vh; }
+  .top-bar { background: white; border-bottom: 2px solid var(--border); padding: 15px 40px; display: flex; align-items: center; gap: 14px; position: sticky; top: 0; z-index: 50; }
+  .top-bar h1 { font-size: 19px; font-weight: 700; color: var(--accent1); white-space: nowrap; }
+  .menu-btn { display: none; background: none; border: none; cursor: pointer; font-size: 22px; color: var(--text); }
+  .progress-bar { flex: 1; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent1), var(--accent2)); border-radius: 3px; transition: width 0.5s ease; width: 0%; }
+  #progress-text { font-size: 13px; color: var(--text-light); font-weight: 600; white-space: nowrap; }
+
+  .section { display: none; padding: 40px; max-width: 880px; animation: fadeIn 0.3s ease; }
+  .section.active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+  .chapter-badge { display: inline-block; background: var(--accent1); color: white; font-size: 12px; font-weight: 700; padding: 3px 12px; border-radius: 20px; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .section-title { font-size: 31px; font-weight: 700; color: var(--text); margin-bottom: 6px; line-height: 1.2; }
+  .section-subtitle { font-size: 15px; color: var(--text-light); margin-bottom: 30px; padding-bottom: 20px; border-bottom: 2px solid var(--border); }
+  h3 { font-size: 21px; font-weight: 700; color: var(--text); margin: 30px 0 12px; }
+  h4 { font-size: 13px; font-weight: 700; color: var(--accent1); margin: 18px 0 8px; text-transform: uppercase; letter-spacing: 0.04em; }
+  p { margin-bottom: 14px; }
+  ul, ol { padding-left: 24px; margin-bottom: 14px; }
+  li { margin-bottom: 6px; }
+
+  .definition { background: var(--def-bg); border-left: 5px solid var(--def-border); border-radius: 0 var(--radius) var(--radius) 0; padding: 16px 20px; margin: 16px 0; }
+  .definition .def-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent1); margin-bottom: 6px; }
+  .definition .def-text { font-size: 16px; font-weight: 600; color: var(--text); line-height: 1.55; }
+
+  .formula-box { background: var(--formula-bg); border: 2px solid var(--formula-border); border-radius: var(--radius); padding: 20px 24px; margin: 20px 0; }
+  .formula-box .formula-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #f57c00; margin-bottom: 10px; }
+  .formula-box .formula-main { font-size: 24px; font-weight: 700; font-family: 'Lexend Deca', monospace; color: var(--text); margin-bottom: 10px; }
+  .formula-box .formula-desc { font-size: 14px; color: var(--text-light); line-height: 1.65; }
+
+  .example-box { background: var(--example-bg); border: 2px solid var(--example-border); border-radius: var(--radius); padding: 20px 24px; margin: 20px 0; }
+  .example-box .ex-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #2e7d32; margin-bottom: 10px; }
+  .example-box .ex-question { font-weight: 600; margin-bottom: 14px; font-size: 15px; }
+
+  .tip-box { background: var(--tip-bg); border-left: 5px solid var(--tip-border); border-radius: 0 var(--radius) var(--radius) 0; padding: 14px 18px; margin: 16px 0; }
+  .tip-box .tip-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--tip-border); margin-bottom: 5px; }
+
+  .warn-box { background: var(--warn-bg); border-left: 5px solid var(--warn-border); border-radius: 0 var(--radius) var(--radius) 0; padding: 14px 18px; margin: 16px 0; }
+
+  .highlight-box { background: #e8f4fd; border: 2px solid var(--accent2); border-radius: var(--radius); padding: 16px 20px; margin: 16px 0; }
+
+  .calc-step { background: white; border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; margin: 8px 0; font-family: 'Lexend Deca', monospace; font-size: 15px; }
+  .calc-step .cs-label { font-size: 11px; font-weight: 700; text-transform: uppercase; color: #2e7d32; margin-bottom: 5px; font-family: 'Lexend', sans-serif; }
+
+  .equation { font-family: 'Lexend Deca', monospace; font-size: 18px; font-weight: 600; background: #e3f2fd; border: 2px solid #90caf9; border-radius: 8px; padding: 12px 20px; margin: 12px 0; display: inline-block; line-height: 1.4; }
+
+  .step { display: flex; gap: 14px; margin-bottom: 14px; align-items: flex-start; }
+  .step-num { min-width: 32px; height: 32px; border-radius: 50%; background: var(--accent1); color: white; font-weight: 700; font-size: 14px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 3px; }
+
+  .data-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 15px; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+  .data-table th { background: var(--accent1); color: white; padding: 11px 15px; text-align: left; font-size: 13px; }
+  .data-table td { padding: 10px 15px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .data-table tr:nth-child(even) td { background: #f5f8fb; }
+  .data-table tr:last-child td { border-bottom: none; }
+
+  .summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 16px 0; }
+  @media (max-width: 640px) { .summary-grid { grid-template-columns: 1fr; } }
+  .summary-card { background: white; border: 2px solid var(--border); border-radius: var(--radius); padding: 16px 18px; box-shadow: var(--shadow); }
+
+  .ray-visual { background: #1a1a2e; border-radius: var(--radius); padding: 20px; margin: 20px 0; display: flex; align-items: center; justify-content: center; min-height: 120px; }
+
+  .image-comparison { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 16px 0; }
+  @media (max-width: 600px) { .image-comparison { grid-template-columns: 1fr; } }
+  .img-card { background: white; border: 2px solid var(--border); border-radius: var(--radius); padding: 14px 16px; box-shadow: var(--shadow); }
+  .img-card .img-title { font-weight: 700; color: var(--accent1); font-size: 14px; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.04em; }
+
+  .nav-buttons { display: flex; gap: 12px; margin-top: 40px; padding-top: 24px; border-top: 2px solid var(--border); }
+  .nav-btn { display: flex; align-items: center; gap: 8px; padding: 12px 20px; border-radius: 8px; font-family: 'Lexend', sans-serif; font-size: 15px; font-weight: 600; cursor: pointer; border: 2px solid var(--border); background: white; color: var(--text); transition: all 0.2s; }
+  .nav-btn:hover { border-color: var(--accent1); color: var(--accent1); }
+  .nav-btn.primary { background: var(--accent1); color: white; border-color: var(--accent1); margin-left: auto; }
+  .nav-btn.primary:hover { background: #005d8f; }
+
+  .accordion { border: 2px solid var(--border); border-radius: var(--radius); margin: 12px 0; overflow: hidden; }
+  .accordion-btn { width: 100%; text-align: left; padding: 13px 18px; background: white; border: none; font-family: 'Lexend', sans-serif; font-size: 15px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: space-between; color: var(--text); transition: background 0.2s; }
+  .accordion-btn:hover { background: #e8f4fd; }
+  .accordion-btn .acc-arrow { transition: transform 0.3s; font-size: 18px; color: var(--accent1); }
+  .accordion-btn.open .acc-arrow { transform: rotate(180deg); }
+  .accordion-content { display: none; padding: 14px 18px; background: #fafcfe; border-top: 1px solid var(--border); }
+  .accordion-content.open { display: block; }
+
+  .quiz-q { background: white; border: 2px solid var(--border); border-radius: var(--radius); padding: 20px 24px; margin-bottom: 16px; box-shadow: var(--shadow); }
+  .quiz-q .q-text { font-weight: 600; margin-bottom: 14px; font-size: 16px; }
+  .quiz-options { display: flex; flex-direction: column; gap: 8px; }
+  .quiz-opt { display: flex; align-items: flex-start; gap: 10px; padding: 10px 14px; border: 2px solid var(--border); border-radius: 8px; cursor: pointer; transition: all 0.2s; font-size: 15px; background: white; text-align: left; font-family: 'Lexend', sans-serif; }
+  .quiz-opt:hover { border-color: var(--accent1); background: #e8f4fd; }
+  .quiz-opt.correct { border-color: #4caf50; background: #e8f5e9; }
+  .quiz-opt.wrong { border-color: #f44336; background: #ffebee; }
+  .quiz-feedback { margin-top: 12px; padding: 12px 16px; border-radius: 8px; font-size: 15px; display: none; }
+  .quiz-feedback.show { display: block; }
+  .quiz-feedback.correct-fb { background: #e8f5e9; color: #1b5e20; border: 1px solid #a5d6a7; }
+  .quiz-feedback.wrong-fb { background: #ffebee; color: #b71c1c; border: 1px solid #ef9a9a; }
+  .quiz-score { text-align: center; padding: 22px; background: linear-gradient(135deg, #e8f4fd, #e3f2fd); border-radius: var(--radius); margin-top: 20px; display: none; }
+  .quiz-score.show { display: block; }
+  .quiz-score .score-num { font-size: 52px; font-weight: 700; color: var(--accent1); }
+
+  .mnemonic { background: linear-gradient(135deg, #e8f4fd, #e3f9ff); border: 2px solid var(--accent2); border-radius: var(--radius); padding: 18px 22px; margin: 16px 0; text-align: center; }
+  .mnemonic .m-label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent1); margin-bottom: 8px; }
+  .mnemonic .m-text { font-size: 20px; font-weight: 700; color: var(--text); }
+  .mnemonic .m-explain { font-size: 14px; color: var(--text-light); margin-top: 6px; }
+
+  .sign-box { display: inline-flex; flex-direction: column; align-items: center; background: white; border: 2px solid var(--border); border-radius: 10px; padding: 12px 20px; margin: 6px; box-shadow: var(--shadow); min-width: 130px; }
+  .sign-box .sb-type { font-size: 12px; font-weight: 700; text-transform: uppercase; color: var(--text-light); margin-bottom: 4px; }
+  .sign-box .sb-value { font-size: 22px; font-weight: 700; }
+
+  #overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 90; }
+  @media (max-width: 768px) {
+    #sidebar { transform: translateX(-100%); }
+    #sidebar.open { transform: translateX(0); }
+    #main { margin-left: 0; }
+    .top-bar { padding: 14px 20px; }
+    .menu-btn { display: block; }
+    .section { padding: 24px 18px; }
+    #overlay.show { display: block; }
+    .summary-grid { grid-template-columns: 1fr; }
+    .image-comparison { grid-template-columns: 1fr; }
+  }
+
+  .optics-diagram {
+    background: #1a1a2e;
+    border-radius: var(--radius);
+    padding: 16px;
+    margin: 16px 0;
+    overflow: hidden;
+  }
+</style>
+</head>
+<body>
+
+<div id="sidebar">
+  <div class="sidebar-header">
+    <div class="sub">Leaving Cert Physics</div>
+    <h2>🔭 Geometrical Optics</h2>
+  </div>
+
+  <div class="chapter-group">
+    <div class="chapter-label">Start Here</div>
+    <div class="nav-item active" onclick="go('intro')">🏠 Overview & Key Formulas</div>
+  </div>
+
+  <div class="chapter-group">
+    <div class="chapter-label">1 — Plane Mirrors</div>
+    <div class="nav-item" onclick="go('plane')">🪞 Plane Mirrors & Reflection</div>
+  </div>
+
+  <div class="chapter-group">
+    <div class="chapter-label">2 — Curved Mirrors</div>
+    <div class="nav-item" onclick="go('concave')">🔵 Concave Mirrors</div>
+    <div class="nav-item" onclick="go('convex-mirror')">🔴 Convex Mirrors</div>
+    <div class="nav-item" onclick="go('mirror-maths')">📐 Mirror Maths (f, u, v, M)</div>
+    <div class="nav-item" onclick="go('mirror-exp')">🔬 Focal Length Experiment</div>
+  </div>
+
+  <div class="chapter-group">
+    <div class="chapter-label">3 — Refraction</div>
+    <div class="nav-item" onclick="go('refraction')">💡 Refraction & Snell's Law</div>
+    <div class="nav-item" onclick="go('critical')">🔺 Critical Angle & TIR</div>
+    <div class="nav-item" onclick="go('fibres')">🌐 Optical Fibres</div>
+    <div class="nav-item" onclick="go('ri-formulas')">🧮 All Refractive Index Formulas</div>
+    <div class="nav-item" onclick="go('snell-exp')">🔬 Snell's Law Experiment</div>
+  </div>
+
+  <div class="chapter-group">
+    <div class="chapter-label">4 — Lenses</div>
+    <div class="nav-item" onclick="go('convex-lens')">🔍 Convex (Converging) Lenses</div>
+    <div class="nav-item" onclick="go('concave-lens')">🔎 Concave (Diverging) Lenses</div>
+    <div class="nav-item" onclick="go('lens-maths')">📐 Lens Maths (f, u, v, M)</div>
+    <div class="nav-item" onclick="go('eye')">👁️ The Eye</div>
+    <div class="nav-item" onclick="go('power')">⚡ Power of Lenses</div>
+    <div class="nav-item" onclick="go('lens-exp')">🔬 Focal Length Experiment</div>
+  </div>
+
+  <div class="chapter-group">
+    <div class="chapter-label">Revision</div>
+    <div class="nav-item" onclick="go('definitions')">📖 All Definitions</div>
+    <div class="nav-item" onclick="go('quiz')">🎯 Quick Quiz</div>
+  </div>
+</div>
+
+<div id="overlay" onclick="closeSidebar()"></div>
+
+<div id="main">
+  <div class="top-bar">
+    <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+    <h1>🔭 Geometrical Optics</h1>
+    <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+    <span id="progress-text">1 / 17</span>
+  </div>
+
+  <!-- ===== INTRO ===== -->
+<div class="section active" id="sec-intro" style="max-width: none;">
+<div class="hero" style="margin:-40px -40px 40px -40px; padding:60px 40px; background: linear-gradient(135deg, #0d47a1 0%, #00838f 50%, #2e7d32 100%); color: white; position: relative; overflow: hidden;">
+  <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#b2ebf2;margin-bottom:12px;">Leaving Certificate Physics</div><h1 style="font-size: 42px; font-weight: 700; margin-bottom: 12px; margin-top: 0;">Geometrical Optics 🔭</h1>
+  <p style="font-size: 18px; color: rgba(255,255,255,0.85); max-width: 600px; line-height: 1.6; margin-bottom: 0;">Everything you need to know about mirrors, lenses, reflection, and refraction — explained step by step.</p>
+  <div style="margin-top:28px;display:flex;gap:16px;flex-wrap:wrap;">
+    <span style="background:rgba(255,255,255,0.15);padding:12px 24px;border-radius:30px;font-size:16px;font-weight:600;">🌈 Light & Optics</span>
+    <span style="background:rgba(255,255,255,0.15);padding:12px 24px;border-radius:30px;font-size:16px;font-weight:600;">📐 Reflection & Refraction</span>
+  </div>
+</div>
+
+    <p>This is one of the biggest chapters in Leaving Cert Physics. It splits into <strong>four main parts</strong>: plane mirrors, curved mirrors, refraction, and lenses. Don't worry — we'll go through each one step by step.</p>
+
+    <h3>The Big Picture</h3>
+    <div class="highlight-box">
+      <strong>🗺️ What this chapter covers:</strong>
+      <ul style="margin-top:8px;">
+        <li><strong>Plane mirrors</strong> — flat mirrors, laws of reflection, virtual images</li>
+        <li><strong>Curved mirrors</strong> — concave mirrors (cave shape) and convex mirrors (bulging shape)</li>
+        <li><strong>Refraction</strong> — light bending when it changes medium, Snell's Law, total internal reflection, optical fibres</li>
+        <li><strong>Lenses</strong> — converging and diverging lenses, the eye, correcting vision defects</li>
+      </ul>
+    </div>
+
+    <h3>All Formulas at a Glance</h3>
+
+    <div class="formula-box">
+      <div class="formula-label">📐 Mirror / Lens Formula</div>
+      <div class="formula-main">1/f = 1/u + 1/v</div>
+      <div class="formula-desc">
+        <strong>f</strong> = focal length &nbsp;|&nbsp; <strong>u</strong> = object distance &nbsp;|&nbsp; <strong>v</strong> = image distance<br>
+        Used for both mirrors and lenses. Remember: <em>positive v = real image, negative v = virtual image.</em>
+      </div>
+    </div>
+
+    <div class="formula-box">
+      <div class="formula-label">📐 Magnification</div>
+      <div class="formula-main">M = image height / object height = v / u</div>
+      <div class="formula-desc">If M > 1: image is bigger. If M < 1: image is smaller. If M = 1: same size.</div>
+    </div>
+
+    <div class="formula-box">
+      <div class="formula-label">📐 Snell's Law (Refractive Index)</div>
+      <div class="formula-main">n = sin i / sin r</div>
+      <div class="formula-desc"><strong>n</strong> = refractive index &nbsp;|&nbsp; <strong>i</strong> = angle of incidence &nbsp;|&nbsp; <strong>r</strong> = angle of refraction<br>Angles are always measured <em>from the normal</em>.</div>
+    </div>
+
+    <div class="formula-box">
+      <div class="formula-label">📐 Refractive Index — Speed of Light</div>
+      <div class="formula-main">n = c<sub>air</sub> / c<sub>medium</sub></div>
+      <div class="formula-desc">Speed of light in air = 3 × 10⁸ m/s. Light slows down in denser media.</div>
+    </div>
+
+    <div class="formula-box">
+      <div class="formula-label">📐 Refractive Index — Critical Angle</div>
+      <div class="formula-main">n = 1 / sin C</div>
+      <div class="formula-desc"><strong>C</strong> = critical angle. The bigger the refractive index, the smaller the critical angle.</div>
+    </div>
+
+    <div class="formula-box">
+      <div class="formula-label">📐 Refractive Index — Real/Apparent Depth</div>
+      <div class="formula-main">n = Real Depth / Apparent Depth</div>
+      <div class="formula-desc">Why a swimming pool looks shallower than it is!</div>
+    </div>
+
+    <div class="formula-box">
+      <div class="formula-label">📐 Power of a Lens</div>
+      <div class="formula-main">P = 1/f &nbsp;&nbsp;&nbsp;&nbsp; P<sub>total</sub> = P<sub>1</sub> + P<sub>2</sub></div>
+      <div class="formula-desc"><strong>P</strong> = power in m⁻¹ (also called dioptres). <strong>f</strong> must be in metres.<br>Convex (converging) lens: positive power. Concave (diverging) lens: negative power.</div>
+    </div>
+
+    <div class="tip-box">
+      <div class="tip-label">💡 "Real is Positive" Convention (RIP)</div>
+      For <strong>concave mirrors</strong> and <strong>convex lenses</strong>: f is <strong>positive</strong>.<br>
+      For <strong>convex mirrors</strong> and <strong>concave lenses</strong>: f is <strong>negative</strong>.<br>
+      If v comes out <strong>positive</strong> → real image. If v is <strong>negative</strong> → virtual image.
+    </div>
+
+    <div class="nav-buttons">
+      <button class="nav-btn primary" onclick="go('plane')">Next: Plane Mirrors →</button>
+    </div>
+  </div>
+
+  <!-- ===== PLANE MIRRORS ===== -->
+  <div class="section" id="sec-plane">
+    <div class="chapter-badge">Chapter 1</div>
+    <div class="section-title">🪞 Plane Mirrors & Reflection</div>
+    <div class="section-subtitle">A flat mirror — the simplest type of reflection</div>
+
+    <p>A <strong>plane mirror</strong> is just a flat, silvered surface. When light hits it, it bounces back in a very predictable way. This bouncing is called <strong>reflection</strong>.</p>
+
+    <div class="definition">
+      <div class="def-label">📖 Definition — Reflection</div>
+      <div class="def-text">Reflection is the bouncing of light off a surface.</div>
+    </div>
+
+    <h3>Types of Reflection</h3>
+    <div class="summary-grid">
+      <div class="summary-card">
+        <h4>Diffuse (Irregular) Reflection</h4>
+        <p>When light hits a rough surface (like a wall or a book), it scatters in all directions. This is why we can see objects — light bounces off them in all directions, some reaching our eyes.</p>
+      </div>
+      <div class="summary-card">
+        <h4>Specular (Regular) Reflection</h4>
+        <p>When light hits a smooth, flat, silvered surface like a mirror, it reflects in one predictable direction. This follows the Laws of Reflection.</p>
+      </div>
+    </div>
+
+    <h3>Laws of Reflection</h3>
+    <div class="definition">
+      <div class="def-label">📖 The Two Laws of Reflection — Learn These Off!</div>
+      <div class="def-text">
+        <strong>Law 1:</strong> The incident ray, the normal at the point of incidence, and the reflected ray all lie on the same plane.<br><br>
+        <strong>Law 2:</strong> The angle of incidence equals the angle of reflection. (i = r)
+      </div>
+    </div>
+
+    <div class="tip-box">
+      <div class="tip-label">💡 What's the "Normal"?</div>
+      The normal is an imaginary line drawn <strong>perpendicular (at 90°)</strong> to the mirror surface at the point where the light hits. All angles are measured from the normal — NOT from the mirror surface!
+    </div>
+
+    <h3>Image in a Plane Mirror</h3>
+    <div class="definition">
+      <div class="def-label">📖 Properties of Image in a Plane Mirror</div>
+      <div class="def-text">
+        ✅ The image is <strong>virtual</strong> (it appears to be behind the mirror — light rays don't actually go there)<br>
+        ✅ The image is <strong>upright</strong> (not inverted)<br>
+        ✅ The image is the <strong>same size</strong> as the object<br>
+        ✅ The image is <strong>as far behind the mirror as the object is in front</strong><br>
+        ✅ The image is <strong>laterally inverted</strong> (left and right are swapped — like the word AMBULANCE)
+      </div>
+    </div>
+
+    <h3>Why Does the Image Appear Behind the Mirror?</h3>
+    <p>Light rays reflect off the mirror and diverge (spread out) as they travel toward your eye. Your brain follows these diverging rays backwards and "puts" the object where the rays appear to come from — which happens to be behind the mirror. Your brain is being tricked!</p>
+
+    <h3>Real Image vs Virtual Image</h3>
+    <div class="image-comparison">
+      <div class="img-card">
+        <div class="img-title" style="color:#0077b6;">Real Image</div>
+        <ul>
+          <li>Formed by the <strong>actual</strong> intersection of light rays</li>
+          <li>Can be projected onto a screen</li>
+          <li>Always <strong>inverted</strong> (upside down)</li>
+          <li>Always in <strong>front of</strong> the mirror or on the opposite side of the lens to the object</li>
+        </ul>
+      </div>
+      <div class="img-card">
+        <div class="img-title" style="color:#e91e63;">Virtual Image</div>
+        <ul>
+          <li>Formed by the <strong>apparent</strong> intersection of light rays</li>
+          <li>Cannot be projected onto a screen</li>
+          <li>Always <strong>upright</strong></li>
+          <li>Always <strong>behind</strong> the mirror or on the same side as the object (for lenses)</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Exam-Ready Answers</h3>
+    <div class="accordion">
+      <button class="accordion-btn" onclick="acc(this)">Why does the word AMBULANCE appear reversed? <span class="acc-arrow">▼</span></button>
+      <div class="accordion-content">When the driver looks in the rear-view mirror, the laterally-inverted image of the word appears the correct way around — making it readable. It's deliberately written backwards so it reads correctly in a mirror.
+      </div>
+    </div>
+    <div class="accordion">
+      <button class="accordion-btn" onclick="acc(this)">How does a periscope work? <span class="acc-arrow">▼</span></button>
+      <div class="accordion-content">A periscope uses two plane mirrors (or prisms) set at 45° angles. Light enters from above, hits the top mirror, reflects downward, hits the bottom mirror, and then reflects into the observer's eye. The image is upright and the same size as the object.
+      </div>
+    </div>
+    <div class="accordion">
+      <button class="accordion-btn" onclick="acc(this)">What is the difference between a luminous and illuminated object? <span class="acc-arrow">▼</span></button>
+      <div class="accordion-content">A <strong>luminous object</strong> emits its own light (e.g. the Sun, a candle, a light bulb). An <strong>illuminated object</strong> only becomes visible because light from another source reflects off it (e.g. the Moon, a book, you!).
+      </div>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="nav-btn" onclick="go('intro')">← Overview</button>
+      <button class="nav-btn primary" onclick="go('concave')">Next: Concave Mirrors →</button>
+    </div>
+  </div>
+
+  <!-- ===== CONCAVE MIRRORS ===== -->
+  <div class="section" id="sec-concave">
+    <div class="chapter-badge">Chapter 2</div>
+    <div class="section-title">🔵 Concave Mirrors</div>
+    <div class="section-subtitle">Curved inward — like the inside of a bowl or a cave</div>
+
+    <div class="definition">
+      <div class="def-label">📖 Concave Mirror</div>
+      <div class="def-text">A concave mirror curves <strong>away from the observer</strong> — it is shaped like a cave (concave = cave). It can form either real or virtual images depending on where the object is placed.</div>
+    </div>
+
+    <h3>Key Terms to Know</h3>
+    <table class="data-table">
+      <tr><th>Term</th><th>Symbol</th><th>Meaning</th></tr>
+      <tr><td>Principal Axis</td><td>—</td><td>The imaginary horizontal line through the centre of the mirror</td></tr>
+      <tr><td>Centre of Curvature</td><td>C</td><td>The centre of the sphere that the mirror is part of</td></tr>
+      <tr><td>Focus (Focal Point)</td><td>f</td><td>The point where parallel rays converge after reflection. Halfway between C and the mirror.</td></tr>
+      <tr><td>Focal Length</td><td>f</td><td>Distance from the mirror to the focus</td></tr>
+      <tr><td>Object Distance</td><td>u</td><td>Distance from object to mirror</td></tr>
+      <tr><td>Image Distance</td><td>v</td><td>Distance from image to mirror</td></tr>
+    </table>
+
+    <div class="warn-box"><strong>⚠️ Remember:</strong> The focus is <strong>halfway between</strong> the centre of curvature and the mirror. So if C = 20 cm, then f = 10 cm.</div>
+
+    <h3>Ray Diagram Rules for Concave Mirror</h3>
+    <div class="highlight-box">
+      <strong>Three rules (use any two):</strong>
+      <ol style="margin-top:8px;">
+        <li>A ray <strong>parallel to the principal axis</strong> → reflects back <strong>through the focus (f)</strong></li>
+        <li>A ray hitting the mirror <strong>at the intersection of the principal axis and mirror</strong> → reflects at an equal angle on the other side</li>
+        <li>A ray <strong>passing through the focus</strong> → reflects back <strong>parallel to the principal axis</strong></li>
+      </ol>
+    </div>
+
+    <h3>Object OUTSIDE the Focus</h3>
+    <div class="definition">
+      <div class="def-label">📖 Image Properties: Object OUTSIDE f</div>
+      <div class="def-text">The image is: <strong>Real</strong>, <strong>Inverted</strong>, and either magnified or diminished depending on distance. It forms <strong>in front of the mirror</strong> where the rays actually meet.</div>
+    </div>
+
+    <h3>Object INSIDE the Focus</h3>
+    <div class="definition">
+      <div class="def-label">📖 Image Properties: Object INSIDE f</div>
+      <div class="def-text">The image is: <strong>Virtual</strong>, <strong>Upright</strong>, and <strong>Magnified</strong>. The rays never actually meet — they only appear to diverge from a point <strong>behind the mirror</strong>. This is how a cosmetic/shaving mirror or dentist's mirror works.</div>
+    </div>
+
+    <h3>Quick Summary: Concave Mirror Images</h3>
+    <table class="data-table">
+      <tr><th>Object Position</th><th>Image Type</th><th>Orientation</th><th>Size</th><th>Location</th></tr>
+      <tr><td>Beyond C</td><td>Real</td><td>Inverted</td><td>Diminished</td><td>Between f and C</td></tr>
+      <tr><td>At C</td><td>Real</td><td>Inverted</td><td>Same size</td><td>At C</td></tr>
+      <tr><td>Between C and f</td><td>Real</td><td>Inverted</td><td>Magnified</td><td>Beyond C</td></tr>
+      <tr><td>At f</td><td>No image</td><td>—</td><td>—</td><td>Reflected rays are parallel</td></tr>
+      <tr><td>Inside f</td><td>Virtual</td><td>Upright</td><td>Magnified</td><td>Behind mirror</td></tr>
+    </table>
+
+    <h3>Uses of Concave Mirrors</h3>
+    <div class="highlight-box">
+      🔦 <strong>Torches / car headlights / searchlights / floodlights</strong> — bulb placed at focus → parallel beam of light<br>
+      💄 <strong>Cosmetic mirrors / dentist's mirrors</strong> — object inside focus → magnified, upright image<br>
+      ☀️ <strong>Solar furnaces / solar cookers</strong> — focuses sunlight to a point to generate heat
+    </div>
+
+    <h3>2023 Exam Question — Spoon</h3>
+    <div class="example-box">
+      <div class="ex-label">📐 2023 Deferred HL</div>
+      <div class="ex-question">A person holds a spoon at arm's length. On one side the image is inverted, on the other it is upright. Explain why.</div>
+      <p><strong>Answer:</strong> The concave side (inside of spoon) forms an <strong>inverted image</strong> because the object is outside the focal length. The convex side (outside of spoon) always forms an <strong>upright image</strong> regardless of where the object is placed.</p>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="nav-btn" onclick="go('plane')">← Plane Mirrors</button>
+      <button class="nav-btn primary" onclick="go('convex-mirror')">Next: Convex Mirrors →</button>
+    </div>
+  </div>
+
+  <!-- ===== CONVEX MIRRORS ===== -->
+  <div class="section" id="sec-convex-mirror">
+    <div class="chapter-badge">Chapter 2</div>
+    <div class="section-title">🔴 Convex Mirrors</div>
+    <div class="section-subtitle">Curved outward — always gives a small, wide-angle view</div>
+
+    <div class="definition">
+      <div class="def-label">📖 Convex Mirror</div>
+      <div class="def-text">A convex mirror <strong>bulges outward</strong> towards the observer. The image is <strong>always virtual, upright, and diminished</strong> — regardless of where the object is placed. The focus is <strong>behind</strong> the mirror.</div>
+    </div>
+
+    <h3>Ray Diagram Rules for Convex Mirror</h3>
+    <div class="highlight-box">
+      <strong>Two rules:</strong>
+      <ol style="margin-top:8px;">
+        <li>A ray parallel to the principal axis reflects <strong>as if it came from the focus on the other side</strong> (behind the mirror)</li>
+        <li>A ray hitting the centre of the mirror reflects at an equal angle on the opposite side</li>
+      </ol>
+      <p style="margin-top:8px;">The rays never actually meet — they <em>appear</em> to diverge from a point behind the mirror, hence a <strong>virtual image</strong>.</p>
+    </div>
+
+    <h3>Convex Mirror Image — Always the Same!</h3>
+    <div class="definition">
+      <div class="def-label">📖 Image in Convex Mirror (No Matter Where Object Is)</div>
+      <div class="def-text">
+        ✅ <strong>Virtual</strong> (behind the mirror)<br>
+        ✅ <strong>Upright</strong><br>
+        ✅ <strong>Diminished</strong> (smaller than the object)
+      </div>
+    </div>
+
+    <h3>Uses of Convex Mirrors</h3>
+    <div class="highlight-box">
+      🚗 <strong>Car door/wing mirrors</strong> — gives a wide field of view of traffic behind<br>
+      🏪 <strong>Shop security mirrors</strong> — wide angle view to deter shoplifters<br>
+      🚦 <strong>Concealed entrances</strong> — allows drivers to see oncoming traffic at blind corners<br><br>
+      <strong>Why convex mirrors are used for these:</strong> They give a <strong>wide field of view</strong> even though the image is smaller.
+    </div>
+
+    <h3>Why Is a Convex Mirror Used as a Car Wing Mirror?</h3>
+    <div class="definition">
+      <div class="def-label">📖 Exam Answer</div>
+      <div class="def-text">A convex mirror is used because it gives a <strong>wider field of view</strong> than a plane mirror, allowing the driver to see more of the road behind.</div>
+    </div>
+
+    <h3>Concave vs Convex Mirror Summary</h3>
+    <table class="data-table">
+      <tr><th>Feature</th><th>Concave Mirror</th><th>Convex Mirror</th></tr>
+      <tr><td>Shape</td><td>Curves away from you (cave)</td><td>Bulges towards you</td></tr>
+      <tr><td>f value</td><td>Positive (+)</td><td>Negative (−)</td></tr>
+      <tr><td>Image type</td><td>Real OR virtual (depends on position)</td><td>Always virtual</td></tr>
+      <tr><td>Image orientation</td><td>Real → inverted; virtual → upright</td><td>Always upright</td></tr>
+      <tr><td>Image size</td><td>Can be any size</td><td>Always diminished</td></tr>
+      <tr><td>Main use</td><td>Mirrors, searchlights, cosmetics</td><td>Car mirrors, security mirrors</td></tr>
+    </table>
+
+    <div class="nav-buttons">
+      <button class="nav-btn" onclick="go('concave')">← Concave Mirrors</button>
+      <button class="nav-btn primary" onclick="go('mirror-maths')">Next: Mirror Maths →</button>
+    </div>
+  </div>
+
+  <!-- ===== MIRROR MATHS ===== -->
+  <div class="section" id="sec-mirror-maths">
+    <div class="chapter-badge">Chapter 2 — Calculations</div>
+    <div class="section-title">📐 Mirror Maths: f, u, v & Magnification</div>
+    <div class="section-subtitle">Step-by-step calculations for curved mirrors</div>
+
+    <div class="formula-box">
+      <div class="formula-label">📐 The Mirror Formula</div>
+      <div class="formula-main">1/f = 1/u + 1/v</div>
+      <div class="formula-desc">
+        Rearranged versions:<br>
+        <strong>1/v = 1/f − 1/u</strong><br>
+        <strong>v = 1 ÷ (1/f − 1/u)</strong><br><br>
+        ⚠️ <strong>Concave mirror</strong>: f is positive (+)<br>
+        ⚠️ <strong>Convex mirror</strong>: f is negative (−)<br>
+        ✅ v is positive → real image &nbsp;&nbsp; v is negative → virtual image
+      </div>
+    </div>
+
+    <div class="formula-box">
+      <div class="formula-label">📐 Magnification</div>
+      <div class="formula-main">M = image height / object height = v / u</div>
+    </div>
+
+    <h3>Worked Examples</h3>
+
+    <div class="example-box">
+      <div class="ex-label">📐 Ordinary Level [2004] — Concave Mirror</div>
+      <div class="ex-question">A concave mirror has focal length 20 cm. An object is placed 30 cm in front. Where is the image?</div>
+      <div class="calc-step"><div class="cs-label">What we know</div>f = 20 cm (positive, concave mirror), u = 30 cm, v = ?</div>
+      <div class="calc-step"><div class="cs-label">Apply the formula</div>1/f = 1/u + 1/v → 1/v = 1/f − 1/u<br>1/v = 1/20 − 1/30<br>1/v = 3/60 − 2/60 = 1/60<br><strong>v = 60 cm</strong></div>
+      <p style="margin-top:10px;">✅ v is positive → <strong>real image</strong> formed 60 cm in front of the mirror.</p>
+    </div>
+
+    <div class="example-box">
+      <div class="ex-label">📐 Higher Level [2014] — Convex Decorative Sphere</div>
+      <div class="ex-question">A person's face is 30 cm from a shiny spherical decoration of diameter 20 cm. Find the image position.</div>
+      <div class="calc-step"><div class="cs-label">Find the focal length</div>Diameter = 20 cm → radius = 10 cm → centre of curvature C = 10 cm<br>Focus f = C/2 = 5 cm. But this is a CONVEX mirror → <strong>f = −5 cm</strong></div>
+      <div class="calc-step"><div class="cs-label">Apply the formula</div>1/v = 1/f − 1/u = 1/(−5) − 1/30<br>= −6/30 − 1/30 = −7/30<br><strong>v = −30/7 ≈ −4.3 cm</strong></div>
+      <p style="margin-top:10px;">✅ v is negative → <strong>virtual image</strong> 4.3 cm behind the mirror.</p>
+    </div>
+
+    <div class="example-box">
+      <div class="ex-label">📐 Ordinary Level [2021] — Magnification</div>
+      <div class="ex-question">Object height 2 cm, image height 3 cm, object 17 cm in front of concave mirror. Find M and v.</div>
+      <div class="calc-step"><div class="cs-label">Magnification</div>M = image height / object height = 3/2 = <strong>1.5</strong></div>
+      <div class="calc-step"><div class="cs-label">Image distance (using M = v/u)</div>v = M × u = 1.5 × 17 = <strong>25.5 cm</strong></div>
+    </div>
+
+    <div class="example-box">
+      <div class="ex-label">📐 Higher Level [2022] — Object 20 cm, f = 12 cm</div>
+      <div class="ex-question">Object 20 cm in front of concave mirror, f = 12 cm. Find image position and height if object is 4 cm tall.</div>
+      <div class="calc-step"><div class="cs-label">Image distance</div>1/v = 1/12 − 1/20 = 5/60 − 3/60 = 2/60 → <strong>v = 30 cm</strong></div>
+      <div class="calc-step"><div class="cs-label">Magnification</div>M = v/u = 30/20 = 1.5</div>
+      <div class="calc-step"><div class="cs-label">Image height</div>Image height = M × object height = 1.5 × 4 = <strong>6 cm</strong></div>
+    </div>
+
+    <div class="example-box">
+      <div class="ex-label">📐 Higher Level [2017] — Rembrandt's Mirror</div>
+      <div class="ex-question">Concave mirror, f = 60 cm, image is half the size of object. Find image distance and object distance.</div>
+      <div class="calc-step"><div class="cs-label">Use M = v/u</div>M = 1/2, so 1/2 = v/u → u = 2v</div>
+      <div class="calc-step"><div class="cs-label">Substitute into mirror formula</div>1/f = 1/u + 1/v<br>1/60 = 1/(2v) + 1/v = 1/(2v) + 2/(2v) = 3/(2v)<br>2v = 180 → <strong>v = 90 cm</strong></div>
+      <div class="calc-step"><div class="cs-label">Object distance</div>u = 2v = 2 × 90 = <strong>180 cm</strong></div>
+      <p style="margin-top:10px;">💡 Why was the upright image no use to Rembrandt? Because to get an upright image the object must be inside the focus — which means the image is virtual and cannot be projected onto a copper sheet.</p>
+    </div>
+
+    <div class="tip-box">
+      <div class="tip-label">⚠️ Common Mistake</div>
+      When dividing fractions like 1/f − 1/u, <strong>find a common denominator</strong>! Don't just subtract the numbers directly. For example, 1/20 − 1/30 = 3/60 − 2/60 = 1/60, NOT 1/10.
+    </div>
+
+    <div class="nav-buttons">
+      <button class="nav-btn" onclick="go('convex-mirror')">← Convex Mirrors</button>
+      <button class="nav-btn primary" onclick="go('mirror-exp')">Next: Focal Length Experiment →</button>
+    </div>
+  </div>
+
+  <!-- ===== MIRROR EXPERIMENT ===== -->
+  <div class="section" id="sec-mirror-exp">
+    <div class="chapter-badge">Mandatory Experiment</div>
+    <div class="section-title">🔬 Measuring Focal Length of a Concave Mirror</div>
+    <div class="section-subtitle">A required experiment — you must know procedure, sources of error, and results</div>
+
+    <div class="definition">
+      <div class="def-label">📖 Apparatus</div>
+      <div class="def-text">Concave mirror, screen, lamp-box with crosswire, metre stick, retort stand</div>
+    </div>
+
+    <h3>Procedure</h3>
+    <div class="steps" id="steps">
+      <div class="step"><div class="step-num">1</div><div><strong>Find approximate focal length first:</strong> Point the concave mirror at a distant object (like a window). Move a screen in front of it until a sharp image appears. That distance = approximate focal length.</div></div>
+      <div class="step"><div class="step-num">2</div><div><strong>Set up:</strong> Place the lamp-box (with crosswire) well outside the focal length. Set up the screen in front of the mirror.</div></div>
+      <div class="step"><div class="step-num">3</div><div><strong>Find image:</strong> Move the screen until a clear, sharp, inverted image of the crosswire appears on it.</div></div>
+      <div class="step"><div class="step-num">4</div><div><strong>Measure u:</strong> Measure the distance from the crosswire (object) to the mirror with the metre stick.</div></div>
+      <div class="step"><div class="step-num">5</div><div><strong>Measure v:</strong> Measure the distance from the screen (image) to the mirror.</div></div>
+      <div class="step"><div class="step-num">6</div><div><strong>Calculate f:</strong> Use 1/f = 1/u + 1/v. Get f for this measurement.</div></div>
+      <div class="step"><div class="step-num">7</div><div><strong>Repeat:</strong> Move the object to a different position, repeat for at least 5 different values of u. Average all the f values.</div></div>
+    </div>
+
+    <h3>Sources of Error / Precautions</h3>
+    <div class="highlight-box">
+      <ul>
+        <li>🎯 <strong>Difficulty judging sharpest focus</strong> — repeat measurements and average</li>
+        <li>📏 <strong>Parallax error when measuring u and v</strong> — ensure line of sight is perpendicular to the metre stick</li>
+        <li>📐 <strong>Measure from the back of the mirror</strong> (not the front surface)</li>
+        <li>⚠️ <strong>Never place object inside focal length</strong> — no real image can be formed, so always find approximate f first</li>
+      </ul>
+    </div>
+
+    <h3>Why Find Approximate f First?</h3>
+    <div class="definition">
+      <div class="def-label">📖 Exam Answer</div>
+      <div class="def-text">To avoid accidentally placing the object <strong>inside the focal length</strong>, which would result in only a virtual image — which cannot be formed on a screen.</div>
+    </div>
+
+    <h3>Sample Data (Exam Question)</h3>
+    <div class="example-box">
+      <div class="ex-label">📐 Example Calculation</div>
+      <table class="data-table" style="margin:10px 0;">
+        <tr><th>u (cm)</th><th>v (cm)</th><th>f (cm)</th></tr>
+        <tr><td>20.0</td><td>61.0</td><td>15.1</td></tr>
+        <tr><td>30.0</td><td>29.5</td><td>14.9</td></tr>
+        <tr><td>40.0</td><td>24.0</td><td>15.0</td></tr>
+        <tr><td>50.0</td><td>20.5</td><td>14.5</td></tr>
+      </table>
+      <p><strong>Average f ≈ 15.0 cm</strong></p>
+      <p>For each row: 1/f = 1/u + 1/v → solve for f.</p>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="nav-btn" onclick="go('mirror-maths')">← Mirror Maths</button>
+      <button class="nav-btn primary" onclick="go('refraction')">Next: Refraction →</button>
+    </div>
+  </div>
+
+  <!-- ===== REFRACTION ===== -->
+  <div class="section" id="sec-refraction">
+    <div class="chapter-badge">Chapter 3</div>
+    <div class="section-title">💡 Refraction & Snell's Law</div>
+    <div class="section-subtitle">Light bends when it changes speed — this is why a pool looks shallower than it is</div>
+
+    <div class="definition">
+      <div class="def-label">📖 Definition — Refraction</div>
+      <div class="def-text">Refraction is the <strong>bending of a wave (light) as it passes from a medium of one refractive index to a medium of a different refractive index</strong>. The speed of light changes, causing the direction to change.</div>
+    </div>
+
+    <h3>Key Rule: Which Way Does Light Bend?</h3>
+    <div class="highlight-box">
+      <p>🔹 Light going from <strong>less dense → more dense</strong> medium (e.g. air → glass): bends <strong>towards the normal</strong> (angle decreases)</p>
+      <p style="margin-top:8px;">🔹 Light going from <strong>more dense → less dense</strong> medium (e.g. glass → air): bends <strong>away from the normal</strong> (angle increases)</p>
+    </div>
+
+    <h3>Laws of Refraction</h3>
+    <div class="definition">
+      <div class="def-label">📖 The Two Laws of Refraction</div>
+      <div class="def-text">
+        <strong>Law 1:</strong> The incident ray, the normal, and the refracted ray all lie on the same plane.<br><br>
+        <strong>Law 2 (Snell's Law):</strong> The ratio of the sine of the angle of incidence to the sine of the angle of refraction is a constant (the refractive index).
+      </div>
+    </div>
+
+    <div class="formula-box">
+      <div class="formula-label">📐 Snell's Law — Refractive Index</div>
+      <div class="formula-main">n = sin i / sin r</div>
+      <div class="formula-desc">
+        <strong>n</strong> = refractive index of the medium (no units — it's a ratio)<br>
+        <strong>i</strong> = angle of incidence (in the <em>less</em> dense medium, usually air)<br>
+        <strong>r</strong> = angle of refraction<br><br>
+        💡 Both angles are measured from the <strong>normal</strong>!
+      </div>
+    </div>
+
+    <h3>What Does Refractive Index Mean?</h3>
+    <div class="definition">
+      <div class="def-label">📖 Definition — Refractive Index</div>
+      <div class="def-text">The refractive index of a medium is the ratio of sin i to sin r when light travels <strong>from a vacuum (or air) into that medium</strong>. It tells you how much the medium slows light down. Glass ≈ 1.5, water ≈ 1.33, diamond ≈ 2.42.</div>
+    </div>
+
+    <div class="tip-box">
+      <div class="tip-label">💡 Inverse Refractive Index</div>
+      If the refractive index going from air to glass is <strong>ₐηᵍ = 1.5</strong>, then going from glass to air it's the <strong>inverse</strong>: <strong>ᵍηₐ = 1/1.5 ≈ 0.67</strong>
+    </div>
+
+    <h3>Why Do Different Colours Refract Differently?</h3>
+    <p>Each colour (wavelength) of light has a slightly different refractive index in glass. Blue light refracts more than red light. This is why white light passing through a prism (or raindrop) separates into a rainbow — each colour bends by a different amount.</p>
+
+    <h3>⚡ Worked Calculations</h3>
+
+    <div class="example-box">
+      <div class="ex-label">📐 Ordinary Level [2018] — Find Refractive Index</div>
+      <div class="ex-question">Angle of incidence = 40°, angle of refraction = 25°. Find the refractive index.</div>
+      <div class="calc-step"><div class="cs-label">Apply Snell's Law</div>n = sin i / sin r = sin 40° / sin 25°<br>= 0.643 / 0.423<br><strong>n = 1.52</strong></div>
+    </div>
+
+    <div class="example-box">
+      <div class="ex-label">📐 Ordinary Level — Find Angle of Refraction</div>
+      <div class="ex-question">Refractive index of glass = 1.5. Angle of incidence = 35°. Find the angle of refraction.</div>
+      <div class="calc-step"><div class="cs-label">Rearrange Snell's Law</div>sin r = sin i / n = sin 35° / 1.5 = 0.5736 / 1.5 = 0.382<br>r = sin⁻¹(0.382) = <strong>22.5°</strong></div>
+    </div>
+
+    <div class="example-box">
+      <div class="ex-label">📐 Higher Level — Find Refractive Index When Light EXITS a Block</div>
+      <div class="ex-question">[2012 HL] Light exits a glass block. Angle inside glass = θ (from surface, NOT normal), angle in air = 30°. Refractive index = 1.5. Find θ.</div>
+      <div class="calc-step"><div class="cs-label">⚠️ Key insight</div>The angle is given FROM THE SURFACE. Angle from normal = 90° − θ (inside glass) and 90° − 30° = 60° (in air).<br>Light goes from glass → air, so use: n<sub>glass</sub> × sin(angle in glass) = n<sub>air</sub> × sin(angle in air)<br>1.5 × sin(90°−θ) = 1 × sin 60°<br>sin(90°−θ) = 0.866/1.5 = 0.577<br>90°−θ = 35.3°, so θ = 54.7°</div>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="nav-btn" onclick="go('mirror-exp')">← Mirror Experiment</button>
+      <button class="nav-btn primary" onclick="go('critical')">Next: Critical Angle & TIR →</button>
+    </div>
+  </div>
+
+  <!-- ===== CRITICAL ANGLE & TIR ===== -->
+  <div class="section" id="sec-critical">
+    <div class="chapter-badge">Chapter 3</div>
+    <div class="section-title">🔺 Critical Angle & Total Internal Reflection</div>
+    <div class="section-subtitle">What happens when light CAN'T escape from a denser medium</div>
+
+    <div class="definition">
+      <div class="def-label">📖 Definition — Critical Angle</div>
+      <div class="def-text">The critical angle is the angle of incidence (in the denser medium) which causes the <strong>angle of refraction to be exactly 90°</strong> — meaning the refracted ray travels along the surface.</div>
+    </div>
+
+    <div class="definition">
+      <div class="def-label">📖 Definition — Total Internal Reflection (TIR)</div>
+      <div class="def-text">Total internal reflection occurs when:<br>
+        1. Light is travelling from a <strong>denser medium to a less dense medium</strong> (e.g. glass → air)<br>
+        2. The angle of incidence is <strong>greater than the critical angle</strong><br><br>
+        In this case, ALL the light is reflected back into the denser medium — none escapes.
+      </div>
+    </div>
+
+    <h3>The Three Scenarios</h3>
+    <table class="data-table">
+      <tr><th>Angle of Incidence (in glass)</th><th>What Happens?</th></tr>
+      <tr><td>Less than critical angle</td><td>Light refracts out AND weak reflected ray</td></tr>
+      <tr><td>Exactly equal to critical angle</td><td>Refracted ray travels along the surface (90°)</td></tr>
+      <tr><td>Greater than critical angle</td><td><strong>Total Internal Reflection!</strong> All light reflects back in</td></tr>
+    </table>
+
+    <h3>Formula: Critical Angle and Refractive Index</h3>
+    <div class="formula-box">
+      <div class="formula-label">📐 Critical Angle Formula</div>
+      <div class="formula-main">n = 1 / sin C</div>
+      <div class="formula-desc">
+        <strong>n</strong> = refractive index &nbsp;|&nbsp; <strong>C</strong> = critical angle<br><br>
+        <strong>To find n given C:</strong> n = 1 / sin C<br>
+        <strong>To find C given n:</strong> sin C = 1/n → C = sin⁻¹(1/n)
+      </div>
+    </div>
+
+    <h3>⚡ Worked Calculations</h3>
+
+    <div class="example-box">
+      <div class="ex-label">📐 Type 1 — Given C, find n [2015 OL]</div>
+      <div class="ex-question">Critical angle = 42°. Find the refractive index.</div>
+      <div class="calc-step"><div class="cs-label">Apply formula</div>n = 1/sin C = 1/sin 42° = 1/0.669 = <strong>n = 1.49</strong></div>
+    </div>
+
+    <div class="example-box">
+      <div class="ex-label">📐 Type 2 — Given n, find C [2010 HL]</div>
+      <div class="ex-question">Refractive index = 1.46. Find the critical angle.</div>
+      <div class="calc-step"><div class="cs-label">Rearrange: sin C = 1/n</div>sin C = 1/1.46 = 0.685<br>C = sin⁻¹(0.685) = <strong>43.2°</strong></div>
+    </div>
+
+    <div class="example-box">
+      <div class="ex-label">📐 Higher Level [2015 HL] — Diamond</div>
+      <div class="ex-question">Refractive index of haematite = 3.2. Find critical angle.</div>
+      <div class="calc-step"><div class="cs-label">sin C = 1/n</div>sin C = 1/3.2 = 0.3125<br>C = sin⁻¹(0.3125) = <strong>18.2°</strong></div>
+      <p style="margin-top:10px;">💡 The higher the refractive index, the <strong>smaller</strong> the critical angle — so TIR happens more easily.</p>
+    </div>
+
+    <h3>Using a Prism for TIR</h3>
+    <div class="highlight-box">
+      A 45° glass prism has a critical angle of about 42°. When light hits the inside surface of the prism at 45°, that's greater than 42°, so TIR occurs.<br><br>
+      🔄 <strong>Rotate light 90°</strong>: Enter one face, TIR off the slanted face, exit the other face.<br>
+      ↩️ <strong>Rotate light 180°</strong>: Use two 45° prisms back-to-back — used in binoculars and periscopes.
+    </div>
+
+    <h3>Applications of Total Internal Reflection</h3>
+    <div class="highlight-box">
+      🚗 <strong>Reflective cat's-eye road signs</strong><br>
+      🔭 <strong>Binoculars and periscopes</strong> (prisms)<br>
+      🏥 <strong>Endoscopes</strong> (in medicine)<br>
+      🌐 <strong>Optical fibres</strong> (broadband internet)
+    </div>
+
+    <div class="nav-buttons">
+      <button class="nav-btn" onclick="go('refraction')">← Refraction</button>
+      <button class="nav-btn primary" onclick="go('fibres')">Next: Optical Fibres →</button>
+    </div>
+  </div>
+
+  <!-- ===== OPTICAL FIBRES ===== -->
+  <div class="section" id="sec-fibres">
+    <div class="chapter-badge">Chapter 3</div>
+    <div class="section-title">🌐 Optical Fibres</div>
+    <div class="section-subtitle">How light travels around corners using total internal reflection</div>
+
+    <div class="definition">
+      <div class="def-label">📖 Definition — Optical Fibre</div>
+      <div class="def-text">An optical fibre consists of a <strong>glass (or plastic) pipe coated with a second material of lower refractive index</strong>. Light travels along the fibre using total internal reflection at the boundary between the two materials.</div>
+    </div>
+
+    <h3>How Light Travels Through an Optical Fibre</h3>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div>Light enters one end of the fibre.</div></div>
+      <div class="step"><div class="step-num">2</div><div>It strikes the boundary between the inner core and the outer cladding at <strong>an angle greater than the critical angle</strong>.</div></div>
+      <div class="step"><div class="step-num">3</div><div><strong>Total internal reflection</strong> occurs — all the light reflects back inward.</div></div>
+      <div class="step"><div class="step-num">4</div><div>The reflected light travels to the opposite wall and undergoes TIR again.</div></div>
+      <div class="step"><div class="step-num">5</div><div>This process repeats all the way along the fibre until light emerges at the far end.</div></div>
+    </div>
+
+    <div class="warn-box">
+      <strong>⚠️ Why must the outer cladding have a LOWER refractive index?</strong><br>
+      Total internal reflection only occurs when light tries to go from a <strong>denser → less dense</strong> medium and the angle exceeds the critical angle. If the cladding had a higher refractive index, light would refract outward instead of reflecting inward — the light would escape.
+    </div>
+
+    <h3>The Outer Cladding Also...</h3>
+    <div class="definition">
+      <div class="def-label">📖 Role of the Outer Cladding</div>
+      <div class="def-text">
+        1. Has a lower refractive index — essential for TIR to occur<br>
+        2. Acts as a <strong>protective layer</strong> against scratches and damage to the surface of the core
+      </div>
+    </div>
+
+    <h3>Applications</h3>
+    <div class="highlight-box">
+      🌐 <strong>Broadband / telecommunications</strong> (transmitting data as light pulses)<br>
+      🏥 <strong>Endoscopes</strong> in medicine (looking inside the body without surgery)
+    </div>
+
+    <h3>Advantages Over Copper Wire</h3>
+    <div class="highlight-box">
+      ✅ Cheaper raw material (glass/sand is more abundant than copper)<br>
+      ✅ Occupy less space (fibres are very thin — about the width of a hair)<br>
+      ✅ Less interference from electrical/magnetic fields<br>
+      ✅ Do not corrode<br>
+      ✅ Flexible — can reach inaccessible places<br>
+      ✅ Can carry much more information (higher bandwidth)
+    </div>
+
+    <h3>Material Used</h3>
+    <div class="definition">
+      <div class="def-label">📖 Exam Answer</div>
+      <div class="def-text">Optical fibres are made from <strong>glass</strong> (or plastic / sand / silicon).</div>
+    </div>
+
+    <h3>⚡ Worked Calculations</h3>
+
+    <div class="example-box">
+      <div class="ex-label">📐 HL [2009] — Speed in Optical Fibre</div>
+      <div class="ex-question">Optical fibre has refractive index = 1.55. Find speed of light in the fibre.</div>
+      <div class="calc-step"><div class="cs-label">n = c_air / c_medium → c_medium = c_air / n</div>c = 3 × 10⁸ / 1.55 = <strong>1.94 × 10⁸ m/s</strong></div>
+    </div>
+
+    <div class="example-box">
+      <div class="ex-label">📐 HL [2017] — Hibernia Express Cable</div>
+      <div class="ex-question">Signal travels 5500 km from London to New York in 29 milliseconds. Find the refractive index of the glass.</div>
+      <div class="calc-step"><div class="cs-label">Step 1 — Convert units</div>Distance = 5500 km = 5500 × 10³ m = 5.5 × 10⁶ m<br>Time = 29 ms = 29 × 10⁻³ s</div>
+      <div class="calc-step"><div class="cs-label">Step 2 — Speed of light in glass</div>v = d/t = (5.5 × 10⁶) / (29 × 10⁻³) = 1.9 × 10⁸ m/s</div>
+      <div class="calc-step"><div class="cs-label">Step 3 — Refractive index</div>n = c_air / c_glass = (3 × 10⁸) / (1.9 × 10⁸) = <strong>1.58</strong></div>
+    </div>
+
+    <div class="example-box">
+      <div class="ex-label">📐 OL [2017] — Critical Angle for Optical Fibre</div>
+      <div class="ex-question">Optical fibre has refractive index = 1.5. Find the critical angle.</div>
+      <div class="calc-step"><div class="cs-label">sin C = 1/n = 1/1.5 = 0.667</div>C = sin⁻¹(0.667) = <strong>41.8°</strong></div>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="nav-btn" onclick="go('critical')">← Critical Angle</button>
+      <button class="nav-btn primary" onclick="go('ri-formulas')">Next: All RI Formulas →</button>
+    </div>
+  </div>
+
+  <!-- ===== RI FORMULAS ===== -->
+  <div class="section" id="sec-ri-formulas">
+    <div class="chapter-badge">Chapter 3</div>
+    <div class="section-title">🧮 All Refractive Index Formulas</div>
+    <div class="section-subtitle">Four different formulas, four different situations — learn to pick the right one</div>
+
+    <p>The refractive index appears in <strong>four different formulas</strong>. You need to recognise which one to use from the context of the question.</p>
+
+    <div class="formula-box">
+      <div class="formula-label">📐 Formula 1 — Snell's Law</div>
+      <div class="formula-main">n = sin i / sin r</div>
+      <div class="formula-desc"><strong>Use when:</strong> Given angles of incidence and refraction, or asked to find an angle.<br>i = angle of incidence (in air/vacuum), r = angle of refraction</div>
+    </div>
+
+    <div class="formula-box">
+      <div class="formula-label">📐 Formula 2 — Speed of Light</div>
+      <div class="formula-main">n = c<sub>air</sub> / c<sub>medium</sub></div>
+      <div class="formula-desc"><strong>Use when:</strong> Given or asked for the speed of light in a medium.<br>c<sub>air</sub> = 3 × 10⁸ m/s always.</div>
+    </div>
+
+    <div class="formula-box">
+      <div class="formula-label">📐 Formula 3 — Critical Angle</div>
+      <div class="formula-main">n = 1 / sin C</div>
+      <div class="formula-desc"><strong>Use when:</strong> Given the critical angle, asked for refractive index (or vice versa).</div>
+    </div>
+
+    <div class="formula-box">
+      <div class="formula-label">📐 Formula 4 — Real/Apparent Depth</div>
+      <div class="formula-main">n = Real Depth / Apparent Depth</div>
+      <div class="formula-desc"><strong>Use when:</strong> Given how deep something actually is and how deep it appears (e.g. a swimmer in a pool).<br>Apparent depth is always LESS than real depth (pools look shallower).</div>
+    </div>
+
+    <div class="warn-box">
+      <strong>⚠️ IMPORTANT:</strong> Formulas 2, 3, and 4 are <strong>NOT</strong> in the Formulae & Tables book — you must know them! Formula 1 (Snell's Law) is given to you.
+    </div>
+
+    <h3>⚡ Real/Apparent Depth Calculations</h3>
+
+    <div class="example-box">
+      <div class="ex-label">📐 Example — Diver in Pool</div>
+      <div class="ex-question">A diver is 12 m below the surface. Refractive index of water = 1.33. What is the apparent depth?</div>
+      <div class="calc-step"><div class="cs-label">n = Real Depth / Apparent Depth → rearrange</div>Apparent Depth = Real Depth / n = 12 / 1.33 = <strong>9.02 m</strong></div>
+      <p style="margin-top:10px;">💡 The diver appears to be only 9 m deep, not 12 m deep!</p>
+    </div>
+
+    <h3>Why Does a Pool Look Shallower?</h3>
+    <p>Light rays from the diver refract <strong>away from the normal</strong> as they exit the water into air. Your brain traces these diverging rays backwards and "places" the diver at a shallower depth than they actually are.</p>
+
+    <h3>Quick Decision Guide</h3>
+    <div class="highlight-box">
+      <p><strong>🔍 Which formula do I use?</strong></p>
+      <ul>
+        <li>Angles given → <strong>n = sin i / sin r</strong></li>
+        <li>Speed of light given → <strong>n = c_air / c_medium</strong></li>
+        <li>Critical angle given → <strong>n = 1 / sin C</strong></li>
+        <li>Pool/swimmer depth → <strong>n = Real Depth / Apparent Depth</strong></li>
+      </ul>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="nav-btn" onclick="go('fibres')">← Optical Fibres</button>
+      <button class="nav-btn primary" onclick="go('snell-exp')">Next: Snell's Law Experiment →</button>
+    </div>
+  </div>
+
+  <!-- ===== SNELL EXPERIMENT ===== -->
+  <div class="section" id="sec-snell-exp">
+    <div class="chapter-badge">Mandatory Experiment</div>
+    <div class="section-title">🔬 Verifying Snell's Law & Measuring Refractive Index</div>
+    <div class="section-subtitle">How to show that sin i / sin r is a constant</div>
+
+    <div class="definition">
+      <div class="def-label">📖 Apparatus</div>
+      <div class="def-text">Glass block, ray-box, protractor, sheet of paper</div>
+    </div>
+
+    <h3>Procedure</h3>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div>Place the glass block on the paper and trace around its outline.</div></div>
+      <div class="step"><div class="step-num">2</div><div>Shine a ray of light from the ray-box into the glass block at an angle.</div></div>
+      <div class="step"><div class="step-num">3</div><div>Mark two dots on the incident ray and two dots on the exit ray (exiting the other side).</div></div>
+      <div class="step"><div class="step-num">4</div><div>Remove the block. Draw the normal at the entry point. Connect the dots to trace the full path of the ray.</div></div>
+      <div class="step"><div class="step-num">5</div><div>Measure angle of incidence <strong>i</strong> and angle of refraction <strong>r</strong> using the protractor.</div></div>
+      <div class="step"><div class="step-num">6</div><div>Repeat for different values of i (use a wide range — small to large angles).</div></div>
+      <div class="step"><div class="step-num">7</div><div>Record i, r, sin i, and sin r in a table.</div></div>
+      <div class="step"><div class="step-num">8</div><div>Plot a graph of <strong>sin i (y-axis) against sin r (x-axis)</strong>.</div></div>
+      <div class="step"><div class="step-num">9</div><div>The <strong>slope</strong> of the straight line = refractive index of the glass.</div></div>
+    </div>
+
+    <h3>Conclusion</h3>
+    <div class="definition">
+      <div class="def-label">📖 How the Graph Verifies Snell's Law</div>
+      <div class="def-text">A <strong>straight line through the origin</strong> shows that sin i ∝ sin r — this confirms Snell's Law (the ratio is constant). The slope of the graph gives the refractive index.</div>
+    </div>
+
+    <h3>Sources of Error / Precautions</h3>
+    <div class="highlight-box">
+      <ul>
+        <li>⚠️ <strong>Don't use small angles</strong> (below 20°) — larger percentage errors when angles are small</li>
+        <li>📌 <strong>Mark two dots far apart</strong> on the incident and exit rays — more accurate direction</li>
+        <li>📐 Measure angles carefully with the protractor, relative to the normal</li>
+        <li>🔄 Repeat and average for accuracy</li>
+      </ul>
+    </div>
+
+    <h3>Why Not Use Angles Below 20°?</h3>
+    <div class="definition">
+      <div class="def-label">📖 Exam Answer</div>
+      <div class="def-text">Small angles of incidence result in <strong>large percentage errors</strong> when measuring the angle — a small mistake in measuring a small angle makes a big difference to the result.</div>
+    </div>
+
+    <h3>Graphical Method vs Calculation Method</h3>
+    <div class="definition">
+      <div class="def-label">📖 Exam Answer — Why Graph is Better</div>
+      <div class="def-text">Using a graph is more accurate because <strong>outliers (errors) can be easily identified</strong> — a point that falls well off the straight line can be ignored. In a table of calculations, a faulty reading would still be included in the average.</div>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="nav-btn" onclick="go('ri-formulas')">← RI Formulas</button>
+      <button class="nav-btn primary" onclick="go('convex-lens')">Next: Convex Lenses →</button>
+    </div>
+  </div>
+
+  <!-- ===== CONVEX LENS ===== -->
+  <div class="section" id="sec-convex-lens">
+    <div class="chapter-badge">Chapter 4</div>
+    <div class="section-title">🔍 Convex (Converging) Lenses</div>
+    <div class="section-subtitle">Thicker in the middle — bends light rays inward</div>
+
+    <div class="definition">
+      <div class="def-label">📖 Convex (Converging) Lens</div>
+      <div class="def-text">A <strong>convex lens</strong> is thicker in the middle than at the edges. It causes parallel rays of light to converge (come together) at a point called the <strong>focus</strong>. Also called a "converging lens".</div>
+    </div>
+
+    <h3>Why Does It Converge Light?</h3>
+    <p>Light refracts (bends) <strong>twice</strong> as it passes through the lens — once entering and once leaving. At each surface, it bends toward the principal axis, so all parallel rays converge at the focus on the other side.</p>
+
+    <h3>Ray Diagram Rules (Convex Lens)</h3>
+    <div class="highlight-box">
+      <strong>Three rules (use any two):</strong>
+      <ol style="margin-top:8px;">
+        <li>A ray <strong>parallel to the principal axis</strong> → refracts <strong>through the focus on the other side</strong></li>
+        <li>A ray hitting <strong>the centre of the lens</strong> → goes <strong>straight through</strong> (no bending)</li>
+        <li>A ray <strong>passing through the focus on the object side</strong> → refracts out <strong>parallel to the principal axis</strong></li>
+      </ol>
+    </div>
+
+    <h3>Images Formed by Convex Lens</h3>
+    <table class="data-table">
+      <tr><th>Object Position</th><th>Image Type</th><th>Orientation</th><th>Size</th><th>Uses</th></tr>
+      <tr><td>Beyond 2f</td><td>Real</td><td>Inverted</td><td>Diminished</td><td>Camera</td></tr>
+      <tr><td>At 2f</td><td>Real</td><td>Inverted</td><td>Same size</td><td>Photocopier</td></tr>
+      <tr><td>Between f and 2f</td><td>Real</td><td>Inverted</td><td>Magnified</td><td>Projector</td></tr>
+      <tr><td>At f</td><td>No image</td><td>—</td><td>—</td><td>Searchlight beam</td></tr>
+      <tr><td>Inside f</td><td>Virtual</td><td>Upright</td><td>Magnified</td><td>Magnifying glass</td></tr>
+    </table>
+
+    <div class="tip-box">
+      <div class="tip-label">💡 Key Rules for Convex Lens</div>
+      ✅ Real image → on the <strong>opposite side</strong> to the object, inverted<br>
+      ✅ Virtual image → on the <strong>same side</strong> as the object, upright<br>
+      ✅ Object inside f → virtual image (magnifying glass effect)
+    </div>
+
+    <h3>Sign Convention for Lenses (Same as Mirrors)</h3>
+    <div style="display:flex; flex-wrap:wrap; gap:10px; margin:16px 0;">
+      <div class="sign-box"><div class="sb-type">Convex lens</div><div class="sb-value" style="color:#0077b6;">f = positive (+)</div></div>
+      <div class="sign-box"><div class="sb-type">Concave lens</div><div class="sb-value" style="color:#e91e63;">f = negative (−)</div></div>
+      <div class="sign-box"><div class="sb-type">Real image</div><div class="sb-value" style="color:#2e7d32;">v = positive (+)</div></div>
+      <div class="sign-box"><div class="sb-type">Virtual image</div><div class="sb-value" style="color:#e91e63;">v = negative (−)</div></div>
+    </div>
+
+    <h3>Uses of Convex Lenses</h3>
+    <div class="highlight-box">
+      🔎 <strong>Magnifying glass</strong> (object inside f) &nbsp;&nbsp; 📸 <strong>Cameras</strong><br>
+      👓 <strong>Spectacles/contact lenses</strong> (long-sightedness) &nbsp;&nbsp; 🎥 <strong>Projectors</strong><br>
+      🔭 <strong>Telescopes and binoculars</strong>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="nav-btn" onclick="go('snell-exp')">← Snell Experiment</button>
+      <button class="nav-btn primary" onclick="go('concave-lens')">Next: Concave Lenses →</button>
+    </div>
+  </div>
+
+  <!-- ===== CONCAVE LENS ===== -->
+  <div class="section" id="sec-concave-lens">
+    <div class="chapter-badge">Chapter 4</div>
+    <div class="section-title">🔎 Concave (Diverging) Lenses</div>
+    <div class="section-subtitle">Thinner in the middle — spreads light rays outward</div>
+
+    <div class="definition">
+      <div class="def-label">📖 Concave (Diverging) Lens</div>
+      <div class="def-text">A <strong>concave lens</strong> is thinner in the middle than at the edges. It causes rays of light to diverge (spread apart). Also called a "diverging lens".</div>
+    </div>
+
+    <h3>Ray Diagram Rules (Concave Lens)</h3>
+    <div class="highlight-box">
+      <strong>Two rules:</strong>
+      <ol style="margin-top:8px;">
+        <li>A ray parallel to the principal axis refracts <strong>as if it came from the focus on the same side as the object</strong></li>
+        <li>A ray hitting <strong>the centre of the lens</strong> passes <strong>straight through</strong></li>
+      </ol>
+      <p style="margin-top:8px;">The rays diverge after the lens and never actually meet. They only <em>appear</em> to come from a point on the same side as the object → always a <strong>virtual image</strong>.</p>
+    </div>
+
+    <h3>Concave Lens Image — Always the Same!</h3>
+    <div class="definition">
+      <div class="def-label">📖 Image in Concave Lens (Always)</div>
+      <div class="def-text">
+        ✅ <strong>Virtual</strong> (on same side as object)<br>
+        ✅ <strong>Upright</strong><br>
+        ✅ <strong>Diminished</strong> (smaller than the object)
+      </div>
+    </div>
+
+    <div class="warn-box">
+      <strong>⚠️ A diverging (concave) lens cannot be used as a magnifying glass.</strong> Why? Because the image is <em>always</em> diminished — it makes things look smaller, not bigger!
+    </div>
+
+    <h3>Uses of Concave Lenses</h3>
+    <div class="highlight-box">
+      👓 <strong>Spectacles/contact lenses</strong> for <strong>short-sightedness (myopia)</strong> — the concave lens spreads the rays, allowing the eye to focus them correctly on the retina
+    </div>
+
+    <h3>Convex vs Concave Lens — Summary</h3>
+    <table class="data-table">
+      <tr><th>Feature</th><th>Convex (Converging)</th><th>Concave (Diverging)</th></tr>
+      <tr><td>Shape</td><td>Thicker in middle</td><td>Thinner in middle</td></tr>
+      <tr><td>Effect on rays</td><td>Converges (brings together)</td><td>Diverges (spreads apart)</td></tr>
+      <tr><td>f value</td><td>Positive (+)</td><td>Negative (−)</td></tr>
+      <tr><td>Image type</td><td>Real or virtual</td><td>Always virtual</td></tr>
+      <tr><td>Image size</td><td>Can be any size</td><td>Always diminished</td></tr>
+      <tr><td>Used to correct</td><td>Long-sightedness</td><td>Short-sightedness</td></tr>
+    </table>
+
+    <div class="nav-buttons">
+      <button class="nav-btn" onclick="go('convex-lens')">← Convex Lenses</button>
+      <button class="nav-btn primary" onclick="go('lens-maths')">Next: Lens Maths →</button>
+    </div>
+  </div>
+
+  <!-- ===== LENS MATHS ===== -->
+  <div class="section" id="sec-lens-maths">
+    <div class="chapter-badge">Chapter 4 — Calculations</div>
+    <div class="section-title">📐 Lens Maths: f, u, v & Magnification</div>
+    <div class="section-subtitle">Same formula as mirrors — just different sign rules</div>
+
+    <div class="formula-box">
+      <div class="formula-label">📐 The Lens Formula (Same as Mirror Formula!)</div>
+      <div class="formula-main">1/f = 1/u + 1/v</div>
+      <div class="formula-desc">
+        <strong>Convex lens</strong>: f is positive<br>
+        <strong>Concave lens</strong>: f is negative<br>
+        v positive → real image (opposite side to object)<br>
+        v negative → virtual image (same side as object)
+      </div>
+    </div>
+
+    <h3>⚡ Worked Calculations</h3>
+
+    <div class="example-box">
+      <div class="ex-label">📐 Ordinary Level [2020]</div>
+      <div class="ex-question">Converging lens, f = 15 cm. Object 20 cm in front. Find v and M.</div>
+      <div class="calc-step"><div class="cs-label">Find v</div>1/v = 1/f − 1/u = 1/15 − 1/20<br>= 4/60 − 3/60 = 1/60<br><strong>v = 60 cm</strong> (positive → real image)</div>
+      <div class="calc-step"><div class="cs-label">Find M</div>M = v/u = 60/20 = <strong>3</strong> (image is 3× larger than object)</div>
+    </div>
+
+    <div class="example-box">
+      <div class="ex-label">📐 Higher Level [2006] — Two Object Positions for Same Magnification</div>
+      <div class="ex-question">Converging lens, f = 8 cm. Find two positions where image is 4× the size of object.</div>
+      <p><strong>Part 1 — Real image (M = 4, so v = 4u):</strong></p>
+      <div class="calc-step"><div class="cs-label">Substitute v = 4u into lens formula</div>1/8 = 1/u + 1/4u = 4/4u + 1/4u = 5/4u<br>4u = 40 → <strong>u = 10 cm</strong></div>
+      <p style="margin-top:10px;"><strong>Part 2 — Virtual image (v is negative, so v = −4u):</strong></p>
+      <div class="calc-step"><div class="cs-label">Substitute v = −4u into lens formula</div>1/8 = 1/u + 1/(−4u) = 4/4u − 1/4u = 3/4u<br>4u = 24 → <strong>u = 6 cm</strong></div>
+      <p style="margin-top:8px;">💡 u = 6 cm < f = 8 cm → object is inside the focus, so virtual image. ✓</p>
+    </div>
+
+    <div class="example-box">
+      <div class="ex-label">📐 OL [2023] — Find image position</div>
+      <div class="ex-question">Converging lens, f = 15 cm. Object 25 cm in front. Find image position.</div>
+      <div class="calc-step"><div class="cs-label">1/v = 1/f − 1/u</div>1/v = 1/15 − 1/25 = 5/75 − 3/75 = 2/75<br><strong>v = 37.5 cm</strong></div>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="nav-btn" onclick="go('concave-lens')">← Concave Lenses</button>
+      <button class="nav-btn primary" onclick="go('eye')">Next: The Eye →</button>
+    </div>
+  </div>
+
+  <!-- ===== THE EYE ===== -->
+  <div class="section" id="sec-eye">
+    <div class="chapter-badge">Chapter 4</div>
+    <div class="section-title">👁️ The Eye</div>
+    <div class="section-subtitle">Your eye is an optical instrument — and it can break down</div>
+
+    <h3>Parts of the Eye and Their Functions</h3>
+    <table class="data-table">
+      <tr><th>Part</th><th>Function</th></tr>
+      <tr><td>Cornea</td><td>Together with the lens, forms part of the focusing system. Fixed lens with the most refractive power.</td></tr>
+      <tr><td>Lens</td><td>Together with the cornea, focuses light onto the retina. Changes shape to focus near and far objects.</td></tr>
+      <tr><td>Iris</td><td>Acts like a shutter — controls the amount of light entering the eye (like the aperture of a camera)</td></tr>
+      <tr><td>Pupil</td><td>The hole in the iris that allows light to enter</td></tr>
+      <tr><td>Retina</td><td>Light-sensitive screen at the back of the eye where the image is formed</td></tr>
+      <tr><td>Optic Nerve</td><td>Carries information from the retina to the brain in electrical form</td></tr>
+      <tr><td>Ciliary Muscles</td><td>Muscles that change the shape (and therefore focal length) of the lens</td></tr>
+    </table>
+
+    <h3>Power of Accommodation</h3>
+    <div class="definition">
+      <div class="def-label">📖 Power of Accommodation</div>
+      <div class="def-text">The <strong>power of accommodation</strong> of the eye is its ability to <strong>focus a real image of an object onto the retina, whether the object is near or far away</strong>. It does this by the ciliary muscles changing the shape of the lens — making it fatter (more curved = more powerful) for near objects, and flatter (less curved = less powerful) for distant objects.</div>
+    </div>
+
+    <h3>Common Eye Defects</h3>
+
+    <div class="image-comparison">
+      <div class="img-card">
+        <div class="img-title" style="color:#e91e63;">Short-Sightedness (Myopia)</div>
+        <p><strong>Problem:</strong> Can see nearby objects clearly but distant objects are blurry. The eye is too powerful — light focuses <em>in front of</em> the retina.</p>
+        <p><strong>Correction:</strong> <strong>Concave (diverging) lens</strong> — spreads the rays out slightly before they enter the eye, so they focus correctly on the retina.</p>
+        <p><strong>Power:</strong> Negative (−)</p>
+      </div>
+      <div class="img-card">
+        <div class="img-title" style="color:#0077b6;">Long-Sightedness (Hypermetropia)</div>
+        <p><strong>Problem:</strong> Can see distant objects clearly but nearby objects are blurry. The eye is not powerful enough — light focuses <em>behind</em> the retina.</p>
+        <p><strong>Correction:</strong> <strong>Convex (converging) lens</strong> — converges the rays slightly before entering the eye.</p>
+        <p><strong>Power:</strong> Positive (+)</p>
+      </div>
+    </div>
+
+    <div class="mnemonic">
+      <div class="m-label">💡 Memory Trick</div>
+      <div class="m-text">Short = Concave &nbsp;&nbsp; Long = conVex</div>
+      <div class="m-explain">Short-sighted → Concave lens &nbsp;|&nbsp; Long-sighted → Convex lens</div>
+    </div>
+
+    <h3>Underwater Vision</h3>
+    <div class="accordion">
+      <button class="accordion-btn" onclick="acc(this)">Why can't a swimmer see clearly underwater? <span class="acc-arrow">▼</span></button>
+      <div class="accordion-content">The cornea has almost the same refractive index as water (≈1.33). When underwater, light doesn't refract as it enters the cornea — so the cornea doesn't act as a lens. The eye loses most of its focusing ability and everything looks blurry.
+      </div>
+    </div>
+    <div class="accordion">
+      <button class="accordion-btn" onclick="acc(this)">How do goggles fix this? <span class="acc-arrow">▼</span></button>
+      <div class="accordion-content">Goggles create a layer of air in front of the eyes. Light now travels from water → air → cornea, so it refracts again at the cornea (air and cornea have different refractive indices). The cornea acts as a lens again and vision is restored.
+      </div>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="nav-btn" onclick="go('lens-maths')">← Lens Maths</button>
+      <button class="nav-btn primary" onclick="go('power')">Next: Power of Lenses →</button>
+    </div>
+  </div>
+
+  <!-- ===== POWER ===== -->
+  <div class="section" id="sec-power">
+    <div class="chapter-badge">Chapter 4</div>
+    <div class="section-title">⚡ Power of Lenses</div>
+    <div class="section-subtitle">Power lets us combine lenses — essential for correcting vision</div>
+
+    <div class="definition">
+      <div class="def-label">📖 Definition — Power of a Lens</div>
+      <div class="def-text">The <strong>power of a lens</strong> is the reciprocal (1 ÷) of its focal length. A short focal length = high power (bends light a lot). Unit: <strong>m⁻¹</strong> (also called dioptres, D).</div>
+    </div>
+
+    <div class="formula-box">
+      <div class="formula-label">📐 Power Formulas</div>
+      <div class="formula-main">P = 1/f &nbsp;&nbsp;&nbsp;&nbsp; f = 1/P</div>
+      <div class="formula-desc">
+        ⚠️ <strong>f must be in METRES</strong> — not cm!<br>
+        Convex lens: power is <strong>positive (+)</strong><br>
+        Concave lens: power is <strong>negative (−)</strong>
+      </div>
+    </div>
+
+    <div class="formula-box">
+      <div class="formula-label">📐 Two Lenses in Contact</div>
+      <div class="formula-main">P<sub>total</sub> = P<sub>1</sub> + P<sub>2</sub></div>
+      <div class="formula-desc">Just add the powers! Remember the signs.</div>
+    </div>
+
+    <div class="formula-box">
+      <div class="formula-label">📐 Correcting Vision Defects</div>
+      <div class="formula-main">P<sub>corrected eye</sub> = P<sub>defective eye</sub> + P<sub>corrective lens</sub></div>
+      <div class="formula-desc">Rearranged: <strong>P<sub>corrective lens</sub> = P<sub>corrected eye</sub> − P<sub>defective eye</sub></strong></div>
+    </div>
+
+    <h3>⚡ Worked Calculations</h3>
+
+    <div class="example-box">
+      <div class="ex-label">📐 Basic [HL 2012] — Find focal length from power</div>
+      <div class="ex-question">Lens has power of −2 m⁻¹. Find focal length.</div>
+      <div class="calc-step"><div class="cs-label">f = 1/P</div>f = 1/(−2) = <strong>−0.5 m</strong><br>The negative sign confirms it's a concave (diverging) lens.</div>
+    </div>
+
+    <div class="example-box">
+      <div class="ex-label">📐 HL [2004] — Two converging lenses</div>
+      <div class="ex-question">Two converging lenses, each with f = 10 cm. Find total power.</div>
+      <div class="calc-step"><div class="cs-label">Convert f to metres, find P for each</div>f = 10 cm = 0.1 m<br>P₁ = 1/0.1 = 10 m⁻¹ &nbsp;&nbsp; P₂ = 10 m⁻¹</div>
+      <div class="calc-step"><div class="cs-label">P_total = P₁ + P₂</div>P_total = 10 + 10 = <strong>20 m⁻¹</strong></div>
+    </div>
+
+    <div class="example-box">
+      <div class="ex-label">📐 HL [2022] — Converging + Diverging</div>
+      <div class="ex-question">Converging lens f = 5 cm, diverging lens f = 15 cm. Find total focal length.</div>
+      <div class="calc-step"><div class="cs-label">Use 1/f_total = 1/f₁ + 1/f₂</div>f₁ = 5 cm, f₂ = −15 cm (diverging = negative)<br>1/f_total = 1/5 + 1/(−15) = 3/15 − 1/15 = 2/15<br><strong>f_total = 7.5 cm</strong></div>
+    </div>
+
+    <div class="example-box">
+      <div class="ex-label">📐 HL [2002] — Short-Sightedness Correction</div>
+      <div class="ex-question">Normal eye power = 60 m⁻¹. Short-sighted eye power = 65 m⁻¹. Find corrective lens power.</div>
+      <div class="calc-step"><div class="cs-label">P_corrected = P_defective + P_lens</div>60 = 65 + P_lens<br><strong>P_lens = −5 m⁻¹</strong> (negative → concave lens → corrects short-sightedness ✓)</div>
+    </div>
+
+    <div class="example-box">
+      <div class="ex-label">📐 OL [2022] — Eye + Glasses</div>
+      <div class="ex-question">Eye power = 62 m⁻¹. Glasses power = −2 m⁻¹. Find total power and focal length of glasses.</div>
+      <div class="calc-step"><div class="cs-label">Total power</div>P_total = 62 + (−2) = <strong>60 m⁻¹</strong></div>
+      <div class="calc-step"><div class="cs-label">Focal length of glasses lens</div>f = 1/P = 1/(−2) = <strong>−0.5 m</strong></div>
+    </div>
+
+    <div class="example-box">
+      <div class="ex-label">📐 OL [2019] — Long-Sightedness Correction</div>
+      <div class="ex-question">Power needed = 38 m⁻¹. Eye's maximum power = 32 m⁻¹. Find corrective lens power and focal length.</div>
+      <div class="calc-step"><div class="cs-label">P_corrective = P_needed − P_eye</div>38 = 32 + P_lens → P_lens = <strong>6 m⁻¹</strong> (positive → convex lens → corrects long-sightedness ✓)</div>
+      <div class="calc-step"><div class="cs-label">Focal length</div>f = 1/P = 1/6 = <strong>0.167 m</strong></div>
+    </div>
+
+    <div class="tip-box">
+      <div class="tip-label">⚠️ Sign of P tells you the lens type!</div>
+      P<sub>corrective</sub> is <strong>negative</strong> → concave lens → corrects short-sightedness<br>
+      P<sub>corrective</sub> is <strong>positive</strong> → convex lens → corrects long-sightedness
+    </div>
+
+    <div class="nav-buttons">
+      <button class="nav-btn" onclick="go('eye')">← The Eye</button>
+      <button class="nav-btn primary" onclick="go('lens-exp')">Next: Lens Experiment →</button>
+    </div>
+  </div>
+
+  <!-- ===== LENS EXPERIMENT ===== -->
+  <div class="section" id="sec-lens-exp">
+    <div class="chapter-badge">Mandatory Experiment</div>
+    <div class="section-title">🔬 Measuring Focal Length of a Convex Lens</div>
+    <div class="section-subtitle">Very similar to the concave mirror experiment!</div>
+
+    <div class="definition">
+      <div class="def-label">📖 Apparatus</div>
+      <div class="def-text">Converging (convex) lens, screen, lamp-box with crosswire, metre stick, retort stand</div>
+    </div>
+
+    <h3>Procedure</h3>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div><strong>Find approximate focal length:</strong> Focus the image of a distant object (e.g. a window) onto a screen. The distance from lens to screen ≈ focal length.</div></div>
+      <div class="step"><div class="step-num">2</div><div><strong>Set up:</strong> Place lamp-box outside the focal length. Position screen on the other side of the lens.</div></div>
+      <div class="step"><div class="step-num">3</div><div><strong>Find image:</strong> Move the screen until a sharp, inverted image of the crosswire appears.</div></div>
+      <div class="step"><div class="step-num">4</div><div><strong>Measure u:</strong> Distance from lamp (object) to lens.</div></div>
+      <div class="step"><div class="step-num">5</div><div><strong>Measure v:</strong> Distance from lens to screen (image).</div></div>
+      <div class="step"><div class="step-num">6</div><div><strong>Calculate f</strong> using 1/f = 1/u + 1/v.</div></div>
+      <div class="step"><div class="step-num">7</div><div><strong>Repeat</strong> for different u values. Average all f values.</div></div>
+    </div>
+
+    <h3>Key Differences from Mirror Experiment</h3>
+    <div class="highlight-box">
+      📏 Measure from the <strong>centre of the lens</strong> (not back of lens)<br>
+      🖥️ Screen is on the <strong>opposite side</strong> of the lens to the object<br>
+      ⚠️ If object is too close to lens (inside focal length), no real image forms on screen
+    </div>
+
+    <h3>Sources of Error / Precautions</h3>
+    <div class="highlight-box">
+      <ul>
+        <li>Difficulty judging sharpest focus — repeat and average</li>
+        <li>Parallax error when measuring — keep line of sight perpendicular to metre stick</li>
+        <li>Measure from the <strong>centre</strong> of the lens</li>
+        <li>Find approximate focal length first to avoid placing object inside f</li>
+      </ul>
+    </div>
+
+    <h3>Why Can't You Use Object Distance < 10 cm?</h3>
+    <div class="definition">
+      <div class="def-label">📖 Exam Answer</div>
+      <div class="def-text">If the object is <strong>inside the focal length</strong>, only a virtual image forms — and a virtual image cannot be projected onto a screen. So no image would appear.</div>
+    </div>
+
+    <h3>Sample Data</h3>
+    <div class="example-box">
+      <div class="ex-label">📐 2009 Exam Example</div>
+      <table class="data-table" style="margin:10px 0;">
+        <tr><th>u (cm)</th><th>v (cm)</th><th>f (cm)</th></tr>
+        <tr><td>20.0</td><td>65.2</td><td>15.3</td></tr>
+        <tr><td>30.0</td><td>33.3</td><td>15.8</td></tr>
+        <tr><td>40.0</td><td>25.1</td><td>15.4</td></tr>
+      </table>
+      <p><strong>Average f ≈ 15.5 cm</strong></p>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="nav-btn" onclick="go('power')">← Power of Lenses</button>
+      <button class="nav-btn primary" onclick="go('definitions')">Next: All Definitions →</button>
+    </div>
+  </div>
+
+  <!-- ===== DEFINITIONS ===== -->
+  <div class="section" id="sec-definitions">
+    <div class="chapter-badge">Revision</div>
+    <div class="section-title">📖 All Definitions — Exam Ready</div>
+    <div class="section-subtitle">Every definition you could be asked in the Leaving Cert, word-perfect</div>
+
+    <div class="definition"><div class="def-label">Reflection</div><div class="def-text">The bouncing of light off a surface.</div></div>
+    <div class="definition"><div class="def-label">Laws of Reflection (2 laws)</div><div class="def-text">1. The incident ray, the normal, and the reflected ray all lie on the same plane.<br>2. The angle of incidence equals the angle of reflection.</div></div>
+    <div class="definition"><div class="def-label">Real Image</div><div class="def-text">A real image is formed by the <em>actual</em> intersection of light rays. It can be projected onto a screen. It is always inverted.</div></div>
+    <div class="definition"><div class="def-label">Virtual Image</div><div class="def-text">A virtual image is formed by the <em>apparent</em> intersection of light rays. It cannot be projected onto a screen. It is always upright.</div></div>
+    <div class="definition"><div class="def-label">Refraction</div><div class="def-text">Refraction is the bending of a wave (light) as it passes from a medium of one refractive index to a medium of a different refractive index.</div></div>
+    <div class="definition"><div class="def-label">Laws of Refraction (Snell's Law)</div><div class="def-text">1. The incident ray, the normal, and the refracted ray all lie on the same plane.<br>2. The ratio of the sine of the angle of incidence to the sine of the angle of refraction is a constant (= the refractive index).</div></div>
+    <div class="definition"><div class="def-label">Refractive Index</div><div class="def-text">The refractive index of a medium is the ratio of sin i to sin r when light travels from a vacuum (or air) into that medium. n = sin i / sin r.</div></div>
+    <div class="definition"><div class="def-label">Critical Angle</div><div class="def-text">The critical angle is the angle of incidence (in the denser medium) which causes the angle of refraction to be exactly 90° — meaning the refracted ray travels along the surface.</div></div>
+    <div class="definition"><div class="def-label">Total Internal Reflection</div><div class="def-text">Total internal reflection occurs when light in a denser medium strikes the boundary with a less dense medium at an angle of incidence greater than the critical angle — all the light is reflected back into the denser medium.</div></div>
+    <div class="definition"><div class="def-label">Optical Fibre</div><div class="def-text">An optical fibre consists of a glass pipe coated with a second material of lower refractive index. Light travels along it by total internal reflection at the boundary between the two materials.</div></div>
+    <div class="definition"><div class="def-label">Power of Accommodation</div><div class="def-text">The power of accommodation of the eye is its ability to focus a real image of an object onto the retina, whether the object is near to or far away. Achieved by the ciliary muscles changing the shape of the lens.</div></div>
+    <div class="definition"><div class="def-label">Power of a Lens</div><div class="def-text">The power of a lens is the reciprocal of its focal length. P = 1/f. Unit: m⁻¹. Converging lens: positive. Diverging lens: negative.</div></div>
+    <div class="definition"><div class="def-label">Parallax Error</div><div class="def-text">A parallax error is the apparent shift in an object's position when viewed from different angles. Avoided by ensuring your line of sight is perpendicular to the scale.</div></div>
+    <div class="definition"><div class="def-label">Short-Sightedness (Myopia)</div><div class="def-text">A short-sighted person can see nearby objects clearly but distant objects are blurred. Corrected with a concave (diverging) lens.</div></div>
+    <div class="definition"><div class="def-label">Long-Sightedness (Hypermetropia)</div><div class="def-text">A long-sighted person can see distant objects clearly but nearby objects are blurred. Corrected with a convex (converging) lens.</div></div>
+
+    <h3>🔢 All Formulas Summary</h3>
+    <table class="data-table">
+      <tr><th>Formula</th><th>When to Use</th></tr>
+      <tr><td>1/f = 1/u + 1/v</td><td>Mirror or lens: find image distance, object distance, or focal length</td></tr>
+      <tr><td>M = v/u</td><td>Magnification from distances</td></tr>
+      <tr><td>n = sin i / sin r</td><td>Refractive index from angles</td></tr>
+      <tr><td>n = c_air / c_medium</td><td>Refractive index from speed of light</td></tr>
+      <tr><td>n = 1 / sin C</td><td>Refractive index from critical angle</td></tr>
+      <tr><td>n = Real Depth / Apparent Depth</td><td>Pool/swimming depth problems</td></tr>
+      <tr><td>P = 1/f</td><td>Power of a lens (f in metres)</td></tr>
+      <tr><td>P_total = P₁ + P₂</td><td>Two lenses in contact</td></tr>
+    </table>
+
+    <div class="nav-buttons">
+      <button class="nav-btn" onclick="go('lens-exp')">← Lens Experiment</button>
+      <button class="nav-btn primary" onclick="go('quiz')">Next: Quiz! 🎯</button>
+    </div>
+  </div>
+
+  <!-- ===== QUIZ ===== -->
+  <div class="section" id="sec-quiz">
+    <div class="chapter-badge">Revision Quiz</div>
+    <div class="section-title">🎯 Quick Quiz</div>
+    <div class="section-subtitle">Test your knowledge of all four sections!</div>
+
+    <p>Try all 14 questions. Click to reveal if you're right. Good luck! 🍀</p>
+
+    <div id="quiz-area">
+
+      <div class="quiz-q"><div class="q-text">1. State the second law of reflection.</div>
+      <div class="quiz-options">
+        <button class="quiz-opt" onclick="ans(this,'wrong','q1')">The incident ray and the reflected ray are in the same plane</button>
+        <button class="quiz-opt" onclick="ans(this,'correct','q1')">The angle of incidence equals the angle of reflection</button>
+        <button class="quiz-opt" onclick="ans(this,'wrong','q1')">Light always reflects at 90° to the mirror</button>
+        <button class="quiz-opt" onclick="ans(this,'wrong','q1')">The angle of reflection equals the angle of refraction</button>
+      </div><div class="quiz-feedback" id="fb-q1"></div></div>
+
+      <div class="quiz-q"><div class="q-text">2. What type of image is formed by a plane mirror?</div>
+      <div class="quiz-options">
+        <button class="quiz-opt" onclick="ans(this,'wrong','q2')">Real, inverted, same size</button>
+        <button class="quiz-opt" onclick="ans(this,'correct','q2')">Virtual, upright, same size, as far behind as object is in front</button>
+        <button class="quiz-opt" onclick="ans(this,'wrong','q2')">Virtual, inverted, magnified</button>
+        <button class="quiz-opt" onclick="ans(this,'wrong','q2')">Real, upright, diminished</button>
+      </div><div class="quiz-feedback" id="fb-q2"></div></div>
+
+      <div class="quiz-q"><div class="q-text">3. An object is placed INSIDE the focal point of a concave mirror. What kind of image forms?</div>
+      <div class="quiz-options">
+        <button class="quiz-opt" onclick="ans(this,'wrong','q3')">Real, inverted, diminished</button>
+        <button class="quiz-opt" onclick="ans(this,'wrong','q3')">Real, inverted, magnified</button>
+        <button class="quiz-opt" onclick="ans(this,'correct','q3')">Virtual, upright, magnified</button>
+        <button class="quiz-opt" onclick="ans(this,'wrong','q3')">Virtual, inverted, diminished</button>
+      </div><div class="quiz-feedback" id="fb-q3"></div></div>
+
+      <div class="quiz-q"><div class="q-text">4. A concave mirror has focal length 10 cm. Object is 30 cm in front. Where is the image?</div>
+      <div class="quiz-options">
+        <button class="quiz-opt" onclick="ans(this,'wrong','q4')">10 cm in front of mirror</button>
+        <button class="quiz-opt" onclick="ans(this,'correct','q4')">15 cm in front of mirror</button>
+        <button class="quiz-opt" onclick="ans(this,'wrong','q4')">20 cm in front of mirror</button>
+        <button class="quiz-opt" onclick="ans(this,'wrong','q4')">30 cm behind mirror</button>
+      </div><div class="quiz-feedback" id="fb-q4"></div></div>
+
+      <div class="quiz-q"><div class="q-text">5. What is refraction?</div>
+      <div class="quiz-options">
+        <button class="quiz-opt" onclick="ans(this,'wrong','q5')">The bouncing of light off a surface</button>
+        <button class="quiz-opt" onclick="ans(this,'wrong','q5')">The absorption of light by a medium</button>
+        <button class="quiz-opt" onclick="ans(this,'correct','q5')">The bending of light as it passes from a medium of one refractive index to another</button>
+        <button class="quiz-opt" onclick="ans(this,'wrong','q5')">The splitting of white light into colours</button>
+      </div><div class="quiz-feedback" id="fb-q5"></div></div>
+
+      <div class="quiz-q"><div class="q-text">6. Critical angle = 42°. What is the refractive index?</div>
+      <div class="quiz-options">
+        <button class="quiz-opt" onclick="ans(this,'wrong','q6')">0.67</button>
+        <button class="quiz-opt" onclick="ans(this,'wrong','q6')">1.33</button>
+        <button class="quiz-opt" onclick="ans(this,'correct','q6')">1.49</button>
+        <button class="quiz-opt" onclick="ans(this,'wrong','q6')">2.1</button>
+      </div><div class="quiz-feedback" id="fb-q6"></div></div>
+
+      <div class="quiz-q"><div class="q-text">7. Why must the outer cladding of an optical fibre have a LOWER refractive index than the core?</div>
+      <div class="quiz-options">
+        <button class="quiz-opt" onclick="ans(this,'wrong','q7')">To make it cheaper to manufacture</button>
+        <button class="quiz-opt" onclick="ans(this,'wrong','q7')">To allow light to escape gradually</button>
+        <button class="quiz-opt" onclick="ans(this,'correct','q7')">So that total internal reflection occurs — light must be in a denser medium trying to enter a less dense medium</button>
+        <button class="quiz-opt" onclick="ans(this,'wrong','q7')">To reduce the speed of the signal</button>
+      </div><div class="quiz-feedback" id="fb-q7"></div></div>
+
+      <div class="quiz-q"><div class="q-text">8. What type of lens is used to correct short-sightedness?</div>
+      <div class="quiz-options">
+        <button class="quiz-opt" onclick="ans(this,'wrong','q8')">Convex (converging) lens</button>
+        <button class="quiz-opt" onclick="ans(this,'correct','q8')">Concave (diverging) lens</button>
+        <button class="quiz-opt" onclick="ans(this,'wrong','q8')">Plane mirror</button>
+        <button class="quiz-opt" onclick="ans(this,'wrong','q8')">Cylindrical lens</button>
+      </div><div class="quiz-feedback" id="fb-q8"></div></div>
+
+      <div class="quiz-q"><div class="q-text">9. Converging lens, f = 15 cm. Object at 20 cm. What is the image distance v?</div>
+      <div class="quiz-options">
+        <button class="quiz-opt" onclick="ans(this,'wrong','q9')">30 cm</button>
+        <button class="quiz-opt" onclick="ans(this,'correct','q9')">60 cm</button>
+        <button class="quiz-opt" onclick="ans(this,'wrong','q9')">−60 cm</button>
+        <button class="quiz-opt" onclick="ans(this,'wrong','q9')">12 cm</button>
+      </div><div class="quiz-feedback" id="fb-q9"></div></div>
+
+      <div class="quiz-q"><div class="q-text">10. What is the power of a lens with focal length 0.25 m?</div>
+      <div class="quiz-options">
+        <button class="quiz-opt" onclick="ans(this,'wrong','q10')">0.25 m⁻¹</button>
+        <button class="quiz-opt" onclick="ans(this,'wrong','q10')">2 m⁻¹</button>
+        <button class="quiz-opt" onclick="ans(this,'correct','q10')">4 m⁻¹</button>
+        <button class="quiz-opt" onclick="ans(this,'wrong','q10')">−4 m⁻¹</button>
+      </div><div class="quiz-feedback" id="fb-q10"></div></div>
+
+      <div class="quiz-q"><div class="q-text">11. A normal eye has power 60 m⁻¹. A person's eye has power 65 m⁻¹. What corrective lens is needed?</div>
+      <div class="quiz-options">
+        <button class="quiz-opt" onclick="ans(this,'correct','q11')">−5 m⁻¹ (concave lens — person is short-sighted)</button>
+        <button class="quiz-opt" onclick="ans(this,'wrong','q11')">+5 m⁻¹ (convex lens)</button>
+        <button class="quiz-opt" onclick="ans(this,'wrong','q11')">+125 m⁻¹ (very powerful lens)</button>
+        <button class="quiz-opt" onclick="ans(this,'wrong','q11')">−60 m⁻¹</button>
+      </div><div class="quiz-feedback" id="fb-q11"></div></div>
+
+      <div class="quiz-q"><div class="q-text">12. Why is a convex mirror used as a car wing mirror instead of a plane mirror?</div>
+      <div class="quiz-options">
+        <button class="quiz-opt" onclick="ans(this,'wrong','q12')">It makes objects appear closer</button>
+        <button class="quiz-opt" onclick="ans(this,'correct','q12')">It gives a wider field of view</button>
+        <button class="quiz-opt" onclick="ans(this,'wrong','q12')">It produces a brighter image</button>
+        <button class="quiz-opt" onclick="ans(this,'wrong','q12')">It produces a real image</button>
+      </div><div class="quiz-feedback" id="fb-q12"></div></div>
+
+      <div class="quiz-q"><div class="q-text">13. What is the function of the retina in the eye?</div>
+      <div class="quiz-options">
+        <button class="quiz-opt" onclick="ans(this,'wrong','q13')">Controls the amount of light entering</button>
+        <button class="quiz-opt" onclick="ans(this,'wrong','q13')">Carries signals to the brain</button>
+        <button class="quiz-opt" onclick="ans(this,'wrong','q13')">Changes the focal length of the lens</button>
+        <button class="quiz-opt" onclick="ans(this,'correct','q13')">Light-sensitive screen at the back of the eye where images are formed</button>
+      </div><div class="quiz-feedback" id="fb-q13"></div></div>
+
+      <div class="quiz-q"><div class="q-text">14. In the experiment to verify Snell's Law, why is a graph of sin i vs sin r plotted instead of just i vs r?</div>
+      <div class="quiz-options">
+        <button class="quiz-opt" onclick="ans(this,'wrong','q14')">Because i and r values are too large to plot</button>
+        <button class="quiz-opt" onclick="ans(this,'correct','q14')">Snell's Law states sin i / sin r = constant, so a straight-line graph of sin i vs sin r through the origin verifies this relationship</button>
+        <button class="quiz-opt" onclick="ans(this,'wrong','q14')">Angles cannot be plotted on a graph</button>
+        <button class="quiz-opt" onclick="ans(this,'wrong','q14')">To avoid having to measure any angles</button>
+      </div><div class="quiz-feedback" id="fb-q14"></div></div>
+
+    </div>
+
+    <div class="quiz-score" id="quiz-score">
+      <div style="font-size:18px; font-weight:700; color:var(--text-light); margin-bottom:6px;">Your Score</div>
+      <div class="score-num" id="score-display">0/14</div>
+      <div id="score-msg" style="font-size:16px; margin-top:10px;"></div>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="nav-btn" onclick="go('definitions')">← Definitions</button>
+      <button class="nav-btn" onclick="resetQuiz()">🔄 Retake Quiz</button>
+    </div>
+  </div>
+
+</div><!-- end main -->
+
+<script>
+  const sections = ['intro','plane','concave','convex-mirror','mirror-maths','mirror-exp','refraction','critical','fibres','ri-formulas','snell-exp','convex-lens','concave-lens','lens-maths','eye','power','lens-exp','definitions','quiz'];
+  let currentSection = 'intro';
+  const total = sections.length;
+
+  function go(id) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+    const sec = document.getElementById('sec-' + id);
+    if (sec) sec.classList.add('active');
+    const nav = document.querySelector(`[onclick="go('${id}')"]`);
+    if (nav) nav.classList.add('active');
+    currentSection = id;
+    window.scrollTo(0, 0);
+    const idx = sections.indexOf(id);
+    const pct = idx >= 0 ? ((idx + 1) / total) * 100 : 0;
+    document.getElementById('progress').style.width = pct + '%';
+    document.getElementById('progress-text').textContent = (idx + 1) + ' / ' + total;
+    closeSidebar();
+  }
+
+  function toggleSidebar() {
+    document.getElementById('sidebar').classList.toggle('open');
+    document.getElementById('overlay').classList.toggle('show');
+  }
+  function closeSidebar() {
+    document.getElementById('sidebar').classList.remove('open');
+    document.getElementById('overlay').classList.remove('show');
+  }
+  function acc(btn) {
+    btn.classList.toggle('open');
+    btn.nextElementSibling.classList.toggle('open');
+  }
+
+  const answers = {};
+  const qFeedback = {
+    'q1': ['✅ Correct! Law 2: angle of incidence = angle of reflection. Law 1 (same plane) is a separate law.', '❌ Law 2 states: the angle of incidence = the angle of reflection. Both measured from the normal.'],
+    'q2': ['✅ Correct! Plane mirror: virtual, upright, same size, as far behind as the object is in front.', '❌ The image in a plane mirror is virtual (behind the mirror), upright, and the same size.'],
+    'q3': ['✅ Correct! Object inside focus of concave mirror → virtual, upright, magnified. This is how a cosmetic mirror or dentist mirror works.', '❌ Object inside focus → virtual, upright, magnified (like a magnifying glass effect).'],
+    'q4': ['✅ Correct! 1/v = 1/10 − 1/30 = 3/30 − 1/30 = 2/30, so v = 15 cm.', '❌ Use 1/v = 1/f − 1/u = 1/10 − 1/30 = 3/30 − 1/30 = 2/30 → v = 15 cm.'],
+    'q5': ['✅ Correct! Refraction is the bending of light as it changes medium (due to a change in speed).', '❌ That\'s reflection! Refraction is the BENDING of light as it changes medium.'],
+    'q6': ['✅ Correct! n = 1/sin 42° = 1/0.669 = 1.49', '❌ n = 1/sin C = 1/sin 42° = 1/0.669 ≈ 1.49'],
+    'q7': ['✅ Correct! TIR only occurs going from denser → less dense. Lower RI cladding ensures this condition is met.', '❌ The cladding must have lower RI so that light in the denser core hits the boundary and undergoes TIR instead of escaping.'],
+    'q8': ['✅ Correct! Short-sighted → Concave (diverging) lens. It spreads rays out so the eye can focus them on the retina.', '❌ Short-sightedness is corrected with a CONCAVE lens. Long-sightedness uses a CONVEX lens.'],
+    'q9': ['✅ Correct! 1/v = 1/15 − 1/20 = 4/60 − 3/60 = 1/60 → v = 60 cm.', '❌ 1/v = 1/f − 1/u = 1/15 − 1/20 = 4/60 − 3/60 = 1/60 → v = 60 cm.'],
+    'q10': ['✅ Correct! P = 1/f = 1/0.25 = 4 m⁻¹. This is a convex lens (positive power).', '❌ P = 1/f = 1/0.25 = 4 m⁻¹. Remember f must be in metres!'],
+    'q11': ['✅ Correct! P_corrective = 60 − 65 = −5 m⁻¹. Negative → concave lens → corrects short-sightedness (eye was too powerful).', '❌ P_corrective = P_normal − P_eye = 60 − 65 = −5 m⁻¹ → concave lens.'],
+    'q12': ['✅ Correct! Convex mirror gives a wider field of view — the driver can see more of the road behind. The image is smaller but covers more area.', '❌ The key reason is WIDER FIELD OF VIEW.'],
+    'q13': ['✅ Correct! The retina is the light-sensitive screen at the back of the eye where images are formed.', '❌ The retina is the light-sensitive screen. The iris controls light. The optic nerve carries signals. Ciliary muscles change lens shape.'],
+    'q14': ['✅ Correct! Snell\'s Law says sin i / sin r = constant. Plotting sin i vs sin r gives a straight line through the origin, confirming this. The slope = refractive index.', '❌ Because Snell\'s Law predicts sin i ∝ sin r — a straight-line graph through the origin verifies this proportionality.']
+  };
+
+  function ans(btn, result, qid) {
+    if (answers[qid] !== undefined) return;
+    answers[qid] = result;
+    const opts = btn.closest('.quiz-q').querySelectorAll('.quiz-opt');
+    opts.forEach(o => o.disabled = true);
+    btn.classList.add(result === 'correct' ? 'correct' : 'wrong');
+    if (result === 'wrong') opts.forEach(o => { if (o.getAttribute('onclick').includes("'correct'")) o.classList.add('correct'); });
+    const fb = document.getElementById('fb-' + qid);
+    fb.textContent = qFeedback[qid][result === 'correct' ? 0 : 1];
+    fb.className = 'quiz-feedback show ' + (result === 'correct' ? 'correct-fb' : 'wrong-fb');
+    if (Object.keys(answers).length === 14) {
+      const score = Object.values(answers).filter(v => v === 'correct').length;
+      document.getElementById('score-display').textContent = score + '/14';
+      document.getElementById('score-msg').textContent = score === 14 ? '🏆 Perfect! You\'re totally ready for the Leaving Cert!' : score >= 11 ? '🌟 Excellent work!' : score >= 8 ? '👍 Good — review the ones you missed.' : '📚 Keep studying — go back through the sections!';
+      document.getElementById('quiz-score').classList.add('show');
+    }
+  }
+
+  function resetQuiz() {
+    Object.keys(answers).forEach(k => delete answers[k]);
+    document.querySelectorAll('.quiz-opt').forEach(o => { o.disabled = false; o.classList.remove('correct', 'wrong'); });
+    document.querySelectorAll('.quiz-feedback').forEach(f => f.classList.remove('show'));
+    document.getElementById('quiz-score').classList.remove('show');
+  }
+
+  // Init
+  go('intro');
+</script>
+</body>
+</html>
