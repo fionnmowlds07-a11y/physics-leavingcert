@@ -117,8 +117,8 @@
     gap: 24px;
   }
 
-  /* MODULE CARDS */
-  .module-card {
+  /* chapter CARDS */
+  .chapter-card {
     background: var(--card);
     border: 2px solid var(--border);
     border-radius: var(--radius);
@@ -136,18 +136,18 @@
   }
   
   /* Staggered animation for cards */
-  .module-card:nth-child(1) { animation-delay: 0.1s; }
-  .module-card:nth-child(2) { animation-delay: 0.15s; }
-  .module-card:nth-child(3) { animation-delay: 0.2s; }
-  .module-card:nth-child(4) { animation-delay: 0.25s; }
-  .module-card:nth-child(5) { animation-delay: 0.3s; }
-  .module-card:nth-child(6) { animation-delay: 0.35s; }
-  .module-card:nth-child(7) { animation-delay: 0.4s; }
-  .module-card:nth-child(8) { animation-delay: 0.45s; }
-  .module-card:nth-child(9) { animation-delay: 0.5s; }
-  .module-card:nth-child(10) { animation-delay: 0.55s; }
+  .chapter-card:nth-child(1) { animation-delay: 0.1s; }
+  .chapter-card:nth-child(2) { animation-delay: 0.15s; }
+  .chapter-card:nth-child(3) { animation-delay: 0.2s; }
+  .chapter-card:nth-child(4) { animation-delay: 0.25s; }
+  .chapter-card:nth-child(5) { animation-delay: 0.3s; }
+  .chapter-card:nth-child(6) { animation-delay: 0.35s; }
+  .chapter-card:nth-child(7) { animation-delay: 0.4s; }
+  .chapter-card:nth-child(8) { animation-delay: 0.45s; }
+  .chapter-card:nth-child(9) { animation-delay: 0.5s; }
+  .chapter-card:nth-child(10) { animation-delay: 0.55s; }
 
-  .module-card::before {
+  .chapter-card::before {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0;
@@ -155,12 +155,12 @@
     transition: height 0.3s ease;
   }
 
-  .module-card:hover {
+  .chapter-card:hover {
     transform: translateY(-8px);
     box-shadow: var(--shadow-hover);
     border-color: transparent;
   }
-  .module-card:hover::before { height: 12px; }
+  .chapter-card:hover::before { height: 12px; }
 
   /* Card Specific Colors */
   .card-waves::before { background: var(--accent2); }
@@ -214,7 +214,7 @@
     margin-bottom: 20px;
     transition: transform 0.3s ease;
   }
-  .module-card:hover .mc-icon {
+  .chapter-card:hover .mc-icon {
     transform: scale(1.1) rotate(5deg);
   }
 
@@ -239,7 +239,7 @@
     opacity: 0.6;
     transition: opacity 0.2s;
   }
-  .module-card:hover .mc-action { opacity: 1; }
+  .chapter-card:hover .mc-action { opacity: 1; }
 
   /* COMING SOON BANNER */
   .banner-soon {
@@ -340,79 +340,79 @@
 
   <div class="hero">
     <h2>Welcome to your Study Hub</h2>
-    <p>Select a module below to launch your interactive notes. Master the concepts, learn the definitions, and ace the calculations.</p>
+    <p>Select a chapter below to launch your interactive notes. Master the concepts, learn the definitions, and ace the calculations.</p>
   </div>
 
   <main class="dashboard">
-    <div class="section-title">Select a Module</div>
+    <div class="section-title">Select a chapter</div>
     
     <div class="topics-grid">
       
-      <a href="Light, sound and waves.html" class="module-card card-waves">
+      <a href="Light, sound and waves.html" class="chapter-card card-waves">
         <div class="mc-icon">🌊</div>
         <div class="mc-title">Light, Sound & Waves</div>
         <div class="mc-desc">Explore the properties of transverse and longitudinal waves, the Doppler effect, optics, and the electromagnetic spectrum.</div>
-        <div class="mc-action">Start Module →</div>
+        <div class="mc-action">Start chapter →</div>
       </a>
 
-      <a href="Electricity and current.html" class="module-card card-elec">
+      <a href="Electricity and current.html" class="chapter-card card-elec">
         <div class="mc-icon">⚡</div>
         <div class="mc-title">Electricity & Current</div>
         <div class="mc-desc">Master voltage, resistance, Ohm's law, resistivity, and learn how domestic circuits keep our homes safe and powered.</div>
-        <div class="mc-action">Start Module →</div>
+        <div class="mc-action">Start chapter →</div>
       </a>
 
-      <a href="Magnetism.html" class="module-card card-mag">
+      <a href="Magnetism.html" class="chapter-card card-mag">
         <div class="mc-icon">🧲</div>
         <div class="mc-title">Magnetism</div>
         <div class="mc-desc">Discover magnetic fields, the force on a conductor, electromagnetic induction, Faraday's Law, and how transformers work.</div>
-        <div class="mc-action">Start Module →</div>
+        <div class="mc-action">Start chapter →</div>
       </a>
 
-      <a href="Modern physics.html" class="module-card card-mod">
+      <a href="Modern physics.html" class="chapter-card card-mod">
         <div class="mc-icon">⚛️</div>
         <div class="mc-title">Modern Physics</div>
         <div class="mc-desc">Dive into the structure of the atom, the photoelectric effect, X-rays, radioactivity, half-life, and nuclear reactions.</div>
-        <div class="mc-action">Start Module →</div>
+        <div class="mc-action">Start chapter →</div>
       </a>
 
-      <a href="Mechanics.html" class="module-card card-mech">
+      <a href="Mechanics.html" class="chapter-card card-mech">
         <div class="mc-icon">⚙️</div>
         <div class="mc-title">Mechanics</div>
         <div class="mc-desc">Explore velocity, Newton's laws, momentum, energy, gravity, circular motion, and simple harmonic motion.</div>
-        <div class="mc-action">Start Module →</div>
+        <div class="mc-action">Start chapter →</div>
       </a>
 
-      <a href="Particle physics.html" class="module-card card-particle">
+      <a href="Particle physics.html" class="chapter-card card-particle">
         <div class="mc-icon">🌀</div>
         <div class="mc-title">Particle Physics</div>
         <div class="mc-desc">Explore the fundamental building blocks of the universe: quarks, leptons, neutrinos, and the four fundamental forces.</div>
-        <div class="mc-action">Start Module →</div>
+        <div class="mc-action">Start chapter →</div>
       </a>
 
-      <a href="Optics.html" class="module-card card-optics">
+      <a href="Optics.html" class="chapter-card card-optics">
         <div class="mc-icon">🔦</div>
         <div class="mc-title">Geometric Optics</div>
         <div class="mc-desc">Master the laws of reflection and refraction, lens formulas, ray diagrams, and the physics of the human eye.</div>
-        <div class="mc-action">Start Module →</div>
+        <div class="mc-action">Start chapter →</div>
       </a>
 
-      <a href="Heat.html" class="module-card card-heat">
+      <a href="Heat.html" class="chapter-card card-heat">
         <div class="banner-soon">Coming Soon</div>
         <div class="mc-icon">🔥</div>
         <div class="mc-title">Heat & Temperature</div>
         <div class="mc-desc">Understand temperature scales, heat capacity, latent heat, and the mechanisms of heat transfer.</div>
-        <div class="mc-action">Start Module →</div>
+        <div class="mc-action">Start chapter →</div>
       </a>
 
-      <a href="Experiments.html" class="module-card card-exp">
+      <a href="Experiments.html" class="chapter-card card-exp">
         <div class="mc-icon">🧪</div>
         <div class="mc-title">Experiments</div>
         <div class="mc-desc">Review all mandatory Leaving Cert Physics experiments, including methods, diagrams, and calculations.</div>
-        <div class="mc-action">Start Module →</div>
+        <div class="mc-action">Start chapter →</div>
       </a>
 
-      <a href="https://sites.google.com/view/mr-freneys-teaching-resources/subjects/leaving-cert-physics/exam-papers-and-marking-schemes" target="_blank" class="module-card card-deb">
+      <a href="https://sites.google.com/view/mr-freneys-teaching-resources/subjects/leaving-cert-physics/exam-papers-and-marking-schemes" target="_blank" class="chapter-card card-deb">
         <div class="mc-icon">📝</div>
         <div class="mc-title">DEB Pre Papers</div>
         <div class="mc-desc">Access past pre-Leaving Cert exam papers and marking schemes to test your knowledge and prepare for exams.</div>
