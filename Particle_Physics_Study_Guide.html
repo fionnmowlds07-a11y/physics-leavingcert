@@ -1,0 +1,1985 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Particle Physics — Leaving Cert Study Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Deca:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f8f6f2;
+    --card: #ffffff;
+    --text: #1a1a2e;
+    --text-light: #555570;
+    --accent1: #7b2d8b;
+    --accent2: #2196f3;
+    --accent3: #ff9800;
+    --accent4: #4caf50;
+    --accent5: #e91e63;
+    --border: #e0dcd4;
+    --highlight: #fff3e0;
+    --highlight-border: #ff9800;
+    --def-bg: #e8f4fd;
+    --def-border: #2196f3;
+    --formula-bg: #fff8e1;
+    --formula-border: #ffc107;
+    --example-bg: #f1f8e9;
+    --example-border: #4caf50;
+    --tip-bg: #fce4ec;
+    --tip-border: #e91e63;
+    --shadow: 0 2px 12px rgba(0,0,0,0.08);
+    --radius: 12px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Lexend', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 17px;
+    line-height: 1.7;
+  }
+
+  /* SIDEBAR */
+  #sidebar {
+    position: fixed;
+    left: 0; top: 0; bottom: 0;
+    width: 280px;
+    background: var(--card);
+    border-right: 2px solid var(--border);
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 40px 0;
+    transition: transform 0.3s ease;
+  }
+
+  .sidebar-header {
+    background: var(--accent1);
+    color: white;
+    padding: 20px 18px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .sidebar-header h2 { font-size: 18px; text-transform: none; letter-spacing: 0; margin-top: 4px; font-weight: 700; }
+
+  .chapter-group { margin-top: 8px; }
+  .chapter-label {
+    padding: 10px 18px 4px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-light);
+  }
+  .nav-item {
+    display: block;
+    padding: 9px 18px 9px 28px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+    text-decoration: none;
+    border-left: 3px solid transparent;
+    transition: all 0.2s;
+  }
+  .nav-item:hover { background: #f0f0f8; border-left-color: var(--accent2); }
+  .nav-item.active { background: #f3e8ff; border-left-color: var(--accent1); color: var(--accent1); font-weight: 600; }
+
+  /* MAIN */
+  #main {
+    margin-left: 280px;
+    padding: 0;
+    min-height: 100vh;
+  }
+
+  .top-bar {
+    background: white;
+    border-bottom: 2px solid var(--border);
+    padding: 16px 40px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+  .top-bar h1 { font-size: 20px; font-weight: 700; color: var(--accent1); }
+  .menu-btn {
+    display: none;
+    background: none; border: none; cursor: pointer;
+    font-size: 22px; color: var(--text);
+  }
+  .progress-bar {
+    flex: 1;
+    height: 6px;
+    background: var(--border);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent1), var(--accent2));
+    border-radius: 3px;
+    transition: width 0.5s ease;
+    width: 0%;
+  }
+
+  /* CONTENT SECTIONS */
+  .section {
+    display: none;
+    padding: 40px;
+    max-width: 860px;
+    animation: fadeIn 0.3s ease;
+  }
+  .section.active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+  .section-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 6px;
+    line-height: 1.2;
+  }
+  .section-subtitle {
+    font-size: 15px;
+    color: var(--text-light);
+    margin-bottom: 32px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--border);
+  }
+  .chapter-badge {
+    display: inline-block;
+    background: var(--accent1);
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  h3 {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text);
+    margin: 32px 0 12px;
+  }
+  h4 {
+    font-weight: 700;
+    color: var(--accent1);
+    margin: 20px 0 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    font-size: 13px;
+  }
+  p { margin-bottom: 14px; }
+
+  /* CARDS */
+  .definition {
+    background: var(--def-bg);
+    border-left: 5px solid var(--def-border);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    padding: 16px 20px;
+    margin: 16px 0;
+  }
+  .definition .def-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent2);
+    margin-bottom: 6px;
+  }
+  .definition .def-text {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.5;
+  }
+
+  .formula-box {
+    background: var(--formula-bg);
+    border: 2px solid var(--formula-border);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin: 20px 0;
+  }
+  .formula-box .formula-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #f57c00;
+    margin-bottom: 10px;
+  }
+  .formula-box .formula-main {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text);
+    font-family: 'Lexend Deca', monospace;
+    margin-bottom: 8px;
+  }
+  .formula-box .formula-desc {
+    font-size: 14px;
+    color: var(--text-light);
+    line-height: 1.6;
+  }
+
+  .example-box {
+    background: var(--example-bg);
+    border: 2px solid var(--example-border);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin: 20px 0;
+  }
+  .example-box .ex-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #2e7d32;
+    margin-bottom: 8px;
+  }
+  .example-box .ex-question {
+    font-weight: 600;
+    margin-bottom: 12px;
+    font-size: 15px;
+  }
+
+  .tip-box {
+    background: var(--tip-bg);
+    border-left: 5px solid var(--tip-border);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    padding: 14px 18px;
+    margin: 16px 0;
+  }
+  .tip-box .tip-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--tip-border);
+    margin-bottom: 4px;
+  }
+
+  .highlight-box {
+    background: var(--highlight);
+    border: 2px solid var(--highlight-border);
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    margin: 16px 0;
+  }
+
+  .warn-box {
+    background: #fff3e0;
+    border-left: 5px solid #ff9800;
+    border-radius: 0 var(--radius) var(--radius) 0;
+    padding: 14px 18px;
+    margin: 16px 0;
+  }
+
+  /* STEP-BY-STEP */
+  .steps { margin: 16px 0; }
+  .step {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 14px;
+    align-items: flex-start;
+  }
+  .step-num {
+    min-width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--accent1);
+    color: white;
+    font-weight: 700;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .step-content { flex: 1; }
+
+  /* PARTICLE TABLE */
+  .particle-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 15px;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+  .particle-table th {
+    background: var(--accent1);
+    color: white;
+    padding: 12px 16px;
+    text-align: left;
+    font-size: 13px;
+    letter-spacing: 0.03em;
+  }
+  .particle-table td {
+    padding: 11px 16px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  .particle-table tr:nth-child(even) td { background: #faf9f7; }
+  .particle-table tr:last-child td { border-bottom: none; }
+
+  /* EQUATION DISPLAY */
+  .equation {
+    font-family: 'Lexend Deca', monospace;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text);
+    background: #f5f0ff;
+    border: 2px solid #ce93d8;
+    border-radius: 8px;
+    padding: 12px 20px;
+    margin: 12px 0;
+    display: inline-block;
+    line-height: 1.4;
+  }
+
+  /* QUIZ */
+  .quiz-container { margin-top: 32px; }
+  .quiz-q {
+    background: white;
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin-bottom: 16px;
+    box-shadow: var(--shadow);
+  }
+  .quiz-q .q-text {
+    font-weight: 600;
+    margin-bottom: 14px;
+    font-size: 16px;
+  }
+  .quiz-options { display: flex; flex-direction: column; gap: 8px; }
+  .quiz-opt {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 14px;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 15px;
+    background: white;
+    text-align: left;
+  }
+  .quiz-opt:hover { border-color: var(--accent1); background: #f3e8ff; }
+  .quiz-opt.correct { border-color: #4caf50; background: #e8f5e9; }
+  .quiz-opt.wrong { border-color: #f44336; background: #ffebee; }
+  .quiz-feedback {
+    margin-top: 12px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 15px;
+    display: none;
+  }
+  .quiz-feedback.show { display: block; }
+  .quiz-feedback.correct-fb { background: #e8f5e9; color: #1b5e20; border: 1px solid #a5d6a7; }
+  .quiz-feedback.wrong-fb { background: #ffebee; color: #b71c1c; border: 1px solid #ef9a9a; }
+
+  /* NAV BUTTONS */
+  .nav-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 2px solid var(--border);
+  }
+  .nav-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 22px;
+    border-radius: 8px;
+    font-family: 'Lexend', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    border: 2px solid var(--border);
+    background: white;
+    color: var(--text);
+    transition: all 0.2s;
+  }
+  .nav-btn:hover { border-color: var(--accent1); color: var(--accent1); }
+  .nav-btn.primary {
+    background: var(--accent1);
+    color: white;
+    border-color: var(--accent1);
+    margin-left: auto;
+  }
+  .nav-btn.primary:hover { background: #6a1a7a; }
+
+  /* OVERLAY */
+  #overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    z-index: 90;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    #sidebar {
+      transform: translateX(-100%);
+    }
+    #sidebar.open {
+      transform: translateX(0);
+    }
+    #main { margin-left: 0; }
+    .top-bar { padding: 14px 20px; }
+    .menu-btn { display: block; }
+    .section { padding: 24px 20px; }
+    #overlay { display: none; }
+    #overlay.show { display: block; }
+  }
+
+  .particle-card {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 20px;
+    border-radius: 10px;
+    margin: 6px;
+    min-width: 100px;
+    box-shadow: var(--shadow);
+    font-weight: 600;
+  }
+  .particle-card .p-name { font-size: 18px; font-weight: 700; }
+  .particle-card .p-info { font-size: 12px; margin-top: 4px; opacity: 0.85; }
+
+  .force-bar {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: white;
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin: 8px 0;
+    box-shadow: var(--shadow);
+  }
+  .force-icon {
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  .force-details { flex: 1; }
+  .force-name { font-weight: 700; font-size: 16px; }
+  .force-info { font-size: 13px; color: var(--text-light); }
+
+  .mnemonic {
+    background: linear-gradient(135deg, #f3e8ff, #e8f4fd);
+    border: 2px solid #ce93d8;
+    border-radius: var(--radius);
+    padding: 18px 22px;
+    margin: 16px 0;
+    text-align: center;
+  }
+  .mnemonic .m-label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent1); margin-bottom: 8px; }
+  .mnemonic .m-text { font-size: 22px; font-weight: 700; color: var(--text); }
+  .mnemonic .m-explain { font-size: 14px; color: var(--text-light); margin-top: 6px; }
+
+  .calc-step {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin: 8px 0;
+    font-family: 'Lexend Deca', monospace;
+    font-size: 15px;
+  }
+  .calc-step .cs-label { font-size: 11px; font-weight: 700; text-transform: uppercase; color: #2e7d32; margin-bottom: 4px; font-family: 'Lexend', sans-serif; }
+
+  ul, ol { padding-left: 24px; margin-bottom: 14px; }
+  li { margin-bottom: 6px; }
+
+  .tag {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    margin: 2px;
+  }
+  .tag-hl { background: #e8f4fd; color: #1565c0; }
+  .tag-ol { background: #e8f5e9; color: #1b5e20; }
+
+  .summary-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin: 16px 0;
+  }
+  @media (max-width: 600px) { .summary-grid { grid-template-columns: 1fr; } }
+  .summary-card {
+    background: white;
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+    box-shadow: var(--shadow);
+  }
+  .summary-card h4 { font-size: 14px; margin-bottom: 8px; }
+
+  .quiz-score {
+    text-align: center;
+    padding: 20px;
+    background: linear-gradient(135deg, #f3e8ff, #e8f4fd);
+    border-radius: var(--radius);
+    margin-top: 20px;
+    display: none;
+  }
+  .quiz-score.show { display: block; }
+  .quiz-score .score-num { font-size: 48px; font-weight: 700; color: var(--accent1); }
+
+  .accordion {
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    margin: 12px 0;
+    overflow: hidden;
+  }
+  .accordion-btn {
+    width: 100%;
+    text-align: left;
+    padding: 14px 18px;
+    background: white;
+    border: none;
+    font-family: 'Lexend', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--text);
+    transition: background 0.2s;
+  }
+  .accordion-btn:hover { background: #f3e8ff; }
+  .accordion-btn .acc-arrow { transition: transform 0.3s; font-size: 18px; color: var(--accent1); }
+  .accordion-btn.open .acc-arrow { transform: rotate(180deg); }
+  .accordion-content {
+    display: none;
+    padding: 16px 18px;
+    background: #faf9f7;
+    border-top: 1px solid var(--border);
+  }
+  .accordion-content.open { display: block; }
+
+  .quark-chip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    font-weight: 700;
+    font-size: 15px;
+    margin: 2px;
+  }
+</style>
+</head>
+<body>
+
+<div id="sidebar">
+  <div class="sidebar-header">
+    <div>Leaving Cert Physics</div>
+    <h2>⚛️ Particle Physics</h2>
+  </div>
+
+  <div class="chapter-group">
+    <div class="chapter-label">Introduction</div>
+    <div class="nav-item active" onclick="showSection('intro')">🏠 Overview & Key Facts</div>
+  </div>
+
+  <div class="chapter-group">
+    <div class="chapter-label">Experiments & Accelerators</div>
+    <div class="nav-item" onclick="showSection('cockcroft')">⚡ Cockcroft & Walton</div>
+    <div class="nav-item" onclick="showSection('accelerators')">🔄 Modern Accelerators</div>
+  </div>
+
+  <div class="chapter-group">
+    <div class="chapter-label">Particles & Antimatter</div>
+    <div class="nav-item" onclick="showSection('zoo')">🦁 The Particle Zoo</div>
+    <div class="nav-item" onclick="showSection('antimatter')">🔄 Antimatter</div>
+    <div class="nav-item" onclick="showSection('pair-production')">✨ Pair Production</div>
+    <div class="nav-item" onclick="showSection('pair-annihilation')">💥 Pair Annihilation</div>
+    <div class="nav-item" onclick="showSection('neutrino')">👻 The Neutrino</div>
+  </div>
+
+  <div class="chapter-group">
+    <div class="chapter-label">Quarks & Forces</div>
+    <div class="nav-item" onclick="showSection('quarks')">🔬 Quarks & Anti-Quarks</div>
+    <div class="nav-item" onclick="showSection('forces')">💪 Fundamental Forces</div>
+    <div class="nav-item" onclick="showSection('classification')">📊 Particle Classification</div>
+  </div>
+
+  <div class="chapter-group">
+    <div class="chapter-label">Maths & Calculations</div>
+    <div class="nav-item" onclick="showSection('maths')">🔢 Energy Conversions</div>
+    <div class="nav-item" onclick="showSection('worked')">📐 Worked Examples</div>
+  </div>
+
+  <div class="chapter-group">
+    <div class="chapter-label">Revision</div>
+    <div class="nav-item" onclick="showSection('definitions')">📖 All Definitions</div>
+    <div class="nav-item" onclick="showSection('quiz')">🎯 Quick Quiz</div>
+  </div>
+</div>
+
+<div id="overlay" onclick="closeSidebar()"></div>
+
+<div id="main">
+  <div class="top-bar">
+    <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+    <h1>⚛️ Particle Physics</h1>
+    <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+    <span id="progress-text" style="font-size:13px;color:var(--text-light);font-weight:600;">1 / 13</span>
+  </div>
+
+  <!-- =================== INTRO =================== -->
+  <div class="section active" id="sec-intro" style="max-width: none;">
+    <div class="hero" style="margin:-40px -40px 40px -40px; padding:60px 40px; background: linear-gradient(135deg, #2e1042 0%, #4a148c 50%, #8e24aa 100%); color: white; position: relative; overflow: hidden;">
+      <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#e1bee7;margin-bottom:12px;">Leaving Certificate Physics</div>
+      <h1 style="font-size: 42px; font-weight: 700; margin-bottom: 12px; margin-top: 0;">Welcome to Particle Physics! 🎉</h1>
+      <p style="font-size: 18px; color: rgba(255,255,255,0.85); max-width: 600px; line-height: 1.6; margin-bottom: 0;">Don't panic — this chapter is actually one of the most fascinating in the whole Leaving Cert. Let's break it down step by step.</p>
+      <div style="margin-top:24px;display:flex;gap:10px;flex-wrap:wrap;">
+        <span style="background:rgba(255,255,255,0.15);padding:6px 14px;border-radius:20px;font-size:13px;font-weight:600;">⚛️ Option 1: Particle Physics</span>
+        <span style="background:rgba(255,255,255,0.15);padding:6px 14px;border-radius:20px;font-size:13px;font-weight:600;">🌟 The Standard Model</span>
+      </div>
+    </div>
+    <p>This chapter is all about the <strong>tiny building blocks of the universe</strong> — particles smaller than atoms — and what happens when we smash them together at incredible speeds. Think of it as the universe's ultimate Lego set.</p>
+
+    <div class="highlight-box">
+      <strong>🗺️ Big Picture:</strong> You will learn about particle accelerators, antimatter, how mass turns into energy and back again, quarks, and the four fundamental forces of nature.
+    </div>
+
+    <h3>Key Formulas You Must Know</h3>
+    <div class="formula-box">
+      <div class="formula-label">⭐ Einstein's Mass-Energy Equation</div>
+      <div class="formula-main">E = mc²</div>
+      <div class="formula-desc">
+        <strong>E</strong> = Energy (in Joules, J)<br>
+        <strong>m</strong> = mass (in kg)<br>
+        <strong>c</strong> = speed of light = 3 × 10⁸ m/s<br><br>
+        💡 <em>This equation tells us that mass and energy are interchangeable. A tiny bit of mass produces an enormous amount of energy!</em>
+      </div>
+    </div>
+
+    <div class="formula-box">
+      <div class="formula-label">⭐ Energy of a Photon</div>
+      <div class="formula-main">E = hf</div>
+      <div class="formula-desc">
+        <strong>E</strong> = Energy of photon (J)<br>
+        <strong>h</strong> = Planck's constant = 6.6 × 10⁻³⁴ J·s<br>
+        <strong>f</strong> = frequency of the photon (Hz)<br><br>
+        💡 <em>Used in pair production and pair annihilation calculations.</em>
+      </div>
+    </div>
+
+    <div class="formula-box">
+      <div class="formula-label">⭐ Kinetic Energy from Electric Field (Accelerator)</div>
+      <div class="formula-main">QV = ½mv²</div>
+      <div class="formula-desc">
+        <strong>Q</strong> = charge (in Coulombs)<br>
+        <strong>V</strong> = potential difference (in Volts)<br>
+        <strong>m</strong> = mass of particle (kg)<br>
+        <strong>v</strong> = speed of particle (m/s)<br><br>
+        💡 <em>Used when a particle is accelerated through a voltage. The electrical potential energy becomes kinetic energy.</em>
+      </div>
+    </div>
+
+    <h3>Essential Data (Memorise These!)</h3>
+    <table class="particle-table">
+      <tr><th>Quantity</th><th>Symbol</th><th>Value</th></tr>
+      <tr><td>Speed of light</td><td>c</td><td>3.0 × 10⁸ m/s</td></tr>
+      <tr><td>Planck's constant</td><td>h</td><td>6.6 × 10⁻³⁴ J·s</td></tr>
+      <tr><td>Mass of electron</td><td>mₑ</td><td>9.1 × 10⁻³¹ kg</td></tr>
+      <tr><td>Mass of proton</td><td>mₚ</td><td>1.67 × 10⁻²⁷ kg</td></tr>
+      <tr><td>Mass of neutron</td><td>mₙ</td><td>1.67 × 10⁻²⁷ kg</td></tr>
+      <tr><td>Charge of electron</td><td>e</td><td>1.6 × 10⁻¹⁹ C</td></tr>
+      <tr><td>1 eV in Joules</td><td>—</td><td>1.6 × 10⁻¹⁹ J</td></tr>
+    </table>
+
+    <div class="tip-box">
+      <div class="tip-label">⚠️ Exam Tip</div>
+      In the exam you'll have the Formulae & Tables book. But knowing these values saves time — and some questions give slightly different values so pay attention to what's given!
+    </div>
+
+    <div class="nav-buttons">
+      <button class="nav-btn primary" onclick="showSection('cockcroft')">Next: Cockcroft & Walton →</button>
+    </div>
+  </div>
+
+  <!-- =================== COCKCROFT & WALTON =================== -->
+  <div class="section" id="sec-cockcroft">
+    <div class="chapter-badge">Experiments</div>
+    <div class="section-title">⚡ Cockcroft & Walton</div>
+    <div class="section-subtitle">The first artificial splitting of the atom — and the first proof of E = mc²</div>
+
+    <p>In <strong>1932</strong>, the Irish physicist <strong>Ernest Walton</strong> (from Dungarvan!) and English physicist <strong>John Cockcroft</strong> built the world's first particle accelerator. They shared the <strong>Nobel Prize in Physics (1951)</strong> for this work.</p>
+
+    <div class="definition">
+      <div class="def-label">📖 Definition — Cockcroft & Walton Experiment</div>
+      <div class="def-text">Cockcroft and Walton used a high-voltage linear accelerator to accelerate protons and fire them at a lithium target. The protons split the lithium nucleus, producing two alpha particles. This was the first artificial splitting of the nucleus and the first experimental verification of E = mc².</div>
+    </div>
+
+    <h3>How the Experiment Worked</h3>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content"><strong>Proton production:</strong> A hydrogen gas discharge tube releases protons (hydrogen nuclei = just a proton) at the top of the apparatus.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content"><strong>Acceleration:</strong> The protons are accelerated downwards across a <strong>potential difference of 700,000 volts</strong> (70 kV in some versions). The electric field gives the protons kinetic energy.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content"><strong>Collision:</strong> The high-speed protons hit a <strong>lithium target</strong>. A proton collides with a lithium-7 nucleus.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-content"><strong>Result:</strong> The collision produces <strong>two alpha particles</strong> (helium-4 nuclei) which fly off in opposite directions at high speed.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-content"><strong>Detection:</strong> The alpha particles hit a <strong>zinc sulphide screen</strong>, causing tiny flashes of light (scintillations) which are observed through microscopes.</div>
+      </div>
+    </div>
+
+    <h3>The Nuclear Equation</h3>
+    <div class="equation">¹₁p + ⁷₃Li → ⁴₂He + ⁴₂He + K.E.</div>
+    <p>A proton (¹₁p) hits a lithium-7 (⁷₃Li) nucleus and produces <strong>two alpha particles</strong> (⁴₂He) plus kinetic energy.</p>
+
+    <div class="warn-box">
+      <strong>🧠 The Mass Mystery:</strong> If you add up the mass of the proton + lithium, it's <em>more</em> than the mass of the two alpha particles. Mass has <strong>vanished</strong>! But the alpha particles fly off with much more kinetic energy than the proton had going in. Cockcroft and Walton proved that the "missing mass" had been converted into kinetic energy using <strong>E = mc²</strong>.
+    </div>
+
+    <h3>Why Was This Experiment Significant?</h3>
+    <div class="highlight-box">
+      <ul>
+        <li>✅ <strong>First artificial splitting</strong> of the atomic nucleus</li>
+        <li>✅ <strong>First transmutation</strong> using artificially accelerated particles</li>
+        <li>✅ <strong>First experimental verification</strong> of Einstein's E = mc²</li>
+        <li>✅ <strong>First particle accelerator</strong> ever built</li>
+      </ul>
+    </div>
+
+    <h3>Why Did Most Protons Miss?</h3>
+    <div class="definition">
+      <div class="def-label">📖 Key Exam Question</div>
+      <div class="def-text">Most protons passed through without hitting a lithium nucleus because <strong>the atom is mostly empty space</strong>. (This was proven earlier by Rutherford's gold foil experiment.) Only the occasional proton came close enough to a nucleus to cause a reaction.</div>
+    </div>
+
+    <h3>Diagram — What to Draw in the Exam</h3>
+    <div class="highlight-box">
+      Your diagram needs to show these <strong>4 labelled parts</strong>:
+      <ol style="margin-top:10px;">
+        <li><strong>Hydrogen discharge tube</strong> (produces protons) — at the top</li>
+        <li><strong>Linear accelerator / high voltage supply</strong> — connected correctly</li>
+        <li><strong>Lithium target</strong> — at 45° angle</li>
+        <li><strong>Zinc sulphide screen + microscope</strong> — for detection</li>
+      </ol>
+    </div>
+
+    <h3>⚡ Worked Calculation — Proton Speed</h3>
+    <div class="example-box">
+      <div class="ex-label">📐 Exam Example [2007]</div>
+      <div class="ex-question">What is the velocity of a proton accelerated through a potential difference of 700 kV?</div>
+
+      <p><strong>What's happening:</strong> The proton starts at rest. The electric field (voltage) gives it kinetic energy. All the electrical potential energy becomes kinetic energy.</p>
+
+      <div class="calc-step"><div class="cs-label">Step 1 — Write the energy equation</div>QV = ½mv²</div>
+      <div class="calc-step"><div class="cs-label">Step 2 — Rearrange for v</div>v² = 2QV ÷ m</div>
+      <div class="calc-step"><div class="cs-label">Step 3 — Substitute values</div>Q = 1.6022 × 10⁻¹⁹ C (charge of proton)<br>V = 700,000 V = 7 × 10⁵ V<br>m = 1.6726 × 10⁻²⁷ kg</div>
+      <div class="calc-step"><div class="cs-label">Step 4 — Calculate</div>v² = (2)(1.6022 × 10⁻¹⁹)(7 × 10⁵) ÷ (1.6726 × 10⁻²⁷)<br>v² = 1.342 × 10¹⁴<br><strong>v = 1.16 × 10⁷ m/s</strong></div>
+
+      <p style="margin-top:10px;">💡 That's about 4% of the speed of light — very fast, but not fast enough for relativistic effects to matter much here.</p>
+    </div>
+
+    <h3>⚡ Worked Calculation — Energy Released in Cockcroft-Walton</h3>
+    <div class="example-box">
+      <div class="ex-label">📐 Exam Example [2002, 2007]</div>
+      <div class="ex-question">When a lithium nucleus is bombarded with a proton, two alpha-particles are produced. Calculate the energy released.</div>
+
+      <p><strong>Strategy:</strong> Find the total mass before, find the total mass after. The difference in mass has been converted to energy using E = mc².</p>
+
+      <div class="calc-step"><div class="cs-label">Step 1 — Mass BEFORE</div>Mass of proton + mass of lithium nucleus<br>= (1.6726 × 10⁻²⁷) + (1.1646 × 10⁻²⁶)<br>= 1.33186 × 10⁻²⁶ kg</div>
+      <div class="calc-step"><div class="cs-label">Step 2 — Mass AFTER</div>Mass of 2 alpha particles<br>= 2 × (6.6443 × 10⁻²⁷)<br>= 1.32886 × 10⁻²⁶ kg</div>
+      <div class="calc-step"><div class="cs-label">Step 3 — Mass LOST (this became energy)</div>Δm = 1.33186 × 10⁻²⁶ − 1.32886 × 10⁻²⁶ = 2.92 × 10⁻²⁹ kg</div>
+      <div class="calc-step"><div class="cs-label">Step 4 — Energy released</div>E = mc²<br>E = (2.92 × 10⁻²⁹) × (3.0 × 10⁸)²<br><strong>E = 2.6 × 10⁻¹² J</strong></div>
+    </div>
+
+    <div class="tip-box">
+      <div class="tip-label">⚠️ Exam Tip — Naming the Force</div>
+      Always write <strong>"strong nuclear force"</strong> not just "strong force". Always write <strong>"gravitational force"</strong> not just "gravity". The examiners are strict on this!
+    </div>
+
+    <div class="nav-buttons">
+      <button class="nav-btn" onclick="showSection('intro')">← Back</button>
+      <button class="nav-btn primary" onclick="showSection('accelerators')">Next: Modern Accelerators →</button>
+    </div>
+  </div>
+
+  <!-- =================== MODERN ACCELERATORS =================== -->
+  <div class="section" id="sec-accelerators">
+    <div class="chapter-badge">Particle Accelerators</div>
+    <div class="section-title">🔄 Modern Particle Accelerators</div>
+    <div class="section-subtitle">How physicists convert kinetic energy into brand new particles</div>
+
+    <p>The Cockcroft-Walton experiment used a <strong>linear accelerator</strong>. Modern accelerators like <strong>CERN's Large Hadron Collider (LHC)</strong> are circular, much bigger, and far more powerful.</p>
+
+    <h3>Linear vs Circular Accelerators</h3>
+    <table class="particle-table">
+      <tr><th>Feature</th><th>Linear Accelerator</th><th>Circular Accelerator</th></tr>
+      <tr><td>Direction of travel</td><td>Straight line</td><td>Around a circle/ring</td></tr>
+      <tr><td>Energy</td><td>One acceleration</td><td>Continuously accelerated (gains energy each loop)</td></tr>
+      <tr><td>Size</td><td>Very long for high energies</td><td>Compact — same track reused</td></tr>
+      <tr><td>Uses magnets?</td><td>No</td><td>Yes — to bend path</td></tr>
+      <tr><td>Examples</td><td>Cockcroft-Walton</td><td>LHC at CERN, Fermilab</td></tr>
+    </table>
+
+    <div class="definition">
+      <div class="def-label">📖 Advantages of Circular Accelerators</div>
+      <div class="def-text">
+        <strong>1.</strong> They result in progressively increasing speed/energy — particles gain energy every time they go around.<br>
+        <strong>2.</strong> They occupy much less space than an equivalent linear accelerator.
+      </div>
+    </div>
+
+    <h3>Why Are the Tubes Evacuated?</h3>
+    <div class="definition">
+      <div class="def-label">📖 Key Answer</div>
+      <div class="def-text">The tube is evacuated (emptied of air) so that the accelerated particles don't collide with air molecules and lose their energy before reaching the target.</div>
+    </div>
+
+    <h3>What Do the Magnets Do?</h3>
+    <div class="definition">
+      <div class="def-label">📖 Key Answer</div>
+      <div class="def-text">The magnets bend the path of the charged particles, keeping them moving in a circle. Without the magnets, the particles would fly off in a straight line.</div>
+    </div>
+
+    <h3>Can You Accelerate Neutrons?</h3>
+    <div class="definition">
+      <div class="def-label">📖 Key Answer</div>
+      <div class="def-text"><strong>No.</strong> Neutrons have no charge. Accelerators work by using electric fields to push charged particles. Since neutrons are neutral, an electric field has no effect on them.</div>
+    </div>
+
+    <h3>Why Are Particles Accelerated to High Speeds?</h3>
+    <p>The more kinetic energy the protons have before they collide, the more <strong>new, exotic particles</strong> can be created from that energy. It's E = mc² working in reverse: kinetic energy → mass of new particles.</p>
+
+    <h3>Proton-Proton Collisions — Creating New Particles</h3>
+    <div class="equation">p⁺ + p⁺ + K.E. → p⁺ + p⁺ + new particles (+ K.E.)</div>
+    <p>When two protons collide at enormous speeds, their kinetic energy is converted into the mass of brand new particles. The greater the kinetic energy going in, the more massive (and exotic!) the particles that come out.</p>
+
+    <h3>⚡ Worked Calculation — Maximum Mass of New Particles</h3>
+    <div class="example-box">
+      <div class="ex-label">📐 Exam Example [2009 — LHC question]</div>
+      <div class="ex-question">Each proton in the LHC has kinetic energy of 2.0 GeV. What is the maximum net mass of new particles created per collision?</div>
+
+      <p><strong>Strategy:</strong> Maximum mass is created when ALL kinetic energy is converted to mass. Two protons collide so total kinetic energy = 2 × 2 GeV = 4 GeV.</p>
+
+      <div class="calc-step"><div class="cs-label">Step 1 — Convert GeV to Joules</div>1 eV = 1.6 × 10⁻¹⁹ J<br>4 GeV = 4 × 10⁹ eV<br>= (4 × 10⁹) × (1.6 × 10⁻¹⁹) = <strong>6.4 × 10⁻¹⁰ J</strong></div>
+      <div class="calc-step"><div class="cs-label">Step 2 — Use E = mc² to find mass</div>m = E ÷ c²<br>m = (6.4 × 10⁻¹⁰) ÷ (3.0 × 10⁸)²<br><strong>m = 7.12 × 10⁻²⁷ kg</strong></div>
+    </div>
+
+    <div class="example-box">
+      <div class="ex-label">📐 Exam Example [2020 — Fermilab]</div>
+      <div class="ex-question">Two protons, each with kinetic energy 29 GeV, collide. Afterwards the total kinetic energy of all particles is 16 GeV. Calculate the total mass of new particles created.</div>
+
+      <p><strong>Strategy:</strong> Energy "missing" from kinetic energy was used to create mass.</p>
+
+      <div class="calc-step"><div class="cs-label">Step 1 — Find energy used to create mass</div>KE before = 29 + 29 = 58 GeV<br>KE after = 16 GeV<br>Energy → mass = 58 − 16 = <strong>42 GeV</strong></div>
+      <div class="calc-step"><div class="cs-label">Step 2 — Convert to Joules</div>42 GeV = (42 × 10⁹)(1.6 × 10⁻¹⁹) = 6.72 × 10⁻⁹ J</div>
+      <div class="calc-step"><div class="cs-label">Step 3 — Use E = mc²</div>m = E ÷ c² = (6.72 × 10⁻⁹) ÷ (3 × 10⁸)²<br><strong>m = 7.47 × 10⁻²⁶ kg</strong></div>
+    </div>
+
+    <div class="tip-box">
+      <div class="tip-label">💡 Unit Conversion — Super Important!</div>
+      The exam loves GeV and MeV. Always convert to Joules first!<br>
+      • 1 eV = 1.6 × 10⁻¹⁹ J<br>
+      • 1 MeV = 1.6 × 10⁻¹³ J (×10⁶)<br>
+      • 1 GeV = 1.6 × 10⁻¹⁰ J (×10⁹)
+    </div>
+
+    <div class="nav-buttons">
+      <button class="nav-btn" onclick="showSection('cockcroft')">← Cockcroft & Walton</button>
+      <button class="nav-btn primary" onclick="showSection('zoo')">Next: The Particle Zoo →</button>
+    </div>
+  </div>
+
+  <!-- =================== PARTICLE ZOO =================== -->
+  <div class="section" id="sec-zoo">
+    <div class="chapter-badge">Particle Classification</div>
+    <div class="section-title">🦁 The Particle Zoo</div>
+    <div class="section-subtitle">Hundreds of new particles were discovered — and physicists needed a system to organise them</div>
+
+    <p>When physicists started smashing protons together at high speeds, they discovered hundreds of new, previously unknown particles. The collection became so large it was nicknamed <strong>the particle zoo</strong>.</p>
+
+    <p>To make sense of this zoo, physicists grouped particles by their properties — especially by which forces they experience and what they're made of.</p>
+
+    <div class="definition">
+      <div class="def-label">📖 The Particle Zoo</div>
+      <div class="def-text">The "particle zoo" refers to the large number of subatomic particles discovered in particle accelerator experiments in the 20th century. The quark model was proposed to bring order to this zoo.</div>
+    </div>
+
+    <h3>The Big Picture: Particle Family Tree</h3>
+
+    <div class="highlight-box" style="font-family:'Lexend Deca',monospace; font-size:14px; line-height:2;">
+      <strong>ALL PARTICLES</strong><br>
+      ├── <strong>LEPTONS</strong> (not made of quarks)<br>
+      │&nbsp;&nbsp;&nbsp;└── electron, muon, tau, neutrinos, positron...<br>
+      └── <strong>HADRONS</strong> (made of quarks)<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── <strong>BARYONS</strong> (3 quarks)<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;└── proton, neutron...<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── <strong>MESONS</strong> (1 quark + 1 antiquark)<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── pion, kaon...
+    </div>
+
+    <h3>Key Definitions</h3>
+
+    <div class="definition">
+      <div class="def-label">📖 Leptons</div>
+      <div class="def-text"><strong>Leptons</strong> are fundamental particles that are <em>not</em> subject to the strong nuclear force. They are not made of quarks. Examples: electron, muon, tau (and their neutrinos), positron.</div>
+    </div>
+
+    <div class="definition">
+      <div class="def-label">📖 Hadrons</div>
+      <div class="def-text"><strong>Hadrons</strong> are particles made up of quarks. They experience all four fundamental forces, including the strong nuclear force. Hadrons are divided into baryons and mesons.</div>
+    </div>
+
+    <div class="definition">
+      <div class="def-label">📖 Baryons</div>
+      <div class="def-text"><strong>Baryons</strong> are hadrons made of <em>three quarks</em> (or three antiquarks). Examples: proton (uud) and neutron (udd).</div>
+    </div>
+
+    <div class="definition">
+      <div class="def-label">📖 Mesons</div>
+      <div class="def-text"><strong>Mesons</strong> are hadrons made of <em>one quark and one antiquark</em>. They have a mass between the electron and proton. Examples: pion, kaon. Because they contain both matter and antimatter, they are very unstable and annihilate almost immediately.</div>
+    </div>
+
+    <div class="example-box">
+      <div class="ex-label">📐 2011 Exam — Pion Creation</div>
+      <div class="ex-question">Two protons and two charged pi mesons are produced in a collision. Show that the kinetic energy of each proton must be at least 140 MeV.</div>
+
+      <p><strong>Strategy:</strong> Find the energy needed to create 2 pions (from the Formulae & Tables: mass of pion = 273 × mass of electron).</p>
+
+      <div class="calc-step"><div class="cs-label">Step 1 — Find mass of one pion</div>mπ = 273 × mₑ = 273 × (9.109 × 10⁻³¹) = 2.487 × 10⁻²⁸ kg</div>
+      <div class="calc-step"><div class="cs-label">Step 2 — Energy to create 2 pions</div>E = 2mπc² = 2 × (2.487 × 10⁻²⁸) × (3 × 10⁸)²<br>= 4.476 × 10⁻¹¹ J</div>
+      <div class="calc-step"><div class="cs-label">Step 3 — Convert to eV</div>E = (4.476 × 10⁻¹¹) ÷ (1.602 × 10⁻¹⁹) = 279.4 × 10⁶ eV ≈ 280 MeV</div>
+      <div class="calc-step"><div class="cs-label">Step 4 — Per proton</div>280 MeV comes from <em>two</em> protons, so each needs at least <strong>140 MeV</strong>. ✓</div>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="nav-btn" onclick="showSection('accelerators')">← Accelerators</button>
+      <button class="nav-btn primary" onclick="showSection('antimatter')">Next: Antimatter →</button>
+    </div>
+  </div>
+
+  <!-- =================== ANTIMATTER =================== -->
+  <div class="section" id="sec-antimatter">
+    <div class="chapter-badge">Antimatter</div>
+    <div class="section-title">🔄 Antimatter</div>
+    <div class="section-subtitle">Same mass, opposite charge — and it annihilates on contact with regular matter</div>
+
+    <p>Every particle of ordinary matter has a corresponding <strong>antiparticle</strong>. When a particle meets its antiparticle, they destroy each other in a burst of energy — this is called <strong>pair annihilation</strong>.</p>
+
+    <div class="definition">
+      <div class="def-label">📖 Definition — Antimatter</div>
+      <div class="def-text">Antimatter has the <strong>same mass</strong> as ordinary matter but <strong>opposite charge</strong>. Each particle has a corresponding antiparticle.</div>
+    </div>
+
+    <h3>Key Antiparticles to Know</h3>
+
+    <table class="particle-table">
+      <tr><th>Particle</th><th>Charge</th><th>Antiparticle</th><th>Charge</th></tr>
+      <tr><td>Electron (e⁻)</td><td>−1</td><td>Positron (e⁺)</td><td>+1</td></tr>
+      <tr><td>Proton (p⁺)</td><td>+1</td><td>Antiproton</td><td>−1</td></tr>
+      <tr><td>Up quark (u)</td><td>+2/3</td><td>Anti-up quark (ū)</td><td>−2/3</td></tr>
+      <tr><td>Down quark (d)</td><td>−1/3</td><td>Anti-down quark (d̄)</td><td>+1/3</td></tr>
+    </table>
+
+    <div class="definition">
+      <div class="def-label">📖 The Positron</div>
+      <div class="def-text">The <strong>positron</strong> (or anti-electron) is the antiparticle of the electron. It has the same mass as an electron but a <strong>positive charge</strong>. Symbol: e⁺ or β⁺.</div>
+    </div>
+
+    <h3>Who Predicted Antimatter?</h3>
+    <p>The English physicist <strong>Paul Dirac</strong> mathematically predicted the existence of antimatter before it was experimentally detected. He was working on combining quantum mechanics with special relativity.</p>
+    <p>The positron was first discovered experimentally by <strong>Carl Anderson</strong> in 1932 during the study of <strong>cosmic rays</strong>.</p>
+
+    <div class="tip-box">
+      <div class="tip-label">📝 Exam Points About Dirac</div>
+      The exam may ask: "Give one contribution made to physics by Paul Dirac."<br>
+      <strong>Answer: Dirac predicted the existence of antimatter (antiparticles).</strong>
+    </div>
+
+    <h3>Comparing Electron and Positron</h3>
+    <div class="definition">
+      <div class="def-label">📖 Exam Answer — Electron vs Positron</div>
+      <div class="def-text">
+        ✅ <strong>Same:</strong> mass, magnitude of charge<br>
+        ❌ <strong>Different:</strong> sign of charge (electron is negative, positron is positive)
+      </div>
+    </div>
+
+    <h3>Beta-Positive Decay (Bonus Topic)</h3>
+    <p>In ordinary beta decay, a <strong>neutron → proton + electron</strong>. But there is also beta-positive decay, where a <strong>proton → neutron + positron</strong>.</p>
+
+    <div class="example-box">
+      <div class="ex-label">📐 2014 Exam — Carbon-11 Decay</div>
+      <div class="ex-question">A carbon-11 nucleus decays with the emission of a positron. Write a nuclear equation.</div>
+      <div class="calc-step"><div class="cs-label">Answer</div>¹¹₆C → ¹¹₅B + ⁰₊₁e (positron)</div>
+      <p style="margin-top:10px;">The carbon-11 nucleus has 6 protons. One proton "turns into" a neutron + positron. So afterwards we have 5 protons, 6 neutrons = Boron-11.</p>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="nav-btn" onclick="showSection('zoo')">← Particle Zoo</button>
+      <button class="nav-btn primary" onclick="showSection('pair-production')">Next: Pair Production →</button>
+    </div>
+  </div>
+
+  <!-- =================== PAIR PRODUCTION =================== -->
+  <div class="section" id="sec-pair-production">
+    <div class="chapter-badge">Pair Production</div>
+    <div class="section-title">✨ Pair Production</div>
+    <div class="section-subtitle">Energy turns into matter — a gamma ray photon creates a particle and its antiparticle</div>
+
+    <div class="definition">
+      <div class="def-label">📖 Definition — Pair Production</div>
+      <div class="def-text">Pair production occurs when a <strong>high-energy gamma ray photon</strong> spontaneously creates a <strong>particle and its antiparticle</strong> (most commonly an electron and a positron). The photon disappears and two particles appear in its place.</div>
+    </div>
+
+    <h3>The Equation</h3>
+    <div class="equation">γ → e⁻ + e⁺ + K.E.</div>
+    <p>A gamma ray photon (γ) produces an electron (e⁻) and a positron (e⁺), which may also carry kinetic energy.</p>
+
+    <h3>The Energy Equation</h3>
+    <div class="formula-box">
+      <div class="formula-label">📐 Pair Production Energy Equation</div>
+      <div class="formula-main">hf = 2mₑc² + K.E.</div>
+      <div class="formula-desc">
+        Energy of photon = energy to create both particles + kinetic energy of the particles<br><br>
+        For <strong>minimum frequency</strong>, we assume the particles are created with <strong>zero kinetic energy</strong>:<br>
+        <strong>hf = 2mₑc²</strong>
+      </div>
+    </div>
+
+    <h3>Conservation Laws in Pair Production</h3>
+
+    <div class="highlight-box">
+      <p><strong>✅ Conservation of Charge:</strong><br>
+      A photon has zero charge. The electron has charge −1, the positron has charge +1. Net charge = −1 + 1 = 0. ✓ Charge is conserved.</p>
+
+      <p style="margin-top:10px;"><strong>✅ Conservation of Momentum:</strong><br>
+      A photon carries momentum (even though it has no rest mass!). So there must be momentum after too. This means the electron and positron <strong>cannot travel in opposite directions</strong> — they must move off at angles to conserve momentum.</p>
+    </div>
+
+    <div class="definition">
+      <div class="def-label">📖 Why Is a Nucleus Needed?</div>
+      <div class="def-text">Pair production usually occurs near an atomic nucleus. The nucleus can absorb some recoil momentum, which is needed for both conservation of energy and momentum to be satisfied simultaneously in free space.</div>
+    </div>
+
+    <h3>⚡ Worked Calculations</h3>
+
+    <div class="example-box">
+      <div class="ex-label">📐 Exam Example [2003, 2013] — Minimum Frequency</div>
+      <div class="ex-question">Calculate the minimum frequency of a gamma-ray photon required for pair production (creating an electron and positron).</div>
+
+      <div class="calc-step"><div class="cs-label">Step 1 — Write the energy equation (minimum = no K.E.)</div>hf = 2mₑc²</div>
+      <div class="calc-step"><div class="cs-label">Step 2 — Rearrange for f</div>f = 2mₑc² ÷ h</div>
+      <div class="calc-step"><div class="cs-label">Step 3 — Substitute values</div>f = 2 × (9.1 × 10⁻³¹) × (3.0 × 10⁸)² ÷ (6.6 × 10⁻³⁴)<br><strong>f = 2.48 × 10²⁰ Hz</strong></div>
+
+      <p style="margin-top:10px;">💡 <strong>What if the frequency is greater than the minimum?</strong> The newly created particles will move off with kinetic energy.</p>
+    </div>
+
+    <div class="example-box">
+      <div class="ex-label">📐 Exam Example [2010] — Kinetic Energy of Particles</div>
+      <div class="ex-question">A photon of frequency 3.6 × 10²⁰ Hz causes pair production. Calculate the kinetic energy of one of the particles produced.</div>
+
+      <div class="calc-step"><div class="cs-label">Step 1 — Energy of the photon</div>E = hf = (6.6 × 10⁻³⁴)(3.6 × 10²⁰) = 2.376 × 10⁻¹³ J</div>
+      <div class="calc-step"><div class="cs-label">Step 2 — Energy used to create 2 particles</div>E = 2mₑc² = 2(9.1 × 10⁻³¹)(3.0 × 10⁸)² = 1.638 × 10⁻¹³ J</div>
+      <div class="calc-step"><div class="cs-label">Step 3 — Total kinetic energy of both particles</div>K.E. total = 2.376 × 10⁻¹³ − 1.638 × 10⁻¹³ = 7.38 × 10⁻¹⁴ J</div>
+      <div class="calc-step"><div class="cs-label">Step 4 — K.E. of ONE particle (divide by 2)</div><strong>K.E. per particle = 3.69 × 10⁻¹⁴ J</strong></div>
+    </div>
+
+    <div class="example-box">
+      <div class="ex-label">📐 Exam Example [2021 HL] — Muon-Antimuon Pair</div>
+      <div class="ex-question">A photon produces a muon–antimuon pair. Calculate the minimum energy of the photon in electronvolts.</div>
+
+      <div class="calc-step"><div class="cs-label">Step 1 — Find mass of a muon (from Formulae & Tables: muon mass = 207 × mₑ)</div>mμ = 207 × (9.109 × 10⁻³¹) = 1.886 × 10⁻²⁸ kg</div>
+      <div class="calc-step"><div class="cs-label">Step 2 — Energy = 2mμc² (two muons created)</div>E = 2 × (1.886 × 10⁻²⁸) × (3.0 × 10⁸)²<br>= 3.39 × 10⁻¹¹ J</div>
+      <div class="calc-step"><div class="cs-label">Step 3 — Convert to eV</div>E = (3.39 × 10⁻¹¹) ÷ (1.602 × 10⁻¹⁹) = <strong>2.12 × 10⁸ eV = 212 MeV</strong></div>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="nav-btn" onclick="showSection('antimatter')">← Antimatter</button>
+      <button class="nav-btn primary" onclick="showSection('pair-annihilation')">Next: Pair Annihilation →</button>
+    </div>
+  </div>
+
+  <!-- =================== PAIR ANNIHILATION =================== -->
+  <div class="section" id="sec-pair-annihilation">
+    <div class="chapter-badge">Pair Annihilation</div>
+    <div class="section-title">💥 Pair Annihilation</div>
+    <div class="section-subtitle">Matter meets antimatter — and they convert entirely into energy</div>
+
+    <div class="definition">
+      <div class="def-label">📖 Definition — Pair Annihilation</div>
+      <div class="def-text">Pair annihilation occurs when a particle meets its antiparticle. Both particles are destroyed and their combined mass is converted entirely into energy in the form of <strong>two gamma-ray photons</strong>.</div>
+    </div>
+
+    <h3>The Equation</h3>
+    <div class="equation">e⁺ + e⁻ + K.E. → 2γ</div>
+    <p>An electron and positron annihilate, producing <strong>two gamma-ray photons</strong>.</p>
+
+    <div class="warn-box">
+      <strong>⚠️ Always say "gamma-ray photons"!</strong> Not just "photons". The examiners want you to emphasise the very high energy level — gamma rays are the highest-energy photons.
+    </div>
+
+    <h3>The Energy Equation</h3>
+    <div class="formula-box">
+      <div class="formula-label">📐 Pair Annihilation Energy Equation</div>
+      <div class="formula-main">2mₑc² = 2hf</div>
+      <div class="formula-desc">
+        Mass of electron + mass of positron → energy of two photons<br><br>
+        Simplify: <strong>mₑc² = hf</strong> (for each photon)<br><br>
+        For minimum frequency, no kinetic energy beforehand.
+      </div>
+    </div>
+
+    <h3>Conservation Laws in Pair Annihilation</h3>
+
+    <div class="highlight-box">
+      <p><strong>✅ Conservation of Charge:</strong><br>
+      Electron (−1) + Positron (+1) = 0. Two gamma photons have zero charge. ✓</p>
+
+      <p style="margin-top:10px;"><strong>✅ Conservation of Momentum:</strong><br>
+      The electron and positron travel toward each other (opposite momenta). Their total momentum sums to approximately zero. So the two photons must fly off in <strong>opposite directions</strong> to ensure net momentum remains zero. This is why we <em>must</em> get two photons, not one!</p>
+    </div>
+
+    <h3>⚡ Worked Calculation</h3>
+
+    <div class="example-box">
+      <div class="ex-label">📐 Exam Example [2012, 2014]</div>
+      <div class="ex-question">Calculate the minimum frequency of the photons produced in pair annihilation of an electron and positron.</div>
+
+      <div class="calc-step"><div class="cs-label">Step 1 — Write energy equation (minimum → no K.E.)</div>2mₑc² = 2hf → mₑc² = hf</div>
+      <div class="calc-step"><div class="cs-label">Step 2 — Solve for f</div>f = mₑc² ÷ h</div>
+      <div class="calc-step"><div class="cs-label">Step 3 — Substitute values</div>f = (9.109 × 10⁻³¹) × (3 × 10⁸)² ÷ (6.626 × 10⁻³⁴)<br><strong>f = 1.237 × 10²⁰ Hz</strong></div>
+
+      <p style="margin-top:10px;">💡 <strong>Why do photons usually have a higher frequency than this minimum?</strong> Because in reality, the electron and positron usually have kinetic energy before they meet. That extra energy also gets converted into photon energy, increasing the frequency.</p>
+    </div>
+
+    <h3>Pair Production vs Pair Annihilation — Quick Comparison</h3>
+
+    <table class="particle-table">
+      <tr><th>Feature</th><th>Pair Production</th><th>Pair Annihilation</th></tr>
+      <tr><td>What goes in?</td><td>1 gamma-ray photon</td><td>Electron + Positron</td></tr>
+      <tr><td>What comes out?</td><td>Electron + Positron</td><td>2 gamma-ray photons</td></tr>
+      <tr><td>Conversion</td><td>Energy → Mass</td><td>Mass → Energy</td></tr>
+      <tr><td>Number of photons</td><td>1 in</td><td>2 out</td></tr>
+      <tr><td>Equation</td><td>γ → e⁻ + e⁺</td><td>e⁺ + e⁻ → 2γ</td></tr>
+    </table>
+
+    <div class="nav-buttons">
+      <button class="nav-btn" onclick="showSection('pair-production')">← Pair Production</button>
+      <button class="nav-btn primary" onclick="showSection('neutrino')">Next: The Neutrino →</button>
+    </div>
+  </div>
+
+  <!-- =================== NEUTRINO =================== -->
+  <div class="section" id="sec-neutrino">
+    <div class="chapter-badge">The Neutrino</div>
+    <div class="section-title">👻 The Neutrino</div>
+    <div class="section-subtitle">The particle that shouldn't exist — predicted before it could be detected</div>
+
+    <p>Right now, approximately <strong>10 trillion neutrinos</strong> from the Sun are passing through your hand every second. They pass through the entire Earth as if it's not even there!</p>
+
+    <div class="definition">
+      <div class="def-label">📖 Definition — Neutrino</div>
+      <div class="def-text">The neutrino is an extremely small, nearly massless, chargeless particle. It travels at close to the speed of light and barely interacts with ordinary matter. The symbol is <strong>ν</strong> (Greek letter "nu"). Its name means "little neutral one" in Italian.</div>
+    </div>
+
+    <h3>Why Was the Neutrino Proposed?</h3>
+    <p>The neutrino was first proposed by <strong>Wolfgang Pauli</strong> (Austrian physicist) to solve a problem with <strong>beta decay</strong>.</p>
+    <p>In beta decay, a neutron decays into a proton and an electron:</p>
+    <div class="equation">n⁰ → p⁺ + e⁻</div>
+    <p>When scientists measured the momentum before and after this decay, they found the momentum <strong>afterwards was always slightly less</strong> than before. This violated the law of conservation of momentum — which should be impossible!</p>
+
+    <div class="definition">
+      <div class="def-label">📖 Pauli's Solution</div>
+      <div class="def-text">Pauli suggested that a <strong>third particle</strong> must also be produced in beta decay — one that carried away the "missing" momentum. Because it was never detected, it had to have no charge and almost no mass. He called it the neutrino.</div>
+    </div>
+
+    <h3>The Full Beta Decay Equation (with Neutrino)</h3>
+    <div class="equation">⁰₁n → ¹₁p + ⁰₋₁e + ν + K.E.</div>
+
+    <div class="warn-box">
+      <strong>⚠️ Always include the neutrino (ν) in beta decay equations!</strong> If you leave it out, you'll lose marks.
+    </div>
+
+    <h3>Who Named It?</h3>
+    <p>The term "neutrino" was coined by Italian physicist <strong>Enrico Fermi</strong>, meaning "little neutral one" in Italian. Fermi is the same person who developed the theory of radioactive decay (called Fermi's theory).</p>
+
+    <div class="tip-box">
+      <div class="tip-label">📝 Know Your People!</div>
+      • <strong>Pauli</strong> — proposed the neutrino existed<br>
+      • <strong>Fermi</strong> — named it "neutrino" and developed the theory of beta decay<br>
+      • The neutrino was finally <strong>detected experimentally in 1956</strong> — 26 years after Pauli predicted it!
+    </div>
+
+    <h3>Why Is It Hard to Detect?</h3>
+
+    <div class="definition">
+      <div class="def-label">📖 Exam Answer — Two Reasons It's Hard to Detect</div>
+      <div class="def-text">
+        1. The neutrino has <strong>no charge</strong> — it doesn't interact electromagnetically, so it doesn't leave a track or cause ionisation.<br>
+        2. The neutrino has <strong>very small (nearly zero) mass</strong> — and barely interacts with matter at all through the weak nuclear force.
+      </div>
+    </div>
+
+    <h3>⚡ Worked Calculation — Energy Released in Beta Decay</h3>
+    <div class="example-box">
+      <div class="ex-label">📐 Exam Example [2015] — Energy from Beta Decay</div>
+      <div class="ex-question">Calculate the energy released, in MeV, during beta decay.</div>
+
+      <div class="calc-step"><div class="cs-label">Step 1 — Mass BEFORE: mass of neutron</div>mₙ = 1.674927 × 10⁻²⁷ kg</div>
+      <div class="calc-step"><div class="cs-label">Step 2 — Mass AFTER: proton + electron + neutrino</div>mₚ = 1.672622 × 10⁻²⁷ kg<br>mₑ = 9.109 × 10⁻³¹ kg<br>mᵥ = 4.305 × 10⁻⁶ × mₑ ≈ negligible<br>Total ≈ 1.673533 × 10⁻²⁷ kg</div>
+      <div class="calc-step"><div class="cs-label">Step 3 — Mass lost</div>Δm = 1.674927 × 10⁻²⁷ − 1.673533 × 10⁻²⁷ = 1.394 × 10⁻³⁰ kg</div>
+      <div class="calc-step"><div class="cs-label">Step 4 — Energy released</div>E = mc² = (1.394 × 10⁻³⁰)(3 × 10⁸)² = 1.25 × 10⁻¹³ J</div>
+      <div class="calc-step"><div class="cs-label">Step 5 — Convert to MeV</div>E = (1.25 × 10⁻¹³) ÷ (1.6 × 10⁻¹³) ≈ <strong>0.78 MeV</strong></div>
+    </div>
+
+    <h3>How Did Fermi's Theory Resolve the Momentum Problem?</h3>
+    <div class="definition">
+      <div class="def-label">📖 Exam Answer</div>
+      <div class="def-text">Fermi's theory of radioactive decay proposed that a third particle (the neutrino) must be emitted during beta decay. This neutrino carries away the "missing" momentum, thereby restoring conservation of momentum.</div>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="nav-btn" onclick="showSection('pair-annihilation')">← Pair Annihilation</button>
+      <button class="nav-btn primary" onclick="showSection('quarks')">Next: Quarks →</button>
+    </div>
+  </div>
+
+  <!-- =================== QUARKS =================== -->
+  <div class="section" id="sec-quarks">
+    <div class="chapter-badge">Quarks</div>
+    <div class="section-title">🔬 Quarks & Anti-Quarks</div>
+    <div class="section-subtitle">The true building blocks of protons and neutrons</div>
+
+    <p>For a long time, protons and neutrons were thought to be the smallest particles. But in the 1960s, physicists discovered that they are made of even smaller particles called <strong>quarks</strong>.</p>
+
+    <div class="definition">
+      <div class="def-label">📖 Definition — Quark</div>
+      <div class="def-text">Quarks are fundamental particles that make up hadrons (baryons and mesons). They carry fractional electric charges (fractions of the electron charge) and always come in groups of two or three — they are never found alone.</div>
+    </div>
+
+    <h3>Who Named Quarks?</h3>
+    <p>The American physicist <strong>Murray Gell-Mann</strong> proposed the quark model and gave quarks their name. He found the word "<strong>quark</strong>" in a novel by Irish writer <strong>James Joyce</strong> — specifically in <em>Finnegans Wake</em>. <strong>You need to know this!</strong></p>
+
+    <h3>The Six Flavours of Quark</h3>
+    <table class="particle-table">
+      <tr><th>Name</th><th>Symbol</th><th>Charge (×e)</th><th>Type</th></tr>
+      <tr><td>Up</td><td>u</td><td>+2/3</td><td style="color:#2e7d32; font-weight:600;">Positive</td></tr>
+      <tr><td>Down</td><td>d</td><td>−1/3</td><td style="color:#b71c1c; font-weight:600;">Negative</td></tr>
+      <tr><td>Charm</td><td>c</td><td>+2/3</td><td style="color:#2e7d32; font-weight:600;">Positive</td></tr>
+      <tr><td>Strange</td><td>s</td><td>−1/3</td><td style="color:#b71c1c; font-weight:600;">Negative</td></tr>
+      <tr><td>Top</td><td>t</td><td>+2/3</td><td style="color:#2e7d32; font-weight:600;">Positive</td></tr>
+      <tr><td>Bottom</td><td>b</td><td>−1/3</td><td style="color:#b71c1c; font-weight:600;">Negative</td></tr>
+    </table>
+
+    <div class="mnemonic">
+      <div class="m-label">💡 Memory Trick for the 6 Flavours</div>
+      <div class="m-text">"Uncle Dave Can Sometimes Take Breaks"</div>
+      <div class="m-explain">Up, Down, Charm, Strange, Top, Bottom</div>
+    </div>
+
+    <div class="mnemonic">
+      <div class="m-label">💡 Which Quarks Are Positively Charged?</div>
+      <div class="m-text">Up, Charm, Top = +2/3 charge</div>
+      <div class="m-explain">Down, Strange, Bottom = −1/3 charge</div>
+    </div>
+
+    <h3>Anti-Quarks</h3>
+    <div class="definition">
+      <div class="def-label">📖 Definition — Anti-Quark</div>
+      <div class="def-text">An anti-quark has the <strong>same mass</strong> as its corresponding quark, but <strong>opposite charge</strong>. For example, the anti-up quark (ū) has a charge of −2/3.</div>
+    </div>
+
+    <h3>Quark Compositions — Must Know!</h3>
+    <table class="particle-table">
+      <tr><th>Particle</th><th>Quarks</th><th>Charge Calculation</th><th>Classification</th></tr>
+      <tr><td>Proton</td><td>uud</td><td>+2/3 + 2/3 − 1/3 = <strong>+1</strong></td><td>Baryon</td></tr>
+      <tr><td>Neutron</td><td>udd</td><td>+2/3 − 1/3 − 1/3 = <strong>0</strong></td><td>Baryon</td></tr>
+      <tr><td>π⁺ (positive pion)</td><td>ud̄ (up + anti-down)</td><td>+2/3 + 1/3 = <strong>+1</strong></td><td>Meson</td></tr>
+      <tr><td>π⁻ (negative pion)</td><td>dū (down + anti-up)</td><td>−1/3 − 2/3 = <strong>−1</strong></td><td>Meson</td></tr>
+      <tr><td>Anti-neutron</td><td>ūd̄d̄</td><td>−2/3 + 1/3 + 1/3 = <strong>0</strong></td><td>Baryon</td></tr>
+    </table>
+
+    <div class="tip-box">
+      <div class="tip-label">📝 Exam Tip — Kaon Classification</div>
+      A kaon consists of a strange quark and an up anti-quark (sū). Because it's made of <em>one quark and one antiquark</em>, it is a <strong>MESON</strong>.
+    </div>
+
+    <h3>Quark vs Anti-Quark — Comparing Properties</h3>
+    <div class="definition">
+      <div class="def-label">📖 Exam Answer [2018]</div>
+      <div class="def-text">
+        <strong>Same:</strong> mass AND the magnitude (size) of the charge<br>
+        <strong>Different:</strong> the sign of the charge (one is positive, the other is negative)
+      </div>
+    </div>
+
+    <h3>Possible Meson Combinations from up/down Quarks</h3>
+    <table class="particle-table">
+      <tr><th>Composition</th><th>Charge</th><th>Name</th></tr>
+      <tr><td>uū</td><td>+2/3 − 2/3 = 0</td><td>Pi-zero (π⁰)</td></tr>
+      <tr><td>ud̄</td><td>+2/3 + 1/3 = +1</td><td>Pi-plus (π⁺)</td></tr>
+      <tr><td>dū</td><td>−1/3 − 2/3 = −1</td><td>Pi-minus (π⁻)</td></tr>
+      <tr><td>dd̄</td><td>−1/3 + 1/3 = 0</td><td>Pi-zero (π⁰)</td></tr>
+    </table>
+
+    <div class="nav-buttons">
+      <button class="nav-btn" onclick="showSection('neutrino')">← The Neutrino</button>
+      <button class="nav-btn primary" onclick="showSection('forces')">Next: Fundamental Forces →</button>
+    </div>
+  </div>
+
+  <!-- =================== FUNDAMENTAL FORCES =================== -->
+  <div class="section" id="sec-forces">
+    <div class="chapter-badge">Fundamental Forces</div>
+    <div class="section-title">💪 The Four Fundamental Forces</div>
+    <div class="section-subtitle">Every force in the universe is one of just four fundamental forces</div>
+
+    <p>No matter how complex a force seems — magnetism, friction, pressure — it all boils down to one of just <strong>four fundamental forces</strong>.</p>
+
+    <div class="mnemonic">
+      <div class="m-label">💡 Mnemonic — Order from strongest to weakest</div>
+      <div class="m-text">"Steady Effort Wins Games"</div>
+      <div class="m-explain">Strong nuclear → Electromagnetic → Weak nuclear → Gravitational</div>
+    </div>
+
+    <div class="tip-box">
+      <div class="tip-label">⚠️ Exam Language Warning!</div>
+      Always write <strong>"strong nuclear force"</strong> (not "strong force") and <strong>"gravitational force"</strong> (not "gravity"). The examiners dock marks for these!
+    </div>
+
+    <h3>The Four Forces</h3>
+
+    <div class="force-bar">
+      <div class="force-icon" style="background:#ffebee; font-size:22px;">⚛️</div>
+      <div class="force-details">
+        <div class="force-name" style="color:#c62828;">1. Strong Nuclear Force (Strongest)</div>
+        <div class="force-info">Holds the nucleus together by binding protons and neutrons. Acts between quarks. Very short range (within the nucleus). Does NOT act on leptons.</div>
+      </div>
+    </div>
+
+    <div class="force-bar">
+      <div class="force-icon" style="background:#e3f2fd; font-size:22px;">⚡</div>
+      <div class="force-details">
+        <div class="force-name" style="color:#1565c0;">2. Electromagnetic Force</div>
+        <div class="force-info">Acts between charged particles (attraction and repulsion). Range: inverse square law (infinite range, gets weaker with distance). Acts on all charged particles.</div>
+      </div>
+    </div>
+
+    <div class="force-bar">
+      <div class="force-icon" style="background:#f3e8ff; font-size:22px;">💫</div>
+      <div class="force-details">
+        <div class="force-name" style="color:#6a1a7a;">3. Weak Nuclear Force</div>
+        <div class="force-info">Responsible for radioactive beta decay (neutron → proton + electron + neutrino). Very short range. Acts on all quarks and leptons.</div>
+      </div>
+    </div>
+
+    <div class="force-bar">
+      <div class="force-icon" style="background:#e8f5e9; font-size:22px;">🌍</div>
+      <div class="force-details">
+        <div class="force-name" style="color:#1b5e20;">4. Gravitational Force (Weakest)</div>
+        <div class="force-info">Acts between all masses. Range: inverse square law (infinite range). Always attractive. The weakest force by far — but acts on everything.</div>
+      </div>
+    </div>
+
+    <h3>Quick Summary Table</h3>
+    <table class="particle-table">
+      <tr><th>Force</th><th>Relative Strength</th><th>Range</th><th>Acts On</th><th>Role</th></tr>
+      <tr><td>Strong nuclear</td><td>1 (strongest)</td><td>Very short (nuclear scale)</td><td>Quarks, hadrons</td><td>Binds nucleus</td></tr>
+      <tr><td>Electromagnetic</td><td>~10⁻²</td><td>Infinite (inverse square)</td><td>Charged particles</td><td>Atom structure, chemistry</td></tr>
+      <tr><td>Weak nuclear</td><td>~10⁻⁶</td><td>Very short (sub-nuclear)</td><td>Quarks, leptons</td><td>Beta decay</td></tr>
+      <tr><td>Gravitational</td><td>~10⁻³⁹ (weakest)</td><td>Infinite (inverse square)</td><td>All masses</td><td>Planetary orbits</td></tr>
+    </table>
+
+    <h3>Which Forces Act on Which Particles?</h3>
+
+    <div class="highlight-box">
+      <p>🎯 <strong>Leptons</strong> (e.g. electron, muon, neutrino): experience <strong>electromagnetic, weak nuclear, gravitational</strong> forces — but <strong>NOT</strong> the strong nuclear force</p>
+      <p style="margin-top:8px;">🎯 <strong>Hadrons</strong> (e.g. proton, neutron, pion): experience <strong>all four</strong> fundamental forces</p>
+      <p style="margin-top:8px;">🎯 <strong>Pions</strong> specifically: experience all four forces — strong, electromagnetic, weak, gravitational</p>
+    </div>
+
+    <div class="example-box">
+      <div class="ex-label">📐 Exam Example [2009]</div>
+      <div class="ex-question">Arrange the fundamental forces of nature in increasing order of strength.</div>
+      <div class="calc-step"><div class="cs-label">Answer (weakest to strongest)</div>Gravitational → Weak nuclear → Electromagnetic → Strong nuclear</div>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="nav-btn" onclick="showSection('quarks')">← Quarks</button>
+      <button class="nav-btn primary" onclick="showSection('classification')">Next: Particle Classification →</button>
+    </div>
+  </div>
+
+  <!-- =================== CLASSIFICATION =================== -->
+  <div class="section" id="sec-classification">
+    <div class="chapter-badge">Classification</div>
+    <div class="section-title">📊 Full Particle Classification</div>
+    <div class="section-subtitle">The complete map of all fundamental particles</div>
+
+    <p>Now let's put it all together into one big map. Every particle fits neatly into this system.</p>
+
+    <h3>The Particle Map</h3>
+
+    <table class="particle-table">
+      <tr><th>Category</th><th>Sub-type</th><th>Composition</th><th>Experiences Strong Force?</th><th>Examples</th></tr>
+      <tr><td rowspan="2" style="font-weight:700; color:var(--accent1);">LEPTONS</td><td>Charged Leptons</td><td>Fundamental (no quarks)</td><td style="color:#b71c1c;">❌ No</td><td>electron (e⁻), muon (μ), tau (τ)</td></tr>
+      <tr><td>Neutrinos</td><td>Fundamental (no quarks)</td><td style="color:#b71c1c;">❌ No</td><td>νₑ, νμ, ντ</td></tr>
+      <tr><td rowspan="2" style="font-weight:700; color:var(--accent2);">HADRONS</td><td>BARYONS</td><td>3 quarks (or 3 antiquarks)</td><td style="color:#1b5e20;">✅ Yes</td><td>proton (uud), neutron (udd)</td></tr>
+      <tr><td>MESONS</td><td>1 quark + 1 antiquark</td><td style="color:#1b5e20;">✅ Yes</td><td>pion (π), kaon (K)</td></tr>
+    </table>
+
+    <h3>Negatively Charged Leptons (Know All Three!)</h3>
+    <div class="highlight-box">
+      <strong>The three negatively charged leptons are:</strong><br>
+      🔵 <strong>Electron</strong> (e) — the lightest and most familiar<br>
+      🔵 <strong>Muon</strong> (μ) — 207 times heavier than an electron<br>
+      🔵 <strong>Tau</strong> (τ) — the heaviest of the three
+    </div>
+
+    <h3>Positively Charged Quarks (Know These!)</h3>
+    <div class="highlight-box">
+      <strong>The three positively charged quarks (charge = +2/3):</strong><br>
+      🔴 Up (u) &nbsp;&nbsp;&nbsp; 🔴 Charm (c) &nbsp;&nbsp;&nbsp; 🔴 Top (t)
+    </div>
+
+    <h3>Why Are Mesons So Unstable?</h3>
+    <div class="definition">
+      <div class="def-label">📖 Explanation</div>
+      <div class="def-text">A meson contains a quark and an antiquark — matter and antimatter paired together. Because they are matter-antimatter pairs, they undergo <strong>pair annihilation</strong> almost immediately. This is why mesons are very short-lived and unstable.</div>
+    </div>
+
+    <h3>Classifying the Proton</h3>
+    <div class="accordion">
+      <button class="accordion-btn" onclick="toggleAcc(this)">Why is a proton a hadron? <span class="acc-arrow">▼</span></button>
+      <div class="accordion-content">
+        A proton is a hadron because it is composed of quarks (specifically uud) and it experiences the strong nuclear force.
+      </div>
+    </div>
+    <div class="accordion">
+      <button class="accordion-btn" onclick="toggleAcc(this)">Why is a proton a baryon? <span class="acc-arrow">▼</span></button>
+      <div class="accordion-content">
+        A proton is a baryon because it is composed of three quarks (uud). Baryons are defined as hadrons with three quarks.
+      </div>
+    </div>
+    <div class="accordion">
+      <button class="accordion-btn" onclick="toggleAcc(this)">Why is a kaon a meson? <span class="acc-arrow">▼</span></button>
+      <div class="accordion-content">
+        A kaon (strange quark + up anti-quark) is a meson because it is composed of one quark and one antiquark. All quark-antiquark pairs are mesons.
+      </div>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="nav-btn" onclick="showSection('forces')">← Fundamental Forces</button>
+      <button class="nav-btn primary" onclick="showSection('maths')">Next: Maths Summary →</button>
+    </div>
+  </div>
+
+  <!-- =================== MATHS =================== -->
+  <div class="section" id="sec-maths">
+    <div class="chapter-badge">Calculations</div>
+    <div class="section-title">🔢 Energy Conversion Equations</div>
+    <div class="section-subtitle">All the maths in this chapter is about converting between mass and energy</div>
+
+    <p>All the calculations in this chapter involve <strong>four types of energy conversion</strong>. Learn to recognise which type a question is asking about — then apply the right formula.</p>
+
+    <h3>The Four Energy Conversions</h3>
+
+    <div class="formula-box">
+      <div class="formula-label">📐 Type 1 — Linear Accelerator (Voltage → Speed)</div>
+      <div class="formula-main">QV = ½mv²</div>
+      <div class="formula-desc">
+        Potential energy → Kinetic energy<br>
+        <strong>When to use:</strong> A particle is accelerated through a voltage. Given the voltage, find the speed.
+      </div>
+    </div>
+
+    <div class="formula-box">
+      <div class="formula-label">📐 Type 2 — Cockcroft-Walton (Mass → Kinetic Energy)</div>
+      <div class="formula-main">Δm × c² = K.E. (released)</div>
+      <div class="formula-desc">
+        Mass disappears → Kinetic energy appears<br>
+        <strong>When to use:</strong> Given masses of particles before and after a nuclear reaction, find energy released.<br>
+        Strategy: mass before − mass after = Δm. Then E = Δmc².
+      </div>
+    </div>
+
+    <div class="formula-box">
+      <div class="formula-label">📐 Type 3 — Proton Collisions (Kinetic Energy → Mass)</div>
+      <div class="formula-main">K.E. = Δm × c²</div>
+      <div class="formula-desc">
+        Kinetic energy disappears → New particle mass appears<br>
+        <strong>When to use:</strong> Given kinetic energies of colliding protons, find mass of new particles.
+      </div>
+    </div>
+
+    <div class="formula-box">
+      <div class="formula-label">📐 Type 4a — Pair Production (Photon Energy → Mass)</div>
+      <div class="formula-main">hf = 2mₑc² (+ K.E.)</div>
+      <div class="formula-desc">
+        Gamma ray energy → Mass of electron + positron<br>
+        <strong>When to use:</strong> Given photon frequency, find kinetic energy of particles. Or find minimum frequency for pair production.
+      </div>
+    </div>
+
+    <div class="formula-box">
+      <div class="formula-label">📐 Type 4b — Pair Annihilation (Mass → Photon Energy)</div>
+      <div class="formula-main">2mₑc² = 2hf</div>
+      <div class="formula-desc">
+        Electron + positron mass → Two gamma ray photons<br>
+        <strong>Simplified: mₑc² = hf</strong> per photon
+      </div>
+    </div>
+
+    <h3>Unit Conversions — Critical!</h3>
+    <div class="definition">
+      <div class="def-label">📖 Energy Unit Conversions</div>
+      <div class="def-text">
+        1 eV = 1.6 × 10⁻¹⁹ J<br>
+        1 keV = 1.6 × 10⁻¹⁶ J<br>
+        1 MeV = 1.6 × 10⁻¹³ J<br>
+        1 GeV = 1.6 × 10⁻¹⁰ J<br><br>
+        <strong>To convert eV → J:</strong> multiply by 1.6 × 10⁻¹⁹<br>
+        <strong>To convert J → eV:</strong> divide by 1.6 × 10⁻¹⁹
+      </div>
+    </div>
+
+    <h3>Converting Atomic Mass Units</h3>
+    <div class="definition">
+      <div class="def-label">📖 Atomic Mass Unit (u)</div>
+      <div class="def-text">
+        1 u = 1.6605 × 10⁻²⁷ kg<br>
+        To convert from u to kg: multiply by 1.6605 × 10⁻²⁷
+      </div>
+    </div>
+
+    <h3>Decision Guide — Which Formula?</h3>
+
+    <div class="highlight-box">
+      <p><strong>🔍 Read the question and ask:</strong></p>
+      <ul>
+        <li>Particle accelerated through a voltage? → Use <strong>QV = ½mv²</strong></li>
+        <li>Nuclear reaction with different masses? → Use <strong>E = Δmc²</strong></li>
+        <li>Protons collide, new particles made? → Use <strong>E = mc²</strong> (KE → mass)</li>
+        <li>Gamma ray creates particles? → Use <strong>hf = 2mc²</strong></li>
+        <li>Electron meets positron? → Use <strong>mₑc² = hf</strong></li>
+      </ul>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="nav-btn" onclick="showSection('classification')">← Classification</button>
+      <button class="nav-btn primary" onclick="showSection('worked')">Next: Worked Examples →</button>
+    </div>
+  </div>
+
+  <!-- =================== WORKED EXAMPLES =================== -->
+  <div class="section" id="sec-worked">
+    <div class="chapter-badge">Worked Examples</div>
+    <div class="section-title">📐 Worked Examples</div>
+    <div class="section-subtitle">Step-by-step solutions to the most common exam calculation types</div>
+
+    <p>Here are all the key calculation types you might face in the exam, worked out in full detail.</p>
+
+    <div class="example-box">
+      <div class="ex-label">Type 1 — Linear Accelerator Speed</div>
+      <div class="ex-question">[2007] What is the velocity of a proton accelerated through 700 kV?</div>
+      <div class="calc-step"><div class="cs-label">Equation</div>QV = ½mv²  →  v = √(2QV/m)</div>
+      <div class="calc-step"><div class="cs-label">Values</div>Q = 1.6 × 10⁻¹⁹ C, V = 700,000 V, m = 1.673 × 10⁻²⁷ kg</div>
+      <div class="calc-step"><div class="cs-label">Answer</div>v = √((2)(1.6 × 10⁻¹⁹)(7 × 10⁵) / 1.673 × 10⁻²⁷) = <strong>1.16 × 10⁷ m/s</strong></div>
+    </div>
+
+    <div class="example-box">
+      <div class="ex-label">Type 2 — Energy from Nuclear Reaction (Cockcroft-Walton)</div>
+      <div class="ex-question">[2002] p + ⁷Li → 2α. Calculate the energy released.</div>
+      <div class="calc-step"><div class="cs-label">Mass before</div>(1.6726 × 10⁻²⁷) + (1.1646 × 10⁻²⁶) = 1.33186 × 10⁻²⁶ kg</div>
+      <div class="calc-step"><div class="cs-label">Mass after</div>2 × (6.6443 × 10⁻²⁷) = 1.32886 × 10⁻²⁶ kg</div>
+      <div class="calc-step"><div class="cs-label">Mass lost</div>Δm = 1.33186 × 10⁻²⁶ − 1.32886 × 10⁻²⁶ = 3.0 × 10⁻²⁹ kg</div>
+      <div class="calc-step"><div class="cs-label">Energy released</div>E = mc² = (3.0 × 10⁻²⁹)(3 × 10⁸)² = <strong>2.7 × 10⁻¹² J</strong></div>
+    </div>
+
+    <div class="example-box">
+      <div class="ex-label">Type 3 — New Particle Mass from Proton Collision</div>
+      <div class="ex-question">[2020] Two protons (29 GeV each) collide. KE after = 16 GeV. Find mass of new particles.</div>
+      <div class="calc-step"><div class="cs-label">KE → mass</div>Energy converted = 58 − 16 = 42 GeV<br>= (42 × 10⁹)(1.6 × 10⁻¹⁹) = 6.72 × 10⁻⁹ J</div>
+      <div class="calc-step"><div class="cs-label">m = E/c²</div>m = (6.72 × 10⁻⁹) / (3 × 10⁸)² = <strong>7.47 × 10⁻²⁶ kg</strong></div>
+    </div>
+
+    <div class="example-box">
+      <div class="ex-label">Type 4a — Minimum Frequency for Pair Production</div>
+      <div class="ex-question">[2003] γ → e⁺ + e⁻. Find minimum frequency.</div>
+      <div class="calc-step"><div class="cs-label">hf = 2mₑc²</div>f = 2mₑc²/h = 2(9.1 × 10⁻³¹)(3 × 10⁸)² / (6.6 × 10⁻³⁴) = <strong>2.48 × 10²⁰ Hz</strong></div>
+    </div>
+
+    <div class="example-box">
+      <div class="ex-label">Type 4b — Frequency from Pair Annihilation</div>
+      <div class="ex-question">[2012, 2014] e⁺ + e⁻ → 2γ. Find frequency of each photon.</div>
+      <div class="calc-step"><div class="cs-label">mₑc² = hf</div>f = mₑc²/h = (9.109 × 10⁻³¹)(3 × 10⁸)² / (6.626 × 10⁻³⁴) = <strong>1.237 × 10²⁰ Hz</strong></div>
+    </div>
+
+    <div class="example-box">
+      <div class="ex-label">Type 5 — Pair Production with Kinetic Energy</div>
+      <div class="ex-question">[2010] Photon frequency = 3.6 × 10²⁰ Hz causes pair production. Find KE of each particle.</div>
+      <div class="calc-step"><div class="cs-label">Photon energy</div>hf = (6.6 × 10⁻³⁴)(3.6 × 10²⁰) = 2.376 × 10⁻¹³ J</div>
+      <div class="calc-step"><div class="cs-label">Energy to create particles</div>2mₑc² = 2(9.1 × 10⁻³¹)(3 × 10⁸)² = 1.638 × 10⁻¹³ J</div>
+      <div class="calc-step"><div class="cs-label">Total KE of both</div>2.376 × 10⁻¹³ − 1.638 × 10⁻¹³ = 7.38 × 10⁻¹⁴ J</div>
+      <div class="calc-step"><div class="cs-label">KE per particle (÷2)</div><strong>3.69 × 10⁻¹⁴ J</strong></div>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="nav-btn" onclick="showSection('maths')">← Maths Summary</button>
+      <button class="nav-btn primary" onclick="showSection('definitions')">Next: All Definitions →</button>
+    </div>
+  </div>
+
+  <!-- =================== ALL DEFINITIONS =================== -->
+  <div class="section" id="sec-definitions">
+    <div class="chapter-badge">Revision</div>
+    <div class="section-title">📖 All Definitions — Exam Ready</div>
+    <div class="section-subtitle">Every definition you could be asked in the Leaving Cert, word-perfect</div>
+
+    <p>Learn these off by heart. Many exam questions ask you to "define" or "explain what is meant by" these terms.</p>
+
+    <div class="definition"><div class="def-label">Antimatter</div><div class="def-text">Antimatter has the same mass as ordinary matter but opposite charge. Each particle has a corresponding antiparticle.</div></div>
+
+    <div class="definition"><div class="def-label">Positron</div><div class="def-text">The positron (or anti-electron) is the antiparticle of the electron. It has the same mass as an electron but a positive charge. Symbol: e⁺.</div></div>
+
+    <div class="definition"><div class="def-label">Pair Production</div><div class="def-text">Pair production occurs when a high-energy gamma-ray photon is converted into a particle and its antiparticle (usually an electron and positron).</div></div>
+
+    <div class="definition"><div class="def-label">Pair Annihilation</div><div class="def-text">Pair annihilation occurs when a particle and its antiparticle meet and are both destroyed, with their combined mass converted into two gamma-ray photons.</div></div>
+
+    <div class="definition"><div class="def-label">Neutrino</div><div class="def-text">A neutrino is an extremely small, nearly massless, chargeless particle produced in beta decay. Symbol: ν. Name means "little neutral one".</div></div>
+
+    <div class="definition"><div class="def-label">Quark</div><div class="def-text">Quarks are fundamental particles that make up hadrons. They carry fractional electric charges and are never found alone. There are six flavours: up, down, charm, strange, top, bottom.</div></div>
+
+    <div class="definition"><div class="def-label">Hadron</div><div class="def-text">A hadron is a particle made up of quarks. Hadrons experience all four fundamental forces, including the strong nuclear force. Divided into baryons (3 quarks) and mesons (quark + antiquark).</div></div>
+
+    <div class="definition"><div class="def-label">Baryon</div><div class="def-text">A baryon is a hadron composed of three quarks (or three antiquarks). Examples: proton (uud), neutron (udd).</div></div>
+
+    <div class="definition"><div class="def-label">Meson</div><div class="def-text">A meson is a hadron composed of one quark and one antiquark. Mesons are unstable and annihilate almost immediately. Examples: pion, kaon.</div></div>
+
+    <div class="definition"><div class="def-label">Lepton</div><div class="def-text">A lepton is a fundamental particle that is not made of quarks and does not experience the strong nuclear force. Examples: electron, muon, tau, neutrinos.</div></div>
+
+    <div class="definition"><div class="def-label">Strong Nuclear Force</div><div class="def-text">The strong nuclear force is the force that binds quarks together and holds the nucleus together. It is the strongest of the four fundamental forces and has a very short range (within the nucleus only).</div></div>
+
+    <div class="definition"><div class="def-label">Weak Nuclear Force</div><div class="def-text">The weak nuclear force is responsible for radioactive beta decay (where a neutron transforms into a proton). It acts on both quarks and leptons and has a very short range.</div></div>
+
+    <div class="definition"><div class="def-label">Electromagnetic Force</div><div class="def-text">The electromagnetic force acts between charged particles. It follows an inverse square law and has infinite range. Responsible for atomic structure and all chemical reactions.</div></div>
+
+    <div class="definition"><div class="def-label">Gravitational Force</div><div class="def-text">The gravitational force acts between all massive objects. It is always attractive, follows an inverse square law, has infinite range, and is the weakest of the four fundamental forces.</div></div>
+
+    <div class="definition"><div class="def-label">The Particle Zoo</div><div class="def-text">The "particle zoo" refers to the large number of subatomic particles discovered in particle accelerator experiments. The quark model was proposed to bring order to the zoo.</div></div>
+
+    <div class="definition"><div class="def-label">Anti-quark</div><div class="def-text">An anti-quark has the same mass as its corresponding quark but the opposite charge. For example, the anti-up quark (ū) has a charge of −2/3.</div></div>
+
+    <div class="definition"><div class="def-label">Significance of Cockcroft-Walton Experiment</div><div class="def-text">It was: (1) the first artificial splitting of the nucleus; (2) the first transmutation using artificially accelerated particles; (3) the first experimental verification of E = mc²; (4) the world's first particle accelerator.</div></div>
+
+    <h3>🧠 Quick-Fire: Who Did What?</h3>
+    <table class="particle-table">
+      <tr><th>Physicist</th><th>Nationality</th><th>Contribution</th></tr>
+      <tr><td>Ernest Walton</td><td>🇮🇪 Irish</td><td>Built first particle accelerator with Cockcroft; split the lithium nucleus</td></tr>
+      <tr><td>John Cockcroft</td><td>🇬🇧 English</td><td>Built first particle accelerator with Walton</td></tr>
+      <tr><td>Paul Dirac</td><td>🇬🇧 English</td><td>Mathematically predicted the existence of antimatter</td></tr>
+      <tr><td>Wolfgang Pauli</td><td>🇦🇹 Austrian</td><td>Predicted the existence of the neutrino</td></tr>
+      <tr><td>Enrico Fermi</td><td>🇮🇹 Italian</td><td>Named the neutrino; developed theory of radioactive decay</td></tr>
+      <tr><td>Murray Gell-Mann</td><td>🇺🇸 American</td><td>Proposed the quark model; named quarks after James Joyce</td></tr>
+      <tr><td>James Joyce</td><td>🇮🇪 Irish</td><td>Author of Finnegans Wake — the source of the word "quark"</td></tr>
+    </table>
+
+    <div class="nav-buttons">
+      <button class="nav-btn" onclick="showSection('worked')">← Worked Examples</button>
+      <button class="nav-btn primary" onclick="showSection('quiz')">Next: Take the Quiz! 🎯</button>
+    </div>
+  </div>
+
+  <!-- =================== QUIZ =================== -->
+  <div class="section" id="sec-quiz">
+    <div class="chapter-badge">Revision Quiz</div>
+    <div class="section-title">🎯 Quick Quiz</div>
+    <div class="section-subtitle">Test yourself on everything from Particle Physics!</div>
+
+    <p>Answer all 12 questions, then see your score. Good luck! 🍀</p>
+
+    <div class="quiz-container" id="quiz">
+
+      <div class="quiz-q" id="q1">
+        <div class="q-text">1. What was the historical significance of the Cockcroft-Walton experiment?</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="answer(this,'wrong','q1')">It was the first observation of antimatter</button>
+          <button class="quiz-opt" onclick="answer(this,'correct','q1')">It was the first artificial splitting of the nucleus and first verification of E = mc²</button>
+          <button class="quiz-opt" onclick="answer(this,'wrong','q1')">It was the discovery of the neutrino</button>
+          <button class="quiz-opt" onclick="answer(this,'wrong','q1')">It was the first circular particle accelerator</button>
+        </div>
+        <div class="quiz-feedback" id="fb-q1"></div>
+      </div>
+
+      <div class="quiz-q" id="q2">
+        <div class="q-text">2. Why did most protons pass through the lithium target without causing a reaction?</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="answer(this,'wrong','q2')">The protons were not moving fast enough</button>
+          <button class="quiz-opt" onclick="answer(this,'wrong','q2')">Lithium repels protons magnetically</button>
+          <button class="quiz-opt" onclick="answer(this,'correct','q2')">The atom is mostly empty space, so most protons passed straight through</button>
+          <button class="quiz-opt" onclick="answer(this,'wrong','q2')">The charge of the proton was neutralised</button>
+        </div>
+        <div class="quiz-feedback" id="fb-q2"></div>
+      </div>
+
+      <div class="quiz-q" id="q3">
+        <div class="q-text">3. What is pair production?</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="answer(this,'wrong','q3')">When two particles collide and destroy each other</button>
+          <button class="quiz-opt" onclick="answer(this,'correct','q3')">When a gamma-ray photon creates a particle and its antiparticle</button>
+          <button class="quiz-opt" onclick="answer(this,'wrong','q3')">When two protons collide and create new particles</button>
+          <button class="quiz-opt" onclick="answer(this,'wrong','q3')">When a neutron decays into a proton and electron</button>
+        </div>
+        <div class="quiz-feedback" id="fb-q3"></div>
+      </div>
+
+      <div class="quiz-q" id="q4">
+        <div class="q-text">4. Why are two gamma-ray photons produced in pair annihilation (not one)?</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="answer(this,'wrong','q4')">To conserve charge</button>
+          <button class="quiz-opt" onclick="answer(this,'wrong','q4')">Because there are two particles annihilating</button>
+          <button class="quiz-opt" onclick="answer(this,'correct','q4')">To conserve momentum — the two photons fly off in opposite directions so net momentum is zero</button>
+          <button class="quiz-opt" onclick="answer(this,'wrong','q4')">One photon would have too much energy</button>
+        </div>
+        <div class="quiz-feedback" id="fb-q4"></div>
+      </div>
+
+      <div class="quiz-q" id="q5">
+        <div class="q-text">5. Why was the neutrino proposed?</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="answer(this,'wrong','q5')">To explain the missing mass in nuclear reactions</button>
+          <button class="quiz-opt" onclick="answer(this,'correct','q5')">To account for missing momentum in beta decay — momentum after seemed less than before</button>
+          <button class="quiz-opt" onclick="answer(this,'wrong','q5')">To carry the strong nuclear force</button>
+          <button class="quiz-opt" onclick="answer(this,'wrong','q5')">It was detected before it was theorised</button>
+        </div>
+        <div class="quiz-feedback" id="fb-q5"></div>
+      </div>
+
+      <div class="quiz-q" id="q6">
+        <div class="q-text">6. What is the quark composition of a proton?</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="answer(this,'wrong','q6')">udd (up, down, down)</button>
+          <button class="quiz-opt" onclick="answer(this,'correct','q6')">uud (up, up, down)</button>
+          <button class="quiz-opt" onclick="answer(this,'wrong','q6')">uuu (up, up, up)</button>
+          <button class="quiz-opt" onclick="answer(this,'wrong','q6')">ddd (down, down, down)</button>
+        </div>
+        <div class="quiz-feedback" id="fb-q6"></div>
+      </div>
+
+      <div class="quiz-q" id="q7">
+        <div class="q-text">7. What is the difference between a baryon and a meson?</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="answer(this,'correct','q7')">A baryon has 3 quarks; a meson has 1 quark and 1 antiquark</button>
+          <button class="quiz-opt" onclick="answer(this,'wrong','q7')">A baryon has 2 quarks; a meson has 3 quarks</button>
+          <button class="quiz-opt" onclick="answer(this,'wrong','q7')">Baryons are leptons; mesons are hadrons</button>
+          <button class="quiz-opt" onclick="answer(this,'wrong','q7')">Baryons have no charge; mesons are charged</button>
+        </div>
+        <div class="quiz-feedback" id="fb-q7"></div>
+      </div>
+
+      <div class="quiz-q" id="q8">
+        <div class="q-text">8. Arrange the four fundamental forces from weakest to strongest.</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="answer(this,'correct','q8')">Gravitational → Weak nuclear → Electromagnetic → Strong nuclear</button>
+          <button class="quiz-opt" onclick="answer(this,'wrong','q8')">Strong nuclear → Electromagnetic → Weak nuclear → Gravitational</button>
+          <button class="quiz-opt" onclick="answer(this,'wrong','q8')">Electromagnetic → Gravitational → Weak → Strong</button>
+          <button class="quiz-opt" onclick="answer(this,'wrong','q8')">Weak → Strong → Gravitational → Electromagnetic</button>
+        </div>
+        <div class="quiz-feedback" id="fb-q8"></div>
+      </div>
+
+      <div class="quiz-q" id="q9">
+        <div class="q-text">9. Which physicist mathematically predicted the existence of antimatter?</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="answer(this,'wrong','q9')">Wolfgang Pauli</button>
+          <button class="quiz-opt" onclick="answer(this,'wrong','q9')">Murray Gell-Mann</button>
+          <button class="quiz-opt" onclick="answer(this,'correct','q9')">Paul Dirac</button>
+          <button class="quiz-opt" onclick="answer(this,'wrong','q9')">Enrico Fermi</button>
+        </div>
+        <div class="quiz-feedback" id="fb-q9"></div>
+      </div>
+
+      <div class="quiz-q" id="q10">
+        <div class="q-text">10. The word "quark" was taken from a book by which Irish writer?</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="answer(this,'wrong','q10')">Samuel Beckett</button>
+          <button class="quiz-opt" onclick="answer(this,'correct','q10')">James Joyce</button>
+          <button class="quiz-opt" onclick="answer(this,'wrong','q10')">Oscar Wilde</button>
+          <button class="quiz-opt" onclick="answer(this,'wrong','q10')">W.B. Yeats</button>
+        </div>
+        <div class="quiz-feedback" id="fb-q10"></div>
+      </div>
+
+      <div class="quiz-q" id="q11">
+        <div class="q-text">11. Give two reasons why the neutrino is difficult to detect.</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="answer(this,'wrong','q11')">It travels too fast and has too much energy</button>
+          <button class="quiz-opt" onclick="answer(this,'wrong','q11')">It is radioactive and unstable</button>
+          <button class="quiz-opt" onclick="answer(this,'correct','q11')">It has no charge and very small (nearly zero) mass, so it barely interacts with matter</button>
+          <button class="quiz-opt" onclick="answer(this,'wrong','q11')">It is only produced in laboratory conditions</button>
+        </div>
+        <div class="quiz-feedback" id="fb-q11"></div>
+      </div>
+
+      <div class="quiz-q" id="q12">
+        <div class="q-text">12. A lepton does NOT experience which fundamental force?</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="answer(this,'wrong','q12')">Electromagnetic force</button>
+          <button class="quiz-opt" onclick="answer(this,'wrong','q12')">Weak nuclear force</button>
+          <button class="quiz-opt" onclick="answer(this,'correct','q12')">Strong nuclear force</button>
+          <button class="quiz-opt" onclick="answer(this,'wrong','q12')">Gravitational force</button>
+        </div>
+        <div class="quiz-feedback" id="fb-q12"></div>
+      </div>
+
+    </div>
+
+    <div class="quiz-score" id="quiz-score">
+      <div style="font-size:18px; font-weight:700; color:var(--text-light);">Your Score</div>
+      <div class="score-num" id="score-display">0/12</div>
+      <div id="score-msg" style="font-size:16px; margin-top:8px;"></div>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="nav-btn" onclick="showSection('definitions')">← Definitions</button>
+      <button class="nav-btn" onclick="resetQuiz()">🔄 Retake Quiz</button>
+    </div>
+  </div>
+
+</div><!-- end main -->
+
+<script>
+  const sections = ['intro','cockcroft','accelerators','zoo','antimatter','pair-production','pair-annihilation','neutrino','quarks','forces','classification','maths','worked','definitions','quiz'];
+  let currentSection = 'intro';
+  const totalSections = sections.length;
+
+  function showSection(id) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+    const sec = document.getElementById('sec-' + id);
+    if (sec) sec.classList.add('active');
+    const nav = document.querySelector(`[onclick="showSection('${id}')"]`);
+    if (nav) nav.classList.add('active');
+    currentSection = id;
+    window.scrollTo(0, 0);
+    updateProgress();
+    closeSidebar();
+  }
+
+  function updateProgress() {
+    const idx = sections.indexOf(currentSection);
+    const pct = idx >= 0 ? ((idx + 1) / totalSections) * 100 : 0;
+    document.getElementById('progress').style.width = pct + '%';
+    document.getElementById('progress-text').textContent = (idx + 1) + ' / ' + totalSections;
+  }
+
+  function toggleSidebar() {
+    document.getElementById('sidebar').classList.toggle('open');
+    document.getElementById('overlay').classList.toggle('show');
+  }
+  function closeSidebar() {
+    document.getElementById('sidebar').classList.remove('open');
+    document.getElementById('overlay').classList.remove('show');
+  }
+
+  function toggleAcc(btn) {
+    btn.classList.toggle('open');
+    const content = btn.nextElementSibling;
+    content.classList.toggle('open');
+  }
+
+  // Quiz logic
+  const answers = {};
+  const correct = {'q1':1,'q2':2,'q3':1,'q4':2,'q5':1,'q6':1,'q7':0,'q8':0,'q9':2,'q10':1,'q11':2,'q12':2};
+  const feedbacks = {
+    'q1': ['✅ Correct! It was: first artificial splitting of the nucleus, first transmutation, first proof of E = mc², and first particle accelerator.', '❌ Antimatter was predicted by Dirac. Cockcroft-Walton split the lithium nucleus.'],
+    'q2': ['✅ Correct! The atom is mostly empty space — this was Rutherford\'s key discovery from the gold foil experiment.', '❌ Remember: the atom is mostly empty space (Rutherford\'s conclusion).'],
+    'q3': ['✅ Correct! A gamma ray photon → electron + positron (+ possibly kinetic energy).', '❌ That\'s pair annihilation (the reverse).'],
+    'q4': ['✅ Correct! Conservation of momentum requires the two photons to travel in opposite directions with equal and opposite momenta.', '❌ The key reason is conservation of momentum.'],
+    'q5': ['✅ Correct! Pauli noticed momentum seemed to vanish after beta decay. He proposed an invisible particle carrying the missing momentum.', '❌ The neutrino was proposed to account for missing momentum, not missing mass.'],
+    'q6': ['✅ Correct! Proton = uud. Charge = +2/3 + 2/3 − 1/3 = +1. ✓', '❌ Remember: Proton = uud (up, up, down). Neutron = udd.'],
+    'q7': ['✅ Correct! Baryons = 3 quarks. Mesons = quark + antiquark. Both are hadrons.', '❌ Baryons have 3 quarks, mesons have 1 quark and 1 antiquark.'],
+    'q8': ['✅ Correct! Remember: "Steady Effort Wins Games" — Strong, Electromagnetic, Weak, Gravitational (strongest to weakest). Reversed = G, W, E, S.', '❌ Weakest to strongest: Gravitational → Weak → Electromagnetic → Strong.'],
+    'q9': ['✅ Correct! Paul Dirac predicted antimatter mathematically from his relativistic quantum equations.', '❌ Dirac predicted antimatter. Pauli predicted the neutrino. Gell-Mann proposed quarks.'],
+    'q10': ['✅ Correct! Murray Gell-Mann found the word "quark" in James Joyce\'s Finnegans Wake.', '❌ It was James Joyce, in Finnegans Wake.'],
+    'q11': ['✅ Correct! No charge = doesn\'t interact electromagnetically. Tiny mass = barely interacts via weak force either.', '❌ The two key reasons are: (1) no charge, (2) very tiny mass.'],
+    'q12': ['✅ Correct! Leptons are defined by the fact they do NOT experience the strong nuclear force. They experience the other three forces.', '❌ Leptons do not experience the strong nuclear force — that\'s what defines them as leptons!']
+  };
+
+  function answer(btn, result, qid) {
+    if (answers[qid] !== undefined) return;
+    answers[qid] = result;
+    const opts = btn.closest('.quiz-q').querySelectorAll('.quiz-opt');
+    opts.forEach(o => o.disabled = true);
+    btn.classList.add(result === 'correct' ? 'correct' : 'wrong');
+    if (result === 'wrong') {
+      opts.forEach(o => { if (o.getAttribute('onclick').includes('correct')) o.classList.add('correct'); });
+    }
+    const fb = document.getElementById('fb-' + qid);
+    fb.textContent = feedbacks[qid][result === 'correct' ? 0 : 1];
+    fb.className = 'quiz-feedback show ' + (result === 'correct' ? 'correct-fb' : 'wrong-fb');
+    if (Object.keys(answers).length === 12) showScore();
+  }
+
+  function showScore() {
+    const score = Object.values(answers).filter(v => v === 'correct').length;
+    document.getElementById('score-display').textContent = score + '/12';
+    const msg = score === 12 ? '🏆 Perfect score! You\'re ready for the Leaving Cert!' :
+                score >= 10 ? '🌟 Excellent! Almost there!' :
+                score >= 7 ? '👍 Good work! Review the sections where you went wrong.' :
+                '📚 Keep studying — go back through the sections and try again!';
+    document.getElementById('score-msg').textContent = msg;
+    document.getElementById('quiz-score').classList.add('show');
+  }
+
+  function resetQuiz() {
+    Object.keys(answers).forEach(k => delete answers[k]);
+    document.querySelectorAll('.quiz-opt').forEach(o => {
+      o.disabled = false;
+      o.classList.remove('correct', 'wrong');
+    });
+    document.querySelectorAll('.quiz-feedback').forEach(f => f.classList.remove('show'));
+    document.getElementById('quiz-score').classList.remove('show');
+  }
+
+  updateProgress();
+</script>
+</body>
+</html>
