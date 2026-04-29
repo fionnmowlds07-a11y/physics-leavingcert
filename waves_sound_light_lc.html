@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Waves, Sound &amp; Light — Leaving Cert Study Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Deca:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f8f6f2;
+    --card: #ffffff;
+    --text: #1a1a2e;
+    --text-light: #555570;
+    --accent1: #0284c7;
+    --accent2: #2196f3;
+    --accent3: #ff9800;
+    --accent4: #4caf50;
+    --accent5: #9c27b0;
+    --border: #e0dcd4;
+    --def-bg: #e8f4fd;
+    --def-border: #2196f3;
+    --formula-bg: #fff8e1;
+    --formula-border: #ffc107;
+    --example-bg: #f1f8e9;
+    --example-border: #4caf50;
+    --tip-bg: #fce4ec;
+    --tip-border: #e91e63;
+    --shadow: 0 2px 12px rgba(0,0,0,0.08);
+    --radius: 12px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Lexend', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 17px;
+    line-height: 1.7;
+  }
+
+  #sidebar {
+    position: fixed; left: 0; top: 0; bottom: 0;
+    width: 280px;
+    background: var(--card);
+    border-right: 2px solid var(--border);
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 40px 0;
+    transition: transform 0.3s ease;
+  }
+
+  .sidebar-header {
+    background: var(--accent1);
+    color: white;
+    padding: 20px 18px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .sidebar-header h2 { font-size: 18px; text-transform: none; letter-spacing: 0; margin-top: 4px; font-weight: 700; }
+
+  .chapter-group { margin-top: 8px; }
+  .chapter-label {
+    padding: 10px 18px 4px;
+    font-size: 11px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--text-light);
+  }
+  .nav-item {
+    display: block;
+    padding: 9px 18px 9px 28px;
+    cursor: pointer; font-size: 14px; font-weight: 500;
+    color: var(--text); text-decoration: none;
+    border-left: 3px solid transparent;
+    transition: all 0.2s;
+  }
+  .nav-item:hover { background: #f0f0f8; border-left-color: var(--accent2); }
+  .nav-item.active { background: #e8f4fd; border-left-color: var(--accent1); color: var(--accent1); font-weight: 600; }
+
+  #main { margin-left: 280px; padding: 0; min-height: 100vh; }
+
+  .top-bar {
+    background: white;
+    border-bottom: 2px solid var(--border);
+    padding: 16px 40px;
+    display: flex; align-items: center; gap: 12px;
+    position: sticky; top: 0; z-index: 50;
+  }
+  .top-bar h1 { font-size: 20px; font-weight: 700; color: var(--accent1); }
+  .menu-btn { display: none; background: none; border: none; cursor: pointer; font-size: 22px; color: var(--text); }
+  .progress-bar { flex: 1; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent1), var(--accent4)); border-radius: 3px; transition: width 0.5s ease; width: 0%; }
+
+  .section { display: none; padding: 40px; max-width: 860px; animation: fadeIn 0.3s ease; }
+  .section.active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+  .section-title { font-size: 32px; font-weight: 700; color: var(--text); margin-bottom: 6px; line-height: 1.2; }
+  .section-subtitle { font-size: 15px; color: var(--text-light); margin-bottom: 32px; padding-bottom: 20px; border-bottom: 2px solid var(--border); }
+  .chapter-badge {
+    display: inline-block; background: var(--accent1); color: white;
+    font-size: 12px; font-weight: 700; padding: 3px 10px; border-radius: 20px;
+    margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.05em;
+  }
+
+  h3 { font-size: 22px; font-weight: 700; color: var(--text); margin: 32px 0 12px; }
+  h4 { font-size: 17px; font-weight: 700; color: var(--accent1); margin: 20px 0 8px; text-transform: uppercase; font-size: 13px; }
+  p { margin-bottom: 14px; }
+
+  .definition {
+    background: var(--def-bg); border-left: 5px solid var(--def-border);
+    border-radius: 0 var(--radius) var(--radius) 0; padding: 16px 20px; margin: 16px 0;
+  }
+  .definition .def-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent2); margin-bottom: 6px; }
+  .definition .def-text { font-size: 16px; font-weight: 600; color: var(--text); line-height: 1.5; }
+
+  .formula-box {
+    background: var(--formula-bg); border: 2px solid var(--formula-border);
+    border-radius: var(--radius); padding: 18px 22px; margin: 16px 0;
+  }
+  .formula-box .f-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent3); margin-bottom: 8px; }
+  .formula-box .formula { font-size: 22px; font-weight: 700; font-family: 'Courier New', monospace; color: var(--text); margin: 6px 0; }
+  .formula-box .f-vars { font-size: 13px; color: var(--text-light); margin-top: 8px; line-height: 1.8; }
+  .formula-box .f-vars span { font-weight: 600; color: var(--text); }
+
+  .example-box {
+    background: var(--example-bg); border: 2px solid var(--example-border);
+    border-radius: var(--radius); padding: 20px 22px; margin: 20px 0;
+  }
+  .example-box .ex-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent4); margin-bottom: 10px; }
+  .example-box .ex-q { font-weight: 600; color: var(--text); margin-bottom: 14px; padding-bottom: 12px; border-bottom: 1px solid #c8e6c9; font-size: 15px; }
+  .example-box .step { background: white; border-radius: 8px; padding: 12px 16px; margin: 8px 0; border-left: 3px solid var(--accent4); }
+  .example-box .step-num { font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--accent4); letter-spacing: 0.05em; margin-bottom: 4px; }
+  .example-box .step-content { font-size: 14px; color: var(--text); line-height: 1.6; font-family: 'Courier New', monospace; }
+  .example-box .ex-ans { background: #dcedc8; border-radius: 8px; padding: 10px 14px; margin-top: 10px; font-weight: 600; font-size: 14px; color: #2e7d32; }
+
+  .tip-box {
+    background: var(--tip-bg); border-left: 5px solid var(--tip-border);
+    border-radius: 0 var(--radius) var(--radius) 0; padding: 14px 18px; margin: 14px 0; font-size: 14px;
+  }
+  .tip-box strong { color: var(--tip-border); }
+
+  .exam-tip {
+    background: #fff9e6; border: 2px solid #f4a261; border-radius: var(--radius);
+    padding: 14px 18px; margin: 14px 0; font-size: 14px;
+  }
+  .exam-tip strong { color: #d4700a; }
+
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 14px; margin: 16px 0; }
+  .info-card { background: white; border: 2px solid var(--border); border-radius: var(--radius); padding: 16px; box-shadow: var(--shadow); }
+  .info-card .ic-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent1); margin-bottom: 8px; }
+  .info-card .ic-val { font-size: 20px; font-weight: 700; font-family: 'Courier New', monospace; color: var(--text); }
+  .info-card .ic-sub { font-size: 12px; color: var(--text-light); margin-top: 4px; }
+
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+  th { background: var(--text); color: white; padding: 10px 14px; text-align: left; font-weight: 600; }
+  td { padding: 10px 14px; border-bottom: 1px solid var(--border); }
+  tr:nth-child(even) td { background: #f8f8fc; }
+
+  .quiz-section { background: white; border: 2px solid var(--border); border-radius: var(--radius); padding: 24px; margin: 24px 0; }
+  .quiz-section h3 { margin-top: 0; color: var(--accent5); }
+  .quiz-q { font-weight: 600; margin-bottom: 14px; font-size: 16px; line-height: 1.5; }
+  .quiz-options { display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px; }
+  .quiz-opt {
+    display: block; background: var(--bg); border: 2px solid var(--border); border-radius: 8px;
+    padding: 11px 16px; cursor: pointer; font-size: 14px; font-weight: 500;
+    transition: all 0.2s; text-align: left; width: 100%; font-family: 'Lexend', sans-serif;
+  }
+  .quiz-opt:hover { background: #eef2ff; border-color: var(--accent2); }
+  .quiz-opt.correct { background: #e8f5e9; border-color: var(--accent4); color: #2e7d32; }
+  .quiz-opt.wrong { background: #ffebee; border-color: var(--accent1); color: #b71c1c; }
+  .quiz-feedback { display: none; background: #f3e5f5; border-radius: 8px; padding: 12px 16px; font-size: 14px; color: var(--text); margin-top: 8px; border-left: 4px solid var(--accent5); }
+  .quiz-feedback.show { display: block; }
+
+  .section-nav { display: flex; gap: 12px; margin-top: 40px; padding-top: 24px; border-top: 2px solid var(--border); flex-wrap: wrap; }
+  .nav-btn { padding: 12px 24px; border-radius: 8px; border: none; cursor: pointer; font-family: 'Lexend', sans-serif; font-size: 14px; font-weight: 600; transition: all 0.2s; }
+  .nav-btn-prev { background: var(--bg); color: var(--text); border: 2px solid var(--border); }
+  .nav-btn-prev:hover { background: #e8e8f0; }
+  .nav-btn-next { background: var(--accent1); color: white; }
+  .nav-btn-next:hover { background: #0369a1; }
+
+  .hero { background: linear-gradient(135deg, #0c1445 0%, #0284c7 60%, #06b6d4 100%); color: white; padding: 60px 40px; margin: -40px -40px 0 -40px; }
+  .hero h1 { font-size: 42px; font-weight: 700; margin-bottom: 12px; }
+  .hero p { font-size: 18px; color: rgba(255,255,255,0.85); max-width: 560px; line-height: 1.6; }
+  .topics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; padding: 40px; }
+  .topic-card { background: white; border: 2px solid var(--border); border-radius: var(--radius); padding: 20px; cursor: pointer; transition: all 0.2s; box-shadow: var(--shadow); }
+  .topic-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.12); border-color: var(--accent2); }
+  .topic-card .tc-icon { font-size: 28px; margin-bottom: 10px; }
+  .topic-card .tc-title { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+  .topic-card .tc-sub { font-size: 12px; color: var(--text-light); }
+  .topic-card .tc-ch { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent1); margin-top: 8px; }
+
+  .em-spectrum { display: flex; gap: 0; margin: 16px 0; border-radius: var(--radius); overflow: hidden; }
+  .em-band { flex: 1; padding: 12px 6px; text-align: center; font-size: 11px; font-weight: 700; color: white; }
+
+  .overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 99; }
+  .overlay.show { display: block; }
+
+  ul { margin-left: 22px; margin-bottom: 14px; line-height: 2.2; }
+  ol { margin-left: 22px; margin-bottom: 14px; line-height: 2.2; }
+
+  @media (max-width: 768px) {
+    #sidebar { transform: translateX(-100%); }
+    #sidebar.open { transform: translateX(0); }
+    #main { margin-left: 0; }
+    .menu-btn { display: block; }
+    .section { padding: 24px 20px; }
+    .section-title { font-size: 24px; }
+    .topics-grid { grid-template-columns: 1fr 1fr; padding: 20px; }
+    .hero { padding: 40px 20px; margin: -24px -20px 0 -20px; }
+    .hero h1 { font-size: 28px; }
+    .top-bar { padding: 14px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div id="overlay" class="overlay" onclick="closeSidebar()"></div>
+
+<nav id="sidebar">
+  <div class="sidebar-header">
+    <div>Leaving Cert Physics</div>
+    <h2>🌊 Waves, Sound &amp; Light</h2>
+  </div>
+  <div class="chapter-group">
+    <div class="chapter-label">Start Here</div>
+    <a class="nav-item active" onclick="showSection('home')">🏠 Overview &amp; Topics</a>
+  </div>
+  <div class="chapter-group">
+    <div class="chapter-label">Chapter 1 — Waves</div>
+    <a class="nav-item" onclick="showSection('w1')">🌊 What is a Wave?</a>
+    <a class="nav-item" onclick="showSection('w2')">📏 Wave Equations (c=fλ)</a>
+    <a class="nav-item" onclick="showSection('w3')">✨ Wave Properties</a>
+    <a class="nav-item" onclick="showSection('w4')">🎭 Interference</a>
+    <a class="nav-item" onclick="showSection('w5')">📍 Stationary Waves</a>
+    <a class="nav-item" onclick="showSection('w6')">🚑 The Doppler Effect</a>
+    <a class="nav-item" onclick="showSection('w-calc')">📐 Wave Calculations</a>
+    <a class="nav-item" onclick="showSection('w-quiz')">✅ Quiz: Waves</a>
+  </div>
+  <div class="chapter-group">
+    <div class="chapter-label">Chapter 2 — Sound</div>
+    <a class="nav-item" onclick="showSection('s1')">🔊 Sound is a Wave</a>
+    <a class="nav-item" onclick="showSection('s2')">🎸 Resonance &amp; Natural Frequency</a>
+    <a class="nav-item" onclick="showSection('s3')">📣 Sound Intensity &amp; Decibels</a>
+    <a class="nav-item" onclick="showSection('s4')">🎵 Harmonics &amp; Pipes</a>
+    <a class="nav-item" onclick="showSection('s5')">🧪 Experiments: Speed of Sound</a>
+    <a class="nav-item" onclick="showSection('s6')">🎼 Note Characteristics</a>
+    <a class="nav-item" onclick="showSection('s-calc')">📐 Sound Calculations</a>
+    <a class="nav-item" onclick="showSection('s-quiz')">✅ Quiz: Sound</a>
+  </div>
+  <div class="chapter-group">
+    <div class="chapter-label">Chapter 3 — Light</div>
+    <a class="nav-item" onclick="showSection('l1')">💡 Light as a Wave (Young's Slits)</a>
+    <a class="nav-item" onclick="showSection('l2')">🔬 Diffraction Grating (nλ=d sinθ)</a>
+    <a class="nav-item" onclick="showSection('l3')">🌈 Dispersion &amp; Colour</a>
+    <a class="nav-item" onclick="showSection('l4')">📡 Electromagnetic Spectrum</a>
+    <a class="nav-item" onclick="showSection('l5')">🔭 Polarisation &amp; Refraction</a>
+    <a class="nav-item" onclick="showSection('l6')">🌌 Doppler Effect &amp; Red Shift</a>
+    <a class="nav-item" onclick="showSection('l-calc')">📐 Light Calculations</a>
+    <a class="nav-item" onclick="showSection('l-quiz')">✅ Quiz: Light</a>
+  </div>
+  <div class="chapter-group">
+    <div class="chapter-label">Revision</div>
+    <a class="nav-item" onclick="showSection('formulas')">📋 All Formulas</a>
+    <a class="nav-item" onclick="showSection('definitions')">📖 All Definitions</a>
+  </div>
+</nav>
+
+<div id="main">
+  <div class="top-bar">
+    <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+    <h1 id="page-title">Waves, Sound &amp; Light</h1>
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+    <span id="progress-text" style="font-size:12px;color:var(--text-light);white-space:nowrap;font-weight:600;">0 / 24</span>
+  </div>
+
+<!-- HOME -->
+<div id="home" class="section active">
+  <div class="hero">
+    <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:rgba(255,255,255,0.7);margin-bottom:12px;">Leaving Certificate Physics</div>
+    <h1>🌊 Waves, Sound &amp; Light</h1>
+    <p>Everything you need for the Leaving Cert — explained simply with clear definitions, worked examples, and quizzes to test yourself.</p>
+    <div style="margin-top:24px;display:flex;gap:10px;flex-wrap:wrap;">
+      <span style="background:rgba(255,255,255,0.15);padding:6px 14px;border-radius:20px;font-size:13px;font-weight:600;">🌊 Chapter 1: Waves</span>
+      <span style="background:rgba(255,255,255,0.15);padding:6px 14px;border-radius:20px;font-size:13px;font-weight:600;">🔊 Chapter 2: Sound</span>
+      <span style="background:rgba(255,255,255,0.15);padding:6px 14px;border-radius:20px;font-size:13px;font-weight:600;">💡 Chapter 3: Light</span>
+    </div>
+  </div>
+  <div class="topics-grid">
+    <div class="topic-card" onclick="showSection('w1')"><div class="tc-icon">🌊</div><div class="tc-title">What is a Wave?</div><div class="tc-sub">Transverse, longitudinal, wavelength, frequency</div><div class="tc-ch">Chapter 1</div></div>
+    <div class="topic-card" onclick="showSection('w2')"><div class="tc-icon">📏</div><div class="tc-title">Wave Equation</div><div class="tc-sub">c = fλ, periodic time T = 1/f</div><div class="tc-ch">Chapter 1</div></div>
+    <div class="topic-card" onclick="showSection('w4')"><div class="tc-icon">🎭</div><div class="tc-title">Interference</div><div class="tc-sub">Constructive, destructive, coherent sources</div><div class="tc-ch">Chapter 1</div></div>
+    <div class="topic-card" onclick="showSection('w6')"><div class="tc-icon">🚑</div><div class="tc-title">Doppler Effect</div><div class="tc-sub">Apparent frequency change, ambulance siren</div><div class="tc-ch">Chapter 1</div></div>
+    <div class="topic-card" onclick="showSection('s2')"><div class="tc-icon">🎸</div><div class="tc-title">Resonance</div><div class="tc-sub">Natural frequency, stretched string, tension</div><div class="tc-ch">Chapter 2</div></div>
+    <div class="topic-card" onclick="showSection('s3')"><div class="tc-icon">📣</div><div class="tc-title">Sound Intensity</div><div class="tc-sub">Power/area, decibels, threshold of hearing</div><div class="tc-ch">Chapter 2</div></div>
+    <div class="topic-card" onclick="showSection('s4')"><div class="tc-icon">🎵</div><div class="tc-title">Harmonics &amp; Pipes</div><div class="tc-sub">Open/closed pipes, standing waves in pipes</div><div class="tc-ch">Chapter 2</div></div>
+    <div class="topic-card" onclick="showSection('l2')"><div class="tc-icon">🔬</div><div class="tc-title">Diffraction Grating</div><div class="tc-sub">nλ = d sinθ, wavelength of light</div><div class="tc-ch">Chapter 3</div></div>
+    <div class="topic-card" onclick="showSection('l3')"><div class="tc-icon">🌈</div><div class="tc-title">Dispersion &amp; Colour</div><div class="tc-sub">Prism, primary colours, ROYGBIV</div><div class="tc-ch">Chapter 3</div></div>
+    <div class="topic-card" onclick="showSection('l4')"><div class="tc-icon">📡</div><div class="tc-title">EM Spectrum</div><div class="tc-sub">Radio → Gamma, UV, IR, uses &amp; hazards</div><div class="tc-ch">Chapter 3</div></div>
+  </div>
+  <div style="padding:0 40px 40px;">
+    <div class="tip-box"><strong>💡 How to use this guide:</strong> Click any topic in the sidebar or above. Each section has simple explanations, key definitions to learn word-for-word, formulas with worked examples, and a quiz at the end. Work through them in order!</div>
+  </div>
+</div>
+
+<!-- W1: WHAT IS A WAVE -->
+<div id="w1" class="section">
+  <div class="chapter-badge">Chapter 1 — Waves</div>
+  <h2 class="section-title">🌊 What is a Wave?</h2>
+  <p class="section-subtitle">Waves are how energy travels without the medium itself travelling. Everything from sound to light to earthquakes is a wave!</p>
+
+  <div class="definition"><div class="def-label">📖 Definition — Wave</div><div class="def-text">A wave is a means of transferring energy by oscillations from one place to another.</div></div>
+
+  <h3>Two Types of Wave</h3>
+  <div class="info-grid">
+    <div class="info-card" style="border-color:var(--accent2);">
+      <div class="ic-title">Transverse Wave</div>
+      <div class="ic-val" style="font-size:15px;">⊥ perpendicular</div>
+      <div class="ic-sub">Oscillation is PERPENDICULAR (at right angles) to the direction the wave travels.<br><br><strong>Examples:</strong> Light, radio waves, waves on a rope, water waves.</div>
+    </div>
+    <div class="info-card" style="border-color:var(--accent4);">
+      <div class="ic-title">Longitudinal Wave</div>
+      <div class="ic-val" style="font-size:15px;">∥ parallel</div>
+      <div class="ic-sub">Oscillation is PARALLEL (same direction) to the direction the wave travels.<br><br><strong>Examples:</strong> Sound waves in solids/liquids/gases, compression waves on a spring.</div>
+    </div>
+  </div>
+  <div class="tip-box"><strong>🧠 Easy memory trick:</strong> Think of a jump rope — you shake it UP and DOWN but the wave travels LEFT to RIGHT. That's transverse (the vibration crosses the direction of travel). Sound is different — the air compresses and expands IN THE SAME DIRECTION the sound travels. That's longitudinal.</div>
+
+  <h3>Key Terms for Waves</h3>
+  <div class="definition"><div class="def-label">📖 Wavelength (λ)</div><div class="def-text">The wavelength (λ, "lambda") is the distance from one point on a wave to the corresponding point on the next cycle. Unit: metre (m).</div></div>
+  <div class="definition"><div class="def-label">📖 Frequency (f)</div><div class="def-text">The frequency of a wave is the number of complete oscillations (full cycles) per second. Unit: hertz (Hz).</div></div>
+  <div class="definition"><div class="def-label">📖 Periodic Time (T)</div><div class="def-text">The periodic time is the time it takes to complete one full cycle. T = 1/f. Unit: second (s).</div></div>
+  <div class="definition"><div class="def-label">📖 Amplitude</div><div class="def-text">The amplitude of a wave is the maximum displacement from the rest position (the height of the wave). Amplitude determines the energy/loudness of the wave.</div></div>
+
+  <div class="section-nav"><button class="nav-btn nav-btn-next" onclick="showSection('w2')">Next: Wave Equations →</button></div>
+</div>
+
+<!-- W2: WAVE EQUATIONS -->
+<div id="w2" class="section">
+  <div class="chapter-badge">Chapter 1 — Waves</div>
+  <h2 class="section-title">📏 Wave Equations (c = fλ)</h2>
+  <p class="section-subtitle">The most important wave equation connects speed, frequency and wavelength. Master this and you can solve almost every wave maths question!</p>
+
+  <div class="formula-box">
+    <div class="f-label">⚠️ The Main Wave Equation</div>
+    <div class="formula">c = fλ &nbsp;&nbsp;&nbsp; (or v = fλ)</div>
+    <div class="f-vars">
+      <span>c</span> = wave speed (m s⁻¹) — also written as v<br>
+      <span>f</span> = frequency (Hz)<br>
+      <span>λ</span> = wavelength (m)
+    </div>
+  </div>
+  <div class="formula-box">
+    <div class="f-label">Relationship Between Period and Frequency</div>
+    <div class="formula">T = 1/f &nbsp;&nbsp;&nbsp; f = 1/T</div>
+    <div class="f-vars">
+      <span>T</span> = periodic time (s) &nbsp;&nbsp; <span>f</span> = frequency (Hz)<br>
+      If 5 waves pass per second (f=5Hz), each wave takes 1/5 = 0.2s to pass (T=0.2s)
+    </div>
+  </div>
+  <div class="tip-box"><strong>🧠 Key speeds to remember:</strong><br>
+  Speed of light = 3 × 10⁸ m s⁻¹ (ALL electromagnetic waves in a vacuum)<br>
+  Speed of sound in air ≈ 340 m s⁻¹</div>
+
+  <h3>Quick Rearrangements</h3>
+  <p>From c = fλ, you can rearrange to find any variable:</p>
+  <div class="info-grid">
+    <div class="info-card"><div class="ic-title">Find speed</div><div class="ic-val">c = fλ</div></div>
+    <div class="info-card"><div class="ic-title">Find frequency</div><div class="ic-val">f = c/λ</div></div>
+    <div class="info-card"><div class="ic-title">Find wavelength</div><div class="ic-val">λ = c/f</div></div>
+  </div>
+  <div class="tip-box"><strong>⚠️ Important:</strong> When a wave travels from one medium to another (e.g. light entering glass), its <strong>speed changes and wavelength changes</strong>, but its <strong>frequency stays the same</strong>!</div>
+
+  <div class="section-nav"><button class="nav-btn nav-btn-prev" onclick="showSection('w1')">← Previous</button><button class="nav-btn nav-btn-next" onclick="showSection('w3')">Next: Wave Properties →</button></div>
+</div>
+
+<!-- W3: WAVE PROPERTIES -->
+<div id="w3" class="section">
+  <div class="chapter-badge">Chapter 1 — Waves</div>
+  <h2 class="section-title">✨ Properties of Waves</h2>
+  <p class="section-subtitle">All waves — light, sound, water — share four key behaviours. These are your evidence that something is a wave!</p>
+
+  <div class="definition"><div class="def-label">📖 Reflection</div><div class="def-text">Reflection is the bouncing of waves off an obstacle in their path. Examples: echoes (sound), mirrors (light).</div></div>
+  <div class="definition"><div class="def-label">📖 Refraction</div><div class="def-text">Refraction is the changing of direction of a wave as it travels from one medium to another (due to a change in speed). Note: frequency does NOT change on refraction.</div></div>
+  <div class="definition"><div class="def-label">📖 Diffraction</div><div class="def-text">Diffraction is the spreading of waves around a slit or an obstacle. It is only significant when the slit width is approximately equal to the wavelength.</div></div>
+  <div class="definition"><div class="def-label">📖 Interference</div><div class="def-text">Interference occurs when waves from two sources meet to produce a wave of different amplitude.</div></div>
+
+  <div class="tip-box"><strong>🧠 Why can sound go around corners but light can't?</strong> Diffraction only works well when the gap is roughly the same size as the wavelength. Sound wavelengths are 1–10m (similar to doorway widths!) so sound diffracts around corners easily. Light wavelengths are ~500nm — much too small compared to a doorway, so light doesn't diffract through it.</div>
+
+  <h3>🔬 Refractive Index</h3>
+  <div class="formula-box">
+    <div class="f-label">Refractive Index Formula</div>
+    <div class="formula">n = sin i / sin r</div>
+    <div class="f-vars">
+      <span>n</span> = refractive index (no units)<br>
+      <span>i</span> = angle of incidence (measured from the normal)<br>
+      <span>r</span> = angle of refraction (measured from the normal)<br><br>
+      Also: <span>n = c/v</span> (speed in medium 1 / speed in medium 2)
+    </div>
+  </div>
+  <div class="tip-box"><strong>🧠 Refractive index in plain English:</strong> It tells you how much a material slows down light compared to a vacuum. Glass has n ≈ 1.5, meaning light travels 1.5 times slower in glass than in a vacuum.</div>
+
+  <div class="section-nav"><button class="nav-btn nav-btn-prev" onclick="showSection('w2')">← Previous</button><button class="nav-btn nav-btn-next" onclick="showSection('w4')">Next: Interference →</button></div>
+</div>
+
+<!-- W4: INTERFERENCE -->
+<div id="w4" class="section">
+  <div class="chapter-badge">Chapter 1 — Waves</div>
+  <h2 class="section-title">🎭 Constructive &amp; Destructive Interference</h2>
+  <p class="section-subtitle">When two waves meet, they can add together or cancel each other out. This is the key evidence that light and sound are waves!</p>
+
+  <div class="definition"><div class="def-label">📖 Coherent Sources</div><div class="def-text">Two waves are coherent if they have the same frequency and are in phase (or have a constant phase difference between them).</div></div>
+  <div class="definition"><div class="def-label">📖 Constructive Interference</div><div class="def-text">Constructive interference occurs when waves from two coherent sources meet to produce a wave of GREATER amplitude. (Crest meets crest = bigger wave!)</div></div>
+  <div class="definition"><div class="def-label">📖 Destructive Interference</div><div class="def-text">Destructive interference occurs when waves from two coherent sources meet to produce a wave of LOWER amplitude. (Crest meets trough = cancellation!)</div></div>
+
+  <div class="tip-box"><strong>🧠 Analogy:</strong> Imagine two people pushing a swing. If they both push at the same time (in phase) the swing goes higher — constructive. If one pushes while the other pulls (out of phase by half a wavelength), the swing barely moves — destructive!</div>
+
+  <h3>🔊 Demonstrating Sound Interference</h3>
+  <p>Connect two speakers to the same signal generator (same frequency!). Walk slowly in a line in front of the speakers. You'll hear the sound get louder and quieter alternately — this is constructive and destructive interference alternating as you change your distance from each speaker.</p>
+  <div class="exam-tip"><strong>🎯 Exam key point:</strong> You MUST mention that both speakers are connected to the SAME signal generator (same frequency) to make coherent sources. Without this, you get no marks for the experiment!</div>
+
+  <h3>💡 Young's Double Slit (Light)</h3>
+  <p>Thomas Young proved light is a wave by shining it through two tiny slits and producing alternating bright and dark lines (fringes) on a screen. Bright lines = constructive interference. Dark lines = destructive interference. The fact that light interferes PROVES it is a wave!</p>
+
+  <div class="section-nav"><button class="nav-btn nav-btn-prev" onclick="showSection('w3')">← Previous</button><button class="nav-btn nav-btn-next" onclick="showSection('w5')">Next: Stationary Waves →</button></div>
+</div>
+
+<!-- W5: STATIONARY WAVES -->
+<div id="w5" class="section">
+  <div class="chapter-badge">Chapter 1 — Waves</div>
+  <h2 class="section-title">📍 Stationary (Standing) Waves</h2>
+  <p class="section-subtitle">When two waves of the same frequency travel in opposite directions, they create a stationary wave pattern — the basis of all musical instruments!</p>
+
+  <div class="definition"><div class="def-label">📖 Stationary (Standing) Wave</div><div class="def-text">Stationary (or standing) waves are formed when two periodic waves of the same frequency and amplitude travelling in opposite directions meet.</div></div>
+
+  <h3>Nodes and Antinodes</h3>
+  <div class="info-grid">
+    <div class="info-card" style="border-color:#e91e63;">
+      <div class="ic-title">Node (N)</div>
+      <div class="ic-val" style="font-size:16px;">No movement</div>
+      <div class="ic-sub">Points where the amplitude is always ZERO — destructive interference. The string doesn't move here at all.</div>
+    </div>
+    <div class="info-card" style="border-color:var(--accent4);">
+      <div class="ic-title">Antinode (A)</div>
+      <div class="ic-val" style="font-size:16px;">Max movement</div>
+      <div class="ic-sub">Points of maximum amplitude — constructive interference. The string vibrates most violently here.</div>
+    </div>
+  </div>
+
+  <h3>📏 Key Relationships</h3>
+  <div class="formula-box">
+    <div class="f-label">Internodal Distance (distance between consecutive nodes)</div>
+    <div class="formula">Distance between 2 nodes = λ/2</div>
+    <div class="f-vars">
+      The distance between two consecutive nodes = half a wavelength.<br>
+      The distance between two consecutive antinodes = half a wavelength.<br>
+      So if you know the length between nodes, you can find λ (just double it!), then use c=fλ.
+    </div>
+  </div>
+
+  <h3>🎵 Harmonics</h3>
+  <p>A string can vibrate at different frequencies called harmonics. The simplest pattern (one antinode in the middle, nodes at both ends) is the <strong>fundamental frequency (1st harmonic)</strong>. The string vibrates at 2× the fundamental = 2nd harmonic, and so on.</p>
+  <div class="tip-box"><strong>🎸 Guitar example:</strong> When you pluck a guitar string, it vibrates as a standing wave. The two ends are fixed = nodes. The middle vibrates = antinode. The length of the string = λ/2. So λ = 2L, and f = c/(2L).</div>
+
+  <div class="section-nav"><button class="nav-btn nav-btn-prev" onclick="showSection('w4')">← Previous</button><button class="nav-btn nav-btn-next" onclick="showSection('w6')">Next: Doppler Effect →</button></div>
+</div>
+
+<!-- W6: DOPPLER EFFECT -->
+<div id="w6" class="section">
+  <div class="chapter-badge">Chapter 1 — Waves</div>
+  <h2 class="section-title">🚑 The Doppler Effect</h2>
+  <p class="section-subtitle">Ever noticed how an ambulance sounds higher-pitched as it approaches and lower-pitched as it drives away? That's the Doppler Effect!</p>
+
+  <div class="definition"><div class="def-label">📖 The Doppler Effect</div><div class="def-text">The Doppler effect is the apparent change in the frequency of a wave due to the relative motion between the source of the wave and the observer.</div></div>
+
+  <h3>🧠 Why Does it Happen?</h3>
+  <p>Imagine a fire engine moving to the right, emitting sound waves. In front of the fire engine, the waves get compressed — they're closer together — so the wavelength is shorter and the frequency is higher (higher pitch). Behind the fire engine, the waves are stretched out — lower frequency (lower pitch).</p>
+  <div class="info-grid">
+    <div class="info-card" style="border-color:var(--accent4);">
+      <div class="ic-title">Source approaching</div>
+      <div class="ic-val" style="font-size:14px;">Higher pitch ↑</div>
+      <div class="ic-sub">Waves compressed → shorter wavelength → higher frequency → higher pitch</div>
+    </div>
+    <div class="info-card" style="border-color:#e91e63;">
+      <div class="ic-title">Source moving away</div>
+      <div class="ic-val" style="font-size:14px;">Lower pitch ↓</div>
+      <div class="ic-sub">Waves stretched → longer wavelength → lower frequency → lower pitch</div>
+    </div>
+  </div>
+
+  <div class="formula-box">
+    <div class="f-label">⚠️ Doppler Formula</div>
+    <div class="formula">f' = f × c / (c ∓ u)</div>
+    <div class="f-vars">
+      <span>f'</span> = apparent (observed) frequency (Hz)<br>
+      <span>f</span> = actual frequency of the source (Hz)<br>
+      <span>c</span> = speed of the wave (m s⁻¹)<br>
+      <span>u</span> = speed of the moving source (m s⁻¹)<br><br>
+      <strong>MITS rule — "Minus Is Towards":</strong><br>
+      Use MINUS (−) below the line when source is moving TOWARDS observer → higher f'<br>
+      Use PLUS (+) below the line when source is moving AWAY → lower f'
+    </div>
+  </div>
+  <div class="tip-box"><strong>🚑 MITS = Minus Is Towards:</strong> The minus sign gives a smaller bottom number → bigger answer → higher frequency. The plus sign gives a bigger bottom → smaller answer → lower frequency. Always ask yourself: is the source coming towards me or going away?</div>
+
+  <h3>Applications of the Doppler Effect</h3>
+  <ul>
+    <li><strong>Police speed traps:</strong> Radar guns bounce radio waves off cars and measure the frequency shift</li>
+    <li><strong>Foetal monitoring:</strong> Ultrasound measures blood movement or foetal heartbeat</li>
+    <li><strong>Weather forecasting:</strong> Doppler radar detects wind speed in clouds</li>
+    <li><strong>Astronomy:</strong> Red shift — distant galaxies moving away → their light is shifted to longer (red) wavelengths (Edwin Hubble used this to prove the universe is expanding!)</li>
+  </ul>
+  <div class="exam-tip"><strong>⚠️ Common mistake:</strong> A racing car going past is an EXAMPLE of the Doppler effect — but NOT an application. Applications are things like speed traps and medical ultrasound.</div>
+
+  <div class="section-nav"><button class="nav-btn nav-btn-prev" onclick="showSection('w5')">← Previous</button><button class="nav-btn nav-btn-next" onclick="showSection('w-calc')">Next: Wave Calculations →</button></div>
+</div>
+
+<!-- W-CALC -->
+<div id="w-calc" class="section">
+  <div class="chapter-badge">Chapter 1 — Worked Examples</div>
+  <h2 class="section-title">📐 Wave Calculations</h2>
+  <p class="section-subtitle">Worked examples from the exam — c=fλ, stationary waves and the Doppler effect.</p>
+
+  <div class="example-box">
+    <div class="ex-label">🧮 Example 1 — Basic Wave Speed</div>
+    <div class="ex-q"><strong>Q:</strong> A wave has frequency 5 Hz and wavelength 200 m. Calculate its speed.</div>
+    <div class="step"><div class="step-num">Use c = fλ</div><div class="step-content">c = f × λ = 5 × 200 = 1000 m s⁻¹</div></div>
+    <div class="ex-ans">✅ Speed = 1000 m s⁻¹</div>
+  </div>
+
+  <div class="example-box">
+    <div class="ex-label">🧮 Example 2 — Finding Wavelength from Speed and Frequency</div>
+    <div class="ex-q"><strong>Q:</strong> Orange light has frequency 5×10¹⁴ Hz. Speed of light = 3×10⁸ m s⁻¹. Find the wavelength.</div>
+    <div class="step"><div class="step-num">Rearrange c = fλ to get λ = c/f</div><div class="step-content">λ = c/f = (3×10⁸) / (5×10¹⁴) = 6×10⁻⁷ m = 600 nm</div></div>
+    <div class="ex-ans">✅ Wavelength = 6×10⁻⁷ m (600 nm — this is in the orange part of the visible spectrum!)</div>
+  </div>
+
+  <div class="example-box">
+    <div class="ex-label">🧮 Example 3 — Stationary Wave: Finding Frequency</div>
+    <div class="ex-q"><strong>Q:</strong> A violin string (length 328 mm) vibrates at its fundamental frequency. Speed of sound in string = 433 m s⁻¹. Find the frequency.</div>
+    <div class="step"><div class="step-num">At fundamental frequency: distance between nodes = λ/2 = string length</div><div class="step-content">λ/2 = 0.328 m → λ = 0.656 m</div></div>
+    <div class="step"><div class="step-num">Use c = fλ → f = c/λ</div><div class="step-content">f = 433 / 0.656 = 660 Hz</div></div>
+    <div class="ex-ans">✅ Frequency = 660 Hz</div>
+  </div>
+
+  <div class="example-box">
+    <div class="ex-label">🧮 Example 4 — Doppler Effect: Finding Apparent Frequency</div>
+    <div class="ex-q"><strong>Q:</strong> A fire engine (speed 30 m s⁻¹) emits sound at 2300 Hz as it approaches. Speed of sound = 340 m s⁻¹. Find the apparent frequency.</div>
+    <div class="step"><div class="step-num">Source approaching → use MINUS (MITS)</div><div class="step-content">f' = f × c / (c − u)</div></div>
+    <div class="step"><div class="step-num">Substitute values</div><div class="step-content">f' = 2300 × 340 / (340 − 30) = 782000 / 310 = 2523 Hz</div></div>
+    <div class="ex-ans">✅ Apparent frequency = 2523 Hz (higher than actual — source is approaching!)</div>
+  </div>
+
+  <div class="example-box">
+    <div class="ex-label">🧮 Example 5 — Doppler Effect: Finding Speed of Source</div>
+    <div class="ex-q"><strong>Q:</strong> An ambulance emits 750 Hz. Observer detects 820 Hz as it approaches. Speed of sound = 340 m s⁻¹. Find speed of ambulance.</div>
+    <div class="step"><div class="step-num">820 = 750 × 340 / (340 − u)</div><div class="step-content">820(340 − u) = 750 × 340<br>278800 − 820u = 255000<br>820u = 23800<br>u = 29 m s⁻¹</div></div>
+    <div class="ex-ans">✅ Speed of ambulance = 29 m s⁻¹</div>
+  </div>
+
+  <div class="section-nav"><button class="nav-btn nav-btn-prev" onclick="showSection('w6')">← Previous</button><button class="nav-btn nav-btn-next" onclick="showSection('w-quiz')">Next: Quiz →</button></div>
+</div>
+
+<!-- W-QUIZ -->
+<div id="w-quiz" class="section">
+  <div class="chapter-badge">Chapter 1 — Quiz</div>
+  <h2 class="section-title">✅ Quiz: Waves</h2>
+  <p class="section-subtitle">Test yourself on Waves!</p>
+  <div id="quiz-w-container"></div>
+  <div class="section-nav"><button class="nav-btn nav-btn-prev" onclick="showSection('w-calc')">← Back</button><button class="nav-btn nav-btn-next" onclick="showSection('s1')">Next: Sound →</button></div>
+</div>
+
+<!-- S1: SOUND IS A WAVE -->
+<div id="s1" class="section">
+  <div class="chapter-badge">Chapter 2 — Sound</div>
+  <h2 class="section-title">🔊 Sound is a Wave</h2>
+  <p class="section-subtitle">Sound is a longitudinal wave that needs a medium to travel. It can't travel through a vacuum!</p>
+
+  <h3>🔬 Experiment: Sound Needs a Medium</h3>
+  <p>Place an electric bell inside a bell jar. You can hear it ringing. Now use a vacuum pump to remove all the air from the bell jar. The bell can still be SEEN to ring, but the sound gets quieter and quieter until you hear nothing. This proves sound cannot travel through a vacuum — it needs a medium (matter) to travel through.</p>
+  <div class="exam-tip"><strong>🎯 Conclusion:</strong> Sound is a mechanical wave — it needs particles to pass energy from one place to another. Light is an electromagnetic wave — it doesn't need a medium (which is why we can see stars in space but cannot hear them!).</div>
+
+  <h3>🔊 How Does Sound Travel?</h3>
+  <p>Sound travels by compressing and then stretching the air in front of it (compressions and rarefactions). Molecules vibrate back and forth in the same direction the sound travels — that's why sound is a <strong>longitudinal</strong> wave.</p>
+  <div class="tip-box"><strong>🧠 Why does sound travel faster in water than air?</strong> Water molecules are much closer together than air molecules. When one molecule vibrates, it bumps into its neighbour almost instantly. The energy travels faster when the molecules are packed closer together!</div>
+
+  <div class="section-nav"><button class="nav-btn nav-btn-prev" onclick="showSection('w-quiz')">← Previous</button><button class="nav-btn nav-btn-next" onclick="showSection('s2')">Next: Resonance →</button></div>
+</div>
+
+<!-- S2: RESONANCE -->
+<div id="s2" class="section">
+  <div class="chapter-badge">Chapter 2 — Sound</div>
+  <h2 class="section-title">🎸 Resonance &amp; Natural Frequency</h2>
+  <p class="section-subtitle">Every object has a natural frequency. Hit it at that frequency and it vibrates like crazy — that's resonance!</p>
+
+  <div class="definition"><div class="def-label">📖 Natural Frequency</div><div class="def-text">The natural frequency of an object is the frequency at which the object will vibrate if free to do so.</div></div>
+  <div class="definition"><div class="def-label">📖 Resonance</div><div class="def-text">Resonance is the transfer of energy so that a body vibrates at its natural frequency.</div></div>
+
+  <div class="tip-box"><strong>🧠 Opera singer shattering glass:</strong> The singer sings at exactly the natural frequency of the glass. Energy is transferred by resonance. The glass vibrates more and more violently until it shatters! This is also why soldiers break step when marching across a bridge (they don't want to set up resonance and collapse it).</div>
+
+  <h3>🎸 Factors Affecting Frequency of a Stretched String</h3>
+  <table>
+    <tr><th>Factor</th><th>Relationship</th><th>Meaning</th></tr>
+    <tr><td>Length (L)</td><td>f ∝ 1/L</td><td>Longer string → lower frequency (like a bass guitar vs guitar)</td></tr>
+    <tr><td>Tension (T)</td><td>f ∝ √T</td><td>Higher tension → higher frequency (tune up by tightening)</td></tr>
+    <tr><td>Mass per unit length (μ)</td><td>f ∝ 1/√μ</td><td>Thicker/heavier string → lower frequency</td></tr>
+  </table>
+  <div class="formula-box">
+    <div class="f-label">⚠️ Frequency of a Stretched String (HL)</div>
+    <div class="formula">f = (1/2L)√(T/μ)</div>
+    <div class="f-vars">
+      <span>f</span> = fundamental frequency (Hz) &nbsp;&nbsp; <span>L</span> = length (m)<br>
+      <span>T</span> = tension (N) &nbsp;&nbsp; <span>μ</span> = mass per unit length (kg m⁻¹)
+    </div>
+  </div>
+  <div class="tip-box"><strong>🎯 Tension exam shortcut:</strong> If tension increases by factor 9, frequency increases by √9 = 3. If tension doubles, frequency increases by √2 ≈ 1.41. Always take the square root of the tension factor!</div>
+
+  <h3>🎻 Demonstrating Resonance</h3>
+  <p>Use two IDENTICAL tuning forks on a soundboard. Set one vibrating and place it on the board. Then stop it. The second fork will now be heard vibrating — resonance transferred energy between them because they have the SAME natural frequency.</p>
+  <div class="exam-tip"><strong>🎯 Key point:</strong> Both tuning forks must have the SAME frequency. This is essential to mention in the exam!</div>
+
+  <div class="section-nav"><button class="nav-btn nav-btn-prev" onclick="showSection('s1')">← Previous</button><button class="nav-btn nav-btn-next" onclick="showSection('s3')">Next: Sound Intensity →</button></div>
+</div>
+
+<!-- S3: SOUND INTENSITY -->
+<div id="s3" class="section">
+  <div class="chapter-badge">Chapter 2 — Sound</div>
+  <h2 class="section-title">📣 Sound Intensity &amp; Decibels</h2>
+  <p class="section-subtitle">How loud is a sound? Sound intensity is the power per unit area reaching your ear. Decibels are how we measure loudness in practice.</p>
+
+  <div class="definition"><div class="def-label">📖 Sound Intensity</div><div class="def-text">Sound intensity is defined as power per unit area. Unit: W m⁻².</div></div>
+  <div class="formula-box">
+    <div class="f-label">⚠️ Sound Intensity Formula</div>
+    <div class="formula">I = P / (4πr²)</div>
+    <div class="f-vars">
+      <span>I</span> = sound intensity (W m⁻²)<br>
+      <span>P</span> = power of sound source (W)<br>
+      <span>r</span> = distance from source (m)<br>
+      4πr² = surface area of a sphere (sound spreads out in all directions)
+    </div>
+  </div>
+  <div class="tip-box"><strong>🧠 Inverse square law:</strong> Sound intensity ∝ 1/r². If you double your distance from a speaker, the sound intensity becomes 4× smaller (gets 4 times quieter). Move 3× further away → 9× quieter!</div>
+
+  <h3>🔉 The Decibel Scale</h3>
+  <div class="definition"><div class="def-label">📖 Threshold of Hearing</div><div class="def-text">The threshold of hearing is the smallest sound intensity detectable by the average human ear at a frequency of 1000 Hz. Its value is 1×10⁻¹² W m⁻².</div></div>
+  <div class="info-grid">
+    <div class="info-card"><div class="ic-title">Whisper</div><div class="ic-val">20 dB</div></div>
+    <div class="info-card"><div class="ic-title">Conversation</div><div class="ic-val">60 dB</div></div>
+    <div class="info-card"><div class="ic-title">Rock concert</div><div class="ic-val">110 dB</div></div>
+    <div class="info-card"><div class="ic-title">Threshold of pain</div><div class="ic-val">130 dB</div></div>
+  </div>
+
+  <h3>🔑 Key Decibel Rule</h3>
+  <div class="formula-box">
+    <div class="f-label">Doubling Sound Intensity Rule</div>
+    <div class="formula">Double the intensity → +3 dB</div>
+    <div class="f-vars">
+      If sound intensity DOUBLES, sound intensity LEVEL increases by 3 dB.<br>
+      Intensity ×4 → +6 dB (doubled twice: 3+3)<br>
+      Intensity ×8 → +9 dB (doubled three times: 3+3+3)<br>
+      Reverse: +9 dB means intensity increased by factor of 8 (= 2×2×2)
+    </div>
+  </div>
+
+  <h3>🎚️ The dB(A) Scale</h3>
+  <p>The human ear is most sensitive to frequencies between 2000 Hz and 4000 Hz. The <strong>dB(A) scale</strong> adjusts readings to match the ear's frequency response — it's a weighted scale that reflects what we actually hear as loud.</p>
+  <div class="definition"><div class="def-label">📖 Frequency Limits of Audibility</div><div class="def-text">The frequency limits of audibility are the highest and lowest frequencies that can be heard by a normal human ear: 20 Hz – 20,000 Hz.</div></div>
+
+  <div class="section-nav"><button class="nav-btn nav-btn-prev" onclick="showSection('s2')">← Previous</button><button class="nav-btn nav-btn-next" onclick="showSection('s4')">Next: Harmonics &amp; Pipes →</button></div>
+</div>
+
+<!-- S4: HARMONICS & PIPES -->
+<div id="s4" class="section">
+  <div class="chapter-badge">Chapter 2 — Sound</div>
+  <h2 class="section-title">🎵 Harmonics &amp; Sound in Pipes</h2>
+  <p class="section-subtitle">Musical instruments work because of standing waves in strings and pipes. Understanding this explains why flutes and clarinets sound different!</p>
+
+  <div class="definition"><div class="def-label">📖 Harmonics</div><div class="def-text">Frequencies which are integer multiples of the fundamental frequency f are called harmonics. The fundamental is the 1st harmonic, 2f is the 2nd harmonic, 3f is the 3rd harmonic, etc.</div></div>
+
+  <h3>Pipes Open at Both Ends (Open Pipes)</h3>
+  <p>An open pipe always has an <strong>antinode at both ends</strong>. The fundamental frequency has λ/2 fitting in the pipe length (L = λ/2). So λ = 2L, and f = c/(2L).</p>
+  <div class="tip-box"><strong>🎺 Open pipe harmonics:</strong> All harmonics present (1f, 2f, 3f, 4f ...). Examples: flute, trumpet, open organ pipe.</div>
+
+  <h3>Pipes Open at One End (Closed Pipes)</h3>
+  <p>A closed pipe always has a <strong>node at the closed end and an antinode at the open end</strong>. The fundamental has λ/4 fitting in the pipe length (L = λ/4). So λ = 4L, and f = c/(4L).</p>
+  <div class="tip-box"><strong>🎵 Closed pipe harmonics:</strong> Only ODD harmonics present (1f, 3f, 5f ...). Examples: clarinet, closed organ pipe. This is why clarinets sound more "hollow" than flutes!</div>
+
+  <table>
+    <tr><th>Pipe Type</th><th>Ends</th><th>Fundamental</th><th>Harmonics</th></tr>
+    <tr><td>Open at both ends</td><td>Antinode-Antinode</td><td>L = λ/2</td><td>All: 1f, 2f, 3f...</td></tr>
+    <tr><td>Closed at one end</td><td>Node-Antinode</td><td>L = λ/4</td><td>Odd only: 1f, 3f, 5f...</td></tr>
+  </table>
+  <div class="exam-tip"><strong>🎯 Exam tip on drawing harmonics:</strong> Always put nodes at closed ends and antinodes at open ends. For the 3rd harmonic of a closed pipe: node at closed end, then antinode, node, antinode — that's 3 quarter-wavelengths total in the pipe length.</div>
+
+  <div class="section-nav"><button class="nav-btn nav-btn-prev" onclick="showSection('s3')">← Previous</button><button class="nav-btn nav-btn-next" onclick="showSection('s5')">Next: Speed of Sound Experiment →</button></div>
+</div>
+
+<!-- S5: EXPERIMENT SPEED OF SOUND -->
+<div id="s5" class="section">
+  <div class="chapter-badge">Chapter 2 — Sound</div>
+  <h2 class="section-title">🧪 Experiment: Measuring Speed of Sound</h2>
+  <p class="section-subtitle">A key mandatory experiment — you need to know the apparatus, procedure, formula and precautions!</p>
+
+  <h3>Apparatus</h3>
+  <p>Graduated cylinder, resonance tube (open at both ends), tuning forks of known frequency, metre stick, digital callipers.</p>
+
+  <h3>Procedure (the key steps)</h3>
+  <ol style="margin-left:22px;line-height:2.4;">
+    <li>Strike the tuning fork and hold it over the resonance tube</li>
+    <li>Move the inner tube slowly UP until you hear the first loud resonant sound</li>
+    <li>Measure the length <strong>l</strong> from top of tube to water surface</li>
+    <li>Measure the inner diameter <strong>d</strong> of the tube using digital callipers</li>
+    <li>Note the frequency from the tuning fork</li>
+    <li>Repeat with different tuning forks and calculate average speed</li>
+  </ol>
+
+  <div class="formula-box">
+    <div class="f-label">⚠️ Formula for Speed of Sound</div>
+    <div class="formula">c = 4f(l + 0.3d)</div>
+    <div class="f-vars">
+      <span>c</span> = speed of sound (m s⁻¹)<br>
+      <span>f</span> = frequency of tuning fork (Hz)<br>
+      <span>l</span> = length of air column at resonance (m)<br>
+      <span>d</span> = diameter of tube (m) — the end correction (0.3d) accounts for the fact that the antinode forms slightly above the top of the tube
+    </div>
+  </div>
+
+  <h3>Precautions</h3>
+  <ul>
+    <li>Keep your eye level with the tube top when measuring l (avoid parallax error)</li>
+    <li>Start with the inner tube fully in the water and raise slowly (to find the FIRST harmonic, not a higher one)</li>
+    <li>Repeat several times for each fork and take the average</li>
+    <li>You must measure the diameter because of the end correction — the sound antinode forms slightly outside the tube, not exactly at the top</li>
+  </ul>
+
+  <div class="exam-tip"><strong>🎯 Alternative method (no need to measure diameter):</strong> Find both the 1st AND 2nd position of resonance for the same tuning fork. Distance between them = λ/2. So λ = 2(L₂ − L₁), then c = fλ. The end correction cancels out!</div>
+
+  <div class="section-nav"><button class="nav-btn nav-btn-prev" onclick="showSection('s4')">← Previous</button><button class="nav-btn nav-btn-next" onclick="showSection('s6')">Next: Characteristics of Notes →</button></div>
+</div>
+
+<!-- S6: NOTE CHARACTERISTICS -->
+<div id="s6" class="section">
+  <div class="chapter-badge">Chapter 2 — Sound</div>
+  <h2 class="section-title">🎼 Characteristics of Musical Notes</h2>
+  <p class="section-subtitle">Three properties distinguish musical notes from each other — and they're all linked to wave properties!</p>
+
+  <table>
+    <tr><th>Property</th><th>Depends on</th><th>Example</th></tr>
+    <tr><td><strong>Loudness</strong></td><td>Amplitude of the sound wave</td><td>Hitting a drum hard → larger amplitude → louder sound</td></tr>
+    <tr><td><strong>Pitch</strong></td><td>Frequency of the sound wave</td><td>High frequency → high pitched (squeaky) sound</td></tr>
+    <tr><td><strong>Quality (Timbre)</strong></td><td>Number and relative strength of overtones (harmonics)</td><td>Middle C sounds different on piano vs violin because of different overtones present</td></tr>
+  </table>
+  <div class="tip-box"><strong>🎸 Quality explained:</strong> Almost no real instrument plays a pure single frequency. A guitar string vibrates at its fundamental frequency PLUS many overtones simultaneously. The unique blend of these overtones gives each instrument its distinctive sound (quality/timbre).</div>
+
+  <div class="section-nav"><button class="nav-btn nav-btn-prev" onclick="showSection('s5')">← Previous</button><button class="nav-btn nav-btn-next" onclick="showSection('s-calc')">Next: Sound Calculations →</button></div>
+</div>
+
+<!-- S-CALC -->
+<div id="s-calc" class="section">
+  <div class="chapter-badge">Chapter 2 — Worked Examples</div>
+  <h2 class="section-title">📐 Sound Calculations</h2>
+  <p class="section-subtitle">Sound intensity, frequency of strings, resonant pipes — all worked step by step.</p>
+
+  <div class="example-box">
+    <div class="ex-label">🧮 Example 1 — Sound Intensity</div>
+    <div class="ex-q"><strong>Q:</strong> A loudspeaker has power 20 mW. Calculate sound intensity 6 m away.</div>
+    <div class="step"><div class="step-num">I = P / (4πr²)</div><div class="step-content">I = (20×10⁻³) / (4π × 6²)<br>I = 0.02 / (4π × 36)<br>I = 0.02 / 452.4<br>I = 4.4×10⁻⁵ W m⁻²</div></div>
+    <div class="ex-ans">✅ Sound intensity = 4.4×10⁻⁵ W m⁻²</div>
+  </div>
+
+  <div class="example-box">
+    <div class="ex-label">🧮 Example 2 — Decibel Change</div>
+    <div class="ex-q"><strong>Q:</strong> Sound intensity level increases from 85 dB to 94 dB at a concert. By what factor has sound intensity increased?</div>
+    <div class="step"><div class="step-num">Increase = 94 − 85 = 9 dB. Each 3 dB = doubling</div><div class="step-content">9 dB = 3 dB + 3 dB + 3 dB = 3 doublings<br>Factor = 2 × 2 × 2 = 8</div></div>
+    <div class="ex-ans">✅ Sound intensity increased by a factor of 8</div>
+  </div>
+
+  <div class="example-box">
+    <div class="ex-label">🧮 Example 3 — Frequency of a String (Tension Changes)</div>
+    <div class="ex-q"><strong>Q:</strong> A string vibrates at 205 Hz when tension is 5 N. Find frequency when tension increases to 10 N.</div>
+    <div class="step"><div class="step-num">f ∝ √T. Tension ratio = 10/5 = 2</div><div class="step-content">New frequency = √2 × 205 = 1.414 × 205 = 290 Hz</div></div>
+    <div class="ex-ans">✅ New frequency = 290 Hz</div>
+  </div>
+
+  <div class="example-box">
+    <div class="ex-label">🧮 Example 4 — Closed Pipe: Fundamental Frequency</div>
+    <div class="ex-q"><strong>Q:</strong> The ear canal is a closed pipe of length 2.3 cm. Speed of sound = 340 m s⁻¹. Find the fundamental frequency.</div>
+    <div class="step"><div class="step-num">Closed pipe fundamental: L = λ/4, so λ = 4L</div><div class="step-content">λ = 4 × 0.023 = 0.092 m</div></div>
+    <div class="step"><div class="step-num">f = c/λ</div><div class="step-content">f = 340 / 0.092 = 3696 Hz</div></div>
+    <div class="ex-ans">✅ Fundamental frequency = 3696 Hz (This is why our ears are so sensitive to frequencies around 4000 Hz!)</div>
+  </div>
+
+  <div class="section-nav"><button class="nav-btn nav-btn-prev" onclick="showSection('s6')">← Previous</button><button class="nav-btn nav-btn-next" onclick="showSection('s-quiz')">Next: Quiz →</button></div>
+</div>
+
+<!-- S-QUIZ -->
+<div id="s-quiz" class="section">
+  <div class="chapter-badge">Chapter 2 — Quiz</div>
+  <h2 class="section-title">✅ Quiz: Sound</h2>
+  <p class="section-subtitle">Test yourself on Sound!</p>
+  <div id="quiz-s-container"></div>
+  <div class="section-nav"><button class="nav-btn nav-btn-prev" onclick="showSection('s-calc')">← Back</button><button class="nav-btn nav-btn-next" onclick="showSection('l1')">Next: Light →</button></div>
+</div>
+
+<!-- L1: WAVE NATURE OF LIGHT -->
+<div id="l1" class="section">
+  <div class="chapter-badge">Chapter 3 — Light</div>
+  <h2 class="section-title">💡 Light as a Wave — Young's Double Slit</h2>
+  <p class="section-subtitle">How do we know light is a wave? Because it INTERFERES! Thomas Young's brilliant experiment proved it in 1801.</p>
+
+  <h3>Young's Double Slit Experiment</h3>
+  <p>Young set up three screens. The first had one slit, the second had two slits close together, and the third was a viewing screen. Light from the single slit hits both slits of the second screen simultaneously — making them two coherent sources.</p>
+  <p>The light from both slits diffracts and overlaps. Where crests meet crests → bright bands (constructive interference). Where crests meet troughs → dark bands (destructive interference). The result is alternating bright and dark <strong>fringes</strong> on the screen.</p>
+  <div class="definition"><div class="def-label">📖 Conclusion of Young's Experiment</div><div class="def-text">The fact that light undergoes interference tells us that light travels as a wave.</div></div>
+  <div class="tip-box"><strong>🧠 Why monochromatic light?</strong> "Monochromatic" means single wavelength (one colour). If you use white light (many wavelengths), each wavelength interferes at different positions and you get coloured fringes instead of clear bright/dark lines.</div>
+
+  <h3>🔬 Modern Version: Laser + Diffraction Grating</h3>
+  <p>Instead of Young's two slits, we now use a laser (monochromatic, coherent light) and a diffraction grating (hundreds of slits). This produces a much clearer, brighter interference pattern and lets us measure the wavelength of light precisely.</p>
+
+  <div class="section-nav"><button class="nav-btn nav-btn-prev" onclick="showSection('s-quiz')">← Previous</button><button class="nav-btn nav-btn-next" onclick="showSection('l2')">Next: Diffraction Grating →</button></div>
+</div>
+
+<!-- L2: DIFFRACTION GRATING -->
+<div id="l2" class="section">
+  <div class="chapter-badge">Chapter 3 — Light</div>
+  <h2 class="section-title">🔬 The Diffraction Grating (nλ = d sinθ)</h2>
+  <p class="section-subtitle">A diffraction grating has thousands of slits per millimetre. It splits light into precise colours, allowing us to measure the exact wavelength of light!</p>
+
+  <div class="definition"><div class="def-label">📖 Diffraction Grating</div><div class="def-text">A diffraction grating consists of a piece of transparent material on which a very large number of opaque (black) parallel lines are engraved. The distance between adjacent slits is the grating constant d.</div></div>
+  <div class="formula-box">
+    <div class="f-label">Finding the Grating Constant d</div>
+    <div class="formula">d = 1 / N (lines per metre)</div>
+    <div class="f-vars">
+      If the grating has 600 lines/mm → 600,000 lines/m<br>
+      d = 1 / 600,000 = 1.67×10⁻⁶ m<br>
+      Remember: convert lines per mm to lines per METRE first (multiply by 1000)!
+    </div>
+  </div>
+  <div class="formula-box">
+    <div class="f-label">⚠️ Diffraction Grating Formula</div>
+    <div class="formula">nλ = d sinθ</div>
+    <div class="f-vars">
+      <span>n</span> = order of image (1st order: n=1, 2nd order: n=2, etc.)<br>
+      <span>λ</span> = wavelength of light (m)<br>
+      <span>d</span> = grating constant (m) — distance between adjacent slits<br>
+      <span>θ</span> = angle between straight-through (n=0) position and the order in question
+    </div>
+  </div>
+  <div class="tip-box"><strong>⚠️ CRITICAL exam warning:</strong> If the question gives you the distance between the nth order images (both sides), you MUST divide by 2 to get the distance to ONE side, then use tan θ = (x/2) / D to find θ. Many students forget this and lose marks!</div>
+
+  <h3>Maximum Number of Images</h3>
+  <div class="formula-box">
+    <div class="f-label">Maximum Order Formula</div>
+    <div class="formula">n_max = d / λ</div>
+    <div class="f-vars">
+      When θ = 90°, sinθ = 1, so nλ = d becomes n_max = d/λ<br>
+      Round DOWN to the nearest whole number!<br>
+      Total images = 2 × n_max + 1 (multiply by 2 for both sides, add 1 for centre)
+    </div>
+  </div>
+
+  <h3>Effect of Changing λ or d</h3>
+  <div class="info-grid">
+    <div class="info-card"><div class="ic-title">Longer wavelength (λ↑)</div><div class="ic-sub">sinθ = nλ/d → bigger sinθ → bigger θ → images spread further APART. Red light spreads more than blue!</div></div>
+    <div class="info-card"><div class="ic-title">Bigger grating constant (d↑)</div><div class="ic-sub">sinθ = nλ/d → smaller sinθ → smaller θ → images move CLOSER together. Fewer lines per mm → closer images.</div></div>
+  </div>
+
+  <div class="section-nav"><button class="nav-btn nav-btn-prev" onclick="showSection('l1')">← Previous</button><button class="nav-btn nav-btn-next" onclick="showSection('l3')">Next: Dispersion &amp; Colour →</button></div>
+</div>
+
+<!-- L3: DISPERSION & COLOUR -->
+<div id="l3" class="section">
+  <div class="chapter-badge">Chapter 3 — Light</div>
+  <h2 class="section-title">🌈 Dispersion &amp; Colour</h2>
+  <p class="section-subtitle">White light is a mixture of all colours. Dispersion separates these colours because different wavelengths bend by different amounts.</p>
+
+  <div class="definition"><div class="def-label">📖 Dispersion</div><div class="def-text">Dispersion is the separating out of the different colours present in white light. It occurs when white light passes through a prism or diffraction grating.</div></div>
+
+  <h3>Why Does a Prism Cause Dispersion?</h3>
+  <p>A prism disperses white light because the <strong>refractive index of glass is slightly different for different wavelengths</strong>. Violet light is refracted (bent) the most, red light the least. This is why "violet bends most violently"!</p>
+
+  <h3>Why Does a Diffraction Grating Cause Dispersion?</h3>
+  <p>From nλ = d sinθ: different wavelengths (λ) give different angles (θ). So different colours appear at different positions on the screen.</p>
+  <div class="tip-box"><strong>⚠️ Key difference:</strong> In a PRISM, red deviates least, violet deviates most. In a DIFFRACTION GRATING, red deviates most (longer wavelength → larger sinθ), violet deviates least. They're opposite!</div>
+
+  <h3>🎨 Primary and Secondary Colours</h3>
+  <div class="info-grid">
+    <div class="info-card" style="border-color:var(--accent2);">
+      <div class="ic-title">Primary Colours of Light</div>
+      <div class="ic-val" style="font-size:15px;">🔴 🟢 🔵</div>
+      <div class="ic-sub">Red, Green, Blue<br>Mix all three equally → white light</div>
+    </div>
+    <div class="info-card" style="border-color:var(--accent4);">
+      <div class="ic-title">Secondary Colours</div>
+      <div class="ic-val" style="font-size:15px;">Cyan · Magenta · Yellow</div>
+      <div class="ic-sub">Red + Green = Yellow<br>Red + Blue = Magenta<br>Green + Blue = Cyan</div>
+    </div>
+    <div class="info-card" style="border-color:var(--accent5);">
+      <div class="ic-title">Complementary Pairs</div>
+      <div class="ic-sub">Blue &amp; Yellow → White<br>Green &amp; Magenta → White<br>Red &amp; Cyan → White</div>
+    </div>
+  </div>
+
+  <h3>🌈 Colours and Wavelength</h3>
+  <table>
+    <tr><th>Colour</th><th>Position in spectrum</th><th>Wavelength</th></tr>
+    <tr><td>Red</td><td>Longest wavelength, lowest frequency</td><td>~700 nm</td></tr>
+    <tr><td>Violet</td><td>Shortest wavelength, highest frequency</td><td>~400 nm</td></tr>
+  </table>
+  <p>Remember: <strong>ROYGBIV</strong> — Red Orange Yellow Green Blue Indigo Violet (Richard Of York Gave Battle In Vain)</p>
+
+  <div class="section-nav"><button class="nav-btn nav-btn-prev" onclick="showSection('l2')">← Previous</button><button class="nav-btn nav-btn-next" onclick="showSection('l4')">Next: EM Spectrum →</button></div>
+</div>
+
+<!-- L4: EM SPECTRUM -->
+<div id="l4" class="section">
+  <div class="chapter-badge">Chapter 3 — Light</div>
+  <h2 class="section-title">📡 The Electromagnetic Spectrum</h2>
+  <p class="section-subtitle">Visible light is just a tiny part of a huge family of electromagnetic waves. They all travel at the speed of light but have very different wavelengths and uses!</p>
+
+  <div class="definition"><div class="def-label">📖 The Electromagnetic Spectrum</div><div class="def-text">The electromagnetic spectrum is the full range of electromagnetic radiation divided by frequency and wavelength. All EM waves travel at 3×10⁸ m s⁻¹ in a vacuum.</div></div>
+
+  <div class="em-spectrum">
+    <div class="em-band" style="background:#6b21a8;">Radio</div>
+    <div class="em-band" style="background:#7c3aed;">Micro</div>
+    <div class="em-band" style="background:#c2410c;">Infrared</div>
+    <div class="em-band" style="background:linear-gradient(90deg,#dc2626,#f97316,#facc15,#4ade80,#60a5fa,#818cf8,#a855f7);">Visible</div>
+    <div class="em-band" style="background:#1d4ed8;">UV</div>
+    <div class="em-band" style="background:#0f172a;">X-ray</div>
+    <div class="em-band" style="background:#000;">Gamma</div>
+  </div>
+  <p style="font-size:12px;color:var(--text-light);text-align:center;margin-top:4px;">← Longer wavelength / Lower frequency &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Higher frequency / Shorter wavelength →</p>
+
+  <table style="margin-top:20px;">
+    <tr><th>Radiation</th><th>Properties</th><th>Applications</th><th>Hazards</th></tr>
+    <tr><td><strong>Infrared (IR)</strong></td><td>EM wave, frequency less than visible light</td><td>Night-vision cameras, TV remotes, medical imaging (breast cancer detection)</td><td>Heating of tissue at high intensities</td></tr>
+    <tr><td><strong>Ultraviolet (UV)</strong></td><td>EM wave, frequency greater than visible light, causes fluorescence</td><td>Sterilisation, sunbeds, detecting forged banknotes</td><td>Skin cancer, eye damage, DNA damage</td></tr>
+    <tr><td><strong>X-rays</strong></td><td>High frequency EM, penetrate soft tissue but not bone/metal</td><td>Medical imaging (bones), airport security</td><td>Ionising — can cause cancer</td></tr>
+    <tr><td><strong>Gamma rays</strong></td><td>Highest frequency EM, from nuclear decay</td><td>Cancer treatment (radiotherapy), sterilising food</td><td>Highly ionising — causes cancer, cell death</td></tr>
+  </table>
+
+  <div class="exam-tip"><strong>🎯 Exam question: "Can you get a suntan through glass?"</strong><br>
+  Yes, but only weakly. Most UVB (which causes tanning/burning) is blocked by glass. However UVA (which makes up 95% of UV and can cause skin cancer without tanning) DOES penetrate glass. This is why you should wear sunscreen even on cloudy days!</div>
+
+  <div class="section-nav"><button class="nav-btn nav-btn-prev" onclick="showSection('l3')">← Previous</button><button class="nav-btn nav-btn-next" onclick="showSection('l5')">Next: Polarisation &amp; Refraction →</button></div>
+</div>
+
+<!-- L5: POLARISATION -->
+<div id="l5" class="section">
+  <div class="chapter-badge">Chapter 3 — Light</div>
+  <h2 class="section-title">🔭 Polarisation</h2>
+  <p class="section-subtitle">Only transverse waves can be polarised. The fact that light can be polarised is proof that light is a TRANSVERSE wave!</p>
+
+  <div class="definition"><div class="def-label">📖 Polarised Wave</div><div class="def-text">A polarised wave is a wave which vibrates in one plane only.</div></div>
+
+  <h3>🕶️ How Polarisation Works</h3>
+  <p>Normal (unpolarised) light vibrates in all planes simultaneously. A polaroid filter only allows light vibrating in one specific plane to pass through — the output is polarised light.</p>
+  <ol style="margin-left:22px;line-height:2.4;">
+    <li>Hold one polaroid up to light — it looks slightly dimmer but you can see through it</li>
+    <li>Pass the polarised light through a second polaroid: if both are aligned in the same direction, light passes</li>
+    <li>Rotate the second polaroid by 90° — NO light gets through at all! Completely dark!</li>
+  </ol>
+
+  <div class="definition"><div class="def-label">📖 Key Conclusion from Polarisation</div><div class="def-text">Only transverse waves can be polarised. The fact that light can be polarised proves that light is a transverse wave.</div></div>
+
+  <h3>🕶️ Applications of Polarisation</h3>
+  <ul>
+    <li><strong>Polaroid sunglasses:</strong> Sunlight reflecting off water/roads becomes horizontally polarised (causing glare). Sunglasses have vertically oriented polaroids that block this horizontal light → reduces glare</li>
+    <li><strong>Stress polarisation:</strong> Engineers shine polarised light through plastic models of structures. Where there is stress, the polarisation changes and you can see the stress patterns as coloured regions</li>
+  </ul>
+
+  <div class="section-nav"><button class="nav-btn nav-btn-prev" onclick="showSection('l4')">← Previous</button><button class="nav-btn nav-btn-next" onclick="showSection('l6')">Next: Doppler Effect &amp; Red Shift →</button></div>
+</div>
+
+<!-- L6: DOPPLER LIGHT / RED SHIFT -->
+<div id="l6" class="section">
+  <div class="chapter-badge">Chapter 3 — Light</div>
+  <h2 class="section-title">🌌 Doppler Effect &amp; Red Shift</h2>
+  <p class="section-subtitle">The Doppler effect applies to light too — and it's how Edwin Hubble proved the universe is expanding!</p>
+
+  <h3>🌌 Red Shift</h3>
+  <p>When a star or galaxy moves AWAY from us, the light waves it emits get stretched out — the wavelength increases (shifts towards the red end of the spectrum). This is called <strong>red shift</strong>.</p>
+  <p>Edwin Hubble (1929) noticed that EVERY distant galaxy showed red shift — they were all moving away from us! This proved the universe is EXPANDING, which led to the Big Bang theory.</p>
+  <div class="tip-box"><strong>🔵 Blue shift:</strong> If a star is moving TOWARDS us, its wavelengths get compressed → shifts towards blue end of spectrum (blue shift). This is much rarer — only a few nearby galaxies show blue shift.</div>
+
+  <h3>🧮 Calculating Speed from Red Shift</h3>
+  <p>To find the speed of a moving star using the Doppler effect on light:</p>
+  <ol style="margin-left:22px;line-height:2.4;">
+    <li>Use c = fλ to find the ACTUAL frequency from the known wavelength in a lab</li>
+    <li>Use c = f'λ' to find the APPARENT frequency from the observed (shifted) wavelength</li>
+    <li>Use the Doppler formula: f' = f × c / (c ± u) to find the speed u</li>
+  </ol>
+  <div class="exam-tip"><strong>🎯 Key point:</strong> If the wavelength INCREASED (red shift), the star is moving AWAY. Use the + sign in the Doppler formula denominator (c + u). If wavelength decreased (blue shift), star is approaching — use (c − u).</div>
+
+  <div class="section-nav"><button class="nav-btn nav-btn-prev" onclick="showSection('l5')">← Previous</button><button class="nav-btn nav-btn-next" onclick="showSection('l-calc')">Next: Light Calculations →</button></div>
+</div>
+
+<!-- L-CALC -->
+<div id="l-calc" class="section">
+  <div class="chapter-badge">Chapter 3 — Worked Examples</div>
+  <h2 class="section-title">📐 Light Calculations</h2>
+  <p class="section-subtitle">Diffraction grating, wavelength of light, and red shift — all worked step by step.</p>
+
+  <div class="example-box">
+    <div class="ex-label">🧮 Example 1 — Finding Grating Constant d</div>
+    <div class="ex-q"><strong>Q:</strong> A diffraction grating has 300 lines per mm. Find d.</div>
+    <div class="step"><div class="step-num">Convert to lines per metre</div><div class="step-content">300 lines/mm × 1000 = 300,000 lines/m</div></div>
+    <div class="step"><div class="step-num">d = 1 / N</div><div class="step-content">d = 1/300,000 = 3.33×10⁻⁶ m</div></div>
+    <div class="ex-ans">✅ d = 3.33×10⁻⁶ m</div>
+  </div>
+
+  <div class="example-box">
+    <div class="ex-label">🧮 Example 2 — Diffraction Grating: Finding Wavelength</div>
+    <div class="ex-q"><strong>Q:</strong> Grating has 80 lines/mm. Distance from grating to screen = 90 cm. Distance between 3rd order images = 23.8 cm. Find wavelength.</div>
+    <div class="step"><div class="step-num">Find d: 80 lines/mm = 80,000 lines/m → d = 1/80,000 = 1.25×10⁻⁵ m</div><div class="step-content">d = 1.25×10⁻⁵ m</div></div>
+    <div class="step"><div class="step-num">Find θ: distance to ONE 3rd-order image = 23.8/2 = 11.9 cm = 0.119 m</div><div class="step-content">tan θ = 0.119/0.90 → θ = tan⁻¹(0.119/0.9) = 7.53°</div></div>
+    <div class="step"><div class="step-num">Use nλ = d sinθ with n=3</div><div class="step-content">λ = d sinθ / n = (1.25×10⁻⁵)(sin 7.53°) / 3<br>λ = (1.25×10⁻⁵)(0.1309) / 3 = 5.46×10⁻⁷ m</div></div>
+    <div class="ex-ans">✅ Wavelength = 5.46×10⁻⁷ m = 546 nm (green light!)</div>
+  </div>
+
+  <div class="example-box">
+    <div class="ex-label">🧮 Example 3 — Maximum Number of Images</div>
+    <div class="ex-q"><strong>Q:</strong> Sodium light λ=589 nm, grating 300 lines/mm. Find the maximum order and total number of images.</div>
+    <div class="step"><div class="step-num">d = 1/300,000 = 3.33×10⁻⁶ m</div><div class="step-content">d = 3.33×10⁻⁶ m</div></div>
+    <div class="step"><div class="step-num">n_max = d/λ</div><div class="step-content">n_max = (3.33×10⁻⁶) / (589×10⁻⁹) = 5.65 → round down to 5</div></div>
+    <div class="step"><div class="step-num">Total images = 2n_max + 1</div><div class="step-content">Total = 2×5 + 1 = 11 images</div></div>
+    <div class="ex-ans">✅ Maximum order = 5, Total images = 11</div>
+  </div>
+
+  <div class="example-box">
+    <div class="ex-label">🧮 Example 4 — Red Shift: Speed of a Star</div>
+    <div class="ex-q"><strong>Q:</strong> Yellow helium line: lab wavelength = 587 nm, star wavelength = 590 nm. Is the star moving towards or away? Find its speed. (c = 3×10⁸ m s⁻¹)</div>
+    <div class="step"><div class="step-num">Wavelength INCREASED → red shift → star is moving AWAY</div><div class="step-content">Use + sign in Doppler formula (MITS: moving away = plus)</div></div>
+    <div class="step"><div class="step-num">Find actual frequency: f = c/λ</div><div class="step-content">f = 3×10⁸ / 587×10⁻⁹ = 5.111×10¹⁴ Hz</div></div>
+    <div class="step"><div class="step-num">Find apparent frequency: f' = c/λ'</div><div class="step-content">f' = 3×10⁸ / 590×10⁻⁹ = 5.085×10¹⁴ Hz</div></div>
+    <div class="step"><div class="step-num">f'(c + u) = f×c → solve for u</div><div class="step-content">u = [fc/f' − c] = c(f/f' − 1)<br>u = 3×10⁸ × (5.111/5.085 − 1) = 3×10⁸ × 0.00511 ≈ 1.53×10⁶ m s⁻¹</div></div>
+    <div class="ex-ans">✅ Star is moving AWAY at 1.53×10⁶ m s⁻¹ (1.5 million m/s!)</div>
+  </div>
+
+  <div class="section-nav"><button class="nav-btn nav-btn-prev" onclick="showSection('l6')">← Previous</button><button class="nav-btn nav-btn-next" onclick="showSection('l-quiz')">Next: Quiz →</button></div>
+</div>
+
+<!-- L-QUIZ -->
+<div id="l-quiz" class="section">
+  <div class="chapter-badge">Chapter 3 — Quiz</div>
+  <h2 class="section-title">✅ Quiz: Light</h2>
+  <p class="section-subtitle">Test yourself on Light!</p>
+  <div id="quiz-l-container"></div>
+  <div class="section-nav"><button class="nav-btn nav-btn-prev" onclick="showSection('l-calc')">← Back</button><button class="nav-btn nav-btn-next" onclick="showSection('formulas')">Next: All Formulas →</button></div>
+</div>
+
+<!-- ALL FORMULAS -->
+<div id="formulas" class="section">
+  <h2 class="section-title">📋 All Formulas — Quick Reference</h2>
+  <p class="section-subtitle">Every formula you need for the Leaving Cert Waves, Sound and Light exam. Learn these!</p>
+
+  <h3>Chapter 1 — Waves</h3>
+  <div class="formula-box"><div class="f-label">Wave Equation</div><div class="formula">c = fλ &nbsp;&nbsp;&nbsp; T = 1/f</div><div class="f-vars"><span>c</span>=speed (m s⁻¹), <span>f</span>=frequency (Hz), <span>λ</span>=wavelength (m), <span>T</span>=periodic time (s)</div></div>
+  <div class="formula-box"><div class="f-label">Refractive Index</div><div class="formula">n = sin i / sin r &nbsp;&nbsp;&nbsp; n = c/v</div></div>
+  <div class="formula-box"><div class="f-label">Stationary Waves</div><div class="formula">Distance between 2 nodes = λ/2</div></div>
+  <div class="formula-box"><div class="f-label">⚠️ Doppler Effect</div><div class="formula">f' = f × c / (c ∓ u)</div><div class="f-vars">MITS: Minus Is Towards. − when approaching, + when moving away</div></div>
+
+  <h3>Chapter 2 — Sound</h3>
+  <div class="formula-box"><div class="f-label">Sound Intensity</div><div class="formula">I = P / (4πr²)</div><div class="f-vars">Double I → +3 dB. ×4 → +6 dB. ×8 → +9 dB.</div></div>
+  <div class="formula-box"><div class="f-label">⚠️ Frequency of a Stretched String</div><div class="formula">f = (1/2L)√(T/μ)</div><div class="f-vars"><span>L</span>=length (m), <span>T</span>=tension (N), <span>μ</span>=mass per unit length (kg m⁻¹)</div></div>
+  <div class="formula-box"><div class="f-label">Speed of Sound Experiment</div><div class="formula">c = 4f(l + 0.3d)</div><div class="f-vars"><span>l</span>=length of air column, <span>d</span>=diameter of tube</div></div>
+
+  <h3>Chapter 3 — Light</h3>
+  <div class="formula-box"><div class="f-label">Grating Constant</div><div class="formula">d = 1/N (N = lines per metre)</div></div>
+  <div class="formula-box"><div class="f-label">⚠️ Diffraction Grating</div><div class="formula">nλ = d sinθ</div><div class="f-vars"><span>n</span>=order, <span>λ</span>=wavelength (m), <span>d</span>=grating constant (m), <span>θ</span>=angle from straight-through</div></div>
+  <div class="formula-box"><div class="f-label">Maximum Order</div><div class="formula">n_max = d/λ &nbsp;&nbsp;&nbsp; Total images = 2n_max + 1</div></div>
+
+  <div class="info-grid" style="margin-top:24px;">
+    <div class="info-card"><div class="ic-title">Speed of light</div><div class="ic-val">3×10⁸ m s⁻¹</div></div>
+    <div class="info-card"><div class="ic-title">Speed of sound (air)</div><div class="ic-val">≈340 m s⁻¹</div></div>
+    <div class="info-card"><div class="ic-title">Threshold of hearing</div><div class="ic-val">10⁻¹² W m⁻²</div></div>
+    <div class="info-card"><div class="ic-title">Audible range</div><div class="ic-val">20–20,000 Hz</div></div>
+  </div>
+
+  <div class="section-nav"><button class="nav-btn nav-btn-prev" onclick="showSection('l-quiz')">← Previous</button><button class="nav-btn nav-btn-next" onclick="showSection('definitions')">Next: All Definitions →</button></div>
+</div>
+
+<!-- ALL DEFINITIONS -->
+<div id="definitions" class="section">
+  <h2 class="section-title">📖 All Definitions — Learn These Off!</h2>
+  <p class="section-subtitle">These are the exact definitions you need for the exam. Learn them word for word!</p>
+
+  <h3>Chapter 1 — Waves</h3>
+  <div class="definition"><div class="def-label">Wave</div><div class="def-text">A wave is a means of transferring energy by oscillations from one place to another.</div></div>
+  <div class="definition"><div class="def-label">Transverse Wave</div><div class="def-text">A transverse wave is a wave where the direction of oscillation is perpendicular to the direction in which the wave travels.</div></div>
+  <div class="definition"><div class="def-label">Longitudinal Wave</div><div class="def-text">A longitudinal wave is a wave where the direction of oscillation is parallel to the direction in which the wave travels.</div></div>
+  <div class="definition"><div class="def-label">Wavelength (λ)</div><div class="def-text">The wavelength of a wave is the distance from one point on the wave to the corresponding point on the next cycle. Unit: metre (m).</div></div>
+  <div class="definition"><div class="def-label">Frequency (f)</div><div class="def-text">The frequency of a wave is the number of complete oscillations per second. Unit: hertz (Hz).</div></div>
+  <div class="definition"><div class="def-label">Reflection</div><div class="def-text">Reflection is the bouncing of waves off an obstacle in their path.</div></div>
+  <div class="definition"><div class="def-label">Refraction</div><div class="def-text">Refraction is the changing of direction of a wave as it travels from one medium to another.</div></div>
+  <div class="definition"><div class="def-label">Diffraction</div><div class="def-text">Diffraction is the spreading of waves around a slit or an obstacle. It is only significant when the slit width is approximately equal to the wavelength.</div></div>
+  <div class="definition"><div class="def-label">Interference</div><div class="def-text">Interference occurs when waves from two sources meet to produce a wave of different amplitude.</div></div>
+  <div class="definition"><div class="def-label">Coherent Sources</div><div class="def-text">Two waves are said to be coherent if they have the same frequency and are in phase (or have a constant phase difference).</div></div>
+  <div class="definition"><div class="def-label">Constructive Interference</div><div class="def-text">Constructive interference occurs when waves from two coherent sources meet to produce a wave of greater amplitude.</div></div>
+  <div class="definition"><div class="def-label">Destructive Interference</div><div class="def-text">Destructive interference occurs when waves from two coherent sources meet to produce a wave of lower amplitude.</div></div>
+  <div class="definition"><div class="def-label">Stationary (Standing) Wave</div><div class="def-text">Stationary waves are formed when two periodic waves of the same frequency and amplitude travelling in opposite directions meet.</div></div>
+  <div class="definition"><div class="def-label">The Doppler Effect</div><div class="def-text">The Doppler effect is the apparent change in the frequency of a wave due to the relative motion between the source of the wave and the observer.</div></div>
+
+  <h3>Chapter 2 — Sound</h3>
+  <div class="definition"><div class="def-label">Natural Frequency</div><div class="def-text">The natural frequency of an object is the frequency at which the object will vibrate if free to do so.</div></div>
+  <div class="definition"><div class="def-label">Resonance</div><div class="def-text">Resonance is the transfer of energy so that a body vibrates at its natural frequency.</div></div>
+  <div class="definition"><div class="def-label">Sound Intensity</div><div class="def-text">Sound intensity is defined as power per unit area. Unit: W m⁻².</div></div>
+  <div class="definition"><div class="def-label">Threshold of Hearing</div><div class="def-text">The threshold of hearing is the smallest sound intensity detectable by the average human ear at a frequency of 1000 Hz. Its value is 1×10⁻¹² W m⁻².</div></div>
+  <div class="definition"><div class="def-label">Frequency Limits of Audibility</div><div class="def-text">The frequency limits of audibility are the highest and lowest frequencies that can be heard by a normal human ear: 20 Hz to 20,000 Hz.</div></div>
+
+  <h3>Chapter 3 — Light</h3>
+  <div class="definition"><div class="def-label">Diffraction Grating</div><div class="def-text">A diffraction grating consists of a piece of transparent material on which a very large number of opaque parallel lines are engraved.</div></div>
+  <div class="definition"><div class="def-label">Dispersion</div><div class="def-text">Dispersion is the separating out of the different colours present in white light.</div></div>
+  <div class="definition"><div class="def-label">Polarised Wave</div><div class="def-text">A polarised wave is a wave which vibrates in one plane only.</div></div>
+  <div class="definition"><div class="def-label">Electromagnetic Spectrum</div><div class="def-text">The electromagnetic spectrum is the full range of electromagnetic radiation divided by frequency and wavelength. All EM waves travel at 3×10⁸ m s⁻¹ in a vacuum.</div></div>
+
+  <div class="tip-box" style="margin-top:24px;"><strong>🎯 Exam tip:</strong> Key words in definitions are worth marks. Words like "perpendicular", "parallel", "coherent", "per unit area", "natural frequency", "apparent change" are what the examiners look for. Don't leave them out!</div>
+
+  <div class="section-nav"><button class="nav-btn nav-btn-prev" onclick="showSection('formulas')">← Back to Formulas</button><button class="nav-btn nav-btn-next" onclick="showSection('home')">🏠 Back to Home</button></div>
+</div>
+
+</div><!-- end main -->
+
+<script>
+const visited = new Set(['home']);
+const totalSections = 24;
+
+const quizW = [
+  {q:"What is a transverse wave?",opts:["Waves where oscillation is parallel to direction of travel","Waves where oscillation is perpendicular to direction of travel","Waves that can only travel through solids","Waves with a fixed frequency"],ans:1,exp:"Transverse waves vibrate PERPENDICULAR (at right angles) to the direction of travel. Examples: light, radio waves, waves on a rope. Sound is NOT transverse — it is longitudinal."},
+  {q:"What is the speed of a wave with frequency 5 Hz and wavelength 200 m?",opts:["40 m s⁻¹","205 m s⁻¹","1000 m s⁻¹","0.025 m s⁻¹"],ans:2,exp:"c = fλ = 5 × 200 = 1000 m s⁻¹. Always write out c = fλ first, then substitute your values carefully."},
+  {q:"The Doppler effect is the apparent change in frequency due to...",opts:["The wave hitting a wall","Relative motion between source and observer","A change in the medium","Changes in temperature"],ans:1,exp:"The Doppler effect: apparent change in frequency of a wave due to relative motion between the SOURCE and the OBSERVER. Key word: apparent — the frequency doesn't actually change, it just seems to change to the observer."},
+  {q:"When the source moves TOWARDS the observer, the apparent frequency...",opts:["Decreases","Stays the same","Increases","Becomes zero"],ans:2,exp:"When the source moves towards you, wave crests are compressed → shorter wavelength → higher frequency (higher pitch). Use the MINUS sign in the Doppler formula denominator. MITS = Minus Is Towards."},
+  {q:"The distance between two consecutive nodes in a stationary wave is...",opts:["One full wavelength","Half a wavelength","Quarter of a wavelength","Twice the wavelength"],ans:1,exp:"Distance between consecutive nodes = λ/2. So if you know the node spacing, double it to get the wavelength, then use c = fλ to find the frequency or speed."},
+  {q:"For diffraction to be significant, the slit width must be...",opts:["Much larger than the wavelength","Much smaller than the wavelength","Approximately equal to the wavelength","Exactly equal to 1 metre"],ans:2,exp:"Diffraction is only significant when the gap width ≈ wavelength. Sound wavelengths (~1m) match doorway widths → sound diffracts around corners easily. Light wavelengths (~500nm) are far too small relative to doorways → light doesn't diffract through them."},
+  {q:"Give a NAME (not just an example) for an application of the Doppler effect.",opts:["Ambulance siren","Speed camera / police speed trap","Thunder and lightning","Radio broadcast"],ans:1,exp:"A police speed trap (or radar gun) is an APPLICATION of the Doppler effect — it uses the frequency shift of reflected radar waves to measure car speed. An ambulance changing pitch is merely an EXAMPLE, not an application."},
+  {q:"When a wave travels from air into glass, which quantity does NOT change?",opts:["Speed","Wavelength","Frequency","Direction"],ans:2,exp:"Frequency NEVER changes when a wave changes medium. Speed and wavelength both change (they're linked by c = fλ). Direction also changes (refraction). Only frequency stays the same — this is a key fact!"}
+];
+
+const quizS = [
+  {q:"Why can't sound travel through a vacuum?",opts:["It gets absorbed by empty space","It needs particles to pass energy from one to another","It travels too fast","Vacuum is too cold for sound"],ans:1,exp:"Sound is a mechanical wave — it needs a medium (particles) to vibrate and pass energy along. In a vacuum there are no particles, so the energy cannot be transferred. This is why space is silent!"},
+  {q:"What is resonance?",opts:["Any vibration of an object","The transfer of energy so a body vibrates at its natural frequency","When two sounds cancel each other","The reflection of sound from a surface"],ans:1,exp:"Resonance is the transfer of energy so that a body vibrates at its NATURAL frequency. Key requirement: the driving frequency must MATCH the natural frequency of the object. That's why the glass shatters — the singer matches its natural frequency."},
+  {q:"If the tension in a string increases by a factor of 4, the frequency increases by...",opts:["A factor of 4","A factor of 2","A factor of 16","A factor of 0.5"],ans:1,exp:"f ∝ √T. If tension increases by factor 4, frequency increases by √4 = 2. Always take the SQUARE ROOT of the tension factor for frequency changes."},
+  {q:"Sound intensity is defined as...",opts:["Power per unit volume","Pressure per unit area","Power per unit area","Energy per unit time"],ans:2,exp:"Sound intensity = power / area. Unit: W m⁻². It uses area (not volume) because sound spreads out over a spherical surface area = 4πr²."},
+  {q:"If sound intensity doubles, the sound intensity LEVEL increases by...",opts:["6 dB","2 dB","3 dB","10 dB"],ans:2,exp:"The golden rule: doubling sound intensity = +3 dB increase in sound intensity LEVEL. So ×4 intensity = +6 dB, ×8 = +9 dB, ×16 = +12 dB. Going backwards: +9 dB means intensity increased by factor of 8 (= 2³)."},
+  {q:"A pipe closed at one end has a node at the closed end and antinode at the open end. What harmonics does it produce?",opts:["All harmonics: 1f, 2f, 3f...","Only odd harmonics: 1f, 3f, 5f...","Only even harmonics: 2f, 4f, 6f...","Only the fundamental frequency"],ans:1,exp:"A closed pipe (closed at one end) only produces ODD harmonics: 1f, 3f, 5f... This gives it a distinctive 'hollow' quality compared to open pipes. Examples: clarinet. Open pipes produce all harmonics."},
+  {q:"What is the quality (timbre) of a musical note determined by?",opts:["Its amplitude","Its frequency","The number and relative strength of overtones present","The speed of the sound"],ans:2,exp:"Quality (timbre) depends on the NUMBER and RELATIVE STRENGTH of overtones (harmonics) present. This is why middle C sounds different on a piano versus a violin — they produce different blends of overtones, even though the fundamental frequency is the same!"},
+  {q:"In the speed of sound experiment, why must you measure the diameter of the air column?",opts:["To calculate the volume of air","Because of the end correction — the antinode forms slightly outside the tube","To verify the experiment","To calibrate the tuning fork"],ans:1,exp:"The end correction (0.3d) is needed because the sound antinode doesn't form exactly at the top of the tube — it forms slightly outside it. Measuring the diameter d allows you to correct for this and get a more accurate result. The formula is c = 4f(l + 0.3d)."}
+];
+
+const quizL = [
+  {q:"What does Young's double slit experiment prove?",opts:["Light travels at 3×10⁸ m s⁻¹","Light travels in straight lines","Light travels as a wave (because it undergoes interference)","Light is composed of photons"],ans:2,exp:"Young's experiment produced alternating bright and dark fringes — constructive and destructive interference. The fact that light INTERFERES proves it is a wave. Only waves can interfere!"},
+  {q:"A diffraction grating has 500 lines/mm. What is the grating constant d?",opts:["500×10⁻³ m","2×10⁻⁶ m","5×10⁻⁴ m","2×10⁻³ m"],ans:1,exp:"500 lines/mm = 500,000 lines/m. d = 1/500,000 = 2×10⁻⁶ m. Remember: convert to lines per METRE (multiply by 1000), then take the reciprocal to get d!"},
+  {q:"In the diffraction grating formula nλ = d sinθ, what is n?",opts:["The refractive index","The number of lines on the grating","The order of the image","The number of wavelengths in the grating"],ans:2,exp:"n is the ORDER of the image. n=1 is the 1st order (first bright spot on each side of centre), n=2 is 2nd order, etc. The central straight-through image is n=0. N (capital) is the number of lines — don't confuse them!"},
+  {q:"Red light spreads more than blue light through a diffraction grating because...",opts:["Red has a shorter wavelength","Red has a longer wavelength → larger sinθ → larger angle","Red has a higher frequency","Red light is brighter"],ans:1,exp:"From nλ = d sinθ: sinθ = nλ/d. Red light has longer wavelength (λ) → larger sinθ → larger angle θ → images spread further apart. This is OPPOSITE to what happens in a prism, where violet bends most!"},
+  {q:"What does red shift in the spectrum of a distant galaxy tell us?",opts:["The galaxy is moving towards us","The galaxy is rotating faster","The galaxy is moving away from us","The galaxy is made of red stars"],ans:2,exp:"Red shift means the wavelength of light has increased (shifted towards the red end). By the Doppler effect, this means the source is moving AWAY from us. Hubble found ALL distant galaxies show red shift → the universe is expanding!"},
+  {q:"What does the fact that light can be polarised tell us about light?",opts:["Light is a longitudinal wave","Light is a transverse wave","Light travels at constant speed","Light has a definite wavelength"],ans:1,exp:"Only TRANSVERSE waves can be polarised. The fact that light can be polarised (blocked by two perpendicular polaroids) proves that light vibrates perpendicular to its direction of travel — it is a transverse wave!"},
+  {q:"Which type of UV radiation makes up 95% of all UV radiation and passes through glass and clouds?",opts:["UVB","UVA","UVC","Gamma radiation"],ans:1,exp:"UVA makes up 95% of all UV radiation. It passes through glass, clouds and skin — and can cause genetic damage and skin cancer WITHOUT causing tanning or burning. This is why you should wear sunscreen even on cloudy days!"},
+  {q:"What is dispersion?",opts:["The speed change of light entering a medium","The separating out of different colours in white light","The bending of light at a surface","The absorption of light by a material"],ans:1,exp:"Dispersion is the separating out of the different colours present in white light. It occurs because different wavelengths are refracted by slightly different amounts (prism) or diffracted at different angles (diffraction grating). Result: white light separates into the colours of the rainbow."}
+];
+
+function buildQuiz(questions, containerId) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  container.innerHTML = '';
+  questions.forEach((q, i) => {
+    const div = document.createElement('div');
+    div.className = 'quiz-section';
+    div.id = `q${containerId}-${i}`;
+    div.innerHTML = `
+      <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--accent5);margin-bottom:8px;">Question ${i+1} of ${questions.length}</div>
+      <div class="quiz-q">${q.q}</div>
+      <div class="quiz-options">
+        ${q.opts.map((opt, j) => `<button class="quiz-opt" onclick="answerQ('${containerId}',${i},${j})">${opt}</button>`).join('')}
+      </div>
+      <div class="quiz-feedback" id="fb${containerId}-${i}">💡 ${q.exp}</div>
+    `;
+    container.appendChild(div);
+  });
+}
+
+function answerQ(containerId, qIdx, chosen) {
+  const sets = {'quiz-w-container':quizW,'quiz-s-container':quizS,'quiz-l-container':quizL};
+  const q = sets[containerId][qIdx];
+  const qDiv = document.getElementById(`q${containerId}-${qIdx}`);
+  const buttons = qDiv.querySelectorAll('.quiz-opt');
+  const fb = document.getElementById(`fb${containerId}-${qIdx}`);
+  buttons.forEach((btn, j) => {
+    btn.disabled = true;
+    if (j === q.ans) btn.classList.add('correct');
+    else if (j === chosen && chosen !== q.ans) btn.classList.add('wrong');
+  });
+  fb.classList.add('show');
+}
+
+const sectionTitles = {
+  'home':'Waves, Sound & Light','w1':'What is a Wave?','w2':'Wave Equations',
+  'w3':'Wave Properties','w4':'Interference','w5':'Stationary Waves',
+  'w6':'Doppler Effect','w-calc':'Wave Calculations','w-quiz':'Quiz: Waves',
+  's1':'Sound is a Wave','s2':'Resonance','s3':'Sound Intensity & Decibels',
+  's4':'Harmonics & Pipes','s5':'Speed of Sound Experiment',
+  's6':'Characteristics of Notes','s-calc':'Sound Calculations','s-quiz':'Quiz: Sound',
+  'l1':'Young\'s Slits','l2':'Diffraction Grating','l3':'Dispersion & Colour',
+  'l4':'EM Spectrum','l5':'Polarisation','l6':'Red Shift & Doppler',
+  'l-calc':'Light Calculations','l-quiz':'Quiz: Light',
+  'formulas':'All Formulas','definitions':'All Definitions'
+};
+
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  const target = document.getElementById(id);
+  if (target) target.classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(n => {
+    if (n.getAttribute('onclick') && n.getAttribute('onclick').includes(`'${id}'`)) n.classList.add('active');
+  });
+  document.getElementById('page-title').textContent = sectionTitles[id] || 'Waves, Sound & Light';
+  visited.add(id);
+  const pct = Math.round((visited.size / totalSections) * 100);
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-text').textContent = visited.size + ' / ' + totalSections;
+  window.scrollTo(0, 0);
+  closeSidebar();
+}
+
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('overlay').classList.toggle('show');
+}
+function closeSidebar() {
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('overlay').classList.remove('show');
+}
+
+buildQuiz(quizW, 'quiz-w-container');
+buildQuiz(quizS, 'quiz-s-container');
+buildQuiz(quizL, 'quiz-l-container');
+</script>
+</body>
+</html>
