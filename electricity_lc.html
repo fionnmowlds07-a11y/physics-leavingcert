@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Electricity — Leaving Cert Physics</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=DM+Mono:wght@400;500&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #fafaf8;
+  --surface: #ffffff;
+  --text: #111118;
+  --muted: #6b6b80;
+  --border: #e4e4ed;
+  --yellow: #f5c842;
+  --yellow-bg: #fffbea;
+  --blue: #2563eb;
+  --blue-bg: #eff6ff;
+  --green: #16a34a;
+  --green-bg: #f0fdf4;
+  --red: #dc2626;
+  --red-bg: #fef2f2;
+  --purple: #7c3aed;
+  --purple-bg: #f5f3ff;
+  --orange: #ea580c;
+  --orange-bg: #fff7ed;
+  --r: 10px;
+  --shadow: 0 1px 3px rgba(0,0,0,.06), 0 4px 16px rgba(0,0,0,.05);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);font-size:16.5px;line-height:1.75;}
+a{text-decoration:none;color:inherit;}
+
+/* ─── SIDEBAR ──────────────────────────── */
+#sidebar{
+  position:fixed;top:0;left:0;bottom:0;width:268px;
+  background:var(--text);color:#e8e8f0;overflow-y:auto;z-index:100;
+  display:flex;flex-direction:column;transition:transform .3s;
+}
+.sb-brand{padding:22px 20px 16px;border-bottom:1px solid rgba(255,255,255,.08);}
+.sb-brand .label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--yellow);opacity:.8;}
+.sb-brand h2{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;margin-top:4px;line-height:1.2;color:#fff;}
+
+.ch-label{padding:14px 20px 5px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.35);}
+.nav-item{display:block;padding:8px 20px 8px 28px;font-size:13px;font-weight:500;color:rgba(255,255,255,.65);cursor:pointer;border-left:3px solid transparent;transition:all .15s;line-height:1.4;}
+.nav-item:hover{color:#fff;background:rgba(255, 255, 255, 0.06);}
+.nav-item.active{color:var(--yellow);border-left-color:var(--yellow);background:rgba(245,200,66,.07);}
+
+/* ─── MAIN ──────────────────────────────── */
+#main{margin-left:268px;min-height:100vh;}
+
+.topbar{
+  position:sticky;top:0;z-index:50;
+  background:rgba(250,250,248,.92);backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--border);
+  padding:13px 40px;display:flex;align-items:center;gap:14px;
+}
+.menu-btn{display:none;background:none;border:none;cursor:pointer;font-size:20px;color:var(--text);}
+#page-title{font-family:'DM Sans',sans-serif;font-size:16px;font-weight:700;color:var(--text);flex-shrink:0;}
+.pbar{flex:1;height:5px;background:var(--border);border-radius:3px;overflow:hidden;}
+.pfill{height:100%;background:linear-gradient(90deg,var(--yellow),var(--orange));border-radius:3px;transition:width .5s ease;width:0%;}
+.pscore{font-size:11px;color:var(--muted);font-weight:600;white-space:nowrap;}
+
+/* ─── SECTIONS ──────────────────────────── */
+.section{display:none;padding:44px 44px 60px;max-width:900px;animation:fadeUp .3s ease;}
+.section.active{display:block;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+
+.ch-pill{display:inline-block;background:var(--yellow);color:var(--text);font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;padding:3px 11px;border-radius:20px;margin-bottom:14px;}
+.sec-title{font-family:'Playfair Display',serif;font-size:30px;font-weight:700;line-height:1.2;margin-bottom:8px;}
+.sec-sub{font-size:14px;color:var(--muted);margin-bottom:32px;padding-bottom:24px;border-bottom:1px solid var(--border);}
+
+h3{font-size:20px;font-weight:700;margin:30px 0 12px;color:var(--text);}
+h4{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--red);margin:18px 0 8px;}
+p{margin-bottom:13px;}
+ul,ol{margin:0 0 14px 22px;line-height:2.0;}
+
+/* ─── CARDS ──────────────────────────────── */
+.def{background:var(--blue-bg);border-left:4px solid var(--blue);border-radius:0 var(--r) var(--r) 0;padding:14px 18px;margin:14px 0;}
+.def-label{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--blue);margin-bottom:5px;}
+.def-text{font-size:15.5px;font-weight:600;color:var(--text);line-height:1.55;}
+
+.fbox{background:var(--yellow-bg);border:1.5px solid var(--yellow);border-radius:var(--r);padding:18px 22px;margin:14px 0;}
+.fbox .fl{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--orange);margin-bottom:8px;}
+.fbox .fm{font-family:'DM Mono',monospace;font-size:21px;font-weight:500;color:var(--text);margin:5px 0;line-height:1.4;}
+.fbox .fv{font-size:12.5px;color:var(--muted);margin-top:8px;line-height:1.9;}
+.fbox .fv b{color:var(--text);font-weight:700;}
+
+.ebox{background:var(--green-bg);border:1.5px solid #86efac;border-radius:var(--r);padding:20px 22px;margin:20px 0;}
+.ebox .el{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--green);margin-bottom:10px;}
+.ebox .eq{font-weight:600;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid #bbf7d0;font-size:15px;}
+.ebox .step{background:#fff;border-radius:8px;padding:11px 15px;margin:8px 0;border-left:3px solid var(--green);}
+.ebox .sn{font-size:10px;font-weight:800;text-transform:uppercase;color:var(--green);letter-spacing:.05em;margin-bottom:3px;}
+.ebox .sc{font-family:'DM Mono',monospace;font-size:13.5px;line-height:1.7;}
+.ebox .ans{background:#dcfce7;border-radius:8px;padding:9px 14px;margin-top:10px;font-weight:700;font-size:13.5px;color:#14532d;}
+
+.tip{background:var(--red-bg);border-left:4px solid var(--red);border-radius:0 var(--r) var(--r) 0;padding:12px 17px;margin:12px 0;font-size:14px;color:var(--text);}
+.tip strong{color:var(--red);}
+
+.exam-tip{background:var(--orange-bg);border:1.5px solid #fed7aa;border-radius:var(--r);padding:14px 18px;margin:14px 0;font-size:14px;}
+.exam-tip strong{color:var(--orange);}
+
+.igrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(185px,1fr));gap:14px;margin:14px 0;}
+.icard{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--r);padding:15px;box-shadow:var(--shadow);}
+.icard .it{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--red);margin-bottom:6px;}
+.icard .iv{font-family:'DM Mono',monospace;font-size:18px;font-weight:500;color:var(--text);}
+.icard .is{font-size:12px;color:var(--muted);margin-top:4px;line-height:1.5;}
+
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px;}
+th{background:var(--text);color:#fff;padding:10px 14px;text-align:left;font-weight:600;font-size:13px;}
+td{padding:10px 14px;border-bottom:1px solid var(--border);}
+tr:nth-child(even) td{background:#f8f8fc;}
+
+/* ─── QUIZ ──────────────────────────────── */
+.qblock{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--r);padding:22px;margin:18px 0;box-shadow:var(--shadow);}
+.qnum{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--purple);margin-bottom:8px;}
+.qq{font-weight:600;font-size:16px;margin-bottom:14px;line-height:1.5;}
+.qopts{display:flex;flex-direction:column;gap:8px;}
+.qopt{background:var(--bg);border:1.5px solid var(--border);border-radius:8px;padding:11px 16px;cursor:pointer;font-size:14px;font-weight:500;text-align:left;width:100%;font-family:'DM Sans',sans-serif;transition:all .15s;color:var(--text);}
+.qopt:hover{background:var(--blue-bg);border-color:var(--blue);}
+.qopt.correct{background:#dcfce7;border-color:var(--green);color:#14532d;}
+.qopt.wrong{background:#fee2e2;border-color:var(--red);color:#7f1d1d;}
+.qfb{display:none;background:var(--purple-bg);border-radius:8px;padding:12px 16px;font-size:14px;margin-top:10px;border-left:4px solid var(--purple);}
+.qfb.show{display:block;}
+
+/* ─── NAV BUTTONS ─────────────────────── */
+.sec-nav{display:flex;gap:12px;margin-top:44px;padding-top:24px;border-top:1px solid var(--border);flex-wrap:wrap;}
+.nbtn{padding:11px 22px;border-radius:8px;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;transition:all .15s;}
+.nbtn-prev{background:var(--bg);color:var(--text);border:1.5px solid var(--border);}
+.nbtn-prev:hover{background:#eee;}
+.nbtn-next{background:var(--text);color:#fff;}
+.nbtn-next:hover{background:#333;}
+
+/* ─── HOME ──────────────────────────────── */
+.hero{background:var(--text);padding:52px 44px;margin:-44px -44px 0;color:#fff;position:relative;overflow:hidden;}
+.hero::before{content:'⚡';position:absolute;right:40px;top:20px;font-size:140px;opacity:.04;}
+.hero .hl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--yellow);margin-bottom:10px;}
+.hero h1{font-family:'Playfair Display',serif;font-size:42px;font-weight:900;line-height:1.1;margin-bottom:14px;}
+.hero p{font-size:16px;color:rgba(255,255,255,.75);max-width:540px;line-height:1.7;}
+.hero-pills{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px;}
+.hero-pill{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);padding:5px 13px;border-radius:20px;font-size:11.5px;font-weight:600;color:rgba(255,255,255,.85);}
+
+.topics-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;padding:36px 44px;}
+.tc{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--r);padding:18px;cursor:pointer;transition:all .2s;box-shadow:var(--shadow);}
+.tc:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.1);border-color:var(--yellow);}
+.tc-icon{font-size:24px;margin-bottom:9px;}
+.tc-title{font-size:14.5px;font-weight:700;margin-bottom:3px;}
+.tc-sub{font-size:12px;color:var(--muted);line-height:1.5;}
+.tc-ch{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--blue);margin-top:8px;}
+
+/* ─── OVERLAY & RESPONSIVE ─────────────── */
+#overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:99;}
+#overlay.show{display:block;}
+@media(max-width:780px){
+  #sidebar{transform:translateX(-100%);}
+  #sidebar.open{transform:translateX(0);}
+  #main{margin-left:0;}
+  .menu-btn{display:block;}
+  .section,.hero{padding:24px 20px;}
+  .hero{margin:-24px -20px 0;}
+  .topics-grid{padding:20px;grid-template-columns:1fr 1fr;}
+  .sec-title{font-size:24px;}
+  .topbar{padding:12px 16px;}
+}
+</style>
+</head>
+<body>
+<div id="overlay" onclick="closeSidebar()"></div>
+
+<!-- ══ SIDEBAR ══════════════════════════════ -->
+<nav id="sidebar">
+  <div class="sb-brand">
+    <div class="label">Leaving Cert Physics</div>
+    <h2>⚡ Electricity</h2>
+  </div>
+  <div style="padding-bottom:20px;">
+    <div class="ch-label">Start Here</div>
+    <a class="nav-item active" onclick="show('home')">🏠 Overview</a>
+
+    <div class="ch-label">Booklet I — Static & Capacitance</div>
+    <a class="nav-item" onclick="show('s1-1')">⚡ Static Electricity &amp; Charge</a>
+    <a class="nav-item" onclick="show('s1-2')">🔮 Gold Leaf Electroscope</a>
+    <a class="nav-item" onclick="show('s1-3')">📐 Coulomb's Law</a>
+    <a class="nav-item" onclick="show('s1-4')">🌐 Electric Fields</a>
+    <a class="nav-item" onclick="show('s1-5')">🔋 Potential Difference</a>
+    <a class="nav-item" onclick="show('s1-6')">💾 Capacitors</a>
+    <a class="nav-item" onclick="show('s1-calc')">📐 Calculations: Booklet I</a>
+    <a class="nav-item" onclick="show('s1-quiz')">✅ Quiz: Booklet I</a>
+
+    <div class="ch-label">Booklet II — Current Electricity</div>
+    <a class="nav-item" onclick="show('s2-1')">🔌 Current &amp; Charge</a>
+    <a class="nav-item" onclick="show('s2-2')">⚙️ Resistance &amp; Ohm's Law</a>
+    <a class="nav-item" onclick="show('s2-3')">🔗 Circuit Rules</a>
+    <a class="nav-item" onclick="show('s2-4')">🧱 Resistivity</a>
+    <a class="nav-item" onclick="show('s2-5')">🌡️ Heating Effect &amp; Joule's Law</a>
+    <a class="nav-item" onclick="show('s2-6')">🏠 Domestic Circuits</a>
+    <a class="nav-item" onclick="show('s2-calc')">📐 Calculations: Booklet II</a>
+    <a class="nav-item" onclick="show('s2-quiz')">✅ Quiz: Booklet II</a>
+
+    <div class="ch-label">Booklet III — Magnetism &amp; Induction</div>
+    <a class="nav-item" onclick="show('s3-1')">🧲 Magnets &amp; Magnetic Fields</a>
+    <a class="nav-item" onclick="show('s3-2')">💡 Force on Current (F=BIL)</a>
+    <a class="nav-item" onclick="show('s3-3')">⚡ Electromagnetic Induction</a>
+    <a class="nav-item" onclick="show('s3-4')">🔄 Transformers &amp; AC</a>
+    <a class="nav-item" onclick="show('s3-calc')">📐 Calculations: Booklet III</a>
+    <a class="nav-item" onclick="show('s3-quiz')">✅ Quiz: Booklet III</a>
+
+    <div class="ch-label">Revision</div>
+    <a class="nav-item" onclick="show('allf')">📋 All Formulas</a>
+    <a class="nav-item" onclick="show('alld')">📖 All Definitions</a>
+  </div>
+</nav>
+
+<!-- ══ MAIN ══════════════════════════════════ -->
+<div id="main">
+  <div class="topbar">
+    <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+    <span id="page-title">Electricity</span>
+    <div class="pbar"><div class="pfill" id="pfill"></div></div>
+    <span class="pscore" id="pscore">0 / 22</span>
+  </div>
+
+<!-- ══ HOME ══════════════════════════════════ -->
+<div id="home" class="section active">
+  <div class="hero">
+    <div class="hl">Leaving Certificate Physics</div>
+    <h1>⚡ Electricity</h1>
+    <p>Everything you need for the Leaving Cert — static charge, current, circuits, magnetism and electromagnetic induction — explained simply with worked examples.</p>
+    <div class="hero-pills">
+      <span class="hero-pill">📘 Booklet I: Static &amp; Capacitance</span>
+      <span class="hero-pill">📗 Booklet II: Current Electricity</span>
+      <span class="hero-pill">📙 Booklet III: Magnetism &amp; Induction</span>
+    </div>
+  </div>
+  <div class="topics-grid">
+    <div class="tc" onclick="show('s1-1')"><div class="tc-icon">⚡</div><div class="tc-title">Static Electricity</div><div class="tc-sub">Charge, induction, earthing, lightning</div><div class="tc-ch">Booklet I</div></div>
+    <div class="tc" onclick="show('s1-3')"><div class="tc-icon">📐</div><div class="tc-title">Coulomb's Law</div><div class="tc-sub">Force between charges, inverse square law</div><div class="tc-ch">Booklet I</div></div>
+    <div class="tc" onclick="show('s1-4')"><div class="tc-icon">🌐</div><div class="tc-title">Electric Fields</div><div class="tc-sub">Field strength, field lines, point discharge</div><div class="tc-ch">Booklet I</div></div>
+    <div class="tc" onclick="show('s1-6')"><div class="tc-icon">💾</div><div class="tc-title">Capacitors</div><div class="tc-sub">C=Q/V, parallel plates, energy stored</div><div class="tc-ch">Booklet I</div></div>
+    <div class="tc" onclick="show('s2-1')"><div class="tc-icon">🔌</div><div class="tc-title">Current &amp; Charge</div><div class="tc-sub">I=Q/t, conductors vs insulators</div><div class="tc-ch">Booklet II</div></div>
+    <div class="tc" onclick="show('s2-2')"><div class="tc-icon">⚙️</div><div class="tc-title">Resistance &amp; Ohm's Law</div><div class="tc-sub">R=V/I, series/parallel circuits</div><div class="tc-ch">Booklet II</div></div>
+    <div class="tc" onclick="show('s2-4')"><div class="tc-icon">🧱</div><div class="tc-title">Resistivity</div><div class="tc-sub">R=ρl/A, Wheatstone bridge</div><div class="tc-ch">Booklet II</div></div>
+    <div class="tc" onclick="show('s2-5')"><div class="tc-icon">🌡️</div><div class="tc-title">Joule's Law</div><div class="tc-sub">P=I²R, heating effect, power lines</div><div class="tc-ch">Booklet II</div></div>
+    <div class="tc" onclick="show('s3-1')"><div class="tc-icon">🧲</div><div class="tc-title">Magnetism</div><div class="tc-sub">Magnetic fields, electromagnets, rules</div><div class="tc-ch">Booklet III</div></div>
+    <div class="tc" onclick="show('s3-2')"><div class="tc-icon">💡</div><div class="tc-title">Force on Current</div><div class="tc-sub">F=BIL, F=Bqv, motor principle</div><div class="tc-ch">Booklet III</div></div>
+    <div class="tc" onclick="show('s3-3')"><div class="tc-icon">⚡</div><div class="tc-title">Electromagnetic Induction</div><div class="tc-sub">Faraday's law, Lenz's law, generators</div><div class="tc-ch">Booklet III</div></div>
+    <div class="tc" onclick="show('s3-4')"><div class="tc-icon">🔄</div><div class="tc-title">Transformers &amp; AC</div><div class="tc-sub">Vs/Vp=Ns/Np, rms values</div><div class="tc-ch">Booklet III</div></div>
+  </div>
+  <div style="padding:0 44px 44px;">
+    <div class="tip"><strong>💡 How to use this guide:</strong> Work through each section in order. Every topic has simple explanations, key definitions to learn word-for-word, formulas with examples, and worked calculations. Test yourself with the quizzes at the end of each booklet!</div>
+  </div>
+</div>
+
+<!-- ══ S1-1: STATIC ELECTRICITY ═════════════ -->
+<div id="s1-1" class="section">
+  <div class="ch-pill">Booklet I — Static Electricity</div>
+  <h2 class="sec-title">⚡ Static Electricity &amp; Charge</h2>
+  <p class="sec-sub">Charge is the fundamental property behind all of electricity. Understanding static charge unlocks everything else.</p>
+
+  <h3>What is Charge?</h3>
+  <p>Every atom contains protons (+) and electrons (−). Normally they balance, and the atom is neutral. But electrons can be transferred between objects by rubbing, contact, or induction.</p>
+  <div class="igrid">
+    <div class="icard"><div class="it">Too many electrons</div><div class="iv">Negative charge</div></div>
+    <div class="icard"><div class="it">Too few electrons</div><div class="iv">Positive charge</div></div>
+    <div class="icard"><div class="it">Unit of charge</div><div class="iv">Coulomb (C)</div><div class="is">Symbol: Q. Electron charge = 1.6×10⁻¹⁹ C</div></div>
+  </div>
+  <div class="tip"><strong>🧠 Golden rule:</strong> Like charges REPEL. Opposite charges ATTRACT. (Positive ↔ positive = push away. Positive ↔ negative = pull together.)</div>
+
+  <h3>⚡ Earthing</h3>
+  <div class="def"><div class="def-label">📖 Earthing</div><div class="def-text">If a charged object is connected to the earth (ground), the excess charge flows away to earth and the object becomes neutral.</div></div>
+  <p>This is why buildings have lightning conductors — they provide a safe path for the charge from a lightning strike to flow into the ground instead of through the building.</p>
+
+  <h3>🔌 Charging by Induction</h3>
+  <p>You can charge a conductor WITHOUT touching it with a charged object. This is called charging by induction.</p>
+  <div class="exam-tip">
+    <strong>🎯 Exam: 4 steps for charging by induction (learn these in order!)</strong><br>
+    1. Bring a charged rod CLOSE TO (but not touching) the conductor<br>
+    2. Earth the conductor (touch it with your finger or connect an earth wire)<br>
+    3. Remove your finger/earth connection<br>
+    4. Remove the rod<br>
+    Result: conductor is charged OPPOSITE to the rod!
+  </div>
+
+  <h3>⚡ Applications of Static Electricity</h3>
+  <ul>
+    <li><strong>Precipitators:</strong> Remove smoke/dust particles from factory chimneys using static charge</li>
+    <li><strong>Photocopiers:</strong> Use static charge to pick up and place toner ink</li>
+    <li><strong>Van de Graaff generator:</strong> Builds up large amounts of static charge on a metal dome</li>
+  </ul>
+
+  <h3>⚠️ Hazards</h3>
+  <ul>
+    <li>Explosions in flour mills — static spark ignites fine dust particles</li>
+    <li>Explosions when fuelling aircraft — fuel flowing through pipes creates static</li>
+    <li>Damage to electronic circuits — static discharge destroys tiny components</li>
+  </ul>
+  <div class="sec-nav"><button class="nbtn nbtn-next" onclick="show('s1-2')">Next: Gold Leaf Electroscope →</button></div>
+</div>
+
+<!-- ══ S1-2: GLE ══════════════════════════ -->
+<div id="s1-2" class="section">
+  <div class="ch-pill">Booklet I — Static Electricity</div>
+  <h2 class="sec-title">🔮 The Gold Leaf Electroscope</h2>
+  <p class="sec-sub">The gold leaf electroscope (GLE) is the simplest device for detecting whether something is charged.</p>
+
+  <h3>🔎 How it Works</h3>
+  <p>The GLE has a metal cap connected to a thin strip of gold leaf inside a glass case. When charge is placed on the cap, it spreads to the leaf which then stands away from the metal rod — because both have the same charge and like charges repel!</p>
+  <div class="igrid">
+    <div class="icard"><div class="it">Leaves together</div><div class="iv">Uncharged</div><div class="is">No excess charge → no repulsion → leaf hangs down</div></div>
+    <div class="icard"><div class="it">Leaves apart</div><div class="iv">Charged!</div><div class="is">Either + or − charge → same charges on leaf and rod → repulsion</div></div>
+  </div>
+
+  <h3>🎯 Functions of the GLE</h3>
+  <ul>
+    <li>To <strong>detect</strong> whether an object is charged</li>
+    <li>To <strong>distinguish</strong> between positive and negative charge</li>
+  </ul>
+  <div class="tip"><strong>🧠 How to tell + from −:</strong> Charge the GLE with a known positive charge so the leaves diverge. Now bring your unknown object near the cap. If the leaves diverge MORE → object is positive. If they collapse → object is negative (it's attracting the charge up to the cap, removing charge from the leaves).</div>
+
+  <h3>Earthing the GLE</h3>
+  <p>If you touch the cap of a charged GLE with your finger, the leaves collapse. The charge flows through your body to earth — the GLE becomes neutral. This is earthing in action!</p>
+
+  <div class="sec-nav"><button class="nbtn nbtn-prev" onclick="show('s1-1')">← Previous</button><button class="nbtn nbtn-next" onclick="show('s1-3')">Next: Coulomb's Law →</button></div>
+</div>
+
+<!-- ══ S1-3: COULOMB'S LAW ════════════════ -->
+<div id="s1-3" class="section">
+  <div class="ch-pill">Booklet I — Static Electricity</div>
+  <h2 class="sec-title">📐 Coulomb's Law</h2>
+  <p class="sec-sub">How strong is the force between two charged objects? Coulomb worked out the exact mathematical relationship.</p>
+
+  <div class="def"><div class="def-label">📖 Coulomb's Law</div><div class="def-text">The force between two point charges is proportional to the product of the charges and inversely proportional to the square of the distance between them.</div></div>
+
+  <div class="fbox">
+    <div class="fl">⚠️ Coulomb's Law Formula</div>
+    <div class="fm">F = Q₁Q₂ / (4πεd²)</div>
+    <div class="fv">
+      <b>F</b> = electrostatic force (N)<br>
+      <b>Q₁, Q₂</b> = the two charges (coulombs, C)<br>
+      <b>ε</b> = permittivity of the medium (for vacuum/air: ε₀ = 8.9 × 10⁻¹² F m⁻¹)<br>
+      <b>d</b> = distance between the centres of the charges (m)
+    </div>
+  </div>
+
+  <div class="tip"><strong>🧠 This is an INVERSE SQUARE LAW</strong> — just like gravity! If you double the distance, the force becomes 4× smaller. If you halve the distance, the force becomes 4× bigger.</div>
+
+  <h3>🆚 Coulomb's Force vs Gravity</h3>
+  <table>
+    <tr><th>Property</th><th>Coulomb's Force</th><th>Gravitational Force</th></tr>
+    <tr><td>Type</td><td>Can be repulsive or attractive</td><td>Always attractive</td></tr>
+    <tr><td>Magnitude</td><td>MUCH larger (10³⁶ × bigger)</td><td>Very small</td></tr>
+    <tr><td>Depends on</td><td>Charge × charge, 1/d²</td><td>Mass × mass, 1/d²</td></tr>
+  </table>
+  <div class="sec-nav"><button class="nbtn nbtn-prev" onclick="show('s1-2')">← Previous</button><button class="nbtn nbtn-next" onclick="show('s1-4')">Next: Electric Fields →</button></div>
+</div>
+
+<!-- ══ S1-4: ELECTRIC FIELDS ═════════════ -->
+<div id="s1-4" class="section">
+  <div class="ch-pill">Booklet I — Static Electricity</div>
+  <h2 class="sec-title">🌐 Electric Fields &amp; Field Strength</h2>
+  <p class="sec-sub">An electric field is the region around a charged object where other charges feel a force. We can map these fields using field lines.</p>
+
+  <div class="def"><div class="def-label">📖 Electric Field</div><div class="def-text">An electric field is a region of space where an electric charge experiences an electrostatic force.</div></div>
+  <div class="def"><div class="def-label">📖 Electric Field Strength (E)</div><div class="def-text">Electric field strength at a point is the force per unit charge at that point. E = F/Q. Unit: N C⁻¹.</div></div>
+
+  <div class="fbox">
+    <div class="fl">⚠️ Two Formulas for E</div>
+    <div class="fm">E = F/Q &nbsp;&nbsp; (use when given force and charge)</div>
+    <div class="fm">E = Q/(4πεd²) &nbsp;&nbsp; (use when given distance)</div>
+    <div class="fv"><b>Tip:</b> If the question gives a distance (d), use the second equation. If it gives a force, use the first.</div>
+  </div>
+
+  <h3>🗺️ Electric Field Lines — Rules</h3>
+  <ul>
+    <li>Field lines go FROM positive charges TO negative charges</li>
+    <li>The closer together the lines, the stronger the field</li>
+    <li>Field lines never cross each other</li>
+    <li>The direction at any point = direction of force on a positive test charge there</li>
+  </ul>
+
+  <h3>⚡ E at a Distance from a Sphere</h3>
+  <p>If asked about the field at a point a distance d from the <strong>surface</strong> of a sphere of radius r, the total distance to use in the formula is <strong>d + r</strong> (distance to the centre, not the surface).</p>
+  <div class="exam-tip"><strong>🎯 Common exam mistake:</strong> Always add the sphere's radius! The formula uses distance from the CENTRE of the sphere, not from its surface.</div>
+
+  <h3>⚡ Distribution of Charge on a Conductor</h3>
+  <ul>
+    <li><strong>All static charge resides on the OUTSIDE of a conductor</strong> (like charges repel to maximum separation)</li>
+    <li><strong>Charge is most dense at pointed/sharp areas</strong> of a conductor</li>
+    <li><strong>Point discharge:</strong> When charge density is very high at a point, it "leaks off" — ionising the air. This is how lightning conductors work!</li>
+  </ul>
+
+  <h3>🌩️ Demonstrating Electric Field Patterns</h3>
+  <p>Set up two electrodes in a dish of castor oil. Sprinkle semolina powder on the surface. When you switch on the high-voltage DC supply, the semolina aligns with the electric field lines, revealing the pattern.</p>
+  <div class="exam-tip"><strong>🎯 Exam tips:</strong> You MUST say "high voltage DC supply". You MUST specify semolina (not iron filings — those are for magnetic fields!)</div>
+
+  <div class="sec-nav"><button class="nbtn nbtn-prev" onclick="show('s1-3')">← Previous</button><button class="nbtn nbtn-next" onclick="show('s1-5')">Next: Potential Difference →</button></div>
+</div>
+
+<!-- ══ S1-5: POTENTIAL DIFFERENCE ═════════ -->
+<div id="s1-5" class="section">
+  <div class="ch-pill">Booklet I — Potential Difference</div>
+  <h2 class="sec-title">🔋 Potential Difference &amp; The Volt</h2>
+  <p class="sec-sub">Voltage (potential difference) is the "push" that drives charge around a circuit. Understanding it is crucial for everything in electricity.</p>
+
+  <div class="def"><div class="def-label">📖 Potential Difference (p.d.)</div><div class="def-text">The potential difference between two points is the work done when a charge of 1 coulomb moves from one point to the other.</div></div>
+  <div class="def"><div class="def-label">📖 The Volt</div><div class="def-text">The potential difference between two points is 1 volt if 1 joule of work is done when bringing a charge of 1 coulomb from one point to the other.</div></div>
+
+  <div class="fbox">
+    <div class="fl">Formula — Work, Charge &amp; Voltage</div>
+    <div class="fm">W = V × Q</div>
+    <div class="fv"><b>W</b> = work done (J) &nbsp;&nbsp; <b>V</b> = potential difference (V) &nbsp;&nbsp; <b>Q</b> = charge (C)</div>
+  </div>
+  <div class="tip"><strong>🧠 Simple explanation:</strong> Voltage is the energy per coulomb of charge. A 9V battery gives 9 joules of energy to every coulomb of charge that passes through it. More voltage = more energy per charge = bigger "push" around the circuit.</div>
+
+  <div class="def"><div class="def-label">📖 Potential at a Point</div><div class="def-text">The potential at a point is the work done in bringing a positive charge from that point to earth.</div></div>
+
+  <div class="sec-nav"><button class="nbtn nbtn-prev" onclick="show('s1-4')">← Previous</button><button class="nbtn nbtn-next" onclick="show('s1-6')">Next: Capacitors →</button></div>
+</div>
+
+<!-- ══ S1-6: CAPACITORS ═══════════════════ -->
+<div id="s1-6" class="section">
+  <div class="ch-pill">Booklet I — Capacitance</div>
+  <h2 class="sec-title">💾 Capacitors &amp; Capacitance</h2>
+  <p class="sec-sub">A capacitor stores separated charge — like a tiny rechargeable battery. They're used in camera flashes, defibrillators, and touchscreens.</p>
+
+  <div class="def"><div class="def-label">📖 Capacitance</div><div class="def-text">The capacitance of a conductor is the ratio of the charge on the conductor to its potential (voltage). C = Q/V. Unit: farad (F).</div></div>
+
+  <div class="fbox">
+    <div class="fl">⚠️ Capacitance Formula</div>
+    <div class="fm">C = Q / V</div>
+    <div class="fv"><b>C</b> = capacitance (F) &nbsp;&nbsp; <b>Q</b> = charge stored (C) &nbsp;&nbsp; <b>V</b> = voltage across capacitor (V)</div>
+  </div>
+
+  <h3>🔲 Parallel Plate Capacitor</h3>
+  <p>A parallel plate capacitor consists of two flat metal plates facing each other. Capacitance depends on three things:</p>
+  <div class="fbox">
+    <div class="fl">Parallel Plate Capacitor Formula</div>
+    <div class="fm">C = εA / d</div>
+    <div class="fv">
+      <b>ε</b> = permittivity of material between plates (F m⁻¹)<br>
+      <b>A</b> = overlap area of the plates (m²)<br>
+      <b>d</b> = distance between the plates (m)
+    </div>
+  </div>
+  <div class="igrid">
+    <div class="icard"><div class="it">Increase area A</div><div class="iv">C ↑ increases</div><div class="is">More plate overlap = more capacitance</div></div>
+    <div class="icard"><div class="it">Increase gap d</div><div class="iv">C ↓ decreases</div><div class="is">Larger gap = less capacitance</div></div>
+    <div class="icard"><div class="it">Insert dielectric</div><div class="iv">C ↑ increases</div><div class="is">Material between plates raises ε → more capacitance</div></div>
+  </div>
+
+  <h3>⚡ Energy Stored in a Capacitor</h3>
+  <div class="fbox">
+    <div class="fl">⚠️ Energy Stored</div>
+    <div class="fm">W = ½CV²</div>
+    <div class="fv"><b>W</b> = energy stored (J) &nbsp;&nbsp; <b>C</b> = capacitance (F) &nbsp;&nbsp; <b>V</b> = voltage (V)</div>
+  </div>
+  <div class="tip"><strong>🎯 Defibrillators use capacitors!</strong> A 64 μF capacitor charged to 2500V stores: W = ½(64×10⁻⁶)(2500)² = 200 J — enough to restart a heart. The capacitor dumps this energy in milliseconds.</div>
+
+  <h3>Applications of Capacitors</h3>
+  <ul>
+    <li>Camera flash (stores energy, releases it quickly)</li>
+    <li>Defibrillators (stores then releases large energy pulse)</li>
+    <li>Radio tuning (changing area changes capacitance → selects frequency)</li>
+    <li>Touchscreens (finger acts as a plate of a capacitor)</li>
+    <li>Allows AC to pass but BLOCKS DC</li>
+  </ul>
+  <div class="sec-nav"><button class="nbtn nbtn-prev" onclick="show('s1-5')">← Previous</button><button class="nbtn nbtn-next" onclick="show('s1-calc')">Next: Calculations →</button></div>
+</div>
+
+<!-- ══ S1-CALC ════════════════════════════ -->
+<div id="s1-calc" class="section">
+  <div class="ch-pill">Booklet I — Worked Examples</div>
+  <h2 class="sec-title">📐 Calculations: Booklet I</h2>
+  <p class="sec-sub">Coulomb's law, electric field strength and capacitance — step by step.</p>
+
+  <div class="ebox">
+    <div class="el">Example 1 — Coulomb's Law</div>
+    <div class="eq"><strong>Q:</strong> Two spheres, each charged to +3 μC, are 8 cm apart in a vacuum. Find the repulsive force. (ε₀ = 8.9×10⁻¹² F m⁻¹)</div>
+    <div class="step"><div class="sn">Write down values</div><div class="sc">Q₁=Q₂=3×10⁻⁶ C, d=0.08 m, ε₀=8.9×10⁻¹² F m⁻¹</div></div>
+    <div class="step"><div class="sn">Use F = Q₁Q₂ / (4πε₀d²)</div><div class="sc">F = (3×10⁻⁶)(3×10⁻⁶) / [4π(8.9×10⁻¹²)(0.08)²]<br>F = 9×10⁻¹² / [7.16×10⁻¹³]<br>F = 12.57 N</div></div>
+    <div class="ans">✅ Force = 12.57 N (repulsive, as both are positive)</div>
+  </div>
+
+  <div class="ebox">
+    <div class="el">Example 2 — Electric Field Strength near a Sphere</div>
+    <div class="eq"><strong>Q:</strong> A metal sphere of diameter 5 cm holds charge −6 μC. Find E at 3 cm from the surface.</div>
+    <div class="step"><div class="sn">Total distance from centre</div><div class="sc">d = (3 cm surface) + (2.5 cm radius) = 5.5 cm = 0.055 m</div></div>
+    <div class="step"><div class="sn">E = Q / (4πεd²)</div><div class="sc">E = (6×10⁻⁶) / [4π(8.9×10⁻¹²)(0.055)²]<br>E = 1.78×10⁷ N C⁻¹</div></div>
+    <div class="ans">✅ E = 1.78×10⁷ N C⁻¹ (directed towards sphere — it's negative)</div>
+  </div>
+
+  <div class="ebox">
+    <div class="el">Example 3 — Capacitance</div>
+    <div class="eq"><strong>Q:</strong> Capacitor has charge 0.025 C and p.d. = 250 V. Find capacitance.</div>
+    <div class="step"><div class="sn">C = Q/V</div><div class="sc">C = 0.025 / 250 = 1×10⁻⁴ F = 100 μF</div></div>
+    <div class="ans">✅ C = 100 μF = 1×10⁻⁴ F</div>
+  </div>
+
+  <div class="ebox">
+    <div class="el">Example 4 — Energy in a Capacitor (Defibrillator)</div>
+    <div class="eq"><strong>Q:</strong> A 64 μF capacitor is charged to 2500 V. Find (i) charge stored, (ii) energy stored.</div>
+    <div class="step"><div class="sn">Part (i): Q = CV</div><div class="sc">Q = (64×10⁻⁶)(2500) = 0.16 C</div></div>
+    <div class="step"><div class="sn">Part (ii): W = ½CV²</div><div class="sc">W = ½(64×10⁻⁶)(2500)² = ½(64×10⁻⁶)(6.25×10⁶) = 200 J</div></div>
+    <div class="ans">✅ Charge = 0.16 C, Energy = 200 J</div>
+  </div>
+
+  <div class="sec-nav"><button class="nbtn nbtn-prev" onclick="show('s1-6')">← Previous</button><button class="nbtn nbtn-next" onclick="show('s1-quiz')">Next: Quiz →</button></div>
+</div>
+
+<!-- ══ S1-QUIZ ════════════════════════════ -->
+<div id="s1-quiz" class="section">
+  <div class="ch-pill">Booklet I — Quiz</div>
+  <h2 class="sec-title">✅ Quiz: Booklet I</h2>
+  <p class="sec-sub">Test yourself on Static Electricity, Electric Fields and Capacitance!</p>
+  <div id="q1-container"></div>
+  <div class="sec-nav"><button class="nbtn nbtn-prev" onclick="show('s1-calc')">← Back to Examples</button><button class="nbtn nbtn-next" onclick="show('s2-1')">Next: Current &amp; Charge →</button></div>
+</div>
+
+<!-- ══ S2-1: CURRENT & CHARGE ════════════ -->
+<div id="s2-1" class="section">
+  <div class="ch-pill">Booklet II — Current Electricity</div>
+  <h2 class="sec-title">🔌 Current &amp; Charge</h2>
+  <p class="sec-sub">Electric current is charge moving through a conductor. The faster it moves and the more charge there is, the bigger the current.</p>
+
+  <div class="def"><div class="def-label">📖 Electric Current</div><div class="def-text">Electric current is a measure of the rate of flow of charge. I = Q/t. Unit: ampere (A).</div></div>
+  <div class="fbox">
+    <div class="fl">Formula — Current</div>
+    <div class="fm">I = Q / t &nbsp;&nbsp;&nbsp;&nbsp; Q = It</div>
+    <div class="fv"><b>I</b> = current (A) &nbsp;&nbsp; <b>Q</b> = charge (C) &nbsp;&nbsp; <b>t</b> = time (s)<br>1 ampere = 1 coulomb per second</div>
+  </div>
+
+  <h3>🔌 Conductors vs Insulators</h3>
+  <div class="igrid">
+    <div class="icard"><div class="it">Conductor</div><div class="iv">Allows charge flow</div><div class="is">Metals (copper, aluminium). Free electrons can move. Charge carriers = electrons.</div></div>
+    <div class="icard"><div class="it">Insulator</div><div class="iv">Blocks charge flow</div><div class="is">Rubber, plastic, glass. No free electrons. Used to safely cover wires.</div></div>
+  </div>
+
+  <h3>🔄 Conventional Current</h3>
+  <p>Conventional current flows from the <strong>positive to the negative terminal</strong> (as if positive charges are moving). In reality, it's the <strong>electrons</strong> (negative) that move from negative to positive. Thank you Benjamin Franklin for this historical confusion!</p>
+
+  <h3>📊 Measuring Current &amp; Voltage</h3>
+  <div class="igrid">
+    <div class="icard"><div class="it">Ammeter</div><div class="iv">IN SERIES</div><div class="is">Connected in the circuit so ALL the current flows through it. Never in parallel — it would short circuit!</div></div>
+    <div class="icard"><div class="it">Voltmeter</div><div class="iv">IN PARALLEL</div><div class="is">Connected across the component being measured. Never in series — it has very high resistance.</div></div>
+  </div>
+
+  <h3>Power, Voltage and Current</h3>
+  <div class="fbox">
+    <div class="fl">⚠️ Electrical Power</div>
+    <div class="fm">P = VI</div>
+    <div class="fv"><b>P</b> = power (W) &nbsp;&nbsp; <b>V</b> = voltage (V) &nbsp;&nbsp; <b>I</b> = current (A)</div>
+  </div>
+
+  <div class="sec-nav"><button class="nbtn nbtn-prev" onclick="show('s1-quiz')">← Previous</button><button class="nbtn nbtn-next" onclick="show('s2-2')">Next: Resistance &amp; Ohm's Law →</button></div>
+</div>
+
+<!-- ══ S2-2: RESISTANCE & OHM'S LAW ═════ -->
+<div id="s2-2" class="section">
+  <div class="ch-pill">Booklet II — Current Electricity</div>
+  <h2 class="sec-title">⚙️ Resistance &amp; Ohm's Law</h2>
+  <p class="sec-sub">Resistance is what fights against current flow. Every material has a different resistance — and some depend on temperature!</p>
+
+  <div class="def"><div class="def-label">📖 Resistance</div><div class="def-text">The resistance of a conductor is the ratio of the potential difference across it to the current flowing through it. R = V/I. Unit: ohm (Ω).</div></div>
+  <div class="def"><div class="def-label">📖 Ohm's Law</div><div class="def-text">The current flowing through a conductor is directly proportional to the potential difference across it, assuming constant temperature.</div></div>
+  <div class="fbox">
+    <div class="fl">⚠️ Ohm's Law Formula</div>
+    <div class="fm">V = IR &nbsp;&nbsp;&nbsp; R = V/I &nbsp;&nbsp;&nbsp; I = V/R</div>
+    <div class="fv"><b>V</b> = voltage/p.d. (V) &nbsp;&nbsp; <b>I</b> = current (A) &nbsp;&nbsp; <b>R</b> = resistance (Ω)</div>
+  </div>
+  <div class="tip"><strong>⚠️ Important:</strong> Ohm's Law only applies to OHMIC conductors (like metal wires at constant temperature). Filament bulbs, semiconductors and ionic solutions do NOT obey Ohm's Law because their resistance changes with temperature or other factors.</div>
+
+  <h3>📈 V-I Graphs for Different Conductors</h3>
+  <table>
+    <tr><th>Conductor</th><th>Shape of V-I graph</th><th>Reason</th></tr>
+    <tr><td>Metallic conductor</td><td>Straight line through origin</td><td>Ohmic — constant resistance</td></tr>
+    <tr><td>Filament bulb</td><td>Curves (gets less steep)</td><td>Heats up → resistance increases → current rises less</td></tr>
+    <tr><td>Copper in CuSO₄ (active)</td><td>Straight line through origin</td><td>Copper ions continuously replaced</td></tr>
+    <tr><td>Semiconductor (diode)</td><td>Exponential curve</td><td>Resistance changes drastically with voltage</td></tr>
+  </table>
+
+  <div class="sec-nav"><button class="nbtn nbtn-prev" onclick="show('s2-1')">← Previous</button><button class="nbtn nbtn-next" onclick="show('s2-3')">Next: Circuit Rules →</button></div>
+</div>
+
+<!-- ══ S2-3: CIRCUIT RULES ═══════════════ -->
+<div id="s2-3" class="section">
+  <div class="ch-pill">Booklet II — Current Electricity</div>
+  <h2 class="sec-title">🔗 Series &amp; Parallel Circuits</h2>
+  <p class="sec-sub">Two ways to connect components — and they behave very differently. Master the 3-step method and you can solve any circuit!</p>
+
+  <h3>📏 Series vs Parallel</h3>
+  <div class="igrid">
+    <div class="icard" style="border-color:var(--blue);"><div class="it">Series Circuit</div><div class="iv">One path</div><div class="is">• Current SAME everywhere<br>• Voltages ADD up<br>• R_total = R₁ + R₂ + R₃</div></div>
+    <div class="icard" style="border-color:var(--green);"><div class="it">Parallel Circuit</div><div class="iv">Multiple paths</div><div class="is">• Voltage SAME across each branch<br>• Currents ADD up<br>• 1/R_total = 1/R₁ + 1/R₂</div></div>
+  </div>
+
+  <h3>🪄 The 3-Step Method for Circuit Problems</h3>
+  <div class="exam-tip">
+    <strong>Step 1 — Find TOTAL resistance</strong> (add series resistors, use 1/R formula for parallel)<br>
+    <strong>Step 2 — Find TOTAL voltage</strong> (usually given directly)<br>
+    <strong>Step 3 — Find TOTAL current:</strong> I_total = V_total / R_total<br><br>
+    Then use V=IR for individual components (using the correct V and I for THAT component).
+  </div>
+
+  <h3>🌉 The Wheatstone Bridge</h3>
+  <p>Four resistors connected in a diamond pattern. When the bridge is "balanced" (no current through the galvanometer in the middle), the following relationship holds:</p>
+  <div class="fbox">
+    <div class="fl">Wheatstone Bridge (balanced)</div>
+    <div class="fm">R₁/R₂ = R₃/R₄</div>
+    <div class="fv">Used to find an unknown resistance if three others are known.<br>Applications: temperature sensors, strain gauges — when temperature changes, balance is upset → current flows → triggers alarm</div>
+  </div>
+
+  <h3>🎚️ Potential Divider</h3>
+  <p>Two resistors in series share the total voltage proportionally to their resistances. If R₂ is 4× larger than R₁, then V₂ is 4× larger than V₁. A potentiometer (variable resistor) acts as an adjustable potential divider.</p>
+
+  <div class="sec-nav"><button class="nbtn nbtn-prev" onclick="show('s2-2')">← Previous</button><button class="nbtn nbtn-next" onclick="show('s2-4')">Next: Resistivity →</button></div>
+</div>
+
+<!-- ══ S2-4: RESISTIVITY ══════════════════ -->
+<div id="s2-4" class="section">
+  <div class="ch-pill">Booklet II — Current Electricity</div>
+  <h2 class="sec-title">🧱 Resistivity</h2>
+  <p class="sec-sub">Not all materials resist current equally. Resistivity tells us the inherent resistance of a material, independent of size or shape.</p>
+
+  <div class="def"><div class="def-label">📖 Resistivity</div><div class="def-text">Resistivity is defined as the resistance of a cube of material of side one metre (or: resistance per unit length per unit area). Unit: Ω m.</div></div>
+
+  <div class="fbox">
+    <div class="fl">⚠️ Resistivity Formula</div>
+    <div class="fm">R = ρL / A</div>
+    <div class="fv">
+      <b>R</b> = resistance (Ω) &nbsp;&nbsp; <b>ρ</b> (rho) = resistivity (Ω m)<br>
+      <b>L</b> = length of wire (m) &nbsp;&nbsp; <b>A</b> = cross-sectional area (m²)<br><br>
+      For a wire: A = πr² (where r = radius of wire)
+    </div>
+  </div>
+  <div class="tip"><strong>🧠 Key relationships (for a wire):</strong><br>
+  Resistance ∝ length (double the length → double the resistance)<br>
+  Resistance ∝ 1/area (double the radius → area × 4 → resistance ÷ 4)</div>
+
+  <h3>🌡️ Resistance and Temperature</h3>
+  <p>For a metallic conductor, resistance <strong>increases linearly with temperature</strong>. When heated, atoms vibrate more, colliding more with electrons and impeding their flow.</p>
+  <div class="exam-tip"><strong>🎯 Experiment: Variation of R with Temperature</strong><br>
+  Apparatus: coil of wire in glycerol, beaker, heat source, thermometer, ohmmeter.<br>
+  Procedure: Heat slowly, read resistance from ohmmeter and temperature every 10°C.<br>
+  Graph: R vs θ → straight line (not through origin)<br>
+  Precaution: Use glycerol (not water) — better heat conduction and doesn't bubble around the coil.</div>
+
+  <div class="sec-nav"><button class="nbtn nbtn-prev" onclick="show('s2-3')">← Previous</button><button class="nbtn nbtn-next" onclick="show('s2-5')">Next: Joule's Law →</button></div>
+</div>
+
+<!-- ══ S2-5: HEATING EFFECT ══════════════ -->
+<div id="s2-5" class="section">
+  <div class="ch-pill">Booklet II — Current Electricity</div>
+  <h2 class="sec-title">🌡️ Heating Effect &amp; Joule's Law</h2>
+  <p class="sec-sub">Electric current heats wires. Joule discovered the exact relationship — and it explains why power lines use high voltage.</p>
+
+  <h3>Three Effects of Electric Current</h3>
+  <div class="igrid">
+    <div class="icard"><div class="it">Heating Effect</div><div class="is">Current heats wire. Used in toasters, kettles, electric heaters. Basis of Joule's Law.</div></div>
+    <div class="icard"><div class="it">Magnetic Effect</div><div class="is">Current creates a magnetic field. Used in electromagnets, motors, loudspeakers.</div></div>
+    <div class="icard"><div class="it">Chemical Effect</div><div class="is">Current drives chemical reactions. Used in electroplating, extracting metals from ores.</div></div>
+  </div>
+
+  <div class="def"><div class="def-label">📖 Joule's Law</div><div class="def-text">The rate at which heat is produced in a conductor is proportional to the square of the current, provided the resistance is constant.</div></div>
+  <div class="fbox">
+    <div class="fl">⚠️ Joule's Law Formulas</div>
+    <div class="fm">P = I²R &nbsp;&nbsp;&nbsp;&nbsp; W = I²Rt</div>
+    <div class="fv"><b>P</b> = power/rate of heat production (W) &nbsp;&nbsp; <b>I</b> = current (A) &nbsp;&nbsp; <b>R</b> = resistance (Ω) &nbsp;&nbsp; <b>t</b> = time (s)</div>
+  </div>
+  <div class="tip"><strong>⚡ Why high voltage power lines?</strong> P = I²R means heat loss ∝ current². So if we transmit at higher voltage, we need less current (since P=VI stays the same). Less current → much less heat wasted. Transmitting at 300,000 V instead of 230 V reduces current by ~1300× and heat loss by ~1.7 million times!</div>
+
+  <h3>🔌 Also Know: P = V²/R</h3>
+  <p>By combining P=VI and V=IR, you can also show that P = V²/R. This is useful when given voltage and resistance but not current.</p>
+
+  <div class="sec-nav"><button class="nbtn nbtn-prev" onclick="show('s2-4')">← Previous</button><button class="nbtn nbtn-next" onclick="show('s2-6')">Next: Domestic Circuits →</button></div>
+</div>
+
+<!-- ══ S2-6: DOMESTIC CIRCUITS ═══════════ -->
+<div id="s2-6" class="section">
+  <div class="ch-pill">Booklet II — Current Electricity</div>
+  <h2 class="sec-title">🏠 Domestic Electric Circuits</h2>
+  <p class="sec-sub">How electricity is safely wired in your home — and how to answer those plug/fuse questions!</p>
+
+  <h3>🔌 The 3-Pin Plug</h3>
+  <table>
+    <tr><th>Wire</th><th>Colour</th><th>Position in plug</th><th>Function</th></tr>
+    <tr><td><strong>Live</strong></td><td>Brown</td><td>Bottom Right</td><td>Carries current IN to appliance</td></tr>
+    <tr><td><strong>Neutral</strong></td><td>Blue</td><td>Bottom Left</td><td>Carries current OUT</td></tr>
+    <tr><td><strong>Earth</strong></td><td>Green/Yellow</td><td>Top</td><td>Safety — connected to metal casing</td></tr>
+  </table>
+  <div class="tip"><strong>🧠 Memory trick:</strong> BRown = Bottom Right (Live), BLue = Bottom Left (Neutral). Earth = Top (it's the longest pin and connects first for safety!)</div>
+
+  <h3>🔧 Safety Devices</h3>
+  <div class="igrid">
+    <div class="icard"><div class="it">Fuse</div><div class="is">Wire that melts if current exceeds its rating. Always on the LIVE wire. Must replace after tripping.</div></div>
+    <div class="icard"><div class="it">MCB</div><div class="is">Miniature Circuit Breaker. Trips automatically. Can be reset (unlike fuses). Contains electromagnet or bimetallic strip.</div></div>
+    <div class="icard"><div class="it">RCD</div><div class="is">Residual Current Device. Detects difference between live and neutral currents. Faster and safer than MCB.</div></div>
+  </div>
+
+  <h3>🔢 Choosing the Right Fuse</h3>
+  <p>Calculate the expected current: I = P/V. Then choose the fuse with a rating just ABOVE the expected current.</p>
+  <div class="exam-tip"><strong>🎯 Example:</strong> Kettle: P=2000W, V=230V. I = 2000/230 = 8.7 A. Choose the 13A fuse (next one above 8.7A). A 5A fuse would blow immediately!</div>
+
+  <h3>💡 The Kilowatt-Hour</h3>
+  <p>Your electricity bill is measured in kilowatt-hours (kWh). 1 kWh = energy used by a 1000W appliance in 1 hour.</p>
+  <div class="fbox"><div class="fl">kWh Calculation</div><div class="fm">kWh = kilowatts × hours</div><div class="fv">Cost = kWh × price per unit</div></div>
+
+  <div class="sec-nav"><button class="nbtn nbtn-prev" onclick="show('s2-5')">← Previous</button><button class="nbtn nbtn-next" onclick="show('s2-calc')">Next: Calculations →</button></div>
+</div>
+
+<!-- ══ S2-CALC ════════════════════════════ -->
+<div id="s2-calc" class="section">
+  <div class="ch-pill">Booklet II — Worked Examples</div>
+  <h2 class="sec-title">📐 Calculations: Booklet II</h2>
+  <p class="sec-sub">Circuits, resistivity, Joule's Law and power — all worked step by step.</p>
+
+  <div class="ebox">
+    <div class="el">Example 1 — Series &amp; Parallel Circuit</div>
+    <div class="eq"><strong>Q:</strong> A 3Ω and 6Ω resistor in parallel, connected to a 1.5V supply. Find total resistance, total current, and current through 3Ω resistor.</div>
+    <div class="step"><div class="sn">Step 1: Parallel resistance</div><div class="sc">1/R = 1/3 + 1/6 = 3/6 → R = 2 Ω</div></div>
+    <div class="step"><div class="sn">Step 2: Total current</div><div class="sc">I = V/R = 1.5/2 = 0.75 A</div></div>
+    <div class="step"><div class="sn">Step 3: Current through 3Ω (V across parallel = 1.5V)</div><div class="sc">I₃ = V/R = 1.5/3 = 0.5 A</div></div>
+    <div class="ans">✅ R_total = 2Ω, I_total = 0.75A, I through 3Ω = 0.5A</div>
+  </div>
+
+  <div class="ebox">
+    <div class="el">Example 2 — Resistivity</div>
+    <div class="eq"><strong>Q:</strong> Nichrome wire: resistance = 7.9Ω, length = 54.6cm, diameter = 0.31mm. Find resistivity.</div>
+    <div class="step"><div class="sn">Find radius and area</div><div class="sc">r = 0.155mm = 0.155×10⁻³ m<br>A = πr² = π(0.155×10⁻³)² = 7.55×10⁻⁸ m²</div></div>
+    <div class="step"><div class="sn">Use ρ = RA/L</div><div class="sc">ρ = (7.9)(7.55×10⁻⁸) / (0.546) = 1.09×10⁻⁶ Ω m</div></div>
+    <div class="ans">✅ Resistivity of nichrome = 1.09×10⁻⁶ Ω m</div>
+  </div>
+
+  <div class="ebox">
+    <div class="el">Example 3 — Joule's Law</div>
+    <div class="eq"><strong>Q:</strong> Aluminium wire, R=0.33Ω, carries current 250A for 10 min. Find heat energy produced.</div>
+    <div class="step"><div class="sn">W = I²Rt</div><div class="sc">t = 10 min = 600 s<br>W = (250)²(0.33)(600) = 62500 × 0.33 × 600 = 1.238×10⁷ J</div></div>
+    <div class="ans">✅ Heat energy = 1.238×10⁷ J ≈ 12.4 MJ</div>
+  </div>
+
+  <div class="ebox">
+    <div class="el">Example 4 — Fuse Selection</div>
+    <div class="eq"><strong>Q:</strong> Vacuum cleaner: P=900W, V=230V. Which fuse? How many kWh in 90 minutes? Cost at 22c/unit?</div>
+    <div class="step"><div class="sn">Current: I = P/V</div><div class="sc">I = 900/230 = 3.9 A → use 5A fuse (next above 3.9)</div></div>
+    <div class="step"><div class="sn">kWh: P=0.9kW, t=1.5h</div><div class="sc">kWh = 0.9 × 1.5 = 1.35 kWh</div></div>
+    <div class="step"><div class="sn">Cost</div><div class="sc">Cost = 1.35 × 22 = 29.7 cent</div></div>
+    <div class="ans">✅ 5A fuse, 1.35 kWh, ≈30 cent</div>
+  </div>
+
+  <div class="sec-nav"><button class="nbtn nbtn-prev" onclick="show('s2-6')">← Previous</button><button class="nbtn nbtn-next" onclick="show('s2-quiz')">Next: Quiz →</button></div>
+</div>
+
+<!-- ══ S2-QUIZ ════════════════════════════ -->
+<div id="s2-quiz" class="section">
+  <div class="ch-pill">Booklet II — Quiz</div>
+  <h2 class="sec-title">✅ Quiz: Booklet II</h2>
+  <p class="sec-sub">Test yourself on Current, Resistance, Circuits, Joule's Law and Domestic Circuits!</p>
+  <div id="q2-container"></div>
+  <div class="sec-nav"><button class="nbtn nbtn-prev" onclick="show('s2-calc')">← Back to Examples</button><button class="nbtn nbtn-next" onclick="show('s3-1')">Next: Magnetism →</button></div>
+</div>
+
+<!-- ══ S3-1: MAGNETS ══════════════════════ -->
+<div id="s3-1" class="section">
+  <div class="ch-pill">Booklet III — Magnetism</div>
+  <h2 class="sec-title">🧲 Magnets &amp; Magnetic Fields</h2>
+  <p class="sec-sub">Magnetism and electricity are deeply connected. Every electric current creates a magnetic field — and every changing magnetic field creates electricity!</p>
+
+  <div class="def"><div class="def-label">📖 Magnetic Field</div><div class="def-text">A magnetic field is any region of space where magnetic forces can be felt.</div></div>
+
+  <h3>🧲 Basic Rules</h3>
+  <ul>
+    <li>Magnetic poles exist in pairs: North and South</li>
+    <li>Like poles REPEL, unlike poles ATTRACT</li>
+    <li>Magnetic field lines go from NORTH to SOUTH outside the magnet</li>
+    <li>Closer field lines = stronger field</li>
+  </ul>
+
+  <h3>⚡ Magnetic Field from a Current</h3>
+  <p>Any wire carrying current creates a magnetic field around it. The direction depends on the current direction.</p>
+  <div class="igrid">
+    <div class="icard"><div class="it">Straight Wire</div><div class="is">Circular field lines around wire. Use Right Hand Grip Rule: grip wire with right hand, thumb points in direction of current, fingers curl in direction of field.</div></div>
+    <div class="icard"><div class="it">Solenoid (coil)</div><div class="is">Magnetic field like a bar magnet. CIS Rule: Current going Clockwise = South pole facing you.</div></div>
+  </div>
+
+  <h3>🔌 Electromagnets</h3>
+  <p>A solenoid with a soft iron core = electromagnet. Advantages over permanent magnets:</p>
+  <ul>
+    <li>Can be switched on and off</li>
+    <li>Strength can be varied (by changing current)</li>
+    <li>Applications: scrap yard cranes, electric bells, loudspeakers, relays</li>
+  </ul>
+
+  <div class="sec-nav"><button class="nbtn nbtn-prev" onclick="show('s2-quiz')">← Previous</button><button class="nbtn nbtn-next" onclick="show('s3-2')">Next: Force on Current →</button></div>
+</div>
+
+<!-- ══ S3-2: FORCE ON CURRENT ════════════ -->
+<div id="s3-2" class="section">
+  <div class="ch-pill">Booklet III — Magnetism</div>
+  <h2 class="sec-title">💡 Force on a Current in a Magnetic Field</h2>
+  <p class="sec-sub">Put a wire carrying current into a magnetic field and it experiences a force. This is the motor effect — and it's how every electric motor works!</p>
+
+  <div class="fbox">
+    <div class="fl">⚠️ Force on a Current-Carrying Conductor</div>
+    <div class="fm">F = BIL</div>
+    <div class="fv">
+      <b>F</b> = force on conductor (N)<br>
+      <b>B</b> = magnetic flux density (T, tesla)<br>
+      <b>I</b> = current in conductor (A)<br>
+      <b>L</b> = length of conductor in field (m)
+    </div>
+  </div>
+
+  <h3>🤚 Fleming's Left Hand Rule — Direction of Force</h3>
+  <p>Point left hand fingers and thumb like "Stick 'em up!" (imagine you're a left-handed FBI agent):</p>
+  <div class="igrid">
+    <div class="icard"><div class="it">Thumb (F)</div><div class="iv">Force direction</div></div>
+    <div class="icard"><div class="it">Index finger (B)</div><div class="iv">Field direction</div></div>
+    <div class="icard"><div class="it">Middle finger (I)</div><div class="iv">Current direction</div></div>
+  </div>
+
+  <h3>🔵 Force on a Moving Charge</h3>
+  <div class="fbox">
+    <div class="fl">⚠️ Force on Moving Charge</div>
+    <div class="fm">F = Bqv &nbsp;&nbsp; (or F = Bev for electrons)</div>
+    <div class="fv"><b>B</b> = flux density (T) &nbsp;&nbsp; <b>q</b> = charge (C) &nbsp;&nbsp; <b>v</b> = velocity of charge (m s⁻¹)</div>
+  </div>
+  <div class="tip"><strong>🧠 Memory trick:</strong> The two formulas are "BIL and Bev" — think of them as people's names! Billy and Bev.</div>
+
+  <h3>🔵 Circular Path in a Magnetic Field</h3>
+  <p>A charged particle moving through a magnetic field at right angles to the field travels in a circle. Equate centripetal force = magnetic force:</p>
+  <div class="fbox">
+    <div class="fl">Circular Path</div>
+    <div class="fm">Bqv = mv²/r &nbsp;&nbsp; → &nbsp;&nbsp; r = mv/(Bq)</div>
+    <div class="fv">Momentum: p = mv = Bqr</div>
+  </div>
+
+  <h3>📏 Definition of the Ampere</h3>
+  <div class="def"><div class="def-label">📖 The Ampere</div><div class="def-text">The ampere is the constant current which, flowing in two very long parallel wires one metre apart in a vacuum, produces a force of 2×10⁻⁷ N per metre length on each wire.</div></div>
+
+  <div class="sec-nav"><button class="nbtn nbtn-prev" onclick="show('s3-1')">← Previous</button><button class="nbtn nbtn-next" onclick="show('s3-3')">Next: Electromagnetic Induction →</button></div>
+</div>
+
+<!-- ══ S3-3: ELECTROMAGNETIC INDUCTION ═══ -->
+<div id="s3-3" class="section">
+  <div class="ch-pill">Booklet III — Electromagnetic Induction</div>
+  <h2 class="sec-title">⚡ Electromagnetic Induction</h2>
+  <p class="sec-sub">Faraday's greatest discovery: moving a magnet through a coil creates electricity. This is how nearly all the world's electricity is generated!</p>
+
+  <div class="def"><div class="def-label">📖 Electromagnetic Induction</div><div class="def-text">Electromagnetic induction occurs when an emf is induced in a coil due to a changing magnetic flux.</div></div>
+
+  <h3>⚡ The Laws of Electromagnetic Induction</h3>
+  <div class="def"><div class="def-label">📖 Faraday's Law</div><div class="def-text">The size of the induced emf is proportional to the rate of change of magnetic flux.</div></div>
+  <div class="def"><div class="def-label">📖 Lenz's Law</div><div class="def-text">The direction of the induced emf is always such as to oppose the change producing it.</div></div>
+
+  <div class="fbox">
+    <div class="fl">⚠️ Magnetic Flux</div>
+    <div class="fm">Φ = BA</div>
+    <div class="fv"><b>Φ</b> = magnetic flux (Wb, weber) &nbsp;&nbsp; <b>B</b> = magnetic flux density (T) &nbsp;&nbsp; <b>A</b> = area perpendicular to field (m²)</div>
+  </div>
+  <div class="fbox">
+    <div class="fl">⚠️ Induced EMF (Faraday's Law)</div>
+    <div class="fm">emf = N × (ΔΦ / Δt)</div>
+    <div class="fv"><b>N</b> = number of turns in coil &nbsp;&nbsp; <b>ΔΦ</b> = change in flux (Wb) &nbsp;&nbsp; <b>Δt</b> = time taken (s)</div>
+  </div>
+
+  <h3>🧪 Demonstrating Lenz's Law — Copper Pipe</h3>
+  <p>Drop a strong magnet through a copper pipe. It falls MUCH slower than through a plastic pipe! Why?</p>
+  <ul>
+    <li>Falling magnet creates changing magnetic flux in copper pipe</li>
+    <li>Changing flux → induced emf → induced current (copper conducts)</li>
+    <li>This current creates a magnetic field opposing the motion (Lenz's Law)</li>
+    <li>The magnet is slowed down by this opposing field</li>
+    <li>Plastic pipe: no conductor → no current → no opposing field → normal speed</li>
+  </ul>
+
+  <h3>🔌 The Electric Generator</h3>
+  <p>When a coil of wire rotates in a magnetic field (or a magnet rotates inside a coil), the flux through the coil changes continuously → emf induced → electricity produced! This is how nearly all power stations generate electricity.</p>
+  <div class="tip"><strong>⚡ Key point:</strong> A generator converts MECHANICAL energy to ELECTRICAL energy. An electric motor does the opposite — electrical to mechanical.</div>
+
+  <div class="sec-nav"><button class="nbtn nbtn-prev" onclick="show('s3-2')">← Previous</button><button class="nbtn nbtn-next" onclick="show('s3-4')">Next: Transformers &amp; AC →</button></div>
+</div>
+
+<!-- ══ S3-4: TRANSFORMERS & AC ════════════ -->
+<div id="s3-4" class="section">
+  <div class="ch-pill">Booklet III — Electromagnetic Induction</div>
+  <h2 class="sec-title">🔄 Transformers &amp; Alternating Current</h2>
+  <p class="sec-sub">Transformers change voltage using mutual induction. They're the reason electricity can be transmitted efficiently across the country.</p>
+
+  <div class="def"><div class="def-label">📖 Alternating Current (AC)</div><div class="def-text">Alternating current is current which continually changes direction. Mains electricity changes direction 50 times per second (50 Hz).</div></div>
+
+  <h3>🔄 The Transformer</h3>
+  <p>A transformer uses mutual induction: changing current in the primary coil creates a changing magnetic field in the iron core, which induces a changing emf in the secondary coil.</p>
+  <div class="fbox">
+    <div class="fl">⚠️ Transformer Equation</div>
+    <div class="fm">Vs/Vp = Ns/Np</div>
+    <div class="fv">
+      <b>Vs</b> = secondary voltage &nbsp;&nbsp; <b>Vp</b> = primary voltage<br>
+      <b>Ns</b> = turns in secondary &nbsp;&nbsp; <b>Np</b> = turns in primary<br><br>
+      Step-up: Ns &gt; Np → Vs &gt; Vp &nbsp;&nbsp; Step-down: Ns &lt; Np → Vs &lt; Vp
+    </div>
+  </div>
+  <div class="tip"><strong>🔌 Why high voltage transmission?</strong> Transformers allow us to step voltage up to ~300,000V for transmission. High V → low I → low I²R losses. Then step back down to 230V for homes.</div>
+
+  <h3>📊 RMS Values for AC</h3>
+  <p>AC voltage and current aren't constant — they vary sinusoidally. We use RMS (root mean square) values to compare AC to DC:</p>
+  <div class="fbox">
+    <div class="fl">⚠️ RMS Values</div>
+    <div class="fm">V_rms = V_max / √2 &nbsp;&nbsp;&nbsp; I_rms = I_max / √2</div>
+    <div class="fv">An AC current with I_rms = 2A produces the same heating effect as 2A DC.<br>Mains: V_max = 325V, so V_rms = 325/√2 ≈ 230V ✅</div>
+  </div>
+
+  <h3>🔌 Self-Induction</h3>
+  <p>When AC flows through a coil, the changing current creates a changing magnetic field in the coil itself, which induces an opposing emf (back-emf). This reduces the effective current. An inductor is a coil used to reduce AC current — like a dimmer switch on stage lights.</p>
+
+  <div class="sec-nav"><button class="nbtn nbtn-prev" onclick="show('s3-3')">← Previous</button><button class="nbtn nbtn-next" onclick="show('s3-calc')">Next: Calculations →</button></div>
+</div>
+
+<!-- ══ S3-CALC ════════════════════════════ -->
+<div id="s3-calc" class="section">
+  <div class="ch-pill">Booklet III — Worked Examples</div>
+  <h2 class="sec-title">📐 Calculations: Booklet III</h2>
+  <p class="sec-sub">Force on conductors, electromagnetic induction and transformer calculations — step by step.</p>
+
+  <div class="ebox">
+    <div class="el">Example 1 — Force on a Current-Carrying Conductor</div>
+    <div class="eq"><strong>Q:</strong> A conductor of length 50 cm carries 5A in a magnetic field of flux density 3T. Find the force.</div>
+    <div class="step"><div class="sn">F = BIL</div><div class="sc">F = (3)(5)(0.5) = 7.5 N</div></div>
+    <div class="ans">✅ Force = 7.5 N</div>
+  </div>
+
+  <div class="ebox">
+    <div class="el">Example 2 — Induced EMF (Faraday)</div>
+    <div class="eq"><strong>Q:</strong> A coil of 150 turns. Flux increases by 4.5×10⁻⁴ Wb in 3ms. Find the induced emf.</div>
+    <div class="step"><div class="sn">emf = N × (ΔΦ/Δt)</div><div class="sc">emf = 150 × (4.5×10⁻⁴) / (3×10⁻³)<br>emf = 150 × 0.15 = 22.5 V</div></div>
+    <div class="ans">✅ Induced emf = 22.5 V</div>
+  </div>
+
+  <div class="ebox">
+    <div class="el">Example 3 — Transformer</div>
+    <div class="eq"><strong>Q:</strong> Primary coil: 150 turns, 12V AC. Secondary: 3000 turns. Find output voltage.</div>
+    <div class="step"><div class="sn">Vs/Vp = Ns/Np</div><div class="sc">Vs = (Ns/Np) × Vp = (3000/150) × 12 = 20 × 12 = 240 V</div></div>
+    <div class="ans">✅ Output voltage = 240 V (step-up transformer)</div>
+  </div>
+
+  <div class="ebox">
+    <div class="el">Example 4 — RMS Voltage</div>
+    <div class="eq"><strong>Q:</strong> The peak voltage of an AC supply is 300V. Find the RMS voltage.</div>
+    <div class="step"><div class="sn">V_rms = V_max / √2</div><div class="sc">V_rms = 300 / √2 = 300 / 1.414 = 212 V</div></div>
+    <div class="ans">✅ V_rms = 212 V</div>
+  </div>
+
+  <div class="ebox">
+    <div class="el">Example 5 — Circular Path of Electron in Magnetic Field</div>
+    <div class="eq"><strong>Q:</strong> Electron (speed = 1.45×10⁸ m/s) in magnetic field B=90mT. Find radius. (m=9.1×10⁻³¹kg, e=1.6×10⁻¹⁹C)</div>
+    <div class="step"><div class="sn">Equate Bev = mv²/r → r = mv/(Be)</div><div class="sc">r = (9.1×10⁻³¹ × 1.45×10⁸) / (90×10⁻³ × 1.6×10⁻¹⁹)<br>r = (1.32×10⁻²²) / (1.44×10⁻²⁰)<br>r = 9.16×10⁻³ m ≈ 9.2 mm</div></div>
+    <div class="ans">✅ Radius = 9.16×10⁻³ m</div>
+  </div>
+
+  <div class="sec-nav"><button class="nbtn nbtn-prev" onclick="show('s3-4')">← Previous</button><button class="nbtn nbtn-next" onclick="show('s3-quiz')">Next: Quiz →</button></div>
+</div>
+
+<!-- ══ S3-QUIZ ════════════════════════════ -->
+<div id="s3-quiz" class="section">
+  <div class="ch-pill">Booklet III — Quiz</div>
+  <h2 class="sec-title">✅ Quiz: Booklet III</h2>
+  <p class="sec-sub">Test yourself on Magnetism, Electromagnetic Induction and Transformers!</p>
+  <div id="q3-container"></div>
+  <div class="sec-nav"><button class="nbtn nbtn-prev" onclick="show('s3-calc')">← Back to Examples</button><button class="nbtn nbtn-next" onclick="show('allf')">Next: All Formulas →</button></div>
+</div>
+
+<!-- ══ ALL FORMULAS ═══════════════════════ -->
+<div id="allf" class="section">
+  <h2 class="sec-title">📋 All Formulas — Quick Reference</h2>
+  <p class="sec-sub">Every formula you need for the Electricity Leaving Cert exam. Learn them!</p>
+
+  <h3>Booklet I — Static &amp; Capacitance</h3>
+  <div class="fbox"><div class="fl">Coulomb's Law</div><div class="fm">F = Q₁Q₂/(4πεd²)</div><div class="fv">ε₀ = 8.9×10⁻¹² F m⁻¹ for air/vacuum</div></div>
+  <div class="fbox"><div class="fl">Electric Field Strength</div><div class="fm">E = F/Q &nbsp;&nbsp;&nbsp; E = Q/(4πεd²)</div></div>
+  <div class="fbox"><div class="fl">Work, Charge &amp; Voltage</div><div class="fm">W = VQ</div></div>
+  <div class="fbox"><div class="fl">Capacitance</div><div class="fm">C = Q/V &nbsp;&nbsp;&nbsp; C = εA/d &nbsp;&nbsp;&nbsp; W = ½CV²</div></div>
+
+  <h3>Booklet II — Current Electricity</h3>
+  <div class="fbox"><div class="fl">Current &amp; Charge</div><div class="fm">I = Q/t &nbsp;&nbsp;&nbsp; Q = It</div></div>
+  <div class="fbox"><div class="fl">Ohm's Law &amp; Power</div><div class="fm">V = IR &nbsp;&nbsp;&nbsp; P = VI &nbsp;&nbsp;&nbsp; P = I²R &nbsp;&nbsp;&nbsp; P = V²/R</div></div>
+  <div class="fbox"><div class="fl">Resistors in Series/Parallel</div><div class="fm">Series: R_T = R₁+R₂ &nbsp;&nbsp; Parallel: 1/R_T = 1/R₁+1/R₂</div></div>
+  <div class="fbox"><div class="fl">Resistivity</div><div class="fm">R = ρL/A &nbsp;&nbsp;&nbsp; ρ = RA/L</div><div class="fv">A = πr² for a circular wire</div></div>
+  <div class="fbox"><div class="fl">Joule's Law</div><div class="fm">P = I²R &nbsp;&nbsp;&nbsp; W = I²Rt</div></div>
+  <div class="fbox"><div class="fl">Wheatstone Bridge (balanced)</div><div class="fm">R₁/R₂ = R₃/R₄</div></div>
+
+  <h3>Booklet III — Magnetism &amp; Induction</h3>
+  <div class="fbox"><div class="fl">Force on Conductor &amp; Charge</div><div class="fm">F = BIL &nbsp;&nbsp;&nbsp; F = Bqv</div></div>
+  <div class="fbox"><div class="fl">Magnetic Flux &amp; Faraday's Law</div><div class="fm">Φ = BA &nbsp;&nbsp;&nbsp; emf = N(ΔΦ/Δt)</div></div>
+  <div class="fbox"><div class="fl">Transformer Equation</div><div class="fm">Vs/Vp = Ns/Np</div></div>
+  <div class="fbox"><div class="fl">RMS Values</div><div class="fm">V_rms = V_max/√2 &nbsp;&nbsp;&nbsp; I_rms = I_max/√2</div></div>
+
+  <div class="igrid" style="margin-top:22px;">
+    <div class="icard"><div class="it">Electron charge</div><div class="iv">1.6×10⁻¹⁹ C</div></div>
+    <div class="icard"><div class="it">ε₀</div><div class="iv">8.9×10⁻¹² F m⁻¹</div></div>
+    <div class="icard"><div class="it">Electron mass</div><div class="iv">9.1×10⁻³¹ kg</div></div>
+    <div class="icard"><div class="it">Mains voltage</div><div class="iv">230 V rms</div></div>
+  </div>
+  <div class="sec-nav"><button class="nbtn nbtn-next" onclick="show('alld')">Next: All Definitions →</button></div>
+</div>
+
+<!-- ══ ALL DEFINITIONS ════════════════════ -->
+<div id="alld" class="section">
+  <h2 class="sec-title">📖 All Definitions — Learn These Off!</h2>
+  <p class="sec-sub">Word-for-word definitions. The key words are everything — miss one and lose marks!</p>
+
+  <h3>Booklet I — Static &amp; Capacitance</h3>
+  <div class="def"><div class="def-label">Coulomb's Law</div><div class="def-text">The force between two point charges is proportional to the product of the charges and inversely proportional to the square of the distance between them.</div></div>
+  <div class="def"><div class="def-label">Electric Field</div><div class="def-text">An electric field is a region of space where an electric charge experiences an electrostatic force.</div></div>
+  <div class="def"><div class="def-label">Electric Field Strength (E)</div><div class="def-text">Electric field strength at a point is the force per unit charge at that point. Unit: N C⁻¹.</div></div>
+  <div class="def"><div class="def-label">Potential Difference</div><div class="def-text">The potential difference between two points is the work done when a charge of 1 coulomb moves from one point to the other.</div></div>
+  <div class="def"><div class="def-label">The Volt</div><div class="def-text">The potential difference between two points is 1 volt if 1 joule of work is done when bringing a charge of 1 coulomb from one point to the other.</div></div>
+  <div class="def"><div class="def-label">Capacitance</div><div class="def-text">The capacitance of a conductor is the ratio of the charge on the conductor to its potential. C = Q/V. Unit: farad (F).</div></div>
+  <div class="def"><div class="def-label">Relative Permittivity (εᵣ)</div><div class="def-text">Relative permittivity is defined as the ratio of the permittivity of a medium to the permittivity of a vacuum. It has no unit.</div></div>
+
+  <h3>Booklet II — Current Electricity</h3>
+  <div class="def"><div class="def-label">Electric Current</div><div class="def-text">Electric current is a measure of the rate of flow of charge. I = Q/t. Unit: ampere (A).</div></div>
+  <div class="def"><div class="def-label">The Coulomb</div><div class="def-text">The coulomb is the amount of charge that passes when a current of one ampere flows for one second.</div></div>
+  <div class="def"><div class="def-label">Resistance</div><div class="def-text">The resistance of a conductor is the ratio of the potential difference across it to the current flowing through it. Unit: ohm (Ω).</div></div>
+  <div class="def"><div class="def-label">Ohm's Law</div><div class="def-text">The current flowing through a conductor is directly proportional to the potential difference across it, assuming constant temperature.</div></div>
+  <div class="def"><div class="def-label">Resistivity</div><div class="def-text">Resistivity is defined as the resistance of a cube of material of side one metre. Unit: Ω m.</div></div>
+  <div class="def"><div class="def-label">Joule's Law</div><div class="def-text">The rate at which heat is produced in a conductor is proportional to the square of the current, provided the resistance is constant. P = I²R.</div></div>
+
+  <h3>Booklet III — Magnetism &amp; Induction</h3>
+  <div class="def"><div class="def-label">Magnetic Field</div><div class="def-text">A magnetic field is any region of space where magnetic forces can be felt.</div></div>
+  <div class="def"><div class="def-label">Magnetic Flux (Φ)</div><div class="def-text">Magnetic flux is defined as the product of magnetic flux density and the area (perpendicular to the flux). Φ = BA. Unit: weber (Wb).</div></div>
+  <div class="def"><div class="def-label">Electromagnetic Induction</div><div class="def-text">Electromagnetic induction occurs when an emf is induced in a coil due to a changing magnetic flux.</div></div>
+  <div class="def"><div class="def-label">Faraday's Law</div><div class="def-text">The size of the induced emf is proportional to the rate of change of magnetic flux.</div></div>
+  <div class="def"><div class="def-label">Lenz's Law</div><div class="def-text">The direction of the induced emf is always such as to oppose the change producing it.</div></div>
+  <div class="def"><div class="def-label">The Ampere</div><div class="def-text">The ampere is the constant current which, flowing in two very long parallel wires one metre apart in a vacuum, produces a force of 2×10⁻⁷ N per metre length on each wire.</div></div>
+  <div class="def"><div class="def-label">Alternating Current</div><div class="def-text">Alternating current is current which continually changes direction.</div></div>
+
+  <div class="tip" style="margin-top:24px;"><strong>🎯 Exam tip:</strong> The words in bold are essential — "rate of flow", "per unit charge", "proportional to the square of", "oppose the change". Missing key phrases costs marks. Learn definitions exactly!</div>
+
+  <div class="sec-nav"><button class="nbtn nbtn-prev" onclick="show('allf')">← Back to Formulas</button><button class="nbtn nbtn-next" onclick="show('home')">🏠 Back to Home</button></div>
+</div>
+
+</div><!-- end main -->
+
+<script>
+// ── DATA ──────────────────────────────────────
+const visited = new Set(['home']);
+const TOTAL = 22;
+
+const Q1 = [
+  {q:"What is the unit of electric charge?",opts:["Volt","Ampere","Coulomb","Farad"],a:2,e:"The unit of charge is the coulomb (C). Symbol Q. Charge on one electron = 1.6×10⁻¹⁹ C."},
+  {q:"Coulomb's Law is an example of an inverse square law because...",opts:["Force depends on charge squared","Force is proportional to 1/d²","Force is proportional to the distance","Force is negative between like charges"],a:1,e:"Coulomb's Law: F ∝ 1/d². If you double the distance, force becomes 4× smaller. Same as gravity!"},
+  {q:"To charge a conductor positively by induction, what is the LAST step?",opts:["Remove the earth connection","Bring the charged rod close","Earth the conductor","Remove the rod"],a:3,e:"The correct order is: (1) bring rod near, (2) earth conductor, (3) remove earth, (4) LAST: remove the rod. The conductor ends up with opposite charge to the rod."},
+  {q:"What must you use (not iron filings) to demonstrate electric field patterns?",opts:["Sand","Semolina powder","Iron filings","Sawdust"],a:1,e:"Semolina powder aligns with electric field lines in castor oil. Iron filings are for magnetic fields — don't confuse them in the exam!"},
+  {q:"What formula gives the energy stored in a capacitor?",opts:["W = CV","W = ½CV²","W = QV","W = ½QV²"],a:1,e:"W = ½CV². This is why a 64μF capacitor charged to 2500V (defibrillator) stores W = ½(64×10⁻⁶)(2500)² = 200 J."},
+  {q:"Capacitance is increased by...",opts:["Increasing the gap between plates","Decreasing the overlap area","Inserting a dielectric (insulator) between plates","Removing the insulator between plates"],a:2,e:"C = εA/d. Inserting a dielectric increases ε → increases C. Bigger overlap area A also increases C. Bigger gap d decreases C."},
+  {q:"What is the direction of electric field lines around a positive charge?",opts:["Into the charge","Out of the charge in all directions","Circling the charge clockwise","Parallel lines from left to right"],a:1,e:"Electric field lines always point AWAY from positive charges and TOWARDS negative charges — just like the force on a positive test charge would be pushed away."},
+  {q:"All static charge on a conductor resides...",opts:["In the centre","Evenly distributed inside","On the outside surface only","At the pointed end only"],a:2,e:"All static charge resides on the OUTSIDE of a conductor. Like charges repel to maximum separation — which is the surface. This is used in Faraday cages and Van de Graaff generators."}
+];
+
+const Q2 = [
+  {q:"Ohm's Law states that current is proportional to voltage, provided...",opts:["The wire is thin","The temperature is constant","The circuit is in parallel","The resistance is very high"],a:1,e:"Ohm's Law: I ∝ V, PROVIDED constant temperature. If the wire heats up (like a filament bulb), resistance changes and Ohm's Law no longer applies."},
+  {q:"What is the effective resistance of a 3Ω and 6Ω resistor in parallel?",opts:["9 Ω","4.5 Ω","2 Ω","1 Ω"],a:2,e:"1/R = 1/3 + 1/6 = 2/6 + 1/6 = 3/6 → R = 6/3 = 2Ω. Parallel resistors always give a resistance LESS than the smallest individual resistor."},
+  {q:"An ammeter must be connected...",opts:["In parallel with the component","Across the battery","In series in the circuit","Across the component being measured"],a:2,e:"An ammeter is connected in SERIES — so ALL the current must flow through it. It has very low resistance so doesn't affect the circuit. A voltmeter is in parallel."},
+  {q:"Joule's Law states that the rate of heat production in a conductor is proportional to...",opts:["The voltage across it","The square of the current","The square of the resistance","The length of the conductor"],a:1,e:"P = I²R — Joule's Law. The key word is 'square of the current'. This means doubling the current quadruples the heat! This is why high current causes dangerous overheating."},
+  {q:"Why are high voltage power lines used to transmit electricity?",opts:["High voltage means more current so more power delivered","High voltage means low current, so less heat wasted in cables","High voltage means faster transmission","High voltage means lower resistance in cables"],a:1,e:"P = I²R. High voltage means lower current (since P=VI). Lower current → much less heat wasted (heat ∝ I²). A tiny reduction in current makes a huge difference!"},
+  {q:"Which colour wire is the LIVE wire in a plug?",opts:["Blue","Green/Yellow","Brown","Red"],a:2,e:"Brown = Bottom Right = Live (carries current in). Blue = Bottom Left = Neutral. Green/Yellow = Earth (top, longest pin). Memory: BRown = Bottom Right."},
+  {q:"Resistivity is defined as...",opts:["The resistance of a wire of length 1m","The resistance of a cube of material of side 1m","The ratio of resistance to length","The ratio of voltage to current per metre"],a:1,e:"Resistivity (ρ): the resistance of a cube of material of side 1 metre. Unit: Ω m. It's a property of the material itself, independent of size/shape."},
+  {q:"A 900W vacuum cleaner runs on 230V. Which fuse should be used?",opts:["1 A","3 A","5 A","13 A"],a:2,e:"I = P/V = 900/230 = 3.9 A. Choose the fuse just above the expected current → 5A fuse. A 3A fuse would blow immediately. A 13A fuse would not protect adequately."}
+];
+
+const Q3 = [
+  {q:"State Faraday's Law of electromagnetic induction.",opts:["The direction of induced emf opposes the change producing it","The induced emf is proportional to the rate of change of magnetic flux","The force on a current equals BIL","The emf equals the number of turns times the flux"],a:1,e:"Faraday's Law: induced emf ∝ rate of change of magnetic flux. emf = N(ΔΦ/Δt). The LENZ's law is the one about direction (opposing)."},
+  {q:"Lenz's Law states that the induced emf...",opts:["Is proportional to the rate of change of flux","Is always in the same direction as the change","Always opposes the change producing it","Is greatest when flux is at a maximum"],a:2,e:"Lenz's Law: the DIRECTION of the induced emf always OPPOSES the change producing it. This is why a magnet dropped through a copper tube falls slowly — the induced current creates a force opposing its fall."},
+  {q:"What does F = BIL mean?",opts:["Force = Magnetic flux × Current × Length","Force = Flux density × Current × conductor Length","Force = Magnetic field × Intensity × Luminosity","Force = B value × Impulse × Length"],a:1,e:"F = BIL: B=magnetic flux density (T), I=current (A), L=length of conductor in field (m). This force is the motor effect — the principle behind all electric motors."},
+  {q:"Fleming's Left Hand Rule links...",opts:["Voltage, current and resistance","Force, field direction and current direction","Magnetic flux, area and density","Turns ratio and voltage ratio"],a:1,e:"Left hand rule: Thumb = Force direction (FBI = F thumb, B first finger, I middle finger). Think 'left-handed FBI agent with hands up'."},
+  {q:"In a transformer, the turns ratio Ns/Np = 20. If Vp = 12V, what is Vs?",opts:["0.6 V","240 V","12 V","120 V"],a:1,e:"Vs/Vp = Ns/Np → Vs = (Ns/Np) × Vp = 20 × 12 = 240V. This is a step-up transformer — secondary has more turns so higher voltage output."},
+  {q:"Why does a magnet fall slowly through a copper pipe?",opts:["Copper is magnetic so it attracts the magnet","The induced current creates a field opposing the motion (Lenz's Law)","The magnet sticks to the copper surface","Gravity is weaker inside copper"],a:1,e:"The falling magnet creates changing flux in the copper, inducing a current (copper is a conductor). This current creates a magnetic field that OPPOSES the fall (Lenz's Law). Plastic pipe = no current = normal speed."},
+  {q:"The rms voltage of an AC supply with peak voltage 325V is approximately...",opts:["325 V","163 V","230 V","460 V"],a:2,e:"V_rms = V_max/√2 = 325/√2 = 325/1.414 ≈ 230V. This is why UK/Irish mains is rated at '230V' — that's the rms (effective) value, not the peak."},
+  {q:"What is the definition of the ampere?",opts:["1 coulomb per second flowing in a wire","Constant current in two parallel wires 1m apart in vacuum producing 2×10⁻⁷ N/m force","The charge that passes when 1V drives 1W","Current that causes 1J of heating per second per ohm"],a:1,e:"The ampere: constant current in two very long parallel wires 1 metre apart in a vacuum, producing a force of 2×10⁻⁷ N per metre length. This is the SI definition based on the force between current-carrying conductors."}
+];
+
+// ── QUIZ BUILDER ──────────────────────────────
+function buildQuiz(questions, cid){
+  const c=document.getElementById(cid);
+  if(!c)return;
+  c.innerHTML='';
+  questions.forEach((q,i)=>{
+    const d=document.createElement('div');
+    d.className='qblock';
+    d.id=`qb-${cid}-${i}`;
+    d.innerHTML=`<div class="qnum">Question ${i+1} of ${questions.length}</div>
+      <div class="qq">${q.q}</div>
+      <div class="qopts">${q.opts.map((o,j)=>`<button class="qopt" onclick="ansQ('${cid}',${i},${j})">${o}</button>`).join('')}</div>
+      <div class="qfb" id="fb-${cid}-${i}">💡 ${q.e}</div>`;
+    c.appendChild(d);
+  });
+}
+
+function ansQ(cid,qi,chosen){
+  const sets={'q1-container':Q1,'q2-container':Q2,'q3-container':Q3};
+  const q=sets[cid][qi];
+  const d=document.getElementById(`qb-${cid}-${qi}`);
+  d.querySelectorAll('.qopt').forEach((b,j)=>{
+    b.disabled=true;
+    if(j===q.a)b.classList.add('correct');
+    else if(j===chosen&&chosen!==q.a)b.classList.add('wrong');
+  });
+  document.getElementById(`fb-${cid}-${qi}`).classList.add('show');
+}
+
+// ── NAVIGATION ────────────────────────────────
+const TITLES={
+  home:'Electricity',
+  's1-1':'Static Electricity','s1-2':'Gold Leaf Electroscope','s1-3':"Coulomb's Law",
+  's1-4':'Electric Fields','s1-5':'Potential Difference','s1-6':'Capacitors',
+  's1-calc':'Calculations I','s1-quiz':'Quiz: Booklet I',
+  's2-1':'Current & Charge','s2-2':'Resistance & Ohm\'s Law','s2-3':'Circuit Rules',
+  's2-4':'Resistivity','s2-5':'Joule\'s Law','s2-6':'Domestic Circuits',
+  's2-calc':'Calculations II','s2-quiz':'Quiz: Booklet II',
+  's3-1':'Magnets','s3-2':'Force on Current','s3-3':'Electromagnetic Induction',
+  's3-4':'Transformers & AC','s3-calc':'Calculations III','s3-quiz':'Quiz: Booklet III',
+  allf:'All Formulas',alld:'All Definitions'
+};
+
+function show(id){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  const t=document.getElementById(id);
+  if(t)t.classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(n=>{
+    if(n.getAttribute('onclick')&&n.getAttribute('onclick').includes(`'${id}'`))n.classList.add('active');
+  });
+  document.getElementById('page-title').textContent=TITLES[id]||'Electricity';
+  visited.add(id);
+  const pct=Math.round((visited.size/TOTAL)*100);
+  document.getElementById('pfill').style.width=pct+'%';
+  document.getElementById('pscore').textContent=visited.size+' / '+TOTAL;
+  window.scrollTo(0,0);
+  closeSidebar();
+}
+
+function toggleSidebar(){
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('overlay').classList.toggle('show');
+}
+function closeSidebar(){
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('overlay').classList.remove('show');
+}
+
+buildQuiz(Q1,'q1-container');
+buildQuiz(Q2,'q2-container');
+buildQuiz(Q3,'q3-container');
+</script>
+<style>
+  .return-home-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: var(--text);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-family: 'Lexend', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+  .return-home-btn:hover {
+    transform: translateY(-5px);
+    background: var(--accent2); /* Turns bright blue on hover */
+    box-shadow: 0 8px 25px rgba(33, 150, 243, 0.4);
+  }
+  @media (max-width: 768px) {
+    .return-home-btn {
+      bottom: 20px;
+      right: 20px;
+      padding: 10px 18px;
+      font-size: 14px;
+    }
+  }
+</style>
+</body>
+</html>
