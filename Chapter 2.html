@@ -1,0 +1,1892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LC Physical Education – Chapters 2B, 2C & 2D Study Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f5f7ff;
+    --surface: #ffffff;
+    --surface2: #eef1ff;
+    --border: #dde2f5;
+    --text: #1a1d2e;
+    --text-muted: #5a5f7a;
+    --accent1: #4f6ef7; /* blue */
+    --accent2: #f7724f; /* orange */
+    --accent3: #4fc97e; /* green */
+    --accent4: #c94fbd; /* purple */
+    --accent5: #f7bc4f; /* yellow */
+    --accent6: #4fc7f7; /* cyan */
+    --radius: 14px;
+    --shadow: 0 4px 20px rgba(79,110,247,0.10);
+    --shadow-lg: 0 8px 40px rgba(79,110,247,0.15);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Lexend', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 17px;
+    line-height: 1.75;
+    min-height: 100vh;
+  }
+
+  /* NAV */
+  #topnav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid var(--border);
+    padding: 0 20px;
+    display: flex; align-items: center; gap: 8px;
+    flex-wrap: wrap;
+    min-height: 56px;
+  }
+  #topnav .logo {
+    font-family: 'Lexend Mega', sans-serif;
+    font-size: 1rem; color: var(--accent1);
+    letter-spacing: -0.5px; margin-right: 8px;
+  }
+  .nav-btn {
+    background: none; border: 2px solid var(--border);
+    color: var(--text-muted); font-family: 'Lexend', sans-serif;
+    font-size: 0.82rem; font-weight: 600; cursor: pointer;
+    border-radius: 20px; padding: 5px 14px;
+    transition: all 0.18s;
+  }
+  .nav-btn:hover, .nav-btn.active {
+    background: var(--accent1); border-color: var(--accent1);
+    color: #fff;
+  }
+  .nav-btn.ch2b.active { background: var(--accent1); border-color: var(--accent1); }
+  .nav-btn.ch2c.active { background: var(--accent2); border-color: var(--accent2); }
+  .nav-btn.ch2d.active { background: var(--accent3); border-color: var(--accent3); }
+
+  /* MAIN LAYOUT */
+  .layout { display: flex; max-width: 1300px; margin: 0 auto; padding: 28px 16px; gap: 24px; }
+
+  /* SIDEBAR */
+  #sidebar {
+    width: 240px; flex-shrink: 0;
+    position: sticky; top: 72px;
+    height: calc(100vh - 90px);
+    overflow-y: auto;
+    background: var(--surface);
+    border-radius: var(--radius);
+    border: 2px solid var(--border);
+    padding: 16px 12px;
+    box-shadow: var(--shadow);
+  }
+  #sidebar::-webkit-scrollbar { width: 4px; }
+  #sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+  .sidebar-section { margin-bottom: 6px; }
+  .sidebar-chap {
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--text-muted);
+    padding: 8px 8px 4px;
+  }
+  .sidebar-link {
+    display: block; padding: 7px 10px; border-radius: 8px;
+    font-size: 0.84rem; color: var(--text-muted); cursor: pointer;
+    text-decoration: none; font-weight: 500;
+    transition: all 0.15s; border: none; background: none;
+    width: 100%; text-align: left;
+  }
+  .sidebar-link:hover { background: var(--surface2); color: var(--text); }
+  .sidebar-link.active { background: var(--accent1); color: #fff; }
+  .sidebar-link.ch2c.active { background: var(--accent2); }
+  .sidebar-link.ch2d.active { background: var(--accent3); }
+  .sidebar-divider { height: 1px; background: var(--border); margin: 8px 0; }
+
+  /* CONTENT */
+  #content { flex: 1; min-width: 0; }
+
+  /* CHAPTER PANELS */
+  .chapter-panel { display: none; }
+  .chapter-panel.active { display: block; }
+
+  /* SECTION CARDS */
+  .section-card {
+    background: var(--surface);
+    border-radius: var(--radius);
+    border: 2px solid var(--border);
+    padding: 28px 32px;
+    margin-bottom: 24px;
+    box-shadow: var(--shadow);
+    scroll-margin-top: 80px;
+  }
+  .section-card h2 {
+    font-family: 'Lexend Mega', sans-serif;
+    font-size: 1.1rem; color: var(--accent1);
+    margin-bottom: 18px; letter-spacing: -0.3px;
+  }
+  .section-card.ch2c h2 { color: var(--accent2); }
+  .section-card.ch2d h2 { color: var(--accent3); }
+
+  /* CHAPTER HEADER */
+  .chapter-header {
+    background: linear-gradient(135deg, var(--accent1) 0%, #7b9fff 100%);
+    border-radius: var(--radius); padding: 32px 36px; margin-bottom: 24px;
+    color: #fff;
+  }
+  .chapter-header.ch2c { background: linear-gradient(135deg, var(--accent2) 0%, #f7a47f 100%); }
+  .chapter-header.ch2d { background: linear-gradient(135deg, var(--accent3) 0%, #7fedb0 100%); }
+  .chapter-header h1 {
+    font-family: 'Lexend Mega', sans-serif;
+    font-size: 1.6rem; letter-spacing: -0.5px; margin-bottom: 6px;
+  }
+  .chapter-header p { opacity: 0.9; font-size: 1rem; font-weight: 400; }
+
+  /* DEF BOXES */
+  .def-box {
+    background: var(--surface2);
+    border-left: 5px solid var(--accent1);
+    border-radius: 0 10px 10px 0;
+    padding: 14px 18px; margin: 14px 0;
+  }
+  .def-box.orange { border-color: var(--accent2); }
+  .def-box.green { border-color: var(--accent3); }
+  .def-box.purple { border-color: var(--accent4); }
+  .def-box.yellow { border-color: var(--accent5); background: #fffbee; }
+  .def-box.cyan { border-color: var(--accent6); }
+  .def-box .def-term {
+    font-weight: 700; font-size: 1rem; color: var(--accent1);
+    display: block; margin-bottom: 4px;
+  }
+  .def-box.orange .def-term { color: var(--accent2); }
+  .def-box.green .def-term { color: var(--accent3); }
+  .def-box.purple .def-term { color: var(--accent4); }
+  .def-box.yellow .def-term { color: #c08000; }
+  .def-box.cyan .def-term { color: #1a99cc; }
+  .def-box .def-text { color: var(--text); font-size: 0.97rem; }
+
+  /* ANALOGY BOX */
+  .analogy-box {
+    background: #fff9e6; border: 2px dashed var(--accent5);
+    border-radius: 10px; padding: 14px 18px; margin: 14px 0;
+    font-size: 0.94rem;
+  }
+  .analogy-box .analogy-label {
+    font-weight: 700; font-size: 0.78rem; text-transform: uppercase;
+    letter-spacing: 0.07em; color: #c08000; margin-bottom: 4px; display: block;
+  }
+
+  /* MEMORY TRICK */
+  .memory-box {
+    background: #f0fff4; border: 2px dashed var(--accent3);
+    border-radius: 10px; padding: 14px 18px; margin: 14px 0;
+    font-size: 0.94rem;
+  }
+  .memory-box .memory-label {
+    font-weight: 700; font-size: 0.78rem; text-transform: uppercase;
+    letter-spacing: 0.07em; color: #1a7a40; margin-bottom: 4px; display: block;
+  }
+
+  /* INFO BOX */
+  .info-box {
+    background: #eef3ff; border-radius: 10px;
+    padding: 14px 18px; margin: 14px 0;
+    font-size: 0.94rem; border: 1.5px solid #c5d0f7;
+  }
+  .info-box .info-label {
+    font-weight: 700; font-size: 0.82rem; color: var(--accent1); margin-bottom: 4px; display: block;
+  }
+
+  /* WARNING BOX */
+  .warn-box {
+    background: #fff3f0; border-radius: 10px;
+    padding: 14px 18px; margin: 14px 0;
+    font-size: 0.94rem; border: 1.5px solid #f7b4a4;
+  }
+  .warn-box .warn-label {
+    font-weight: 700; font-size: 0.82rem; color: var(--accent2); margin-bottom: 4px; display: block;
+  }
+
+  /* GRID CARDS */
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px,1fr)); gap: 14px; margin: 14px 0; }
+  .card {
+    background: var(--surface2); border-radius: 10px;
+    padding: 14px 16px; border: 1.5px solid var(--border);
+  }
+  .card .card-title { font-weight: 700; margin-bottom: 6px; font-size: 0.95rem; color: var(--accent1); }
+  .card.orange .card-title { color: var(--accent2); }
+  .card.green .card-title { color: var(--accent3); }
+  .card.purple .card-title { color: var(--accent4); }
+  .card.yellow .card-title { color: #c08000; }
+  .card.cyan .card-title { color: #1a99cc; }
+  .card p, .card ul { font-size: 0.9rem; color: var(--text-muted); }
+  .card ul { padding-left: 16px; }
+
+  /* TABLE */
+  table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 0.91rem; }
+  th { background: var(--accent1); color: #fff; padding: 10px 14px; text-align: left; font-weight: 600; }
+  .ch2c th { background: var(--accent2); }
+  .ch2d-table th { background: var(--accent3); }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:nth-child(even) td { background: var(--surface2); }
+
+  /* ACCORDION */
+  .accordion { margin: 10px 0; }
+  .acc-header {
+    background: var(--surface2); border: 1.5px solid var(--border);
+    border-radius: 10px; padding: 13px 18px; cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center;
+    font-weight: 600; font-size: 0.95rem;
+    transition: background 0.15s;
+    user-select: none;
+  }
+  .acc-header:hover { background: #e5e9ff; }
+  .acc-header.ch2c { }
+  .acc-header .acc-icon { font-size: 1.1rem; transition: transform 0.2s; }
+  .acc-header.open .acc-icon { transform: rotate(90deg); }
+  .acc-body { display: none; padding: 14px 18px 2px; border: 1.5px solid var(--border); border-top: none; border-radius: 0 0 10px 10px; margin-top: -2px; }
+  .acc-body.open { display: block; }
+
+  /* QUIZ */
+  .quiz-card {
+    background: var(--surface);
+    border: 2px solid var(--border);
+    border-radius: var(--radius); padding: 22px 26px; margin: 16px 0;
+    box-shadow: var(--shadow);
+  }
+  .quiz-q { font-weight: 700; margin-bottom: 14px; font-size: 1rem; }
+  .quiz-options { display: flex; flex-direction: column; gap: 8px; }
+  .quiz-opt {
+    background: var(--surface2); border: 2px solid var(--border);
+    border-radius: 8px; padding: 10px 16px; cursor: pointer;
+    font-size: 0.93rem; transition: all 0.15s; text-align: left;
+    font-family: 'Lexend', sans-serif;
+  }
+  .quiz-opt:hover { border-color: var(--accent1); background: #eef1ff; }
+  .quiz-opt.correct { background: #e8fdf0; border-color: var(--accent3); color: #1a7a40; font-weight: 600; }
+  .quiz-opt.wrong { background: #fff0ed; border-color: var(--accent2); color: #b03010; }
+  .quiz-feedback { margin-top: 12px; font-size: 0.92rem; display: none; }
+  .quiz-feedback.show { display: block; }
+  .quiz-next-btn {
+    margin-top: 12px; background: var(--accent1); color: #fff; border: none;
+    padding: 9px 22px; border-radius: 8px; cursor: pointer; font-family: 'Lexend', sans-serif;
+    font-weight: 600; font-size: 0.9rem; display: none; transition: opacity 0.15s;
+  }
+  .quiz-next-btn:hover { opacity: 0.88; }
+  .quiz-next-btn.show { display: inline-block; }
+  .quiz-score { font-size: 1.1rem; font-weight: 700; color: var(--accent3); margin-top: 10px; }
+
+  /* PROGRESS */
+  .progress-bar { background: var(--border); border-radius: 8px; height: 8px; margin: 8px 0 18px; }
+  .progress-fill { height: 8px; border-radius: 8px; background: var(--accent1); transition: width 0.4s; }
+
+  /* TAGS */
+  .tag {
+    display: inline-block; padding: 2px 10px; border-radius: 20px;
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.04em;
+    margin-right: 4px; margin-bottom: 4px;
+  }
+  .tag-blue { background: #dce6ff; color: var(--accent1); }
+  .tag-orange { background: #ffe8df; color: #c05030; }
+  .tag-green { background: #dcffe9; color: #1a7a40; }
+  .tag-purple { background: #f4dcff; color: #7020a0; }
+
+  /* SECTION TITLE */
+  h3 { font-size: 1.05rem; font-weight: 700; margin: 18px 0 8px; color: var(--text); }
+  h4 { font-size: 0.97rem; font-weight: 700; margin: 14px 0 6px; color: var(--text-muted); }
+  p { margin-bottom: 10px; }
+  ul, ol { padding-left: 22px; margin-bottom: 10px; }
+  li { margin-bottom: 5px; }
+  strong { color: var(--text); }
+
+  /* EXAM TIP */
+  .exam-tip {
+    background: linear-gradient(90deg, #fff3c4, #fff9e8);
+    border-left: 5px solid var(--accent5);
+    border-radius: 0 10px 10px 0;
+    padding: 12px 16px; margin: 12px 0; font-size: 0.92rem;
+  }
+  .exam-tip::before { content: "✏️ Exam Tip: "; font-weight: 700; color: #c08000; }
+
+  /* MOBILE */
+  @media (max-width: 820px) {
+    #sidebar { display: none; }
+    .layout { padding: 16px 10px; }
+    .section-card { padding: 18px 16px; }
+    .chapter-header { padding: 22px 18px; }
+    .chapter-header h1 { font-size: 1.2rem; }
+  }
+
+  /* SMOOTH SCROLL */
+  html { scroll-behavior: smooth; }
+</style>
+</head>
+<body>
+
+<!-- TOP NAV -->
+<nav id="topnav">
+  <span class="logo">🏃 LC PE</span>
+  <button class="nav-btn ch2b active" onclick="showChapter('ch2b')">2B – Principles of Training</button>
+  <button class="nav-btn ch2c" onclick="showChapter('ch2c')">2C – Psychological Prep</button>
+  <button class="nav-btn ch2d" onclick="showChapter('ch2d')">2D – Diet &amp; Nutrition</button>
+</nav>
+
+<div class="layout">
+  <!-- SIDEBAR -->
+  <aside id="sidebar">
+    <!-- 2B links -->
+    <div id="sidebar-ch2b">
+      <div class="sidebar-chap">📘 Chapter 2B</div>
+      <button class="sidebar-link" onclick="scrollTo('s-sport')">SPORT Principles</button>
+      <button class="sidebar-link" onclick="scrollTo('s-fitt')">FITT Principle</button>
+      <button class="sidebar-link" onclick="scrollTo('s-other')">Other Considerations</button>
+      <button class="sidebar-link" onclick="scrollTo('s-methods')">Training Methods</button>
+      <button class="sidebar-link" onclick="scrollTo('s-recovery')">Recovery Strategies</button>
+      <button class="sidebar-link" onclick="scrollTo('s-period')">Periodisation</button>
+      <button class="sidebar-link" onclick="scrollTo('s-2b-quiz')">🧠 Quick Quiz</button>
+    </div>
+    <!-- 2C links -->
+    <div id="sidebar-ch2c" style="display:none">
+      <div class="sidebar-chap">🧠 Chapter 2C</div>
+      <button class="sidebar-link" onclick="scrollTo('s-psych-intro')">Sport Psychology</button>
+      <button class="sidebar-link" onclick="scrollTo('s-confidence')">Confidence & Self-Efficacy</button>
+      <button class="sidebar-link" onclick="scrollTo('s-anxiety')">Anxiety & Arousal</button>
+      <button class="sidebar-link" onclick="scrollTo('s-motivation')">Motivation</button>
+      <button class="sidebar-link" onclick="scrollTo('s-concentration')">Concentration</button>
+      <button class="sidebar-link" onclick="scrollTo('s-feedback')">Feedback</button>
+      <button class="sidebar-link" onclick="scrollTo('s-strategies')">Mental Strategies</button>
+      <button class="sidebar-link" onclick="scrollTo('s-goals')">Goal Setting (SMART)</button>
+      <button class="sidebar-link" onclick="scrollTo('s-2c-quiz')">🧠 Quick Quiz</button>
+    </div>
+    <!-- 2D links -->
+    <div id="sidebar-ch2d" style="display:none">
+      <div class="sidebar-chap">🥗 Chapter 2D</div>
+      <button class="sidebar-link" onclick="scrollTo('s-macros')">Macronutrients</button>
+      <button class="sidebar-link" onclick="scrollTo('s-carbs')">Carbohydrates</button>
+      <button class="sidebar-link" onclick="scrollTo('s-protein')">Protein</button>
+      <button class="sidebar-link" onclick="scrollTo('s-fats')">Fats & Fibre</button>
+      <button class="sidebar-link" onclick="scrollTo('s-micros')">Micronutrients</button>
+      <button class="sidebar-link" onclick="scrollTo('s-timing')">Timing Nutrition</button>
+      <button class="sidebar-link" onclick="scrollTo('s-carbload')">Carb Loading</button>
+      <button class="sidebar-link" onclick="scrollTo('s-hydration')">Hydration</button>
+      <button class="sidebar-link" onclick="scrollTo('s-supplements')">Sports Supplements</button>
+      <button class="sidebar-link" onclick="scrollTo('s-energy')">Energy Systems</button>
+      <button class="sidebar-link" onclick="scrollTo('s-2d-quiz')">🧠 Quick Quiz</button>
+    </div>
+  </aside>
+
+  <!-- CONTENT AREA -->
+  <main id="content">
+
+    <!-- ====== CHAPTER 2B ====== -->
+    <div id="ch2b" class="chapter-panel active">
+      <div class="chapter-header">
+        <h1>📘 Chapter 2B: Principles of Training</h1>
+        <p>Everything you need to know – definitions, explanations, analogies &amp; memory tricks</p>
+      </div>
+
+      <!-- SPORT -->
+      <div class="section-card" id="s-sport">
+        <h2>1. The SPORT Principles</h2>
+        <div class="memory-box">
+          <span class="memory-label">🧠 Memory Trick</span>
+          <strong>S-P-O-R-T</strong> = <strong>S</strong>pecificity · <strong>P</strong>rogression · <strong>O</strong>verload · <strong>R</strong>eversibility · <strong>T</strong>edium<br>
+          Think: "You train SPORT to get better at sport!"
+        </div>
+
+        <div class="def-box">
+          <span class="def-term">Specificity</span>
+          <span class="def-text">Training should be relevant and appropriate to the sport in which the athlete is competing, in order to prepare the athlete for the demands of that sport. Training should progress from general conditioning to specific training for a particular skill.</span>
+        </div>
+        <div class="analogy-box">
+          <span class="analogy-label">💡 Analogy</span>
+          If you want to be a better swimmer, you train in water — not on a bicycle! A rugby player does squats because they mimic the strength needed for tackling, running and jumping in rugby specifically.
+        </div>
+
+        <div class="def-box">
+          <span class="def-term">Progressive Overload</span>
+          <span class="def-text">If an athlete trains slightly harder each session (by overloading the body a little more each time), the body will adapt to the new demands and fitness will improve. It is important NOT to overload too much too quickly as this can lead to injuries.</span>
+        </div>
+        <div class="analogy-box">
+          <span class="analogy-label">💡 Analogy</span>
+          Think of it like levelling up in a video game — each time you beat a level, the next one is slightly harder. If you skip 10 levels at once, you'll lose immediately (get injured!).
+        </div>
+        <div class="info-box">
+          <span class="info-label">📊 Example – Progressive Overload in Squats</span>
+          Week 1: 3×12 reps → Week 2: 3×13 reps → Week 3: 3×14 reps<br>
+          Small increases each week = body adapts safely.
+        </div>
+
+        <div class="def-box green">
+          <span class="def-term">Overload (FITT)</span>
+          <span class="def-text">Overload means pushing the body beyond its current comfort zone so it is forced to adapt. The FITT formula is used to apply overload by adjusting Frequency, Intensity, Time or Type. Only ONE aspect of FITT should be changed at a time.</span>
+        </div>
+
+        <div class="def-box orange">
+          <span class="def-term">Reversibility</span>
+          <span class="def-text">Systems reverse or de-adapt if training stops, is significantly reduced, or if injury prevents training. It is essential to avoid prolonged breaks and to maintain the athlete's motivation. Cardiovascular endurance reverses more quickly than muscular strength and endurance.</span>
+        </div>
+        <div class="analogy-box">
+          <span class="analogy-label">💡 Analogy</span>
+          Think of your fitness like a sandcastle — it takes effort to build, but the tide (inactivity) can wash it away. Cardio is like a small sandcastle, it goes first; muscle strength is the bigger one — it lasts a bit longer!
+        </div>
+
+        <div class="def-box purple">
+          <span class="def-term">Tedium</span>
+          <span class="def-text">Training must be structured to provide sufficient variety for the athlete to avoid tedium (boredom). Planning carefully to avoid sessions becoming overly repetitive will help maintain motivation. However, too much variation could result in an athlete failing to meet fitness goals. Specificity should not be sacrificed to avoid tedium.</span>
+        </div>
+        <div class="memory-box">
+          <span class="memory-label">🧠 Memory Trick</span>
+          "Tedium = Tedious = Boring!" Variety keeps athletes interested and motivated, but don't go so wild that you lose the specific training goal.
+        </div>
+      </div>
+
+      <!-- FITT -->
+      <div class="section-card" id="s-fitt">
+        <h2>2. The FITT Principle</h2>
+        <div class="def-box">
+          <span class="def-term">FITT Principle</span>
+          <span class="def-text">A guideline that can be applied when developing training programs to incrementally improve performance. Each category should be considered when altering any activity or programme. Only ONE aspect should be altered at a time when applying progressive overload.</span>
+        </div>
+        <div class="card-grid">
+          <div class="card">
+            <div class="card-title">F – Frequency</div>
+            <p>How often you train each week.<br><em>E.g. 3 sessions/week → 4 sessions/week</em></p>
+          </div>
+          <div class="card orange">
+            <div class="card-title">I – Intensity</div>
+            <p>How hard you work during training.<br><em>E.g. Increase the weight lifted</em></p>
+          </div>
+          <div class="card green">
+            <div class="card-title">T – Time</div>
+            <p>How long each session lasts.<br><em>E.g. 30 min → 45 min per session</em></p>
+          </div>
+          <div class="card purple">
+            <div class="card-title">T – Type</div>
+            <p>What type of exercise you do.<br><em>E.g. Swap running for cycling</em></p>
+          </div>
+        </div>
+        <div class="exam-tip">When applying FITT to progressive overload, only change ONE variable at a time. The examiner loves asking you to explain HOW you would apply FITT to a specific sport.</div>
+      </div>
+
+      <!-- OTHER CONSIDERATIONS -->
+      <div class="section-card" id="s-other">
+        <h2>3. Other Training Considerations</h2>
+
+        <div class="def-box">
+          <span class="def-term">Individual Difference</span>
+          <span class="def-text">All athletes are different. Training must be related to the athlete's age, gender, injury status and fitness level. Any training that fails to be relevant to the individual will fail to motivate the athlete and will prove unsuccessful in the long term.</span>
+        </div>
+
+        <div class="def-box green">
+          <span class="def-term">Diminishing Returns</span>
+          <span class="def-text">Individuals with low initial fitness levels will show greater relative gains at a faster rate than those with higher initial fitness. Initial gains will taper off or plateau as training progresses. The closer a fitness component gets to its physiological limit, the more training that must be undertaken to provide ever-decreasing improvements in performance.</span>
+        </div>
+        <div class="analogy-box">
+          <span class="analogy-label">💡 Analogy</span>
+          If you've never run before and start training, you'll improve massively in the first few weeks. But an Olympic marathon runner training for another second off their time has to work much, much harder for tiny improvements. It's like filling a bucket — the last drop to top it off takes the same effort as the first!
+        </div>
+
+        <div class="def-box orange">
+          <span class="def-term">Rest</span>
+          <span class="def-text">Rest days are a crucial part of any training plan, in order to allow the body to recover and for gains to be made. A ratio of 3 days training to 1 day of rest is generally considered appropriate. Without sufficient rest, the athlete risks overtraining.</span>
+        </div>
+
+        <div class="def-box purple">
+          <span class="def-term">Overtraining</span>
+          <span class="def-text">This occurs when an athlete's body does not have sufficient time (through rest) to adapt to the training demands, and as a result their fitness actually declines. When an athlete overtrains they are at greater risk of injury or illness. Good sleep patterns and appropriate diet and nutrition are also crucial to allow the athlete to recover appropriately.</span>
+        </div>
+        <div class="warn-box">
+          <span class="warn-label">⚠️ Watch Out!</span>
+          Overtraining doesn't just mean tired — it means fitness GOES DOWN. The body needs rest to adapt and improve. More training is NOT always better!
+        </div>
+      </div>
+
+      <!-- TRAINING METHODS -->
+      <div class="section-card" id="s-methods">
+        <h2>4. Methods of Physical Fitness Training</h2>
+
+        <div class="accordion">
+          <div class="acc-header" onclick="toggleAcc(this)">🔄 Circuit Training <span class="acc-icon">▶</span></div>
+          <div class="acc-body">
+            <div class="def-box">
+              <span class="def-term">Circuit Training</span>
+              <span class="def-text">A method of training involving a series of exercises called stations, completed one after another with a short rest between each. A circuit usually involves 6–10 exercises that work different muscle groups. Circuits usually avoid working the same muscle group at two consecutive stations.</span>
+            </div>
+            <p>Examples: sit-ups, press-ups, squats, lunges, step-ups, dribbling, shooting, passing.</p>
+            <div class="analogy-box">
+              <span class="analogy-label">💡 Analogy</span>
+              Like a carousel — you keep moving from one ride to the next. By the time you come back around, that muscle group has had a rest!
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion">
+          <div class="acc-header" onclick="toggleAcc(this)">🏃 Continuous Training <span class="acc-icon">▶</span></div>
+          <div class="acc-body">
+            <div class="def-box">
+              <span class="def-term">Continuous Training</span>
+              <span class="def-text">Involves working for a sustained period of time without rest while maintaining a steady pace, working in the aerobic zone (between 40% and 85% of HR max) for periods longer than 20 minutes in duration. Generally used to develop cardiovascular endurance or aerobic power.</span>
+            </div>
+            <p>Common examples: cycling, swimming, running, rowing.</p>
+            <div class="memory-box">
+              <span class="memory-label">🧠 Memory Trick</span>
+              "Continuous = non-stop, steady pace." The keyword is <strong>aerobic zone (40–85% HR max)</strong> and <strong>over 20 minutes</strong>.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion">
+          <div class="acc-header" onclick="toggleAcc(this)">⚡ Fartlek Training <span class="acc-icon">▶</span></div>
+          <div class="acc-body">
+            <div class="def-box">
+              <span class="def-term">Fartlek Training</span>
+              <span class="def-text">Involves varying the intensity or speed of activity to improve fitness and endurance. Fartlek is a Swedish word meaning "speed play." Aerobic and anaerobic work can be done in the quantities that suit the performer. Suitable for sports that involve constantly changing levels of intensity such as basketball, rugby, soccer and hurling.</span>
+            </div>
+            <div class="analogy-box">
+              <span class="analogy-label">💡 Analogy</span>
+              Imagine a dog on a walk — it jogs, then sprints after a squirrel, then walks, then trots. That's Fartlek! It mirrors real sport where pace constantly changes.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion">
+          <div class="acc-header" onclick="toggleAcc(this)">⏱️ Interval Training <span class="acc-icon">▶</span></div>
+          <div class="acc-body">
+            <div class="def-box">
+              <span class="def-term">Interval Training</span>
+              <span class="def-text">Involves an athlete alternating between periods of high intensity work and periods of rest. Often used to improve cardiovascular endurance, specifically anaerobic power.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion">
+          <div class="acc-header" onclick="toggleAcc(this)">🔥 HIIT (High Intensity Interval Training) <span class="acc-icon">▶</span></div>
+          <div class="acc-body">
+            <div class="def-box">
+              <span class="def-term">HIIT – High Intensity Interval Training</span>
+              <span class="def-text">Involves alternating between short periods of intense work and periods of active recovery or rest. Used to train for improvements in cardiovascular endurance and anaerobic power.</span>
+            </div>
+            <div class="def-box green">
+              <span class="def-term">Active Recovery</span>
+              <span class="def-text">Involves performing low intensity exercise following strenuous work, which promotes blood flow to the muscles helping them to recover quicker.</span>
+            </div>
+            <div class="analogy-box">
+              <span class="analogy-label">💡 Analogy</span>
+              HIIT vs Interval: Both alternate work and rest — but HIIT is <strong>very high</strong> intensity with <strong>very short</strong> recovery. Think sprint 20 secs, rest 10 secs. Interval is longer work periods with more rest.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion">
+          <div class="acc-header" onclick="toggleAcc(this)">🤸 Stretching <span class="acc-icon">▶</span></div>
+          <div class="acc-body">
+            <div class="def-box">
+              <span class="def-term">Static Stretching</span>
+              <span class="def-text">Focuses on improving the flexibility component of fitness. Involves holding a muscle in a stretch for a defined period of time (10–30 seconds), repeated for a defined number of reps.</span>
+            </div>
+            <div class="def-box green">
+              <span class="def-term">Dynamic Stretching</span>
+              <span class="def-text">Involves active movements where joints are taken through the full range of motion. Stretches mimic the types of movements that athletes are likely to experience in the sport they are about to perform in. Used in warm-ups.</span>
+            </div>
+            <div class="memory-box">
+              <span class="memory-label">🧠 Memory Trick</span>
+              <strong>Static = Still</strong> (hold the stretch) | <strong>Dynamic = Dance</strong> (moving stretches matching the sport)
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion">
+          <div class="acc-header" onclick="toggleAcc(this)">🏋️ Weight Training <span class="acc-icon">▶</span></div>
+          <div class="acc-body">
+            <div class="def-box">
+              <span class="def-term">Weight Training</span>
+              <span class="def-text">Involves the use of weights or resistance to cause adaptations in the muscles.</span>
+            </div>
+
+            <table>
+              <tr><th>Term</th><th>Definition</th></tr>
+              <tr><td><strong>Reps (Repetitions)</strong></td><td>The number of times an athlete repeats an exercise in question.</td></tr>
+              <tr><td><strong>Sets</strong></td><td>The number of cycles of reps that an athlete completes.</td></tr>
+              <tr><td><strong>Rep Max (RM)</strong></td><td>The maximum weight an athlete can lift — e.g. 1 Rep Max (1RM) = max weight for one rep.</td></tr>
+            </table>
+
+            <div class="def-box">
+              <span class="def-term">Free Weights</span>
+              <span class="def-text">Includes dumbbells, barbells, kettle bells and Olympic bars, all of which have to be fully controlled by the athlete. As the athlete fully controls the weight, their muscles must also stabilise it. This has benefit across a broad range of sports and is the preferred training method for most high-level athletes.</span>
+            </div>
+            <div class="def-box orange">
+              <span class="def-term">Machine Weights</span>
+              <span class="def-text">Machines control the angle and direction of the weight being lifted. The machine takes much of the control away, so athletes do not work as hard on stabilising. Often used to introduce novices to weight training and elite athletes in early stages of rehab from injuries.</span>
+            </div>
+            <div class="def-box green">
+              <span class="def-term">Body Weights</span>
+              <span class="def-text">Using the body as its own resistance when performing training exercises. Popular as it requires very little or no equipment. Develops local muscular endurance, core balance and stability skills.</span>
+            </div>
+            <div class="def-box purple">
+              <span class="def-term">Unilateral Exercises</span>
+              <span class="def-text">Single leg or single arm exercises. Examples: bicep curls, tricep extensions, single leg squat, single leg hamstring curls.</span>
+            </div>
+            <div class="def-box cyan">
+              <span class="def-term">Bilateral Exercises</span>
+              <span class="def-text">Movements carried out with both arms or both legs at the same time. Examples: bench press, dead lift, squat, shoulder press.</span>
+            </div>
+            <div class="memory-box">
+              <span class="memory-label">🧠 Memory Trick</span>
+              <strong>Uni</strong>lateral = <strong>one</strong> limb (like a unicycle — one wheel!)<br>
+              <strong>Bi</strong>lateral = <strong>two</strong> limbs (like a bicycle — two wheels!)
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion">
+          <div class="acc-header" onclick="toggleAcc(this)">🎯 Training Beyond the Activity <span class="acc-icon">▶</span></div>
+          <div class="acc-body">
+            <div class="def-box">
+              <span class="def-term">Training Beyond the Activity</span>
+              <span class="def-text">Training which is not specific to the sport itself. E.g. tempo running without a ball in rugby. Coaches may use this when the activity is difficult to replicate in sport-like scenarios or when facilities, space or equipment are unavailable. Sometimes used to help prevent tedium.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RECOVERY -->
+      <div class="section-card" id="s-recovery">
+        <h2>5. Strategies to Support Recovery &amp; Adaptation</h2>
+        <p>It is essential that coaches and athletes employ a range of strategies to support recovery from training and to ensure maximal adaptation can occur.</p>
+
+        <div class="card-grid">
+          <div class="card">
+            <div class="card-title">😴 Sleep</div>
+            <p>Most athletes need 8–10 hours of sleep to allow adequate rest, recovery and ideal physiological environment for adaptation.</p>
+          </div>
+          <div class="card green">
+            <div class="card-title">💤 Napping</div>
+            <p>20–30 minute naps help improve recovery rates and mental focus after a training session.</p>
+          </div>
+          <div class="card orange">
+            <div class="card-title">🧘 Relaxation Techniques</div>
+            <p>Managing stress (e.g. mindfulness) can aid recovery and adaptation by improving sleep and nutrition quality.</p>
+          </div>
+        </div>
+
+        <div class="def-box">
+          <span class="def-term">Cold Water Immersion (Ice Baths)</span>
+          <span class="def-text">A common recovery method after training, matches or races. Cold water causes blood vessels to contract, draining blood and removing lactic acid that built up during activity. When the athlete leaves, blood vessels expand, filling with fresh oxygenated blood. This reduces soreness and recovery time. Typically 5–10 minutes in duration.</span>
+        </div>
+        <div class="analogy-box">
+          <span class="analogy-label">💡 Analogy</span>
+          Think of it like squeezing a sponge — cold water squeezes out the dirty water (lactic acid), then when you let go (warm up), fresh clean water rushes back in!
+        </div>
+
+        <div class="def-box green">
+          <span class="def-term">Compression Garments</span>
+          <span class="def-text">Improve blood circulation, which can aid in recovery by helping to remove lactic acid from the blood and reducing both inflammation and symptoms associated with DOMS (Delayed Onset Muscle Soreness).</span>
+        </div>
+
+        <div class="def-box orange">
+          <span class="def-term">Contrast Bathing</span>
+          <span class="def-text">Alternating between cold water immersion and warm water immersion. This cycle is often repeated a number of times. The purpose is to flush lactic acid and other waste products from the muscles and reduce muscle soreness and inflammation.</span>
+        </div>
+
+        <div class="def-box purple">
+          <span class="def-term">Active Recovery</span>
+          <span class="def-text">Light aerobic exercise that increases blood flow, heats up the muscles and stimulates hormones that aid in recovery, flushing waste material out of muscles following activity. Examples: exercise bike, swimming, yoga.</span>
+        </div>
+
+        <div class="def-box cyan">
+          <span class="def-term">Tapering</span>
+          <span class="def-text">A technique used prior to an event or competition. Involves careful planning of the reduction in training volume and intensity in the days immediately prior to competition. Allows an athlete to alleviate fatigue and maximise recovery so they can perform at their peak. Most common in endurance sports.</span>
+        </div>
+        <div class="analogy-box">
+          <span class="analogy-label">💡 Analogy</span>
+          Tapering is like sharpening a knife before cutting — you stop grinding it (reducing intense training) and let it fine-tune, so it's at its sharpest on competition day.
+        </div>
+
+        <div class="def-box yellow">
+          <span class="def-term">DOMS – Delayed Onset Muscle Soreness</span>
+          <span class="def-text">Muscle soreness and stiffness that typically appears 24–48 hours after exercise. It is caused by microscopic tears in the muscle fibres during intense or unfamiliar exercise.</span>
+        </div>
+      </div>
+
+      <!-- PERIODISATION -->
+      <div class="section-card" id="s-period">
+        <h2>6. Periodisation</h2>
+
+        <div class="def-box">
+          <span class="def-term">Periodisation</span>
+          <span class="def-text">The division of a training plan (usually yearly) into training phases which apply the principles of training. It involves dividing the training year into specific sections (called cycles) for a set purpose.</span>
+        </div>
+
+        <div class="memory-box">
+          <span class="memory-label">🧠 Memory Trick</span>
+          <strong>Macro = Big picture</strong> (whole year) → <strong>Meso = Medium</strong> (weeks-month block) → <strong>Micro = Mini</strong> (week-by-week)<br>
+          Think: MAC address is your whole computer → Meso is a program → Micro is one day's code!
+        </div>
+
+        <table>
+          <tr><th>Cycle</th><th>Definition</th><th>Example</th></tr>
+          <tr>
+            <td><strong>Macrocycle (Big)</strong></td>
+            <td>The full training cycle. Involves a long-term performance goal, usually spread over the course of a year. Could span an entire season or a four-year Olympic build-up.</td>
+            <td>Full GAA football season: preseason → in-season → transition</td>
+          </tr>
+          <tr>
+            <td><strong>Mesocycle (Medium)</strong></td>
+            <td>A number of continuous weeks where the training programme emphasises the same type of physical adaptations. Takes each part of the macrocycle and looks at it with a particular training focus in mind.</td>
+            <td>A 12-week general preparation period for a hurdler focusing on speed endurance and basic technique</td>
+          </tr>
+          <tr>
+            <td><strong>Microcycle (Small)</strong></td>
+            <td>A small number of training sessions with a daily breakdown of the training the performer will do every day. Generally a microcycle will repeat over the course of the mesocycle.</td>
+            <td>One week of training within the preseason mesocycle</td>
+          </tr>
+        </table>
+
+        <div class="exam-tip">You may be asked to design a training programme using periodisation. Know the three cycles and be able to give a relevant example from a named sport.</div>
+      </div>
+
+      <!-- 2B QUIZ -->
+      <div class="section-card" id="s-2b-quiz">
+        <h2>🧠 Chapter 2B Quick Quiz</h2>
+        <div id="quiz-2b"></div>
+      </div>
+    </div>
+
+    <!-- ====== CHAPTER 2C ====== -->
+    <div id="ch2c" class="chapter-panel">
+      <div class="chapter-header ch2c">
+        <h1>🧠 Chapter 2C: Psychological Preparation for Performance</h1>
+        <p>Sport psychology, mental skills, anxiety, motivation and strategies – all explained simply</p>
+      </div>
+
+      <!-- INTRO -->
+      <div class="section-card ch2c" id="s-psych-intro">
+        <h2>1. Sport &amp; Exercise Psychology</h2>
+        <div class="def-box orange">
+          <span class="def-term">Sport and Exercise Psychology</span>
+          <span class="def-text">The branch of psychology concerned with understanding the behaviour, mental processes and well-being of people who are involved in sport and exercise. Sports psychologists help athletes utilise psychology to improve their sports performance and mental well-being through various methods.</span>
+        </div>
+        <div class="def-box orange">
+          <span class="def-term">Psychological Preparedness</span>
+          <span class="def-text">In sport, this involves forming mental functions, processes and personality traits that help to solve problems during training sessions and competitions.</span>
+        </div>
+        <div class="analogy-box">
+          <span class="analogy-label">💡 Analogy</span>
+          Physical preparation is like training your body — psychological preparation is training your MIND. An athlete with a fit mind can outperform a physically superior opponent by staying calm and focused under pressure.
+        </div>
+      </div>
+
+      <!-- CONFIDENCE -->
+      <div class="section-card ch2c" id="s-confidence">
+        <h2>2. Confidence &amp; Self-Efficacy</h2>
+
+        <div class="def-box orange">
+          <span class="def-term">Confidence</span>
+          <span class="def-text">An athlete's belief in their own ability to carry out a specific task, in order to achieve an intended outcome. Confidence can be the main factor that separates a successful and an unsuccessful performance. It can fluctuate over time and vary depending on the situation.</span>
+        </div>
+
+        <div class="def-box orange">
+          <span class="def-term">Self-Efficacy</span>
+          <span class="def-text">A person's belief that they have the capacity and the skills to achieve their goals. While related to confidence, self-efficacy is more specific. It can often be at the heart of what is causing success or failure. (Bandura, 1997)</span>
+        </div>
+
+        <div class="info-box">
+          <span class="info-label">🔍 Confidence vs Self-Efficacy – The Key Difference</span>
+          <strong>Confidence</strong> is a broad, general feeling of belief. You can be confident AND expect to fail!<br>
+          <strong>Self-Efficacy</strong> is specifically believing you CAN do something at a certain level. It's more precise and more predictive of performance.
+        </div>
+        <div class="analogy-box">
+          <span class="analogy-label">💡 Analogy</span>
+          Confidence = "I'm a pretty good athlete." Self-Efficacy = "I KNOW I can kick this penalty from 40 metres." See how much more specific self-efficacy is?
+        </div>
+
+        <h3>Strategies to Improve Confidence</h3>
+        <div class="card-grid">
+          <div class="card orange">
+            <div class="card-title">🎯 Visualisation</div>
+            <p>Athletes mentally rehearse successful performances to build a positive mindset and reinforce confidence before competition.</p>
+          </div>
+          <div class="card orange">
+            <div class="card-title">💬 Positive Self-Talk</div>
+            <p>Using affirmations and constructive language helps athletes overcome self-doubt and maintain focus, boosting belief in their abilities.</p>
+          </div>
+          <div class="card orange">
+            <div class="card-title">💪 Focus on Strengths</div>
+            <p>Regularly acknowledging strengths and past achievements shifts focus from weaknesses, building competence and self-assurance.</p>
+          </div>
+        </div>
+
+        <h3>Bandura's Model of Self-Efficacy</h3>
+        <p>Bandura identified four main sources that influence self-efficacy:</p>
+        <table>
+          <tr><th>Source</th><th>Explanation</th></tr>
+          <tr><td><strong>Mastery Experiences</strong></td><td>Successfully performing a task in the past is the strongest source. "I've done it before, I can do it again."</td></tr>
+          <tr><td><strong>Vicarious Experiences</strong></td><td>Watching someone similar to you succeed — "If they can do it, so can I!"</td></tr>
+          <tr><td><strong>Verbal Persuasion</strong></td><td>Being encouraged by coaches, peers or family — "You can do this!"</td></tr>
+          <tr><td><strong>Physiological States</strong></td><td>How you interpret your body's reactions — e.g. interpreting a fast heartbeat as "I'm ready" rather than "I'm nervous."</td></tr>
+        </table>
+      </div>
+
+      <!-- ANXIETY -->
+      <div class="section-card ch2c" id="s-anxiety">
+        <h2>3. Anxiety &amp; Arousal</h2>
+
+        <div class="def-box orange">
+          <span class="def-term">Anxiety</span>
+          <span class="def-text">A feeling of unease, such as worry or fear, that can be mild or severe. Some performers are 'pumped up' for competition while for others negative thoughts take over, interfering with performance. Negative thought patterns and expectations of failure can bring about a self-fulfilling prophecy.</span>
+        </div>
+
+        <div class="def-box orange">
+          <span class="def-term">Self-Fulfilling Prophecy</span>
+          <span class="def-text">When an athlete believes they will fail, this belief itself causes them to perform poorly — the prediction comes true because of the belief. E.g. "I always miss penalties" → misses the penalty.</span>
+        </div>
+
+        <h3>Types of Anxiety</h3>
+        <div class="card-grid">
+          <div class="card orange">
+            <div class="card-title">State Anxiety</div>
+            <p>The experience of uneasy feelings when confronted with <strong>specific situations</strong>. A temporary condition — it goes away when the athlete judges the threat is no longer real. Like a short-term mood. E.g. noise of a crowd before a big game.</p>
+          </div>
+          <div class="card purple">
+            <div class="card-title">Trait Anxiety</div>
+            <p>Refers to how different people interpret how threatening a situation is. More <strong>long-term</strong> and linked to your <strong>personality</strong>. The threat doesn't go away — it's part of who you are.</p>
+          </div>
+        </div>
+
+        <div class="memory-box">
+          <span class="memory-label">🧠 Memory Trick</span>
+          <strong>State</strong> = Situation-specific (it comes and goes — like a STATE of mind)<br>
+          <strong>Trait</strong> = Part of your personality TRAITS (always there)
+        </div>
+
+        <div class="def-box orange">
+          <span class="def-term">Somatic Anxiety</span>
+          <span class="def-text">The physical expression of stress/anxiety. Includes: sweating, butterflies in the stomach, shaking, increased heart rate.</span>
+        </div>
+        <div class="def-box purple">
+          <span class="def-term">Cognitive Anxiety</span>
+          <span class="def-text">Anxiety experienced in the mind. Includes: worry, nerves, negative thoughts. Considered the most important in determining an athlete's performance as it deals with how they react to high-stress situations.</span>
+        </div>
+
+        <div class="memory-box">
+          <span class="memory-label">🧠 Memory Trick</span>
+          <strong>Somatic = Stomach</strong> (physical body reactions — you literally feel it in your gut!)<br>
+          <strong>Cognitive = Cranium/Brain</strong> (it's all in your head!)
+        </div>
+
+        <div class="def-box cyan">
+          <span class="def-term">Arousal</span>
+          <span class="def-text">A state of 'activation' that varies in any individual, on a continuum between deep sleep and intense excitement. Increased arousal can occur from positive or negative events. Arousal as a result of a negative emotional reaction results in anxiety.</span>
+        </div>
+
+        <div class="def-box yellow">
+          <span class="def-term">SCAT – Sports Competition Anxiety Test</span>
+          <span class="def-text">Developed in 1990 to measure the level of anxiety in sports competitors. Performers respond to a series of statements about how they feel in competitive situations. Answers are analysed using a points system to determine/quantify their level of anxiety.</span>
+        </div>
+
+        <h3>Theories of Arousal and Performance</h3>
+        <div class="accordion">
+          <div class="acc-header" onclick="toggleAcc(this)">📈 Inverted U Theory <span class="acc-icon">▶</span></div>
+          <div class="acc-body">
+            <div class="def-box orange">
+              <span class="def-term">Inverted U Theory</span>
+              <span class="def-text">This theory states that there is an optimal level of arousal which will differ from sport to sport and athlete to athlete. If arousal is too low, performance drops (athlete is bored). If arousal is at an optimal (medium) level, peak performance occurs. If arousal is too high, the athlete may become panicked (erratic decisions), leading to a drop in performance.</span>
+            </div>
+            <div class="analogy-box">
+              <span class="analogy-label">💡 Analogy</span>
+              Imagine a car engine — too little revs and you stall (under-aroused), rev it just right and you drive perfectly, but over-rev the engine and it blows up! Performance follows the shape of an upside-down U (hence "Inverted U").
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion">
+          <div class="acc-header" onclick="toggleAcc(this)">💥 Catastrophe Theory <span class="acc-icon">▶</span></div>
+          <div class="acc-body">
+            <div class="def-box orange">
+              <span class="def-term">Catastrophe Theory</span>
+              <span class="def-text">Increased cognitive anxiety while somatic anxiety remains low will HELP performance. However, when BOTH cognitive and somatic anxiety increase together, performance reduces. Continued high cognitive anxiety where somatic anxiety continues to increase will lead to a catastrophic response — known as choking.</span>
+            </div>
+            <div class="def-box purple">
+              <span class="def-term">Choking</span>
+              <span class="def-text">An extreme decline in performance where an athlete "goes to pieces" in a big event. Occurs when concentration shifts (likely due to significant changes in anxiety levels). The athlete either fails to pay attention to something important OR pays too much attention to factors they wouldn't normally focus on — both impact performance negatively.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MOTIVATION -->
+      <div class="section-card ch2c" id="s-motivation">
+        <h2>4. Motivation</h2>
+        <div class="def-box orange">
+          <span class="def-term">Motivation</span>
+          <span class="def-text">The ability to initiate and persist at a task. It is key to effort and accomplishment in sport. Without it, many of the other mental factors are irrelevant.</span>
+        </div>
+
+        <div class="def-box orange">
+          <span class="def-term">Intrinsic Motivation</span>
+          <span class="def-text">The desire to participate in an activity purely for the fun and enjoyment of it, or the motivation to develop skills due to their value to an activity. Comes from within. The most important and desired form of motivation an athlete can have. Without it, achievement is impossible.</span>
+        </div>
+
+        <div class="def-box purple">
+          <span class="def-term">Extrinsic Motivation</span>
+          <span class="def-text">External motivation that can be tangible or intangible. Should not become more important than inner motivation — otherwise there is a risk of the athlete losing the feeling of being in control of their behaviour.</span>
+        </div>
+
+        <div class="card-grid">
+          <div class="card orange">
+            <div class="card-title">Tangible Extrinsic Motivation</div>
+            <p>Has a physical form. Examples: financial gain, trophies, medals. <strong>Should NOT be the main source of motivation.</strong></p>
+          </div>
+          <div class="card purple">
+            <div class="card-title">Intangible Extrinsic Motivation</div>
+            <p>Something you can't hold or touch. Examples: praise, recognition and gratification from parents, coach or peers. Strong source, particularly for beginners.</p>
+          </div>
+        </div>
+
+        <div class="memory-box">
+          <span class="memory-label">🧠 Memory Trick</span>
+          <strong>Intrinsic = Internal</strong> — it's inside you (pure love of the game!)<br>
+          <strong>Extrinsic = External</strong> — it comes from outside (trophies, praise)<br>
+          <strong>Tangible = Touch</strong> — you can hold it (medal = tangible) | <strong>Intangible = Invisible</strong> (praise you can't hold)
+        </div>
+
+        <div class="def-box yellow">
+          <span class="def-term">Amotivation</span>
+          <span class="def-text">Occurs when a performer lacks motivation entirely. The performer often feels incompetent or not good enough. This can affect mood and behaviour. Amotivated performers are highly likely to quit their activity.</span>
+        </div>
+
+        <h3>Strategies to Enhance Motivation (as a Coach)</h3>
+        <ul>
+          <li>Create a positive training environment</li>
+          <li>Effectively communicate — two-way system where athlete input is valued</li>
+          <li>Focus on enjoyment levels</li>
+          <li>Be positive: coaches' reactions to performance set the tone</li>
+          <li>Goal setting: has a strong impact on motivation</li>
+        </ul>
+      </div>
+
+      <!-- CONCENTRATION -->
+      <div class="section-card ch2c" id="s-concentration">
+        <h2>5. Concentration</h2>
+        <div class="def-box orange">
+          <span class="def-term">Concentration</span>
+          <span class="def-text">The skill of being able to focus the mind exclusively on the task at hand, processing elements that are of use while ignoring others that are not relevant. Example: a free throw in basketball — the athlete focuses on the ball and distance to the basket while ignoring the crowd, opposition and the scoreboard.</span>
+        </div>
+
+        <h3>Strategies to Enhance Concentration</h3>
+        <div class="card-grid">
+          <div class="card orange">
+            <div class="card-title">Focus Attention</div>
+            <p>Pay attention to only the key factors at any given moment. Identify what's relevant and practice focusing exclusively on those things.</p>
+          </div>
+          <div class="card purple">
+            <div class="card-title">Mindfulness Training</div>
+            <p>Practicing mindfulness helps athletes stay present and focused, reducing distractions and enhancing concentration.</p>
+          </div>
+          <div class="card orange">
+            <div class="card-title">Pre-Performance Routines</div>
+            <p>Consistent routines before events prime the mind for focus, creating a mental trigger that signals it's time to concentrate.</p>
+          </div>
+          <div class="card green">
+            <div class="card-title">Simulation Training</div>
+            <p>Training sessions that simulate real competitive environments allow athletes to practice maintaining concentration under pressure.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- FEEDBACK -->
+      <div class="section-card ch2c" id="s-feedback">
+        <h2>6. Feedback</h2>
+        <div class="def-box orange">
+          <span class="def-term">Intrinsic Feedback</span>
+          <span class="def-text">Occurs when an athlete uses their kinaesthetic awareness to evaluate their level of skill execution. Athletes may use a combination of senses (vision, hearing, proprioception/touch) to 'feel' what caused a skill to be performed correctly or incorrectly.</span>
+        </div>
+        <div class="def-box purple">
+          <span class="def-term">Extrinsic Feedback</span>
+          <span class="def-text">Feedback given to an athlete from an outside source (coach, teacher, other athletes) following a performance or skill execution. Split into two categories: Knowledge of Results and Knowledge of Performance.</span>
+        </div>
+
+        <table>
+          <tr><th class="ch2c">Type</th><th class="ch2c">Definition</th><th class="ch2c">Focus</th></tr>
+          <tr>
+            <td><strong>Knowledge of Results (KR)</strong></td>
+            <td>Feedback based on the outcome of the performance. Successful = replicate technique; unsuccessful = breakdown movement to identify inaccuracies.</td>
+            <td>The end RESULT (did it work?)</td>
+          </tr>
+          <tr>
+            <td><strong>Knowledge of Performance (KP)</strong></td>
+            <td>Feedback based on the quality of the technique of the skill. Focuses on skill execution and movement patterns. Very beneficial for those in the associative stage of skill acquisition.</td>
+            <td>The TECHNIQUE (how it was done)</td>
+          </tr>
+        </table>
+
+        <div class="memory-box">
+          <span class="memory-label">🧠 Memory Trick</span>
+          <strong>KR = Results</strong> — did the ball go in? Did you win?<br>
+          <strong>KP = Performance</strong> — was your technique right? How did it look?
+        </div>
+
+        <div class="def-box cyan">
+          <span class="def-term">Kinaesthetic Awareness</span>
+          <span class="def-text">The ability to sense the position and movement of your own body parts during activity, without needing to look. Also known as proprioception. This is what allows an athlete to "feel" if a movement was correct.</span>
+        </div>
+      </div>
+
+      <!-- STRATEGIES -->
+      <div class="section-card ch2c" id="s-strategies">
+        <h2>7. Strategies to Improve Mental Preparation</h2>
+
+        <div class="accordion">
+          <div class="acc-header" onclick="toggleAcc(this)">🧩 Becoming Aware of Thinking <span class="acc-icon">▶</span></div>
+          <div class="acc-body">
+            <div class="def-box orange">
+              <span class="def-term">Becoming Aware of Thinking</span>
+              <span class="def-text">Understanding your own thought patterns. Being aware of thoughts that increase perception of 'threats' (e.g. crowd noise). This awareness helps athletes cope with stress and improve performance levels.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion">
+          <div class="acc-header" onclick="toggleAcc(this)">🎭 Pre-Performance Routines <span class="acc-icon">▶</span></div>
+          <div class="acc-body">
+            <div class="def-box orange">
+              <span class="def-term">Pre-Performance Routines</span>
+              <span class="def-text">The thoughts or actions an athlete takes prior to an event or closed skill. They develop a mental skill set for execution, focus on task-relevant information improving concentration, help the athlete be present, and increase perceptions of control — thereby reducing anxiety.</span>
+            </div>
+            <div class="analogy-box">
+              <span class="analogy-label">💡 Analogy</span>
+              Think of Jonny Wilkinson's pre-kick routine in rugby — feet together, hands in prayer position, visualise the kick. The routine is a "mental switch" that puts the brain into performance mode.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion">
+          <div class="acc-header" onclick="toggleAcc(this)">🏟️ Simulation Training <span class="acc-icon">▶</span></div>
+          <div class="acc-body">
+            <div class="def-box orange">
+              <span class="def-term">Simulation Training</span>
+              <span class="def-text">Practising pressure in training by generating noise and distractions, simulating match conditions, simulating weather and pitch conditions, and practising precision skills when tired (e.g. free-taking).</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion">
+          <div class="acc-header" onclick="toggleAcc(this)">🔍 Problem Solving <span class="acc-icon">▶</span></div>
+          <div class="acc-body">
+            <div class="def-box orange">
+              <span class="def-term">Problem Solving</span>
+              <span class="def-text">Thinking through 'what ifs' and talking through various situations that could arise with the coach. Helps with concentration and confidence by preparing athletes mentally for unexpected scenarios.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion">
+          <div class="acc-header" onclick="toggleAcc(this)">🌟 Visualisation / Imagery <span class="acc-icon">▶</span></div>
+          <div class="acc-body">
+            <div class="def-box orange">
+              <span class="def-term">Visualisation / Imagery</span>
+              <span class="def-text">Imagining the performance. Visualising success — picturing the ball hitting the back of the net, or mentally rehearsing executing the skill (e.g. a gymnast mentally rehearsing a somersault). Builds confidence and prepares the brain for execution.</span>
+            </div>
+            <div class="analogy-box">
+              <span class="analogy-label">💡 Analogy</span>
+              Your brain can't fully tell the difference between vividly imagining something and actually doing it. Athletes who visualise are essentially giving their nervous system a practice run for free!
+            </div>
+          </div>
+        </div>
+
+        <div class="def-box green">
+          <span class="def-term">Perspective</span>
+          <span class="def-text">Finding a balance between sport and life. Helps manage anxiety and perceived threats. Remembering that sport is not the most important thing in the world can reduce pressure and improve performance.</span>
+        </div>
+      </div>
+
+      <!-- GOAL SETTING -->
+      <div class="section-card ch2c" id="s-goals">
+        <h2>8. Goal Setting &amp; SMART Goals</h2>
+
+        <p>Goal setting is one of the most effective tools to help athletes prepare for performance. Sometimes goals can be too vague or unachievable, causing demotivation. Setting <strong>SMART goals</strong> makes them more realistic and achievable.</p>
+
+        <table>
+          <tr><th class="ch2c">Letter</th><th class="ch2c">Meaning</th><th class="ch2c">Example</th></tr>
+          <tr><td><strong>S</strong></td><td>Specific — clear and well-defined</td><td>"Improve my 100m sprint time" not "get faster"</td></tr>
+          <tr><td><strong>M</strong></td><td>Measurable — you can track progress</td><td>"By 0.5 seconds"</td></tr>
+          <tr><td><strong>A</strong></td><td>Achievable — realistic and possible</td><td>Based on current ability and training time available</td></tr>
+          <tr><td><strong>R</strong></td><td>Relevant — matters to the athlete's sport</td><td>Relevant to upcoming competition</td></tr>
+          <tr><td><strong>T</strong></td><td>Time-bound — has a deadline</td><td>"By the end of the preseason (8 weeks)"</td></tr>
+        </table>
+
+        <h3>Three Types of Goals</h3>
+        <div class="card-grid">
+          <div class="card orange">
+            <div class="card-title">Outcome Goals</div>
+            <p>Specific results in competition.<br><em>Example: Win the Olympics, win the county final.</em></p>
+          </div>
+          <div class="card purple">
+            <div class="card-title">Performance Goals</div>
+            <p>Improvements over a period of time (comparing against yourself).<br><em>Example: Run a faster 100m than last month.</em></p>
+          </div>
+          <div class="card green">
+            <div class="card-title">Process Goals</div>
+            <p>Deal with technique and skill levels to help achieve performance goals.<br><em>Example: Stay lower in the first 20m of a sprint.</em></p>
+          </div>
+        </div>
+
+        <div class="analogy-box">
+          <span class="analogy-label">💡 Analogy</span>
+          Think of it like a staircase: <strong>Process goals</strong> are each step (technique improvements), <strong>Performance goals</strong> are the landing (measurable improvements), and <strong>Outcome goals</strong> are the top floor (winning the competition). You need to climb the steps to reach the top!
+        </div>
+
+        <div class="exam-tip">A very common exam question: Set a SMART goal for a named athlete. Make sure to include ALL five elements (S, M, A, R, T) and link them specifically to the sport mentioned.</div>
+      </div>
+
+      <!-- 2C QUIZ -->
+      <div class="section-card ch2c" id="s-2c-quiz">
+        <h2>🧠 Chapter 2C Quick Quiz</h2>
+        <div id="quiz-2c"></div>
+      </div>
+    </div>
+
+    <!-- ====== CHAPTER 2D ====== -->
+    <div id="ch2d" class="chapter-panel">
+      <div class="chapter-header ch2d">
+        <h1>🥗 Chapter 2D: Diet &amp; Nutrition</h1>
+        <p>Macros, micros, hydration, energy systems and sports supplements – your complete guide</p>
+      </div>
+
+      <!-- MACROS -->
+      <div class="section-card ch2d" id="s-macros">
+        <h2>1. Macronutrients (Macros)</h2>
+        <div class="def-box green">
+          <span class="def-term">Nutrients</span>
+          <span class="def-text">Substances that an organism needs to stay alive and healthy.</span>
+        </div>
+        <div class="def-box green">
+          <span class="def-term">Macronutrients</span>
+          <span class="def-text">Fat, protein and carbohydrate. These are the nutrients we need in LARGER quantities that provide us with energy. Most food contains all three macronutrients — the difference is in how they are balanced.</span>
+        </div>
+        <div class="analogy-box">
+          <span class="analogy-label">💡 Analogy</span>
+          Your body is like a car. Macronutrients are the fuel — carbs are the petrol (quick energy), fats are the diesel reserve (slow burn, long distance), and protein is the engine parts (building and repairing the car itself).
+        </div>
+      </div>
+
+      <!-- CARBOHYDRATES -->
+      <div class="section-card ch2d" id="s-carbs">
+        <h2>2. Carbohydrates</h2>
+        <div class="def-box green">
+          <span class="def-term">Carbohydrates</span>
+          <span class="def-text">The sugars, starches and fibres found in fruits, grains, vegetables and dairy products. They are the main source of energy for the body. Carbs contain glycogen, which can be broken down into smaller glucose molecules. Glycogen is stored in the liver and muscles (max 500g) and distributed around the body as glucose via the bloodstream.</span>
+        </div>
+        <div class="def-box green">
+          <span class="def-term">Glycogen</span>
+          <span class="def-text">The stored form of carbohydrate in the liver and muscles. It can be broken down into glucose and used as energy during exercise. The liver and muscles can store a maximum of approximately 500g of glycogen.</span>
+        </div>
+        <div class="def-box green">
+          <span class="def-term">Glucose</span>
+          <span class="def-text">The simple sugar that glycogen is broken down into. It is distributed via the bloodstream to cells where it is used to produce energy (ATP).</span>
+        </div>
+
+        <h3>Complex vs Simple Carbs</h3>
+        <table class="ch2d-table">
+          <tr><th>Type</th><th>Structure</th><th>Energy Release</th><th>Examples</th><th>Notes</th></tr>
+          <tr>
+            <td><strong>Complex Carbs</strong></td>
+            <td>Long chains of sugar</td>
+            <td>Slow, gradual release</td>
+            <td>Whole grains, beans, legumes, starchy vegetables</td>
+            <td>Contain fibre, vitamins and minerals. Better for sustained energy.</td>
+          </tr>
+          <tr>
+            <td><strong>Simple Carbs</strong></td>
+            <td>Short chains of sugar</td>
+            <td>Quick energy release</td>
+            <td>Chocolate, fruit juice, white bread</td>
+            <td>Higher in calories, full of refined sugars, low in fibre.</td>
+          </tr>
+        </table>
+
+        <div class="memory-box">
+          <span class="memory-label">🧠 Memory Trick</span>
+          <strong>Complex = Complex structure = takes longer to break down = slow energy</strong><br>
+          <strong>Simple = Simple structure = breaks down fast = quick energy burst</strong><br>
+          Think: simple carbs are like cheap fireworks — big flash but gone quickly. Complex carbs are like a log fire — steady, long-lasting heat.
+        </div>
+
+        <div class="def-box cyan">
+          <span class="def-term">Glycaemic Index (GI)</span>
+          <span class="def-text">A ranking system of foods that contain carbohydrates, showing how quickly each food affects blood glucose (sugar) levels when that food is eaten on its own. High GI foods raise blood sugar quickly (simple carbs); low GI foods raise it slowly (complex carbs).</span>
+        </div>
+      </div>
+
+      <!-- PROTEIN -->
+      <div class="section-card ch2d" id="s-protein">
+        <h2>3. Protein</h2>
+        <div class="def-box green">
+          <span class="def-term">Protein</span>
+          <span class="def-text">A nutrient that helps build and repair muscle and other body tissues. Also plays a key role in hormone production and immune function.</span>
+        </div>
+        <div class="def-box green">
+          <span class="def-term">Amino Acids</span>
+          <span class="def-text">The building blocks of proteins. The body cannot produce essential amino acids and they must come from the diet.</span>
+        </div>
+
+        <h3>Functions of Protein</h3>
+        <ul>
+          <li>Growth and repair of tissues and cells</li>
+          <li>Making enzymes, antibodies and hormones (e.g. testosterone)</li>
+          <li>Making haemoglobin (transports oxygen in the blood)</li>
+          <li>Producing keratin and collagen for healthy skin, hair and nails</li>
+        </ul>
+
+        <h3>Good Sources of Protein</h3>
+        <div class="info-box">
+          <span class="info-label">🍗 Sources</span>
+          Lean cuts of chicken, beef, lamb, pork | Fish | Eggs and dairy products | Nuts and seeds | Legumes and beans (lentils, chickpeas) | Plant sources: soy, tofu, quinoa
+        </div>
+
+        <div class="analogy-box">
+          <span class="analogy-label">💡 Analogy</span>
+          Protein is like the bricks and cement of your body. After hard training (like a demolition site), you need protein (new bricks) to rebuild the muscles bigger and stronger!
+        </div>
+
+        <div class="info-box">
+          <span class="info-label">ℹ️ Important Note</span>
+          All evidence suggests that adequate protein requirements can be met by following a healthy whole foods diet, which will also contain other essential nutrients — supplements are not necessary for most athletes.
+        </div>
+      </div>
+
+      <!-- FATS & FIBRE -->
+      <div class="section-card ch2d" id="s-fats">
+        <h2>4. Fats &amp; Fibre</h2>
+        <div class="def-box green">
+          <span class="def-term">Fats (Lipids)</span>
+          <span class="def-text">Macronutrients that provide energy and help with the absorption of vitamins — essential for the body. Fats contain the most calories per 100g of all food groups. Stored throughout the body, helping to protect organs and insulate the body. Also acts as a store for some vitamins and minerals and helps produce important hormones.</span>
+        </div>
+
+        <table class="ch2d-table">
+          <tr><th>Type</th><th>Description</th><th>Sources</th></tr>
+          <tr>
+            <td><strong>Unsaturated Fats (Good)</strong></td>
+            <td>Healthier fats that support body functions. Athletes should aim to get most dietary fat from these.</td>
+            <td>Eggs, nuts, seeds, vegetable oils, avocado, oily fish</td>
+          </tr>
+          <tr>
+            <td><strong>Saturated Fats (Bad)</strong></td>
+            <td>Less healthy fats. Excess consumption increases risk of cardiovascular disease. Should be limited.</td>
+            <td>Fatty meat, milk, biscuits, cakes, butter, dairy products</td>
+          </tr>
+        </table>
+
+        <div class="warn-box">
+          <span class="warn-label">⚠️ Important!</span>
+          Excess glycogen or fat consumption can lead to increased fat stores, increasing the risk of cardiovascular disease. Even excess consumption of good fats has negative effects.
+        </div>
+
+        <div class="def-box green">
+          <span class="def-term">Fibre</span>
+          <span class="def-text">A type of carbohydrate that cannot be broken down in the small intestine and so reaches the large intestine (colon). Essential for healthy bowel function. It: helps the body absorb vitamins and remove waste, creates a feeling of fullness. Sources: fresh fruit and vegetables, wheat, bran and wholemeal foods.</span>
+        </div>
+      </div>
+
+      <!-- MICRONUTRIENTS -->
+      <div class="section-card ch2d" id="s-micros">
+        <h2>5. Micronutrients (Micros)</h2>
+        <div class="def-box green">
+          <span class="def-term">Micronutrients</span>
+          <span class="def-text">Vitamins and minerals which are vital to healthy development, disease prevention and wellbeing. Consumed in very small amounts. Examples: iron, vitamins A–K, zinc, folate, iodine. With the exception of vitamin D, micronutrients are not produced in the body and must come from the diet.</span>
+        </div>
+
+        <div class="memory-box">
+          <span class="memory-label">🧠 Memory Trick</span>
+          <strong>Macro = Major quantities</strong> (big amounts needed — protein, carbs, fats)<br>
+          <strong>Micro = Minor quantities</strong> (tiny amounts needed — vitamins, minerals)<br>
+          Think: a macro is a BIG camera lens; a micro is a microscope (tiny!)
+        </div>
+
+        <h3>Vitamins</h3>
+        <div class="def-box green">
+          <span class="def-term">Vitamins</span>
+          <span class="def-text">Regulate body functions and blood production. Broken into two subgroups based on how they are stored in the body.</span>
+        </div>
+        <table class="ch2d-table">
+          <tr><th>Type</th><th>Definition</th><th>Examples</th></tr>
+          <tr>
+            <td><strong>Water-Soluble Vitamins</strong></td>
+            <td>Cannot be stored in the body and must be replenished every day.</td>
+            <td>Vitamin C, B vitamins (including biotin and folic acid). B vitamins essential for healthy metabolism.</td>
+          </tr>
+          <tr>
+            <td><strong>Fat-Soluble Vitamins</strong></td>
+            <td>Stored in fatty tissue in the body. The body can use these as needed.</td>
+            <td>Vitamins A, D, E, K and beta carotene.</td>
+          </tr>
+        </table>
+
+        <div class="warn-box">
+          <span class="warn-label">⚠️ Note</span>
+          Processing foods gives them a longer shelf life but can strip foods of their vitamins and minerals. Processed foods provide plenty of calories without the micronutrient content.
+        </div>
+      </div>
+
+      <!-- TIMING NUTRITION -->
+      <div class="section-card ch2d" id="s-timing">
+        <h2>6. Timing Nutrition (Before, During &amp; After)</h2>
+
+        <div class="accordion">
+          <div class="acc-header" onclick="toggleAcc(this)">🍝 Before Exercise <span class="acc-icon">▶</span></div>
+          <div class="acc-body">
+            <div class="info-box">
+              <span class="info-label">🎯 Goal: Fuel muscle and liver glycogen, maintain hydration, prevent hunger</span>
+              <ul>
+                <li><strong>2–3 hours before:</strong> Pre-exercise meal — pasta with chicken, rice and chicken with spinach, porridge with low-fat milk and fruit</li>
+                <li><strong>30–60 mins before:</strong> Pre-event snack — banana, small smoothie</li>
+                <li>Stay hydrated throughout</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion">
+          <div class="acc-header" onclick="toggleAcc(this)">🏃 During Exercise <span class="acc-icon">▶</span></div>
+          <div class="acc-body">
+            <div class="info-box">
+              <span class="info-label">🎯 For events over 60 minutes</span>
+              <ul>
+                <li>Events under 60 minutes: water is usually sufficient</li>
+                <li>Events over 60 minutes: water/carbs needed as glycogen stores can be depleted</li>
+                <li>Consuming carbs (isotonic drinks, bananas) during exercise CAN enhance performance for endurance/high-intensity sports over 60 minutes</li>
+                <li>Muscle glycogen can be <strong>completely depleted</strong> after 90–120 minutes of intense exercise (e.g. marathon running)</li>
+                <li>Sip small amounts of fluids — dehydration may have already occurred if you're thirsty</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion">
+          <div class="acc-header" onclick="toggleAcc(this)">🍌 After Exercise <span class="acc-icon">▶</span></div>
+          <div class="acc-body">
+            <div class="info-box">
+              <span class="info-label">🎯 Goal: Restore glycogen, repair muscles, rehydrate</span>
+              <ul>
+                <li>Glycogen stores will be lower and need to be replaced, especially before upcoming sessions</li>
+                <li><strong>Post-exercise meal:</strong> starchy whole grain foods + lean protein, consumed ASAP to restore glycogen and repair muscles</li>
+                <li><strong>30–60 min after (if no meal available):</strong> banana, chocolate milk</li>
+                <li>Include fruit and veg for micronutrients</li>
+                <li>Plenty of fluids to restore hydration levels after sweating</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARB LOADING -->
+      <div class="section-card ch2d" id="s-carbload">
+        <h2>7. Carbohydrate Loading</h2>
+        <div class="def-box green">
+          <span class="def-term">Carbohydrate Loading</span>
+          <span class="def-text">A nutrition strategy that attempts to elevate the body's glycogen stores in the final few days prior to competing in an endurance event (2+ hours in duration).</span>
+        </div>
+
+        <table class="ch2d-table">
+          <tr><th>Time</th><th>Strategy</th></tr>
+          <tr>
+            <td><strong>2–3 days before competition</strong></td>
+            <td>Boost intensity and frequency of training; increased consumption of complex, whole food carbohydrate (8–12g per kg of body weight)</td>
+          </tr>
+          <tr>
+            <td><strong>1–2 days before competition</strong></td>
+            <td>Training is tapered off; fat and protein consumption is replaced by additional carbohydrate consumption</td>
+          </tr>
+          <tr>
+            <td><strong>Competition day</strong></td>
+            <td>Access to quick-absorbing, moderately complex carbs in fluid or gel form. 30g/hr for 1 hr → 60g/hr for 2 hrs → 90g/hr for 3 hrs</td>
+          </tr>
+        </table>
+
+        <div class="analogy-box">
+          <span class="analogy-label">💡 Analogy</span>
+          Carb loading is like filling your car's petrol tank to the brim the night before a long road trip — you want maximum fuel available from the start so you don't have to stop as often!
+        </div>
+        <div class="exam-tip">Carb loading is ONLY for endurance events of 2+ hours. Don't say a sprinter should carb load — that would be wrong!</div>
+      </div>
+
+      <!-- HYDRATION -->
+      <div class="section-card ch2d" id="s-hydration">
+        <h2>8. Hydration</h2>
+
+        <div class="def-box green">
+          <span class="def-term">Good Hydration (Euhydration)</span>
+          <span class="def-text">Getting the right amount of water before, during and after exercise. One of the most important aspects of balanced nutrition. Drinking enough liquids to maintain fluid levels helps ensure all bodily functions can take place as normal.</span>
+        </div>
+
+        <div class="def-box orange">
+          <span class="def-term">Dehydration</span>
+          <span class="def-text">Occurs when fluid loss is not replaced by fluid intake. Equals water loss in excess of 2–3% of body mass. Can cause headaches, fatigue and constipation. Even low levels of dehydration impair performance. The human body is roughly 75% water.</span>
+        </div>
+
+        <h3>Effects of Dehydration on Performance</h3>
+        <div class="warn-box">
+          <span class="warn-label">⚠️ Dehydration Causes...</span>
+          <ul>
+            <li>Tiredness / fatigue</li>
+            <li>Reduced muscular strength</li>
+            <li>Reduced aerobic capacity</li>
+            <li>Reduced cognitive functioning / concentration (brain is largely water)</li>
+            <li>Increased heart rate (blood thickens, heart works harder)</li>
+            <li>Increased body temperature</li>
+            <li>Makes it harder for fat to get into muscles to be used as fuel, so muscles burn limited glycogen faster</li>
+          </ul>
+        </div>
+
+        <div class="analogy-box">
+          <span class="analogy-label">💡 Analogy</span>
+          Dehydration is like trying to run a car engine with low coolant — it overheats, slows down, and eventually breaks. Your body does the same!
+        </div>
+
+        <h3>Hydration Guidelines</h3>
+        <table class="ch2d-table">
+          <tr><th>Duration</th><th>Recommended Fluid</th></tr>
+          <tr><td><strong>Up to 1 hour</strong></td><td>Water is sufficient (400–800ml per hour depending on conditions)</td></tr>
+          <tr><td><strong>Over 1 hour</strong></td><td>Isotonic sports drinks are useful to replace electrolytes and provide carbohydrates</td></tr>
+        </table>
+
+        <div class="def-box cyan">
+          <span class="def-term">Diuretic</span>
+          <span class="def-text">A substance that causes the body to get rid of water (increases urine production). Tea and coffee contain caffeine, which is a diuretic — athletes should drink these sparingly.</span>
+        </div>
+
+        <h3>Types of Sports Drinks</h3>
+        <div class="card-grid">
+          <div class="card">
+            <div class="card-title">💧 Hypotonic</div>
+            <p>Lower concentration of dissolved particles than blood. Absorbed quickly. Best for rapid rehydration when carbohydrate is not needed. E.g. after short, intense exercise.</p>
+          </div>
+          <div class="card green">
+            <div class="card-title">⚡ Isotonic</div>
+            <p>Similar concentration to blood. Absorbed at a moderate rate. Replaces fluids AND provides carbohydrates. Most popular sports drink. E.g. Lucozade Sport.</p>
+          </div>
+          <div class="card orange">
+            <div class="card-title">🍫 Hypertonic</div>
+            <p>Higher concentration than blood. Slower absorption. Used to supplement carbohydrate intake for long endurance events. Can cause stomach issues if used during exercise.</p>
+          </div>
+        </div>
+
+        <div class="memory-box">
+          <span class="memory-label">🧠 Memory Trick</span>
+          <strong>Hypo = Below</strong> (below blood concentration — thinner/weaker = fastest absorption)<br>
+          <strong>Iso = Same/Equal</strong> (same as blood — balanced)<br>
+          <strong>Hyper = Above</strong> (above blood concentration — thicker/stronger = slowest absorption)<br>
+          Think: "Hyper kids are too intense!" = Hypertonic is the most concentrated!
+        </div>
+
+        <div class="def-box yellow">
+          <span class="def-term">Electrolytes</span>
+          <span class="def-text">Minerals (such as sodium, potassium, calcium, magnesium) lost through sweat that help regulate fluid balance, nerve function and muscle contractions. Need to be replaced during/after prolonged exercise.</span>
+        </div>
+
+        <div class="info-box">
+          <span class="info-label">🥛 Milk as a Recovery Drink</span>
+          Skimmed milk is an excellent recovery drink — it contains natural vitamins and minerals (sodium, calcium, potassium), is high in carbohydrates (restores glycogen) and high in protein (repairs muscles).
+        </div>
+
+        <div class="warn-box">
+          <span class="warn-label">⚠️ Energy Drinks – NOT Sports Drinks!</span>
+          Energy drinks (e.g. Red Bull) are NOT the same as sports drinks. They are: high in caffeine, high in sugars, high in calories, not designed to replace electrolytes, and if consumed in excess can lead to health problems.
+        </div>
+      </div>
+
+      <!-- SUPPLEMENTS -->
+      <div class="section-card ch2d" id="s-supplements">
+        <h2>9. Sports Supplements</h2>
+        <div class="def-box green">
+          <span class="def-term">Dietary Supplement</span>
+          <span class="def-text">A product that is added to the diet to make up for a deficiency in the diet.</span>
+        </div>
+
+        <div class="warn-box">
+          <span class="warn-label">⚠️ Regulation Warning</span>
+          Sports supplements are NOT regulated like medicines. There is a possibility of contamination with banned substances. Benefits are often exaggerated. The sale of nutritional substances is largely unregulated. Sport Ireland and WADA do NOT endorse any supplements.
+        </div>
+
+        <div class="def-box orange">
+          <span class="def-term">WADA – World Anti-Doping Agency</span>
+          <span class="def-text">Develops the list of prohibited substances in sport. The list is not definitive. The ultimate responsibility lies with THE ATHLETE — it is the athlete's responsibility to ensure nothing they take contains a banned substance.</span>
+        </div>
+
+        <h3>Common Sports Supplements</h3>
+        <table class="ch2d-table">
+          <tr><th>Supplement</th><th>Role / Benefit</th><th>Side Effects / Notes</th><th>Best For</th></tr>
+          <tr>
+            <td><strong>Creatine</strong></td>
+            <td>Helps resynthesise ATP in the ATP-PC system, increasing power and strength output. Can increase short-burst performance.</td>
+            <td>Possible water retention, stomach upset. Some risk of contamination. Not recommended for teenagers.</td>
+            <td>Strength/power sports: weightlifting, sprinting, rugby</td>
+          </tr>
+          <tr>
+            <td><strong>Whey Protein</strong></td>
+            <td>Provides amino acids to support muscle growth and repair after exercise. Convenient source of protein.</td>
+            <td>Unnecessary if diet is adequate. Digestive discomfort if overused. Not a substitute for whole food protein.</td>
+            <td>Strength and muscle-building athletes. Post-exercise recovery.</td>
+          </tr>
+          <tr>
+            <td><strong>Caffeine</strong></td>
+            <td>Stimulant that improves alertness, reduces perceived effort and can improve endurance performance. Found naturally in tea, coffee.</td>
+            <td>Is a diuretic — increases fluid loss. Disrupts sleep. Can cause anxiety. In high doses: banned by some sport organisations.</td>
+            <td>Endurance sports. Must be used carefully.</td>
+          </tr>
+          <tr>
+            <td><strong>Carbohydrate Gels / Sports Bars</strong></td>
+            <td>Provide quick-release carbohydrates to maintain glycogen levels during prolonged exercise.</td>
+            <td>Can cause stomach cramps if overused or not consumed with enough water.</td>
+            <td>Endurance athletes (marathon, triathlon, cycling)</td>
+          </tr>
+          <tr>
+            <td><strong>Glutamine</strong></td>
+            <td>An amino acid that supports immune function and recovery after intense exercise.</td>
+            <td>Evidence for benefit is limited; body can produce adequate amounts in most cases.</td>
+            <td>Athletes undergoing very heavy training loads</td>
+          </tr>
+          <tr>
+            <td><strong>BCAAs (Branched Chain Amino Acids)</strong></td>
+            <td>Essential amino acids (leucine, isoleucine, valine) that support muscle protein synthesis and reduce muscle breakdown.</td>
+            <td>Benefits are minimal if overall protein intake is adequate. No specific need if eating a balanced diet.</td>
+            <td>Strength and endurance athletes</td>
+          </tr>
+          <tr>
+            <td><strong>Iron</strong></td>
+            <td>A micronutrient supplement — important for haemoglobin production and oxygen transport. Used when iron deficiency (anaemia) is present.</td>
+            <td>Excess iron can be toxic. Should only be taken on medical advice.</td>
+            <td>Athletes (especially female) diagnosed with iron deficiency</td>
+          </tr>
+        </table>
+
+        <div class="info-box">
+          <span class="info-label">✅ What Experts Say</span>
+          A balanced whole foods diet is still recommended over supplements. Sport Ireland does NOT generally recommend sports supplements, particularly for teenage athletes.
+        </div>
+      </div>
+
+      <!-- ENERGY SYSTEMS -->
+      <div class="section-card ch2d" id="s-energy">
+        <h2>10. Energy Systems</h2>
+        <div class="def-box green">
+          <span class="def-term">Energy</span>
+          <span class="def-text">The ability to do work — this includes all human movement and activity.</span>
+        </div>
+        <div class="def-box green">
+          <span class="def-term">Energy Systems</span>
+          <span class="def-text">The specific processes by which energy is produced and used by the body. There are three main energy systems. The body does not use each one exclusively but uses them together depending on the intensity and duration of physical activity. At various times, one energy system will become dominant. All three systems produce a chemical called ATP (Adenosine Triphosphate).</span>
+        </div>
+        <div class="def-box green">
+          <span class="def-term">ATP – Adenosine Triphosphate</span>
+          <span class="def-text">The main energy supplier for cells. ATP carries energy to the required destination in the body. When energy is needed by a cell, glycogen is converted into ATP, which then delivers energy to the cells where activity is taking place. Fats and carbohydrates store chemical energy; ATP does not store it — it carries it.</span>
+        </div>
+        <div class="analogy-box">
+          <span class="analogy-label">💡 Analogy</span>
+          Glycogen is like money in a bank — ATP is the cash in your wallet. Your body "withdraws" glycogen and converts it into ATP (cash) to spend on movement. The three energy systems are three different ways to access your bank!
+        </div>
+
+        <div class="memory-box">
+          <span class="memory-label">🧠 Memory Trick</span>
+          <strong>Aerobic = Air</strong> (uses oxygen — needs breathing) — long duration, lower intensity<br>
+          <strong>Anaerobic = Absent of Air</strong> (without oxygen) — short duration, high intensity<br>
+          Think: "AnaerOBIC = OBLITERATE oxygen — it doesn't need it!"
+        </div>
+
+        <h3>The Three Energy Systems</h3>
+
+        <div class="accordion">
+          <div class="acc-header" onclick="toggleAcc(this)">⚡ 1. ATP-PC System (0–10 seconds) – The SPRINT System <span class="acc-icon">▶</span></div>
+          <div class="acc-body">
+            <div class="def-box green">
+              <span class="def-term">ATP-PC System (ATP-Phosphocreatine System)</span>
+              <span class="def-text">The immediate source of ATP for muscle action. Provides energy at maximum intensity but for a short duration (8–10 seconds). All cells have enough ATP stored for 2–3 seconds of work. After this, phosphocreatine (PC) provides the energy to resynthesise (rebuild) ATP for approximately 8–10 seconds of physical work. Requires 2–3 minutes of recovery time to replenish stores.</span>
+            </div>
+            <div class="card-grid">
+              <div class="card green">
+                <div class="card-title">✅ Advantages</div>
+                <p>Energy released very quickly with no waste products produced.</p>
+              </div>
+              <div class="card orange">
+                <div class="card-title">❌ Disadvantages</div>
+                <p>Very limited stores — only lasts 8–10 seconds. Requires 2–3 minutes recovery.</p>
+              </div>
+            </div>
+            <div class="analogy-box">
+              <span class="analogy-label">💡 Analogy</span>
+              Like a phone fully charged to 100% — it powers everything instantly, but only for a short burst before needing a recharge. Sports: 100m sprint, Olympic weightlifting, a throwing event.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion">
+          <div class="acc-header" onclick="toggleAcc(this)">🔥 2. Anaerobic Glycolytic System (10 sec – 90 seconds) – The LACTIC System <span class="acc-icon">▶</span></div>
+          <div class="acc-body">
+            <div class="def-box green">
+              <span class="def-term">Anaerobic Glycolytic System</span>
+              <span class="def-text">Uses glycogen and glucose to produce ATP WITHOUT requiring oxygen. Muscles store glycogen which can be used to make ATP. Energy is supplied more slowly than the ATP-PC system. When muscles use glycogen to make ATP without oxygen, lactic acid is produced — this causes muscles to fatigue (the burning feeling). Suited to short, high-intensity activity.</span>
+            </div>
+            <div class="info-box">
+              <span class="info-label">📝 Equation</span>
+              Glucose → Energy + Lactic Acid
+            </div>
+            <div class="def-box orange">
+              <span class="def-term">Lactic Acid</span>
+              <span class="def-text">A byproduct of anaerobic glycolysis (producing energy without oxygen). Builds up in muscles during intense exercise and causes fatigue — the burning sensation felt in muscles. It is removed during recovery (one reason ice baths help).</span>
+            </div>
+            <div class="analogy-box">
+              <span class="analogy-label">💡 Analogy</span>
+              It's like running a diesel car on petrol — it works for a bit, but produces dirty exhaust (lactic acid) that eventually chokes the engine (muscle fatigue). Sports: 400m sprint, 200m swimming, 800m run.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion">
+          <div class="acc-header" onclick="toggleAcc(this)">🌬️ 3. Aerobic System (90 seconds+) – The OXYGEN System <span class="acc-icon">▶</span></div>
+          <div class="acc-body">
+            <div class="def-box green">
+              <span class="def-term">Aerobic System</span>
+              <span class="def-text">Uses oxygen to produce ATP. Stored fats and carbohydrates are the fuel source. Within 2 minutes of starting exercise, the body begins to supply active muscles with oxygen. Oxygen allows aerobic respiration to break down glucose for ATP. Slowest of all three systems but can supply ATP for several hours as long as fuel supply is maintained. The heart, lungs and circulatory system provide the oxygen needed.</span>
+            </div>
+            <div class="info-box">
+              <span class="info-label">📝 Equation</span>
+              Glucose + Oxygen → Energy + Water + Carbon Dioxide
+            </div>
+            <p>Glucose sources for the aerobic system:</p>
+            <ul>
+              <li>Remaining glucose in muscle cells</li>
+              <li>Glucose from food in the intestine</li>
+              <li>Glycogen in the liver</li>
+              <li>Fat reserves in the muscles</li>
+              <li>In extreme cases (starvation): body protein</li>
+            </ul>
+            <div class="analogy-box">
+              <span class="analogy-label">💡 Analogy</span>
+              The aerobic system is like a hybrid car — slow to warm up but incredibly efficient and can run for hours. Sports: marathon running, cycling, triathlon, any long-duration activity.
+            </div>
+          </div>
+        </div>
+
+        <h3>The Energy Continuum</h3>
+        <div class="def-box green">
+          <span class="def-term">Energy Continuum</span>
+          <span class="def-text">The relative contribution of all three energy systems to producing energy (ATP). The energy systems work alongside each other. Understanding the energy continuum is important for planning training programmes and diet/nutrition to ensure the performer is optimally prepared.</span>
+        </div>
+
+        <table class="ch2d-table">
+          <tr><th>Energy System</th><th>Duration</th><th>Intensity</th><th>O₂?</th><th>Fuel</th><th>Example Sports</th></tr>
+          <tr>
+            <td><strong>ATP-PC</strong></td>
+            <td>0–10 seconds</td>
+            <td>Maximum</td>
+            <td>No</td>
+            <td>Phosphocreatine (PC)</td>
+            <td>100m sprint, weightlifting, throwing</td>
+          </tr>
+          <tr>
+            <td><strong>Anaerobic Glycolytic</strong></td>
+            <td>10–90 seconds</td>
+            <td>High</td>
+            <td>No</td>
+            <td>Glucose / Glycogen</td>
+            <td>400m sprint, 200m swim, 800m run</td>
+          </tr>
+          <tr>
+            <td><strong>Aerobic</strong></td>
+            <td>90 seconds +</td>
+            <td>Moderate–Low</td>
+            <td>Yes</td>
+            <td>Glucose + Fats</td>
+            <td>Marathon, triathlon, cycling, GAA match</td>
+          </tr>
+        </table>
+
+        <div class="exam-tip">A very common exam question asks you to match energy systems to sports and explain why. Remember the three key things: duration, intensity and whether oxygen is used.</div>
+
+        <h3>Energy Systems and Training</h3>
+        <p>Your body's energy systems do not work independently. If you complete short, intense exercise or light, long exercise, all 3 energy systems can contribute, but one or two will be most dominant.</p>
+        <div class="info-box">
+          <span class="info-label">🏋️ Training Application</span>
+          <ul>
+            <li><strong>Strength/Power training (ATP-PC):</strong> Very short, maximum effort reps with full recovery. E.g. 3 × 5 reps at 90% 1RM with 3 mins rest.</li>
+            <li><strong>Speed endurance (Anaerobic Glycolytic):</strong> 400m–800m intervals with moderate rest.</li>
+            <li><strong>Endurance training (Aerobic):</strong> Continuous training, 20+ minutes at moderate intensity.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 2D QUIZ -->
+      <div class="section-card ch2d" id="s-2d-quiz">
+        <h2>🧠 Chapter 2D Quick Quiz</h2>
+        <div id="quiz-2d"></div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script>
+// ─── DATA ───────────────────────────────────────────────────────────
+const quizData = {
+  '2b': [
+    { q: "What does the 'S' in the SPORT principles stand for?", options: ["Strength", "Specificity", "Speed", "Sets"], ans: 1, exp: "Specificity means training should be relevant to the demands of the athlete's sport. A rugby player does squats to match rugby movements." },
+    { q: "Reversibility means:", options: ["Fitness improves when you train more", "The body de-adapts if training stops or reduces significantly", "You should reverse exercises in each set", "Training must involve changes in direction"], ans: 1, exp: "Reversibility = use it or lose it! Fitness will decline if training stops. Cardiovascular endurance reverses faster than muscular strength." },
+    { q: "What is Overtraining?", options: ["Training with a heart rate monitor", "When rest days are included in a plan", "When the body doesn't have sufficient rest to adapt, causing fitness to decline", "Training for more than one sport at once"], ans: 2, exp: "Overtraining occurs when there's not enough rest between sessions. The body needs rest to ADAPT and IMPROVE. More training ≠ always better!" },
+    { q: "In the FITT principle, what does 'I' stand for?", options: ["Intervals", "Intensity", "Increased load", "Intrinsic effort"], ans: 1, exp: "I = Intensity — how HARD you work during training. E.g. increasing the weight lifted or running faster." },
+    { q: "What is Periodisation?", options: ["A type of interval training", "The division of a training plan into training phases applying the principles of training", "A method of testing athlete fitness levels", "The gradual increase of training load"], ans: 1, exp: "Periodisation divides the training year into Macrocycle (full year), Mesocycle (weeks-month block) and Microcycle (weekly plan)." },
+    { q: "Which is the SMALLEST training cycle in periodisation?", options: ["Macrocycle", "Megacycle", "Mesocycle", "Microcycle"], ans: 3, exp: "Microcycle = the smallest unit, usually 1 week. Macro = big (full year), Meso = medium (weeks/month), Micro = small (daily/weekly breakdown)." },
+    { q: "Active Recovery involves:", options: ["Complete rest and sleep", "Low intensity exercise that increases blood flow to aid muscle recovery", "High intensity intervals on rest days", "Taking ice baths immediately after exercise"], ans: 1, exp: "Active recovery = light exercise (e.g. yoga, easy cycling) that boosts blood flow, removes lactic acid and aids recovery." },
+    { q: "Tapering is most common in which type of sport?", options: ["Power sports like weightlifting", "Team sports like GAA", "Endurance sports", "Skill-based sports like golf"], ans: 2, exp: "Tapering = reducing training volume/intensity before competition to peak on the day. Most used in endurance sports (marathon, triathlon)." },
+    { q: "What is the difference between Unilateral and Bilateral exercises?", options: ["Unilateral uses free weights; bilateral uses machines", "Unilateral uses one limb; bilateral uses two limbs simultaneously", "Unilateral is low intensity; bilateral is high intensity", "Unilateral develops power; bilateral develops endurance"], ans: 1, exp: "Uni = one limb (single leg squat, bicep curl). Bi = two limbs (squat, bench press). UNIcycle = 1 wheel; BIcycle = 2 wheels!" },
+    { q: "Fartlek training is best suited to which type of athletes?", options: ["Marathon runners who maintain a constant pace", "Athletes in sports involving constantly changing intensity like soccer, rugby", "Weightlifters needing maximum strength", "Gymnasts needing flexibility"], ans: 1, exp: "Fartlek = 'speed play' in Swedish. Involves varying intensity — perfect for sports that naturally change pace (soccer, hurling, basketball)." }
+  ],
+  '2c': [
+    { q: "How is Self-Efficacy DIFFERENT from Confidence?", options: ["Self-efficacy is about team belief; confidence is individual", "Self-efficacy is more specific — it is belief in your ability to achieve a specific task at a certain level", "Confidence is more specific; self-efficacy is general", "They mean exactly the same thing"], ans: 1, exp: "Confidence = broad 'I'm a good athlete.' Self-efficacy = specific 'I can make this kick from 40m.' Self-efficacy is more predictive of success." },
+    { q: "What is State Anxiety?", options: ["A long-term personality trait that causes ongoing anxiety", "Anxiety experienced only during post-match analysis", "A temporary emotional state in response to a specific situation, goes away when threat passes", "A physical symptom like shaking or sweating"], ans: 2, exp: "State anxiety is temporary and situation-specific — like nerves before a big match that settle once you start playing. STATE = Short-Term." },
+    { q: "Somatic Anxiety refers to:", options: ["Anxiety experienced in the mind as worry or negative thoughts", "Physical expressions of anxiety like sweating, butterflies or shaking", "Anxiety caused by social media pressure", "A long-term personality-based anxiety trait"], ans: 1, exp: "Somatic = physical body. SOMATIC = STOMACH (you feel it physically). E.g. heart racing, sweating, butterflies." },
+    { q: "According to the Inverted U Theory, performance is BEST when:", options: ["Arousal is very high", "Arousal is very low", "Arousal is at an optimal (medium) level", "There is no arousal at all"], ans: 2, exp: "The Inverted U = too little arousal = bored/poor performance; too much = panicked/poor; just right (optimal) = peak performance. Shape of upside-down U!" },
+    { q: "What is Intrinsic Motivation?", options: ["Motivation from trophies or medals", "The desire to participate for the fun and enjoyment of it — from within", "Motivation given by a coach", "Motivation from financial reward"], ans: 1, exp: "Intrinsic = INTERNAL. It comes from within — the pure love of the sport. The most important form of motivation. Without it, achievement is impossible." },
+    { q: "What is Amotivation?", options: ["Too much motivation causing overtraining", "Performing for extrinsic rewards only", "When a performer lacks motivation and often feels incompetent — likely to quit", "Motivation that comes after a defeat"], ans: 2, exp: "Amotivation = no motivation at all. The performer feels they're not good enough. Highly likely to drop out. A = absent/no motivation." },
+    { q: "Knowledge of Performance (KP) focuses on:", options: ["The outcome — did the athlete win?", "The quality of technique and movement patterns during skill execution", "The score at the end of a game", "How fast the athlete ran"], ans: 1, exp: "KP = how the skill was PERFORMED technically. KR = the result/outcome. KP is especially useful in the associative stage of skill learning." },
+    { q: "Visualisation as a mental strategy involves:", options: ["Watching videos of opponents", "Mentally rehearsing successful performance to build confidence and prepare the brain", "Using a vision chart to set goals", "Focusing on the crowd to improve concentration"], ans: 1, exp: "Visualisation = mentally picturing yourself performing successfully. It 'trains' the brain with a practice run, building confidence and neural pathways." },
+    { q: "What does the 'M' in SMART goals stand for?", options: ["Motivational", "Measurable", "Maximum", "Meaningful"], ans: 1, exp: "SMART: Specific, MEASURABLE, Achievable, Relevant, Time-bound. Measurable means you can track your progress with numbers/data." },
+    { q: "Which is a PROCESS goal?", options: ["Win the county final", "Run 100m in under 11 seconds by end of season", "Stay lower in the starting blocks in the first 20m of a race", "Score 10 goals this season"], ans: 2, exp: "Process goals deal with TECHNIQUE — how you execute the skill. Performance goals are about improvement over time. Outcome goals are about winning/results." }
+  ],
+  '2d': [
+    { q: "What are Macronutrients?", options: ["Vitamins and minerals needed in small amounts", "Fat, protein and carbohydrate — nutrients needed in larger quantities that provide energy", "Only protein and carbohydrates", "Supplements used for performance"], ans: 1, exp: "Macros = fat, protein, carbohydrate. They provide ENERGY. Needed in LARGER quantities. Micros (vitamins/minerals) are needed in tiny amounts." },
+    { q: "What is Glycogen?", options: ["A type of protein that builds muscle", "The stored form of carbohydrate in the liver and muscles, converted to glucose for energy", "A fat stored under the skin for insulation", "A water-soluble vitamin"], ans: 1, exp: "Glycogen is the storage form of carbs in your liver and muscles (max ~500g). It's converted to glucose and used as energy during exercise." },
+    { q: "Complex carbohydrates release energy:", options: ["Very quickly — ideal for a sudden energy burst", "Slowly and gradually — better for sustained energy levels", "Only during rest, not during exercise", "At the same rate as simple carbs"], ans: 1, exp: "Complex carbs = long sugar chains = slow breakdown = steady energy. Like a log fire vs. newspaper (simple carbs burn out fast)." },
+    { q: "What is Dehydration?", options: ["Drinking too much water before exercise", "Fluid loss that is not replaced by fluid intake — water loss exceeding 2-3% body mass", "A type of heat exhaustion only affecting endurance athletes", "Loss of electrolytes only"], ans: 1, exp: "Dehydration = fluid loss > fluid intake. Even 2-3% body mass loss impairs performance. Effects: fatigue, reduced strength, impaired cognition, increased heart rate." },
+    { q: "Which sports drink is most similar in concentration to blood?", options: ["Hypotonic", "Isotonic", "Hypertonic", "Energy drink"], ans: 1, exp: "Isotonic = same concentration as blood. Absorbed at a moderate rate. Replaces fluids AND carbs. Most common sports drink. (Iso = equal/same)" },
+    { q: "What is the ATP-PC system best suited for?", options: ["Long-duration endurance events over 2 hours", "Events lasting 30–60 seconds", "Maximum intensity exercise lasting up to 8–10 seconds", "Low-intensity, continuous exercise"], ans: 2, exp: "ATP-PC = the SPRINT system. Maximum intensity for 8-10 seconds only. E.g. 100m sprint, weightlifting. Limited PC stores = limited duration." },
+    { q: "What byproduct does the Anaerobic Glycolytic System produce?", options: ["Carbon dioxide and water", "Oxygen", "Lactic acid — causes muscle fatigue and burning sensation", "Phosphocreatine"], ans: 2, exp: "Anaerobic glycolysis (without oxygen) produces energy + LACTIC ACID. Lactic acid causes the burning feeling and muscle fatigue during intense exercise." },
+    { q: "What is Carbohydrate Loading used for?", options: ["Everyday athletes to improve general fitness", "To reduce body fat before a competition", "To elevate the body's glycogen stores before an endurance event of 2+ hours", "Strength athletes before a weightlifting competition"], ans: 2, exp: "Carb loading = maximising glycogen stores before long endurance events (2+ hours). Done in the final 2-3 days before competition." },
+    { q: "Why is caffeine problematic for athletes regarding hydration?", options: ["It makes the body store more fat", "Caffeine is a diuretic — causes the body to lose water, increasing dehydration risk", "It prevents glycogen synthesis", "It reduces ATP production"], ans: 1, exp: "Caffeine = diuretic = makes you urinate more = loses water. Athletes should drink tea/coffee SPARINGLY. Especially avoid before/during exercise." },
+    { q: "The Aerobic System produces energy using:", options: ["Phosphocreatine only", "Glucose without oxygen, producing lactic acid", "Oxygen combined with glucose and fats, producing water and CO₂", "ATP stored directly in muscle cells"], ans: 2, exp: "Aerobic = WITH oxygen. Glucose + O₂ → Energy + Water + CO₂. Slowest but most efficient — can work for hours. Marathon running, cycling." }
+  ]
+};
+
+// ─── QUIZ STATE ──────────────────────────────────────────────────────
+const quizState = { '2b': { idx: 0, score: 0, done: false }, '2c': { idx: 0, score: 0, done: false }, '2d': { idx: 0, score: 0, done: false } };
+
+function buildQuiz(chapter) {
+  const container = document.getElementById('quiz-' + chapter);
+  const state = quizState[chapter];
+  const data = quizData[chapter];
+  if (state.done) {
+    container.innerHTML = `<div class="quiz-card"><div class="quiz-score">🎉 Quiz Complete! Score: ${state.score}/${data.length}</div>
+    <button class="quiz-next-btn show" onclick="resetQuiz('${chapter}')">🔄 Try Again</button></div>`;
+    return;
+  }
+  const q = data[state.idx];
+  const pct = Math.round((state.idx / data.length) * 100);
+  container.innerHTML = `
+    <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>
+    <div style="font-size:0.82rem;color:var(--text-muted);margin-bottom:8px">Question ${state.idx+1} of ${data.length} · Score: ${state.score}</div>
+    <div class="quiz-card" id="qcard-${chapter}">
+      <div class="quiz-q">${q.q}</div>
+      <div class="quiz-options">
+        ${q.options.map((o,i)=>`<button class="quiz-opt" onclick="answerQuiz('${chapter}',${i})" id="qopt-${chapter}-${i}">${o}</button>`).join('')}
+      </div>
+      <div class="quiz-feedback" id="qfb-${chapter}"></div>
+      <button class="quiz-next-btn" id="qnext-${chapter}" onclick="nextQ('${chapter}')">${state.idx+1 < data.length ? 'Next Question →' : 'See Results'}</button>
+    </div>`;
+}
+
+function answerQuiz(ch, chosen) {
+  const state = quizState[ch];
+  const q = quizData[ch][state.idx];
+  const opts = document.querySelectorAll(`[id^="qopt-${ch}-"]`);
+  opts.forEach(b => b.onclick = null);
+  opts[q.ans].classList.add('correct');
+  if (chosen !== q.ans) opts[chosen].classList.add('wrong');
+  else state.score++;
+  const fb = document.getElementById('qfb-' + ch);
+  fb.innerHTML = (chosen === q.ans ? '✅ Correct! ' : '❌ Not quite. ') + q.exp;
+  fb.classList.add('show');
+  document.getElementById('qnext-' + ch).classList.add('show');
+}
+
+function nextQ(ch) {
+  const state = quizState[ch];
+  state.idx++;
+  if (state.idx >= quizData[ch].length) { state.done = true; }
+  buildQuiz(ch);
+}
+
+function resetQuiz(ch) {
+  quizState[ch] = { idx: 0, score: 0, done: false };
+  buildQuiz(ch);
+}
+
+// ─── CHAPTER SWITCHING ───────────────────────────────────────────────
+function showChapter(ch) {
+  document.querySelectorAll('.chapter-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById(ch).classList.add('active');
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  document.getElementById('sidebar-ch2b').style.display = ch === 'ch2b' ? '' : 'none';
+  document.getElementById('sidebar-ch2c').style.display = ch === 'ch2c' ? '' : 'none';
+  document.getElementById('sidebar-ch2d').style.display = ch === 'ch2d' ? '' : 'none';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ─── ACCORDION ───────────────────────────────────────────────────────
+function toggleAcc(header) {
+  const body = header.nextElementSibling;
+  const isOpen = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  header.classList.toggle('open', !isOpen);
+}
+
+// ─── SCROLL TO SECTION ───────────────────────────────────────────────
+function scrollTo(id) {
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: 'smooth' });
+}
+
+// ─── INIT ─────────────────────────────────────────────────────────────
+buildQuiz('2b');
+buildQuiz('2c');
+buildQuiz('2d');
+</script>
+<!-- REPLACEMENT BLOCK START -->
+<a href="index.html" class="return-home-btn">
+  <span>🏠</span> Back to Hub
+</a>
+<style>
+  .return-home-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #1a1d2e; /* Matches your --text variable */
+    color: white !important;
+    padding: 12px 24px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-family: 'Lexend', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+  }
+  .return-home-btn:hover {
+    transform: translateY(-5px);
+    background: #7c3aed; /* Changed to match your --c4 purple theme */
+    color: white !important;
+    box-shadow: 0 8px 25px rgba(124, 58, 237, 0.4);
+  }
+  @media (max-width: 768px) {
+    .return-home-btn {
+      bottom: 20px;
+      right: 20px;
+      padding: 10px 18px;
+      font-size: 14px;
+    }
+  }
+</style>
+<!-- REPLACEMENT BLOCK END -->
+</body>
+</html>

@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LC Physical Education – Chapters 4, 5A & 5B Study Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f3f6ff;
+    --surface: #ffffff;
+    --surface2: #edf0ff;
+    --border: #dce2f5;
+    --text: #1a1d2e;
+    --muted: #5a5f7a;
+    --c4:   #7c3aed; /* purple - ch4 */
+    --c4l:  #f5f0ff;
+    --c5a:  #db7700; /* amber - ch5a */
+    --c5al: #fff8ee;
+    --c5b:  #0891b2; /* teal - ch5b */
+    --c5bl: #edf9fc;
+    --cg:   #16a34a; /* green accents */
+    --cr:   #dc2626; /* red accents */
+    --cy:   #d97706; /* yellow accents */
+    --radius: 14px;
+    --shadow: 0 4px 20px rgba(124,58,237,0.09);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);font-size:17px;line-height:1.78;min-height:100vh;}
+
+  /* NAV */
+  #tnav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.97);backdrop-filter:blur(10px);border-bottom:2px solid var(--border);padding:0 20px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;min-height:56px;}
+  .logo{font-family:'Lexend Mega',sans-serif;font-size:.97rem;color:var(--c4);margin-right:6px;}
+  .nb{background:none;border:2px solid var(--border);color:var(--muted);font-family:'Lexend',sans-serif;font-size:.82rem;font-weight:600;cursor:pointer;border-radius:20px;padding:5px 14px;transition:all .17s;}
+  .nb:hover{background:var(--c4);border-color:var(--c4);color:#fff;}
+  .a4{background:var(--c4)!important;border-color:var(--c4)!important;color:#fff!important;}
+  .a5a{background:var(--c5a)!important;border-color:var(--c5a)!important;color:#fff!important;}
+  .a5b{background:var(--c5b)!important;border-color:var(--c5b)!important;color:#fff!important;}
+
+  /* LAYOUT */
+  .layout{display:flex;max-width:1310px;margin:0 auto;padding:28px 16px;gap:24px;}
+
+  /* SIDEBAR */
+  #sidebar{width:242px;flex-shrink:0;position:sticky;top:70px;height:calc(100vh - 88px);overflow-y:auto;background:var(--surface);border-radius:var(--radius);border:2px solid var(--border);padding:16px 12px;box-shadow:var(--shadow);}
+  #sidebar::-webkit-scrollbar{width:4px;}
+  #sidebar::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px;}
+  .sbh{font-size:.71rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:8px 8px 4px;}
+  .sbl{display:block;padding:7px 10px;border-radius:8px;font-size:.84rem;color:var(--muted);cursor:pointer;font-weight:500;transition:all .14s;border:none;background:none;width:100%;text-align:left;}
+  .sbl:hover{background:var(--surface2);color:var(--text);}
+  .sbl.a4{background:var(--c4);color:#fff;}
+  .sbl.a5a{background:var(--c5a);color:#fff;}
+  .sbl.a5b{background:var(--c5b);color:#fff;}
+  .sbdiv{height:1px;background:var(--border);margin:7px 0;}
+
+  /* CONTENT */
+  #content{flex:1;min-width:0;}
+  .cp{display:none;}.cp.active{display:block;}
+
+  /* HEADERS */
+  .chh{border-radius:var(--radius);padding:32px 36px;margin-bottom:24px;color:#fff;}
+  .h4{background:linear-gradient(135deg,#7c3aed 0%,#a78bfa 100%);}
+  .h5a{background:linear-gradient(135deg,#db7700 0%,#fbbf24 100%);}
+  .h5b{background:linear-gradient(135deg,#0891b2 0%,#67e8f9 100%);}
+  .chh h1{font-family:'Lexend Mega',sans-serif;font-size:1.55rem;margin-bottom:6px;letter-spacing:-.4px;}
+  .chh p{opacity:.9;font-size:.98rem;}
+
+  /* SECTION CARDS */
+  .sc{background:var(--surface);border-radius:var(--radius);border:2px solid var(--border);padding:28px 32px;margin-bottom:24px;box-shadow:var(--shadow);scroll-margin-top:78px;}
+  .sc h2{font-family:'Lexend Mega',sans-serif;font-size:1.07rem;margin-bottom:18px;}
+  .sc.s4 h2{color:var(--c4);}
+  .sc.s5a h2{color:var(--c5a);}
+  .sc.s5b h2{color:var(--c5b);}
+
+  h3{font-size:1.02rem;font-weight:700;margin:18px 0 8px;}
+  h4{font-size:.95rem;font-weight:700;color:var(--muted);margin:12px 0 5px;}
+  p{margin-bottom:10px;}
+  ul,ol{padding-left:22px;margin-bottom:10px;}
+  li{margin-bottom:5px;}
+  strong{color:var(--text);}
+
+  /* DEF BOXES */
+  .def{border-left:5px solid var(--c4);background:var(--c4l);border-radius:0 10px 10px 0;padding:13px 17px;margin:13px 0;}
+  .def.a{border-color:var(--c5a);background:var(--c5al);}
+  .def.t{border-color:var(--c5b);background:var(--c5bl);}
+  .def.g{border-color:var(--cg);background:#f0fdf4;}
+  .def.r{border-color:var(--cr);background:#fff5f5;}
+  .def.y{border-color:var(--cy);background:#fffbeb;}
+  .dt{font-weight:700;font-size:1rem;display:block;margin-bottom:4px;color:var(--c4);}
+  .def.a .dt{color:var(--c5a);}
+  .def.t .dt{color:var(--c5b);}
+  .def.g .dt{color:var(--cg);}
+  .def.r .dt{color:var(--cr);}
+  .def.y .dt{color:var(--cy);}
+  .dx{font-size:.96rem;}
+
+  /* ANALOGY / MEMORY */
+  .anl{background:#fffbe8;border:2px dashed var(--cy);border-radius:10px;padding:13px 17px;margin:13px 0;font-size:.93rem;}
+  .anl-l{font-weight:700;font-size:.77rem;text-transform:uppercase;letter-spacing:.07em;color:#9a6000;margin-bottom:4px;display:block;}
+  .mem{background:#f0fdf4;border:2px dashed var(--cg);border-radius:10px;padding:13px 17px;margin:13px 0;font-size:.93rem;}
+  .mem-l{font-weight:700;font-size:.77rem;text-transform:uppercase;letter-spacing:.07em;color:#166534;margin-bottom:4px;display:block;}
+  .info{background:var(--c4l);border-radius:10px;padding:13px 17px;margin:13px 0;font-size:.93rem;border:1.5px solid #d8b4fe;}
+  .info-l{font-weight:700;font-size:.81rem;color:var(--c4);margin-bottom:4px;display:block;}
+  .info.t{background:var(--c5bl);border-color:#a5f3fc;}
+  .info.t .info-l{color:var(--c5b);}
+  .info.a{background:var(--c5al);border-color:#fde68a;}
+  .info.a .info-l{color:var(--c5a);}
+  .warn{background:#fff5f5;border-radius:10px;padding:13px 17px;margin:13px 0;font-size:.93rem;border:1.5px solid #fca5a5;}
+  .warn-l{font-weight:700;font-size:.81rem;color:var(--cr);margin-bottom:4px;display:block;}
+  .etip{background:linear-gradient(90deg,#fff3c4,#fff9e8);border-left:5px solid var(--cy);border-radius:0 10px 10px 0;padding:11px 16px;margin:12px 0;font-size:.92rem;}
+  .etip::before{content:"✏️ Exam Tip: ";font-weight:700;color:#9a6000;}
+
+  /* CARD GRID */
+  .cg2{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:13px;margin:13px 0;}
+  .card{background:var(--surface2);border-radius:10px;padding:14px 16px;border:1.5px solid var(--border);}
+  .ct{font-weight:700;margin-bottom:5px;font-size:.93rem;color:var(--c4);}
+  .card.a .ct{color:var(--c5a);}
+  .card.t .ct{color:var(--c5b);}
+  .card.g .ct{color:var(--cg);}
+  .card.r .ct{color:var(--cr);}
+  .card p,.card ul{font-size:.89rem;color:var(--muted);}
+  .card ul{padding-left:16px;}
+
+  /* TABLE */
+  table{width:100%;border-collapse:collapse;margin:13px 0;font-size:.91rem;}
+  th{padding:10px 14px;text-align:left;font-weight:600;}
+  th.t4{background:var(--c4);color:#fff;}
+  th.t5a{background:var(--c5a);color:#fff;}
+  th.t5b{background:var(--c5b);color:#fff;}
+  td{padding:9px 14px;border-bottom:1px solid var(--border);vertical-align:top;}
+  tr:nth-child(even) td{background:var(--surface2);}
+
+  /* ACCORDION */
+  .acc{margin:9px 0;}
+  .ach{background:var(--surface2);border:1.5px solid var(--border);border-radius:10px;padding:12px 17px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:.94rem;transition:background .14s;user-select:none;}
+  .ach:hover{background:#e0d9ff;}
+  .ach .ai{font-size:1.05rem;transition:transform .2s;}
+  .ach.open .ai{transform:rotate(90deg);}
+  .acb{display:none;padding:14px 17px 4px;border:1.5px solid var(--border);border-top:none;border-radius:0 0 10px 10px;margin-top:-2px;}
+  .acb.open{display:block;}
+
+  /* STEPS */
+  .sl{counter-reset:s;list-style:none;padding-left:0;margin:12px 0;}
+  .sl li{counter-increment:s;display:flex;gap:14px;align-items:flex-start;margin-bottom:10px;}
+  .sl li::before{content:counter(s);background:var(--c4);color:#fff;font-weight:700;font-size:.82rem;min-width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;}
+  .sl.a li::before{background:var(--c5a);}
+  .sl.t li::before{background:var(--c5b);}
+
+  /* QUIZ */
+  .qcard{background:var(--surface);border:2px solid var(--border);border-radius:var(--radius);padding:22px 26px;margin:15px 0;box-shadow:var(--shadow);}
+  .qq{font-weight:700;margin-bottom:13px;font-size:1rem;}
+  .qopts{display:flex;flex-direction:column;gap:8px;}
+  .qo{background:var(--surface2);border:2px solid var(--border);border-radius:8px;padding:10px 15px;cursor:pointer;font-size:.92rem;transition:all .14s;text-align:left;font-family:'Lexend',sans-serif;}
+  .qo:hover{border-color:var(--c4);background:var(--c4l);}
+  .qo.correct{background:#f0fdf4;border-color:var(--cg);color:#14532d;font-weight:600;}
+  .qo.wrong{background:#fff5f5;border-color:var(--cr);color:#7f1d1d;}
+  .qfb{margin-top:11px;font-size:.91rem;display:none;}
+  .qfb.show{display:block;}
+  .qnxt{margin-top:11px;background:var(--c4);color:#fff;border:none;padding:9px 22px;border-radius:8px;cursor:pointer;font-family:'Lexend',sans-serif;font-weight:600;font-size:.9rem;display:none;transition:opacity .14s;}
+  .qnxt:hover{opacity:.87;}
+  .qnxt.show{display:inline-block;}
+  .qsc{font-size:1.1rem;font-weight:700;color:var(--cg);margin-top:10px;}
+  .pb{background:var(--border);border-radius:8px;height:8px;margin:7px 0 16px;}
+  .pf{height:8px;border-radius:8px;background:var(--c4);transition:width .4s;}
+
+  html{scroll-behavior:smooth;}
+  @media(max-width:820px){#sidebar{display:none;}.layout{padding:14px 10px;}.sc{padding:18px 15px;}.chh{padding:22px 18px;}.chh h1{font-size:1.2rem;}}
+</style>
+</head>
+<body>
+
+<nav id="tnav">
+  <span class="logo">🏃 LC PE</span>
+  <button class="nb a4" onclick="showCh('ch4',this,'a4')">4 – Planning for Optimum Performance</button>
+  <button class="nb" onclick="showCh('ch5a',this,'a5a')">5A – Physical Activity Participation</button>
+  <button class="nb" onclick="showCh('ch5b',this,'a5b')">5B – Promoting PA &amp; Pathway to Excellence</button>
+</nav>
+
+<div class="layout">
+<aside id="sidebar">
+  <div id="sb4">
+    <div class="sbh">📋 Chapter 4</div>
+    <button class="sbl" onclick="go('s4-needs')">Needs Analysis</button>
+    <button class="sbl" onclick="go('s4-factors')">8 Performance Factors</button>
+    <button class="sbl" onclick="go('s4-analysis')">Performance Analysis</button>
+    <button class="sbl" onclick="go('s4-data')">Objective vs Subjective Data</button>
+    <button class="sbl" onclick="go('s4-goals')">Goal Setting (SMART/SWOT)</button>
+    <button class="sbl" onclick="go('s4-training')">Designing a Training Programme</button>
+    <button class="sbl" onclick="go('s4-practice')">Types of Practice</button>
+    <button class="sbl" onclick="go('s4-reflect')">Reflection In/On Practice</button>
+    <button class="sbl" onclick="go('s4-quiz')">🧠 Quick Quiz</button>
+  </div>
+  <div id="sb5a" style="display:none">
+    <div class="sbh">🏃 Chapter 5A</div>
+    <button class="sbl" onclick="go('s5a-what')">What is Physical Activity?</button>
+    <button class="sbl" onclick="go('s5a-levels')">Levels &amp; Guidelines</button>
+    <button class="sbl" onclick="go('s5a-benefits')">Personal, Social &amp; Economic Benefits</button>
+    <button class="sbl" onclick="go('s5a-concepts')">Concepts of Physical Activity</button>
+    <button class="sbl" onclick="go('s5a-barriers')">Barriers &amp; Supports</button>
+    <button class="sbl" onclick="go('s5a-measuring')">Measuring Physical Activity</button>
+    <button class="sbl" onclick="go('s5a-quiz')">🧠 Quick Quiz</button>
+  </div>
+  <div id="sb5b" style="display:none">
+    <div class="sbh">🌟 Chapter 5B</div>
+    <button class="sbl" onclick="go('s5b-strategies')">Strategies to Promote PA</button>
+    <button class="sbl" onclick="go('s5b-people')">People Who Promote PA</button>
+    <button class="sbl" onclick="go('s5b-policy')">National Sports Policy</button>
+    <button class="sbl" onclick="go('s5b-schools')">Role of Schools</button>
+    <button class="sbl" onclick="go('s5b-lsp')">Local Sports Partnerships</button>
+    <button class="sbl" onclick="go('s5b-ngb')">Role of NGBs</button>
+    <button class="sbl" onclick="go('s5b-ltad')">LTAD Model</button>
+    <button class="sbl" onclick="go('s5b-spec')">Early vs Late Specialisation</button>
+    <button class="sbl" onclick="go('s5b-quiz')">🧠 Quick Quiz</button>
+  </div>
+</aside>
+
+<main id="content">
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!--  CHAPTER 4                                             -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div id="ch4" class="cp active">
+  <div class="chh h4">
+    <h1>📋 Chapter 4: Planning for Optimum Performance</h1>
+    <p>Needs analysis, the 8 performance factors, analysis tools, goal setting and designing a training programme</p>
+  </div>
+
+  <!-- 1. NEEDS ANALYSIS -->
+  <div class="sc s4" id="s4-needs">
+    <h2>1. Needs Analysis</h2>
+    <div class="def">
+      <span class="dt">Needs Analysis</span>
+      <span class="dx">The process of determining what qualities are necessary for the athlete, the sport, or a combination of both. Conducting a needs analysis benefits athletes by enabling them to understand the requirements of their chosen sport — so they can train appropriately for those specific demands.</span>
+    </div>
+    <div class="anl">
+      <span class="anl-l">💡 Analogy</span>
+      A needs analysis is like checking the recipe before you start cooking. You figure out exactly what ingredients (fitness components, skills, tactics) you need BEFORE you start training — instead of guessing and missing something important.
+    </div>
+    <p>Once the needs analysis is complete, athletes and coaches can then plan a training programme that specifically targets each area identified.</p>
+    <div class="etip">Exam question: "What is a needs analysis? Explain why it is important when planning a training programme for a named athlete." — Link each identified need to a specific training method or component of fitness.</div>
+  </div>
+
+  <!-- 2. THE 8 FACTORS -->
+  <div class="sc s4" id="s4-factors">
+    <h2>2. The 8 Factors That Influence Personal Performance</h2>
+    <div class="mem">
+      <span class="mem-l">🧠 Memory Trick – The 8 Factors</span>
+      <strong>S-S-P-H-P-N-B-C</strong> = <strong>S</strong>kill &amp; Technique · <strong>S</strong>tructures &amp; Strategies · <strong>P</strong>erformance Fitness · <strong>H</strong>ealth Fitness · <strong>P</strong>sychological Preparedness · <strong>N</strong>utrition · <strong>B</strong>iomechanics · <strong>C</strong>horeography<br>
+      "Some Smart People Have Perfect New Body Composition!"
+    </div>
+
+    <div class="acc">
+      <div class="ach" onclick="ta(this)">1️⃣ Skill &amp; Technique Development <span class="ai">▶</span></div>
+      <div class="acb">
+        <div class="def">
+          <span class="dt">Skill &amp; Technique Development</span>
+          <span class="dx">Being able to execute the required movement patterns of the sport with <strong>consistency, efficiency and accuracy</strong> enables a performer to compete effectively. Skill development requires deliberate, targeted practice over time.</span>
+        </div>
+        <p>Analysis methods: Video analysis, ipsative tests (comparing athlete to themselves over time), skill feedback sheets, self-assessment sheets, data analysis.</p>
+      </div>
+    </div>
+
+    <div class="acc">
+      <div class="ach" onclick="ta(this)">2️⃣ Structures &amp; Strategies <span class="ai">▶</span></div>
+      <div class="acb">
+        <div class="def">
+          <span class="dt">Structures &amp; Strategies</span>
+          <span class="dx">Methods that teams and individuals use to maximise their chance of success in an event. Structures = formation/set-up. Strategies = tactics/game plan. (Links to Chapter 3A)</span>
+        </div>
+        <p>Analysis methods: Video analysis, discussion/self-reflection, data analysis.</p>
+      </div>
+    </div>
+
+    <div class="acc">
+      <div class="ach" onclick="ta(this)">3️⃣ Performance-Related Physical Fitness <span class="ai">▶</span></div>
+      <div class="acb">
+        <div class="def">
+          <span class="dt">Performance-Related Physical Fitness</span>
+          <span class="dx">Agility, balance, coordination, speed, reaction time and power are key factors that determine performance in physical activity and sport. These are qualities that directly affect HOW WELL you perform skills.</span>
+        </div>
+        <div class="cg2">
+          <div class="card"><div class="ct">Agility</div><p>Ability to change direction quickly and accurately while maintaining control.</p></div>
+          <div class="card"><div class="ct">Balance</div><p>Maintaining stability in static or dynamic positions.</p></div>
+          <div class="card"><div class="ct">Coordination</div><p>Using different body parts together smoothly and efficiently.</p></div>
+          <div class="card"><div class="ct">Speed</div><p>Ability to move quickly from one point to another.</p></div>
+          <div class="card"><div class="ct">Reaction Time</div><p>Time between a stimulus and the start of a movement response.</p></div>
+          <div class="card"><div class="ct">Power</div><p>Combination of strength and speed — explosive force output.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc">
+      <div class="ach" onclick="ta(this)">4️⃣ Health-Related Physical Fitness <span class="ai">▶</span></div>
+      <div class="acb">
+        <div class="def">
+          <span class="dt">Health-Related Physical Fitness</span>
+          <span class="dx">Components of health-related fitness are crucial for athletes involved in specific sports. Includes: cardiovascular/cardiorespiratory endurance, muscular strength, muscular endurance, flexibility and body composition. E.g. muscular strength for a powerlifter; cardiorespiratory endurance for a marathon runner.</span>
+        </div>
+        <div class="mem">
+          <span class="mem-l">🧠 Memory Trick – Health vs Performance Fitness</span>
+          <strong>Health fitness = how HEALTHY you are</strong> (endurance, strength, flexibility)<br>
+          <strong>Performance fitness = how SKILFULLY you perform</strong> (agility, speed, reaction time)
+        </div>
+      </div>
+    </div>
+
+    <div class="acc">
+      <div class="ach" onclick="ta(this)">5️⃣ Psychological Preparedness <span class="ai">▶</span></div>
+      <div class="acb">
+        <div class="def">
+          <span class="dt">Psychological Preparedness</span>
+          <span class="dx">Understanding the different psychological influences before, during and after events allows athletes to prepare themselves to deal with specific situations. This enables athletes to use psychological tools to <strong>enhance rather than hinder</strong> performance. (Links to Chapter 2C)</span>
+        </div>
+        <p>Analysis methods: SCAT Test (Sports Competition Anxiety Test), CSAI-2 Test (Competitive State Anxiety Inventory — measures cognitive anxiety, somatic anxiety and self-confidence).</p>
+        <div class="def">
+          <span class="dt">CSAI-2 – Competitive State Anxiety Inventory</span>
+          <span class="dx">A validated test used to measure an athlete's state anxiety before a competition. It separately measures cognitive anxiety (mental worry), somatic anxiety (physical symptoms) and self-confidence — giving coaches a detailed picture of the athlete's psychological readiness.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc">
+      <div class="ach" onclick="ta(this)">6️⃣ Nutrition <span class="ai">▶</span></div>
+      <div class="acb">
+        <div class="def">
+          <span class="dt">Nutrition (Performance Planning)</span>
+          <span class="dx">Exploring hydration, macronutrient requirements, timing of meals, energy system considerations and sports supplements — and how each can be tailored to meet the specific demands of the athlete's sport. (Links to Chapter 2D)</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc">
+      <div class="ach" onclick="ta(this)">7️⃣ Biomechanics <span class="ai">▶</span></div>
+      <div class="acb">
+        <div class="def">
+          <span class="dt">Biomechanics</span>
+          <span class="dx">The study of the movements and forces experienced by the body during sport. By understanding biomechanics, athletes can train appropriately — improving technique efficiency and reducing injury risk. Includes analysis of body position, angles, forces applied and movement patterns.</span>
+        </div>
+        <div class="anl">
+          <span class="anl-l">💡 Analogy</span>
+          Biomechanics is like the engineering analysis of how a car moves — understanding forces, angles and mechanics so you can make it faster and more efficient while reducing wear and tear (injury risk).
+        </div>
+      </div>
+    </div>
+
+    <div class="acc">
+      <div class="ach" onclick="ta(this)">8️⃣ Choreography <span class="ai">▶</span></div>
+      <div class="acb">
+        <div class="def">
+          <span class="dt">Choreography</span>
+          <span class="dx">One of the key considerations when designing dance sequences. Performers or choreographers create sequences of movements that the dancer will use for their performance. Choreography combines compositional elements (space, dynamics, rhythm, relationships) to create an aesthetic performance.</span>
+        </div>
+        <p>Analysis methods: Video analysis, observation, data analysis.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. PERFORMANCE ANALYSIS -->
+  <div class="sc s4" id="s4-analysis">
+    <h2>3. Performance Analysis</h2>
+    <div class="def">
+      <span class="dt">Performance Analysis Methods</span>
+      <span class="dx">The approach used to gather information about performance. Examples include: fitness tests, observation, video analysis, questionnaires, skill feedback sheets.</span>
+    </div>
+    <div class="def">
+      <span class="dt">Performance Analysis Tools</span>
+      <span class="dx">Specific instruments or software used to carry out performance analysis. Examples include: On Form app (video analysis software), Sit and Reach Box (flexibility measurement), Vertex (jump height measurement).</span>
+    </div>
+    <div class="mem">
+      <span class="mem-l">🧠 Memory Trick</span>
+      <strong>Method = HOW you collect the information</strong> (e.g. video analysis, fitness testing)<br>
+      <strong>Tool = WHAT you use to collect it</strong> (e.g. stopwatch, GPS tracker, Hudl software)
+    </div>
+
+    <h3>Ipsative Testing</h3>
+    <div class="def">
+      <span class="dt">Ipsative Test</span>
+      <span class="dx">A test where an athlete's current performance is compared to their own previous performance — rather than against others. Used to track individual improvement over time. Highly useful for skill and fitness development tracking as it focuses on personal progress regardless of where the athlete is relative to their peers.</span>
+    </div>
+    <div class="anl">
+      <span class="anl-l">💡 Analogy</span>
+      An ipsative test is like your own personal high score in a video game — you're competing against yourself, not others. Every improvement is a win, no matter how you compare to other players!
+    </div>
+  </div>
+
+  <!-- 4. OBJECTIVE vs SUBJECTIVE -->
+  <div class="sc s4" id="s4-data">
+    <h2>4. Objective vs Subjective Data</h2>
+    <div class="def">
+      <span class="dt">Objective Data</span>
+      <span class="dx">A measurement that can usually be presented as figures. It is a true and accurate measurement not influenced by personal feelings or opinions. Examples: time recorded in seconds, distance jumped in metres, heart rate in beats per minute.</span>
+    </div>
+    <div class="def">
+      <span class="dt">Subjective Data</span>
+      <span class="dx">Based on feelings and opinions. The impressions and personal judgement of the observer are used. Examples: a coach's opinion of the quality of a free-kick technique, a judge's score in gymnastics, a physiotherapist's assessment of pain levels.</span>
+    </div>
+    <div class="mem">
+      <span class="mem-l">🧠 Memory Trick</span>
+      <strong>Objective = Observable facts</strong> (numbers, measurements — no opinion involved)<br>
+      <strong>Subjective = Someone's viewpoint</strong> (opinion, feelings, interpretation)<br>
+      Think: "Objective = Objects you can measure. Subjective = Subject to someone's opinion."
+    </div>
+    <table>
+      <tr><th class="t4">Type</th><th class="t4">Definition</th><th class="t4">Example in Sport</th></tr>
+      <tr><td><strong>Objective</strong></td><td>Measurable, fact-based, numerical</td><td>100m sprint time = 10.82 seconds; VO2 max = 65ml/kg/min</td></tr>
+      <tr><td><strong>Subjective</strong></td><td>Opinion-based, qualitative assessment</td><td>Coach says "your tackling technique looks sloppy"; gymnastics judge awards 8.5 for execution</td></tr>
+    </table>
+    <div class="etip">A very common exam question: "Give one example of objective data and one example of subjective data collected during performance analysis in your chosen sport." Always link your examples to a SPECIFIC sport.</div>
+  </div>
+
+  <!-- 5. GOAL SETTING -->
+  <div class="sc s4" id="s4-goals">
+    <h2>5. Setting Performance Goals</h2>
+    <p>Goal-setting frameworks help athletes and coaches create meaningful, achievable goals that drive performance improvement.</p>
+
+    <div class="acc">
+      <div class="ach" onclick="ta(this)">🎯 SMART Goals <span class="ai">▶</span></div>
+      <div class="acb">
+        <div class="def">
+          <span class="dt">SMART Goals</span>
+          <span class="dx"><strong>S</strong>pecific · <strong>M</strong>easurable · <strong>A</strong>chievable · <strong>R</strong>elevant · <strong>T</strong>ime-bound. A framework for setting goals that are clear, realistic and trackable. (Links to Chapter 2C)</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc">
+      <div class="ach" onclick="ta(this)">🎯+ SMARTER Goals <span class="ai">▶</span></div>
+      <div class="acb">
+        <div class="def">
+          <span class="dt">SMARTER Goals</span>
+          <span class="dx">An extended version of SMART. Adds: <strong>E</strong>valuated (regularly reviewed to check progress) and <strong>R</strong>evised (adjusted based on evaluation — if the goal is too easy or too hard, it is updated). SMARTER goals are better for long-term planning as they build in a review process.</span>
+        </div>
+        <table>
+          <tr><th class="t4">Letter</th><th class="t4">Meaning</th></tr>
+          <tr><td><strong>S</strong></td><td>Specific – clearly defined goal</td></tr>
+          <tr><td><strong>M</strong></td><td>Measurable – can be tracked with data</td></tr>
+          <tr><td><strong>A</strong></td><td>Achievable – realistic given current level</td></tr>
+          <tr><td><strong>R</strong></td><td>Relevant – matters to the athlete's sport/goals</td></tr>
+          <tr><td><strong>T</strong></td><td>Time-bound – has a clear deadline</td></tr>
+          <tr><td><strong>E</strong></td><td>Evaluated – regularly reviewed for progress</td></tr>
+          <tr><td><strong>R</strong></td><td>Revised – updated/adjusted based on evaluation</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="acc">
+      <div class="ach" onclick="ta(this)">❓ The 3 W's Goal Framework <span class="ai">▶</span></div>
+      <div class="acb">
+        <div class="def">
+          <span class="dt">The 3 W's</span>
+          <span class="dx">A simple goal-setting framework: <strong>What</strong> (what do I want to achieve?), <strong>When</strong> (by when?), <strong>Why</strong> (why does this goal matter to me?). The 'why' is especially important — it links the goal to intrinsic motivation, making the athlete more likely to persist.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc">
+      <div class="ach" onclick="ta(this)">🔍 SWOT Analysis <span class="ai">▶</span></div>
+      <div class="acb">
+        <div class="def">
+          <span class="dt">SWOT Analysis</span>
+          <span class="dx">A structured method for evaluating an athlete's or team's current position. Stands for: <strong>Strengths</strong> (what we do well), <strong>Weaknesses</strong> (areas for improvement), <strong>Opportunities</strong> (external factors we can take advantage of), <strong>Threats</strong> (external factors that could hinder us). Used to inform goal setting and training planning.</span>
+        </div>
+        <div class="cg2">
+          <div class="card g"><div class="ct">✅ Strengths</div><p>Internal positives. E.g. excellent passing technique, strong aerobic base, experienced team.</p></div>
+          <div class="card r"><div class="ct">❌ Weaknesses</div><p>Internal areas to improve. E.g. poor set-piece defence, low speed endurance, inconsistent shooting.</p></div>
+          <div class="card"><div class="ct">🌟 Opportunities</div><p>External positives. E.g. upcoming training camp, new strength coach, opposition has key player injured.</p></div>
+          <div class="card"><div class="ct">⚠️ Threats</div><p>External negatives. E.g. bad weather disrupting training, league restructuring, rival team improving rapidly.</p></div>
+        </div>
+        <div class="anl">
+          <span class="anl-l">💡 Analogy</span>
+          SWOT is like a health check-up for your performance. Your doctor (coach) looks at what's healthy (strengths), what needs treatment (weaknesses), what lifestyle changes you could make (opportunities) and what health risks you need to watch out for (threats).
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. DESIGNING A TRAINING PROGRAMME -->
+  <div class="sc s4" id="s4-training">
+    <h2>6. Designing a Training Programme</h2>
+    <p>A well-designed training programme applies the principles of training within a periodised structure, using appropriate training methods and types of practice.</p>
+
+    <h3>SPORT + RAID – Extended Principles of Training</h3>
+    <div class="mem">
+      <span class="mem-l">🧠 Memory Trick</span>
+      <strong>SPORT</strong> (Specificity, Progression, Overload, Reversibility, Tedium) + <strong>RAID</strong><br>
+      <strong>R</strong>est · <strong>A</strong>daptation · <strong>I</strong>ndividual Difference · <strong>D</strong>iminishing Returns
+    </div>
+    <div class="def">
+      <span class="dt">Adaptation</span>
+      <span class="dx">The physiological changes that occur in the body as a result of training. When overload is applied consistently and progressively, the body adapts — becoming stronger, faster or more efficient. Adaptation is the GOAL of all training. Rest is what allows adaptation to actually take place.</span>
+    </div>
+    <div class="anl">
+      <span class="anl-l">💡 Analogy</span>
+      Adaptation is like calluses forming on your hands when you do manual work. Your body says "this is being stressed regularly — I'd better toughen up here!" That toughening is adaptation.
+    </div>
+
+    <h3>Methods of Training: Whole, Part, Whole-Part-Whole</h3>
+    <div class="def">
+      <span class="dt">Whole Practice Method</span>
+      <span class="dx">The skill is practised in its entirety from start to finish, as it would be performed in a real game or event. Best used for simple, continuous skills that cannot easily be broken down. E.g. practicing a full basketball layup from dribble to release.</span>
+    </div>
+    <div class="def">
+      <span class="dt">Part Practice Method</span>
+      <span class="dx">The skill is broken down into its individual components and each part is practised separately. Best used for complex skills that have distinct phases. E.g. practising the run-up, the jump and the landing of a high jump separately.</span>
+    </div>
+    <div class="def">
+      <span class="dt">Whole-Part-Whole Practice Method</span>
+      <span class="dx">The athlete performs the whole skill first to get a feel for it, then isolates the specific part that needs improvement (part practice), then returns to performing the whole skill incorporating the correction. Best of both worlds — context is maintained while specific faults are corrected.</span>
+    </div>
+    <div class="mem">
+      <span class="mem-l">🧠 Memory Trick</span>
+      <strong>Whole</strong> = one big go at the whole skill (best for simple skills)<br>
+      <strong>Part</strong> = break it into pieces (best for complex skills)<br>
+      <strong>Whole-Part-Whole</strong> = try it → fix the broken bit → try the whole thing again<br>
+      Think: "W-P-W = a sandwich: bread (whole) → filling (part fix) → bread again (whole)!"
+    </div>
+    <div class="etip">Examiners often ask: "What method of practice would you use for a complex skill in your chosen sport? Justify your answer." W-P-W is usually the best answer for complex skills with distinct phases.</div>
+  </div>
+
+  <!-- 7. TYPES OF PRACTICE -->
+  <div class="sc s4" id="s4-practice">
+    <h2>7. Types of Practice</h2>
+
+    <div class="acc">
+      <div class="ach" onclick="ta(this)">📌 Fixed Practice <span class="ai">▶</span></div>
+      <div class="acb">
+        <div class="def">
+          <span class="dt">Fixed (Blocked) Practice</span>
+          <span class="dx">The same skill is repeated over and over again under the same conditions without variation. Best used for closed skills that are performed in a predictable environment. E.g. repeatedly practising a penalty kick from the same spot. Builds a strong movement pattern through repetition.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc">
+      <div class="ach" onclick="ta(this)">🔄 Variable Practice <span class="ai">▶</span></div>
+      <div class="acb">
+        <div class="def">
+          <span class="dt">Variable Practice</span>
+          <span class="dx">The skill is practised under a variety of conditions and situations — changing the environment, opposition, distance or angle. Best used for open skills performed in unpredictable environments. E.g. practising a tennis serve from different positions, at different speeds, against different opponents. Develops adaptability.</span>
+        </div>
+        <div class="anl">
+          <span class="anl-l">💡 Analogy</span>
+          Fixed practice = practising your signature on paper until it's perfect. Variable practice = practising your signature in different conditions (wet paper, pen running out, someone watching) — more realistic to real life!
+        </div>
+      </div>
+    </div>
+
+    <div class="acc">
+      <div class="ach" onclick="ta(this)">⏱️ Massed Practice <span class="ai">▶</span></div>
+      <div class="acb">
+        <div class="def">
+          <span class="dt">Massed Practice</span>
+          <span class="dx">The skill is practised in long, continuous blocks with little or no rest between repetitions. Best suited to simple skills and for building performance under fatigue (which replicates late-game conditions). Risk of fatigue reducing quality of practice if used for complex skills.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc">
+      <div class="ach" onclick="ta(this)">☕ Distributed Practice <span class="ai">▶</span></div>
+      <div class="acb">
+        <div class="def">
+          <span class="dt">Distributed Practice</span>
+          <span class="dx">The skill is practised with regular rest intervals between repetitions or sessions. Best for complex skills, beginners, young athletes or when fatigue would reduce the quality of practice. The rest intervals give the nervous system time to consolidate the movement pattern — leading to better long-term learning.</span>
+        </div>
+        <div class="mem">
+          <span class="mem-l">🧠 Memory Trick</span>
+          <strong>Massed</strong> = Mass of reps, no breaks (like cramming — works short-term, risky for complex skills)<br>
+          <strong>Distributed</strong> = Distributed with breaks (like spaced revision — better for long-term learning!)
+        </div>
+      </div>
+    </div>
+
+    <div class="acc">
+      <div class="ach" onclick="ta(this)">🧠 Mental Practice <span class="ai">▶</span></div>
+      <div class="acb">
+        <div class="def">
+          <span class="dt">Mental Practice (Mental Rehearsal / Imagery)</span>
+          <span class="dx">Practising the skill in the mind — mentally rehearsing the execution of a movement without physically performing it. Reinforces neural pathways associated with the skill. Particularly useful when physical practice is not possible (injury, travel) or as part of a pre-performance routine. Highly effective when combined with physical practice.</span>
+        </div>
+        <div class="anl">
+          <span class="anl-l">💡 Analogy</span>
+          Mental practice is like a flight simulator for pilots — you're training your brain to "fly" the skill without actually being in the plane. The brain's neural pathways are activated almost as effectively as in real physical practice!
+        </div>
+      </div>
+    </div>
+
+    <table>
+      <tr><th class="t4">Type</th><th class="t4">Definition</th><th class="t4">Best For</th></tr>
+      <tr><td><strong>Fixed</strong></td><td>Same skill, same conditions, repeated</td><td>Closed skills (penalty, free throw)</td></tr>
+      <tr><td><strong>Variable</strong></td><td>Skill in varied conditions/situations</td><td>Open skills (passing in a game)</td></tr>
+      <tr><td><strong>Massed</strong></td><td>Long blocks, minimal rest</td><td>Simple skills, simulating fatigue</td></tr>
+      <tr><td><strong>Distributed</strong></td><td>Practice with regular rest intervals</td><td>Complex skills, beginners</td></tr>
+      <tr><td><strong>Mental</strong></td><td>Mental rehearsal without physical movement</td><td>Pre-performance, injury recovery</td></tr>
+    </table>
+  </div>
+
+  <!-- 8. REFLECTION -->
+  <div class="sc s4" id="s4-reflect">
+    <h2>8. Reflecting In and On Practice</h2>
+    <p>Reflection is a critical component of performance improvement. Without structured reflection, athletes cannot identify what worked and what needs to change.</p>
+
+    <div class="def">
+      <span class="dt">Reflection 'In' Practice</span>
+      <span class="dx">Reflecting during the activity — making real-time adjustments to decisions, technique or tactics while the performance is happening. (Links to Chapter 3C — Reflection 'in' action)</span>
+    </div>
+    <div class="def">
+      <span class="dt">Reflection 'On' Practice</span>
+      <span class="dx">Reflecting after the activity — reviewing the performance, identifying strengths and areas for improvement, and using that knowledge to inform future training and performance. (Links to Chapter 3C — Reflection 'on' action)</span>
+    </div>
+
+    <h3>What to Reflect On</h3>
+    <div class="cg2">
+      <div class="card"><div class="ct">Objective Measures</div><p>Stats, times, distances, scores — measurable data collected during the performance.</p></div>
+      <div class="card"><div class="ct">Subjective Impressions</div><p>How did it feel? Coach's qualitative feedback on technique, decision-making, tactical execution.</p></div>
+      <div class="card"><div class="ct">Goal Progress</div><p>Are short-term goals being met on time? Does the long-term goal need to be revised?</p></div>
+      <div class="card"><div class="ct">Training Load</div><p>RPE scores, volume, intensity — to detect early signs of overtraining or undertraining.</p></div>
+    </div>
+    <div class="etip">Use the WSN model (What? → So What? → Now What?) to structure any reflection question in the exam. It shows the examiner that you understand the purpose of reflection — not just describing what happened, but learning from it.</div>
+  </div>
+
+  <!-- CH4 QUIZ -->
+  <div class="sc s4" id="s4-quiz">
+    <h2>🧠 Chapter 4 Quick Quiz</h2>
+    <div id="quiz-4"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!--  CHAPTER 5A                                            -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div id="ch5a" class="cp">
+  <div class="chh h5a">
+    <h1>🏃 Chapter 5A: Physical Activity Participation</h1>
+    <p>Benefits of PA, concepts of physical activity, barriers, supports and measuring participation</p>
+  </div>
+
+  <!-- WHAT IS PA -->
+  <div class="sc s5a" id="s5a-what">
+    <h2>1. What is Physical Activity?</h2>
+    <div class="def a">
+      <span class="dt">Physical Activity</span>
+      <span class="dx">Any body movement that is produced by the muscles of the body and results in the expenditure of energy. This is a broad definition — it includes everything from a casual walk to elite sport competition.</span>
+    </div>
+    <div class="def a">
+      <span class="dt">Health Enhancing Physical Activity (HEPA)</span>
+      <span class="dx">Activities such as PE or other sports that are of sufficient intensity and duration to benefit health. HEPA goes beyond ordinary everyday movement — it actively improves health outcomes.</span>
+    </div>
+    <div class="def a">
+      <span class="dt">Well-being</span>
+      <span class="dx">A combination of mental and social elements which contribute to a person's overall sense of fulfilment. Well-being is not just about being physically healthy — it encompasses mental health, social connections and life satisfaction.</span>
+    </div>
+    <div class="anl">
+      <span class="anl-l">💡 Analogy</span>
+      Well-being is like a three-legged stool. Physical health, mental health and social connections are the three legs — if any one is weak or missing, the stool (your well-being) is unstable!
+    </div>
+  </div>
+
+  <!-- LEVELS & GUIDELINES -->
+  <div class="sc s5a" id="s5a-levels">
+    <h2>2. Levels of Physical Activity &amp; Guidelines</h2>
+    <div class="def a">
+      <span class="dt">Moderate-Intensity Physical Activity</span>
+      <span class="dx">Activity that will increase heart rate, body temperature and breathing rate. You can hold a conversation but will feel the effort. Examples: brisk walking, dancing, gardening, cycling at a comfortable pace.</span>
+    </div>
+    <div class="def a">
+      <span class="dt">Vigorous-Intensity Physical Activity</span>
+      <span class="dx">Activity that makes you breathe hard and fast. If working at this level, you will not be able to say more than a few words without pausing for breath. Examples: running, fast swimming, fast cycling, competitive sport.</span>
+    </div>
+    <div class="mem">
+      <span class="mem-l">🧠 Memory Trick</span>
+      <strong>Moderate = Can talk in full sentences</strong> (brisk but manageable)<br>
+      <strong>Vigorous = Can only say a few words</strong> (hard, breathless effort)<br>
+      Try the "Talk Test" — if you can sing, it's light! If you can talk, it's moderate! If you can't talk, it's vigorous!
+    </div>
+
+    <h3>Irish PA Statistics (Key Exam Facts!)</h3>
+    <div class="warn">
+      <span class="warn-l">📊 Key Statistics from SLÁN &amp; CSPPA Studies</span>
+      <ul>
+        <li>Only <strong>3 in 10 adults</strong> are meeting the recommended PA guidelines</li>
+        <li>Only <strong>1 in 5 primary school children</strong> are meeting the guidelines</li>
+        <li>Only <strong>1 in 10 post-primary students</strong> are meeting the guidelines — with girls' rates even lower</li>
+      </ul>
+      These are powerful statistics to include in exam answers about barriers to physical activity.
+    </div>
+
+    <h3>Recommended Guidelines</h3>
+    <div class="info a">
+      <span class="info-l">📋 Adults (18+ years)</span>
+      At least <strong>150 minutes of moderate-intensity</strong> OR <strong>75 minutes of vigorous-intensity</strong> aerobic activity per week, plus muscle-strengthening activities on 2+ days per week.
+    </div>
+    <div class="info a">
+      <span class="info-l">📋 Children &amp; Adolescents (under 18)</span>
+      At least <strong>60 minutes of moderate to vigorous physical activity every day</strong>. This should include aerobic activity and muscle/bone-strengthening activity on at least 3 days per week.
+    </div>
+  </div>
+
+  <!-- BENEFITS -->
+  <div class="sc s5a" id="s5a-benefits">
+    <h2>3. Personal, Social &amp; Economic Benefits of Physical Activity</h2>
+
+    <div class="acc">
+      <div class="ach" onclick="ta(this)">🧍 Personal Benefits <span class="ai">▶</span></div>
+      <div class="acb">
+        <h4>Physical Benefits</h4>
+        <ul>
+          <li>Improves heart function</li>
+          <li>Improves the efficiency of the body systems (e.g. increased lung capacity)</li>
+          <li>Reduces the risk of chronic illness such as heart disease, type 2 diabetes and cancer</li>
+          <li>Prevents the onset of obesity</li>
+          <li>Enables a person to carry out everyday tasks without getting tired</li>
+        </ul>
+        <h4>Mental Benefits</h4>
+        <ul>
+          <li>Reduces stress and increases energy levels</li>
+          <li>Releases feel-good hormones in the body, such as <strong>serotonin</strong>, which have a positive impact on mental health</li>
+          <li>Enables a person to control their emotions and work productively</li>
+        </ul>
+        <div class="def a">
+          <span class="dt">Serotonin</span>
+          <span class="dx">A feel-good hormone (neurotransmitter) released during physical activity that positively impacts mood, reduces anxiety and contributes to a sense of happiness and well-being. Often called the "happiness chemical."</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc">
+      <div class="ach" onclick="ta(this)">👥 Social Benefits <span class="ai">▶</span></div>
+      <div class="acb">
+        <ul>
+          <li>Provides opportunities to make friends through sporting experiences</li>
+          <li>Encourages the development of cooperation and teamwork skills</li>
+          <li>Increases self-esteem and self-efficacy</li>
+          <li>Enables people to be socially active and supported — they may feel part of a club or group</li>
+          <li>Encourages family and friends to become active as they see both the health and social benefits</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="acc">
+      <div class="ach" onclick="ta(this)">💰 Economic Benefits <span class="ai">▶</span></div>
+      <div class="acb">
+        <ul>
+          <li>Improves the health of the population — lower healthcare costs for the state</li>
+          <li>Creates job opportunities in the sport and leisure sector</li>
+          <li>Increases workplace productivity</li>
+          <li>Lowers transport costs as more people cycle or walk to school/work</li>
+          <li>Has a positive impact on weight levels — prevents chronic diseases, leading to a healthier and more productive population</li>
+          <li>Provides opportunities for businesses through sponsorship, advertisements and sports marketing</li>
+        </ul>
+        <div class="anl">
+          <span class="anl-l">💡 Analogy</span>
+          The economic benefits of PA are like preventative maintenance on a car — it costs money upfront (facilities, programmes) but saves far more in the long run by preventing expensive breakdowns (hospitalisation, lost productivity).
+        </div>
+      </div>
+    </div>
+    <div class="etip">Know at least TWO personal (one physical + one mental), TWO social and TWO economic benefits for the exam. Link each benefit to a specific example where possible.</div>
+  </div>
+
+  <!-- CONCEPTS OF PA -->
+  <div class="sc s5a" id="s5a-concepts">
+    <h2>4. Concepts of Physical Activity</h2>
+
+    <div class="def a">
+      <span class="dt">Play</span>
+      <span class="dx">Enables people (mainly children) to be involved in physical activity where the activity is centred on <strong>fun and enjoyment</strong>. Free play acts as a stepping-stone for young children to become involved in organised sport. Play enables children to improve their <strong>physical literacy</strong> and fundamental movement skills. Develops gross motor skills, problem-solving, creativity and social skills.</span>
+    </div>
+
+    <div class="def a">
+      <span class="dt">Physical Literacy</span>
+      <span class="dx">The motivation, confidence, physical competence, knowledge and understanding to value and take responsibility for engagement in physical activities for life. A child with high physical literacy is more likely to remain active throughout their life.</span>
+    </div>
+
+    <div class="def a">
+      <span class="dt">Gross Motor Skills</span>
+      <span class="dx">Whole-body movements which involve large muscle groups. Examples: walking, running, standing, jumping. These are foundational movement skills developed through play in early childhood.</span>
+    </div>
+
+    <div class="def a">
+      <span class="dt">Leisure &amp; Recreation</span>
+      <span class="dx">Leisure activities are non-serious and informal in nature — <strong>winning is not important</strong>. Participation is a matter of choice — it is up to the individual to use their spare time to get involved. Can be physically energetic, flexible in nature and self-regulated. E.g. joining a leisure centre and doing a 20-minute swim after work. Has positive effects on health, well-being, stress relief and self-esteem.</span>
+    </div>
+
+    <div class="def a">
+      <span class="dt">Physical Education (PE)</span>
+      <span class="dx">Formal physical activity taught during school time in instructed lessons led by a teacher. The aim of PE is to enable students to gain the knowledge, awareness, confidence, motivation, attitudes, skills and abilities to be active in whatever way they choose. Primary: develops physically literate children. Post-primary: develops positive attitudes towards PA and increases participation opportunities.</span>
+    </div>
+
+    <div class="def a">
+      <span class="dt">Mass Participation Sports</span>
+      <span class="dx">Large-scale competitions or activities where individuals of various skill levels come together to participate. Often attract a significant number of participants and spectators. Provides a personal challenge for participants of all abilities. Examples: Dublin Marathon, triathlons, Tough Mudder, Couch to 5K programmes.</span>
+    </div>
+
+    <div class="def a">
+      <span class="dt">Outdoor &amp; Adventure Activities</span>
+      <span class="dx">Recreation that takes place outdoors, mainly in natural settings. Often focused around excitement or managed risk. Extreme sports would be a category here. Examples: rock climbing, kayaking, orienteering, mountain biking, cliff diving.</span>
+    </div>
+
+    <div class="def a">
+      <span class="dt">Sport</span>
+      <span class="dx">Physical activity that involves physical exertion and skill where individuals or teams compete against one another for entertainment. The main type of organised physical activity that people engage in, ranging from recreational to elite level.</span>
+    </div>
+
+    <div class="mem">
+      <span class="mem-l">🧠 Memory Trick – The 6 Concepts</span>
+      <strong>P-L-P-M-O-S</strong> = <strong>P</strong>lay · <strong>L</strong>eisure &amp; Recreation · <strong>P</strong>hysical Education · <strong>M</strong>ass Participation · <strong>O</strong>utdoor &amp; Adventure · <strong>S</strong>port<br>
+      "Pretty Lively People Make Outstanding Sportspeople!"
+    </div>
+
+    <table>
+      <tr><th class="t5a">Concept</th><th class="t5a">Key Feature</th><th class="t5a">Example</th></tr>
+      <tr><td><strong>Play</strong></td><td>Fun, unstructured, child-centred</td><td>Children playing tag at break time</td></tr>
+      <tr><td><strong>Leisure &amp; Recreation</strong></td><td>Informal, non-competitive, self-chosen</td><td>Going for a swim after work</td></tr>
+      <tr><td><strong>Physical Education</strong></td><td>Formal, school-based, teacher-led</td><td>Leaving Cert PE class</td></tr>
+      <tr><td><strong>Mass Participation</strong></td><td>Large-scale, all abilities welcome</td><td>Dublin City Marathon</td></tr>
+      <tr><td><strong>Outdoor &amp; Adventure</strong></td><td>Natural settings, element of risk</td><td>Rock climbing, kayaking</td></tr>
+      <tr><td><strong>Sport</strong></td><td>Competitive, physical exertion, skill</td><td>County Hurling Championship</td></tr>
+    </table>
+  </div>
+
+  <!-- BARRIERS & SUPPORTS -->
+  <div class="sc s5a" id="s5a-barriers">
+    <h2>5. Barriers &amp; Supports to Physical Activity</h2>
+
+    <div class="def a">
+      <span class="dt">Barrier (to Physical Activity)</span>
+      <span class="dx">A circumstance or an obstacle that could prevent the progress of an individual in engaging with physical activity.</span>
+    </div>
+
+    <h3>Common Barriers to Physical Activity</h3>
+    <div class="cg2">
+      <div class="card a"><div class="ct">⏰ Lack of Time</div><p>Study, work and family commitments leave little time for physical activity — especially common among teenagers during exam years.</p></div>
+      <div class="card a"><div class="ct">💰 Cost</div><p>Gym memberships, equipment and sports club fees can be expensive, creating financial barriers for many families.</p></div>
+      <div class="card a"><div class="ct">📍 Access</div><p>Poor transport links, lack of local facilities or unsafe environments limit where people can exercise.</p></div>
+      <div class="card a"><div class="ct">😰 Lack of Confidence</div><p>Fear of embarrassment, low self-efficacy or previous negative experiences in PE can discourage participation.</p></div>
+      <div class="card a"><div class="ct">📱 Technology/Sedentary Culture</div><p>Social media, gaming and streaming services compete with physical activity for leisure time.</p></div>
+      <div class="card a"><div class="ct">🤝 Social Norms</div><p>Peer groups who are not active or cultural factors can reduce motivation to participate.</p></div>
+      <div class="card a"><div class="ct">🤕 Injury or Disability</div><p>Physical limitations can prevent participation in certain activities without appropriate adaptations.</p></div>
+      <div class="card a"><div class="ct">🏫 School Environment</div><p>Limited PE time, poor facilities or lack of extracurricular sports options act as school-based barriers.</p></div>
+    </div>
+
+    <div class="def a">
+      <span class="dt">Support (for Physical Activity)</span>
+      <span class="dx">The act of giving assistance to an individual to enable them to be successful in engaging with physical activity.</span>
+    </div>
+
+    <h3>Key Supports for Physical Activity</h3>
+    <div class="def a">
+      <span class="dt">Local Sports Partnerships (LSPs)</span>
+      <span class="dx">An initiative of Sport Ireland. There is a network of 29 LSPs across Ireland. They focus on promoting physical activity at local level — getting people active, removing barriers, providing community opportunities and improving the physical and mental health of the nation.</span>
+    </div>
+    <div class="def a">
+      <span class="dt">Active Travel</span>
+      <span class="dx">Cycle lanes and 'Safe Routes to School' set up to allow people walk, run or cycle to school/work rather than using motorised transport. Promotes incidental physical activity as part of everyday routine.</span>
+    </div>
+    <div class="def a">
+      <span class="dt">National Governing Bodies (NGBs)</span>
+      <span class="dx">Independent bodies who train and deploy coaches, organise representative level sport and provide pathways from local to national to international competitions. Examples: GAA, FAI, IRFU, Athletics Ireland.</span>
+    </div>
+    <div class="etip">Exam question: "Identify two barriers to physical activity participation for a specific group (e.g. post-primary girls) and suggest a support that could address each barrier." Always match the support directly to the barrier identified.</div>
+  </div>
+
+  <!-- MEASURING PA -->
+  <div class="sc s5a" id="s5a-measuring">
+    <h2>6. Measuring Physical Activity – Methods &amp; Devices</h2>
+    <p>The ability to track physical activity is a key influence on participation levels — the psychological effect of recording exercise supports goal setting and achievement, resulting in increased motivation.</p>
+
+    <h3>Methods of Collecting PA Data</h3>
+    <div class="def a">
+      <span class="dt">Self-Report Questionnaire</span>
+      <span class="dx">The person answers a set of questions based on their own activity levels. A good way of collecting data as long as the questions are specific and answers are provided truthfully. Limitation: relies on honest and accurate self-reporting — people may over- or under-report.</span>
+    </div>
+    <div class="def a">
+      <span class="dt">Activity Diary</span>
+      <span class="dx">A person keeps a personal account of the physical activity they do each day — recording type, duration and intensity. Provides detailed, longitudinal data on participation patterns. Useful for identifying patterns and barriers.</span>
+    </div>
+
+    <h3>Devices Used to Measure Physical Activity</h3>
+    <table>
+      <tr><th class="t5a">Device</th><th class="t5a">What It Measures</th><th class="t5a">Use in Sport</th></tr>
+      <tr><td><strong>Pedometer</strong></td><td>Step count</td><td>Tracking daily walking activity; encouraging 10,000 steps per day goal</td></tr>
+      <tr><td><strong>Accelerometer</strong></td><td>Velocity, position, and movement across three axes (tilt, orientation, inclination). Many fitness wearables have an inbuilt accelerometer.</td><td>Detailed movement analysis; used in sports science research and wearables</td></tr>
+      <tr><td><strong>Heart Rate Monitor</strong></td><td>Heart rate continuously throughout activity</td><td>Athletes use these to ensure they are in the correct training zone for their fitness goal</td></tr>
+      <tr><td><strong>GPS Device</strong></td><td>Average positions, distance covered, incline/decline, speed</td><td>Used by professional athletes and teams to gather comprehensive performance data</td></tr>
+      <tr><td><strong>Smart Watch</strong></td><td>Heart rate + accelerometer + GPS + sleep data = overall health picture</td><td>Provides a comprehensive daily health and activity overview for athletes and general population</td></tr>
+    </table>
+    <div class="mem">
+      <span class="mem-l">🧠 Memory Trick</span>
+      <strong>Pedometer = Peds (feet/steps)</strong> — it counts your steps like counting footsteps!<br>
+      <strong>Accelerometer = Acceleration</strong> — measures how fast you're moving and in which direction<br>
+      <strong>GPS = Global Positioning System</strong> — tells you WHERE and HOW FAR
+    </div>
+    <div class="etip">Know the difference between a pedometer and an accelerometer — a common confusion! A pedometer only counts steps; an accelerometer captures multi-directional movement data. Smart watches combine multiple devices in one.</div>
+  </div>
+
+  <!-- 5A QUIZ -->
+  <div class="sc s5a" id="s5a-quiz">
+    <h2>🧠 Chapter 5A Quick Quiz</h2>
+    <div id="quiz-5a"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!--  CHAPTER 5B                                            -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div id="ch5b" class="cp">
+  <div class="chh h5b">
+    <h1>🌟 Chapter 5B: Promoting PA &amp; Pathway to Excellence</h1>
+    <p>Strategies to promote PA, role models, national policy, NGBs, LSPs, LTAD and specialisation</p>
+  </div>
+
+  <!-- STRATEGIES -->
+  <div class="sc s5b" id="s5b-strategies">
+    <h2>1. Strategies to Promote Physical Activity Participation</h2>
+
+    <div class="def t">
+      <span class="dt">Target Specific Behaviour</span>
+      <span class="dx">Programmes designed to improve physical activity should have that as their sole focus. If programmes try to cover all bases (tobacco, alcohol, nutrition etc.) simultaneously, they do not tend to be as successful.</span>
+    </div>
+
+    <div class="def t">
+      <span class="dt">Multicomponent Approach</span>
+      <span class="dx">While targeting physical activity levels, it is important to come at it from different angles. E.g. to improve activity in schoolchildren: introduce a walk-to-school club, create opportunities to be active at lunch, change the PE curriculum, link with the community to provide more opportunities.</span>
+    </div>
+
+    <div class="def t">
+      <span class="dt">Improve Enjoyment, Attitudes and Motivation</span>
+      <span class="dx">For long-lasting changes to a group's physical activity levels, people need to have activities they enjoy and that they will be motivated to continue AFTER a programme ends. The focus should be on making PA intrinsically rewarding.</span>
+    </div>
+
+    <div class="def t">
+      <span class="dt">Include Participants in Decision-Making</span>
+      <span class="dx">If people feel they have been involved in creating a physical activity programme in the first place, they are more likely to take part and stay motivated. Giving participants ownership increases engagement and commitment.</span>
+    </div>
+
+    <div class="def t">
+      <span class="dt">Target Group Tailoring</span>
+      <span class="dx">Strategies to improve physical activity levels should be tailored to the needs of the specific target group. E.g. strategies for primary school-aged children will be very different to those for adults aged 60+. One size does not fit all!</span>
+    </div>
+
+    <div class="anl">
+      <span class="anl-l">💡 Analogy</span>
+      Promoting PA effectively is like marketing a product — you wouldn't advertise children's toys the same way you advertise retirement financial plans! You need to know your audience (target group) and speak directly to their needs and interests.
+    </div>
+    <div class="etip">Exam question: "Describe two strategies that could be used to promote physical activity in a specific target group." Pick TWO from the above list and link each clearly to the specific group named in the question.</div>
+  </div>
+
+  <!-- PEOPLE WHO PROMOTE PA -->
+  <div class="sc s5b" id="s5b-people">
+    <h2>2. People Who Promote Physical Activity</h2>
+    <p>There are many people involved in young people's lives who encourage them to be active: parents, PE teachers, coaches, athletes, supporters and others.</p>
+
+    <h3>Characteristics of People Who Promote PA</h3>
+    <div class="cg2">
+      <div class="card t"><div class="ct">💪 Motivated</div><p>Have a strong desire to be physically active and encourage others to do the same.</p></div>
+      <div class="card t"><div class="ct">🌟 Role Model</div><p>Are physically active themselves — lead by example, not just instruction.</p></div>
+      <div class="card t"><div class="ct">🎉 Enthusiastic</div><p>Enjoy physical activity and helping others achieve their goals.</p></div>
+      <div class="card t"><div class="ct">📚 Knowledgeable</div><p>Understand the importance of physical activity and its benefits to people.</p></div>
+      <div class="card t"><div class="ct">🤝 Respected</div><p>Admired for their efforts within physical activity and for getting people active.</p></div>
+      <div class="card t"><div class="ct">😊 Approachable</div><p>Friendly — people can ask them for advice on how to be physically active.</p></div>
+    </div>
+
+    <div class="def t">
+      <span class="dt">Role Model</span>
+      <span class="dx">Someone whose behaviour, habits and achievements can be emulated by others — especially young people. Role models encourage young people to engage in physical activity. Traits of a sporting role model: <strong>respect for others, positivity, honesty, knowledge and insight into activity, skilled performer and good communicator.</strong></span>
+    </div>
+
+    <div class="anl">
+      <span class="anl-l">💡 Analogy</span>
+      A role model is like a lighthouse — they don't push ships, but their light guides others towards a better destination (an active, healthy lifestyle).
+    </div>
+  </div>
+
+  <!-- NATIONAL SPORTS POLICY -->
+  <div class="sc s5b" id="s5b-policy">
+    <h2>3. National Sports Policy 2018–2027</h2>
+
+    <div class="def t">
+      <span class="dt">National Sports Policy 2018–2027</span>
+      <span class="dx">Sets out the vision for Irish sports and defines the actions required to achieve the goals. Sport is identified as having positive contributions to: health and well-being, social and community development, economic activity, educational performance, and life-long learning.</span>
+    </div>
+
+    <h3>Three High-Level Goals</h3>
+    <div class="cg2">
+      <div class="card t"><div class="ct">Goal 1: Increased Participation</div><p>Increased participation among Irish children and adults in physical activity and sport.</p></div>
+      <div class="card t"><div class="ct">Goal 2: Excellence</div><p>Increase in the number of Irish athletes achieving world-class results at the highest level of competition.</p></div>
+      <div class="card t"><div class="ct">Goal 3: Improved Capacity</div><p>Increased collaboration between governing bodies; improved training for all levels of professionals and volunteers.</p></div>
+    </div>
+
+    <h3>Key Actions of the National Sports Policy</h3>
+    <table>
+      <tr><th class="t5b">Action</th><th class="t5b">What It Involves</th></tr>
+      <tr><td><strong>Action 2</strong></td><td>Collaboration with the Department of Education, teachers and NGBs to ensure PE develops physically literate children.</td></tr>
+      <tr><td><strong>Action 4</strong></td><td>Development of an information campaign to help parents/guardians encourage their children to be physically active.</td></tr>
+      <tr><td><strong>Action 6</strong></td><td>Sport Ireland develops initiatives with NGBs, LSPs, schools, the CARA centre and other parties to address participation among adolescents and young adults.</td></tr>
+      <tr><td><strong>Action 7</strong></td><td>Stronger promotion among teachers and parents of the positive relationship between sports participation and exam performance — to reduce drop-out during exam years.</td></tr>
+    </table>
+    <div class="etip">Know all three Goals and at least TWO Actions of the National Sports Policy. These are frequently examined — you may be asked to explain how the policy promotes PA at national level.</div>
+  </div>
+
+  <!-- ROLE OF SCHOOLS -->
+  <div class="sc s5b" id="s5b-schools">
+    <h2>4. Role of Schools in Promoting Physical Activity</h2>
+    <ul>
+      <li>Provide PE lessons that are engaging in both competitive and non-competitive settings</li>
+      <li>Extracurricular activities and sports clubs</li>
+      <li>Provide facilities and equipment to be active at break and lunch times</li>
+      <li>School competitions (inter-schools leagues, Gaelic games, athletics etc.)</li>
+      <li>Provide links with the community — schools often bring coaches from local clubs into the school to coach</li>
+    </ul>
+
+    <h3>How Schools &amp; Communities Can Work Together</h3>
+    <div class="cg2">
+      <div class="card t"><div class="ct">🤝 Link with LSPs</div><p>Local Sports Partnerships provide workshops or guest speakers to schools and open doors for future participants.</p></div>
+      <div class="card t"><div class="ct">🚲 Active Transport Infrastructure</div><p>Safe walking/cycling routes and bike shelters near schools encourage students to cycle or walk — building activity into daily routines.</p></div>
+      <div class="card t"><div class="ct">🏆 Partnership with Local Clubs/NGBs</div><p>Schools host market-style events where local clubs provide information — students discover what's available nearby and how to get involved.</p></div>
+      <div class="card t"><div class="ct">👨‍👩‍👧 Parent Education</div><p>During parent evenings, schools emphasise PA promotion and its importance. Parents have a central role in reinforcing healthy habits students learn in school.</p></div>
+    </div>
+  </div>
+
+  <!-- LSPs -->
+  <div class="sc s5b" id="s5b-lsp">
+    <h2>5. Local Sports Partnerships (LSPs)</h2>
+    <div class="def t">
+      <span class="dt">Local Sports Partnerships (LSPs)</span>
+      <span class="dx">An initiative of Sport Ireland. There is a network of <strong>29 LSPs across Ireland</strong>. They promote opportunities for physical activity and sport for all at local level.</span>
+    </div>
+
+    <h3>What LSPs Aim To Do</h3>
+    <ul>
+      <li>Get people active</li>
+      <li>Remove barriers in sport and physical activity</li>
+      <li>Provide opportunities for everyone in the community to be physically active</li>
+      <li>Improve the physical and mental health of the nation</li>
+    </ul>
+
+    <h3>Role of Local Authorities</h3>
+    <p>Local authorities take many approaches to promote physical activity in a community: providing safe walking and cycling routes, increasing access to sporting facilities, organising physical activity events. These require many stakeholders — community groups, parents, teachers, schools, young people and sometimes government involvement at policy level.</p>
+  </div>
+
+  <!-- ROLE OF NGBs -->
+  <div class="sc s5b" id="s5b-ngb">
+    <h2>6. Role of National Governing Bodies (NGBs)</h2>
+    <div class="def t">
+      <span class="dt">National Governing Body (NGB)</span>
+      <span class="dx">An independent body that trains and deploys coaches, organises representative-level sport and provides pathways from local to national to international competition. NGBs take the form of sports clubs in local communities. Examples in Ireland: GAA, FAI, IRFU, Athletics Ireland, Badminton Ireland, Swim Ireland.</span>
+    </div>
+
+    <p>The goal for many NGBs is to provide a training programme that guides players/athletes towards sporting excellence. These pathways lead through local → county → provincial → national → international level.</p>
+
+    <div class="acc">
+      <div class="ach" onclick="ta(this)">🏈 IRFU (Irish Rugby Football Union) <span class="ai">▶</span></div>
+      <div class="acb">
+        <ul>
+          <li>Provides physical activity opportunities for people across Ireland through local rugby clubs</li>
+          <li>Club structures provide competitive teams at all age levels and in many cases for both genders</li>
+          <li>Competitions run at local, national, provincial and international levels</li>
+          <li>Developed tag rugby and touch rugby to counteract the contact barrier and increase participation</li>
+          <li>Provides funding to help clubs install all-weather facilities for year-round play</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="acc">
+      <div class="ach" onclick="ta(this)">⚽ FAI (Football Association of Ireland) <span class="ai">▶</span></div>
+      <div class="acb">
+        <ul>
+          <li><strong>Local:</strong> Coordinates various amateur leagues. Programmes designed to target specific groups, e.g. 'Soccer Sisters' to increase female participation</li>
+          <li><strong>National:</strong> Wide variety of leagues from local/county/regional to national league and cup competitions</li>
+          <li><strong>International:</strong> Provides international competitions for schools, under-15s through to under-21s, senior players and programmes like Street Leagues and Football For All</li>
+        </ul>
+        <div class="def t">
+          <span class="dt">Football for All / Soccer Sisters</span>
+          <span class="dx">FAI programmes designed to encourage participation from groups who are traditionally underrepresented in football — e.g. women and girls (Soccer Sisters), people with disabilities and people from disadvantaged communities (Football for All).</span>
+        </div>
+      </div>
+    </div>
+
+    <h3>Provision &amp; Support of Excellence in Sport</h3>
+    <div class="cg2">
+      <div class="card t"><div class="ct">🎓 Coaching</div><p>NGBs and Sport Ireland offer courses to coaches to provide expertise needed to develop young athletes and guide them on their journey within their sport.</p></div>
+      <div class="card t"><div class="ct">🏟️ Facilities</div><p>NGBs and Sport Ireland provide funding to local sports clubs to install facilities (e.g. all-weather pitches) to aid in the development of young athletes.</p></div>
+    </div>
+  </div>
+
+  <!-- LTAD MODEL -->
+  <div class="sc s5b" id="s5b-ltad">
+    <h2>7. Long-Term Athlete Development (LTAD) Model</h2>
+
+    <div class="def t">
+      <span class="dt">Long-Term Athlete Development (LTAD) Model</span>
+      <span class="dx">A framework that provides a pathway for athletes from participation in sport as young children all the way through to elite performance or lifelong active participation. It recognises that athletes develop at different rates and that training should be appropriately tailored to each stage of development. The model guides coaches and NGBs in providing the right type of training, competition and recovery at the right age.</span>
+    </div>
+
+    <div class="anl">
+      <span class="anl-l">💡 Analogy</span>
+      The LTAD model is like the educational system — just as you can't do Leaving Cert topics in Junior Infants, you can't give elite training to 8-year-olds. Each stage builds on the previous one and prepares you for the next.
+    </div>
+
+    <h3>LTAD Stages</h3>
+    <table>
+      <tr><th class="t5b">Stage</th><th class="t5b">Age (Approx.)</th><th class="t5b">Focus</th></tr>
+      <tr><td><strong>1. Active Start</strong></td><td>0–6 years</td><td>Fun, basic movement, play. Develop love of movement.</td></tr>
+      <tr><td><strong>2. FUNdamentals</strong></td><td>6–9 (boys), 6–8 (girls)</td><td>Learn fundamental movement skills (run, jump, throw, catch) through fun activities. No early specialisation.</td></tr>
+      <tr><td><strong>3. Learn to Train</strong></td><td>9–12 (boys), 8–11 (girls)</td><td>Golden age of skill learning. Develop sport-specific skills and physical literacy. Broad participation in multiple sports encouraged.</td></tr>
+      <tr><td><strong>4. Train to Train</strong></td><td>12–16 (boys), 11–15 (girls)</td><td>Build physical capacities (aerobic base, strength). Focus is on developing fitness and technique. May start to focus on 1–2 sports.</td></tr>
+      <tr><td><strong>5. Train to Compete</strong></td><td>16–23 (boys), 15–21 (girls)</td><td>Sport-specific training intensifies. Develop performance skills, tactics and mental preparation. Compete regularly.</td></tr>
+      <tr><td><strong>6. Train to Win</strong></td><td>19+ (boys), 18+ (girls)</td><td>Elite performance focus. Maximise sport-specific fitness, skill, tactics and psychological preparedness to win at the highest level.</td></tr>
+      <tr><td><strong>7. Active for Life</strong></td><td>Any age</td><td>Transition from competitive sport to lifelong physical activity — coaches, officials, recreational sport.</td></tr>
+    </table>
+
+    <div class="mem">
+      <span class="mem-l">🧠 Memory Trick – LTAD Stages</span>
+      <strong>A-F-L-T-T-T-A</strong> = Active Start → Fundamentals → Learn to Train → Train to Train → Train to Compete → Train to Win → Active for Life<br>
+      "A Fun Life Takes Time To Truly Achieve!"
+    </div>
+
+    <div class="etip">Common exam question: "Explain the importance of the LTAD model for athlete development." Key points: age-appropriate training, avoids early burnout, builds solid physical literacy base, maximises long-term potential.</div>
+  </div>
+
+  <!-- EARLY vs LATE SPECIALISATION -->
+  <div class="sc s5b" id="s5b-spec">
+    <h2>8. Early vs Late Specialisation</h2>
+
+    <div class="def t">
+      <span class="dt">Early Specialisation</span>
+      <span class="dx">When a performer exclusively trains and competes in their chosen physical activity from an <strong>early age</strong> — focusing on one sport only, typically before the age of 12.</span>
+    </div>
+
+    <div class="def t">
+      <span class="dt">Late Specialisation</span>
+      <span class="dx">When a performer engages in a number of physical activities and <strong>waits to specialise</strong> — sampling multiple sports throughout childhood and early adolescence before committing to one sport, typically after age 12–15.</span>
+    </div>
+
+    <table>
+      <tr><th class="t5b">Aspect</th><th class="t5b">Early Specialisation</th><th class="t5b">Late Specialisation</th></tr>
+      <tr><td><strong>Age of Focus</strong></td><td>Before age 12</td><td>After age 12–15</td></tr>
+      <tr><td><strong>Advantages</strong></td><td>Early skill development; may gain competitive edge earlier; suited to some sports (gymnastics, diving, figure skating)</td><td>Develops broader physical literacy; reduces burnout risk; develops transferable movement skills; may have longer career</td></tr>
+      <tr><td><strong>Disadvantages</strong></td><td>Higher risk of burnout and dropout; overuse injuries more common; limited development of transferable skills; may peak early then decline</td><td>May be slower to reach elite level in some sports; potential gap in sport-specific skill development during key years</td></tr>
+      <tr><td><strong>Best Suited To</strong></td><td>Aesthetic sports (gymnastics, figure skating, diving) where peak performance occurs at a younger age</td><td>Most team sports and endurance events (GAA, soccer, rugby, athletics) where physical maturity is important</td></tr>
+    </table>
+
+    <div class="anl">
+      <span class="anl-l">💡 Analogy</span>
+      Early specialisation is like planting a seed in a small pot — it grows quickly at first but soon runs out of space and nutrients. Late specialisation is like planting in open ground — it takes longer to show, but the roots grow deep and the plant thrives for much longer!
+    </div>
+
+    <div class="warn">
+      <span class="warn-l">⚠️ The LTAD Model supports Late Specialisation</span>
+      The LTAD model recommends that children sample multiple sports during the FUNdamentals and Learn to Train stages. Broad-based participation builds physical literacy and reduces the risk of early burnout — two of the most important factors for long-term athletic success.
+    </div>
+
+    <div class="etip">A very common exam question: "Compare early specialisation and late specialisation. Which does the LTAD model support and why?" Answer: The LTAD model supports late specialisation because it builds broader physical literacy, reduces injury and burnout risk, and leads to greater long-term development.</div>
+  </div>
+
+  <!-- 5B QUIZ -->
+  <div class="sc s5b" id="s5b-quiz">
+    <h2>🧠 Chapter 5B Quick Quiz</h2>
+    <div id="quiz-5b"></div>
+  </div>
+</div>
+
+</main>
+</div>
+
+<script>
+// ── QUIZ DATA ─────────────────────────────────────────────────────
+const QD = {
+  '4': [
+    { q: "What is a Needs Analysis?", opts: ["A test to measure an athlete's current fitness level", "The process of determining what qualities are necessary for the athlete, the sport, or a combination of both", "A method of comparing athletes to each other", "A plan that sets out weekly training sessions"], ans: 1, exp: "A needs analysis identifies the specific physical, technical, tactical and psychological demands of the sport — enabling the athlete to train appropriately for those specific requirements." },
+    { q: "What is the difference between Objective and Subjective data?", opts: ["Objective = opinions; Subjective = numbers", "Objective = measurable, factual (e.g. times, distances); Subjective = based on feelings and personal judgement", "Objective is collected by coaches; subjective by athletes", "There is no meaningful difference between the two"], ans: 1, exp: "Objective = measurable facts (e.g. 10.82 seconds, 45% possession). Subjective = opinion-based (e.g. coach says 'your technique looks off'). Objective is not influenced by personal feelings." },
+    { q: "What is an Ipsative Test?", opts: ["A test comparing the athlete against national standards", "A test where an athlete's performance is compared to their OWN previous performance", "A medical screening test before sport", "A team-based assessment tool"], ans: 1, exp: "Ipsative test = comparing yourself to yourself over time. It measures personal improvement regardless of how you compare to others — your own high score tracker!" },
+    { q: "What does SMARTER stand for compared to SMART?", opts: ["Stronger, Motivated, Active, Rapid, Targeted, Experienced, Reviewed", "SMART plus Evaluated (regularly reviewed) and Revised (adjusted based on evaluation)", "Simply adding Extra Rest to SMART goals", "SMART with 'Elite' and 'Recorded' added on"], ans: 1, exp: "SMARTER adds E = Evaluated (check progress regularly) and R = Revised (adjust the goal if needed). These make SMARTER better for long-term planning." },
+    { q: "What is the Whole-Part-Whole practice method?", opts: ["Practising only part of the skill each session", "Perform the whole skill → isolate and fix the weak part → return to the whole skill", "Alternating between individual and team practice", "Starting practice slowly and speeding up"], ans: 1, exp: "W-P-W: Try the whole skill first → identify the broken part and practise it → put it back into the whole skill. Best for complex skills with distinct phases (e.g. high jump, golf swing)." },
+    { q: "What is the difference between Fixed and Variable practice?", opts: ["Fixed is for teams; variable is for individuals", "Fixed = same skill, same conditions repeated; Variable = skill practised in varied conditions and situations", "Fixed = short sessions; variable = long sessions", "Both are the same type of practice"], ans: 1, exp: "Fixed (blocked) = repetition of skill in same conditions — great for closed skills. Variable = changing conditions, distance, opposition — great for open skills in unpredictable environments." },
+    { q: "What is Mental Practice?", opts: ["Practising psychological skills like breathing and visualisation", "Mentally rehearsing the execution of a skill without physically performing it", "Reading about tactics and strategies", "A rest period used to recover from physical training"], ans: 1, exp: "Mental practice = visualising yourself performing the skill in your mind. It activates similar neural pathways to physical practice. Especially useful during injury recovery or as part of pre-performance routines." },
+    { q: "What does SWOT stand for in goal setting?", opts: ["Speed, Weight, Output, Training", "Strengths, Weaknesses, Opportunities, Threats", "Skills, Willpower, Objectives, Targets", "Stamina, Work-rate, Output, Technique"], ans: 1, exp: "SWOT = Strengths (internal positives), Weaknesses (internal areas to improve), Opportunities (external factors to exploit), Threats (external factors that could hinder). Used to assess current position before planning goals." },
+    { q: "What is Biomechanics in the context of performance?", opts: ["A type of sports supplement", "The study of movements and forces experienced by the body during sport — to improve technique efficiency and reduce injury", "A method of testing cardiovascular fitness", "The process of designing training schedules"], ans: 1, exp: "Biomechanics analyses body positions, angles and forces to help athletes move more efficiently and safely. E.g. analysing a sprinter's start position to maximise power output and reduce injury risk." },
+    { q: "What is the difference between Distributed and Massed practice?", opts: ["Distributed = outdoors; massed = indoors", "Distributed = practice with regular rest intervals (better for complex skills/beginners); Massed = long blocks with little rest (suited to simple skills)", "Distributed = for teams; massed = for individuals", "They are the same thing with different names"], ans: 1, exp: "Distributed = rest intervals allow nervous system to consolidate movement patterns (better for long-term learning of complex skills). Massed = non-stop practice (good for simple skills or simulating fatigue conditions)." }
+  ],
+  '5a': [
+    { q: "What is Physical Activity?", opts: ["Only structured sports and competition", "Any body movement that is produced by the muscles of the body and results in the expenditure of energy", "Exercise done only in a gym or sports facility", "Activity that must last at least 30 minutes to count"], ans: 1, exp: "Physical activity = ANY muscle-produced body movement that uses energy. It's a broad definition — walking, gardening, sport, dance all count. HEPA (Health Enhancing PA) is activity that actively improves health." },
+    { q: "What is the difference between Moderate and Vigorous intensity activity?", opts: ["Moderate requires equipment; vigorous does not", "Moderate = can hold a conversation (e.g. brisk walk); Vigorous = can only say a few words without pausing for breath (e.g. running)", "Moderate is for adults only; vigorous for young people", "There is no meaningful difference in health benefit"], ans: 1, exp: "The 'talk test' is the easiest way to tell: Moderate = can speak in sentences. Vigorous = can only say a few words. Both provide health benefits but vigorous activity achieves the same benefits in less time." },
+    { q: "According to Irish statistics, what proportion of post-primary students meet PA guidelines?", opts: ["7 in 10", "5 in 10 (half)", "1 in 10 — with girls' rates even lower", "All post-primary students meet the guidelines"], ans: 2, exp: "Only 1 in 10 post-primary students are meeting PA guidelines — and girls' rates are even lower than boys. This highlights serious participation challenges among Irish teenagers." },
+    { q: "What is Well-being?", opts: ["Being physically fit and free from injury", "A combination of mental and social elements which contribute to a person's overall sense of fulfilment", "Having a healthy diet and good sleep patterns", "Physical fitness measured using standardised tests"], ans: 1, exp: "Well-being = more than physical health. It encompasses mental health, social connections and overall life satisfaction. Think of it as a three-legged stool — physical, mental and social health all need to be strong." },
+    { q: "What is a Barrier to Physical Activity?", opts: ["A type of physical training technique", "A circumstance or obstacle that could prevent the progress of an individual in engaging with physical activity", "The maximum heart rate achievable during vigorous exercise", "A government policy restricting access to sport"], ans: 1, exp: "Barriers include: lack of time, cost, poor access to facilities, lack of confidence, sedentary culture, peer influence, injury, disability, limited PE time. Barriers are why so few people meet PA guidelines." },
+    { q: "What is the difference between a Pedometer and an Accelerometer?", opts: ["Both measure exactly the same things", "Pedometer = measures step count only; Accelerometer = measures velocity and position across three axes (tilt, orientation, inclination)", "Pedometer measures heart rate; accelerometer measures steps", "Accelerometer can only be used in a lab; pedometer is for everyday use"], ans: 1, exp: "Pedometer = step counter only. Accelerometer = captures multi-directional movement data (3 axes). Many fitness wearables have built-in accelerometers. Smart watches combine both plus GPS and heart rate monitoring." },
+    { q: "What are Local Sports Partnerships (LSPs)?", opts: ["Private gym companies funded by sport clubs", "An initiative of Sport Ireland — a network of 29 LSPs across Ireland promoting PA at local level", "International sporting bodies who organise global competitions", "School sports committees run by PE teachers"], ans: 1, exp: "LSPs are Sport Ireland initiatives — 29 across Ireland. They aim to: get people active, remove barriers, provide community opportunities and improve the physical and mental health of the nation at grassroots level." },
+    { q: "What is Mass Participation Sport?", opts: ["Professional sport watched by large crowds", "Large-scale competitions where individuals of various skill levels come together to participate — providing personal challenge for all abilities", "Sport limited to elite athletes only", "Team sport involving more than 15 players per side"], ans: 1, exp: "Mass participation events (Dublin Marathon, triathlon, obstacle races) are open to all ability levels. They provide personal challenge and help promote PA across the whole population — not just competitive athletes." },
+    { q: "What is Play in the context of physical activity?", opts: ["Formal PE lessons led by a teacher", "Physical activity centred on fun and enjoyment (mainly for children) that develops physical literacy, gross motor skills, creativity and social skills", "Competitive sport at local club level", "Structured fitness training for young athletes"], ans: 1, exp: "Play = fun, unstructured activity for children. It develops gross motor skills, problem-solving, creativity and social skills — and acts as a stepping stone towards organised sport. Physical literacy begins here." },
+    { q: "What is an Activity Diary as a method of measuring physical activity?", opts: ["A digital device worn on the wrist that tracks movement", "A person keeping a personal written account of the physical activity they do", "A standardised fitness test battery conducted by a teacher", "A GPS system tracking route and distance covered"], ans: 1, exp: "Activity diary = a personal written log of daily physical activity (type, duration, intensity). Provides detailed, longitudinal data on participation patterns. Useful for identifying habits, barriers and progress." }
+  ],
+  '5b': [
+    { q: "What is the National Sports Policy 2018-2027?", opts: ["A law requiring all Irish people to exercise 5 days per week", "A policy that sets out the vision for Irish sport and defines actions required to achieve three high-level goals", "A funding programme for professional sporting clubs only", "A school curriculum document for PE teachers"], ans: 1, exp: "The National Sports Policy 2018–2027 sets out Ireland's vision for sport with three goals: (1) Increased participation, (2) Excellence in performance, (3) Improved capacity and collaboration between governing bodies." },
+    { q: "What are the three high-level goals of the National Sports Policy?", opts: ["Fitness, Nutrition and Mental Health", "Increased participation; Excellence in performance; Improved capacity/collaboration", "Schools, Communities and Elite Sport", "Youth, Adults and Older Adults"], ans: 1, exp: "Goal 1: Increased participation among Irish children and adults. Goal 2: Increase in Irish athletes achieving world-class results. Goal 3: Improved capacity — collaboration between governing bodies, better training for volunteers and professionals." },
+    { q: "What is the Long-Term Athlete Development (LTAD) Model?", opts: ["A 12-week fitness programme for school athletes", "A framework providing a pathway from early childhood participation through to elite performance or lifelong active participation", "A specific nutrition plan for developing athletes", "A coaching qualification programme run by Sport Ireland"], ans: 1, exp: "The LTAD model provides an age-appropriate pathway: Active Start → FUNdamentals → Learn to Train → Train to Train → Train to Compete → Train to Win → Active for Life. Each stage has specific training, competition and recovery priorities." },
+    { q: "What is Early Specialisation?", opts: ["Training in multiple sports before age 12", "When a performer exclusively trains and competes in one chosen sport from an early age", "A method of late-stage talent identification", "Specialising in elite competition after age 18"], ans: 1, exp: "Early specialisation = one sport, exclusively, from a young age. Pros: faster skill development. Cons: higher burnout, overuse injury risk, limited physical literacy. The LTAD model warns against this for most sports." },
+    { q: "What is Late Specialisation?", opts: ["Retiring from sport later than average", "When a performer engages in multiple sports and waits to specialise — typically after age 12–15", "Training without a coach until age 18", "Only participating in sport after finishing formal education"], ans: 1, exp: "Late specialisation = sample multiple sports first, specialise later. Builds broader physical literacy, reduces burnout risk, develops transferable movement skills. Recommended by the LTAD model for most team and endurance sports." },
+    { q: "What is a Role Model in the context of promoting physical activity?", opts: ["A professional athlete who earns money from their sport", "Someone whose behaviour, habits and achievements can be emulated by others — especially young people — to encourage PA", "An official spokesperson hired by Sport Ireland", "A qualified PE teacher in a secondary school"], ans: 1, exp: "A role model is someone whose active lifestyle and positive traits inspire others. Key traits: respect, positivity, honesty, knowledge, skilled performance, good communication. They don't push you — they inspire you!" },
+    { q: "What is a National Governing Body (NGB)?", opts: ["A government department that controls all sport in Ireland", "An independent body that trains coaches, organises representative sport and provides pathways from local to international competition", "A professional sports agency representing elite athletes", "A local community sports club"], ans: 1, exp: "NGBs (e.g. GAA, FAI, IRFU) are independent bodies that organise sport at all levels — from local club to international competition. They provide coaching, facilities and competitive pathways for athletes of all abilities." },
+    { q: "What is the Multicomponent Approach to promoting PA?", opts: ["Using only one strategy to increase PA levels", "Targeting PA levels from multiple angles simultaneously — e.g. walk-to-school clubs, active lunch, PE curriculum change AND community links", "A dietary approach using multiple macronutrients", "Training multiple fitness components in one session"], ans: 1, exp: "Multicomponent = coming at the problem from different directions at the same time. E.g. for school PA: change PE, add active breaks, improve infrastructure AND link with community clubs. Single-strategy approaches are less effective." },
+    { q: "Which stage of the LTAD model is described as the 'golden age of skill learning'?", opts: ["Train to Win", "Active Start", "Learn to Train (ages 9-12 boys, 8-11 girls)", "Train to Compete"], ans: 2, exp: "The 'Learn to Train' stage (approx. ages 8-12) is the golden age of skill learning. Children's nervous systems are highly adaptable at this age — making it the ideal time to develop sport-specific skills and physical literacy." },
+    { q: "What is the key principle behind Target Group Tailoring in PA promotion?", opts: ["All target groups should receive the same PA programmes", "Strategies to improve PA levels must be tailored specifically to the needs of the target group — as different groups have very different needs and motivations", "Only young people need tailored approaches", "Tailoring is only important for elite athletes"], ans: 1, exp: "What works for primary school children (fun games, play-based activities) will not work for adults aged 60+ (social walking groups, adapted activities). Effective PA promotion must be designed around the specific needs and barriers of the target group." }
+  ]
+};
+
+const QS = {'4':{i:0,s:0,d:false},'5a':{i:0,s:0,d:false},'5b':{i:0,s:0,d:false}};
+
+function bq(ch) {
+  const el = document.getElementById('quiz-'+ch);
+  const st = QS[ch]; const d = QD[ch];
+  if(st.d){ el.innerHTML=`<div class="qcard"><div class="qsc">🎉 Quiz Complete! Score: ${st.s}/${d.length}</div><button class="qnxt show" onclick="rq('${ch}')">🔄 Try Again</button></div>`; return; }
+  const q = d[st.i];
+  const pct = Math.round((st.i/d.length)*100);
+  el.innerHTML=`<div class="pb"><div class="pf" style="width:${pct}%"></div></div>
+  <div style="font-size:.81rem;color:var(--muted);margin-bottom:7px">Question ${st.i+1} of ${d.length} · Score: ${st.s}</div>
+  <div class="qcard">
+    <div class="qq">${q.q}</div>
+    <div class="qopts">${q.opts.map((o,i)=>`<button class="qo" onclick="aq('${ch}',${i})" id="qo-${ch}-${i}">${o}</button>`).join('')}</div>
+    <div class="qfb" id="qf-${ch}"></div>
+    <button class="qnxt" id="qn-${ch}" onclick="nq('${ch}')">${st.i+1<d.length?'Next Question →':'See Results 🏆'}</button>
+  </div>`;
+}
+
+function aq(ch,c){
+  const st=QS[ch]; const q=QD[ch][st.i];
+  document.querySelectorAll(`[id^="qo-${ch}-"]`).forEach(b=>b.onclick=null);
+  document.getElementById(`qo-${ch}-${q.ans}`).classList.add('correct');
+  if(c!==q.ans) document.getElementById(`qo-${ch}-${c}`).classList.add('wrong');
+  else st.s++;
+  const fb=document.getElementById('qf-'+ch);
+  fb.innerHTML=(c===q.ans?'✅ Correct! ':'❌ Not quite. ')+q.exp;
+  fb.classList.add('show');
+  document.getElementById('qn-'+ch).classList.add('show');
+}
+function nq(ch){const st=QS[ch];st.i++;if(st.i>=QD[ch].length)st.d=true;bq(ch);}
+function rq(ch){QS[ch]={i:0,s:0,d:false};bq(ch);}
+
+function showCh(id,btn,cls){
+  document.querySelectorAll('.cp').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.nb').forEach(b=>b.className='nb');
+  btn.classList.add(cls);
+  document.getElementById('sb4').style.display=id==='ch4'?'':'none';
+  document.getElementById('sb5a').style.display=id==='ch5a'?'':'none';
+  document.getElementById('sb5b').style.display=id==='ch5b'?'':'none';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function ta(h){const b=h.nextElementSibling;const o=b.classList.contains('open');b.classList.toggle('open',!o);h.classList.toggle('open',!o);}
+function go(id){const el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth'});}
+
+bq('4'); bq('5a'); bq('5b');
+</script>
+<!-- REPLACEMENT BLOCK START -->
+<a href="index.html" class="return-home-btn">
+  <span>🏠</span> Back to Hub
+</a>
+<style>
+  .return-home-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #1a1d2e; /* Matches your --text variable */
+    color: white !important;
+    padding: 12px 24px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-family: 'Lexend', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+  }
+  .return-home-btn:hover {
+    transform: translateY(-5px);
+    background: #7c3aed; /* Changed to match your --c4 purple theme */
+    color: white !important;
+    box-shadow: 0 8px 25px rgba(124, 58, 237, 0.4);
+  }
+  @media (max-width: 768px) {
+    .return-home-btn {
+      bottom: 20px;
+      right: 20px;
+      padding: 10px 18px;
+      font-size: 14px;
+    }
+  }
+</style>
+<!-- REPLACEMENT BLOCK END -->
+</body>
+</html>

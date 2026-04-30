@@ -1,0 +1,1302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LC Physical Education – Chapters 1A & 1B Study Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:#f4f6ff;--surface:#fff;--surface2:#edf0ff;--border:#dce2f5;
+    --text:#1a1d2e;--muted:#5a5f7a;
+    --c1a:#e85d2f;--c1al:#fff4f0;   /* orange-red for 1A */
+    --c1b:#1d6fb8;--c1bl:#eef5ff;   /* blue for 1B */
+    --cg:#16a34a;--cr:#dc2626;--cy:#d97706;--cp:#7c3aed;
+    --radius:14px;--shadow:0 4px 20px rgba(30,80,180,.09);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);font-size:17px;line-height:1.78;min-height:100vh;}
+
+  /* NAV */
+  #tnav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.97);backdrop-filter:blur(10px);border-bottom:2px solid var(--border);padding:0 20px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;min-height:56px;}
+  .logo{font-family:'Lexend Mega',sans-serif;font-size:.97rem;color:var(--c1a);margin-right:6px;}
+  .nb{background:none;border:2px solid var(--border);color:var(--muted);font-family:'Lexend',sans-serif;font-size:.82rem;font-weight:600;cursor:pointer;border-radius:20px;padding:5px 14px;transition:all .17s;}
+  .nb:hover{background:var(--c1a);border-color:var(--c1a);color:#fff;}
+  .a1a{background:var(--c1a)!important;border-color:var(--c1a)!important;color:#fff!important;}
+  .a1b{background:var(--c1b)!important;border-color:var(--c1b)!important;color:#fff!important;}
+
+  /* LAYOUT */
+  .layout{display:flex;max-width:1310px;margin:0 auto;padding:28px 16px;gap:24px;}
+
+  /* SIDEBAR */
+  #sidebar{width:242px;flex-shrink:0;position:sticky;top:70px;height:calc(100vh - 88px);overflow-y:auto;background:var(--surface);border-radius:var(--radius);border:2px solid var(--border);padding:16px 12px;box-shadow:var(--shadow);}
+  #sidebar::-webkit-scrollbar{width:4px;}
+  #sidebar::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px;}
+  .sbh{font-size:.71rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:8px 8px 4px;}
+  .sbl{display:block;padding:7px 10px;border-radius:8px;font-size:.84rem;color:var(--muted);cursor:pointer;font-weight:500;transition:all .14s;border:none;background:none;width:100%;text-align:left;}
+  .sbl:hover{background:var(--surface2);color:var(--text);}
+  .sbl.a1a{background:var(--c1a);color:#fff;}
+  .sbl.a1b{background:var(--c1b);color:#fff;}
+
+  /* CONTENT */
+  #content{flex:1;min-width:0;}
+  .cp{display:none;}.cp.active{display:block;}
+
+  /* CHAPTER HEADERS */
+  .chh{border-radius:var(--radius);padding:32px 36px;margin-bottom:24px;color:#fff;}
+  .h1a{background:linear-gradient(135deg,#e85d2f 0%,#f5a07a 100%);}
+  .h1b{background:linear-gradient(135deg,#1d6fb8 0%,#60a5fa 100%);}
+  .chh h1{font-family:'Lexend Mega',sans-serif;font-size:1.55rem;margin-bottom:6px;letter-spacing:-.4px;}
+  .chh p{opacity:.9;font-size:.98rem;}
+
+  /* SECTION CARDS */
+  .sc{background:var(--surface);border-radius:var(--radius);border:2px solid var(--border);padding:28px 32px;margin-bottom:24px;box-shadow:var(--shadow);scroll-margin-top:78px;}
+  .sc h2{font-family:'Lexend Mega',sans-serif;font-size:1.07rem;margin-bottom:18px;}
+  .sc.s1a h2{color:var(--c1a);}
+  .sc.s1b h2{color:var(--c1b);}
+  h3{font-size:1.02rem;font-weight:700;margin:18px 0 8px;}
+  h4{font-size:.95rem;font-weight:700;color:var(--muted);margin:12px 0 5px;}
+  p{margin-bottom:10px;}
+  ul,ol{padding-left:22px;margin-bottom:10px;}
+  li{margin-bottom:5px;}
+  strong{color:var(--text);}
+
+  /* DEF BOXES */
+  .def{border-left:5px solid var(--c1a);background:var(--c1al);border-radius:0 10px 10px 0;padding:13px 17px;margin:13px 0;}
+  .def.b{border-color:var(--c1b);background:var(--c1bl);}
+  .def.g{border-color:var(--cg);background:#f0fdf4;}
+  .def.r{border-color:var(--cr);background:#fff5f5;}
+  .def.p{border-color:var(--cp);background:#f5f0ff;}
+  .def.y{border-color:var(--cy);background:#fffbeb;}
+  .dt{font-weight:700;font-size:1rem;display:block;margin-bottom:4px;color:var(--c1a);}
+  .def.b .dt{color:var(--c1b);}
+  .def.g .dt{color:var(--cg);}
+  .def.r .dt{color:var(--cr);}
+  .def.p .dt{color:var(--cp);}
+  .def.y .dt{color:var(--cy);}
+  .dx{font-size:.96rem;}
+
+  /* ANALOGY / MEMORY */
+  .anl{background:#fffbe8;border:2px dashed var(--cy);border-radius:10px;padding:13px 17px;margin:13px 0;font-size:.93rem;}
+  .anl-l{font-weight:700;font-size:.77rem;text-transform:uppercase;letter-spacing:.07em;color:#9a6000;margin-bottom:4px;display:block;}
+  .mem{background:#f0fdf4;border:2px dashed var(--cg);border-radius:10px;padding:13px 17px;margin:13px 0;font-size:.93rem;}
+  .mem-l{font-weight:700;font-size:.77rem;text-transform:uppercase;letter-spacing:.07em;color:#166534;margin-bottom:4px;display:block;}
+  .info{background:var(--c1bl);border-radius:10px;padding:13px 17px;margin:13px 0;font-size:.93rem;border:1.5px solid #bfdbfe;}
+  .info-l{font-weight:700;font-size:.81rem;color:var(--c1b);margin-bottom:4px;display:block;}
+  .info.o{background:var(--c1al);border-color:#fdba74;}
+  .info.o .info-l{color:var(--c1a);}
+  .warn{background:#fff5f5;border-radius:10px;padding:13px 17px;margin:13px 0;font-size:.93rem;border:1.5px solid #fca5a5;}
+  .warn-l{font-weight:700;font-size:.81rem;color:var(--cr);margin-bottom:4px;display:block;}
+  .etip{background:linear-gradient(90deg,#fff3c4,#fff9e8);border-left:5px solid var(--cy);border-radius:0 10px 10px 0;padding:11px 16px;margin:12px 0;font-size:.92rem;}
+  .etip::before{content:"✏️ Exam Tip: ";font-weight:700;color:#9a6000;}
+
+  /* CARD GRID */
+  .cg2{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:13px;margin:13px 0;}
+  .card{background:var(--surface2);border-radius:10px;padding:14px 16px;border:1.5px solid var(--border);}
+  .ct{font-weight:700;margin-bottom:5px;font-size:.93rem;color:var(--c1a);}
+  .card.b .ct{color:var(--c1b);}
+  .card.g .ct{color:var(--cg);}
+  .card.r .ct{color:var(--cr);}
+  .card.p .ct{color:var(--cp);}
+  .card.y .ct{color:var(--cy);}
+  .card p,.card ul{font-size:.89rem;color:var(--muted);}
+  .card ul{padding-left:16px;}
+
+  /* TABLE */
+  table{width:100%;border-collapse:collapse;margin:13px 0;font-size:.91rem;}
+  th{padding:10px 14px;text-align:left;font-weight:600;}
+  th.t1a{background:var(--c1a);color:#fff;}
+  th.t1b{background:var(--c1b);color:#fff;}
+  td{padding:9px 14px;border-bottom:1px solid var(--border);vertical-align:top;}
+  tr:nth-child(even) td{background:var(--surface2);}
+
+  /* ACCORDION */
+  .acc{margin:9px 0;}
+  .ach{background:var(--surface2);border:1.5px solid var(--border);border-radius:10px;padding:12px 17px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:.94rem;transition:background .14s;user-select:none;}
+  .ach:hover{background:#e2e8ff;}
+  .ach .ai{font-size:1.05rem;transition:transform .2s;}
+  .ach.open .ai{transform:rotate(90deg);}
+  .acb{display:none;padding:14px 17px 4px;border:1.5px solid var(--border);border-top:none;border-radius:0 0 10px 10px;margin-top:-2px;}
+  .acb.open{display:block;}
+
+  /* LEVER DIAGRAM */
+  .lever-diagram{display:flex;align-items:center;justify-content:center;gap:0;margin:16px 0;font-size:.85rem;font-weight:700;flex-wrap:wrap;}
+  .lever-box{padding:8px 16px;border-radius:8px;color:#fff;text-align:center;min-width:70px;}
+  .lever-arrow{font-size:1.2rem;color:var(--muted);padding:0 4px;}
+  .lE{background:var(--cg);}
+  .lF{background:var(--c1b);}
+  .lL{background:var(--cr);}
+
+  /* QUIZ */
+  .qcard{background:var(--surface);border:2px solid var(--border);border-radius:var(--radius);padding:22px 26px;margin:15px 0;box-shadow:var(--shadow);}
+  .qq{font-weight:700;margin-bottom:13px;font-size:1rem;}
+  .qopts{display:flex;flex-direction:column;gap:8px;}
+  .qo{background:var(--surface2);border:2px solid var(--border);border-radius:8px;padding:10px 15px;cursor:pointer;font-size:.92rem;transition:all .14s;text-align:left;font-family:'Lexend',sans-serif;}
+  .qo:hover{border-color:var(--c1a);background:var(--c1al);}
+  .qo.correct{background:#f0fdf4;border-color:var(--cg);color:#14532d;font-weight:600;}
+  .qo.wrong{background:#fff5f5;border-color:var(--cr);color:#7f1d1d;}
+  .qfb{margin-top:11px;font-size:.91rem;display:none;}
+  .qfb.show{display:block;}
+  .qnxt{margin-top:11px;background:var(--c1a);color:#fff;border:none;padding:9px 22px;border-radius:8px;cursor:pointer;font-family:'Lexend',sans-serif;font-weight:600;font-size:.9rem;display:none;transition:opacity .14s;}
+  .qnxt.show{display:inline-block;}
+  .qnxt:hover{opacity:.87;}
+  .qsc{font-size:1.1rem;font-weight:700;color:var(--cg);margin-top:10px;}
+  .pb{background:var(--border);border-radius:8px;height:8px;margin:7px 0 16px;}
+  .pf{height:8px;border-radius:8px;background:var(--c1a);transition:width .4s;}
+
+  html{scroll-behavior:smooth;}
+  @media(max-width:820px){#sidebar{display:none;}.layout{padding:14px 10px;}.sc{padding:18px 15px;}.chh{padding:22px 18px;}.chh h1{font-size:1.2rem;}}
+</style>
+</head>
+<body>
+
+<nav id="tnav">
+  <span class="logo">🏃 LC PE</span>
+  <button class="nb a1a" onclick="showCh('ch1a',this,'a1a')">1A – Skilled Performance &amp; Acquisition of Skill</button>
+  <button class="nb" onclick="showCh('ch1b',this,'a1b')">1B – Analysing Skill &amp; Technique</button>
+</nav>
+
+<div class="layout">
+<aside id="sidebar">
+  <div id="sb1a">
+    <div class="sbh">🎯 Chapter 1A</div>
+    <button class="sbl" onclick="go('s1a-skilled')">Characteristics of Skilled Performance</button>
+    <button class="sbl" onclick="go('s1a-continua')">Skills Continua</button>
+    <button class="sbl" onclick="go('s1a-skill-ability')">Skill vs Ability</button>
+    <button class="sbl" onclick="go('s1a-types')">Types of Skills</button>
+    <button class="sbl" onclick="go('s1a-acquisition')">Skill Acquisition</button>
+    <button class="sbl" onclick="go('s1a-stages')">Fitts & Posner Stages</button>
+    <button class="sbl" onclick="go('s1a-feedback')">Feedback (All Types)</button>
+    <button class="sbl" onclick="go('s1a-practice')">Types of Practice</button>
+    <button class="sbl" onclick="go('s1a-methods')">Methods of Practice</button>
+    <button class="sbl" onclick="go('s1a-principles')">Principles of Effective Practice</button>
+    <button class="sbl" onclick="go('s1a-tests')">Skill Tests</button>
+    <button class="sbl" onclick="go('s1a-quiz')">🧠 Quick Quiz</button>
+  </div>
+  <div id="sb1b" style="display:none">
+    <div class="sbh">🔬 Chapter 1B</div>
+    <button class="sbl" onclick="go('s1b-bio')">What is Biomechanics?</button>
+    <button class="sbl" onclick="go('s1b-planes')">Planes of Movement</button>
+    <button class="sbl" onclick="go('s1b-axes')">Axes of Movement</button>
+    <button class="sbl" onclick="go('s1b-levers')">Levers (1st, 2nd, 3rd Class)</button>
+    <button class="sbl" onclick="go('s1b-mechadvantage')">Mechanical Advantage/Disadvantage</button>
+    <button class="sbl" onclick="go('s1b-vectors')">Vectors &amp; Scalars</button>
+    <button class="sbl" onclick="go('s1b-newton')">Newton's Laws of Motion</button>
+    <button class="sbl" onclick="go('s1b-resistance')">Sources of Resistance</button>
+    <button class="sbl" onclick="go('s1b-economy')">Economy of Movement</button>
+    <button class="sbl" onclick="go('s1b-creativity')">Creative Application of Skill</button>
+    <button class="sbl" onclick="go('s1b-quiz')">🧠 Quick Quiz</button>
+  </div>
+</aside>
+
+<main id="content">
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!--  CHAPTER 1A                                            -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div id="ch1a" class="cp active">
+  <div class="chh h1a">
+    <h1>🎯 Chapter 1A: Skilled Performance &amp; Acquisition of Skill</h1>
+    <p>What makes a skilled performer, how skills are learned, feedback, and designing practice schedules</p>
+  </div>
+
+  <!-- 1. CHARACTERISTICS OF SKILLED PERFORMANCE -->
+  <div class="sc s1a" id="s1a-skilled">
+    <h2>1. Characteristics of Skilled Performance</h2>
+    <p>Highly skilled performers demonstrate a range of qualities in their skill executions and movements. Here are the four key <strong>characteristics</strong> of a skilled performance:</p>
+
+    <div class="def">
+      <span class="dt">Kinaesthetic Awareness</span>
+      <span class="dx">When an athlete uses information sent to them by sensors in their muscles, joints and tendons to quickly and accurately adjust their movements to achieve success when performing a skill. Essentially — the ability to "feel" how your body is moving without looking at it.</span>
+    </div>
+    <div class="anl">
+      <span class="anl-l">💡 Analogy</span>
+      Kinaesthetic awareness is like having a built-in sat-nav for your body. A skilled footballer doesn't need to look at their feet to control the ball — their muscles and joints are constantly sending signals telling their brain exactly where every body part is. That's kinaesthetic awareness!
+    </div>
+
+    <div class="def">
+      <span class="dt">Anticipation</span>
+      <span class="dx">The ability of a performer to predict decisions or movements from opponents and therefore decide on an appropriate action to gain an advantage. A skilled performer reads the game ahead of time rather than just reacting.</span>
+    </div>
+
+    <div class="def">
+      <span class="dt">Consistency</span>
+      <span class="dx">The ability of a performer to execute skills with a high success rate over a sustained period of time. A skilled performer doesn't just do it once — they can do it again and again under pressure.</span>
+    </div>
+
+    <div class="def">
+      <span class="dt">Technical Execution</span>
+      <span class="dx">Use of appropriate skill techniques that are controlled and accurate, which often save energy and produce better and more consistent results.</span>
+    </div>
+
+    <h3>Indicators of a Skilled Performance (ACEFECA)</h3>
+    <div class="mem">
+      <span class="mem-l">🧠 Memory Trick</span>
+      <strong>A-C-E-F-E-C-A</strong> = <strong>A</strong>esthetically pleasing · <strong>C</strong>onsistent · <strong>E</strong>fficient · <strong>F</strong>luent · <strong>E</strong>conomical · <strong>C</strong>ontrolled · <strong>A</strong>ccurate<br>
+      "A Cool Elite Footballer Executes Clever Actions!"
+    </div>
+    <div class="cg2">
+      <div class="card"><div class="ct">🎨 Aesthetically Pleasing</div><p>Performance is delivered with poise — skills and movements are appealing for spectators to watch.</p></div>
+      <div class="card"><div class="ct">🔁 Consistent</div><p>Performer can repeat the skill with a high success rate.</p></div>
+      <div class="card"><div class="ct">⚡ Efficient</div><p>Performer uses the best movement patterns available at the time of skill execution.</p></div>
+      <div class="card"><div class="ct">🌊 Fluent</div><p>Performer has a flow to their movement — smooth, graceful and effortless.</p></div>
+      <div class="card"><div class="ct">🎯 Accurate</div><p>Performer can execute all details and requirements of a skill correctly.</p></div>
+      <div class="card"><div class="ct">🕹️ Controlled</div><p>Performer can move and manipulate their body how they want during execution.</p></div>
+      <div class="card"><div class="ct">💡 Economical</div><p>Performer does not waste any unnecessary energy when executing a skill.</p></div>
+    </div>
+    <div class="etip">Examiners often ask you to "identify three characteristics of a skilled performance." Know all 7 indicators (ACEFECA) and be able to describe each one with a sporting example.</div>
+  </div>
+
+  <!-- 2. SKILLS CONTINUA -->
+  <div class="sc s1a" id="s1a-continua">
+    <h2>2. Skills Continua</h2>
+    <div class="def">
+      <span class="dt">Continuum</span>
+      <span class="dx">A range or sliding scale between two extreme points. Each point on a continuum is slightly greater or lesser than its neighbours. You can move up or down a continuum. Skills are not easily placed in one fixed category — they are placed along a continuum.</span>
+    </div>
+    <div class="anl">
+      <span class="anl-l">💡 Analogy</span>
+      A continuum is like a dimmer light switch — not just ON or OFF, but every shade in between. A skill isn't simply "open" or "closed" — it sits somewhere along a sliding scale between those two extremes.
+    </div>
+
+    <h3>The Main Continua</h3>
+    <table>
+      <tr><th class="t1a">Continuum</th><th class="t1a">One Extreme</th><th class="t1a">Other Extreme</th><th class="t1a">Example</th></tr>
+      <tr>
+        <td><strong>Open ↔ Closed</strong></td>
+        <td><strong>Open Skill:</strong> Performed in an unpredictable environment — the performer must constantly adapt to changing conditions. E.g. a tackle in rugby.</td>
+        <td><strong>Closed Skill:</strong> Performed in a predictable, stable environment — the technique stays the same each time. E.g. a free kick in soccer.</td>
+        <td>Dribbling a basketball in a game (open) vs shooting a free throw (closed)</td>
+      </tr>
+      <tr>
+        <td><strong>Gross ↔ Fine</strong></td>
+        <td><strong>Gross Skill:</strong> Uses large muscle groups — movements are large and powerful. E.g. a shot put throw.</td>
+        <td><strong>Fine Skill:</strong> Uses small muscle groups — precise, delicate movements. E.g. snooker shot, dart throw.</td>
+        <td>A GAA kick-out (gross) vs drawing a shot on goal in archery (fine)</td>
+      </tr>
+      <tr>
+        <td><strong>Discrete ↔ Serial ↔ Continuous</strong></td>
+        <td><strong>Discrete:</strong> Has a clear beginning and end. E.g. a penalty kick.</td>
+        <td><strong>Continuous:</strong> Has no clear beginning or end — repeating cycle. E.g. running, cycling.</td>
+        <td>Serial skill in between: a gymnastics floor routine (series of linked discrete skills)</td>
+      </tr>
+      <tr>
+        <td><strong>Self-Paced ↔ Externally Paced</strong></td>
+        <td><strong>Self-Paced:</strong> Performer controls the timing of the skill. E.g. a golf shot.</td>
+        <td><strong>Externally Paced:</strong> The environment/opponent dictates timing. E.g. a cricket batsman reacting to a bowler.</td>
+        <td>A penalty in soccer (self-paced) vs receiving a serve in tennis (externally paced)</td>
+      </tr>
+    </table>
+    <div class="etip">Know all four continua with at least one sporting example for EACH extreme. A very common exam question is: "Place a named skill on a skills continuum and justify your answer."</div>
+  </div>
+
+  <!-- 3. SKILL VS ABILITY -->
+  <div class="sc s1a" id="s1a-skill-ability">
+    <h2>3. Skill vs Ability</h2>
+
+    <div class="def">
+      <span class="dt">Skill</span>
+      <span class="dx">"A skill is an athlete's ability to choose and perform the right techniques at the right time, successfully, regularly and with a minimum of effort." (Knapp's definition: "Skill is the learned ability to bring about predetermined results with maximum certainty, often with the minimum outlay of time or energy or both.") Skills are <strong>LEARNED</strong> through practice.</span>
+    </div>
+
+    <div class="def">
+      <span class="dt">Ability</span>
+      <span class="dx">The make-up of an athlete that we inherit from our parents. Abilities underpin and contribute to skills. Abilities can be essentially perceptual, essentially motor, or a combination of both. Most abilities are a combination — referred to as psychomotor abilities. Abilities are <strong>INNATE</strong> (you are born with them).</span>
+    </div>
+
+    <div class="mem">
+      <span class="mem-l">🧠 Memory Trick – The KEY Difference</span>
+      <strong>Skill = Schooled</strong> (you learn it through practice and training)<br>
+      <strong>Ability = Already there</strong> (you're born with it — it's in your genes!)<br>
+      Think: "Ability = Ancestry" (comes from your parents). "Skill = Schooled" (developed through practice).
+    </div>
+
+    <div class="info o">
+      <span class="info-l">🧬 The 10,000-Hour Rule (Gladwell)</span>
+      Malcolm Gladwell proposed that the top performers in any field (sport, music, business) have all completed on average <strong>10,000 hours of deliberate practice</strong>. This highlights the importance of skill development through practice — BUT ability still matters. Studies of baseball players found elite hitters have 20/13 vision (better than normal 20/20 vision) — they can see at 20 feet what an average person needs to be at 13 feet to see. That physical ability gives a huge advantage that no amount of practice can fully replicate.
+    </div>
+    <div class="etip">Exam question: "Distinguish between skill and ability and give one example of each." Key points: Skill is LEARNED; ability is INNATE. Abilities underpin skills.</div>
+  </div>
+
+  <!-- 4. TYPES OF SKILLS -->
+  <div class="sc s1a" id="s1a-types">
+    <h2>4. Types of Skills</h2>
+    <div class="mem">
+      <span class="mem-l">🧠 Memory Trick – The 3 Types</span>
+      <strong>P-P-C</strong> = <strong>P</strong>sychomotor (Do) · <strong>P</strong>erceptual (Feel/See) · <strong>C</strong>ognitive (Think)<br>
+      "Players Perceive and Calculate!"
+    </div>
+
+    <div class="def">
+      <span class="dt">Psychomotor Skill (DO)</span>
+      <span class="dx">A skill with a bodily movement performed voluntarily with a predetermined end result. It involves both the mind (psycho) and a physical movement (motor). Example: a goal kick in rugby.</span>
+    </div>
+
+    <div class="def">
+      <span class="dt">Perceptual Skill (FEEL / SEE)</span>
+      <span class="dx">A skill which involves interpreting information from the sporting environment to allow the athlete to make effective decisions during play. Example: a tennis player watching their opponent when they strike the ball in order to interpret the ball's flight, direction and spin as it approaches.</span>
+    </div>
+
+    <div class="def">
+      <span class="dt">Cognitive Skill (THINK)</span>
+      <span class="dx">A skill which involves problem solving during play. Having used perceptual skills, an athlete must then decide what to do next. Example: a defender deciding to force an attacker onto their weaker foot.</span>
+    </div>
+
+    <div class="anl">
+      <span class="anl-l">💡 Analogy – The Three Skills in Action</span>
+      Imagine a goalkeeper facing a penalty. <strong>Perceptual</strong> = reading the body language of the penalty taker to predict which way they'll shoot. <strong>Cognitive</strong> = deciding "I'll dive left." <strong>Psychomotor</strong> = actually diving and making the save. All three work together in every sporting action!
+    </div>
+  </div>
+
+  <!-- 5. SKILL ACQUISITION -->
+  <div class="sc s1a" id="s1a-acquisition">
+    <h2>5. Skill Acquisition</h2>
+    <div class="def">
+      <span class="dt">Skill Acquisition</span>
+      <span class="dx">The process of developing a specific sequence of body movements to overcome a motor skill problem.</span>
+    </div>
+    <div class="def">
+      <span class="dt">Motor Skill Problem</span>
+      <span class="dx">A movement that is proving to be complicated or difficult for the performer at their current level. When learning a new skill, performers' techniques will vary and so will the outcomes — because the motor programme is not yet established in their memory.</span>
+    </div>
+    <div class="def">
+      <span class="dt">Motor Programme</span>
+      <span class="dx">A stored set of movement instructions in the brain's memory that allows a skilled performer to execute a skill automatically without consciously thinking about each step. Motor programmes are developed through extensive practice and are stored in long-term memory at the autonomous stage.</span>
+    </div>
+    <div class="anl">
+      <span class="anl-l">💡 Analogy</span>
+      A motor programme is like a saved macro on a computer — the first time you do the task you do it step by step (cognitive stage), but once saved, you can run the entire sequence with one click (autonomous stage). The more you practice, the more reliably the macro runs!
+    </div>
+  </div>
+
+  <!-- 6. FITTS & POSNER STAGES -->
+  <div class="sc s1a" id="s1a-stages">
+    <h2>6. Fitts &amp; Posner (1967) – Stages of Skill Learning</h2>
+    <p>Fitts and Posner (1967) designed a three-stage model of skill acquisition exploring the stages an athlete goes through when acquiring a new skill. With each stage, performers demonstrate different observable qualities, and different training methods, feedback and practice schedules are needed.</p>
+
+    <div class="mem">
+      <span class="mem-l">🧠 Memory Trick – The 3 Stages</span>
+      <strong>C-A-A</strong> = <strong>C</strong>ognitive → <strong>A</strong>ssociative → <strong>A</strong>utonomous<br>
+      "Can Any Athlete become automatic?" — YES, with enough practice!<br>
+      Think: <strong>Beginner → Getting Better → Elite</strong>
+    </div>
+
+    <div class="acc">
+      <div class="ach" onclick="ta(this)">🧠 Stage 1 – The Cognitive Stage (BEGINNER) <span class="ai">▶</span></div>
+      <div class="acb">
+        <div class="def">
+          <span class="dt">Cognitive Stage</span>
+          <span class="dx">The mental stage of learning — occurs while the novice or beginner athlete is learning the new skill. The athlete needs to think carefully about the skill and how to execute it. They are figuring out how to move different body parts to be successful. Movements may not be smooth or coordinated, and there is little to no consistency as the skill is not yet stored in memory.</span>
+        </div>
+        <div class="cg2">
+          <div class="card r"><div class="ct">What it looks like</div><ul><li>Movements look different on each attempt</li><li>Lots of errors and trial and error</li><li>Cannot explain why skills go wrong</li><li>Relies heavily on watching and imitating</li></ul></div>
+          <div class="card g"><div class="ct">What helps</div><ul><li>Positive extrinsic feedback from coach</li><li>Trial and error approach</li><li>Self-discovery</li><li>Clear demonstrations</li><li>Simple instructions</li></ul></div>
+        </div>
+        <div class="anl">
+          <span class="anl-l">💡 Analogy</span>
+          The cognitive stage is like your first driving lesson. You're thinking "mirror, signal, manoeuvre" for every tiny decision — it's exhausting and nothing feels natural yet!
+        </div>
+      </div>
+    </div>
+
+    <div class="acc">
+      <div class="ach" onclick="ta(this)">🔗 Stage 2 – The Associative Stage (DEVELOPING) <span class="ai">▶</span></div>
+      <div class="acb">
+        <div class="def">
+          <span class="dt">Associative Stage</span>
+          <span class="dx">Occurs when the athlete has completed the cognitive stage and has a grasp of the fundamental movements required for the skill. The athlete begins to understand the movement and uses both intrinsic and extrinsic feedback to become more consistent. May engage in 'modelling' — observing and copying highly skilled performers.</span>
+        </div>
+        <div class="def">
+          <span class="dt">Modelling</span>
+          <span class="dx">The process by which an athlete in the associative stage observes the technique of a highly skilled performer and uses this observation to improve their own performance. E.g. a young rugby player watching video of a professional out-half to improve their kicking technique.</span>
+        </div>
+        <div class="cg2">
+          <div class="card r"><div class="ct">What it looks like</div><ul><li>Beginning to show consistency</li><li>Can detect some own errors</li><li>More fluid movement starting to appear</li><li>Still makes mistakes under pressure</li></ul></div>
+          <div class="card g"><div class="ct">What helps</div><ul><li>Both intrinsic AND extrinsic feedback</li><li>Self-discovery</li><li>Modelling (watching elite performers)</li><li>Video feedback</li><li>Technical cues from coach</li></ul></div>
+        </div>
+        <div class="anl">
+          <span class="anl-l">💡 Analogy</span>
+          The associative stage is like having a few months of driving experience. You're no longer thinking about every step — but you might still stall on a hill or misjudge parking. You're improving but it's not yet automatic.
+        </div>
+      </div>
+    </div>
+
+    <div class="acc">
+      <div class="ach" onclick="ta(this)">⚡ Stage 3 – The Autonomous Stage (ELITE) <span class="ai">▶</span></div>
+      <div class="acb">
+        <div class="def">
+          <span class="dt">Autonomous Stage</span>
+          <span class="dx">Athletes at this stage show high levels of consistency, fluency and accuracy — they are the elite performers. Due to many hours of practice, the athlete can perform the movements <strong>automatically</strong> with efficiency. The motor programme is stored in long-term memory, freeing up attention to focus on tactics and reading the game.</span>
+        </div>
+        <div class="cg2">
+          <div class="card r"><div class="ct">What it looks like</div><ul><li>Skill executed automatically</li><li>Consistent, fluent, accurate</li><li>Can focus on tactics while performing</li><li>Rarely makes mistakes on skill execution</li></ul></div>
+          <div class="card g"><div class="ct">What helps</div><ul><li>Intrinsic feedback (self-evaluation)</li><li>Negative feedback (to fix minute flaws)</li><li>Video analysis</li><li>Continued practice to STAY at this level</li></ul></div>
+        </div>
+        <div class="anl">
+          <span class="anl-l">💡 Analogy</span>
+          The autonomous stage is like an experienced driver — you change gears, check mirrors and navigate complex junctions without thinking about any of it. Your brain is free to think about where you're going (tactics) not HOW to drive (skill).
+        </div>
+        <div class="warn">
+          <span class="warn-l">⚠️ Important!</span>
+          Athletes in the autonomous stage must continue to practice and refine their skills — they can <strong>regress</strong> to a lower stage if they stop. Coaches provide <strong>negative feedback</strong> to identify minute flaws that elite performers need to fix.
+        </div>
+      </div>
+    </div>
+
+    <table>
+      <tr><th class="t1a">Stage</th><th class="t1a">Level</th><th class="t1a">Consistency</th><th class="t1a">Feedback Needed</th><th class="t1a">Automatic?</th></tr>
+      <tr><td><strong>Cognitive</strong></td><td>Beginner</td><td>Very Low</td><td>Positive extrinsic from coach</td><td>No</td></tr>
+      <tr><td><strong>Associative</strong></td><td>Developing</td><td>Growing</td><td>Both intrinsic + extrinsic; modelling; video</td><td>Partly</td></tr>
+      <tr><td><strong>Autonomous</strong></td><td>Elite</td><td>High</td><td>Intrinsic; negative feedback; video analysis</td><td>Yes</td></tr>
+    </table>
+    <div class="etip">This is one of the most important topics in Chapter 1A. Be able to describe each stage, give examples of what the performer looks like, AND state what type of feedback/practice is most appropriate for each stage.</div>
+  </div>
+
+  <!-- 7. FEEDBACK -->
+  <div class="sc s1a" id="s1a-feedback">
+    <h2>7. Feedback – All Types</h2>
+    <div class="def">
+      <span class="dt">Feedback</span>
+      <span class="dx">Information an athlete receives about specific aspects of their performance. Effective feedback helps an athlete identify mistakes in their technique, which they can address to develop better movement patterns. Feedback can also highlight positive aspects to reinforce good habits and develop confidence.</span>
+    </div>
+
+    <div class="mem">
+      <span class="mem-l">🧠 Memory Trick – The Feedback Family Tree</span>
+      All feedback is either <strong>Intrinsic</strong> (from within) or <strong>Extrinsic</strong> (from outside).<br>
+      Extrinsic splits into: <strong>KR</strong> (Knowledge of Results) or <strong>KP</strong> (Knowledge of Performance).<br>
+      Any feedback can also be: <strong>Positive</strong> or <strong>Negative</strong>, AND <strong>Continuous</strong> or <strong>Terminal</strong>.
+    </div>
+
+    <div class="acc">
+      <div class="ach" onclick="ta(this)">🧍 Intrinsic vs Extrinsic Feedback <span class="ai">▶</span></div>
+      <div class="acb">
+        <div class="def">
+          <span class="dt">Intrinsic Feedback</span>
+          <span class="dx">Occurs when an athlete uses their kinaesthetic awareness to evaluate their own skill execution. Athletes may use a combination of senses — vision, hearing, proprioception or touch — to 'feel' what caused a skill to be performed correctly or incorrectly. Comes from WITHIN the athlete.</span>
+        </div>
+        <div class="def">
+          <span class="dt">Extrinsic Feedback</span>
+          <span class="dx">Feedback given to an athlete from an outside source. Coaches, teachers and other athletes provide feedback following a performance or skill execution. Split into two sub-categories: Knowledge of Results (KR) and Knowledge of Performance (KP).</span>
+        </div>
+        <div class="anl">
+          <span class="anl-l">💡 Analogy</span>
+          Intrinsic feedback = tasting your own cooking and knowing it needs more salt. Extrinsic feedback = a chef (coach) telling you what it needs. Both help, but you need extrinsic more at the start (cognitive stage) and intrinsic more as you develop (autonomous stage).
+        </div>
+      </div>
+    </div>
+
+    <div class="acc">
+      <div class="ach" onclick="ta(this)">📊 Knowledge of Results (KR) vs Knowledge of Performance (KP) <span class="ai">▶</span></div>
+      <div class="acb">
+        <div class="def">
+          <span class="dt">Knowledge of Results (KR)</span>
+          <span class="dx">A type of extrinsic feedback based on the <strong>outcome</strong> of the performance. Was it successful? If yes, the coach encourages the athlete to replicate the technique. If not, the coach breaks down movement patterns to identify inaccuracies. Example: "You scored!" or "You missed — let's watch why."</span>
+        </div>
+        <div class="def">
+          <span class="dt">Knowledge of Performance (KP)</span>
+          <span class="dx">A type of extrinsic feedback based on the <strong>quality of technique</strong> during skill execution — regardless of the outcome. Focuses on movement patterns. Very beneficial to those in the <strong>associative stage</strong>. Example: "Your follow-through was excellent — that's why the ball had good spin."</span>
+        </div>
+        <div class="mem">
+          <span class="mem-l">🧠 Memory Trick</span>
+          <strong>KR = Results</strong> — did it go in? Did it work? (outcome focused)<br>
+          <strong>KP = Performance quality</strong> — how did the technique look? (process focused)
+        </div>
+      </div>
+    </div>
+
+    <div class="acc">
+      <div class="ach" onclick="ta(this)">👍👎 Positive vs Negative Feedback <span class="ai">▶</span></div>
+      <div class="acb">
+        <div class="def">
+          <span class="dt">Positive Feedback</span>
+          <span class="dx">Generally highlights what elements of the skill execution the performer does well. Praise that helps an athlete's confidence. Usually most beneficial to athletes in the <strong>cognitive stage</strong> — building them up as beginners to encourage continued effort.</span>
+        </div>
+        <div class="def">
+          <span class="dt">Negative Feedback</span>
+          <span class="dx">Highlights mistakes by an athlete. Only beneficial if accompanied by <strong>advice on how to improve</strong>. Important for elite athletes in the <strong>autonomous stage</strong> — as it identifies minute flaws that need to be corrected at the highest level.</span>
+        </div>
+        <div class="warn">
+          <span class="warn-l">⚠️ Important Distinction!</span>
+          Negative feedback is NOT the same as being mean or discouraging — it is specific, constructive criticism about a technical error. Negative feedback without guidance on how to improve is not effective.
+        </div>
+      </div>
+    </div>
+
+    <div class="acc">
+      <div class="ach" onclick="ta(this)">⏱️ Continuous vs Terminal Feedback <span class="ai">▶</span></div>
+      <div class="acb">
+        <div class="def">
+          <span class="dt">Continuous Feedback</span>
+          <span class="dx">Feedback given to an athlete <strong>while they are performing</strong>. May allow athletes to make small changes during their performance to improve. Example: a coach shouting "bend your knees more!" while an athlete is executing a squat.</span>
+        </div>
+        <div class="def">
+          <span class="dt">Terminal Feedback</span>
+          <span class="dx">Feedback given to an athlete <strong>after they perform</strong>. May provide the athlete with a different focus for training before their next performance. Example: a coach reviewing video with the athlete after the training session.</span>
+        </div>
+      </div>
+    </div>
+
+    <table>
+      <tr><th class="t1a">Type</th><th class="t1a">Source</th><th class="t1a">When given</th><th class="t1a">Best for</th></tr>
+      <tr><td><strong>Intrinsic</strong></td><td>From within — own body sensations</td><td>During performance</td><td>Associative &amp; Autonomous stages</td></tr>
+      <tr><td><strong>Extrinsic</strong></td><td>From outside — coach, peers</td><td>During or after</td><td>Cognitive stage especially</td></tr>
+      <tr><td><strong>KR</strong></td><td>Extrinsic — outcome of skill</td><td>After performance</td><td>All stages</td></tr>
+      <tr><td><strong>KP</strong></td><td>Extrinsic — technique quality</td><td>After performance</td><td>Associative stage especially</td></tr>
+      <tr><td><strong>Positive</strong></td><td>Either</td><td>Either</td><td>Cognitive stage especially</td></tr>
+      <tr><td><strong>Negative</strong></td><td>Either</td><td>Either</td><td>Autonomous stage especially</td></tr>
+      <tr><td><strong>Continuous</strong></td><td>Coach / own body</td><td>During performance</td><td>All stages</td></tr>
+      <tr><td><strong>Terminal</strong></td><td>Coach / video</td><td>After performance</td><td>All stages</td></tr>
+    </table>
+  </div>
+
+  <!-- 8. TYPES OF PRACTICE -->
+  <div class="sc s1a" id="s1a-practice">
+    <h2>8. Types of Practice</h2>
+    <div class="mem">
+      <span class="mem-l">🧠 Memory Trick – 5 Types</span>
+      <strong>F-V-Ma-D-Me</strong> = <strong>F</strong>ixed · <strong>V</strong>ariable · <strong>Ma</strong>ssed · <strong>D</strong>istributed · <strong>Me</strong>ntal<br>
+      "Five Very Motivated Dedicated Minds!"
+    </div>
+
+    <div class="acc">
+      <div class="ach" onclick="ta(this)">📌 Fixed Practice <span class="ai">▶</span></div>
+      <div class="acb">
+        <div class="def">
+          <span class="dt">Fixed Practice</span>
+          <span class="dx">Skill repetition — the skill is practised over and over again in the same way. Best used with <strong>closed skills</strong> performed in predictable environments. Builds a strong, reliable motor programme through repetition.</span>
+        </div>
+        <p>Example: practising a penalty kick from the same spot, a free throw in basketball, a gymnastics routine.</p>
+      </div>
+    </div>
+
+    <div class="acc">
+      <div class="ach" onclick="ta(this)">🔄 Variable Practice <span class="ai">▶</span></div>
+      <div class="acb">
+        <div class="def">
+          <span class="dt">Variable Practice</span>
+          <span class="dx">Performing a skill in a variety of situations — requiring athletes to adapt their technique in response to a changing environment. Decision-making skills also improve. Best for <strong>open skills</strong> performed in unpredictable, changing environments.</span>
+        </div>
+        <p>Example: practising passing in different game-like scenarios, receiving crosses from different angles, shooting from different positions.</p>
+      </div>
+    </div>
+
+    <div class="acc">
+      <div class="ach" onclick="ta(this)">⏱️ Massed Practice <span class="ai">▶</span></div>
+      <div class="acb">
+        <div class="def">
+          <span class="dt">Massed Practice</span>
+          <span class="dx">Continued practice with no rest period. Helps an athlete produce high-quality skill execution when under physical and/or mental fatigue — replicating late-game conditions. Best for <strong>simple skills</strong> or building mental toughness.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc">
+      <div class="ach" onclick="ta(this)">☕ Distributed Practice <span class="ai">▶</span></div>
+      <div class="acb">
+        <div class="def">
+          <span class="dt">Distributed Practice</span>
+          <span class="dx">Athletes practise a skill and are given time to <strong>recover and reflect</strong> (alone or with a coach) on the performance before repeating. Usually involves fewer repetitions but higher quality ones. The rest intervals allow the nervous system to consolidate the movement pattern — leading to better long-term skill learning.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc">
+      <div class="ach" onclick="ta(this)">🧠 Mental Practice <span class="ai">▶</span></div>
+      <div class="acb">
+        <div class="def">
+          <span class="dt">Mental Practice</span>
+          <span class="dx">An athlete visualises a successful attempt of a skill in their mind — without physically performing it. Usually aimed at enhancing confidence levels and reinforcing neural pathways. Also very useful during injury recovery or as part of a pre-performance routine.</span>
+        </div>
+        <div class="anl">
+          <span class="anl-l">💡 Analogy</span>
+          Mental practice is like a flight simulator — you're not actually flying, but your brain is rehearsing every decision and movement. Research shows the neural pathways activated in mental practice are very similar to those in physical practice!
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 9. METHODS OF PRACTICE -->
+  <div class="sc s1a" id="s1a-methods">
+    <h2>9. Methods of Practice (Whole / Part / W-P-W)</h2>
+
+    <div class="def">
+      <span class="dt">Whole Practice</span>
+      <span class="dx">The skill is practised in its entirety from start to finish. The performer gets a full feel for the entire movement pattern. Best for simple, flowing skills that cannot easily be broken down. Example: catching a rugby ball from a teammate and then passing to another.</span>
+    </div>
+
+    <div class="def">
+      <span class="dt">Part Practice</span>
+      <span class="dx">A smaller, specific part of the skill is practised in isolation. This allows a performer to fix small inaccuracies to improve the overall execution. Best for complex skills with distinct phases. Example: practising only the follow-through on a pass.</span>
+    </div>
+
+    <div class="def">
+      <span class="dt">Whole-Part-Whole Practice</span>
+      <span class="dx">The skill is first practised in its entirety → then broken down into smaller parts practised in isolation → finally the parts are reassembled and the whole skill is practised again. This method maintains context (so the skill doesn't feel artificial) while allowing specific flaws to be corrected.</span>
+    </div>
+
+    <div class="mem">
+      <span class="mem-l">🧠 Memory Trick</span>
+      <strong>Whole</strong> = one big go at the full skill (best for simple/continuous skills)<br>
+      <strong>Part</strong> = break into pieces, fix each bit (best for complex skills with distinct phases)<br>
+      <strong>W-P-W</strong> = "Sandwich" — whole bread + part filling + whole bread again = best of both!
+    </div>
+    <div class="etip">The most commonly asked method in the exam is W-P-W. Know a specific example for a complex skill: "First try the full tennis serve, then isolate the ball toss, then go back to the full serve incorporating the improved ball toss."</div>
+  </div>
+
+  <!-- 10. PRINCIPLES OF EFFECTIVE PRACTICE -->
+  <div class="sc s1a" id="s1a-principles">
+    <h2>10. Principles of Effective Practice</h2>
+    <p>When designing skill practice schedules, coaches apply the following principles to maximise learning:</p>
+
+    <div class="cg2">
+      <div class="card"><div class="ct">🎯 Specificity</div><p>Practice should replicate the demands of the sport as closely as possible. The more specific the practice, the greater the transfer to real performance.</p></div>
+      <div class="card"><div class="ct">📈 Progressive</div><p>Practice should gradually increase in difficulty as the athlete improves — moving from simple to complex, closed to open.</p></div>
+      <div class="card"><div class="ct">🔁 Repetition</div><p>Skills must be repeated many times to build a reliable motor programme and achieve consistency.</p></div>
+      <div class="card"><div class="ct">🔁 Overload</div><p>Practice should stretch the athlete beyond their current comfort zone to drive improvement — but not so much that it causes injury or demotivation.</p></div>
+      <div class="card"><div class="ct">💬 Feedback</div><p>Accurate, timely feedback is essential to correct errors and reinforce good technique during skill learning.</p></div>
+      <div class="card"><div class="ct">😊 Motivation</div><p>Athletes must be motivated to engage with practice. Varied, enjoyable sessions maintain motivation and effort.</p></div>
+    </div>
+
+    <div class="def">
+      <span class="dt">Conditioned Games</span>
+      <span class="dx">Games with modified rules that focus on specific tactics or skills in a game context. Modified rules force players to emphasise certain skills. Coaches may add or change rules throughout. Example: a soccer game where players can only take two touches (forces off-the-ball movement and quick passing).</span>
+    </div>
+    <div class="warn">
+      <span class="warn-l">⚠️ Common Exam Trap!</span>
+      Do NOT confuse <strong>Conditioned Games</strong> with <strong>Conditioning Games</strong>!<br>
+      <strong>Conditioned Games</strong> = modified rules to focus on specific SKILLS/TACTICS.<br>
+      <strong>Conditioning Games</strong> = modified rules to increase physical FITNESS demands. E.g. increasing pitch size in a rugby game.
+    </div>
+  </div>
+
+  <!-- 11. SKILL TESTS -->
+  <div class="sc s1a" id="s1a-tests">
+    <h2>11. Skill Tests</h2>
+
+    <div class="def">
+      <span class="dt">Ipsative Test</span>
+      <span class="dx">The performer designs a test which they will repeat under similar conditions at a later date and compare both scores. The test should replicate the demands of the sport. It compares the athlete to their own previous performance — measuring personal improvement. Example: a goal kicker takes 10 kicks from different locations and records their score, then repeats later to compare.</span>
+    </div>
+
+    <div class="def">
+      <span class="dt">Skill Sheet</span>
+      <span class="dx">The performer identifies the key elements that lead to a successful skill execution. They record themselves performing the skill and then assess which elements were present for each attempt. Example: identifying four key elements of successful passing technique and recording five passes off each hand, then ticking which elements were present for each pass.</span>
+    </div>
+
+    <div class="def">
+      <span class="dt">Comparing to a Skilled Performer</span>
+      <span class="dx">The performer records themselves performing the skill. Using a skill analysis app, they compare themselves to a skilled/elite performer. Both videos should be from the same angle for accuracy. Example: a golfer recording their drive and comparing their takeaway, transition, downswing and impact to Tiger Woods.</span>
+    </div>
+
+    <div class="mem">
+      <span class="mem-l">🧠 Memory Trick – 3 Skill Tests</span>
+      <strong>I-S-C</strong> = <strong>I</strong>psative · <strong>S</strong>kill Sheet · <strong>C</strong>omparing to expert<br>
+      "I Score by Comparing!" — each test gives you information about YOUR performance.
+    </div>
+  </div>
+
+  <!-- 1A QUIZ -->
+  <div class="sc s1a" id="s1a-quiz">
+    <h2>🧠 Chapter 1A Quick Quiz</h2>
+    <div id="quiz-1a"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!--  CHAPTER 1B                                            -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div id="ch1b" class="cp">
+  <div class="chh h1b">
+    <h1>🔬 Chapter 1B: Analysing Skill &amp; Technique</h1>
+    <p>Biomechanics, planes, axes, levers, vectors, Newton's Laws, and economy of movement</p>
+  </div>
+
+  <!-- 1. BIOMECHANICS -->
+  <div class="sc s1b" id="s1b-bio">
+    <h2>1. What is Biomechanics?</h2>
+    <div class="def b">
+      <span class="dt">Biomechanics</span>
+      <span class="dx">The science of body movement. Sports biomechanics analyses the interaction between muscles, bones, ligaments and tendons and how they relate to sporting movement. Also examines forces that the body creates and forces acting on the body. The goal is to understand HOW the body moves so performance can be optimised and injury risk minimised.</span>
+    </div>
+    <div class="anl">
+      <span class="anl-l">💡 Analogy</span>
+      Biomechanics is to sport what engineering is to building a bridge. Just as engineers study the forces acting on a bridge to make it stronger and more efficient, biomechanists study the forces acting on an athlete's body to make them faster, more powerful and less injury-prone.
+    </div>
+    <div class="def b">
+      <span class="dt">Anatomical Position</span>
+      <span class="dx">The standard starting point (reference position) from which the anatomy of the moving body can be described. The body stands upright, facing forward, with arms at the sides and palms facing forward. ALL movements and planes are described relative to this position.</span>
+    </div>
+  </div>
+
+  <!-- 2. PLANES -->
+  <div class="sc s1b" id="s1b-planes">
+    <h2>2. Planes of Movement</h2>
+    <div class="def b">
+      <span class="dt">Plane of Movement</span>
+      <span class="dx">An imaginary flat surface running through the body that divides it into two sections. The human body moves within three dimensions, and many sporting actions rely on a mixture of movements in different planes.</span>
+    </div>
+
+    <div class="mem">
+      <span class="mem-l">🧠 Memory Trick – 3 Planes</span>
+      <strong>F-T-S</strong> = <strong>F</strong>rontal · <strong>T</strong>ransverse · <strong>S</strong>agittal<br>
+      "Fit Tennis Stars!" — and remember: each plane DIVIDES the body into TWO halves.
+    </div>
+
+    <div class="acc">
+      <div class="ach" onclick="ta(this)">🔵 Frontal Plane (Coronal Plane) <span class="ai">▶</span></div>
+      <div class="acb">
+        <div class="def b">
+          <span class="dt">Frontal Plane</span>
+          <span class="dx">Passes through the side of the body and divides it into <strong>front (anterior) and back (posterior)</strong> halves. Abduction (moving away from the body's midline) and adduction (moving towards the midline) and lateral (side-to-side) movements occur in this plane.</span>
+        </div>
+        <div class="info">
+          <span class="info-l">🏃 Examples</span>
+          Jumping jacks, raising and lowering arms sideways, cartwheel, sidestepping, lateral lunges.
+        </div>
+        <div class="info">
+          <span class="info-l">📹 Video Analysis Tip</span>
+          Stand in FRONT of the athlete to capture frontal plane movements.
+        </div>
+        <div class="anl">
+          <span class="anl-l">💡 Analogy</span>
+          Imagine a pane of glass cutting you in half from ear to ear — front half and back half. Any movement that stays in that side-to-side plane is a frontal plane movement.
+        </div>
+      </div>
+    </div>
+
+    <div class="acc">
+      <div class="ach" onclick="ta(this)">🟢 Transverse Plane (Horizontal Plane) <span class="ai">▶</span></div>
+      <div class="acb">
+        <div class="def b">
+          <span class="dt">Transverse Plane</span>
+          <span class="dx">A horizontal plane through the <strong>middle of the body</strong> that divides it into upper and lower halves. Rotational movements occur in this plane.</span>
+        </div>
+        <div class="info">
+          <span class="info-l">🏃 Examples</span>
+          Hip rotation in a golf swing, twisting in a discus throw, pivoting in netball, spinning in skating, trunk rotation in a tennis serve.
+        </div>
+        <div class="info">
+          <span class="info-l">📹 Video Analysis Tip</span>
+          Stand in FRONT of or to the SIDE of the athlete to capture transverse plane movements.
+        </div>
+      </div>
+    </div>
+
+    <div class="acc">
+      <div class="ach" onclick="ta(this)">🔴 Sagittal Plane (Median Plane) <span class="ai">▶</span></div>
+      <div class="acb">
+        <div class="def b">
+          <span class="dt">Sagittal Plane</span>
+          <span class="dx">A vertical plane that passes through the <strong>midline of the body</strong> dividing it into left and right sides. Flexion, extension, plantarflexion and dorsiflexion movements occur in this plane.</span>
+        </div>
+        <div class="info">
+          <span class="info-l">🏃 Examples</span>
+          Kicking a football, chest pass in netball, walking, jumping, squatting, bicep curl.
+        </div>
+        <div class="info">
+          <span class="info-l">📹 Video Analysis Tip</span>
+          Stand to the SIDE of the athlete to capture sagittal plane movements.
+        </div>
+        <div class="anl">
+          <span class="anl-l">💡 Analogy</span>
+          Sagittal = like a book spine down the middle of your body, splitting left from right. A forward kick swings through this plane.
+        </div>
+      </div>
+    </div>
+
+    <table>
+      <tr><th class="t1b">Plane</th><th class="t1b">Divides Body Into</th><th class="t1b">Movement Type</th><th class="t1b">Sport Example</th><th class="t1b">Camera Position</th></tr>
+      <tr><td><strong>Frontal</strong></td><td>Front &amp; Back</td><td>Abduction, adduction, lateral</td><td>Star jump, cartwheel, sidestepping</td><td>In front</td></tr>
+      <tr><td><strong>Transverse</strong></td><td>Top &amp; Bottom</td><td>Rotation</td><td>Golf swing, discus throw, pivot in netball</td><td>Front or side</td></tr>
+      <tr><td><strong>Sagittal</strong></td><td>Left &amp; Right</td><td>Flexion, extension</td><td>Kick, squat, walking, bicep curl</td><td>Side</td></tr>
+    </table>
+    <div class="etip">Exam question: "Name the plane of movement in which a soccer kick primarily occurs and justify your answer." Answer: Sagittal plane — the kicking leg swings forward (flexion/extension), which divides left from right.</div>
+  </div>
+
+  <!-- 3. AXES -->
+  <div class="sc s1b" id="s1b-axes">
+    <h2>3. Axes of Movement</h2>
+    <div class="def b">
+      <span class="dt">Axis of Movement</span>
+      <span class="dx">A straight line through the body around which the body (or body part) rotates. There are three axes of movement, each running perpendicular (at 90°) to its corresponding plane.</span>
+    </div>
+
+    <div class="mem">
+      <span class="mem-l">🧠 Memory Trick – Planes &amp; Axes are Perpendicular Pairs</span>
+      <strong>Frontal Plane ↔ Sagittal Axis</strong> (front-to-back rod): Cartwheel<br>
+      <strong>Sagittal Plane ↔ Frontal Axis</strong> (left-to-right rod): Somersault / Front flip<br>
+      <strong>Transverse Plane ↔ Vertical Axis</strong> (top-to-bottom rod): Spin / Twirl<br>
+      Think: each plane ROTATES AROUND its matching perpendicular axis!
+    </div>
+
+    <div class="cg2">
+      <div class="card b">
+        <div class="ct">Sagittal Axis (Anteroposterior)</div>
+        <p>Runs <strong>front to back</strong> through the centre of the body. Think of a rod through the belly button. Paired with the Frontal Plane.</p>
+        <p><em>Example: Cartwheel — the body rotates sideways around this axis.</em></p>
+      </div>
+      <div class="card b">
+        <div class="ct">Vertical Axis</div>
+        <p>Runs <strong>top to bottom</strong> through the centre of the body. Think of a spinning top. Paired with the Transverse Plane.</p>
+        <p><em>Example: Ice skater performing a spin — rotating around this axis.</em></p>
+      </div>
+      <div class="card b">
+        <div class="ct">Frontal Axis (Mediolateral)</div>
+        <p>Runs <strong>left to right</strong> through the centre of the body (through the hips). Think of players on a foosball table. Paired with the Sagittal Plane.</p>
+        <p><em>Example: Somersault or front flip — the body rotates forward around this axis.</em></p>
+      </div>
+    </div>
+
+    <table>
+      <tr><th class="t1b">Axis</th><th class="t1b">Direction</th><th class="t1b">Think of...</th><th class="t1b">Paired Plane</th><th class="t1b">Sport Example</th></tr>
+      <tr><td><strong>Sagittal Axis</strong></td><td>Front to back</td><td>Rod through belly button</td><td>Frontal Plane</td><td>Cartwheel</td></tr>
+      <tr><td><strong>Frontal Axis</strong></td><td>Left to right</td><td>Foosball table rod</td><td>Sagittal Plane</td><td>Somersault / front flip</td></tr>
+      <tr><td><strong>Vertical Axis</strong></td><td>Top to bottom</td><td>Spinning top</td><td>Transverse Plane</td><td>Ice skater spin</td></tr>
+    </table>
+  </div>
+
+  <!-- 4. LEVERS -->
+  <div class="sc s1b" id="s1b-levers">
+    <h2>4. Levers in the Human Body</h2>
+    <div class="def b">
+      <span class="dt">Lever</span>
+      <span class="dx">A solid structure that rotates about a pivot point (fulcrum). An effort applied to the lever moves a load. In the human body, levers are formed from bones (rigid structure), muscles (effort/force), and joints (fulcrum/pivot point). The load is the weight of the body part being moved (and anything it is carrying).</span>
+    </div>
+
+    <div class="def b">
+      <span class="dt">Fulcrum</span>
+      <span class="dx">The fixed pivot point around which a lever rotates. In the human body, the fulcrum is always a <strong>joint</strong>.</span>
+    </div>
+
+    <div class="mem">
+      <span class="mem-l">🧠 Memory Trick – The KEY to Levers is knowing the ORDER of F, E and L</span>
+      <strong>1st Class: F in the middle</strong> → E–F–L (like a seesaw: fulcrum in the middle)<br>
+      <strong>2nd Class: L in the middle</strong> → F–L–E (like a wheelbarrow: load in the middle)<br>
+      <strong>3rd Class: E in the middle</strong> → F–E–L (most common in the body: effort in the middle)<br>
+      Memory cheat: <strong>FLE = 123</strong>: "Fulcrum first (1st), Load second (2nd), Effort third (3rd)" — tells you what's in the MIDDLE!
+    </div>
+
+    <div class="acc">
+      <div class="ach" onclick="ta(this)">⚖️ 1st Class Lever – Fulcrum in the MIDDLE <span class="ai">▶</span></div>
+      <div class="acb">
+        <div class="def b">
+          <span class="dt">1st Class Lever</span>
+          <span class="dx">The fulcrum (joint) is positioned in the <strong>middle</strong> between the effort (muscle) and the load (resistance). Like a seesaw — the pivot is in the middle.</span>
+        </div>
+        <div class="lever-diagram">
+          <div class="lever-box lE">EFFORT</div><div class="lever-arrow">──</div>
+          <div class="lever-box lF">FULCRUM</div><div class="lever-arrow">──</div>
+          <div class="lever-box lL">LOAD</div>
+        </div>
+        <div class="info">
+          <span class="info-l">🏃 Body Example</span>
+          <strong>Neck:</strong> Neck muscles (E) → neck joint (F) → weight of head (L). Used when nodding your head or heading a football.
+        </div>
+        <div class="info">
+          <span class="info-l">🎯 Sport Example</span>
+          <strong>Throwing a dart:</strong> Effort = tricep, Fulcrum = elbow joint, Load = hand and dart.
+        </div>
+      </div>
+    </div>
+
+    <div class="acc">
+      <div class="ach" onclick="ta(this)">🏋️ 2nd Class Lever – Load in the MIDDLE <span class="ai">▶</span></div>
+      <div class="acb">
+        <div class="def b">
+          <span class="dt">2nd Class Lever</span>
+          <span class="dx">The load (resistance) is positioned in the <strong>middle</strong> between the fulcrum and the effort. Like a wheelbarrow — you lift the handles (effort), the wheel is the fulcrum, and the load is in the middle of the barrow.</span>
+        </div>
+        <div class="lever-diagram">
+          <div class="lever-box lF">FULCRUM</div><div class="lever-arrow">──</div>
+          <div class="lever-box lL">LOAD</div><div class="lever-arrow">──</div>
+          <div class="lever-box lE">EFFORT</div>
+        </div>
+        <div class="info">
+          <span class="info-l">🏃 Body Example</span>
+          <strong>Ankle (plantarflexion):</strong> Ball of foot (F) → body weight through heels (L) → gastrocnemius muscle contraction (E). Used when rising on tiptoe, taking off for a jump, or pushing from starting blocks.
+        </div>
+        <div class="info">
+          <span class="info-l">🎯 Sport Example</span>
+          <strong>Jump take-off:</strong> Effort = calf muscles, Load = body mass through heels, Fulcrum = ball of foot.
+        </div>
+        <div class="warn">
+          <span class="warn-l">⭐ Key Fact</span>
+          2nd class levers <strong>ALWAYS</strong> have a <strong>Mechanical Advantage</strong> — they can move large loads with relatively small effort. This is why jumping feels less exhausting than it looks!
+        </div>
+      </div>
+    </div>
+
+    <div class="acc">
+      <div class="ach" onclick="ta(this)">💪 3rd Class Lever – Effort in the MIDDLE <span class="ai">▶</span></div>
+      <div class="acb">
+        <div class="def b">
+          <span class="dt">3rd Class Lever</span>
+          <span class="dx">The effort (muscle) is positioned in the <strong>middle</strong> between the fulcrum and the load. This is the <strong>most common lever in the human body</strong>. Although it requires more effort, it allows the load to move further and faster — generating speed.</span>
+        </div>
+        <div class="lever-diagram">
+          <div class="lever-box lF">FULCRUM</div><div class="lever-arrow">──</div>
+          <div class="lever-box lE">EFFORT</div><div class="lever-arrow">──</div>
+          <div class="lever-box lL">LOAD</div>
+        </div>
+        <div class="info">
+          <span class="info-l">🏃 Body Example</span>
+          <strong>Bicep curl:</strong> Elbow joint (F) → bicep muscle attachment (E) → weight of forearm and anything held (L).
+        </div>
+        <div class="info">
+          <span class="info-l">🎯 Sport Examples</span>
+          <strong>Kicking a soccer ball:</strong> Fulcrum = knee joint, Effort = quadricep attachment, Load = foot (and ball).<br>
+          <strong>Tennis forehand:</strong> The long load arm (racket) generates high racket head speed.
+        </div>
+      </div>
+    </div>
+
+    <table>
+      <tr><th class="t1b">Lever</th><th class="t1b">Order (middle item = key)</th><th class="t1b">Body Example</th><th class="t1b">Sport Example</th></tr>
+      <tr><td><strong>1st Class</strong></td><td>E – <u>F</u> – L (Fulcrum middle)</td><td>Neck — heading a football</td><td>Throwing a dart (E=tricep, F=elbow, L=hand+dart)</td></tr>
+      <tr><td><strong>2nd Class</strong></td><td>F – <u>L</u> – E (Load middle)</td><td>Ankle — calf raise / jump take-off</td><td>Sprint start (E=calf, L=body mass, F=ball of foot)</td></tr>
+      <tr><td><strong>3rd Class</strong></td><td>F – <u>E</u> – L (Effort middle)</td><td>Forearm — bicep curl</td><td>Kicking (F=knee, E=quad, L=foot)</td></tr>
+    </table>
+  </div>
+
+  <!-- 5. MECHANICAL ADVANTAGE/DISADVANTAGE -->
+  <div class="sc s1b" id="s1b-mechadvantage">
+    <h2>5. Mechanical Advantage &amp; Disadvantage</h2>
+
+    <div class="def b">
+      <span class="dt">Mechanical Advantage</span>
+      <span class="dx">When a lever's <strong>effort arm</strong> (distance from Effort to Fulcrum) is longer than its <strong>load arm</strong> (distance from Load to Fulcrum), the lever has a Mechanical Advantage. This means it can <strong>move large loads with a relatively small amount of effort</strong>. Second class levers ALWAYS have Mechanical Advantage. First class levers can have Mechanical Advantage if the fulcrum is close to the load.</span>
+    </div>
+
+    <div class="def b">
+      <span class="dt">Mechanical Disadvantage</span>
+      <span class="dx">When the <strong>load arm is longer</strong> than the effort arm, the lever has a Mechanical Disadvantage — more effort is required to move the load. Although more effort is required, the benefit is that the load moves <strong>further and faster</strong>. Most commonly found in <strong>third class levers</strong>. Example: in a tennis forehand, the long load arm allows for greater generation of speed in the racket face, enabling the player to hit the ball harder.</span>
+    </div>
+
+    <div class="anl">
+      <span class="anl-l">💡 Analogy</span>
+      Mechanical Advantage = a long crowbar to open a can — the long lever arm means you barely need to push to pop the lid. Mechanical Disadvantage = chopsticks — it takes MORE effort (your fingers) to move them, but your hand can move food much further and faster than a short lever could.
+    </div>
+
+    <div class="mem">
+      <span class="mem-l">🧠 Memory Trick</span>
+      <strong>Advantage = Less effort to move big loads</strong> (long effort arm)<br>
+      <strong>Disadvantage = More effort BUT more speed/range</strong> (long load arm)<br>
+      In sport, Disadvantage is actually USEFUL — it lets limbs move fast over large ranges (kicks, throws, tennis strokes)!
+    </div>
+  </div>
+
+  <!-- 6. VECTORS & SCALARS -->
+  <div class="sc s1b" id="s1b-vectors">
+    <h2>6. Vectors &amp; Scalars</h2>
+
+    <div class="def b">
+      <span class="dt">Magnitude</span>
+      <span class="dx">The size of something — "how much" there is of it. Both scalars and vectors have magnitude, but only vectors also have direction.</span>
+    </div>
+
+    <div class="def b">
+      <span class="dt">Scalar Quantity</span>
+      <span class="dx">A quantity that has <strong>magnitude only</strong> — direction is not important. Scalar quantities are one-dimensional. Examples: <strong>distance, speed, mass, power, length, temperature, time.</strong></span>
+    </div>
+
+    <div class="def b">
+      <span class="dt">Vector Quantity</span>
+      <span class="dx">A quantity that has both <strong>magnitude AND direction</strong>. The direction is essential to fully describe the quantity. Examples: <strong>displacement, velocity, force, weight, acceleration.</strong></span>
+    </div>
+
+    <div class="mem">
+      <span class="mem-l">🧠 Memory Trick</span>
+      <strong>Scalar = Size only</strong> (like your weight on a scales — just a number, no direction)<br>
+      <strong>Vector = Velocity-type</strong> (a direction is always included — where are you going?)<br>
+      <strong>VECTOR = "VECtor has a diRECTION"</strong> — VEC-RECTION hidden inside the word!
+    </div>
+
+    <table>
+      <tr><th class="t1b">Scalar</th><th class="t1b">Its Vector Partner</th><th class="t1b">Key Difference</th></tr>
+      <tr><td><strong>Distance</strong> — how far an object travels (direction irrelevant). E.g. shot putt travels 18m.</td><td><strong>Displacement</strong> — how far an object travels in a given direction (shortest path between 2 points).</td><td>Distance = total path. Displacement = straight-line distance with direction.</td></tr>
+      <tr><td><strong>Speed</strong> — distance travelled in a specific amount of time. E.g. Usain Bolt: 100m ÷ 9.58s = 10.44 ms⁻¹</td><td><strong>Velocity</strong> — the speed of something in a given direction. If direction changes, velocity changes even if speed stays the same.</td><td>Speed = no direction. Velocity = speed WITH direction.</td></tr>
+      <tr><td><strong>Mass</strong> — how much matter an object contains (kg). Constant — never changes.</td><td><strong>Weight</strong> — the force exerted on mass by gravity (Newtons). NOT constant — can change depending on location (e.g. different gravity on the moon).</td><td>Mass = matter (constant). Weight = gravitational force (variable).</td></tr>
+    </table>
+
+    <div class="def b">
+      <span class="dt">Acceleration</span>
+      <span class="dx">The rate of change of velocity over time. A vector quantity — it has both magnitude and direction. Formula: Acceleration = Change in Velocity ÷ Time (m/s²).</span>
+    </div>
+    <div class="etip">Exam question: "Distinguish between speed and velocity using a sporting example." Speed = distance/time (no direction). Velocity = speed in a specific direction. E.g. Usain Bolt's speed = 10.44 ms⁻¹. His velocity = 10.44 ms⁻¹ in a northward direction down the 100m track.</div>
+  </div>
+
+  <!-- 7. NEWTON'S LAWS -->
+  <div class="sc s1b" id="s1b-newton">
+    <h2>7. Newton's Three Laws of Motion</h2>
+    <div class="mem">
+      <span class="mem-l">🧠 Memory Trick – The 3 Laws</span>
+      <strong>1st = Inertia</strong> (things keep doing what they're doing until something stops them)<br>
+      <strong>2nd = Acceleration</strong> (F = MA — more force = more acceleration)<br>
+      <strong>3rd = Reaction</strong> (every action has an equal and opposite reaction)<br>
+      "I Am Rocket-powered!" = Inertia, Acceleration, Reaction
+    </div>
+
+    <div class="acc">
+      <div class="ach" onclick="ta(this)">⚽ Newton's 1st Law – Law of Inertia <span class="ai">▶</span></div>
+      <div class="acb">
+        <div class="def b">
+          <span class="dt">Newton's 1st Law – Law of Inertia</span>
+          <span class="dx">"A body at rest will remain at rest, and a body in motion will remain in motion with a constant speed and direction, unless acted on by an external force." A body resists changes to its state of motion — this resistance is called inertia.</span>
+        </div>
+        <div class="def b">
+          <span class="dt">Inertia</span>
+          <span class="dx">The resistance of a body to a change in its state of motion. A heavier object has more inertia (harder to start or stop moving).</span>
+        </div>
+        <div class="info">
+          <span class="info-l">⚽ Sport Examples</span>
+          <strong>Soccer penalty:</strong> The ball placed on the spot remains still (at rest) until the player kicks it (external force). Once kicked, the ball continues moving until acted on by gravity, the net, the goalkeeper, etc.<br>
+          <strong>GAA goal kick:</strong> Ball stays on the tee until kicked. Once in the air, gravity, wind and the post can affect it.
+        </div>
+      </div>
+    </div>
+
+    <div class="acc">
+      <div class="ach" onclick="ta(this)">🚀 Newton's 2nd Law – Law of Acceleration <span class="ai">▶</span></div>
+      <div class="acb">
+        <div class="def b">
+          <span class="dt">Newton's 2nd Law – Law of Acceleration</span>
+          <span class="dx">"A body in motion will only change velocity when acted upon by an external force. The resultant change in velocity is proportional to the force applied and acts in the same direction as the applied force."<br>Formula: <strong>F = M × A</strong> (Force = Mass × Acceleration)</span>
+        </div>
+        <div class="info">
+          <span class="info-l">🏑 Sport Examples</span>
+          <strong>Hurling:</strong> If a hurler strikes the ball with double the force, the ball accelerates at double the rate in the same direction.<br>
+          <strong>Medicine ball throw:</strong> More force applied = ball travels higher/further. If the ball is heavier (more mass), the same force produces less acceleration.
+        </div>
+        <div class="anl">
+          <span class="anl-l">💡 Analogy</span>
+          F=MA is like a shopping trolley. A heavy trolley (large M) needs much more force (F) to accelerate (A) at the same rate as an empty trolley. Or: the same force applied to a lighter trolley creates much greater acceleration. This is exactly why a lighter football travels further than a heavy shot putt when struck with the same force!
+        </div>
+      </div>
+    </div>
+
+    <div class="acc">
+      <div class="ach" onclick="ta(this)">🏊 Newton's 3rd Law – Law of Reaction <span class="ai">▶</span></div>
+      <div class="acb">
+        <div class="def b">
+          <span class="dt">Newton's 3rd Law – Law of Reaction</span>
+          <span class="dx">"For every action or force, there is an equal and opposite reaction or counterforce." Every time one object exerts a force on another, the second object exerts an equal force back in the opposite direction.</span>
+        </div>
+        <div class="info">
+          <span class="info-l">🏉 Sport Examples</span>
+          <strong>Rugby jump:</strong> A player jumping to catch a high ball generates force into the ground. The ground produces an equal and opposite counterforce, sending the player upward.<br>
+          <strong>Swimming front crawl:</strong> The swimmer's hand pulls the water backward (action force). The water pushes the swimmer's hand forward and the swimmer moves forward (reaction force).<br>
+          <strong>Sprint start:</strong> The sprinter pushes backward into the starting blocks (action). The blocks push back with equal force, propelling the sprinter forward (reaction).
+        </div>
+        <div class="anl">
+          <span class="anl-l">💡 Analogy</span>
+          Newton's 3rd Law is like standing on a skateboard and throwing a heavy ball forward — the moment you release it, you roll backward! The action (throwing forward) creates an equal reaction (you move backward).
+        </div>
+      </div>
+    </div>
+
+    <table>
+      <tr><th class="t1b">Law</th><th class="t1b">Name</th><th class="t1b">Summary</th><th class="t1b">Sport Example</th></tr>
+      <tr><td><strong>1st</strong></td><td>Law of Inertia</td><td>Objects keep doing what they're doing unless a force acts on them</td><td>Soccer ball stays on the spot until kicked</td></tr>
+      <tr><td><strong>2nd</strong></td><td>Law of Acceleration (F=MA)</td><td>More force → more acceleration; heavier object → less acceleration for same force</td><td>Striking a hurling ball harder makes it go faster</td></tr>
+      <tr><td><strong>3rd</strong></td><td>Law of Reaction</td><td>Every action has an equal and opposite reaction</td><td>Sprinter pushing back on blocks → blocks push sprinter forward</td></tr>
+    </table>
+    <div class="etip">Newton's Laws are very commonly examined. You must be able to NAME the law, EXPLAIN it in your own words, and give a SPECIFIC sporting example. Always state which law you are using clearly.</div>
+  </div>
+
+  <!-- 8. SOURCES OF RESISTANCE -->
+  <div class="sc s1b" id="s1b-resistance">
+    <h2>8. Sources of Resistance to Sports Motion</h2>
+    <p>As athletes execute their sport's required movements, external forces act upon them. Understanding these forces is key to optimising performance.</p>
+
+    <table>
+      <tr><th class="t1b">Source</th><th class="t1b">Explanation</th><th class="t1b">Sport Example</th></tr>
+      <tr><td><strong>Inertia</strong></td><td>The resistance of a body to a change in motion. A heavier body has more inertia and is harder to start or stop.</td><td>A scrum in rugby — overcoming the inertia of the opposition pack to drive them backward.</td></tr>
+      <tr><td><strong>Gravity</strong></td><td>A constant downward vertical force acting on the athlete's body at all times.</td><td>A javelin thrower — the ball of the javelin follows a parabolic arc as gravity acts on it from the moment it leaves the hand.</td></tr>
+      <tr><td><strong>Friction</strong></td><td>A gripping force between surfaces. Can be beneficial (providing grip) or a source of resistance. Depends on the surface and material.</td><td>Running spikes on a track provide friction (grip). Ice skating on smooth ice minimises friction (allowing gliding).</td></tr>
+      <tr><td><strong>Fluid Forces (Drag)</strong></td><td>Resistance of movement through a fluid. <strong>Hydrodynamic drag</strong> = resistance through water. <strong>Aerodynamic drag</strong> = resistance through air. Both can slow the athlete down.</td><td>A swimmer in streamlined position reduces hydrodynamic drag. A cyclist in a low tuck position reduces aerodynamic drag.</td></tr>
+    </table>
+
+    <div class="anl">
+      <span class="anl-l">💡 Analogy</span>
+      Sources of resistance in sport are like the invisible opponents you face even when no one is marking you! Gravity, air resistance, friction and inertia are always there, either helping (friction gripping the track) or hindering (drag slowing the swimmer). Elite athletes train to minimise the hindrances and maximise the benefits.
+    </div>
+  </div>
+
+  <!-- 9. ECONOMY OF MOVEMENT -->
+  <div class="sc s1b" id="s1b-economy">
+    <h2>9. Economy of Movement</h2>
+    <div class="def b">
+      <span class="dt">Economy of Movement</span>
+      <span class="dx">Can be examined from two perspectives: (1) <strong>Energy Expenditure/Cost</strong> — the less energy an athlete uses when executing a skill, the more economical or efficient their movement. (2) <strong>Execution of Technique</strong> — good technical execution means the athlete uses less energy, resulting in higher economy of movement.</span>
+    </div>
+
+    <div class="acc">
+      <div class="ach" onclick="ta(this)">⚡ Energy Expenditure Perspective <span class="ai">▶</span></div>
+      <div class="acb">
+        <p>The less energy an athlete/player uses when executing a skill, the more economical or efficient their movement. Technique, coordination, mobility and stability all impact a performer's energy expenditure.</p>
+        <p>Elite athletes such as middle and long-distance runners, cyclists and triathletes have highly developed aerobic and anaerobic energy systems enabling them to sustain a fast pace for a prolonged period with minimal energy cost.</p>
+        <div class="anl">
+          <span class="anl-l">💡 Analogy</span>
+          An economical runner is like a fuel-efficient car. They go just as fast as less efficient runners but burn far less "fuel" (energy) to do so — which means they have more left in the tank for the finish line!
+        </div>
+      </div>
+    </div>
+
+    <div class="acc">
+      <div class="ach" onclick="ta(this)">🎯 Execution of Technique Perspective <span class="ai">▶</span></div>
+      <div class="acb">
+        <p>Good execution or performance of technique means the player/athlete uses less energy — resulting in higher economy of movement. They can perform the technique using the minimum amount of energy to achieve the best result.</p>
+        <p>Example: a javelin thrower with good technique uses optimal body position, approach speed and release angle to throw to their full potential with minimum energy expenditure — compared to a poor technician who wastes energy fighting their own body mechanics.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 10. CREATIVE APPLICATION -->
+  <div class="sc s1b" id="s1b-creativity">
+    <h2>10. Creative Application of Skill</h2>
+    <div class="def b">
+      <span class="dt">Creative Application of Skill</span>
+      <span class="dx">Creativity is the ability of a performer to be <strong>unusual, innovative and unique</strong>. When facing a problem, a creative performer can come up with an unexpected answer. Creativity can be shown through a skill, a movement or a tactic. Examples: no-look pass in rugby, flop shot in golf, Panenka chip penalty in soccer.</span>
+    </div>
+
+    <table>
+      <tr><th class="t1b">Positive Impact</th><th class="t1b">Negative Impact</th></tr>
+      <tr>
+        <td>Creativity can help a team unlock a stubborn defence when space is limited — an unexpected action creates opportunities that predictable play would not. Example: Brian O'Driscoll's creative offloads in tight spaces.</td>
+        <td>"Creative players" can be seen as a luxury by some coaches who feel they can be wasteful in possession — taking risks when safer options are available. Creativity that doesn't come off can concede possession or scores.</td>
+      </tr>
+    </table>
+
+    <div class="anl">
+      <span class="anl-l">💡 Analogy</span>
+      Creative application of skill is like a jazz musician improvising within a structured piece. The basic skills (notes, scales) are mastered — but the creative player uses them in unexpected ways that surprise the audience (or opponent) and produce something extraordinary that pre-planned patterns never could!
+    </div>
+    <div class="etip">Exam question: "Explain what is meant by creative application of skill and give two sporting examples." Know both positive AND negative impacts — the examiner may ask for both sides.</div>
+  </div>
+
+  <!-- 1B QUIZ -->
+  <div class="sc s1b" id="s1b-quiz">
+    <h2>🧠 Chapter 1B Quick Quiz</h2>
+    <div id="quiz-1b"></div>
+  </div>
+</div>
+
+</main>
+</div>
+
+<script>
+const QD = {
+  '1a': [
+    { q:"What is Kinaesthetic Awareness?",opts:["The ability to anticipate opponents' movements","Using sensors in muscles, joints and tendons to quickly and accurately adjust movements to achieve success when performing a skill","The ability to execute skills with a high success rate over a sustained period","The learned technique of using minimum energy during a skill"],ans:1,exp:"Kinaesthetic awareness = the body's built-in sat-nav. Sensors in your muscles, joints and tendons send signals to your brain about where each body part is — allowing instant adjustments. A footballer doesn't need to look at their feet to control the ball thanks to this!" },
+    { q:"What is the KEY difference between Skill and Ability?",opts:["Ability is learned through practice; skill is innate","Skill is learned through practice; ability is innate (inherited from parents)","They mean exactly the same thing","Skill relates to physical qualities; ability relates to mental qualities"],ans:1,exp:"Skill = LEARNED through many hours of deliberate practice. Ability = INNATE — you inherit it from your parents (genetic make-up). Think: Skill = Schooled, Ability = Ancestry." },
+    { q:"What are the three Stages of Skill Learning (Fitts & Posner)?",opts:["Basic, Intermediate, Expert","Physical, Mental, Automatic","Cognitive, Associative, Autonomous","Beginner, Proficient, Masterful"],ans:2,exp:"Fitts & Posner's three stages: Cognitive (beginner — thinking about every step), Associative (developing — getting more consistent), Autonomous (elite — completely automatic). C-A-A: 'Can Any Athlete become automatic?'" },
+    { q:"In the Cognitive Stage, what type of feedback is MOST useful?",opts:["Negative feedback identifying minute technical flaws","Positive extrinsic feedback from coach to build confidence and encourage trial and error","Only intrinsic feedback from the athlete's own body","No feedback — the athlete must discover everything alone"],ans:1,exp:"In the cognitive stage the athlete is a beginner — they need positive extrinsic feedback to build confidence and continue trying. They can't yet detect their own errors (poor intrinsic feedback), so they depend on the coach." },
+    { q:"What is Modelling in the context of skill learning?",opts:["Building a physical model of a sporting facility","An athlete in the associative stage observing a highly skilled performer and using this to improve their own technique","A type of mental practice used in the autonomous stage","Using a computer model to analyse biomechanics"],ans:1,exp:"Modelling = watching elite performers and copying their technique. Especially useful in the associative stage when the athlete understands the basics but needs to refine their movement patterns. E.g. watching a professional golfer's swing on video." },
+    { q:"What is the difference between Knowledge of Results (KR) and Knowledge of Performance (KP)?",opts:["KR is from a coach; KP is from the athlete themselves","KR is about the OUTCOME (did it work?); KP is about the QUALITY OF TECHNIQUE (how was it done?)","KR is for beginners; KP is only for elite athletes","They are the same — both measure the result of performance"],ans:1,exp:"KR = Results — was it successful? (outcome focused). KP = Performance quality — how was the technique? (process focused). KP is especially useful in the associative stage for refining technique." },
+    { q:"What is Distributed Practice?",opts:["Practising in many different locations","Athletes practise a skill and are given time to recover and reflect before repeating — fewer but higher quality repetitions","Non-stop practice with no rest between repetitions","Practising with multiple coaches at the same time"],ans:1,exp:"Distributed practice = rest intervals between repetitions allow the nervous system to consolidate movement patterns. Leads to better long-term skill learning. Best for complex skills and beginners. Opposite: Massed practice (no rest)." },
+    { q:"What is the Whole-Part-Whole practice method?",opts:["Practising the whole season, then individual parts of training, then the whole season again","Perform the whole skill → isolate and fix the specific weak part → return to performing the whole skill incorporating the improvement","Starting slow and building to maximum speed during practice","Practising with the whole team, then in small groups, then as a whole team again"],ans:1,exp:"W-P-W is the 'sandwich' method: whole bread (full skill attempt) → filling (isolated fix of weak part) → whole bread again (full skill with correction incorporated). Best for complex skills with distinct phases." },
+    { q:"What is the difference between a Conditioned Game and a Conditioning Game?",opts:["They are the same thing — both involve modified rules","Conditioned Game = modified rules to focus on specific SKILLS/TACTICS; Conditioning Game = modified rules to increase PHYSICAL FITNESS demands","Conditioned games are for training; conditioning games are for matches","Conditioning games are only used in pre-season"],ans:1,exp:"This is a classic exam trap! Conditioned games = skill/tactic focus (e.g. only two touches in soccer). Conditioning games = fitness focus (e.g. bigger pitch to increase running demands). They are NOT the same!" },
+    { q:"What is an Ipsative Test?",opts:["A test comparing an athlete to national standards","A test designed by the performer, repeated under similar conditions later, and compared to their own previous performance","A fitness test battery administered by a coach","A standardised test comparing skill levels across different athletes"],ans:1,exp:"Ipsative = comparing yourself to yourself over time. The performer designs it, repeats it under the same conditions, and compares scores to measure personal improvement. E.g. goal kicker — 10 kicks from different positions, record and repeat later." }
+  ],
+  '1b': [
+    { q:"What is Biomechanics?",opts:["The study of nutrition and its effect on performance","The science of body movement — analysing how muscles, bones, joints and forces interact during sporting movement","The study of psychological factors in sport","A method of measuring cardiovascular fitness"],ans:1,exp:"Biomechanics = the science of HOW the body moves. It analyses muscles, bones, ligaments, tendons and the forces they create — so we can understand and optimise movement efficiency and reduce injury risk." },
+    { q:"In which plane does a cartwheel primarily occur?",opts:["Sagittal Plane","Transverse Plane","Frontal Plane","There is no single plane"],ans:2,exp:"A cartwheel moves side-to-side — this is the Frontal Plane, which divides the body into front and back halves. The body rotates around the Sagittal Axis during a cartwheel." },
+    { q:"Which Axis does an ice skater spin rotate around?",opts:["Frontal Axis","Sagittal Axis","Vertical Axis","Transverse Axis"],ans:2,exp:"A spin rotation goes top-to-bottom — this is the Vertical Axis. This axis is paired with the Transverse Plane. Think: spinning top — that's the vertical axis!" },
+    { q:"In a 1st Class Lever, which component is in the MIDDLE?",opts:["Effort","Load","Fulcrum","All three are in the same position"],ans:2,exp:"1st Class: E–F–L (Fulcrum in the middle). Like a seesaw! FLE=123: Fulcrum in the middle of 1st class. Body example: neck (heading a football). Sport example: throwing a dart (tricep=effort, elbow=fulcrum, hand+dart=load)." },
+    { q:"Which class of lever ALWAYS has Mechanical Advantage?",opts:["1st Class Levers always","2nd Class Levers always","3rd Class Levers always","No lever always has mechanical advantage"],ans:1,exp:"2nd Class Levers ALWAYS have Mechanical Advantage — their effort arm is always longer than their load arm. They can move large loads with little effort. Example: the calf raise / jump take-off — the body can propel its whole mass upward with relatively modest muscular effort." },
+    { q:"What is the difference between Speed and Velocity?",opts:["They are exactly the same","Speed is distance/time (no direction — scalar); Velocity is speed in a specific direction (vector)","Velocity is always faster than speed","Speed requires a direction; velocity does not"],ans:1,exp:"Speed = scalar (magnitude only — how fast). Velocity = vector (magnitude + direction — how fast AND which way). If you change direction while maintaining speed, your velocity changes but your speed doesn't." },
+    { q:"Newton's 3rd Law states:",opts:["A body at rest remains at rest unless acted on by an external force","The acceleration of a body is proportional to the force applied to it","For every action or force, there is an equal and opposite reaction or counterforce","A heavier body requires more force to accelerate than a lighter one"],ans:2,exp:"3rd Law = Law of Reaction. Action → equal and opposite reaction. Sprint example: sprinter pushes backward into the starting blocks (action) → blocks push sprinter forward with equal force (reaction). Swimming: hand pulls water back → water pushes swimmer forward." },
+    { q:"What is the difference between Mass and Weight?",opts:["They are the same thing — both measured in kilograms","Mass = how much matter an object contains (kg, constant); Weight = the force exerted on mass by gravity (Newtons, variable)","Weight is measured in kilograms; mass is measured in Newtons","Mass changes with location; weight is always constant"],ans:1,exp:"Mass = amount of matter (kg) — CONSTANT, never changes wherever you are. Weight = gravitational force (Newtons) — can VARY (e.g. you weigh less on the moon because gravity is weaker). Mass = scalar. Weight = vector (it has direction — downward)." },
+    { q:"What is Mechanical Disadvantage and why is it still USEFUL in sport?",opts:["It means the lever is broken and should not be used","When the load arm is longer than the effort arm — requires more effort BUT allows the load to move FURTHER AND FASTER, generating speed","It means the joint is injured and movement is impaired","It is never useful — athletes should always aim for mechanical advantage"],ans:1,exp:"Mechanical Disadvantage is actually BENEFICIAL for generating speed! A long load arm (e.g. a tennis racket, a leg kicking a ball) moves the end of the lever faster, allowing greater speed at the point of contact. Most 3rd class levers (the most common in the body) have mechanical disadvantage." },
+    { q:"What is Creative Application of Skill?",opts:["Using the technically correct textbook version of a skill every time","The ability of a performer to be unusual, innovative and unique — coming up with unexpected solutions to sporting problems through skill, movement or tactics","A method of analysing skill using video technology","The ability to perform skills with perfect biomechanical technique"],ans:1,exp:"Creativity = being unusual, innovative and unexpected. Examples: Panenka penalty chip in soccer, no-look pass in rugby, 'Fosbury Flop' in high jump. It has positive impacts (unlocking defences) but can be risky (giving away possession if it fails)." }
+  ]
+};
+
+const QS={'1a':{i:0,s:0,d:false},'1b':{i:0,s:0,d:false}};
+
+function bq(ch){
+  const el=document.getElementById('quiz-'+ch);
+  const st=QS[ch];const d=QD[ch];
+  if(st.d){el.innerHTML=`<div class="qcard"><div class="qsc">🎉 Quiz Complete! Score: ${st.s}/${d.length}</div><button class="qnxt show" onclick="rq('${ch}')">🔄 Try Again</button></div>`;return;}
+  const q=d[st.i];const pct=Math.round((st.i/d.length)*100);
+  el.innerHTML=`<div class="pb"><div class="pf" style="width:${pct}%"></div></div>
+  <div style="font-size:.81rem;color:var(--muted);margin-bottom:7px">Question ${st.i+1} of ${d.length} · Score: ${st.s}</div>
+  <div class="qcard">
+    <div class="qq">${q.q}</div>
+    <div class="qopts">${q.opts.map((o,i)=>`<button class="qo" onclick="aq('${ch}',${i})" id="qo-${ch}-${i}">${o}</button>`).join('')}</div>
+    <div class="qfb" id="qf-${ch}"></div>
+    <button class="qnxt" id="qn-${ch}" onclick="nq('${ch}')">${st.i+1<d.length?'Next Question →':'See Results 🏆'}</button>
+  </div>`;
+}
+
+function aq(ch,c){
+  const st=QS[ch];const q=QD[ch][st.i];
+  document.querySelectorAll(`[id^="qo-${ch}-"]`).forEach(b=>b.onclick=null);
+  document.getElementById(`qo-${ch}-${q.ans}`).classList.add('correct');
+  if(c!==q.ans)document.getElementById(`qo-${ch}-${c}`).classList.add('wrong');
+  else st.s++;
+  const fb=document.getElementById('qf-'+ch);
+  fb.innerHTML=(c===q.ans?'✅ Correct! ':'❌ Not quite. ')+q.exp;
+  fb.classList.add('show');
+  document.getElementById('qn-'+ch).classList.add('show');
+}
+function nq(ch){const st=QS[ch];st.i++;if(st.i>=QD[ch].length)st.d=true;bq(ch);}
+function rq(ch){QS[ch]={i:0,s:0,d:false};bq(ch);}
+
+function showCh(id,btn,cls){
+  document.querySelectorAll('.cp').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.nb').forEach(b=>b.className='nb');
+  btn.classList.add(cls);
+  document.getElementById('sb1a').style.display=id==='ch1a'?'':'none';
+  document.getElementById('sb1b').style.display=id==='ch1b'?'':'none';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function ta(h){const b=h.nextElementSibling;const o=b.classList.contains('open');b.classList.toggle('open',!o);h.classList.toggle('open',!o);}
+function go(id){const el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth'});}
+
+bq('1a');bq('1b');
+</script>
+<!-- REPLACEMENT BLOCK START -->
+<a href="index.html" class="return-home-btn">
+  <span>🏠</span> Back to Hub
+</a>
+<style>
+  .return-home-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #1a1d2e; /* Matches your --text variable */
+    color: white !important;
+    padding: 12px 24px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-family: 'Lexend', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+  }
+  .return-home-btn:hover {
+    transform: translateY(-5px);
+    background: #7c3aed; /* Changed to match your --c4 purple theme */
+    color: white !important;
+    box-shadow: 0 8px 25px rgba(124, 58, 237, 0.4);
+  }
+  @media (max-width: 768px) {
+    .return-home-btn {
+      bottom: 20px;
+      right: 20px;
+      padding: 10px 18px;
+      font-size: 14px;
+    }
+  }
+</style>
+<!-- REPLACEMENT BLOCK END -->
+</body>
+</html>

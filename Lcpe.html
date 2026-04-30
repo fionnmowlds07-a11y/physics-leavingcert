@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PE Hub — Leaving Cert Study Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Deca:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f8f6f2;
+    --card: #ffffff;
+    --text: #1a1a2e;
+    --text-light: #555570;
+    --accent-pe-main: #4caf50; /* Energetic Green for PE */
+    --accent-ch1: #9c27b0; /* Purple for Chapter 1 */
+    --accent-ch2: #ff5722; /* Vibrant Orange for Chapter 2 */
+    --accent-ch3: #2196f3; /* Focus Blue for Chapter 3 */
+    --accent-ch4: #e91e63; /* Pink for Chapter 4 */
+    --border: #e0dcd4;
+    --shadow: 0 4px 20px rgba(0,0,0,0.06);
+    --shadow-hover: 0 12px 30px rgba(0,0,0,0.12);
+    --radius: 16px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Lexend', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 17px;
+    line-height: 1.7;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* TOP NAV BAR */
+  .top-bar {
+    background: white;
+    border-bottom: 2px solid var(--border);
+    padding: 16px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+  }
+  .top-bar h1 { 
+    font-size: 22px; 
+    font-weight: 700; 
+    color: var(--text); 
+    letter-spacing: 0.02em;
+  }
+  .top-bar span { color: var(--accent-pe-main); }
+
+  /* HERO SECTION */
+  .hero {
+    background: linear-gradient(135deg, #1a1a2e 0%, #1b3a20 50%, #1e5631 100%);
+    color: white;
+    padding: 80px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: url('data:image/svg+xml;utf8,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+    opacity: 0.6;
+    pointer-events: none;
+  }
+  .hero h2 { 
+    font-size: 48px; 
+    font-weight: 700; 
+    margin-bottom: 16px; 
+    animation: slideDown 0.6s ease-out;
+  }
+  .hero p { 
+    font-size: 20px; 
+    color: rgba(255,255,255,0.85); 
+    max-width: 700px; 
+    margin: 0 auto; 
+    line-height: 1.6;
+    animation: fadeIn 1s ease-out;
+  }
+
+  /* DASHBOARD GRID */
+  .dashboard {
+    flex: 1;
+    padding: 60px 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .section-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 30px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .topics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 24px;
+  }
+
+  /* MODULE CARDS */
+  .module-card {
+    background: var(--card);
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    padding: 36px 30px;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: var(--shadow);
+    position: relative;
+    overflow: hidden;
+    animation: slideUp 0.5s ease-out backwards;
+  }
+  
+  /* Staggered animation for cards */
+  .module-card:nth-child(1) { animation-delay: 0.1s; }
+  .module-card:nth-child(2) { animation-delay: 0.2s; }
+  .module-card:nth-child(3) { animation-delay: 0.3s; }
+  .module-card:nth-child(4) { animation-delay: 0.4s; }
+
+  .module-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 6px;
+    transition: height 0.3s ease;
+  }
+
+  .module-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-hover);
+    border-color: transparent;
+  }
+  .module-card:hover::before { height: 12px; }
+
+  /* Card Specific Colors */
+  .card-ch1::before { background: var(--accent-ch1); }
+  .card-ch1:hover { border-color: var(--accent-ch1); }
+  .card-ch1 .mc-icon { color: var(--accent-ch1); background: #f3e5f5; } 
+
+  .card-ch2::before { background: var(--accent-ch2); }
+  .card-ch2:hover { border-color: var(--accent-ch2); }
+  .card-ch2 .mc-icon { color: var(--accent-ch2); background: #fbe9e7; } 
+
+  .card-ch3::before { background: var(--accent-ch3); }
+  .card-ch3:hover { border-color: var(--accent-ch3); }
+  .card-ch3 .mc-icon { color: var(--accent-ch3); background: #e3f2fd; } 
+
+  .card-ch4::before { background: var(--accent-ch4); }
+  .card-ch4:hover { border-color: var(--accent-ch4); }
+  .card-ch4 .mc-icon { color: var(--accent-ch4); background: #fce4ec; } 
+
+  .card-ch5::before { background: var(--accent-ch1); }
+  .card-ch5:hover { border-color: var(--accent-ch1); }
+  .card-ch5 .mc-icon { color: var(--accent-ch1); background: #fce4ec; } 
+
+  .mc-icon {
+    font-size: 48px;
+    width: 90px;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin-bottom: 24px;
+    transition: transform 0.3s ease;
+  }
+  .module-card:hover .mc-icon {
+    transform: scale(1.1) rotate(5deg);
+  }
+
+  .mc-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+  .mc-desc {
+    font-size: 15px;
+    color: var(--text-light);
+    line-height: 1.6;
+  }
+  .mc-action {
+    margin-top: 28px;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text);
+    opacity: 0.6;
+    transition: opacity 0.2s;
+  }
+  .module-card:hover .mc-action { opacity: 1; }
+
+  /* ABOUT ME SECTION */
+  .about-section {
+    margin-top: 80px;
+    text-align: center;
+    animation: fadeIn 1.2s ease-out;
+  }
+  .about-card {
+    background: var(--card);
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    padding: 40px 30px;
+    max-width: 650px;
+    margin: 0 auto;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease;
+  }
+  .about-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--accent-pe-main);
+  }
+  .about-card h3 {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+  .about-card p {
+    font-size: 16px;
+    color: var(--text-light);
+    line-height: 1.7;
+    margin-bottom: 26px;
+  }
+  .study-btn {
+    display: inline-block;
+    background: var(--accent-pe-main);
+    color: white;
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s;
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.2);
+  }
+  .study-btn:hover {
+    background: #388e3c;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(76, 175, 80, 0.4);
+  }
+
+  /* ANIMATIONS */
+  @keyframes slideDown { 
+    from { opacity: 0; transform: translateY(-20px); } 
+    to { opacity: 1; transform: translateY(0); } 
+  }
+  @keyframes slideUp { 
+    from { opacity: 0; transform: translateY(20px); } 
+    to { opacity: 1; transform: translateY(0); } 
+  }
+  @keyframes fadeIn { 
+    from { opacity: 0; } 
+    to { opacity: 1; } 
+  }
+
+  @media (max-width: 768px) {
+    .hero { padding: 50px 20px; }
+    .hero h2 { font-size: 32px; }
+    .hero p { font-size: 16px; }
+    .dashboard { padding: 40px 20px; }
+    .topics-grid { grid-template-columns: 1fr; }
+    .about-section { margin-top: 60px; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="top-bar">
+    <h1>Leaving Cert <span>PE</span></h1>
+  </div>
+
+  <div class="hero">
+    <h2>Welcome to your Study Hub</h2>
+    <p>Select a chapter below to launch your interactive notes. Master the physical and psychological concepts of sports performance.</p>
+  </div>
+
+  <main class="dashboard">
+    <div class="section-title">Select a Module</div>
+    
+    <div class="topics-grid">
+      
+      <!-- CHAPTER 1 CARD -->
+      <a href="Chapter 1.html" class="module-card card-ch1">
+        <div class="mc-icon">🎯</div>
+        <div class="mc-title">Chapter 1</div>
+        <div class="mc-desc">Dive into analysing skill and technique, understand skilled performance, and explore the stages of skill acquisition.</div>
+        <div class="mc-action">Start Chapter →</div>
+      </a>
+
+      <!-- CHAPTER 2 CARD -->
+      <a href="Chapter 2.html" class="module-card card-ch2">
+        <div class="mc-icon">🏃‍♂️</div>
+        <div class="mc-title">Chapter 2</div>
+        <div class="mc-desc">Explore the principles of training in sport, understand psychological preparation, and dive into the vital roles of diet and nutrition.</div>
+        <div class="mc-action">Start Chapter →</div>
+      </a>
+
+      <!-- CHAPTER 3 CARD -->
+      <a href="Chapter 3.html" class="module-card card-ch3">
+        <div class="mc-icon">⏱️</div>
+        <div class="mc-title">Chapter 3</div>
+        <div class="mc-desc">Learn about the role of the coach and the official, safe practice guidelines, and the metrics used for analysing performance in sport.</div>
+        <div class="mc-action">Start Chapter →</div>
+      </a>
+
+      <!-- CHAPTER 4 CARD -->
+      <a href="Chapter 4.html" class="module-card card-ch4">
+        <div class="mc-icon">📈</div>
+        <div class="mc-title">Chapter 4</div>
+        <div class="mc-desc">Learn about planning for optimum performance, physical activity participation, promoting PA, and the pathway to excellence.</div>
+        <div class="mc-action">Start Chapter →</div>
+      </a>
+      
+      <a href="Chapter 5.html" class="module-card card-ch5">
+        <div class="mc-icon">👩‍👩‍👧</div>
+        <div class="mc-title">Chapter 5</div>
+        <div class="mc-desc">Learn about gender and physical activity, media in sport and ethics and fair play</div>
+        <div class="mc-action">Start Chapter →</div>
+      </a>
+    </div>
+
+    <div class="about-section">
+      <div class="section-title">About the Creator</div>
+      <div class="about-card">
+        <h3>Hi there! 👋</h3>
+        <p>My name is Fionn Mowlds, the creator of this site. I'm a rower and a 6th year leaving cert student. I've been coding for fun by building projects like this LCPE notes app to challenge myself and learn new skills.</p>
+        <p>Below is a link to a study tracker I made, check it out to track and analyze your study, schedule and plan your week manually or automatically, correct your answers and much more!</p>
+        <a href="https://studyrightireland.com" target="_blank" class="study-btn">Visit StudyRightIreland.com</a>
+      </div>
+    </div>
+
+  </main>
+
+</body>
+</html>

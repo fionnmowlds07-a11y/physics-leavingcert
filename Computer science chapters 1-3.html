@@ -1,0 +1,1686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LC Computer Science Revision — Chapters 1, 2 & 3</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F7F4EF;
+    --surface: #FFFFFF;
+    --surface2: #F0EDE8;
+    --border: #E2DDD7;
+    --text: #2C2825;
+    --text-muted: #7A7068;
+    --ch1: #FF6B6B;
+    --ch1-light: #FFE8E8;
+    --ch1-dark: #C94040;
+    --ch2: #4ECDC4;
+    --ch2-light: #E0F7F6;
+    --ch2-dark: #2A9990;
+    --ch3: #FFB347;
+    --ch3-light: #FFF3E0;
+    --ch3-dark: #CC7A00;
+    --purple: #7C5CBF;
+    --purple-light: #EDE8F7;
+    --green: #56C271;
+    --green-light: #E6F8EB;
+    --radius: 14px;
+    --shadow: 0 4px 20px rgba(0,0,0,0.08);
+    --shadow-hover: 0 8px 32px rgba(0,0,0,0.14);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Lexend', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.8;
+    font-size: 16px;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(247,244,239,0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid var(--border);
+    padding: 0 24px;
+    display: flex; align-items: center; gap: 8px;
+    flex-wrap: wrap;
+    min-height: 60px;
+  }
+  .nav-logo {
+    font-family: 'Lexend Mega', sans-serif;
+    font-size: 1rem; color: var(--text);
+    margin-right: 12px;
+  }
+  .nav-logo span { color: var(--ch1); }
+  .nav-btn {
+    padding: 6px 14px; border-radius: 20px;
+    border: 2px solid transparent;
+    font-family: 'Lexend', sans-serif;
+    font-size: 0.78rem; font-weight: 600;
+    cursor: pointer; transition: all 0.2s;
+    background: var(--surface);
+    color: var(--text-muted);
+  }
+  .nav-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+  .nav-btn.ch1 { border-color: var(--ch1); }
+  .nav-btn.ch1.active, .nav-btn.ch1:hover { background: var(--ch1); color: #fff; }
+  .nav-btn.ch2 { border-color: var(--ch2); }
+  .nav-btn.ch2.active, .nav-btn.ch2:hover { background: var(--ch2); color: #fff; }
+  .nav-btn.ch3 { border-color: var(--ch3); }
+  .nav-btn.ch3.active, .nav-btn.ch3:hover { background: var(--ch3); color: var(--text); }
+  .nav-btn.flash { border-color: var(--purple); }
+  .nav-btn.flash.active, .nav-btn.flash:hover { background: var(--purple); color: #fff; }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 48px 24px 32px;
+    text-align: center;
+  }
+  .hero h1 {
+    font-family: 'Lexend Mega', sans-serif;
+    font-size: clamp(1.6rem, 4vw, 2.8rem);
+    line-height: 1.2;
+    color: var(--text);
+  }
+  .hero h1 .accent1 { color: var(--ch1); }
+  .hero h1 .accent2 { color: var(--ch2); }
+  .hero h1 .accent3 { color: var(--ch3-dark); }
+  .hero p {
+    margin-top: 12px;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin-left: auto; margin-right: auto;
+  }
+  .chapter-pills {
+    display: flex; justify-content: center; gap: 12px;
+    flex-wrap: wrap; margin-top: 20px;
+  }
+  .pill {
+    padding: 8px 20px; border-radius: 30px;
+    font-weight: 600; font-size: 0.85rem;
+    cursor: pointer; transition: all 0.2s;
+    border: none;
+  }
+  .pill:hover { transform: translateY(-3px); box-shadow: var(--shadow-hover); }
+  .pill1 { background: var(--ch1); color: #fff; }
+  .pill2 { background: var(--ch2); color: #fff; }
+  .pill3 { background: var(--ch3); color: var(--text); }
+  .pill-flash { background: var(--purple); color: #fff; }
+
+  /* ── SECTIONS ── */
+  .section { display: none; padding: 0 16px 60px; max-width: 900px; margin: 0 auto; }
+  .section.active { display: block; animation: fadeIn 0.3s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* ── TOPIC BLOCKS ── */
+  .topic-card {
+    background: var(--surface);
+    border-radius: var(--radius);
+    padding: 28px;
+    margin-bottom: 24px;
+    box-shadow: var(--shadow);
+    border-left: 5px solid var(--ch1);
+    transition: box-shadow 0.2s;
+  }
+  .topic-card:hover { box-shadow: var(--shadow-hover); }
+  .topic-card.ch2 { border-left-color: var(--ch2); }
+  .topic-card.ch3 { border-left-color: var(--ch3); }
+  .topic-card.purple { border-left-color: var(--purple); }
+
+  .topic-card h2 {
+    font-size: 1.25rem; font-weight: 700;
+    margin-bottom: 14px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .topic-card h3 { font-size: 1rem; font-weight: 600; margin: 18px 0 8px; color: var(--text); }
+  .topic-card p { margin-bottom: 10px; color: var(--text); }
+  .topic-card ul, .topic-card ol { padding-left: 22px; margin-bottom: 10px; }
+  .topic-card li { margin-bottom: 5px; }
+
+  /* ── DEFINITION BOX ── */
+  .def-box {
+    background: var(--surface2);
+    border: 2px dashed var(--border);
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin: 12px 0;
+    position: relative;
+  }
+  .def-box::before {
+    content: '📖 DEFINITION';
+    display: block;
+    font-size: 0.68rem; font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+  .def-box p { margin: 0; font-weight: 500; }
+
+  /* ── ANALOGY BOX ── */
+  .analogy-box {
+    background: #FFF9E6;
+    border: 2px solid #FFD966;
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin: 12px 0;
+  }
+  .analogy-box::before {
+    content: '💡 ANALOGY';
+    display: block;
+    font-size: 0.68rem; font-weight: 700;
+    letter-spacing: 1px;
+    color: #997700;
+    margin-bottom: 6px;
+  }
+
+  /* ── MEMORY TRICK ── */
+  .memory-box {
+    background: #F0FFF4;
+    border: 2px solid var(--green);
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin: 12px 0;
+  }
+  .memory-box::before {
+    content: '🧠 MEMORY TRICK';
+    display: block;
+    font-size: 0.68rem; font-weight: 700;
+    letter-spacing: 1px;
+    color: #267339;
+    margin-bottom: 6px;
+  }
+
+  /* ── EXAM TIP ── */
+  .exam-box {
+    background: #FFF0F3;
+    border: 2px solid #FF6B6B;
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin: 12px 0;
+  }
+  .exam-box::before {
+    content: '📝 EXAM TIP';
+    display: block;
+    font-size: 0.68rem; font-weight: 700;
+    letter-spacing: 1px;
+    color: #C94040;
+    margin-bottom: 6px;
+  }
+
+  /* ── CHAPTER HEADER ── */
+  .ch-header {
+    background: linear-gradient(135deg, var(--ch1) 0%, var(--ch1-dark) 100%);
+    border-radius: var(--radius);
+    padding: 32px 28px;
+    color: white;
+    margin-bottom: 28px;
+    position: relative;
+    overflow: hidden;
+  }
+  .ch-header.ch2 { background: linear-gradient(135deg, var(--ch2) 0%, var(--ch2-dark) 100%); color: var(--text); }
+  .ch-header.ch3 { background: linear-gradient(135deg, var(--ch3) 0%, var(--ch3-dark) 100%); color: var(--text); }
+  .ch-header h1 { font-family: 'Lexend Mega', sans-serif; font-size: 1.6rem; }
+  .ch-header p { opacity: 0.85; margin-top: 8px; }
+  .ch-header .big-num {
+    position: absolute; right: 24px; top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Lexend Mega', sans-serif;
+    font-size: 6rem; opacity: 0.12;
+    line-height: 1;
+  }
+
+  /* ── TABLE ── */
+  .comp-table {
+    width: 100%; border-collapse: collapse;
+    margin: 14px 0; font-size: 0.88rem;
+    border-radius: 10px; overflow: hidden;
+  }
+  .comp-table th {
+    background: var(--ch1); color: #fff;
+    padding: 10px 14px; text-align: left;
+    font-weight: 600;
+  }
+  .comp-table.ch2 th { background: var(--ch2); color: var(--text); }
+  .comp-table.ch3 th { background: var(--ch3); color: var(--text); }
+  .comp-table.purple th { background: var(--purple); }
+  .comp-table td {
+    padding: 9px 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .comp-table tr:nth-child(even) td { background: var(--surface2); }
+  .comp-table tr:last-child td { border-bottom: none; }
+
+  /* ── DIAGRAMS ── */
+  .diagram-wrap {
+    background: var(--surface2);
+    border-radius: 12px;
+    padding: 20px;
+    margin: 16px 0;
+    overflow-x: auto;
+  }
+  .diagram-wrap p.caption {
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 10px;
+  }
+  svg text { font-family: 'Lexend', sans-serif; }
+
+  /* ── STEPS ── */
+  .steps { list-style: none; padding: 0; margin: 14px 0; }
+  .steps li {
+    display: flex; gap: 14px; align-items: flex-start;
+    margin-bottom: 12px;
+  }
+  .step-num {
+    min-width: 32px; height: 32px;
+    border-radius: 50%;
+    background: var(--ch1); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 0.85rem; flex-shrink: 0;
+  }
+  .step-num.ch2 { background: var(--ch2); color: var(--text); }
+  .step-num.ch3 { background: var(--ch3); color: var(--text); }
+  .step-num.purple { background: var(--purple); }
+  .step-content { padding-top: 4px; }
+
+  /* ── BIG O BARS ── */
+  .big-o-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 10px; margin: 14px 0;
+  }
+  @media(max-width:600px){ .big-o-grid { grid-template-columns: 1fr; } }
+  .big-o-card {
+    border-radius: 10px; padding: 14px;
+    border: 2px solid;
+  }
+  .big-o-card .notation { font-size: 1.3rem; font-weight: 700; }
+  .big-o-card .label { font-size: 0.8rem; font-weight: 600; margin: 4px 0; }
+  .big-o-card .desc { font-size: 0.82rem; color: var(--text-muted); }
+  .o1  { border-color: #56C271; background: #E6F8EB; }
+  .ologn{ border-color: #4ECDC4; background: #E0F7F6; }
+  .on  { border-color: #FFB347; background: #FFF3E0; }
+  .on2 { border-color: #FF6B6B; background: #FFE8E8; }
+  .onlogn{ border-color: #C9A800; background: #FFFBE0; }
+  .onbad { border-color: #CC3333; background: #FFE0E0; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block; padding: 3px 10px;
+    border-radius: 20px; font-size: 0.72rem;
+    font-weight: 700; letter-spacing: 0.5px;
+  }
+  .badge-red { background: var(--ch1-light); color: var(--ch1-dark); }
+  .badge-teal { background: var(--ch2-light); color: var(--ch2-dark); }
+  .badge-orange { background: var(--ch3-light); color: var(--ch3-dark); }
+  .badge-purple { background: var(--purple-light); color: var(--purple); }
+  .badge-green { background: var(--green-light); color: #1a7a32; }
+
+  /* ── ACCORDION ── */
+  .accordion { margin: 8px 0; border-radius: 10px; overflow: hidden; border: 2px solid var(--border); }
+  .accordion-header {
+    width: 100%; text-align: left; padding: 13px 18px;
+    background: var(--surface2); border: none;
+    font-family: 'Lexend', sans-serif; font-size: 0.95rem;
+    font-weight: 600; cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center;
+    transition: background 0.2s;
+  }
+  .accordion-header:hover { background: var(--border); }
+  .accordion-header .arrow { transition: transform 0.3s; font-size: 0.8rem; }
+  .accordion-header.open .arrow { transform: rotate(180deg); }
+  .accordion-body {
+    display: none; padding: 16px 18px;
+    background: var(--surface);
+    border-top: 2px solid var(--border);
+  }
+  .accordion-body.open { display: block; }
+
+  /* ── FLASHCARD SECTION ── */
+  #flashcards { padding: 0 16px 80px; max-width: 900px; margin: 0 auto; display: none; }
+  #flashcards.active { display: block; animation: fadeIn 0.3s ease; }
+  .flash-header {
+    background: linear-gradient(135deg, var(--purple) 0%, #5a3da0 100%);
+    border-radius: var(--radius); padding: 32px 28px;
+    color: white; margin-bottom: 28px; position: relative; overflow: hidden;
+  }
+  .flash-header h1 { font-family: 'Lexend Mega', sans-serif; font-size: 1.6rem; }
+  .flash-header p { opacity: 0.85; margin-top: 8px; }
+  .flash-header .big-num { position: absolute; right: 24px; top: 50%; transform: translateY(-50%); font-family: 'Lexend Mega', sans-serif; font-size: 6rem; opacity: 0.12; line-height: 1; }
+
+  .flash-controls {
+    display: flex; gap: 10px; flex-wrap: wrap;
+    margin-bottom: 20px; align-items: center;
+  }
+  .flash-filter {
+    padding: 7px 16px; border-radius: 20px;
+    border: 2px solid var(--border);
+    background: var(--surface); font-family: 'Lexend', sans-serif;
+    font-size: 0.8rem; font-weight: 600; cursor: pointer;
+    transition: all 0.2s; color: var(--text-muted);
+  }
+  .flash-filter.active-ch1 { background: var(--ch1); color: #fff; border-color: var(--ch1); }
+  .flash-filter.active-ch2 { background: var(--ch2); color: var(--text); border-color: var(--ch2); }
+  .flash-filter.active-ch3 { background: var(--ch3); color: var(--text); border-color: var(--ch3); }
+  .flash-filter.active-all { background: var(--purple); color: #fff; border-color: var(--purple); }
+
+  .flashcard-area {
+    display: flex; flex-direction: column; align-items: center;
+  }
+  .flashcard {
+    width: 100%; max-width: 640px;
+    perspective: 1200px;
+    min-height: 220px; cursor: pointer; margin-bottom: 20px;
+  }
+  .flashcard-inner {
+    position: relative; width: 100%; min-height: 220px;
+    transition: transform 0.55s cubic-bezier(.4,.2,.2,1);
+    transform-style: preserve-3d;
+  }
+  .flashcard.flipped .flashcard-inner { transform: rotateY(180deg); }
+  .flashcard-front, .flashcard-back {
+    position: absolute; width: 100%; min-height: 220px;
+    backface-visibility: hidden;
+    border-radius: var(--radius);
+    padding: 32px 28px;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    text-align: center;
+    box-shadow: var(--shadow);
+  }
+  .flashcard-front {
+    background: var(--surface);
+    border: 3px solid var(--purple);
+  }
+  .flashcard-back {
+    background: var(--purple);
+    color: white;
+    transform: rotateY(180deg);
+  }
+  .flashcard-front .card-chapter {
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 1px;
+    text-transform: uppercase; margin-bottom: 12px;
+  }
+  .flashcard-front .card-q {
+    font-size: 1.15rem; font-weight: 600;
+  }
+  .flashcard-front .flip-hint {
+    margin-top: 16px; font-size: 0.75rem; color: var(--text-muted);
+  }
+  .flashcard-back .card-a {
+    font-size: 1rem; line-height: 1.7;
+  }
+  .flash-nav {
+    display: flex; gap: 12px; align-items: center;
+  }
+  .flash-btn {
+    padding: 10px 24px; border-radius: 24px;
+    border: none; font-family: 'Lexend', sans-serif;
+    font-size: 0.9rem; font-weight: 600;
+    cursor: pointer; transition: all 0.2s;
+    background: var(--purple); color: #fff;
+  }
+  .flash-btn:hover { background: #5a3da0; transform: translateY(-2px); box-shadow: var(--shadow-hover); }
+  .flash-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+  .flash-counter {
+    font-weight: 600; color: var(--text-muted); font-size: 0.9rem;
+    min-width: 80px; text-align: center;
+  }
+  .flash-progress {
+    width: 100%; max-width: 640px;
+    height: 6px; background: var(--border);
+    border-radius: 3px; margin-bottom: 20px; overflow: hidden;
+  }
+  .flash-progress-bar {
+    height: 100%; background: var(--purple);
+    border-radius: 3px; transition: width 0.4s;
+  }
+  .flash-chapter-label {
+    font-size: 0.7rem; font-weight: 700;
+    letter-spacing: 1px; text-transform: uppercase;
+    padding: 3px 10px; border-radius: 20px;
+    margin-bottom: 8px;
+  }
+  .fc-ch1 { background: var(--ch1-light); color: var(--ch1-dark); }
+  .fc-ch2 { background: var(--ch2-light); color: var(--ch2-dark); }
+  .fc-ch3 { background: var(--ch3-light); color: var(--ch3-dark); }
+
+  /* ── PROTOCOLS TABLE ── */
+  .proto-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px; margin: 14px 0;
+  }
+  .proto-card {
+    border-radius: 10px; padding: 14px;
+    border: 2px solid var(--border);
+    background: var(--surface);
+    transition: all 0.2s;
+  }
+  .proto-card:hover { border-color: var(--ch3); transform: translateY(-2px); box-shadow: var(--shadow); }
+  .proto-card .name { font-size: 1.1rem; font-weight: 700; color: var(--ch3-dark); }
+  .proto-card .full { font-size: 0.78rem; color: var(--text-muted); margin: 2px 0 8px; }
+  .proto-card .use { font-size: 0.85rem; }
+
+  /* ── NETWORK TYPES ── */
+  .network-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 14px; margin: 14px 0;
+  }
+  .network-card {
+    border-radius: 12px; padding: 18px;
+    border: 2px solid;
+    transition: all 0.2s;
+  }
+  .network-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-hover); }
+  .network-card.pan { border-color: var(--purple); background: var(--purple-light); }
+  .network-card.lan { border-color: var(--ch2); background: var(--ch2-light); }
+  .network-card.wan { border-color: var(--ch3); background: var(--ch3-light); }
+  .network-card .ntype { font-size: 1.5rem; font-weight: 700; margin-bottom: 4px; }
+  .network-card .nfull { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 10px; }
+  .network-card .nexample { font-size: 0.85rem; }
+
+  /* ── SCROLL TO TOP ── */
+  #scrollTop {
+    position: fixed; bottom: 24px; right: 24px;
+    width: 42px; height: 42px;
+    background: var(--text); color: #fff;
+    border: none; border-radius: 50%;
+    font-size: 1.1rem; cursor: pointer;
+    box-shadow: var(--shadow-hover);
+    transition: all 0.2s; z-index: 99;
+    opacity: 0; pointer-events: none;
+  }
+  #scrollTop.visible { opacity: 1; pointer-events: all; }
+  #scrollTop:hover { transform: scale(1.1); }
+
+  /* ── TAGS on cards ── */
+  .icon { font-size: 1.2rem; }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">LC <span>CS</span></span>
+  <button class="nav-btn ch1 active" onclick="showSection('ch1')">📦 Ch1: Systems &amp; Architecture</button>
+  <button class="nav-btn ch2" onclick="showSection('ch2')">🧮 Ch2: Thinking &amp; Algorithms</button>
+  <button class="nav-btn ch3" onclick="showSection('ch3')">🌐 Ch3: Networks</button>
+  <button class="nav-btn flash" onclick="showSection('flashcards')">🃏 Flashcards</button>
+</nav>
+
+<!-- HERO -->
+<div class="hero" id="heroSection">
+  <h1><span class="accent1">Computer</span> <span class="accent2">Science</span><br><span class="accent3">Leaving Cert Revision</span></h1>
+  <p>Everything you need for Chapters 1, 2 &amp; 3 — written clearly, with analogies, memory tricks, and diagrams to make it stick.</p>
+  <div class="chapter-pills">
+    <button class="pill pill1" onclick="showSection('ch1')">📦 Chapter 1: Systems &amp; Architecture</button>
+    <button class="pill pill2" onclick="showSection('ch2')">🧮 Chapter 2: Computational Thinking &amp; Algorithms</button>
+    <button class="pill pill3" onclick="showSection('ch3')">🌐 Chapter 3: Networks &amp; Protocols</button>
+    <button class="pill pill-flash" onclick="showSection('flashcards')">🃏 All Flashcards</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     CHAPTER 1
+════════════════════════════════════════════════════════════ -->
+<div class="section active" id="ch1">
+
+  <div class="ch-header">
+    <h1>Chapter 1: Computer Systems &amp; Architecture</h1>
+    <p>From what a computer system IS, to how the CPU actually runs a program — step by step.</p>
+    <span class="big-num">1</span>
+  </div>
+
+  <!-- 1.1 What is a Computer System -->
+  <div class="topic-card">
+    <h2><span class="icon">📦</span> What is a Computer System?</h2>
+    <div class="def-box"><p>A <strong>computer system</strong> is a combination of many connected parts all working together (interacting) to achieve a common goal.</p></div>
+    <p>Its purpose is simple: <strong>take in data → store it → process it → output results</strong>.</p>
+    <div class="analogy-box"><p>Think of a chef in a kitchen. Data comes in (ingredients), it's stored on the counter (memory), processed by cooking it (CPU), and the finished dish comes out (output). Every part works together!</p></div>
+    <h3>The 4 Interactions in a Computer System:</h3>
+    <table class="comp-table">
+      <tr><th>Element</th><th>What it means</th><th>Example</th></tr>
+      <tr><td><strong>Hardware</strong></td><td>Physical, touchable components</td><td>CPU, monitor, keyboard</td></tr>
+      <tr><td><strong>Software</strong></td><td>Programs that run on hardware</td><td>Windows, Chrome, Word</td></tr>
+      <tr><td><strong>Data</strong></td><td>Information being processed</td><td>Your name, a photo, a document</td></tr>
+      <tr><td><strong>The User</strong></td><td>The person using the system</td><td>You!</td></tr>
+    </table>
+  </div>
+
+  <!-- 1.2 Types of Software -->
+  <div class="topic-card">
+    <h2><span class="icon">💾</span> Types of Software</h2>
+    <div class="def-box"><p><strong>Application software</strong> is software designed to allow users to complete a specific task. (e.g. Excel, Games)</p></div>
+    <div class="def-box"><p><strong>System software</strong> provides a platform for application software to run on and manages the system's resources. (e.g. Windows, iOS)</p></div>
+    <div class="analogy-box"><p>Imagine a smartphone. The <strong>operating system</strong> (iOS/Android) is the system software — it's the foundation. The apps you download (Instagram, Maps) are <strong>application software</strong> — they sit on top of that foundation.</p></div>
+    <div class="memory-box"><p><strong>S</strong>ystem software = <strong>S</strong>tage (the stage everything else performs on). <strong>A</strong>pplication software = <strong>A</strong>ctor (performs a specific role on the stage).</p></div>
+  </div>
+
+  <!-- 1.3 Types of Computer Systems -->
+  <div class="topic-card">
+    <h2><span class="icon">🖥️</span> Types of Computer Systems</h2>
+    <table class="comp-table">
+      <tr><th>Type</th><th>Definition</th><th>Example</th></tr>
+      <tr><td><strong>General Purpose</strong></td><td>Can perform a wide range of tasks</td><td>Laptop, desktop PC</td></tr>
+      <tr><td><strong>Dedicated System</strong></td><td>Designed to perform one specific function</td><td>Washing machine controller</td></tr>
+      <tr><td><strong>Embedded System</strong></td><td>A system <em>built into</em> another system with a specific function</td><td>Autopilot in a car, smart thermostat</td></tr>
+    </table>
+    <div class="def-box"><p>An <strong>embedded system</strong> is a system built into another system that has a specific function.</p></div>
+    <div class="analogy-box"><p>Your car has a computer built inside it that controls the airbags — that's an embedded system. You can't take it out and use it for something else. Compare that to your laptop (general purpose) which can browse the web, edit photos, or run games.</p></div>
+    <div class="exam-box"><p>Know the difference between <strong>dedicated</strong> (standalone device for one job) and <strong>embedded</strong> (built inside another device). Exams love to test this distinction!</p></div>
+  </div>
+
+  <!-- 1.4 Von Neumann Architecture -->
+  <div class="topic-card">
+    <h2><span class="icon">🏗️</span> Von Neumann Architecture</h2>
+    <div class="def-box"><p><strong>Von Neumann Architecture</strong> is a shared common architecture for computers described by John von Neumann in 1945. It consists of: Memory, CPU, Input/Output devices, and a Computer Bus.</p></div>
+    <div class="analogy-box"><p>Think of a house. Houses can look very different on the outside, but they all have common rooms: bedroom, bathroom, kitchen. Similarly, all computers look different but they all share the same core architecture: CPU, Memory, I/O, Bus.</p></div>
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 620 340" xmlns="http://www.w3.org/2000/svg" width="100%">
+        <!-- CPU box -->
+        <rect x="200" y="30" width="220" height="180" rx="12" fill="#FFE8E8" stroke="#FF6B6B" stroke-width="2.5"/>
+        <text x="310" y="56" text-anchor="middle" font-weight="700" font-size="14" fill="#C94040">Central Processing Unit</text>
+        <!-- Control Unit -->
+        <rect x="218" y="66" width="184" height="34" rx="7" fill="#FF6B6B"/>
+        <text x="310" y="88" text-anchor="middle" font-size="12" fill="white" font-weight="600">Control Unit (CU)</text>
+        <!-- ALU -->
+        <rect x="218" y="108" width="184" height="34" rx="7" fill="#FF6B6B"/>
+        <text x="310" y="130" text-anchor="middle" font-size="12" fill="white" font-weight="600">Arithmetic / Logic Unit (ALU)</text>
+        <!-- Registers -->
+        <rect x="218" y="150" width="184" height="46" rx="7" fill="#FF9999"/>
+        <text x="310" y="168" text-anchor="middle" font-size="11" fill="#7a0000" font-weight="600">Registers</text>
+        <text x="228" y="187" font-size="10" fill="#7a0000">PC  CIR  AC  MAR  MDR</text>
+
+        <!-- Memory box -->
+        <rect x="200" y="250" width="220" height="60" rx="10" fill="#E0F7F6" stroke="#4ECDC4" stroke-width="2.5"/>
+        <text x="310" y="285" text-anchor="middle" font-weight="700" font-size="14" fill="#2A9990">Memory Unit (RAM/ROM)</text>
+
+        <!-- Bus arrow -->
+        <line x1="310" y1="210" x2="310" y2="250" stroke="#666" stroke-width="2.5" marker-end="url(#arr)" marker-start="url(#arr2)"/>
+        <rect x="275" y="224" width="70" height="20" rx="5" fill="#F7F4EF" stroke="#ccc"/>
+        <text x="310" y="238" text-anchor="middle" font-size="10" fill="#555" font-weight="600">Bus</text>
+
+        <!-- Input -->
+        <rect x="30" y="118" width="110" height="44" rx="10" fill="#FFF3E0" stroke="#FFB347" stroke-width="2.5"/>
+        <text x="85" y="138" text-anchor="middle" font-size="12" font-weight="700" fill="#CC7A00">Input</text>
+        <text x="85" y="154" text-anchor="middle" font-size="10" fill="#997744">keyboard, mouse…</text>
+        <line x1="140" y1="140" x2="200" y2="140" stroke="#FFB347" stroke-width="2.5" marker-end="url(#arr3)"/>
+
+        <!-- Output -->
+        <rect x="480" y="118" width="110" height="44" rx="10" fill="#EDE8F7" stroke="#7C5CBF" stroke-width="2.5"/>
+        <text x="535" y="138" text-anchor="middle" font-size="12" font-weight="700" fill="#5a3da0">Output</text>
+        <text x="535" y="154" text-anchor="middle" font-size="10" fill="#7C5CBF">monitor, printer…</text>
+        <line x1="420" y1="140" x2="480" y2="140" stroke="#7C5CBF" stroke-width="2.5" marker-end="url(#arr4)"/>
+
+        <defs>
+          <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L0,8 L8,4 z" fill="#666"/></marker>
+          <marker id="arr2" markerWidth="8" markerHeight="8" refX="2" refY="4" orient="auto-start-reverse"><path d="M0,0 L0,8 L8,4 z" fill="#666"/></marker>
+          <marker id="arr3" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L0,8 L8,4 z" fill="#FFB347"/></marker>
+          <marker id="arr4" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L0,8 L8,4 z" fill="#7C5CBF"/></marker>
+        </defs>
+      </svg>
+      <p class="caption">Von Neumann Architecture — the universal computer blueprint</p>
+    </div>
+    <div class="memory-box"><p><strong>M-C-I-B</strong> — <strong>M</strong>emory, <strong>C</strong>PU, <strong>I</strong>/O, <strong>B</strong>us — the four components of Von Neumann architecture.</p></div>
+  </div>
+
+  <!-- 1.5 Memory -->
+  <div class="topic-card">
+    <h2><span class="icon">🧠</span> Memory: RAM &amp; ROM</h2>
+    <table class="comp-table">
+      <tr><th>Feature</th><th>RAM</th><th>ROM</th></tr>
+      <tr><td>Stands for</td><td>Random Access Memory</td><td>Read Only Memory</td></tr>
+      <tr><td>Volatile?</td><td>✅ Yes (loses data when power off)</td><td>❌ No (keeps data without power)</td></tr>
+      <tr><td>Can you write to it?</td><td>✅ Yes (constantly)</td><td>❌ No (read only)</td></tr>
+      <tr><td>Who writes it?</td><td>Programs you run</td><td>The manufacturer</td></tr>
+      <tr><td>Used for?</td><td>Currently running programs</td><td>BIOS (startup)</td></tr>
+    </table>
+    <div class="def-box"><p><strong>RAM (Random Access Memory)</strong> — temporary memory that holds data and instructions of a program currently being executed by the CPU. Needs constant power to retain contents.</p></div>
+    <div class="def-box"><p><strong>ROM (Read Only Memory)</strong> — non-volatile memory whose contents remain even when the computer is turned off. Cannot be written over. Used in BIOS.</p></div>
+    <div class="analogy-box"><p><strong>RAM</strong> is like your desk — you put things on it while you're working, but when you go home (power off), everything gets cleared away. <strong>ROM</strong> is like a printed instruction manual — it's always there, you can read it, but you can't rewrite it.</p></div>
+    <div class="memory-box"><p><strong>RAM = Temporary, ROM = Permanent.</strong> RAM = <em>Randomly Accessed Memory</em> = things come and go. ROM = <em>Really Only Memories</em> = it's stuck there forever!</p></div>
+    <h3>Primary vs Secondary Storage</h3>
+    <table class="comp-table">
+      <tr><th>Primary Storage</th><th>Secondary Storage</th></tr>
+      <tr><td>Example: RAM</td><td>Example: Hard Drive, USB</td></tr>
+      <tr><td>Data LOST when power lost (volatile)</td><td>Data NOT lost when power lost (non-volatile)</td></tr>
+      <tr><td>Temporary — used right now</td><td>Larger capacity — for long-term storage</td></tr>
+      <tr><td>Fast to respond</td><td>Slower than primary storage</td></tr>
+    </table>
+  </div>
+
+  <!-- 1.6 CPU -->
+  <div class="topic-card">
+    <h2><span class="icon">⚙️</span> The CPU &amp; its Components</h2>
+    <div class="def-box"><p>The <strong>CPU (Central Processing Unit)</strong> processes data and instructions, controls other components, and carries out computations.</p></div>
+    <h3>Parts of the CPU:</h3>
+    <div class="accordion">
+      <button class="accordion-header" onclick="toggleAccordion(this)"><span>🎯 Control Unit (CU)</span><span class="arrow">▼</span></button>
+      <div class="accordion-body">
+        <div class="def-box"><p>The <strong>Control Unit</strong> directs the operations of the CPU.</p></div>
+        <div class="analogy-box"><p>It's the manager of the CPU — it doesn't do the actual work itself, it tells everyone else what to do and when.</p></div>
+      </div>
+    </div>
+    <div class="accordion">
+      <button class="accordion-header" onclick="toggleAccordion(this)"><span>🔢 Arithmetic/Logic Unit (ALU)</span><span class="arrow">▼</span></button>
+      <div class="accordion-body">
+        <div class="def-box"><p>The <strong>ALU (Arithmetic/Logic Unit)</strong> performs all arithmetic and logic operations. It receives instructions and data, and operates on the data according to the instructions.</p></div>
+        <div class="analogy-box"><p>The ALU is the calculator and decision-maker. It does maths (2+2=4) and logic (is 5 &gt; 3? Yes!).</p></div>
+      </div>
+    </div>
+    <div class="accordion">
+      <button class="accordion-header" onclick="toggleAccordion(this)"><span>📌 Registers</span><span class="arrow">▼</span></button>
+      <div class="accordion-body">
+        <div class="def-box"><p><strong>Registers</strong> are temporary storage locations inside the CPU that can be accessed very quickly. They are small in size but very fast.</p></div>
+        <div class="analogy-box"><p>A register is like a sticky note right in front of you — very small, but instantly accessible. RAM is like a filing cabinet in the next room.</p></div>
+        <table class="comp-table">
+          <tr><th>Register</th><th>Full Name</th><th>What it does</th></tr>
+          <tr><td><strong>PC</strong></td><td>Program Counter</td><td>Stores the memory address of the <em>next instruction</em> to be executed</td></tr>
+          <tr><td><strong>AC</strong></td><td>Accumulator</td><td>Stores the <em>output of the ALU</em> (results of calculations)</td></tr>
+          <tr><td><strong>MAR</strong></td><td>Memory Address Register</td><td>Stores a memory address — points to a location in memory</td></tr>
+          <tr><td><strong>MDR</strong></td><td>Memory Data Register</td><td>Temporarily holds data of an instruction being transferred</td></tr>
+          <tr><td><strong>CIR</strong></td><td>Current Instruction Register</td><td>Holds the instruction currently being decoded/executed</td></tr>
+        </table>
+        <div class="memory-box"><p>Remember the registers with: <strong>"People Can Always Make Clever Inventions"</strong><br>→ <strong>P</strong>C, <strong>C</strong>IR, <strong>A</strong>C, <strong>M</strong>AR, <strong>M</strong>DR</p></div>
+      </div>
+    </div>
+    <div class="accordion">
+      <button class="accordion-header" onclick="toggleAccordion(this)"><span>🕐 Clock</span><span class="arrow">▼</span></button>
+      <div class="accordion-body">
+        <div class="def-box"><p>The <strong>Clock</strong> generates a continuous stream of electrical pulses at a stable frequency (measured in GHz). Each pulse activates one fetch-execute cycle. It ensures all circuits operate together at the right timing.</p></div>
+        <div class="analogy-box"><p>The clock is like a metronome for a musician — it keeps everything in perfect timing. The faster the metronome (higher GHz), the more notes you can play (instructions processed) per second.</p></div>
+      </div>
+    </div>
+    <div class="accordion">
+      <button class="accordion-header" onclick="toggleAccordion(this)"><span>🚌 The Bus</span><span class="arrow">▼</span></button>
+      <div class="accordion-body">
+        <div class="def-box"><p>The <strong>Bus</strong> connects the CPU and memory. It is a communication channel that carries data between internal components. USB stands for Universal Serial Bus.</p></div>
+        <div class="analogy-box"><p>The bus is like a motorway between cities (CPU and Memory). Data travels along it in both directions. A wider/faster bus = more data can travel at once.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 1.7 Fetch-Decode-Execute -->
+  <div class="topic-card">
+    <h2><span class="icon">🔄</span> The Fetch-Decode-Execute Cycle</h2>
+    <p>This is how the CPU continuously runs programs. It's a loop that never stops while the computer is on.</p>
+    <div class="def-box"><p>The <strong>Fetch-Decode-Execute cycle</strong> is the continuous process by which the CPU retrieves a program instruction from memory, decodes it, and then executes it before fetching the next.</p></div>
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 620 130" xmlns="http://www.w3.org/2000/svg" width="100%">
+        <rect x="10" y="30" width="120" height="70" rx="12" fill="#FFE8E8" stroke="#FF6B6B" stroke-width="2"/>
+        <text x="70" y="60" text-anchor="middle" font-size="13" font-weight="700" fill="#C94040">1. FETCH</text>
+        <text x="70" y="78" text-anchor="middle" font-size="10" fill="#C94040">PC → MAR</text>
+        <text x="70" y="92" text-anchor="middle" font-size="10" fill="#C94040">Instruction fetched</text>
+        <line x1="130" y1="65" x2="175" y2="65" stroke="#aaa" stroke-width="2" marker-end="url(#a)"/>
+
+        <rect x="175" y="30" width="120" height="70" rx="12" fill="#E0F7F6" stroke="#4ECDC4" stroke-width="2"/>
+        <text x="235" y="60" text-anchor="middle" font-size="13" font-weight="700" fill="#2A9990">2. DECODE</text>
+        <text x="235" y="78" text-anchor="middle" font-size="10" fill="#2A9990">CU reads CIR</text>
+        <text x="235" y="92" text-anchor="middle" font-size="10" fill="#2A9990">What to do?</text>
+        <line x1="295" y1="65" x2="340" y2="65" stroke="#aaa" stroke-width="2" marker-end="url(#a)"/>
+
+        <rect x="340" y="30" width="120" height="70" rx="12" fill="#FFF3E0" stroke="#FFB347" stroke-width="2"/>
+        <text x="400" y="60" text-anchor="middle" font-size="13" font-weight="700" fill="#CC7A00">3. EXECUTE</text>
+        <text x="400" y="78" text-anchor="middle" font-size="10" fill="#CC7A00">ALU does the work</text>
+        <text x="400" y="92" text-anchor="middle" font-size="10" fill="#CC7A00">Result stored in AC</text>
+        <line x1="460" y1="65" x2="505" y2="65" stroke="#aaa" stroke-width="2" marker-end="url(#a)"/>
+
+        <rect x="505" y="30" width="105" height="70" rx="12" fill="#EDE8F7" stroke="#7C5CBF" stroke-width="2"/>
+        <text x="557" y="60" text-anchor="middle" font-size="12" font-weight="700" fill="#5a3da0">4. REPEAT</text>
+        <text x="557" y="78" text-anchor="middle" font-size="10" fill="#5a3da0">PC increments</text>
+        <text x="557" y="92" text-anchor="middle" font-size="10" fill="#5a3da0">Cycle restarts</text>
+
+        <defs><marker id="a" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L0,7 L7,3.5 z" fill="#aaa"/></marker></defs>
+      </svg>
+      <p class="caption">Fetch → Decode → Execute — the endless loop of the CPU</p>
+    </div>
+    <h3>The Steps in Detail:</h3>
+    <ol class="steps">
+      <li><span class="step-num">1</span><span class="step-content">The address of the next instruction is copied from the <strong>Program Counter (PC)</strong> to the <strong>Memory Address Register (MAR)</strong>.</span></li>
+      <li><span class="step-num">2</span><span class="step-content">The <strong>Program Counter increments</strong> — it now points to the <em>next</em> instruction (so it's ready for the next cycle).</span></li>
+      <li><span class="step-num">3</span><span class="step-content">The instruction at the MAR address is copied to the <strong>Current Instruction Register (CIR)</strong>.</span></li>
+      <li><span class="step-num">4</span><span class="step-content">The <strong>Control Unit decodes</strong> the instruction in the CIR — it works out what needs to happen.</span></li>
+      <li><span class="step-num">5</span><span class="step-content">The instruction is <strong>executed</strong> (carried out) — the ALU does any maths or logic needed.</span></li>
+    </ol>
+    <div class="memory-box"><p><strong>F-D-E: "Food Doesn't Eat itself"</strong> → Fetch, Decode, Execute! The CPU has to Fetch food (instructions), Decode the recipe, then Execute the cooking!</p></div>
+  </div>
+
+  <!-- 1.8 CPU Performance Factors -->
+  <div class="topic-card">
+    <h2><span class="icon">🚀</span> Factors Affecting CPU Performance</h2>
+    <table class="comp-table">
+      <tr><th>Factor</th><th>How it affects performance</th></tr>
+      <tr><td><strong>Clock Speed</strong></td><td>Faster clock = more fetch-execute cycles per second = more instructions processed. Measured in GHz (billions of pulses/sec).</td></tr>
+      <tr><td><strong>Number of Cores</strong></td><td>Dual-core (2 cores) = 2 instructions simultaneously. Quad-core (4 cores) = 4 simultaneously. More cores = more parallel work.</td></tr>
+      <tr><td><strong>Cache Memory</strong></td><td>Very fast temporary memory located IN the CPU. More cache = CPU stores more instructions nearby = less waiting for RAM. Faster than RAM.</td></tr>
+    </table>
+    <div class="analogy-box"><p><strong>Clock speed</strong> = how fast one person works. <strong>Cores</strong> = how many people are working. <strong>Cache</strong> = how much stuff they have on their desk (vs. going to a filing cabinet = RAM).</p></div>
+    <div class="exam-box"><p>In exams, for "explain how [factor] affects CPU performance" — you must say <em>what the factor is</em> and <em>explain the direct impact</em>. E.g. "More cache memory means the CPU can store more instructions nearby, reducing the time spent waiting to retrieve data from the slower RAM."</p></div>
+  </div>
+
+  <!-- 1.9 Operating System -->
+  <div class="topic-card">
+    <h2><span class="icon">🖱️</span> Operating System (OS)</h2>
+    <div class="def-box"><p>An <strong>operating system (OS)</strong> is a type of system software. It controls the general operation of a computer and provides an easy way for users to interact with a computer and run application software.</p></div>
+    <div class="analogy-box"><p>The OS is the manager of a building. It doesn't do the actual work (that's apps), but it makes sure the building has electricity (resources), the right people can enter (security), and everyone can find their office (file system).</p></div>
+    <h3>Key Functions of the OS:</h3>
+    <table class="comp-table">
+      <tr><th>Function</th><th>What it does</th></tr>
+      <tr><td>🖼️ <strong>Interface</strong></td><td>Provides a user interface (GUI) so it's easy to interact with the computer</td></tr>
+      <tr><td>⚙️ <strong>Manages CPU</strong></td><td>Runs applications, executes and cancels processes</td></tr>
+      <tr><td>📱 <strong>Multi-tasking</strong></td><td>Allows multiple applications to run at the same time</td></tr>
+      <tr><td>💾 <strong>Manages Memory</strong></td><td>Transfers programs into/out of memory, allocates free space, tracks memory usage</td></tr>
+      <tr><td>🖨️ <strong>Manages Peripherals</strong></td><td>Opens, closes, and writes to peripheral devices (storage, printers)</td></tr>
+      <tr><td>📁 <strong>Organises</strong></td><td>Creates a file system to organise files and directories</td></tr>
+      <tr><td>🔒 <strong>Security</strong></td><td>Provides security through user accounts and passwords</td></tr>
+      <tr><td>🛠️ <strong>Utilities</strong></td><td>Provides tools for managing and organising hardware</td></tr>
+    </table>
+    <div class="memory-box"><p>Remember OS functions with: <strong>I Managed My Many Peripherals, Organised Security Utilities</strong><br>→ Interface, Manages CPU, Multi-tasks, Memory, Peripherals, Organises, Security, Utilities</p></div>
+  </div>
+
+  <!-- 1.10 BIOS & Startup -->
+  <div class="topic-card">
+    <h2><span class="icon">🔌</span> BIOS &amp; Startup Sequence</h2>
+    <div class="def-box"><p><strong>BIOS (Basic Input Output System)</strong> is stored in the ROM. It contains all the basic code for controlling computer hardware (keyboards, mice, monitors, hard drives). It runs at startup before the OS loads.</p></div>
+    <h3>Startup Sequence (Step by Step):</h3>
+    <ol class="steps">
+      <li><span class="step-num">1</span><span class="step-content">Power on → CPU fetches instructions from <strong>BIOS</strong> (stored in <strong>ROM</strong>). The small <em>loader</em> program in ROM sends instructions to load the OS.</span></li>
+      <li><span class="step-num">2</span><span class="step-content">BIOS starts the monitor and keyboard; runs basic checks (e.g., looks for RAM).</span></li>
+      <li><span class="step-num">3</span><span class="step-content">BIOS starts the <strong>boot sequence</strong> — it looks for the operating system on the hard drive.</span></li>
+      <li><span class="step-num">4</span><span class="step-content">BIOS <strong>copies the OS from storage into RAM</strong>.</span></li>
+      <li><span class="step-num">5</span><span class="step-content">BIOS <strong>transfers control</strong> to the operating system — your computer is now ready to use!</span></li>
+    </ol>
+    <div class="analogy-box"><p>The BIOS is like a security guard who opens up a building every morning. It checks everything is working, then hands over to the office manager (OS) who runs the actual day-to-day operations.</p></div>
+    <div class="exam-box"><p>Know the order: BIOS (from ROM) → checks hardware → loads OS from hard drive into RAM → transfers control to OS. You may be asked to put steps in order!</p></div>
+  </div>
+
+  <!-- 1.11 Layer Model -->
+  <div class="topic-card">
+    <h2><span class="icon">🎂</span> Layer Model of a Computer System</h2>
+    <div class="def-box"><p>A <strong>Layered Structure</strong> is a type of computer system structure where the different services of the system are split into layers, and each layer has a specific, well-defined task to perform.</p></div>
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 580 100" xmlns="http://www.w3.org/2000/svg" width="100%">
+        <rect x="10" y="20" width="100" height="60" rx="10" fill="#FFF3E0" stroke="#FFB347" stroke-width="2"/>
+        <text x="60" y="55" text-anchor="middle" font-size="13" font-weight="700" fill="#CC7A00">USER</text>
+        <line x1="110" y1="50" x2="145" y2="50" stroke="#aaa" stroke-width="2" marker-end="url(#b)" marker-start="url(#b2)"/>
+
+        <rect x="145" y="20" width="130" height="60" rx="10" fill="#FFE8E8" stroke="#FF6B6B" stroke-width="2"/>
+        <text x="210" y="50" text-anchor="middle" font-size="12" font-weight="700" fill="#C94040">Application</text>
+        <text x="210" y="66" text-anchor="middle" font-size="11" fill="#C94040">Software</text>
+        <line x1="275" y1="50" x2="315" y2="50" stroke="#aaa" stroke-width="2" marker-end="url(#b)" marker-start="url(#b2)"/>
+
+        <rect x="315" y="20" width="130" height="60" rx="10" fill="#E0F7F6" stroke="#4ECDC4" stroke-width="2"/>
+        <text x="380" y="50" text-anchor="middle" font-size="12" font-weight="700" fill="#2A9990">Operating</text>
+        <text x="380" y="66" text-anchor="middle" font-size="11" fill="#2A9990">System</text>
+        <line x1="445" y1="50" x2="480" y2="50" stroke="#aaa" stroke-width="2" marker-end="url(#b)" marker-start="url(#b2)"/>
+
+        <rect x="480" y="20" width="90" height="60" rx="10" fill="#EDE8F7" stroke="#7C5CBF" stroke-width="2"/>
+        <text x="525" y="55" text-anchor="middle" font-size="12" font-weight="700" fill="#5a3da0">Hardware</text>
+
+        <defs>
+          <marker id="b" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L0,7 L7,3.5 z" fill="#aaa"/></marker>
+          <marker id="b2" markerWidth="7" markerHeight="7" refX="1" refY="3.5" orient="auto-start-reverse"><path d="M0,0 L0,7 L7,3.5 z" fill="#aaa"/></marker>
+        </defs>
+      </svg>
+      <p class="caption">User ↔ Application Software ↔ Operating System ↔ Hardware</p>
+    </div>
+    <h3>The Three Layers:</h3>
+    <table class="comp-table">
+      <tr><th>Layer</th><th>Role</th><th>Examples</th></tr>
+      <tr><td><strong>Application Software</strong></td><td>Where users interact to complete tasks. User gets direct output here.</td><td>Word, games, music players</td></tr>
+      <tr><td><strong>Operating System</strong></td><td>Manages computer resources; bridge between apps and hardware</td><td>Windows, macOS, Linux, Android</td></tr>
+      <tr><td><strong>Hardware</strong></td><td>Lowest layer — physical components and peripherals. Cannot be directly accessed by user.</td><td>CPU, keyboard, printer, scanner</td></tr>
+    </table>
+    <h3>Advantages of Layered Structure:</h3>
+    <ul>
+      <li>✅ <strong>Modularity</strong> — each layer only does its own job</li>
+      <li>✅ <strong>Easy debugging</strong> — errors can be traced to a specific layer</li>
+      <li>✅ <strong>Easy updates</strong> — modifying one layer doesn't break others</li>
+      <li>✅ <strong>No direct hardware access</strong> — users can't accidentally damage hardware</li>
+      <li>✅ <strong>Abstraction</strong> — each layer doesn't need to know how other layers work</li>
+    </ul>
+    <h3>Disadvantages of Layered Structure:</h3>
+    <ul>
+      <li>❌ <strong>Complex implementation</strong> — layers must be carefully ordered</li>
+      <li>❌ <strong>Slower execution</strong> — requests must pass through multiple layers, increasing response time</li>
+    </ul>
+    <div class="def-box"><p><strong>Abstraction</strong> — each layer is only concerned with its own functions. The implementations of other layers are hidden (abstract) to it.</p></div>
+  </div>
+
+</div><!-- end ch1 -->
+
+<!-- ═══════════════════════════════════════════════════════════
+     CHAPTER 2
+════════════════════════════════════════════════════════════ -->
+<div class="section" id="ch2">
+
+  <div class="ch-header ch2">
+    <h1>Chapter 2: Computational Thinking &amp; Algorithms</h1>
+    <p>How to think like a computer — breaking problems down, finding patterns, and solving things step by step.</p>
+    <span class="big-num">2</span>
+  </div>
+
+  <!-- 2.1 Computational Thinking -->
+  <div class="topic-card ch2">
+    <h2><span class="icon">🧩</span> Computational Thinking</h2>
+    <div class="def-box"><p><strong>Computational thinking</strong> is a method of studying a problem and formulating a solution that can be carried out using a computer.</p></div>
+    <div class="analogy-box"><p>It's not about coding — it's about <em>thinking</em>. It's learning to break problems down the way a computer needs: clearly, logically, step by step, with no assumptions.</p></div>
+    <h3>The 4 Pillars of Computational Thinking:</h3>
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 600 160" xmlns="http://www.w3.org/2000/svg" width="100%">
+        <!-- Pillar 1 -->
+        <rect x="10" y="20" width="130" height="120" rx="12" fill="#E0F7F6" stroke="#4ECDC4" stroke-width="2"/>
+        <text x="75" y="48" text-anchor="middle" font-size="22">🔍</text>
+        <text x="75" y="70" text-anchor="middle" font-weight="700" font-size="12" fill="#2A9990">Abstraction</text>
+        <text x="75" y="87" text-anchor="middle" font-size="10" fill="#2A9990">Filter out what</text>
+        <text x="75" y="101" text-anchor="middle" font-size="10" fill="#2A9990">you don't need.</text>
+        <text x="75" y="115" text-anchor="middle" font-size="10" fill="#2A9990">Focus on what</text>
+        <text x="75" y="129" text-anchor="middle" font-size="10" fill="#2A9990">matters.</text>
+        <!-- Pillar 2 -->
+        <rect x="155" y="20" width="130" height="120" rx="12" fill="#FFE8E8" stroke="#FF6B6B" stroke-width="2"/>
+        <text x="220" y="48" text-anchor="middle" font-size="22">✂️</text>
+        <text x="220" y="70" text-anchor="middle" font-weight="700" font-size="12" fill="#C94040">Decomposition</text>
+        <text x="220" y="87" text-anchor="middle" font-size="10" fill="#C94040">Break complex</text>
+        <text x="220" y="101" text-anchor="middle" font-size="10" fill="#C94040">tasks into smaller,</text>
+        <text x="220" y="115" text-anchor="middle" font-size="10" fill="#C94040">manageable</text>
+        <text x="220" y="129" text-anchor="middle" font-size="10" fill="#C94040">parts.</text>
+        <!-- Pillar 3 -->
+        <rect x="300" y="20" width="130" height="120" rx="12" fill="#FFF3E0" stroke="#FFB347" stroke-width="2"/>
+        <text x="365" y="48" text-anchor="middle" font-size="22">🔁</text>
+        <text x="365" y="70" text-anchor="middle" font-weight="700" font-size="12" fill="#CC7A00">Pattern</text>
+        <text x="365" y="84" text-anchor="middle" font-weight="700" font-size="12" fill="#CC7A00">Recognition</text>
+        <text x="365" y="101" text-anchor="middle" font-size="10" fill="#CC7A00">Find similarities</text>
+        <text x="365" y="115" text-anchor="middle" font-size="10" fill="#CC7A00">among problems</text>
+        <text x="365" y="129" text-anchor="middle" font-size="10" fill="#CC7A00">to solve faster.</text>
+        <!-- Pillar 4 -->
+        <rect x="445" y="20" width="140" height="120" rx="12" fill="#EDE8F7" stroke="#7C5CBF" stroke-width="2"/>
+        <text x="515" y="48" text-anchor="middle" font-size="22">📋</text>
+        <text x="515" y="70" text-anchor="middle" font-weight="700" font-size="12" fill="#5a3da0">Algorithmic</text>
+        <text x="515" y="84" text-anchor="middle" font-weight="700" font-size="12" fill="#5a3da0">Thinking</text>
+        <text x="515" y="101" text-anchor="middle" font-size="10" fill="#5a3da0">Clear step-by-step</text>
+        <text x="515" y="115" text-anchor="middle" font-size="10" fill="#5a3da0">instructions to</text>
+        <text x="515" y="129" text-anchor="middle" font-size="10" fill="#5a3da0">reach a solution.</text>
+      </svg>
+    </div>
+
+    <div class="def-box"><p><strong>Abstraction</strong> — the process of filtering out characteristics not needed and focusing on those that are.</p></div>
+    <div class="def-box"><p><strong>Decomposition</strong> — breaking down a complex task into smaller parts that are easier to understand and solve.</p></div>
+    <div class="def-box"><p><strong>Pattern Recognition</strong> — finding similarities or patterns among decomposed problems to help solve more complex problems.</p></div>
+    <div class="def-box"><p><strong>Algorithmic (Logical) Thinking</strong> — a way of getting to a solution by defining clear steps needed.</p></div>
+    <div class="memory-box"><p>Remember the 4 pillars: <strong>A D P A</strong> — <strong>"A Dog Plays Around"</strong> = Abstraction, Decomposition, Pattern Recognition, Algorithmic Thinking</p></div>
+  </div>
+
+  <!-- 2.2 Design Process -->
+  <div class="topic-card ch2">
+    <h2><span class="icon">🗺️</span> The Design Process for Computational Thinking</h2>
+    <table class="comp-table ch2">
+      <tr><th>Stage</th><th>Activities</th></tr>
+      <tr><td>1. <strong>Investigate</strong></td><td>Define the problem, identify the end user, do research</td></tr>
+      <tr><td>2. <strong>Plan</strong></td><td>Background research, surveys, experiments, R&amp;D</td></tr>
+      <tr><td>3. <strong>Design</strong></td><td>Design a solution, prototypes, sketches, flow diagrams</td></tr>
+      <tr><td>4. <strong>Create</strong></td><td>Combine hardware, code software</td></tr>
+    </table>
+  </div>
+
+  <!-- 2.3 Algorithms -->
+  <div class="topic-card ch2">
+    <h2><span class="icon">📜</span> What is an Algorithm?</h2>
+    <div class="def-box"><p>An <strong>algorithm</strong> is a list of instructions — a set of well-defined, computer-implementable steps to solve a problem.</p></div>
+    <div class="analogy-box"><p>An algorithm is like a recipe. A recipe is a set of clear, step-by-step instructions to make a dish. An algorithm is the same — clear, ordered steps that a computer can follow to solve a problem. If a step is missing or unclear, the recipe (and program) fails!</p></div>
+    <div class="exam-box"><p>The key word in the definition is "well-defined" — each step must be crystal clear, with no ambiguity. Exams may ask you to describe or evaluate an algorithm.</p></div>
+  </div>
+
+  <!-- 2.4 Big O Notation -->
+  <div class="topic-card ch2">
+    <h2><span class="icon">📊</span> Algorithmic Complexity &amp; Big O Notation</h2>
+    <div class="def-box"><p><strong>Big O notation</strong> expresses algorithmic complexity — it defines the relationship between the number of inputs and the number of steps an algorithm takes to process those inputs.</p></div>
+    <p>⚠️ Big O is <strong>NOT</strong> about measuring speed — it's about measuring the <strong>amount of work</strong> a program does based on input size N.</p>
+    <div class="analogy-box"><p>Imagine searching for a name in a phone book. If the book has N names: Linear Search = worst case N steps. Binary Search = worst case log₂N steps. Big O tells you how the workload <em>scales</em> as N grows.</p></div>
+
+    <div class="big-o-grid">
+      <div class="big-o-card o1">
+        <div class="notation">O(1)</div>
+        <div class="label">⭐ BEST — Constant</div>
+        <div class="desc">No matter how big the input, always takes the same number of steps. E.g. accessing item at index [0] in an array.</div>
+      </div>
+      <div class="big-o-card ologn">
+        <div class="notation">O(log n)</div>
+        <div class="label">✅ GOOD — Logarithmic</div>
+        <div class="desc">Steps grow very slowly as input grows. <strong>Binary Search</strong> is O(log₂n). Halves the problem each time.</div>
+      </div>
+      <div class="big-o-card on">
+        <div class="notation">O(n)</div>
+        <div class="label">🟡 FAIR — Linear</div>
+        <div class="desc">Steps grow proportionally to input. <strong>Linear Search</strong> is O(n). Double input = double steps.</div>
+      </div>
+      <div class="big-o-card onlogn">
+        <div class="notation">O(n log n)</div>
+        <div class="label">🟠 BAD — Linearithmic</div>
+        <div class="desc">Worse than linear. Efficient sorting algorithms like Merge Sort fall here.</div>
+      </div>
+      <div class="big-o-card on2">
+        <div class="notation">O(n²)</div>
+        <div class="label">🔴 WORST — Quadratic</div>
+        <div class="desc">Steps = input². <strong>Bubble, Selection, Insertion Sort</strong> are all O(n²). 10 items = 100 steps, 100 items = 10,000 steps!</div>
+      </div>
+      <div class="big-o-card onbad">
+        <div class="notation">O(n!)</div>
+        <div class="label">💀 TERRIBLE</div>
+        <div class="desc">Factorial — grows astronomically fast. Avoid at all costs for large inputs.</div>
+      </div>
+    </div>
+    <div class="memory-box"><p><strong>Best to Worst: 1, logn, n, nlogn, n², n!, nᶜ</strong><br>Think: "1 log n-logn-n²-nightmare!" — each step is worse than the last.</p></div>
+    <p><strong>Polynomial time complexities:</strong> O(n), O(n²), O(n³) — these grow as a power of n.</p>
+  </div>
+
+  <!-- 2.5 Search Algorithms -->
+  <div class="topic-card ch2">
+    <h2><span class="icon">🔎</span> Search Algorithms</h2>
+
+    <div class="accordion">
+      <button class="accordion-header" onclick="toggleAccordion(this)"><span>📋 Linear Search — O(n)</span><span class="arrow">▼</span></button>
+      <div class="accordion-body">
+        <div class="def-box"><p><strong>Linear Search</strong> — sequentially goes through each item in a list, comparing the target to each element. Returns the index if found, or -1 if not found.</p></div>
+        <div class="analogy-box"><p>Looking for your keys by searching every pocket, one by one, from start to finish. No shortcuts — you might find them at the start (lucky!) or at the very end (unlucky!).</p></div>
+        <h3>Pros &amp; Cons:</h3>
+        <table class="comp-table ch2">
+          <tr><th>✅ Pros</th><th>❌ Cons</th></tr>
+          <tr><td>Data does NOT need to be sorted</td><td>Slow for large datasets — O(n) time complexity</td></tr>
+          <tr><td>Simple to implement</td><td>As list grows, comparisons grow linearly</td></tr>
+        </table>
+        <div class="diagram-wrap">
+          <svg viewBox="0 0 560 80" xmlns="http://www.w3.org/2000/svg" width="100%">
+            <text x="10" y="18" font-size="11" fill="#666" font-weight="600">List: ['John','Mary','Zoe','Alex','Seamus'] — Searching for 'Alex'</text>
+            <rect x="10" y="26" width="90" height="36" rx="7" fill="#E0F7F6" stroke="#4ECDC4" stroke-width="2"/>
+            <text x="55" y="49" text-anchor="middle" font-size="12" fill="#2A9990">John</text>
+            <rect x="108" y="26" width="90" height="36" rx="7" fill="#E0F7F6" stroke="#4ECDC4" stroke-width="2"/>
+            <text x="153" y="49" text-anchor="middle" font-size="12" fill="#2A9990">Mary</text>
+            <rect x="206" y="26" width="90" height="36" rx="7" fill="#E0F7F6" stroke="#4ECDC4" stroke-width="2"/>
+            <text x="251" y="49" text-anchor="middle" font-size="12" fill="#2A9990">Zoe</text>
+            <rect x="304" y="26" width="90" height="36" rx="7" fill="#56C271" stroke="#267339" stroke-width="2"/>
+            <text x="349" y="49" text-anchor="middle" font-size="12" fill="white" font-weight="700">Alex ✓</text>
+            <rect x="402" y="26" width="90" height="36" rx="7" fill="#F0EDE8" stroke="#ccc" stroke-width="2"/>
+            <text x="447" y="49" text-anchor="middle" font-size="12" fill="#aaa">Seamus</text>
+            <text x="55" y="76" text-anchor="middle" font-size="10" fill="#C94040">✗</text>
+            <text x="153" y="76" text-anchor="middle" font-size="10" fill="#C94040">✗</text>
+            <text x="251" y="76" text-anchor="middle" font-size="10" fill="#C94040">✗</text>
+            <text x="349" y="76" text-anchor="middle" font-size="10" fill="#267339">✓ Found!</text>
+          </svg>
+          <p class="caption">Linear Search checks each item one by one until found (or end of list)</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <button class="accordion-header" onclick="toggleAccordion(this)"><span>🎯 Binary Search — O(log n)</span><span class="arrow">▼</span></button>
+      <div class="accordion-body">
+        <div class="def-box"><p><strong>Binary Search</strong> — finds the middle of a sorted list, compares it to the target, and eliminates half the list. Repeats on the remaining half until found.</p></div>
+        <div class="analogy-box"><p>Looking for a word in a dictionary. You open it in the middle — if the word comes before, you only look in the first half. You keep halving the search area until you find it. Much faster than reading every word!</p></div>
+        <h3>The Steps:</h3>
+        <ol class="steps">
+          <li><span class="step-num ch2">1</span><span class="step-content">Find the <strong>middle element</strong> of the sorted list.</span></li>
+          <li><span class="step-num ch2">2</span><span class="step-content">If middle &lt; target → <strong>search the top (right) half</strong>.</span></li>
+          <li><span class="step-num ch2">3</span><span class="step-content">If middle &gt; target → <strong>search the bottom (left) half</strong>.</span></li>
+          <li><span class="step-num ch2">4</span><span class="step-content">If middle = target → <strong>FOUND! Stop search.</strong></span></li>
+          <li><span class="step-num ch2">5</span><span class="step-content">Repeat until found or list is empty.</span></li>
+        </ol>
+        <h3>Pros &amp; Cons:</h3>
+        <table class="comp-table ch2">
+          <tr><th>✅ Pros</th><th>❌ Cons</th></tr>
+          <tr><td>Much faster — O(log₂n)</td><td>Data MUST be sorted first</td></tr>
+          <tr><td>Efficient for large datasets</td><td>Sorting has its own cost</td></tr>
+        </table>
+        <div class="diagram-wrap">
+          <svg viewBox="0 0 560 150" xmlns="http://www.w3.org/2000/svg" width="100%">
+            <text x="10" y="16" font-size="11" fill="#666" font-weight="600">Sorted List: [A,B,C,D,E,F,G,H,I] — Searching for 'F'</text>
+            <!-- Pass 1 -->
+            <text x="10" y="38" font-size="10" fill="#888">Pass 1:</text>
+            <rect x="60" y="26" width="30" height="24" rx="5" fill="#E0F7F6" stroke="#4ECDC4" stroke-width="1.5"/>
+            <text x="75" y="42" text-anchor="middle" font-size="11">A</text>
+            <rect x="95" y="26" width="30" height="24" rx="5" fill="#E0F7F6" stroke="#4ECDC4" stroke-width="1.5"/>
+            <text x="110" y="42" text-anchor="middle" font-size="11">B</text>
+            <rect x="130" y="26" width="30" height="24" rx="5" fill="#E0F7F6" stroke="#4ECDC4" stroke-width="1.5"/>
+            <text x="145" y="42" text-anchor="middle" font-size="11">C</text>
+            <rect x="165" y="26" width="30" height="24" rx="5" fill="#E0F7F6" stroke="#4ECDC4" stroke-width="1.5"/>
+            <text x="180" y="42" text-anchor="middle" font-size="11">D</text>
+            <rect x="200" y="24" width="34" height="28" rx="6" fill="#FFB347" stroke="#CC7A00" stroke-width="2"/>
+            <text x="217" y="43" text-anchor="middle" font-size="11" font-weight="700">E ←mid</text>
+            <rect x="239" y="26" width="30" height="24" rx="5" fill="#E0F7F6" stroke="#4ECDC4" stroke-width="1.5"/>
+            <text x="254" y="42" text-anchor="middle" font-size="11">F</text>
+            <rect x="274" y="26" width="30" height="24" rx="5" fill="#E0F7F6" stroke="#4ECDC4" stroke-width="1.5"/>
+            <text x="289" y="42" text-anchor="middle" font-size="11">G</text>
+            <rect x="309" y="26" width="30" height="24" rx="5" fill="#E0F7F6" stroke="#4ECDC4" stroke-width="1.5"/>
+            <text x="324" y="42" text-anchor="middle" font-size="11">H</text>
+            <rect x="344" y="26" width="30" height="24" rx="5" fill="#E0F7F6" stroke="#4ECDC4" stroke-width="1.5"/>
+            <text x="359" y="42" text-anchor="middle" font-size="11">I</text>
+            <text x="400" y="42" font-size="10" fill="#CC7A00">E &lt; F → search top half</text>
+
+            <!-- Pass 2 -->
+            <text x="10" y="82" font-size="10" fill="#888">Pass 2:</text>
+            <rect x="60" y="70" width="30" height="24" rx="5" fill="#F0EDE8" stroke="#ccc" stroke-width="1.5"/>
+            <text x="75" y="86" text-anchor="middle" font-size="11" fill="#ccc">A</text>
+            <rect x="95" y="70" width="30" height="24" rx="5" fill="#F0EDE8" stroke="#ccc" stroke-width="1.5"/>
+            <text x="110" y="86" text-anchor="middle" font-size="11" fill="#ccc">B</text>
+            <rect x="130" y="70" width="30" height="24" rx="5" fill="#F0EDE8" stroke="#ccc" stroke-width="1.5"/>
+            <text x="145" y="86" text-anchor="middle" font-size="11" fill="#ccc">C</text>
+            <rect x="165" y="70" width="30" height="24" rx="5" fill="#F0EDE8" stroke="#ccc" stroke-width="1.5"/>
+            <text x="180" y="86" text-anchor="middle" font-size="11" fill="#ccc">D</text>
+            <rect x="200" y="70" width="30" height="24" rx="5" fill="#F0EDE8" stroke="#ccc" stroke-width="1.5"/>
+            <text x="215" y="86" text-anchor="middle" font-size="11" fill="#ccc">E</text>
+            <rect x="235" y="68" width="34" height="28" rx="6" fill="#FFB347" stroke="#CC7A00" stroke-width="2"/>
+            <text x="252" y="87" text-anchor="middle" font-size="11" font-weight="700">F ←mid</text>
+            <text x="400" y="86" font-size="10" fill="#267339">F = F → FOUND! ✓</text>
+
+            <!-- Pass 3 label -->
+            <text x="10" y="126" font-size="11" fill="#267339" font-weight="600">Found 'F' in just 2 passes instead of 6 with linear search!</text>
+            <text x="10" y="145" font-size="10" fill="#888">O(log₂9) ≈ 3.17 max steps vs O(9) = 9 max steps for linear search</text>
+          </svg>
+          <p class="caption">Binary Search — halves the search area each time</p>
+        </div>
+        <div class="memory-box"><p><strong>Binary</strong> = TWO. Binary search always splits into TWO halves. It requires a sorted list — remember: <strong>"Binary Needs Sorted Books"</strong> (data must be ordered).</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2.6 Sort Algorithms -->
+  <div class="topic-card ch2">
+    <h2><span class="icon">🔀</span> Sort Algorithms</h2>
+    <p>All three sorting algorithms you need have a time complexity of <strong>O(n²)</strong> — they are <em>inefficient</em> for large datasets.</p>
+
+    <div class="accordion">
+      <button class="accordion-header" onclick="toggleAccordion(this)"><span>🏆 Selection Sort — O(n²)</span><span class="arrow">▼</span></button>
+      <div class="accordion-body">
+        <div class="def-box"><p><strong>Selection Sort</strong> works by finding the smallest value in a list and placing it at the start, then finding the next smallest and placing it second, and so on, until the list is sorted.</p></div>
+        <div class="analogy-box"><p>Imagine sorting playing cards. You scan all cards to find the lowest, put it first. Scan the remaining cards for the next lowest, put it second. Repeat. Each "scan" takes n comparisons, and you do n scans = n² total.</p></div>
+        <h3>How it works:</h3>
+        <ol class="steps">
+          <li><span class="step-num ch2">1</span><span class="step-content">Scan the whole list to find the <strong>minimum value</strong>.</span></li>
+          <li><span class="step-num ch2">2</span><span class="step-content"><strong>Swap</strong> it with the first element in the unsorted part.</span></li>
+          <li><span class="step-num ch2">3</span><span class="step-content">The first element is now sorted. Move the boundary forward.</span></li>
+          <li><span class="step-num ch2">4</span><span class="step-content"><strong>Repeat</strong> for the rest of the unsorted list.</span></li>
+        </ol>
+        <div class="diagram-wrap">
+          <svg viewBox="0 0 520 200" xmlns="http://www.w3.org/2000/svg" width="100%">
+            <text x="10" y="16" font-size="11" fill="#666" font-weight="600">Array: [42, 16, 84, 12, 77, 26, 53]</text>
+            <!-- Row 1 -->
+            <text x="10" y="40" font-size="10" fill="#888">Start:</text>
+            <rect x="60" y="28" width="36" height="24" rx="5" fill="#E0F7F6" stroke="#4ECDC4" stroke-width="1.5"/><text x="78" y="44" text-anchor="middle" font-size="11">42</text>
+            <rect x="100" y="28" width="36" height="24" rx="5" fill="#E0F7F6" stroke="#4ECDC4" stroke-width="1.5"/><text x="118" y="44" text-anchor="middle" font-size="11">16</text>
+            <rect x="140" y="28" width="36" height="24" rx="5" fill="#E0F7F6" stroke="#4ECDC4" stroke-width="1.5"/><text x="158" y="44" text-anchor="middle" font-size="11">84</text>
+            <rect x="180" y="26" width="40" height="28" rx="6" fill="#FF6B6B" stroke="#C94040" stroke-width="2"/><text x="200" y="44" text-anchor="middle" font-size="11" fill="white" font-weight="700">12←min</text>
+            <rect x="224" y="28" width="36" height="24" rx="5" fill="#E0F7F6" stroke="#4ECDC4" stroke-width="1.5"/><text x="242" y="44" text-anchor="middle" font-size="11">77</text>
+            <rect x="264" y="28" width="36" height="24" rx="5" fill="#E0F7F6" stroke="#4ECDC4" stroke-width="1.5"/><text x="282" y="44" text-anchor="middle" font-size="11">26</text>
+            <rect x="304" y="28" width="36" height="24" rx="5" fill="#E0F7F6" stroke="#4ECDC4" stroke-width="1.5"/><text x="322" y="44" text-anchor="middle" font-size="11">53</text>
+            <text x="350" y="43" font-size="10" fill="#C94040">Find min=12, swap with pos 0</text>
+            <!-- Row 2 -->
+            <text x="10" y="84" font-size="10" fill="#888">Pass 1:</text>
+            <rect x="60" y="72" width="36" height="24" rx="6" fill="#56C271" stroke="#267339" stroke-width="2"/><text x="78" y="88" text-anchor="middle" font-size="11" fill="white" font-weight="700">12✓</text>
+            <rect x="100" y="72" width="36" height="24" rx="5" fill="#E0F7F6" stroke="#4ECDC4" stroke-width="1.5"/><text x="118" y="88" text-anchor="middle" font-size="11">16</text>
+            <rect x="140" y="72" width="36" height="24" rx="5" fill="#E0F7F6" stroke="#4ECDC4" stroke-width="1.5"/><text x="158" y="88" text-anchor="middle" font-size="11">84</text>
+            <rect x="180" y="72" width="36" height="24" rx="5" fill="#E0F7F6" stroke="#4ECDC4" stroke-width="1.5"/><text x="198" y="88" text-anchor="middle" font-size="11">42</text>
+            <rect x="220" y="72" width="36" height="24" rx="5" fill="#E0F7F6" stroke="#4ECDC4" stroke-width="1.5"/><text x="238" y="88" text-anchor="middle" font-size="11">77</text>
+            <rect x="260" y="72" width="36" height="24" rx="5" fill="#E0F7F6" stroke="#4ECDC4" stroke-width="1.5"/><text x="278" y="88" text-anchor="middle" font-size="11">26</text>
+            <rect x="300" y="72" width="36" height="24" rx="5" fill="#E0F7F6" stroke="#4ECDC4" stroke-width="1.5"/><text x="318" y="88" text-anchor="middle" font-size="11">53</text>
+            <text x="350" y="87" font-size="10" fill="#267339">12 sorted! Next: find 16, already pos 1…</text>
+            <!-- Final -->
+            <text x="10" y="142" font-size="10" fill="#888">Final:</text>
+            <rect x="60" y="130" width="36" height="24" rx="5" fill="#56C271" stroke="#267339" stroke-width="2"/><text x="78" y="146" text-anchor="middle" font-size="11" fill="white" font-weight="700">12</text>
+            <rect x="100" y="130" width="36" height="24" rx="5" fill="#56C271" stroke="#267339" stroke-width="2"/><text x="118" y="146" text-anchor="middle" font-size="11" fill="white" font-weight="700">16</text>
+            <rect x="140" y="130" width="36" height="24" rx="5" fill="#56C271" stroke="#267339" stroke-width="2"/><text x="158" y="146" text-anchor="middle" font-size="11" fill="white" font-weight="700">26</text>
+            <rect x="180" y="130" width="36" height="24" rx="5" fill="#56C271" stroke="#267339" stroke-width="2"/><text x="198" y="146" text-anchor="middle" font-size="11" fill="white" font-weight="700">42</text>
+            <rect x="220" y="130" width="36" height="24" rx="5" fill="#56C271" stroke="#267339" stroke-width="2"/><text x="238" y="146" text-anchor="middle" font-size="11" fill="white" font-weight="700">53</text>
+            <rect x="260" y="130" width="36" height="24" rx="5" fill="#56C271" stroke="#267339" stroke-width="2"/><text x="278" y="146" text-anchor="middle" font-size="11" fill="white" font-weight="700">77</text>
+            <rect x="300" y="130" width="36" height="24" rx="5" fill="#56C271" stroke="#267339" stroke-width="2"/><text x="318" y="146" text-anchor="middle" font-size="11" fill="white" font-weight="700">84</text>
+            <text x="10" y="172" font-size="10" fill="#267339" font-weight="600">Sorted! [12, 16, 26, 42, 53, 77, 84]</text>
+          </svg>
+        </div>
+        <p><strong>Time complexity: O(n²)</strong> — loops n times, each requiring up to n comparisons.</p>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <button class="accordion-header" onclick="toggleAccordion(this)"><span>📥 Insertion Sort — O(n²)</span><span class="arrow">▼</span></button>
+      <div class="accordion-body">
+        <div class="def-box"><p><strong>Insertion Sort</strong> virtually splits the array into a sorted and unsorted part. Each element from the unsorted part is taken and inserted into the correct position in the sorted part.</p></div>
+        <div class="analogy-box"><p>Think of sorting a hand of playing cards. You pick up one card at a time and slide it into the right place in your already-sorted hand. Left side (sorted), right side (unsorted).</p></div>
+        <h3>How it works:</h3>
+        <ol class="steps">
+          <li><span class="step-num ch2">1</span><span class="step-content">Start with the second element (first is considered already sorted).</span></li>
+          <li><span class="step-num ch2">2</span><span class="step-content">Compare it with elements <em>before it</em> one by one, moving backwards.</span></li>
+          <li><span class="step-num ch2">3</span><span class="step-content">Shift larger elements one position to the right to make space.</span></li>
+          <li><span class="step-num ch2">4</span><span class="step-content">Insert the current element into the correct position.</span></li>
+          <li><span class="step-num ch2">5</span><span class="step-content">Repeat for each element in the unsorted portion.</span></li>
+        </ol>
+        <p><strong>Time complexity: O(n²)</strong> — n passes with up to n comparisons each.</p>
+        <div class="memory-box"><p><strong>INSERTION</strong> = INSERT into sorted part. Like inserting a new card into your hand of cards in the right place.</p></div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <button class="accordion-header" onclick="toggleAccordion(this)"><span>🫧 Bubble Sort — O(n²)</span><span class="arrow">▼</span></button>
+      <div class="accordion-body">
+        <div class="def-box"><p><strong>Bubble Sort</strong> compares adjacent elements in an array and swaps them if they are in the wrong order. After each full pass, the largest unsorted element "bubbles" to its correct position at the end.</p></div>
+        <div class="analogy-box"><p>Like bubbles rising in a fizzy drink — the biggest bubble (number) always rises to the top (end of the array) first. After each pass through the drink, one more bubble settles at the top.</p></div>
+        <h3>How it works:</h3>
+        <ol class="steps">
+          <li><span class="step-num ch2">1</span><span class="step-content">Start with the first adjacent pair of elements.</span></li>
+          <li><span class="step-num ch2">2</span><span class="step-content">Compare them — if out of order, <strong>swap</strong> them.</span></li>
+          <li><span class="step-num ch2">3</span><span class="step-content">Move to the next adjacent pair. Repeat for the whole array.</span></li>
+          <li><span class="step-num ch2">4</span><span class="step-content">After one full pass, the <strong>largest element is at the end</strong> (its final position).</span></li>
+          <li><span class="step-num ch2">5</span><span class="step-content">Repeat steps 1–4 until no more swaps occur.</span></li>
+        </ol>
+        <p><strong>Time complexity: O(n²)</strong> — very slow, almost never used in practice.</p>
+        <h3>Optimisation:</h3>
+        <div class="def-box"><p>Bubble sort can be made more efficient by <strong>counting swaps per pass</strong>. If swaps = 0 in a pass, the list is already sorted — stop the algorithm early!</p></div>
+        <div class="memory-box"><p><strong>BUBBLE</strong> = biggest value BUBBLES up to the top. After each pass, the END of the array is more and more sorted.</p></div>
+      </div>
+    </div>
+
+    <!-- Comparison table -->
+    <h3 style="margin-top:20px">Quick Comparison of All Algorithms:</h3>
+    <table class="comp-table ch2">
+      <tr><th>Algorithm</th><th>Type</th><th>Big O</th><th>Needs Sorted?</th><th>Best Use</th></tr>
+      <tr><td>Linear Search</td><td>Search</td><td>O(n)</td><td>❌ No</td><td>Small/unsorted data</td></tr>
+      <tr><td>Binary Search</td><td>Search</td><td>O(log n)</td><td>✅ Yes!</td><td>Large sorted data</td></tr>
+      <tr><td>Selection Sort</td><td>Sort</td><td>O(n²)</td><td>Sorts it</td><td>Simple situations</td></tr>
+      <tr><td>Insertion Sort</td><td>Sort</td><td>O(n²)</td><td>Sorts it</td><td>Nearly sorted data</td></tr>
+      <tr><td>Bubble Sort</td><td>Sort</td><td>O(n²)</td><td>Sorts it</td><td>Teaching only!</td></tr>
+    </table>
+  </div>
+
+</div><!-- end ch2 -->
+
+<!-- ═══════════════════════════════════════════════════════════
+     CHAPTER 3
+════════════════════════════════════════════════════════════ -->
+<div class="section" id="ch3">
+
+  <div class="ch-header ch3">
+    <h1>Chapter 3: Networks &amp; Protocols</h1>
+    <p>How computers talk to each other — from the internet to protocols to cloud computing.</p>
+    <span class="big-num">3</span>
+  </div>
+
+  <!-- 3.1 Internet vs WWW -->
+  <div class="topic-card ch3">
+    <h2><span class="icon">🌍</span> Internet vs. World Wide Web (WWW)</h2>
+    <div class="def-box"><p>The <strong>Internet</strong> is the global network of connected computers that carries data (web pages, emails, files). It is <strong>hardware</strong>.</p></div>
+    <div class="def-box"><p>The <strong>World Wide Web (WWW)</strong> is a service that runs <em>on top of</em> the internet — it is the collection of web pages you view in a browser. The WWW is <strong>software/a service</strong>.</p></div>
+    <div class="analogy-box"><p>The <strong>internet</strong> is the road network — all the physical roads, motorways, and infrastructure. The <strong>WWW</strong> is one service that uses those roads (like delivery trucks). Email, FTP, etc., are OTHER services using the same road network.</p></div>
+    <div class="memory-box"><p><strong>Internet = Infrastructure (hardware)</strong>. <strong>Web = Webpages (service running on that hardware)</strong>. The web is a <em>subset</em> of what the internet does!</p></div>
+    <p>The WWW operates on a <strong>client-server model</strong>. Web pages are stored on <strong>web servers</strong> and each page has an address called a <strong>URL (Uniform Resource Locator)</strong>.</p>
+  </div>
+
+  <!-- 3.2 URLs -->
+  <div class="topic-card ch3">
+    <h2><span class="icon">🔗</span> URLs — Uniform Resource Locators</h2>
+    <div class="def-box"><p>A <strong>URL (Uniform Resource Locator)</strong> is the unique address of a web page. It is also called the "web address".</p></div>
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 600 120" xmlns="http://www.w3.org/2000/svg" width="100%">
+        <text x="10" y="20" font-size="12" font-weight="700" fill="#2C2825">Example: https://www.irishtimes.com/sport/soccer/edinson-cavani</text>
+        <!-- boxes -->
+        <rect x="10" y="32" width="64" height="34" rx="7" fill="#FFE8E8" stroke="#FF6B6B" stroke-width="2"/>
+        <text x="42" y="52" text-anchor="middle" font-size="10" font-weight="700" fill="#C94040">https://</text>
+        <rect x="82" y="32" width="148" height="34" rx="7" fill="#E0F7F6" stroke="#4ECDC4" stroke-width="2"/>
+        <text x="156" y="52" text-anchor="middle" font-size="10" font-weight="700" fill="#2A9990">www.irishtimes.com</text>
+        <rect x="238" y="32" width="110" height="34" rx="7" fill="#FFF3E0" stroke="#FFB347" stroke-width="2"/>
+        <text x="293" y="52" text-anchor="middle" font-size="10" font-weight="700" fill="#CC7A00">/sport/soccer</text>
+        <rect x="356" y="32" width="130" height="34" rx="7" fill="#EDE8F7" stroke="#7C5CBF" stroke-width="2"/>
+        <text x="421" y="52" text-anchor="middle" font-size="10" font-weight="700" fill="#5a3da0">/edinson-cavani</text>
+        <!-- labels -->
+        <text x="42" y="82" text-anchor="middle" font-size="9" fill="#C94040">Protocol</text>
+        <text x="156" y="82" text-anchor="middle" font-size="9" fill="#2A9990">Domain Name (DNS)</text>
+        <text x="293" y="82" text-anchor="middle" font-size="9" fill="#CC7A00">Directory/Folder</text>
+        <text x="421" y="82" text-anchor="middle" font-size="9" fill="#5a3da0">Webpage name</text>
+      </svg>
+      <p class="caption">Parts of a URL — from left to right</p>
+    </div>
+    <table class="comp-table ch3">
+      <tr><th>Part</th><th>What it is</th><th>Example</th></tr>
+      <tr><td><strong>Protocol</strong></td><td>How data is transferred</td><td>https://</td></tr>
+      <tr><td><strong>Domain Name</strong></td><td>Name of the website, stored in DNS</td><td>www.irishtimes.com</td></tr>
+      <tr><td><strong>Directory</strong></td><td>Folder/area within the website</td><td>/sport/soccer</td></tr>
+      <tr><td><strong>Webpage</strong></td><td>The specific page being viewed</td><td>/edinson-cavani</td></tr>
+    </table>
+  </div>
+
+  <!-- 3.3 DNS -->
+  <div class="topic-card ch3">
+    <h2><span class="icon">📖</span> DNS — Domain Name Service</h2>
+    <div class="def-box"><p>A <strong>DNS (Domain Name Service)</strong> converts human-friendly domain names (e.g. irishtimes.com) into machine-friendly IP addresses (e.g. 182.256.256.2).</p></div>
+    <div class="analogy-box"><p>DNS is like a phone book. When you want to call "Mum", your phone looks up "Mum" and finds the actual phone number (e.g. 086-123-4567). You don't need to remember the number — just the name. DNS does the same: you type "google.com" and DNS finds the IP address.</p></div>
+    <h3>How DNS works (step by step):</h3>
+    <ol class="steps">
+      <li><span class="step-num ch3">1</span><span class="step-content">You type a URL (e.g. www.google.com) into your browser.</span></li>
+      <li><span class="step-num ch3">2</span><span class="step-content">Your <strong>Internet Service Provider (ISP)</strong> looks up the domain name using DNS.</span></li>
+      <li><span class="step-num ch3">3</span><span class="step-content">DNS finds the matching <strong>IP address</strong> and sends it back to you.</span></li>
+      <li><span class="step-num ch3">4</span><span class="step-content">Your browser sends a request directly to that IP address.</span></li>
+      <li><span class="step-num ch3">5</span><span class="step-content">The web server sends the webpage back to your browser using HTTP/HTTPS.</span></li>
+    </ol>
+    <div class="def-box"><p>An <strong>IP address</strong> is a unique numerical label assigned to each device connected to a network. It allows devices to be located on the internet (e.g. 192.168.1.1).</p></div>
+    <div class="memory-box"><p><strong>DNS = Domain Name to IP.</strong> Like a translator between human language (google.com) and computer language (142.250.185.46).</p></div>
+  </div>
+
+  <!-- 3.4 Protocols -->
+  <div class="topic-card ch3">
+    <h2><span class="icon">📋</span> Communication Protocols</h2>
+    <div class="def-box"><p><strong>Protocols</strong> are a standard set of rules that computer systems follow to allow them to communicate, format, and process data.</p></div>
+    <div class="analogy-box"><p>Protocols are like the rules of a language. For two people to communicate, they need to agree on the same language (e.g. English), the same grammar, and how to take turns speaking. Protocols do the same for computers.</p></div>
+    <p>Protocols manage: <strong>speed of transmission, message size, error checking, and whether transmission is synchronous or asynchronous</strong>.</p>
+
+    <div class="proto-grid">
+      <div class="proto-card">
+        <div class="name">HTTP</div>
+        <div class="full">HyperText Transfer Protocol</div>
+        <div class="use">Transfers web pages between client browser and web server. Web pages are in hypertext format.</div>
+      </div>
+      <div class="proto-card">
+        <div class="name">HTTPS</div>
+        <div class="full">HTTP Secure</div>
+        <div class="use">Secure version of HTTP. Data is <strong>encrypted</strong> during transfer — hackers can't intercept it. Used for banking, shopping, etc.</div>
+      </div>
+      <div class="proto-card">
+        <div class="name">FTP</div>
+        <div class="full">File Transfer Protocol</div>
+        <div class="use">Transfers files between computers. Used for uploading/downloading files to/from a server.</div>
+      </div>
+      <div class="proto-card">
+        <div class="name">SMTP</div>
+        <div class="full">Simple Mail Transfer Protocol</div>
+        <div class="use">Sends emails between mail servers.</div>
+      </div>
+      <div class="proto-card">
+        <div class="name">VOIP</div>
+        <div class="full">Voice Over Internet Protocol</div>
+        <div class="use">Delivers voice and multimedia communications over the internet (e.g. Zoom calls).</div>
+      </div>
+      <div class="proto-card">
+        <div class="name">TCP/IP</div>
+        <div class="full">Transmission Control Protocol / Internet Protocol</div>
+        <div class="use">The main protocol suite of the internet — breaks data into packets, routes them, and reassembles at the destination.</div>
+      </div>
+    </div>
+    <div class="exam-box"><p>Know what each protocol stands for AND what it's used for. The exam often asks "What does HTTPS stand for and what is its purpose?" — know both parts!</p></div>
+  </div>
+
+  <!-- 3.5 TCP/IP -->
+  <div class="topic-card ch3">
+    <h2><span class="icon">📦</span> TCP/IP in Detail</h2>
+    <div class="def-box"><p><strong>TCP (Transmission Control Protocol)</strong> breaks data into equal-sized chunks called <strong>data packets</strong>, gives each a sequence number and check digit, reassembles them at the destination, and requests replacements for missing/corrupt packets.</p></div>
+    <div class="def-box"><p><strong>IP (Internet Protocol)</strong> gives each device a unique IP address, encapsulates packets with a wrapper containing source and destination addresses, and routes packets across the internet.</p></div>
+    <div class="analogy-box"><p>Sending a large document by post: TCP = the person who splits the document into 10 envelopes, numbers them 1-10, and checks they all arrive. IP = the postal service that puts an address label on each envelope and routes them to the right destination. They work together!</p></div>
+
+    <h3>The 4 TCP/IP Layers:</h3>
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 580 200" xmlns="http://www.w3.org/2000/svg" width="100%">
+        <rect x="10" y="10" width="560" height="42" rx="10" fill="#FFE8E8" stroke="#FF6B6B" stroke-width="2"/>
+        <text x="180" y="36" font-size="13" font-weight="700" fill="#C94040">4. Application Layer</text>
+        <text x="10" y="62" font-size="10" fill="#C94040" x="10">    Web browsers, email clients operate here. HTTP, HTTPS, FTP protocols operate here.</text>
+        <rect x="10" y="60" width="560" height="42" rx="10" fill="#E0F7F6" stroke="#4ECDC4" stroke-width="2"/>
+        <text x="180" y="86" font-size="13" font-weight="700" fill="#2A9990">3. Transport Layer</text>
+        <text x="18" y="97" font-size="10" fill="#2A9990">Sets up communication between devices — agrees on 'language' and packet size. TCP and UDP operate here.</text>
+        <rect x="10" y="110" width="560" height="42" rx="10" fill="#FFF3E0" stroke="#FFB347" stroke-width="2"/>
+        <text x="180" y="136" font-size="13" font-weight="700" fill="#CC7A00">2. Internet (Network) Layer</text>
+        <text x="18" y="147" font-size="10" fill="#CC7A00">Addresses and packages data for transmission, routes packets across the network. IP operates here.</text>
+        <rect x="10" y="160" width="560" height="36" rx="10" fill="#EDE8F7" stroke="#7C5CBF" stroke-width="2"/>
+        <text x="180" y="182" font-size="13" font-weight="700" fill="#5a3da0">1. Data Link Layer (Physical)</text>
+        <text x="18" y="192" font-size="10" fill="#5a3da0">Physical hardware — cables, network interface cards, switches.</text>
+      </svg>
+      <p class="caption">TCP/IP 4-Layer Model — data passes DOWN when sending, UP when receiving</p>
+    </div>
+
+    <table class="comp-table ch3">
+      <tr><th>Layer</th><th>Function</th><th>Protocols</th></tr>
+      <tr><td><strong>Application</strong></td><td>Where apps and browsers operate</td><td>HTTP, HTTPS, FTP</td></tr>
+      <tr><td><strong>Transport</strong></td><td>Sets up communication, agrees on packet size</td><td>TCP, UDP</td></tr>
+      <tr><td><strong>Internet</strong></td><td>Addresses and routes packets</td><td>IP</td></tr>
+      <tr><td><strong>Data Link</strong></td><td>Physical hardware connections</td><td>Ethernet, WiFi</td></tr>
+    </table>
+    <div class="memory-box"><p>Layers from top to bottom: <strong>A-T-I-D</strong> → <strong>"All Teenagers Investigate Deeply"</strong> → Application, Transport, Internet, Data Link</p></div>
+  </div>
+
+  <!-- 3.6 Computer Networks -->
+  <div class="topic-card ch3">
+    <h2><span class="icon">🔌</span> Computer Networks</h2>
+    <div class="def-box"><p>A <strong>computer network</strong> is formed when a number of computers are connected together. Networks can be wired, wireless, or a combination of both.</p></div>
+    <table class="comp-table ch3">
+      <tr><th>✅ Advantages</th><th>❌ Disadvantages</th></tr>
+      <tr><td>Share data with other users</td><td>Larger networks are expensive to set up</td></tr>
+      <tr><td>Access your data from other computers</td><td>Security risks</td></tr>
+      <tr><td>Share an internet connection</td><td>High traffic can slow the network</td></tr>
+      <tr><td>Share printers and resources</td><td>Entire network can fail if key parts fail</td></tr>
+    </table>
+  </div>
+
+  <!-- 3.7 Client-Server vs P2P -->
+  <div class="topic-card ch3">
+    <h2><span class="icon">🏢</span> Client-Server vs Peer-to-Peer Networks</h2>
+
+    <div class="accordion">
+      <button class="accordion-header" onclick="toggleAccordion(this)"><span>🖥️ Client-Server Network</span><span class="arrow">▼</span></button>
+      <div class="accordion-body">
+        <div class="def-box"><p>In a <strong>client-server network</strong>, users work at <strong>client workstations</strong>. A <strong>server</strong> is a dedicated computer that stores data, manages resources, and controls access rights for all clients.</p></div>
+        <div class="analogy-box"><p>A school network is a great example. The server is like the school secretary — it has all the files, controls who can access what, manages logins, and assigns permissions. The classroom computers are clients — they connect to the secretary (server) to get what they need.</p></div>
+        <table class="comp-table ch3">
+          <tr><th>✅ Advantages</th><th>❌ Disadvantages</th></tr>
+          <tr><td>More secure than P2P</td><td>Expensive to buy and maintain</td></tr>
+          <tr><td>One client crashing doesn't affect others</td><td>Server failure disrupts ALL computers</td></tr>
+          <tr><td>Easier to administrate (managed centrally)</td><td>May need a specialist network technician</td></tr>
+          <tr><td>Individual users don't worry about backups</td><td>—</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <button class="accordion-header" onclick="toggleAccordion(this)"><span>🤝 Peer-to-Peer (P2P) Network</span><span class="arrow">▼</span></button>
+      <div class="accordion-body">
+        <div class="def-box"><p>In a <strong>peer-to-peer (P2P) network</strong>, there is no central server. Each computer (called a <strong>peer</strong>) is equal and connected directly to other peers. No computer has control over another.</p></div>
+        <div class="analogy-box"><p>Imagine a group of friends sharing files directly between their phones — no central organiser, everyone just shares directly with everyone else. That's P2P!</p></div>
+        <table class="comp-table ch3">
+          <tr><th>✅ Advantages</th><th>❌ Disadvantages</th></tr>
+          <tr><td>Users control their own files</td><td>Each computer needs its own backup</td></tr>
+          <tr><td>No cost of buying a server</td><td>Potentially less secure</td></tr>
+          <tr><td>Easier and cheaper to set up</td><td>Security more expensive (each needs antivirus)</td></tr>
+          <tr><td>Peer failure only disrupts files from that peer</td><td>Files and resources harder to share</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3.8 PANs LANs WANs -->
+  <div class="topic-card ch3">
+    <h2><span class="icon">🗺️</span> PANs, LANs &amp; WANs</h2>
+    <p>Networks are classified by their geographical size:</p>
+    <div class="network-grid">
+      <div class="network-card pan">
+        <div class="ntype">PAN</div>
+        <div class="nfull">Personal Area Network</div>
+        <div class="nexample">
+          <p>Devices within close distance of one person and their workspace.</p>
+          <p><strong>Examples:</strong> Connecting phone, laptop and tablet via Bluetooth or USB.</p>
+        </div>
+      </div>
+      <div class="network-card lan">
+        <div class="ntype">LAN</div>
+        <div class="nfull">Local Area Network</div>
+        <div class="nexample">
+          <p>Covers a small geographical area — one building or campus.</p>
+          <p><strong>Examples:</strong> School network, home WiFi, small business network.</p>
+        </div>
+      </div>
+      <div class="network-card wan">
+        <div class="ntype">WAN</div>
+        <div class="nfull">Wide Area Network</div>
+        <div class="nexample">
+          <p>Covers a large geographical area. Can be made up of multiple LANs.</p>
+          <p><strong>Examples:</strong> Multinational companies, hospitals sharing patient data nationally, banks, the internet itself.</p>
+        </div>
+      </div>
+    </div>
+
+    <h3>LAN vs WAN Comparison:</h3>
+    <table class="comp-table ch3">
+      <tr><th>LAN Advantages</th><th>WAN Advantages</th></tr>
+      <tr><td>Expensive hardware (printers) can be shared</td><td>Covers a large geographical area</td></tr>
+      <tr><td>Users share the same files</td><td>Share software and resources globally</td></tr>
+      <tr><td>Single internet connection shared</td><td>Allows different LANs to connect</td></tr>
+      <tr><td>Easy to add new systems</td><td>Allows collaboration over huge areas</td></tr>
+    </table>
+    <table class="comp-table ch3" style="margin-top:8px">
+      <tr><th>LAN Disadvantages</th><th>WAN Disadvantages</th></tr>
+      <tr><td>Limited before speed is affected</td><td>Expensive to set up</td></tr>
+      <tr><td>Can't cover a wide area</td><td>Needs strong security</td></tr>
+      <tr><td>Only as secure as weakest node</td><td>Requires a lot of maintenance</td></tr>
+      <tr><td>Maintenance grows with user count</td><td>—</td></tr>
+    </table>
+    <div class="memory-box"><p><strong>PAN</strong> = Personal (<em>your own devices</em>). <strong>LAN</strong> = Local (<em>one building</em>). <strong>WAN</strong> = Wide (<em>the world</em>). Think of them as expanding circles around you!</p></div>
+  </div>
+
+  <!-- 3.9 Cloud Computing -->
+  <div class="topic-card ch3">
+    <h2><span class="icon">☁️</span> Cloud Computing</h2>
+    <div class="def-box"><p><strong>Cloud computing</strong> is the use of hardware and software to deliver services over the internet. Unlike LANs/WANs, you're not restricted to a local network — you can access your work and programs from anywhere you can get online.</p></div>
+    <div class="analogy-box"><p>Instead of keeping all your photos on your phone (local storage), you upload them to iCloud or Google Photos (cloud). They're now accessible from any device anywhere in the world — and someone else manages the servers that store them.</p></div>
+
+    <h3>Types of Cloud Services:</h3>
+    <div class="accordion">
+      <button class="accordion-header" onclick="toggleAccordion(this)"><span>🏗️ IaaS — Infrastructure as a Service</span><span class="arrow">▼</span></button>
+      <div class="accordion-body">
+        <div class="def-box"><p><strong>IaaS (Online Data Storage / Infrastructure-as-a-Service)</strong> — businesses can purchase storage and processing power without physically buying or maintaining hardware. The cloud provider backs up the data to ensure it's never lost.</p></div>
+        <p><strong>Example:</strong> AWS (Amazon Web Services), Microsoft Azure — companies rent server space instead of buying physical servers.</p>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <button class="accordion-header" onclick="toggleAccordion(this)"><span>💻 SaaS — Software as a Service</span><span class="arrow">▼</span></button>
+      <div class="accordion-body">
+        <div class="def-box"><p><strong>SaaS (Software Hosting / Software-as-a-Service)</strong> — instead of installing programs on each computer, software is hosted on cloud servers and downloaded when needed. A third-party provider keeps the software up to date.</p></div>
+        <p><strong>Example:</strong> Microsoft 365, Google Docs — the software runs in the cloud, no installation needed.</p>
+      </div>
+    </div>
+
+    <h3>Data Ownership &amp; Privacy Concerns:</h3>
+    <p>Cloud computing raises issues about <strong>data ownership</strong>. Using cloud services means sharing your data with a third-party provider. For this reason, government departments and banks often create their own <strong>private cloud servers</strong> because they have extra data protection requirements.</p>
+    <div class="exam-box"><p>Cloud computing is a popular exam topic. Know the difference between IaaS and SaaS, and be able to discuss the <strong>advantages AND disadvantages</strong> — especially the data privacy issue for sensitive organisations.</p></div>
+    <table class="comp-table ch3">
+      <tr><th>✅ Advantages of Cloud Computing</th><th>❌ Disadvantages</th></tr>
+      <tr><td>Access data from anywhere</td><td>Requires internet connection</td></tr>
+      <tr><td>No need to buy/maintain hardware</td><td>Data privacy/ownership concerns</td></tr>
+      <tr><td>Software always kept up to date</td><td>Monthly subscription costs</td></tr>
+      <tr><td>Provider handles backups</td><td>Data stored on third-party servers</td></tr>
+      <tr><td>Scalable — pay for what you use</td><td>Potential downtime if provider has issues</td></tr>
+    </table>
+  </div>
+
+</div><!-- end ch3 -->
+
+<!-- ═══════════════════════════════════════════════════════════
+     FLASHCARDS
+════════════════════════════════════════════════════════════ -->
+<div id="flashcards">
+  <div class="flash-header">
+    <h1>🃏 Flashcards — All Chapters</h1>
+    <p>Click a card to flip it! Use the filters to study by chapter.</p>
+    <span class="big-num">FC</span>
+  </div>
+
+  <div class="flash-controls">
+    <span style="font-weight:600; font-size:0.85rem; color:var(--text-muted)">Filter:</span>
+    <button class="flash-filter active-all" onclick="filterCards('all', this)">All Cards</button>
+    <button class="flash-filter" onclick="filterCards('ch1', this)">📦 Chapter 1</button>
+    <button class="flash-filter" onclick="filterCards('ch2', this)">🧮 Chapter 2</button>
+    <button class="flash-filter" onclick="filterCards('ch3', this)">🌐 Chapter 3</button>
+  </div>
+
+  <div class="flash-progress"><div class="flash-progress-bar" id="progressBar"></div></div>
+
+  <div class="flashcard-area">
+    <div class="flashcard" id="mainCard" onclick="flipCard()">
+      <div class="flashcard-inner">
+        <div class="flashcard-front" id="cardFront">
+          <span class="flash-chapter-label" id="cardChapterLabel"></span>
+          <div class="card-q" id="cardQuestion">Loading...</div>
+          <div class="flip-hint">👆 Click to reveal answer</div>
+        </div>
+        <div class="flashcard-back" id="cardBack">
+          <div class="card-a" id="cardAnswer">Loading...</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flash-nav">
+      <button class="flash-btn" id="prevBtn" onclick="prevCard()">← Prev</button>
+      <span class="flash-counter" id="cardCounter">1 / 1</span>
+      <button class="flash-btn" id="nextBtn" onclick="nextCard()">Next →</button>
+    </div>
+  </div>
+</div>
+
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+// ── Section Navigation ──
+function showSection(id) {
+  document.querySelectorAll('.section, #flashcards').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelector(`.nav-btn.${id === 'flashcards' ? 'flash' : id}`).classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ── Accordion ──
+function toggleAccordion(btn) {
+  const body = btn.nextElementSibling;
+  const isOpen = body.classList.contains('open');
+  btn.closest('.topic-card').querySelectorAll('.accordion-body').forEach(b => b.classList.remove('open'));
+  btn.closest('.topic-card').querySelectorAll('.accordion-header').forEach(b => b.classList.remove('open'));
+  if (!isOpen) { body.classList.add('open'); btn.classList.add('open'); }
+}
+
+// ── Scroll to top ──
+window.addEventListener('scroll', () => {
+  document.getElementById('scrollTop').classList.toggle('visible', window.scrollY > 400);
+});
+
+// ── FLASHCARD DATA ──
+const ALL_CARDS = [
+  // CH1 - Computer Systems
+  {ch:'ch1',q:'What is a Computer System?',a:'A combination of many connected parts working together (interacting) to achieve a common goal. It takes in data, stores it, processes it, and outputs results.'},
+  {ch:'ch1',q:'What are the 4 elements that interact in a computer system?',a:'1. Hardware (physical components)\n2. Software (programs)\n3. Data (information being processed)\n4. The User'},
+  {ch:'ch1',q:'What is Application Software? Give an example.',a:'Software designed to allow users to complete a specific task. Examples: Microsoft Excel, games, a web browser.'},
+  {ch:'ch1',q:'What is System Software? Give an example.',a:'Software that provides a platform for application software to run on and manages the system\'s resources. Examples: Windows, iOS, Android.'},
+  {ch:'ch1',q:'What is an Embedded System? Give an example.',a:'A system built INTO another system that performs a specific function. Examples: autopilot in a car, a smart thermostat, airbag controller.'},
+  {ch:'ch1',q:'What is a Dedicated System? How is it different from an Embedded System?',a:'A dedicated system is a standalone device designed for one function (e.g. a washing machine). An embedded system is BUILT INSIDE another device (e.g. the controller inside the washing machine).'},
+  {ch:'ch1',q:'What is Von Neumann Architecture?',a:'The common architecture shared by most computers, described by John von Neumann in 1945. It consists of: Memory, CPU, Input/Output devices, and a Computer Bus.'},
+  {ch:'ch1',q:'What are the 4 components of Von Neumann Architecture?',a:'1. Memory\n2. Central Processing Unit (CPU)\n3. Input and Output devices\n4. Computer Bus'},
+  {ch:'ch1',q:'What is RAM? Is it volatile?',a:'RAM (Random Access Memory) is temporary memory that holds data and instructions of the program currently running. YES — it is volatile: data is lost when the power is turned off.'},
+  {ch:'ch1',q:'What is ROM? Is it volatile?',a:'ROM (Read Only Memory) is non-volatile memory — its contents remain even when the computer is off. It cannot be written over. It stores the BIOS (startup program).'},
+  {ch:'ch1',q:'What is the difference between Primary Storage and Secondary Storage?',a:'Primary (RAM): volatile, fast, temporary, small capacity. Secondary (hard drive, USB): non-volatile, slower, permanent, large capacity.'},
+  {ch:'ch1',q:'What does the CPU do?',a:'The CPU processes data and instructions, controls other components within the computer, and carries out computations by following instructions.'},
+  {ch:'ch1',q:'What is the Control Unit (CU)?',a:'The component of the CPU that directs the operations of the CPU — it tells other components what to do and when. It does not do the actual calculations.'},
+  {ch:'ch1',q:'What is the ALU?',a:'The Arithmetic/Logic Unit — the part of the CPU that performs all arithmetic operations (maths) and logic operations. It receives instructions and data, and operates on the data accordingly.'},
+  {ch:'ch1',q:'What are Registers? Name all 5.',a:'Temporary storage locations inside the CPU accessed very quickly. The 5 are: PC (Program Counter), CIR (Current Instruction Register), AC (Accumulator), MAR (Memory Address Register), MDR (Memory Data Register).'},
+  {ch:'ch1',q:'What does the Program Counter (PC) do?',a:'Stores the memory address of the NEXT instruction to be executed. After each fetch, it increments by 1 to point to the following instruction.'},
+  {ch:'ch1',q:'What does the Accumulator (AC) do?',a:'Stores the output (result) of the ALU — the answer to calculations.'},
+  {ch:'ch1',q:'What does the MAR do?',a:'Memory Address Register — stores a memory address (a value that indicates a specific location in memory). Used to specify WHERE to fetch from or write to.'},
+  {ch:'ch1',q:'What does the MDR do?',a:'Memory Data Register — temporarily holds the data of an instruction being transferred to/from memory.'},
+  {ch:'ch1',q:'What is the Clock in a CPU?',a:'Generates a continuous stream of electrical pulses at a stable frequency (in GHz). Each pulse activates one fetch-execute cycle. Ensures all circuits operate at the right timing.'},
+  {ch:'ch1',q:'What is the Bus in a computer?',a:'A communication channel (set of connections) that carries data between internal components — connecting the CPU and memory. USB = Universal Serial Bus.'},
+  {ch:'ch1',q:'List the steps of the Fetch-Decode-Execute cycle.',a:'1. PC → MAR (address of next instruction)\n2. PC increments\n3. Instruction copied to CIR\n4. CU decodes instruction in CIR\n5. Instruction is executed'},
+  {ch:'ch1',q:'Name the 3 factors that affect CPU performance.',a:'1. Clock Speed — faster clock = more FDE cycles per second\n2. Number of Cores — more cores = more parallel processing\n3. Cache Memory — more cache = less waiting for RAM'},
+  {ch:'ch1',q:'What is Cache Memory?',a:'Very fast temporary memory located inside the CPU. More cache allows the CPU to store more instructions close at hand, reducing time lost retrieving data from the slower RAM.'},
+  {ch:'ch1',q:'What is an Operating System?',a:'A type of system software that controls the general operation of a computer and provides a way for users to interact with the computer and run application software.'},
+  {ch:'ch1',q:'List 4 functions of an Operating System.',a:'Interface (GUI), Manages CPU (runs/cancels processes), Multi-tasks (multiple apps at once), Manages Memory, Manages Peripherals, Organises file system, Security (user accounts), Utilities (hardware tools).'},
+  {ch:'ch1',q:'What is BIOS and where is it stored?',a:'BIOS (Basic Input Output System) contains basic code for controlling computer hardware at startup. It is stored in ROM (non-volatile).'},
+  {ch:'ch1',q:'Describe the startup sequence of a computer.',a:'1. CPU fetches BIOS from ROM\n2. BIOS checks hardware (RAM, keyboard, monitor)\n3. BIOS begins boot sequence, finds OS on hard drive\n4. Copies OS from hard drive into RAM\n5. Transfers control to the OS'},
+  {ch:'ch1',q:'What is a Layered Structure in computer systems?',a:'A structure where different services of the system are split into separate layers, each with a specific, well-defined task to perform.'},
+  {ch:'ch1',q:'Name the 3 layers in the computer system layer model.',a:'1. Application Software (top — user interacts here)\n2. Operating System (middle — manages resources)\n3. Hardware (bottom — physical components)'},
+  {ch:'ch1',q:'Give 2 advantages and 2 disadvantages of the Layered Structure.',a:'Advantages: Modularity (each layer does its own job), Easy debugging (errors traced to specific layer). Disadvantages: Complex implementation (layers must be ordered carefully), Slower execution (requests pass through multiple layers).'},
+  {ch:'ch1',q:'What is Abstraction in the context of computer layers?',a:'Each layer is only concerned with its own functions — the implementations and workings of other layers are hidden (abstract) to it.'},
+
+  // CH2
+  {ch:'ch2',q:'What is Computational Thinking?',a:'A method of studying a problem and formulating a solution that can be carried out using a computer.'},
+  {ch:'ch2',q:'What is Abstraction in Computational Thinking?',a:'The process of filtering out the characteristics NOT needed and focusing on those that ARE needed to solve the problem.'},
+  {ch:'ch2',q:'What is Decomposition in Computational Thinking?',a:'Breaking down a complex task into smaller, more manageable parts that are easier to understand and solve.'},
+  {ch:'ch2',q:'What is Pattern Recognition in Computational Thinking?',a:'Finding similarities or patterns among decomposed problems to help solve more complex problems more efficiently.'},
+  {ch:'ch2',q:'What is Algorithmic Thinking?',a:'A way of getting to a solution through clear, step-by-step definitions of the actions needed — designing a precise set of instructions.'},
+  {ch:'ch2',q:'What is an Algorithm?',a:'A list of well-defined, computer-implementable instructions to solve a problem. Like a recipe — each step is clear and unambiguous.'},
+  {ch:'ch2',q:'What does Big O notation measure?',a:'The amount of WORK (not speed) a program has to do based on the size of its input N. It describes how the number of steps grows as input size grows.'},
+  {ch:'ch2',q:'What is O(1) and what type of complexity is it?',a:'O(1) = Constant Complexity. The algorithm always takes the same number of steps regardless of input size. The BEST complexity. E.g. accessing array[0].'},
+  {ch:'ch2',q:'What is O(log n) and what algorithm uses it?',a:'O(log n) = Logarithmic Complexity. Steps grow very slowly — each step halves the problem. Binary Search uses O(log₂n). GOOD complexity.'},
+  {ch:'ch2',q:'What is O(n) and what algorithm uses it?',a:'O(n) = Linear Complexity. Steps grow proportionally to input size. Linear Search is O(n). FAIR complexity.'},
+  {ch:'ch2',q:'What is O(n²) and which sorting algorithms have it?',a:'O(n²) = Quadratic Complexity. Steps grow by the square of input. Bubble Sort, Selection Sort, and Insertion Sort are all O(n²). Makes them INEFFICIENT for large datasets.'},
+  {ch:'ch2',q:'Rank Big O complexities from BEST to WORST.',a:'O(1) → O(log n) → O(n) → O(n log n) → O(n²) → O(nᶜ) → O(cⁿ) → O(n!)'},
+  {ch:'ch2',q:'How does Linear Search work?',a:'It sequentially checks each element in a list one by one, comparing to the target. Returns the index if found, or -1 if not found. Does NOT require sorted data.'},
+  {ch:'ch2',q:'What is the pro and con of Linear Search?',a:'Pro: Data does NOT need to be sorted. Con: Slow — O(n) time complexity. As list grows, comparisons grow linearly.'},
+  {ch:'ch2',q:'How does Binary Search work?',a:'Find the middle element. If middle < target → search top half. If middle > target → search bottom half. If middle = target → found! Repeat until found or list exhausted.'},
+  {ch:'ch2',q:'What is the pro and con of Binary Search?',a:'Pro: Much faster — O(log₂n) time complexity. Con: Data MUST be sorted first.'},
+  {ch:'ch2',q:'How does Selection Sort work?',a:'Find the minimum value in the unsorted part, swap it to the first unsorted position. Repeat, expanding the sorted portion. Time complexity: O(n²).'},
+  {ch:'ch2',q:'How does Insertion Sort work?',a:'Virtually splits the list into sorted and unsorted halves. Takes each element from the unsorted part and inserts it into the correct position in the sorted part. Time complexity: O(n²).'},
+  {ch:'ch2',q:'How does Bubble Sort work?',a:'Compares adjacent pairs of elements and swaps if out of order. After each pass, the largest element "bubbles" to the end. Repeat until no swaps occur. Time complexity: O(n²).'},
+  {ch:'ch2',q:'How can Bubble Sort be made more efficient?',a:'By counting the number of swaps in each pass. If swaps = 0, the list is already sorted and the algorithm can stop early (before completing all n passes).'},
+  {ch:'ch2',q:'What are the 4 stages of the Computational Thinking Design Process?',a:'1. Investigate (define problem, identify users)\n2. Plan (research, surveys, experiments)\n3. Design (solution, prototype, flow diagrams)\n4. Create (combine hardware, code software)'},
+
+  // CH3
+  {ch:'ch3',q:'What is the difference between the Internet and the World Wide Web?',a:'The Internet is the physical network of connected computers (hardware) that carries all data. The WWW is a SERVICE that runs ON the internet — it is the collection of web pages. Email, FTP etc. also use the internet but are not the web.'},
+  {ch:'ch3',q:'What is a URL?',a:'URL = Uniform Resource Locator. It is the unique address of a web page (also called the web address). It contains the protocol, domain name, directory, and page name.'},
+  {ch:'ch3',q:'Name the 4 parts of a URL.',a:'1. Protocol (e.g. https://)\n2. Domain Name (e.g. www.irishtimes.com)\n3. Directory/Folder (e.g. /sport/soccer)\n4. Webpage name (e.g. /edinson-cavani)'},
+  {ch:'ch3',q:'What is a DNS?',a:'DNS = Domain Name Service. It converts human-friendly domain names (e.g. google.com) into machine-friendly IP addresses (e.g. 142.250.185.46).'},
+  {ch:'ch3',q:'What is an IP Address?',a:'A unique numerical label assigned to every device on a network. It identifies the device and its location on the internet so data can be routed to it (e.g. 192.168.1.1).'},
+  {ch:'ch3',q:'What are Protocols?',a:'A standard set of rules that computer systems follow to allow them to communicate, format, and process data. They govern speed, message size, error checking, and timing.'},
+  {ch:'ch3',q:'What is HTTP and what is it used for?',a:'HTTP = HyperText Transfer Protocol. Used to transfer web pages between a client browser and a web server. Web pages are in hypertext format.'},
+  {ch:'ch3',q:'What is HTTPS and how is it different from HTTP?',a:'HTTPS = HTTP Secure. Data is encrypted during transfer, so hackers cannot intercept or modify it. Used for secure transactions (banking, shopping, logins).'},
+  {ch:'ch3',q:'What is FTP?',a:'FTP = File Transfer Protocol. Used to send and receive files to/from a server. Supports all file types (programs, multimedia, text, documents).'},
+  {ch:'ch3',q:'What is SMTP?',a:'SMTP = Simple Mail Transfer Protocol. Used to send emails between mail servers.'},
+  {ch:'ch3',q:'What is VOIP?',a:'VOIP = Voice Over Internet Protocol. Used to deliver voice and multimedia communications over the internet (e.g. Zoom, Skype calls).'},
+  {ch:'ch3',q:'What does TCP do in TCP/IP?',a:'TCP (Transmission Control Protocol) breaks data into equal-sized packets, assigns sequence numbers and check digits, reassembles packets at the destination, and requests replacement for missing/corrupt packets.'},
+  {ch:'ch3',q:'What does IP do in TCP/IP?',a:'IP (Internet Protocol) gives each device a unique IP address, encapsulates packets with source and destination addresses, and routes the packets across the internet.'},
+  {ch:'ch3',q:'Name the 4 layers of the TCP/IP model from top to bottom.',a:'1. Application Layer (HTTP, HTTPS, FTP)\n2. Transport Layer (TCP, UDP)\n3. Internet Layer (IP)\n4. Data Link Layer (physical hardware)'},
+  {ch:'ch3',q:'What happens at the Application Layer of TCP/IP?',a:'Network applications such as web browsers and email programs operate here. Transfer protocols like HTTP, HTTPS, and FTP also operate at this layer.'},
+  {ch:'ch3',q:'What happens at the Transport Layer of TCP/IP?',a:'Sets up communication between devices — they agree on settings like "language" and packet size. TCP and UDP protocols operate here.'},
+  {ch:'ch3',q:'What happens at the Internet Layer of TCP/IP?',a:'Addresses and packages data for transmission, then routes packets across the network. The IP protocol operates here.'},
+  {ch:'ch3',q:'What is a Client-Server Network?',a:'A network where client workstations connect to a central dedicated server. The server stores data, manages resources, and controls access rights. Users must log in.'},
+  {ch:'ch3',q:'Give 2 advantages and 2 disadvantages of Client-Server networks.',a:'Advantages: More secure, easier to administrate centrally. Disadvantages: Server failure disrupts ALL computers, expensive to buy and maintain.'},
+  {ch:'ch3',q:'What is a Peer-to-Peer (P2P) network?',a:'A network where all computers (peers) are equal — there is no central server. Each peer connects directly to other peers. No computer controls another.'},
+  {ch:'ch3',q:'Give 2 advantages and 2 disadvantages of P2P networks.',a:'Advantages: No server cost, easier to set up. Disadvantages: Each computer needs own backups, potentially less secure (no central control).'},
+  {ch:'ch3',q:'What is a PAN?',a:'PAN = Personal Area Network. A network of devices within close distance of one person\'s workspace. Examples: connecting phone, laptop, and headphones via Bluetooth.'},
+  {ch:'ch3',q:'What is a LAN?',a:'LAN = Local Area Network. A network covering a small geographical area (one building). Examples: school network, home WiFi.'},
+  {ch:'ch3',q:'What is a WAN?',a:'WAN = Wide Area Network. A network covering a large geographical area. Can be made up of multiple LANs. Examples: multinational companies, banks, the internet.'},
+  {ch:'ch3',q:'What is Cloud Computing?',a:'The use of hardware and software to deliver services over the internet. Allows users to store and access data/programs from anywhere they can get online — not restricted to a local network.'},
+  {ch:'ch3',q:'What is IaaS?',a:'Infrastructure-as-a-Service. Businesses purchase storage and processing power over the cloud without physically buying or maintaining hardware. The provider handles backups. Example: AWS, Azure.'},
+  {ch:'ch3',q:'What is SaaS?',a:'Software-as-a-Service. Software hosted on cloud servers, downloaded when needed. Third-party provider keeps it up to date — no local installation required. Example: Microsoft 365, Google Docs.'},
+  {ch:'ch3',q:'Why might a government or bank use their OWN cloud server rather than a public cloud?',a:'Because they have extra data protection requirements and restrictions on the data they hold. Using public cloud services means sharing sensitive data with third-party providers, which raises privacy and security concerns.'},
+];
+
+let currentCards = [...ALL_CARDS];
+let currentIndex = 0;
+
+function filterCards(ch, btn) {
+  document.querySelectorAll('.flash-filter').forEach(b => b.className = 'flash-filter');
+  if (ch === 'all') { btn.className = 'flash-filter active-all'; currentCards = [...ALL_CARDS]; }
+  else { btn.className = `flash-filter active-${ch}`; currentCards = ALL_CARDS.filter(c => c.ch === ch); }
+  currentIndex = 0;
+  updateCard();
+}
+
+function updateCard() {
+  const card = currentCards[currentIndex];
+  document.getElementById('cardQuestion').textContent = card.q;
+  document.getElementById('cardAnswer').textContent = card.a;
+  const chLabels = {ch1:'📦 Chapter 1', ch2:'🧮 Chapter 2', ch3:'🌐 Chapter 3'};
+  const chClasses = {ch1:'fc-ch1', ch2:'fc-ch2', ch3:'fc-ch3'};
+  const lbl = document.getElementById('cardChapterLabel');
+  lbl.textContent = chLabels[card.ch];
+  lbl.className = `flash-chapter-label ${chClasses[card.ch]}`;
+  document.getElementById('cardCounter').textContent = `${currentIndex + 1} / ${currentCards.length}`;
+  document.getElementById('prevBtn').disabled = currentIndex === 0;
+  document.getElementById('nextBtn').disabled = currentIndex === currentCards.length - 1;
+  const pct = ((currentIndex + 1) / currentCards.length) * 100;
+  document.getElementById('progressBar').style.width = pct + '%';
+  // unflip
+  document.getElementById('mainCard').classList.remove('flipped');
+}
+
+function flipCard() { document.getElementById('mainCard').classList.toggle('flipped'); }
+function nextCard() { if (currentIndex < currentCards.length - 1) { currentIndex++; updateCard(); } }
+function prevCard() { if (currentIndex > 0) { currentIndex--; updateCard(); } }
+
+// keyboard navigation
+document.addEventListener('keydown', e => {
+  const fc = document.getElementById('flashcards');
+  if (!fc.classList.contains('active')) return;
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') nextCard();
+  if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') prevCard();
+  if (e.key === ' ') { e.preventDefault(); flipCard(); }
+});
+
+// initialise
+updateCard();
+</script>
+</body>
+</html>

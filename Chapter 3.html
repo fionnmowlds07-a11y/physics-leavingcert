@@ -1,0 +1,1476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LC Physical Education – Chapters 3A, 3B & 3C Study Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f4f7ff;
+    --surface: #ffffff;
+    --surface2: #edf0ff;
+    --border: #dce2f5;
+    --text: #1a1d2e;
+    --text-muted: #5a5f7a;
+    --ch3a: #5b6ef5;
+    --ch3a-light: #eef0ff;
+    --ch3b: #e8534a;
+    --ch3b-light: #fff1f0;
+    --ch3c: #2daa6e;
+    --ch3c-light: #edfaf3;
+    --accent5: #f7bc4f;
+    --accent4: #b44fc7;
+    --radius: 14px;
+    --shadow: 0 4px 20px rgba(91,110,245,0.09);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Lexend', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 17px;
+    line-height: 1.78;
+    min-height: 100vh;
+  }
+
+  /* ── NAV ── */
+  #topnav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.97);
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid var(--border);
+    padding: 0 20px;
+    display: flex; align-items: center; gap: 8px;
+    flex-wrap: wrap; min-height: 56px;
+  }
+  #topnav .logo { font-family: 'Lexend Mega', sans-serif; font-size: 0.98rem; color: var(--ch3a); margin-right: 6px; }
+  .nav-btn {
+    background: none; border: 2px solid var(--border);
+    color: var(--text-muted); font-family: 'Lexend', sans-serif;
+    font-size: 0.82rem; font-weight: 600; cursor: pointer;
+    border-radius: 20px; padding: 5px 14px; transition: all 0.17s;
+  }
+  .nav-btn:hover { background: var(--ch3a); border-color: var(--ch3a); color: #fff; }
+  .nav-btn.active-3a { background: var(--ch3a); border-color: var(--ch3a); color: #fff; }
+  .nav-btn.active-3b { background: var(--ch3b); border-color: var(--ch3b); color: #fff; }
+  .nav-btn.active-3c { background: var(--ch3c); border-color: var(--ch3c); color: #fff; }
+
+  /* ── LAYOUT ── */
+  .layout { display: flex; max-width: 1310px; margin: 0 auto; padding: 28px 16px; gap: 24px; }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    width: 242px; flex-shrink: 0;
+    position: sticky; top: 70px;
+    height: calc(100vh - 88px);
+    overflow-y: auto;
+    background: var(--surface);
+    border-radius: var(--radius);
+    border: 2px solid var(--border);
+    padding: 16px 12px;
+    box-shadow: var(--shadow);
+  }
+  #sidebar::-webkit-scrollbar { width: 4px; }
+  #sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+  .sb-heading {
+    font-size: 0.71rem; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--text-muted); padding: 8px 8px 4px;
+  }
+  .sb-link {
+    display: block; padding: 7px 10px; border-radius: 8px;
+    font-size: 0.84rem; color: var(--text-muted); cursor: pointer;
+    text-decoration: none; font-weight: 500; transition: all 0.14s;
+    border: none; background: none; width: 100%; text-align: left;
+  }
+  .sb-link:hover { background: var(--surface2); color: var(--text); }
+  .sb-link.act3a { background: var(--ch3a); color: #fff; }
+  .sb-link.act3b { background: var(--ch3b); color: #fff; }
+  .sb-link.act3c { background: var(--ch3c); color: #fff; }
+  .sb-div { height: 1px; background: var(--border); margin: 7px 0; }
+
+  /* ── CONTENT ── */
+  #content { flex: 1; min-width: 0; }
+  .chapter-panel { display: none; }
+  .chapter-panel.active { display: block; }
+
+  /* ── CHAPTER HEADER ── */
+  .ch-header {
+    border-radius: var(--radius); padding: 32px 36px; margin-bottom: 24px; color: #fff;
+  }
+  .ch-header.h3a { background: linear-gradient(135deg, #5b6ef5 0%, #8fa0ff 100%); }
+  .ch-header.h3b { background: linear-gradient(135deg, #e8534a 0%, #f08a84 100%); }
+  .ch-header.h3c { background: linear-gradient(135deg, #2daa6e 0%, #65cfa0 100%); }
+  .ch-header h1 { font-family: 'Lexend Mega', sans-serif; font-size: 1.55rem; margin-bottom: 6px; letter-spacing: -0.4px; }
+  .ch-header p { opacity: 0.9; font-size: 0.98rem; }
+
+  /* ── SECTION CARDS ── */
+  .sc {
+    background: var(--surface); border-radius: var(--radius);
+    border: 2px solid var(--border); padding: 28px 32px;
+    margin-bottom: 24px; box-shadow: var(--shadow);
+    scroll-margin-top: 78px;
+  }
+  .sc h2 { font-family: 'Lexend Mega', sans-serif; font-size: 1.08rem; margin-bottom: 18px; }
+  .sc.s3a h2 { color: var(--ch3a); }
+  .sc.s3b h2 { color: var(--ch3b); }
+  .sc.s3c h2 { color: var(--ch3c); }
+
+  h3 { font-size: 1.03rem; font-weight: 700; margin: 18px 0 8px; }
+  h4 { font-size: 0.96rem; font-weight: 700; color: var(--text-muted); margin: 13px 0 5px; }
+  p { margin-bottom: 10px; }
+  ul, ol { padding-left: 22px; margin-bottom: 10px; }
+  li { margin-bottom: 5px; }
+  strong { color: var(--text); }
+
+  /* ── DEF BOX ── */
+  .def {
+    border-left: 5px solid var(--ch3a);
+    background: var(--ch3a-light);
+    border-radius: 0 10px 10px 0;
+    padding: 13px 17px; margin: 13px 0;
+  }
+  .def.r { border-color: var(--ch3b); background: var(--ch3b-light); }
+  .def.g { border-color: var(--ch3c); background: var(--ch3c-light); }
+  .def.p { border-color: var(--accent4); background: #f8eeff; }
+  .def.y { border-color: var(--accent5); background: #fff9e8; }
+  .def-term { font-weight: 700; font-size: 1rem; display: block; margin-bottom: 4px; color: var(--ch3a); }
+  .def.r .def-term { color: var(--ch3b); }
+  .def.g .def-term { color: var(--ch3c); }
+  .def.p .def-term { color: var(--accent4); }
+  .def.y .def-term { color: #b08000; }
+  .def-text { font-size: 0.96rem; }
+
+  /* ── ANALOGY / MEMORY ── */
+  .analogy {
+    background: #fffbe8; border: 2px dashed var(--accent5);
+    border-radius: 10px; padding: 13px 17px; margin: 13px 0; font-size: 0.93rem;
+  }
+  .analogy-lbl { font-weight: 700; font-size: 0.77rem; text-transform: uppercase; letter-spacing: 0.07em; color: #b08000; margin-bottom: 4px; display: block; }
+  .memory {
+    background: #edfaf3; border: 2px dashed var(--ch3c);
+    border-radius: 10px; padding: 13px 17px; margin: 13px 0; font-size: 0.93rem;
+  }
+  .memory-lbl { font-weight: 700; font-size: 0.77rem; text-transform: uppercase; letter-spacing: 0.07em; color: #1a7a45; margin-bottom: 4px; display: block; }
+  .info {
+    background: var(--ch3a-light); border-radius: 10px;
+    padding: 13px 17px; margin: 13px 0; font-size: 0.93rem; border: 1.5px solid #c5cdf7;
+  }
+  .info-lbl { font-weight: 700; font-size: 0.81rem; color: var(--ch3a); margin-bottom: 4px; display: block; }
+  .warn {
+    background: var(--ch3b-light); border-radius: 10px;
+    padding: 13px 17px; margin: 13px 0; font-size: 0.93rem; border: 1.5px solid #f7b4b0;
+  }
+  .warn-lbl { font-weight: 700; font-size: 0.81rem; color: var(--ch3b); margin-bottom: 4px; display: block; }
+  .exam-tip {
+    background: linear-gradient(90deg, #fff3c4, #fff9e8);
+    border-left: 5px solid var(--accent5); border-radius: 0 10px 10px 0;
+    padding: 11px 16px; margin: 12px 0; font-size: 0.92rem;
+  }
+  .exam-tip::before { content: "✏️ Exam Tip: "; font-weight: 700; color: #b08000; }
+
+  /* ── CARDS ── */
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); gap: 13px; margin: 13px 0; }
+  .card { background: var(--surface2); border-radius: 10px; padding: 14px 16px; border: 1.5px solid var(--border); }
+  .card-t { font-weight: 700; margin-bottom: 5px; font-size: 0.94rem; color: var(--ch3a); }
+  .card.r .card-t { color: var(--ch3b); }
+  .card.g .card-t { color: var(--ch3c); }
+  .card.p .card-t { color: var(--accent4); }
+  .card.y .card-t { color: #b08000; }
+  .card p, .card ul { font-size: 0.89rem; color: var(--text-muted); }
+  .card ul { padding-left: 16px; }
+
+  /* ── TABLE ── */
+  table { width: 100%; border-collapse: collapse; margin: 13px 0; font-size: 0.91rem; }
+  th { padding: 10px 14px; text-align: left; font-weight: 600; }
+  th.t3a { background: var(--ch3a); color: #fff; }
+  th.t3b { background: var(--ch3b); color: #fff; }
+  th.t3c { background: var(--ch3c); color: #fff; }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:nth-child(even) td { background: var(--surface2); }
+
+  /* ── ACCORDION ── */
+  .acc { margin: 9px 0; }
+  .acc-h {
+    background: var(--surface2); border: 1.5px solid var(--border);
+    border-radius: 10px; padding: 12px 17px; cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center;
+    font-weight: 600; font-size: 0.94rem; transition: background 0.14s; user-select: none;
+  }
+  .acc-h:hover { background: #dde3ff; }
+  .acc-h .ai { font-size: 1.05rem; transition: transform 0.2s; }
+  .acc-h.open .ai { transform: rotate(90deg); }
+  .acc-b { display: none; padding: 14px 17px 4px; border: 1.5px solid var(--border); border-top: none; border-radius: 0 0 10px 10px; margin-top: -2px; }
+  .acc-b.open { display: block; }
+
+  /* ── STEP LIST ── */
+  .step-list { counter-reset: step; list-style: none; padding-left: 0; margin: 12px 0; }
+  .step-list li {
+    counter-increment: step; display: flex; gap: 14px; align-items: flex-start;
+    margin-bottom: 10px;
+  }
+  .step-list li::before {
+    content: counter(step); background: var(--ch3a); color: #fff;
+    font-weight: 700; font-size: 0.82rem; min-width: 26px; height: 26px;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px;
+  }
+  .step-list.r li::before { background: var(--ch3b); }
+  .step-list.g li::before { background: var(--ch3c); }
+
+  /* ── QUIZ ── */
+  .quiz-card {
+    background: var(--surface); border: 2px solid var(--border);
+    border-radius: var(--radius); padding: 22px 26px; margin: 15px 0; box-shadow: var(--shadow);
+  }
+  .quiz-q { font-weight: 700; margin-bottom: 13px; font-size: 1rem; }
+  .quiz-opts { display: flex; flex-direction: column; gap: 8px; }
+  .quiz-opt {
+    background: var(--surface2); border: 2px solid var(--border);
+    border-radius: 8px; padding: 10px 15px; cursor: pointer;
+    font-size: 0.92rem; transition: all 0.14s; text-align: left;
+    font-family: 'Lexend', sans-serif;
+  }
+  .quiz-opt:hover { border-color: var(--ch3a); background: var(--ch3a-light); }
+  .quiz-opt.correct { background: var(--ch3c-light); border-color: var(--ch3c); color: #1a5a35; font-weight: 600; }
+  .quiz-opt.wrong { background: var(--ch3b-light); border-color: var(--ch3b); color: #8a1a10; }
+  .quiz-fb { margin-top: 11px; font-size: 0.91rem; display: none; }
+  .quiz-fb.show { display: block; }
+  .quiz-next {
+    margin-top: 11px; background: var(--ch3a); color: #fff; border: none;
+    padding: 9px 22px; border-radius: 8px; cursor: pointer; font-family: 'Lexend', sans-serif;
+    font-weight: 600; font-size: 0.9rem; display: none; transition: opacity 0.14s;
+  }
+  .quiz-next:hover { opacity: 0.87; }
+  .quiz-next.show { display: inline-block; }
+  .quiz-score { font-size: 1.1rem; font-weight: 700; color: var(--ch3c); margin-top: 10px; }
+  .prog-bar { background: var(--border); border-radius: 8px; height: 8px; margin: 7px 0 16px; }
+  .prog-fill { height: 8px; border-radius: 8px; background: var(--ch3a); transition: width 0.4s; }
+
+  /* ── TAG ── */
+  .tag { display: inline-block; padding: 2px 10px; border-radius: 20px; font-size: 0.74rem; font-weight: 700; letter-spacing: 0.04em; margin: 2px 3px 2px 0; }
+  .tb { background: #dde3ff; color: var(--ch3a); }
+  .tr { background: #ffe0de; color: #a03030; }
+  .tg { background: #d5f7e8; color: #1a6e40; }
+
+  html { scroll-behavior: smooth; }
+  @media (max-width: 820px) {
+    #sidebar { display: none; }
+    .layout { padding: 14px 10px; }
+    .sc { padding: 18px 15px; }
+    .ch-header { padding: 22px 18px; }
+    .ch-header h1 { font-size: 1.2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP NAV -->
+<nav id="topnav">
+  <span class="logo">🏃 LC PE</span>
+  <button class="nav-btn active-3a" onclick="showCh('ch3a',this,'active-3a')">3A – Analysing Performance</button>
+  <button class="nav-btn" onclick="showCh('ch3b',this,'active-3b')">3B – Safe Practice</button>
+  <button class="nav-btn" onclick="showCh('ch3c',this,'active-3c')">3C – Coach &amp; Official</button>
+</nav>
+
+<div class="layout">
+<!-- SIDEBAR -->
+<aside id="sidebar">
+  <div id="sb3a">
+    <div class="sb-heading">📊 Chapter 3A</div>
+    <button class="sb-link" onclick="goTo('s3a-struct')">Structures &amp; Strategies</button>
+    <button class="sb-link" onclick="goTo('s3a-comp')">Compositional Elements</button>
+    <button class="sb-link" onclick="goTo('s3a-analysis')">Analysis &amp; Video Tools</button>
+    <button class="sb-link" onclick="goTo('s3a-rar')">RAR Method</button>
+    <button class="sb-link" onclick="goTo('s3a-demands')">Demands: Player/Coach/Official</button>
+    <button class="sb-link" onclick="goTo('s3a-roles')">Playing &amp; Non-Playing Roles</button>
+    <button class="sb-link" onclick="goTo('s3a-aesthetic')">Aesthetic vs Purposive Sports</button>
+    <button class="sb-link" onclick="goTo('s3a-quiz')">🧠 Quick Quiz</button>
+  </div>
+  <div id="sb3b" style="display:none">
+    <div class="sb-heading">🛡️ Chapter 3B</div>
+    <button class="sb-link onclick="goTo('s3b-intro')">Safe Practice Intro</button>
+    <button class="sb-link onclick="goTo('s3b-warmup')">Warm Up &amp; RAMP</button>
+    <button class="sb-link onclick="goTo('s3b-cooldown')">Cool Down</button>
+    <button class="sb-link onclick="goTo('s3b-injury')">Injury: Causes &amp; Types</button>
+    <button class="sb-link onclick="goTo('s3b-saltaps')">SALTAPS</button>
+    <button class="sb-link onclick="goTo('s3b-price')">PRICE Treatment</button>
+    <button class="sb-link onclick="goTo('s3b-concussion')">Concussion &amp; 6Rs</button>
+    <button class="sb-link onclick="goTo('s3b-equipment')">Equipment &amp; Clothing</button>
+    <button class="sb-link onclick="goTo('s3b-overtraining')">Overtraining &amp; RPE</button>
+    <button class="sb-link onclick="goTo('s3b-event')">Organising Events</button>
+    <button class="sb-link onclick="goTo('s3b-quiz')">🧠 Quick Quiz</button>
+  </div>
+  <div id="sb3c" style="display:none">
+    <div class="sb-heading">🎽 Chapter 3C</div>
+    <button class="sb-link onclick="goTo('s3c-role')">Role of the Coach</button>
+    <button class="sb-link onclick="goTo('s3c-interpersonal')">Interpersonal Skills</button>
+    <button class="sb-link onclick="goTo('s3c-qualities')">Qualities of a Good Coach</button>
+    <button class="sb-link onclick="goTo('s3c-goals')">Goal Setting (Long &amp; Short)</button>
+    <button class="sb-link onclick="goTo('s3c-reflection')">Reflection In/On Action</button>
+    <button class="sb-link onclick="goTo('s3c-official')">Role of the Official</button>
+    <button class="sb-link onclick="goTo('s3c-official-demands')">Official Demands</button>
+    <button class="sb-link onclick="goTo('s3c-assertive')">Assertive Communication</button>
+    <button class="sb-link onclick="goTo('s3c-conflict')">Managing Conflict</button>
+    <button class="sb-link onclick="goTo('s3c-quiz')">🧠 Quick Quiz</button>
+  </div>
+</aside>
+
+<!-- CONTENT -->
+<main id="content">
+
+<!-- ============================================================ -->
+<!--  CHAPTER 3A                                                  -->
+<!-- ============================================================ -->
+<div id="ch3a" class="chapter-panel active">
+  <div class="ch-header h3a">
+    <h1>📊 Chapter 3A: Analysing Performance in Sport</h1>
+    <p>Structures, strategies, compositional elements, analysis tools, roles and aesthetic sport – fully explained</p>
+  </div>
+
+  <!-- 1. STRUCTURES & STRATEGIES -->
+  <div class="sc s3a" id="s3a-struct">
+    <h2>1. Structures &amp; Strategies</h2>
+
+    <div class="def">
+      <span class="def-term">Structure</span>
+      <span class="def-text">A structure refers to the set-up of a physical activity, the format a competition follows, or how a team might be set up — i.e. formations. It answers the question: <strong>"How are we going to set up?"</strong></span>
+    </div>
+    <div class="analogy">
+      <span class="analogy-lbl">💡 Analogy</span>
+      Think of a structure like the blueprint of a house — it shows where all the rooms (players) are placed before anyone moves in. A 4-3-3 in soccer = 4 defenders, 3 midfielders, 3 forwards. The formation is set before kick-off.
+    </div>
+
+    <div class="def">
+      <span class="def-term">Strategy (Tactics)</span>
+      <span class="def-text">Strategies are tactics or game plans employed by a team or individual to try to maximise their chance of success. They are usually <strong>prearranged and rehearsed</strong>. It answers the question: <strong>"How are we going to play?"</strong></span>
+    </div>
+    <div class="analogy">
+      <span class="analogy-lbl">💡 Analogy</span>
+      If structure is the blueprint, strategy is the plan of HOW you'll live in the house — e.g. "We'll use the back door (counter-attack) when they press us high." Strategies respond to the opposition.
+    </div>
+
+    <div class="memory">
+      <span class="memory-lbl">🧠 Memory Trick</span>
+      <strong>S</strong>tructure = <strong>S</strong>et-up / Formation ("Where do we stand?")<br>
+      <strong>S</strong>trategy = <strong>S</strong>cheme / Tactics ("How do we play?")
+    </div>
+
+    <h3>Factors Considered When Choosing a Strategy</h3>
+    <ol class="step-list">
+      <li>Capabilities of each player on your own team (strengths &amp; weaknesses)</li>
+      <li>Capabilities of the opposition (their strengths &amp; weaknesses)</li>
+      <li>Conditions (weather, pitch surface)</li>
+      <li>Where the game is taking place (home or away)</li>
+      <li>Importance of the game</li>
+    </ol>
+
+    <h3>Examples of Strategy in Invasions Games</h3>
+    <div class="card-grid">
+      <div class="card"><div class="card-t">High Press</div><p>Force the opposition to play mistakes in their own half by pressuring them as soon as they get the ball.</p></div>
+      <div class="card"><div class="card-t">Beat the Press</div><p>Use short, quick passes or long diagonal balls to escape an opposition press.</p></div>
+      <div class="card"><div class="card-t">Counter-Attack</div><p>Soak up pressure defensively then quickly transition to attack when possession is won.</p></div>
+      <div class="card"><div class="card-t">Defending Strategies</div><p>E.g. deep block, man-marking, zonal marking — used to limit the opposition's scoring opportunities.</p></div>
+    </div>
+
+    <div class="exam-tip">Examiners love asking you to outline the structure AND strategy used in your chosen sport. Be ready with specific examples — name the formation AND the tactical plan.</div>
+  </div>
+
+  <!-- 2. COMPOSITIONAL ELEMENTS -->
+  <div class="sc s3a" id="s3a-comp">
+    <h2>2. Compositional Elements</h2>
+
+    <div class="def">
+      <span class="def-term">Composition</span>
+      <span class="def-text">Arranging a series of planned movements or skills in a specifically designed manner. Compositional elements are most important in aesthetic sports such as <strong>dance and gymnastics</strong>.</span>
+    </div>
+
+    <div class="memory">
+      <span class="memory-lbl">🧠 Memory Trick – The 4 Elements of Composition</span>
+      <strong>S-D-R-R</strong> = <strong>S</strong>pace · <strong>D</strong>ynamics · <strong>R</strong>hythm · <strong>R</strong>elationships<br>
+      Think: "Some Dancers Really Rock!"
+    </div>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-t">🌍 Space</div>
+        <p>Performers need to be aware of the space available to them and have a plan on how best to use it during a performance. Includes performing at different levels (high, medium, low).</p>
+      </div>
+      <div class="card r">
+        <div class="card-t">⚡ Dynamics</div>
+        <p>Used in contrast to slow movements. Explosive, strong movements requiring lots of energy. High rewards — looks impressive to those watching.</p>
+      </div>
+      <div class="card g">
+        <div class="card-t">🎵 Rhythm</div>
+        <p>The way in which skills or movement patterns are executed. Involves full control, flow and coordination. Movements link together smoothly and are aesthetically pleasing.</p>
+      </div>
+      <div class="card p">
+        <div class="card-t">🤝 Relationships</div>
+        <p>Performers must think about their relationship with space, objects (props), other performers and the audience. Trust and bonding are important.</p>
+      </div>
+    </div>
+
+    <div class="analogy">
+      <span class="analogy-lbl">💡 Analogy</span>
+      Think of a movie scene. <strong>Space</strong> = where the actors are positioned on set. <strong>Dynamics</strong> = the action sequences. <strong>Rhythm</strong> = how smoothly scenes flow together. <strong>Relationships</strong> = the chemistry between the cast.
+    </div>
+
+    <div class="exam-tip">You could be asked: "Explain two compositional elements and their importance in a named aesthetic activity." Pick two from SDRR and link to dance or gymnastics with specific examples.</div>
+  </div>
+
+  <!-- 3. ANALYSIS TOOLS -->
+  <div class="sc s3a" id="s3a-analysis">
+    <h2>3. Analysis of Performance &amp; Analysis Tools</h2>
+
+    <p>Analysis allows us to evaluate aspects of performance in great detail. It helps coaches and athletes make <strong>informed decisions</strong> about how to structure and strategise.</p>
+
+    <div class="def">
+      <span class="def-term">Video Analysis</span>
+      <span class="def-text">A technology-based tool used to assess a team's application of structures and strategies. Allows coaches to see how effectively tactics were carried out. Also used to analyse the formations and tactics used by opponents — enabling the team to plan and prepare specifically for the opposition.</span>
+    </div>
+
+    <h3>Methods of Analysis</h3>
+    <div class="card-grid">
+      <div class="card"><div class="card-t">📹 Video Analysis</div><p>Review footage of your own performance and the opposition. Tools like Hudl, Veo, Sportscode are commonly used.</p></div>
+      <div class="card"><div class="card-t">📡 GPS Trackers</div><p>Worn by players to track distance covered, speed, work rate and positioning during matches and training.</p></div>
+      <div class="card"><div class="card-t">📋 Statistical Sheets</div><p>Record data such as possession %, tackles, shots on target, pass completion rates.</p></div>
+      <div class="card"><div class="card-t">💬 Discussion</div><p>Conversations with coaches and teammates to reflect on performance and identify key areas for improvement.</p></div>
+      <div class="card"><div class="card-t">🪞 Self-Reflection</div><p>Athletes evaluate their own execution of tactics and strategies, assessing what worked and what didn't.</p></div>
+    </div>
+
+    <h3>Analysis of Opponents</h3>
+    <p>Coaches and athletes will often conduct video analysis of an opposition team to identify their <strong>strengths and weaknesses</strong>. This enables a team to put a plan in place to exploit a weakness in the opposition (structure, strategy or individual player).</p>
+
+    <div class="info">
+      <span class="info-lbl">📌 Why Analyse?</span>
+      Analysis allows you to make informed decisions about how you set up and how you play. Without analysis, a team is essentially going into a match blind.
+    </div>
+  </div>
+
+  <!-- 4. RAR METHOD -->
+  <div class="sc s3a" id="s3a-rar">
+    <h2>4. The RAR Method – Modifying Structures &amp; Strategies</h2>
+
+    <p>During a game, things don't always go to plan. Coaches must be ready to <strong>modify their structures and strategies mid-performance</strong>. The <strong>RAR method</strong> is a framework for doing this.</p>
+
+    <div class="def">
+      <span class="def-term">RAR Method</span>
+      <span class="def-text">A systematic approach to modifying structures and strategies during performance. Stands for: <strong>Recognise → Anticipate → React</strong>. If changes aren't working, the method is repeated.</span>
+    </div>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-t">R – Recognise</div>
+        <p>Constantly consider what is working well and what might need changing. Recognise strengths and weaknesses as they emerge during play.</p>
+      </div>
+      <div class="card r">
+        <div class="card-t">A – Anticipate</div>
+        <p>Think ahead — what might happen if everything stays the same? What might happen if changes are made? Weigh up options.</p>
+      </div>
+      <div class="card g">
+        <div class="card-t">R – React</div>
+        <p>After recognising issues and anticipating outcomes, REACT and take action — by changing the structure, strategy or personnel involved.</p>
+      </div>
+    </div>
+
+    <div class="analogy">
+      <span class="analogy-lbl">💡 Analogy</span>
+      Think of a GPS app rerouting when there's traffic. It <strong>Recognises</strong> the jam, <strong>Anticipates</strong> how long it'll take if you stay on that road, then <strong>Reacts</strong> by directing you a new way. If the new route is also jammed — it repeats the process!
+    </div>
+
+    <div class="memory">
+      <span class="memory-lbl">🧠 Memory Trick</span>
+      <strong>RAR</strong> = like a lion's roar! Recognise → Anticipate → React 🦁<br>
+      If it doesn't work — ROAR again (repeat the process)
+    </div>
+  </div>
+
+  <!-- 5. DEMANDS -->
+  <div class="sc s3a" id="s3a-demands">
+    <h2>5. Demands Placed on Players, Coaches &amp; Officials</h2>
+    <p>There are physical, personal and technical demands placed on all individuals involved in sport. These demands differ depending on the role and the activity.</p>
+
+    <table>
+      <tr>
+        <th class="t3a">Demand Type</th>
+        <th class="t3a">Player</th>
+        <th class="t3a">Coach</th>
+        <th class="t3a">Official</th>
+      </tr>
+      <tr>
+        <td><strong>Physical</strong></td>
+        <td>Must meet the health and performance-related fitness levels necessary for their sport. Must remain injury free and healthy.</td>
+        <td>Must remain healthy and in good enough shape to attend all sessions and matches to guide and support performers.</td>
+        <td>Must meet the performance-related fitness levels necessary to carry out their specific officiating role.</td>
+      </tr>
+      <tr>
+        <td><strong>Personal</strong></td>
+        <td>Huge time commitments — organised practices, matches, extra time to perfect skills, travel, team bonding. May lead to missing social events and holidays.</td>
+        <td>Often voluntary — gives up free time after work/weekends. Analysis and planning take time over and above training sessions and matches.</td>
+        <td>Often voluntary — must give up free time. Lack of qualified officials means they must often travel great distances. Must avoid bias.</td>
+      </tr>
+      <tr>
+        <td><strong>Technical</strong></td>
+        <td>Specific skillset required for specific positions (e.g. goalkeeping, free-taking). Different techniques required for each activity.</td>
+        <td>Choosing correct structures and strategies is vital. Effective coaching strategies, decision making and planning are all important.</td>
+        <td>Excellent knowledge of the rules of the game. Must know how to enforce rules effectively. Must communicate well with players and coaches.</td>
+      </tr>
+    </table>
+    <div class="exam-tip">Exam question: "Outline the demands placed on players, coaches and officials in your chosen sport — include physical, personal and technical demands." Prepare at least two specific points per cell above for your sport.</div>
+  </div>
+
+  <!-- 6. PLAYING & NON-PLAYING ROLES -->
+  <div class="sc s3a" id="s3a-roles">
+    <h2>6. Playing &amp; Non-Playing Roles</h2>
+
+    <p>Performers may be asked to adopt specific <strong>playing roles</strong> during performance. The coach assigns these based on the player's physical and technical capacity — to improve the team's chances of success.</p>
+
+    <div class="def">
+      <span class="def-term">Non-Playing Roles</span>
+      <span class="def-text">Roles carried out to optimise the performance of those taking part, without directly competing. These include coaches, officials, team managers, physiotherapists, sports psychologists, sports scientists, nutritionists, video analysts, team captains, kit managers and medical staff.</span>
+    </div>
+
+    <div class="info">
+      <span class="info-lbl">🔍 Examples of Playing Roles</span>
+      In soccer: goalkeeper, sweeper, playmaker, pressing midfielder, target striker.<br>
+      In GAA: sweeper, kickout taker, freetaker, middle third operator.
+    </div>
+
+    <div class="analogy">
+      <span class="analogy-lbl">💡 Analogy</span>
+      Think of a movie production. The actors are like <strong>players</strong> — they're on screen. The director is like the <strong>coach</strong>. The camera crew, sound engineers, and editors are all <strong>non-playing roles</strong> — none of them appear in the film, but without them there is no film!
+    </div>
+  </div>
+
+  <!-- 7. AESTHETIC vs PURPOSIVE -->
+  <div class="sc s3a" id="s3a-aesthetic">
+    <h2>7. Aesthetic vs Purposive Sports</h2>
+
+    <div class="def">
+      <span class="def-term">Purposive Sports</span>
+      <span class="def-text">Sports where the outcome of the skill is most important — NOT how it looks. The aesthetic quality of movements is not as important as the outcome. There is no added reward for beautiful technique. Examples: football, rugby, athletics. (May not directly impact results — which often makes them exciting!)</span>
+    </div>
+
+    <div class="def g">
+      <span class="def-term">Aesthetic Sports</span>
+      <span class="def-text">Sports where the artistry of movement and aesthetics are central to performance. The aesthetic/artistic criteria forms the primary part of the scoring system during competition. Athletes are judged on the quality of their movements as well as their execution. Examples: gymnastics, figure skating, synchronised swimming, diving, dance.</span>
+    </div>
+
+    <div class="memory">
+      <span class="memory-lbl">🧠 Memory Trick</span>
+      <strong>Purposive</strong> = has a <strong>purpose</strong> (score a goal, cross the line — result matters, not looks!)<br>
+      <strong>Aesthetic</strong> = like <strong>aesthetics</strong> = beauty is the point!
+    </div>
+
+    <h3>Scoring in Aesthetic Sports</h3>
+    <div class="def g">
+      <span class="def-term">Subjective Scoring</span>
+      <span class="def-text">In aesthetic sports, performance is judged on different categories — which can differ for each sport. Scoring is <strong>subjective</strong> (based on the judge's opinion/interpretation). Common categories include: Technical Execution and Degree of Difficulty.</span>
+    </div>
+
+    <div class="info">
+      <span class="info-lbl">🤸 Artistic Gymnastics Scoring – D Score &amp; E Score</span>
+      <ul>
+        <li><strong>D Score (Difficulty Score):</strong> Takes the movements/elements performed into consideration, awarding each a score between 0.1 and 0.8. The more difficult the routine, the higher the D score.</li>
+        <li><strong>E Score (Execution Score):</strong> Each athlete starts with 10.0 and has points <em>deducted</em> for any mistakes made during the performance.</li>
+        <li>The <strong>highest combined D + E score wins</strong> the event.</li>
+      </ul>
+    </div>
+
+    <h3>Evaluating Aesthetic Performance</h3>
+    <ul>
+      <li>Coaches use video analysis tools (e.g. Hudl) to examine the aesthetic and artistic elements.</li>
+      <li>The aesthetic criteria for each sport helps athletes and coaches determine how to plan, prepare and train for maximum success.</li>
+      <li>Training plans and feedback must take both technical AND artistic elements into consideration.</li>
+    </ul>
+
+    <div class="exam-tip">Be ready to compare purposive and aesthetic sports with an example from each. Also know how scores are calculated in ONE named aesthetic sport (e.g. gymnastics D+E score).</div>
+  </div>
+
+  <!-- 3A QUIZ -->
+  <div class="sc s3a" id="s3a-quiz">
+    <h2>🧠 Chapter 3A Quick Quiz</h2>
+    <div id="quiz-3a"></div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!--  CHAPTER 3B                                                  -->
+<!-- ============================================================ -->
+<div id="ch3b" class="chapter-panel">
+  <div class="ch-header h3b">
+    <h1>🛡️ Chapter 3B: Safe Practice in Sport</h1>
+    <p>Warm-up, injury prevention, SALTAPS, PRICE, concussion, overtraining and organising events</p>
+  </div>
+
+  <!-- INTRO -->
+  <div class="sc s3b" id="s3b-intro">
+    <h2>1. Safe Practice in Sport – Introduction</h2>
+    <div class="def r">
+      <span class="def-term">Safe Practice</span>
+      <span class="def-text">The action of putting procedures in place to ensure the safety of all stakeholders involved in a sporting event or activity.</span>
+    </div>
+    <h3>Key Considerations for Reducing Risk of Injury</h3>
+    <div class="card-grid">
+      <div class="card r"><div class="card-t">👕 Clothing</div><p>Appropriate clothing should be worn, including correct footwear and no jewellery.</p></div>
+      <div class="card r"><div class="card-t">🏑 Equipment</div><p>Suitable equipment must be used and maintained to a safe standard.</p></div>
+      <div class="card r"><div class="card-t">🏟️ Facilities</div><p>Facilities should be safe and hazard-free. Playing surfaces must be checked.</p></div>
+      <div class="card r"><div class="card-t">🔥 Warm Up / Cool Down</div><p>All athletes should know how to warm up and cool down properly before and after activity.</p></div>
+    </div>
+  </div>
+
+  <!-- WARM UP & RAMP -->
+  <div class="sc s3b" id="s3b-warmup">
+    <h2>2. Warm Up &amp; The RAMP Method</h2>
+
+    <div class="def r">
+      <span class="def-term">Warm Up</span>
+      <span class="def-text">A preparatory phase of exercise completed before the main activity to help avoid injury and improve performance. Warming up increases body temperature and blood flow, which circulates more oxygen and nutrients to the muscles. Warm-ups can take from 10–40 minutes. There are 3 common features: <strong>pulse-raising activity, stretching/mobility, and sport-specific activities.</strong></span>
+    </div>
+
+    <h3>Benefits of Warming Up</h3>
+    <ul>
+      <li>Increased blood flow and metabolism (converting food into energy)</li>
+      <li>Increased body temperature</li>
+      <li>Increased oxygen intake due to gradual increase in heart rate</li>
+      <li>Increased muscle elasticity; connective tissue resistance decreases</li>
+      <li>Reduced muscle tension</li>
+      <li>Reduced muscle soreness and risk of injury</li>
+      <li>Increased focus and mental readiness for activity</li>
+      <li>Enables the body to adapt to harsh conditions more easily</li>
+    </ul>
+
+    <div class="def r">
+      <span class="def-term">Metabolism</span>
+      <span class="def-text">The process of converting food into energy. A raised metabolism during warm-up means the body is ready to produce energy more efficiently during exercise.</span>
+    </div>
+
+    <h3>Static vs Dynamic Stretching in Warm-Up</h3>
+    <div class="card-grid">
+      <div class="card"><div class="card-t">Dynamic Stretching ✅ (Preferred for warm-up)</div><p>Active movements taking joints through full range of motion. Mimics sport-specific movements. <strong>Used BEFORE activity.</strong> Prepares muscles for action.</p></div>
+      <div class="card r"><div class="card-t">Static Stretching ⚠️ (Not ideal before activity)</div><p>Holding a stretch to near maximal length. Can cause a protective muscle contraction response if done before exercise — may reduce power output. <strong>Best saved for AFTER activity</strong> when flexibility gains can be made.</p></div>
+    </div>
+
+    <h3>The RAMP Warm-Up (3 × 5-minute stages)</h3>
+    <div class="memory">
+      <span class="memory-lbl">🧠 Memory Trick</span>
+      <strong>R-A-M-P</strong> = <strong>R</strong>aise → <strong>A</strong>ctivate &amp; Mobilise → <strong>P</strong>otentiate<br>
+      Think: "We RAMP UP to full intensity!" — the body is like a car engine, you don't rev it to max immediately!
+    </div>
+
+    <div class="acc">
+      <div class="acc-h" onclick="toggleAcc(this)">🔴 R – Raise <span class="ai">▶</span></div>
+      <div class="acc-b">
+        <div class="def r">
+          <span class="def-term">Raise</span>
+          <span class="def-text">First phase of the warm-up. Focus is on raising blood flow, muscle temperature, core temperature and muscle elasticity using low-intensity movements. Movements should be multidirectional, involve stopping and starting, and changes of pace.</span>
+        </div>
+        <p>Examples: light jogging, side-shuffles, skipping, dynamic walking.</p>
+      </div>
+    </div>
+
+    <div class="acc">
+      <div class="acc-h" onclick="toggleAcc(this)">🟠 A – Activate &amp; Mobilise <span class="ai">▶</span></div>
+      <div class="acc-b">
+        <div class="def r">
+          <span class="def-term">Activate &amp; Mobilise</span>
+          <span class="def-text">Aim is to activate key muscle groups and mobilise key joints and ranges of motion. Important to identify the key movement patterns involved in the sport. Achieved through dynamic stretches and mobilisation activities.</span>
+        </div>
+        <p>Examples: mini band routines, squats, lunges, high kicks, T push-ups, sumo shuffles, spinal mobility, balance work, rotation exercises.</p>
+      </div>
+    </div>
+
+    <div class="acc">
+      <div class="acc-h" onclick="toggleAcc(this)">🟢 P – Potentiate <span class="ai">▶</span></div>
+      <div class="acc-b">
+        <div class="def r">
+          <span class="def-term">Potentiate</span>
+          <span class="def-text">Gradually increasing the stress on the body using sport-specific exercises in preparation for the upcoming activity. <em>Potentiate means to improve or increase the effectiveness of something.</em></span>
+        </div>
+        <p>Examples: small-sided possession games, practising set plays, weighted squats, sprint drills.</p>
+        <div class="analogy">
+          <span class="analogy-lbl">💡 Analogy</span>
+          Potentiate = like a rocket launch — you don't go from 0 to full thrust instantly. You gradually increase power until you're ready to blast off at full intensity for your sport!
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COOL DOWN -->
+  <div class="sc s3b" id="s3b-cooldown">
+    <h2>3. Cool Down</h2>
+
+    <div class="def r">
+      <span class="def-term">Cool Down</span>
+      <span class="def-text">The phase after exercise aimed at gradually decreasing the heart rate and relaxing muscles. An effective cool down should restore the body to its original pre-exercise state. It should consist of: <strong>5 minutes of low-intensity exercise</strong> (jogging, medium-paced walking) followed by <strong>5–10 minutes of static stretching</strong> (hold each stretch for 30 seconds).</span>
+    </div>
+
+    <h3>Benefits of an Effective Cool Down</h3>
+    <ul>
+      <li>Helps dispose of <strong>lactic acid</strong> — if allowed to build up, it can cause cramping and stiffness</li>
+      <li>Reduces chances of dizziness or fainting caused by the pooling of venous blood in the limbs</li>
+      <li>Reduced risk of <strong>DOMS</strong> (Delayed Onset Muscle Soreness)</li>
+      <li>Reduces risk of injury</li>
+      <li>Provides the performer with an opportunity to gather their emotions and calm themselves</li>
+    </ul>
+
+    <div class="def r">
+      <span class="def-term">DOMS – Delayed Onset Muscle Soreness</span>
+      <span class="def-text">The pain and stiffness felt in muscles several hours to days after strenuous exercise. Caused by microscopic tears in muscle fibres. A proper cool-down (and static stretching) helps reduce the severity of DOMS.</span>
+    </div>
+
+    <div class="analogy">
+      <span class="analogy-lbl">💡 Analogy</span>
+      Not cooling down after exercise is like driving your car at 100km/h and suddenly switching off the engine — instead of gradually slowing down. The cool down is the process of gently braking to a stop!
+    </div>
+  </div>
+
+  <!-- INJURY -->
+  <div class="sc s3b" id="s3b-injury">
+    <h2>4. Sports Injuries – Causes &amp; Types of Force</h2>
+
+    <p>Injuries can occur when: force is applied too quickly, too much force is placed on the body, or the body isn't ready for an impact or specific stress.</p>
+
+    <div class="def r">
+      <span class="def-term">Internal Force (Non-Contact Injuries)</span>
+      <span class="def-text">When sudden, powerful bodily movements cause a tear or strain in a muscle or tendon — without any external contact. The force comes from within the body itself. Examples: hamstring tear during a sprint, calf strain.</span>
+    </div>
+
+    <div class="def r">
+      <span class="def-term">External Force (Contact Injuries)</span>
+      <span class="def-text">Injuries caused by forces outside the body. There are two types:
+      <br><strong>(i) Impact from someone/something:</strong> The athlete collides with another person or object (post, ground) resulting in cuts, sprains, fractures, dislocations or concussion.
+      <br><strong>(ii) The environment:</strong> Extreme heat can cause dehydration; cold conditions can cause hypothermia.</span>
+    </div>
+
+    <div class="memory">
+      <span class="memory-lbl">🧠 Memory Trick</span>
+      <strong>Internal</strong> = <strong>Inside</strong> the body causes it (muscle tears itself)<br>
+      <strong>External</strong> = <strong>Outside</strong> force causes it (someone hits you / environment)
+    </div>
+  </div>
+
+  <!-- SALTAPS -->
+  <div class="sc s3b" id="s3b-saltaps">
+    <h2>5. SALTAPS – Injury Assessment Protocol</h2>
+
+    <div class="def r">
+      <span class="def-term">SALTAPS</span>
+      <span class="def-text">A systematic, step-by-step injury assessment protocol used on the field of play to evaluate the severity of an injury before deciding on next steps. In the event of a serious injury, always notify a coach or qualified professional. If medical intervention is needed, call an ambulance immediately.</span>
+    </div>
+
+    <div class="memory">
+      <span class="memory-lbl">🧠 Memory Trick</span>
+      <strong>S-A-L-T-A-P-S</strong> = <strong>S</strong>top/See → <strong>A</strong>sk → <strong>L</strong>ook → <strong>T</strong>ouch → <strong>A</strong>ctive Movement → <strong>P</strong>assive Movement → <strong>S</strong>trength Test<br>
+      "Some Athletes Love Tasting All Performance Stats!"
+    </div>
+
+    <table>
+      <tr><th class="t3b">Letter</th><th class="t3b">Step</th><th class="t3b">What you do</th></tr>
+      <tr><td><strong>S</strong></td><td>Stop / See</td><td>See the injury occur. Assess the situation and stop play to assess the player.</td></tr>
+      <tr><td><strong>A</strong></td><td>Ask</td><td>Ask for consent — what happened? Get a detailed history. Did anyone see it? Evaluate for pain using facial expression and posture. Can they talk clearly?</td></tr>
+      <tr><td><strong>L</strong></td><td>Look</td><td>Look at the limb and appearance of the injury site. Check for bleeding, discolouration, bruising, swelling, bone/joint deformity, muscle spasms.</td></tr>
+      <tr><td><strong>T</strong></td><td>Touch</td><td>Touch the injury site if the casualty allows. Press gently to find the site of pain and note any response.</td></tr>
+      <tr><td><strong>A</strong></td><td>Active Movement</td><td>Can the player move the limb painlessly through a full range of movement on their own?</td></tr>
+      <tr><td><strong>P</strong></td><td>Passive Movement</td><td>Ask the player to relax their limb. The first aider moves the joint through its range of motion. Pain at this point may indicate a ligament or tendon injury — seek medical advice.</td></tr>
+      <tr><td><strong>S</strong></td><td>Strength Test</td><td>Progressive function test — move against resistance. Get the player to stand, then gradually weight-bear and walk/run on the injured limb. Look for guarding (masking pain).</td></tr>
+    </table>
+
+    <div class="exam-tip">SALTAPS is a very popular exam question. Be able to explain each letter in your own words with what you would specifically observe or do for each step.</div>
+  </div>
+
+  <!-- PRICE -->
+  <div class="sc s3b" id="s3b-price">
+    <h2>6. PRICE Treatment</h2>
+
+    <div class="def r">
+      <span class="def-term">PRICE Treatment</span>
+      <span class="def-text">A first aid treatment protocol used for minor injuries such as sprains and strains. Should be applied as soon as possible after a minor injury occurs.</span>
+    </div>
+
+    <div class="memory">
+      <span class="memory-lbl">🧠 Memory Trick</span>
+      <strong>P-R-I-C-E</strong> = <strong>P</strong>rotection → <strong>R</strong>est → <strong>I</strong>ce → <strong>C</strong>ompression → <strong>E</strong>levation<br>
+      "Please Rest In Comfortable Elevation!" 🛏️
+    </div>
+
+    <div class="card-grid">
+      <div class="card r"><div class="card-t">P – Protection</div><p>Prevent the injured area from suffering further damage. Use crutches, splints, supports, slings or braces.</p></div>
+      <div class="card r"><div class="card-t">R – Rest</div><p>Reduce level of physical activity so the injured area has time to settle and heal.</p></div>
+      <div class="card r"><div class="card-t">I – Ice</div><p>Apply ice to reduce the inflammation caused by the injury. Use a cloth between ice and skin to prevent ice burns.</p></div>
+      <div class="card r"><div class="card-t">C – Compression</div><p>Crepe bandages are most suited for compression. Important to limit swelling and increase circulation.</p></div>
+      <div class="card r"><div class="card-t">E – Elevation</div><p>Keep the injured area above the heart. Limits blood flow to the area and encourages venous return, reducing swelling.</p></div>
+    </div>
+
+    <div class="analogy">
+      <span class="analogy-lbl">💡 Analogy</span>
+      Think of PRICE like putting out a fire in a building. <strong>Protection</strong> = evacuate the area. <strong>Rest</strong> = stop fanning the flames. <strong>Ice</strong> = pour water on it. <strong>Compression</strong> = seal it off. <strong>Elevation</strong> = tilt away so it can't spread back down!
+    </div>
+  </div>
+
+  <!-- CONCUSSION -->
+  <div class="sc s3b" id="s3b-concussion">
+    <h2>7. Concussion &amp; The 6 R's</h2>
+
+    <div class="def r">
+      <span class="def-term">Concussion</span>
+      <span class="def-text">A mild traumatic injury to the brain. It can occur after an impact to the head or a whiplash-type injury that causes the head and brain to shake quickly back and forth. A concussion results in an <strong>altered mental state</strong> that may include becoming unconscious. Recognising concussion for younger athletes is especially important — it usually takes young people <strong>longer to recover</strong> than adults.</span>
+    </div>
+
+    <div class="warn">
+      <span class="warn-lbl">⚠️ Never Return to Play!</span>
+      Any athlete suspected of having a concussion must be removed from play immediately and must NOT return until fully cleared by a healthcare professional. "If in doubt, sit them out."
+    </div>
+
+    <div class="memory">
+      <span class="memory-lbl">🧠 Memory Trick – The 6 R's of Concussion</span>
+      <strong>Recognise → Remove → Refer → Rest → Recover → Return</strong><br>
+      "Really Remove Refs, Rest, Recover Right!"
+    </div>
+
+    <table>
+      <tr><th class="t3b">R</th><th class="t3b">Step</th><th class="t3b">What it means</th></tr>
+      <tr><td><strong>1. Recognise</strong></td><td>Learn the signs &amp; symptoms</td><td>Symptoms include: dizziness, headache, confusion, nausea, memory loss, sensitivity to light, blurred vision, loss of consciousness.</td></tr>
+      <tr><td><strong>2. Remove</strong></td><td>Remove from play</td><td>If an athlete has a concussion or suspected concussion, they must be immediately removed from play.</td></tr>
+      <tr><td><strong>3. Refer</strong></td><td>Refer to healthcare professional</td><td>The athlete must be assessed by a qualified healthcare professional (doctor).</td></tr>
+      <tr><td><strong>4. Rest</strong></td><td>Rest until symptom-free</td><td>The athlete must rest until all symptoms are gone before beginning return-to-play protocols.</td></tr>
+      <tr><td><strong>5. Recover</strong></td><td>Full recovery required</td><td>Adults: minimum 2 weeks before returning to play. Children/younger athletes: minimum 3 weeks.</td></tr>
+      <tr><td><strong>6. Return</strong></td><td>Return to play (with clearance)</td><td>In rugby, the athlete must be symptom-free AND cleared to play by a healthcare professional before returning.</td></tr>
+    </table>
+  </div>
+
+  <!-- EQUIPMENT & CLOTHING -->
+  <div class="sc s3b" id="s3b-equipment">
+    <h2>8. Equipment &amp; Clothing for Injury Prevention</h2>
+
+    <p>When attempting to stay injury free, athletes must consider three main factors: <strong>Equipment, Clothing, and Facilities</strong>.</p>
+
+    <div class="acc">
+      <div class="acc-h" onclick="toggleAcc(this)">🪖 Equipment <span class="ai">▶</span></div>
+      <div class="acc-b">
+        <div class="card-grid">
+          <div class="card r"><div class="card-t">Helmets</div><p>Minimise head and brain injuries. Used in hurling/camogie, boxing, American football, cycling, skiing, baseball.</p></div>
+          <div class="card r"><div class="card-t">Protective Eyewear</div><p>Sunglasses with ultraviolet filter for skiers, runners, cyclists, triathletes — protects eyes from weather conditions.</p></div>
+          <div class="card r"><div class="card-t">Mouthguards/Gumshields</div><p>Protect the mouth, lips, teeth and gums in contact sports. Required in GAA, boxing, hockey, rugby, squash.</p></div>
+          <div class="card r"><div class="card-t">Pads &amp; Guards</div><p>Reduce impact injuries in contact sports. Used in hockey, rugby, volleyball (knee pads). E.g. shoulder pads, chest guards.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc">
+      <div class="acc-h" onclick="toggleAcc(this)">👕 Clothing <span class="ai">▶</span></div>
+      <div class="acc-b">
+        <div class="def r">
+          <span class="def-term">Shin Pads</span>
+          <span class="def-text">Worn to support and protect shins and ankles, preventing injuries such as fractures and sprains. Used in soccer, hurling/camogie and hockey.</span>
+        </div>
+        <div class="def r">
+          <span class="def-term">Knee, Ankle, Wrist &amp; Thigh Supports</span>
+          <span class="def-text">Worn to offer additional protection to joints that may have been weakened through past injury. May help to stabilise the joint and prevent further injury.</span>
+        </div>
+        <div class="def r">
+          <span class="def-term">Compression Clothing</span>
+          <span class="def-text">Studies show compression clothing can: prevent excessive muscle vibration, reduce fatigue, help with blood circulation, reduce risk of DOMS, and provide comfort during training. Examples: sleeves, socks, shorts, tights, underwear.</span>
+        </div>
+        <p><strong>General rules:</strong> Jewellery should always be removed, hair tied back, laces tied — essential to prevent injury. Appropriate footwear (e.g. football boots with correct studs, basketball runners) helps reduce injury risk.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- OVERTRAINING & RPE -->
+  <div class="sc s3b" id="s3b-overtraining">
+    <h2>9. Overtraining &amp; Rate of Perceived Exertion (RPE)</h2>
+
+    <div class="def r">
+      <span class="def-term">Overtraining (OTS – Overtraining Syndrome)</span>
+      <span class="def-text">An imbalance between training loads and recovery time. Can lead to dramatic performance decreases. Occurs when the body doesn't have sufficient rest to adapt to training demands. 40% of muscular endurance can be lost over an 8-week period when training stops — which highlights the importance of staying injury free and avoiding OTS.</span>
+    </div>
+
+    <div class="def r">
+      <span class="def-term">Overreaching</span>
+      <span class="def-text">A temporary condition that occurs in response to heavy training or intense loads. Has a negative impact on the athlete and their performance levels. Common causes include quick increases in the frequency, intensity or duration of training sessions without allowing for necessary recovery time.</span>
+    </div>
+
+    <div class="analogy">
+      <span class="analogy-lbl">💡 Analogy</span>
+      Overtraining is like constantly revving your car engine in the red zone. Eventually something breaks — and fixing it takes far longer than if you'd just looked after it properly!
+    </div>
+
+    <h3>Symptoms of Overtraining Syndrome (OTS)</h3>
+    <div class="warn">
+      <span class="warn-lbl">⚠️ Warning Signs of OTS</span>
+      <ul>
+        <li>Decreased performance</li>
+        <li>Increased perceived effort during workouts</li>
+        <li>Excessive fatigue</li>
+        <li>Agitation and moodiness</li>
+        <li>Insomnia or restless sleep</li>
+        <li>Loss of appetite</li>
+        <li>Chronic or nagging injuries</li>
+        <li>Metabolic imbalances</li>
+        <li>Psychological stress and/or depression</li>
+      </ul>
+    </div>
+
+    <h3>Strategies to Prevent OTS</h3>
+    <ol class="step-list r">
+      <li><strong>Incorporate Recovery Time:</strong> At least one rest day per week. Include a mix of easier workouts throughout the week to allow gradual recovery.</li>
+      <li><strong>Prioritise Nutrition:</strong> Carbs for energy; protein to help muscle recovery; healthy fats to support hormone function, brain and nervous system. Supplements may also be useful.</li>
+      <li><strong>Plan and Keep a Training Diary:</strong> Track how you feel before, during and after workouts. Record fatigue levels, sleep quality, nutrition and training load. By documenting this, athletes can identify patterns that aid or hinder performance.</li>
+    </ol>
+
+    <div class="def r">
+      <span class="def-term">RPE – Rate of Perceived Exertion</span>
+      <span class="def-text">A measure of intensity used to indicate how hard an athlete felt after a session. Usually used by the coach to work out the <strong>training load</strong> of a session. Training load = combination of how hard a session is (intensity) × how long the session is (time). Coaches use training load data to decide on the frequency, intensity, time and type of future sessions. If training load is not carefully monitored, athletes can become overtrained and fatigued.</span>
+    </div>
+
+    <div class="analogy">
+      <span class="analogy-lbl">💡 Analogy</span>
+      RPE is like the dashboard of a car — it tells the driver (coach) how hard the engine (athlete) has been working. If the dial is always in the red, something needs to change!
+    </div>
+  </div>
+
+  <!-- ORGANISING EVENTS -->
+  <div class="sc s3b" id="s3b-event">
+    <h2>10. Organising a Sporting Event</h2>
+
+    <p>When organising a sporting event, several key factors must be considered:</p>
+
+    <table>
+      <tr><th class="t3b">Term</th><th class="t3b">Definition</th><th class="t3b">Example</th></tr>
+      <tr>
+        <td><strong>Rules</strong></td>
+        <td>Agreed terms that govern the sport — what is allowed and not allowed.</td>
+        <td>A GAA referee enforcing the rules on a high tackle.</td>
+      </tr>
+      <tr>
+        <td><strong>Roles</strong></td>
+        <td>Determined by the sport's organisation or individual groups. Officiating and playing roles are the most common, but also include captain, vice-captain, freetaker etc.</td>
+        <td>A captain leading the team out; a designated freetaker in GAA.</td>
+      </tr>
+      <tr>
+        <td><strong>Rituals</strong></td>
+        <td>Actions carried out each time an athlete goes to perform at an event.</td>
+        <td>A team doing the same warm-up routine each match; the New Zealand All Blacks performing the Haka.</td>
+      </tr>
+      <tr>
+        <td><strong>Conventions</strong></td>
+        <td>Ways of behaving considered polite. Not written in the rules, but considered part of the sport's culture.</td>
+        <td>Coin toss at the start of a match; shaking hands/fist bumping after a match; clapping off the opposition.</td>
+      </tr>
+    </table>
+
+    <h3>Safety Considerations When Organising an Event</h3>
+    <ul>
+      <li>Athlete welfare and safety</li>
+      <li>Spectator safety</li>
+      <li>Access to the sporting facility</li>
+      <li>Dealing with emergencies (first aid provision)</li>
+      <li>Appointing appropriate stewards and officials</li>
+      <li>Is the venue easily accessible for vehicles, pedestrians, wheelchairs and people with disabilities?</li>
+    </ul>
+
+    <div class="exam-tip">Know the difference between Rules, Roles, Rituals and Conventions — examiners often ask you to distinguish between these terms and give examples from a named sport.</div>
+  </div>
+
+  <!-- 3B QUIZ -->
+  <div class="sc s3b" id="s3b-quiz">
+    <h2>🧠 Chapter 3B Quick Quiz</h2>
+    <div id="quiz-3b"></div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!--  CHAPTER 3C                                                  -->
+<!-- ============================================================ -->
+<div id="ch3c" class="chapter-panel">
+  <div class="ch-header h3c">
+    <h1>🎽 Chapter 3C: The Role of Coach &amp; Official</h1>
+    <p>Interpersonal skills, goal-setting, reflection, the official's demands and managing conflict</p>
+  </div>
+
+  <!-- ROLE OF COACH -->
+  <div class="sc s3c" id="s3c-role">
+    <h2>1. Role of the Coach / Choreographer</h2>
+
+    <p>The role of the coach goes far beyond providing instruction on the sideline. According to a survey by Athlete Assessments, the three biggest challenges coaches face are:</p>
+    <ol>
+      <li>Understanding an athlete's personality (motivating them)</li>
+      <li>Maintaining a balanced personal life (work, sport, home)</li>
+      <li>Managing relationships and dynamics within the team/squad</li>
+    </ol>
+
+    <div class="info">
+      <span class="info-lbl">🔑 Key Insight</span>
+      Two of the three biggest coaching challenges involve dealing with <strong>athletes' personalities and inter-relationships</strong>. This highlights that high-level <strong>interpersonal skills</strong> are key requirements for a successful coach.
+    </div>
+
+    <div class="analogy">
+      <span class="analogy-lbl">💡 Analogy</span>
+      A coach is like a conductor of an orchestra — they need to understand each musician's strengths, keep the group motivated, manage conflicts, and ensure everyone plays their part at the right time. Technical knowledge of music (sport) is essential, but so is the ability to lead people!
+    </div>
+  </div>
+
+  <!-- INTERPERSONAL SKILLS -->
+  <div class="sc s3c" id="s3c-interpersonal">
+    <h2>2. Interpersonal Skills</h2>
+
+    <div class="def g">
+      <span class="def-term">Interpersonal Skills</span>
+      <span class="def-text">The ability to communicate or interact well with other people. This ability is demonstrated through both <strong>verbal and non-verbal communication</strong>, and is essential to successful coaching.</span>
+    </div>
+
+    <div class="card-grid">
+      <div class="card g"><div class="card-t">👂 Active Listening</div><p>Fully concentrating on, understanding and responding to what athletes say — not just hearing the words.</p></div>
+      <div class="card g"><div class="card-t">🗣️ Clear Communication</div><p>Conveying instructions, feedback and information in a way that is easy to understand for the athlete.</p></div>
+      <div class="card g"><div class="card-t">💡 Empathy</div><p>Understanding and sharing the feelings of athletes — appreciating their perspective and emotional state.</p></div>
+      <div class="card g"><div class="card-t">⚡ Assertiveness</div><p>Communicating confidently and directly — stating needs and expectations clearly without being aggressive.</p></div>
+      <div class="card g"><div class="card-t">🤝 Conflict Resolution</div><p>Ability to identify, address and resolve disagreements or disputes between athletes in a fair way.</p></div>
+      <div class="card g"><div class="card-t">💪 Motivation</div><p>Inspiring athletes to give their best effort — both through encouragement and by creating a positive environment.</p></div>
+    </div>
+
+    <div class="info">
+      <span class="info-lbl">🔍 Modern Coaching</span>
+      Interpersonal skills are not the only attributes needed. Modern sport requires a broad range of qualities — sports psychology, nutrition, digital technology and tactical knowledge all bring added complexity to coaching.
+    </div>
+  </div>
+
+  <!-- QUALITIES OF A GOOD COACH -->
+  <div class="sc s3c" id="s3c-qualities">
+    <h2>3. Qualities of a Good Coach</h2>
+
+    <div class="acc">
+      <div class="acc-h" onclick="toggleAcc(this)">💬 Communication <span class="ai">▶</span></div>
+      <div class="acc-b">
+        <div class="def g">
+          <span class="def-term">Communication (Coaching)</span>
+          <span class="def-text">The ability to communicate effectively is a key characteristic of successful coaching. The ability to communicate with others is essential if the coach is to share ideas, provide instructions or deal with conflict. Communicating well can raise a coach's credibility, while also commanding respect and authority.</span>
+        </div>
+        <ul>
+          <li>Use terminology the athlete understands</li>
+          <li>Use the correct type of feedback (KR or KP)</li>
+          <li>Check in regularly using questions</li>
+          <li>Be mindful of body language (non-verbal communication)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="acc">
+      <div class="acc-h" onclick="toggleAcc(this)">🔥 Motivation <span class="ai">▶</span></div>
+      <div class="acc-b">
+        <p>The coach must maintain high levels of motivation in and out of competition. This can be challenging especially months before a big competition or during off-season. Coaches must develop training plans, set goals and foster a sense of fun and competition.</p>
+        <div class="def g">
+          <span class="def-term">Intrinsic vs Extrinsic Motivation (Coaching Context)</span>
+          <span class="def-text">Extrinsic motivation is probably the easiest for a coach to provide (tangible and measurable). However, the coach should aim to develop <strong>intrinsic motivation</strong> in their players — the inner love of the game. Strategies include: creating a positive training environment, communicating effectively, focusing on enjoyment, being positive about performances, and using goal setting.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc">
+      <div class="acc-h" onclick="toggleAcc(this)">📅 Planning &amp; Periodisation <span class="ai">▶</span></div>
+      <div class="acc-b">
+        <p>The coach must plan and design an appropriate periodisation plan that ensures the athlete peaks at the correct time for competition. This includes designing individual microcycles, mesocycles and macrocycles.</p>
+        <div class="info">
+          <span class="info-lbl">🔗 Links to Chapter 2B</span>
+          Periodisation = Macrocycle (full year) → Mesocycle (training block) → Microcycle (weekly plan)
+        </div>
+      </div>
+    </div>
+
+    <div class="acc">
+      <div class="acc-h" onclick="toggleAcc(this)">🏆 Knowledge of Sport <span class="ai">▶</span></div>
+      <div class="acc-b">
+        <p>The coach needs to know more than just the rules — coaching knowledge ranges from planning individual sessions to implementing full periodisation plans. Coaches must understand how to:</p>
+        <ul>
+          <li>Modify training and performance to help athletes succeed</li>
+          <li>Cater for psychological preparedness, motivation, confidence and enjoyment</li>
+          <li>Know the rules, structures and strategies of the sport</li>
+          <li>Prepare athletes psychologically and build confidence</li>
+        </ul>
+        <div class="warn">
+          <span class="warn-lbl">⚠️ Important!</span>
+          Knowledge alone does not guarantee success. The timing of when to use knowledge and skills is key!
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GOAL SETTING -->
+  <div class="sc s3c" id="s3c-goals">
+    <h2>4. Goal Setting – Long-Term &amp; Short-Term Goals</h2>
+
+    <p>Goal setting is a crucial skill for both the coach and athlete. It is closely linked to motivation and psychological preparation for sport. A mixture of short- and long-term goals is key to ensuring an athlete remains motivated, engaged and focused.</p>
+
+    <div class="def g">
+      <span class="def-term">Long-Term Goals</span>
+      <span class="def-text">The end product of all preparation and training. Give the athlete a vision of what they want to achieve over the long term. Can be difficult in nature. Must be well planned and adhere to the SMART principle, as it can be easy to lose track over a long period.</span>
+    </div>
+    <div class="info">
+      <span class="info-lbl">Example Long-Term Goal</span>
+      "Improve rowing 2k time by 15 seconds over 4 years with the aim to win an Olympic medal."
+    </div>
+
+    <div class="def g">
+      <span class="def-term">Short-Term Goals</span>
+      <span class="def-text">Like stepping stones towards a long-term goal. Can be completed over a short period of time and are usually less difficult. Used to maintain motivation, concentration and focus towards long-term goals. Should also follow the SMART principle and vary in type (process, performance and outcome goals).</span>
+    </div>
+
+    <div class="analogy">
+      <span class="analogy-lbl">💡 Analogy</span>
+      A long-term goal is the destination on Google Maps (e.g. the Olympics). Short-term goals are the individual turns and motorways you take to get there. Without the small steps, you'd never reach the destination!
+    </div>
+
+    <div class="memory">
+      <span class="memory-lbl">🧠 SMART Reminder (Links to Chapter 2C)</span>
+      <strong>S</strong>pecific · <strong>M</strong>easurable · <strong>A</strong>chievable · <strong>R</strong>elevant · <strong>T</strong>ime-bound<br>
+      Three types of goals: <strong>Outcome</strong> (win/lose), <strong>Performance</strong> (personal improvement), <strong>Process</strong> (technique focus)
+    </div>
+
+    <div class="exam-tip">You may be asked to outline ONE long-term and ONE short-term SMART goal for a named athlete. Include ALL 5 SMART criteria in your answer.</div>
+  </div>
+
+  <!-- REFLECTION -->
+  <div class="sc s3c" id="s3c-reflection">
+    <h2>5. Guiding Athlete Reflection</h2>
+
+    <p>If an athlete is unable to reflect on their performance effectively, they will struggle to improve and make it to the highest level. The <strong>coach has a vital role</strong> in guiding reflection — as it is a skill many people find difficult.</p>
+
+    <div class="def g">
+      <span class="def-term">Reflection 'IN' Action</span>
+      <span class="def-text">Reflection that happens <strong>in the moment</strong> — during the activity, while thoughts can still benefit the situation. It helps with <strong>decision-making during the activity</strong>, allowing the athlete to think on their feet and make appropriate decisions. This type of reflection is difficult to develop — coaches should create scenarios in training to practice it.</span>
+    </div>
+
+    <div class="info">
+      <span class="info-lbl">🧩 Reflection 'in' Action Model</span>
+      1. What happened? → 2. Can I affect it now? (Yes/No) → 3. What will I do to affect it?
+    </div>
+
+    <div class="analogy">
+      <span class="analogy-lbl">💡 Analogy</span>
+      Reflection 'in' action is like a racing driver adjusting their steering in a corner — they're not thinking about the race after it's done, they're adapting <em>while driving</em>.
+    </div>
+
+    <div class="def g">
+      <span class="def-term">Reflection 'ON' Action</span>
+      <span class="def-text">Reflection that occurs <strong>after the activity</strong>. Requires thinking about performance or training after the event and turning this information into knowledge which can inform future performances. The coach applies methods and structure to reflection so athletes can identify what went well and how performance can be improved in the future.</span>
+    </div>
+
+    <div class="info">
+      <span class="info-lbl">🧩 Reflection 'on' Action Model</span>
+      1. What happened? → 2. What did I learn? → 3. What would I do differently?
+    </div>
+
+    <div class="memory">
+      <span class="memory-lbl">🧠 Memory Trick – Reflection 'in' vs 'on'</span>
+      <strong>IN = INSIDE the performance</strong> (while it's happening — live, real-time)<br>
+      <strong>ON = AFTER the performance</strong> (thinking ON it later, like writing a report)
+    </div>
+
+    <h3>WSN Reflection Model</h3>
+    <div class="card-grid">
+      <div class="card g"><div class="card-t">What?</div><p>What happened? Describe the event or performance.</p></div>
+      <div class="card g"><div class="card-t">So What?</div><p>So what have I learned about this? What does it mean for my performance?</p></div>
+      <div class="card g"><div class="card-t">Now What?</div><p>Now what could I do? What will I change or do differently next time?</p></div>
+    </div>
+    <div class="exam-tip">The WSN model is a very exam-friendly structure for answering reflection questions. Use it to frame your answers: What → So What → Now What.</div>
+  </div>
+
+  <!-- ROLE OF OFFICIAL -->
+  <div class="sc s3c" id="s3c-official">
+    <h2>6. Role of the Official</h2>
+
+    <p>The role of the official is often overlooked in sport, yet it is a very important one. Officials face expectation from athletes, coaches, parents and spectators — often with high levels of passion and aggression directed at them.</p>
+
+    <h3>Common Duties of Officials (Across All Sports)</h3>
+    <ul>
+      <li>Officiating sporting events, games and competitions</li>
+      <li>Judging performances to determine a winner</li>
+      <li>Keeping track of event times and starting or stopping play when necessary</li>
+      <li>Signalling participants and other officials when infractions occur, or to regulate play</li>
+      <li>Settling claims of infractions or complaints by participants</li>
+      <li>Enforcing the rules of the game and assessing penalties when necessary</li>
+    </ul>
+  </div>
+
+  <!-- OFFICIAL DEMANDS -->
+  <div class="sc s3c" id="s3c-official-demands">
+    <h2>7. Demands on the Official</h2>
+
+    <div class="acc">
+      <div class="acc-h" onclick="toggleAcc(this)">🏃 Personal Fitness <span class="ai">▶</span></div>
+      <div class="acc-b">
+        <div class="def g">
+          <span class="def-term">Personal Fitness (Official)</span>
+          <span class="def-text">An official should be suitably fit to manage the sport they are assigned to. Many sports prioritise high levels of fitness at the top level. FIFA and World Rugby have referee fitness testing structures in place to ensure all referees meet a certain standard. GAA referees cover an average distance of 9.5km per match — similar to outfield players. Fatigue negatively impacts cognitive performance.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc">
+      <div class="acc-h" onclick="toggleAcc(this)">🧠 Psychological Readiness <span class="ai">▶</span></div>
+      <div class="acc-b">
+        <div class="def g">
+          <span class="def-term">Psychological Readiness (Official)</span>
+          <span class="def-text">Psychological preparation for officiating is just as important as physical preparation. Staying calm under pressure, remaining confident and maintaining good relationships with athletes and other officials are all key. Strategies to deal with the stress and demands of sport are essential for all officials (e.g. breathing techniques, visualisation).</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc">
+      <div class="acc-h" onclick="toggleAcc(this)">👔 Professionalism &amp; Attire <span class="ai">▶</span></div>
+      <div class="acc-b">
+        <div class="def g">
+          <span class="def-term">Professionalism (Official)</span>
+          <span class="def-text">It is essential that an official portrays a sense of professionalism. This means ensuring that uniform or other attire is suitable, presentable and well maintained. Any equipment required should be of a high standard. By setting and adhering to professional standards, the official can set the tone for coaches and athletes involved.</span>
+        </div>
+        <p>E.g. a basketball referee must ensure the ball is the correct size (size 7 basketball should weigh 22oz).</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ASSERTIVE COMMUNICATION -->
+  <div class="sc s3c" id="s3c-assertive">
+    <h2>8. Communicating Assertively</h2>
+
+    <div class="def g">
+      <span class="def-term">Assertive Communication</span>
+      <span class="def-text">When communicating with players, coaches and spectators, it is essential that the official does so assertively — confidently and directly, without being aggressive. Although the official should be cordial and polite, they should keep a level of distance so as to remove any doubt of taking sides. Officials must be receptive to questions and complaints while not tolerating comments or abuse.</span>
+    </div>
+
+    <div class="memory">
+      <span class="memory-lbl">🧠 Memory Trick</span>
+      <strong>Assertive = Not Aggressive, Not Passive</strong><br>
+      Aggressive = too forceful | Passive = too weak | <strong>Assertive = just right</strong> (confident, clear, calm)
+    </div>
+
+    <h3>Tips for Assertive Communication</h3>
+    <div class="card-grid">
+      <div class="card g"><div class="card-t">📏 Consistent Body Language</div><p>Ensure a sense of fairness and neutrality. Appropriate, consistent gestures can add emphasis.</p></div>
+      <div class="card g"><div class="card-t">🎙️ Controlled Tone of Voice</div><p>A level tone displays assertiveness. Don't be condescending or raise your voice unnecessarily.</p></div>
+      <div class="card g"><div class="card-t">📝 Choose Words Wisely</div><p>Deliver them at the right time and in the right place to maximise receptivity and impact.</p></div>
+      <div class="card g"><div class="card-t">👁️ Maintain Eye Contact</div><p>Shows interest and demonstrates authority. Signals you are engaged and in control.</p></div>
+      <div class="card g"><div class="card-t">⏱️ Timing</div><p>Judge when is best to communicate — sometimes waiting for the right moment maximises impact.</p></div>
+      <div class="card g"><div class="card-t">🤝 Be Accessible</div><p>Be receptive to questions and complaints while not standing for abuse. Maintain the flow of the game.</p></div>
+    </div>
+  </div>
+
+  <!-- MANAGING CONFLICT -->
+  <div class="sc s3c" id="s3c-conflict">
+    <h2>9. Managing Conflict</h2>
+
+    <p>Because of the competitive nature of sport, some conflict is always inevitable. <strong>Managing conflict</strong> is one of the most important roles of the official. Three key factors influence how well conflict is managed:</p>
+
+    <div class="card-grid">
+      <div class="card g"><div class="card-t">Tone of Voice</div><p>An official should use a commanding tone and ensure they do not sound condescending to the participant.</p></div>
+      <div class="card g"><div class="card-t">Language Used</div><p>Both verbal and non-verbal language should be clear, respectful and appropriate to the participant (age, context).</p></div>
+      <div class="card g"><div class="card-t">Consistency &amp; Respect</div><p>The official should be consistent in how they manage conflict, with each participant treated equally.</p></div>
+    </div>
+
+    <h3>Three Sources of Conflict</h3>
+
+    <div class="acc">
+      <div class="acc-h" onclick="toggleAcc(this)">⚽ Conflict with Players <span class="ai">▶</span></div>
+      <div class="acc-b">
+        <div class="def g">
+          <span class="def-term">Conflict with Players</span>
+          <span class="def-text">While most players adhere to rules and demonstrate good sportsmanship, some engage in gamesmanship and blame the referee when things don't go their way. Research shows younger athletes are more likely to break rules or engage in deviant behaviour. This highlights the importance of teaching ethics and fair play in clubs and schools.</span>
+        </div>
+        <div class="def g">
+          <span class="def-term">Gamesmanship</span>
+          <span class="def-text">Attempting to gain an advantage within the letter but not the spirit of the rules — e.g. time-wasting, feigning injury, verbal pressure on opponents.</span>
+        </div>
+        <div class="def g">
+          <span class="def-term">Sportsmanship</span>
+          <span class="def-text">Fair and generous behaviour in sport — playing within both the rules and the spirit of the game.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc">
+      <div class="acc-h" onclick="toggleAcc(this)">🧑‍🏫 Conflict with Coaches <span class="ai">▶</span></div>
+      <div class="acc-b">
+        <div class="def g">
+          <span class="def-term">Conflict with Coaches</span>
+          <span class="def-text">There is often an obvious conflict of interest between coaches and officials. Coaches care about winning; the official does not. Coaches have a bias towards their own team — when a decision doesn't go their way, it can result in accusations directed at the official. Many coaches direct verbal abuse at the official, which is a major source of conflict.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc">
+      <div class="acc-h" onclick="toggleAcc(this)">👥 Conflict with Spectators/Parents <span class="ai">▶</span></div>
+      <div class="acc-b">
+        <div class="def g">
+          <span class="def-term">Conflict with Spectators/Parents</span>
+          <span class="def-text">Parents and spectators have a bias when it comes to officials. Many spectators do not have the tactical knowledge to fully understand the sport — if things don't go in favour of their team or children, the official can be blamed. Such problems have led to initiatives such as <strong>'silent sidelines'</strong>.</span>
+        </div>
+      </div>
+    </div>
+
+    <h3>Strategies for Dealing with Conflict</h3>
+    <div class="card-grid">
+      <div class="card g"><div class="card-t">📋 Preparation</div><p>Meet with officiating team beforehand to outline roles. Identify potential conflict points. Anticipate conflict and develop pre-planned responses.</p></div>
+      <div class="card g"><div class="card-t">🌊 Being Flexible</div><p>May need to be lenient at certain points. Depends on the specific situation and emotions involved.</p></div>
+      <div class="card g"><div class="card-t">🧘 Staying Calm</div><p>Important not to get sucked into the tension of the game. Manage own emotions to manage conflict effectively.</p></div>
+      <div class="card g"><div class="card-t">😌 Recognising Emotions</div><p>Recognise others' emotions and handle reactions appropriately. Aim to take emotion out of the conversation.</p></div>
+    </div>
+
+    <div class="exam-tip">Sample exam question: "Suggest three strategies an official may use to deal with a conflict situation." Use: Tone of voice + Language used + Consistency. Explain each and relate it to a specific conflict scenario.</div>
+  </div>
+
+  <!-- 3C QUIZ -->
+  <div class="sc s3c" id="s3c-quiz">
+    <h2>🧠 Chapter 3C Quick Quiz</h2>
+    <div id="quiz-3c"></div>
+  </div>
+</div>
+
+</main>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- JAVASCRIPT                                                   -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<script>
+// ── QUIZ DATA ────────────────────────────────────────────────────────
+const QD = {
+  '3a': [
+    { q: "What is the difference between a Structure and a Strategy in sport?", options: ["Structure is the tactics; strategy is the formation", "Structure is the formation/set-up; strategy is the tactics/game plan of how to play", "Both terms mean the same thing", "Structure relates to individuals; strategy relates to teams only"], ans: 1, exp: "Structure = HOW ARE WE SET UP? (formation). Strategy = HOW ARE WE GOING TO PLAY? (tactics). E.g. Structure: 4-3-3 in soccer. Strategy: high press to win possession early." },
+    { q: "Name the four Compositional Elements in aesthetic sports.", options: ["Space, Dynamics, Rhythm, Relationships", "Strength, Direction, Rotation, Reach", "Speed, Discipline, Range, Reaction", "Shape, Design, Routine, Rhythm"], ans: 0, exp: "SDRR: Space · Dynamics · Rhythm · Relationships. Memory trick: 'Some Dancers Really Rock!' These are important in dance and gymnastics." },
+    { q: "What does the 'R' stand for in the RAR method of modifying strategies?", options: ["Repeat, Adapt, Run", "Recognise, Anticipate, React", "Review, Adjust, Resume", "Respond, Analyse, Revise"], ans: 1, exp: "RAR = Recognise (what's working/not working) → Anticipate (what happens if we keep/change?) → React (change structure, strategy or personnel). If changes don't work, repeat!" },
+    { q: "What is the key difference between Purposive and Aesthetic sports?", options: ["Purposive sports have no rules; aesthetic sports do", "In purposive sports the outcome matters most; in aesthetic sports the artistry/beauty of movement is central", "Aesthetic sports are individual only; purposive sports are team only", "Purposive sports use video analysis; aesthetic sports don't"], ans: 1, exp: "Purposive = result/outcome matters (goal/time/distance). Aesthetic = artistry and beauty of movement are central to scoring (gymnastics, figure skating, dance)." },
+    { q: "In Artistic Gymnastics, what do D Score and E Score measure?", options: ["D = Distance, E = Endurance", "D = Difficulty (value of skills), E = Execution (10.0 minus deductions for errors)", "D = Dance, E = Expression", "D = Defence, E = Expression"], ans: 1, exp: "D Score = Difficulty (0.1 to 0.8 per element). E Score = Execution (starts at 10.0, deductions for errors). Highest combined D+E wins." },
+    { q: "What are three factors a coach considers when deciding on a strategy?", options: ["Weather, shirt colour, stadium size", "Capabilities of own team, capabilities of opposition, conditions/venue/importance", "The referee, the crowd, the pitch size", "Ball type, substitutes available, pre-match meal"], ans: 1, exp: "Five key factors: (1) Our strengths & weaknesses, (2) Opposition strengths & weaknesses, (3) Conditions, (4) Venue, (5) Importance of the game." },
+    { q: "What is Composition in aesthetic sport?", options: ["The physical fitness required for a performance", "Arranging a series of planned movements or skills in a specifically designed manner", "The speed at which movements are performed", "The judging criteria used to score performances"], ans: 1, exp: "Composition = arranging planned movements in a specific way. It covers all four elements: Space, Dynamics, Rhythm and Relationships." },
+    { q: "Which of the following is a NON-PLAYING role in sport?", options: ["Goalkeeper", "Free taker", "Sports psychologist", "Captain on the field"], ans: 2, exp: "Non-playing roles include: coach, physiotherapist, sports psychologist, nutritionist, video analyst, kit manager. They don't compete directly but help optimise performance." },
+    { q: "What is Video Analysis used for in sport?", options: ["To entertain spectators during half-time", "To assess a team's application of structures and strategies, and analyse opposition strengths/weaknesses", "Only used by referees to review controversial decisions", "To track player fitness using GPS data"], ans: 1, exp: "Video analysis helps coaches see how well tactics were executed and identify areas for improvement. Also used to analyse opposition formations and strategies to plan against them." },
+    { q: "What type of scoring system is used in aesthetic sports?", options: ["Objective (based purely on time or distance)", "Subjective (based on a judge's interpretation of quality and artistry)", "Points-based on number of skills completed only", "A straightforward win/loss system"], ans: 1, exp: "Aesthetic sport scoring is subjective — it's based on judges' interpretation of movement quality, artistry and execution. That's why marks can vary slightly between judges." }
+  ],
+  '3b': [
+    { q: "What does SALTAPS stand for?", options: ["Stop, Ask, Look, Touch, Active movement, Passive movement, Strength test", "See, Assist, Lift, Test, Apply pressure, Push, Stabilise", "Stop, Assess, Lift, Touch, Aid, Position, Stabilise", "Sit, Ask, Look, Test, Apply, Protect, Support"], ans: 0, exp: "SALTAPS is the on-field injury assessment: Stop/See → Ask → Look → Touch → Active Movement → Passive Movement → Strength Test. It systematically evaluates injury severity." },
+    { q: "What does PRICE stand for in first aid treatment?", options: ["Protect, Rest, Ice, Compress, Elevate", "Push, Rest, Ice, Cool, Exercise", "Protect, Run, Ice, Compress, Exercise", "Prevention, Rest, Ice, Cover, Elevate"], ans: 0, exp: "PRICE: Protection (prevent further damage) · Rest (allow healing) · Ice (reduce inflammation) · Compression (limit swelling) · Elevation (reduce blood flow to area). Remember: 'Please Rest In Comfortable Elevation!'" },
+    { q: "What is the RAMP warm-up method?", options: ["Run, Accelerate, Move, Practise", "Raise, Activate and Mobilise, Potentiate", "Rest, Activate, Mobilise, Perform", "Raise, Assess, Mobilise, Progress"], ans: 1, exp: "RAMP = Raise (blood flow/temp) → Activate & Mobilise (key muscles/joints) → Potentiate (sport-specific intensity build). Three 5-minute stages building from low to high intensity." },
+    { q: "What is DOMS?", options: ["A type of warm-up routine", "Delayed Onset Muscle Soreness — pain and stiffness felt hours/days after strenuous exercise", "A concussion assessment tool", "Direct Overtraining Muscle Strain"], ans: 1, exp: "DOMS = Delayed Onset Muscle Soreness. Pain felt 24-48 hours after intense exercise due to microscopic muscle tears. An effective cool-down with static stretching helps reduce it." },
+    { q: "What are the 6 R's of concussion management?", options: ["React, Remove, Refer, Rest, Recover, Return", "Recognise, Remove, Refer, Rest, Recover, Return", "Recognise, React, Refer, Rest, Recover, Return", "Recognise, Remove, Review, Rest, Recover, Return"], ans: 1, exp: "The 6 R's: Recognise → Remove from play → Refer to healthcare professional → Rest until symptom-free → Recover fully (adults: 2 weeks, youth: 3 weeks) → Return to play with clearance." },
+    { q: "What is the difference between an Internal and External Force injury?", options: ["Internal injuries are more severe; external are minor", "Internal force = injury from within the body (muscle tears itself); External force = injury from outside (collision, environment)", "Internal injuries involve bones; external involve muscles only", "Internal force injuries don't require treatment; external do"], ans: 1, exp: "Internal (non-contact): sudden powerful body movement causes tear/strain from within. External (contact): impact from person/object or environmental factors (heat, cold). Remember: Internal = Inside the body causes it." },
+    { q: "What is Overtraining Syndrome (OTS)?", options: ["A scheduled rest period in a training programme", "An imbalance between training loads and recovery time, leading to performance decline and health issues", "The process of gradually increasing training intensity", "A nutritional deficiency in high-level athletes"], ans: 1, exp: "OTS = training load exceeds recovery time. Result: performance DECREASES, not increases. Symptoms: fatigue, moodiness, insomnia, loss of appetite, chronic injuries. Prevention: rest, nutrition, training diary." },
+    { q: "What is RPE in the context of sport?", options: ["Repetitions Per Exercise", "Rate of Perceived Exertion — a measure of how intense the athlete felt a session was, used to calculate training load", "Regulated Performance Evaluation", "Recovery Period Estimation"], ans: 1, exp: "RPE = Rate of Perceived Exertion. Used to measure training load (intensity × time). Coaches use RPE data to plan future sessions and prevent overtraining. Like the dashboard of a car." },
+    { q: "What is the difference between Rules, Roles, Rituals and Conventions in sport?", options: ["All four terms describe the official rules of a sport", "Rules = what's allowed; Roles = responsibilities of participants; Rituals = repeated personal actions; Conventions = unwritten polite behaviour", "Rules and conventions are the same thing; roles and rituals are different", "Rules and roles are written; rituals and conventions are banned"], ans: 1, exp: "Rules = official governance. Roles = positions/responsibilities. Rituals = personal repeated actions before performance (e.g. Haka). Conventions = unwritten customs (e.g. shaking hands after a match)." },
+    { q: "Why is dynamic stretching preferred over static stretching in a warm-up?", options: ["Static stretching is too painful before exercise", "Dynamic stretching mimics sport movements and prepares muscles; static stretching can cause a protective muscle contraction, reducing power output", "Dynamic stretching requires no equipment; static does", "Static stretching is only for professional athletes"], ans: 1, exp: "Static stretching near maximal length triggers a protective muscle contraction response — the muscle fights against the stretch and then relaxes, which can reduce explosive power. Dynamic stretching is active and prepares muscles for sport-specific movement." }
+  ],
+  '3c': [
+    { q: "How are Interpersonal Skills defined?", options: ["Technical knowledge of sport tactics and training methods", "The ability to communicate or interact well with other people, through verbal and non-verbal communication", "Physical fitness requirements for coaches", "Planning and goal-setting skills used in training", ], ans: 1, exp: "Interpersonal skills = ability to communicate or interact well with others, through both verbal AND non-verbal communication. Essential for coaching because two of the top three coaching challenges involve interpersonal relationships." },
+    { q: "What is Reflection 'IN' Action?", options: ["Reflecting on performance after the event to inform future performances", "Reflection that happens in the moment during the activity — helping with real-time decision-making", "Writing a diary entry after training", "Watching video footage of a match after it has ended"], ans: 1, exp: "Reflection 'in' action = real-time, in-the-moment reflection during the activity. It helps with decision-making as situations evolve. Difficult to develop — coaches create training scenarios to practice it." },
+    { q: "What is Reflection 'ON' Action?", options: ["Reflecting during the activity to make immediate decisions", "Reflection that occurs after the activity — turning experience into knowledge to improve future performances", "A type of feedback given by coaches during training", "Reviewing physical fitness data after a match"], ans: 1, exp: "Reflection 'on' action = post-activity thinking. You reflect ON what happened AFTER it occurred and use it to inform future performances. Tools: video analysis, training diaries, WSN model." },
+    { q: "What does the WSN reflection model stand for?", options: ["Win, Strengthen, Now what", "What happened? So what have I learned? Now what could I do?", "Watch, Summarise, Note down", "Who, Setting, Next time"], ans: 1, exp: "WSN = What (describe what happened) → So What (what did I learn from it?) → Now What (what will I do differently?). A simple, exam-friendly reflection framework." },
+    { q: "What is Assertive Communication for an official?", options: ["Shouting loudly to establish authority over players", "Communicating confidently and directly without being aggressive — being cordial yet maintaining authority and neutrality", "Being passive and avoiding all conflict with players", "Using hand signals only — no verbal communication"], ans: 1, exp: "Assertive = confident + direct + non-aggressive. Not passive (too weak) and not aggressive (too forceful). Officials should be accessible and receptive while not tolerating abuse." },
+    { q: "Name three qualities of a good coach.", options: ["Speed, strength, stamina", "Communication, motivation, planning/periodisation", "Goal scoring ability, tactical knowledge only, physical fitness only", "Shouting, discipline, punctuality"], ans: 1, exp: "Five key qualities: Communication · Motivation · Reflection · Planning (periodisation) · Knowledge of sport (including goal setting). All are needed to guide athletes to optimum performance." },
+    { q: "What is the difference between a long-term and short-term goal?", options: ["Long-term goals are harder to measure; short-term are easy to measure", "Long-term = end destination over a long period (e.g. Olympics). Short-term = stepping stones towards that goal, completed in shorter timeframes", "Short-term goals are not SMART; long-term goals are", "There is no real difference — both are the same type of goal"], ans: 1, exp: "Long-term goals = big vision (e.g. qualify for Olympics in 4 years). Short-term goals = smaller milestones to get there (e.g. improve time by 0.3s this month). Short-term goals maintain motivation towards the big goal." },
+    { q: "What are the three main sources of conflict for an official?", options: ["Media, weather, venue problems", "Conflict with players, conflict with coaches, conflict with spectators/parents", "Conflict with referees, scorers, and medical staff", "Time-wasting, bad weather, and equipment failure"], ans: 1, exp: "Three sources: (1) Players — gamesmanship and rule-breaking; (2) Coaches — conflict of interest, biased towards their team; (3) Spectators/parents — emotional bias and lack of tactical knowledge." },
+    { q: "Why is psychological readiness important for an official?", options: ["Officials need to score well on fitness tests", "Staying calm under pressure, remaining confident and maintaining good relationships are key to effective officiating — psychological preparation is just as important as physical preparation", "Psychological readiness only matters for athletes, not officials", "Officials need psychology only when dealing with media"], ans: 1, exp: "Officiating in high-pressure environments requires mental skills: staying calm, making confident decisions, managing conflict with players/coaches/spectators. Strategies like breathing techniques and visualisation help." },
+    { q: "What is Gamesmanship?", options: ["Fair and generous behaviour in sport, playing within the rules and spirit of the game", "Attempting to gain an advantage within the letter but not the spirit of the rules — e.g. time-wasting, feigning injury", "Cheating that results in an automatic red card", "Any attempt to communicate with the referee during a match"], ans: 1, exp: "Gamesmanship = winning at all costs within the strict letter of the rules but NOT the spirit. E.g. time-wasting, diving/feigning injury, verbal pressure. Contrasts with Sportsmanship (fair play and respect)." }
+  ]
+};
+
+const QS = { '3a': {idx:0,score:0,done:false}, '3b': {idx:0,score:0,done:false}, '3c': {idx:0,score:0,done:false} };
+
+function buildQuiz(ch) {
+  const el = document.getElementById('quiz-' + ch);
+  const s = QS[ch]; const d = QD[ch];
+  if (s.done) {
+    el.innerHTML = `<div class="quiz-card"><div class="quiz-score">🎉 Quiz Complete! Score: ${s.score}/${d.length}</div>
+      <button class="quiz-next show" onclick="resetQ('${ch}')">🔄 Try Again</button></div>`;
+    return;
+  }
+  const q = d[s.idx];
+  const pct = Math.round((s.idx / d.length) * 100);
+  el.innerHTML = `<div class="prog-bar"><div class="prog-fill" style="width:${pct}%"></div></div>
+    <div style="font-size:0.81rem;color:var(--text-muted);margin-bottom:7px">Question ${s.idx+1} of ${d.length} · Score: ${s.score}</div>
+    <div class="quiz-card">
+      <div class="quiz-q">${q.q}</div>
+      <div class="quiz-opts">${q.options.map((o,i)=>`<button class="quiz-opt" onclick="ansQ('${ch}',${i})" id="qo-${ch}-${i}">${o}</button>`).join('')}</div>
+      <div class="quiz-fb" id="qf-${ch}"></div>
+      <button class="quiz-next" id="qn-${ch}" onclick="nextQ('${ch}')">${s.idx+1 < d.length ? 'Next Question →' : 'See Results 🏆'}</button>
+    </div>`;
+}
+
+function ansQ(ch, chosen) {
+  const s = QS[ch]; const q = QD[ch][s.idx];
+  document.querySelectorAll(`[id^="qo-${ch}-"]`).forEach(b => b.onclick = null);
+  document.getElementById(`qo-${ch}-${q.ans}`).classList.add('correct');
+  if (chosen !== q.ans) document.getElementById(`qo-${ch}-${chosen}`).classList.add('wrong');
+  else s.score++;
+  const fb = document.getElementById('qf-' + ch);
+  fb.innerHTML = (chosen === q.ans ? '✅ Correct! ' : '❌ Not quite. ') + q.exp;
+  fb.classList.add('show');
+  document.getElementById('qn-' + ch).classList.add('show');
+}
+function nextQ(ch) { const s = QS[ch]; s.idx++; if (s.idx >= QD[ch].length) s.done = true; buildQuiz(ch); }
+function resetQ(ch) { QS[ch] = {idx:0,score:0,done:false}; buildQuiz(ch); }
+
+// ── CHAPTER SWITCH ────────────────────────────────────────────────
+function showCh(id, btn, cls) {
+  document.querySelectorAll('.chapter-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.nav-btn').forEach(b => b.className = 'nav-btn');
+  btn.classList.add(cls);
+  document.getElementById('sb3a').style.display = id === 'ch3a' ? '' : 'none';
+  document.getElementById('sb3b').style.display = id === 'ch3b' ? '' : 'none';
+  document.getElementById('sb3c').style.display = id === 'ch3c' ? '' : 'none';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ── ACCORDION ────────────────────────────────────────────────────
+function toggleAcc(h) {
+  const b = h.nextElementSibling;
+  const open = b.classList.contains('open');
+  b.classList.toggle('open', !open);
+  h.classList.toggle('open', !open);
+}
+
+// ── SCROLL ───────────────────────────────────────────────────────
+function goTo(id) { const el = document.getElementById(id); if (el) el.scrollIntoView({ behavior: 'smooth' }); }
+
+// ── INIT ─────────────────────────────────────────────────────────
+buildQuiz('3a'); buildQuiz('3b'); buildQuiz('3c');
+</script>
+<!-- REPLACEMENT BLOCK START -->
+<a href="index.html" class="return-home-btn">
+  <span>🏠</span> Back to Hub
+</a>
+<style>
+  .return-home-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #1a1d2e; /* Matches your --text variable */
+    color: white !important;
+    padding: 12px 24px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-family: 'Lexend', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+  }
+  .return-home-btn:hover {
+    transform: translateY(-5px);
+    background: #7c3aed; /* Changed to match your --c4 purple theme */
+    color: white !important;
+    box-shadow: 0 8px 25px rgba(124, 58, 237, 0.4);
+  }
+  @media (max-width: 768px) {
+    .return-home-btn {
+      bottom: 20px;
+      right: 20px;
+      padding: 10px 18px;
+      font-size: 14px;
+    }
+  }
+</style>
+<!-- REPLACEMENT BLOCK END -->
+</body>
+</html>

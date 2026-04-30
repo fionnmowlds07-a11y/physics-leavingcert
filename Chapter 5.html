@@ -1,0 +1,1757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LC Physical Education – Chapters 6, 8 & 9</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Deca:wght@400;500;600&family=Lexend+Mega:wght@700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ch6: #e05a2b;
+    --ch8: #2b7de0;
+    --ch9: #2bc97a;
+    --bg: #f8f9fc;
+    --card: #ffffff;
+    --text: #1a1a2e;
+    --sub: #555577;
+    --border: #e2e6f0;
+    --yellow: #ffd166;
+    --pink: #ff6b9d;
+    --purple: #7c3aed;
+    --shadow: 0 4px 20px rgba(0,0,0,0.08);
+    --radius: 14px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Lexend', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  /* ── TOP NAV (Replicated from Chapter 1) ── */
+  .topbar {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255, 255, 255, 0.97);
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid var(--border);
+    padding: 0 20px;
+    display: flex; align-items: center; gap: 8px;
+    flex-wrap: wrap; min-height: 56px;
+  }
+  .topbar-brand {
+    font-family: 'Lexend Mega', sans-serif;
+    font-size: .97rem; font-weight: 700;
+    color: var(--text); margin-right: 6px;
+    white-space: nowrap;
+  }
+  .nav-tabs { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  .nav-tab {
+    background: none; border: 2px solid var(--border);
+    color: var(--sub); font-family: 'Lexend', sans-serif;
+    font-size: .82rem; font-weight: 600; cursor: pointer;
+    border-radius: 20px; padding: 5px 14px; transition: all .17s;
+  }
+  .nav-tab:hover { background: var(--text); border-color: var(--text); color: #fff; opacity: 1; }
+  .nav-tab.active { background: var(--text); border-color: var(--text); color: #fff !important; }
+  .nav-tab.ch6:hover, .nav-tab.ch6.active { background: var(--ch6); border-color: var(--ch6); color: #fff !important; }
+  .nav-tab.ch8:hover, .nav-tab.ch8.active { background: var(--ch8); border-color: var(--ch8); color: #fff !important; }
+  .nav-tab.ch9:hover, .nav-tab.ch9.active { background: var(--ch9); border-color: var(--ch9); color: #fff !important; }
+
+  /* ── LAYOUT ── */
+  .page { display: none; max-width: 960px; margin: 0 auto; padding: 30px 20px 80px; }
+  .page.active { display: block; }
+
+  /* ── HERO BANNER ── */
+  .hero {
+    border-radius: var(--radius);
+    padding: 32px 36px;
+    margin-bottom: 32px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: rgba(0,0,0,0.12);
+    border-radius: var(--radius);
+  }
+  .hero-content { position: relative; z-index: 1; }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.25);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem; font-weight: 600;
+    letter-spacing: 0.05em;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+  .hero h1 { font-size: 1.9rem; font-weight: 700; margin-bottom: 8px; line-height: 1.2; }
+  .hero p { font-size: 1rem; opacity: 0.9; max-width: 600px; }
+  .hero-ch6 { background: linear-gradient(135deg, #e05a2b, #f0974a); }
+  .hero-ch8 { background: linear-gradient(135deg, #2b7de0, #5baaff); }
+  .hero-ch9 { background: linear-gradient(135deg, #2bc97a, #0fa65a); }
+
+  /* ── SECTION GROUPS ── */
+  .section-group { margin-bottom: 36px; }
+  .section-title {
+    font-size: 1.1rem; font-weight: 700;
+    margin-bottom: 16px;
+    display: flex; align-items: center; gap: 10px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--border);
+  }
+  .section-icon {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; flex-shrink: 0;
+  }
+
+  /* ── DEFINITION CARD ── */
+  .def-card {
+    background: white;
+    border-radius: var(--radius);
+    border: 2px solid var(--border);
+    margin-bottom: 14px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: box-shadow 0.2s, border-color 0.2s;
+  }
+  .def-card:hover { box-shadow: 0 6px 28px rgba(0,0,0,0.12); }
+  .def-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 20px;
+    cursor: pointer;
+    gap: 12px;
+  }
+  .def-term {
+    font-size: 1rem; font-weight: 700;
+    display: flex; align-items: center; gap: 10px;
+    flex: 1;
+  }
+  .def-pill {
+    font-size: 0.68rem;
+    padding: 3px 8px;
+    border-radius: 20px;
+    font-weight: 600;
+    white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .def-chevron {
+    font-size: 1rem; color: var(--sub);
+    transition: transform 0.25s;
+    flex-shrink: 0;
+  }
+  .def-card.open .def-chevron { transform: rotate(180deg); }
+  .def-body { display: none; padding: 0 20px 20px; border-top: 1px solid var(--border); }
+  .def-card.open .def-body { display: block; }
+
+  .def-official {
+    background: #f0f4ff;
+    border-left: 4px solid var(--ch8);
+    border-radius: 0 8px 8px 0;
+    padding: 12px 16px;
+    margin: 14px 0 10px;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+  .def-official.ch6 { background: #fff4f0; border-color: var(--ch6); }
+  .def-official.ch8 { background: #f0f4ff; border-color: var(--ch8); }
+  .def-official.ch9 { background: #f0fbf5; border-color: var(--ch9); }
+
+  .def-explain { color: var(--sub); margin: 8px 0; font-size: 0.95rem; }
+
+  .analogy-box {
+    background: linear-gradient(135deg, #fff9e6, #fffdf0);
+    border: 2px dashed #f0c040;
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin: 12px 0;
+    font-size: 0.92rem;
+  }
+  .analogy-box strong { color: #b8860b; }
+
+  .memory-box {
+    background: linear-gradient(135deg, #fdf0ff, #f5e6ff);
+    border: 2px dashed #c084fc;
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin: 12px 0;
+    font-size: 0.92rem;
+  }
+  .memory-box strong { color: #7c3aed; }
+
+  .example-box {
+    background: #f0fff8;
+    border-left: 4px solid var(--ch9);
+    border-radius: 0 8px 8px 0;
+    padding: 10px 14px;
+    margin: 10px 0;
+    font-size: 0.92rem;
+  }
+  .example-box strong { color: #0fa65a; }
+
+  /* ── TOPIC CARDS (non-def content) ── */
+  .topic-card {
+    background: white;
+    border-radius: var(--radius);
+    border: 2px solid var(--border);
+    padding: 20px;
+    margin-bottom: 14px;
+    box-shadow: var(--shadow);
+  }
+  .topic-card h3 {
+    font-size: 1rem; font-weight: 700;
+    margin-bottom: 10px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .topic-card ul { padding-left: 20px; }
+  .topic-card ul li { margin-bottom: 6px; font-size: 0.93rem; }
+  .topic-card p { font-size: 0.93rem; color: var(--sub); }
+
+  /* ── GRID CARDS ── */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+  @media(max-width: 600px) { .grid-2 { grid-template-columns: 1fr; } }
+  .grid-card {
+    background: white;
+    border-radius: var(--radius);
+    border: 2px solid var(--border);
+    padding: 18px;
+    box-shadow: var(--shadow);
+  }
+  .grid-card h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 8px; }
+  .grid-card ul { padding-left: 18px; }
+  .grid-card ul li { font-size: 0.88rem; margin-bottom: 4px; }
+
+  /* ── COMPARE TABLE ── */
+  .compare-table {
+    width: 100%; border-collapse: collapse;
+    font-size: 0.9rem; margin-bottom: 14px;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+  .compare-table th {
+    padding: 12px 16px;
+    color: white; font-weight: 700;
+    text-align: left;
+  }
+  .compare-table td {
+    padding: 11px 16px;
+    background: white;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  .compare-table tr:last-child td { border-bottom: none; }
+
+  /* ── PILLS COLOUR SYSTEM ── */
+  .pill-ch6 { background: #fde8de; color: #b34219; }
+  .pill-ch8 { background: #deeafd; color: #1950b3; }
+  .pill-ch9 { background: #def5e8; color: #0d7a44; }
+  .pill-key { background: #fde8de; color: #b34219; }
+  .pill-def { background: #e8f0ff; color: #2d4dd6; }
+  .card-ch6 { border-color: #fbbba0; }
+  .card-ch8 { border-color: #a0c0fb; }
+  .card-ch9 { border-color: #a0ebc0; }
+
+  /* ── DRUG TABLE ── */
+  .drug-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; margin-bottom: 14px; }
+  .drug-table th { background: #2d2d50; color: white; padding: 10px 12px; text-align: left; }
+  .drug-table td { padding: 9px 12px; background: white; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .drug-table tr:nth-child(even) td { background: #fafafe; }
+  .drug-table .bad { color: #cc2222; font-size: 0.82rem; }
+
+  /* ── FLIP QUIZ ── */
+  .quiz-section { margin-bottom: 36px; }
+  .quiz-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
+  .flip-card {
+    height: 160px; cursor: pointer;
+    perspective: 1000px;
+  }
+  .flip-inner {
+    position: relative; width: 100%; height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.5s cubic-bezier(.4,2,.6,1);
+  }
+  .flip-card.flipped .flip-inner { transform: rotateY(180deg); }
+  .flip-front, .flip-back {
+    position: absolute; width: 100%; height: 100%;
+    backface-visibility: hidden;
+    border-radius: var(--radius);
+    display: flex; align-items: center; justify-content: center;
+    text-align: center; padding: 16px;
+    border: 2px solid var(--border);
+    box-shadow: var(--shadow);
+  }
+  .flip-front { background: white; font-weight: 700; font-size: 0.95rem; }
+  .flip-back { background: var(--text); color: white; font-size: 0.85rem; transform: rotateY(180deg); line-height: 1.5; }
+  .flip-hint { position: absolute; bottom: 8px; right: 10px; font-size: 0.7rem; color: #aaa; }
+
+  /* ── PROGRESS BAR ── */
+  .progress-bar-wrap { background: var(--border); border-radius: 10px; height: 8px; margin: 8px 0 16px; overflow: hidden; }
+  .progress-bar { height: 100%; border-radius: 10px; transition: width 0.4s; }
+
+  /* ── WELCOME PAGE ── */
+  .welcome-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-top: 24px; }
+  @media(max-width:650px){ .welcome-grid { grid-template-columns: 1fr; } }
+  .welcome-card {
+    background: white;
+    border-radius: var(--radius);
+    padding: 24px 20px;
+    text-align: center;
+    border: 2px solid var(--border);
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: var(--shadow);
+  }
+  .welcome-card:hover { transform: translateY(-4px); box-shadow: 0 10px 32px rgba(0,0,0,0.12); }
+  .welcome-card .icon { font-size: 2.4rem; margin-bottom: 12px; }
+  .welcome-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
+  .welcome-card p { font-size: 0.85rem; color: var(--sub); }
+  .welcome-card .count { font-size: 0.75rem; font-weight: 600; margin-top: 10px; padding: 4px 10px; border-radius: 20px; display: inline-block; }
+  .tip-box {
+    background: white;
+    border-radius: var(--radius);
+    padding: 22px;
+    margin-top: 20px;
+    border: 2px solid #ffd166;
+    box-shadow: var(--shadow);
+  }
+  .tip-box h3 { font-weight: 700; margin-bottom: 10px; }
+  .tip-box ul { padding-left: 20px; }
+  .tip-box ul li { margin-bottom: 6px; font-size: 0.93rem; }
+
+  /* ── SANCTIONS BOX ── */
+  .sanctions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media(max-width:600px){ .sanctions-grid { grid-template-columns: 1fr; } }
+  .sanction-item {
+    background: white;
+    border-radius: 10px;
+    padding: 14px 16px;
+    border-left: 5px solid var(--ch6);
+    box-shadow: var(--shadow);
+    font-size: 0.9rem;
+  }
+  .sanction-item strong { display: block; font-size: 0.85rem; color: var(--ch6); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.04em; }
+
+  /* ── BANNER ── */
+  .info-banner {
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin-bottom: 16px;
+    font-size: 0.92rem;
+    display: flex; gap: 12px; align-items: flex-start;
+  }
+  .info-banner.blue { background: #e8f0ff; border-left: 5px solid var(--ch8); }
+  .info-banner.orange { background: #fff4f0; border-left: 5px solid var(--ch6); }
+  .info-banner.green { background: #f0fbf5; border-left: 5px solid var(--ch9); }
+  .info-banner.yellow { background: #fffbeb; border-left: 5px solid var(--yellow); }
+
+  /* ── BACK TO TOP ── */
+  .back-top { position: fixed; bottom: 24px; right: 24px; background: var(--text); color: white; width: 42px; height: 42px; border-radius: 50%; border: none; font-size: 1.2rem; cursor: pointer; box-shadow: 0 4px 14px rgba(0,0,0,0.2); z-index: 200; transition: transform 0.2s; }
+  .back-top:hover { transform: translateY(-3px); }
+</style>
+</head>
+<body>
+
+<!-- TOP NAV -->
+<nav class="topbar">
+  <div class="topbar-brand">📚 LC PE Study Guide</div>
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="showPage('home', this)">🏠 Home</button>
+    <button class="nav-tab ch6" onclick="showPage('ch6', this)">⚖️ Ch 6 – Ethics & Fair Play</button>
+    <button class="nav-tab ch8" onclick="showPage('ch8', this)">📺 Ch 8 – Media & Technology</button>
+    <button class="nav-tab ch9" onclick="showPage('ch9', this)">👥 Ch 9 – Gender & PA</button>
+    <button class="nav-tab" onclick="showPage('quiz', this)">🃏 Flashcard Quiz</button>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════ HOME ═══════════════════════════════════ -->
+<div id="page-home" class="page active">
+  <div class="hero hero-ch8" style="background:linear-gradient(135deg,#1a1a2e,#2b3a6e);">
+    <div class="hero-content">
+      <div class="hero-badge">Leaving Certificate Physical Education</div>
+      <h1>Your Complete Study Guide 🎓</h1>
+      <p>Everything you need for Chapters 6, 8 and 9 — definitions, analogies, memory tricks and exam tips. Tap any chapter to get started!</p>
+    </div>
+  </div>
+
+  <div class="welcome-grid">
+    <div class="welcome-card" onclick="showPage('ch6', document.querySelector('.nav-tab.ch6'))">
+      <div class="icon">⚖️</div>
+      <h3>Chapter 6</h3>
+      <p>Ethics &amp; Fair Play</p>
+      <div class="count" style="background:#fde8de;color:#b34219;">Integrity · Doping · TUEs · Supplements</div>
+    </div>
+    <div class="welcome-card" onclick="showPage('ch8', document.querySelector('.nav-tab.ch8'))">
+      <div class="icon">📺</div>
+      <h3>Chapter 8</h3>
+      <p>Media &amp; Technology in Sport</p>
+      <div class="count" style="background:#deeafd;color:#1950b3;">Media · Gender Stereotypes · Tech</div>
+    </div>
+    <div class="welcome-card" onclick="showPage('ch9', document.querySelector('.nav-tab.ch9'))">
+      <div class="icon">👥</div>
+      <h3>Chapter 9</h3>
+      <p>Gender &amp; Physical Activity</p>
+      <div class="count" style="background:#def5e8;color:#0d7a44;">Body Image · Hegemony · Social Regulation</div>
+    </div>
+  </div>
+
+  <div class="tip-box">
+    <h3>💡 How to use this guide</h3>
+    <ul>
+      <li><strong>Tap any definition card</strong> to expand it — you'll see the official definition, a plain English explanation, an analogy and a memory trick.</li>
+      <li><strong>Go to the Flashcard Quiz</strong> tab to test yourself on the key terms from all chapters.</li>
+      <li>The 🔑 badge marks the most important exam definitions — learn these first!</li>
+      <li>The 💡 memory tricks are little stories or rhymes to help you remember things quickly under pressure.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════ CHAPTER 6 ═══════════════════════════════════ -->
+<div id="page-ch6" class="page">
+  <div class="hero hero-ch6">
+    <div class="hero-content">
+      <div class="hero-badge">Chapter 6</div>
+      <h1>Ethics &amp; Fair Play ⚖️</h1>
+      <p>Ethics, codes of conduct, sportsmanship vs gamesmanship, PEDs, anti-doping and supplements.</p>
+    </div>
+  </div>
+
+  <!-- 6.1 CORE DEFINITIONS -->
+  <div class="section-group">
+    <div class="section-title">
+      <div class="section-icon" style="background:#fde8de;">🔑</div>
+      Core Definitions — Ethics &amp; Principles
+    </div>
+
+    <!-- Ethics -->
+    <div class="def-card card-ch6" onclick="toggleDef(this)">
+      <div class="def-header">
+        <div class="def-term">
+          <span class="def-pill pill-key">🔑 KEY</span>
+          Ethics in Sport
+        </div>
+        <span class="def-chevron">▼</span>
+      </div>
+      <div class="def-body">
+        <div class="def-official ch6">📖 Official Definition: A set of values and principles that governs an athlete's behaviour while participating in sport.</div>
+        <div class="def-explain">Think of ethics as the <em>unwritten rulebook</em> — things that aren't in the actual rule book but that everyone agrees is the right way to behave. It's about being a decent person while playing.</div>
+        <div class="analogy-box"><strong>🎭 Analogy:</strong> The actual rules of a sport are like traffic laws — you must follow them or you'll be penalised. Ethics are like general road courtesy — letting someone merge, waving a thank you. Nobody forces you, but it keeps everything running smoothly and pleasantly.</div>
+        <div class="memory-box"><strong>💡 Memory Trick:</strong> <em>"Ethics = Etiquette with a capital E"</em>. Etiquette is good manners; Ethics is good behaviour in sport. Both start with 'E' and are about doing what's right even when no one's watching.</div>
+      </div>
+    </div>
+
+    <!-- Integrity -->
+    <div class="def-card card-ch6" onclick="toggleDef(this)">
+      <div class="def-header">
+        <div class="def-term">
+          <span class="def-pill pill-key">🔑 KEY</span>
+          Integrity
+        </div>
+        <span class="def-chevron">▼</span>
+      </div>
+      <div class="def-body">
+        <div class="def-official ch6">📖 Official Definition: Acting in a way that is consistent with the values and principles of the sport. Positive conduct by athletes, administrators, officials, supporters and other stakeholders, on and off the sporting field, which enhances the reputation and standing of sport.</div>
+        <div class="def-explain">Integrity is about being honest and trustworthy — even when nobody would know if you cheated. It's the quality that makes others trust you. In sport, it includes honesty about whether you fouled someone, or whether the ball was in or out.</div>
+        <div class="analogy-box"><strong>🎭 Analogy:</strong> Imagine you found a €50 note and the owner is nearby. Returning it even though you could keep it — <em>that's</em> integrity. In sport: telling the referee the ball went out even when you didn't need to.</div>
+        <div class="memory-box"><strong>💡 Memory Trick:</strong> <em>"INtegrity = INside + honest"</em>. You behave well on the INside (when no one is watching), not just for show. An integer is a whole number — integrity means being a WHOLE good person.</div>
+        <div class="example-box"><strong>✏️ Exam Example:</strong> When Thierry Henry deliberately handled the ball vs. Ireland in 2010 — that was an integrity violation. He admitted it afterwards but did not call it back at the time.</div>
+      </div>
+    </div>
+
+    <!-- Respect -->
+    <div class="def-card card-ch6" onclick="toggleDef(this)">
+      <div class="def-header">
+        <div class="def-term">
+          <span class="def-pill pill-key">🔑 KEY</span>
+          Respect
+        </div>
+        <span class="def-chevron">▼</span>
+      </div>
+      <div class="def-body">
+        <div class="def-official ch6">📖 Official Definition: Showing regard for the rules and displaying acceptable behaviour towards opponents, officials, coaches and fans. Having consideration for oneself, others and the wider environment.</div>
+        <div class="def-explain">Respect means treating everyone in sport with dignity — your opponents, the referee, the crowd, and yourself. It's accepting the referee's decisions even if you disagree. Three groups must show respect: <strong>Athletes → teammates, opponents, coaches &amp; officials</strong>. <strong>Coaches → players, opponents &amp; officials</strong>. <strong>Fans → other fans, both teams &amp; officials</strong>.</div>
+        <div class="analogy-box"><strong>🎭 Analogy:</strong> Respect in sport is like a three-legged stool — if any one leg (athlete, coach, fan) fails, the whole thing falls over. All three must respect each other for sport to work properly.</div>
+        <div class="memory-box"><strong>💡 Memory Trick:</strong> <em>R-E-S-P-E-C-T</em> — Remember Everyone's a Sporting Person, Every Competitor Too! All three groups: athletes, coaches, fans.</div>
+      </div>
+    </div>
+
+    <!-- Fairness -->
+    <div class="def-card card-ch6" onclick="toggleDef(this)">
+      <div class="def-header">
+        <div class="def-term">
+          <span class="def-pill pill-key">🔑 KEY</span>
+          Fairness
+        </div>
+        <span class="def-chevron">▼</span>
+      </div>
+      <div class="def-body">
+        <div class="def-official ch6">📖 Official Definition: Treating everyone within sport equally and impartially. Involves following the rules. Essential in providing a fun, enjoyable and meaningful experience to all participants.</div>
+        <div class="def-explain">Fairness means the same rules apply to everyone — no special treatment. Referees must be unbiased. Players must not seek unfair advantages. No one should be excluded due to race, gender or sexual orientation.</div>
+        <div class="analogy-box"><strong>🎭 Analogy:</strong> Fairness is like a weighing scales — if you add extra weight on one side (an unfair advantage), it tilts and becomes meaningless. Both sides must be equal for the measure to be valid.</div>
+        <div class="memory-box"><strong>💡 Memory Trick:</strong> <em>Fairness = Same rules, same scales, same chance</em>. Picture Lady Justice with her scales — blindfolded and balanced. That's what fairness looks like in sport.</div>
+      </div>
+    </div>
+
+    <!-- Equity -->
+    <div class="def-card card-ch6" onclick="toggleDef(this)">
+      <div class="def-header">
+        <div class="def-term">
+          <span class="def-pill pill-key">🔑 KEY</span>
+          Equity
+        </div>
+        <span class="def-chevron">▼</span>
+      </div>
+      <div class="def-body">
+        <div class="def-official ch6">📖 Official Definition: Equality of access, recognising inequalities and taking steps to address them. Changing the culture and structures of a sport so it becomes equally accessible to all members of society regardless of age, ability, gender, race, ethnicity, sexuality or social economic status.</div>
+        <div class="def-explain">Equity is more than just giving everyone the same thing — it's giving people what they <em>need</em> to have an equal chance. Fairness gives everyone the same box to stand on; equity gives taller boxes to shorter people so everyone can see over the fence.</div>
+        <div class="analogy-box"><strong>🎭 Analogy (Famous!):</strong> Three people of different heights want to watch a match over a fence. Equality = each gets one box. Equity = the shortest person gets two boxes, the tallest gets none. Everyone can now see. That's equity.</div>
+        <div class="memory-box"><strong>💡 Memory Trick:</strong> <em>Equity = Equalising the playing field</em>. Equity has an "U" in it — YOU adjust to meet people where they are, not the other way around.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- IOC / IPC VALUES -->
+  <div class="section-group">
+    <div class="section-title">
+      <div class="section-icon" style="background:#fde8de;">🏅</div>
+      IOC &amp; IPC Values
+    </div>
+    <div class="grid-2">
+      <div class="grid-card card-ch6">
+        <h4>🏅 International Olympics Committee (IOC)</h4>
+        <ul>
+          <li><strong>Excellence:</strong> Doing the best you can in sport AND life — it's about striving, not just winning</li>
+          <li><strong>Friendship:</strong> Using sport to develop tolerance and understanding between all people</li>
+          <li><strong>Respect:</strong> Consideration for yourself, others, environment and the rules</li>
+        </ul>
+        <div class="memory-box" style="margin-top:10px"><strong>💡 EFR:</strong> <em>"Every Friend Respects"</em> — Excellence, Friendship, Respect</div>
+      </div>
+      <div class="grid-card card-ch6">
+        <h4>♿ International Paralympics Committee (IPC)</h4>
+        <ul>
+          <li><strong>Courage:</strong> Accomplishing what others deem unexpected</li>
+          <li><strong>Determination:</strong> Pushing physical ability to the absolute limit</li>
+          <li><strong>Inspiration:</strong> The intense emotions from Paralympians' stories affecting others' lives</li>
+          <li><strong>Equality:</strong> Sport breaking down social barriers for persons with impairments</li>
+        </ul>
+        <div class="memory-box" style="margin-top:10px"><strong>💡 CDIE:</strong> <em>"Champions Don't Ignore Everyone"</em> — Courage, Determination, Inspiration, Equality</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CODE OF ETHICS STAKEHOLDERS -->
+  <div class="section-group">
+    <div class="section-title">
+      <div class="section-icon" style="background:#fde8de;">📋</div>
+      Code of Ethics — The Stakeholders
+    </div>
+    <div class="info-banner orange">
+      ⚠️ <span>The Leaving Cert loves asking about the different <strong>stakeholders</strong> in a code of ethics. Know all 5: Participants, Parents, Spectators, Coaches, Club Officials. Learn one example organisation for each.</span>
+    </div>
+    <div class="grid-2">
+      <div class="grid-card">
+        <h4>⚽ 1. Participants (FAI)</h4>
+        <ul>
+          <li>Play fairly and try to have fun</li>
+          <li>Respect opponents — they are not the enemy</li>
+          <li>Shake hands before and after</li>
+          <li>Put the ball out if opponent is injured</li>
+          <li>Treat players from minority groups equally</li>
+          <li>Be modest in victory, gracious in defeat</li>
+        </ul>
+      </div>
+      <div class="grid-card">
+        <h4>🤸 2. Parents (Gymnastics Ireland)</h4>
+        <ul>
+          <li>Be a role model for your child</li>
+          <li>Ask "Did you enjoy yourself?" not "Did you win?"</li>
+          <li>Don't criticise their performance</li>
+          <li>Respect officials' decisions</li>
+          <li>Respect rights of every young person</li>
+          <li>Model a balanced lifestyle</li>
+        </ul>
+      </div>
+      <div class="grid-card">
+        <h4>🏉 3. Spectators (IRFU)</h4>
+        <ul>
+          <li>No profane language</li>
+          <li>Respect both teams</li>
+          <li>Condemn the use of violence</li>
+          <li>No verbal abuse of referees or players</li>
+          <li>Encourage young players to follow the laws</li>
+        </ul>
+      </div>
+      <div class="grid-card">
+        <h4>🏐 4. Coaches &amp; Club Officials (GAA)</h4>
+        <ul>
+          <li>Respect rights, dignity and worth of every person</li>
+          <li>Treat everyone equally regardless of background</li>
+          <li>Be positive at all times</li>
+          <li>Ensure all eligible players get opportunities to play</li>
+          <li>Don't equate losing with failure in underage sport</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SPORTSMANSHIP VS GAMESMANSHIP VS DEVIANCE -->
+  <div class="section-group">
+    <div class="section-title">
+      <div class="section-icon" style="background:#fde8de;">🤺</div>
+      Sportsmanship vs Gamesmanship vs Deviance
+    </div>
+
+    <div class="def-card card-ch6" onclick="toggleDef(this)">
+      <div class="def-header">
+        <div class="def-term">
+          <span class="def-pill pill-key">🔑 KEY</span>
+          Fair Play
+        </div>
+        <span class="def-chevron">▼</span>
+      </div>
+      <div class="def-body">
+        <div class="def-official ch6">📖 Official Definition: Respect for the rules or equal treatment of all concerned.</div>
+        <div class="def-explain">Fair play is the big idea that ties together all the principles above. When you have a culture of fair play, sportsmanship follows naturally.</div>
+      </div>
+    </div>
+
+    <div class="def-card card-ch6" onclick="toggleDef(this)">
+      <div class="def-header">
+        <div class="def-term">
+          <span class="def-pill pill-key">🔑 KEY</span>
+          Sportsmanship
+        </div>
+        <span class="def-chevron">▼</span>
+      </div>
+      <div class="def-body">
+        <div class="def-official ch6">📖 Official Definition: Behaviour and attitudes that show respect for the rules of a game and for the other players. Playing fairly in the spirit of the game, showing respect and fair play to opponents, and being gracious in both victory and defeat.</div>
+        <div class="def-explain">Sportsmanship is going BEYOND the rules out of goodness. You're not forced to; you choose to do the right thing because it's honourable.</div>
+        <div class="analogy-box"><strong>🎭 Analogy:</strong> If a teammate falls in a race, do you help them up? You're not obliged to — but doing so is sportsmanship. Paolo Di Canio catching the ball instead of scoring when the goalkeeper was injured (West Ham vs Everton, 2000) — won FIFA Fair Play Award.</div>
+        <div class="memory-box"><strong>💡 Memory Trick:</strong> <em>Sports-man-ship = Ship sailing in the right direction</em>. A good ship stays on course (the moral course) even in rough seas (pressure to win).</div>
+      </div>
+    </div>
+
+    <div class="def-card card-ch6" onclick="toggleDef(this)">
+      <div class="def-header">
+        <div class="def-term">
+          <span class="def-pill pill-key">🔑 KEY</span>
+          Gamesmanship
+        </div>
+        <span class="def-chevron">▼</span>
+      </div>
+      <div class="def-body">
+        <div class="def-official ch6">📖 Official Definition: The art or practice of gaining an advantage over opponents by using clever methods which are not against the rules but are very close to cheating.</div>
+        <div class="def-explain">Gamesmanship is the grey area — not technically cheating, but not exactly fair either. Classic examples include time-wasting, verbal distraction, or narrowing a pitch before a game.</div>
+        <div class="analogy-box"><strong>🎭 Analogy:</strong> In chess, you're allowed to move your pieces closer to the clock to distract your opponent. Not illegal, but not exactly fair either — that's gamesmanship. The Tyrone vs Dublin pitch-narrowing scandal (Super 8s) is a sports example — Tyrone allegedly narrowed their home pitch to disrupt Dublin's wide game.</div>
+        <div class="memory-box"><strong>💡 Memory Trick:</strong> <em>Games-man-ship = Bending the rules of the GAME</em>. You're still playing the game, but bending what's acceptable. "Clever but crafty."</div>
+      </div>
+    </div>
+
+    <div class="def-card card-ch6" onclick="toggleDef(this)">
+      <div class="def-header">
+        <div class="def-term">
+          <span class="def-pill pill-key">🔑 KEY</span>
+          Deviance
+        </div>
+        <span class="def-chevron">▼</span>
+      </div>
+      <div class="def-body">
+        <div class="def-official ch6">📖 Official Definition: Behaving in a way that knowingly breaks the rules of the sport in order to get an advantage over your opponent.</div>
+        <div class="def-explain">Deviance is full-on rule-breaking. Not a grey area — it's deliberately crossing the line. Examples: diving to win a penalty, doping, match-fixing, deliberate handball.</div>
+        <div class="analogy-box"><strong>🎭 Analogy:</strong> Deviance is running a red light on purpose to beat traffic. You know it's wrong, you know the rule, and you break it anyway for personal gain.</div>
+        <div class="example-box"><strong>✏️ Real Example:</strong> Thierry Henry's handball vs Republic of Ireland in the 2010 World Cup qualifier — he knew he had fouled but did not admit it at the time. Classic deviance.</div>
+        <div class="memory-box"><strong>💡 Quick Comparison:</strong> 
+          <br>✅ <strong>Sportsmanship</strong> = goes ABOVE rules (honourable)
+          <br>😏 <strong>Gamesmanship</strong> = stays WITHIN rules but pushes limits (cheeky)
+          <br>❌ <strong>Deviance</strong> = goes BELOW rules (cheating)
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DOPING & PEDs -->
+  <div class="section-group">
+    <div class="section-title">
+      <div class="section-icon" style="background:#fde8de;">💊</div>
+      Performance Enhancing Drugs (PEDs) &amp; Anti-Doping
+    </div>
+
+    <div class="def-card card-ch6" onclick="toggleDef(this)">
+      <div class="def-header">
+        <div class="def-term">
+          <span class="def-pill pill-key">🔑 KEY</span>
+          Performance Enhancing Drug (PED)
+        </div>
+        <span class="def-chevron">▼</span>
+      </div>
+      <div class="def-body">
+        <div class="def-official ch6">📖 Official Definition: Any substance taken specifically for the purpose of improving sports performance.</div>
+        <div class="def-explain">PEDs are not just about competing — most are taken to help athletes <em>train</em> harder and recover faster. The competitive edge is built in training, not just on the day.</div>
+        <div class="analogy-box"><strong>🎭 Analogy:</strong> Imagine a car engine getting illegal turbo upgrades before a race. The car looks normal on race day but it's been modified for unfair power. PEDs work the same way — the body is "upgraded" in training.</div>
+        <div class="memory-box"><strong>💡 Memory Trick:</strong> <em>PED = Performance Enhancement Drug = Pedal to the metal unfairly</em>. Like pressing the accelerator too hard — you go faster, but it's not allowed.</div>
+      </div>
+    </div>
+
+    <!-- WADA -->
+    <div class="def-card card-ch6" onclick="toggleDef(this)">
+      <div class="def-header">
+        <div class="def-term">
+          <span class="def-pill pill-def">DEF</span>
+          WADA (World Anti-Doping Agency)
+        </div>
+        <span class="def-chevron">▼</span>
+      </div>
+      <div class="def-body">
+        <div class="def-official ch6">📖 WADA maintains the list of banned substances and methods, updating it at least annually. A substance is prohibited if it meets 2 of 3 criteria: (1) performance-enhancing, (2) harmful to health, (3) violates the spirit of sport.</div>
+        <div class="def-explain">WADA was established in 1999. The banned list is divided into: <strong>banned AT ALL TIMES</strong> (hormones, anabolics, EPO, beta-2 agonists, diuretics) and <strong>banned IN-COMPETITION ONLY</strong> (stimulants, cannabinoids, narcotics). Methods like blood transfusion are also banned at all times.</div>
+        <div class="memory-box"><strong>💡 Memory Trick:</strong> <em>WADA = Watch Athletes Doping Anywhere</em> — they test in AND out of competition.</div>
+      </div>
+    </div>
+
+    <!-- Drug types table -->
+    <div class="topic-card">
+      <h3>💊 Main Categories of PEDs (WADA Prohibited List)</h3>
+      <table class="drug-table">
+        <thead>
+          <tr><th>PED Type</th><th>What it does</th><th>Key Side Effects</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Anabolic Steroids</strong></td>
+            <td>Mimic testosterone. Increase muscle mass, strength and recovery. Allow more frequent/intense training.</td>
+            <td class="bad">Shrunken testicles, infertility, liver damage, heart problems, aggression, psychiatric disorders</td>
+          </tr>
+          <tr>
+            <td><strong>Stimulants</strong> (cocaine, amphetamines)</td>
+            <td>Athletes believe they boost performance. Actually DECREASE performance — impair temperature regulation.</td>
+            <td class="bad">Vision problems, high blood pressure, stroke, death</td>
+          </tr>
+          <tr>
+            <td><strong>Narcotics</strong></td>
+            <td>Relieve pain, create euphoria. Allow athletes to push through pain barriers. Used in-competition period only.</td>
+            <td class="bad">Addiction, overdose, false sense of invincibility, increased injury risk, death</td>
+          </tr>
+          <tr>
+            <td><strong>Blood Doping / EPO</strong></td>
+            <td>Increases red blood cells → more oxygen to muscles → improved endurance</td>
+            <td class="bad">Blood clotting, stroke, heart attacks, leukaemia</td>
+          </tr>
+          <tr>
+            <td><strong>Beta-2 Agonists</strong></td>
+            <td>Bronchodilators — increase airflow to lungs. May increase muscle mass, decrease fat.</td>
+            <td class="bad">Palpitations, headaches, nausea, muscle cramps</td>
+          </tr>
+          <tr>
+            <td><strong>Diuretics</strong></td>
+            <td>Increase urine production — used to MASK other drugs or lose weight quickly (e.g. boxing weight categories)</td>
+            <td class="bad">Dehydration, cramps, dizziness, blood pressure drop</td>
+          </tr>
+          <tr>
+            <td><strong>HGH (Growth Hormone)</strong></td>
+            <td>Stimulates muscle growth, reduces fat, increases strength. In peptide hormone category.</td>
+            <td class="bad">Hypertension, thyroid problems, heart attacks</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="memory-box"><strong>💡 Memory Trick for 3 main types:</strong> <em>"Steroids Strengthen, Narcotics Numb, EPO Elevates (oxygen)"</em></div>
+    </div>
+
+    <!-- Anti-Doping Rules -->
+    <div class="def-card card-ch6" onclick="toggleDef(this)">
+      <div class="def-header">
+        <div class="def-term">
+          <span class="def-pill pill-def">DEF</span>
+          Anti-Doping Rule Violations (ADRVs)
+        </div>
+        <span class="def-chevron">▼</span>
+      </div>
+      <div class="def-body">
+        <div class="def-official ch6">📖 An ADRV can include: presence of a prohibited substance, use of a prohibited method, refusing to provide a sample, evading testing, possession, trafficking, tampering, or administration of banned substances to another athlete.</div>
+        <div class="def-explain">You don't have to test positive to be banned — refusing to be tested, missing whereabouts tests, or helping someone else dope are all violations.</div>
+        <div class="analogy-box"><strong>🎭 Analogy:</strong> It's like a driving offence — you don't have to cause a crash to get points on your licence. Speeding, ignoring signs, or having illegal modifications all count. Doping works similarly — there are many ways to violate the rules.</div>
+      </div>
+    </div>
+
+    <!-- Biological Passport -->
+    <div class="def-card card-ch6" onclick="toggleDef(this)">
+      <div class="def-header">
+        <div class="def-term">
+          <span class="def-pill pill-def">DEF</span>
+          Athlete Biological Passport
+        </div>
+        <span class="def-chevron">▼</span>
+      </div>
+      <div class="def-body">
+        <div class="def-official ch6">📖 Official Definition: A record of anti-doping test results (blood and urine) carried out on an athlete over time. Allows for the identification of any variations outside the normal parameters of the athlete's own profile.</div>
+        <div class="def-explain">Instead of just testing for a drug at one moment, the passport tracks your blood values over years. If something suddenly spikes outside your normal range, it flags suspicion — even if the exact substance can't be identified.</div>
+        <div class="analogy-box"><strong>🎭 Analogy:</strong> Think of it like a bank statement — if your account normally has €200 in it and suddenly shows €10,000 come in overnight, the bank flags it as suspicious even if they don't know where it came from. The passport does the same for blood values.</div>
+      </div>
+    </div>
+
+    <!-- Sanctions -->
+    <div class="topic-card">
+      <h3>🚫 Sanctions for Doping (Sport Ireland)</h3>
+      <div class="sanctions-grid">
+        <div class="sanction-item"><strong>First ADRV</strong>2–4 year ban from competition. Disqualification of results. Forfeit of all awards and medals from that period.</div>
+        <div class="sanction-item"><strong>Third ADRV in 10 years</strong>Lifetime ban from all competition.</div>
+        <div class="sanction-item"><strong>Missed Whereabouts Tests</strong>3 failures in 12 months = 2-year ban.</div>
+        <div class="sanction-item"><strong>Funding</strong>Sport Ireland funding withheld during ban period.</div>
+      </div>
+    </div>
+
+    <!-- TUE -->
+    <div class="def-card card-ch6" onclick="toggleDef(this)">
+      <div class="def-header">
+        <div class="def-term">
+          <span class="def-pill pill-key">🔑 KEY</span>
+          Therapeutic Use Exemption (TUE)
+        </div>
+        <span class="def-chevron">▼</span>
+      </div>
+      <div class="def-body">
+        <div class="def-official ch6">📖 Official Definition: A TUE permits an athlete to use, for therapeutic purposes only, an otherwise prohibited substance or method of administering a substance. When medication required for a legitimate medical condition appears on the prohibited list, a TUE may allow that athlete to take the required medicine.</div>
+        <div class="def-explain">Some athletes have genuine medical conditions (asthma, ADHD, diabetes) that require medication that happens to be on the banned list. A TUE is like a doctor's certificate that says "this person needs this medication, and it's not being used to cheat." The TUE must be APPROVED BEFORE use (except emergencies).</div>
+        <div class="analogy-box"><strong>🎭 Analogy:</strong> Imagine a chef in a "no salt" cooking competition who has a rare medical condition requiring salt supplements. The TUE is like a doctor's note allowing them to use salt for health, not for taste advantage. The key condition: it's for health, not performance enhancement.</div>
+        <div class="memory-box"><strong>💡 Memory Trick:</strong> <em>TUE = "Treat U Ethically"</em> — it allows you to treat a medical condition ethically and legally within sport. Must be applied for IN ADVANCE.</div>
+        <div class="example-box"><strong>✏️ Examples of conditions eligible for TUE:</strong> Asthma, ADHD, diabetes, cardiovascular conditions, growth hormone deficiency, adrenal insufficiency, anaphylaxis.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- DIETARY SUPPLEMENTS -->
+  <div class="section-group">
+    <div class="section-title">
+      <div class="section-icon" style="background:#fde8de;">🥤</div>
+      Dietary Supplements
+    </div>
+    <div class="def-card card-ch6" onclick="toggleDef(this)">
+      <div class="def-header">
+        <div class="def-term">
+          <span class="def-pill pill-def">DEF</span>
+          Dietary Supplement
+        </div>
+        <span class="def-chevron">▼</span>
+      </div>
+      <div class="def-body">
+        <div class="def-official ch6">📖 Dietary supplements are products used by athletes as part of regular training and competition. Common examples include vitamins, minerals, protein and creatine. They are often used without full understanding of their potential benefits and risks. The athlete is responsible for any banned substance found in their body — even from a supplement.</div>
+        <div class="def-explain">The big danger with supplements: they're POORLY REGULATED. Labels may not list all ingredients. Athletes have been banned for substances in supplements that weren't on the label (e.g. DMAA/methylhexaneamine). <strong>Strict liability = if it's in your body, you're responsible, regardless of source.</strong></div>
+        <div class="analogy-box"><strong>🎭 Analogy:</strong> Imagine buying a "healthy smoothie" from a random shop, and it turns out it contained an illegal ingredient that wasn't on the menu. You still get penalised. In sport, the athlete is always responsible for what's in their body.</div>
+        <div class="memory-box"><strong>💡 Top Supplements to Know:</strong><br>
+        💪 <strong>Creatine</strong> — energy for short-term anaerobic activity, may increase strength and power<br>
+        ☕ <strong>Caffeine</strong> — may enhance endurance; blocks fatigue signals in brain<br>
+        🥩 <strong>Protein</strong> — builds, maintains and repairs muscle<br>
+        🩸 <strong>Iron</strong> — improves oxygen uptake (when deficient)<br>
+        🧪 <strong>Sodium Bicarbonate</strong> — reduces muscle acidity in high-intensity activity
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<!-- END CH6 -->
+
+<!-- ═══════════════════════════════════ CHAPTER 8 ═══════════════════════════════════ -->
+<div id="page-ch8" class="page">
+  <div class="hero hero-ch8">
+    <div class="hero-content">
+      <div class="hero-badge">Chapter 8</div>
+      <h1>Media &amp; Technology in Sport 📺</h1>
+      <p>Types of media, their influence on sport, gender stereotypes, and how technology impacts performers, coaches, officials and spectators.</p>
+    </div>
+  </div>
+
+  <!-- TYPES OF MEDIA -->
+  <div class="section-group">
+    <div class="section-title">
+      <div class="section-icon" style="background:#deeafd;">📡</div>
+      Types of Media in Sport
+    </div>
+    <div class="topic-card">
+      <h3>📡 The 5 Types of Media</h3>
+      <div class="grid-2">
+        <div>
+          <p style="margin-bottom:8px"><strong>📺 Television:</strong> RTE, BBC, Sky, BT Sport. Smart TVs with on-demand and interactive "red button" features enhance spectator viewing.</p>
+          <p style="margin-bottom:8px"><strong>📻 Radio:</strong> National and local stations. Dedicated shows like "Game On" (RTE) and "Off the Ball" (Newstalk). Podcasts.</p>
+          <p style="margin-bottom:8px"><strong>📰 Written Press:</strong> Profiles and reporting. National and local newspapers, books, magazines.</p>
+        </div>
+        <div>
+          <p style="margin-bottom:8px"><strong>🌐 Internet:</strong> Real-time updates, live streaming, online channels, podcasts, blogs, YouTube. Major force in modern sport coverage.</p>
+          <p style="margin-bottom:8px"><strong>📱 Social Media:</strong> Fastest growing platform. Twitter, Snapchat, Facebook, Instagram. Direct athlete-to-fan communication.</p>
+        </div>
+      </div>
+      <div class="memory-box"><strong>💡 Memory Trick:</strong> <em>TV-Radio-Press-Internet-Social = "The Reporters Post It Smartly"</em></div>
+    </div>
+  </div>
+
+  <!-- POSITIVE & NEGATIVE INFLUENCES -->
+  <div class="section-group">
+    <div class="section-title">
+      <div class="section-icon" style="background:#deeafd;">⚡</div>
+      Positive &amp; Negative Influence of Media in Sport
+    </div>
+    <div class="grid-2">
+      <div class="grid-card" style="border-color:#a0ebc0">
+        <h4 style="color:#0d7a44">✅ Positive Influences</h4>
+        <ul>
+          <li>Motivates people to take part in physical activity</li>
+          <li>Provides positive role models</li>
+          <li>Educates spectators through analysis and commentary</li>
+          <li>Generates revenue and provides employment</li>
+          <li>Showcases sportsmanship and positive values</li>
+          <li>Makes events accessible globally</li>
+        </ul>
+      </div>
+      <div class="grid-card" style="border-color:#f7b0b0">
+        <h4 style="color:#cc2222">❌ Negative Influences</h4>
+        <ul>
+          <li>Dictates event scheduling (e.g. late night kick-offs for TV)</li>
+          <li>Reduces spectator attendance at live events</li>
+          <li>Intrudes on performer privacy</li>
+          <li>Discourages activity by creating "armchair spectators"</li>
+          <li>Creates social media abuse of athletes</li>
+          <li>Reinforces gender stereotypes</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- MEDIA & ELITE PERFORMANCE -->
+  <div class="section-group">
+    <div class="section-title">
+      <div class="section-icon" style="background:#deeafd;">⭐</div>
+      Media &amp; Elite Performance
+    </div>
+    <div class="topic-card">
+      <h3>⭐ How Media Affects Elite Athletes</h3>
+      <ul>
+        <li style="margin-bottom:10px"><strong>Continuous need to perform:</strong> Athletes are scrutinised on AND off the pitch. Their image depends on always being at their best.</li>
+        <li style="margin-bottom:10px"><strong>Heightened expectations:</strong> Media amplifies pressure — millions can comment on a single performance. Stress increases dramatically.</li>
+        <li style="margin-bottom:10px"><strong>Sponsorship &amp; profile requirements:</strong> Media appearances affect training time and social life. Athletes must balance sport and public relations.</li>
+        <li style="margin-bottom:10px"><strong>Intrusion on personal life:</strong> Events in private life can be made public. Athletes lose control of their own story.</li>
+      </ul>
+    </div>
+    <div class="info-banner blue">
+      💡 <span><strong>Key Idea:</strong> Sponsorship and TV coverage drive many decisions in elite sport. Commercial interests (advertising revenue) influence everything from scheduling to athlete behaviour off the pitch.</span>
+    </div>
+  </div>
+
+  <!-- MASS PARTICIPATION -->
+  <div class="section-group">
+    <div class="section-title">
+      <div class="section-icon" style="background:#deeafd;">🏃</div>
+      Mass Participation Sports &amp; Media
+    </div>
+    <div class="def-card card-ch8" onclick="toggleDef(this)">
+      <div class="def-header">
+        <div class="def-term">
+          <span class="def-pill pill-key">🔑 KEY</span>
+          Mass Participation Sports
+        </div>
+        <span class="def-chevron">▼</span>
+      </div>
+      <div class="def-body">
+        <div class="def-official ch8">📖 Official Definition: Sports that have a large number of participants — from 20–30 people to thousands. Examples include 5km Parkruns, road races, adventure races, triathlons, cycling sportives and obstacle events like Tough Mudder.</div>
+        <div class="def-explain">Mass participation events are non-elite and open to all fitness levels. The media covers them positively to inspire ordinary people — showing that sport is not just for professionals.</div>
+        <div class="analogy-box"><strong>🎭 Analogy:</strong> Elite sport is like a Michelin-star restaurant — amazing but out of reach for most. Mass participation is like a community BBQ — everyone's welcome, the focus is fun, and the media loves showing it because it's inspiring and accessible.</div>
+        <div class="topic-card" style="margin-top:12px;margin-bottom:0">
+          <h3>📺 Role of Media in Mass Participation</h3>
+          <ul>
+            <li>Motivate people to take part in PA for fun and wellbeing</li>
+            <li>Show that events are accessible to all abilities — non-competitive nature</li>
+            <li>Showcase positive values like sportsmanship and helping others</li>
+            <li>Generate money for charities</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HOW SPORT APPEALS TO MEDIA -->
+  <div class="section-group">
+    <div class="section-title">
+      <div class="section-icon" style="background:#deeafd;">📊</div>
+      How Sport Appeals to Media &amp; Spectators
+    </div>
+    <div class="grid-2">
+      <div class="grid-card card-ch8">
+        <h4>📺 Why Media Covers Sport (pick 3 for exam)</h4>
+        <ul>
+          <li><strong>Drama</strong> – heroes, villains, highs and lows attract audiences</li>
+          <li><strong>Simplicity</strong> – easy-to-follow sports get wider audiences</li>
+          <li><strong>History</strong> – tradition and rivalries (local derbies) create excitement</li>
+          <li><strong>International appeal</strong> – wider reach = more advertising opportunities</li>
+          <li><strong>Marketing</strong> – large fan bases = marketing revenue for media</li>
+          <li><strong>Passion &amp; loyalty</strong> – passionate fans want more content</li>
+          <li><strong>Equal opportunities</strong> – narrowing gender gap shifts media coverage</li>
+          <li><strong>Entertainment</strong> – if people are entertained, it's worth covering</li>
+        </ul>
+      </div>
+      <div class="grid-card card-ch8">
+        <h4>👥 Why Spectators Follow Sport (pick 3 for exam)</h4>
+        <ul>
+          <li><strong>Accessibility</strong> – ease of access to events and competitions</li>
+          <li><strong>Price</strong> – entrance fees, subscriptions, pay-per-view</li>
+          <li><strong>Passion &amp; loyalty</strong> – sport is more than a game for many</li>
+          <li><strong>Sense of belonging</strong> – community feel (GAA is great example)</li>
+          <li><strong>Entertainment</strong> – want and need to be entertained</li>
+          <li><strong>Media coverage</strong> – news, photos, social media fuels interest</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- MEDIA IMPACT ON SPECTATOR BEHAVIOUR -->
+  <div class="section-group">
+    <div class="section-title">
+      <div class="section-icon" style="background:#deeafd;">👁️</div>
+      Media Impact on Spectator Behaviour
+    </div>
+
+    <div class="def-card card-ch8" onclick="toggleDef(this)">
+      <div class="def-header">
+        <div class="def-term">
+          <span class="def-pill pill-def">DEF</span>
+          Social Media Abuse in Sport
+        </div>
+        <span class="def-chevron">▼</span>
+      </div>
+      <div class="def-body">
+        <div class="def-official ch8">📖 Negative interactions on social media are increasingly common in sport. Irish and British governments have plans to regulate social media contact and fine companies that don't adhere to regulations.</div>
+        <div class="def-explain">Social media has given fans a direct line to athletes — and while mostly positive, a vocal minority use it to abuse. Unlike shouting abuse in a stadium (which others can shut down), online abuse can be anonymous and constant.</div>
+      </div>
+    </div>
+
+    <div class="topic-card">
+      <h3>📺 4 Ways Media Impacts Spectator Behaviour</h3>
+      <ul>
+        <li style="margin-bottom:10px"><strong>📱 Social Media:</strong> Online abuse becoming commonplace. Governments planning regulation to protect athletes and penalise inappropriate behaviour.</li>
+        <li style="margin-bottom:10px"><strong>📣 Advertising:</strong> Main purpose is to generate revenue. Targeting sports fans to buy team kits, influence eating/drinking habits. Sponsorship is a billion-dollar global business.</li>
+        <li style="margin-bottom:10px"><strong>🔥 Hype:</strong> Media builds excitement around events. Can create positive emotions (excitement, happiness) OR negative ones (tension, anxiety, anger — especially when rivals are introduced).</li>
+        <li style="margin-bottom:10px"><strong>🥊 Hooliganism &amp; Violence:</strong> Media records and publicises violent behaviour — can help identify offenders. However, tabloids can SENSATIONALISE it and give it more attention than it deserves, potentially inspiring more.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- GENDER STEREOTYPES -->
+  <div class="section-group">
+    <div class="section-title">
+      <div class="section-icon" style="background:#deeafd;">⚧️</div>
+      Media &amp; Gender Stereotypes
+    </div>
+
+    <div class="def-card card-ch8" onclick="toggleDef(this)">
+      <div class="def-header">
+        <div class="def-term">
+          <span class="def-pill pill-key">🔑 KEY</span>
+          Gender Stereotype
+        </div>
+        <span class="def-chevron">▼</span>
+      </div>
+      <div class="def-body">
+        <div class="def-official ch8">📖 Official Definition: A generalised view of the traits, characteristics or roles that are or should be possessed by men and women.</div>
+        <div class="def-explain">A stereotype is a simplistic, often false assumption about a group. A gender stereotype applies this to men and women — e.g. "boys should play rough sports" or "girls should be cheerleaders." These assumptions are not always true but media reinforces them.</div>
+        <div class="analogy-box"><strong>🎭 Analogy:</strong> A gender stereotype is like a casting director who only ever casts men as action heroes and women as love interests — regardless of the actor's actual skills. The media does this with athletes: women are cast as "women who happen to play sport," not "athletes who happen to be women."</div>
+        <div class="memory-box"><strong>💡 Memory Trick:</strong> <em>Stereotype = "Stereo" (two-channel, limited) + "Type" (fixed category)</em>. Stereotypes are a limited, fixed way of seeing people — like old stereo sound vs surround sound reality.</div>
+      </div>
+    </div>
+
+    <div class="topic-card">
+      <h3>⚧️ How Media Reinforces Gender Stereotypes</h3>
+      <ul>
+        <li style="margin-bottom:8px">Media tends to represent women athletes as <strong>women first and athletes second</strong></li>
+        <li style="margin-bottom:8px">Coverage of women in sport often focuses on <strong>appearance, age or family life</strong> rather than performance</li>
+        <li style="margin-bottom:8px">Men are depicted as powerful, independent, dominating — valued as athletes</li>
+        <li style="margin-bottom:8px">These representations maintain ingrained stereotypes</li>
+        <li style="margin-bottom:8px">The gender gap in Irish sport participation has narrowed (Irish Sports Monitor) but <strong>media coverage still lags far behind</strong></li>
+      </ul>
+      <div class="memory-box"><strong>💡 Key Exam Point:</strong> Media is POWERFUL — it can challenge and change gender norms OR continue reinforcing them. The choice of what to cover (and how) shapes what society believes is "normal."</div>
+    </div>
+  </div>
+
+  <!-- TECHNOLOGY IN SPORT -->
+  <div class="section-group">
+    <div class="section-title">
+      <div class="section-icon" style="background:#deeafd;">🔬</div>
+      Technology in Sport
+    </div>
+
+    <div class="info-banner blue">
+      💡 <span>Technology has changed how coaches and performers train. "Live" information now allows coaches to <strong>influence performance in real time</strong>, rather than only analysing after the event.</span>
+    </div>
+
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th style="background:#2b7de0">Who</th>
+          <th style="background:#2b7de0">How Technology Helps</th>
+          <th style="background:#2b7de0">Example</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>⚽ Performer</strong></td>
+          <td>Wearable tech (smartwatches, fitness trackers) track heart rate, speed, sleep. Predictive analytics forecast injury risk. Better sports surfaces reduce injury.</td>
+          <td>GPS vest tracking player distance and intensity in GAA training</td>
+        </tr>
+        <tr>
+          <td><strong>🏋️ Coach</strong></td>
+          <td>Video analysis software to dissect gameplay and give feedback. Data analytics for opponent tendencies. Messaging apps for communication.</td>
+          <td>Coach reviews video of opponent's free kicks before a match</td>
+        </tr>
+        <tr>
+          <td><strong>🟡 Official</strong></td>
+          <td>Video replay (VAR) to review crucial decisions. Ball tracking systems (Hawk-Eye in tennis, goal-line technology in soccer).</td>
+          <td>Hawk-Eye used in Wimbledon to check if serve was in or out</td>
+        </tr>
+        <tr>
+          <td><strong>👀 Spectator</strong></td>
+          <td>HD broadcasts and immersive camera angles. Real-time statistics and graphics. Social media for community engagement.</td>
+          <td>"Red button" interactive TV lets fans choose camera angles</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="def-card card-ch8" onclick="toggleDef(this)">
+      <div class="def-header">
+        <div class="def-term">
+          <span class="def-pill pill-def">DEF</span>
+          Wearable Technology
+        </div>
+        <span class="def-chevron">▼</span>
+      </div>
+      <div class="def-body">
+        <div class="def-official ch8">📖 Smartwatches and fitness trackers that allow athletes to track real-time metrics such as heart rate, speed and sleep patterns. This data informs decisions on training intensity and rest periods, enhancing overall health management during training and competition.</div>
+        <div class="analogy-box"><strong>🎭 Analogy:</strong> Wearable tech is like a pilot's cockpit dashboard — it gives real-time readings on everything that's happening inside the "machine" (the athlete's body) so that small issues can be corrected before they become crashes (injuries).</div>
+      </div>
+    </div>
+
+    <div class="def-card card-ch8" onclick="toggleDef(this)">
+      <div class="def-header">
+        <div class="def-term">
+          <span class="def-pill pill-def">DEF</span>
+          Predictive Analytics
+        </div>
+        <span class="def-chevron">▼</span>
+      </div>
+      <div class="def-body">
+        <div class="def-official ch8">📖 Official Definition: Data-driven methods that forecast injury risk by analysing athletes' training loads, biomechanical profiles and injury history. Sports medicine professionals use this to implement proactive strategies like workload management and personalised training programmes.</div>
+        <div class="def-explain">Instead of waiting for an injury to happen, predictive analytics can warn coaches that an athlete is at high risk. Think of it as a sports weather forecast — not 100% accurate, but allows preparation.</div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+<!-- END CH8 -->
+
+<!-- ═══════════════════════════════════ CHAPTER 9 ═══════════════════════════════════ -->
+<div id="page-ch9" class="page">
+  <div class="hero hero-ch9">
+    <div class="hero-content">
+      <div class="hero-badge">Chapter 9</div>
+      <h1>Gender &amp; Physical Activity 👥</h1>
+      <p>Participation patterns, body image, social regulation, hegemonic masculinity/femininity, gender socialisation and reform.</p>
+    </div>
+  </div>
+
+  <!-- PARTICIPATION PATTERNS -->
+  <div class="section-group">
+    <div class="section-title">
+      <div class="section-icon" style="background:#def5e8;">📊</div>
+      Participation Patterns — CSPPA Report 2018
+    </div>
+    <div class="info-banner green">
+      📋 <span>The <strong>Children's Sport Participation and Physical Activity (CSPPA) Report 2018</strong> is the key research study. Know its key findings!</span>
+    </div>
+    <div class="topic-card">
+      <h3>📊 Key Findings (CSPPA 2018)</h3>
+      <ul>
+        <li>Boys are more likely to participate in <strong>extracurricular sports</strong> than girls</li>
+        <li>As age increases, participation in extracurricular sport <strong>decreases</strong></li>
+        <li>Team games are the most popular forms of extracurricular sport in primary and post-primary</li>
+        <li>Days reaching 60 minutes of MVPA increase with extracurricular sport or active commuting</li>
+        <li><strong>Overall, boys are more active than girls</strong></li>
+      </ul>
+    </div>
+
+    <div class="def-card card-ch9" onclick="toggleDef(this)">
+      <div class="def-header">
+        <div class="def-term">
+          <span class="def-pill pill-def">DEF</span>
+          Factors Affecting Participation
+        </div>
+        <span class="def-chevron">▼</span>
+      </div>
+      <div class="def-body">
+        <div class="def-official ch9">📖 Key factors: Home life, Access &amp; Facilities, Finance, Social Stigma, PE, Self-confidence, Role models, Influence of peers.</div>
+        <ul style="margin:10px 0 0 20px">
+          <li><strong>Home Life:</strong> Children of active parents are more likely to be active. High screen time → less PA</li>
+          <li><strong>Access &amp; Facilities:</strong> Lack of indoor/outdoor facilities affects participation</li>
+          <li><strong>Finance:</strong> Participation lower in lower-income families</li>
+          <li><strong>Social Stigma:</strong> Girls fear being bullied/labelled "manly" for doing sport. Boys are much more encouraged.</li>
+        </ul>
+        <div class="memory-box"><strong>💡 Memory Trick: HAFS + PRSM</strong> — Home, Access, Finance, Stigma, PE, Role models, Self-confidence, Media</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BODY TYPES -->
+  <div class="section-group">
+    <div class="section-title">
+      <div class="section-icon" style="background:#def5e8;">🏋️</div>
+      Body Types (Somatotypes)
+    </div>
+
+    <div class="def-card card-ch9" onclick="toggleDef(this)">
+      <div class="def-header">
+        <div class="def-term">
+          <span class="def-pill pill-key">🔑 KEY</span>
+          Ectomorph
+        </div>
+        <span class="def-chevron">▼</span>
+      </div>
+      <div class="def-body">
+        <div class="def-official ch9">📖 Official Definition: Lean and long, with difficulty building muscle.</div>
+        <div class="def-explain">Ectomorphs are naturally slim with a fast metabolism. They struggle to put on muscle mass. Often suited to endurance sports.</div>
+        <div class="analogy-box"><strong>🎭 Analogy:</strong> Think of a greyhound — lean, long, built for speed and endurance but not raw power. Marathon runners and basketball players often have ectomorph builds.</div>
+        <div class="memory-box"><strong>💡 Memory Trick:</strong> <em>Ecto = "Extra-thin-o"</em> — Ecto sounds like "echo" — think of a thin, echoing, lanky figure. Also: ECTOmorph = ECTOremoving fat naturally.</div>
+      </div>
+    </div>
+
+    <div class="def-card card-ch9" onclick="toggleDef(this)">
+      <div class="def-header">
+        <div class="def-term">
+          <span class="def-pill pill-key">🔑 KEY</span>
+          Mesomorph
+        </div>
+        <span class="def-chevron">▼</span>
+      </div>
+      <div class="def-body">
+        <div class="def-official ch9">📖 Official Definition: Muscular and well built, with a high metabolism and responsive muscle cells.</div>
+        <div class="def-explain">Mesomorphs build muscle easily and tend to be naturally athletic. They have a moderate metabolism and find it easier to both gain muscle and lose fat compared to the other types.</div>
+        <div class="analogy-box"><strong>🎭 Analogy:</strong> Think of a labrador retriever — strong, athletic, well-proportioned and responsive to training. Or think of a gymnast or sprinter — compact, powerful, muscular.</div>
+        <div class="memory-box"><strong>💡 Memory Trick:</strong> <em>MESO = "MuScle-O"</em> — Meso sounds like "muscle." The "MESO" athlete is the "MaSter" of the middle — not too lean, not too fat, just muscular.</div>
+      </div>
+    </div>
+
+    <div class="def-card card-ch9" onclick="toggleDef(this)">
+      <div class="def-header">
+        <div class="def-term">
+          <span class="def-pill pill-key">🔑 KEY</span>
+          Endomorph
+        </div>
+        <span class="def-chevron">▼</span>
+      </div>
+      <div class="def-body">
+        <div class="def-official ch9">📖 Official Definition: Big, high body fat, often pear-shaped with a high tendency to store body fat.</div>
+        <div class="def-explain">Endomorphs have a slower metabolism and gain fat more easily. However, they can also be strong and powerful — sumo wrestlers and rugby props often have endomorph builds.</div>
+        <div class="analogy-box"><strong>🎭 Analogy:</strong> Think of a bear — large, stores energy easily, powerful but not built for sprinting. Endomorphs are often very strong but need to work harder to stay lean.</div>
+        <div class="memory-box"><strong>💡 Memory Trick — All 3:</strong>
+          <br>🦒 <strong>Ecto</strong> = giraffe (long, lean, can't build bulk)
+          <br>🐆 <strong>Meso</strong> = cheetah (athletic, muscular, fast)
+          <br>🐻 <strong>Endo</strong> = bear (big, stores fat, powerful)
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- BODY IMAGE -->
+  <div class="section-group">
+    <div class="section-title">
+      <div class="section-icon" style="background:#def5e8;">🪞</div>
+      Body Image &amp; Physical Activity
+    </div>
+
+    <div class="def-card card-ch9" onclick="toggleDef(this)">
+      <div class="def-header">
+        <div class="def-term">
+          <span class="def-pill pill-key">🔑 KEY</span>
+          Body Image
+        </div>
+        <span class="def-chevron">▼</span>
+      </div>
+      <div class="def-body">
+        <div class="def-official ch9">📖 Official Definition: The thoughts, feelings and perceptions about appearance. A personal evaluation of self and others based on body weight.</div>
+        <div class="def-explain">Body image is not about how you actually look — it's about how you <em>think</em> you look and feel about it. Positive body image → more likely to exercise. Negative body image → avoid exercise, exercise alone, low satisfaction.</div>
+        <div class="analogy-box"><strong>🎭 Analogy:</strong> Body image is like looking in a fairground mirror — it may distort what's actually there. The issue isn't the real body; it's the distorted perception that affects behaviour. Two thirds of teenage girls have negative body image — the mirror is lying to them.</div>
+        <div class="memory-box"><strong>💡 Memory Trick:</strong> <em>Body Image = Body's IMaGine — what you IMAGINE your body looks like</em>, not what it actually looks like. The mind creates the image, not the mirror.</div>
+      </div>
+    </div>
+
+    <div class="topic-card">
+      <h3>🔬 Research Findings on Body Image &amp; Sport</h3>
+      <ul>
+        <li>Healthy weight females thought of themselves as <strong>slightly overweight</strong></li>
+        <li>Average-weight males wanted to be <strong>larger</strong></li>
+        <li>Sports involvement, especially team sports, was a cause of <strong>body dissatisfaction</strong> in athletes with normal BMI</li>
+        <li>This has led to psychological disorders: <strong>dysmorphia, anorexia, bulimia, orthorexia</strong></li>
+        <li>Also led to increased <strong>dropout rates</strong> from PA</li>
+      </ul>
+    </div>
+
+    <div class="def-card card-ch9" onclick="toggleDef(this)">
+      <div class="def-header">
+        <div class="def-term">
+          <span class="def-pill pill-def">DEF</span>
+          Media's Impact on Body Image in Women
+        </div>
+        <span class="def-chevron">▼</span>
+      </div>
+      <div class="def-body">
+        <div class="def-official ch9">📖 Two thirds of teenage girls have negative body image. Media promotes beauty standards that make girls who don't meet them feel less confident in sport, resulting in higher dropout rates.</div>
+        <div class="def-explain">Media edits and alters images of female athletes — promotes unrealistic body standards. Often focuses on appearance/femininity over athletic achievement (e.g. Anna Kournikova earned more through endorsements for her looks than higher-ranked tennis players earned for their results).</div>
+        <div class="example-box"><strong>✏️ Example:</strong> Anna Kournikova (net worth ~$50M) received more endorsements than higher-ranked players because media valued her looks over her results. Media focuses on sex appeal over athletic success.</div>
+      </div>
+    </div>
+
+    <div class="def-card card-ch9" onclick="toggleDef(this)">
+      <div class="def-header">
+        <div class="def-term">
+          <span class="def-pill pill-def">DEF</span>
+          Media's Impact on Body Image in Men
+        </div>
+        <span class="def-chevron">▼</span>
+      </div>
+      <div class="def-body">
+        <div class="def-official ch9">📖 Media focus on attractiveness of being muscular in males has led to increasing concerns for male body satisfaction. Marketing (superheroes, soldiers, sports stars) sends the message that boys must be tall, toned and muscular to be masculine.</div>
+        <div class="def-explain">Boys face a different but equally damaging pressure — to be BIG and muscular. This can lead to body dysmorphia (muscle dysmorphia/"bigorexia"), steroid use, and unhealthy exercise habits.</div>
+        <div class="memory-box"><strong>💡 Key Point for Exam:</strong> Body image affects BOTH genders but in different directions — girls are pressured to be thinner, boys are pressured to be more muscular. Both can lead to unhealthy behaviours.</div>
+      </div>
+    </div>
+
+    <div class="topic-card">
+      <h3>✅ Solutions to Address Body Image Issues</h3>
+      <ul>
+        <li>Take a break from social media; unfollow negative body image accounts</li>
+        <li>Engage in positive body talk with positive people</li>
+        <li>Focus on and appreciate what the body can DO, not how it looks</li>
+        <li>Enjoy being active just for the sake of being active</li>
+        <li>Accept that healthy and happy bodies come in all shapes and sizes</li>
+        <li>See each individual as a person with thoughts and feelings — not just body parts</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SOCIAL REGULATION -->
+  <div class="section-group">
+    <div class="section-title">
+      <div class="section-icon" style="background:#def5e8;">🌐</div>
+      Social Regulation of the Body
+    </div>
+
+    <div class="def-card card-ch9" onclick="toggleDef(this)">
+      <div class="def-header">
+        <div class="def-term">
+          <span class="def-pill pill-key">🔑 KEY</span>
+          Social Regulation
+        </div>
+        <span class="def-chevron">▼</span>
+      </div>
+      <div class="def-body">
+        <div class="def-official ch9">📖 Official Definition: A set of unwritten rules that outlines acceptable activities for individuals. Social regulation of the body is society's view of an acceptable body size and shape. It can influence how an individual dresses, how they perceive their body compared to the ideal image, and their relationship with PA.</div>
+        <div class="def-explain">Social regulation is the invisible pressure society puts on bodies to look a certain way. It's not a law — nobody forces you — but if you don't conform, you face judgement. Simone Biles hid her muscles in high school because female muscularity wasn't "socially accepted" by her peers. That's social regulation in action.</div>
+        <div class="analogy-box"><strong>🎭 Analogy:</strong> Social regulation is like a dress code nobody wrote down but everyone enforces. There's no rule saying you can't wear tracksuit bottoms to a wedding — but if you do, you'll face social consequences. Bodies face the same invisible dress code from society.</div>
+        <div class="memory-box"><strong>💡 Memory Trick:</strong> <em>Social Regulation = Society's unwritten "body rulebook"</em>. No one hands it to you, but you feel it every day. It can be positive (promoting health) or negative (promoting dangerous ideals).</div>
+        <div class="example-box"><strong>✏️ Research (Mental Health Foundation UK, 2019):</strong> In the previous 12 months — 20% felt shame about their body; 34% felt anxious or depressed; 19% felt disgusted; 22% said social media caused body worry.</div>
+      </div>
+    </div>
+
+    <div class="topic-card">
+      <h3>📅 How Body Ideals Have Changed Over Time</h3>
+      <ul>
+        <li><strong>Renaissance (15th–16th Century):</strong> Ideal bodies were muscular for men, soft and curvy for women. Larger bodies indicated wealth (money = lots of food, no manual labour). Women were NOT expected to participate in PA.</li>
+        <li><strong>Today:</strong> Social standards have shifted completely — Renaissance "ideal female" bodies would be considered overweight by today's standards. Renaissance male bodies would be seen as "not muscular enough."</li>
+        <li><strong>Key lesson:</strong> "Ideal" body types are socially constructed and change with time — they are not fixed biological truths.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- HEGEMONY -->
+  <div class="section-group">
+    <div class="section-title">
+      <div class="section-icon" style="background:#def5e8;">💪</div>
+      Hegemony in Sport
+    </div>
+
+    <div class="def-card card-ch9" onclick="toggleDef(this)">
+      <div class="def-header">
+        <div class="def-term">
+          <span class="def-pill pill-key">🔑 KEY</span>
+          Hegemonic Masculinity
+        </div>
+        <span class="def-chevron">▼</span>
+      </div>
+      <div class="def-body">
+        <div class="def-official ch9">📖 Official Definition: The over-emphasis on stereotypical masculine traits such as competitiveness, strength and aggression. A way of thinking that supports male power and men's dominant position in society.</div>
+        <div class="def-explain">Hegemonic masculinity is a cultural idea that "real men" are strong, aggressive and dominant — and that these are the most valued qualities in society. Sport — especially contact sports — reinforces this idea. It excludes those who don't fit: women, LGBTQ+ athletes, or men who prefer aesthetic/artistic activities.</div>
+        <div class="analogy-box"><strong>🎭 Analogy:</strong> Imagine a workplace where the unofficial rule is "whoever shouts loudest gets their way." There's no written rule — but those who are naturally quiet are at a disadvantage. Hegemonic masculinity is the sports version: the unofficial rule says aggressive, dominant males are most valued.</div>
+        <div class="memory-box"><strong>💡 Memory Trick:</strong> <em>HEGemony = HEG = Huge, Elite, Guys</em>. Hegemonic masculinity says that being huge, elite and (male) guys is what counts. Everything else is looked down on.</div>
+        <div class="example-box"><strong>✏️ Impacts in Sport:</strong>
+          <ul>
+            <li>Excluding females and female participation</li>
+            <li>Encouraging homophobia</li>
+            <li>Reducing female participation in strength/aggression sports</li>
+            <li>Viewing men who prefer dance/gymnastics as "weak" or "unmanly"</li>
+            <li>Promoting aggression, violence and use of force</li>
+            <li>Encouraging excessive focus on winning</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="def-card card-ch9" onclick="toggleDef(this)">
+      <div class="def-header">
+        <div class="def-term">
+          <span class="def-pill pill-key">🔑 KEY</span>
+          Hegemonic Femininity
+        </div>
+        <span class="def-chevron">▼</span>
+      </div>
+      <div class="def-body">
+        <div class="def-official ch9">📖 Official Definition: The over-emphasis on stereotypical feminine traits such as being caring, kind, vulnerable and nurturing. Focus on graceful physical activities that are labelled "feminine" — gymnastics, dance, figure skating, netball.</div>
+        <div class="def-explain">Just as hegemonic masculinity tells men to be aggressive, hegemonic femininity tells women to be delicate and graceful. This means women who excel in "masculine" sports face ridicule and discrimination — even when they're world class. Venus and Serena Williams, and Katie Taylor, have all encountered difficulties balancing femininity with their athletic qualities.</div>
+        <div class="analogy-box"><strong>🎭 Analogy:</strong> Hegemonic femininity is like telling a female surgeon she should be in nursing because surgery is "too aggressive." The work is the same quality — but society's expectations create an invisible ceiling based on gender.</div>
+        <div class="memory-box"><strong>💡 Together:</strong> <br>
+          💪 <strong>Hegemonic Masculinity</strong> = be big, strong, aggressive (men)<br>
+          🩰 <strong>Hegemonic Femininity</strong> = be graceful, gentle, nurturing (women)<br>
+          Both restrict people from expressing their full athletic potential.
+        </div>
+      </div>
+    </div>
+
+    <div class="def-card card-ch9" onclick="toggleDef(this)">
+      <div class="def-header">
+        <div class="def-term">
+          <span class="def-pill pill-key">🔑 KEY</span>
+          Gender Role Socialisation
+        </div>
+        <span class="def-chevron">▼</span>
+      </div>
+      <div class="def-body">
+        <div class="def-official ch9">📖 Official Definition: How children learn about the typical social expectations, attitudes and behaviours associated with boys and girls.</div>
+        <div class="def-explain">From birth, children are taught what is "normal" for their gender — pink toys vs blue toys, dolls vs action figures. This shapes which sports and activities they feel comfortable in. It is socialisation (learning from society), not biology, that mainly drives these differences.</div>
+        <div class="analogy-box"><strong>🎭 Analogy:</strong> Gender role socialisation is like learning the rules of a game nobody officially taught you — but everyone around you plays it. A boy who picks up a doll gets told "that's for girls." A girl who plays rugby gets called "tomboy." These constant messages shape behaviour over time.</div>
+        <div class="memory-box"><strong>💡 Key Point:</strong> <em>Gender differences in sport are more a consequence of gender role SOCIALISATION than actual ability differences.</em> This is a crucial exam point — biology doesn't explain the gap; society does.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ADDRESSING GENDER IMBALANCE -->
+  <div class="section-group">
+    <div class="section-title">
+      <div class="section-icon" style="background:#def5e8;">🚀</div>
+      Addressing Gender Imbalance in Sport
+    </div>
+
+    <div class="info-banner green">
+      ⭐ <span>Know the <strong>20x20 Campaign</strong> — "If she can't see it, she can't be it." A key Irish initiative to improve media coverage of women in sport.</span>
+    </div>
+
+    <div class="topic-card">
+      <h3>🚀 Strategies to Address Female Participation</h3>
+      <ul>
+        <li style="margin-bottom:8px"><strong>Role Models:</strong> Female role models must be visible in the media. 20x20 Campaign: "If she can't see it, she can't be it."</li>
+        <li style="margin-bottom:8px"><strong>Tackling dropout rates:</strong> Initiatives to keep girls in sport. Promotion of individual sports (girls prefer individual; PE often favours team games). Aid clubs with equipment.</li>
+        <li style="margin-bottom:8px"><strong>Balanced PE programme:</strong> Research shows girls prefer individual sports; most PE focuses on team games (which favour boys). Balance needed.</li>
+        <li style="margin-bottom:8px"><strong>Promotion of PA in early years:</strong> Training for early years staff; family access to play areas; policies promoting positive body image in young females.</li>
+        <li style="margin-bottom:8px"><strong>Parents and staff:</strong> Active break times, variety of PA experiences, parents modelling PA behaviour, attending events to see role models.</li>
+        <li style="margin-bottom:8px"><strong>A coordinated approach:</strong> Target girls' dropout stages. Women in Sport Programme + 20x20 Campaign promote consistent positive message.</li>
+      </ul>
+    </div>
+
+    <div class="topic-card">
+      <h3>🏆 Gender Reform in Sport — Key Points</h3>
+      <ul>
+        <li>Gender differences in children's attitudes to sport are strong from a <strong>very young age</strong></li>
+        <li>These differences are consequences of <strong>gender role specialisation, not ability</strong></li>
+        <li>Focus on enjoyment may improve participation for both genders</li>
+        <li>Sport reform must move away from <strong>competitive attitudes</strong> to reduce hegemonic masculinity</li>
+        <li>Crossfit, mixed triathlon and tag rugby show a shift away from gendered PA</li>
+        <li>Wheelchair rugby and boccia allow disability inclusion</li>
+        <li>Women who appear feminine still have a social advantage over those seen as "masculine" — <strong>not conforming to hegemonic femininity can lead to sexist discrimination</strong></li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+<!-- END CH9 -->
+
+<!-- ═══════════════════════════════════ QUIZ ═══════════════════════════════════ -->
+<div id="page-quiz" class="page">
+  <div class="hero" style="background:linear-gradient(135deg,#1a1a2e,#3d2b6e)">
+    <div class="hero-content">
+      <div class="hero-badge">Flashcard Quiz</div>
+      <h1>Test Yourself! 🃏</h1>
+      <p>Tap any card to reveal the answer. Cover terms you know and focus on the ones you don't. These are all exam-likely definitions from Chapters 6, 8 and 9.</p>
+    </div>
+  </div>
+
+  <div class="quiz-section">
+    <div class="section-title"><div class="section-icon" style="background:#fde8de;">⚖️</div> Chapter 6 — Ethics &amp; Fair Play</div>
+    <div class="quiz-grid">
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="flip-inner">
+          <div class="flip-front">Ethics in Sport<span class="flip-hint">tap to reveal</span></div>
+          <div class="flip-back">A set of values and principles that governs an athlete's behaviour while participating in sport.</div>
+        </div>
+      </div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="flip-inner">
+          <div class="flip-front">Integrity<span class="flip-hint">tap to reveal</span></div>
+          <div class="flip-back">Acting consistently with the values of the sport. Positive conduct ON and OFF the field that enhances sport's reputation.</div>
+        </div>
+      </div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="flip-inner">
+          <div class="flip-front">Equity<span class="flip-hint">tap to reveal</span></div>
+          <div class="flip-back">Equality of ACCESS. Recognising inequalities and taking steps to address them — changing culture and structures so sport is accessible to ALL regardless of age, gender, race, ability, sexuality or SES.</div>
+        </div>
+      </div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="flip-inner">
+          <div class="flip-front">Sportsmanship<span class="flip-hint">tap to reveal</span></div>
+          <div class="flip-back">Behaviour and attitudes that show respect for the rules and other players. Playing fairly in the spirit of the game; gracious in victory AND defeat.</div>
+        </div>
+      </div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="flip-inner">
+          <div class="flip-front">Gamesmanship<span class="flip-hint">tap to reveal</span></div>
+          <div class="flip-back">The art of gaining an advantage using methods that are NOT against the rules but are very close to cheating. E.g. time-wasting, distracting opponents verbally.</div>
+        </div>
+      </div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="flip-inner">
+          <div class="flip-front">Deviance<span class="flip-hint">tap to reveal</span></div>
+          <div class="flip-back">Knowingly BREAKING the rules of sport to gain an advantage. E.g. diving, doping, match-fixing, deliberate handball (Thierry Henry).</div>
+        </div>
+      </div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="flip-inner">
+          <div class="flip-front">PED (Performance Enhancing Drug)<span class="flip-hint">tap to reveal</span></div>
+          <div class="flip-back">Any substance taken SPECIFICALLY for the purpose of improving sports performance. Most used to train harder/recover faster, not just on competition day.</div>
+        </div>
+      </div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="flip-inner">
+          <div class="flip-front">WADA<span class="flip-hint">tap to reveal</span></div>
+          <div class="flip-back">World Anti-Doping Agency. Maintains the prohibited list. A substance is banned if it meets 2 of 3 criteria: (1) performance-enhancing, (2) harmful to health, (3) violates spirit of sport.</div>
+        </div>
+      </div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="flip-inner">
+          <div class="flip-front">Athlete Biological Passport<span class="flip-hint">tap to reveal</span></div>
+          <div class="flip-back">A record of anti-doping test results (blood and urine) over time. Identifies variations outside the athlete's own NORMAL profile — flagging doping even without identifying the exact substance.</div>
+        </div>
+      </div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="flip-inner">
+          <div class="flip-front">TUE (Therapeutic Use Exemption)<span class="flip-hint">tap to reveal</span></div>
+          <div class="flip-back">Permits an athlete to use a prohibited substance for THERAPEUTIC (medical) purposes only. Must be applied for IN ADVANCE (except emergencies). Issued by Sport Ireland for Irish athletes.</div>
+        </div>
+      </div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="flip-inner">
+          <div class="flip-front">Blood Doping<span class="flip-hint">tap to reveal</span></div>
+          <div class="flip-back">Misusing techniques to increase red blood cell mass, allowing more oxygen to reach muscles → improved aerobic capacity and endurance. Methods: EPO, blood transfusions, synthetic oxygen carriers.</div>
+        </div>
+      </div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="flip-inner">
+          <div class="flip-front">IOC Values (3)<span class="flip-hint">tap to reveal</span></div>
+          <div class="flip-back">Excellence (doing your best, not just winning), Friendship (tolerance and understanding through sport), Respect (consideration for self, others, environment and rules). Memory: "Every Friend Respects"</div>
+        </div>
+      </div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="flip-inner">
+          <div class="flip-front">IPC Values (4)<span class="flip-hint">tap to reveal</span></div>
+          <div class="flip-back">Courage, Determination, Inspiration, Equality. Memory: "Champions Don't Ignore Everyone" (CDIE)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="quiz-section">
+    <div class="section-title"><div class="section-icon" style="background:#deeafd;">📺</div> Chapter 8 — Media &amp; Technology</div>
+    <div class="quiz-grid">
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="flip-inner">
+          <div class="flip-front">Gender Stereotype<span class="flip-hint">tap to reveal</span></div>
+          <div class="flip-back">A generalised view of the traits, characteristics or roles that are or should be possessed by men and women. Media reinforces these by focusing on appearance over athletic achievement for women.</div>
+        </div>
+      </div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="flip-inner">
+          <div class="flip-front">Mass Participation Sports<span class="flip-hint">tap to reveal</span></div>
+          <div class="flip-back">Sports with a large number of participants (20 to thousands). Examples: Parkruns, road races, triathlons, Tough Mudder. Non-elite and accessible to all abilities.</div>
+        </div>
+      </div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="flip-inner">
+          <div class="flip-front">Wearable Technology<span class="flip-hint">tap to reveal</span></div>
+          <div class="flip-back">Smartwatches and fitness trackers that allow athletes to track real-time metrics (heart rate, speed, sleep). Data informs training intensity and rest — enhances health management.</div>
+        </div>
+      </div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="flip-inner">
+          <div class="flip-front">Predictive Analytics<span class="flip-hint">tap to reveal</span></div>
+          <div class="flip-back">Data-driven methods forecasting injury risk by analysing training loads, biomechanical profiles and injury history. Enables proactive injury prevention strategies.</div>
+        </div>
+      </div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="flip-inner">
+          <div class="flip-front">3 Positive Media Influences on Sport<span class="flip-hint">tap to reveal</span></div>
+          <div class="flip-back">1. Motivates participation in PA. 2. Provides positive role models. 3. Educates spectators through analysis. 4. Generates revenue and jobs. (Give any 3)</div>
+        </div>
+      </div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="flip-inner">
+          <div class="flip-front">3 Negative Media Influences on Sport<span class="flip-hint">tap to reveal</span></div>
+          <div class="flip-back">1. Dictates event scheduling. 2. Reduces spectator attendance. 3. Intrudes on performer privacy. 4. Encourages armchair spectators. 5. Social media abuse. (Give any 3)</div>
+        </div>
+      </div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="flip-inner">
+          <div class="flip-front">Technology for Officials<span class="flip-hint">tap to reveal</span></div>
+          <div class="flip-back">Video replay (VAR) to review decisions. Ball tracking (Hawk-Eye in tennis, goal-line tech in soccer). Enhanced communication systems for consistent rulings.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="quiz-section">
+    <div class="section-title"><div class="section-icon" style="background:#def5e8;">👥</div> Chapter 9 — Gender &amp; Physical Activity</div>
+    <div class="quiz-grid">
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="flip-inner">
+          <div class="flip-front">Body Image<span class="flip-hint">tap to reveal</span></div>
+          <div class="flip-back">The thoughts, feelings and perceptions about appearance. A personal evaluation of self and others based on body weight. Positive body image → more likely to exercise.</div>
+        </div>
+      </div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="flip-inner">
+          <div class="flip-front">Social Regulation<span class="flip-hint">tap to reveal</span></div>
+          <div class="flip-back">A set of UNWRITTEN rules outlining acceptable activities for individuals. Society's view of an acceptable body size and shape. Influences how people dress, perceive their body, and relate to PA.</div>
+        </div>
+      </div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="flip-inner">
+          <div class="flip-front">Hegemonic Masculinity<span class="flip-hint">tap to reveal</span></div>
+          <div class="flip-back">Over-emphasis on stereotypical masculine traits: competitiveness, strength, aggression. A way of thinking that supports male power and dominant position in society. Excludes women, LGBTQ+, "non-masculine" men.</div>
+        </div>
+      </div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="flip-inner">
+          <div class="flip-front">Hegemonic Femininity<span class="flip-hint">tap to reveal</span></div>
+          <div class="flip-back">Over-emphasis on stereotypical feminine traits: caring, kind, vulnerable, nurturing. Focuses on "feminine" sports (gymnastics, dance, netball). Women who don't conform face discrimination.</div>
+        </div>
+      </div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="flip-inner">
+          <div class="flip-front">Gender Role Socialisation<span class="flip-hint">tap to reveal</span></div>
+          <div class="flip-back">How children learn the social expectations, attitudes and behaviours associated with boys and girls. Gender differences in sport are a consequence of socialisation, NOT ability differences.</div>
+        </div>
+      </div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="flip-inner">
+          <div class="flip-front">Ectomorph<span class="flip-hint">tap to reveal</span></div>
+          <div class="flip-back">Lean and long, with difficulty building muscle. Suited to endurance/long-distance sports. Think: marathon runner, basketball player. Memory: 🦒 giraffe.</div>
+        </div>
+      </div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="flip-inner">
+          <div class="flip-front">Mesomorph<span class="flip-hint">tap to reveal</span></div>
+          <div class="flip-back">Muscular and well-built, high metabolism, responsive muscle cells. Builds muscle easily. Suited to power and speed sports. Think: sprinter, gymnast. Memory: 🐆 cheetah.</div>
+        </div>
+      </div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="flip-inner">
+          <div class="flip-front">Endomorph<span class="flip-hint">tap to reveal</span></div>
+          <div class="flip-back">Big, pear-shaped, high body fat with a tendency to store fat. Often powerful and strong. Suited to strength sports. Think: sumo wrestler, rugby prop. Memory: 🐻 bear.</div>
+        </div>
+      </div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="flip-inner">
+          <div class="flip-front">CSPPA Report (2018) — 2 Key Findings<span class="flip-hint">tap to reveal</span></div>
+          <div class="flip-back">1. Boys more likely to do extracurricular sport than girls. 2. Participation decreases as age increases. 3. Boys overall more active than girls. (Give any 2)</div>
+        </div>
+      </div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="flip-inner">
+          <div class="flip-front">20x20 Campaign<span class="flip-hint">tap to reveal</span></div>
+          <div class="flip-back">Irish initiative to increase media coverage of women in sport. Slogan: "If she can't SEE it, she can't BE it." Aims to provide female role models and increase female participation in sport.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center; padding:20px 0 40px; color:var(--sub); font-size:0.9rem">
+    🎉 You've reached the end of the flashcards! Keep reviewing the ones you found tricky. Good luck in the Leaving Cert! 💪
+  </div>
+</div>
+
+
+
+<script>
+function showPage(id, btn) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  if (btn) btn.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function toggleDef(card) {
+  card.classList.toggle('open');
+}
+</script>
+<a href="index.html" class="return-home-btn">
+  <span>🏠</span> Back to Hub
+</a>
+<style>
+  .return-home-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #1a1d2e; /* Matches your --text variable */
+    color: white !important;
+    padding: 12px 24px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-family: 'Lexend', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+  }
+  .return-home-btn:hover {
+    transform: translateY(-5px);
+    background: #7c3aed; /* Changed to match your --c4 purple theme */
+    color: white !important;
+    box-shadow: 0 8px 25px rgba(124, 58, 237, 0.4);
+  }
+  @media (max-width: 768px) {
+    .return-home-btn {
+      bottom: 20px;
+      right: 20px;
+      padding: 10px 18px;
+      font-size: 14px;
+    }
+  }
+</style>
+</body>
+</html>
