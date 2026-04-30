@@ -258,39 +258,52 @@
     z-index: 10;
   }
 
-  /* ABOUT ME SECTION */
-  .about-section {
+  /* BOTTOM SECTION (ABOUT ME & LCPE) */
+  .bottom-section {
     margin-top: 80px;
     text-align: center;
     animation: fadeIn 1.2s ease-out;
   }
-  .about-card {
+  .bottom-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 24px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .info-card {
     background: var(--card);
     border: 2px solid var(--border);
     border-radius: var(--radius);
     padding: 40px 30px;
-    max-width: 650px;
-    margin: 0 auto;
     box-shadow: var(--shadow);
     transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
-  .about-card:hover {
+  .info-card:hover {
     transform: translateY(-4px);
     box-shadow: var(--shadow-hover);
-    border-color: var(--accent2);
   }
-  .about-card h3 {
+  .info-card.creator:hover { border-color: var(--accent2); }
+  .info-card.lcpe:hover { border-color: var(--accent4); }
+  
+  .info-card h3 {
     font-size: 22px;
     font-weight: 700;
     color: var(--text);
     margin-bottom: 12px;
   }
-  .about-card p {
+  .info-card p {
     font-size: 16px;
     color: var(--text-light);
     line-height: 1.7;
     margin-bottom: 26px;
+    flex-grow: 1; /* Pushes the button to the bottom so they align properly */
   }
+  
+  /* BUTTON STYLES */
   .study-btn {
     display: inline-block;
     background: var(--accent2);
@@ -301,11 +314,22 @@
     text-decoration: none;
     transition: all 0.2s;
     box-shadow: 0 4px 12px rgba(33, 150, 243, 0.2);
+    margin-top: auto;
   }
   .study-btn:hover {
     background: #1976d2;
     transform: translateY(-2px);
     box-shadow: 0 6px 16px rgba(33, 150, 243, 0.4);
+  }
+  
+  /* LCPE Specific Button */
+  .lcpe-btn {
+    background: var(--accent4);
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.2);
+  }
+  .lcpe-btn:hover {
+    background: #388e3c;
+    box-shadow: 0 6px 16px rgba(76, 175, 80, 0.4);
   }
 
   /* ANIMATIONS */
@@ -328,7 +352,8 @@
     .hero p { font-size: 16px; }
     .dashboard { padding: 40px 20px; }
     .topics-grid { grid-template-columns: 1fr; }
-    .about-section { margin-top: 60px; }
+    .bottom-section { margin-top: 60px; }
+    .bottom-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -421,13 +446,25 @@
 
     </div>
 
-    <div class="about-section">
-      <div class="section-title">About the Creator</div>
-      <div class="about-card">
-        <h3>Hi there! 👋</h3>
-        <p>My name is Fionn Mowlds, the creator of this site. I'm a rower and a 6th year leaving cert student. I've been coding for fun by building projects like this physics notes app to challenge myself and learn new skills.</p>
-        <p>Below is a link to a study tracker I made, check it out to track and analyze your study, schedule and plan your week manually or automatically, correct your answers and much more!</p>
-        <a href="https://studyrightireland.com" target="_blank" class="study-btn">Visit StudyRightIreland.com</a>
+    <!-- MORE RESOURCES & ABOUT GRID -->
+    <div class="bottom-section">
+      <div class="section-title">More Resources & About</div>
+      
+      <div class="bottom-grid">
+        <!-- New LCPE Card -->
+        <div class="info-card lcpe">
+          <h3>LCPE Hub 🏃‍♂️</h3>
+          <p>Studying Leaving Cert Physical Education? Check out my dedicated LCPE website, featuring interactive notes, definitions, and study guides built just like this one!</p>
+          <a href="https://lcpe-website.vercel.app/index.html" target="_blank" class="study-btn lcpe-btn">Visit LCPE Website</a>
+        </div>
+
+        <!-- Existing About Card -->
+        <div class="info-card creator">
+          <h3>Hi there! 👋</h3>
+          <p>My name is Fionn Mowlds, the creator of this site. I'm a rower and a 6th year leaving cert student. I've been coding for fun by building projects like this physics notes app to challenge myself and learn new skills.</p>
+          <p>Below is a link to a study tracker I made, check it out to track and analyze your study, schedule and plan your week manually or automatically, correct your answers and much more!</p>
+          <a href="https://studyrightireland.com" target="_blank" class="study-btn">Visit StudyRightIreland.com</a>
+        </div>
       </div>
     </div>
 
