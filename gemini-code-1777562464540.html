@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fionn's Revision Hub — Master Console</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Deca:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f8f6f2;
+    --card: #ffffff;
+    --text: #1a1a2e;
+    --text-light: #555570;
+    --accent-physics: #2196f3; /* Blue */
+    --accent-lcpe: #4caf50; /* Green */
+    --accent-compsci: #9c27b0; /* Purple */
+    --accent-general: #00bcd4; /* Cyan */
+    --border: #e0dcd4;
+    --shadow: 0 4px 20px rgba(0,0,0,0.06);
+    --shadow-hover: 0 12px 30px rgba(0,0,0,0.12);
+    --radius: 16px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Lexend', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 17px;
+    line-height: 1.7;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* TOP NAV BAR */
+  .top-bar {
+    background: white;
+    border-bottom: 2px solid var(--border);
+    padding: 16px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+  }
+  .top-bar h1 { 
+    font-size: 22px; 
+    font-weight: 700; 
+    color: var(--text); 
+    letter-spacing: 0.02em;
+  }
+  .top-bar span { color: var(--accent-physics); }
+
+  /* HERO SECTION */
+  .hero {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    color: white;
+    padding: 80px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: url('data:image/svg+xml;utf8,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+    opacity: 0.6;
+    pointer-events: none;
+  }
+  .hero h2 { 
+    font-size: 48px; 
+    font-weight: 700; 
+    margin-bottom: 16px; 
+    animation: slideDown 0.6s ease-out;
+  }
+  .hero p { 
+    font-size: 20px; 
+    color: rgba(255,255,255,0.85); 
+    max-width: 700px; 
+    margin: 0 auto; 
+    line-height: 1.6;
+    animation: fadeIn 1s ease-out;
+  }
+
+  /* DASHBOARD GRID */
+  .dashboard {
+    flex: 1;
+    padding: 60px 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .section-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 30px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .topics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 32px;
+    margin-bottom: 60px;
+  }
+
+  /* SUBJECT CARDS */
+  .subject-card {
+    background: var(--card);
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    padding: 40px 32px;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: var(--shadow);
+    position: relative;
+    overflow: hidden;
+    animation: slideUp 0.5s ease-out backwards;
+  }
+  
+  /* Staggered animation for cards */
+  .subject-card:nth-child(1) { animation-delay: 0.1s; }
+  .subject-card:nth-child(2) { animation-delay: 0.2s; }
+  .subject-card:nth-child(3) { animation-delay: 0.3s; }
+
+  .subject-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 8px;
+    transition: height 0.3s ease;
+  }
+
+  .subject-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-hover);
+    border-color: transparent;
+  }
+  .subject-card:hover::before { height: 16px; }
+
+  /* Card Specific Colors */
+  .card-physics::before { background: var(--accent-physics); }
+  .card-physics:hover { border-color: var(--accent-physics); }
+  .card-physics .mc-icon { color: var(--accent-physics); background: #e8f4fd; }
+
+  .card-lcpe::before { background: var(--accent-lcpe); }
+  .card-lcpe:hover { border-color: var(--accent-lcpe); }
+  .card-lcpe .mc-icon { color: var(--accent-lcpe); background: #e8f5e9; }
+
+  .card-compsci::before { background: var(--accent-compsci); }
+  .card-compsci:hover { border-color: var(--accent-compsci); }
+  .card-compsci .mc-icon { color: var(--accent-compsci); background: #f3e5f5; }
+
+  .mc-icon {
+    font-size: 56px;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin-bottom: 24px;
+    transition: transform 0.3s ease;
+  }
+  .subject-card:hover .mc-icon {
+    transform: scale(1.1) rotate(5deg);
+  }
+
+  .mc-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+  .mc-desc {
+    font-size: 15px;
+    color: var(--text-light);
+    line-height: 1.6;
+    flex-grow: 1;
+  }
+  .mc-action {
+    margin-top: 28px;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text);
+    opacity: 0.6;
+    transition: opacity 0.2s;
+  }
+  .subject-card:hover .mc-action { opacity: 1; }
+
+  /* BOTTOM SECTION (ABOUT ME) */
+  .bottom-section {
+    margin-top: 40px;
+    text-align: center;
+    animation: fadeIn 1.2s ease-out;
+  }
+  .info-card {
+    background: var(--card);
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    padding: 40px 30px;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .info-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--accent-general);
+  }
+  
+  .info-card h3 {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+  .info-card p {
+    font-size: 16px;
+    color: var(--text-light);
+    line-height: 1.7;
+    margin-bottom: 26px;
+  }
+  
+  /* BUTTON STYLES */
+  .study-btn {
+    display: inline-block;
+    background: var(--accent-physics);
+    color: white;
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s;
+    box-shadow: 0 4px 12px rgba(33, 150, 243, 0.2);
+  }
+  .study-btn:hover {
+    background: #1976d2;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(33, 150, 243, 0.4);
+  }
+
+  /* ANIMATIONS */
+  @keyframes slideDown { 
+    from { opacity: 0; transform: translateY(-20px); } 
+    to { opacity: 1; transform: translateY(0); } 
+  }
+  @keyframes slideUp { 
+    from { opacity: 0; transform: translateY(20px); } 
+    to { opacity: 1; transform: translateY(0); } 
+  }
+  @keyframes fadeIn { 
+    from { opacity: 0; } 
+    to { opacity: 1; } 
+  }
+
+  @media (max-width: 768px) {
+    .hero { padding: 50px 20px; }
+    .hero h2 { font-size: 32px; }
+    .hero p { font-size: 16px; }
+    .dashboard { padding: 40px 20px; }
+    .topics-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="top-bar">
+    <h1>Fionn's <span>Revision Hub</span></h1>
+  </div>
+
+  <div class="hero">
+    <h2>Master Console</h2>
+    <p>Welcome to your central study hub. Select a subject below to access your interactive notes, definitions, and study guides.</p>
+  </div>
+
+  <main class="dashboard">
+    <div class="section-title">Select a Subject</div>
+    
+    <div class="topics-grid">
+      
+      <!-- PHYSICS CARD -->
+      <a href="Physics.html" class="subject-card card-physics">
+        <div class="mc-icon">⚛️</div>
+        <div class="mc-title">Physics</div>
+        <div class="mc-desc">Master mechanics, electricity, waves, modern physics, and all mandatory experiments.</div>
+        <div class="mc-action">Launch Hub →</div>
+      </a>
+
+      <!-- LCPE CARD -->
+      <a href="Lcpe.html" class="subject-card card-lcpe">
+        <div class="mc-icon">🏃‍♂️</div>
+        <div class="mc-title">Leaving Cert PE</div>
+        <div class="mc-desc">Dive into sports psychology, biomechanics, physiology, and physical activity guidelines.</div>
+        <div class="mc-action">Launch Hub →</div>
+      </a>
+
+      <!-- COMPUTER SCIENCE CARD -->
+      <a href="Compsci.html" class="subject-card card-compsci">
+        <div class="mc-icon">💻</div>
+        <div class="mc-title">Computer Science</div>
+        <div class="mc-desc">Explore programming, computational thinking, software development, and the ALTs.</div>
+        <div class="mc-action">Launch Hub →</div>
+      </a>
+
+    </div>
+
+    <!-- MORE RESOURCES & ABOUT -->
+    <div class="bottom-section">
+      <div class="section-title">About the Creator</div>
+      
+      <div class="info-card">
+        <h3>Hi there! 👋</h3>
+        <p>My name is Fionn Mowlds, the creator of this site. I'm a rower and a 6th year leaving cert student. I've been coding for fun by building projects like these revision apps to challenge myself and learn new skills.</p>
+        <p>Below is a link to a study tracker I made, check it out to track and analyze your study, schedule and plan your week manually or automatically, correct your answers and much more!</p>
+        <a href="https://studyrightireland.com" target="_blank" class="study-btn">Visit StudyRightIreland.com</a>
+      </div>
+    </div>
+
+  </main>
+
+</body>
+</html>
