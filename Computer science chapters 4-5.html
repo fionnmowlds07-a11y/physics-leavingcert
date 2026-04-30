@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LC Computer Science Revision — Chapters 4 & 5</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F7F4EF;
+    --surface: #FFFFFF;
+    --surface2: #F0EDE8;
+    --border: #E2DDD7;
+    --text: #2C2825;
+    --text-muted: #7A7068;
+    --ch4: #E84393;
+    --ch4-light: #FDEAF4;
+    --ch4-dark: #A81F65;
+    --ch5: #3B82F6;
+    --ch5-light: #EBF3FF;
+    --ch5-dark: #1D4ED8;
+    --purple: #7C5CBF;
+    --purple-light: #EDE8F7;
+    --green: #56C271;
+    --green-light: #E6F8EB;
+    --orange: #F97316;
+    --orange-light: #FFF0E6;
+    --radius: 14px;
+    --shadow: 0 4px 20px rgba(0,0,0,0.08);
+    --shadow-hover: 0 8px 32px rgba(0,0,0,0.14);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Lexend',sans-serif; background:var(--bg); color:var(--text); line-height:1.8; font-size:16px; }
+
+  nav {
+    position:sticky; top:0; z-index:100;
+    background:rgba(247,244,239,0.95); backdrop-filter:blur(10px);
+    border-bottom:2px solid var(--border);
+    padding:0 24px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; min-height:60px;
+  }
+  .nav-logo { font-family:'Lexend Mega',sans-serif; font-size:1rem; color:var(--text); margin-right:12px; }
+  .nav-logo span { color:var(--ch4); }
+  .nav-btn {
+    padding:6px 14px; border-radius:20px; border:2px solid transparent;
+    font-family:'Lexend',sans-serif; font-size:0.78rem; font-weight:600;
+    cursor:pointer; transition:all 0.2s; background:var(--surface); color:var(--text-muted);
+  }
+  .nav-btn:hover { transform:translateY(-2px); box-shadow:var(--shadow); }
+  .nav-btn.ch4 { border-color:var(--ch4); }
+  .nav-btn.ch4.active,.nav-btn.ch4:hover { background:var(--ch4); color:#fff; }
+  .nav-btn.ch5 { border-color:var(--ch5); }
+  .nav-btn.ch5.active,.nav-btn.ch5:hover { background:var(--ch5); color:#fff; }
+  .nav-btn.flash { border-color:var(--purple); }
+  .nav-btn.flash.active,.nav-btn.flash:hover { background:var(--purple); color:#fff; }
+
+  .hero { padding:48px 24px 32px; text-align:center; }
+  .hero h1 { font-family:'Lexend Mega',sans-serif; font-size:clamp(1.6rem,4vw,2.8rem); line-height:1.2; }
+  .hero h1 .a1 { color:var(--ch4); }
+  .hero h1 .a2 { color:var(--ch5); }
+  .hero p { margin-top:12px; color:var(--text-muted); max-width:600px; margin-left:auto; margin-right:auto; }
+  .chapter-pills { display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin-top:20px; }
+  .pill { padding:8px 20px; border-radius:30px; font-weight:600; font-size:0.85rem; cursor:pointer; transition:all 0.2s; border:none; }
+  .pill:hover { transform:translateY(-3px); box-shadow:var(--shadow-hover); }
+  .p4 { background:var(--ch4); color:#fff; }
+  .p5 { background:var(--ch5); color:#fff; }
+  .pf { background:var(--purple); color:#fff; }
+
+  .section { display:none; padding:0 16px 60px; max-width:900px; margin:0 auto; }
+  .section.active { display:block; animation:fadeIn 0.3s ease; }
+  @keyframes fadeIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+
+  .topic-card {
+    background:var(--surface); border-radius:var(--radius); padding:28px; margin-bottom:24px;
+    box-shadow:var(--shadow); border-left:5px solid var(--ch4); transition:box-shadow 0.2s;
+  }
+  .topic-card:hover { box-shadow:var(--shadow-hover); }
+  .topic-card.ch5 { border-left-color:var(--ch5); }
+  .topic-card.purple { border-left-color:var(--purple); }
+  .topic-card.green { border-left-color:var(--green); }
+  .topic-card.orange { border-left-color:var(--orange); }
+  .topic-card h2 { font-size:1.25rem; font-weight:700; margin-bottom:14px; display:flex; align-items:center; gap:10px; }
+  .topic-card h3 { font-size:1rem; font-weight:600; margin:18px 0 8px; }
+  .topic-card p { margin-bottom:10px; }
+  .topic-card ul,.topic-card ol { padding-left:22px; margin-bottom:10px; }
+  .topic-card li { margin-bottom:5px; }
+
+  .def-box { background:var(--surface2); border:2px dashed var(--border); border-radius:10px; padding:14px 18px; margin:12px 0; }
+  .def-box::before { content:'📖 DEFINITION'; display:block; font-size:0.68rem; font-weight:700; letter-spacing:1px; color:var(--text-muted); margin-bottom:6px; }
+  .def-box p { margin:0; font-weight:500; }
+
+  .analogy-box { background:#FFF9E6; border:2px solid #FFD966; border-radius:10px; padding:14px 18px; margin:12px 0; }
+  .analogy-box::before { content:'💡 ANALOGY'; display:block; font-size:0.68rem; font-weight:700; letter-spacing:1px; color:#997700; margin-bottom:6px; }
+
+  .memory-box { background:#F0FFF4; border:2px solid var(--green); border-radius:10px; padding:14px 18px; margin:12px 0; }
+  .memory-box::before { content:'🧠 MEMORY TRICK'; display:block; font-size:0.68rem; font-weight:700; letter-spacing:1px; color:#267339; margin-bottom:6px; }
+
+  .exam-box { background:#FFF0F3; border:2px solid var(--ch4); border-radius:10px; padding:14px 18px; margin:12px 0; }
+  .exam-box::before { content:'📝 EXAM TIP'; display:block; font-size:0.68rem; font-weight:700; letter-spacing:1px; color:var(--ch4-dark); margin-bottom:6px; }
+
+  .ch-header { border-radius:var(--radius); padding:32px 28px; color:white; margin-bottom:28px; position:relative; overflow:hidden; }
+  .ch-header.h4 { background:linear-gradient(135deg,var(--ch4) 0%,var(--ch4-dark) 100%); }
+  .ch-header.h5 { background:linear-gradient(135deg,var(--ch5) 0%,var(--ch5-dark) 100%); }
+  .ch-header h1 { font-family:'Lexend Mega',sans-serif; font-size:1.6rem; }
+  .ch-header p { opacity:0.85; margin-top:8px; }
+  .ch-header .big-num { position:absolute; right:24px; top:50%; transform:translateY(-50%); font-family:'Lexend Mega',sans-serif; font-size:6rem; opacity:0.12; line-height:1; }
+
+  .comp-table { width:100%; border-collapse:collapse; margin:14px 0; font-size:0.88rem; border-radius:10px; overflow:hidden; }
+  .comp-table th { background:var(--ch4); color:#fff; padding:10px 14px; text-align:left; font-weight:600; }
+  .comp-table.t5 th { background:var(--ch5); }
+  .comp-table.tp th { background:var(--purple); }
+  .comp-table.tg th { background:var(--green); color:var(--text); }
+  .comp-table.to th { background:var(--orange); }
+  .comp-table td { padding:9px 14px; border-bottom:1px solid var(--border); }
+  .comp-table tr:nth-child(even) td { background:var(--surface2); }
+  .comp-table tr:last-child td { border-bottom:none; }
+
+  .diagram-wrap { background:var(--surface2); border-radius:12px; padding:20px; margin:16px 0; overflow-x:auto; }
+  .diagram-wrap p.caption { text-align:center; font-size:0.8rem; color:var(--text-muted); margin-top:10px; }
+  svg text { font-family:'Lexend',sans-serif; }
+
+  .steps { list-style:none; padding:0; margin:14px 0; }
+  .steps li { display:flex; gap:14px; align-items:flex-start; margin-bottom:12px; }
+  .step-num { min-width:32px; height:32px; border-radius:50%; background:var(--ch4); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:0.85rem; flex-shrink:0; }
+  .step-num.s5 { background:var(--ch5); }
+  .step-num.sp { background:var(--purple); }
+  .step-num.sg { background:var(--green); color:var(--text); }
+  .step-content { padding-top:4px; }
+
+  .accordion { margin:8px 0; border-radius:10px; overflow:hidden; border:2px solid var(--border); }
+  .accordion-header { width:100%; text-align:left; padding:13px 18px; background:var(--surface2); border:none; font-family:'Lexend',sans-serif; font-size:0.95rem; font-weight:600; cursor:pointer; display:flex; justify-content:space-between; align-items:center; transition:background 0.2s; }
+  .accordion-header:hover { background:var(--border); }
+  .accordion-header .arrow { transition:transform 0.3s; font-size:0.8rem; }
+  .accordion-header.open .arrow { transform:rotate(180deg); }
+  .accordion-body { display:none; padding:16px 18px; background:var(--surface); border-top:2px solid var(--border); }
+  .accordion-body.open { display:block; }
+
+  /* Logic gate cards */
+  .gate-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:14px; margin:14px 0; }
+  .gate-card { border-radius:12px; padding:18px; border:2px solid var(--border); background:var(--surface); transition:all 0.2s; }
+  .gate-card:hover { transform:translateY(-3px); box-shadow:var(--shadow-hover); }
+  .gate-card .gname { font-size:1.2rem; font-weight:700; margin-bottom:4px; }
+  .gate-card .gnot { font-size:0.8rem; color:var(--text-muted); margin-bottom:8px; }
+  .gate-card .grule { font-size:0.88rem; padding:8px 12px; border-radius:8px; margin-bottom:8px; }
+  .gate-and .gname { color:#C94040; }
+  .gate-and .grule { background:#FFE8E8; color:#C94040; }
+  .gate-or .gname { color:#2A9990; }
+  .gate-or .grule { background:#E0F7F6; color:#2A9990; }
+  .gate-not .gname { color:var(--orange); }
+  .gate-not .grule { background:var(--orange-light); color:var(--orange); }
+  .gate-nand .gname { color:var(--purple); }
+  .gate-nand .grule { background:var(--purple-light); color:var(--purple); }
+  .gate-nor .gname { color:#267339; }
+  .gate-nor .grule { background:var(--green-light); color:#267339; }
+  .gate-xor .gname { color:var(--ch4-dark); }
+  .gate-xor .grule { background:var(--ch4-light); color:var(--ch4-dark); }
+
+  /* Truth table mini */
+  .tt { display:inline-block; }
+  .tt table { border-collapse:collapse; font-size:0.82rem; }
+  .tt th { background:#555; color:#fff; padding:5px 10px; text-align:center; }
+  .tt td { padding:4px 10px; text-align:center; border-bottom:1px solid var(--border); }
+  .tt tr:nth-child(even) td { background:var(--surface2); }
+  .tt .out1 { background:#E6F8EB; color:#267339; font-weight:700; }
+  .tt .out0 { background:#FFE8E8; color:#C94040; font-weight:700; }
+
+  /* Binary calc */
+  .binary-calc { background:var(--surface2); border-radius:12px; padding:20px; margin:14px 0; }
+  .place-table { border-collapse:collapse; width:100%; margin:10px 0; font-size:0.9rem; }
+  .place-table th { background:#555; color:#fff; padding:8px 4px; text-align:center; font-weight:600; }
+  .place-table td { padding:8px 4px; text-align:center; border:2px solid var(--border); font-weight:600; background:var(--surface); }
+  .place-table .bit1 { background:#E6F8EB; color:#267339; }
+  .place-table .bit0 { background:#FFE8E8; color:#C94040; }
+
+  /* Hex digits */
+  .hex-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(110px,1fr)); gap:8px; margin:14px 0; }
+  .hex-card { border-radius:8px; padding:10px; text-align:center; border:2px solid var(--border); background:var(--surface); }
+  .hex-card .hval { font-size:1.3rem; font-weight:700; color:var(--ch5-dark); }
+  .hex-card .hdec { font-size:0.75rem; color:var(--text-muted); }
+
+  /* Waterfall / Agile */
+  .waterfall-steps { display:flex; gap:0; margin:16px 0; overflow-x:auto; }
+  .wf-step { flex:1; min-width:100px; padding:14px 10px; text-align:center; position:relative; }
+  .wf-step:not(:last-child)::after { content:'▶'; position:absolute; right:-10px; top:50%; transform:translateY(-50%); font-size:1rem; color:#aaa; z-index:1; }
+  .wf-step .ws-num { width:32px; height:32px; border-radius:50%; background:var(--ch5); color:#fff; font-weight:700; font-size:0.85rem; display:flex; align-items:center; justify-content:center; margin:0 auto 8px; }
+  .wf-step .ws-label { font-size:0.78rem; font-weight:600; }
+  .wf-step .ws-sub { font-size:0.68rem; color:var(--text-muted); margin-top:4px; }
+
+  /* Role cards */
+  .roles-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:12px; margin:14px 0; }
+  .role-card { border-radius:12px; padding:16px; border:2px solid var(--border); background:var(--surface); transition:all 0.2s; }
+  .role-card:hover { transform:translateY(-3px); box-shadow:var(--shadow-hover); }
+  .role-card .ricon { font-size:1.8rem; margin-bottom:8px; }
+  .role-card .rname { font-size:0.95rem; font-weight:700; margin-bottom:6px; }
+  .role-card .rdesc { font-size:0.8rem; color:var(--text-muted); }
+
+  /* Testing comparison */
+  .test-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:14px 0; }
+  @media(max-width:600px){ .test-grid { grid-template-columns:1fr; } }
+  .test-card { border-radius:12px; padding:18px; border:2px solid; }
+  .tc-black { border-color:#333; background:#f8f8f8; }
+  .tc-white { border-color:var(--ch5); background:var(--ch5-light); }
+  .test-card .tname { font-size:1rem; font-weight:700; margin-bottom:10px; }
+
+  /* Alpha/Beta */
+  .ab-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:14px 0; }
+  @media(max-width:600px){ .ab-grid { grid-template-columns:1fr; } }
+  .alpha-card { border-radius:12px; padding:18px; background:var(--ch4-light); border:2px solid var(--ch4); }
+  .beta-card { border-radius:12px; padding:18px; background:var(--ch5-light); border:2px solid var(--ch5); }
+  .alpha-card .aname { color:var(--ch4-dark); font-weight:700; font-size:1rem; margin-bottom:10px; }
+  .beta-card .aname { color:var(--ch5-dark); font-weight:700; font-size:1rem; margin-bottom:10px; }
+
+  /* Flashcards */
+  #flashcards { padding:0 16px 80px; max-width:900px; margin:0 auto; display:none; }
+  #flashcards.active { display:block; animation:fadeIn 0.3s ease; }
+  .flash-header { background:linear-gradient(135deg,var(--purple) 0%,#5a3da0 100%); border-radius:var(--radius); padding:32px 28px; color:white; margin-bottom:28px; position:relative; overflow:hidden; }
+  .flash-header h1 { font-family:'Lexend Mega',sans-serif; font-size:1.6rem; }
+  .flash-header p { opacity:0.85; margin-top:8px; }
+  .flash-header .big-num { position:absolute; right:24px; top:50%; transform:translateY(-50%); font-family:'Lexend Mega',sans-serif; font-size:6rem; opacity:0.12; line-height:1; }
+
+  .flash-controls { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:20px; align-items:center; }
+  .flash-filter { padding:7px 16px; border-radius:20px; border:2px solid var(--border); background:var(--surface); font-family:'Lexend',sans-serif; font-size:0.8rem; font-weight:600; cursor:pointer; transition:all 0.2s; color:var(--text-muted); }
+  .flash-filter.active-ch4 { background:var(--ch4); color:#fff; border-color:var(--ch4); }
+  .flash-filter.active-ch5 { background:var(--ch5); color:#fff; border-color:var(--ch5); }
+  .flash-filter.active-all { background:var(--purple); color:#fff; border-color:var(--purple); }
+
+  .flashcard-area { display:flex; flex-direction:column; align-items:center; }
+  .flashcard { width:100%; max-width:640px; perspective:1200px; min-height:220px; cursor:pointer; margin-bottom:20px; }
+  .flashcard-inner { position:relative; width:100%; min-height:220px; transition:transform 0.55s cubic-bezier(.4,.2,.2,1); transform-style:preserve-3d; }
+  .flashcard.flipped .flashcard-inner { transform:rotateY(180deg); }
+  .flashcard-front,.flashcard-back { position:absolute; width:100%; min-height:220px; backface-visibility:hidden; border-radius:var(--radius); padding:32px 28px; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; box-shadow:var(--shadow); }
+  .flashcard-front { background:var(--surface); border:3px solid var(--purple); }
+  .flashcard-back { background:var(--purple); color:white; transform:rotateY(180deg); }
+  .flashcard-front .card-q { font-size:1.15rem; font-weight:600; }
+  .flashcard-front .flip-hint { margin-top:16px; font-size:0.75rem; color:var(--text-muted); }
+  .flashcard-back .card-a { font-size:1rem; line-height:1.7; }
+  .flash-nav { display:flex; gap:12px; align-items:center; }
+  .flash-btn { padding:10px 24px; border-radius:24px; border:none; font-family:'Lexend',sans-serif; font-size:0.9rem; font-weight:600; cursor:pointer; transition:all 0.2s; background:var(--purple); color:#fff; }
+  .flash-btn:hover { background:#5a3da0; transform:translateY(-2px); box-shadow:var(--shadow-hover); }
+  .flash-btn:disabled { opacity:0.4; cursor:not-allowed; transform:none; }
+  .flash-counter { font-weight:600; color:var(--text-muted); font-size:0.9rem; min-width:80px; text-align:center; }
+  .flash-progress { width:100%; max-width:640px; height:6px; background:var(--border); border-radius:3px; margin-bottom:20px; overflow:hidden; }
+  .flash-progress-bar { height:100%; background:var(--purple); border-radius:3px; transition:width 0.4s; }
+  .flash-chapter-label { font-size:0.7rem; font-weight:700; letter-spacing:1px; text-transform:uppercase; padding:3px 10px; border-radius:20px; margin-bottom:8px; }
+  .fc-ch4 { background:var(--ch4-light); color:var(--ch4-dark); }
+  .fc-ch5 { background:var(--ch5-light); color:var(--ch5-dark); }
+
+  /* interactive binary converter */
+  .converter-box { background:var(--surface); border:2px solid var(--ch4); border-radius:12px; padding:20px; margin:14px 0; }
+  .converter-box input[type=number] { font-family:'Lexend',sans-serif; font-size:1.1rem; padding:8px 14px; border:2px solid var(--border); border-radius:8px; width:140px; outline:none; }
+  .converter-box input:focus { border-color:var(--ch4); }
+  .conv-btn { padding:8px 18px; border-radius:8px; border:none; background:var(--ch4); color:#fff; font-family:'Lexend',sans-serif; font-weight:600; font-size:0.9rem; cursor:pointer; margin-left:8px; transition:all 0.2s; }
+  .conv-btn:hover { background:var(--ch4-dark); }
+  .conv-result { margin-top:14px; font-size:1rem; font-weight:600; }
+  .conv-bits { display:flex; gap:4px; margin-top:10px; flex-wrap:wrap; }
+  .conv-bit { width:44px; height:44px; border-radius:8px; display:flex; flex-direction:column; align-items:center; justify-content:center; font-weight:700; border:2px solid; }
+  .conv-bit.b1 { background:#E6F8EB; border-color:var(--green); color:#267339; font-size:1.1rem; }
+  .conv-bit.b0 { background:#FFE8E8; border-color:#FF6B6B; color:#C94040; font-size:1.1rem; }
+  .conv-bit .bpv { font-size:0.58rem; color:var(--text-muted); font-weight:400; }
+
+  /* Addition demo */
+  .addition-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:14px 0; }
+  @media(max-width:560px){ .addition-grid { grid-template-columns:1fr; } }
+  .add-card { border-radius:10px; padding:16px; background:var(--surface2); border:2px solid var(--border); font-family:monospace; font-size:0.9rem; }
+  .add-card .ac-label { font-family:'Lexend',sans-serif; font-size:0.75rem; font-weight:600; color:var(--text-muted); margin-bottom:8px; }
+
+  #scrollTop { position:fixed; bottom:24px; right:24px; width:42px; height:42px; background:var(--text); color:#fff; border:none; border-radius:50%; font-size:1.1rem; cursor:pointer; box-shadow:var(--shadow-hover); transition:all 0.2s; z-index:99; opacity:0; pointer-events:none; }
+  #scrollTop.visible { opacity:1; pointer-events:all; }
+  #scrollTop:hover { transform:scale(1.1); }
+  .icon { font-size:1.2rem; }
+  .badge { display:inline-block; padding:3px 10px; border-radius:20px; font-size:0.72rem; font-weight:700; letter-spacing:0.5px; }
+  .badge-pink { background:var(--ch4-light); color:var(--ch4-dark); }
+  .badge-blue { background:var(--ch5-light); color:var(--ch5-dark); }
+  .badge-green { background:var(--green-light); color:#1a7a32; }
+  .col2 { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  @media(max-width:560px){ .col2 { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">LC <span>CS</span></span>
+  <button class="nav-btn ch4 active" onclick="showSection('ch4')">⚡ Ch4: Logic Gates, Binary &amp; ASCII</button>
+  <button class="nav-btn ch5" onclick="showSection('ch5')">🛠️ Ch5: Software Development</button>
+  <button class="nav-btn flash" onclick="showSection('flashcards')">🃏 Flashcards</button>
+</nav>
+
+<div class="hero" id="heroSection">
+  <h1>LC Computer Science<br><span class="a1">Chapters 4 &amp; 5</span> <span class="a2">Revision</span></h1>
+  <p>Logic Gates, Binary, ASCII, Software Development &amp; Testing — everything you need for the Leaving Cert, explained clearly with analogies and memory tricks.</p>
+  <div class="chapter-pills">
+    <button class="pill p4" onclick="showSection('ch4')">⚡ Ch4: Logic Gates, Binary &amp; ASCII</button>
+    <button class="pill p5" onclick="showSection('ch5')">🛠️ Ch5: Software Development</button>
+    <button class="pill pf" onclick="showSection('flashcards')">🃏 Flashcards</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════ CHAPTER 4 ═══════════════════════ -->
+<div class="section active" id="ch4">
+  <div class="ch-header h4">
+    <h1>Chapter 4: Logic Gates, Binary &amp; ASCII</h1>
+    <p>How computers think in 0s and 1s — from transistors and logic gates to number systems and character encoding.</p>
+    <span class="big-num">4</span>
+  </div>
+
+  <!-- 4.1 Voltage, Current, Transistors -->
+  <div class="topic-card">
+    <h2><span class="icon">⚡</span> Voltage, Current &amp; Computer Components</h2>
+    <div class="def-box"><p><strong>Voltage</strong> is the electrical force that causes electrons to move around a circuit.</p></div>
+    <div class="def-box"><p><strong>Current</strong> is the movement of electrons around a circuit. Computers only recognise the presence or absence of current/voltage (ON = 1, OFF = 0).</p></div>
+    <div class="def-box"><p><strong>Transistors</strong> are tiny electronic switches inside a computer. A computer is composed of billions of them. By switching them ON (1) or OFF (0) in sequences, the computer carries out different functions.</p></div>
+    <div class="def-box"><p><strong>Resistors</strong> limit the flow of current and voltage to electronic circuits. Different circuits need different amounts — e.g. USB = 5V, CPU = 3.3V, motherboard = 12V.</p></div>
+    <div class="def-box"><p><strong>Capacitors</strong> are used in signal processing to create a constant, steady stream of electricity needed to power components.</p></div>
+    <div class="analogy-box"><p>A transistor is exactly like a light switch. When the switch is OFF, no current flows (= 0). When it's ON, current flows (= 1). A computer has billions of these tiny switches all working together. By controlling which ones are on and off, it can do incredibly complex things — all from just 0s and 1s!</p></div>
+    <div class="memory-box"><p><strong>V=voltage (the force), C=current (the movement).</strong> Voltage PUSHES current. Like water pressure (voltage) pushing water (current) through a pipe.</p></div>
+  </div>
+
+  <!-- 4.2 Logic Gates -->
+  <div class="topic-card">
+    <h2><span class="icon">🔀</span> Logic Gates</h2>
+    <div class="def-box"><p>A <strong>logic gate</strong> is a device that acts as a building block for digital circuits. Logic gates take binary inputs (0s and 1s) and produce a binary output. They make decisions — electrical outputs only turn ON when the correct logic sequence has been applied.</p></div>
+    <div class="def-box"><p>A <strong>logic circuit</strong> is formed when several logic gates are combined together. It is designed to carry out a specific function.</p></div>
+    <div class="def-box"><p>A <strong>truth table</strong> is a table used to check all possible outputs from a logic gate or logic circuit for every possible combination of inputs.</p></div>
+    <div class="analogy-box"><p>Logic gates are like bouncers at a nightclub with specific rules. An AND gate says "you can only get in if BOTH of you have ID". An OR gate says "you can get in if EITHER of you has ID". A NOT gate says "if you have ID, you can't come in" (it flips it!). Simple rules — but combine thousands of them and you get a computer!</p></div>
+
+    <h3>The 6 Logic Gates You Must Know:</h3>
+    <div class="gate-grid">
+      <!-- AND -->
+      <div class="gate-card gate-and">
+        <div class="gname">AND Gate</div>
+        <div class="gnot">Notation: A · B</div>
+        <div class="grule">Output is 1 ONLY if BOTH inputs are 1.<br>"Both must be true."</div>
+        <div class="tt"><table>
+          <tr><th>A</th><th>B</th><th>OUT</th></tr>
+          <tr><td>0</td><td>0</td><td class="out0">0</td></tr>
+          <tr><td>0</td><td>1</td><td class="out0">0</td></tr>
+          <tr><td>1</td><td>0</td><td class="out0">0</td></tr>
+          <tr><td>1</td><td>1</td><td class="out1">1</td></tr>
+        </table></div>
+        <div style="margin-top:8px; font-size:0.8rem; color:#888;">🧠 AND = "ALL must be 1"</div>
+      </div>
+      <!-- OR -->
+      <div class="gate-card gate-or">
+        <div class="gname">OR Gate</div>
+        <div class="gnot">Notation: A + B</div>
+        <div class="grule">Output is 1 if AT LEAST ONE input is 1.<br>"At least one must be true."</div>
+        <div class="tt"><table>
+          <tr><th>A</th><th>B</th><th>OUT</th></tr>
+          <tr><td>0</td><td>0</td><td class="out0">0</td></tr>
+          <tr><td>0</td><td>1</td><td class="out1">1</td></tr>
+          <tr><td>1</td><td>0</td><td class="out1">1</td></tr>
+          <tr><td>1</td><td>1</td><td class="out1">1</td></tr>
+        </table></div>
+        <div style="margin-top:8px; font-size:0.8rem; color:#888;">🧠 OR = "ANY 1 gives a 1"</div>
+      </div>
+      <!-- NOT -->
+      <div class="gate-card gate-not">
+        <div class="gname">NOT Gate</div>
+        <div class="gnot">Notation: Ā (A-bar)</div>
+        <div class="grule">Output is the OPPOSITE of the input.<br>"Flip it — inverter."</div>
+        <div class="tt"><table>
+          <tr><th>A</th><th>OUT</th></tr>
+          <tr><td>0</td><td class="out1">1</td></tr>
+          <tr><td>1</td><td class="out0">0</td></tr>
+        </table></div>
+        <div style="margin-top:8px; font-size:0.8rem; color:#888;">🧠 NOT = "Nope, flip it!"</div>
+      </div>
+      <!-- NAND -->
+      <div class="gate-card gate-nand">
+        <div class="gname">NAND Gate</div>
+        <div class="gnot">Notation: Ā·B̄ (NOT AND)</div>
+        <div class="grule">Output is 0 ONLY if BOTH inputs are 1.<br>Opposite of AND — AND + NOT.</div>
+        <div class="tt"><table>
+          <tr><th>A</th><th>B</th><th>OUT</th></tr>
+          <tr><td>0</td><td>0</td><td class="out1">1</td></tr>
+          <tr><td>0</td><td>1</td><td class="out1">1</td></tr>
+          <tr><td>1</td><td>0</td><td class="out1">1</td></tr>
+          <tr><td>1</td><td>1</td><td class="out0">0</td></tr>
+        </table></div>
+        <div style="margin-top:8px; font-size:0.8rem; color:#888;">🧠 NAND = AND upside down (flip outputs)</div>
+      </div>
+      <!-- NOR -->
+      <div class="gate-card gate-nor">
+        <div class="gname">NOR Gate</div>
+        <div class="gnot">Notation: Ā+B̄ (NOT OR)</div>
+        <div class="grule">Output is 1 ONLY if BOTH inputs are 0.<br>Opposite of OR — OR + NOT.</div>
+        <div class="tt"><table>
+          <tr><th>A</th><th>B</th><th>OUT</th></tr>
+          <tr><td>0</td><td>0</td><td class="out1">1</td></tr>
+          <tr><td>0</td><td>1</td><td class="out0">0</td></tr>
+          <tr><td>1</td><td>0</td><td class="out0">0</td></tr>
+          <tr><td>1</td><td>1</td><td class="out0">0</td></tr>
+        </table></div>
+        <div style="margin-top:8px; font-size:0.8rem; color:#888;">🧠 NOR = OR upside down (flip outputs)</div>
+      </div>
+      <!-- XOR -->
+      <div class="gate-card gate-xor">
+        <div class="gname">XOR Gate</div>
+        <div class="gnot">Notation: A ⊕ B (Exclusive OR)</div>
+        <div class="grule">Output is 1 ONLY if inputs are DIFFERENT.<br>"Exclusively one, not both."</div>
+        <div class="tt"><table>
+          <tr><th>A</th><th>B</th><th>OUT</th></tr>
+          <tr><td>0</td><td>0</td><td class="out0">0</td></tr>
+          <tr><td>0</td><td>1</td><td class="out1">1</td></tr>
+          <tr><td>1</td><td>0</td><td class="out1">1</td></tr>
+          <tr><td>1</td><td>1</td><td class="out0">0</td></tr>
+        </table></div>
+        <div style="margin-top:8px; font-size:0.8rem; color:#888;">🧠 XOR = "eXactly One = 1"</div>
+      </div>
+    </div>
+
+    <div class="memory-box"><p><strong>Master cheat sheet:</strong><br>
+    AND → ALL inputs must be 1 → output is 1<br>
+    OR → ANY input is 1 → output is 1<br>
+    NOT → FLIP the input<br>
+    NAND = NOT AND (flip AND outputs)<br>
+    NOR = NOT OR (flip OR outputs)<br>
+    XOR = inputs must be DIFFERENT for 1</p></div>
+    <div class="exam-box"><p>In the exam you will be given a logic circuit diagram and asked to complete a truth table. Work left to right: identify the intermediate output (e.g. D from AND gate), then compute the final output using D and other inputs. Always write out ALL combinations of inputs — with 2 inputs that's 4 rows, with 3 inputs that's 8 rows (2ⁿ rows where n = number of inputs).</p></div>
+  </div>
+
+  <!-- 4.3 Combined Logic Circuits -->
+  <div class="topic-card">
+    <h2><span class="icon">🔗</span> Combined Logic Circuits &amp; Truth Tables</h2>
+    <p>Multiple logic gates can be chained together to form a <strong>logic circuit</strong> that performs more complex decisions.</p>
+    <div class="analogy-box"><p>Imagine a security system: the alarm triggers (Z=1) if EITHER the window sensor trips AND the door sensor trips (D = A AND B), OR if a motion sensor fires (E = A AND C). Combined, Z = D OR E.</p></div>
+
+    <h3>Example: AND + OR Circuit (A,B,C → Z)</h3>
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 620 200" xmlns="http://www.w3.org/2000/svg" width="100%">
+        <!-- Inputs -->
+        <text x="18" y="62" font-size="14" font-weight="700" fill="#C94040">A</text>
+        <text x="18" y="105" font-size="14" font-weight="700" fill="#C94040">B</text>
+        <text x="18" y="158" font-size="14" font-weight="700" fill="#2A9990">C</text>
+        <!-- Lines to AND gate 1 -->
+        <line x1="30" y1="58" x2="80" y2="70" stroke="#C94040" stroke-width="2"/>
+        <line x1="30" y1="102" x2="80" y2="90" stroke="#C94040" stroke-width="2"/>
+        <!-- AND Gate 1 (A,B) -->
+        <rect x="80" y="58" width="80" height="50" rx="0" fill="none"/>
+        <path d="M80,58 L80,108 L105,108 Q145,108 145,83 Q145,58 105,58 Z" fill="#FFE8E8" stroke="#C94040" stroke-width="2"/>
+        <text x="100" y="88" text-anchor="middle" font-size="11" font-weight="700" fill="#C94040">AND</text>
+        <!-- Output D -->
+        <line x1="145" y1="83" x2="330" y2="100" stroke="#C94040" stroke-width="2"/>
+        <text x="230" y="78" font-size="11" fill="#C94040" font-weight="600">D = A·B</text>
+        <!-- Lines to AND gate 2 -->
+        <line x1="30" y1="58" x2="55" y2="58" stroke="#C94040" stroke-width="1.5" stroke-dasharray="4"/>
+        <line x1="55" y1="58" x2="55" y2="148" stroke="#C94040" stroke-width="1.5" stroke-dasharray="4"/>
+        <line x1="55" y1="148" x2="190" y2="140" stroke="#C94040" stroke-width="2"/>
+        <line x1="30" y1="155" x2="190" y2="155" stroke="#2A9990" stroke-width="2"/>
+        <!-- AND Gate 2 (A,C) -->
+        <path d="M190,128 L190,168 L215,168 Q255,168 255,148 Q255,128 215,128 Z" fill="#FFE8E8" stroke="#C94040" stroke-width="2"/>
+        <text x="215" y="153" text-anchor="middle" font-size="11" font-weight="700" fill="#C94040">AND</text>
+        <!-- Output E -->
+        <line x1="255" y1="148" x2="330" y2="130" stroke="#2A9990" stroke-width="2"/>
+        <text x="270" y="148" font-size="11" fill="#2A9990" font-weight="600">E = A·C</text>
+        <!-- OR Gate -->
+        <path d="M330,88 Q340,88 340,115 Q340,142 330,142 Q350,142 370,115 Q350,88 330,88 Z" fill="#E0F7F6" stroke="#2A9990" stroke-width="2"/>
+        <text x="348" y="119" text-anchor="middle" font-size="11" font-weight="700" fill="#2A9990">OR</text>
+        <!-- Output Z -->
+        <line x1="370" y1="115" x2="430" y2="115" stroke="#555" stroke-width="2.5"/>
+        <text x="440" y="120" font-size="15" font-weight="700" fill="#555">Z</text>
+        <text x="445" y="138" font-size="10" fill="#555">Z = D OR E</text>
+        <text x="445" y="152" font-size="10" fill="#555">= (A·B) + (A·C)</text>
+      </svg>
+      <p class="caption">Combined AND + OR circuit: D = A AND B, E = A AND C, Z = D OR E</p>
+    </div>
+
+    <h3>Truth Table for the combined circuit:</h3>
+    <table class="comp-table">
+      <tr><th>A</th><th>B</th><th>C</th><th>D = A·B</th><th>E = A·C</th><th>Z = D+E</th></tr>
+      <tr><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td style="background:#FFE8E8;color:#C94040;font-weight:700">0</td></tr>
+      <tr><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td style="background:#FFE8E8;color:#C94040;font-weight:700">0</td></tr>
+      <tr><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td style="background:#FFE8E8;color:#C94040;font-weight:700">0</td></tr>
+      <tr><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td><td style="background:#FFE8E8;color:#C94040;font-weight:700">0</td></tr>
+      <tr><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td style="background:#FFE8E8;color:#C94040;font-weight:700">0</td></tr>
+      <tr><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td><td style="background:#E6F8EB;color:#267339;font-weight:700">1</td></tr>
+      <tr><td>1</td><td>1</td><td>0</td><td>1</td><td>0</td><td style="background:#E6F8EB;color:#267339;font-weight:700">1</td></tr>
+      <tr><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td style="background:#E6F8EB;color:#267339;font-weight:700">1</td></tr>
+    </table>
+    <div class="exam-box"><p>When filling in a truth table for a combined circuit: (1) Add an intermediate column for each gate output (D, E, etc.) — this stops mistakes. (2) Fill in each intermediate column using the gate's rule. (3) Use the intermediate columns to compute the final output Z.</p></div>
+  </div>
+
+  <!-- 4.4 Binary Number System -->
+  <div class="topic-card">
+    <h2><span class="icon">🔢</span> The Binary Number System</h2>
+    <div class="def-box"><p>The <strong>binary system (base-2)</strong> uses only two values: 0 and 1. These represent the absence (0) or presence (1) of electrical current. A computer stores values by setting transistors ON (1) or OFF (0).</p></div>
+    <div class="def-box"><p>A <strong>bit</strong> is a single binary digit (0 or 1) — the smallest unit of information in computing. One switch = one bit.</p></div>
+    <div class="def-box"><p>A <strong>byte</strong> = 8 bits. One byte can represent any value from 0 to 255 (256 different values).</p></div>
+    <div class="analogy-box"><p>In decimal (base-10) we have 10 digits (0–9). Each column is a power of 10 (1, 10, 100, 1000…). In binary (base-2) we only have 2 digits (0 and 1). Each column is a power of 2 (1, 2, 4, 8, 16, 32, 64, 128…). It's the same idea — just a different base!</p></div>
+
+    <h3>The 8-bit Place Value Table (you MUST memorise this!):</h3>
+    <div class="binary-calc">
+      <table class="place-table">
+        <tr>
+          <th>2⁷</th><th>2⁶</th><th>2⁵</th><th>2⁴</th><th>2³</th><th>2²</th><th>2¹</th><th>2⁰</th>
+        </tr>
+        <tr>
+          <td style="background:#EDE8F7;font-weight:700;color:#5a3da0">128</td>
+          <td style="background:#EDE8F7;font-weight:700;color:#5a3da0">64</td>
+          <td style="background:#EDE8F7;font-weight:700;color:#5a3da0">32</td>
+          <td style="background:#EDE8F7;font-weight:700;color:#5a3da0">16</td>
+          <td style="background:#EDE8F7;font-weight:700;color:#5a3da0">8</td>
+          <td style="background:#EDE8F7;font-weight:700;color:#5a3da0">4</td>
+          <td style="background:#EDE8F7;font-weight:700;color:#5a3da0">2</td>
+          <td style="background:#EDE8F7;font-weight:700;color:#5a3da0">1</td>
+        </tr>
+      </table>
+      <div class="memory-box" style="margin-top:10px"><p><strong>128, 64, 32, 16, 8, 4, 2, 1</strong> — each doubles from right to left. Memorise: <strong>"128 64 32 — One Six Eight — 8 4 2 One!"</strong></p></div>
+    </div>
+
+    <div class="def-box"><p>The <strong>Most Significant Bit (MSB)</strong> is the bit on the far LEFT — it has the highest value (128 in an 8-bit number).</p></div>
+    <div class="def-box"><p>The <strong>Least Significant Bit (LSB)</strong> is the bit on the far RIGHT — it has the lowest value (1 in an 8-bit number).</p></div>
+    <div class="memory-box"><p><strong>MSB = Most = Left = Largest</strong>. <strong>LSB = Least = Right = Smallest</strong>. Just like reading a regular number: the LEFT digit of 149 (the '1') is worth more than the right digit ('9' — wait, actually no in decimal…). In binary, the left is always the most significant!</p></div>
+  </div>
+
+  <!-- 4.5 Decimal to Binary -->
+  <div class="topic-card">
+    <h2><span class="icon">🔄</span> Decimal to Binary Conversion</h2>
+    <div class="analogy-box"><p>Think of it like making change. If someone gives you 149 cents: first take the biggest coin that fits (€1 = 128 ✓), you have 21 left. Next biggest that fits is 16 ✓, you have 5 left. Then 4 ✓, you have 1 left. Then 1 ✓. All others are 0!</p></div>
+    <h3>Method — example: 149 in decimal to binary:</h3>
+    <ol class="steps">
+      <li><span class="step-num">1</span><span class="step-content">Draw the 8-bit place value table (128, 64, 32, 16, 8, 4, 2, 1).</span></li>
+      <li><span class="step-num">2</span><span class="step-content">Starting from the LEFT, find the first place value that is <strong>≤ your number</strong>. For 149: 128 ≤ 149 ✓ → put a <strong>1</strong> in the 128 column.</span></li>
+      <li><span class="step-num">3</span><span class="step-content"><strong>Subtract:</strong> 149 - 128 = 21. Remainder = 21.</span></li>
+      <li><span class="step-num">4</span><span class="step-content">64 &gt; 21 → put <strong>0</strong>. 32 &gt; 21 → put <strong>0</strong>. 16 ≤ 21 ✓ → put <strong>1</strong>. Remainder = 21 - 16 = 5.</span></li>
+      <li><span class="step-num">5</span><span class="step-content">8 &gt; 5 → put <strong>0</strong>. 4 ≤ 5 ✓ → put <strong>1</strong>. Remainder = 5 - 4 = 1.</span></li>
+      <li><span class="step-num">6</span><span class="step-content">2 &gt; 1 → put <strong>0</strong>. 1 ≤ 1 ✓ → put <strong>1</strong>. Remainder = 0. Done!</span></li>
+    </ol>
+    <div class="binary-calc">
+      <table class="place-table">
+        <tr><th>128</th><th>64</th><th>32</th><th>16</th><th>8</th><th>4</th><th>2</th><th>1</th></tr>
+        <tr>
+          <td class="bit1">1</td><td class="bit0">0</td><td class="bit0">0</td><td class="bit1">1</td>
+          <td class="bit0">0</td><td class="bit1">1</td><td class="bit0">0</td><td class="bit1">1</td>
+        </tr>
+      </table>
+      <p style="text-align:center;margin-top:10px;font-weight:700;font-size:1.05rem">149 in decimal = <span style="color:#C94040">10010101</span> in binary</p>
+    </div>
+
+    <!-- Interactive converter -->
+    <h3>🎮 Interactive Decimal → Binary Converter:</h3>
+    <div class="converter-box">
+      <p style="margin-bottom:10px">Enter any decimal number (0–255) and see it converted to binary:</p>
+      <input type="number" id="decInput" min="0" max="255" value="149" placeholder="0-255">
+      <button class="conv-btn" onclick="convertToBinary()">Convert!</button>
+      <div class="conv-result" id="convResult"></div>
+      <div class="conv-bits" id="convBits"></div>
+    </div>
+  </div>
+
+  <!-- 4.6 Binary to Decimal -->
+  <div class="topic-card">
+    <h2><span class="icon">↩️</span> Binary to Decimal Conversion</h2>
+    <h3>Method — example: 10010101 to decimal:</h3>
+    <ol class="steps">
+      <li><span class="step-num">1</span><span class="step-content">Draw the place value table and place your binary number in it, <strong>starting from the right</strong> (LSB).</span></li>
+      <li><span class="step-num">2</span><span class="step-content">Identify all positions where the bit is <strong>1</strong>.</span></li>
+      <li><span class="step-num">3</span><span class="step-content"><strong>Add up</strong> the place values for every position that has a 1.</span></li>
+    </ol>
+    <div class="binary-calc">
+      <table class="place-table">
+        <tr><th>128</th><th>64</th><th>32</th><th>16</th><th>8</th><th>4</th><th>2</th><th>1</th></tr>
+        <tr>
+          <td class="bit1">1</td><td class="bit0">0</td><td class="bit0">0</td><td class="bit1">1</td>
+          <td class="bit0">0</td><td class="bit1">1</td><td class="bit0">0</td><td class="bit1">1</td>
+        </tr>
+      </table>
+      <p style="text-align:center;margin-top:10px;font-weight:600">128 + 16 + 4 + 1 = <span style="color:var(--ch4-dark);font-size:1.1rem;font-weight:700">149</span></p>
+    </div>
+    <div class="memory-box"><p><strong>Only count the 1s!</strong> Skip every 0 — add up place values where you see a 1. That's your decimal number.</p></div>
+    <div class="exam-box"><p>The exam may give you a binary number and ask you to show your working. Always draw the place value table — even if you can do it in your head. It shows the examiner your method and gets you marks even if you make a small error.</p></div>
+  </div>
+
+  <!-- 4.7 Hexadecimal -->
+  <div class="topic-card">
+    <h2><span class="icon">🔟</span> Hexadecimal (Hex)</h2>
+    <div class="def-box"><p><strong>Hexadecimal (hex)</strong> is a base-16 number system. It uses 16 different digits: the numbers 0–9 and the letters A–F (where A=10, B=11, C=12, D=13, E=14, F=15).</p></div>
+    <p>Hex is used as a <strong>shorthand for binary</strong>. One byte (8 bits) can be written in just <strong>2 hex digits</strong>. Hex is NOT used by computers themselves — only by humans to write long binary numbers more easily and with fewer mistakes.</p>
+    <div class="analogy-box"><p>Writing a binary number like 10110011 is hard to read and easy to mis-copy. In hex it's just B3. Same value, much easier! Think of hex like a shortcut language that programmers use to talk about binary without going crazy counting 1s and 0s.</p></div>
+    <p><strong>Real-world uses of hex:</strong> Colour codes in web design (#FF5733), memory addresses, MAC addresses.</p>
+
+    <h3>Hex Digits Reference:</h3>
+    <div class="hex-grid">
+      <div class="hex-card"><div class="hval">0–9</div><div class="hdec">= 0–9 (same as decimal)</div></div>
+      <div class="hex-card"><div class="hval">A</div><div class="hdec">= 10 in decimal</div></div>
+      <div class="hex-card"><div class="hval">B</div><div class="hdec">= 11 in decimal</div></div>
+      <div class="hex-card"><div class="hval">C</div><div class="hdec">= 12 in decimal</div></div>
+      <div class="hex-card"><div class="hval">D</div><div class="hdec">= 13 in decimal</div></div>
+      <div class="hex-card"><div class="hval">E</div><div class="hdec">= 14 in decimal</div></div>
+      <div class="hex-card"><div class="hval">F</div><div class="hdec">= 15 in decimal</div></div>
+    </div>
+    <div class="memory-box"><p><strong>After 9, use the alphabet: A B C D E F</strong><br>A=10, B=11… count up from A. "After 9 comes A-through-F then wrap to 10!"</p></div>
+
+    <h3>Hex Place Value Table:</h3>
+    <div class="binary-calc">
+      <table class="place-table">
+        <tr><th>16⁵</th><th>16⁴</th><th>16³</th><th>16²</th><th>16¹</th><th>16⁰</th></tr>
+        <tr>
+          <td style="background:#EDE8F7;color:#5a3da0;font-weight:700">1,048,576</td>
+          <td style="background:#EDE8F7;color:#5a3da0;font-weight:700">65,536</td>
+          <td style="background:#EDE8F7;color:#5a3da0;font-weight:700">4,096</td>
+          <td style="background:#EDE8F7;color:#5a3da0;font-weight:700">256</td>
+          <td style="background:#EDE8F7;color:#5a3da0;font-weight:700">16</td>
+          <td style="background:#EDE8F7;color:#5a3da0;font-weight:700">1</td>
+        </tr>
+      </table>
+    </div>
+
+    <h3>Hex to Decimal — example: 36B</h3>
+    <ol class="steps">
+      <li><span class="step-num">1</span><span class="step-content">Place hex digits in the table: 3 is in 16², 6 is in 16¹, B (=11) is in 16⁰.</span></li>
+      <li><span class="step-num">2</span><span class="step-content">Multiply each digit by its place value: (3 × 256) + (6 × 16) + (11 × 1)</span></li>
+      <li><span class="step-num">3</span><span class="step-content">768 + 96 + 11 = <strong>875</strong>. So 36B in hex = 875 in decimal.</span></li>
+    </ol>
+    <div class="exam-box"><p>Remember: when you see a letter in a hex number (like B), immediately convert it to its decimal equivalent (B=11) before multiplying. This is the most common mistake!</p></div>
+  </div>
+
+  <!-- 4.8 Binary Addition -->
+  <div class="topic-card">
+    <h2><span class="icon">➕</span> Binary Addition</h2>
+    <p>The ALU performs binary addition during the Fetch-Decode-Execute cycle. Binary addition has one special rule compared to decimal addition:</p>
+    <div class="def-box"><p>The rules of binary addition: 0+0=0, 0+1=1, 1+0=1, <strong>1+1=0 carry 1</strong> (because you can't write 2 in binary — you carry to the next column!)</p></div>
+    <div class="analogy-box"><p>In decimal, when you add 9+1 you can't write 10 in one digit — you write 0 and carry 1. Binary is the same: 1+1 can't be written as 2 (there's no digit 2!), so you write 0 and carry 1 to the next column.</p></div>
+
+    <table class="comp-table">
+      <tr><th>Sum</th><th>Result Digit</th><th>Carry</th></tr>
+      <tr><td>0 + 0</td><td style="background:#E6F8EB;color:#267339;font-weight:700">0</td><td>0</td></tr>
+      <tr><td>1 + 0</td><td style="background:#E6F8EB;color:#267339;font-weight:700">1</td><td>0</td></tr>
+      <tr><td>0 + 1</td><td style="background:#E6F8EB;color:#267339;font-weight:700">1</td><td>0</td></tr>
+      <tr><td>1 + 1</td><td style="background:#FFE8E8;color:#C94040;font-weight:700">0</td><td style="color:#C94040;font-weight:700">carry 1</td></tr>
+    </table>
+
+    <h3>Addition Examples:</h3>
+    <div class="addition-grid">
+      <div class="add-card">
+        <div class="ac-label">51 + 37 = 88</div>
+        <pre style="font-size:0.85rem;line-height:1.6">  Carry: 1 1 1 1
+  0 1 1 0 0 1 1
++ 0 1 0 0 1 0 1
+= 1 0 1 1 0 0 0</pre>
+      </div>
+      <div class="add-card">
+        <div class="ac-label">41 + 44 = 85</div>
+        <pre style="font-size:0.85rem;line-height:1.6">  Carry: 1 1
+  0 1 0 1 0 0 1
++ 0 1 0 1 1 0 0
+= 1 0 1 0 1 0 1</pre>
+      </div>
+    </div>
+
+    <h3>Overflow Error</h3>
+    <div class="def-box"><p><strong>Overflow</strong> occurs when a carry occurs at the highest (leftmost) bit — there are no more bits to continue the addition. The result is greater than the maximum value an 8-bit number can hold (255), so a 9th bit would be needed, causing an overflow error.</p></div>
+    <div class="diagram-wrap">
+      <div class="add-card" style="background:var(--surface)">
+        <div class="ac-label" style="color:#C94040">OVERFLOW EXAMPLE — result exceeds 255!</div>
+        <pre style="font-size:0.85rem;line-height:1.6;color:#C94040">  Carry: 1 1 1
+  1 1 1 0 0 0 1 0
++ 1 0 1 1 1 0 1 0
+= ? 1 0 0 1 1 1 0 0  ← 9th bit needed! Overflow!</pre>
+      </div>
+      <p class="caption">The result needs a 9th bit — this causes an OVERFLOW ERROR</p>
+    </div>
+    <div class="analogy-box"><p>Overflow is like a car odometer that only has 6 digits. When it reaches 999,999 km and you add 1 more km, it can't display 1,000,000 — it wraps back to 000,000. The computer has the same problem with 8-bit numbers going past 255.</p></div>
+    <p>Most modern CPUs use <strong>64-bit word sizes</strong>, meaning they can handle numbers up to 18 quintillion (18,446,744,073,709,551,615) before overflow occurs.</p>
+    <div class="exam-box"><p>If an exam question shows a binary addition where the result needs a 9th bit, state: "This causes an overflow error because the result exceeds the maximum value that can be stored in 8 bits (255)."</p></div>
+  </div>
+
+  <!-- 4.9 ASCII and Unicode -->
+  <div class="topic-card">
+    <h2><span class="icon">🔤</span> ASCII &amp; Unicode</h2>
+    <div class="def-box"><p><strong>ASCII (American Standard Code for Information Interchange)</strong> — a character encoding system set up in 1963. The original used 7-bit codes (0–127), representing letters, numbers, and keyboard characters plus 32 control codes. A 1986 update used 8-bit extended ASCII (0–255).</p></div>
+    <div class="def-box"><p><strong>Unicode</strong> — a unified, international character encoding standard that replaced ASCII. UTF-16 uses 16 bits (65,536 characters, covering dozens of languages). UTF-32 covers over 1 million characters. The first 128 Unicode codes are identical to ASCII, so they are backward-compatible.</p></div>
+    <div class="analogy-box"><p>ASCII is like a codebook where every letter has a number. 'A' = 65, 'B' = 66, etc. When you press 'A' on a keyboard, the computer stores the binary for 65 (01000001). ASCII works great for English but couldn't handle Chinese, Arabic, or emoji. Unicode is the expanded codebook that includes every language and symbol on earth!</p></div>
+
+    <h3>ASCII: Key Points</h3>
+    <table class="comp-table">
+      <tr><th>Detail</th><th>Value</th></tr>
+      <tr><td>Year created</td><td>1963 (updated 1986)</td></tr>
+      <tr><td>Original bit size</td><td>7 bits (codes 0–127)</td></tr>
+      <tr><td>Extended ASCII</td><td>8 bits (codes 0–255)</td></tr>
+      <tr><td>Hex range</td><td>00 to 7F (original)</td></tr>
+      <tr><td>Control codes</td><td>0–31 (denary) / 00–1F (hex)</td></tr>
+    </table>
+
+    <h3>Advantages &amp; Disadvantages of ASCII:</h3>
+    <div class="col2">
+      <div>
+        <h3 style="color:var(--green)">✅ Advantages</h3>
+        <ul>
+          <li><strong>Universally accepted</strong> — implemented through the Unicode standard worldwide</li>
+          <li><strong>Compact encoding</strong> — standard codes expressed in just 7 bits; data is very small</li>
+          <li><strong>Efficient for programming</strong> — character codes for letters/numbers work well for text manipulation</li>
+        </ul>
+      </div>
+      <div>
+        <h3 style="color:#C94040">❌ Disadvantages</h3>
+        <ul>
+          <li><strong>Limited character set</strong> — even extended ASCII only has 255 characters; can't handle non-Latin languages</li>
+          <li><strong>Inefficient for other languages</strong> — encoding characters from other alphabets requires extra overhead (escape codes)</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Why Unicode was needed:</h3>
+    <p>By the 1980s, many incompatible coding systems existed worldwide (one for Greek, one for Arabic, etc.). As multilingual computing grew, a <strong>unified format</strong> was needed. Unicode solved this:</p>
+    <table class="comp-table">
+      <tr><th>Version</th><th>Bits</th><th>Characters</th><th>Coverage</th></tr>
+      <tr><td>ASCII</td><td>7/8 bit</td><td>128 / 256</td><td>English + basic symbols</td></tr>
+      <tr><td>UTF-16</td><td>16 bit</td><td>65,536</td><td>Latin, Greek, Arabic, Cyrillic, etc.</td></tr>
+      <tr><td>UTF-32</td><td>32 bit</td><td>1 million+</td><td>All languages incl. Chinese, Japanese, emoji</td></tr>
+    </table>
+    <div class="memory-box"><p><strong>ASCII = English only, 128 chars. Unicode = the world, 65,536+.</strong><br>UTF = Unicode Transformation Format. UTF-8 is the most common on the web — it's backward compatible with ASCII!</p></div>
+    <div class="exam-box"><p>Key exam point: "The first 128 characters of Unicode are the same as ASCII — this ensures backward compatibility." Also know that ASCII encoding has been technically replaced by Unicode, but ASCII text is compatible with UTF-8.</p></div>
+  </div>
+
+</div><!-- end ch4 -->
+
+<!-- ═══════════════════════ CHAPTER 5 ═══════════════════════ -->
+<div class="section" id="ch5">
+  <div class="ch-header h5">
+    <h1>Chapter 5: Software Development</h1>
+    <p>How software is built — from design methodologies and testing strategies to the roles in a development team.</p>
+    <span class="big-num">5</span>
+  </div>
+
+  <!-- 5.1 What is Software Development -->
+  <div class="topic-card ch5">
+    <h2><span class="icon">💻</span> What is Software Development?</h2>
+    <div class="def-box"><p><strong>Software development</strong> refers to a set of computer science activities dedicated to the process of creating, designing, deploying, and supporting software.</p></div>
+    <p>There are three basic types of software:</p>
+    <table class="comp-table t5">
+      <tr><th>Type</th><th>Purpose</th><th>Examples</th></tr>
+      <tr><td><strong>System Software</strong></td><td>Provides core OS functions, disk management, hardware management</td><td>Windows, Linux, macOS</td></tr>
+      <tr><td><strong>Programming Software</strong></td><td>Gives programmers tools to create code</td><td>Text editors, compilers, debuggers, linkers</td></tr>
+      <tr><td><strong>Application Software</strong></td><td>Helps users perform specific tasks</td><td>Word, Spotify, Instagram, Amazon</td></tr>
+    </table>
+  </div>
+
+  <!-- 5.2 Software Process Activities -->
+  <div class="topic-card ch5">
+    <h2><span class="icon">🔄</span> The 4 Fundamental Software Process Activities</h2>
+    <div class="def-box"><p>A <strong>software process</strong> is a sequence of activities that leads to the production of a software product. Every software development process includes these 4 fundamental activities.</p></div>
+    <table class="comp-table t5">
+      <tr><th>Activity</th><th>What happens</th></tr>
+      <tr><td><strong>1. Software Specification</strong></td><td>Customers and engineers define what the software should do and its constraints.</td></tr>
+      <tr><td><strong>2. Software Development</strong></td><td>The software is designed and programmed.</td></tr>
+      <tr><td><strong>3. Software Validation</strong></td><td>The software is checked (tested) to ensure it meets what the customer requires.</td></tr>
+      <tr><td><strong>4. Software Evolution</strong></td><td>The software is modified to reflect changing customer and market requirements.</td></tr>
+    </table>
+    <div class="memory-box"><p><strong>S-D-V-E: "Some Developers Validate Everything"</strong> → Specification, Development, Validation, Evolution</p></div>
+  </div>
+
+  <!-- 5.3 Waterfall Model -->
+  <div class="topic-card ch5">
+    <h2><span class="icon">💧</span> Waterfall (Staged) Design Model</h2>
+    <div class="def-box"><p>The <strong>Waterfall model</strong> is a staged (plan-driven) design approach where the software development process is divided into separate sequential stages. Each stage must be completed and signed off before the next begins. It cascades from one stage to the next — like a waterfall.</p></div>
+    <div class="analogy-box"><p>Imagine building a house. You can't install the roof before the walls, and you can't put in the windows before the frame. Each stage depends on the previous one being complete. Waterfall software development works exactly like this — strict order, no going back.</p></div>
+
+    <h3>The 5 Stages of Waterfall:</h3>
+    <div class="waterfall-steps">
+      <div class="wf-step" style="background:#E6F8EB; border-radius:10px;">
+        <div class="ws-num">1</div>
+        <div class="ws-label">Requirements Analysis</div>
+        <div class="ws-sub">Define system services, constraints, goals. Consult with users.</div>
+      </div>
+      <div class="wf-step" style="background:#E0F7F6; border-radius:10px;">
+        <div class="ws-num" style="background:var(--ch2,#4ECDC4)">2</div>
+        <div class="ws-label">System &amp; Software Design</div>
+        <div class="ws-sub">Allocate requirements to hardware/software. Design architecture.</div>
+      </div>
+      <div class="wf-step" style="background:#FFF3E0; border-radius:10px;">
+        <div class="ws-num" style="background:#FFB347;color:var(--text)">3</div>
+        <div class="ws-label">Implementation &amp; Unit Testing</div>
+        <div class="ws-sub">Write the code. Test each individual unit.</div>
+      </div>
+      <div class="wf-step" style="background:#FFE8E8; border-radius:10px;">
+        <div class="ws-num" style="background:#FF6B6B">4</div>
+        <div class="ws-label">Integration &amp; System Testing</div>
+        <div class="ws-sub">Combine all units. Test the complete system. Deliver to customer.</div>
+      </div>
+      <div class="wf-step" style="background:var(--ch5-light); border-radius:10px;">
+        <div class="ws-num">5</div>
+        <div class="ws-label">Operation &amp; Maintenance</div>
+        <div class="ws-sub">Install and use. Correct errors, improve, and add new features. Longest phase!</div>
+      </div>
+    </div>
+
+    <h3>Pros &amp; Cons of Waterfall:</h3>
+    <table class="comp-table t5">
+      <tr><th>✅ Pros</th><th>❌ Cons</th></tr>
+      <tr><td>Timescales are kept</td><td>Client's needs may be hard to define upfront</td></tr>
+      <tr><td>No financial surprises</td><td>Lack of flexibility — hard to go back</td></tr>
+      <tr><td>Testing is easier to plan</td><td>Longer delivery time</td></tr>
+      <tr><td>Deal with issues during design phase</td><td>If issues found late, whole process must restart</td></tr>
+      <tr><td>You get exactly what was planned</td><td>Client has little input during development</td></tr>
+    </table>
+    <div class="exam-box"><p>Waterfall is <strong>NOT suitable</strong> for projects where requirements may change quickly (e.g. mobile apps). It IS suited to rigid processes like hardware development or projects with very clear, stable requirements.</p></div>
+  </div>
+
+  <!-- 5.4 Agile/Iterative Model -->
+  <div class="topic-card ch5">
+    <h2><span class="icon">🔁</span> Iterative (Agile) Design Model</h2>
+    <div class="def-box"><p><strong>Iterative/Agile development</strong> is based on developing an initial prototype, getting feedback from users, and evolving the software through several versions until the required system is developed. All phases happen together (concurrently) rather than separately.</p></div>
+    <div class="analogy-box"><p>Agile is like sculpting. You start with a rough shape (prototype), show it to the client, they say "make the nose smaller and the ears bigger", you fix it, show them again, repeat — until they're happy. You never have to start from scratch just because they changed their mind.</p></div>
+
+    <h3>Key Principles of Agile (from the Agile Manifesto):</h3>
+    <table class="comp-table t5">
+      <tr><th>Principle</th><th>Meaning</th></tr>
+      <tr><td><strong>Customer involvement</strong></td><td>Customers closely involved throughout; they provide and prioritise new requirements and evaluate iterations.</td></tr>
+      <tr><td><strong>Embrace change</strong></td><td>Expect requirements to change; design the system to accommodate these changes.</td></tr>
+      <tr><td><strong>Incremental delivery</strong></td><td>Software developed in increments; customer specifies requirements for each increment.</td></tr>
+      <tr><td><strong>Maintain simplicity</strong></td><td>Keep both the software and the process as simple as possible; eliminate complexity.</td></tr>
+      <tr><td><strong>People, not process</strong></td><td>Recognise and exploit team members' skills; let teams develop their own ways of working.</td></tr>
+    </table>
+
+    <h3>Agile Methodologies (examples):</h3>
+    <ul>
+      <li>🔹 <strong>SCRUM</strong> — organises work into short "sprints" (usually 2 weeks), with daily standup meetings</li>
+      <li>🔹 <strong>Extreme Programming (XP)</strong> — focuses on engineering practices like pair programming and test-driven development</li>
+      <li>🔹 <strong>Kanban</strong> — uses visual boards to track tasks through stages (To Do → In Progress → Done)</li>
+    </ul>
+
+    <h3>Pros &amp; Cons of Agile:</h3>
+    <table class="comp-table t5">
+      <tr><th>✅ Pros</th><th>❌ Cons</th></tr>
+      <tr><td>Very flexible — adapts to change</td><td>Final product not fully defined at the start</td></tr>
+      <tr><td>Prototypes/products get to market faster</td><td>Documentation can be lacking</td></tr>
+      <tr><td>Client is involved — needs clearly identified</td><td>Hard to pin down a final delivery date</td></tr>
+      <tr><td>Not as rigid as Waterfall</td><td>If client keeps changing mind, no final product</td></tr>
+      <tr><td>Immediate feedback on prototypes</td><td>Can lead to spiralling costs if development goes on and on</td></tr>
+    </table>
+    <div class="memory-box"><p><strong>Waterfall = Plan first, build once, deliver.</strong><br><strong>Agile = Build a bit, show client, improve, repeat.</strong></p></div>
+    <div class="exam-box"><p>A common exam question: "Compare Waterfall and Agile development." Key points: Waterfall is sequential/rigid/plan-driven; Agile is iterative/flexible/client-driven. Waterfall suits stable requirements; Agile suits changing requirements.</p></div>
+  </div>
+
+  <!-- 5.5 Software Testing -->
+  <div class="topic-card ch5">
+    <h2><span class="icon">🧪</span> Software Testing</h2>
+    <div class="def-box"><p><strong>Software testing</strong> is the process of executing a program using artificial data to show that the program does what it is intended to do, and to discover defects (bugs) before the software is put into use.</p></div>
+    <p>The two goals of testing are:</p>
+    <ol>
+      <li>Demonstrate to the developer and customer that the software meets its requirements.</li>
+      <li>Find inputs where the software output is incorrect, undesirable, or doesn't conform to specification — caused by <strong>defects (bugs)</strong>.</li>
+    </ol>
+    <div class="analogy-box"><p>Testing software is like a quality inspector at a car factory. They don't just check if the car starts — they try to break it, find every possible thing that could go wrong, and make sure it's safe and works as described before it reaches customers.</p></div>
+  </div>
+
+  <!-- 5.6 Types of Testing -->
+  <div class="topic-card ch5">
+    <h2><span class="icon">🔬</span> Types of Testing</h2>
+
+    <div class="accordion">
+      <button class="accordion-header" onclick="toggleAccordion(this)"><span>🔩 Unit Testing</span><span class="arrow">▼</span></button>
+      <div class="accordion-body">
+        <div class="def-box"><p><strong>Unit testing</strong> tests a unit — the smallest piece of code that can be logically isolated in a system (typically a single function, class, or method). The test calls the unit with different inputs and checks outputs against expected values.</p></div>
+        <div class="analogy-box"><p>Unit testing is like testing each individual ingredient before baking a cake. You taste the flour, taste the sugar, test the eggs are fresh — before combining them. If each unit (ingredient) is good, you have a better chance of a good cake (program).</p></div>
+        <h3>Benefits of Unit Testing:</h3>
+        <ul>
+          <li>✅ Find bugs early (before integration)</li>
+          <li>✅ Testing can be automated (run thousands of tests automatically)</li>
+          <li>✅ Decreases total testing cost due to automation</li>
+          <li>✅ Makes debugging easier — only newest code needs checking</li>
+        </ul>
+        <h3>Disadvantages:</h3>
+        <ul>
+          <li>❌ Increases initial development time</li>
+          <li>❌ Can introduce false confidence in the code</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <button class="accordion-header" onclick="toggleAccordion(this)"><span>🖥️ System Testing</span><span class="arrow">▼</span></button>
+      <div class="accordion-body">
+        <div class="def-box"><p><strong>System testing</strong> involves integrating all components to create a complete version of the system and then testing the FULL system. It checks that components are compatible, interact correctly, and transfer the right data at the right time across their interfaces.</p></div>
+        <div class="analogy-box"><p>If unit testing is testing each car part individually, system testing is assembling the whole car and taking it for a test drive. You're checking everything works TOGETHER, not just separately.</p></div>
+        <p>Key point: All systems have <strong>emergent behaviour</strong> — some bugs only appear when components interact with each other, not when tested alone. System testing finds these.</p>
+        <p>System testing is a <strong>collective</strong> process — it often involves a separate testing team with no involvement from the original designers/programmers.</p>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <button class="accordion-header" onclick="toggleAccordion(this)"><span>⚙️ Functional Testing</span><span class="arrow">▼</span></button>
+      <div class="accordion-body">
+        <div class="def-box"><p><strong>Functional testing</strong> validates the software against its functional requirements/specifications. It tests each function of the application by providing appropriate inputs and verifying the output against requirements. Tests what the system SHOULD do AND what it should NOT do.</p></div>
+        <div class="analogy-box"><p>Functional testing asks: "Does the login page accept correct passwords? Does it reject incorrect ones? Does it handle a blank password field gracefully?" — testing the actual features (functions) the software is supposed to deliver.</p></div>
+        <p>Example: Testing what happens when a user enters an invalid username/password — does it show the right error message without crashing?</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5.7 Black Box vs White Box -->
+  <div class="topic-card ch5">
+    <h2><span class="icon">⬛⬜</span> Black Box vs White Box Testing</h2>
+    <div class="test-grid">
+      <div class="test-card tc-black">
+        <div class="tname">⬛ Black Box Testing</div>
+        <div class="def-box"><p><strong>Black box testing</strong> — the tester does NOT know the internal structure, design, or code of the item being tested. Only the external inputs and outputs are tested.</p></div>
+        <ul style="font-size:0.88rem;margin-top:8px">
+          <li>Also called: <strong>external</strong> or <strong>functional</strong> testing</li>
+          <li>No knowledge of code required</li>
+          <li>Done by: software testers (not developers)</li>
+          <li>Based on: requirement specifications document</li>
+          <li>Tests: behaviour (does it do what it should?)</li>
+          <li>Applied at: higher levels of testing</li>
+        </ul>
+      </div>
+      <div class="test-card tc-white">
+        <div class="tname">⬜ White Box Testing</div>
+        <div class="def-box"><p><strong>White box testing</strong> — the tester KNOWS the internal structure, design, and code of the item being tested. Implementation and impact of the code are tested.</p></div>
+        <ul style="font-size:0.88rem;margin-top:8px">
+          <li>Also called: <strong>internal</strong> or <strong>structural</strong> testing</li>
+          <li>Code knowledge is required</li>
+          <li>Done by: software developers</li>
+          <li>Based on: detailed design documents</li>
+          <li>Tests: logic (is the code correct?)</li>
+          <li>Applied at: lower levels of testing</li>
+        </ul>
+      </div>
+    </div>
+    <div class="analogy-box"><p><strong>Black box:</strong> You're a customer testing a vending machine — you put money in and press a button. You only care: did you get the right snack? You don't care how it works inside.<br><strong>White box:</strong> You're the engineer who built the machine — you open it up, inspect every circuit and mechanism, and verify the code logic is correct.</p></div>
+    <div class="memory-box"><p><strong>BLACK box = you can't see inside (code is hidden).</strong><br><strong>WHITE box = you CAN see inside (code is known).</strong></p></div>
+  </div>
+
+  <!-- 5.8 Alpha vs Beta Testing -->
+  <div class="topic-card ch5">
+    <h2><span class="icon">🔬</span> Alpha vs Beta Testing</h2>
+    <div class="ab-grid">
+      <div class="alpha-card">
+        <div class="aname">🅰️ Alpha Testing</div>
+        <div class="def-box"><p><strong>Alpha testing</strong> is performed to identify bugs before releasing the product to real users/the public. It is one of the User Acceptance Tests.</p></div>
+        <ul style="font-size:0.85rem;margin-top:8px">
+          <li>Uses both black box AND white box testing</li>
+          <li>Done by <strong>internal employees</strong> of the organisation</li>
+          <li>Performed at the <strong>developer's site</strong></li>
+          <li>Requires a testing environment or lab</li>
+          <li>Multiple test cycles</li>
+          <li>Developers can immediately fix critical issues</li>
+        </ul>
+      </div>
+      <div class="beta-card">
+        <div class="aname">🅱️ Beta Testing</div>
+        <div class="def-box"><p><strong>Beta testing</strong> is performed by real users of the software in a real environment. It is a type of User Acceptance Testing.</p></div>
+        <ul style="font-size:0.85rem;margin-top:8px">
+          <li>Uses mainly <strong>black box</strong> testing</li>
+          <li>Done by <strong>external clients</strong> (not part of the org)</li>
+          <li>Performed at the <strong>end-user's site</strong></li>
+          <li>No testing lab needed</li>
+          <li>Only 1–2 test cycles</li>
+          <li>Feedback implemented in future versions</li>
+          <li>Checks reliability, security, and robustness</li>
+        </ul>
+      </div>
+    </div>
+    <div class="analogy-box"><p><strong>Alpha</strong> = the game developers at the company playing their own game to find bugs before it's shown to anyone outside (internal, controlled).<br><strong>Beta</strong> = releasing the game to 10,000 real gamers to play it at home and report what breaks (external, real-world).</p></div>
+    <div class="memory-box"><p><strong>Alpha comes BEFORE Beta.</strong> Alpha = Internal (Anthropic tests it). Beta = External (users test it). "A before B — internal before external!"</p></div>
+    <div class="exam-box"><p>Know the ORDER: Alpha testing happens BEFORE beta testing. Alpha = internal/developer site. Beta = external/real users. If asked to compare them, focus on who does the testing and where it takes place.</p></div>
+  </div>
+
+  <!-- 5.9 Test Cases -->
+  <div class="topic-card ch5">
+    <h2><span class="icon">📋</span> Test Cases</h2>
+    <div class="def-box"><p><strong>Test cases</strong> are specifications of the inputs to a test, the expected output from the system (the test results), and a statement of what is being tested.</p></div>
+    <div class="def-box"><p><strong>Test data</strong> are the inputs that have been designed to test a system. They can sometimes be generated automatically.</p></div>
+    <div class="analogy-box"><p>A test case is like an exam question with an answer key. The question = input, the expected answer = expected output. If the student (program) gives a different answer, there's a problem (bug).</p></div>
+    <p>Key points about test cases:</p>
+    <ul>
+      <li>Test <strong>execution</strong> can be automated — results automatically compared to predictions</li>
+      <li>Test <strong>case generation</strong> requires humans — someone who knows what the system is supposed to do must define the expected results</li>
+      <li>Test cases should cover: normal values, boundary values, and invalid/erroneous values</li>
+    </ul>
+    <div class="exam-box"><p>When designing test cases in an exam, always include: (1) Normal/valid data — typical correct input. (2) Boundary/extreme data — values at the edge of what's acceptable (e.g. minimum and maximum). (3) Erroneous/invalid data — inputs that should be rejected (e.g. text where a number is expected).</p></div>
+  </div>
+
+  <!-- 5.10 Roles in Software Development -->
+  <div class="topic-card ch5">
+    <h2><span class="icon">👥</span> Roles in Software Development</h2>
+    <div class="roles-grid">
+      <div class="role-card">
+        <div class="ricon">👩‍💼</div>
+        <div class="rname">Product Owner</div>
+        <div class="rdesc">Represents the client/end-users. Has a clear vision of the end product. Sets and communicates requirements. Maintains the product backlog. Bridge between client and dev team.</div>
+      </div>
+      <div class="role-card">
+        <div class="ricon">📊</div>
+        <div class="rname">Business Analyst</div>
+        <div class="rdesc">Translates business needs into technical requirements. Defines scope, provides technological solutions, manages technical and business requirements documentation.</div>
+      </div>
+      <div class="role-card">
+        <div class="ricon">🏗️</div>
+        <div class="rname">Software Architect</div>
+        <div class="rdesc">Defines the overall system architecture. Makes high-level design choices based on non-functional requirements. Develops the most critical components.</div>
+      </div>
+      <div class="role-card">
+        <div class="ricon">👩‍🏫</div>
+        <div class="rname">Team Lead</div>
+        <div class="rdesc">Acts as mentor to the team. Keeps everyone focused on tasks. Delivers work on time. Prevents and resolves conflicts.</div>
+      </div>
+      <div class="role-card">
+        <div class="ricon">💻</div>
+        <div class="rname">Developers</div>
+        <div class="rdesc">Write the code and build the software products. Develop features from the sprint. Update Project Manager on status.</div>
+      </div>
+      <div class="role-card">
+        <div class="ricon">🎯</div>
+        <div class="rname">QA Team</div>
+        <div class="rdesc">Quality Assurance. Ensures adequate practices are used. Evaluates deliverables and processes. Identifies and documents deviations from standards.</div>
+      </div>
+      <div class="role-card">
+        <div class="ricon">🎨</div>
+        <div class="rname">UX/UI Designers</div>
+        <div class="rdesc">Analyse functional requirements for users. Define the information architecture and navigation model. Design how the software looks and feels to the user.</div>
+      </div>
+      <div class="role-card">
+        <div class="ricon">🔍</div>
+        <div class="rname">Testers</div>
+        <div class="rdesc">Ensure the software meets requirements and quality standards. Understand feature requirements. Create and execute test cases to detect bugs.</div>
+      </div>
+      <div class="role-card">
+        <div class="ricon">📅</div>
+        <div class="rname">Project Manager</div>
+        <div class="rdesc">Knows the "who, what, where, when, and why" of the software plan. Plans, schedules, budgets, and delivers the project. Supervises the development team.</div>
+      </div>
+    </div>
+    <div class="memory-box"><p>Roles summary: <strong>Product Owner</strong> (what to build) → <strong>Business Analyst</strong> (how to define it) → <strong>Architect</strong> (how to structure it) → <strong>Team Lead</strong> (how to manage it) → <strong>Developers</strong> (build it) → <strong>Testers/QA</strong> (verify it) → <strong>Project Manager</strong> (oversee it all).</p></div>
+  </div>
+
+</div><!-- end ch5 -->
+
+<!-- ═══════════════════════ FLASHCARDS ═══════════════════════ -->
+<div id="flashcards">
+  <div class="flash-header">
+    <h1>🃏 Flashcards — Chapters 4 &amp; 5</h1>
+    <p>Click a card to flip it! Use filters to study by chapter. Keyboard: ← → Space</p>
+    <span class="big-num">FC</span>
+  </div>
+
+  <div class="flash-controls">
+    <span style="font-weight:600;font-size:0.85rem;color:var(--text-muted)">Filter:</span>
+    <button class="flash-filter active-all" onclick="filterCards('all',this)">All Cards</button>
+    <button class="flash-filter" onclick="filterCards('ch4',this)">⚡ Chapter 4</button>
+    <button class="flash-filter" onclick="filterCards('ch5',this)">🛠️ Chapter 5</button>
+  </div>
+
+  <div class="flash-progress"><div class="flash-progress-bar" id="progressBar"></div></div>
+
+  <div class="flashcard-area">
+    <div class="flashcard" id="mainCard" onclick="flipCard()">
+      <div class="flashcard-inner">
+        <div class="flashcard-front" id="cardFront">
+          <span class="flash-chapter-label" id="cardChapterLabel"></span>
+          <div class="card-q" id="cardQuestion">Loading...</div>
+          <div class="flip-hint">👆 Click to reveal answer</div>
+        </div>
+        <div class="flashcard-back" id="cardBack">
+          <div class="card-a" id="cardAnswer">Loading...</div>
+        </div>
+      </div>
+    </div>
+    <div class="flash-nav">
+      <button class="flash-btn" id="prevBtn" onclick="prevCard()">← Prev</button>
+      <span class="flash-counter" id="cardCounter">1 / 1</span>
+      <button class="flash-btn" id="nextBtn" onclick="nextCard()">Next →</button>
+    </div>
+  </div>
+</div>
+
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+// Section navigation
+function showSection(id) {
+  document.querySelectorAll('.section, #flashcards').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  const btnClass = id === 'flashcards' ? 'flash' : id;
+  document.querySelector('.nav-btn.' + btnClass).classList.add('active');
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+// Accordion
+function toggleAccordion(btn) {
+  const body = btn.nextElementSibling;
+  const isOpen = body.classList.contains('open');
+  btn.closest('.topic-card').querySelectorAll('.accordion-body').forEach(b => b.classList.remove('open'));
+  btn.closest('.topic-card').querySelectorAll('.accordion-header').forEach(b => b.classList.remove('open'));
+  if (!isOpen) { body.classList.add('open'); btn.classList.add('open'); }
+}
+
+// Scroll to top
+window.addEventListener('scroll', () => {
+  document.getElementById('scrollTop').classList.toggle('visible', window.scrollY > 400);
+});
+
+// Binary Converter
+function convertToBinary() {
+  let val = parseInt(document.getElementById('decInput').value);
+  if (isNaN(val) || val < 0 || val > 255) {
+    document.getElementById('convResult').innerHTML = '<span style="color:#C94040">Please enter a number between 0 and 255!</span>';
+    document.getElementById('convBits').innerHTML = '';
+    return;
+  }
+  const places = [128,64,32,16,8,4,2,1];
+  const labels = ['2⁷','2⁶','2⁵','2⁴','2³','2²','2¹','2⁰'];
+  let bits = [];
+  let rem = val;
+  for (let p of places) { if (rem >= p) { bits.push(1); rem -= p; } else { bits.push(0); } }
+  const binaryStr = bits.join('');
+  document.getElementById('convResult').innerHTML = `<span style="color:var(--ch5-dark)">${val}</span> in decimal = <span style="color:var(--ch4-dark);font-size:1.15rem">${binaryStr}</span> in binary`;
+  let html = '';
+  for (let i = 0; i < 8; i++) {
+    const cls = bits[i] === 1 ? 'b1' : 'b0';
+    html += `<div class="conv-bit ${cls}">${bits[i]}<div class="bpv">${places[i]}</div></div>`;
+  }
+  document.getElementById('convBits').innerHTML = html;
+}
+// Run on load
+convertToBinary();
+
+// FLASHCARD DATA
+const ALL_CARDS = [
+  // CH4 - Logic Gates & Binary
+  {ch:'ch4',q:'What is Voltage?',a:'The electrical force that causes electrons to move around a circuit. The source of voltage in a computer comes from mains electricity.'},
+  {ch:'ch4',q:'What is Current?',a:'The movement of electrons around a circuit. Computers only recognise the PRESENCE or ABSENCE of current — this maps to binary 1 (on) and 0 (off).'},
+  {ch:'ch4',q:'What is a Transistor and what is its role in a computer?',a:'A transistor is a tiny electronic switch inside a computer. Computers are composed of billions of them. By switching transistors ON (1) or OFF (0) in sequences, the computer can carry out different functions.'},
+  {ch:'ch4',q:'What does a Resistor do?',a:'Resistors limit the flow of current and voltage to electronic circuits. Different circuits need different amounts of current/voltage (e.g. USB = 5V, CPU = 3.3V, motherboard = 12V).'},
+  {ch:'ch4',q:'What does a Capacitor do?',a:'Capacitors are used in signal processing to create a constant, steady stream of electricity needed to power components.'},
+  {ch:'ch4',q:'What is a Logic Gate?',a:'A device that acts as a building block for digital circuits. Logic gates take binary inputs (0s and 1s) and produce a binary output. They make decisions — outputs only turn ON when the correct logic sequence is applied.'},
+  {ch:'ch4',q:'What is a Logic Circuit?',a:'Several logic gates combined together to carry out a specific function. Electronic circuits in computers are made up of thousands of logic gates.'},
+  {ch:'ch4',q:'What is a Truth Table?',a:'A table used to check the output of a logic gate or logic circuit for EVERY possible combination of inputs. Used to verify the correct behaviour of logic gates.'},
+  {ch:'ch4',q:'AND Gate: What is its rule and when does it output 1?',a:'Rule: A · B. Output is 1 ONLY when BOTH inputs are 1. All other combinations (0,0), (0,1), (1,0) output 0. Memory trick: "ALL must be 1"'},
+  {ch:'ch4',q:'OR Gate: What is its rule and when does it output 1?',a:'Rule: A + B. Output is 1 when AT LEAST ONE input is 1. Only (0,0) gives output 0. Memory trick: "ANY 1 gives a 1"'},
+  {ch:'ch4',q:'NOT Gate: What is its rule?',a:'Rule: Ā (A-bar). It has ONE input. Output is the OPPOSITE (inverse) of the input: NOT 0 = 1, NOT 1 = 0. Also called an inverter.'},
+  {ch:'ch4',q:'NAND Gate: What is its rule and when does it output 0?',a:'Rule: Ā·B̄ (NOT AND). Output is 0 ONLY when BOTH inputs are 1. All other combinations output 1. NAND = AND gate with all outputs flipped.'},
+  {ch:'ch4',q:'NOR Gate: What is its rule and when does it output 1?',a:'Rule: Ā+B̄ (NOT OR). Output is 1 ONLY when BOTH inputs are 0. All other combinations output 0. NOR = OR gate with all outputs flipped.'},
+  {ch:'ch4',q:'XOR Gate: What is its rule and when does it output 1?',a:'Rule: A ⊕ B (Exclusive OR). Output is 1 ONLY when the two inputs are DIFFERENT (one is 0 and the other is 1). If both same, output is 0. "eXactly One = 1"'},
+  {ch:'ch4',q:'How many rows does a truth table with 3 inputs need?',a:'8 rows (2³ = 8). With n inputs, you need 2ⁿ rows. 2 inputs = 4 rows, 3 inputs = 8 rows, 4 inputs = 16 rows.'},
+  {ch:'ch4',q:'What is binary/base-2? Why do computers use it?',a:'Binary uses only 0 and 1 — representing absence/presence of electrical current. Computers use it because electronic circuits can only distinguish two states: ON or OFF. Only two possibilities per digit (instead of 10 in decimal) = simpler to store and process.'},
+  {ch:'ch4',q:'What is a bit? What is a byte?',a:'A BIT is a single binary digit (0 or 1) — the smallest unit of information. One switch = one bit. A BYTE = 8 bits. One byte can represent 256 different values (0–255).'},
+  {ch:'ch4',q:'What are the 8 binary place values from left to right?',a:'128, 64, 32, 16, 8, 4, 2, 1 (powers of 2 from 2⁷ to 2⁰). Each position doubles going left. The leftmost is the MSB (Most Significant Bit), the rightmost is the LSB (Least Significant Bit).'},
+  {ch:'ch4',q:'What is the MSB and LSB?',a:'MSB = Most Significant Bit — the bit on the far LEFT, highest value (128 in 8-bit). LSB = Least Significant Bit — the bit on the far RIGHT, lowest value (1 in 8-bit).'},
+  {ch:'ch4',q:'Convert 149 from decimal to binary.',a:'Place values: 128+0+0+16+0+4+0+1 = 149\nBinary: 10010101\nMethod: Subtract the largest place value that fits, put 1, repeat with remainder.'},
+  {ch:'ch4',q:'Convert 10010101 from binary to decimal.',a:'Positions with 1: 128 + 16 + 4 + 1 = 149.\nMethod: Identify all positions with a 1, add up their place values.'},
+  {ch:'ch4',q:'What is Hexadecimal (Hex)?',a:'Hexadecimal is a base-16 number system using digits 0–9 and letters A–F. A=10, B=11, C=12, D=13, E=14, F=15. Used as a shorthand for binary by humans (NOT by computers).'},
+  {ch:'ch4',q:'Why is Hexadecimal used as a shorthand for binary?',a:'One byte (8 bits) can be written in just 2 hex digits. Hex numbers are shorter and easier to read/remember than long binary strings. Fewer mistakes are made writing hex than binary. Example: colour codes like #FF5733.'},
+  {ch:'ch4',q:'What are the hex place values?',a:'16⁰=1, 16¹=16, 16²=256, 16³=4096, 16⁴=65536, 16⁵=1048576. Same idea as binary but base 16 instead of base 2.'},
+  {ch:'ch4',q:'Convert 36B from hex to decimal.',a:'B=11. (3 × 256) + (6 × 16) + (11 × 1) = 768 + 96 + 11 = 875. Method: Convert any letter to its decimal value first, then multiply each digit by its place value and sum.'},
+  {ch:'ch4',q:'What are the 4 rules of binary addition?',a:'0+0=0, 1+0=1, 0+1=1, 1+1=0 carry 1. The key rule: 1+1 cannot be written as "2" in binary — write 0 and carry 1 to the next column.'},
+  {ch:'ch4',q:'What is an Overflow error in binary addition?',a:'Overflow occurs when a carry happens at the highest (leftmost) bit — there are no more bits to store the result. The result exceeds the maximum value for that bit width (e.g. >255 for 8-bit), requiring a 9th bit.'},
+  {ch:'ch4',q:'What is ASCII?',a:'ASCII (American Standard Code for Information Interchange) — a character encoding system set up in 1963. Originally 7-bit (0–127). Updated in 1986 to 8-bit extended ASCII (0–255). Represents keyboard characters and control codes.'},
+  {ch:'ch4',q:'What is Unicode and why was it created?',a:'Unicode is a unified international character encoding standard that replaced ASCII. Created because many incompatible coding systems existed by the 1980s. UTF-16 = 65,536 characters; UTF-32 = 1 million+ characters. First 128 codes match ASCII for backward compatibility.'},
+  {ch:'ch4',q:'Give 2 advantages and 2 disadvantages of ASCII.',a:'Advantages: Universally accepted, compact encoding (7 bits), efficient for programming. Disadvantages: Limited character set (only 255 chars, mainly English), inefficient for non-Latin languages.'},
+  {ch:'ch4',q:'What is UTF-16 and how many characters can it represent?',a:'UTF-16 is a version of Unicode using 16 bits. It can represent 65,536 different characters — enough for Latin, Greek, Arabic, Cyrillic and other alphabets. The first 128 codes match ASCII.'},
+
+  // CH5 - Software Development
+  {ch:'ch5',q:'What is Software Development?',a:'A set of computer science activities dedicated to creating, designing, deploying, and supporting software.'},
+  {ch:'ch5',q:'Name the 3 types of software.',a:'1. System Software (OS, hardware management)\n2. Programming Software (compilers, debuggers, text editors)\n3. Application Software (apps that help users perform tasks)'},
+  {ch:'ch5',q:'What is a Software Process?',a:'A sequence of activities that leads to the production of a software product. Four fundamental activities: Specification, Development, Validation, Evolution.'},
+  {ch:'ch5',q:'What are the 4 fundamental software process activities?',a:'1. Software Specification — define what to build\n2. Software Development — design and program it\n3. Software Validation — test it meets requirements\n4. Software Evolution — modify for changing needs'},
+  {ch:'ch5',q:'What is the Waterfall Model?',a:'A staged (plan-driven) software development model where development activities are separated into distinct sequential stages. Each stage must be completed and signed off before the next begins. It cascades like a waterfall.'},
+  {ch:'ch5',q:'Name the 5 stages of the Waterfall Model in order.',a:'1. Requirements Analysis & Definition\n2. System & Software Design\n3. Implementation & Unit Testing\n4. Integration & System Testing\n5. Operation & Maintenance (longest phase!)'},
+  {ch:'ch5',q:'What are 2 pros and 2 cons of the Waterfall model?',a:'Pros: Timescales are kept, no financial surprises, testing is easier to plan. Cons: No flexibility (late changes = restart), client has little input during development, longer delivery time.'},
+  {ch:'ch5',q:'What type of projects is Waterfall best suited for?',a:'Waterfall is best suited for projects with RIGID, STABLE requirements that are unlikely to change — such as hardware development. NOT suitable for projects where requirements may change quickly.'},
+  {ch:'ch5',q:'What is Iterative/Agile Development?',a:'An approach based on developing an initial prototype, getting user feedback, and evolving the software through several versions. All phases happen together (concurrently) rather than sequentially. Prototypes are built with user participation.'},
+  {ch:'ch5',q:'Name 3 Agile methodologies.',a:'1. SCRUM — short sprints with daily standups\n2. Extreme Programming (XP) — pair programming, test-driven\n3. Kanban — visual task board (To Do → Doing → Done)'},
+  {ch:'ch5',q:'What are 2 pros and 2 cons of Agile?',a:'Pros: Very flexible, client involved throughout, faster to market, immediate feedback. Cons: No final product defined upfront, hard to set a delivery date, can lead to spiralling costs, documentation lacking.'},
+  {ch:'ch5',q:'Name 5 principles from the Agile Manifesto.',a:'1. Customer involvement\n2. Embrace change\n3. Incremental delivery\n4. Maintain simplicity\n5. People, not process'},
+  {ch:'ch5',q:'What is Software Testing?',a:'The process of executing a program using artificial data to show the program does what it is intended to do AND to discover defects (bugs) before the software is put into use.'},
+  {ch:'ch5',q:'What is Unit Testing?',a:'Testing the smallest piece of code that can be logically isolated — typically a single function, class, or method. Tests call the unit with different inputs and check outputs against expected values.'},
+  {ch:'ch5',q:'Give 2 benefits and 2 disadvantages of Unit Testing.',a:'Benefits: Find bugs early, can be automated, decreases total cost, makes debugging easier. Disadvantages: Increases initial development time, can introduce false confidence in the code.'},
+  {ch:'ch5',q:'What is System Testing?',a:'Testing the FULL integrated system to check that all components are compatible, interact correctly, and transfer the right data at the right time. Finds "emergent behaviour" bugs that only appear when components interact.'},
+  {ch:'ch5',q:'What is Functional Testing?',a:'Validates the software against its functional requirements/specifications. Tests each function by providing appropriate inputs and verifying outputs match requirements. Tests what the system SHOULD do and what it should NOT do.'},
+  {ch:'ch5',q:'What is Black Box Testing?',a:'Software testing where the tester does NOT know the internal structure or code. Only external inputs and outputs are tested. Also called external/functional testing. Done by testers, not developers. No programming knowledge required.'},
+  {ch:'ch5',q:'What is White Box Testing?',a:'Software testing where the tester KNOWS the internal structure and code. Implementation and logic are tested. Also called internal/structural testing. Done by developers. Programming knowledge required.'},
+  {ch:'ch5',q:'What is Alpha Testing?',a:'Testing performed by INTERNAL employees to identify bugs BEFORE releasing to the public. Uses both black box and white box testing. Performed at the developer\'s site. Requires a testing environment/lab. Comes BEFORE beta testing.'},
+  {ch:'ch5',q:'What is Beta Testing?',a:'Testing performed by REAL EXTERNAL USERS in a real environment. Uses mainly black box testing. Performed at the end-user\'s site. No lab required. Only 1-2 test cycles. Checks reliability, security, and robustness.'},
+  {ch:'ch5',q:'What are Test Cases?',a:'Specifications of the inputs to a test, the expected output from the system (test results), and a statement of what is being tested. Test data = the inputs designed to test the system. Test execution can be automated; test case generation cannot — it requires humans.'},
+  {ch:'ch5',q:'Name the 3 types of test data you should include in test cases.',a:'1. Normal/Valid data — typical correct input that should work\n2. Boundary/Extreme data — values at the very edge of what is acceptable\n3. Erroneous/Invalid data — inputs that should be rejected by the system'},
+  {ch:'ch5',q:'What does a Product Owner do in a software team?',a:'Represents the client/end-users. Has a clear vision of the end product. Sets and communicates product requirements. Maintains the product backlog. Ensures communication between client and dev team.'},
+  {ch:'ch5',q:'What does a Project Manager do?',a:'Responsible for the "who, what, where, when, and why" of the software plan. Plans, schedules, budgets, executes, and delivers the software project. Supervises the development team.'},
+  {ch:'ch5',q:'What does the QA Team do?',a:'Quality Assurance — provides support to ensure adequate practices are used during development. Evaluates the execution of processes and deliverables. Identifies and documents deviations from standards.'},
+  {ch:'ch5',q:'What is the difference between Alpha and Beta testing (key facts)?',a:'Alpha: Internal employees, developer\'s site, both black+white box, testing lab needed, bugs fixed immediately. Beta: External users, end-user\'s site, mainly black box, no lab, feedback in future versions. ALPHA comes BEFORE BETA.'},
+];
+
+let currentCards = [...ALL_CARDS];
+let currentIndex = 0;
+
+function filterCards(ch, btn) {
+  document.querySelectorAll('.flash-filter').forEach(b => b.className = 'flash-filter');
+  if (ch === 'all') { btn.className = 'flash-filter active-all'; currentCards = [...ALL_CARDS]; }
+  else { btn.className = `flash-filter active-${ch}`; currentCards = ALL_CARDS.filter(c => c.ch === ch); }
+  currentIndex = 0;
+  updateCard();
+}
+
+function updateCard() {
+  const card = currentCards[currentIndex];
+  document.getElementById('cardQuestion').textContent = card.q;
+  document.getElementById('cardAnswer').textContent = card.a;
+  const chLabels = { ch4:'⚡ Chapter 4', ch5:'🛠️ Chapter 5' };
+  const chClasses = { ch4:'fc-ch4', ch5:'fc-ch5' };
+  const lbl = document.getElementById('cardChapterLabel');
+  lbl.textContent = chLabels[card.ch];
+  lbl.className = `flash-chapter-label ${chClasses[card.ch]}`;
+  document.getElementById('cardCounter').textContent = `${currentIndex + 1} / ${currentCards.length}`;
+  document.getElementById('prevBtn').disabled = currentIndex === 0;
+  document.getElementById('nextBtn').disabled = currentIndex === currentCards.length - 1;
+  const pct = ((currentIndex + 1) / currentCards.length) * 100;
+  document.getElementById('progressBar').style.width = pct + '%';
+  document.getElementById('mainCard').classList.remove('flipped');
+}
+
+function flipCard() { document.getElementById('mainCard').classList.toggle('flipped'); }
+function nextCard() { if (currentIndex < currentCards.length - 1) { currentIndex++; updateCard(); } }
+function prevCard() { if (currentIndex > 0) { currentIndex--; updateCard(); } }
+
+document.addEventListener('keydown', e => {
+  const fc = document.getElementById('flashcards');
+  if (!fc.classList.contains('active')) return;
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') nextCard();
+  if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') prevCard();
+  if (e.key === ' ') { e.preventDefault(); flipCard(); }
+});
+
+updateCard();
+</script>
+</body>
+</html>
