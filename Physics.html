@@ -61,6 +61,22 @@
   }
   .top-bar span { color: var(--accent2); }
 
+  .back-link {
+    position: absolute;
+    left: 40px;
+    text-decoration: none;
+    color: var(--text-light);
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s;
+  }
+  .back-link:hover {
+    color: var(--accent2);
+  }
+
   /* HERO SECTION */
   .hero {
     background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
@@ -347,6 +363,9 @@
   }
 
   @media (max-width: 768px) {
+    .top-bar { padding: 16px 20px; }
+    .back-link { position: static; margin-right: auto; }
+    .top-bar h1 { margin-left: auto; margin-right: auto; }
     .hero { padding: 50px 20px; }
     .hero h2 { font-size: 32px; }
     .hero p { font-size: 16px; }
@@ -360,6 +379,7 @@
 <body>
 
   <div class="top-bar">
+    <a href="index.html" class="back-link">← Master Console</a>
     <h1>Leaving Cert <span>Physics</span></h1>
   </div>
 
