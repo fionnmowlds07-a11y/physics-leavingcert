@@ -649,6 +649,137 @@
   .ref-item .ri-code { color: var(--blue-dark); font-weight: 600; }
   .ref-item .ri-desc { color: var(--text-muted); }
 
+
+  /* ── MARKING PANEL ── */
+  .marking-panel {
+    background: var(--surface);
+    border-radius: var(--radius);
+    padding: 28px;
+    box-shadow: var(--shadow);
+    margin-top: 28px;
+    border-left: 5px solid var(--green);
+    display: none;
+    animation: fadeIn 0.4s ease;
+  }
+  .marking-panel.visible { display: block; }
+  .marking-panel h2 {
+    font-size: 1.1rem; font-weight: 700;
+    margin-bottom: 6px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .marking-panel p.mp-sub {
+    font-size: 0.88rem; color: var(--text-muted); margin-bottom: 20px;
+  }
+  .code-paste-area {
+    width: 100%;
+    min-height: 260px;
+    padding: 16px;
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+    line-height: 1.7;
+    resize: vertical;
+    background: var(--code-bg);
+    color: var(--code-text);
+    outline: none;
+    transition: border-color 0.2s;
+    tab-size: 4;
+  }
+  .code-paste-area:focus { border-color: var(--green); }
+  .code-paste-area::placeholder { color: rgba(205,214,244,0.3); }
+  .mark-btn {
+    width: 100%;
+    padding: 14px 24px;
+    border-radius: 12px;
+    border: none;
+    background: linear-gradient(135deg, var(--green) 0%, #059669 100%);
+    color: white;
+    font-family: 'Lexend', sans-serif;
+    font-size: 1rem; font-weight: 700;
+    cursor: pointer; transition: all 0.2s;
+    box-shadow: 0 4px 20px rgba(16,185,129,0.3);
+    margin-top: 14px;
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+  }
+  .mark-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(16,185,129,0.4);
+  }
+  .mark-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+  .mark-btn .mark-spinner {
+    width: 18px; height: 18px;
+    border: 3px solid rgba(255,255,255,0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    display: none;
+  }
+  .mark-btn.loading .mark-spinner { display: block; }
+  .mark-btn.loading .mark-text { opacity: 0.7; }
+
+  /* Score display */
+  .score-display {
+    display: none;
+    animation: fadeIn 0.5s ease;
+    margin-top: 24px;
+  }
+  .score-display.visible { display: block; }
+  .score-header {
+    display: flex; align-items: center; gap: 20px;
+    background: var(--surface2);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 20px;
+  }
+  .score-circle {
+    width: 90px; height: 90px;
+    border-radius: 50%;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    font-family: 'Lexend Mega', sans-serif;
+    flex-shrink: 0;
+    border: 4px solid;
+  }
+  .score-circle .sc-pct { font-size: 1.5rem; font-weight: 700; line-height: 1; }
+  .score-circle .sc-label { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.5px; margin-top: 3px; }
+  .score-grade-A { border-color: var(--green); background: var(--green-light); color: #065f46; }
+  .score-grade-B { border-color: var(--blue); background: var(--blue-light); color: var(--blue-dark); }
+  .score-grade-C { border-color: var(--orange); background: var(--orange-light); color: #92400e; }
+  .score-grade-D { border-color: var(--red); background: var(--red-light); color: #991b1b; }
+  .score-summary { flex: 1; }
+  .score-summary .ss-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 6px; }
+  .score-summary .ss-sub { font-size: 0.88rem; color: var(--text-muted); }
+  .part-scores { display: flex; flex-direction: column; gap: 10px; }
+  .part-score-row {
+    background: var(--surface);
+    border-radius: 10px;
+    padding: 14px 18px;
+    border: 2px solid var(--border);
+    display: flex; align-items: flex-start; gap: 14px;
+  }
+  .ps-label {
+    min-width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--blue); color: white;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 0.8rem;
+    flex-shrink: 0;
+  }
+  .ps-content { flex: 1; }
+  .ps-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+  .ps-verdict { font-weight: 700; font-size: 0.9rem; }
+  .ps-marks { font-size: 0.82rem; font-weight: 700; padding: 3px 10px; border-radius: 20px; }
+  .ps-marks.full { background: var(--green-light); color: #065f46; }
+  .ps-marks.half { background: var(--orange-light); color: #92400e; }
+  .ps-marks.zero { background: var(--red-light); color: #991b1b; }
+  .ps-feedback { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; }
+  .ps-bar { height: 5px; background: var(--border); border-radius: 3px; margin-top: 8px; overflow: hidden; }
+  .ps-bar-fill { height: 100%; border-radius: 3px; transition: width 0.6s; }
+  .bar-full { background: var(--green); }
+  .bar-half { background: var(--orange); }
+  .bar-zero { background: var(--red); }
+
   /* ── SCROLL TOP ── */
   #scrollTop {
     position: fixed; bottom: 24px; right: 24px;
@@ -766,7 +897,38 @@
     <!-- Populated by JS -->
   </div>
 
+
 </div><!-- end main-wrap -->
+
+<!-- MARKING PANEL -->
+<div class="main-wrap">
+  <div class="marking-panel" id="markingPanel">
+    <h2>📝 Mark My Code</h2>
+    <p class="mp-sub">Paste your completed Python code below. The AI will mark each question part and give you a score out of 100%.</p>
+    <textarea class="code-paste-area" id="studentCode" placeholder="# Paste your full Python code here...
+# The AI will check each part and award marks based on whether your code correctly solves each question.
+# Full marks if it works correctly, half marks if your approach is close but has issues."></textarea>
+    <button class="mark-btn" id="markBtn" onclick="markCode()">
+      <div class="mark-spinner"></div>
+      <span class="mark-text">🎯 Mark My Code</span>
+    </button>
+    <div class="score-display" id="scoreDisplay">
+      <div class="score-header">
+        <div class="score-circle" id="scoreCircle">
+          <span class="sc-pct" id="scorePct">0%</span>
+          <span class="sc-label">SCORE</span>
+        </div>
+        <div class="score-summary">
+          <div class="ss-title" id="scoreTitle">Results</div>
+          <div class="ss-sub" id="scoreSub"></div>
+        </div>
+      </div>
+      <div class="part-scores" id="partScores"></div>
+    </div>
+  </div>
+</div>
+
+
 
 <!-- FLOAT REF BUTTON -->
 <button class="float-ref" onclick="openRef()">📄 Python Reference</button>
@@ -995,6 +1157,8 @@ async function generateExam() {
   // Reset state
   currentExamData = null;
   hideStatus();
+  document.getElementById('markingPanel').classList.remove('visible');
+  document.getElementById('scoreDisplay').classList.remove('visible');
   output.classList.remove('visible');
   output.innerHTML = '';
   skeleton.classList.add('visible');
@@ -1134,6 +1298,11 @@ function renderExam(data) {
   output.innerHTML = html;
   output.classList.add('visible');
   output.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  // Show marking panel
+  document.getElementById('markingPanel').classList.add('visible');
+  document.getElementById('studentCode').value = '';
+  document.getElementById('scoreDisplay').classList.remove('visible');
+  document.getElementById('partScores').innerHTML = '';
 }
 
 // ─────────────────────────────────────────────
@@ -1318,6 +1487,184 @@ function renderSolution(sol, partLabel) {
       </div>
     </div>
   `;
+}
+
+// ─────────────────────────────────────────────
+// MARKING
+// ─────────────────────────────────────────────
+
+function buildMarkingPrompt(studentCode) {
+  const parts = currentExamData.parts;
+  const starterCode = currentExamData.starterCode;
+  const context = currentExamData.context;
+
+  let partsText = '';
+  parts.forEach((p, i) => {
+    partsText += `PART ${p.part} (${p.marks} marks):\n`;
+    partsText += `Instruction: ${p.instruction}\n`;
+    if (p.sampleOutput) partsText += `Expected output:\n${p.sampleOutput}\n`;
+    partsText += '\n';
+  });
+
+  const totalMarks = currentExamData.totalMarks;
+
+  return `You are an Irish Leaving Certificate Computer Science examiner marking a student's Python code.
+
+EXAM CONTEXT: ${context}
+
+ORIGINAL STARTER CODE:
+${starterCode}
+
+QUESTION PARTS TO MARK:
+${partsText}
+
+STUDENT'S SUBMITTED CODE:
+${studentCode}
+
+MARKING INSTRUCTIONS:
+- For each part, decide if the student's code correctly solves what was asked.
+- Award FULL marks if the code works correctly for that part — it does not need to be the most optimal solution, just correct.
+- Award HALF marks if the student's approach is clearly on the right track but has a minor bug, missing step, or small logical error that would prevent it fully working.
+- Award ZERO marks if the part is missing entirely or the approach is completely wrong.
+- Be generous but honest — if it would mostly work with a tiny fix, give half marks.
+- Look at the student's complete code holistically — they may have solved later parts in a different order or style.
+- Do not penalise for style differences — only mark whether the logic achieves the required output.
+
+Return ONLY valid JSON, no markdown:
+{
+  "parts": [
+    {
+      "part": "(i)",
+      "marksAwarded": 8,
+      "maxMarks": 8,
+      "verdict": "Full marks",
+      "feedback": "One sentence explaining what the student did correctly or what was missing/wrong."
+    }
+  ],
+  "totalAwarded": 40,
+  "totalMax": ${totalMarks},
+  "overallFeedback": "2-3 sentences of overall feedback on the student's code quality and approach."
+}`;
+}
+
+async function markCode() {
+  if (!currentExamData) {
+    showStatus('error', '❌ No exam loaded. Generate an exam first.');
+    return;
+  }
+
+  const studentCode = document.getElementById('studentCode').value.trim();
+  if (!studentCode || studentCode.length < 10) {
+    showStatus('error', '❌ Please paste your code before marking.');
+    return;
+  }
+
+  const btn = document.getElementById('markBtn');
+  const scoreDisplay = document.getElementById('scoreDisplay');
+
+  btn.classList.add('loading');
+  btn.disabled = true;
+  btn.querySelector('.mark-text').textContent = 'Marking your code...';
+  scoreDisplay.classList.remove('visible');
+
+  try {
+    const prompt = buildMarkingPrompt(studentCode);
+
+    const res = await fetch(supabaseUrl + '/functions/v1/' + EDGE_FUNCTION_NAME, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + supabaseKey,
+        'apikey': supabaseKey
+      },
+      body: JSON.stringify({ prompt })
+    });
+
+    if (!res.ok) {
+      const errText = await res.text();
+      throw new Error('Server returned ' + res.status + ': ' + errText);
+    }
+
+    const data = await res.json();
+    let markData;
+
+    if (data.content) {
+      let raw = data.content.trim()
+        .replace(/^```json\s*/i, '')
+        .replace(/^```\s*/i, '')
+        .replace(/```\s*$/i, '')
+        .trim();
+      markData = JSON.parse(raw);
+    } else if (data.error) {
+      throw new Error(data.error);
+    } else {
+      throw new Error('Unexpected response from server.');
+    }
+
+    renderMarkingResults(markData);
+
+  } catch (err) {
+    showStatus('error', '❌ Marking failed: ' + err.message);
+    console.error('Marking error:', err);
+  } finally {
+    btn.classList.remove('loading');
+    btn.disabled = false;
+    btn.querySelector('.mark-text').textContent = '🎯 Mark My Code';
+  }
+}
+
+function renderMarkingResults(data) {
+  const totalAwarded = data.totalAwarded || 0;
+  const totalMax = data.totalMax || currentExamData.totalMarks;
+  const pct = Math.round((totalAwarded / totalMax) * 100);
+
+  // Score circle colour grade
+  let gradeClass = 'score-grade-D';
+  let gradeLabel = 'Keep Practicing';
+  if (pct >= 85) { gradeClass = 'score-grade-A'; gradeLabel = 'Excellent Work!'; }
+  else if (pct >= 65) { gradeClass = 'score-grade-B'; gradeLabel = 'Good Effort!'; }
+  else if (pct >= 40) { gradeClass = 'score-grade-C'; gradeLabel = 'Getting There!'; }
+
+  const circle = document.getElementById('scoreCircle');
+  circle.className = 'score-circle ' + gradeClass;
+  document.getElementById('scorePct').textContent = pct + '%';
+  document.getElementById('scoreTitle').textContent = gradeLabel;
+  document.getElementById('scoreSub').textContent =
+    totalAwarded + ' / ' + totalMax + ' marks — ' + (data.overallFeedback || '');
+
+  // Part breakdown
+  const partContainer = document.getElementById('partScores');
+  partContainer.innerHTML = '';
+
+  (data.parts || []).forEach(p => {
+    const max = p.maxMarks || 0;
+    const awarded = p.marksAwarded || 0;
+    const pctPart = max > 0 ? Math.round((awarded / max) * 100) : 0;
+
+    let marksClass = 'zero';
+    let barClass = 'bar-zero';
+    let verdictEmoji = '❌';
+    if (awarded >= max) { marksClass = 'full'; barClass = 'bar-full'; verdictEmoji = '✅'; }
+    else if (awarded > 0) { marksClass = 'half'; barClass = 'bar-half'; verdictEmoji = '⚡'; }
+
+    const row = document.createElement('div');
+    row.className = 'part-score-row';
+    row.innerHTML =
+      '<div class="ps-label">' + escapeHtml(p.part || '') + '</div>' +
+      '<div class="ps-content">' +
+        '<div class="ps-top">' +
+          '<span class="ps-verdict">' + verdictEmoji + ' ' + escapeHtml(p.verdict || '') + '</span>' +
+          '<span class="ps-marks ' + marksClass + '">' + awarded + ' / ' + max + ' marks</span>' +
+        '</div>' +
+        '<div class="ps-feedback">' + escapeHtml(p.feedback || '') + '</div>' +
+        '<div class="ps-bar"><div class="ps-bar-fill ' + barClass + '" style="width:' + pctPart + '%"></div></div>' +
+      '</div>';
+    partContainer.appendChild(row);
+  });
+
+  const scoreDisplay = document.getElementById('scoreDisplay');
+  scoreDisplay.classList.add('visible');
+  scoreDisplay.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 // ─────────────────────────────────────────────
