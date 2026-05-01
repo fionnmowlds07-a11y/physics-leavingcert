@@ -819,9 +819,170 @@
     body { background: white; }
     .question-section { box-shadow: none; border: 1px solid #ccc; page-break-inside: avoid; }
   }
+
+  /* ── PASSWORD SCREEN ── */
+  #passwordScreen {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: var(--bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    animation: fadeIn 0.4s ease;
+  }
+  #passwordScreen.hidden {
+    display: none;
+  }
+  .pw-card {
+    background: var(--surface);
+    border-radius: 20px;
+    padding: 48px 40px;
+    max-width: 480px;
+    width: 100%;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+    text-align: center;
+    border-top: 5px solid var(--accent);
+  }
+  .pw-icon {
+    font-size: 3rem;
+    margin-bottom: 16px;
+    display: block;
+  }
+  .pw-title {
+    font-family: 'Lexend Mega', sans-serif;
+    font-size: 1.5rem;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+  .pw-subtitle {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 28px;
+  }
+  .pw-warning {
+    background: #FFF9E6;
+    border: 2px solid #FFD966;
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin-bottom: 28px;
+    font-size: 0.85rem;
+    line-height: 1.65;
+    color: #5a4000;
+    text-align: left;
+  }
+  .pw-warning strong { color: #7a5500; }
+  .pw-warning a { color: var(--accent-dark); font-weight: 600; }
+  .pw-input-wrap {
+    position: relative;
+    margin-bottom: 14px;
+  }
+  .pw-input {
+    width: 100%;
+    padding: 14px 48px 14px 18px;
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    font-family: 'Lexend', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text);
+    background: var(--surface);
+    outline: none;
+    transition: border-color 0.2s;
+    letter-spacing: 0.5px;
+  }
+  .pw-input:focus { border-color: var(--accent); }
+  .pw-input.error { border-color: var(--red); animation: shake 0.4s ease; }
+  @keyframes shake {
+    0%,100% { transform: translateX(0); }
+    20% { transform: translateX(-8px); }
+    40% { transform: translateX(8px); }
+    60% { transform: translateX(-6px); }
+    80% { transform: translateX(6px); }
+  }
+  .pw-toggle {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    padding: 4px;
+    line-height: 1;
+  }
+  .pw-error-msg {
+    color: var(--red);
+    font-size: 0.82rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+    min-height: 18px;
+  }
+  .pw-btn {
+    width: 100%;
+    padding: 14px 24px;
+    border-radius: 12px;
+    border: none;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+    color: white;
+    font-family: 'Lexend', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 4px 20px rgba(232,67,147,0.3);
+  }
+  .pw-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(232,67,147,0.4); }
+  .pw-contact {
+    margin-top: 20px;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+  .pw-contact a { color: var(--accent-dark); font-weight: 600; text-decoration: none; }
+  .pw-contact a:hover { text-decoration: underline; }
+
 </style>
 </head>
 <body>
+
+<!-- PASSWORD SCREEN -->
+<div id="passwordScreen">
+  <div class="pw-card">
+    <span class="pw-icon">🔐</span>
+    <div class="pw-title">Access Required</div>
+    <p class="pw-subtitle">This tool uses AI APIs which cost money to run. Please enter the password to continue.</p>
+    <div class="pw-warning">
+      <strong>⚠️ Note:</strong> Each question generation and solution request costs real money. Please only use this tool if you have been given access. If you need access, contact:<br><br>
+      📧 <a href="mailto:fionnmowlds07@gmail.com">fionnmowlds07@gmail.com</a><br>
+      💬 Or reach out on <strong>Teams</strong>
+    </div>
+    <div class="pw-input-wrap">
+      <input
+        class="pw-input"
+        id="pwInput"
+        type="password"
+        placeholder="Enter password"
+        onkeydown="if(event.key==='Enter') checkPassword()"
+        autocomplete="off"
+        spellcheck="false"
+      />
+      <button class="pw-toggle" onclick="togglePwVisibility()" id="pwToggle" title="Show/hide password">👁</button>
+    </div>
+    <div class="pw-error-msg" id="pwErrorMsg"></div>
+    <button class="pw-btn" onclick="checkPassword()">🔓 Enter</button>
+    <div class="pw-contact">
+      Don't have the password?<br>
+      Contact <a href="mailto:fionnmowlds07@gmail.com">fionnmowlds07@gmail.com</a> or message on <strong>Teams</strong>
+    </div>
+  </div>
+</div>
+
+
 
 <nav>
   <span class="nav-logo">LC <span>CS</span></span>
@@ -1886,6 +2047,42 @@ function escapeHtml(str) {
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#39;');
 }
+
+// ─────────────────────────────────────────────
+// PASSWORD GATE
+// ─────────────────────────────────────────────
+function checkPassword() {
+  const input = document.getElementById('pwInput');
+  const errorMsg = document.getElementById('pwErrorMsg');
+  const val = input.value;
+
+  if (val === 'FionnMowlds') {
+    // Correct — hide the screen
+    document.getElementById('passwordScreen').classList.add('hidden');
+    errorMsg.textContent = '';
+  } else {
+    // Wrong — shake and show error
+    input.classList.remove('error');
+    void input.offsetWidth; // force reflow to restart animation
+    input.classList.add('error');
+    errorMsg.textContent = '❌ Incorrect password. Please try again.';
+    input.value = '';
+    input.focus();
+  }
+}
+
+function togglePwVisibility() {
+  const input = document.getElementById('pwInput');
+  const btn = document.getElementById('pwToggle');
+  if (input.type === 'password') {
+    input.type = 'text';
+    btn.textContent = '🙈';
+  } else {
+    input.type = 'password';
+    btn.textContent = '👁';
+  }
+}
+
 </script>
 <a href="index.html" class="return-home-btn">
   <span>🏠</span> Back to Hub
