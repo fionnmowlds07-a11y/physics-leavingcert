@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LC Latin – Art & Architecture</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Deca:wght@400;500;600&family=Lexend+Mega:wght@700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --c1:#e05a2b; --c2:#2b7de0; --c3:#2bc97a; --c4:#c026d3;
+    --c5:#e6a817; --c6:#0ea5e9; --c7:#16a34a; --c8:#dc2626;
+    --c9:#7c3aed; --c10:#0891b2; --c11:#d97706; --c12:#be185d;
+    --c13:#059669; --c14:#4f46e5;
+    --bg:#f8f9fc; --card:#ffffff; --text:#1a1a2e;
+    --sub:#555577; --border:#e2e6f0;
+    --shadow:0 4px 20px rgba(0,0,0,0.08); --radius:14px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);font-size:16px;line-height:1.75;}
+
+  /* ── TOPBAR ── */
+  .topbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.97);backdrop-filter:blur(10px);border-bottom:2px solid var(--border);padding:0 16px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;min-height:56px;}
+  .topbar-brand{font-family:'Lexend Mega',sans-serif;font-size:.9rem;font-weight:700;color:var(--text);margin-right:4px;white-space:nowrap;}
+  .nav-tabs{display:flex;gap:6px;flex-wrap:wrap;align-items:center;}
+  .nav-tab{background:none;border:2px solid var(--border);color:var(--sub);font-family:'Lexend',sans-serif;font-size:.75rem;font-weight:600;cursor:pointer;border-radius:20px;padding:4px 12px;transition:all .17s;}
+  .nav-tab:hover{background:var(--text);border-color:var(--text);color:#fff;}
+  .nav-tab.active{background:var(--text);border-color:var(--text);color:#fff!important;}
+  .nav-tab.p1:hover,.nav-tab.p1.active{background:var(--c1);border-color:var(--c1);color:#fff!important;}
+  .nav-tab.p2:hover,.nav-tab.p2.active{background:var(--c2);border-color:var(--c2);color:#fff!important;}
+  .nav-tab.p3:hover,.nav-tab.p3.active{background:var(--c3);border-color:var(--c3);color:#fff!important;}
+  .nav-tab.p4:hover,.nav-tab.p4.active{background:var(--c4);border-color:var(--c4);color:#fff!important;}
+  .nav-tab.p5:hover,.nav-tab.p5.active{background:var(--c5);border-color:var(--c5);color:#fff!important;}
+  .nav-tab.p6:hover,.nav-tab.p6.active{background:var(--c6);border-color:var(--c6);color:#fff!important;}
+  .nav-tab.p7:hover,.nav-tab.p7.active{background:var(--c7);border-color:var(--c7);color:#fff!important;}
+  .nav-tab.p8:hover,.nav-tab.p8.active{background:var(--c8);border-color:var(--c8);color:#fff!important;}
+  .nav-tab.p9:hover,.nav-tab.p9.active{background:var(--c9);border-color:var(--c9);color:#fff!important;}
+  .nav-tab.p10:hover,.nav-tab.p10.active{background:var(--c10);border-color:var(--c10);color:#fff!important;}
+  .nav-tab.p11:hover,.nav-tab.p11.active{background:var(--c11);border-color:var(--c11);color:#fff!important;}
+  .nav-tab.p12:hover,.nav-tab.p12.active{background:var(--c12);border-color:var(--c12);color:#fff!important;}
+  .nav-tab.p13:hover,.nav-tab.p13.active{background:var(--c13);border-color:var(--c13);color:#fff!important;}
+  .nav-tab.p14:hover,.nav-tab.p14.active{background:var(--c14);border-color:var(--c14);color:#fff!important;}
+
+  /* ── PAGES ── */
+  .page{display:none;max-width:960px;margin:0 auto;padding:30px 20px 90px;}
+  .page.active{display:block;}
+
+  /* ── HERO ── */
+  .hero{border-radius:var(--radius);padding:32px 36px;margin-bottom:32px;color:white;position:relative;overflow:hidden;}
+  .hero::before{content:'';position:absolute;inset:0;background:rgba(0,0,0,0.12);border-radius:var(--radius);}
+  .hero-content{position:relative;z-index:1;}
+  .hero-badge{display:inline-block;background:rgba(255,255,255,0.25);padding:4px 12px;border-radius:20px;font-size:0.72rem;font-weight:600;letter-spacing:0.05em;margin-bottom:10px;text-transform:uppercase;}
+  .hero h1{font-family:'Lexend Mega',sans-serif;font-size:1.75rem;font-weight:700;margin-bottom:8px;line-height:1.2;}
+  .hero p{font-size:0.97rem;opacity:0.9;max-width:640px;}
+
+  /* ── SECTION GROUPS ── */
+  .section-group{margin-bottom:36px;}
+  .section-title{font-size:1.05rem;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:10px;padding-bottom:10px;border-bottom:2px solid var(--border);}
+  .section-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;}
+
+  /* ── DEF CARDS ── */
+  .def-card{background:white;border-radius:var(--radius);border:2px solid var(--border);margin-bottom:14px;overflow:hidden;box-shadow:var(--shadow);transition:box-shadow .2s,border-color .2s;}
+  .def-card:hover{box-shadow:0 6px 28px rgba(0,0,0,0.12);}
+  .def-header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;cursor:pointer;gap:12px;}
+  .def-term{font-size:1rem;font-weight:700;display:flex;align-items:center;gap:10px;flex:1;}
+  .def-pill{font-size:0.67rem;padding:3px 9px;border-radius:20px;font-weight:600;white-space:nowrap;text-transform:uppercase;letter-spacing:0.04em;}
+  .pill-key{background:#fde8de;color:#b34219;}
+  .pill-def{background:#e8f0ff;color:#2d4dd6;}
+  .pill-exam{background:#fef3c7;color:#92400e;}
+  .pill-tip{background:#f0fff8;color:#0d7a44;}
+  .def-chevron{font-size:1rem;color:var(--sub);transition:transform .25s;flex-shrink:0;}
+  .def-card.open .def-chevron{transform:rotate(180deg);}
+  .def-body{display:none;padding:0 20px 20px;border-top:1px solid var(--border);}
+  .def-card.open .def-body{display:block;}
+
+  /* ── CONTENT BOXES ── */
+  .def-official{border-radius:0 8px 8px 0;padding:13px 16px;margin:14px 0 10px;font-weight:600;font-size:0.95rem;}
+  .def-explain{color:var(--sub);margin:8px 0;font-size:0.93rem;}
+  .analogy-box{background:linear-gradient(135deg,#fff9e6,#fffdf0);border:2px dashed #f0c040;border-radius:10px;padding:12px 16px;margin:12px 0;font-size:0.92rem;}
+  .analogy-box strong{color:#b8860b;}
+  .memory-box{background:linear-gradient(135deg,#fdf0ff,#f5e6ff);border:2px dashed #c084fc;border-radius:10px;padding:12px 16px;margin:12px 0;font-size:0.92rem;}
+  .memory-box strong{color:#7c3aed;}
+  .example-box{background:#f0fff8;border-left:4px solid #2bc97a;border-radius:0 8px 8px 0;padding:11px 14px;margin:10px 0;font-size:0.92rem;}
+  .example-box strong{color:#0fa65a;}
+  .warn-box{background:#fffbf0;border-left:4px solid #f59e0b;border-radius:0 8px 8px 0;padding:11px 14px;margin:10px 0;font-size:0.92rem;}
+  .warn-box strong{color:#b45309;}
+  .info-box{background:#f0f4ff;border-left:4px solid #2b7de0;border-radius:0 8px 8px 0;padding:11px 14px;margin:10px 0;font-size:0.92rem;}
+  .info-box strong{color:#1e40af;}
+
+  /* ── GRIDS ── */
+  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;}
+  @media(max-width:600px){.grid-2{grid-template-columns:1fr;}}
+  .grid-card{background:white;border-radius:var(--radius);border:2px solid var(--border);padding:18px;box-shadow:var(--shadow);}
+  .grid-card h4{font-size:0.95rem;font-weight:700;margin-bottom:8px;}
+  .grid-card ul{padding-left:18px;}
+  .grid-card ul li{font-size:0.88rem;margin-bottom:5px;}
+  .grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:14px;}
+  @media(max-width:700px){.grid-3{grid-template-columns:1fr;}}
+
+  /* ── TABLE ── */
+  .compare-table{width:100%;border-collapse:collapse;font-size:0.9rem;margin-bottom:14px;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);}
+  .compare-table th{padding:12px 16px;color:white;font-weight:700;text-align:left;}
+  .compare-table td{padding:11px 16px;background:white;border-bottom:1px solid var(--border);vertical-align:top;}
+  .compare-table tr:last-child td{border-bottom:none;}
+  .compare-table tr:nth-child(even) td{background:#fafafe;}
+
+  /* ── TOPIC CARD ── */
+  .topic-card{background:white;border-radius:var(--radius);border:2px solid var(--border);padding:20px;margin-bottom:14px;box-shadow:var(--shadow);}
+  .topic-card h3{font-size:1rem;font-weight:700;margin-bottom:10px;}
+  .topic-card ul{padding-left:20px;}
+  .topic-card ul li{margin-bottom:6px;font-size:0.93rem;}
+
+  /* ── FLIP QUIZ ── */
+  .quiz-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;margin-top:10px;}
+  .flip-card{height:150px;cursor:pointer;perspective:1000px;}
+  .flip-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .5s cubic-bezier(.4,2,.6,1);}
+  .flip-card.flipped .flip-inner{transform:rotateY(180deg);}
+  .flip-front,.flip-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;border-radius:var(--radius);display:flex;align-items:center;justify-content:center;text-align:center;padding:16px;border:2px solid var(--border);box-shadow:var(--shadow);}
+  .flip-front{background:white;font-weight:700;font-size:0.9rem;flex-direction:column;gap:6px;}
+  .flip-back{background:var(--text);color:white;font-size:0.82rem;transform:rotateY(180deg);line-height:1.55;}
+  .flip-hint{font-size:0.68rem;color:#aaa;font-weight:400;}
+
+  /* ── WELCOME GRID ── */
+  .welcome-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px;}
+  @media(max-width:650px){.welcome-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:400px){.welcome-grid{grid-template-columns:1fr;}}
+  .welcome-card{background:white;border-radius:var(--radius);border:2px solid var(--border);padding:18px 14px;cursor:pointer;box-shadow:var(--shadow);transition:transform .17s,box-shadow .17s;text-align:center;}
+  .welcome-card:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(0,0,0,0.13);}
+  .welcome-card .wc-icon{font-size:1.6rem;margin-bottom:6px;}
+  .welcome-card .wc-title{font-family:'Lexend Mega',sans-serif;font-size:0.8rem;font-weight:700;margin-bottom:4px;}
+  .welcome-card .wc-sub{font-size:0.75rem;color:var(--sub);}
+
+  /* ── BACK BTN ── */
+  .return-home-btn{position:fixed;bottom:26px;right:26px;background:var(--text);color:white!important;padding:10px 20px;border-radius:50px;text-decoration:none;font-family:'Lexend',sans-serif;font-weight:600;font-size:13px;box-shadow:0 4px 16px rgba(0,0,0,0.22);z-index:9999;display:flex;align-items:center;gap:7px;transition:all .3s;}
+  .return-home-btn:hover{transform:translateY(-3px);background:#7c3aed;box-shadow:0 8px 24px rgba(124,58,237,0.4);}
+</style>
+</head>
+<body>
+
+<!-- ══════════════ TOPBAR ══════════════ -->
+<div class="topbar">
+  <span class="topbar-brand">🏛 LC Latin – Art &amp; Architecture</span>
+  <div class="nav-tabs">
+    <button class="nav-tab active"  onclick="showPage('home',this)">🏠 Home</button>
+    <button class="nav-tab p1"  onclick="showPage('roads',this)">🛣️ Roads</button>
+    <button class="nav-tab p2"  onclick="showPage('columns',this)">🏛️ Columns</button>
+    <button class="nav-tab p3"  onclick="showPage('arches',this)">🔵 Arches</button>
+    <button class="nav-tab p4"  onclick="showPage('bridges',this)">🌉 Bridges</button>
+    <button class="nav-tab p5"  onclick="showPage('aqueducts',this)">💧 Aqueducts</button>
+    <button class="nav-tab p6"  onclick="showPage('temples',this)">⛩️ Temples</button>
+    <button class="nav-tab p7"  onclick="showPage('basilicas',this)">🏢 Basilicas</button>
+    <button class="nav-tab p8"  onclick="showPage('forum',this)">📍 Forum</button>
+    <button class="nav-tab p9"  onclick="showPage('circuses',this)">🏇 Circuses</button>
+    <button class="nav-tab p10" onclick="showPage('amphitheatres',this)">⚔️ Amphitheatres</button>
+    <button class="nav-tab p11" onclick="showPage('theatres',this)">🎭 Theatres</button>
+    <button class="nav-tab p12" onclick="showPage('baths',this)">🛁 Baths</button>
+    <button class="nav-tab p13" onclick="showPage('mosaics',this)">🎨 Mosaics</button>
+    <button class="nav-tab p14" onclick="showPage('art',this)">🖼️ Paintings &amp; Sculpture</button>
+  </div>
+</div>
+
+<!-- ══════════════ HOME ══════════════ -->
+<div class="page active" id="page-home">
+  <div class="hero" style="background:linear-gradient(135deg,#1a1a2e,#3a3a6e);">
+    <div class="hero-content">
+      <div class="hero-badge">Leaving Cert Latin</div>
+      <h1>Art &amp; Architecture 🏛️</h1>
+      <p>Every topic from the PDF — roads, columns, arches, bridges, aqueducts, temples, basilicas, the forum, circuses, amphitheatres, theatres, baths, mosaics, paintings and sculpture. Each one gets its own full section. Tap a topic above or a card below to start.</p>
+    </div>
+  </div>
+  <div class="welcome-grid">
+    <div class="welcome-card" onclick="showPage('roads',document.querySelector('.p1'))"><div class="wc-icon">🛣️</div><div class="wc-title" style="color:var(--c1)">Roads</div><div class="wc-sub">Via Appia · Milestones · Construction</div></div>
+    <div class="welcome-card" onclick="showPage('columns',document.querySelector('.p2'))"><div class="wc-icon">🏛️</div><div class="wc-title" style="color:var(--c2)">Columns</div><div class="wc-sub">4 Types · Parts · Pseudoperipteral</div></div>
+    <div class="welcome-card" onclick="showPage('arches',document.querySelector('.p3'))"><div class="wc-icon">🔵</div><div class="wc-title" style="color:var(--c3)">Arches</div><div class="wc-sub">How it works · Triumphal Arches</div></div>
+    <div class="welcome-card" onclick="showPage('bridges',document.querySelector('.p4'))"><div class="wc-icon">🌉</div><div class="wc-title" style="color:var(--c4)">Bridges</div><div class="wc-sub">Development · Trajan's Bridge</div></div>
+    <div class="welcome-card" onclick="showPage('aqueducts',document.querySelector('.p5'))"><div class="wc-icon">💧</div><div class="wc-title" style="color:var(--c5)">Aqueducts</div><div class="wc-sub">How they worked · Pont du Gard</div></div>
+    <div class="welcome-card" onclick="showPage('temples',document.querySelector('.p6'))"><div class="wc-icon">⛩️</div><div class="wc-title" style="color:var(--c6)">Temples</div><div class="wc-sub">Rectangular · Circular · Pantheon</div></div>
+    <div class="welcome-card" onclick="showPage('basilicas',document.querySelector('.p7'))"><div class="wc-icon">🏢</div><div class="wc-title" style="color:var(--c7)">Basilicas</div><div class="wc-sub">Layout · Basilica Julia · Apse</div></div>
+    <div class="welcome-card" onclick="showPage('forum',document.querySelector('.p8'))"><div class="wc-icon">📍</div><div class="wc-title" style="color:var(--c8)">Forum</div><div class="wc-sub">Forum Romanum · Contents · Via Sacra</div></div>
+    <div class="welcome-card" onclick="showPage('circuses',document.querySelector('.p9'))"><div class="wc-icon">🏇</div><div class="wc-title" style="color:var(--c9)">Circuses</div><div class="wc-sub">Chariot Racing · Circus Maximus</div></div>
+    <div class="welcome-card" onclick="showPage('amphitheatres',document.querySelector('.p10'))"><div class="wc-icon">⚔️</div><div class="wc-title" style="color:var(--c10)">Amphitheatres</div><div class="wc-sub">Gladiators · Colosseum · Events</div></div>
+    <div class="welcome-card" onclick="showPage('theatres',document.querySelector('.p11'))"><div class="wc-icon">🎭</div><div class="wc-title" style="color:var(--c11)">Theatres</div><div class="wc-sub">Layout · Customs · Famous Theatres</div></div>
+    <div class="welcome-card" onclick="showPage('baths',document.querySelector('.p12'))"><div class="wc-icon">🛁</div><div class="wc-title" style="color:var(--c12)">Baths</div><div class="wc-sub">5 Rooms · Social Role · Trajan's Baths</div></div>
+    <div class="welcome-card" onclick="showPage('mosaics',document.querySelector('.p13'))"><div class="wc-icon">🎨</div><div class="wc-title" style="color:var(--c13)">Mosaics</div><div class="wc-sub">4 Techniques · Famous Examples</div></div>
+    <div class="welcome-card" onclick="showPage('art',document.querySelector('.p14'))"><div class="wc-icon">🖼️</div><div class="wc-title" style="color:var(--c14)">Paintings &amp; Sculpture</div><div class="wc-sub">Fresco · Encaustic · Relief · Portraits</div></div>
+  </div>
+</div>
+
+<!-- ══════════════ ROADS ══════════════ -->
+<div class="page" id="page-roads">
+  <div class="hero" style="background:linear-gradient(135deg,#e05a2b,#f0974a);">
+    <div class="hero-content"><div class="hero-badge">Topic 1</div><h1>🛣️ Roads</h1><p>The arteries of the Roman Empire — without roads Rome could not have controlled, traded with, or communicated across its vast territories.</p></div>
+  </div>
+
+  <div class="section-group">
+    <div class="section-title"><div class="section-icon" style="background:#fde8de;">🌍</div>Why Roads Were Essential</div>
+
+    <div class="def-card open" style="border-color:#fbbba0;" onclick="toggleDef(this)">
+      <div class="def-header"><div class="def-term">The Purpose of Roman Roads<span class="def-pill pill-key">KEY</span></div><span class="def-chevron">▼</span></div>
+      <div class="def-body">
+        <div class="def-official" style="background:#fff4f0;border-left:4px solid var(--c1);">Roads allowed for quick communication throughout the empire, trade and easy passage for the military. Roads greatly helped the process of Romanization, especially in Gaul.</div>
+        <p class="def-explain">Think of Roman roads like a motorway network — they connected every corner of the Empire and kept it running. Three core uses: <strong>military movement, trade, and communication.</strong></p>
+        <div class="grid-2">
+          <div class="grid-card"><h4>⚔️ Military Use</h4><ul><li>Armies moved rapidly to trouble spots</li><li>No need to hack through forests</li><li>Crucial for maintaining control of distant provinces</li><li>Troops could march 25 miles per day on good roads</li></ul></div>
+          <div class="grid-card"><h4>📦 Trade &amp; Communication</h4><ul><li>Goods moved quickly between cities</li><li>Official messages reached emperors fast</li><li>Postal relay system (cursus publicus) used roads</li><li>Helped <strong>Romanize</strong> conquered peoples (especially Gaul)</li></ul></div>
+        </div>
+        <div class="analogy-box"><strong>🧠 Analogy:</strong> The Roman road network was like the internet — it connected everything and allowed rapid movement of information (messages), goods (trade), and "updates" (military force). Without it, the Empire would have fragmented into isolated pieces.</div>
+        <div class="warn-box"><strong>⚠️ Exam Quote to Know:</strong> <em>"Without roads the Empire would not have been so great."</em> Use this in any essay on Roman roads.</div>
+      </div>
+    </div>
+
+    <div class="def-card" style="border-color:#fbbba0;" onclick="toggleDef(this)">
+      <div class="def-header"><div class="def-term">The Via Appia (Appian Way)<span class="def-pill pill-exam">EXAM EXAMPLE</span></div><span class="def-chevron">▼</span></div>
+      <div class="def-body">
+        <div class="def-official" style="background:#fff4f0;border-left:4px solid var(--c1);">The Via Appia is one of the most famous roads in ancient Italy. It was built by Appius Claudius. It connected Rome with Capua and secured the hold of Rome on Campania. It was later extended as far as Brundisium and Tarentum.</div>
+        <div class="grid-2">
+          <div class="grid-card"><h4>📍 Key Facts</h4><ul><li>Built by <strong>Appius Claudius</strong></li><li>Connected: <strong>Rome → Capua</strong></li><li>Extended to: <strong>Brundisium &amp; Tarentum</strong></li><li>Secured Roman control of <strong>Campania</strong></li></ul></div>
+          <div class="grid-card"><h4>🗺️ Strategic Importance</h4><ul><li>Brundisium = main port to Greece &amp; the East</li><li>Key military &amp; trade artery to south Italy</li><li>Template for all future Roman roads</li><li>Still partially intact today</li></ul></div>
+        </div>
+        <div class="memory-box"><strong>🔮 Memory Trick:</strong> <em>"Appius built the Appian Way"</em> — the road literally named itself after its builder. Appius → Appia. You cannot forget this!</div>
+      </div>
+    </div>
+
+    <div class="def-card" style="border-color:#fbbba0;" onclick="toggleDef(this)">
+      <div class="def-header"><div class="def-term">Milestones (Milliaria)<span class="def-pill pill-def">DEFINITION</span></div><span class="def-chevron">▼</span></div>
+      <div class="def-body">
+        <div class="def-official" style="background:#fff4f0;border-left:4px solid var(--c1);">Milestones were markers on the road. The usual milestone was a cylindrical pillar from 3–9 feet tall. It was inscribed with the date, name and titles of the emperor responsible for the road. It gave the distance to the next town in miles.</div>
+        <p class="def-explain">Milestones served two purposes simultaneously: <strong>practical</strong> (navigation — how far to the next town) and <strong>political</strong> (propaganda — the emperor's name reminded everyone who was in charge).</p>
+        <div class="grid-2">
+          <div class="grid-card"><h4>🔩 Physical Description</h4><ul><li>Shape: <strong>cylindrical pillar</strong></li><li>Height: <strong>3–9 feet tall</strong></li><li>Material: stone</li><li>Placed at regular intervals along road</li></ul></div>
+          <div class="grid-card"><h4>📝 What Was Inscribed</h4><ul><li><strong>Date</strong> (when road built/repaired)</li><li><strong>Name and titles</strong> of responsible emperor</li><li><strong>Distance</strong> to the next town in miles</li></ul></div>
+        </div>
+        <div class="analogy-box"><strong>🧠 Analogy:</strong> Like a modern road sign that says "Dublin 45km — maintained by Transport Infrastructure Ireland" — except the Romans replaced "TII" with the emperor's full name and titles. Pure genius and pure ego, at the same time!</div>
+      </div>
+    </div>
+
+    <div class="def-card" style="border-color:#fbbba0;" onclick="toggleDef(this)">
+      <div class="def-header"><div class="def-term">Roads under Augustus — Agrippa's Survey<span class="def-pill pill-exam">EXAM DETAIL</span></div><span class="def-chevron">▼</span></div>
+      <div class="def-body">
+        <div class="def-official" style="background:#fff4f0;border-left:4px solid var(--c1);">Roads were greatly developed under Augustus who had his lieutenant Agrippa survey the entire empire. 50,000 miles of paved roads.</div>
+        <p class="def-explain">Augustus understood: roads = control. He commissioned his greatest general <strong>Agrippa</strong> to survey the whole empire and create a comprehensive road system.</p>
+        <div class="example-box"><strong>📌 Scale of Achievement:</strong> 50,000 miles of paved road — roughly equivalent to circling the Earth <em>twice</em>. An unprecedented engineering achievement for the ancient world. Roads were built by <strong>slaves and local townspeople.</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-group">
+    <div class="section-title"><div class="section-icon" style="background:#fde8de;">⚙️</div>Road Construction — How They Were Built</div>
+    <div class="def-card" style="border-color:#fbbba0;" onclick="toggleDef(this)">
+      <div class="def-header"><div class="def-term">The Layers of a Roman Road<span class="def-pill pill-key">KEY — KNOW IN DETAIL</span></div><span class="def-chevron">▼</span></div>
+      <div class="def-body">
+        <div class="def-official" style="background:#fff4f0;border-left:4px solid var(--c1);">Roads were wide enough for 2 carts to pass. Their gradients were often severe, and they were straight for the most part. The foundations of the road were often 2 feet deep. A layer of heavy stone was placed, then two or more layers of coarse lime mortar (cement). The top surface which was sloped to allow run-off water was made of the hardest material available in the region.</div>
+        <table class="compare-table" style="margin-top:12px;">
+          <tr><th style="background:#e05a2b;">Layer</th><th style="background:#e05a2b;">Material</th><th style="background:#e05a2b;">Purpose</th></tr>
+          <tr><td><strong>Foundation</strong> (~2 ft deep)</td><td>Heavy stone slabs</td><td>Stability — prevents sinking</td></tr>
+          <tr><td><strong>Middle layers</strong> (2+)</td><td>Coarse lime mortar / cement</td><td>Binding and load distribution</td></tr>
+          <tr><td><strong>Top surface</strong></td><td>Hardest local stone, slightly domed/sloped</td><td>Durability + water drainage (rain runs off)</td></tr>
+        </table>
+        <div class="grid-2">
+          <div class="grid-card"><h4>📏 Dimensions &amp; Design</h4><ul><li>Wide enough for <strong>2 carts to pass</strong></li><li>Foundations: <strong>2 feet deep</strong></li><li><strong>Straight</strong> for most of their length</li><li>Gradients often severe but managed cleverly</li></ul></div>
+          <div class="grid-card"><h4>💡 Clever Engineering Details</h4><ul><li>Top surface <strong>sloped/domed</strong> → rain water drains off sides</li><li>If slope &gt;10°: <strong>road zigzagged</strong> rather than going straight up</li><li><strong>Tunnels</strong> only built if absolutely essential</li><li>Used hardest available <em>local</em> material — very practical</li></ul></div>
+        </div>
+        <div class="analogy-box"><strong>🧠 Analogy:</strong> A Roman road is like a modern tarmac road — concrete base → binding layers → smooth driving surface on top. The Romans invented this multi-layer approach 2,000 years ago. Their roads were so well-built that sections still exist today!</div>
+        <div class="warn-box"><strong>⚠️ Exam Phrase:</strong> "This showed how practical the Romans were." Use this when describing road construction — combining function (drainage slope, foundations) with efficiency (hardest local material, built by slaves).</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-group">
+    <div class="section-title"><div class="section-icon" style="background:#fde8de;">🧠</div>Quick Quiz — Roads</div>
+    <div class="quiz-grid">
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">Who built the Via Appia and where did it go?<span class="flip-hint">tap</span></div><div class="flip-back">Built by Appius Claudius. Rome → Capua (secured Campania), later extended to Brundisium and Tarentum.</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">What 3 things were inscribed on a Milestone?<span class="flip-hint">tap</span></div><div class="flip-back">1. Date of construction/repair. 2. Name and titles of the emperor responsible. 3. Distance to the next town in miles.</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">How many miles of road under Augustus?<span class="flip-hint">tap</span></div><div class="flip-back">50,000 miles of paved roads. Surveyed by his lieutenant Agrippa across the entire empire.</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">Name the 3 layers of Roman road construction<span class="flip-hint">tap</span></div><div class="flip-back">1. Heavy stone foundation (2 ft deep). 2. Two or more layers of coarse lime mortar/cement. 3. Sloped top surface of hardest local stone.</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">What happened when road gradient exceeded 10°?<span class="flip-hint">tap</span></div><div class="flip-back">The road zigzagged. Tunnels were only constructed if absolutely essential.</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">Name 3 reasons roads were important to Rome<span class="flip-hint">tap</span></div><div class="flip-back">1. Military movement. 2. Trade. 3. Communication. Also: aided Romanization especially in Gaul.</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ COLUMNS ══════════════ -->
+<div class="page" id="page-columns">
+  <div class="hero" style="background:linear-gradient(135deg,#2b7de0,#5baaff);">
+    <div class="hero-content"><div class="hero-badge">Topic 2</div><h1>🏛️ The Column</h1><p>Borrowed from the Greeks, perfected by the Romans. Columns combined structural strength with breathtaking beauty — and there are 4 types you MUST know.</p></div>
+  </div>
+
+  <div class="section-group">
+    <div class="section-title"><div class="section-icon" style="background:#deeafd;">🏛️</div>What is a Column?</div>
+    <div class="def-card open" style="border-color:#a0c0fb;" onclick="toggleDef(this)">
+      <div class="def-header"><div class="def-term">Columns — Origins, Purpose &amp; Structure<span class="def-pill pill-key">KEY CONCEPT</span></div><span class="def-chevron">▼</span></div>
+      <div class="def-body">
+        <div class="def-official" style="background:#f0f4ff;border-left:4px solid var(--c2);">A notable feature of Greek architecture. Adapted by the Romans. Used both for purpose and style (both practical and beauty). 4 types of columns.</div>
+        <div class="def-official" style="background:#f0f4ff;border-left:4px solid var(--c2);margin-top:8px;">Columns compromised of a base which rested on a foundation called a stylobate. Main trunk of the column was the shaft, on top of which rested the capital. Used to transmit the weight of the structure above down. Usually contained a decorative element, combining beauty with practicality. Constructed from a single piece of stone. Their design incorporates a reduction in diameter from base to capital. Made them look very tall. Some columns were incorporated for only design — this is called pseudoperipteral. Columns quickly became a feature of classical architecture.</div>
+        <div class="grid-3" style="margin-top:14px;">
+          <div class="grid-card"><h4>🪨 Stylobate</h4><p style="font-size:.88rem;color:var(--sub);">The foundation/platform the column rests on. The base on which everything above stands.</p></div>
+          <div class="grid-card"><h4>🏺 Shaft</h4><p style="font-size:.88rem;color:var(--sub);">The tall main trunk/body of the column. Constructed from a single piece of stone. Tapers slightly from bottom to top.</p></div>
+          <div class="grid-card"><h4>👑 Capital</h4><p style="font-size:.88rem;color:var(--sub);">The decorative top piece that sits above the shaft. The capital type determines which of the 4 orders the column belongs to.</p></div>
+        </div>
+        <div class="analogy-box"><strong>🧠 Analogy:</strong> Think of a column like a table leg: it has a foot (stylobate), a body (shaft), and a head (capital). The genius is the gentle taper — wider at the bottom, narrower at the top — which makes it look incredibly tall and elegant while actually being structurally stronger at the base where weight is greatest.</div>
+        <div class="warn-box"><strong>⚠️ KEY TERM — Pseudoperipteral:</strong> When columns are used purely for decoration (built into/attached to the wall) and do NOT structurally support anything. They look load-bearing but aren't. Example: the Maison Carrée — only the front columns are real; the side "columns" are half-columns attached to the wall.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-group">
+    <div class="section-title"><div class="section-icon" style="background:#deeafd;">📊</div>The 4 Types of Columns</div>
+    <div class="def-card" style="border-color:#a0c0fb;" onclick="toggleDef(this)">
+      <div class="def-header"><div class="def-term">All 4 Column Orders — Full Comparison<span class="def-pill pill-exam">MUST KNOW</span></div><span class="def-chevron">▼</span></div>
+      <div class="def-body">
+        <table class="compare-table" style="margin-top:10px;">
+          <tr><th style="background:#2b7de0;">Order</th><th style="background:#2b7de0;">Key Features</th><th style="background:#2b7de0;">Load Capacity</th><th style="background:#2b7de0;">Where Used</th></tr>
+          <tr><td><strong>Doric 🏺</strong></td><td>Oldest &amp; simplest. No base. Plain, undecorated capital. Thick sturdy shaft.</td><td>✅✅✅ <strong>MOST weight</strong></td><td>Ground floor Colosseum. Oldest temples.</td></tr>
+          <tr><td><strong>Tuscan 🏺</strong></td><td>Also called <em>Roman Doric</em>. Very similar to Doric but HAS a base. Plainer than Greek Doric.</td><td>✅✅✅ Very strong</td><td>Roman variant of Doric. Common in Roman construction.</td></tr>
+          <tr><td><strong>Ionic 🌀</strong></td><td>Scroll-shaped capital called <strong>volutes</strong>. More elegant than Doric/Tuscan. Associated with academic buildings.</td><td>✅✅ Medium</td><td>2nd level Colosseum. Libraries and academic buildings.</td></tr>
+          <tr><td><strong>Corinthian 🌿</strong></td><td>Most ornate. Capital decorated with <strong>acanthus leaves</strong>. Very decorative, elaborate.</td><td>✅ <strong>LEAST weight</strong></td><td>Top (3rd) level Colosseum. Pantheon portico. Most decorative buildings.</td></tr>
+        </table>
+        <div class="memory-box"><strong>🔮 Memory Trick — "Don't Take It Carelessly":</strong><br><strong>D</strong>oric → <strong>T</strong>uscan → <strong>I</strong>onic → <strong>C</strong>orinthian = <strong>D-T-I-C</strong><br>From <em>OLDEST/STRONGEST</em> → to <em>NEWEST/MOST DECORATIVE</em><br><br>Or remember the <strong>Colosseum</strong>: Ground floor = Doric (holds most weight, at bottom) → 2nd = Ionic → 3rd = Corinthian (most fancy, lightest load at top). This is perfectly logical engineering!</div>
+        <div class="example-box"><strong>📌 Colosseum Column Logic:</strong> The Colosseum uses all three orders in the correct structural sequence. Doric at the bottom bears the most weight (the entire building above). Ionic in the middle. Corinthian at the top has the least weight to bear, so the most decorative style goes there. Romans weren't just beautiful — they were logical.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-group">
+    <div class="section-title"><div class="section-icon" style="background:#deeafd;">🧠</div>Quick Quiz — Columns</div>
+    <div class="quiz-grid">
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">Name the 3 parts of a column<span class="flip-hint">tap</span></div><div class="flip-back">Stylobate (foundation base) → Shaft (tall main trunk, single stone) → Capital (decorative top piece).</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">Which column type holds the MOST weight?<span class="flip-hint">tap</span></div><div class="flip-back">Doric — oldest and simplest, holds the most weight. Used on the ground floor of the Colosseum for this reason.</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">What is a Pseudoperipteral column?<span class="flip-hint">tap</span></div><div class="flip-back">A column incorporated for design only — decorative, not structural. Half-columns attached to the wall that appear to support but don't.</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">What makes Corinthian columns distinctive?<span class="flip-hint">tap</span></div><div class="flip-back">Capital decorated with acanthus leaves. Most ornate of all 4 types. Supports the LEAST weight. Used at the top level of the Colosseum and in the Pantheon portico.</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">What is a Tuscan column also called?<span class="flip-hint">tap</span></div><div class="flip-back">Roman Doric. Very similar to Doric but has a base. The Roman variant of the Greek Doric column.</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ ARCHES ══════════════ -->
+<div class="page" id="page-arches">
+  <div class="hero" style="background:linear-gradient(135deg,#2bc97a,#0fa65a);">
+    <div class="hero-content"><div class="hero-badge">Topic 3</div><h1>🔵 The Arch</h1><p>One of the most revolutionary architectural ideas in history. The Romans didn't invent it, but they mastered it — and it changed everything.</p></div>
+  </div>
+
+  <div class="section-group">
+    <div class="section-title"><div class="section-icon" style="background:#def5e8;">🔵</div>The Roman Arch — How It Works</div>
+    <div class="def-card open" style="border-color:#a0ebc0;" onclick="toggleDef(this)">
+      <div class="def-header"><div class="def-term">What is the Roman Arch?<span class="def-pill pill-key">KEY CONCEPT</span></div><span class="def-chevron">▼</span></div>
+      <div class="def-body">
+        <div class="def-official" style="background:#f0fbf5;border-left:4px solid var(--c3);">It was said to have been the Etruscans who showed the Romans the arch, but of course it was refined and adapted by the Romans. The Romans saw that the arch had great potential in building. It composed of bricks or stone blocks wedged together to prevent slipping. The Romans covered the arch in stones to conceal the impression of weight, therefore combining beauty with practicality.</div>
+        <div class="def-official" style="background:#f0fbf5;border-left:4px solid var(--c3);margin-top:8px;">Arches allowed the Romans to enclose much larger spaces. The stones in the arch pressed against one another, therefore transmitting weight from the supporting structure above to the ground below. The advantage of the arch and later variations like the dome, is that the Romans could have large open spaces without any columns.</div>
+        <div class="analogy-box"><strong>🧠 Analogy:</strong> Imagine a stack of playing cards leaning into each other in an arch shape. Each card pushes on the one beside it. Remove any one card and the whole thing collapses — but together they're incredibly strong. That's the arch: the <strong>keystone</strong> at the very top is the last piece inserted and locks everything in place, redirecting weight outward and downward along the curve to the ground.</div>
+        <div class="grid-2" style="margin-top:12px;">
+          <div class="grid-card"><h4>✅ Why Arches Were Revolutionary</h4><ul><li>Could span far larger spaces than flat stone beams</li><li>No need for columns in middle of open spaces</li><li>Weight transmitted efficiently down to the ground</li><li>Opened the door to domes, bridges, aqueducts and vaults</li><li>Bricks/stone <strong>wedged together</strong> to prevent slipping</li></ul></div>
+          <div class="grid-card"><h4>🎨 Beauty + Practicality</h4><ul><li>Romans covered arch in decorative stones</li><li>Concealed the engineering mechanics</li><li>Surface appeared purely decorative</li><li>In simplest form: rectangular masonry with single archway between 2 columns</li><li>Developed into great bridges and aqueducts</li></ul></div>
+        </div>
+        <div class="warn-box"><strong>⚠️ Key Exam Phrase:</strong> "The advantage of the arch and later variations like the dome, is that the Romans could have large open spaces without any columns." — Use this exact idea in any essay. It explains WHY the arch was so important.</div>
+      </div>
+    </div>
+
+    <div class="def-card" style="border-color:#a0ebc0;" onclick="toggleDef(this)">
+      <div class="def-header"><div class="def-term">Triumphal Arches<span class="def-pill pill-exam">EXAM EXAMPLE</span></div><span class="def-chevron">▼</span></div>
+      <div class="def-body">
+        <div class="def-official" style="background:#f0fbf5;border-left:4px solid var(--c3);">There was also stand alone arches called triumphal arches used to commemorate military victories, e.g. arch of Titus.</div>
+        <p class="def-explain">Triumphal arches were freestanding monuments — not part of a building — built purely to celebrate military victories. They were propaganda in stone, visible to all.</p>
+        <div class="grid-2">
+          <div class="grid-card"><h4>🏛️ Structure of a Triumphal Arch</h4><ul><li>Single arch between <strong>huge piers</strong></li><li>Other columns standing on a <strong>podium</strong> on each side</li><li>Inscribed with a <strong>dedication</strong></li><li>Often topped with a <strong>chariot group</strong> (quadriga = 4-horse chariot)</li><li>Interior: decorated with <strong>relief sculpture</strong></li></ul></div>
+          <div class="grid-card"><h4>📌 Famous Examples</h4><ul><li><strong>Arch of Titus</strong>: 81 AD. Oldest triumphal arch still standing in Rome. Cross between Corinthian and Ionic styles.</li><li><strong>Arch of Septimius Severus</strong>: in the Roman Forum</li><li>In the reign of Augustus: arches erected even in the most remote provinces</li></ul></div>
+        </div>
+        <div class="memory-box"><strong>🔮 Memory:</strong> Arch of Titus = <strong>81 AD</strong>. Think: "Titus built his arch in 81 — he took Jerusalem in 70 AD, and a decade later (81) got his arch." The reliefs inside show the sack of Jerusalem and the Menorah being carried away.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-group">
+    <div class="section-title"><div class="section-icon" style="background:#def5e8;">🧠</div>Quick Quiz — Arches</div>
+    <div class="quiz-grid">
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">Who originally showed the Romans the arch?<span class="flip-hint">tap</span></div><div class="flip-back">The Etruscans. But the Romans refined and adapted it to far greater use than anyone before them.</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">How is an arch constructed?<span class="flip-hint">tap</span></div><div class="flip-back">Bricks or stone blocks wedged together to prevent slipping. Stones press against each other, transmitting weight from above to the ground below.</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">What was the great advantage of the arch over columns?<span class="flip-hint">tap</span></div><div class="flip-back">Large open spaces could be created WITHOUT columns. Also enabled larger spans than flat stone beams. Led to domes, bridges, and aqueducts.</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">What is a Triumphal Arch? Give an example.<span class="flip-hint">tap</span></div><div class="flip-back">Freestanding arch used to commemorate military victories. Example: Arch of Titus (81 AD) — oldest triumphal arch still standing in Rome. Cross between Corinthian and Ionic.</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ BRIDGES ══════════════ -->
+<div class="page" id="page-bridges">
+  <div class="hero" style="background:linear-gradient(135deg,#c026d3,#e879f9);">
+    <div class="hero-content"><div class="hero-badge">Topic 4</div><h1>🌉 Bridges</h1><p>Once the Romans mastered concrete and arches, bridges were the logical next step — and they helped hold the entire Empire together.</p></div>
+  </div>
+
+  <div class="section-group">
+    <div class="section-title"><div class="section-icon" style="background:#fde8f8;">🌉</div>Roman Bridges — Development &amp; Importance</div>
+    <div class="def-card open" style="border-color:#f0a0f8;" onclick="toggleDef(this)">
+      <div class="def-header"><div class="def-term">The Development of Roman Bridges<span class="def-pill pill-key">KEY TOPIC</span></div><span class="def-chevron">▼</span></div>
+      <div class="def-body">
+        <div class="def-official" style="background:#fdf0ff;border-left:4px solid var(--c4);">Since the Romans had already mastered concrete and arches, bridges were a fairly easy step to make. Bridges enabled rivers and ravines to be easily crossed. At first, wooden bridges were built, but they were not permanent. The stone bridge was a fairly late development. Most Roman bridges date from the Imperial Era. According to the evidence, the Romans invented arched bridges. Wooden bridges were continued to be built but only for temporary military crossings and other things.</div>
+        <div class="grid-2" style="margin-top:12px;">
+          <div class="grid-card"><h4>📅 Development Timeline</h4><ul><li>First: <strong>wooden bridges</strong> — easy but temporary</li><li>Later: <strong>permanent stone bridges</strong> (late development)</li><li>Most stone bridges: <strong>Imperial Era</strong></li><li>Romans credited with inventing <strong>arched bridges</strong></li><li>Wood continued only for temporary <strong>military crossings</strong></li></ul></div>
+          <div class="grid-card"><h4>💡 Why Bridges Mattered</h4><ul><li>Armies could move rapidly across rivers</li><li>Facilitated trade and movement of goods</li><li>Incorporating arches made structure <strong>lighter</strong></li><li>"Can be argued bridges contributed to the very existence of Rome"</li><li>Enabled the easier movement of goods and people</li></ul></div>
+        </div>
+        <div class="analogy-box"><strong>🧠 Analogy:</strong> Wooden bridges were like temporary tents — quick to set up, fine for an army passing through, but no good for permanent infrastructure. Stone arched bridges were like permanent motorways — built to last centuries, enabling commerce, armies, and growth.</div>
+        <div class="warn-box"><strong>⚠️ Key Phrase for Exam:</strong> "It can be argued bridges contributed to the very existence of Rome." Strong closing sentence for any bridges essay.</div>
+      </div>
+    </div>
+
+    <div class="def-card" style="border-color:#f0a0f8;" onclick="toggleDef(this)">
+      <div class="def-header"><div class="def-term">Trajan's Bridge on the Danube<span class="def-pill pill-exam">EXAM EXAMPLE — LEARN FIGURES</span></div><span class="def-chevron">▼</span></div>
+      <div class="def-body">
+        <div class="def-official" style="background:#fdf0ff;border-left:4px solid var(--c4);">Trajan's Bridge on the Danube: Built between 103 and 105 AD. Designed by Apollodorus of Damascus. Depicted in relief on Trajan's column. 15m wide, 20 stone pillars each 20m high, each 50m apart. High enough for ships to pass beneath.</div>
+        <div class="grid-2" style="margin-top:12px;">
+          <div class="grid-card"><h4>📏 Exact Dimensions</h4><ul><li>Built: <strong>103–105 AD</strong></li><li>Designer: <strong>Apollodorus of Damascus</strong></li><li>Width: <strong>15 metres</strong></li><li>Pillars: <strong>20 stone pillars</strong></li><li>Pillar height: <strong>20 metres each</strong></li><li>Spacing: <strong>50 metres apart</strong></li><li>High enough for <strong>ships to pass beneath</strong></li></ul></div>
+          <div class="grid-card"><h4>🎨 Historical Significance</h4><ul><li>Depicted in relief on <strong>Trajan's Column</strong> in Rome</li><li>One of the greatest feats of ancient engineering</li><li>Crossed the mighty River Danube</li><li>Enabled Trajan's campaigns in <strong>Dacia</strong></li><li>Apollodorus of Damascus also designed Trajan's Baths</li></ul></div>
+        </div>
+        <div class="memory-box"><strong>🔮 Memory Trick for Trajan's Bridge:</strong> <strong>"15, 20, 20, 50"</strong> — 15m wide, 20 pillars, 20m high, 50m apart.<br>Or: <em>"Fifteen-wide, Twenty pillars, Twenty tall, Fifty apart"</em>. Picture 20 massive stone pillars each as tall as a 6-storey building, spaced 50m apart across a wide river!</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-group">
+    <div class="section-title"><div class="section-icon" style="background:#fde8f8;">🧠</div>Quick Quiz — Bridges</div>
+    <div class="quiz-grid">
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">Why were the first Roman bridges wooden?<span class="flip-hint">tap</span></div><div class="flip-back">Easy and quick to build. But NOT permanent. Used only for temporary military crossings. Stone arched bridges came much later in the Imperial Era.</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">Who designed Trajan's Bridge and when was it built?<span class="flip-hint">tap</span></div><div class="flip-back">Apollodorus of Damascus. Built 103–105 AD on the River Danube. Depicted in relief on Trajan's Column.</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">Give ALL dimensions of Trajan's Bridge<span class="flip-hint">tap</span></div><div class="flip-back">15m wide. 20 stone pillars. Each pillar 20m high. Each 50m apart. High enough for ships to pass beneath.</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">What engineering innovation made bridges lighter?<span class="flip-hint">tap</span></div><div class="flip-back">Incorporating arches into bridges made the whole structure lighter. Previously solid stone piers required much more material.</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ AQUEDUCTS ══════════════ -->
+<div class="page" id="page-aqueducts">
+  <div class="hero" style="background:linear-gradient(135deg,#e6a817,#f0c84a);">
+    <div class="hero-content"><div class="hero-badge">Topic 5</div><h1>💧 Aqueducts</h1><p>The ancient water supply system — a marvel of engineering that used nothing but gravity to carry millions of gallons of fresh water across the Empire.</p></div>
+  </div>
+
+  <div class="section-group">
+    <div class="section-title"><div class="section-icon" style="background:#fef9e7;">💧</div>What is an Aqueduct?</div>
+    <div class="def-card open" style="border-color:#fcd34d;" onclick="toggleDef(this)">
+      <div class="def-header"><div class="def-term">Aqueducts — Definition, Function &amp; Engineering<span class="def-pill pill-key">KEY TOPIC</span></div><span class="def-chevron">▼</span></div>
+      <div class="def-body">
+        <div class="def-official" style="background:#fffbeb;border-left:4px solid var(--c5);">The arched aqueduct was a short step away from the arched bridge. It carried water in covered channels of brick, stone and concrete. Arches were often incorporated for the sake of aesthetics. 3 famous aqueducts are the Aqua Virgo, Aqua Claudia and Aqua Traiana.</div>
+        <div class="def-official" style="background:#fffbeb;border-left:4px solid var(--c5);margin-top:8px;">The literal meaning of aqueduct is water channel. They incorporated a one degree gradient invisible to the naked eye so that gravity could push the water. Once water hit the cities it was put into dividing tanks where silt and grit sank, and then piped to baths, fountains, villas and the homes of the wealthy. At first it was piped through lead pipes, but this changed to ceramic when people got lead poisoning.</div>
+        <div class="grid-2" style="margin-top:12px;">
+          <div class="grid-card"><h4>🔧 How They Worked</h4><ul><li>Literal meaning: <strong>water channel</strong> (aqua = water, ductus = led)</li><li><strong>1 degree gradient</strong> — invisible to eye but enough for gravity</li><li>Water flowed through covered channels of brick, stone, concrete</li><li>On arrival: <strong>settling/dividing tanks</strong> — silt and grit sank</li><li>Clean water piped to end destinations</li></ul></div>
+          <div class="grid-card"><h4>🚰 Piping &amp; Distribution</h4><ul><li>Initially: <strong>lead pipes</strong></li><li>Changed to: <strong>ceramic pipes</strong> (after lead poisoning discovered)</li><li>Distributed to: baths, fountains, villas, homes of the wealthy</li><li>Arches often added for <strong>aesthetics</strong></li></ul></div>
+        </div>
+        <div class="analogy-box"><strong>🧠 Analogy:</strong> An aqueduct is like an enormous gently-sloped slide for water. Build it 1° lower at the destination end — just barely tilted — and water flows there by itself, all the way from a mountain spring tens of miles away. No pumps, no engines, just physics. Romans mastered calculating that tiny 1° angle across 50+ miles!</div>
+        <div class="example-box"><strong>📌 The Three Famous Aqueducts to Name:</strong><br><strong>1. Aqua Virgo</strong> — still supplies water to the Trevi Fountain in Rome today!<br><strong>2. Aqua Claudia</strong> — built by Emperor Claudius<br><strong>3. Aqua Traiana</strong> — built by Trajan</div>
+      </div>
+    </div>
+
+    <div class="def-card" style="border-color:#fcd34d;" onclick="toggleDef(this)">
+      <div class="def-header"><div class="def-term">The Pont du Gard — Best Surviving Aqueduct<span class="def-pill pill-exam">EXAM EXAMPLE — LEARN FIGURES</span></div><span class="def-chevron">▼</span></div>
+      <div class="def-body">
+        <div class="def-official" style="background:#fffbeb;border-left:4px solid var(--c5);">The Pont du Gard is the best example of an aqueduct still standing, located in Nimes (Nemausus) in France. It was built by Agrippa. It was built in 3 stories of 6, 11 and 35 arches, rising to a height of 158 feet. It was 21 feet wide, 900 feet long and carried millions of gallons a day.</div>
+        <div class="grid-2" style="margin-top:12px;">
+          <div class="grid-card"><h4>📏 Exact Dimensions</h4><ul><li>Location: <strong>Nimes (Nemausus), France</strong></li><li>Built by: <strong>Agrippa</strong></li><li>Stories: <strong>3</strong></li><li>Arches per story: <strong>6 / 11 / 35</strong></li><li>Height: <strong>158 feet</strong></li><li>Width: <strong>21 feet</strong></li><li>Length: <strong>900 feet</strong></li><li>Carried: <strong>millions of gallons per day</strong></li></ul></div>
+          <div class="grid-card"><h4>🌟 Why It's Remarkable</h4><ul><li>Best surviving example of a Roman aqueduct</li><li>Built purely on gravity — no pumps</li><li>3-tier arch system is visually stunning</li><li>Still stands after 2,000 years</li><li>Agrippa (Augustus's general) also surveyed the Roman road network</li></ul></div>
+        </div>
+        <div class="memory-box"><strong>🔮 Memory — Pont du Gard figures:</strong><br>"6-11-35 arches, 158 feet tall, 900 feet long, built by Agrippa in Nimes."<br>Think: the arch count goes <em>small → medium → big</em> as you go up (6, 11, 35) — like a wedding cake with more decorations at each layer up!</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-group">
+    <div class="section-title"><div class="section-icon" style="background:#fef9e7;">🧠</div>Quick Quiz — Aqueducts</div>
+    <div class="quiz-grid">
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">What does the word "aqueduct" literally mean?<span class="flip-hint">tap</span></div><div class="flip-back">Water channel. From Latin: aqua (water) + ductus (led/carried). They carried water in covered channels of brick, stone and concrete.</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">What gradient did aqueducts use and why?<span class="flip-hint">tap</span></div><div class="flip-back">One degree gradient — invisible to the naked eye but enough for gravity to push water all the way from the source to the city. No pumps needed!</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">Name the 3 famous aqueducts<span class="flip-hint">tap</span></div><div class="flip-back">Aqua Virgo, Aqua Claudia, Aqua Traiana.</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">Pont du Gard — ALL key facts<span class="flip-hint">tap</span></div><div class="flip-back">Nimes (France). Built by Agrippa. 3 stories: 6, 11, 35 arches. 158 feet tall. 21 feet wide. 900 feet long. Carried millions of gallons per day.</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">Why did pipes change from lead to ceramic?<span class="flip-hint">tap</span></div><div class="flip-back">People got lead poisoning from lead pipes. Changed to ceramic (clay) pipes once the danger was recognised.</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ TEMPLES ══════════════ -->
+<div class="page" id="page-temples">
+  <div class="hero" style="background:linear-gradient(135deg,#0ea5e9,#38bdf8);">
+    <div class="hero-content"><div class="hero-badge">Topic 6</div><h1>⛩️ Temples</h1><p>Houses of the gods — two types, circular and rectangular, with famous examples you must know for the exam.</p></div>
+  </div>
+
+  <div class="section-group">
+    <div class="section-title"><div class="section-icon" style="background:#e0f2fe;">⛩️</div>Temples — Overview</div>
+    <div class="def-card open" style="border-color:#7dd3fc;" onclick="toggleDef(this)">
+      <div class="def-header"><div class="def-term">What is a Roman Temple? Key Vocabulary<span class="def-pill pill-key">KEY CONCEPT</span></div><span class="def-chevron">▼</span></div>
+      <div class="def-body">
+        <div class="def-official" style="background:#f0f9ff;border-left:4px solid var(--c6);">There were two types of temples in Rome, circular and rectangular. The world templum literally means religious precinct containing an inner building called a fanum or aedes which was the house of the god/goddess whose statue was in it. Public ceremonies occurred outside the fanum, while private prayer occurred within it. Temples were usually near theatres, at crossroads, on country estates or at significant locations. They were also used to store valuables and goods won in war. Temples usually had a portico in front, which was like a porch.</div>
+        <div class="grid-2" style="margin-top:12px;">
+          <div class="grid-card"><h4>📚 Essential Vocabulary</h4><ul><li><strong>Templum</strong> = the whole religious precinct</li><li><strong>Fanum / Aedes</strong> = the inner building, house of the god</li><li><strong>Portico</strong> = the covered porch/entrance at the front</li><li><strong>Podium</strong> = the raised platform the temple stands on</li></ul></div>
+          <div class="grid-card"><h4>📍 Key Facts</h4><ul><li>Public ceremonies: <strong>outside</strong> the fanum</li><li>Private prayer: <strong>inside</strong> the fanum</li><li>2 types: <strong>Rectangular</strong> and <strong>Circular</strong></li><li>Used to store <strong>war booty and valuables</strong></li><li>Usually had a <strong>portico</strong> in front</li></ul></div>
+        </div>
+        <div class="analogy-box"><strong>🧠 Analogy:</strong> Unlike modern churches where worship is inside, Roman temples had all public activity (processions, sacrifices, ceremonies) OUTSIDE. The inner building (fanum) was essentially the god's private house — the statue lived there. Only priests went inside regularly.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-group">
+    <div class="section-title"><div class="section-icon" style="background:#e0f2fe;">◼️</div>Rectangular Temples</div>
+    <div class="def-card" style="border-color:#7dd3fc;" onclick="toggleDef(this)">
+      <div class="def-header"><div class="def-term">Rectangular Temples — General Features<span class="def-pill pill-def">DEFINITION</span></div><span class="def-chevron">▼</span></div>
+      <div class="def-body">
+        <div class="def-official" style="background:#f0f9ff;border-left:4px solid var(--c6);">Roman rectangular temples were built in the 2:1 ratio like many Greek temples. The frontality of Roman temples was emphasised by them being on a raised platform, accessible by steps. All rectangular temples had a portico.</div>
+        <div class="grid-2">
+          <div class="grid-card"><h4>📐 Design Rules</h4><ul><li><strong>2:1 ratio</strong> (length:width) — same as Greek</li><li>Built on a raised <strong>podium/platform</strong></li><li>Accessible only by <strong>steps at the front</strong> (emphasises frontality)</li><li>All had a <strong>portico</strong> (front porch)</li></ul></div>
+          <div class="grid-card"><h4>🏛️ Roman Innovation</h4><ul><li><strong>Frontality</strong> = the front/facade is much more important than sides/back</li><li>Side columns often <strong>pseudoperipteral</strong> (decorative, attached)</li><li>High podium = dramatic entrance approach</li></ul></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="def-card" style="border-color:#7dd3fc;" onclick="toggleDef(this)">
+      <div class="def-header"><div class="def-term">Maison Carrée — Nimes, France<span class="def-pill pill-exam">EXAM EXAMPLE</span></div><span class="def-chevron">▼</span></div>
+      <div class="def-body">
+        <div class="def-official" style="background:#f0f9ff;border-left:4px solid var(--c6);">The Maison Carree is located in Nemausus (Nimes) France. It was completed around 2AD and was dedicated to Gaius and Lucius, grandsons of Augustus. It is built on a podium 3m high, it has sides of 26m and 13m in the 2:1 ratio and is 17m high. It had a pseudoperipteral style and Corinthian style columns. Decorated in marble.</div>
+        <div class="grid-2">
+          <div class="grid-card"><h4>📏 All Dimensions</h4><ul><li>Location: <strong>Nimes (Nemausus), France</strong></li><li>Completed: <strong>2 AD</strong></li><li>Dedicated to: <strong>Gaius and Lucius</strong> (Augustus's grandsons)</li><li>Podium height: <strong>3 metres</strong></li><li>Dimensions: <strong>26m × 13m</strong> (2:1 ratio)</li><li>Height: <strong>17 metres</strong></li><li>Column style: <strong>Corinthian</strong></li><li>Column arrangement: <strong>Pseudoperipteral</strong></li><li>Decoration: <strong>marble</strong></li></ul></div>
+          <div class="grid-card"><h4>🔍 Understanding the Design</h4><ul><li>"Maison Carrée" = "Square House" in French</li><li>Only the <strong>front columns</strong> are freestanding</li><li>Side &amp; back: half-columns built into the wall (pseudoperipteral)</li><li>2:1 ratio is literally in the numbers: 26 = 2×13!</li><li>One of the best preserved Roman temples in the world</li></ul></div>
+        </div>
+        <div class="memory-box"><strong>🔮 Memory — Maison Carrée dimensions:</strong> <strong>26 × 13 × 17</strong>. Note that 26 = 2×13 — the 2:1 ratio is built into the numbers. Podium = 3m. Dedicated in 2 AD. Think: "2-AD, 2:1-ratio, 2 grandsons."</div>
+      </div>
+    </div>
+
+    <div class="def-card" style="border-color:#7dd3fc;" onclick="toggleDef(this)">
+      <div class="def-header"><div class="def-term">Fortuna Virilis (Temple of Portunus) — Rome<span class="def-pill pill-exam">EXAM EXAMPLE</span></div><span class="def-chevron">▼</span></div>
+      <div class="def-body">
+        <div class="def-official" style="background:#f0f9ff;border-left:4px solid var(--c6);">The Fortuna Virilis, also called the temple of Portunus is located in the forum of Boarium, which was the Roman cattle market. Built in the 3rd/4th century. Consists of ionic columns and has a portico raised on a high platform — frontality. Pseudoperipteral style.</div>
+        <div class="grid-2">
+          <div class="grid-card"><h4>📍 Key Facts</h4><ul><li>Also called: <strong>Temple of Portunus</strong></li><li>Location: <strong>Forum Boarium</strong> (Roman cattle market)</li><li>Date: <strong>3rd/4th century BC</strong></li><li>Columns: <strong>Ionic</strong></li><li>Style: <strong>Pseudoperipteral</strong></li><li>Portico on a <strong>high platform</strong> (frontality)</li></ul></div>
+          <div class="grid-card"><h4>🔍 Significance</h4><ul><li>Portunus = god of harbours and keys</li><li>Forum Boarium was Rome's ancient cattle and river market</li><li>One of the oldest surviving Roman temples</li><li>Shows the Ionic order in a Roman rectangular temple context</li></ul></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-group">
+    <div class="section-title"><div class="section-icon" style="background:#e0f2fe;">⭕</div>Circular Temples</div>
+    <div class="def-card" style="border-color:#7dd3fc;" onclick="toggleDef(this)">
+      <div class="def-header"><div class="def-term">Circular Temples — General Features &amp; Temple of Vesta<span class="def-pill pill-key">KEY</span></div><span class="def-chevron">▼</span></div>
+      <div class="def-body">
+        <div class="def-official" style="background:#f0f9ff;border-left:4px solid var(--c6);">Round temples also very common. The Pantheon and the Temple of Vesta are two examples in Rome. Sometimes built on a podium and sometimes had a surrounding portico. Built with tufa, travertine, concrete and marble. The Temple of Vesta is located in the Roman Forum near the Vestal Virgins. Believed to have been built by Numa Pompilius, a king of Rome. Contained a perpetual fire, kept alive by the Vestal Virgins. Built of marble and composed of 20 Corinthian columns. Situated on a podium 15m in diameter.</div>
+        <div class="grid-2">
+          <div class="grid-card"><h4>🏺 Temple of Vesta — Key Facts</h4><ul><li>Location: <strong>Roman Forum</strong>, near the Vestal Virgins</li><li>Built by: <strong>Numa Pompilius</strong> (king of Rome)</li><li>Contained: <strong>perpetual fire</strong> (never allowed to go out)</li><li>Fire maintained by: <strong>Vestal Virgins</strong></li><li>Materials: <strong>marble, 20 Corinthian columns</strong></li><li>Podium: <strong>15m diameter</strong></li><li>Entrance: faced <strong>east</strong> (connection to sunrise/fire)</li></ul></div>
+          <div class="grid-card"><h4>🏗️ Circular Temple Features</h4><ul><li>Built with <strong>tufa, travertine, concrete, marble</strong></li><li>Sometimes on a podium</li><li>Sometimes had a surrounding portico</li><li>Round shape = symbolic wholeness/eternity</li></ul></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="def-card" style="border-color:#7dd3fc;" onclick="toggleDef(this)">
+      <div class="def-header"><div class="def-term">The Pantheon — Full Detail<span class="def-pill pill-exam">MAJOR EXAM EXAMPLE</span></div><span class="def-chevron">▼</span></div>
+      <div class="def-body">
+        <div class="def-official" style="background:#f0f9ff;border-left:4px solid var(--c6);">The Pantheon is located in the Campus Martius and was built by Agrippa from 27–25BC. It has a portico of Corinthian columns, 8 in the front and 2×4 behind. The portico is 103 feet long and the columns 47 feet high. The inner structure is over 140 feet high, with walls 19 inches thick to support the dome and oculus. Interior decorated with marble to hide the support systems for the dome. Built of marble and composed of 20 Corinthian columns. Situated on a podium 15m in diameter. Entrance faced east to symbolise the connection between the sun rise and the fire.</div>
+        <div class="grid-2" style="margin-top:12px;">
+          <div class="grid-card"><h4>📏 All Dimensions</h4><ul><li>Location: <strong>Campus Martius</strong>, Rome</li><li>Built by: <strong>Agrippa, 27–25 BC</strong></li><li>Portico: <strong>Corinthian columns</strong> — 8 front, 2×4 behind</li><li>Portico length: <strong>103 feet</strong></li><li>Column height: <strong>47 feet</strong></li><li>Inner structure: over <strong>140 feet high</strong></li><li>Wall thickness: <strong>19 inches</strong></li><li>Podium: <strong>15m diameter</strong></li><li>Entrance: faces <strong>east</strong> (sunrise = fire connection)</li></ul></div>
+          <div class="grid-card"><h4>🔍 Why the Walls are 19 Inches Thick</h4><ul><li>To support the enormous <strong>dome</strong></li><li>The <strong>oculus</strong> (circular hole at top) lets in light</li><li>Oculus also reduces dome's weight — clever!</li><li>Interior decorated with marble to <strong>hide support systems</strong></li><li>Combined Greek beauty with Roman practicality</li><li>Still standing 2,000 years later</li></ul></div>
+        </div>
+        <div class="analogy-box"><strong>🧠 The Dome Analogy:</strong> The dome is like a massive upside-down bowl placed on top of a cylinder. To bear that weight, the walls must be 19 inches thick — like thick fortress walls. The oculus (open hole at the top) is brilliant: it reduces the dome's weight AND lets in the only light source, creating a stunning beam of sunlight that moves around the interior.</div>
+        <div class="memory-box"><strong>🔮 Memory — Pantheon figures:</strong> "103 portico, 47 columns, 140 inner height, 19 inch walls."<br>Sequence: <strong>103 → 47 → 140 → 19</strong>. Or: "Agrippa built a portico 103 feet long with 47-foot columns, inside it's 140 feet tall with walls 19 inches thick."</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-group">
+    <div class="section-title"><div class="section-icon" style="background:#e0f2fe;">🧠</div>Quick Quiz — Temples</div>
+    <div class="quiz-grid">
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">What does "Templum" mean? What is a Fanum?<span class="flip-hint">tap</span></div><div class="flip-back">Templum = the whole religious precinct. Fanum (or Aedes) = the inner building, the actual house of the god whose statue was inside it.</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">Maison Carrée — location, date, dedication, dimensions<span class="flip-hint">tap</span></div><div class="flip-back">Nimes, France. 2 AD. Gaius and Lucius (Augustus's grandsons). 26×13m (2:1), 17m tall, 3m podium. Corinthian. Pseudoperipteral. Marble.</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">Pantheon — who built it, where, key dimensions<span class="flip-hint">tap</span></div><div class="flip-back">Agrippa, 27–25 BC, Campus Martius. Portico 103ft long, columns 47ft. Inner: 140ft+ high, 19 inch walls. 8 Corinthian columns in front. Entrance faces east.</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">Temple of Vesta — location, builder, key feature<span class="flip-hint">tap</span></div><div class="flip-back">Roman Forum, near Vestal Virgins. Built by Numa Pompilius (king). Contained a PERPETUAL FIRE kept alive by the Vestal Virgins. 20 Corinthian columns, marble, 15m podium.</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">What is pseudoperipteral style?<span class="flip-hint">tap</span></div><div class="flip-back">Columns on the sides and back are decorative half-columns attached to the wall, not freestanding. Only the front portico columns are real. Saves material while maintaining the appearance of a fully columned temple.</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ BASILICAS ══════════════ -->
+<div class="page" id="page-basilicas">
+  <div class="hero" style="background:linear-gradient(135deg,#16a34a,#4ade80);">
+    <div class="hero-content"><div class="hero-badge">Topic 7</div><h1>🏢 Basilicas</h1><p>The Roman multi-purpose public hall — courthouse, bank, marketplace and office all in one. The shape that gave birth to the Christian church.</p></div>
+  </div>
+
+  <div class="section-group">
+    <div class="section-title"><div class="section-icon" style="background:#dcfce7;">🏢</div>What is a Basilica?</div>
+    <div class="def-card open" style="border-color:#a0ebc0;" onclick="toggleDef(this)">
+      <div class="def-header"><div class="def-term">Basilica — Definition, Layout &amp; Uses<span class="def-pill pill-key">KEY TOPIC</span></div><span class="def-chevron">▼</span></div>
+      <div class="def-body">
+        <div class="def-official" style="background:#f0fbf5;border-left:4px solid var(--c7);">The First Basilicas were used as administration halls for Greek kings. The term later applied to a wide range of buildings including multi-purpose halls adjacent to the forum for several purposes like military, judicial, religious and trade. They were usually oblong in shape. The interior was a hall with a main nave and either two or four aisles, divided by pillars. They usually contained an apse which was a semicircular termination at the end of the isle where the officials sat. They were designed to hold large groups of people. The Basilica Julia and Aemilia are two examples.</div>
+        <div class="grid-2" style="margin-top:12px;">
+          <div class="grid-card"><h4>🏗️ Architecture</h4><ul><li>Shape: <strong>oblong</strong></li><li>Interior: <strong>main nave</strong> + 2 or 4 aisles (divided by pillars)</li><li><strong>Apse</strong> = semicircular end where officials sat</li><li>Designed to hold <strong>large groups of people</strong></li><li>Located <strong>adjacent to the forum</strong></li></ul></div>
+          <div class="grid-card"><h4>🏛️ Multiple Uses</h4><ul><li>Military administration</li><li>Judicial (law courts)</li><li>Religious gatherings</li><li>Trade &amp; commerce</li><li>Government offices</li><li>Banks and shops</li></ul></div>
+        </div>
+        <div class="warn-box"><strong>⚠️ KEY VOCAB — APSE:</strong> The semicircular recess at the END of the building where the officials/judges sat. This architectural feature was directly adopted by Christian churches. Almost every church ever built has an apse — the Romans invented it!</div>
+        <div class="warn-box" style="margin-top:8px;"><strong>⚠️ KEY VOCAB — NAVE:</strong> The central hall running down the middle of the basilica (and later, every church). Derived from the Latin "navis" = ship (the ceiling looks like an upturned ship's hull).</div>
+        <div class="analogy-box"><strong>🧠 Analogy:</strong> A basilica is like a modern shopping centre — a long building with a central main corridor (nave), side passages (aisles), and specialist rooms at the end (apse). Romans gathered there for business, law, trade, and government — everything happened in one building!</div>
+      </div>
+    </div>
+
+    <div class="def-card" style="border-color:#a0ebc0;" onclick="toggleDef(this)">
+      <div class="def-header"><div class="def-term">Basilica Julia — Key Example<span class="def-pill pill-exam">EXAM EXAMPLE</span></div><span class="def-chevron">▼</span></div>
+      <div class="def-body">
+        <div class="def-official" style="background:#f0fbf5;border-left:4px solid var(--c7);">The Basilica Julia was located in the Roman Forum. It was initially built by Julius Caesar in 46BC but rebuilt by Augustus in 12AD. It was used for meetings and official business and house law courts, government offices, a bank and shops.</div>
+        <div class="grid-2">
+          <div class="grid-card"><h4>📍 Key Facts</h4><ul><li>Location: <strong>Roman Forum</strong></li><li>Originally built: <strong>Julius Caesar, 46 BC</strong></li><li>Rebuilt by: <strong>Augustus, 12 AD</strong></li></ul></div>
+          <div class="grid-card"><h4>🏛️ Uses</h4><ul><li>Meetings and official business</li><li>Law courts</li><li>Government offices</li><li>A bank</li><li>Shops</li></ul></div>
+        </div>
+        <div class="example-box"><strong>📌 Also Know:</strong> Basilica Aemilia is the other famous example. Together, Basilica Julia and Basilica Aemilia were the two great basilicas of the Roman Forum.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-group">
+    <div class="section-title"><div class="section-icon" style="background:#dcfce7;">🧠</div>Quick Quiz — Basilicas</div>
+    <div class="quiz-grid">
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">What is the Nave of a Basilica?<span class="flip-hint">tap</span></div><div class="flip-back">The central main hall running down the middle of the basilica, flanked by aisles on either side. Later adopted by Christian churches.</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">What is an Apse?<span class="flip-hint">tap</span></div><div class="flip-back">A semicircular recess/termination at the end of the basilica where officials sat. Later adopted by ALL Christian churches — the Romans invented this feature!</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">Basilica Julia — who built it, when, what for?<span class="flip-hint">tap</span></div><div class="flip-back">Julius Caesar (46 BC), rebuilt by Augustus (12 AD). Roman Forum. Used for: meetings, law courts, government offices, bank, and shops.</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">Name 4 uses of a Basilica<span class="flip-hint">tap</span></div><div class="flip-back">Military, judicial (law courts), religious, trade, government offices, banks, shops. Multi-purpose public hall adjacent to the forum.</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ FORUM ══════════════ -->
+<div class="page" id="page-forum">
+  <div class="hero" style="background:linear-gradient(135deg,#dc2626,#f87171);">
+    <div class="hero-content"><div class="hero-badge">Topic 8</div><h1>📍 The Forum</h1><p>The beating heart of Roman public life — marketplace, political centre, religious precinct, and social hub all in one open space.</p></div>
+  </div>
+
+  <div class="section-group">
+    <div class="section-title"><div class="section-icon" style="background:#fee2e2;">📍</div>The Roman Forum</div>
+    <div class="def-card open" style="border-color:#fca5a5;" onclick="toggleDef(this)">
+      <div class="def-header"><div class="def-term">What is the Forum? Purpose &amp; Layout<span class="def-pill pill-key">KEY CONCEPT</span></div><span class="def-chevron">▼</span></div>
+      <div class="def-body">
+        <div class="def-official" style="background:#fff5f5;border-left:4px solid var(--c8);">The word Forum means a square or marketplace. It was the focal point in the Roman town and played a major role in Romans lives. Usually consisted of a long rectangular space flanked by a variety of buildings like government buildings, temples and basilicas. The Forum Romanum or Roman Forum is located between the Capitoline and Palatine Hills. Originally a marketplace it was soon monopolised for political purposes. It was Rome's main public square. It was the centre of Rome's religious, political, ceremonial and commercial life. Its location was determined by Sulla, Caesar and Augustus.</div>
+        <div class="grid-2" style="margin-top:12px;">
+          <div class="grid-card"><h4>📏 Physical Description</h4><ul><li>Shape: <strong>long rectangular space</strong></li><li>Flanked by: government buildings, temples, basilicas</li><li>Location: between <strong>Capitoline and Palatine Hills</strong></li><li>Buildings had <strong>balconies</strong> to observe forum below</li></ul></div>
+          <div class="grid-card"><h4>🏛️ What Happened There</h4><ul><li>Religious ceremonies</li><li>Political assemblies</li><li>Triumphal processions (Via Sacra)</li><li>Official news posted on a <strong>bulletin board</strong></li><li>Commerce and trade</li><li>Location shaped by <strong>Sulla, Caesar, Augustus</strong></li></ul></div>
+        </div>
+        <div class="analogy-box"><strong>🧠 Analogy:</strong> Imagine combining Dublin's O'Connell Street + Dáil Éireann + a cathedral + a marketplace + a courthouse all into one open rectangular plaza. That's the Forum. It was the undisputed centre of Roman civilisation.</div>
+      </div>
+    </div>
+
+    <div class="def-card" style="border-color:#fca5a5;" onclick="toggleDef(this)">
+      <div class="def-header"><div class="def-term">Contents of the Forum Romanum<span class="def-pill pill-exam">EXAM — KNOW ALL</span></div><span class="def-chevron">▼</span></div>
+      <div class="def-body">
+        <div class="def-official" style="background:#fff5f5;border-left:4px solid var(--c8);">It contained: The Curia (Senate House), the Temple of Vesta, home of the Vestal Virgins, Arch of Titus, Arch of Septilius Severus, The Rostra (speakers stage) and the Comitium (peoples place of assembly). Any official news was posted of a bulletin board here. The Forums main street was the Via Sacra along which triumphal processions occurred. Other famous forums include the Forum of Trajan, Boarium, Piscarium and Holitorium.</div>
+        <table class="compare-table" style="margin-top:12px;">
+          <tr><th style="background:#dc2626;">Building/Feature</th><th style="background:#dc2626;">What it Was</th></tr>
+          <tr><td><strong>Curia</strong></td><td>Senate House — where senators met and debated</td></tr>
+          <tr><td><strong>Temple of Vesta</strong></td><td>Circular temple of the goddess of the hearth; perpetual fire</td></tr>
+          <tr><td><strong>Home of Vestal Virgins</strong></td><td>Residence of the priestesses who tended Vesta's fire</td></tr>
+          <tr><td><strong>Arch of Titus</strong></td><td>Triumphal arch (81 AD); commemorates victories</td></tr>
+          <tr><td><strong>Arch of Septimius Severus</strong></td><td>Triumphal arch of Emperor Septimius Severus</td></tr>
+          <tr><td><strong>The Rostra</strong></td><td>Speaker's platform/stage for public speeches</td></tr>
+          <tr><td><strong>The Comitium</strong></td><td>People's place of assembly for political gatherings</td></tr>
+          <tr><td><strong>Via Sacra</strong></td><td>Sacred Way — main street; route of triumphal processions</td></tr>
+          <tr><td><strong>Bulletin Board</strong></td><td>Where official news was posted publicly</td></tr>
+        </table>
+        <div class="memory-box"><strong>🔮 Memory — Forum contents:</strong> <em>"Curia, Vesta, Arch of Titus, Arch of Severus, Rostra, Comitium, Via Sacra"</em><br>= <strong>C-V-A-A-R-C-V</strong> → "Caesar's Very Ancient and Active Roman Civic Venue"</div>
+        <div class="example-box"><strong>📌 Other Famous Forums:</strong> Forum of Trajan (largest imperial forum), Forum Boarium (cattle market, home of Temple of Portunus), Forum Piscarium (fish market), Forum Holitorium (vegetable market).</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-group">
+    <div class="section-title"><div class="section-icon" style="background:#fee2e2;">🧠</div>Quick Quiz — Forum</div>
+    <div class="quiz-grid">
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">Where is the Forum Romanum located?<span class="flip-hint">tap</span></div><div class="flip-back">Between the Capitoline and Palatine Hills. Its location was shaped by Sulla, Caesar and Augustus.</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">What is the Rostra?<span class="flip-hint">tap</span></div><div class="flip-back">The speakers' platform/stage in the Forum Romanum where politicians and orators gave public speeches.</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">What was the Via Sacra?<span class="flip-hint">tap</span></div><div class="flip-back">The Sacred Way — the main street of the Forum Romanum. Triumphal processions passed along it after military victories.</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">Name 5 buildings/features in the Forum Romanum<span class="flip-hint">tap</span></div><div class="flip-back">Curia (Senate), Temple of Vesta, Home of Vestal Virgins, Arch of Titus, Arch of Septimius Severus, Rostra (speakers' stage), Comitium (assembly), Via Sacra.</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ CIRCUSES ══════════════ -->
+<div class="page" id="page-circuses">
+  <div class="hero" style="background:linear-gradient(135deg,#7c3aed,#a855f7);">
+    <div class="hero-content"><div class="hero-badge">Topic 9</div><h1>🏇 Circuses &amp; Chariot Racing</h1><p>The F1 of the ancient world — violent, thrilling, commercially driven, and watched by hundreds of thousands of cheering Romans.</p></div>
+  </div>
+
+  <div class="section-group">
+    <div class="section-title"><div class="section-icon" style="background:#ede9fe;">🏇</div>Chariot Racing</div>
+    <div class="def-card open" style="border-color:#c4b5fd;" onclick="toggleDef(this)">
+      <div class="def-header"><div class="def-term">How Chariot Racing Worked<span class="def-pill pill-key">KEY TOPIC</span></div><span class="def-chevron">▼</span></div>
+      <div class="def-body">
+        <div class="def-official" style="background:#fdf4ff;border-left:4px solid var(--c9);">In the reign of Augustus, 12 chariot races a day, nut increased to 24 under Caligula. Before the race the charioteers paraded before the emperors before taking their positions at the starting boxes (carceres). The presiding official throwing a white napkin signalled for the start. There were 2, 3 and 4 horse races. The drivers (aurigae) were usually slaves. They raced around a central spina, with three posts (meta) at each end. Tracks were very narrow.</div>
+        <div class="grid-2" style="margin-top:12px;">
+          <div class="grid-card"><h4>🏁 Race Procedure</h4><ul><li>Number of races: <strong>12/day</strong> (Augustus), <strong>24/day</strong> (Caligula)</li><li>Pre-race: <strong>charioteers paraded</strong> before emperor</li><li>Start signal: official threw a <strong>white napkin</strong></li><li>Starting boxes called: <strong>carceres</strong></li><li>Race around: <strong>spina</strong> (central barrier)</li><li><strong>3 posts (meta)</strong> at each end of spina</li><li>Tracks were <strong>very narrow</strong> — crashes common!</li></ul></div>
+          <div class="grid-card"><h4>🐴 Drivers &amp; Races</h4><ul><li>Drivers = <strong>aurigae</strong></li><li>Usually <strong>slaves</strong></li><li>Race types: <strong>2, 3, and 4</strong> horse races</li><li>Victory could bring <strong>freedom or great sums of money</strong></li><li>A great <strong>social occasion</strong> for all Romans</li></ul></div>
+        </div>
+        <div class="analogy-box"><strong>🧠 Analogy:</strong> Think of chariot racing teams like modern football clubs — Man City, Liverpool, etc. Fans were fiercely loyal, bets were placed, and fights regularly broke out between supporter groups. The difference: losing chariot drivers could be killed in crashes on the extremely narrow tracks!</div>
+      </div>
+    </div>
+
+    <div class="def-card" style="border-color:#c4b5fd;" onclick="toggleDef(this)">
+      <div class="def-header"><div class="def-term">The 4 Teams &amp; Betting<span class="def-pill pill-def">DEFINITION</span></div><span class="def-chevron">▼</span></div>
+      <div class="def-body">
+        <div class="def-official" style="background:#fdf4ff;border-left:4px solid var(--c9);">There were 4 teams at first — white, green, blue and red, but later purple and gold were added. Bets were made on different teams and fights often broke out between supporters. Victorious slaves could earn their freedom or great sums of money.</div>
+        <div class="grid-2">
+          <div class="grid-card"><h4>🎨 The Teams</h4><ul><li>Original 4: <strong>White, Green, Blue, Red</strong></li><li>Added later: <strong>Purple and Gold</strong></li><li>Fans were passionately loyal to their colour</li></ul></div>
+          <div class="grid-card"><h4>💰 Stakes</h4><ul><li>Bets placed on different teams</li><li>Fights broke out between rival supporters</li><li>Victorious slaves could earn <strong>freedom</strong></li><li>Or earn <strong>great sums of money</strong></li></ul></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-group">
+    <div class="section-title"><div class="section-icon" style="background:#ede9fe;">🏟️</div>The Circus Maximus</div>
+    <div class="def-card" style="border-color:#c4b5fd;" onclick="toggleDef(this)">
+      <div class="def-header"><div class="def-term">The Circus Maximus — Full Detail<span class="def-pill pill-exam">EXAM EXAMPLE</span></div><span class="def-chevron">▼</span></div>
+      <div class="def-body">
+        <div class="def-official" style="background:#fdf4ff;border-left:4px solid var(--c9);">Oldest and largest of the Roman circuses. Built in the valley of the Palatine and Aventine hills. The spina was marble and adorned with statues. There was an underground altar to the God Consus. Opposite this was an altar to Marcia, Goddess of the Palatine and Aventine valley. Dolphin shaped counters or egg shaped ones called ova were used to count the laps. Augustus created the private enclosure called the pulvinar. The circus maximus was 600 yards long and 200 yards wide and could hold 250,000 people. It also contained an Egyptian Obelisk, which Augustus erected after his victories in Egypt.</div>
+        <div class="grid-2" style="margin-top:12px;">
+          <div class="grid-card"><h4>📏 Dimensions &amp; Capacity</h4><ul><li>Length: <strong>600 yards</strong></li><li>Width: <strong>200 yards</strong></li><li>Capacity: <strong>250,000 people</strong></li><li>Location: valley between <strong>Palatine and Aventine Hills</strong></li></ul></div>
+          <div class="grid-card"><h4>🏺 Special Features</h4><ul><li>Spina: <strong>marble, adorned with statues</strong></li><li>Underground altar: <strong>God Consus</strong></li><li>Opposite: altar to <strong>Marcia</strong> (Goddess of valley)</li><li>Lap counters: <strong>dolphin shapes or ova</strong> (egg shapes)</li><li>Emperor's private box: <strong>pulvinar</strong> (created by Augustus)</li><li><strong>Egyptian Obelisk</strong> (erected by Augustus)</li></ul></div>
+        </div>
+        <div class="memory-box"><strong>🔮 Memory — Circus Maximus:</strong> "600 long, 200 wide, 250,000 people." The width is 1/3 the length (like a proper running track). Think: "A quarter million Romans watching the equivalent of Formula 1 in a 600-yard-long arena!"</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-group">
+    <div class="section-title"><div class="section-icon" style="background:#ede9fe;">🧠</div>Quick Quiz — Circuses</div>
+    <div class="quiz-grid">
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">What were the carceres?<span class="flip-hint">tap</span></div><div class="flip-back">The starting boxes for chariots at the beginning of the race. The presiding official threw a white napkin to signal the start.</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">What was the spina and what were metae?<span class="flip-hint">tap</span></div><div class="flip-back">Spina = the central barrier/spine running down the middle of the track. Metae = the 3 posts at each end of the spina that chariots had to turn around.</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">Circus Maximus — size, capacity, special features<span class="flip-hint">tap</span></div><div class="flip-back">600 yards long, 200 yards wide. 250,000 people. Marble spina with statues. Dolphin/egg (ova) lap counters. Pulvinar (emperor's box). Egyptian Obelisk.</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">Name the 4 original chariot racing team colours<span class="flip-hint">tap</span></div><div class="flip-back">White, Green, Blue, Red. Later: Purple and Gold added. Fierce fan loyalty and betting on all teams.</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ AMPHITHEATRES ══════════════ -->
+<div class="page" id="page-amphitheatres">
+  <div class="hero" style="background:linear-gradient(135deg,#0891b2,#22d3ee);">
+    <div class="hero-content"><div class="hero-badge">Topic 10</div><h1>⚔️ Amphitheatres &amp; the Colosseum</h1><p>Where thousands of lives were sacrificed for entertainment — gladiatorial combat, beast hunts, naval battles, and the most famous arena ever built.</p></div>
+  </div>
+
+  <div class="section-group">
+    <div class="section-title"><div class="section-icon" style="background:#cffafe;">⚔️</div>Amphitheatres — What &amp; Why</div>
+    <div class="def-card open" style="border-color:#67e8f9;" onclick="toggleDef(this)">
+      <div class="def-header"><div class="def-term">Amphitheatres — Definition, Events &amp; Gladiators<span class="def-pill pill-key">KEY TOPIC</span></div><span class="def-chevron">▼</span></div>
+      <div class="def-body">
+        <div class="def-official" style="background:#ecfeff;border-left:4px solid var(--c10);">The amphitheatre surpassed the theatre in popularity. In them thousands of lives were sacrificed. Comprised of 2 semi-circular theatres and eventually incorporated into one structure. Elliptical in shape. Used for gladiatorial fights, beast hunts (Venationes), naval battle reinactments (Naumachiae), religious festivals and mock fights. Usually built on the edge of town or outside city walls. Gladiators were recruited from prisoners of war, condemned criminals, slaves or freedmen lured by the rewards if they survived.</div>
+        <div class="grid-2" style="margin-top:12px;">
+          <div class="grid-card"><h4>🏟️ What Happened Inside</h4><ul><li><strong>Gladiatorial fights</strong></li><li><strong>Venationes</strong> = beast hunts</li><li><strong>Naumachiae</strong> = naval battles (arena flooded!)</li><li>Religious festivals</li><li>Mock fights / executions</li><li>Criminals and Christians thrown to wild beasts</li></ul></div>
+          <div class="grid-card"><h4>⚔️ Gladiator Origins &amp; Types</h4><ul><li>Recruited from: <strong>prisoners of war, condemned criminals, slaves, freedmen</strong></li><li>Different types armed with <strong>different weapons</strong></li><li>E.g. <strong>Retarius</strong> (net &amp; trident), <strong>Samnite</strong> (sword &amp; shield)</li><li>Usually built on <strong>edge of town / outside walls</strong></li></ul></div>
+        </div>
+        <div class="def-official" style="background:#ecfeff;border-left:4px solid var(--c10);margin-top:10px;">Before combat gladiators paraded before the emperor. They saluted and said "Hail, emperor, we who are about to die greet you". Different gladiators were armed with different weapons, e.g. retarius, samnite. Victors received gift and after many wins could gain manumission by receiving the rudis, a wooden sword. The emperor decided who died with hand signs. Criminals and Christians were often thrown to the wild beasts. The amphitheatres were filled with water for naval battles called Naumachiae.</div>
+        <div class="warn-box"><strong>⚠️ Key Terms:</strong><br><strong>Venationes</strong> = beast hunts | <strong>Naumachiae</strong> = naval battles (arena flooded)<br><strong>Rudis</strong> = wooden sword given to freed gladiator (symbol of freedom)<br><strong>Manumission</strong> = the formal act of freeing a slave</div>
+        <div class="analogy-box"><strong>🧠 Word Origin — Amphitheatre:</strong> "Amphi" = on both sides. An amphitheatre is literally two semicircular theatres merged together to form a continuous oval of seating around a central arena. Think of two Greek theatres pressed face-to-face!</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-group">
+    <div class="section-title"><div class="section-icon" style="background:#cffafe;">🏟️</div>The Colosseum</div>
+    <div class="def-card" style="border-color:#67e8f9;" onclick="toggleDef(this)">
+      <div class="def-header"><div class="def-term">The Colosseum — Full Detail<span class="def-pill pill-exam">MAJOR EXAM EXAMPLE</span></div><span class="def-chevron">▼</span></div>
+      <div class="def-body">
+        <div class="def-official" style="background:#ecfeff;border-left:4px solid var(--c10);">The Colosseum was the largest of the Amphitheatres. It was officially called the Flavian Amphitheatre. It took 12 years to build. The name came from a statue of Nero nearby called Colossus. Comprised of thousands of blocks of stone, each weighing 5 tonnes. Its façade was covered in travertine marble. Smart use of arches and vaults prevented the use of 100's of more blocks of stone. Combined beauty with practicality. The Colosseum is typically Roman: Big, practical, ostentatious, hydraulics and sunroofs to protect spectators. Consisted of 4 stories. Bottom story Doric columns, next Ionic, then Corinthian.</div>
+        <div class="grid-2" style="margin-top:12px;">
+          <div class="grid-card"><h4>📏 Key Facts</h4><ul><li>Official name: <strong>Flavian Amphitheatre</strong></li><li>Time to build: <strong>12 years</strong></li><li>Name from: statue of Nero nearby = <strong>"Colossus"</strong></li><li>Stone blocks: thousands, each <strong>5 tonnes</strong></li><li>Facade: <strong>travertine marble</strong></li><li>Stories: <strong>4</strong></li></ul></div>
+          <div class="grid-card"><h4>🏛️ Architecture &amp; Innovation</h4><ul><li>Ground floor: <strong>Doric</strong> columns</li><li>2nd floor: <strong>Ionic</strong> columns</li><li>3rd floor: <strong>Corinthian</strong> columns</li><li>Arches + vaults: saved <strong>hundreds</strong> of extra stone blocks</li><li>Had <strong>hydraulics</strong> (for the Naumachiae)</li><li><strong>Sunroofs</strong> (velarium) to shade spectators</li></ul></div>
+        </div>
+        <div class="memory-box"><strong>🔮 Memory — Colosseum:</strong> The phrase to use: <em>"The Colosseum is typically Roman: Big, practical, ostentatious."</em> This is a perfect exam sentence. Also remember: 12 years to build, Flavian Amphitheatre, 5-tonne stone blocks, Doric-Ionic-Corinthian bottom to top.</div>
+        <div class="warn-box"><strong>⚠️ "Typically Roman" = the exam's favourite phrase.</strong> Big (massive scale), practical (arches reducing material needed, sunroofs, hydraulics), ostentatious (showing off wealth and power). Beauty PLUS practicality — this theme runs through all Roman architecture.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-group">
+    <div class="section-title"><div class="section-icon" style="background:#cffafe;">🧠</div>Quick Quiz — Amphitheatres</div>
+    <div class="quiz-grid">
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">What are Venationes and Naumachiae?<span class="flip-hint">tap</span></div><div class="flip-back">Venationes = beast hunts in the arena. Naumachiae = naval battle re-enactments with the entire arena flooded with water!</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">What did gladiators say before combat?<span class="flip-hint">tap</span></div><div class="flip-back">"Hail, emperor, we who are about to die greet you." They paraded before the emperor before fighting.</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">What was the Rudis?<span class="flip-hint">tap</span></div><div class="flip-back">A wooden sword given to a gladiator after many victories — it symbolised manumission (freedom from slavery). The ultimate prize.</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">Colosseum — official name, building time, column order<span class="flip-hint">tap</span></div><div class="flip-back">Flavian Amphitheatre. Took 12 years to build. Ground = Doric, 2nd = Ionic, 3rd = Corinthian. Travertine marble facade. 5-tonne stone blocks.</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">Why is the Colosseum "typically Roman"?<span class="flip-hint">tap</span></div><div class="flip-back">Big (massive scale), practical (arches saved hundreds of stone blocks, hydraulics, sunroofs), ostentatious (showing off power and wealth). Combines beauty with practicality.</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ THEATRES ══════════════ -->
+<div class="page" id="page-theatres">
+  <div class="hero" style="background:linear-gradient(135deg,#d97706,#fbbf24);">
+    <div class="hero-content"><div class="hero-badge">Topic 11</div><h1>🎭 Theatres</h1><p>From temporary wooden stages to permanent stone theatres that held 40,000 people — Roman theatre had a fascinating history.</p></div>
+  </div>
+
+  <div class="section-group">
+    <div class="section-title"><div class="section-icon" style="background:#fef3c7;">🎭</div>Development &amp; Layout of Roman Theatres</div>
+    <div class="def-card open" style="border-color:#fcd34d;" onclick="toggleDef(this)">
+      <div class="def-header"><div class="def-term">Theatres — History, Layout &amp; Customs<span class="def-pill pill-key">KEY TOPIC</span></div><span class="def-chevron">▼</span></div>
+      <div class="def-body">
+        <div class="def-official" style="background:#fffbeb;border-left:4px solid var(--c11);">At first they comprised of temporary wooden platforms (pilpitum) with no seats for the audience. The state was against building permanent theatres as they said it would lead to luxurious habits and damage public morals. Once permanent theatres were built, they comprised of three main areas: The Stage, Orchestra (semi-circle in front of stage) and Auditorium (semi-circular rows of concentric seating). Every Roman town had a theatre. Performances were held for religious festivals and therefore always a temple in the vicinity. Romans tried to build theatres into hillsides for practicality. If not available, seating was built on a series of archways, vaults and walls — beauty and practicality.</div>
+        <div class="grid-2" style="margin-top:12px;">
+          <div class="grid-card"><h4>🏗️ The 3 Parts of a Theatre</h4><ul><li><strong>Stage (Scaena)</strong> = where actors performed. Wall behind the stage. Scenes = street with houses.</li><li><strong>Orchestra</strong> = semi-circle in front of the stage. VIPs sat here.</li><li><strong>Auditorium (Cavea)</strong> = semi-circular rows of concentric seating for audience</li></ul></div>
+          <div class="grid-card"><h4>🎭 Theatre Customs</h4><ul><li>Actors wore <strong>masks</strong></li><li>Many people looked on actors with <strong>disfavour</strong> (low social status)</li><li>Plays performed in the <strong>open air</strong></li><li>Stage scenes: represented a <strong>street with houses</strong></li><li>Always a <strong>temple in the vicinity</strong> (performances for religious festivals)</li></ul></div>
+        </div>
+        <div class="def-official" style="background:#fffbeb;border-left:4px solid var(--c11);margin-top:10px;">In extravagant theatres, there was a wall behind the stage. Plays performed outside in the open air. Scenes on stage generally represented a street with some houses. Actors wore masks. Many people looked on actors with disfavour. Box on right for Emperor to sit, box on left for Vestal Virgins and Empress. Women sat at back. The Theatre of Pompey could accommodate 40,000 people. The Theatrum Marcelli was built by Caesar and Augustus. Theatrum Balbi, capacity 11,000.</div>
+        <div class="grid-2" style="margin-top:12px;">
+          <div class="grid-card"><h4>💺 Seating Arrangements</h4><ul><li>Box on <strong>right</strong>: Emperor</li><li>Box on <strong>left</strong>: Vestal Virgins &amp; Empress</li><li>Women sat at the <strong>back</strong></li><li>Best seats in the orchestra for VIPs</li></ul></div>
+          <div class="grid-card"><h4>🏟️ Famous Theatres</h4><ul><li><strong>Theatre of Pompey</strong>: <strong>40,000</strong> capacity</li><li><strong>Theatrum Marcelli</strong>: built by Caesar &amp; Augustus</li><li><strong>Theatrum Balbi</strong>: capacity <strong>11,000</strong></li></ul></div>
+        </div>
+        <div class="warn-box"><strong>⚠️ KEY TERM — PILPITUM:</strong> The temporary wooden stage platform used in early Roman theatre before permanent stone theatres were built. The state opposed permanent theatres for fear of "luxurious habits and damage to public morals."</div>
+        <div class="analogy-box"><strong>🧠 Analogy:</strong> Think of a Roman theatre like a modern concert venue: Stage (where the band plays) → Pit/Orchestra (right in front, VIPs) → Tiered seating (the auditorium). Romans just made theirs semicircular and built into a hillside where possible for natural acoustics and easy construction.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-group">
+    <div class="section-title"><div class="section-icon" style="background:#fef3c7;">🧠</div>Quick Quiz — Theatres</div>
+    <div class="quiz-grid">
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">What is a Pilpitum?<span class="flip-hint">tap</span></div><div class="flip-back">The temporary wooden stage platform used in early Roman theatre before permanent theatres were built. The state opposed permanent theatres as "leading to luxurious habits."</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">Name the 3 parts of a Roman theatre<span class="flip-hint">tap</span></div><div class="flip-back">1. Stage (Scaena) — actors perform, wall behind. 2. Orchestra — semi-circle in front of stage (VIPs). 3. Auditorium/Cavea — semicircular concentric rows of seats.</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">Where did the Emperor sit vs Vestal Virgins?<span class="flip-hint">tap</span></div><div class="flip-back">Emperor = box on the RIGHT. Vestal Virgins and Empress = box on the LEFT. Women = at the back.</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">Name the 3 famous Roman theatres and their capacities<span class="flip-hint">tap</span></div><div class="flip-back">Theatre of Pompey (40,000). Theatrum Marcelli (built by Caesar and Augustus). Theatrum Balbi (11,000).</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ BATHS ══════════════ -->
+<div class="page" id="page-baths">
+  <div class="hero" style="background:linear-gradient(135deg,#be185d,#f472b6);">
+    <div class="hero-content"><div class="hero-badge">Topic 12</div><h1>🛁 Baths (Balneae)</h1><p>Far more than a place to wash — Roman baths were the social hub of daily life, combining gym, library, restaurant and spa all in one complex.</p></div>
+  </div>
+
+  <div class="section-group">
+    <div class="section-title"><div class="section-icon" style="background:#fce7f3;">🛁</div>Roman Baths — Purpose, Rooms &amp; Social Role</div>
+    <div class="def-card open" style="border-color:#f9a8d4;" onclick="toggleDef(this)">
+      <div class="def-header"><div class="def-term">Baths — Social Function, Facilities &amp; The Rooms<span class="def-pill pill-key">KEY TOPIC</span></div><span class="def-chevron">▼</span></div>
+      <div class="def-body">
+        <div class="def-official" style="background:#fdf2f8;border-left:4px solid var(--c12);">While private baths existed first, public baths (balneae) were built by emperors to provide Romans with opportunities for recreation and leisure. Bathing was a daily ritual for most, usually in the afternoon. In imperial times baths increased in size and elaboration, containing many amenities like barbers, gyms, libraries, hairdressers, restaurants, public gardens and more. Initially mixed bathing, later different times for men and women, bell used to signify changing of times. The fact that baths were built throughout the empire signified their social and cultural significance. They reflected a Hellenistic style in cultural facilities. In baths you could meet friends, conduct business, make new acquaintances, exchange dinner invitations and gossip. Millions of gallons pumped in by aqueducts. Wastewater pumped out through cloacae (underground sewers). Nominal fee charged and some emperors got rid of this to gain popularity.</div>
+        <div class="grid-2" style="margin-top:12px;">
+          <div class="grid-card"><h4>🏊 What You Could Do</h4><ul><li>Meet friends, make acquaintances</li><li>Conduct business deals</li><li>Exchange dinner invitations</li><li>Gossip and relax</li><li>Use barbers, gyms, libraries, hairdressers, restaurants, gardens</li><li>Reflected <strong>Hellenistic style</strong></li></ul></div>
+          <div class="grid-card"><h4>🚰 Infrastructure</h4><ul><li>Millions of gallons supplied by <strong>aqueducts</strong></li><li>Wastewater removed by <strong>cloacae</strong> (underground sewers)</li><li>Heated by <strong>hypocaust</strong> (underfloor heating)</li><li>Initially <strong>mixed bathing</strong>, later different times (bell signals)</li><li>Nominal fee charged; some emperors removed this for popularity</li></ul></div>
+        </div>
+
+        <p style="font-weight:700;margin:16px 0 10px;font-size:.95rem;">🌡️ The 5 Rooms — In Order:</p>
+        <table class="compare-table">
+          <tr><th style="background:#be185d;">Room Name</th><th style="background:#be185d;">Translation</th><th style="background:#be185d;">What It Was</th></tr>
+          <tr><td><strong>Apodyterium</strong></td><td>Dressing room</td><td>Where you changed and left your clothes</td></tr>
+          <tr><td><strong>Tepidarium</strong></td><td>Warm room</td><td>Gently heated room — to warm the body gradually</td></tr>
+          <tr><td><strong>Laconicum</strong></td><td>Very hot room</td><td>Like a sauna — very hot, used by invalids/people with disabilities</td></tr>
+          <tr><td><strong>Caldarium</strong></td><td>Hot bath</td><td>Hot water bath room</td></tr>
+          <tr><td><strong>Frigidarium</strong></td><td>Cold plunge</td><td>Cold plunge pool — the final refreshing dip</td></tr>
+        </table>
+        <div class="memory-box"><strong>🔮 Memory — Bath Rooms:</strong> <strong>A-T-L-C-F</strong> = <em>"All The Lovely Comfortable Feels"</em><br>Apodyterium → Tepidarium → Laconicum → Caldarium → Frigidarium<br>From changing room → mild warm → very hot → hot bath → cold plunge.</div>
+        <div class="analogy-box"><strong>🧠 Analogy:</strong> Think of a modern spa/gym: locker room (apodyterium) → warm-up pool (tepidarium) → sauna (laconicum) → hot tub (caldarium) → cold plunge (frigidarium). Romans invented the spa experience 2,000 years ago!</div>
+      </div>
+    </div>
+
+    <div class="def-card" style="border-color:#f9a8d4;" onclick="toggleDef(this)">
+      <div class="def-header"><div class="def-term">Bath of Trajan<span class="def-pill pill-exam">EXAM EXAMPLE</span></div><span class="def-chevron">▼</span></div>
+      <div class="def-body">
+        <div class="def-official" style="background:#fdf2f8;border-left:4px solid var(--c12);">Bath of Trajan: Built between 104–109 AD by Apollodorus of Damascus. Immense size even by Roman standards. Numerous Mosaics. Rested on a North East, South West axis, unusual but provided bathers with less exposure to winds and maximum exposure to the sun.</div>
+        <div class="grid-2">
+          <div class="grid-card"><h4>📏 Key Facts</h4><ul><li>Built: <strong>104–109 AD</strong></li><li>Architect: <strong>Apollodorus of Damascus</strong></li><li>Size: <strong>immense</strong> even by Roman standards</li><li>Decorated with <strong>numerous mosaics</strong></li></ul></div>
+          <div class="grid-card"><h4>🧭 The Unusual Axis</h4><ul><li>Rested on <strong>North East–South West axis</strong></li><li>Unusual choice — most buildings aligned differently</li><li>Purpose: less exposure to <strong>winds</strong></li><li>Maximum exposure to the <strong>sun</strong></li></ul></div>
+        </div>
+        <div class="example-box"><strong>📌 Apollodorus of Damascus</strong> also designed Trajan's Bridge on the Danube and Trajan's Column base. He was the greatest architect of the Trajanic period.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-group">
+    <div class="section-title"><div class="section-icon" style="background:#fce7f3;">🧠</div>Quick Quiz — Baths</div>
+    <div class="quiz-grid">
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">Name all 5 rooms of a Roman bath in order<span class="flip-hint">tap</span></div><div class="flip-back">Apodyterium (changing) → Tepidarium (warm) → Laconicum (very hot/sauna) → Caldarium (hot bath) → Frigidarium (cold plunge).</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">What is a Hypocaust?<span class="flip-hint">tap</span></div><div class="flip-back">The underfloor heating system used in Roman baths. Hot air circulated under raised floors and through hollow walls to heat the rooms. Roman central heating!</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">What are Cloacae?<span class="flip-hint">tap</span></div><div class="flip-back">Underground sewers used to pump out wastewater from the baths. Part of a sophisticated Roman sewage/drainage system.</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">Bath of Trajan — date, architect, unusual feature<span class="flip-hint">tap</span></div><div class="flip-back">104–109 AD. Apollodorus of Damascus. Unusual NE–SW axis gave bathers less wind exposure and maximum sun exposure. Immense size, numerous mosaics.</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">Name 4 activities you could do at the baths<span class="flip-hint">tap</span></div><div class="flip-back">Meet friends, conduct business, exchange dinner invitations, gossip, use barbers/gyms/libraries/hairdressers/restaurants/gardens. The social hub of Roman daily life!</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ MOSAICS ══════════════ -->
+<div class="page" id="page-mosaics">
+  <div class="hero" style="background:linear-gradient(135deg,#059669,#34d399);">
+    <div class="hero-content"><div class="hero-badge">Topic 13</div><h1>🎨 Mosaics</h1><p>From simple geometric patterns to 1.5 million tesserae — mosaic art was durable, beautiful, and one of Rome's greatest decorative achievements.</p></div>
+  </div>
+
+  <div class="section-group">
+    <div class="section-title"><div class="section-icon" style="background:#d1fae5;">🎨</div>Mosaics — Purpose, Techniques &amp; History</div>
+    <div class="def-card open" style="border-color:#6ee7b7;" onclick="toggleDef(this)">
+      <div class="def-header"><div class="def-term">What are Mosaics? Purpose &amp; Development<span class="def-pill pill-key">KEY TOPIC</span></div><span class="def-chevron">▼</span></div>
+      <div class="def-body">
+        <div class="def-official" style="background:#ecfdf5;border-left:4px solid var(--c13);">The chief purpose of mosaics was to provide a durable form of decoration for walls and pavements. The technique of tessellated mosaics in which pieces of stone or marble were cut into cubes and fitted together in a bed or mortar was invented in the 3rd century BC. At first tesserae were cut irregularly, then with greater precision. By the 2nd century BC, the tiny pieces were as small as 1mm square and in a wide range of colours. In imperial time mosaics begun to be mass produced. They were found particularly in the atrium and triclinium of private homes. The mosaics depicted: Geometric patterns and designs, divine characters and mythological scenes, famous individuals, Historical scenes, aspects of daily lives. Mosaics indicated wealth and opulence.</div>
+        <div class="grid-2" style="margin-top:12px;">
+          <div class="grid-card"><h4>📅 Historical Development</h4><ul><li>Invented: <strong>3rd century BC</strong> (stone/marble cubes in mortar)</li><li>2nd century BC: pieces as small as <strong>1mm square</strong>, wide range of colours</li><li>Imperial times: <strong>mass produced</strong></li><li>Popular in: <strong>atrium</strong> (entrance hall) and <strong>triclinium</strong> (dining room)</li><li>Indicated: <strong>wealth and opulence</strong></li></ul></div>
+          <div class="grid-card"><h4>🖼️ What Did They Depict?</h4><ul><li>Geometric patterns and designs</li><li>Divine characters and mythological scenes</li><li>Famous individuals</li><li>Historical scenes</li><li>Aspects of daily life</li></ul></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="def-card" style="border-color:#6ee7b7;" onclick="toggleDef(this)">
+      <div class="def-header"><div class="def-term">The 4 Mosaic Techniques<span class="def-pill pill-exam">MUST KNOW ALL 4</span></div><span class="def-chevron">▼</span></div>
+      <div class="def-body">
+        <table class="compare-table" style="margin-top:10px;">
+          <tr><th style="background:#059669;">Technique Name</th><th style="background:#059669;">Description</th><th style="background:#059669;">Key Feature</th></tr>
+          <tr><td><strong>Opus Sectile</strong></td><td>Thin layers of stone <strong>cut into patterns</strong></td><td>Mainly geometric; confined to a few colours; earliest technique</td></tr>
+          <tr><td><strong>Opus Tessellatum</strong></td><td>Layers replaced by <strong>small cubes (tesserae) of uniform size</strong></td><td>Up to 150 tesserae per square inch. Smaller cubes = greater detail. Standard technique.</td></tr>
+          <tr><td><strong>Opus Vermiculatum</strong></td><td>Tesserae but <strong>irregularly shaped</strong></td><td>Can follow curved lines precisely — used for detailed figures and naturalistic images</td></tr>
+          <tr><td><strong>Opus Musivum</strong></td><td>Tesserae for <strong>vaults, domes and curved surfaces</strong></td><td>Specifically for non-flat surfaces. Later used extensively in Byzantine church decoration.</td></tr>
+        </table>
+        <div class="analogy-box"><strong>🧠 Analogy — Resolution Upgrade:</strong> Think of mosaic techniques like photo resolution: Opus Sectile = low res (big shapes, few colours); Opus Tessellatum = medium res (small equal cubes, up to 150/sq.in.); Opus Vermiculatum = high res (irregular pieces that curve to follow figures perfectly — like pixels that shape themselves).</div>
+        <div class="memory-box"><strong>🔮 Memory — The 4 Techniques:</strong><br><strong>S</strong>ectile → <strong>T</strong>essellatum → <strong>V</strong>ermiculatum → <strong>M</strong>usivum<br>= <strong>"Some Talented Very Meticulous"</strong> artists made them!<br>Sectile = cut flat shapes | Tessellatum = uniform cubes | Vermiculatum = irregular curved | Musivum = domes &amp; vaults</div>
+      </div>
+    </div>
+
+    <div class="def-card" style="border-color:#6ee7b7;" onclick="toggleDef(this)">
+      <div class="def-header"><div class="def-term">Famous Mosaics — Know These 3<span class="def-pill pill-exam">EXAM EXAMPLES</span></div><span class="def-chevron">▼</span></div>
+      <div class="def-body">
+        <div class="grid-3">
+          <div class="grid-card" style="border-color:#6ee7b7;">
+            <h4>🍂 Unswept Room (Asaroton)</h4>
+            <ul>
+              <li>Found in the <strong>Aventine, Rome</strong></li>
+              <li>Copy of the <strong>original at Pergamon</strong></li>
+              <li>Original by: <strong>Sosus</strong></li>
+              <li>Depicts food scraps on a floor — hyper-realistic <em>trompe l'oeil</em></li>
+            </ul>
+          </div>
+          <div class="grid-card" style="border-color:#6ee7b7;">
+            <h4>🐕 Cave Canem</h4>
+            <ul>
+              <li>"<strong>Beware of the Dog</strong>"</li>
+              <li>Found in: <strong>House of Orpheus</strong></li>
+              <li>Placed at the entrance/doorway</li>
+              <li>Famous warning mosaic — an ancient "beware of dog" sign!</li>
+            </ul>
+          </div>
+          <div class="grid-card" style="border-color:#6ee7b7;">
+            <h4>⚔️ Alexander Mosaic</h4>
+            <ul>
+              <li>Found in: <strong>House of the Fawn</strong></li>
+              <li>Shows: <strong>Alexander the Great defeating King Darius III of Persia</strong></li>
+              <li>Uses: approximately <strong>1.5 million tesserae</strong></li>
+              <li>One of the most complex mosaics ever created</li>
+            </ul>
+          </div>
+        </div>
+        <div class="example-box"><strong>📌 Exam Key Fact:</strong> The Alexander Mosaic uses <strong>1.5 million tesserae</strong> — always include this number! It shows the incredible level of detail possible with Opus Vermiculatum technique.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-group">
+    <div class="section-title"><div class="section-icon" style="background:#d1fae5;">🧠</div>Quick Quiz — Mosaics</div>
+    <div class="quiz-grid">
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">What was the chief purpose of mosaics?<span class="flip-hint">tap</span></div><div class="flip-back">To provide a durable form of decoration for walls and pavements. Also indicated wealth and opulence — a status symbol for rich Romans.</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">Name all 4 mosaic techniques<span class="flip-hint">tap</span></div><div class="flip-back">Opus Sectile (cut geometric shapes), Opus Tessellatum (uniform cubes, 150/sq.in.), Opus Vermiculatum (irregular curved), Opus Musivum (vaults and domes).</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">Alexander Mosaic — where found, what shows, how many tesserae?<span class="flip-hint">tap</span></div><div class="flip-back">House of the Fawn. Shows Alexander the Great defeating King Darius III of Persia in battle. Uses approximately 1.5 million tesserae!</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">What does "Cave Canem" mean and where is it?<span class="flip-hint">tap</span></div><div class="flip-back">"Beware of the Dog." Found in the House of Orpheus, at the entrance. An ancient "beware of the dog" warning sign in mosaic form!</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">When were tessellated mosaics invented? How small were tesserae by the 2nd century BC?<span class="flip-hint">tap</span></div><div class="flip-back">Invented in the 3rd century BC. By the 2nd century BC, tesserae were as small as 1mm square and in a wide range of colours.</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ PAINTINGS & SCULPTURE ══════════════ -->
+<div class="page" id="page-art">
+  <div class="hero" style="background:linear-gradient(135deg,#4f46e5,#818cf8);">
+    <div class="hero-content"><div class="hero-badge">Topic 14</div><h1>🖼️ Paintings, Sculpture &amp; Historical Relief</h1><p>From frescos locked into walls to 2,500 carved figures on a single column — Roman art was propaganda, beauty, and history combined.</p></div>
+  </div>
+
+  <!-- PAINTINGS -->
+  <div class="section-group">
+    <div class="section-title"><div class="section-icon" style="background:#e0e7ff;">🖼️</div>Paintings</div>
+    <div class="def-card open" style="border-color:#a5b4fc;" onclick="toggleDef(this)">
+      <div class="def-header"><div class="def-term">Roman Paintings — Overview &amp; Development<span class="def-pill pill-key">KEY TOPIC</span></div><span class="def-chevron">▼</span></div>
+      <div class="def-body">
+        <div class="def-official" style="background:#eef2ff;border-left:4px solid var(--c14);">Originally, Roman art collectors acquired Greek paintings and Greek artists who migrated to Rome to meet demand. By imperial times there was a shift in interest from portable panel paintings to wall paintings (murals). At first used to decorate tombs, wall paintings became increasingly popular in private homes. At Pompey and Herculaneum most residences contained extensive paintings from simple schemes and patterns in smaller rooms to large lavish paintings in larger rooms. Main reason for them was to break the monotony of the blank wall with decoration. Also, an indicator of wealth and prestige. Painters were not considered high in social status. Often slaves or freedmen. Two main types: Murals and Encaustics. Reached maturity under Flavian Dynasty.</div>
+        <div class="grid-2" style="margin-top:12px;">
+          <div class="grid-card"><h4>📜 Context &amp; Status</h4><ul><li>Started by collecting <strong>Greek paintings and artists</strong></li><li>Shift from <strong>panel paintings → wall murals</strong></li><li>First used for <strong>tombs</strong>, then private homes</li><li>Main purpose: break wall monotony + show <strong>wealth and prestige</strong></li><li>Painters: usually <strong>slaves or freedmen</strong> (low social status)</li><li>Reached maturity: <strong>Flavian Dynasty</strong></li></ul></div>
+          <div class="grid-card"><h4>🖌️ Two Main Types</h4><ul><li><strong>Murals (Fresco)</strong> = painted directly into wet wall plaster</li><li><strong>Encaustics</strong> = painted onto wooden panels using wax</li></ul></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="def-card" style="border-color:#a5b4fc;" onclick="toggleDef(this)">
+      <div class="def-header"><div class="def-term">Murals (Fresco Technique) — How It Works<span class="def-pill pill-def">DEFINITION &amp; TECHNIQUE</span></div><span class="def-chevron">▼</span></div>
+      <div class="def-body">
+        <div class="def-official" style="background:#eef2ff;border-left:4px solid var(--c14);">Murals: Painted directly onto walls using fresco technique. Plaster laid onto wall, smoothed and then kept moist long enough to enable painters to work directly onto it with colour. The chemical colours penetrated below the wet plaster and became locked there. Due to the chemical reaction between plaster and air the paint is preserved. Examples of such murals can be seen in the House of Livia, wife of Augustus on the Palatine hill. These famous Frescos covered the four walls of her underground triclinium. They portray many varieties of flora and fauna in such detail that many can still be identified.</div>
+        <div class="analogy-box"><strong>🧠 Analogy:</strong> Imagine dyeing fabric vs. painting it. If you paint fabric, the colour sits on top and eventually peels off. If you dye it, the colour penetrates the fibres and becomes permanent. Fresco is dyeing the wall — the pigment is absorbed into the wet plaster while it's still "alive," then the chemical reaction locks it in permanently as the plaster dries. The wall and painting become one!</div>
+        <div class="example-box"><strong>📌 House of Livia — Famous Fresco Example:</strong><br>• Wife of Augustus<br>• Location: <strong>Palatine Hill</strong><br>• Frescos covered <strong>all 4 walls</strong> of her underground triclinium<br>• Portray many varieties of <strong>flora and fauna</strong> in such detail that many can still be identified today<br>• One of the best preserved examples of Roman fresco painting</div>
+        <div class="warn-box"><strong>⚠️ How Fresco Differs from Encaustic:</strong> Fresco = bright, vibrant, permanent (chemical reaction locks colour INTO the wall). Encaustic = smooth glassy finish but NOT as bright as frescos.</div>
+      </div>
+    </div>
+
+    <div class="def-card" style="border-color:#a5b4fc;" onclick="toggleDef(this)">
+      <div class="def-header"><div class="def-term">Encaustic Painting Technique<span class="def-pill pill-def">DEFINITION</span></div><span class="def-chevron">▼</span></div>
+      <div class="def-body">
+        <div class="def-official" style="background:#eef2ff;border-left:4px solid var(--c14);">Encaustics: used in panel and smaller paintings. A surface of wax was applied to a wooden panel, a drawing was prepared and then coloured in with wax. Smooth glassy finish but not as bright as Frescos.</div>
+        <div class="grid-2">
+          <div class="grid-card"><h4>🖌️ Technique</h4><ul><li>Applied to: <strong>wooden panel</strong></li><li>Method: wax surface applied, drawing prepared, coloured with wax</li><li>Result: <strong>smooth, glassy finish</strong></li><li>Portable (unlike murals)</li></ul></div>
+          <div class="grid-card"><h4>⚖️ vs Fresco</h4><ul><li>NOT as bright as frescos</li><li>Better for: smaller, portable paintings</li><li>More suitable for: portraits</li><li>Wax preserves and protects paint</li></ul></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="def-card" style="border-color:#a5b4fc;" onclick="toggleDef(this)">
+      <div class="def-header"><div class="def-term">Famous Painting — Amphitheatre Riot at Pompeii<span class="def-pill pill-exam">FAMOUS EXAMPLE</span></div><span class="def-chevron">▼</span></div>
+      <div class="def-body">
+        <div class="def-official" style="background:#eef2ff;border-left:4px solid var(--c14);">Another famous wall painting was that of the amphitheatre in Pompey. The story tells that a disgraced Senator hoped to impress the locals of Campania by sponsoring gladiator fights. The games ended in disaster when spectators arrived from the neighbouring town, resulting in deaths. The town was not allowed to host games for 10 years. This is depicted on the painting.</div>
+        <p class="def-explain">This painting is remarkable as historical documentation — it records an actual real event (a riot at Pompeii's amphitheatre) in painted form. It's both art and journalism.</p>
+        <div class="example-box"><strong>📌 Key points for exam:</strong><br>• Disgraced senator sponsored gladiator games to impress locals of Campania<br>• Rival spectators arrived from the neighbouring town<br>• A riot broke out — deaths occurred<br>• Pompeii was <strong>banned from hosting games for 10 years</strong><br>• The painting shows fighting both inside and outside the amphitheatre</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCULPTURE -->
+  <div class="section-group">
+    <div class="section-title"><div class="section-icon" style="background:#e0e7ff;">🗿</div>Sculpture</div>
+    <div class="def-card" style="border-color:#a5b4fc;" onclick="toggleDef(this)">
+      <div class="def-header"><div class="def-term">Roman Sculpture — Origins, Forms &amp; Portrait Sculpture<span class="def-pill pill-key">KEY TOPIC</span></div><span class="def-chevron">▼</span></div>
+      <div class="def-body">
+        <div class="def-official" style="background:#eef2ff;border-left:4px solid var(--c14);">Roman sculpture was almost non-existent before the second century BC. After many victories over the Greeks many of their statuary were sent to Rome. Roman craftsmen began producing copies and thus industry thrived. This was due to the Roman middle and upper class wanting to decorate their homes to show wealth and influence. There were many forms of sculpture: Sarcophagus, Equestrian Statues, Portrait Sculpture, and Herms. Portrait head and shoulder busts were what the Romans thrived at. For the Romans visibly depicting a families importance and pedigree through portraits was very important. They were very realistic, showing the good and bad features of a person.</div>
+        <div class="grid-2" style="margin-top:12px;">
+          <div class="grid-card"><h4>🗿 4 Forms of Sculpture</h4><ul><li><strong>Sarcophagus</strong> = tomb elaborately carved with reliefs; minor at first → one of the most prolific later</li><li><strong>Equestrian Statues</strong> = subject on horseback; recognised as one of the most striking forms of state portraiture</li><li><strong>Portrait Sculpture</strong> = busts; first inspired by Etruscan wax death masks</li><li><strong>Herm</strong> = head &amp; shoulders bust on a bronze/marble pillar; usually in the <strong>Atrium</strong></li></ul></div>
+          <div class="grid-card"><h4>👤 Portrait Sculpture — Details</h4><ul><li>Inspired by <strong>wax death masks of the Etruscans</strong></li><li>Also influenced by the <strong>Greeks</strong></li><li>Augustus encouraged <strong>Hellenism</strong> in Roman art</li><li>Very <strong>realistic</strong> — showed good AND bad features</li><li>Realism indicated <strong>nobility</strong> (especially in busts of emperors of humble origin)</li><li>Popularity grew: officials wanted to <strong>immortalise themselves in marble</strong></li><li>Depicting family <strong>pedigree</strong> = very important</li></ul></div>
+        </div>
+        <div class="analogy-box"><strong>🧠 Portrait Bust Analogy:</strong> Roman portrait busts are like LinkedIn profile photos — designed to communicate authority, status, and character. But unlike airbrushed modern photos, Romans deliberately showed every wrinkle to say "I earned my authority through experience." Greeks idealised their subjects; Romans were radically realistic.</div>
+        <div class="example-box"><strong>📌 Famous Portraits:</strong><br>• <strong>Caesar</strong> — serious expression<br>• <strong>Augustus</strong> — both serious expressions in official portraits<br>• <strong>Caecilius Iucundus</strong> — slight smile (known from Pompeii)<br>• Suggests realism = indicating nobility and humble origins</div>
+        <div class="warn-box"><strong>⚠️ KEY TERM — HERM:</strong> A head and shoulders bust (portrait) mounted on a bronze or marble pillar. Usually displayed in the <strong>Atrium</strong> (entrance hall) of a Roman home. The Atrium was the most public room — displaying herms there announced family prestige and pedigree to all visitors.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HISTORICAL RELIEF -->
+  <div class="section-group">
+    <div class="section-title"><div class="section-icon" style="background:#e0e7ff;">📜</div>Historical Relief</div>
+    <div class="def-card" style="border-color:#a5b4fc;" onclick="toggleDef(this)">
+      <div class="def-header"><div class="def-term">What is Historical Relief? How It Works<span class="def-pill pill-def">DEFINITION</span></div><span class="def-chevron">▼</span></div>
+      <div class="def-body">
+        <div class="def-official" style="background:#eef2ff;border-left:4px solid var(--c14);">Historical reliefs were used as decorations in the triumphal arches and columns which in the reign of Augustus were erected even in the most remote provinces. They consisted of a single arch between huge piers, against which were other columns, standing on a podium. They were usually inscribed with a dedication, and on top of the whole structure might be placed a chariot group. Romans were masters of relief sculpture. This is the sculpting of scenes or figures on marble, removing a sufficient amount of the background to allow the figures to stand out. This could be done with high relief, lots of detail, or low relief, moderate degree of depth. The purpose of reliefs was decoration for an otherwise blank marble wall. They also gave historical narrative of a military campaign to a largely illiterate population. They were propaganda.</div>
+        <div class="grid-2" style="margin-top:12px;">
+          <div class="grid-card"><h4>⚒️ How Relief Works</h4><ul><li>Sculpt scenes/figures onto marble</li><li>Remove background so figures <strong>stand out</strong></li><li><strong>High relief</strong>: lots of detail, figures nearly 3D</li><li><strong>Low relief</strong>: moderate depth, figures flatter</li><li>Romans were <strong>masters</strong> of relief sculpture</li></ul></div>
+          <div class="grid-card"><h4>🎯 4 Purposes of Reliefs</h4><ul><li>Decoration for <strong>blank marble walls</strong></li><li>Historical narrative of <strong>military campaigns</strong></li><li>Accessible to a <strong>largely illiterate population</strong></li><li><strong>Propaganda</strong> — glorify the emperor</li></ul></div>
+        </div>
+        <div class="analogy-box"><strong>🧠 Analogy:</strong> Think of historical reliefs as ancient graphic novels or comic strips. For a population where most couldn't read, these carved stories on public monuments were the news broadcasts, history books, and propaganda posters all in one. They told you: "Your emperor won this battle, conquered those people, and deserves your loyalty."</div>
+      </div>
+    </div>
+
+    <div class="def-card" style="border-color:#a5b4fc;" onclick="toggleDef(this)">
+      <div class="def-header"><div class="def-term">Ara Pacis Augustae — Altar of Augustan Peace<span class="def-pill pill-exam">EXAM EXAMPLE</span></div><span class="def-chevron">▼</span></div>
+      <div class="def-body">
+        <div class="def-official" style="background:#eef2ff;border-left:4px solid var(--c14);">The Ara Paci Augustae — The Altar of Augustan Peace was built between 13–9 BC. It was dedicated to him after his victories in Spain and Gaul. It had 2 entrances and was a significant political monument.</div>
+        <div class="grid-2">
+          <div class="grid-card"><h4>📏 Key Facts</h4><ul><li>Full name: <strong>Ara Pacis Augustae</strong> = Altar of Augustan Peace</li><li>Built: <strong>13–9 BC</strong></li><li>Dedicated to <strong>Augustus</strong> after victories in <strong>Spain and Gaul</strong></li><li>Had <strong>2 entrances</strong></li><li>Significant <strong>political monument</strong></li></ul></div>
+          <div class="grid-card"><h4>🎨 Reliefs</h4><ul><li>Famous <strong>procession reliefs</strong> showing Augustus and his family</li><li>Showed the imperial family in a formal religious procession</li><li>Propaganda: celebrates the peace (Pax Augusta) of his reign</li></ul></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="def-card" style="border-color:#a5b4fc;" onclick="toggleDef(this)">
+      <div class="def-header"><div class="def-term">Trajan's Column — The Ultimate Relief Monument<span class="def-pill pill-exam">MAJOR EXAM EXAMPLE — LEARN FIGURES</span></div><span class="def-chevron">▼</span></div>
+      <div class="def-body">
+        <div class="def-official" style="background:#eef2ff;border-left:4px solid var(--c14);">Trajan's column was built in 113 AD. It is 124 feet tall. There is an interior spiral staircase. It depicts multiple reliefs, including Trajan's victories in Dacia. It contains 2500 human figures.</div>
+        <div class="grid-2" style="margin-top:12px;">
+          <div class="grid-card"><h4>📏 Key Facts — All Figures</h4><ul><li>Built: <strong>113 AD</strong></li><li>Height: <strong>124 feet</strong></li><li>Interior: <strong>spiral staircase</strong></li><li>Subject: <strong>Trajan's victories in Dacia</strong></li><li>Contains: <strong>2,500 human figures</strong></li></ul></div>
+          <div class="grid-card"><h4>🌟 Why It's Extraordinary</h4><ul><li>Reliefs spiral continuously from base to top</li><li>Like an ancient film reel of the Dacian campaigns</li><li>Most detailed surviving historical relief</li><li>Connected to Apollodorus of Damascus (same architect as Trajan's Baths and Bridge)</li><li>2,500 figures = ~20 per foot of column</li></ul></div>
+        </div>
+        <div class="memory-box"><strong>🔮 Memory — Trajan's Column figures:</strong> <strong>113 AD · 124 feet · 2,500 figures</strong><br>Note: 113 → 124 → only 11 apart. Or: "Built in 113, stands 124 feet — that's a tall column with 2,500 people carved on it. Twenty people per foot!"</div>
+      </div>
+    </div>
+
+    <div class="def-card" style="border-color:#a5b4fc;" onclick="toggleDef(this)">
+      <div class="def-header"><div class="def-term">Arch of Titus — Key Relief Example<span class="def-pill pill-exam">EXAM EXAMPLE</span></div><span class="def-chevron">▼</span></div>
+      <div class="def-body">
+        <div class="def-official" style="background:#eef2ff;border-left:4px solid var(--c14);">The Arch of Titus was built in 81 AD. The oldest triumphal arch still standing in Rome. It is a cross between the Corinthian and Ionic styles.</div>
+        <div class="grid-2">
+          <div class="grid-card"><h4>📏 Key Facts</h4><ul><li>Built: <strong>81 AD</strong></li><li>Status: <strong>oldest triumphal arch still standing in Rome</strong></li><li>Style: cross between <strong>Corinthian and Ionic</strong></li></ul></div>
+          <div class="grid-card"><h4>🎨 The Reliefs Inside</h4><ul><li>Famous relief panels inside the arch</li><li>Show the <strong>sack of Jerusalem (70 AD)</strong></li><li>Depict the <strong>Menorah</strong> being carried away as spoils of war</li></ul></div>
+        </div>
+        <div class="memory-box"><strong>🔮 Memory:</strong> "Arch of Titus = 81 AD." Titus took Jerusalem in 70 AD. His arch was built 11 years later (81 AD). Oldest triumphal arch still standing. Cross of Corinthian + Ionic. That cross between styles is unique — neither one nor the other!</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-group">
+    <div class="section-title"><div class="section-icon" style="background:#e0e7ff;">🧠</div>Quick Quiz — Paintings, Sculpture &amp; Relief</div>
+    <div class="quiz-grid">
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">Explain the Fresco technique<span class="flip-hint">tap</span></div><div class="flip-back">Plaster laid on wall, kept moist. Painter works colour into wet plaster. Chemical colours penetrate and become locked in the plaster. Chemical reaction with air preserves paint permanently.</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">House of Livia frescos — where, what depicted?<span class="flip-hint">tap</span></div><div class="flip-back">Wife of Augustus, Palatine Hill. Frescos on ALL 4 walls of her underground triclinium. Portray varieties of flora and fauna in such detail many can still be identified today.</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">What is a Herm?<span class="flip-hint">tap</span></div><div class="flip-back">A head and shoulders portrait bust mounted on a bronze or marble pillar. Usually displayed in the Atrium to show family pedigree and importance to all visitors.</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">Trajan's Column — date, height, figures, subject<span class="flip-hint">tap</span></div><div class="flip-back">113 AD. 124 feet tall. Interior spiral staircase. Trajan's victories in Dacia. Contains 2,500 human figures in a continuous spiral relief.</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">Give 4 purposes of Historical Reliefs<span class="flip-hint">tap</span></div><div class="flip-back">1. Decoration for blank marble walls. 2. Historical narrative of military campaigns. 3. Accessible to the largely illiterate population. 4. Propaganda — to glorify the emperor.</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">Ara Pacis — full name, date, reason built, features<span class="flip-hint">tap</span></div><div class="flip-back">Altar of Augustan Peace. Built 13–9 BC. Dedicated to Augustus after victories in Spain and Gaul. 2 entrances. Significant political monument. Famous procession reliefs.</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">Arch of Titus — date, style, significance<span class="flip-hint">tap</span></div><div class="flip-back">81 AD. Cross between Corinthian and Ionic. Oldest triumphal arch still standing in Rome. Reliefs inside show the sack of Jerusalem and the Menorah as spoils.</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">What inspired Roman portrait sculpture?<span class="flip-hint">tap</span></div><div class="flip-back">Inspired by wax death masks of the Etruscans. Also influenced by the Greeks. Augustus encouraged Hellenism. Very realistic — showed good AND bad features. Realism = indicated nobility.</div></div></div>
+    </div>
+  </div>
+</div>
+
+<a href="index.html" class="return-home-btn">🏠 Back to Hub</a>
+
+<script>
+function showPage(id, btn) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  if (btn) btn.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+function toggleDef(card) {
+  card.classList.toggle('open');
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,2373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Senior Cycle Latin Vocabulary Flashcards</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Deca:wght@400;500;600&family=Lexend+Mega:wght@700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --latin: #7c3aed;
+    --latin-light: #ede9fe;
+    --latin-dark: #5b21b6;
+    --green: #059669;
+    --green-light: #d1fae5;
+    --amber: #d97706;
+    --amber-light: #fef3c7;
+    --bg: #f8f9fc;
+    --card: #ffffff;
+    --text: #1a1a2e;
+    --sub: #555577;
+    --border: #e2e6f0;
+    --shadow: 0 4px 20px rgba(0,0,0,0.08);
+    --radius: 14px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Lexend', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  /* ── TOPBAR ── */
+  .topbar {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.97);
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid var(--border);
+    padding: 0 20px;
+    display: flex; align-items: center; gap: 10px;
+    flex-wrap: wrap; min-height: 56px;
+  }
+  .topbar-brand {
+    font-family: 'Lexend Mega', sans-serif;
+    font-size: 0.97rem; font-weight: 700;
+    color: var(--text); margin-right: 4px;
+    white-space: nowrap;
+  }
+  .topbar-badge {
+    display: inline-block;
+    background: var(--latin);
+    color: #fff;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  /* ── LAYOUT ── */
+  .page-wrap {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 28px 20px 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    width: 100%;
+    border-radius: var(--radius);
+    padding: 28px 32px;
+    margin-bottom: 28px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #7c3aed, #a855f7);
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: rgba(0,0,0,0.10);
+    border-radius: var(--radius);
+  }
+  .hero-content { position: relative; z-index: 1; }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.22);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.72rem; font-weight: 600;
+    letter-spacing: 0.06em;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+  .hero h1 { font-family: 'Lexend Mega', sans-serif; font-size: 1.7rem; font-weight: 700; margin-bottom: 6px; line-height: 1.2; }
+  .hero p { font-size: 0.95rem; opacity: 0.88; }
+
+  /* ── SECTION PANELS ── */
+  .panel {
+    width: 100%;
+    background: var(--card);
+    border-radius: var(--radius);
+    border: 2px solid var(--border);
+    padding: 20px;
+    margin-bottom: 16px;
+    box-shadow: var(--shadow);
+  }
+  .panel-title {
+    font-size: 0.7rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 1.5px;
+    color: var(--sub);
+    margin-bottom: 12px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .panel-title-icon {
+    width: 22px; height: 22px;
+    border-radius: 6px;
+    background: var(--latin-light);
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 0.8rem;
+  }
+
+  /* ── FILTER BUTTONS ── */
+  .filter-row { display: flex; flex-wrap: wrap; gap: 7px; }
+  .sub-row { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); }
+
+  .fb {
+    padding: 6px 13px;
+    border-radius: 20px;
+    border: 2px solid var(--border);
+    background: var(--bg);
+    color: var(--sub);
+    font-family: 'Lexend', sans-serif;
+    font-size: 0.8rem; font-weight: 600;
+    cursor: pointer;
+    transition: all 0.17s;
+  }
+  .fb:hover { background: var(--text); border-color: var(--text); color: #fff; }
+  .fb.active { background: var(--latin); border-color: var(--latin); color: #fff; }
+
+  .sfb {
+    padding: 5px 11px;
+    border-radius: 20px;
+    border: 2px solid var(--border);
+    background: var(--bg);
+    color: var(--sub);
+    font-family: 'Lexend', sans-serif;
+    font-size: 0.75rem; font-weight: 600;
+    cursor: pointer;
+    transition: all 0.17s;
+  }
+  .sfb:hover { background: var(--text); border-color: var(--text); color: #fff; }
+  .sfb.active { background: var(--text); border-color: var(--text); color: #fff; }
+
+  /* ── MODE BUTTONS ── */
+  .mode-row { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-bottom: 0; width: 100%; }
+  .mode-btn {
+    flex: 1; min-width: 140px;
+    padding: 10px 16px;
+    border-radius: 20px;
+    border: 2px solid var(--border);
+    background: var(--bg);
+    color: var(--sub);
+    font-family: 'Lexend', sans-serif;
+    font-size: 0.85rem; font-weight: 600;
+    cursor: pointer;
+    transition: all 0.17s;
+  }
+  .mode-btn:hover { background: var(--text); border-color: var(--text); color: #fff; }
+  .mode-btn.active-all { background: var(--text); border-color: var(--text); color: #fff; }
+  .mode-btn.active-learning { background: var(--amber); border-color: var(--amber); color: #fff; }
+
+  /* ── SEARCH ── */
+  .search-wrap { width: 100%; position: relative; margin-bottom: 0; }
+  .search-wrap input {
+    width: 100%;
+    padding: 12px 16px 12px 40px;
+    background: var(--card);
+    border: 2px solid var(--border);
+    border-radius: 20px;
+    color: var(--text);
+    font-family: 'Lexend', sans-serif;
+    font-size: 0.9rem; font-weight: 400;
+    outline: none;
+    transition: border-color 0.17s;
+  }
+  .search-wrap input:focus { border-color: var(--latin); }
+  .search-wrap::before { content: "🔍"; position: absolute; left: 14px; top: 50%; transform: translateY(-50%); opacity: 0.5; font-size: 0.9rem; }
+
+  /* ── PROGRESS AREA ── */
+  .progress-area {
+    width: 100%;
+    display: flex; flex-wrap: wrap;
+    gap: 20px; align-items: center; justify-content: center;
+    margin-bottom: 0;
+  }
+  .progress-wrap { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .progress {
+    font-family: 'Lexend Mega', sans-serif;
+    font-size: 1rem; font-weight: 700;
+    color: var(--text); text-align: center;
+  }
+  .progress-sub { color: var(--sub); font-size: 0.75rem; text-align: center; }
+
+  .progress-ring { width: 110px; height: 110px; position: relative; }
+  .progress-ring::before {
+    content: '';
+    position: absolute; inset: 0;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.95);
+    box-shadow: 0 0 0 6px var(--latin-light);
+  }
+  .progress-ring-fill {
+    position: absolute; inset: 0;
+    border-radius: 50%;
+    background: conic-gradient(var(--latin) 0deg, var(--latin) 0deg, var(--border) 0deg, var(--border) 360deg);
+    transition: background 0.35s ease;
+  }
+  .progress-ring-label {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.9rem; font-weight: 700;
+    color: var(--text);
+    font-family: 'Lexend', sans-serif;
+  }
+
+  .stats-bar { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; max-width: 380px; }
+  .stat {
+    font-family: 'Lexend', sans-serif;
+    font-size: 0.78rem; font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 20px;
+  }
+  .stat-total { background: var(--card); color: var(--sub); border: 2px solid var(--border); }
+  .stat-know { background: var(--green-light); color: #065f46; border: 2px solid #6ee7b7; }
+  .stat-learning { background: var(--amber-light); color: #78350f; border: 2px solid #fcd34d; }
+
+  /* ── FLASHCARD ── */
+  .card-area {
+    perspective: 1200px;
+    width: min(480px, 94vw);
+    height: 290px;
+    cursor: pointer;
+    margin-bottom: 0;
+  }
+  .card {
+    width: 100%; height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .card.flipped { transform: rotateY(180deg); }
+  .card::after {
+    content: "";
+    position: absolute; inset: 0;
+    border-radius: var(--radius);
+    pointer-events: none; opacity: 0;
+    transition: opacity 0.25s ease, background 0.25s ease;
+  }
+  .card.swiping-left::after { background: rgba(217, 119, 6, 0.18); opacity: 1; }
+  .card.swiping-right::after { background: rgba(5, 150, 105, 0.18); opacity: 1; }
+
+  .face {
+    position: absolute; width: 100%; height: 100%;
+    backface-visibility: hidden;
+    border-radius: var(--radius);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 28px; text-align: center;
+    box-shadow: var(--shadow);
+    border: 2px solid var(--border);
+    transition: border-color 0.3s ease;
+  }
+  .front { background: var(--card); }
+  .front.status-know { border-color: #059669 !important; border-width: 2px; }
+  .front.status-learning { border-color: var(--amber) !important; border-width: 2px; }
+  .back {
+    background: linear-gradient(135deg, #ede9fe 0%, #f5f3ff 100%);
+    border-color: #c4b5fd;
+    transform: rotateY(180deg);
+  }
+
+  .lat-word {
+    font-family: 'Lexend Mega', sans-serif;
+    font-size: 1.9rem; font-weight: 700;
+    color: var(--text); margin-bottom: 8px;
+  }
+  .lat-info { font-size: 0.88rem; color: var(--sub); font-weight: 400; }
+  .en-meaning {
+    font-family: 'Lexend', sans-serif;
+    font-size: 1.55rem; font-weight: 600;
+    color: var(--latin-dark);
+    font-style: italic;
+  }
+  .pos-badge {
+    margin-top: 14px;
+    font-size: 0.68rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    padding: 5px 12px;
+    background: rgba(124, 58, 237, 0.12);
+    border-radius: 20px;
+    color: var(--latin-dark);
+    border: 1.5px solid #c4b5fd;
+  }
+
+  /* ── MARK BUTTONS ── */
+  .mark-row {
+    display: flex; gap: 10px;
+    width: min(480px, 94vw);
+    margin-bottom: 0;
+  }
+  .mark-btn {
+    flex: 1; padding: 13px;
+    border: none; border-radius: var(--radius);
+    font-family: 'Lexend', sans-serif;
+    font-size: 0.9rem; font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.17s, box-shadow 0.17s;
+    box-shadow: var(--shadow);
+  }
+  .mark-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.14); }
+  #markKnow { background: linear-gradient(135deg, #059669, #10b981); color: white; }
+  #markLearning { background: linear-gradient(135deg, #d97706, #f59e0b); color: white; }
+
+  /* ── CONTROLS ── */
+  .controls { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+  .ctrl {
+    padding: 9px 20px;
+    border: 2px solid var(--border);
+    border-radius: 20px;
+    font-family: 'Lexend', sans-serif;
+    font-size: 0.85rem; font-weight: 600;
+    cursor: pointer;
+    background: var(--card);
+    color: var(--text);
+    transition: all 0.17s;
+    box-shadow: var(--shadow);
+  }
+  .ctrl:hover { background: var(--text); border-color: var(--text); color: #fff; }
+  .ctrl:disabled { opacity: 0.4; cursor: default; }
+  .ctrl:disabled:hover { background: var(--card); border-color: var(--border); color: var(--text); }
+  #flipBtn { background: var(--latin-light); border-color: #c4b5fd; color: var(--latin-dark); }
+  #flipBtn:hover { background: var(--latin); border-color: var(--latin); color: #fff; }
+  #resetBtn { border-color: #fca5a5; color: #dc2626; }
+  #resetBtn:hover { background: #dc2626; border-color: #dc2626; color: #fff; }
+
+  /* ── EOD BANNER ── */
+  .eod-banner {
+    display: none;
+    width: 100%;
+    background: var(--card);
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    padding: 22px; text-align: center;
+    box-shadow: var(--shadow);
+  }
+  .eod-banner.show { display: block; animation: slideDown 0.4s ease-out; }
+
+  /* ── MODAL ── */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0;
+    background: rgba(26, 26, 46, 0.5);
+    z-index: 100; align-items: center; justify-content: center;
+    backdrop-filter: blur(6px);
+  }
+  .modal {
+    background: var(--card);
+    border: 2px solid var(--border);
+    padding: 28px;
+    border-radius: var(--radius);
+    width: min(380px, 92vw);
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.16);
+  }
+  .modal h3 { font-family: 'Lexend Mega', sans-serif; font-size: 1.1rem; color: var(--text); margin-bottom: 10px; }
+  .modal p { font-size: 0.88rem; color: var(--sub); margin-bottom: 18px; }
+  .modal-btn {
+    display: block; width: 100%;
+    padding: 13px; margin-bottom: 8px;
+    border-radius: var(--radius); border: none;
+    cursor: pointer;
+    font-family: 'Lexend', sans-serif;
+    font-weight: 600; font-size: 0.9rem;
+    transition: opacity 0.17s;
+  }
+  .modal-btn:hover { opacity: 0.88; }
+  .btn-danger { background: #dc2626; color: white; }
+  .btn-warning { background: var(--amber); color: white; }
+  .btn-cancel { background: transparent; color: var(--sub); border: 2px solid var(--border); }
+
+  /* ── STATUS INDICATOR ── */
+  #status-indicator {
+    font-family: 'Lexend', sans-serif;
+    font-size: 0.68rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    padding: 4px 12px; border-radius: 20px;
+    color: white;
+    margin-top: 12px;
+  }
+
+  /* ── FILTER SECTION LABEL ── */
+  .filter-label {
+    font-size: 0.7rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 1.5px;
+    color: var(--sub); margin-bottom: 10px;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes slideDown { from { transform: translateY(-16px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+  @keyframes swipeLeft { 0%{transform:translateX(0) rotateZ(0deg);opacity:1;} 30%{transform:translateX(-20px) rotateZ(-1deg);opacity:0.95;} 100%{transform:translateX(-120%) rotateZ(-4deg);opacity:0.2;} }
+  @keyframes swipeRight { 0%{transform:translateX(0) rotateZ(0deg);opacity:1;} 30%{transform:translateX(20px) rotateZ(1deg);opacity:0.95;} 100%{transform:translateX(120%) rotateZ(4deg);opacity:0.2;} }
+  @keyframes slideInRight { 0%{transform:translateX(40px);opacity:0;} 100%{transform:translateX(0);opacity:1;} }
+  .card.swiping-left { animation: swipeLeft 0.35s ease-in forwards; }
+  .card.swiping-right { animation: swipeRight 0.35s ease-in forwards; }
+  .card.sliding-in { animation: slideInRight 0.3s ease-out forwards; }
+
+  /* ── KEYBOARD HINT ── */
+  .kb-hint {
+    font-size: 0.72rem; color: var(--sub);
+    text-align: center; padding: 8px 0 0;
+    font-weight: 400;
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <span class="topbar-brand">🏛 Senior Cycle Latin</span>
+  <span class="topbar-badge">Vocabulary Flashcards</span>
+</div>
+
+<div class="page-wrap">
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">Leaving Cert Latin</div>
+    <h1>Latin Vocabulary</h1>
+    <p>Tap a card to flip · ← Still learning &nbsp;·&nbsp; → Know it · Space to flip</p>
+  </div>
+</div>
+
+<!-- PART OF SPEECH FILTER -->
+<div class="panel">
+  <div class="panel-title"><span class="panel-title-icon">📝</span> Part of Speech</div>
+  <div class="filter-row" id="pos-filters"></div>
+  <div id="verb-sub-container" style="display:none;">
+    <div class="filter-label" style="margin-top:10px;">Verb Type</div>
+    <div class="sub-row" id="verb-filters"></div>
+  </div>
+  <div id="noun-sub-container" style="display:none;">
+    <div class="filter-label" style="margin-top:10px;">Noun Gender</div>
+    <div class="sub-row" id="noun-filters"></div>
+  </div>
+</div>
+
+<!-- PRACTICE SETS + MODE + SEARCH -->
+<div class="panel">
+  <div class="panel-title"><span class="panel-title-icon">🔠</span> Practice Sets</div>
+  <div class="filter-row" id="group-filters">
+    <button class="fb active" id="group-all" onclick="setLetterGroup('all')">All</button>
+    <button class="fb" id="group-a-c" onclick="setLetterGroup('a-c')">A‑C</button>
+    <button class="fb" id="group-d-f" onclick="setLetterGroup('d-f')">D‑F</button>
+    <button class="fb" id="group-g-i" onclick="setLetterGroup('g-i')">G‑I</button>
+    <button class="fb" id="group-j-l" onclick="setLetterGroup('j-l')">J‑L</button>
+    <button class="fb" id="group-m-o" onclick="setLetterGroup('m-o')">M‑O</button>
+    <button class="fb" id="group-p-r" onclick="setLetterGroup('p-r')">P‑R</button>
+    <button class="fb" id="group-s-u" onclick="setLetterGroup('s-u')">S‑U</button>
+    <button class="fb" id="group-v-z" onclick="setLetterGroup('v-z')">V‑Z</button>
+  </div>
+  <div style="margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border);">
+    <div class="mode-row">
+      <button class="mode-btn active-all" id="modeAll" onclick="setMode('all')">All cards</button>
+      <button class="mode-btn" id="modeLearning" onclick="setMode('learning')">⟳ Still learning only</button>
+    </div>
+  </div>
+  <div style="margin-top: 12px;">
+    <div class="search-wrap">
+      <input type="text" id="search" placeholder="Search Latin or English…" oninput="onSearch()">
+    </div>
+  </div>
+</div>
+
+<!-- PROGRESS -->
+<div class="panel">
+  <div class="panel-title"><span class="panel-title-icon">📊</span> Progress</div>
+  <div class="progress-area">
+    <div class="progress-wrap">
+      <div class="progress" id="progress">1 / 0</div>
+      <div class="progress-ring" id="progress-ring">
+        <div class="progress-ring-fill" id="progress-ring-fill"></div>
+        <span class="progress-ring-label" id="progress-ring-label">0%</span>
+      </div>
+      <div class="progress-sub" id="progress-sub"></div>
+    </div>
+    <div class="stats-bar" id="stats-bar">
+      <span class="stat stat-total" id="stat-total">Total: 0</span>
+      <span class="stat stat-know" id="stat-know">✓ Know: 0</span>
+      <span class="stat stat-learning" id="stat-learning">◉ Still learning: 0</span>
+    </div>
+  </div>
+</div>
+
+<!-- EOD BANNER -->
+<div class="eod-banner" id="eod-banner">
+  <div style="font-size: 1.1rem; font-weight: 700; color: var(--green); font-family: 'Lexend Mega', sans-serif;">🎉 All Mastered!</div>
+  <p id="eod-msg" style="color: var(--sub); font-size: 0.88rem; margin-top: 8px;">You've cleared your 'Still learning' list for this category.</p>
+  <button onclick="setMode('all')" style="margin-top: 12px; padding: 8px 18px; border-radius: 20px; border: none; background: var(--latin); color: #fff; font-family: 'Lexend', sans-serif; font-weight: 600; cursor: pointer;">Back to All Cards</button>
+</div>
+
+<!-- FLASHCARD -->
+<div class="card-area" onclick="flipCard()">
+  <div class="card" id="card">
+    <div class="face front" id="card-front">
+      <div class="lat-word" id="lat-word"></div>
+      <div class="lat-info" id="lat-info"></div>
+      <div id="status-indicator"></div>
+    </div>
+    <div class="face back">
+      <div class="en-meaning" id="en-meaning"></div>
+      <div class="pos-badge" id="pos-tag"></div>
+    </div>
+  </div>
+</div>
+
+<!-- MARK BUTTONS -->
+<div class="mark-row">
+  <button class="mark-btn" id="markLearning" onclick="markCard('learning')">◉ Still learning</button>
+  <button class="mark-btn" id="markKnow" onclick="markCard('know')">✓ Know it</button>
+</div>
+
+<!-- CONTROLS -->
+<div class="controls" style="margin-top: 12px;">
+  <button class="ctrl" onclick="navigate(-1)">← Prev</button>
+  <button class="ctrl" id="flipBtn" onclick="flipCard()">Flip</button>
+  <button class="ctrl" onclick="navigate(1)">Next →</button>
+</div>
+<div class="controls" style="margin-top: 8px;">
+  <button class="ctrl" id="undoBtn" onclick="undoLastAction()" disabled>↶ Undo</button>
+  <button class="ctrl" onclick="shuffle()">🔀 Shuffle</button>
+  <button class="ctrl" id="resetBtn" onclick="openResetModal()">↺ Reset Progress</button>
+</div>
+<p class="kb-hint">Keyboard: ← Still learning &nbsp;·&nbsp; → Know it &nbsp;·&nbsp; Space / ↓ Flip &nbsp;·&nbsp; U Undo</p>
+
+</div><!-- /page-wrap -->
+
+<!-- MODAL -->
+<div class="modal-overlay" id="reset-modal" style="display:none;">
+  <div class="modal">
+    <h3>Reset Progress</h3>
+    <p>Choose which progress you would like to clear.</p>
+    <button class="modal-btn btn-warning" onclick="resetProgress('category')">Reset Current Category</button>
+    <button class="modal-btn btn-danger" onclick="resetProgress('all')">Reset ALL Cards</button>
+    <button class="modal-btn btn-cancel" onclick="closeResetModal()">Cancel</button>
+  </div>
+</div>
+
+<script>
+// --- Data ---
+const ALL = [
+  {w:"a, ab",i:"+ abl.",e:"from, by",p:"prep"},
+  {w:"ab tergo",i:"phrase",e:"from the rear, in the rear",p:"phrase"},
+  {w:"abdo",i:"abdere, abdidi, abditum (3)",e:"to hide",p:"verb3"},
+  {w:"absum",i:"abesse, afui / abfui + abl.",e:"to be absent, be away",p:"verbirr"},
+  {w:"ac (atque)",i:"conj.",e:"and",p:"conj"},
+  {w:"accedo",i:"accedere, accessi, accessum (3)",e:"to approach",p:"verb3"},
+  {w:"accendo",i:"accendere, accendi, accensum (3)",e:"to set on fire, to rouse",p:"verb3"},
+  {w:"accido",i:"accidere, accidi (3)",e:"to happen",p:"verb3"},
+  {w:"accipio",i:"accipere, accepi, acceptum (3)",e:"to accept, take in, receive, welcome",p:"verb3"},
+  {w:"accuso",i:"accusare, accusavi, accusatum (1)",e:"to accuse",p:"verb1"},
+  {w:"acer",i:"acris, acre",e:"keen, eager",p:"adj"},
+  {w:"acies",i:"aciei f.",e:"line of battle, gaze",p:"noun"},
+  {w:"acriter",i:"adv.",e:"keenly, eagerly",p:"adv"},
+  {w:"ad",i:"+ acc.",e:"to, towards, at",p:"prep"},
+  {w:"addo",i:"addere, addidi, additum (3)",e:"to add",p:"verb3"},
+  {w:"adeo",i:"adv.",e:"so much, so greatly, to such a degree",p:"adv"},
+  {w:"adeo",i:"adire, adii / adivi, aditum",e:"to approach, go up to",p:"verbirr"},
+  {w:"adfero",i:"adferre, attuli, allatum",e:"to bring, carry, bring news",p:"verbirr"},
+  {w:"adiuvo",i:"adiuvare, adiuvi, adiutum (1)",e:"to help, assist",p:"verb1"},
+  {w:"adsentior",i:"adsentiri, adsensus sum (4) + dat.",e:"to agree with, assent to",p:"verbdep"},
+  {w:"adsto",i:"adstare, adstiti (1)",e:"to stand near, stand by",p:"verb1"},
+  {w:"adsum",i:"adesse, adfui",e:"to be here, present, at hand",p:"verbirr"},
+  {w:"adulescens",i:"adulescentis m./f.",e:"youth, young man, young girl",p:"noun"},
+  {w:"advenio",i:"advenire, adveni, adventum (4)",e:"to arrive at",p:"verb4"},
+  {w:"adventus",i:"-us m.",e:"arrival, approach",p:"noun"},
+  {w:"adversus",i:"+ acc.",e:"opposite, against",p:"prep"},
+  {w:"adversus",i:"-a -um",e:"opposite, hostile",p:"adj"},
+  {w:"aedes",i:"aedis f.",e:"home, temple, dwelling",p:"noun"},
+  {w:"aedificium",i:"-i n.",e:"building",p:"noun"},
+  {w:"aedifico",i:"aedificare, aedificavi, aedificatum (1)",e:"to build",p:"verb1"},
+  {w:"aeger",i:"aegra, aegrum",e:"sick",p:"adj"},
+  {w:"aer",i:"aeris n.",e:"air",p:"noun"},
+  {w:"aestas",i:"aestatis f.",e:"summer",p:"noun"},
+  {w:"aetas",i:"aetatis f.",e:"age, life",p:"noun"},
+  {w:"age / agite",i:"interj.",e:"come on!",p:"interj"},
+  {w:"ager",i:"agri m.",e:"field, territory",p:"noun"},
+  {w:"agmen",i:"agminis n.",e:"column, procession",p:"noun"},
+  {w:"agnosco",i:"agnoscere, agnovi, agnitum (3)",e:"to recognise, understand",p:"verb3"},
+  {w:"ago",i:"agere, egi, actum (3)",e:"to do, act, pass, spend time, drive, give (thanks)",p:"verb3"},
+  {w:"agrestis",i:"agrestis, agreste",e:"rustic, country, savage",p:"adj"},
+  {w:"ait / aiunt",i:"defective verb",e:"he/she/it says, they say",p:"verbirr"},
+  {w:"ala",i:"-ae f.",e:"wing, wing of an army",p:"noun"},
+  {w:"alii … alii",i:"pron.",e:"some … others",p:"pron"},
+  {w:"aliquando",i:"adv.",e:"sometimes, formerly",p:"adv"},
+  {w:"aliquis",i:"aliqua, aliquid",e:"someone, something",p:"pron"},
+  {w:"alius",i:"alia, aliud",e:"other, another, else",p:"pron"},
+  {w:"alter",i:"altera, alterum",e:"the other, another, one of two, a second",p:"pron"},
+  {w:"altus",i:"-a -um",e:"high, deep",p:"adj"},
+  {w:"ambo",i:"ambae, ambo",e:"both",p:"pron"},
+  {w:"ambulo",i:"ambulare, ambulavi, ambulatum (1)",e:"to walk",p:"verb1"},
+  {w:"amica",i:"-ae f.",e:"friend, girlfriend",p:"noun"},
+  {w:"amicitia",i:"-ae f.",e:"friendship",p:"noun"},
+  {w:"amicus",i:"-i m.",e:"friend",p:"noun"},
+  {w:"amitto",i:"amittere, amisi, amissum (3)",e:"to lose",p:"verb3"},
+  {w:"amo",i:"amare, amavi, amatum (1)",e:"to love",p:"verb1"},
+  {w:"amor",i:"amoris m.",e:"love",p:"noun"},
+  {w:"amplius",i:"adv.",e:"more, further",p:"adv"},
+  {w:"ancilla",i:"-ae f.",e:"maidservant, slave",p:"noun"},
+  {w:"angustus",i:"-a -um",e:"narrow",p:"adj"},
+  {w:"anima",i:"-ae f.",e:"spirit, mind, life",p:"noun"},
+  {w:"animadverto",i:"animadvertere, animadverti, animadversum (3)",e:"to notice, realize",p:"verb3"},
+  {w:"animus",i:"-i m.",e:"spirit, soul, mind",p:"noun"},
+  {w:"annus",i:"-i m.",e:"year",p:"noun"},
+  {w:"ante",i:"+ acc.",e:"before, in front of",p:"prep"},
+  {w:"antea",i:"adv.",e:"before, formerly, previously",p:"adv"},
+  {w:"antequam",i:"conj.",e:"before",p:"conj"},
+  {w:"antiquus",i:"-a -um",e:"ancient, old",p:"adj"},
+  {w:"aperio",i:"aperire, aperui, apertum (4)",e:"to open, reveal",p:"verb4"},
+  {w:"aperte",i:"adv.",e:"openly",p:"adv"},
+  {w:"appareo",i:"apparere, apparui, apparitum (2)",e:"to appear, become visible",p:"verb2"},
+  {w:"appello",i:"appellare, appellavi, appellatum (1)",e:"to call (by name), call upon, address",p:"verb1"},
+  {w:"appropinquo",i:"appropinquare, appropinquavi, appropinquatum + dat./ad + acc. (1)",e:"to approach, come near to",p:"verb1"},
+  {w:"apto",i:"aptare, aptavi, aptatum (1)",e:"to fit, get ready",p:"verb1"},
+  {w:"apud",i:"+ acc.",e:"among, at the house of, in the presence of",p:"prep"},
+  {w:"aqua",i:"-ae f.",e:"water",p:"noun"},
+  {w:"ara",i:"-ae f.",e:"altar, refuge",p:"noun"},
+  {w:"arbitror",i:"arbitrari, arbitratus sum (1)",e:"to think, observe, believe",p:"verbdep"},
+  {w:"arbor",i:"arboris f.",e:"tree",p:"noun"},
+  {w:"arcesso",i:"arcessere, arcessivi, arcessitum (3)",e:"to send for, summon",p:"verb3"},
+  {w:"ardeo",i:"ardere, arsi, arsum (2)",e:"to burn, be on fire",p:"verb2"},
+  {w:"arduus",i:"-a -um",e:"steep, high",p:"adj"},
+  {w:"argentum",i:"-i n.",e:"silver",p:"noun"},
+  {w:"arma",i:"armorum n.pl.",e:"arms",p:"noun"},
+  {w:"armo",i:"armare, armavi, armatum (1)",e:"to arm, equip",p:"verb1"},
+  {w:"ars",i:"artis f.",e:"art, skill",p:"noun"},
+  {w:"arx",i:"arcis f.",e:"citadel, fortress",p:"noun"},
+  {w:"ascendo",i:"ascendere, ascendi, ascensum (3)",e:"to climb, rise",p:"verb3"},
+  {w:"asper",i:"-a -um",e:"rough, harsh",p:"adj"},
+  {w:"aspicio",i:"aspicere, aspexi, aspectum (3)",e:"to catch sight of, look at",p:"verb3"},
+  {w:"at",i:"conj.",e:"but",p:"conj"},
+  {w:"atque",i:"conj.",e:"and",p:"conj"},
+  {w:"atrium",i:"-i n.",e:"hall",p:"noun"},
+  {w:"atrox",i:"atrocis m.f.n.",e:"fierce, cruel",p:"adj"},
+  {w:"attollo",i:"attollere, attuli, allatum (3)",e:"to lift up, raise",p:"verb3"},
+  {w:"attonitus",i:"-a -um",e:"astonished, thunderstruck",p:"adj"},
+  {w:"auctoritas",i:"auctoritatis f.",e:"authority, power, opinion, judgement",p:"noun"},
+  {w:"audacia",i:"-ae f.",e:"boldness, daring, audacity",p:"noun"},
+  {w:"audax",i:"-acis m.f.n.",e:"bold, daring",p:"adj"},
+  {w:"audeo",i:"audere, ausus sum (2)",e:"to dare",p:"verbsemi"},
+  {w:"audio",i:"audire, audivi, auditum (4)",e:"to hear",p:"verb4"},
+  {w:"aufero",i:"auferre, abstuli, ablatum",e:"to take away, carry off, steal",p:"verbirr"},
+  {w:"augeo",i:"augere, auxi, auctum (2)",e:"to increase, augment",p:"verb2"},
+  {w:"aura",i:"-ae f.",e:"air, wind",p:"noun"},
+  {w:"aureus",i:"-a -um",e:"golden, made of gold",p:"adj"},
+  {w:"auris",i:"auris f.",e:"ear",p:"noun"},
+  {w:"aurum",i:"-i n.",e:"gold",p:"noun"},
+  {w:"aut",i:"conj.",e:"or",p:"conj"},
+  {w:"aut … aut",i:"conj.",e:"either … or",p:"conj"},
+  {w:"autem",i:"conj.",e:"but, moreover, however, now",p:"conj"},
+  {w:"autumnus",i:"-i m.",e:"autumn",p:"noun"},
+  {w:"auxilia",i:"auxiliorum n.pl.",e:"reinforcements",p:"noun"},
+  {w:"auxilium",i:"-i n.",e:"help, assistance",p:"noun"},
+  {w:"avis",i:"avis f.",e:"bird",p:"noun"},
+  // ─ B ─
+  {w:"beatus",i:"-a -um",e:"happy, blessed",p:"adj"},
+  {w:"bellum",i:"-i n.",e:"war",p:"noun"},
+  {w:"bene",i:"adv.",e:"well",p:"adv"},
+  {w:"bibo",i:"bibere, bibi, bibitum (3)",e:"to drink",p:"verb3"},
+  {w:"bonus",i:"-a -um",e:"good",p:"adj"},
+  {w:"bos",i:"bovis c.",e:"ox, cow",p:"noun"},
+  {w:"bracchium",i:"-i n.",e:"arm",p:"noun"},
+  {w:"brevis",i:"-is -e",e:"short, brief",p:"adj"},
+  // ─ C ─
+  {w:"cado",i:"cadere, cecidi, casum (3)",e:"to fall, be killed",p:"verb3"},
+  {w:"caecus",i:"-a -um",e:"blind, hidden, obscure",p:"adj"},
+  {w:"caedes",i:"caedis f.",e:"slaughter, murder",p:"noun"},
+  {w:"caedo",i:"caedere, cecidi, caesum (3)",e:"to kill",p:"verb3"},
+  {w:"caelum",i:"-i n.",e:"sky, heaven, weather",p:"noun"},
+  {w:"calidus",i:"-a -um",e:"warm, hot",p:"adj"},
+  {w:"campus",i:"-i m.",e:"plain, field",p:"noun"},
+  {w:"candidus",i:"-a -um",e:"white, beautiful",p:"adj"},
+  {w:"canis",i:"-is m./f.",e:"dog",p:"noun"},
+  {w:"canto",i:"cantare, cantavi, cantatum (1)",e:"to sing, chant",p:"verb1"},
+  {w:"capillus",i:"-i m.",e:"hair",p:"noun"},
+  {w:"capio",i:"capere, cepi, captum (3)",e:"to take, capture, seize, catch",p:"verb3"},
+  {w:"captivus",i:"-i m.",e:"prisoner, captive",p:"noun"},
+  {w:"caput",i:"capitis n.",e:"head",p:"noun"},
+  {w:"carcer",i:"carceris m.",e:"prison",p:"noun"},
+  {w:"carmen",i:"carminis n.",e:"song, poem",p:"noun"},
+  {w:"carpo",i:"carpere, carpsi, carptum (3)",e:"to take, pluck, seize, catch",p:"verb3"},
+  {w:"carus",i:"-a -um",e:"dear",p:"adj"},
+  {w:"castigo",i:"castigare, castigavi, castigatum (1)",e:"to scold, chide",p:"verb1"},
+  {w:"castra",i:"castrorum n.pl.",e:"camp",p:"noun"},
+  {w:"casus",i:"-us m.",e:"chance, misfortune, fall",p:"noun"},
+  {w:"causa",i:"-ae f.",e:"cause, reason",p:"noun"},
+  {w:"caveo",i:"cavere, cavi, cautum (2)",e:"to beware of",p:"verb2"},
+  {w:"cedo",i:"cedere, cessi, cessum (3)",e:"to yield, go, withdraw",p:"verb3"},
+  {w:"celer",i:"celeris, celere",e:"swift, fast",p:"adj"},
+  {w:"celeriter",i:"adv.",e:"quickly",p:"adv"},
+  {w:"celo",i:"celare, celavi, celatum (1)",e:"to hide, conceal",p:"verb1"},
+  {w:"cena",i:"-ae f.",e:"dinner",p:"noun"},
+  {w:"ceno",i:"cenare, cenavi, cenatum (1)",e:"to dine, have dinner",p:"verb1"},
+  {w:"censeo",i:"censere, censui, censum (2)",e:"to think, judge, vote, reckon",p:"verb2"},
+  {w:"centurio",i:"centurionis m.",e:"centurion",p:"noun"},
+  {w:"cerno",i:"cernere, crevi, cretum (3)",e:"to perceive, decide, determine",p:"verb3"},
+  {w:"certamen",i:"certaminis n.",e:"contest, struggle, rivalry",p:"noun"},
+  {w:"certe",i:"adv.",e:"certainly, surely",p:"adv"},
+  {w:"cervix",i:"cervicis f.",e:"neck",p:"noun"},
+  {w:"ceteri",i:"-ae -a",e:"the others, the rest",p:"pron"},
+  {w:"ceterum",i:"adv.",e:"but, besides",p:"adv"},
+  {w:"cibus",i:"-i m.",e:"food",p:"noun"},
+  {w:"cinis",i:"cineris m.",e:"ashes, ruin",p:"noun"},
+  {w:"circa",i:"adv.",e:"around, near",p:"adv"},
+  {w:"circiter",i:"adv.",e:"about, near",p:"adv"},
+  {w:"circum",i:"+ acc.",e:"around, near",p:"prep"},
+  {w:"circumvenio",i:"circumvenire, circumveni, circumventum (4)",e:"to surround",p:"verb4"},
+  {w:"civis",i:"civis m.",e:"citizen",p:"noun"},
+  {w:"civitas",i:"civitatis f.",e:"a state",p:"noun"},
+  {w:"clam",i:"adv.",e:"secretly",p:"adv"},
+  {w:"clamo",i:"clamare, clamavi, clamatum (1)",e:"to shout, cry aloud",p:"verb1"},
+  {w:"clamor",i:"clamoris m.",e:"loud shout, cry",p:"noun"},
+  {w:"clarus",i:"-a -um",e:"famous, clear, bright",p:"adj"},
+  {w:"classis",i:"classis f.",e:"fleet",p:"noun"},
+  {w:"claudo",i:"claudere, clausi, clausum (3)",e:"to shut, close, block",p:"verb3"},
+  {w:"coepi",i:"coepisse, coeptum (3) defective",e:"I began",p:"verb3"},
+  {w:"cogito",i:"cogitare, cogitavi, cogitatum (1)",e:"to think, consider, reflect upon",p:"verb1"},
+  {w:"cognosco",i:"cognoscere, cognovi, cognitum (3)",e:"to learn, get to know, ascertain",p:"verb3"},
+  {w:"cogo",i:"cogere, coegi, coactum (3)",e:"to force, gather",p:"verb3"},
+  {w:"cohors",i:"cohortis f.",e:"cohort, bodyguard",p:"noun"},
+  {w:"colligo",i:"colligere, collegi, collectum (3)",e:"to collect",p:"verb3"},
+  {w:"collis",i:"-is m.",e:"hill",p:"noun"},
+  {w:"colloco",i:"collocare, collocavi, collocatum (1)",e:"to arrange, place together",p:"verb1"},
+  {w:"collum",i:"-i n.",e:"neck",p:"noun"},
+  {w:"colo",i:"colere, colui, cultum (3)",e:"to cultivate, cherish",p:"verb3"},
+  {w:"color",i:"coloris m.",e:"colour",p:"noun"},
+  {w:"comes",i:"comitis c.",e:"companion",p:"noun"},
+  {w:"comitor",i:"comitari, comitatus sum (1)",e:"to accompany",p:"verbdep"},
+  {w:"committo",i:"committere, commisi, commissum (3)",e:"to entrust, engage (in battle)",p:"verb3"},
+  {w:"commotus",i:"-a -um",e:"moved, upset",p:"adj"},
+  {w:"communis",i:"-is -e",e:"common, public",p:"adj"},
+  {w:"compleo",i:"complere, complevi, completum (2)",e:"to fill",p:"verb2"},
+  {w:"complures",i:"-es -a",e:"several, a good many",p:"adj"},
+  {w:"comprehendo",i:"comprehendere, comprehendi, comprehensum (3)",e:"to seize, attack, embrace",p:"verb3"},
+  {w:"condo",i:"condere, condidi, conditum (3)",e:"to hide, found, bury",p:"verb3"},
+  {w:"(me) confero",i:"conferre, contuli, collatum",e:"to betake / devote oneself",p:"verbirr"},
+  {w:"conficio",i:"conficere, confeci, confectum (3)",e:"to finish, exhaust",p:"verb3"},
+  {w:"confido",i:"confidere, confisus sum (3) + dat.",e:"to trust, have confidence in",p:"verbsemi"},
+  {w:"confirmo",i:"confirmare, confirmavi, confirmatum (1)",e:"to confirm, encourage",p:"verb1"},
+  {w:"confiteor",i:"confiteri, confessus sum (2)",e:"to confess",p:"verbdep"},
+  {w:"conicio",i:"conicere, conieci, coniectum (3)",e:"to hurl, throw",p:"verb3"},
+  {w:"coniunx",i:"coniugis c.",e:"wife, husband",p:"noun"},
+  {w:"conor",i:"conari, conatus sum (1)",e:"to try",p:"verbdep"},
+  {w:"conscendo",i:"conscendere, conscendi, conscensum (3)",e:"to climb on, embark on",p:"verb3"},
+  {w:"conscius",i:"-a -um",e:"knowing, conscious of",p:"adj"},
+  {w:"consensus",i:"-us m.",e:"agreement",p:"noun"},
+  {w:"consilium",i:"-i n.",e:"plan, idea, advice",p:"noun"},
+  {w:"consisto",i:"consistere, constiti, constitum (3)",e:"to stand, take up a position, endure",p:"verb3"},
+  {w:"conspicio",i:"conspicere, conspexi, conspectum (3)",e:"to catch sight of, behold, observe",p:"verb3"},
+  {w:"constituo",i:"constituere, constitui, constitutum (3)",e:"to decide, set up, resolve",p:"verb3"},
+  {w:"consul",i:"consulis m.",e:"consul",p:"noun"},
+  {w:"consularis",i:"-is -e",e:"consular, of consular rank",p:"adj"},
+  {w:"consultum",i:"-i n.",e:"decree",p:"noun"},
+  {w:"contemno",i:"contemnere, contempsi, contemptum (3)",e:"to scorn, despise, defy",p:"verb3"},
+  {w:"contendo",i:"contendere, contendi, contentum (3)",e:"to hasten, march, struggle",p:"verb3"},
+  {w:"contineo",i:"continere, continui, contentum (2)",e:"to hold, keep together, control",p:"verb2"},
+  {w:"contio",i:"contionis f.",e:"assembly, public assembly, address",p:"noun"},
+  {w:"contra",i:"+ acc.",e:"against",p:"prep"},
+  {w:"contra",i:"adv.",e:"opposite",p:"adv"},
+  {w:"convenio",i:"convenire, conveni, conventum (4)",e:"to meet, assemble, gather",p:"verb4"},
+  {w:"convoco",i:"convocare, convocavi, convocatum (1)",e:"to call together",p:"verb1"},
+  {w:"coorior",i:"cooriri, coortus sum (4)",e:"to rise, begin",p:"verbdep"},
+  {w:"copia",i:"-ae f.",e:"supply, plenty",p:"noun"},
+  {w:"copiae",i:"-arum f.pl.",e:"forces, troops",p:"noun"},
+  {w:"coquo",i:"coquere, coxi, coctum (3)",e:"to cook",p:"verb3"},
+  {w:"coquus",i:"-i m.",e:"cook",p:"noun"},
+  {w:"cornu",i:"cornus n.",e:"wing of an army, horn",p:"noun"},
+  {w:"corona",i:"-ae f.",e:"garland, wreath",p:"noun"},
+  {w:"corpus",i:"corporis n.",e:"body",p:"noun"},
+  {w:"cotidie",i:"adv.",e:"daily, every day",p:"adv"},
+  {w:"cras",i:"adv.",e:"tomorrow",p:"adv"},
+  {w:"credo",i:"credere, credidi, creditum + dat. (3)",e:"to trust, believe, have faith in",p:"verb3"},
+  {w:"creo",i:"creare, creavi, creatum (1)",e:"to make, create, elect, choose",p:"verb1"},
+  {w:"cresco",i:"crescere, crevi, cretum (3)",e:"to grow",p:"verb3"},
+  {w:"crimen",i:"criminis n.",e:"charge, crime",p:"noun"},
+  {w:"crudelis",i:"-is -e",e:"cruel",p:"adj"},
+  {w:"cruentus",i:"-a -um",e:"blood-stained",p:"adj"},
+  {w:"cubiculum",i:"-i n.",e:"bedroom",p:"noun"},
+  {w:"cubo",i:"cubare, cubui, cubitum (1)",e:"to lie down, recline",p:"verb1"},
+  {w:"culpo",i:"culpare, culpavi, culpatum (1)",e:"to blame",p:"verb1"},
+  {w:"cum",i:"conj.",e:"when, whenever, since",p:"conj"},
+  {w:"cum",i:"prep. + abl.",e:"with",p:"prep"},
+  {w:"cunctor",i:"cunctari, cunctatus sum (1)",e:"to delay, hesitate",p:"verbdep"},
+  {w:"cupidus",i:"-a -um + gen.",e:"desirous, eager",p:"adj"},
+  {w:"cupio",i:"cupere, cupivi, cupitum (3)",e:"to want, to desire",p:"verb3"},
+  {w:"cur",i:"adv.",e:"why?",p:"adv"},
+  {w:"cura",i:"-ae f.",e:"care",p:"noun"},
+  {w:"curia",i:"-ae f.",e:"senate-house",p:"noun"},
+  {w:"curo",i:"curare, curavi, curatum (1)",e:"to care for, look after, supervise",p:"verb1"},
+  {w:"curro",i:"currere, cucurri, cursum (3)",e:"to run",p:"verb3"},
+  {w:"currus",i:"-us m.",e:"chariot",p:"noun"},
+  {w:"custodio",i:"custodire, custodivi, custoditum (4)",e:"to guard",p:"verb4"},
+  {w:"custos",i:"custodis m.",e:"guard",p:"noun"},
+  // ─ D ─
+  {w:"damno",i:"damnare, damnavi, damnatum (1)",e:"to condemn",p:"verb1"},
+  {w:"de",i:"+ abl.",e:"about, concerning, from, down from",p:"prep"},
+  {w:"dea",i:"-ae f.",e:"goddess",p:"noun"},
+  {w:"debeo",i:"debere, debui, debitum (2)",e:"to owe, ought, should, must",p:"verb2"},
+  {w:"decerno",i:"decernere, decrevi, decretum (3)",e:"to decide, decree, determine",p:"verb3"},
+  {w:"declaro",i:"declarare, declaravi, declaratum (1)",e:"to declare, explain, reveal",p:"verb1"},
+  {w:"decurro",i:"decurrere, decurri, decursum (3)",e:"to run down",p:"verb3"},
+  {w:"decus",i:"decoris n.",e:"glory, beauty, virtue",p:"noun"},
+  {w:"deditio",i:"deditionis f.",e:"surrender",p:"noun"},
+  {w:"dedo",i:"dedere, dedidi, deditum (3)",e:"to surrender, yield",p:"verb3"},
+  {w:"deduco",i:"deducere, deduxi, deductum (3)",e:"to lead down, bring down",p:"verb3"},
+  {w:"defendo",i:"defendere, defendi, defensum (3)",e:"to defend",p:"verb3"},
+  {w:"defessus",i:"-a -um",e:"tired, exhausted, weary",p:"adj"},
+  {w:"deicio",i:"deicere, deieci, deiectum (3)",e:"to throw down",p:"verb3"},
+  {w:"deinde",i:"adv.",e:"then, next",p:"adv"},
+  {w:"delecto",i:"delectare, delectavi, delectatum (1)",e:"to delight, please",p:"verb1"},
+  {w:"deleo",i:"delere, delevi, deletum (2)",e:"to destroy",p:"verb2"},
+  {w:"demonstro",i:"demonstrare, demonstravi, demonstratum (1)",e:"to show, point out, demonstrate",p:"verb1"},
+  {w:"denique",i:"adv.",e:"finally",p:"adv"},
+  {w:"dens",i:"dentis m.",e:"tooth, tusk",p:"noun"},
+  {w:"depono",i:"deponere, deposui, depositum (3)",e:"to put down, lay down, take off",p:"verb3"},
+  {w:"descendo",i:"descendere, descendi, descensum (3)",e:"to climb down, come down",p:"verb3"},
+  {w:"desero",i:"deserere, deserui, desertum (3)",e:"to abandon, leave",p:"verb3"},
+  {w:"desertus",i:"-a -um",e:"abandoned",p:"adj"},
+  {w:"desiderium",i:"-i n.",e:"longing, desire",p:"noun"},
+  {w:"desidero",i:"desiderare, desideravi, desideratum (1)",e:"to desire, long for",p:"verb1"},
+  {w:"desisto",i:"desistere, destiti, destitum (3)",e:"to desist, cease",p:"verb3"},
+  {w:"despero",i:"desperare, desperavi, desperatum (1)",e:"to despair (of)",p:"verb1"},
+  {w:"desum",i:"deesse, defui + dat.",e:"to fail, to be wanting",p:"verbirr"},
+  {w:"deus",i:"dei m.",e:"god",p:"noun"},
+  {w:"dexter",i:"dextra, dextrum",e:"right",p:"adj"},
+  {w:"dico",i:"dicere, dixi, dictum (3)",e:"to say, tell",p:"verb3"},
+  {w:"dictator",i:"dictatoris m.",e:"dictator",p:"noun"},
+  {w:"dies",i:"diei m.",e:"day",p:"noun"},
+  {w:"difficilis",i:"-is -e",e:"difficult",p:"adj"},
+  {w:"difficultas",i:"difficultatis f.",e:"difficulty",p:"noun"},
+  {w:"diffugio",i:"diffugere, diffugi (3)",e:"to scatter, to flee",p:"verb3"},
+  {w:"dignitas",i:"dignitatis f.",e:"merit, worth",p:"noun"},
+  {w:"dignus",i:"-a -um + abl.",e:"worthy (of)",p:"adj"},
+  {w:"diligenter",i:"adv.",e:"carefully, diligently, hard",p:"adv"},
+  {w:"diligentia",i:"-ae f.",e:"carefulness, diligence",p:"noun"},
+  {w:"dimitto",i:"dimittere, dimisi, dimissum (3)",e:"to send away, dismiss",p:"verb3"},
+  {w:"discedo",i:"discedere, discessi, discessum (3)",e:"to go away, depart",p:"verb3"},
+  {w:"disciplina",i:"-ae f.",e:"discipline, instruction, training",p:"noun"},
+  {w:"discipulus",i:"-i m.",e:"pupil",p:"noun"},
+  {w:"disco",i:"discere, didici (3)",e:"to learn, get to know, find out",p:"verb3"},
+  {w:"discordia",i:"-ae f.",e:"disagreement, dissension, discord",p:"noun"},
+  {w:"dispersus",i:"-a -um",e:"scattered, dispersed",p:"adj"},
+  {w:"dispono",i:"disponere, disposui, dispositum (3)",e:"to put in different places",p:"verb3"},
+  {w:"diu",i:"adv.",e:"for a long time",p:"adv"},
+  {w:"diva",i:"-ae f.",e:"goddess",p:"noun"},
+  {w:"diversus",i:"-a -um",e:"different",p:"adj"},
+  {w:"dives",i:"divitis m.f.n.",e:"rich",p:"adj"},
+  {w:"divitiae",i:"-arum f.pl.",e:"riches, wealth",p:"noun"},
+  {w:"divus",i:"-a -um",e:"divine",p:"adj"},
+  {w:"divus",i:"-i m.",e:"god",p:"noun"},
+  {w:"do",i:"dare, dedi, datum (1)",e:"to give",p:"verb1"},
+  {w:"doceo",i:"docere, docui, doctum (2)",e:"to teach",p:"verb2"},
+  {w:"doctus",i:"-a -um",e:"learned, educated, skillful",p:"adj"},
+  {w:"doleo",i:"dolere, dolui (2)",e:"to hurt, be in pain, ache, grieve",p:"verb2"},
+  {w:"dolor",i:"doloris m.",e:"pain, grief",p:"noun"},
+  {w:"domina",i:"-ae f.",e:"mistress",p:"noun"},
+  {w:"dominus",i:"-i m.",e:"master, owner",p:"noun"},
+  {w:"domus",i:"-us f.",e:"home, house",p:"noun"},
+  {w:"donec",i:"conj.",e:"until",p:"conj"},
+  {w:"dono",i:"donare, donavi, donatum (1)",e:"to give as a present, to present",p:"verb1"},
+  {w:"donum",i:"-i n.",e:"gift",p:"noun"},
+  {w:"dormio",i:"dormire, dormivi, dormitum (4)",e:"to sleep",p:"verb4"},
+  {w:"dubito",i:"dubitare, dubitavi, dubitatum (1)",e:"to doubt, hesitate",p:"verb1"},
+  {w:"dubium",i:"-i n.",e:"doubt",p:"noun"},
+  {w:"dubius",i:"-a -um",e:"doubtful, uncertain",p:"adj"},
+  {w:"duco",i:"ducere, duxi, ductum (3)",e:"to lead, guide, take",p:"verb3"},
+  {w:"dulcis",i:"-is -e",e:"sweet, pleasant",p:"adj"},
+  {w:"dum",i:"conj.",e:"while, until",p:"conj"},
+  {w:"durus",i:"-a -um",e:"hard, rough",p:"adj"},
+  {w:"dux",i:"ducis c.",e:"leader",p:"noun"},
+  // ─ E ─
+  {w:"e, ex",i:"+ abl.",e:"from, out of",p:"prep"},
+  {w:"ecce",i:"interj.",e:"look! lo! behold!",p:"interj"},
+  {w:"educo",i:"educere, eduxi, eductum (3)",e:"to lead out, raise, bring up",p:"verb3"},
+  {w:"efficio",i:"efficere, effeci, effectum (3)",e:"to do, make, bring about, cause",p:"verb3"},
+  {w:"effugio",i:"effugere, effugi, effugitum (3)",e:"to escape, flee away",p:"verb3"},
+  {w:"effundo",i:"effundere, effudi, effusum (3)",e:"to pour out, stream forth",p:"verb3"},
+  {w:"ego",i:"pron.",e:"I",p:"pron"},
+  {w:"egredior",i:"egredi, egressus sum (3)",e:"to come out, leave",p:"verbdep"},
+  {w:"eheu",i:"interj.",e:"alas",p:"interj"},
+  {w:"eicio",i:"eicere, eieci, eiectum (3)",e:"to throw out, eject, cast out",p:"verb3"},
+  {w:"eligo",i:"eligere, elegi, electum (3)",e:"to pick out, choose",p:"verb3"},
+  {w:"eloquentia",i:"-ae f.",e:"eloquence",p:"noun"},
+  {w:"emitto",i:"emittere, emisi, emissum (3)",e:"to send out, let loose, throw, emit",p:"verb3"},
+  {w:"emo",i:"emere, emi, emptum (3)",e:"to buy",p:"verb3"},
+  {w:"enim",i:"conj.",e:"for",p:"conj"},
+  {w:"ensis",i:"ensis m.",e:"sword",p:"noun"},
+  {w:"eo",i:"adv.",e:"to that place",p:"adv"},
+  {w:"eo",i:"ire, ivi/ii, itum",e:"to go",p:"verbirr"},
+  {w:"eodem",i:"adv.",e:"to the same place",p:"adv"},
+  {w:"epistula",i:"-ae f.",e:"letter",p:"noun"},
+  {w:"eques",i:"equitis m.",e:"horseman, knight",p:"noun"},
+  {w:"equidem",i:"adv.",e:"indeed",p:"adv"},
+  {w:"equitatus",i:"-us m.",e:"cavalry",p:"noun"},
+  {w:"equus",i:"-i m.",e:"horse",p:"noun"},
+  {w:"ergo",i:"adv.",e:"therefore",p:"adv"},
+  {w:"eripio",i:"eripere, eripui, ereptum (3)",e:"to snatch away, rescue",p:"verb3"},
+  {w:"erro",i:"errare, erravi, erratum (1)",e:"to wander, make a mistake",p:"verb1"},
+  {w:"et",i:"conj.",e:"and",p:"conj"},
+  {w:"et … et",i:"conj.",e:"both … and",p:"conj"},
+  {w:"etenim",i:"conj.",e:"for indeed, truly",p:"conj"},
+  {w:"etiam",i:"conj.",e:"even, also, yes",p:"conj"},
+  {w:"etsi",i:"conj.",e:"although",p:"conj"},
+  {w:"evado",i:"evadere, evasi, evasum (3)",e:"to go out, escape",p:"verb3"},
+  {w:"evehor",i:"evehi, evectus sum (3)",e:"to sail away, to ride away",p:"verbdep"},
+  {w:"evenio",i:"evenire, eveni, eventum (4)",e:"to come out, happen",p:"verb4"},
+  {w:"evoco",i:"evocare, evocavi, evocatum (1)",e:"to call forth, call out, evoke",p:"verb1"},
+  {w:"excedo",i:"excedere, excessi, excessum (3)",e:"to go out, to leave",p:"verb3"},
+  {w:"excipio",i:"excipere, excepi, exceptum (3)",e:"to take up, receive",p:"verb3"},
+  {w:"excito",i:"excitare, excitavi, excitatum (1)",e:"to rouse, wake up, awaken, arouse",p:"verb1"},
+  {w:"exclamo",i:"exclamare, exclamavi, exclamatum (1)",e:"to shout, exclaim, call out",p:"verb1"},
+  {w:"exemplum",i:"-i n.",e:"example",p:"noun"},
+  {w:"exeo",i:"exire, exivi/exii, exitum",e:"to go out",p:"verbirr"},
+  {w:"exerceo",i:"exercere, exercui, exercitum (2)",e:"to exercise, drill",p:"verb2"},
+  {w:"exercitus",i:"-us m.",e:"army",p:"noun"},
+  {w:"exilium",i:"-i n.",e:"exile",p:"noun"},
+  {w:"existimo",i:"existimare, existimavi, existimatum (1)",e:"to think, consider",p:"verb1"},
+  {w:"exitus",i:"-us m.",e:"way out, end",p:"noun"},
+  {w:"experior",i:"experiri, expertus sum (4)",e:"to test, to find by experience",p:"verbdep"},
+  {w:"exploro",i:"explorare, exploravi, exploratum (1)",e:"to explore, investigate, test",p:"verb1"},
+  {w:"expono",i:"exponere, exposui, expositum (3)",e:"to disembark, land, explain",p:"verb3"},
+  {w:"exsequor",i:"exsequi, exsecutus sum (3)",e:"to follow to the end, carry out",p:"verbdep"},
+  {w:"exspecto",i:"exspectare, exspectavi, exspectatum (1)",e:"to wait for, expect, look out for",p:"verb1"},
+  {w:"exstinguo",i:"exstinguere, exstinxi, exstinctum (3)",e:"to put out, extinguish, destroy",p:"verb3"},
+  {w:"extra",i:"+ acc.",e:"outside",p:"prep"},
+  {w:"extraho",i:"extrahere, extraxi, extractum (3)",e:"to pull out, drag out, draw out",p:"verb3"},
+  // ─ F ─
+  {w:"fabula",i:"-ae f.",e:"story, play, fable",p:"noun"},
+  {w:"facile",i:"adv.",e:"easily",p:"adv"},
+  {w:"facilis",i:"-is -e",e:"easy, good-natured",p:"adj"},
+  {w:"facinus",i:"facinoris n.",e:"deed, crime",p:"noun"},
+  {w:"facio",i:"facere, feci, factum (3)",e:"to make, do",p:"verb3"},
+  {w:"factum",i:"-i n.",e:"deed, fact",p:"noun"},
+  {w:"facultas",i:"facultatis f.",e:"opportunity",p:"noun"},
+  {w:"fallo",i:"fallere, fefelli, falsum (3)",e:"to deceive",p:"verb3"},
+  {w:"fama",i:"-ae f.",e:"rumour, reputation",p:"noun"},
+  {w:"fames",i:"famis f.",e:"hunger, famine",p:"noun"},
+  {w:"familia",i:"-ae f.",e:"household, family",p:"noun"},
+  {w:"fas",i:" n.",e:"right, (divine) law, command",p:"noun"},
+  {w:"fatigo",i:"fatigare, fatigavi, fatigatum (1)",e:"to tire",p:"verb1"},
+  {w:"fatum",i:"-i n.",e:"fate, destiny",p:"noun"},
+  {w:"faveo",i:"favere, favi, fautum + dat. (2)",e:"to favour, support",p:"verb2"},
+  {w:"fax",i:"facis f.",e:"torch",p:"noun"},
+  {w:"feliciter",i:"adv.",e:"luckily, successfully, happily",p:"adv"},
+  {w:"felix",i:"felicis m.f.n.",e:"lucky, successful, happy",p:"adj"},
+  {w:"femina",i:"-ae f.",e:"woman",p:"noun"},
+  {w:"fere",i:"adv.",e:"almost, nearly",p:"adv"},
+  {w:"ferme",i:"adv.",e:"nearly, about, almost",p:"adv"},
+  {w:"fero",i:"ferre, tuli, latum",e:"to bring, bear, carry",p:"verbirr"},
+  {w:"ferox",i:"-ocis m.f.n.",e:"fierce, spirited, ferocious",p:"adj"},
+  {w:"ferreus",i:"-a -um",e:"of iron",p:"adj"},
+  {w:"ferrum",i:"-i n.",e:"iron, sword",p:"noun"},
+  {w:"ferus",i:"-a -um",e:"wild",p:"adj"},
+  {w:"fessus",i:"-a -um",e:"tired",p:"adj"},
+  {w:"festino",i:"festinare, festinavi, festinatum (1)",e:"to hurry, hasten",p:"verb1"},
+  {w:"fidelis",i:"-is -e",e:"faithful, loyal",p:"adj"},
+  {w:"fides",i:"fidei f.",e:"faithfulness, loyalty, faith, trustworthiness, promise",p:"noun"},
+  {w:"fido",i:"fidere, fisus sum + dat./abl. (3)",e:"to trust, believe, confide in",p:"verbsemi"},
+  {w:"fiducia",i:"-ae f.",e:"confidence, trust",p:"noun"},
+  {w:"fidus",i:"-a -um",e:"faithful",p:"adj"},
+  {w:"filia",i:"-ae f.",e:"daughter",p:"noun"},
+  {w:"filius",i:"-i m.",e:"son",p:"noun"},
+  {w:"fines",i:"finium m.pl.",e:"boundary, territory",p:"noun"},
+  {w:"fingo",i:"fingere, finxi, fictum (3)",e:"to form, make up, compose",p:"verb3"},
+  {w:"finio",i:"finire, finivi, finitum (4)",e:"to finish",p:"verb4"},
+  {w:"finis",i:"finis m.",e:"end",p:"noun"},
+  {w:"fio",i:"fieri, factus sum",e:"to be done, be made, happen",p:"verbsemi"},
+  {w:"firmus",i:"-a -um",e:"firm",p:"adj"},
+  {w:"flamma",i:"-ae f.",e:"flame",p:"noun"},
+  {w:"flecto",i:"flectere, flexi, flexum (3)",e:"to bend, turn",p:"verb3"},
+  {w:"fleo",i:"flere, flevi, fletum (2)",e:"to cry, weep",p:"verb2"},
+  {w:"flos",i:"-oris m.",e:"flower",p:"noun"},
+  {w:"fluctus",i:"-us m.",e:"wave, flood",p:"noun"},
+  {w:"flumen",i:"fluminis n.",e:"river",p:"noun"},
+  {w:"fluo",i:"fluere, fluxi, fluctum (3)",e:"to flow",p:"verb3"},
+  {w:"fluvius",i:"fluvii m.",e:"river, stream",p:"noun"},
+  {w:"foedus",i:"foederis n.",e:"treaty, agreement",p:"noun"},
+  {w:"fons",i:"fontis m.",e:"fountain, source, spring",p:"noun"},
+  {w:"for",i:"fari, fatus sum",e:"to speak, say",p:"verbdep"},
+  {w:"forma",i:"-ae f.",e:"beauty, form, shape",p:"noun"},
+  {w:"formido",i:"formidinis f.",e:"fear, terror",p:"noun"},
+  {w:"formo",i:"formare, formavi, formatum (1)",e:"to form, shape",p:"verb1"},
+  {w:"fortasse",i:"adv.",e:"perhaps",p:"adv"},
+  {w:"forte",i:"adv.",e:"by chance, by accident",p:"adv"},
+  {w:"fortis",i:"-is -e",e:"brave",p:"adj"},
+  {w:"fortiter",i:"adv.",e:"bravely",p:"adv"},
+  {w:"fortuna",i:"-ae f.",e:"fortune, luck, chance",p:"noun"},
+  {w:"forum",i:"-i n.",e:"forum, market place",p:"noun"},
+  {w:"fossa",i:"-ae f.",e:"ditch, trench",p:"noun"},
+  {w:"frango",i:"frangere, fregi, fractum (3)",e:"to break, tear to pieces, shatter, crush",p:"verb3"},
+  {w:"frater",i:"fratris m.",e:"brother",p:"noun"},
+  {w:"frequens",i:"frequentis m.f.n.",e:"frequent, crowded",p:"adj"},
+  {w:"frigus",i:"frigoris n.",e:"cold, (pl. cold spell)",p:"noun"},
+  {w:"frumentum",i:"-i n.",e:"corn, grain",p:"noun"},
+  {w:"fruor",i:"frui, fructus sum (3) + abl.",e:"to enjoy",p:"verbdep"},
+  {w:"frustra",i:"adv.",e:"in vain",p:"adv"},
+  {w:"fuga",i:"-ae f.",e:"flight, exile",p:"noun"},
+  {w:"fugio",i:"fugere, fugi, fugitum (3)",e:"to flee, run away",p:"verb3"},
+  {w:"fumus",i:"-i m.",e:"smoke, steam",p:"noun"},
+  {w:"fundo",i:"fundere, fudi, fusum (3)",e:"to pour, rout, put to flight",p:"verb3"},
+  {w:"funus",i:"funeris n.",e:"funeral, death, ruin",p:"noun"},
+  {w:"fur",i:"furis m.",e:"thief",p:"noun"},
+  {w:"furor",i:"furoris m.",e:"madness, frenzy, passion",p:"noun"},
+  // ─ G ─
+  {w:"galea",i:"-ae f.",e:"helmet",p:"noun"},
+  {w:"gaudeo",i:"gaudere, gavisus sum (2)",e:"to rejoice, be glad",p:"verbsemi"},
+  {w:"gelidus",i:"-a -um",e:"cold, frozen",p:"adj"},
+  {w:"gemitus",i:"-us m.",e:"groan, sigh",p:"noun"},
+  {w:"genitor",i:"genitoris m.",e:"father",p:"noun"},
+  {w:"gens",i:"gentis f.",e:"family, tribe, race",p:"noun"},
+  {w:"genus",i:"generis n.",e:"type, kind, family",p:"noun"},
+  {w:"gero",i:"gerere, gessi, gestum (3)",e:"to wear, conduct, wage",p:"verb3"},
+  {w:"gladiator",i:"-oris m.",e:"gladiator",p:"noun"},
+  {w:"gladius",i:"-i m.",e:"sword",p:"noun"},
+  {w:"gloria",i:"-ae f.",e:"fame, renown",p:"noun"},
+  {w:"gradus",i:"-us m.",e:"step",p:"noun"},
+  {w:"gratias ago",i:"agere, egi, actum (3)",e:"to thank",p:"phrase"},
+  {w:"gratus",i:"-a -um",e:"pleasing",p:"adj"},
+  {w:"gravis",i:"-is -e",e:"heavy, serious, important",p:"adj"},
+  {w:"graviter",i:"adv.",e:"heavily, soundly, seriously",p:"adv"},
+  {w:"grex",i:"gregis m.",e:"flock, herd",p:"noun"},
+  // ─ H ─
+  {w:"habeo",i:"habere, habui, habitum (2)",e:"to have, consider, regard, hold",p:"verb2"},
+  {w:"habito",i:"habitare, habitavi, habitatum (1)",e:"to live, dwell",p:"verb1"},
+  {w:"haereo",i:"haerere, haesi, haesum (2)",e:"to stick",p:"verb2"},
+  {w:"harena",i:"-ae f.",e:"sand, seashore",p:"noun"},
+  {w:"hasta",i:"-ae f.",e:"spear",p:"noun"},
+  {w:"haud",i:"adv.",e:"not, not at all",p:"adv"},
+  {w:"herba",i:"-ae f.",e:"herb, grass",p:"noun"},
+  {w:"heri",i:"adv.",e:"yesterday",p:"adv"},
+  {w:"heros",i:"herois m.",e:"hero",p:"noun"},
+  {w:"hiberna",i:"-orum n.pl.",e:"winter quarters",p:"noun"},
+  {w:"hic",i:"adv.",e:"here",p:"adv"},
+  {w:"hic, haec, hoc",i:"pron./adj.",e:"this, (he, she, it)",p:"pron"},
+  {w:"hiems",i:"hiemis f.",e:"winter",p:"noun"},
+  {w:"hinc",i:"adv.",e:"from here",p:"adv"},
+  {w:"hodie",i:"adv.",e:"today",p:"adv"},
+  {w:"homo",i:"hominis m.",e:"man, person",p:"noun"},
+  {w:"honestus",i:"-a -um",e:"honest, worthy, distinguished",p:"adj"},
+  {w:"honor",i:"honoris m.",e:"honour, public office",p:"noun"},
+  {w:"hora",i:"-ae f.",e:"hour",p:"noun"},
+  {w:"horribilis",i:"-is -e",e:"terrible, frightening, horrible",p:"adj"},
+  {w:"hortor",i:"hortari, hortatus sum (1)",e:"to encourage, urge",p:"verbdep"},
+  {w:"hortus",i:"-i m.",e:"garden",p:"noun"},
+  {w:"hospes",i:"-itis m./f.",e:"guest, host",p:"noun"},
+  {w:"hostis",i:"-is m.",e:"enemy",p:"noun"},
+  {w:"huc",i:"adv.",e:"here, to this place",p:"adv"},
+  {w:"humi",i:"adv.",e:"on the ground",p:"adv"},
+  {w:"humilis",i:"-is -e",e:"humble, insignificant",p:"adj"},
+  {w:"humus",i:"-i f.",e:"ground, soil",p:"noun"},
+  // ─ I/J ─
+  {w:"ibi",i:"adv.",e:"there",p:"adv"},
+  {w:"idem, eadem, idem",i:"pron.",e:"the same",p:"pron"},
+  {w:"idoneus",i:"-a -um",e:"suitable, fit",p:"adj"},
+  {w:"igitur",i:"adv.",e:"therefore, and so",p:"adv"},
+  {w:"ignavus",i:"-a -um",e:"lazy, cowardly",p:"adj"},
+  {w:"ignis",i:"ignis m.",e:"fire",p:"noun"},
+  {w:"ignoro",i:"ignorare, ignoravi, ignoratum (1)",e:"to be ignorant of",p:"verb1"},
+  {w:"ignosco",i:"ignoscere, ignovi, ignotum + dat. (3)",e:"to pardon",p:"verb3"},
+  {w:"ignotus",i:"-a -um",e:"unknown, strange",p:"adj"},
+  {w:"ille, illa, illud",i:"pron.",e:"that, (he, she, it)",p:"pron"},
+  {w:"illic",i:"adv.",e:"there, at that place",p:"adv"},
+  {w:"illuc",i:"adv.",e:"there, to that place",p:"adv"},
+  {w:"imitor",i:"imitari, imitatus sum (1)",e:"to imitate",p:"verbdep"},
+  {w:"immanis",i:"-is -e",e:"immense",p:"adj"},
+  {w:"immemor",i:"immemoris m.f.n.",e:"forgetful",p:"adj"},
+  {w:"immortalis",i:"-is -e",e:"immortal",p:"adj"},
+  {w:"immotus",i:"-a -um",e:"unchanged, unmoved, inflexible, calm",p:"adj"},
+  {w:"impedio",i:"impedire, impedivi, impeditum (4)",e:"to delay, hinder",p:"verb4"},
+  {w:"imperator",i:"imperatoris m.",e:"general, emperor",p:"noun"},
+  {w:"imperium",i:"-i n.",e:"command, empire",p:"noun"},
+  {w:"impero",i:"imperare, imperavi, imperatum + dat. (1)",e:"to order, command",p:"verb1"},
+  {w:"impetus",i:"-us m.",e:"attack, charge",p:"noun"},
+  {w:"impleo",i:"implere, implevi, impletum (2)",e:"to fill up, complete",p:"verb2"},
+  {w:"imploro",i:"implorare, imploravi, imploratum (1)",e:"to implore, beg",p:"verb1"},
+  {w:"impono",i:"imponere, imposui, impositum (3)",e:"to place upon, put into",p:"verb3"},
+  {w:"improbus",i:"-a -um",e:"wicked",p:"adj"},
+  {w:"improvisus",i:"-a -um",e:"unexpected, unforeseen",p:"adj"},
+  {w:"imus",i:"-a -um",e:"bottom, deepest, inmost",p:"adj"},
+  {w:"in",i:"+ acc.",e:"into, onto",p:"prep"},
+  {w:"in",i:"+ abl.",e:"in, on",p:"prep"},
+  {w:"incedo",i:"incedere, incessi, incessum (3)",e:"to advance, march",p:"verb3"},
+  {w:"incendium",i:"-i n.",e:"fire",p:"noun"},
+  {w:"incendo",i:"incendere, incendi, incensum (3)",e:"to burn, set fire to",p:"verb3"},
+  {w:"incertus",i:"-a -um",e:"uncertain",p:"adj"},
+  {w:"incipio",i:"incipere, incepi, inceptum (3)",e:"to begin",p:"verb3"},
+  {w:"incito",i:"incitare, incitavi, incitatum (1)",e:"to urge on, encourage, rouse",p:"verb1"},
+  {w:"incola",i:"-ae c.",e:"inhabitant",p:"noun"},
+  {w:"incolumis",i:"-is -e",e:"safe, unharmed",p:"adj"},
+  {w:"incredibilis",i:"-is -e",e:"incredible",p:"adj"},
+  {w:"inde",i:"adv.",e:"thereupon, from that place, from that time",p:"adv"},
+  {w:"indico",i:"indicare, indicavi, indicatum (1)",e:"to disclose, reveal",p:"verb1"},
+  {w:"indignitas",i:"indignitatis f.",e:"unworthiness, humiliation",p:"noun"},
+  {w:"indomitus",i:"-a -um",e:"untamed, untamable",p:"adj"},
+  {w:"induo",i:"induere, indui, indutum (3)",e:"to put on, clothe",p:"verb3"},
+  {w:"ineo",i:"inire, inivi/inii, initum",e:"to enter, go in",p:"verbirr"},
+  {w:"inermis",i:"-is -e",e:"unarmed",p:"adj"},
+  {w:"infans",i:"infantis m./f.",e:"infant, baby, child",p:"noun"},
+  {w:"infelix",i:"infelicis m.f.n.",e:"unlucky",p:"adj"},
+  {w:"inferior",i:"inferior, inferius",e:"inferior, lower",p:"adj"},
+  {w:"infero",i:"inferre, intuli, inlatum/illatum",e:"to bring in",p:"verbirr"},
+  {w:"infirmus",i:"-a -um",e:"weak, infirm",p:"adj"},
+  {w:"infra",i:"adv.",e:"below, under",p:"adv"},
+  {w:"infra",i:"+ acc.",e:"below, underneath, under",p:"prep"},
+  {w:"ingenium",i:"-i n.",e:"character, talent",p:"noun"},
+  {w:"ingens",i:"-entis m.f.n.",e:"huge, enormous",p:"adj"},
+  {w:"ingredior",i:"ingredi, ingressus sum (3)",e:"to enter",p:"verbdep"},
+  {w:"inicio",i:"inicere, inieci, iniectum (3)",e:"to throw on, over",p:"verb3"},
+  {w:"inimicus",i:"-i m.",e:"enemy",p:"noun"},
+  {w:"iniquus",i:"-a -um",e:"unfair, unequal",p:"adj"},
+  {w:"initium",i:"-i n.",e:"beginning",p:"noun"},
+  {w:"iniuria",i:"-ae f.",e:"injury, wrong",p:"noun"},
+  {w:"iniustus",i:"-a -um",e:"unjust",p:"adj"},
+  {w:"innocens",i:"-entis m.f.n.",e:"innocent",p:"adj"},
+  {w:"inopia",i:"-ae f.",e:"shortage, lack",p:"noun"},
+  {w:"inquit / inquiunt",i:"defective",e:"he/she/it says, they say",p:"verbirr"},
+  {w:"inrumpo",i:"inrumpere, inrupi, inruptum (3)",e:"to burst in",p:"verb3"},
+  {w:"insidiae",i:"-arum f.pl.",e:"ambush",p:"noun"},
+  {w:"insignis",i:"-is -e",e:"conspicuous, eminent",p:"adj"},
+  {w:"inspicio",i:"inspicere, inspexi, inspectum (3)",e:"to look at, inspect, examine",p:"verb3"},
+  {w:"instituo",i:"instituere, institui, institutum (3)",e:"to set up",p:"verb3"},
+  {w:"insto",i:"instare, institi (1)",e:"to pursue, threaten, stand in",p:"verb1"},
+  {w:"instrumentum",i:"-i n.",e:"tool",p:"noun"},
+  {w:"instruo",i:"instruere, instruxi, instructum (3)",e:"to construct, build, arrange, draw up",p:"verb3"},
+  {w:"insula",i:"-ae f.",e:"island, block of flats",p:"noun"},
+  {w:"insurgo",i:"insurgere, insurrexi, insurrectum (3)",e:"to rise up",p:"verb3"},
+  {w:"integer",i:"integra, integrum",e:"untouched, complete",p:"adj"},
+  {w:"intellego",i:"intellegere, intellexi, intellectum (3)",e:"to understand, perceive",p:"verb3"},
+  {w:"inter",i:"+ acc.",e:"between, among, during",p:"prep"},
+  {w:"interea",i:"adv.",e:"meanwhile",p:"adv"},
+  {w:"interficio",i:"interficere, interfeci, interfectum (3)",e:"to kill, destroy",p:"verb3"},
+  {w:"intersum",i:"interesse, interfui",e:"to be between",p:"verbirr"},
+  {w:"intra",i:"+ acc.",e:"within",p:"prep"},
+  {w:"intro",i:"intrare, intravi, intratum (1)",e:"to enter",p:"verb1"},
+  {w:"intueor",i:"intueri, intuitus sum (2)",e:"to look at, consider",p:"verbdep"},
+  {w:"invado",i:"invadere, invasi, invasum (3)",e:"to attack, invade",p:"verb3"},
+  {w:"invalidus",i:"-a -um",e:"weak, ineffective",p:"adj"},
+  {w:"invenio",i:"invenire, inveni, inventum (4)",e:"to find",p:"verb4"},
+  {w:"invisus",i:"-a -um",e:"hated",p:"adj"},
+  {w:"invito",i:"invitare, invitavi, invitatum (1)",e:"to invite",p:"verb1"},
+  {w:"invitus",i:"-a -um",e:"unwilling",p:"adj"},
+  {w:"ipse, ipsa, ipsum",i:"pron.",e:"himself, herself, itself, self",p:"pron"},
+  {w:"ira",i:"-ae f.",e:"anger",p:"noun"},
+  {w:"iratus",i:"-a -um",e:"angry",p:"adj"},
+  {w:"is, ea, id",i:"pron.",e:"he, she, it, that",p:"pron"},
+  {w:"iste, ista, istud",i:"pron.",e:"that (insulting)",p:"pron"},
+  {w:"ita",i:"adv.",e:"in this way, thus, so",p:"adv"},
+  {w:"ita vero",i:"adv.",e:"yes, yes indeed",p:"adv"},
+  {w:"itaque",i:"adv.",e:"and so, therefore",p:"adv"},
+  {w:"iter",i:"itineris n.",e:"journey, route, progress",p:"noun"},
+  {w:"iterum",i:"adv.",e:"again",p:"adv"},
+  {w:"iaceo",i:"iacere, iacui (2)",e:"to lie, lie down",p:"verb2"},
+  {w:"iacio",i:"iacere, ieci, iactum (3)",e:"to throw",p:"verb3"},
+  {w:"iam",i:"adv.",e:"now, already",p:"adv"},
+  {w:"ianua",i:"-ae f.",e:"door",p:"noun"},
+  {w:"iubeo",i:"iubere, iussi, iussum (2)",e:"to order, command",p:"verb2"},
+  {w:"iucundus",i:"-a -um",e:"pleasing, delightful",p:"adj"},
+  {w:"iudex",i:"iudicis m.",e:"judge",p:"noun"},
+  {w:"iudicium",i:"-i n.",e:"trial, judgement",p:"noun"},
+  {w:"iudico",i:"iudicare, iudicavi, iudicatum (1)",e:"to judge",p:"verb1"},
+  {w:"iugum",i:"-i n.",e:"yoke",p:"noun"},
+  {w:"iungo",i:"iungere, iunxi, iunctum (3)",e:"to join, unite",p:"verb3"},
+  {w:"iuro",i:"iurare, iuravi, iuratum (1)",e:"to swear",p:"verb1"},
+  {w:"ius",i:"iuris n.",e:"law, right",p:"noun"},
+  {w:"iustitia",i:"-ae f.",e:"justice",p:"noun"},
+  {w:"iustus",i:"-a -um",e:"just, fair",p:"adj"},
+  {w:"iuvenis",i:"-is m./f.",e:"youth, young man, young woman",p:"noun"},
+  {w:"iuventus",i:"iuventutis f.",e:"youth",p:"noun"},
+  {w:"iuvo",i:"iuvare, iuvi, iutum (1)",e:"to help",p:"verb1"},
+  // ─ L ─
+  {w:"labor",i:"labi, lapsus sum (3)",e:"to slip, fall",p:"verbdep"},
+  {w:"labor",i:"laboris m.",e:"work, toil, exertion",p:"noun"},
+  {w:"laboro",i:"laborare, laboravi, laboratum (1)",e:"to work",p:"verb1"},
+  {w:"lacrima",i:"-ae f.",e:"tear",p:"noun"},
+  {w:"lacrimo",i:"lacrimare, lacrimavi, lacrimatum (1)",e:"to cry, weep",p:"verb1"},
+  {w:"lacus",i:"-us m.",e:"lake",p:"noun"},
+  {w:"laetus",i:"-a -um",e:"glad, happy",p:"adj"},
+  {w:"laevus",i:"-a -um",e:"left, harmful",p:"adj"},
+  {w:"lapis",i:"lapidis m.",e:"stone",p:"noun"},
+  {w:"late",i:"adv.",e:"widely",p:"adv"},
+  {w:"lateo",i:"latere, latui (2)",e:"to lie hidden",p:"verb2"},
+  {w:"latus",i:"-a -um",e:"wide, broad",p:"adj"},
+  {w:"latus",i:"lateris n.",e:"side",p:"noun"},
+  {w:"laudo",i:"laudare, laudavi, laudatum (1)",e:"to praise",p:"verb1"},
+  {w:"lavo",i:"lavare, lavi, lavatum / lautum (1)",e:"to wash",p:"verb1"},
+  {w:"laxo",i:"laxare, laxavi, laxatum (1)",e:"to loosen",p:"verb1"},
+  {w:"lectica",i:"-ae f.",e:"litter, sedan chair",p:"noun"},
+  {w:"lectus",i:"-i m.",e:"bed, couch",p:"noun"},
+  {w:"legatus",i:"-i m.",e:"envoy, deputy, commander, legate",p:"noun"},
+  {w:"legio",i:"legionis f.",e:"legion",p:"noun"},
+  {w:"lego",i:"legere, legi, lectum (3)",e:"to read aloud, recite, gather",p:"verb3"},
+  {w:"lente",i:"adv.",e:"slowly",p:"adv"},
+  {w:"lentus",i:"-a -um",e:"slow, pliant, tough",p:"adj"},
+  {w:"leo",i:"leonis m.",e:"lion",p:"noun"},
+  {w:"levis",i:"-is -e",e:"light, thin",p:"adj"},
+  {w:"lex",i:"legis f.",e:"law",p:"noun"},
+  {w:"libenter",i:"adv.",e:"freely",p:"adv"},
+  {w:"liber",i:"libera, liberum",e:"free",p:"adj"},
+  {w:"liber",i:"libri m.",e:"book",p:"noun"},
+  {w:"liberi",i:"-orum m.pl.",e:"children",p:"noun"},
+  {w:"libero",i:"liberare, liberavi, liberatum (1)",e:"to free, set free",p:"verb1"},
+  {w:"libertas",i:"libertatis f.",e:"freedom",p:"noun"},
+  {w:"libertus",i:"-i m.",e:"freed man, ex-slave",p:"noun"},
+  {w:"licet",i:"+ inf. + dat.",e:"it is permitted",p:"phrase"},
+  {w:"lingua",i:"-ae f.",e:"tongue, language",p:"noun"},
+  {w:"linquo",i:"linquere, liqui, lictum (3)",e:"to leave",p:"verb3"},
+  {w:"littera",i:"-ae f.",e:"letter (of alphabet)",p:"noun"},
+  {w:"litterae",i:"-arum f.pl.",e:"letter (= epistola)",p:"noun"},
+  {w:"litus",i:"-oris n.",e:"sea shore, shore",p:"noun"},
+  {w:"loco",i:"locare, locavi, locatum (1)",e:"to place, put",p:"verb1"},
+  {w:"locus",i:"-i m.",e:"place, category",p:"noun"},
+  {w:"longe",i:"adv.",e:"far off",p:"adv"},
+  {w:"longus",i:"-a -um",e:"long",p:"adj"},
+  {w:"loquor",i:"loqui, locutus sum (3)",e:"to speak",p:"verbdep"},
+  {w:"luctus",i:"-us m.",e:"grief",p:"noun"},
+  {w:"ludo",i:"ludere, lusi, lusum (3)",e:"to play",p:"verb3"},
+  {w:"ludus",i:"-i m.",e:"school, game",p:"noun"},
+  {w:"lumen",i:"luminis n.",e:"light, torch",p:"noun"},
+  {w:"luna",i:"-ae f.",e:"moon",p:"noun"},
+  {w:"lupus",i:"-i m.",e:"wolf",p:"noun"},
+  {w:"lux",i:"lucis f.",e:"light, daylight",p:"noun"},
+  // ─ M ─
+  {w:"maestus",i:"-a -um",e:"sad, gloomy",p:"adj"},
+  {w:"magis",i:"adv.",e:"more",p:"adv"},
+  {w:"magister",i:"magistri m.",e:"master (of pupils), captain (of ship)",p:"noun"},
+  {w:"magnanimus",i:"-a -um",e:"brave, great, generous",p:"adj"},
+  {w:"magnificus",i:"-a -um",e:"great, grand, splendid",p:"adj"},
+  {w:"magnitudo",i:"magnitudinis f.",e:"greatness, size, magnitude",p:"noun"},
+  {w:"magnopere",i:"adv.",e:"greatly",p:"adv"},
+  {w:"magnus",i:"-a -um",e:"great, big",p:"adj"},
+  {w:"maior",i:"maior, maius",e:"greater, bigger",p:"adj"},
+  {w:"maiores",i:"maiorum m.pl.",e:"ancestors",p:"noun"},
+  {w:"male",i:"adv.",e:"badly, wrongly",p:"adv"},
+  {w:"malignus",i:"-a -um",e:"unkind, spiteful",p:"adj"},
+  {w:"malo",i:"malle, malui",e:"to prefer",p:"verbirr"},
+  {w:"malum",i:"-i n.",e:"evil, wrong",p:"noun"},
+  {w:"malus",i:"-a -um",e:"evil, bad",p:"adj"},
+  {w:"mane",i:"adv.",e:"in the morning, early",p:"adv"},
+  {w:"maneo",i:"manere, mansi, mansum (2)",e:"to stay, remain",p:"verb2"},
+  {w:"manus",i:"-us f.",e:"hand, band of men",p:"noun"},
+  {w:"mare",i:"-is n.",e:"sea",p:"noun"},
+  {w:"maritimus",i:"-a -um",e:"of the sea, maritime",p:"adj"},
+  {w:"mater",i:"matris f.",e:"mother",p:"noun"},
+  {w:"matrona",i:"-ae f.",e:"married woman",p:"noun"},
+  {w:"maxime",i:"adv.",e:"very much, very greatly",p:"adv"},
+  {w:"maximus",i:"-a -um",e:"very big, very large, very great, greatest",p:"adj"},
+  {w:"medicus",i:"-i m.",e:"doctor",p:"noun"},
+  {w:"medius",i:"-a -um",e:"middle",p:"adj"},
+  {w:"melior",i:"melior, melius",e:"better",p:"adj"},
+  {w:"melius",i:"adv.",e:"better",p:"adv"},
+  {w:"membrum",i:"-i n.",e:"limb, member",p:"noun"},
+  {w:"memini",i:"meminisse + gen.",e:"to remember, mention",p:"verbirr"},
+  {w:"memor",i:"memoris m.f.n.",e:"mindful, remembering",p:"adj"},
+  {w:"memoro",i:"memorare, memoravi, memoratum (1)",e:"to mention, say, speak",p:"verb1"},
+  {w:"mens",i:"mentis f.",e:"mind, heart",p:"noun"},
+  {w:"mensa",i:"-ae f.",e:"table",p:"noun"},
+  {w:"mensis",i:"mensis m.",e:"month",p:"noun"},
+  {w:"mercator",i:"mercatoris m.",e:"merchant",p:"noun"},
+  {w:"mereo",i:"merere, merui (2)",e:"to deserve",p:"verb2"},
+  {w:"mergo",i:"mergere, mersi, mersum (3)",e:"to sink, immerse, plunge",p:"verb3"},
+  {w:"meridies",i:"-ei m.",e:"midday",p:"noun"},
+  {w:"meta",i:"metae f.",e:"turning point, winning post",p:"noun"},
+  {w:"metuo",i:"metuere, metui, metutum (2)",e:"to fear",p:"verb2"},
+  {w:"metus",i:"metus m.",e:"fear",p:"noun"},
+  {w:"meus",i:"-a -um",e:"my, mine",p:"adj"},
+  {w:"miles",i:"militis m.",e:"soldier",p:"noun"},
+  {w:"mille",i:"indecl.",e:"a thousand",p:"num"},
+  {w:"milia",i:"+ gen.",e:"thousands",p:"num"},
+  {w:"minime",i:"adv.",e:"no, least, very little",p:"adv"},
+  {w:"minimus",i:"-a -um",e:"smallest, very little",p:"adj"},
+  {w:"ministro",i:"ministrare, ministravi, ministratum + dat. (1)",e:"to serve, supply, manage",p:"verb1"},
+  {w:"minor",i:"minari, minatus sum (1)",e:"to threaten",p:"verbdep"},
+  {w:"minor",i:"minor, minus",e:"smaller, less",p:"adj"},
+  {w:"mirabile",i:"adv.",e:"marvellously, wonderfully",p:"adv"},
+  {w:"mirabilis",i:"-is -e",e:"marvellous, strange, wonderful",p:"adj"},
+  {w:"miraculum",i:"-i n.",e:"marvel, wonder, amazement",p:"noun"},
+  {w:"miror",i:"mirari, miratus sum (1)",e:"to wonder at",p:"verbdep"},
+  {w:"miser",i:"misera, miserum",e:"wretched, sad",p:"adj"},
+  {w:"mitto",i:"mittere, misi, missum (3)",e:"to send",p:"verb3"},
+  {w:"modo",i:"adv.",e:"just now, only",p:"adv"},
+  {w:"modo … modo",i:"adv.",e:"at one time … at another",p:"adv"},
+  {w:"modus",i:"-i m.",e:"manner, way, kind",p:"noun"},
+  {w:"moenia",i:"moenium n.pl.",e:"defences, walls",p:"noun"},
+  {w:"molestus",i:"-a -um",e:"troublesome, annoying",p:"adj"},
+  {w:"moneo",i:"monere, monui, monitum (2)",e:"to warn, advise",p:"verb2"},
+  {w:"mons",i:"montis m.",e:"mountain",p:"noun"},
+  {w:"monstrum",i:"-i n.",e:"portent, monster",p:"noun"},
+  {w:"mora",i:"-ae f.",e:"delay, pause",p:"noun"},
+  {w:"morbus",i:"-i m.",e:"illness, disease",p:"noun"},
+  {w:"morior",i:"mori, mortuus sum (3)",e:"to die",p:"verbdep"},
+  {w:"moror",i:"morari, moratus sum (1)",e:"to delay, linger",p:"verbdep"},
+  {w:"mors",i:"mortis f.",e:"death",p:"noun"},
+  {w:"mortuus",i:"-a -um",e:"dead, having died",p:"adj"},
+  {w:"mos",i:"moris m.",e:"custom",p:"noun"},
+  {w:"moveo",i:"movere, movi, motum (2)",e:"to move, set in motion, begin",p:"verb2"},
+  {w:"mox",i:"adv.",e:"soon",p:"adv"},
+  {w:"mulier",i:"mulieris f.",e:"woman, wife",p:"noun"},
+  {w:"multitudo",i:"multitudinis f.",e:"crowd, large number",p:"noun"},
+  {w:"multum",i:"adv.",e:"much",p:"adv"},
+  {w:"multus",i:"-a -um",e:"much",p:"adj"},
+  {w:"munus",i:"muneris n.",e:"gift, duty",p:"noun"},
+  {w:"murus",i:"-i m.",e:"wall",p:"noun"},
+  {w:"muto",i:"mutare, mutavi, mutatum (1)",e:"to change, alter",p:"verb1"},
+  // ─ N ─
+  {w:"nam",i:"conj.",e:"for",p:"conj"},
+  {w:"narro",i:"narrare, narravi, narratum (1)",e:"to tell, relate",p:"verb1"},
+  {w:"nascor",i:"nasci, natus sum (3)",e:"to be born",p:"verbdep"},
+  {w:"nata",i:"-ae f.",e:"daughter",p:"noun"},
+  {w:"natio",i:"nationis f.",e:"tribe, nation",p:"noun"},
+  {w:"nato",i:"natare, natavi, natatum (1)",e:"to swim, float",p:"verb1"},
+  {w:"natus",i:"-i m.",e:"son",p:"noun"},
+  {w:"nauta",i:"-ae m.",e:"sailor",p:"noun"},
+  {w:"navigatio",i:"navigationis f.",e:"voyage, sailing",p:"noun"},
+  {w:"navigo",i:"navigare, navigavi, navigatum (1)",e:"to sail",p:"verb1"},
+  {w:"navis",i:"navis f.",e:"ship",p:"noun"},
+  {w:"ne",i:"conj.",e:"that…not, lest, in case, so that…not",p:"conj"},
+  {w:"ne … quidem",i:"phrase",e:"not even",p:"phrase"},
+  {w:"nebula",i:"-ae f.",e:"cloud, mist",p:"noun"},
+  {w:"nec / neque",i:"conj.",e:"and not, but not",p:"conj"},
+  {w:"necdum",i:"conj.",e:"and not yet",p:"conj"},
+  {w:"necessarius",i:"-a -um",e:"necessary",p:"adj"},
+  {w:"necesse est",i:"phrase",e:"it is necessary",p:"phrase"},
+  {w:"neco",i:"necare, necavi, necatum (1)",e:"to kill (e.g. by poison)",p:"verb1"},
+  {w:"nefas",i:" n.",e:"wickedness, wrong, sin",p:"noun"},
+  {w:"neglegentia",i:"-ae f.",e:"carelessness, neglect",p:"noun"},
+  {w:"neglego",i:"neglegere, neglexi, neglectum (3)",e:"to neglect, disregard",p:"verb3"},
+  {w:"nego",i:"negare, negavi, negatum (1)",e:"to deny, say … not",p:"verb1"},
+  {w:"negotium",i:"-i n.",e:"business, matter",p:"noun"},
+  {w:"nemo",i:"neminis m.",e:"no one",p:"pron"},
+  {w:"nepos",i:"nepotis m.",e:"grandson, nephew",p:"noun"},
+  {w:"neque … neque",i:"conj.",e:"neither … nor",p:"conj"},
+  {w:"nequiquam",i:"adv.",e:"for nothing, fruitlessly",p:"adv"},
+  {w:"nescio",i:"nescire, nescivi, nescitum (4)",e:"not to know",p:"verb4"},
+  {w:"nihil",i:"indecl.",e:"nothing",p:"pron"},
+  {w:"nimis",i:"adv.",e:"too much",p:"adv"},
+  {w:"nisi",i:"conj.",e:"except, unless",p:"conj"},
+  {w:"nobilis",i:"-is -e",e:"noble, famous",p:"adj"},
+  {w:"noctu",i:"adv.",e:"by night",p:"adv"},
+  {w:"noli / nolite",i:"+ infin.",e:"do not, don't",p:"phrase"},
+  {w:"nolo",i:"nolle, nolui",e:"to be unwilling, not want",p:"verbirr"},
+  {w:"nomen",i:"nominis n.",e:"name",p:"noun"},
+  {w:"non",i:"adv.",e:"not",p:"adv"},
+  {w:"nondum",i:"adv.",e:"not yet",p:"adv"},
+  {w:"nonne?",i:"adv.",e:"surely?",p:"adv"},
+  {w:"nonnulli",i:"-ae -a",e:"some, several",p:"pron"},
+  {w:"nonnunquam",i:"adv.",e:"sometimes",p:"adv"},
+  {w:"nos",i:"pron.",e:"we, us",p:"pron"},
+  {w:"nosco",i:"noscere, novi, notum (3)",e:"to know, learn to know",p:"verb3"},
+  {w:"noster",i:"nostra, nostrum",e:"our",p:"adj"},
+  {w:"notus",i:"-a -um",e:"known, well known, famous",p:"adj"},
+  {w:"novus",i:"-a -um",e:"new",p:"adj"},
+  {w:"nox",i:"noctis f.",e:"night",p:"noun"},
+  {w:"nubes",i:"nubis f.",e:"cloud, gloom",p:"noun"},
+  {w:"nudus",i:"-a -um",e:"naked, bare",p:"adj"},
+  {w:"nullus",i:"-a -um",e:"not any, no, none",p:"adj"},
+  {w:"num",i:"conj.",e:"whether",p:"conj"},
+  {w:"numerus",i:"-i m.",e:"number",p:"noun"},
+  {w:"numquam",i:"adv.",e:"never",p:"adv"},
+  {w:"nunc",i:"adv.",e:"now, at present",p:"adv"},
+  {w:"nuntio",i:"nuntiare, nuntiavi, nuntiatum (1)",e:"to report, announce",p:"verb1"},
+  {w:"nuntius",i:"-i m.",e:"messenger, message, news",p:"noun"},
+  {w:"nuper",i:"adv.",e:"recently, lately",p:"adv"},
+  {w:"nusquam",i:"adv.",e:"nowhere",p:"adv"},
+  // ─ O ─
+  {w:"obicio",i:"obicere, obieci, obiectum (3)",e:"to oppose, set before",p:"verb3"},
+  {w:"obscurus",i:"-a -um",e:"dark, shady",p:"adj"},
+  {w:"obsecro",i:"obsecrare, obsecravi, obsecratum (1)",e:"to beseech",p:"verb1"},
+  {w:"obses",i:"obsidis c.",e:"hostage",p:"noun"},
+  {w:"obsideo",i:"obsidere, obsedi, obsessum (2)",e:"to besiege, blockade",p:"verb2"},
+  {w:"obsto",i:"obstare, obstiti, obstatum + dat. (1)",e:"to stand in the way of, block",p:"verb1"},
+  {w:"obtineo",i:"obtinere, obtinui, obtentum (2)",e:"to hold, possess",p:"verb2"},
+  {w:"obviam eo",i:"ire, ivi/ii, itum + dat.",e:"to meet",p:"phrase"},
+  {w:"obvius",i:"-a -um",e:"opposite, against",p:"adj"},
+  {w:"occasio",i:"occasionis f.",e:"opportunity",p:"noun"},
+  {w:"occido",i:"occidere, occidi, occisum (3)",e:"to kill",p:"verb3"},
+  {w:"occupatus",i:"-a -um",e:"busy, engaged",p:"adj"},
+  {w:"occupo",i:"occupare, occupavi, occupatum (1)",e:"to seize, occupy, take possession of",p:"verb1"},
+  {w:"occurro",i:"occurrere, occurri, occursum + dat. (3)",e:"to run to meet, to meet",p:"verb3"},
+  {w:"oculus",i:"-i m.",e:"eye",p:"noun"},
+  {w:"odium",i:"-i n.",e:"hatred",p:"noun"},
+  {w:"offero",i:"offerre, obtuli, oblatum",e:"to present, bring forward, offer",p:"verbirr"},
+  {w:"olim",i:"adv.",e:"once, once upon a time, some time ago",p:"adv"},
+  {w:"omen",i:"ominis n.",e:"omen, sign",p:"noun"},
+  {w:"omitto",i:"omittere, omisi, omissum (3)",e:"to let go, disregard",p:"verb3"},
+  {w:"omnino",i:"adv.",e:"altogether",p:"adv"},
+  {w:"omnipotens",i:"omnipotentis m.f.n.",e:"almighty, all-powerful",p:"adj"},
+  {w:"omnis",i:"-is -e",e:"all",p:"adj"},
+  {w:"onus",i:"oneris n.",e:"burden, load",p:"noun"},
+  {w:"oportet",i:"phrase",e:"it is necessary, proper",p:"phrase"},
+  {w:"oppidani",i:"-orum m.pl.",e:"townsfolk, inhabitants of a town",p:"noun"},
+  {w:"oppidum",i:"-i n.",e:"town",p:"noun"},
+  {w:"oppono",i:"opponere, opposui, oppositum (3)",e:"to put against, set before",p:"verb3"},
+  {w:"opprimo",i:"opprimere, oppressi, oppressum (3)",e:"to crush, overwhelm",p:"verb3"},
+  {w:"oppugno",i:"oppugnare, oppugnavi, oppugnatum (1)",e:"to attack, besiege",p:"verb1"},
+  {w:"optime",i:"adv.",e:"best, very well",p:"adv"},
+  {w:"optimus",i:"-a -um",e:"best, very good, excellent",p:"adj"},
+  {w:"opto",i:"optare, optavi, optatum (1)",e:"to choose, wish for",p:"verb1"},
+  {w:"opus",i:"operis n.",e:"work, labour",p:"noun"},
+  {w:"ora",i:"-ae f.",e:"coast, edge, region",p:"noun"},
+  {w:"oratio",i:"orationis f.",e:"speech",p:"noun"},
+  {w:"orator",i:"oratoris m.",e:"speaker, spokesman",p:"noun"},
+  {w:"orbis",i:"orbis m.",e:"circle, ring, world",p:"noun"},
+  {w:"ordo",i:"ordinis m.",e:"row, series, order",p:"noun"},
+  {w:"orior",i:"oriri, ortus sum (4)",e:"to rise, spring",p:"verbdep"},
+  {w:"ornamentum",i:"-i n.",e:"equipment, decoration",p:"noun"},
+  {w:"orno",i:"ornare, ornavi, ornatum (1)",e:"to decorate",p:"verb1"},
+  {w:"oro",i:"orare, oravi, oratum (1)",e:"to beg, beseech, pray",p:"verb1"},
+  {w:"os",i:"oris n.",e:"mouth, face",p:"noun"},
+  {w:"os",i:"ossis n.",e:"bone",p:"noun"},
+  {w:"ostendo",i:"ostendere, ostendi, ostensum/ostentum (3)",e:"to show",p:"verb3"},
+  {w:"otium",i:"-i n.",e:"leisure, quiet",p:"noun"},
+  {w:"ovis",i:"ovis f.",e:"sheep",p:"noun"},
+  {w:"ovum",i:"-i n.",e:"egg",p:"noun"},
+  // ─ P ─
+  {w:"paene",i:"adv.",e:"nearly, almost",p:"adv"},
+  {w:"panis",i:"-is m.",e:"bread",p:"noun"},
+  {w:"paratus",i:"-a -um",e:"ready, prepared",p:"adj"},
+  {w:"parco",i:"parcere, peperci/parsi, parsum + dat. (3)",e:"to spare, pardon",p:"verb3"},
+  {w:"parens",i:"parentis m./f.",e:"parent",p:"noun"},
+  {w:"pareo",i:"parere, parui + dat. (2)",e:"to obey",p:"verb2"},
+  {w:"pariter",i:"adv.",e:"equally",p:"adv"},
+  {w:"paro",i:"parare, paravi, paratum (1)",e:"to prepare",p:"verb1"},
+  {w:"pars",i:"partis f.",e:"part",p:"noun"},
+  {w:"parum",i:"adv.",e:"too little",p:"adv"},
+  {w:"parvus",i:"-a -um",e:"small",p:"adj"},
+  {w:"passim",i:"adv.",e:"here and there",p:"adv"},
+  {w:"passus",i:"-us m.",e:"pace, step",p:"noun"},
+  {w:"pater",i:"patris m.",e:"father",p:"noun"},
+  {w:"patior",i:"pati, passus sum (3)",e:"to suffer, allow",p:"verbdep"},
+  {w:"patria",i:"-ae f.",e:"fatherland",p:"noun"},
+  {w:"pauci",i:"-ae -a",e:"few, a few, little",p:"adj"},
+  {w:"paulatim",i:"adv.",e:"gradually",p:"adv"},
+  {w:"paulisper",i:"adv.",e:"for a short time",p:"adv"},
+  {w:"paulum",i:"adv.",e:"a little",p:"adv"},
+  {w:"pauper",i:"pauperis m.f.n.",e:"poor",p:"adj"},
+  {w:"pavidus",i:"-a -um",e:"fearful, trembling",p:"adj"},
+  {w:"pavor",i:"pavoris m.",e:"terror, trembling",p:"noun"},
+  {w:"pax",i:"pacis f.",e:"peace",p:"noun"},
+  {w:"pectus",i:"pectoris n.",e:"breast, heart",p:"noun"},
+  {w:"pecunia",i:"-ae f.",e:"money",p:"noun"},
+  {w:"pecus",i:"pecoris n.",e:"cattle, herd",p:"noun"},
+  {w:"pedes",i:"peditis m.",e:"foot-soldier",p:"noun"},
+  {w:"pello",i:"pellere, pepuli, pulsum (3)",e:"to drive out, expel",p:"verb3"},
+  {w:"per",i:"+ acc.",e:"through, along, throughout",p:"prep"},
+  {w:"perdo",i:"perdere, perdidi, perditum (3)",e:"to lose, destroy",p:"verb3"},
+  {w:"pereo",i:"perire, perivi/perii, peritum",e:"to pass away, perish, die",p:"verbirr"},
+  {w:"perfero",i:"perferre, pertuli, perlatum",e:"to carry through, finish",p:"verbirr"},
+  {w:"perficio",i:"perficere, perfeci, perfectum (3)",e:"to achieve, complete",p:"verb3"},
+  {w:"perfuga",i:"-ae m.",e:"deserter",p:"noun"},
+  {w:"periculosus",i:"-a -um",e:"dangerous",p:"adj"},
+  {w:"periculum",i:"-i n.",e:"danger",p:"noun"},
+  {w:"permaneo",i:"permanere, permansi, permansum (2)",e:"to remain, persist, last",p:"verb2"},
+  {w:"permitto",i:"permittere, permisi, permissum (3)",e:"to let go, surrender",p:"verb3"},
+  {w:"permoveo",i:"permovere, permovi, permotum (2)",e:"to move, excite",p:"verb2"},
+  {w:"perpetuus",i:"-a -um",e:"continuous, lasting",p:"adj"},
+  {w:"persequor",i:"persequi, persecutus sum (3)",e:"to pursue, overtake",p:"verbdep"},
+  {w:"perseverantia",i:"-ae f.",e:"persistence, endurance",p:"noun"},
+  {w:"persuadeo",i:"persuadere, persuasi, persuasum + dat. (2)",e:"to persuade, prevail upon",p:"verb2"},
+  {w:"perterritus",i:"-a -um",e:"terrified",p:"adj"},
+  {w:"pertineo",i:"pertinere, pertinui (2)",e:"to extend, reach",p:"verb2"},
+  {w:"pervenio",i:"pervenire, perveni, perventum + in/ad + acc. (4)",e:"to arrive at",p:"verb4"},
+  {w:"pes",i:"pedis m.",e:"foot, paw",p:"noun"},
+  {w:"pessimus",i:"-a -um",e:"the worst, very bad",p:"adj"},
+  {w:"peto",i:"petere, petivi/petii, petitum (3)",e:"to seek, ask, beg for, make for, attack",p:"verb3"},
+  {w:"pilum",i:"-i n.",e:"javelin",p:"noun"},
+  {w:"piscis",i:"piscis m.",e:"fish",p:"noun"},
+  {w:"placet",i:"+ dat.",e:"it pleases, it suits",p:"phrase"},
+  {w:"plebs",i:"plebis f.",e:"common people, lower class, plebs",p:"noun"},
+  {w:"plenus",i:"-a -um + gen./abl.",e:"full, filled",p:"adj"},
+  {w:"plerique",i:"pleraeque, pleraque",e:"most, a good many",p:"adj"},
+  {w:"pluit",i:"phrase",e:"it is raining",p:"phrase"},
+  {w:"plus",i:"pluris",e:"more",p:"adj"},
+  {w:"poena",i:"-ae f.",e:"punishment, penalty",p:"noun"},
+  {w:"poeta",i:"-ae m.",e:"poet",p:"noun"},
+  {w:"polliceor",i:"polliceri, pollicitus sum (2)",e:"to promise, offer",p:"verbdep"},
+  {w:"pono",i:"ponere, posui, positum (3)",e:"to place, put, stake, put up",p:"verb3"},
+  {w:"pons",i:"pontis m.",e:"bridge",p:"noun"},
+  {w:"popularis",i:"-is -e",e:"popular, belonging to the people",p:"adj"},
+  {w:"populus",i:"-i m.",e:"people",p:"noun"},
+  {w:"porta",i:"-ae f.",e:"gate, doorway",p:"noun"},
+  {w:"porto",i:"portare, portavi, portatum (1)",e:"to carry",p:"verb1"},
+  {w:"portus",i:"-us m.",e:"harbour, port",p:"noun"},
+  {w:"posco",i:"poscere, poposci (3)",e:"to demand, request",p:"verb3"},
+  {w:"possideo",i:"possidere, possedi, possessum (2)",e:"to hold, occupy",p:"verb2"},
+  {w:"possum",i:"posse, potui",e:"can, be able",p:"verbirr"},
+  {w:"post",i:"+ acc.",e:"after, behind",p:"prep"},
+  {w:"postea",i:"adv.",e:"afterwards",p:"adv"},
+  {w:"postquam",i:"conj.",e:"after, when",p:"conj"},
+  {w:"postremo",i:"adv.",e:"finally",p:"adv"},
+  {w:"postridie",i:"adv.",e:"on the following day, next day",p:"adv"},
+  {w:"potens",i:"potentis m.f.n.",e:"powerful, strong",p:"adj"},
+  {w:"potestas",i:"potestatis f.",e:"power, control",p:"noun"},
+  {w:"potior",i:"potiri, potitus sum + abl. (4)",e:"to take possession of, acquire",p:"verbdep"},
+  {w:"praebeo",i:"praebere, praebui, praebitum (2)",e:"to offer, supply",p:"verb2"},
+  {w:"praeceps",i:"praecipitis m.f.n.",e:"headlong",p:"adj"},
+  {w:"praecipue",i:"adv.",e:"especially",p:"adv"},
+  {w:"praeda",i:"-ae f.",e:"booty",p:"noun"},
+  {w:"praefectus",i:"-i m.",e:"commander, governor",p:"noun"},
+  {w:"praefero",i:"praeferre, praetuli, praelatum",e:"to carry in front",p:"verbirr"},
+  {w:"praeficio",i:"praeficere, praefeci, praefectum (3)",e:"to put in charge",p:"verb3"},
+  {w:"praemium",i:"-i n.",e:"reward, prize",p:"noun"},
+  {w:"praesens",i:"praesentis m.f.n.",e:"present, immediate",p:"adj"},
+  {w:"praesideo",i:"praesidere, praesedi (2)",e:"to sit before, guard",p:"verb2"},
+  {w:"praesidium",i:"-i n.",e:"protection, garrison",p:"noun"},
+  {w:"praesum",i:"praeesse, praefui + dat.",e:"to be in command of",p:"verbirr"},
+  {w:"praeter",i:"+ acc.",e:"except, beyond",p:"prep"},
+  {w:"praeterea",i:"adv.",e:"besides, moreover",p:"adv"},
+  {w:"praetereo",i:"praeterire, praeterii/praeterivi, praeteritum",e:"to go past, pass by, surpass",p:"verbirr"},
+  {w:"praetor",i:"praetoris m.",e:"praetor, governor",p:"noun"},
+  {w:"praetorium",i:"-i n.",e:"camp headquarters, governor's residence",p:"noun"},
+  {w:"precor",i:"precari, precatus sum (1)",e:"to pray, beg",p:"verbdep"},
+  {w:"premo",i:"premere, pressi, pressum (3)",e:"to press, tighten",p:"verb3"},
+  {w:"pretium",i:"-i n.",e:"price",p:"noun"},
+  {w:"pridie",i:"adv.",e:"the day before",p:"adv"},
+  {w:"primum",i:"adv.",e:"firstly, at first",p:"adv"},
+  {w:"princeps",i:"principis m./f.",e:"chief, chieftain, leading citizen, emperor",p:"noun"},
+  {w:"prior",i:"prior, prius",e:"former, previous",p:"adj"},
+  {w:"prius",i:"adv.",e:"formerly, previously, earlier",p:"adv"},
+  {w:"priusquam",i:"conj.",e:"before, sooner than",p:"conj"},
+  {w:"pro",i:"+ abl.",e:"for, on behalf of, in return for, in front of",p:"prep"},
+  {w:"procedo",i:"procedere, processi, processum (3)",e:"to proceed, advance, step forward",p:"verb3"},
+  {w:"procul",i:"adv.",e:"far, in the distance",p:"adv"},
+  {w:"prodigium",i:"-i n.",e:"omen, portent",p:"noun"},
+  {w:"prodo",i:"prodere, prodidi, proditum (3)",e:"to betray",p:"verb3"},
+  {w:"proelium",i:"-i n.",e:"battle, fight",p:"noun"},
+  {w:"profero",i:"proferre, protuli, prolatum",e:"to carry forth, bring forth",p:"verbirr"},
+  {w:"proficiscor",i:"proficisci, profectus sum (3)",e:"to set out",p:"verbdep"},
+  {w:"progredior",i:"progredi, progressus sum (3)",e:"to advance",p:"verbdep"},
+  {w:"prohibeo",i:"prohibere, prohibui, prohibitum (2)",e:"to prevent, hinder",p:"verb2"},
+  {w:"proles",i:"prolis f.",e:"offspring, descendant",p:"noun"},
+  {w:"promitto",i:"promittere, promisi, promissum (3)",e:"to promise",p:"verb3"},
+  {w:"prope",i:"+ acc.",e:"near",p:"prep"},
+  {w:"propero",i:"properare, properavi, properatum (1)",e:"to hasten, hurry",p:"verb1"},
+  {w:"propinquus",i:"-a -um",e:"neighbouring",p:"adj"},
+  {w:"propior",i:"propior, propius",e:"nearer",p:"adj"},
+  {w:"propter",i:"+ acc.",e:"on account of, beside",p:"prep"},
+  {w:"prospicio",i:"prospicere, prospexi, prospectum (3)",e:"to look forward, watch",p:"verb3"},
+  {w:"protinus",i:"adv.",e:"immediately, straightaway",p:"adv"},
+  {w:"provideo",i:"providere, providi, provisum (2)",e:"to look forward, make provision",p:"verb2"},
+  {w:"provincia",i:"-ae f.",e:"province",p:"noun"},
+  {w:"proximus",i:"-a -um",e:"nearest",p:"adj"},
+  {w:"prudens",i:"prudentis m.f.n.",e:"foreseeing, prudent",p:"adj"},
+  {w:"prudentia",i:"-ae f.",e:"knowledge, prudence",p:"noun"},
+  {w:"publice",i:"adv.",e:"publicly",p:"adv"},
+  {w:"publicus",i:"-a -um",e:"public, belonging to the state",p:"adj"},
+  {w:"pudor",i:"pudoris m.",e:"shame, disgrace",p:"noun"},
+  {w:"puella",i:"-ae f.",e:"girl",p:"noun"},
+  {w:"puer",i:"-i m.",e:"boy",p:"noun"},
+  {w:"pugna",i:"-ae f.",e:"fight, combat",p:"noun"},
+  {w:"pugno",i:"pugnare, pugnavi, pugnatum (1)",e:"to fight, contend",p:"verb1"},
+  {w:"pulcher",i:"pulchra, pulchrum",e:"beautiful",p:"adj"},
+  {w:"pulvis",i:"pulveris m.",e:"dust",p:"noun"},
+  {w:"punio",i:"punire, punivi, punitum (4)",e:"to punish",p:"verb4"},
+  {w:"puppis",i:"-is f.",e:"stern, ship",p:"noun"},
+  {w:"purus",i:"-a -um",e:"clear, pure, upright",p:"adj"},
+  {w:"puto",i:"putare, putavi, putatum (1)",e:"to think, reckon",p:"verb1"},
+  {w:"pyra",i:"-ae f.",e:"funeral pyre",p:"noun"},
+  // ─ Q ─
+  {w:"qua",i:"adv.",e:"where",p:"adv"},
+  {w:"quaero",i:"quaerere, quaesivi, quaesitum (3)",e:"to look for, search",p:"verb3"},
+  {w:"qualis",i:"-is -e",e:"of what kind, such as",p:"adj"},
+  {w:"quam",i:"conj.",e:"than",p:"conj"},
+  {w:"quam",i:"adv.",e:"how, in what way?",p:"adv"},
+  {w:"quam diu",i:"adv.",e:"how long",p:"adv"},
+  {w:"quam!",i:"adv.",e:"how…!",p:"adv"},
+  {w:"quamquam",i:"conj.",e:"although",p:"conj"},
+  {w:"quamvis",i:"conj.",e:"although",p:"conj"},
+  {w:"quantus",i:"-a -um",e:"how big, how much",p:"adj"},
+  {w:"quare",i:"adv.",e:"why?, wherefore?",p:"adv"},
+  {w:"quasi",i:"adv.",e:"as if",p:"adv"},
+  {w:"-que",i:"conj.",e:"and",p:"conj"},
+  {w:"queror",i:"queri, questus sum (3)",e:"to complain, lament",p:"verbdep"},
+  {w:"qui, quae, quod",i:"pron.",e:"who, which",p:"pron"},
+  {w:"quia",i:"conj.",e:"because",p:"conj"},
+  {w:"quidam",i:"quaedam, quoddam",e:"a certain thing, person",p:"pron"},
+  {w:"quidem",i:"adv.",e:"indeed",p:"adv"},
+  {w:"quidquam",i:"pron.",e:"anything",p:"pron"},
+  {w:"quies",i:"quietis f.",e:"rest, peace",p:"noun"},
+  {w:"quiesco",i:"quiescere, quievi, quietum (3)",e:"to rest",p:"verb3"},
+  {w:"quis, quid",i:"pron.",e:"who? what?",p:"pron"},
+  {w:"quisquam",i:"quaequam, quicquam",e:"anyone, anything",p:"pron"},
+  {w:"quisque",i:"quaeque, quodque",e:"each, everybody, everything",p:"pron"},
+  {w:"quo",i:"adv.",e:"where? where to?",p:"adv"},
+  {w:"quod",i:"conj.",e:"because, which",p:"conj"},
+  {w:"quomodo",i:"adv.",e:"how? in what way?",p:"adv"},
+  {w:"quoniam",i:"conj.",e:"since",p:"conj"},
+  {w:"quoque",i:"conj.",e:"also, too",p:"conj"},
+  {w:"quot",i:"adv.",e:"how many?",p:"adv"},
+  {w:"quotiens",i:"adv.",e:"how often, as often as",p:"adv"},
+  // ─ R ─
+  {w:"rabies",i:"rabiei f.",e:"madness, rage, fury",p:"noun"},
+  {w:"radius",i:"-i m.",e:"ray of light",p:"noun"},
+  {w:"rapidus",i:"-a -um",e:"impetuous, swift",p:"adj"},
+  {w:"rapio",i:"rapere, rapui, raptum (3)",e:"to seize, snatch, grab",p:"verb3"},
+  {w:"ratio",i:"rationis f.",e:"reckoning, reason, motive",p:"noun"},
+  {w:"recipio",i:"recipere, recepi, receptum (3)",e:"to hold back, take back, retreat",p:"verb3"},
+  {w:"recito",i:"recitare, recitavi, recitatum (1)",e:"to recite, read publicly",p:"verb1"},
+  {w:"rectus",i:"-a -um",e:"proper, correct, straight",p:"adj"},
+  {w:"reddo",i:"reddere, reddidi, redditum (3)",e:"to give back, return",p:"verb3"},
+  {w:"redeo",i:"redire, redivi/redii, reditum",e:"to go back, return",p:"verbirr"},
+  {w:"redimo",i:"redimere, redemi, redemptum (3)",e:"to buy back, redeem, recover",p:"verb3"},
+  {w:"reduco",i:"reducere, reduxi, reductum (3)",e:"to bring, lead back, draw back",p:"verb3"},
+  {w:"refero",i:"referre, retuli, relatum",e:"to carry, bring back, refer",p:"verbirr"},
+  {w:"reficio",i:"reficere, refeci, refectum (3)",e:"to restore, revive, refresh",p:"verb3"},
+  {w:"regia",i:"-ae f.",e:"palace",p:"noun"},
+  {w:"regina",i:"-ae f.",e:"queen",p:"noun"},
+  {w:"regio",i:"-ionis f.",e:"region, district, territory",p:"noun"},
+  {w:"regnum",i:"-i n.",e:"kingdom, royal power",p:"noun"},
+  {w:"rego",i:"regere, rexi, rectum (3)",e:"to rule",p:"verb3"},
+  {w:"regredior",i:"regredi, regressus sum (3)",e:"to go back, return, retreat",p:"verbdep"},
+  {w:"religio",i:"-ionis f.",e:"superstition, respect",p:"noun"},
+  {w:"relinquo",i:"relinquere, reliqui, relictum (3)",e:"to leave, leave behind, abandon",p:"verb3"},
+  {w:"reliquus",i:"-a -um",e:"remaining, left behind",p:"adj"},
+  {w:"removeo",i:"removere, removi, remotum (2)",e:"to move back, withdraw",p:"verb2"},
+  {w:"remus",i:"-i m.",e:"oar",p:"noun"},
+  {w:"reor",i:"reri, ratus sum (2)",e:"to think, consider, suppose",p:"verbdep"},
+  {w:"repello",i:"repellere, reppuli, repulsum (3)",e:"to drive back, drive away",p:"verb3"},
+  {w:"repente",i:"adv.",e:"suddenly, unexpectedly",p:"adv"},
+  {w:"repentinus",i:"-a -um",e:"sudden, unexpected",p:"adj"},
+  {w:"reperio",i:"reperire, repperi, repertum (4)",e:"to find, discover",p:"verb4"},
+  {w:"repeto",i:"repetere, repetivi, repetitum (3)",e:"to demand back, seek again",p:"verb3"},
+  {w:"repleo",i:"replere, replevi, repletum (2)",e:"to fill again, make full, satisfy",p:"verb2"},
+  {w:"reporto",i:"reportare, reportavi, reportatum (1)",e:"to bring back",p:"verb1"},
+  {w:"reprimo",i:"reprimere, repressi, repressum (3)",e:"to hold back, restrain, hinder",p:"verb3"},
+  {w:"requiesco",i:"requiescere, requievi, requietum (3)",e:"to rest, repose",p:"verb3"},
+  {w:"requiro",i:"requirere, requisivi, requisitum (3)",e:"to ask, to look for",p:"verb3"},
+  {w:"res publica",i:"rei publicae f.",e:"the state, republic",p:"noun"},
+  {w:"res",i:"rei f.",e:"thing, matter, business, affair, situation",p:"noun"},
+  {w:"reservo",i:"reservare, reservavi, reservatum (1)",e:"to keep back, save, preserve",p:"verb1"},
+  {w:"resisto",i:"resistere, restiti + dat. (3)",e:"to resist, oppose, withstand",p:"verb3"},
+  {w:"respicio",i:"respicere, respexi, respectum (3)",e:"to look back, behind, care for",p:"verb3"},
+  {w:"respondeo",i:"respondere, respondi, responsum (2)",e:"to reply, answer",p:"verb2"},
+  {w:"restituo",i:"restituere, restitui, restitutum (3)",e:"to replace, restore",p:"verb3"},
+  {w:"retineo",i:"retinere, retinui, retentum (2)",e:"to retain, keep, hold back",p:"verb2"},
+  {w:"retraho",i:"retrahere, retraxi, retractum (3)",e:"to draw back, drag back, withdraw",p:"verb3"},
+  {w:"retro",i:"adv.",e:"backwards, behind",p:"adv"},
+  {w:"revenio",i:"revenire, reveni, reventum (4)",e:"to come back, return",p:"verb4"},
+  {w:"reverto",i:"revertere, reverti (3)",e:"to return, come back",p:"verb3"},
+  {w:"revoco",i:"revocare, revocavi, revocatum (1)",e:"to call back, summon back",p:"verb1"},
+  {w:"rex",i:"regis m.",e:"king",p:"noun"},
+  {w:"rideo",i:"ridere, risi, risum (2)",e:"to laugh, smile",p:"verb2"},
+  {w:"ripa",i:"-ae f.",e:"bank (of river)",p:"noun"},
+  {w:"rivus",i:"-i m.",e:"stream",p:"noun"},
+  {w:"robur",i:"roboris n.",e:"oak, hardness, strength",p:"noun"},
+  {w:"rogo",i:"rogare, rogavi, rogatum (1)",e:"to ask",p:"verb1"},
+  {w:"rostra",i:"rostrorum n.pl.",e:"platform",p:"noun"},
+  {w:"ruina",i:"-ae f.",e:"collapse, ruin",p:"noun"},
+  {w:"rumpo",i:"rumpere, rupi, ruptum (3)",e:"to break, shatter, force open",p:"verb3"},
+  {w:"ruo",i:"ruere, rui, rutum (3)",e:"to rush, fall down, collapse",p:"verb3"},
+  {w:"rupes",i:"rupis f.",e:"rock, cliff",p:"noun"},
+  {w:"rursus",i:"adv.",e:"again",p:"adv"},
+  {w:"rus",i:"ruris n.",e:"country(side)",p:"noun"},
+  // ─ S ─
+  {w:"sacer",i:"sacra, sacrum",e:"sacred, holy",p:"adj"},
+  {w:"saepe",i:"adv.",e:"often",p:"adv"},
+  {w:"saevus",i:"-a -um",e:"savage, cruel, fierce",p:"adj"},
+  {w:"sagitta",i:"-ae f.",e:"arrow",p:"noun"},
+  {w:"salus",i:"salutis f.",e:"health, safety, welfare",p:"noun"},
+  {w:"saluto",i:"salutare, salutavi, salutatum (1)",e:"to greet, welcome",p:"verb1"},
+  {w:"salve / salvete",i:"interj.",e:"hello! good morning! greetings!",p:"interj"},
+  {w:"sanctus",i:"-a -um",e:"consecrated, sacred",p:"adj"},
+  {w:"sanguis",i:"sanguinis m.",e:"blood, race, descendant",p:"noun"},
+  {w:"sanus",i:"-a -um",e:"healthy, sane",p:"adj"},
+  {w:"sapiens",i:"sapientis m.f.n.",e:"wise, sensible",p:"adj"},
+  {w:"sapientia",i:"-ae f.",e:"good sense, wisdom, prudence",p:"noun"},
+  {w:"satis",i:"adv. + gen.",e:"enough",p:"adv"},
+  {w:"saxum",i:"-i n.",e:"rock",p:"noun"},
+  {w:"scaena",i:"-ae f.",e:"stage",p:"noun"},
+  {w:"scelestus",i:"-a -um",e:"wicked",p:"adj"},
+  {w:"scelus",i:"sceleris n.",e:"crime",p:"noun"},
+  {w:"scio",i:"scire, scivi, scitum (4)",e:"to know",p:"verb4"},
+  {w:"scribo",i:"scribere, scripsi, scriptum (3)",e:"to write",p:"verb3"},
+  {w:"scutum",i:"-i n.",e:"shield",p:"noun"},
+  {w:"se",i:"pron.",e:"himself, herself, itself, themselves",p:"pron"},
+  {w:"seco",i:"secare, secui, sectum (1)",e:"to cut",p:"verb1"},
+  {w:"secundus",i:"-a -um",e:"second, favourable",p:"adj"},
+  {w:"securus",i:"-a -um",e:"safe, secure, free from care",p:"adj"},
+  {w:"sed",i:"conj.",e:"but",p:"conj"},
+  {w:"sedeo",i:"sedere, sedi, sessum (2)",e:"to sit",p:"verb2"},
+  {w:"sedes",i:"-is f.",e:"seat, chair",p:"noun"},
+  {w:"seditio",i:"seditionis f.",e:"revolt, rising, mutiny",p:"noun"},
+  {w:"sella",i:"-ae f.",e:"seat, chair",p:"noun"},
+  {w:"semen",i:"seminis n.",e:"seed",p:"noun"},
+  {w:"semper",i:"adv.",e:"always",p:"adv"},
+  {w:"senator",i:"senatoris m.",e:"senator",p:"noun"},
+  {w:"senatus",i:"-us m.",e:"the senate",p:"noun"},
+  {w:"senectus",i:"senectutis f.",e:"old age",p:"noun"},
+  {w:"senex",i:"senis m.",e:"old man",p:"noun"},
+  {w:"sententia",i:"-ae f.",e:"opinion, thought",p:"noun"},
+  {w:"sentio",i:"sentire, sensi, sensum (4)",e:"to feel, notice, realise, perceive",p:"verb4"},
+  {w:"sepulchrum",i:"-i n.",e:"tomb",p:"noun"},
+  {w:"sequor",i:"sequi, secutus sum (3)",e:"to follow",p:"verbdep"},
+  {w:"serenus",i:"-a -um",e:"calm, clear, serene, cheerful, glad",p:"adj"},
+  {w:"sermo",i:"sermonis m.",e:"conversation, talk",p:"noun"},
+  {w:"serus",i:"-a -um",e:"late",p:"adj"},
+  {w:"servio",i:"servire, servivi/servii, servitum + dat. (4)",e:"to serve, to be a slave",p:"verb4"},
+  {w:"servitudo",i:"servitudinis f.",e:"slavery, servitude",p:"noun"},
+  {w:"servo",i:"servare, servavi, servatum (1)",e:"to keep, save, protect",p:"verb1"},
+  {w:"servus",i:"-i m.",e:"slave",p:"noun"},
+  {w:"seu / sive",i:"conj.",e:"if",p:"conj"},
+  {w:"seu … seu",i:"conj.",e:"whether … or",p:"conj"},
+  {w:"severus",i:"-a -um",e:"serious, strict, stern",p:"adj"},
+  {w:"si",i:"conj.",e:"if",p:"conj"},
+  {w:"sic",i:"adv.",e:"thus, in this way",p:"adv"},
+  {w:"siccus",i:"-a -um",e:"dry",p:"adj"},
+  {w:"sicut / sicuti",i:"adv.",e:"just as",p:"adv"},
+  {w:"sidus",i:"sideris n.",e:"star, constellation",p:"noun"},
+  {w:"signum",i:"-i n.",e:"sign, signal, standard",p:"noun"},
+  {w:"silentium",i:"-i n.",e:"silence",p:"noun"},
+  {w:"silva",i:"-ae f.",e:"wood, forest",p:"noun"},
+  {w:"similis",i:"-is -e + gen.",e:"like, similar",p:"adj"},
+  {w:"simul",i:"adv.",e:"at the same time",p:"adv"},
+  {w:"simulo",i:"simulare, simulavi, simulatum (1)",e:"to pretend",p:"verb1"},
+  {w:"sin",i:"conj.",e:"but if, if however",p:"conj"},
+  {w:"sine",i:"+ abl.",e:"without",p:"prep"},
+  {w:"singulus",i:"-a -um",e:"single, one at a time",p:"adj"},
+  {w:"sinister",i:"sinistra, sinistrum",e:"left, on the left, wrong",p:"adj"},
+  {w:"sino",i:"sinere, sivi, situm (3)",e:"to allow, permit",p:"verb3"},
+  {w:"sinus",i:"-us m.",e:"fold in cloth, lap, bosom, bay",p:"noun"},
+  {w:"sive … sive",i:"conj.",e:"whether … or",p:"conj"},
+  {w:"socius",i:"-i m.",e:"friend, ally",p:"noun"},
+  {w:"sol",i:"solis m.",e:"sun, heat of the sun",p:"noun"},
+  {w:"soleo",i:"solere, solitus sum (2)",e:"to be accustomed",p:"verbsemi"},
+  {w:"solitudo",i:"solitudinis f.",e:"loneliness",p:"noun"},
+  {w:"sollicito",i:"sollicitare, sollicitavi, sollicitatum (1)",e:"to worry",p:"verb1"},
+  {w:"sollicitus",i:"-a -um",e:"anxious, uneasy, worried",p:"adj"},
+  {w:"solum",i:"-i n.",e:"ground, soil",p:"noun"},
+  {w:"solus",i:"-a -um",e:"alone, lonely",p:"adj"},
+  {w:"solvo",i:"solvere, solvi, solutum (3)",e:"to loosen, free, dissolve",p:"verb3"},
+  {w:"somnus",i:"-i m.",e:"sleep",p:"noun"},
+  {w:"sono",i:"sonare, sonui, sonitum (1)",e:"to sound, make a noise",p:"verb1"},
+  {w:"sonus",i:"-i m.",e:"sound",p:"noun"},
+  {w:"sordidus",i:"-a -um",e:"dirty, filthy",p:"adj"},
+  {w:"soror",i:"sororis f.",e:"sister",p:"noun"},
+  {w:"sors",i:"sortis f.",e:"lot, fate, casting of lots",p:"noun"},
+  {w:"spargo",i:"spargere, sparsi, sparsum (3)",e:"to scatter",p:"verb3"},
+  {w:"spatium",i:"-i n.",e:"space, extent, walk",p:"noun"},
+  {w:"species",i:"speciei f.",e:"sight, appearance, image, kind",p:"noun"},
+  {w:"spectaculum",i:"-i n.",e:"sight, show, spectacle",p:"noun"},
+  {w:"specto",i:"spectare, spectavi, spectatum (1)",e:"to look at, watch",p:"verb1"},
+  {w:"sperno",i:"spernere, sprevi, spretum (3)",e:"to put away, despise, scorn",p:"verb3"},
+  {w:"spero",i:"sperare, speravi, speratum (1)",e:"to hope",p:"verb1"},
+  {w:"spes",i:"spei f.",e:"hope",p:"noun"},
+  {w:"splendeo",i:"splendere, splendidi, splenditum (2)",e:"to shine, glitter",p:"verb2"},
+  {w:"spolio",i:"spoliare, spoliavi, spoliatum (1)",e:"to plunder, rob, strip",p:"verb1"},
+  {w:"spondeo",i:"spondere, spopondi, sponsum (2)",e:"to promise, pledge oneself",p:"verb2"},
+  {w:"statim",i:"adv.",e:"immediately, at once",p:"adv"},
+  {w:"statio",i:"stationis f.",e:"position, post, anchorage",p:"noun"},
+  {w:"statuo",i:"statuere, statui, statutum (3)",e:"to settle, decide",p:"verb3"},
+  {w:"status",i:"-us m.",e:"position, standing, condition",p:"noun"},
+  {w:"stella",i:"-ae f.",e:"star",p:"noun"},
+  {w:"sto",i:"stare, steti, statum (1)",e:"to stand, lie at anchor",p:"verb1"},
+  {w:"strepitus",i:"-us m.",e:"din, noise",p:"noun"},
+  {w:"studeo",i:"studere, studui + dat. (2)",e:"to be keen on, to support, to study",p:"verb2"},
+  {w:"studium",i:"-i n.",e:"zeal, eagerness, enthusiasm",p:"noun"},
+  {w:"stultus",i:"-a -um",e:"stupid, foolish",p:"adj"},
+  {w:"sua sponte",i:"phrase",e:"freely, voluntarily",p:"phrase"},
+  {w:"suadeo",i:"suadere, suasi, suasum + dat. (2)",e:"to advise, recommend, persuade",p:"verb2"},
+  {w:"sub",i:"+ abl.",e:"under, in the power of",p:"prep"},
+  {w:"sub",i:"+ acc.",e:"close up to, just before",p:"prep"},
+  {w:"subeo",i:"subire, subii/subivi, subitum",e:"to go up to, support, come to the assistance",p:"verbirr"},
+  {w:"subicio",i:"subicere, subieci, subiectum (3)",e:"to submit, place under, subject to",p:"verb3"},
+  {w:"subito",i:"adv.",e:"suddenly",p:"adv"},
+  {w:"submergo",i:"submergere, submersi, submersum (3)",e:"to sink",p:"verb3"},
+  {w:"subsidium",i:"-i n.",e:"help, support",p:"noun"},
+  {w:"subvenio",i:"subvenire, subveni, subventum + dat. (4)",e:"to come to the help of",p:"verb4"},
+  {w:"sum",i:"esse, fui",e:"to be",p:"verbirr"},
+  {w:"summus",i:"-a -um",e:"highest, greatest, top of",p:"adj"},
+  {w:"sumo",i:"sumere, sumpsi, sumptum (3)",e:"to take up, obtain, choose",p:"verb3"},
+  {w:"super",i:"+ abl.",e:"over, above",p:"prep"},
+  {w:"super",i:"+ acc.",e:"upon, beyond",p:"prep"},
+  {w:"superbus",i:"-a -um",e:"proud, arrogant",p:"adj"},
+  {w:"supero",i:"superare, superavi, superatum (1)",e:"to overcome, conquer, defeat",p:"verb1"},
+  {w:"supersum",i:"superesse, superfui",e:"to survive",p:"verbirr"},
+  {w:"supprimo",i:"supprimere, suppressi, suppressum (3)",e:"to suppress",p:"verb3"},
+  {w:"supra",i:"+ acc.",e:"above, over",p:"prep"},
+  {w:"supremus",i:"-a -um",e:"last",p:"adj"},
+  {w:"surgo",i:"surgere, surrexi, surrectum (3)",e:"to get up, rise",p:"verb3"},
+  {w:"surripio",i:"surripere, surripui, surreptum (3)",e:"to steal",p:"verb3"},
+  {w:"suscipio",i:"suscipere, suscepi, susceptum (3)",e:"to undertake",p:"verb3"},
+  {w:"suspicor",i:"suspicari, suspicatus sum (1)",e:"to suspect, infer",p:"verbdep"},
+  {w:"suus",i:"-a -um",e:"his, her, its, their (own)",p:"adj"},
+  // ─ T ─
+  {w:"taberna",i:"-ae f.",e:"inn, shop",p:"noun"},
+  {w:"tabernaculum",i:"-i n.",e:"tent",p:"noun"},
+  {w:"taceo",i:"tacere, tacui, tacitum (2)",e:"to be silent",p:"verb2"},
+  {w:"tacitus",i:"-a -um",e:"silent, quiet",p:"adj"},
+  {w:"talis",i:"-is -e",e:"of such a kind",p:"adj"},
+  {w:"tam",i:"adv.",e:"so",p:"adv"},
+  {w:"tamen",i:"conj.",e:"however, nevertheless",p:"conj"},
+  {w:"tamquam",i:"adv.",e:"so as, just as",p:"adv"},
+  {w:"tandem",i:"adv.",e:"at last, finally, at length",p:"adv"},
+  {w:"tango",i:"tangere, tetigi, tactum (3)",e:"to touch, strike, hit, affect",p:"verb3"},
+  {w:"tantum",i:"adv.",e:"only",p:"adv"},
+  {w:"tantus",i:"-a -um",e:"so great, such a great",p:"adj"},
+  {w:"tardus",i:"-a -um",e:"slow",p:"adj"},
+  {w:"tectum",i:"-i n.",e:"roof, house, dwelling",p:"noun"},
+  {w:"tego",i:"tegere, texi, tectum (3)",e:"to cover, hide, protect",p:"verb3"},
+  {w:"tellus",i:"telluris f.",e:"the earth, world, land",p:"noun"},
+  {w:"telum",i:"-i n.",e:"weapon, missile",p:"noun"},
+  {w:"tempestas",i:"tempestatis f.",e:"storm, season, attack",p:"noun"},
+  {w:"templum",i:"-i n.",e:"temple",p:"noun"},
+  {w:"tempto",i:"temptare, temptavi, temptatum (1)",e:"to attempt, prove, test",p:"verb1"},
+  {w:"tempus",i:"temporis n.",e:"time",p:"noun"},
+  {w:"tendo",i:"tendere, tetendi, tentum/tensum (3)",e:"to stretch, go forwards, make for",p:"verb3"},
+  {w:"tenebrae",i:"-arum f.pl.",e:"darkness, night",p:"noun"},
+  {w:"teneo",i:"tenere, tenui, tentum (2)",e:"to hold, keep",p:"verb2"},
+  {w:"tenuis",i:"-is -e",e:"thin, fine, slight, unimportant",p:"adj"},
+  {w:"tepidus",i:"-a -um",e:"lukewarm, tepid",p:"adj"},
+  {w:"ter",i:"adv.",e:"three times",p:"adv"},
+  {w:"tergum",i:"-i n.",e:"back",p:"noun"},
+  {w:"terra",i:"-ae f.",e:"ground, earth, land",p:"noun"},
+  {w:"terreo",i:"terrere, terrui, territum (2)",e:"to frighten, terrify",p:"verb2"},
+  {w:"terror",i:"terroris m.",e:"fright, fear, panic",p:"noun"},
+  {w:"testis",i:"testis c.",e:"witness, eye witness",p:"noun"},
+  {w:"timeo",i:"timere, timui (2)",e:"to fear",p:"verb2"},
+  {w:"timidus",i:"-a -um",e:"timid",p:"adj"},
+  {w:"timor",i:"timoris m.",e:"fear",p:"noun"},
+  {w:"toga",i:"-ae f.",e:"toga",p:"noun"},
+  {w:"tollo",i:"tollere, sustuli, sublatum (3)",e:"to lift, raise, remove, take away",p:"verb3"},
+  {w:"torqueo",i:"torquere, torsi, torsum (3)",e:"to twist, torture",p:"verb3"},
+  {w:"tot",i:"indecl.",e:"so many",p:"adj"},
+  {w:"totiens",i:"adv.",e:"so often",p:"adv"},
+  {w:"totus",i:"-a -um",e:"whole",p:"adj"},
+  {w:"transmitto",i:"transmittere, transmisi, transmissum (3)",e:"to send across, cross over",p:"verb3"},
+  {w:"trado",i:"tradere, tradidi, traditum (3)",e:"to hand over, relate, record",p:"verb3"},
+  {w:"traduco",i:"traducere, traduxi, traductum (3)",e:"to bring over, lead past, show",p:"verb3"},
+  {w:"traho",i:"trahere, traxi, tractum (3)",e:"to drag, draw",p:"verb3"},
+  {w:"traicio",i:"traicere, traieci, traiectum (3)",e:"to throw, hurl, penetrate",p:"verb3"},
+  {w:"tranquillitas",i:"tranquillitatis f.",e:"calm, peacefulness, quietness",p:"noun"},
+  {w:"trans",i:"+ acc.",e:"across, over",p:"prep"},
+  {w:"transeo",i:"transire, transivi/transii, transitum",e:"to cross",p:"verbirr"},
+  {w:"transfero",i:"transferre, transtuli, translatum",e:"to carry across",p:"verbirr"},
+  {w:"transgredior",i:"transgredi, transgressus sum (3)",e:"to go across, go over",p:"verbdep"},
+  {w:"tremo",i:"tremere, tremui (2)",e:"to tremble (at)",p:"verb2"},
+  {w:"trepidatio",i:"-onis f.",e:"alarm, fear, anxiety, trepidation",p:"noun"},
+  {w:"trepidus",i:"-a -um",e:"anxious, restless, agitated",p:"adj"},
+  {w:"tribunal",i:"-alis n.",e:"tribunal, raised platform",p:"noun"},
+  {w:"tribunus",i:"-i m.",e:"tribune, military tribune",p:"noun"},
+  {w:"triclinium",i:"-i n.",e:"dining-room",p:"noun"},
+  {w:"tristis",i:"-is -e",e:"sad",p:"adj"},
+  {w:"triumpho",i:"triumphare, triumphavi, triumphatum (1)",e:"to triumph, gain a victory",p:"verb1"},
+  {w:"triumphus",i:"-i m.",e:"triumphal procession",p:"noun"},
+  {w:"tu",i:"pron.",e:"you (sing.)",p:"pron"},
+  {w:"tueor",i:"tueri, tuitus sum (2)",e:"to take care of, protect, look after",p:"verbdep"},
+  {w:"tum",i:"adv.",e:"then",p:"adv"},
+  {w:"tumultus",i:"-us m.",e:"panic, tumult, din, confusion",p:"noun"},
+  {w:"tumulus",i:"-i m.",e:"hill, mound",p:"noun"},
+  {w:"tunc",i:"adv.",e:"then, at that time",p:"adv"},
+  {w:"tunica",i:"-ae f.",e:"tunic",p:"noun"},
+  {w:"turba",i:"-ae f.",e:"crowd",p:"noun"},
+  {w:"turbidus",i:"-a -um",e:"confused, troubled, disturbed",p:"adj"},
+  {w:"turpis",i:"-is -e",e:"disgraceful",p:"adj"},
+  {w:"tutus",i:"-a -um",e:"safe",p:"adj"},
+  {w:"tuus",i:"-a -um",e:"your",p:"adj"},
+  // ─ U ─
+  {w:"ubi",i:"adv.",e:"when, as soon as; where?",p:"adv"},
+  {w:"ullus",i:"-a -um",e:"any",p:"adj"},
+  {w:"ultimus",i:"-a -um",e:"last",p:"adj"},
+  {w:"ultra",i:"adv.",e:"beyond, besides",p:"adv"},
+  {w:"ultra",i:"+ acc.",e:"beyond, past",p:"prep"},
+  {w:"umbra",i:"-ae f.",e:"shadow, shade",p:"noun"},
+  {w:"umerus",i:"-i m.",e:"shoulder",p:"noun"},
+  {w:"umidus",i:"-a -um",e:"wet, damp",p:"adj"},
+  {w:"umquam",i:"adv.",e:"ever",p:"adv"},
+  {w:"una",i:"adv.",e:"together",p:"adv"},
+  {w:"unda",i:"-ae f.",e:"wave, water",p:"noun"},
+  {w:"unde",i:"adv.",e:"from where?",p:"adv"},
+  {w:"undique",i:"adv.",e:"on all sides",p:"adv"},
+  {w:"universus",i:"-a -um",e:"whole, entire",p:"adj"},
+  {w:"urbs",i:"urbis f.",e:"city",p:"noun"},
+  {w:"usquam",i:"adv.",e:"anywhere",p:"adv"},
+  {w:"usque ad",i:"+ acc.",e:"right up to",p:"phrase"},
+  {w:"ut",i:"+ indic.",e:"as, when",p:"conj"},
+  {w:"ut",i:"+ subj.",e:"that, in order that, so that",p:"conj"},
+  {w:"uter",i:"utra, utrum",e:"which (of two)",p:"pron"},
+  {w:"uterque",i:"utraque, utrumque",e:"each (of two), either",p:"pron"},
+  {w:"utilis",i:"-is -e",e:"useful",p:"adj"},
+  {w:"utor",i:"uti, usus sum (3) + abl.",e:"to use",p:"verbdep"},
+  {w:"uxor",i:"uxoris f.",e:"wife",p:"noun"},
+  // ─ V ─
+  {w:"vacuus",i:"-a -um",e:"empty, vacant",p:"adj"},
+  {w:"vado",i:"vadere (3)",e:"to go, advance",p:"verb3"},
+  {w:"valde",i:"adv.",e:"extremely",p:"adv"},
+  {w:"vale / valete",i:"interj.",e:"goodbye!",p:"interj"},
+  {w:"valeo",i:"valere, valui, valitum (2)",e:"to be strong, to be able",p:"verb2"},
+  {w:"valetudo",i:"valetudinis f.",e:"health",p:"noun"},
+  {w:"validus",i:"-a -um",e:"strong",p:"adj"},
+  {w:"vallis",i:"-is f.",e:"valley",p:"noun"},
+  {w:"vallum",i:"-i n.",e:"rampart",p:"noun"},
+  {w:"vanus",i:"-a -um",e:"empty, vain",p:"adj"},
+  {w:"varius",i:"-a -um",e:"varied, different",p:"adj"},
+  {w:"vates",i:"vatis m./f.",e:"prophet, prophetess",p:"noun"},
+  {w:"-ve",i:"conj.",e:"or",p:"conj"},
+  {w:"vel",i:"conj.",e:"or",p:"conj"},
+  {w:"vel … vel",i:"conj.",e:"either … or",p:"conj"},
+  {w:"velut",i:"adv.",e:"as, just as",p:"adv"},
+  {w:"vendo",i:"vendere, vendidi, venditum (3)",e:"to sell",p:"verb3"},
+  {w:"venio",i:"venire, veni, ventum (4)",e:"to come",p:"verb4"},
+  {w:"ventus",i:"-i m.",e:"wind",p:"noun"},
+  {w:"verbero",i:"verberare, verberavi, verberatum (1)",e:"to beat",p:"verb1"},
+  {w:"verbum",i:"-i n.",e:"word",p:"noun"},
+  {w:"vereor",i:"vereri, veritus sum (2)",e:"to fear",p:"verbdep"},
+  {w:"vero",i:"adv.",e:"indeed",p:"adv"},
+  {w:"verto",i:"vertere, verti, versum (3)",e:"to turn, change",p:"verb3"},
+  {w:"verus",i:"-a -um",e:"real, true",p:"adj"},
+  {w:"vesper",i:"-i m.",e:"evening",p:"noun"},
+  {w:"vester",i:"vestra, vestrum",e:"your (plural)",p:"adj"},
+  {w:"vestigium",i:"-i n.",e:"trace, footprint",p:"noun"},
+  {w:"vestimentum",i:"-i n.",e:"garment",p:"noun"},
+  {w:"vestis",i:"-is f.",e:"garment",p:"noun"},
+  {w:"veto",i:"vetare, vetui, vetitum (1)",e:"to forbid, prohibit",p:"verb1"},
+  {w:"vetus",i:"veteris m.f.n.",e:"old",p:"adj"},
+  {w:"vexo",i:"vexare, vexavi, vexatum (1)",e:"to annoy, harass, tease",p:"verb1"},
+  {w:"via",i:"-ae f.",e:"road, street, way",p:"noun"},
+  {w:"vicinus",i:"-a -um",e:"neighbouring",p:"adj"},
+  {w:"victor",i:"victoris m.",e:"conqueror",p:"noun"},
+  {w:"vicus",i:"-i m.",e:"village",p:"noun"},
+  {w:"video",i:"videre, vidi, visum (2)",e:"to see",p:"verb2"},
+  {w:"villa",i:"-ae f.",e:"villa, house",p:"noun"},
+  {w:"vinco",i:"vincere, vici, victum (3)",e:"to conquer, overcome",p:"verb3"},
+  {w:"vinum",i:"-i n.",e:"wine",p:"noun"},
+  {w:"vir",i:"viri m.",e:"man, husband",p:"noun"},
+  {w:"virgo",i:"virginis f.",e:"maid, virgin",p:"noun"},
+  {w:"virtus",i:"virtutis f.",e:"courage, heroism",p:"noun"},
+  {w:"vis",i:"viris f. (acc. vim, abl. vi, pl. vires)",e:"power, force, strength",p:"noun"},
+  {w:"vita",i:"-ae f.",e:"life",p:"noun"},
+  {w:"vitam ago",i:"agere, egi, actum (3)",e:"to spend one's life",p:"phrase"},
+  {w:"vitium",i:"-i n.",e:"fault, vice",p:"noun"},
+  {w:"vito",i:"vitare, vitavi, vitatum (1)",e:"to avoid",p:"verb1"},
+  {w:"vivo",i:"vivere, vixi, victum (3)",e:"to live",p:"verb3"},
+  {w:"vivus",i:"-a -um",e:"alive, living",p:"adj"},
+  {w:"vix",i:"adv.",e:"scarcely",p:"adv"},
+  {w:"voco",i:"vocare, vocavi, vocatum (1)",e:"to call",p:"verb1"},
+  {w:"volo",i:"velle, volui",e:"to wish, want",p:"verbirr"},
+  {w:"volo",i:"volare, volavi, volatum (1)",e:"to fly",p:"verb1"},
+  {w:"voluptas",i:"voluptatis f.",e:"pleasure",p:"noun"},
+  {w:"volvo",i:"volvere, volvi, volutum (3)",e:"to roll, turn round",p:"verb3"},
+  {w:"vos",i:"pron.",e:"you (plural)",p:"pron"},
+  {w:"votum",i:"-i n.",e:"vow, prayer",p:"noun"},
+  {w:"vox",i:"vocis f.",e:"voice",p:"noun"},
+  {w:"vulnero",i:"vulnerare, vulneravi, vulneratum (1)",e:"to wound, injure",p:"verb1"},
+  {w:"vulnus",i:"vulneris n.",e:"wound",p:"noun"},
+  {w:"vultus",i:"-us m.",e:"face, expression, countenance",p:"noun"},
+  // ─ Numbers ─
+  {w:"unus",i:"-a -um",e:"one",p:"num"},
+  {w:"duo",i:"duae, duo",e:"two",p:"num"},
+  {w:"tres",i:"tres, tria",e:"three",p:"num"},
+  {w:"quattuor",i:"indecl.",e:"four",p:"num"},
+  {w:"quinque",i:"indecl.",e:"five",p:"num"},
+  {w:"sex",i:"indecl.",e:"six",p:"num"},
+  {w:"septem",i:"indecl.",e:"seven",p:"num"},
+  {w:"octo",i:"indecl.",e:"eight",p:"num"},
+  {w:"novem",i:"indecl.",e:"nine",p:"num"},
+  {w:"decem",i:"indecl.",e:"ten",p:"num"},
+  {w:"undecim",i:"indecl.",e:"eleven",p:"num"},
+  {w:"duodecim",i:"indecl.",e:"twelve",p:"num"},
+  {w:"tredecim",i:"indecl.",e:"thirteen",p:"num"},
+  {w:"quattuordecim",i:"indecl.",e:"fourteen",p:"num"},
+  {w:"quindecim",i:"indecl.",e:"fifteen",p:"num"},
+  {w:"sedecim",i:"indecl.",e:"sixteen",p:"num"},
+  {w:"septemdecim",i:"indecl.",e:"seventeen",p:"num"},
+  {w:"duodeviginti",i:"indecl.",e:"eighteen",p:"num"},
+  {w:"undeviginti",i:"indecl.",e:"nineteen",p:"num"},
+  {w:"viginti",i:"indecl.",e:"twenty",p:"num"},
+  {w:"triginta",i:"indecl.",e:"thirty",p:"num"},
+  {w:"quadraginta",i:"indecl.",e:"forty",p:"num"},
+  {w:"quinquaginta",i:"indecl.",e:"fifty",p:"num"},
+  {w:"sexaginta",i:"indecl.",e:"sixty",p:"num"},
+  {w:"septuaginta",i:"indecl.",e:"seventy",p:"num"},
+  {w:"octoginta",i:"indecl.",e:"eighty",p:"num"},
+  {w:"nonaginta",i:"indecl.",e:"ninety",p:"num"},
+  {w:"centum",i:"indecl.",e:"one hundred",p:"num"},
+  {w:"primus",i:"-a -um",e:"first",p:"num"},
+  {w:"secundus",i:"-a -um",e:"second",p:"num"},
+  {w:"tertius",i:"-a -um",e:"third",p:"num"},
+  {w:"quartus",i:"-a -um",e:"fourth",p:"num"},
+  {w:"quintus",i:"-a -um",e:"fifth",p:"num"},
+  {w:"sextus",i:"-a -um",e:"sixth",p:"num"},
+  {w:"septimus",i:"-a -um",e:"seventh",p:"num"},
+  {w:"octavus",i:"-a -um",e:"eighth",p:"num"},
+  {w:"nonus",i:"-a -um",e:"ninth",p:"num"},
+  {w:"decimus",i:"-a -um",e:"tenth",p:"num"},
+];
+
+let progress = JSON.parse(localStorage.getItem('latin_progress_v4') || '{}');
+let currentPos = 'all';
+let currentVerbType = 'all';
+let currentNounGender = 'all';
+let currentLetterGroup = 'all';
+let searchTerm = '';
+let currentMode = 'all';
+let deck = [];
+let currentSet = [];
+let current = 0;
+let isFlipped = false;
+let lastAction = null;
+const STORAGE_STATE_KEY = 'latin_flashcards_state_v1';
+
+const LETTER_GROUPS = {
+  'all': { label: 'All letters', letters: [] },
+  'a-c': { label: 'A-C', letters: ['a','b','c'] },
+  'd-f': { label: 'D-F', letters: ['d','e','f'] },
+  'g-i': { label: 'G-I', letters: ['g','h','i'] },
+  'j-l': { label: 'J-L', letters: ['j','k','l'] },
+  'm-o': { label: 'M-O', letters: ['m','n','o'] },
+  'p-r': { label: 'P-R', letters: ['p','q','r'] },
+  's-u': { label: 'S-U', letters: ['s','t','u'] },
+  'v-z': { label: 'V-Z', letters: ['v','w','x','y','z'] }
+};
+
+function getFirstLetter(word) {
+  const match = word.trim().toLowerCase().match(/[a-z]/);
+  return match ? match[0] : '';
+}
+
+// --- Logic ---
+
+function getNounGender(item) {
+  const info = item.i.toLowerCase();
+  //if (info.includes('indecl.')) return 'indecl';
+  if (info.includes(' m./f.') || info.includes(' c.')) return 'common';
+  if (info.includes(' m.')) return 'm';
+  if (info.includes(' f.')) return 'f';
+  if (info.includes(' n.')) return 'n';
+  return 'other';
+}
+
+function buildDeck() {
+  let filtered = [...ALL.map((v, i) => ({...v, id: i}))];
+
+  if (currentPos !== 'all') {
+    if (currentPos === 'verb') {
+      if (currentVerbType === 'all') filtered = filtered.filter(v => v.p.startsWith('verb'));
+      else filtered = filtered.filter(v => v.p === currentVerbType);
+    }
+    else if (currentPos === 'noun') {
+      if (currentNounGender === 'all') filtered = filtered.filter(v => v.p === 'noun');
+      else filtered = filtered.filter(v => v.p === 'noun' && getNounGender(v) === currentNounGender);
+    }
+    else {
+      filtered = filtered.filter(v => v.p === currentPos);
+    }
+  }
+
+  if (currentLetterGroup !== 'all') {
+    const letters = LETTER_GROUPS[currentLetterGroup].letters;
+    filtered = filtered.filter(v => letters.includes(getFirstLetter(v.w)));
+  }
+
+  if (searchTerm) {
+    filtered = filtered.filter(v => v.w.toLowerCase().includes(searchTerm) || v.e.toLowerCase().includes(searchTerm));
+  }
+
+  currentSet = [...filtered];
+  if (currentMode === 'learning') {
+    filtered = filtered.filter(v => progress[v.id] === 'learning');
+  }
+
+  deck = [...filtered];
+  deck.sort(() => Math.random() - 0.5);
+  if (deck.length > 0) current = 0;
+
+  const banner = document.getElementById('eod-banner');
+  if (currentMode === 'learning' && deck.length === 0 && searchTerm === '') banner.classList.add('show');
+  else banner.classList.remove('show');
+}
+
+function saveAppState(){
+  const state = {
+    currentPos,
+    currentVerbType,
+    currentNounGender,
+    currentLetterGroup,
+    currentMode,
+    searchTerm,
+    currentCardId: deck[current]?.id ?? null,
+    deckOrder: deck.map(v => v.id)
+  };
+  localStorage.setItem(STORAGE_STATE_KEY, JSON.stringify(state));
+}
+
+function loadSavedState(){
+  const saved = JSON.parse(localStorage.getItem(STORAGE_STATE_KEY) || '{}');
+  if (saved.currentPos) currentPos = saved.currentPos;
+  if (saved.currentVerbType) currentVerbType = saved.currentVerbType;
+  if (saved.currentNounGender) currentNounGender = saved.currentNounGender;
+  if (saved.currentLetterGroup) currentLetterGroup = saved.currentLetterGroup;
+  if (saved.currentMode) currentMode = saved.currentMode;
+  if (saved.searchTerm) searchTerm = saved.searchTerm;
+  return saved;
+}
+
+function applyUiState(){
+  document.querySelectorAll('#pos-filters .fb').forEach(b => b.classList.toggle('active', b.innerText.toLowerCase().startsWith(currentPos.substring(0,3))));
+  document.getElementById('modeAll').classList.toggle('active-all', currentMode === 'all');
+  document.getElementById('modeLearning').classList.toggle('active-learning', currentMode === 'learning');
+  document.querySelectorAll('#group-filters .fb').forEach(b => b.classList.toggle('active', b.id === `group-${currentLetterGroup}`));
+  document.querySelectorAll('#verb-filters .sfb').forEach(b => b.classList.toggle('active', b.id === 'vfilter-' + currentVerbType));
+  document.querySelectorAll('#noun-filters .sfb').forEach(b => b.classList.toggle('active', b.id === 'nfilter-' + currentNounGender));
+  document.getElementById('verb-sub-container').style.display = (currentPos === 'verb') ? 'block' : 'none';
+  document.getElementById('noun-sub-container').style.display = (currentPos === 'noun') ? 'block' : 'none';
+  document.getElementById('search').value = searchTerm;
+}
+
+function updateUndoButton(){
+  const btn = document.getElementById('undoBtn');
+  if(!btn) return;
+  btn.disabled = !lastAction;
+}
+
+function pushUndoSnapshot(){
+  lastAction = {
+    progress: JSON.parse(JSON.stringify(progress)),
+    currentPos,
+    currentVerbType,
+    currentNounGender,
+    currentLetterGroup,
+    currentMode,
+    searchTerm,
+    currentCardId: deck[current]?.id ?? null,
+    deckOrder: deck.map(v => v.id)
+  };
+  updateUndoButton();
+}
+
+function undoLastAction(){
+  if(!lastAction) return;
+  progress = JSON.parse(JSON.stringify(lastAction.progress));
+  currentPos = lastAction.currentPos;
+  currentVerbType = lastAction.currentVerbType;
+  currentNounGender = lastAction.currentNounGender;
+  currentLetterGroup = lastAction.currentLetterGroup;
+  currentMode = lastAction.currentMode;
+  searchTerm = lastAction.searchTerm;
+  document.getElementById('search').value = searchTerm;
+  localStorage.setItem('latin_progress_v4', JSON.stringify(progress));
+  const saved = lastAction;
+  buildDeck();
+  if(saved.deckOrder && saved.deckOrder.length === deck.length && deck.every(item => saved.deckOrder.includes(item.id))){
+    deck.sort((a,b) => saved.deckOrder.indexOf(a.id) - saved.deckOrder.indexOf(b.id));
+  }
+  current = deck.findIndex(v => v.id === saved.currentCardId);
+  if(current < 0) current = 0;
+  lastAction = null;
+  updateUndoButton();
+  render();
+}
+
+function setPos(p){
+  currentPos = p;
+  document.getElementById('verb-sub-container').style.display = (p==='verb')?'block':'none';
+  document.getElementById('noun-sub-container').style.display = (p==='noun')?'block':'none';
+  currentVerbType = 'all'; currentNounGender = 'all';
+  document.querySelectorAll('#pos-filters .fb').forEach(b => b.classList.toggle('active', b.innerText.toLowerCase().startsWith(p.substring(0,3))));
+  document.querySelectorAll('.sfb').forEach(b => b.classList.toggle('active', b.innerText.includes('All')));
+  buildDeck(); render();
+}
+
+function setVerbType(t) {
+  currentVerbType = t;
+  document.querySelectorAll('#verb-filters .sfb').forEach(b => b.classList.toggle('active', b.id === 'vfilter-' + t));
+  buildDeck(); render();
+}
+
+function setNounGender(g) {
+  currentNounGender = g;
+  document.querySelectorAll('#noun-filters .sfb').forEach(b => b.classList.toggle('active', b.id === 'nfilter-' + g));
+  buildDeck(); render();
+}
+
+function setLetterGroup(group) {
+  currentLetterGroup = group;
+  document.querySelectorAll('#group-filters .fb').forEach(b => b.classList.toggle('active', b.id === `group-${group}`));
+  buildDeck(); render();
+}
+
+function render(){
+  updateStats();
+  const item = deck[current];
+  const frontFace = document.getElementById('card-front');
+  const statusInd = document.getElementById('status-indicator');
+
+  if(deck.length === 0){
+    document.getElementById('lat-word').innerText = "No cards found";
+    document.getElementById('lat-info').innerText = "-";
+    document.getElementById('en-meaning').innerText = "-";
+    document.getElementById('progress').innerText = "0 / 0";
+    document.getElementById('progress-sub').innerText = searchTerm
+      ? 'Search active' : `Practice set: ${LETTER_GROUPS[currentLetterGroup].label} · ← = learning · → = know it`;
+    document.getElementById('progress-ring-label').innerText = '0%';
+    document.getElementById('progress-ring-fill').style.background = 'conic-gradient(#e2e8f0 0deg, #e2e8f0 360deg)';
+    statusInd.innerText = ""; frontFace.className = "face front";
+    return;
+  }
+
+  document.getElementById('lat-word').innerText = item.w;
+  document.getElementById('lat-info').innerText = item.i;
+  document.getElementById('en-meaning').innerText = item.e;
+  document.getElementById('pos-tag').innerText = item.p;
+  const percent = Math.round(((current + 1) / deck.length) * 100);
+  document.getElementById('progress').innerText = `${current + 1} / ${deck.length}`;
+  document.getElementById('progress-ring-label').innerText = `${percent}%`;
+  document.getElementById('progress-ring-fill').style.background = `conic-gradient(#7c3aed 0deg, #7c3aed ${percent * 3.6}deg, #e2e8f0 ${percent * 3.6}deg, #e2e8f0 360deg)`;
+  document.getElementById('progress-sub').innerText = searchTerm
+    ? 'Search active' : `Practice set: ${LETTER_GROUPS[currentLetterGroup].label} · ← = learning · → = know it`;
+
+  const s = progress[item.id];
+  if(s === 'know') {
+    statusInd.innerText = "✓ Mastered"; statusInd.style.background = "#059669";
+    frontFace.className = "face front status-know";
+  } else if(s === 'learning') {
+    statusInd.innerText = "◉ Learning"; statusInd.style.background = "#d97706";
+    frontFace.className = "face front status-learning";
+  } else {
+    statusInd.innerText = ""; frontFace.className = "face front";
+  }
+
+  if(isFlipped) { isFlipped = false; document.getElementById('card').classList.remove('flipped'); }
+  saveAppState();
+}
+
+function navigate(step){ if(deck.length > 0){ current = (current + step + deck.length) % deck.length; render(); } }
+
+function markCard(status){
+  if(deck.length === 0) return;
+  pushUndoSnapshot();
+  const id = deck[current].id;
+  // In learning mode, never toggle 'still learning' off — just keep it and move on
+  if(currentMode === 'learning' && status === 'learning') {
+    progress[id] = 'learning';
+  } else {
+    progress[id] = (progress[id] === status) ? undefined : status;
+  }
+  localStorage.setItem('latin_progress_v4', JSON.stringify(progress));
+  const cardEl = document.getElementById('card');
+  const swipeClass = status === 'know' ? 'swiping-right' : 'swiping-left';
+  cardEl.classList.remove('flipped');
+  isFlipped = false;
+  cardEl.classList.add(swipeClass);
+  setTimeout(() => {
+    cardEl.classList.remove(swipeClass);
+    if (currentMode === 'learning') {
+      if (status === 'know') {
+        // Remove this card from the live deck so shuffle order is preserved
+        deck.splice(current, 1);
+        if (deck.length === 0) { buildDeck(); render(); return; }
+        current = current % deck.length;
+      } else {
+        // Still learning — just advance through the existing deck (keeps shuffle)
+        current = (current + 1) % deck.length;
+      }
+    } else {
+      current = (current + 1) % deck.length;
+    }
+    render();
+    cardEl.classList.add('sliding-in');
+    setTimeout(() => cardEl.classList.remove('sliding-in'), 320);
+  }, 350);
+}
+
+function resetProgress(scope) {
+  pushUndoSnapshot();
+  if (scope === 'all') progress = {};
+  else { deck.forEach(v => delete progress[v.id]); }
+  localStorage.setItem('latin_progress_v4', JSON.stringify(progress));
+  closeResetModal(); buildDeck(); render();
+}
+
+function updateStats(){
+  const know = currentSet.filter(v => progress[v.id] === 'know').length;
+  const learn = currentSet.filter(v => progress[v.id] === 'learning').length;
+  document.getElementById('stat-total').innerText = `Total: ${currentSet.length}`;
+  document.getElementById('stat-know').innerText = `✓ Know: ${know}`;
+  document.getElementById('stat-learning').innerText = `◉ Still learning: ${learn}`;
+}
+
+function setMode(m){
+  currentMode = m;
+  document.getElementById('modeAll').classList.toggle('active-all', m==='all');
+  document.getElementById('modeLearning').classList.toggle('active-learning', m==='learning');
+  buildDeck(); render();
+}
+
+function openResetModal() { const m = document.getElementById('reset-modal'); m.style.display = 'flex'; m.style.alignItems = 'center'; m.style.justifyContent = 'center'; }
+function closeResetModal() { document.getElementById('reset-modal').style.display = 'none'; }
+function onSearch(){ searchTerm = document.getElementById('search').value.toLowerCase(); buildDeck(); render(); }
+function flipCard(){ isFlipped = !isFlipped; document.getElementById('card').classList.toggle('flipped'); }
+function shuffle(){ deck.sort(() => Math.random() - 0.5); current = 0; render(); }
+
+// --- Initialization ---
+
+const posTypes = ['all', 'noun', 'verb', 'adj', 'adv', 'num', 'prep', 'conj', 'phrase', 'interj', 'pron'];
+posTypes.forEach(p => {
+  const b = document.createElement('button');
+  b.className = `fb ${p==='all'?'active':''}`;
+  b.innerText = p.charAt(0).toUpperCase() + p.slice(1);
+  b.onclick = () => setPos(p);
+  document.getElementById('pos-filters').appendChild(b);
+});
+
+const vTypes = [{id:'all', n:'All Verbs'}, {id:'verb1', n:'1st'}, {id:'verb2', n:'2nd'}, {id:'verb3', n:'3rd'}, {id:'verb4', n:'4th'}, {id:'verbdep', n:'Deponent'}, {id:'verbsemi', n:'Semi-deponent'}, {id:'verbirr', n:'Irregular'}];
+vTypes.forEach(t => {
+  const b = document.createElement('button');
+  b.className = `sfb ${t.id==='all'?'active':''}`;
+  b.innerText = t.n; b.id = 'vfilter-' + t.id;
+  b.onclick = () => setVerbType(t.id);
+  document.getElementById('verb-filters').appendChild(b);
+});
+
+const gTypes = [{id:'all', n:'All Genders'}, {id:'m', n:'Masculine'}, {id:'f', n:'Feminine'}, {id:'n', n:'Neuter'}, {id:'common', n:'Common (m/f)'}];
+gTypes.forEach(t => {
+  const b = document.createElement('button');
+  b.className = `sfb ${t.id==='all'?'active':''}`;
+  b.innerText = t.n; b.id = 'nfilter-' + t.id;
+  b.onclick = () => setNounGender(t.id);
+  document.getElementById('noun-filters').appendChild(b);
+});
+
+document.addEventListener('keydown', e => {
+  if(e.target.tagName === 'INPUT') return;
+  if(e.key === 'ArrowRight') { e.preventDefault(); markCard('know'); }
+  if(e.key === 'ArrowLeft') { e.preventDefault(); markCard('learning'); }
+  if(e.key === 'ArrowDown') { e.preventDefault(); flipCard(); }
+  if(e.key === ' ') { e.preventDefault(); flipCard(); }
+  if(e.key === 'u' || e.key === 'U') undoLastAction();
+  if(e.key === '1') markCard('know');
+  if(e.key === '2') markCard('learning');
+});
+
+const savedAppState = loadSavedState();
+applyUiState();
+buildDeck();
+if(savedAppState.deckOrder && savedAppState.deckOrder.length === deck.length && deck.every(item => savedAppState.deckOrder.includes(item.id))){
+  deck.sort((a,b) => savedAppState.deckOrder.indexOf(a.id) - savedAppState.deckOrder.indexOf(b.id));
+}
+if(savedAppState.currentCardId !== undefined && savedAppState.currentCardId !== null){
+  const idx = deck.findIndex(v => v.id === savedAppState.currentCardId);
+  if(idx >= 0) current = idx;
+}
+render();
+</script>
+</body>
+</html>
