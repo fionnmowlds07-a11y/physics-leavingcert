@@ -13,6 +13,7 @@
     --text-light: #555570;
     --accent-main: #9c27b0; /* Purple for Computer Science */
     --accent-secondary: #00bcd4; /* Cyan */
+    --accent-tertiary: #ff9800; /* Orange for Exam Generator */
     --border: #e0dcd4;
     --shadow: 0 4px 20px rgba(0,0,0,0.06);
     --shadow-hover: 0 12px 30px rgba(0,0,0,0.12);
@@ -172,6 +173,10 @@
   .card-logic:hover { border-color: var(--accent-secondary); }
   .card-logic .mc-icon { color: var(--accent-secondary); background: #e0f7fa; }
 
+  .card-exam::before { background: var(--accent-tertiary); }
+  .card-exam:hover { border-color: var(--accent-tertiary); }
+  .card-exam .mc-icon { color: var(--accent-tertiary); background: #fff3e0; }
+
   .mc-icon {
     font-size: 42px;
     width: 80px;
@@ -323,6 +328,14 @@
         <div class="mc-title">Chapters 4-5</div>
         <div class="mc-desc">Master logic gates, binary conversion, ASCII, and the software development lifecycle.</div>
         <div class="mc-action">Start chapter →</div>
+      </a>
+
+      <!-- SECTION C EXAM CARD -->
+      <a href="Section C.html" class="chapter-card card-exam">
+        <div class="mc-icon">💻</div>
+        <div class="mc-title">Coding Exam Generator</div>
+        <div class="mc-desc">Practice with the dynamic coding exam generator to hone your applied programming skills for Section C.</div>
+        <div class="mc-action">Start exam →</div>
       </a>
 
     </div>
