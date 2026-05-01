@@ -422,15 +422,25 @@
   </div>
 </div>
 <script>
-  document.body.classList.add('pw-locked');
-  document.getElementById('pw-input').addEventListener('keydown', function(e) {
+  (function() {
+    // If already unlocked in this browser, skip the overlay instantly
+    if (localStorage.getItem('lc_pe_unlocked') === 'unlocked') {
+      document.getElementById('pw-overlay').remove();
+      return;
+    }
+    document.body.classList.add('pw-locked');
+  })();
+
+  document.getElementById('pw-input') && document.getElementById('pw-input').addEventListener('keydown', function(e) {
     if (e.key === 'Enter') checkPw();
     document.getElementById('pw-error').textContent = '';
     this.classList.remove('shake');
   });
+
   function checkPw() {
     const val = document.getElementById('pw-input').value;
     if (val === 'MrDownes') {
+      localStorage.setItem('lc_pe_unlocked', 'unlocked');
       const overlay = document.getElementById('pw-overlay');
       overlay.style.transition = 'opacity 0.4s ease';
       overlay.style.opacity = '0';
