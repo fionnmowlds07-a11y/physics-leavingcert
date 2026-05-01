@@ -1,0 +1,1544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LC Computer Science — AI Exam Generator</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F7F4EF;
+    --surface: #FFFFFF;
+    --surface2: #F0EDE8;
+    --border: #E2DDD7;
+    --text: #2C2825;
+    --text-muted: #7A7068;
+    --accent: #E84393;
+    --accent-light: #FDEAF4;
+    --accent-dark: #A81F65;
+    --blue: #3B82F6;
+    --blue-light: #EBF3FF;
+    --blue-dark: #1D4ED8;
+    --green: #10B981;
+    --green-light: #D1FAE5;
+    --orange: #F97316;
+    --orange-light: #FFF0E6;
+    --purple: #7C5CBF;
+    --purple-light: #EDE8F7;
+    --red: #EF4444;
+    --red-light: #FEE2E2;
+    --code-bg: #1E1E2E;
+    --code-text: #CDD6F4;
+    --code-keyword: #CBA6F7;
+    --code-string: #A6E3A1;
+    --code-comment: #6C7086;
+    --code-func: #89B4FA;
+    --code-num: #FAB387;
+    --radius: 14px;
+    --shadow: 0 4px 20px rgba(0,0,0,0.08);
+    --shadow-hover: 0 8px 32px rgba(0,0,0,0.14);
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    font-family: 'Lexend', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 16px;
+    min-height: 100vh;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(247,244,239,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 2px solid var(--border);
+    padding: 0 24px;
+    display: flex; align-items: center; gap: 12px;
+    min-height: 64px;
+  }
+  .nav-logo {
+    font-family: 'Lexend Mega', sans-serif;
+    font-size: 1rem; color: var(--text);
+    margin-right: 8px;
+  }
+  .nav-logo span { color: var(--accent); }
+  .nav-tag {
+    background: var(--accent-light);
+    color: var(--accent-dark);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+  .nav-spacer { flex: 1; }
+  .nav-hint {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+  }
+
+  /* ── MAIN LAYOUT ── */
+  .main-wrap {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 32px 20px 80px;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    text-align: center;
+    padding: 32px 0 28px;
+  }
+  .hero h1 {
+    font-family: 'Lexend Mega', sans-serif;
+    font-size: clamp(1.6rem, 4vw, 2.6rem);
+    line-height: 1.2;
+    color: var(--text);
+  }
+  .hero h1 .a1 { color: var(--accent); }
+  .hero h1 .a2 { color: var(--blue); }
+  .hero p {
+    margin-top: 12px;
+    color: var(--text-muted);
+    max-width: 580px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 0.95rem;
+  }
+  .hero-badges {
+    display: flex; justify-content: center;
+    gap: 8px; flex-wrap: wrap;
+    margin-top: 16px;
+  }
+  .hero-badge {
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+  }
+  .hb1 { background: var(--accent-light); color: var(--accent-dark); }
+  .hb2 { background: var(--blue-light); color: var(--blue-dark); }
+  .hb3 { background: var(--green-light); color: #065f46; }
+
+  /* ── TOPIC SELECTOR ── */
+  .config-card {
+    background: var(--surface);
+    border-radius: var(--radius);
+    padding: 28px;
+    box-shadow: var(--shadow);
+    margin-bottom: 24px;
+    border-left: 5px solid var(--accent);
+  }
+  .config-card h2 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 16px 0 8px;
+  }
+  .topic-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  .topic-btn {
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 2px solid var(--border);
+    background: var(--surface);
+    font-family: 'Lexend', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.18s;
+    text-align: left;
+    color: var(--text);
+    display: flex; align-items: center; gap: 8px;
+    line-height: 1.3;
+  }
+  .topic-btn:hover {
+    border-color: var(--accent);
+    background: var(--accent-light);
+    color: var(--accent-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(232,67,147,0.12);
+  }
+  .topic-btn.selected {
+    border-color: var(--accent);
+    background: var(--accent);
+    color: white;
+    box-shadow: 0 4px 14px rgba(232,67,147,0.3);
+  }
+  .topic-btn.selected .t-icon { filter: brightness(2); }
+  .t-icon { font-size: 1rem; flex-shrink: 0; }
+
+  /* ── DIFFICULTY + OPTIONS ROW ── */
+  .options-row {
+    display: flex; gap: 12px; flex-wrap: wrap;
+    margin-top: 16px;
+  }
+  .option-group {
+    flex: 1; min-width: 200px;
+  }
+  .option-group label {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+  .seg-control {
+    display: flex;
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--surface2);
+  }
+  .seg-btn {
+    flex: 1; padding: 8px 10px;
+    border: none; background: transparent;
+    font-family: 'Lexend', sans-serif;
+    font-size: 0.8rem; font-weight: 600;
+    cursor: pointer; transition: all 0.18s;
+    color: var(--text-muted);
+  }
+  .seg-btn:not(:last-child) { border-right: 2px solid var(--border); }
+  .seg-btn.active { background: var(--blue); color: white; }
+  .parts-select {
+    width: 100%;
+    padding: 9px 12px;
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    background: var(--surface);
+    font-family: 'Lexend', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--text);
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.18s;
+  }
+  .parts-select:focus { border-color: var(--blue); }
+
+  /* ── GENERATE BUTTON ── */
+  .generate-btn {
+    width: 100%;
+    padding: 16px 24px;
+    border-radius: 12px;
+    border: none;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+    color: white;
+    font-family: 'Lexend', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 4px 20px rgba(232,67,147,0.3);
+    margin-top: 20px;
+    display: flex; align-items: center; justify-content: center;
+    gap: 10px;
+    letter-spacing: 0.3px;
+  }
+  .generate-btn:hover:not(:disabled) {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 28px rgba(232,67,147,0.4);
+  }
+  .generate-btn:disabled {
+    opacity: 0.6; cursor: not-allowed; transform: none;
+  }
+  .generate-btn .btn-spinner {
+    width: 20px; height: 20px;
+    border: 3px solid rgba(255,255,255,0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    display: none;
+  }
+  .generate-btn.loading .btn-spinner { display: block; }
+  .generate-btn.loading .btn-text { opacity: 0.7; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ── ERROR / STATUS ── */
+  .status-bar {
+    padding: 12px 16px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font-size: 0.88rem;
+    font-weight: 500;
+    display: none;
+    align-items: center;
+    gap: 10px;
+  }
+  .status-bar.error {
+    display: flex;
+    background: var(--red-light);
+    color: var(--red);
+    border: 2px solid var(--red);
+  }
+  .status-bar.info {
+    display: flex;
+    background: var(--blue-light);
+    color: var(--blue-dark);
+    border: 2px solid var(--blue);
+  }
+
+  /* ── EXAM OUTPUT ── */
+  #examOutput { display: none; animation: fadeIn 0.4s ease; }
+  #examOutput.visible { display: block; }
+  @keyframes fadeIn { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+
+  .exam-header-card {
+    background: linear-gradient(135deg, var(--blue) 0%, var(--blue-dark) 100%);
+    border-radius: var(--radius);
+    padding: 28px 32px;
+    color: white;
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .exam-header-card::after {
+    content: '{ }';
+    position: absolute; right: 24px; top: 50%;
+    transform: translateY(-50%);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 5rem; opacity: 0.08;
+    line-height: 1;
+  }
+  .exam-header-card .exam-title {
+    font-family: 'Lexend Mega', sans-serif;
+    font-size: 1.4rem;
+    margin-bottom: 6px;
+  }
+  .exam-header-card .exam-meta {
+    opacity: 0.85;
+    font-size: 0.88rem;
+    display: flex; gap: 16px; flex-wrap: wrap;
+  }
+  .exam-header-card .exam-meta span {
+    display: flex; align-items: center; gap: 5px;
+  }
+
+  /* ── QUESTION PARTS ── */
+  .question-section {
+    background: var(--surface);
+    border-radius: var(--radius);
+    padding: 28px;
+    box-shadow: var(--shadow);
+    margin-bottom: 20px;
+    border-left: 5px solid var(--blue);
+  }
+  .question-section.part-header { border-left-color: var(--purple); }
+  .part-label {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--blue); color: white;
+    padding: 5px 14px; border-radius: 20px;
+    font-size: 0.78rem; font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-bottom: 14px;
+  }
+  .part-label.purple { background: var(--purple); }
+  .marks-badge {
+    float: right;
+    background: var(--orange-light);
+    color: var(--orange);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    border: 2px solid var(--orange);
+  }
+  .question-text {
+    font-size: 0.95rem;
+    line-height: 1.75;
+    margin-bottom: 16px;
+  }
+  .question-text strong { color: var(--blue-dark); }
+
+  /* ── STARTER CODE BLOCK ── */
+  .code-block {
+    background: var(--code-bg);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 14px 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.83rem;
+    line-height: 1.7;
+    overflow-x: auto;
+    position: relative;
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+  .code-block .code-label {
+    position: absolute; top: 10px; right: 12px;
+    background: rgba(255,255,255,0.08);
+    color: rgba(255,255,255,0.5);
+    padding: 2px 8px; border-radius: 6px;
+    font-size: 0.68rem; letter-spacing: 1px;
+    font-family: 'Lexend', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  .code-block pre { color: var(--code-text); white-space: pre; }
+  .code-block .ln {
+    display: inline-block;
+    width: 28px;
+    color: rgba(255,255,255,0.2);
+    user-select: none;
+    text-align: right;
+    margin-right: 12px;
+    font-size: 0.75rem;
+  }
+  /* Syntax highlight spans */
+  .kw { color: var(--code-keyword); }
+  .fn { color: var(--code-func); }
+  .st { color: var(--code-string); }
+  .cm { color: var(--code-comment); font-style: italic; }
+  .nm { color: var(--code-num); }
+  .op { color: #94E2D5; }
+
+  /* ── SAMPLE OUTPUT BOX ── */
+  .output-box {
+    background: #0D1117;
+    border: 2px solid #30363D;
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin: 14px 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.83rem;
+    line-height: 1.7;
+    position: relative;
+  }
+  .output-box .ob-label {
+    position: absolute; top: -10px; left: 14px;
+    background: #238636;
+    color: white;
+    padding: 2px 10px; border-radius: 6px;
+    font-size: 0.68rem; letter-spacing: 1px;
+    font-family: 'Lexend', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  .output-box pre { color: #7EE787; }
+  .output-box .input-line { color: #79C0FF; }
+
+  /* ── TASK STEPS ── */
+  .task-list { list-style: none; padding: 0; margin: 12px 0; }
+  .task-list li {
+    display: flex; gap: 12px; align-items: flex-start;
+    margin-bottom: 10px; padding: 10px 14px;
+    background: var(--surface2);
+    border-radius: 8px;
+    font-size: 0.88rem;
+  }
+  .task-num {
+    min-width: 26px; height: 26px;
+    border-radius: 50%;
+    background: var(--blue); color: white;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 0.78rem;
+    flex-shrink: 0;
+  }
+  .task-content { padding-top: 2px; }
+
+  /* ── HINT BOX ── */
+  .hint-box {
+    background: var(--orange-light);
+    border: 2px solid var(--orange);
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin: 12px 0;
+    font-size: 0.85rem;
+  }
+  .hint-box::before {
+    content: '💡 HINT: ';
+    font-weight: 700; color: var(--orange);
+    font-size: 0.72rem; letter-spacing: 0.5px;
+  }
+
+  /* ── SOLUTION BUTTON ── */
+  .solution-btn {
+    display: flex; align-items: center; gap: 7px;
+    margin-top: 14px;
+    padding: 9px 18px;
+    border-radius: 10px;
+    border: 2px solid var(--green);
+    background: white;
+    color: #065f46;
+    font-family: 'Lexend', sans-serif;
+    font-size: 0.82rem; font-weight: 700;
+    cursor: pointer; transition: all 0.2s;
+    letter-spacing: 0.2px;
+  }
+  .solution-btn:hover:not(:disabled) {
+    background: var(--green-light);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(16,185,129,0.2);
+  }
+  .solution-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+  .solution-btn .sol-spinner {
+    width: 14px; height: 14px;
+    border: 2px solid rgba(16,185,129,0.3);
+    border-top-color: var(--green);
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    display: none;
+  }
+  .solution-btn.loading .sol-spinner { display: block; }
+
+  /* ── SOLUTION DISPLAY ── */
+  .solution-box {
+    margin-top: 16px;
+    border: 2px solid var(--green);
+    border-radius: 12px;
+    overflow: hidden;
+    animation: fadeIn 0.4s ease;
+  }
+  .solution-header {
+    background: var(--green);
+    color: white;
+    padding: 10px 16px;
+    display: flex; align-items: center; gap: 8px;
+    font-weight: 700; font-size: 0.85rem;
+    letter-spacing: 0.3px;
+  }
+  .solution-body {
+    background: var(--surface);
+    padding: 16px;
+  }
+  .solution-explanation {
+    font-size: 0.9rem;
+    line-height: 1.75;
+    margin-bottom: 14px;
+    color: var(--text);
+  }
+  .solution-steps {
+    list-style: none; padding: 0; margin: 0 0 14px;
+  }
+  .solution-steps li {
+    display: flex; gap: 10px; align-items: flex-start;
+    margin-bottom: 8px; padding: 8px 12px;
+    background: var(--green-light);
+    border-radius: 8px; font-size: 0.85rem;
+  }
+  .solution-steps li::before {
+    content: '✓';
+    color: var(--green);
+    font-weight: 700; flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .solution-code-label {
+    font-size: 0.72rem; font-weight: 700;
+    letter-spacing: 1px; text-transform: uppercase;
+    color: var(--text-muted); margin-bottom: 6px;
+  }
+
+  /* ── EXAM ACTIONS ── */
+  .exam-actions {
+    display: flex; gap: 10px; flex-wrap: wrap;
+    margin-top: 24px;
+  }
+  .action-btn {
+    padding: 10px 20px; border-radius: 10px;
+    font-family: 'Lexend', sans-serif;
+    font-size: 0.85rem; font-weight: 600;
+    cursor: pointer; transition: all 0.2s;
+    border: 2px solid;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .ab-solution {
+    background: var(--green); color: white;
+    border-color: var(--green);
+    display: flex; align-items: center; gap: 6px;
+  }
+  .ab-solution:hover { background: #059669; border-color: #059669; }
+  .ab-new {
+    background: var(--accent); color: white;
+    border-color: var(--accent);
+  }
+  .ab-new:hover { background: var(--accent-dark); border-color: var(--accent-dark); }
+  .ab-print {
+    background: white; color: var(--blue-dark);
+    border-color: var(--blue);
+  }
+  .ab-print:hover { background: var(--blue-light); }
+
+  /* ── LOADING SKELETON ── */
+  .skeleton-wrap { display: none; }
+  .skeleton-wrap.visible { display: block; animation: fadeIn 0.3s ease; }
+  .skel {
+    background: linear-gradient(90deg, var(--surface2) 25%, var(--border) 50%, var(--surface2) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.4s infinite;
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+  @keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+  .skel-header { height: 110px; border-radius: var(--radius); margin-bottom: 16px; }
+  .skel-card { height: 200px; border-radius: var(--radius); margin-bottom: 16px; }
+  .skel-card-sm { height: 140px; border-radius: var(--radius); margin-bottom: 16px; }
+
+  /* ── CHEAT SHEET MODAL ── */
+  .modal-overlay {
+    display: none; position: fixed;
+    inset: 0; z-index: 200;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(4px);
+    align-items: center; justify-content: center;
+    padding: 20px;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: var(--surface);
+    border-radius: var(--radius);
+    padding: 28px;
+    max-width: 720px; width: 100%;
+    max-height: 85vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    animation: modalIn 0.3s ease;
+  }
+  @keyframes modalIn { from{opacity:0;transform:scale(0.95)} to{opacity:1;transform:scale(1)} }
+  .modal-header {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 20px;
+  }
+  .modal-title {
+    font-family: 'Lexend Mega', sans-serif; font-size: 1.1rem;
+  }
+  .modal-close {
+    width: 32px; height: 32px; border-radius: 50%;
+    border: 2px solid var(--border);
+    background: var(--surface2);
+    cursor: pointer; font-size: 1rem;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+  }
+  .modal-close:hover { background: var(--red-light); border-color: var(--red); color: var(--red); }
+  .ref-section-title {
+    font-size: 0.72rem; font-weight: 700;
+    letter-spacing: 1px; text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 14px 0 6px;
+  }
+  .ref-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 4px; margin-bottom: 4px;
+  }
+  .ref-item {
+    background: var(--surface2);
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    display: flex; gap: 8px;
+  }
+  .ref-item .ri-code { color: var(--blue-dark); font-weight: 600; }
+  .ref-item .ri-desc { color: var(--text-muted); }
+
+  /* ── SCROLL TOP ── */
+  #scrollTop {
+    position: fixed; bottom: 24px; right: 24px;
+    width: 42px; height: 42px;
+    background: var(--text); color: #fff;
+    border: none; border-radius: 50%;
+    font-size: 1.1rem; cursor: pointer;
+    box-shadow: var(--shadow-hover);
+    transition: all 0.2s; z-index: 99;
+    opacity: 0; pointer-events: none;
+  }
+  #scrollTop.visible { opacity: 1; pointer-events: all; }
+
+  /* ── QUICK CHEAT SHEET BUTTON ── */
+  .float-ref {
+    position: fixed; bottom: 24px; left: 24px;
+    padding: 10px 18px;
+    background: var(--blue); color: white;
+    border: none; border-radius: 24px;
+    font-family: 'Lexend', sans-serif;
+    font-size: 0.82rem; font-weight: 600;
+    cursor: pointer; box-shadow: var(--shadow-hover);
+    display: flex; align-items: center; gap: 6px;
+    transition: all 0.2s; z-index: 99;
+  }
+  .float-ref:hover { background: var(--blue-dark); transform: translateY(-2px); }
+
+  /* Responsive */
+  @media(max-width:600px) {
+    .topic-grid { grid-template-columns: 1fr 1fr; }
+    .options-row { flex-direction: column; }
+    .ref-grid { grid-template-columns: 1fr; }
+  }
+
+  @media print {
+    nav, .config-card, .exam-actions, #scrollTop, .float-ref, .modal-overlay { display: none !important; }
+    body { background: white; }
+    .question-section { box-shadow: none; border: 1px solid #ccc; page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">LC <span>CS</span></span>
+  <span class="nav-tag">AI Exam Generator</span>
+  <div class="nav-spacer"></div>
+  <span class="nav-hint">Powered by AI • Section C Style</span>
+</nav>
+
+<div class="main-wrap">
+
+  <!-- HERO -->
+  <div class="hero">
+    <h1><span class="a1">Python Exam</span><br><span class="a2">Generator</span></h1>
+    <p>Select a topic from the Python cheat sheet, choose your difficulty, and generate a realistic Leaving Cert Section C style coding exam — instantly.</p>
+    <div class="hero-badges">
+      <span class="hero-badge hb1">📋 Real LC Format</span>
+      <span class="hero-badge hb2">🤖 AI Generated</span>
+      <span class="hero-badge hb3">✅ Starter Code Included</span>
+    </div>
+  </div>
+
+  <!-- STATUS BAR -->
+  <div class="status-bar" id="statusBar">
+    <span id="statusIcon">⚠️</span>
+    <span id="statusMsg">Error message here</span>
+  </div>
+
+  <!-- CONFIG CARD -->
+  <div class="config-card">
+    <h2>⚙️ Configure Your Exam</h2>
+
+    <div class="section-label">Step 1 — Choose a Python Topic to Focus On</div>
+    <div class="topic-grid" id="topicGrid">
+      <!-- Topics injected by JS -->
+    </div>
+
+    <div class="options-row">
+      <div class="option-group">
+        <label>Step 2 — Difficulty Level</label>
+        <div class="seg-control" id="diffControl">
+          <button class="seg-btn" data-diff="easy" onclick="setDiff('easy',this)">🟢 Easy</button>
+          <button class="seg-btn active" data-diff="medium" onclick="setDiff('medium',this)">🟡 Medium</button>
+          <button class="seg-btn" data-diff="hard" onclick="setDiff('hard',this)">🔴 Hard</button>
+        </div>
+      </div>
+      <div class="option-group">
+        <label>Step 3 — Number of Question Parts</label>
+        <select class="parts-select" id="partsSelect">
+          <option value="3">3 parts (i, ii, iii)</option>
+          <option value="4">4 parts (i, ii, iii, iv)</option>
+          <option value="5" selected>5 parts (i, ii, iii, iv, v)</option>
+          <option value="6">6 parts (i – vi)</option>
+        </select>
+      </div>
+    </div>
+
+    <button class="generate-btn" id="generateBtn" onclick="generateExam()">
+      <div class="btn-spinner"></div>
+      <span class="btn-text">✨ Generate Exam Question</span>
+    </button>
+  </div>
+
+  <!-- SKELETON LOADER -->
+  <div class="skeleton-wrap" id="skeletonWrap">
+    <div class="skel skel-header"></div>
+    <div class="skel skel-card"></div>
+    <div class="skel skel-card-sm"></div>
+    <div class="skel skel-card"></div>
+  </div>
+
+  <!-- EXAM OUTPUT -->
+  <div id="examOutput">
+    <!-- Populated by JS -->
+  </div>
+
+</div><!-- end main-wrap -->
+
+<!-- FLOAT REF BUTTON -->
+<button class="float-ref" onclick="openRef()">📄 Python Reference</button>
+
+<!-- SCROLL TOP -->
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<!-- CHEAT SHEET MODAL -->
+<div class="modal-overlay" id="refModal" onclick="closeRefOutside(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="modal-title">📄 Python Reference Guide</span>
+      <button class="modal-close" onclick="closeRef()">✕</button>
+    </div>
+    <div id="refContent"></div>
+  </div>
+</div>
+
+<script>
+// ─────────────────────────────────────────────
+// CONFIGURATION — swap in your Supabase values
+// ─────────────────────────────────────────────
+const supabaseUrl = 'https://syvxlrcvkvadrcuygvrx.supabase.co';
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN5dnhscmN2a3ZhZHJjdXlndnJ4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg3NjIwMTAsImV4cCI6MjA4NDMzODAxMH0.EtQVzBvWYqJXAcH8LKs8ulXxki4O8NcPtwLrKUdhl80';
+const EDGE_FUNCTION_NAME = 'generate-exam'; // name of your edge function
+
+// ─────────────────────────────────────────────
+// TOPICS
+// ─────────────────────────────────────────────
+const TOPICS = [
+  { id:'variables',   icon:'📦', label:'Variables & Data Types',        desc:'integers, floats, strings, booleans, type conversion' },
+  { id:'strings',     icon:'🔤', label:'String Methods',               desc:'upper, lower, find, replace, split, strip, index' },
+  { id:'lists',       icon:'📋', label:'Lists & List Methods',         desc:'append, remove, sort, index, pop, insert, slicing' },
+  { id:'conditions',  icon:'🔀', label:'Conditional Statements',       desc:'if, elif, else, nested if, in operator' },
+  { id:'loops',       icon:'🔁', label:'Loops',                        desc:'for, while, range, break, continue, nested loops' },
+  { id:'functions',   icon:'⚙️', label:'Functions & Parameters',       desc:'def, return, parameters, calling functions' },
+  { id:'fileio',      icon:'📁', label:'File Reading & Writing',       desc:'open, read, readline, write, close, for loop' },
+  { id:'random',      icon:'🎲', label:'Random Module',                desc:'random.randint, random.choice, import random' },
+  { id:'builtins',    icon:'🔧', label:'Built-in Functions',           desc:'len, min, max, sum, range, abs, round, type' },
+  { id:'typecasting', icon:'🔄', label:'Type Casting & Conversion',    desc:'int(), str(), float(), bool(), ord(), chr()' },
+  { id:'operators',   icon:'➕', label:'Operators & Arithmetic',       desc:'+ - * / ** % //, comparison and boolean operators' },
+  { id:'mixed',       icon:'🌟', label:'Mixed Topics',                 desc:'Combination of multiple topics — full LC style' },
+];
+
+let selectedTopic = 'mixed';
+let selectedDiff  = 'medium';
+
+// ─────────────────────────────────────────────
+// INIT
+// ─────────────────────────────────────────────
+window.addEventListener('DOMContentLoaded', () => {
+  renderTopics();
+  renderRefModal();
+  // Select mixed by default
+  document.querySelector(`[data-topic="mixed"]`)?.classList.add('selected');
+});
+
+window.addEventListener('scroll', () => {
+  document.getElementById('scrollTop').classList.toggle('visible', window.scrollY > 300);
+});
+
+// ─────────────────────────────────────────────
+// RENDER TOPICS
+// ─────────────────────────────────────────────
+function renderTopics() {
+  const grid = document.getElementById('topicGrid');
+  grid.innerHTML = TOPICS.map(t => `
+    <button class="topic-btn${t.id === 'mixed' ? ' selected' : ''}"
+      data-topic="${t.id}"
+      onclick="selectTopic('${t.id}', this)"
+      title="${t.desc}">
+      <span class="t-icon">${t.icon}</span>
+      <span>${t.label}</span>
+    </button>
+  `).join('');
+}
+
+function selectTopic(id, el) {
+  selectedTopic = id;
+  document.querySelectorAll('.topic-btn').forEach(b => b.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+function setDiff(diff, el) {
+  selectedDiff = diff;
+  document.querySelectorAll('.seg-btn').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+}
+
+// ─────────────────────────────────────────────
+// BUILD PROMPT
+// ─────────────────────────────────────────────
+function buildPrompt() {
+  const topic = TOPICS.find(t => t.id === selectedTopic);
+  const parts = parseInt(document.getElementById('partsSelect').value);
+  const diff  = selectedDiff;
+
+  const diffDesc = {
+    easy:   'suitable for a Junior Cert or first-year LC student, with straightforward tasks',
+    medium: 'suitable for a Leaving Cert Higher Level student, with moderate complexity',
+    hard:   'challenging, suitable for a top-performing Leaving Cert Higher Level student, with complex logic'
+  }[diff];
+
+  return `You are an expert Irish Leaving Certificate Computer Science Section C exam setter.
+
+TOPIC FOCUS: "${topic.label}" (${topic.desc})
+DIFFICULTY: ${diff}
+NUMBER OF PARTS: exactly ${parts} parts labelled (i), (ii), (iii)${parts>=4?', (iv)':''}${parts>=5?', (v)':''}${parts>=6?', (vi)':''}
+
+=== SCENARIO — VARY THIS EVERY TIME ===
+You MUST pick a fresh, specific, imaginative scenario from this list each time. NEVER default to energy readings or temperature sensors. Rotate through completely different domains:
+- A card game (like High-Card Draw) using random, lists, int conversion and nested if/elif
+- An income tax / payroll calculator using input, arithmetic, if/elif, round()
+- A rock-paper-scissors simulation with counters, random.choice(), loops and results table
+- A palindrome or string cipher checker using string methods: [i], [::-1] equivalent via loop, upper(), isalpha()
+- A sports league table: list of lists with team names and points, sorted by score, top/bottom analysis
+- A cinema booking system: seats list, price tiers, availability check, total revenue
+- A quiz game: questions list, score counter, while loop, percentage at end
+- A password validator: checks length, isdigit(), isalpha(), isupper(), islower() — multiple conditions
+- A student grade manager: list of [name, score] pairs, classify grades with if/elif, find highest/lowest
+- A lap timer / race result system: list of times, find fastest, slowest, average, rank with a loop
+- A shop/till system: items list with prices, discount conditions, running total, change calculator
+- A weather stats system with rainfall/wind data, thresholds, streak counting
+- A stock price tracker: list of daily prices, percentage change, classify as bull/bear, find best/worst day
+- A lottery number checker: random number generation, list comparison, count matches, prize tiers
+Pick ONE scenario and commit to it fully. Make it feel like a real, specific program — not generic.
+
+=== WHAT MAKES A HARD QUESTION ===
+EASY parts (i, ii): Add one input, one if/elif, one variable, one print. 5-7 lines.
+MEDIUM parts (iii, iv): Combine a for loop with if/elif inside it. Calculate across a whole list. Call a function and use its return value. 8-12 lines.
+HARD parts (v, vi): Must be genuinely difficult — examples:
+  - Sort a list of lists by index [1], loop through the sorted result, print rank number, name, score, and a "PASS"/"FAIL" label based on a threshold
+  - Nested if/elif/else for suit tiebreaking in a card game (like the 2023 LC exam question)
+  - Count wins/losses/ties across 1000 simulations and find which choice won most (like 2024 LC exam)
+  - Validate a password: reject if under 8 chars, must contain at least one digit (use isdigit() in a loop), at least one uppercase (use isupper() loop), print specific failure reason
+  - Use a while loop to keep accepting inputs until a sentinel, validate each with isdigit(), accumulate stats, print percentage above threshold
+  - Build a results table showing breakdown by category across multiple runs, find the best-performing category
+If difficulty is hard: NO part should be trivial. Even part (i) should require real thought. Parts (iv)-(v) must require 12-20 lines of correct code.
+
+=== STARTER CODE FORMAT ===
+The starter code must look EXACTLY like this real 2023 LC exam example:
+
+#Question 16(a)
+#Write your name here:
+
+wages = int(input("Please enter your annual wages: "))
+cutoff = 36800
+
+def income_tax(wages):
+    print("Welcome to my income tax calculator")
+
+income_tax(wages)
+
+Or this 2024 LC style (more complex):
+
+#Question 16(a)
+#Name and School:
+
+import random
+
+def play_round(player_choice, computer_choice):
+    if player_choice == computer_choice:
+        return "tie"
+    elif (player_choice == "rock" and computer_choice == "scissors"):
+        return "player"
+    else:
+        return "computer"
+
+Rules:
+- First line: #Question 16(a), second line: #Write your name here: OR #Name and School:
+- Include a function that is PARTIALLY complete — has some logic already written but students extend it
+- Include hardcoded variables or a list with real data (6-10 items)
+- May include import random if topic needs it
+- NO while menu loops, NO line number comments, NO placeholder comments like "# add code here"
+- For HARD: the starter should include a list of lists OR an import random with some functions already defined
+- The starter code should be 12-20 lines and feel like a real exam starter file
+
+=== ONLY USE THESE — LC CHEAT SHEET ===
+input(), print(), int(), float(), str(), len(), round(), abs(), min(), max(), sum()
+if / elif / else, for loops, while loops, break, continue
+list: append(), remove(), sort(), sorted(), index(), count(), pop(), insert(), reverse(), list[i], list[i:j]
+string: upper(), lower(), count(), find(), replace(), strip(), isdigit(), isalpha(), isalnum(), isupper(), islower(), string[i], string[i:j]
+def, return
+import random: random.randint(), random.choice()
+Operators: +, -, *, /, **, %, //, ==, !=, >, <, >=, <=, and, or, not, +=, -=
+
+=== STRICTLY FORBIDDEN ===
+Dictionaries {}, sets {}, list comprehensions [x for x in y], f-strings, .format(),
+try/except, classes, lambda, enumerate(), zip(), any(), all(), map(), global keyword
+
+=== QUESTION WRITING RULES ===
+- Every part MUST reference specific variable or function names from the starter code
+- Parts build on each other — later parts use results from earlier parts
+- Sample output must show exact realistic values matching the scenario (actual names, numbers, prices)
+- The instruction for each part must be clear but NOT give away the solution — like a real exam question
+- Write instructions in the same style as the 2023/2024 LC papers: "Modify the program so that...", "Create a variable called...", "Using X or otherwise..."
+- For card games or random simulations: follow the exact style of the 2023/2024 papers closely
+- For hard difficulty: part instructions should be multi-sentence with bullet points describing specific requirements
+
+Return ONLY a valid JSON object. No markdown, no backticks, no text outside the JSON:
+{
+  "questionTitle": "Question 16",
+  "context": "2-3 sentences describing the program scenario in the same style as the LC paper context paragraphs.",
+  "starterCode": "Full starter code. Starts with #Question 16(a) then #Write your name here: Uses real newline characters. 12-20 lines. Partially complete — has some logic students must extend.",
+  "parts": [
+    {
+      "part": "(i)",
+      "marks": 8,
+      "instruction": "One or two sentences in LC exam style telling the student what to modify or create, naming exact variable/function names. For hard parts add bullet points of specific requirements.",
+      "sampleOutput": "Exact terminal output with specific realistic values. Use actual newline characters. Show input prompts like: Please enter your choice: rock"
+    }
+  ],
+  "totalMarks": ${parts * 8}
+}`;;;;
+}
+
+// ─────────────────────────────────────────────
+// GENERATE EXAM
+// ─────────────────────────────────────────────
+async function generateExam() {
+  const btn = document.getElementById('generateBtn');
+  const skeleton = document.getElementById('skeletonWrap');
+  const output = document.getElementById('examOutput');
+  const status = document.getElementById('statusBar');
+
+  // Reset state
+  currentExamData = null;
+  hideStatus();
+  output.classList.remove('visible');
+  output.innerHTML = '';
+  skeleton.classList.add('visible');
+  btn.classList.add('loading');
+  btn.disabled = true;
+  btn.querySelector('.btn-text').textContent = 'Generating your exam...';
+
+  // Scroll to skeleton
+  skeleton.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+  const prompt = buildPrompt();
+
+  try {
+    const res = await fetch(`${supabaseUrl}/functions/v1/${EDGE_FUNCTION_NAME}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${supabaseKey}`,
+        'apikey': supabaseKey
+      },
+      body: JSON.stringify({ prompt })
+    });
+
+    if (!res.ok) {
+      const errText = await res.text();
+      throw new Error(`Server returned ${res.status}: ${errText}`);
+    }
+
+    const data = await res.json();
+
+    // The edge function returns { content: "..." } where content is the JSON string from OpenAI
+    let examData;
+    if (data.content) {
+      // Strip any accidental markdown fences
+      let raw = data.content.trim();
+      raw = raw.replace(/^```json\s*/i, '').replace(/^```\s*/i, '').replace(/```\s*$/i, '').trim();
+      examData = JSON.parse(raw);
+    } else if (data.error) {
+      throw new Error(data.error);
+    } else {
+      throw new Error('Unexpected response format from server.');
+    }
+
+    skeleton.classList.remove('visible');
+    renderExam(examData);
+
+  } catch (err) {
+    skeleton.classList.remove('visible');
+    showStatus('error', '❌ ' + err.message + ' — Check your Supabase URL, key, and edge function.');
+    console.error('Exam generation error:', err);
+  } finally {
+    btn.classList.remove('loading');
+    btn.disabled = false;
+    btn.querySelector('.btn-text').textContent = '✨ Generate Exam Question';
+  }
+}
+
+// ─────────────────────────────────────────────
+// RENDER EXAM
+// ─────────────────────────────────────────────
+function renderExam(data) {
+  currentExamData = data;  // store for solution generation
+  const topic = TOPICS.find(t => t.id === selectedTopic);
+  const diff  = selectedDiff;
+  const output = document.getElementById('examOutput');
+
+  const diffLabel = { easy:'🟢 Easy', medium:'🟡 Medium', hard:'🔴 Hard' }[diff];
+  const partNumerals = ['i','ii','iii','iv','v','vi'];
+
+  let html = `
+    <div class="exam-header-card">
+      <div class="exam-title">Section C — Programming (${data.totalMarks} marks)</div>
+      <div class="exam-meta">
+        <span>📋 ${data.questionTitle}</span>
+        <span>${topic?.icon} ${topic?.label}</span>
+        <span>${diffLabel}</span>
+        <span>⏱ Approx ${Math.round(data.totalMarks * 1.2)} min</span>
+      </div>
+    </div>
+
+    <div class="question-section part-header">
+      <div class="part-label purple">Context</div>
+      <div class="question-text">${escapeHtml(data.context)}</div>
+      <p style="font-size:0.88rem;color:var(--text-muted);margin-top:8px">
+        Open the program called <strong>${data.questionTitle.replace(' ','')}_A.py</strong> from your device.
+        Enter your name on line 2. Answer all parts of the question.
+      </p>
+    </div>
+
+    <div class="question-section">
+      <div class="part-label">Starter Code</div>
+      <p class="question-text" style="margin-bottom:10px">The following starter code has been provided:</p>
+      ${renderCodeBlock(data.starterCode)}
+    </div>
+  `;
+
+  // Parts
+  (data.parts || []).forEach((part, idx) => {
+    const marks = part.marks || 8;
+    html += `
+      <div class="question-section">
+        <div class="marks-badge">${marks} marks</div>
+        <div class="part-label">${part.part || `(${partNumerals[idx]})`}</div>
+        <div class="question-text">${escapeHtml(part.instruction)}</div>
+
+        
+
+        ${part.sampleOutput ? `
+        <div style="font-size:0.8rem;font-weight:600;color:var(--text-muted);margin:12px 0 4px;letter-spacing:0.5px;text-transform:uppercase;">
+          When the program is run, it may look as follows:
+        </div>
+        ${renderOutputBlock(part.sampleOutput)}
+        ` : ''}
+
+        
+
+        <button class="solution-btn" id="sol-btn-${idx}" onclick="getSolution(${idx})">
+          <div class="sol-spinner"></div>
+          <span>🔍 Show Solution for ${part.part || `(${partNumerals[idx]})`}</span>
+        </button>
+        <div id="sol-output-${idx}"></div>
+      </div>
+    `;
+  });
+
+  html += `
+    <div class="exam-actions">
+      <button class="action-btn ab-new" onclick="generateExam()">🔄 Generate New Exam</button>
+      <button class="action-btn ab-solution" onclick="getAllSolutions()">
+        <div class="all-sol-spinner" style="width:14px;height:14px;border:2px solid rgba(255,255,255,0.3);border-top-color:white;border-radius:50%;animation:spin 0.7s linear infinite;display:none"></div>
+        <span class="all-sol-text">💡 Find All Solutions</span>
+      </button>
+      <button class="action-btn ab-print" onclick="window.print()">🖨️ Print / Save as PDF</button>
+    </div>
+  `;
+
+  output.innerHTML = html;
+  output.classList.add('visible');
+  output.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// ─────────────────────────────────────────────
+// SOLUTION GENERATION
+// ─────────────────────────────────────────────
+
+// Stores the current exam data so solution functions can access it
+let currentExamData = null;
+
+function buildSolutionPrompt(partIndex) {
+  const part = currentExamData.parts[partIndex];
+  const starterCode = currentExamData.starterCode;
+  const context = currentExamData.context;
+
+  // Build the full context of previous parts so the solution builds on them
+  let previousParts = '';
+  for (let i = 0; i < partIndex; i++) {
+    const p = currentExamData.parts[i];
+    previousParts += `\nPart ${p.part}: ${p.instruction}\n`;
+  }
+
+  return `You are an Irish Leaving Certificate Computer Science teacher writing a model answer for a 6th year Higher Level student.
+
+EXAM CONTEXT: ${context}
+
+STARTER CODE:
+${starterCode}
+
+${partIndex > 0 ? "PREVIOUS PARTS COMPLETED:\n" + previousParts : ""}
+
+QUESTION ${part.part} (${part.marks} marks):
+${part.instruction}
+${part.sampleOutput ? "\nExpected output:\n" + part.sampleOutput : ""}
+
+Write a complete, correct, runnable model answer that exactly produces the sample output shown.
+
+STRICT CODE RULES:
+- Only use LC Python cheat sheet syntax
+- print("text", variable) with a comma — NEVER f-strings or .format()
+- for x in list, for x in range(), while condition, if/elif/else
+- list.append(), sort(), index(), len(), min(), max(), sum(), pop(), count()
+- string.upper(), lower(), find(), replace(), strip(), isdigit(), isalpha(), string[i], string[i:j]
+- def / return, import random if needed
+- Arithmetic: +, -, *, /, **, %, //, round()
+- NEVER: dictionaries, list comprehensions, f-strings, try/except, classes, lambda, enumerate, zip
+
+The solution code should be exactly what a top LC student would write. For hard parts this may be 12-20 lines.
+
+Return ONLY valid JSON, no markdown, no backticks:
+{
+  "explanation": "2-3 plain English sentences explaining what the part is asking and the overall approach to solve it",
+  "keySteps": ["Step 1 in plain English", "Step 2 in plain English", "Step 3 in plain English"],
+  "code": "Complete correct Python code for this part only. Properly indented with 4 spaces. Uses print with commas. Produces exactly the sample output shown."
+}`;;;;
+}
+
+async function getSolution(partIndex) {
+  if (!currentExamData) return;
+
+  const btn = document.getElementById(`sol-btn-${partIndex}`);
+  const outputDiv = document.getElementById(`sol-output-${partIndex}`);
+
+  // If solution already shown, toggle it
+  if (outputDiv.innerHTML && !outputDiv.dataset.loading) {
+    outputDiv.style.display = outputDiv.style.display === 'none' ? 'block' : 'none';
+    const part = currentExamData.parts[partIndex];
+    const partNumerals = ['i','ii','iii','iv','v','vi'];
+    const label = part.part || `(${partNumerals[partIndex]})`;
+    btn.querySelector('span').textContent = outputDiv.style.display === 'none'
+      ? `🔍 Show Solution for ${label}`
+      : `🙈 Hide Solution for ${label}`;
+    return;
+  }
+
+  // Show loading state
+  btn.classList.add('loading');
+  btn.disabled = true;
+  const part = currentExamData.parts[partIndex];
+  const partNumerals = ['i','ii','iii','iv','v','vi'];
+  const label = part.part || `(${partNumerals[partIndex]})`;
+  btn.querySelector('span').textContent = `Generating solution for ${label}...`;
+  outputDiv.dataset.loading = 'true';
+
+  try {
+    const prompt = buildSolutionPrompt(partIndex);
+
+    const res = await fetch(`${supabaseUrl}/functions/v1/${EDGE_FUNCTION_NAME}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${supabaseKey}`,
+        'apikey': supabaseKey
+      },
+      body: JSON.stringify({ prompt })
+    });
+
+    if (!res.ok) {
+      const errText = await res.text();
+      throw new Error(`Server returned ${res.status}: ${errText}`);
+    }
+
+    const data = await res.json();
+    let solData;
+
+    if (data.content) {
+      let raw = data.content.trim()
+        .replace(/^```json\s*/i, '')
+        .replace(/^```\s*/i, '')
+        .replace(/```\s*$/i, '')
+        .trim();
+      solData = JSON.parse(raw);
+    } else if (data.error) {
+      throw new Error(data.error);
+    } else {
+      throw new Error('Unexpected response from server.');
+    }
+
+    delete outputDiv.dataset.loading;
+    outputDiv.innerHTML = renderSolution(solData, label);
+    outputDiv.style.display = 'block';
+    outputDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    btn.querySelector('span').textContent = `🙈 Hide Solution for ${label}`;
+
+  } catch (err) {
+    delete outputDiv.dataset.loading;
+    outputDiv.innerHTML = `<div style="color:var(--red);background:var(--red-light);border:2px solid var(--red);border-radius:10px;padding:12px 16px;margin-top:10px;font-size:0.85rem">
+      ❌ Could not generate solution: ${escapeHtml(err.message)}
+    </div>`;
+    outputDiv.style.display = 'block';
+    btn.querySelector('span').textContent = `🔍 Show Solution for ${label}`;
+  } finally {
+    btn.classList.remove('loading');
+    btn.disabled = false;
+  }
+}
+
+async function getAllSolutions() {
+  if (!currentExamData) return;
+  const btn = document.querySelector('.ab-solution');
+  const spinner = btn.querySelector('.all-sol-spinner');
+  const txt = btn.querySelector('.all-sol-text');
+  btn.disabled = true;
+  spinner.style.display = 'block';
+  txt.textContent = 'Generating all solutions...';
+
+  for (let i = 0; i < currentExamData.parts.length; i++) {
+    const outputDiv = document.getElementById(`sol-output-${i}`);
+    // Skip parts that already have a solution loaded
+    if (outputDiv.innerHTML && !outputDiv.dataset.loading) continue;
+    await getSolution(i);
+    // Small delay between calls to avoid rate limiting
+    if (i < currentExamData.parts.length - 1) {
+      await new Promise(r => setTimeout(r, 600));
+    }
+  }
+
+  btn.disabled = false;
+  spinner.style.display = 'none';
+  txt.textContent = '💡 Find All Solutions';
+}
+
+function renderSolution(sol, partLabel) {
+  const stepsHtml = (sol.keySteps || []).map(step =>
+    `<li>${escapeHtml(step)}</li>`
+  ).join('');
+
+  return `
+    <div class="solution-box">
+      <div class="solution-header">
+        ✅ Model Answer — ${escapeHtml(partLabel)}
+      </div>
+      <div class="solution-body">
+        <div class="solution-explanation">${escapeHtml(sol.explanation || '')}</div>
+
+        ${stepsHtml ? `
+        <div class="solution-code-label">Key Steps</div>
+        <ul class="solution-steps">${stepsHtml}</ul>
+        ` : ''}
+
+        <div class="solution-code-label">Solution Code</div>
+        ${renderCodeBlock(sol.code || '# No code provided')}
+      </div>
+    </div>
+  `;
+}
+
+// ─────────────────────────────────────────────
+// CODE BLOCK RENDERER (with line numbers + basic syntax highlight)
+// ─────────────────────────────────────────────
+function renderCodeBlock(code) {
+  const lines = code.split('\n');
+  const highlighted = lines.map((line, i) => {
+    const ln = `<span class="ln">${i+1}</span>`;
+    return ln + syntaxHighlight(line);
+  }).join('\n');
+  return `
+    <div class="code-block">
+      <div class="code-label">Python</div>
+      <pre>${highlighted}</pre>
+    </div>
+  `;
+}
+
+function syntaxHighlight(line) {
+  // Tokenise the line safely — never run regexes on already-injected HTML
+  const KEYWORDS = new Set(['def','return','if','elif','else','for','while','in','import','from','break','continue','pass','not','and','or','True','False','None','lambda','class']);
+  const BUILTINS = new Set(['print','input','int','str','float','len','range','list','min','max','sum','abs','round','type','bool','open','chr','ord','sorted','reversed','map','append','insert','remove','pop','sort','index','count','upper','lower','find','replace','strip','split','isdigit','isalpha','isalnum','isupper','islower']);
+
+  // If pure comment line
+  const stripped = line.trimStart();
+  if (stripped.startsWith('#')) {
+    return '<span class="cm">' + escHtml(line) + '</span>';
+  }
+
+  let out = '';
+  let i = 0;
+  while (i < line.length) {
+    const ch = line[i];
+
+    // Comment (mid-line)
+    if (ch === '#') {
+      out += '<span class="cm">' + escHtml(line.slice(i)) + '</span>';
+      break;
+    }
+
+    // String literals — single or double quoted
+    if (ch === '"' || ch === "'") {
+      const q = ch;
+      let j = i + 1;
+      while (j < line.length && line[j] !== q) {
+        if (line[j] === '\\') j++; // skip escaped char
+        j++;
+      }
+      j++; // include closing quote
+      out += '<span class="st">' + escHtml(line.slice(i, j)) + '</span>';
+      i = j;
+      continue;
+    }
+
+    // Numbers
+    if (/[0-9]/.test(ch) && (i === 0 || !/[a-zA-Z_]/.test(line[i-1]))) {
+      let j = i;
+      while (j < line.length && /[0-9.]/.test(line[j])) j++;
+      out += '<span class="nm">' + escHtml(line.slice(i, j)) + '</span>';
+      i = j;
+      continue;
+    }
+
+    // Identifiers — check for keywords and builtins
+    if (/[a-zA-Z_]/.test(ch)) {
+      let j = i;
+      while (j < line.length && /[a-zA-Z0-9_]/.test(line[j])) j++;
+      const word = line.slice(i, j);
+      if (KEYWORDS.has(word)) {
+        out += '<span class="kw">' + escHtml(word) + '</span>';
+      } else if (BUILTINS.has(word) && line[j] === '(') {
+        out += '<span class="fn">' + escHtml(word) + '</span>';
+      } else {
+        out += escHtml(word);
+      }
+      i = j;
+      continue;
+    }
+
+    // Everything else — operators, brackets, spaces
+    out += escHtml(ch);
+    i++;
+  }
+  return out;
+}
+
+function escHtml(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
+
+// ─────────────────────────────────────────────
+// OUTPUT BLOCK RENDERER
+// ─────────────────────────────────────────────
+function renderOutputBlock(output) {
+  const lines = output.split('\\n').join('\n').split('\n');
+  const formatted = lines.map(line => {
+    // Lines that look like input prompts (contain ': ' and end with user input hint)
+    if (line.includes(': ') && !line.startsWith(' ')) {
+      const colonIdx = line.lastIndexOf(': ');
+      const prompt = escapeHtml(line.substring(0, colonIdx + 2));
+      const inp = escapeHtml(line.substring(colonIdx + 2));
+      return `<span class="input-line">${prompt}${inp}</span>`;
+    }
+    return escapeHtml(line);
+  }).join('\n');
+  return `
+    <div class="output-box">
+      <span class="ob-label">Sample Output</span>
+      <pre>${formatted}</pre>
+    </div>
+  `;
+}
+
+// ─────────────────────────────────────────────
+// REFERENCE MODAL
+// ─────────────────────────────────────────────
+const REF_DATA = {
+  'Main Data Types': [
+    ['boolean','True / False'],['integer','e.g. 10'],['float','e.g. 10.01'],
+    ['string','"123abc"'],['list','[val1, val2, ...]']
+  ],
+  'Numeric Operators': [
+    ['+',' addition'],['-','subtraction'],['*','multiplication'],
+    ['/','division'],['**','exponent'],['%','modulus'],['//','floor division']
+  ],
+  'Comparison Operators': [
+    ['==','equal'],['!=','not equal'],['>','higher'],['<','lower'],
+    ['>=','higher or equal'],['<=','lower or equal']
+  ],
+  'Boolean Operators': [['and','logical AND'],['or','logical OR'],['not','logical NOT']],
+  'String Methods': [
+    ['string.upper()','returns uppercase'],['string.lower()','returns lowercase'],
+    ['string.count(x)','counts occurrences of x'],['string.find(x)','position of first x'],
+    ['string.replace(x,y)','replaces x with y'],['string.strip(x)','removes leading/trailing chars'],
+    ['string.islower()','True if all lowercase'],['string.isupper()','True if all uppercase'],
+    ['string.isalnum()','True if all alphanumeric'],['string.isalpha()','True if all alphabetic'],
+    ['string.isdigit()','True if all digits'],['string.index(s)','index of substring s'],
+    ['string[i]','char at position i'],['string[i:j]','chars from i to j']
+  ],
+  'List Methods': [
+    ['list.append(x)','add x to end'],['list.insert(i,x)','insert x at i'],
+    ['list.remove(x)','remove first x'],['list.pop(i)','remove & return item at i'],
+    ['list.sort()','sort in place'],['sorted(L)','return sorted copy'],
+    ['list.reverse()','reverse in place'],['list.index(x)','position of first x'],
+    ['list.count(x)','count occurrences of x'],['list.clear()','remove all items'],
+    ['list.copy()','return copy'],['list.extend(L)','append L to end'],
+    ['list[i]','get item at i'],['del list[i]','delete item at i']
+  ],
+  'Built-in Functions': [
+    ['print(x)','print x'],['input(s)','prompt + get input'],['len(x)','length'],
+    ['min(L)','minimum'],['max(L)','maximum'],['sum(L)','sum of list'],
+    ['range(n1,n2,n)','sequence'],['abs(n)','absolute value'],
+    ['round(n,d)','round to d digits'],['type(x)','type of x'],
+    ['int(x)','to integer'],['str(x)','to string'],['float(x)','to float'],
+    ['bool(x)','to boolean'],['ord(x)','Unicode code of char'],['chr(x)','char from Unicode code']
+  ],
+  'Assignment Operators': [
+    ['=','x = y'],['+=','x += y (increment)'],
+    ['-=','x -= y (decrement)'],['*=','x *= y'],['%=','x %= y'],['/=','x /= y']
+  ],
+  'Special Characters': [['#','comment'],['\\n','new line'],['\\t','tab']],
+  'Loop Syntax': [
+    ['for x in list:','for loop'],['for x in range(a,b,s):','range loop'],
+    ['while condition:','while loop'],['break','exit loop'],
+    ['continue','skip to next iteration'],['pass','do nothing']
+  ],
+  'Function Syntax': [
+    ['def func(params):','define function'],['return value','return from function'],
+    ['import module','import a module'],['from module import *','import all from module']
+  ],
+  'File I/O': [
+    ["f = open(path,'r')",'open for reading'],["f = open(path,'w')",'open for writing'],
+    ['f.read()','read file'],['f.readline()','read one line'],
+    ['f.write(str)','write string'],['f.close()','close file']
+  ]
+};
+
+function renderRefModal() {
+  const container = document.getElementById('refContent');
+  let html = '';
+  for (const [section, items] of Object.entries(REF_DATA)) {
+    html += `<div class="ref-section-title">${section}</div><div class="ref-grid">`;
+    items.forEach(([code, desc]) => {
+      html += `<div class="ref-item"><span class="ri-code">${escapeHtml(code)}</span><span class="ri-desc">— ${escapeHtml(desc)}</span></div>`;
+    });
+    html += `</div>`;
+  }
+  container.innerHTML = html;
+}
+
+function openRef()  { document.getElementById('refModal').classList.add('open'); }
+function closeRef() { document.getElementById('refModal').classList.remove('open'); }
+function closeRefOutside(e) { if (e.target === document.getElementById('refModal')) closeRef(); }
+
+// ─────────────────────────────────────────────
+// STATUS BAR
+// ─────────────────────────────────────────────
+function showStatus(type, msg) {
+  const bar = document.getElementById('statusBar');
+  bar.className = `status-bar ${type}`;
+  document.getElementById('statusMsg').textContent = msg;
+  bar.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+function hideStatus() {
+  document.getElementById('statusBar').className = 'status-bar';
+}
+
+// ─────────────────────────────────────────────
+// UTILITY
+// ─────────────────────────────────────────────
+function escapeHtml(str) {
+  if (!str) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+</script>
+</body>
+</html>
