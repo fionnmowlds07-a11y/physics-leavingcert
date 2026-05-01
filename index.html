@@ -14,6 +14,7 @@
     --accent-physics: #2196f3; /* Blue */
     --accent-lcpe: #4caf50; /* Green */
     --accent-compsci: #9c27b0; /* Purple */
+    --accent-latin: #b71c1c; /* Roman Red */
     --accent-general: #00bcd4; /* Cyan */
     --border: #e0dcd4;
     --shadow: 0 4px 20px rgba(0,0,0,0.06);
@@ -107,7 +108,7 @@
 
   .topics-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 32px;
     margin-bottom: 60px;
   }
@@ -134,6 +135,7 @@
   .subject-card:nth-child(1) { animation-delay: 0.1s; }
   .subject-card:nth-child(2) { animation-delay: 0.2s; }
   .subject-card:nth-child(3) { animation-delay: 0.3s; }
+  .subject-card:nth-child(4) { animation-delay: 0.4s; }
 
   .subject-card::before {
     content: '';
@@ -162,6 +164,10 @@
   .card-compsci::before { background: var(--accent-compsci); }
   .card-compsci:hover { border-color: var(--accent-compsci); }
   .card-compsci .mc-icon { color: var(--accent-compsci); background: #f3e5f5; }
+
+  .card-latin::before { background: var(--accent-latin); }
+  .card-latin:hover { border-color: var(--accent-latin); }
+  .card-latin .mc-icon { color: var(--accent-latin); background: #ffebee; }
 
   .mc-icon {
     font-size: 56px;
@@ -318,6 +324,14 @@
         <div class="mc-icon">💻</div>
         <div class="mc-title">Computer Science</div>
         <div class="mc-desc">Explore programming, computational thinking, software development, and the ALTs.</div>
+        <div class="mc-action">Launch Hub →</div>
+      </a>
+
+      <!-- LATIN CARD -->
+      <a href="Latin.html" class="subject-card card-latin">
+        <div class="mc-icon">🏛️</div>
+        <div class="mc-title">Latin</div>
+        <div class="mc-desc">Master vocabulary, translation skills, and explore Roman history, art, and architecture.</div>
         <div class="mc-action">Launch Hub →</div>
       </a>
 
