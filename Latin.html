@@ -13,6 +13,7 @@
     --text-light: #555570;
     --accent-main: #b71c1c; /* Roman Red */
     --accent-secondary: #fbc02d; /* Roman Gold */
+    --accent-tertiary: #5e35b1; /* Imperial Purple */
     --border: #e0dcd4;
     --shadow: 0 4px 20px rgba(0,0,0,0.06);
     --shadow-hover: 0 12px 30px rgba(0,0,0,0.12);
@@ -172,6 +173,10 @@
   .card-logic:hover { border-color: var(--accent-secondary); }
   .card-logic .mc-icon { color: #f57f17; background: #fff9c4; }
 
+  .card-history::before { background: var(--accent-tertiary); }
+  .card-history:hover { border-color: var(--accent-tertiary); }
+  .card-history .mc-icon { color: var(--accent-tertiary); background: #ede7f6; }
+
   .mc-icon {
     font-size: 42px;
     width: 80px;
@@ -321,6 +326,13 @@
         <div class="mc-title">Roman Art & Architecture</div>
         <div class="mc-desc">Explore comprehensive history notes covering Roman engineering, classical art, and structural masterpieces.</div>
         <div class="mc-action">View notes →</div>
+      </a>
+
+      <a href="Augustus.html" class="chapter-card card-history">
+        <div class="mc-icon">👑</div>
+        <div class="mc-title">Emperor Augustus</div>
+        <div class="mc-desc">Dive into the life, reign, and political transformations of Rome's first emperor, Augustus.</div>
+        <div class="mc-action">Explore his reign →</div>
       </a>
 
     </div>
