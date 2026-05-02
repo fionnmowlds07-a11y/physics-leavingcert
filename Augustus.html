@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LC Latin – Augustus</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Deca:wght@400;500;600&family=Lexend+Mega:wght@700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --c1:#b45309; --c2:#1d4ed8; --c3:#be185d; --c4:#047857;
+    --c5:#7c3aed; --c6:#0891b2; --c7:#dc2626; --c8:#d97706;
+    --c9:#4f46e5; --c10:#059669;
+    --bg:#f8f9fc; --card:#ffffff; --text:#1a1a2e;
+    --sub:#555577; --border:#e2e6f0;
+    --shadow:0 4px 20px rgba(0,0,0,0.08); --radius:14px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);font-size:16px;line-height:1.75;}
+
+  /* ── TOPBAR ── */
+  .topbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.97);backdrop-filter:blur(10px);border-bottom:2px solid var(--border);padding:0 16px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;min-height:56px;}
+  .topbar-brand{font-family:'Lexend Mega',sans-serif;font-size:.88rem;font-weight:700;color:var(--text);margin-right:4px;white-space:nowrap;}
+  .nav-tabs{display:flex;gap:6px;flex-wrap:wrap;align-items:center;}
+  .nav-tab{background:none;border:2px solid var(--border);color:var(--sub);font-family:'Lexend',sans-serif;font-size:.75rem;font-weight:600;cursor:pointer;border-radius:20px;padding:4px 12px;transition:all .17s;}
+  .nav-tab:hover{background:var(--text);border-color:var(--text);color:#fff;}
+  .nav-tab.active{background:var(--text);border-color:var(--text);color:#fff!important;}
+  .nav-tab.p1:hover,.nav-tab.p1.active{background:var(--c1);border-color:var(--c1);color:#fff!important;}
+  .nav-tab.p2:hover,.nav-tab.p2.active{background:var(--c2);border-color:var(--c2);color:#fff!important;}
+  .nav-tab.p3:hover,.nav-tab.p3.active{background:var(--c3);border-color:var(--c3);color:#fff!important;}
+  .nav-tab.p4:hover,.nav-tab.p4.active{background:var(--c4);border-color:var(--c4);color:#fff!important;}
+  .nav-tab.p5:hover,.nav-tab.p5.active{background:var(--c5);border-color:var(--c5);color:#fff!important;}
+  .nav-tab.p6:hover,.nav-tab.p6.active{background:var(--c6);border-color:var(--c6);color:#fff!important;}
+  .nav-tab.p7:hover,.nav-tab.p7.active{background:var(--c7);border-color:var(--c7);color:#fff!important;}
+  .nav-tab.p8:hover,.nav-tab.p8.active{background:var(--c8);border-color:var(--c8);color:#fff!important;}
+  .nav-tab.p9:hover,.nav-tab.p9.active{background:var(--c9);border-color:var(--c9);color:#fff!important;}
+  .nav-tab.p10:hover,.nav-tab.p10.active{background:var(--c10);border-color:var(--c10);color:#fff!important;}
+
+  /* ── PAGES ── */
+  .page{display:none;max-width:960px;margin:0 auto;padding:30px 20px 90px;}
+  .page.active{display:block;}
+
+  /* ── HERO ── */
+  .hero{border-radius:var(--radius);padding:32px 36px;margin-bottom:32px;color:white;position:relative;overflow:hidden;}
+  .hero::before{content:'';position:absolute;inset:0;background:rgba(0,0,0,0.13);border-radius:var(--radius);}
+  .hero-content{position:relative;z-index:1;}
+  .hero-badge{display:inline-block;background:rgba(255,255,255,0.25);padding:4px 12px;border-radius:20px;font-size:0.72rem;font-weight:600;letter-spacing:0.05em;margin-bottom:10px;text-transform:uppercase;}
+  .hero h1{font-family:'Lexend Mega',sans-serif;font-size:1.75rem;font-weight:700;margin-bottom:8px;line-height:1.2;}
+  .hero p{font-size:0.97rem;opacity:0.9;max-width:640px;}
+
+  /* ── SECTION GROUPS ── */
+  .section-group{margin-bottom:36px;}
+  .section-title{font-size:1.05rem;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:10px;padding-bottom:10px;border-bottom:2px solid var(--border);}
+  .section-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;}
+
+  /* ── DEF CARDS ── */
+  .def-card{background:white;border-radius:var(--radius);border:2px solid var(--border);margin-bottom:14px;overflow:hidden;box-shadow:var(--shadow);transition:box-shadow .2s,border-color .2s;}
+  .def-card:hover{box-shadow:0 6px 28px rgba(0,0,0,0.12);}
+  .def-header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;cursor:pointer;gap:12px;}
+  .def-term{font-size:1rem;font-weight:700;display:flex;align-items:center;gap:10px;flex:1;flex-wrap:wrap;}
+  .def-pill{font-size:0.67rem;padding:3px 9px;border-radius:20px;font-weight:600;white-space:nowrap;text-transform:uppercase;letter-spacing:0.04em;}
+  .pill-key{background:#fde8de;color:#b34219;}
+  .pill-def{background:#e8f0ff;color:#2d4dd6;}
+  .pill-exam{background:#fef3c7;color:#92400e;}
+  .pill-date{background:#f0fdf4;color:#166534;}
+  .def-chevron{font-size:1rem;color:var(--sub);transition:transform .25s;flex-shrink:0;}
+  .def-card.open .def-chevron{transform:rotate(180deg);}
+  .def-body{display:none;padding:0 20px 20px;border-top:1px solid var(--border);}
+  .def-card.open .def-body{display:block;}
+
+  /* ── CONTENT BOXES ── */
+  .def-official{border-radius:0 8px 8px 0;padding:13px 16px;margin:14px 0 10px;font-weight:600;font-size:0.95rem;}
+  .def-explain{color:var(--sub);margin:8px 0;font-size:0.93rem;}
+  .analogy-box{background:linear-gradient(135deg,#fff9e6,#fffdf0);border:2px dashed #f0c040;border-radius:10px;padding:12px 16px;margin:12px 0;font-size:0.92rem;}
+  .analogy-box strong{color:#b8860b;}
+  .memory-box{background:linear-gradient(135deg,#fdf0ff,#f5e6ff);border:2px dashed #c084fc;border-radius:10px;padding:12px 16px;margin:12px 0;font-size:0.92rem;}
+  .memory-box strong{color:#7c3aed;}
+  .example-box{background:#f0fff8;border-left:4px solid #2bc97a;border-radius:0 8px 8px 0;padding:11px 14px;margin:10px 0;font-size:0.92rem;}
+  .example-box strong{color:#0fa65a;}
+  .warn-box{background:#fffbf0;border-left:4px solid #f59e0b;border-radius:0 8px 8px 0;padding:11px 14px;margin:10px 0;font-size:0.92rem;}
+  .warn-box strong{color:#b45309;}
+  .info-box{background:#f0f4ff;border-left:4px solid #2b7de0;border-radius:0 8px 8px 0;padding:11px 14px;margin:10px 0;font-size:0.92rem;}
+  .info-box strong{color:#1e40af;}
+
+  /* ── GRIDS ── */
+  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;}
+  @media(max-width:600px){.grid-2{grid-template-columns:1fr;}}
+  .grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:14px;}
+  @media(max-width:700px){.grid-3{grid-template-columns:1fr;}}
+  .grid-card{background:white;border-radius:var(--radius);border:2px solid var(--border);padding:18px;box-shadow:var(--shadow);}
+  .grid-card h4{font-size:0.95rem;font-weight:700;margin-bottom:8px;}
+  .grid-card ul{padding-left:18px;}
+  .grid-card ul li{font-size:0.88rem;margin-bottom:5px;}
+  .grid-card p{font-size:0.88rem;color:var(--sub);}
+
+  /* ── TABLE ── */
+  .compare-table{width:100%;border-collapse:collapse;font-size:0.9rem;margin-bottom:14px;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);}
+  .compare-table th{padding:12px 16px;color:white;font-weight:700;text-align:left;}
+  .compare-table td{padding:11px 16px;background:white;border-bottom:1px solid var(--border);vertical-align:top;}
+  .compare-table tr:last-child td{border-bottom:none;}
+  .compare-table tr:nth-child(even) td{background:#fafafe;}
+
+  /* ── TIMELINE ── */
+  .timeline{position:relative;padding-left:28px;margin:16px 0;}
+  .timeline::before{content:'';position:absolute;left:8px;top:0;bottom:0;width:2px;background:var(--border);}
+  .timeline-item{position:relative;margin-bottom:18px;}
+  .timeline-item::before{content:'';position:absolute;left:-24px;top:6px;width:12px;height:12px;border-radius:50%;background:white;border:2px solid var(--border);}
+  .timeline-item.active-item::before{background:var(--c1);border-color:var(--c1);}
+  .timeline-date{font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:3px;}
+  .timeline-text{font-size:0.92rem;}
+
+  /* ── FLIP QUIZ ── */
+  .quiz-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;margin-top:10px;}
+  .flip-card{height:150px;cursor:pointer;perspective:1000px;}
+  .flip-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .5s cubic-bezier(.4,2,.6,1);}
+  .flip-card.flipped .flip-inner{transform:rotateY(180deg);}
+  .flip-front,.flip-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;border-radius:var(--radius);display:flex;align-items:center;justify-content:center;text-align:center;padding:16px;border:2px solid var(--border);box-shadow:var(--shadow);}
+  .flip-front{background:white;font-weight:700;font-size:0.9rem;flex-direction:column;gap:6px;}
+  .flip-back{background:var(--text);color:white;font-size:0.82rem;transform:rotateY(180deg);line-height:1.55;}
+  .flip-hint{font-size:0.68rem;color:#aaa;font-weight:400;}
+
+  /* ── WELCOME GRID ── */
+  .welcome-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px;}
+  @media(max-width:650px){.welcome-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:400px){.welcome-grid{grid-template-columns:1fr;}}
+  .welcome-card{background:white;border-radius:var(--radius);border:2px solid var(--border);padding:18px 14px;cursor:pointer;box-shadow:var(--shadow);transition:transform .17s,box-shadow .17s;text-align:center;}
+  .welcome-card:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(0,0,0,0.13);}
+  .welcome-card .wc-icon{font-size:1.6rem;margin-bottom:6px;}
+  .welcome-card .wc-title{font-family:'Lexend Mega',sans-serif;font-size:0.8rem;font-weight:700;margin-bottom:4px;}
+  .welcome-card .wc-sub{font-size:0.75rem;color:var(--sub);}
+
+  /* ── TIP BOX ── */
+  .tip-box{background:white;border-radius:var(--radius);padding:20px;margin-top:18px;border:2px solid #ffd166;box-shadow:var(--shadow);}
+  .tip-box h3{font-weight:700;margin-bottom:8px;font-size:.95rem;}
+  .tip-box ul{padding-left:20px;}
+  .tip-box ul li{margin-bottom:6px;font-size:.9rem;}
+
+  /* ── BACK BTN ── */
+  .return-home-btn{position:fixed;bottom:26px;right:26px;background:var(--text);color:white!important;padding:10px 20px;border-radius:50px;text-decoration:none;font-family:'Lexend',sans-serif;font-weight:600;font-size:13px;box-shadow:0 4px 16px rgba(0,0,0,0.22);z-index:9999;display:flex;align-items:center;gap:7px;transition:all .3s;}
+  .return-home-btn:hover{transform:translateY(-3px);background:#7c3aed;box-shadow:0 8px 24px rgba(124,58,237,0.4);}
+
+  /* coloured border helpers */
+  .bc1{border-color:#fbc89a!important;} .bc2{border-color:#93c5fd!important;} .bc3{border-color:#f9a8d4!important;}
+  .bc4{border-color:#6ee7b7!important;} .bc5{border-color:#c4b5fd!important;} .bc6{border-color:#67e8f9!important;}
+  .bc7{border-color:#fca5a5!important;} .bc8{border-color:#fcd34d!important;} .bc9{border-color:#a5b4fc!important;}
+  .bc10{border-color:#6ee7b7!important;}
+</style>
+</head>
+<body>
+
+<!-- ══════════════ TOPBAR ══════════════ -->
+<div class="topbar">
+  <span class="topbar-brand">🏛 LC Latin – Augustus</span>
+  <div class="nav-tabs">
+    <button class="nav-tab active"  onclick="showPage('home',this)">🏠 Home</button>
+    <button class="nav-tab p1"  onclick="showPage('early',this)">👶 Early Life</button>
+    <button class="nav-tab p2"  onclick="showPage('triumvirate',this)">⚔️ 2nd Triumvirate</button>
+    <button class="nav-tab p3"  onclick="showPage('rise',this)">📈 Rise to Power</button>
+    <button class="nav-tab p4"  onclick="showPage('actium',this)">🚢 Battle of Actium</button>
+    <button class="nav-tab p5"  onclick="showPage('settlement',this)">📜 The Settlements</button>
+    <button class="nav-tab p6"  onclick="showPage('powers',this)">👑 Powers &amp; Titles</button>
+    <button class="nav-tab p7"  onclick="showPage('reforms',this)">🏛️ Rome &amp; Reforms</button>
+    <button class="nav-tab p8"  onclick="showPage('social',this)">👨‍👩‍👧 Social &amp; Foreign Policy</button>
+    <button class="nav-tab p9"  onclick="showPage('succession',this)">👶 Succession Problem</button>
+    <button class="nav-tab p10" onclick="showPage('death',this)">☠️ Death &amp; Legacy</button>
+  </div>
+</div>
+
+<!-- ══════════════ HOME ══════════════ -->
+<div class="page active" id="page-home">
+  <div class="hero" style="background:linear-gradient(135deg,#1a1a2e,#3a2a5e);">
+    <div class="hero-content">
+      <div class="hero-badge">Leaving Cert Latin — Emperors</div>
+      <h1>Augustus (27 BC – AD 14) 🏛️</h1>
+      <p>The first real Emperor of Rome — the man who transformed a crumbling republic into a world empire, all while pretending he hadn't. Every topic from the PDF, explained clearly with analogies and memory tricks.</p>
+    </div>
+  </div>
+  <div class="welcome-grid">
+    <div class="welcome-card" onclick="showPage('early',document.querySelector('.p1'))"><div class="wc-icon">👶</div><div class="wc-title" style="color:var(--c1)">Early Life</div><div class="wc-sub">Birth · Julius Caesar · Adoption</div></div>
+    <div class="welcome-card" onclick="showPage('triumvirate',document.querySelector('.p2'))"><div class="wc-icon">⚔️</div><div class="wc-title" style="color:var(--c2)">2nd Triumvirate</div><div class="wc-sub">Antony · Lepidus · Proscriptions · Philippi</div></div>
+    <div class="welcome-card" onclick="showPage('rise',document.querySelector('.p3'))"><div class="wc-icon">📈</div><div class="wc-title" style="color:var(--c3)">Rise to Power</div><div class="wc-sub">Cicero · Agrippa · Sextus Pompeius</div></div>
+    <div class="welcome-card" onclick="showPage('actium',document.querySelector('.p4'))"><div class="wc-icon">🚢</div><div class="wc-title" style="color:var(--c4)">Battle of Actium</div><div class="wc-sub">31 BC · Anthony &amp; Cleopatra · Egypt</div></div>
+    <div class="welcome-card" onclick="showPage('settlement',document.querySelector('.p5'))"><div class="wc-icon">📜</div><div class="wc-title" style="color:var(--c5)">The Settlements</div><div class="wc-sub">First Settlement 27 BC · Second Settlement 23 BC</div></div>
+    <div class="welcome-card" onclick="showPage('powers',document.querySelector('.p6'))"><div class="wc-icon">👑</div><div class="wc-title" style="color:var(--c6)">Powers &amp; Titles</div><div class="wc-sub">Pontifex Maximus · Princeps · Tribunicia Potestas</div></div>
+    <div class="welcome-card" onclick="showPage('reforms',document.querySelector('.p7'))"><div class="wc-icon">🏛️</div><div class="wc-title" style="color:var(--c7)">Rome &amp; Reforms</div><div class="wc-sub">82 Temples · Districts · Provinces · Treasury</div></div>
+    <div class="welcome-card" onclick="showPage('social',document.querySelector('.p8'))"><div class="wc-icon">👨‍👩‍👧</div><div class="wc-title" style="color:var(--c8)">Social &amp; Foreign Policy</div><div class="wc-sub">Marriage Laws · Borders · Germany</div></div>
+    <div class="welcome-card" onclick="showPage('succession',document.querySelector('.p9'))"><div class="wc-icon">👶</div><div class="wc-title" style="color:var(--c9)">Succession Problem</div><div class="wc-sub">Heirs · Tiberius · Agrippa Postumus</div></div>
+    <div class="welcome-card" onclick="showPage('death',document.querySelector('.p10'))"><div class="wc-icon">☠️</div><div class="wc-title" style="color:var(--c10)">Death &amp; Legacy</div><div class="wc-sub">Nola · Mausoleum · Final Words</div></div>
+  </div>
+  <div class="tip-box">
+    <h3>💡 How to use this guide</h3>
+    <ul>
+      <li><strong>Tap any card</strong> to expand it — you'll see the official notes, a plain English explanation, an analogy and a memory trick.</li>
+      <li><strong>Flip cards</strong> at the bottom of each page test your knowledge — tap to reveal the answer.</li>
+      <li>The 🔑 KEY badge = most important exam points. Learn these first!</li>
+      <li>The 📅 DATE badge = an important date you must know for the exam.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ══════════════ EARLY LIFE ══════════════ -->
+<div class="page" id="page-early">
+  <div class="hero" style="background:linear-gradient(135deg,#b45309,#d97706);">
+    <div class="hero-content"><div class="hero-badge">Topic 1</div><h1>👶 Early Life of Octavian</h1><p>Born Gaius Octavius, he became the adopted son of the most powerful man in Rome — and used that connection to seize an empire.</p></div>
+  </div>
+
+  <div class="section-group">
+    <div class="section-title"><div class="section-icon" style="background:#fef3c7;">🌱</div>Birth &amp; Family</div>
+
+    <div class="def-card bc1 open" onclick="toggleDef(this)">
+      <div class="def-header"><div class="def-term">Birth of Octavian<span class="def-pill pill-date">63 BC</span></div><span class="def-chevron">▼</span></div>
+      <div class="def-body">
+        <div class="def-official" style="background:#fefce8;border-left:4px solid var(--c1);">Gaius Octavius (Octavian) later named Augustus was born on the 23rd of September 63 BC. His mother was Julia, the daughter of Julius Caesar. He was only 18 when Caesar died. Octavian was in Illyricum when news reached of Caesar's death. Caesar had adopted him in his will.</div>
+        <div class="grid-2" style="margin-top:12px;">
+          <div class="grid-card"><h4>📅 Key Birth Facts</h4><ul><li>Full name: <strong>Gaius Octavius</strong></li><li>Born: <strong>23rd September 63 BC</strong></li><li>Mother: <strong>Julia</strong> — daughter of Julius Caesar</li><li>Age when Caesar died: <strong>18</strong></li><li>Location when Caesar died: <strong>Illyricum</strong></li></ul></div>
+          <div class="grid-card"><h4>🏛️ The Adoption</h4><ul><li>Caesar <strong>adopted Octavian in his will</strong></li><li>This made Octavian Caesar's legal son and heir</li><li>His new official name: <strong>Gaius Julius Caesar Octavianus</strong></li><li>This adoption was the foundation of ALL his power claims</li></ul></div>
+        </div>
+        <div class="analogy-box"><strong>🧠 Analogy:</strong> Imagine you're 18, studying abroad, and you get a phone call: the richest, most powerful person in your country just died and their will says they're leaving everything to you — their name, their money, their political supporters, and their army. That's exactly what happened to Octavian. He went from student to heir to the Roman world overnight.</div>
+        <div class="memory-box"><strong>🔮 Memory:</strong> "Octavian was born in 63 BC and was only 18 when Caesar died." 63 BC → subtract 18 years of life → Caesar died around 44 BC. And "His mother Julia was Caesar's daughter" — so Caesar was his great-uncle who adopted him as son.</div>
+      </div>
+    </div>
+
+    <div class="def-card bc1" onclick="toggleDef(this)">
+      <div class="def-header"><div class="def-term">Who Was Julius Caesar to Octavian?<span class="def-pill pill-key">KEY RELATIONSHIP</span></div><span class="def-chevron">▼</span></div>
+      <div class="def-body">
+        <div class="def-official" style="background:#fefce8;border-left:4px solid var(--c1);">Augustus was the first real Emperor of Rome, although he didn't really call himself that. He masked his power under traditional republican reforms, and made the Senate feel as though they had power. Restored Order to Rome.</div>
+        <p class="def-explain">Julius Caesar was Octavian's great-uncle (his mother Julia was Caesar's daughter). When Caesar was assassinated on the Ides of March (15 March 44 BC), his will revealed he had posthumously adopted Octavian as his son and heir.</p>
+        <div class="warn-box"><strong>⚠️ Key Point — The Deification of Caesar:</strong> Two years after Caesar's death, he was officially declared a god (<em>divus</em>) by the Senate. This meant Octavian was now <strong>"Divi filius"</strong> — "son of a god." This enormously boosted his popularity and authority. It was a masterstroke of political propaganda.</div>
+        <div class="memory-box"><strong>🔮 Memory Trick — "Divi filius":</strong> Think "Divi = divine." Octavian could literally say: "My dad is a god." In the Roman world, that meant YOU were pretty much divine too. This was how he got people to follow an 18-year-old nobody.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-group">
+    <div class="section-title"><div class="section-icon" style="background:#fef3c7;">🏛️</div>Arriving in Rome</div>
+    <div class="def-card bc1" onclick="toggleDef(this)">
+      <div class="def-header"><div class="def-term">Octavian Arrives in Rome — The Power Struggle<span class="def-pill pill-key">KEY EVENTS</span></div><span class="def-chevron">▼</span></div>
+      <div class="def-body">
+        <div class="def-official" style="background:#fefce8;border-left:4px solid var(--c1);">When he arrived in Rome, he found power being shared by Mark Anthony and Aemilius Lepidus. Octavian succeeded in undermining Anthony's position by taking many of his supporters. Cicero, also disliking Anthony, made multiple speeches condemning him (known as the Philippics). Cicero now supported Octavian as he saw potential in him. Supported Octavian to declare war on Anthony. However, if Cicero planned to control Octavian, this failed as he marched on Rome and demanded he be made consul.</div>
+        <div class="grid-2" style="margin-top:12px;">
+          <div class="grid-card"><h4>🗺️ The Situation</h4><ul><li>Power held by: <strong>Mark Anthony</strong> and <strong>Aemilius Lepidus</strong></li><li>Octavian immediately began undermining Anthony</li><li>Stole Anthony's supporters one by one</li><li>Cicero backed Octavian as a useful tool</li></ul></div>
+          <div class="grid-card"><h4>📢 Cicero's Role</h4><ul><li>Cicero hated Anthony, made speeches against him</li><li>These speeches = <strong>The Philippics</strong></li><li>Supported Octavian to declare war on Anthony</li><li>Cicero thought he could <em>control</em> Octavian — he was wrong!</li><li>Octavian marched on Rome and <strong>demanded to be consul</strong></li></ul></div>
+        </div>
+        <div class="analogy-box"><strong>🧠 Analogy:</strong> Cicero's relationship with Octavian was like a chess master who thinks he's using a promising young player as a pawn — only for that pawn to reach the other end of the board and become a queen. Cicero underestimated the 18-year-old completely.</div>
+        <div class="warn-box"><strong>⚠️ The Philippics:</strong> These were Cicero's famous speeches denouncing Mark Anthony. Named after Demosthenes' speeches against Philip of Macedon. They made Cicero Anthony's enemy — and would eventually cost Cicero his life when Anthony joined the Triumvirate.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-group">
+    <div class="section-title"><div class="section-icon" style="background:#fef3c7;">🧠</div>Quick Quiz — Early Life</div>
+    <div class="quiz-grid">
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">When and where was Octavian born?<span class="flip-hint">tap</span></div><div class="flip-back">Born 23rd September 63 BC. His mother was Julia, the daughter of Julius Caesar. He was only 18 when Caesar died.</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">How was Octavian connected to Julius Caesar?<span class="flip-hint">tap</span></div><div class="flip-back">Caesar was his great-uncle (mother Julia = Caesar's daughter). Caesar adopted Octavian in his will, making him legal son and heir.</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">What does "Divi filius" mean and why did it matter?<span class="flip-hint">tap</span></div><div class="flip-back">"Son of a god." After Caesar was deified, Octavian could claim this title. Hugely boosted his popularity and authority — who argues with a god's son?</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">What were the Philippics?<span class="flip-hint">tap</span></div><div class="flip-back">Cicero's speeches denouncing Mark Anthony. Named after Demosthenes' speeches against Philip. Cicero backed Octavian — thinking he could control him. He couldn't.</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ 2ND TRIUMVIRATE ══════════════ -->
+<div class="page" id="page-triumvirate">
+  <div class="hero" style="background:linear-gradient(135deg,#1d4ed8,#3b82f6);">
+    <div class="hero-content"><div class="hero-badge">Topic 2</div><h1>⚔️ The Second Triumvirate</h1><p>Three men, one empire — how Octavian, Anthony and Lepidus carved up the Roman world between them, and why it couldn't last.</p></div>
+  </div>
+
+  <div class="section-group">
+    <div class="section-title"><div class="section-icon" style="background:#dbeafe;">⚔️</div>Formation of the Second Triumvirate</div>
+
+    <div class="def-card bc2 open" onclick="toggleDef(this)">
+      <div class="def-header"><div class="def-term">The Second Triumvirate — Formation &amp; Division<span class="def-pill pill-key">KEY EVENT</span></div><span class="def-chevron">▼</span></div>
+      <div class="def-body">
+        <div class="def-official" style="background:#eff6ff;border-left:4px solid var(--c2);">Three months later Anthony, Lepidus and Octavian met and the Second Triumvirate was formed. The Triumvirs defeated Brutus and Cassius in Philippi in Greece. They also ordered a proscription against Cicero, and he perished. The three now divided the Empire, Octavian taking the West, Anthony the East and Lepidus, no longer an equal, took Africa. Anthony married Octavian's sister, but later remained in the East where he fell in love with Cleopatra, queen of Egypt.</div>
+        <div class="grid-2" style="margin-top:12px;">
+          <div class="grid-card"><h4>📋 What was the Triumvirate?</h4><ul><li><strong>Triumvirate</strong> = rule by three men (tri = three, vir = man)</li><li>Members: <strong>Octavian, Mark Anthony, Aemilius Lepidus</strong></li><li>Officially formed to stabilise Rome after Caesar's assassination</li><li>This was the <strong>Second</strong> Triumvirate (Caesar, Pompey, Crassus were the First)</li></ul></div>
+          <div class="grid-card"><h4>🗺️ Division of the Empire</h4><ul><li><strong>Octavian</strong> = the West (Italy, Gaul, Spain)</li><li><strong>Anthony</strong> = the East (Greece, Asia, Syria)</li><li><strong>Lepidus</strong> = Africa (the weakest share — he was sidelined)</li></ul></div>
+        </div>
+        <div class="analogy-box"><strong>🧠 Analogy:</strong> Think of the Triumvirate like three friends who inherit a massive house and split it into three parts. Initially they agree on everything — but gradually one person starts wanting a bigger share, another starts dating someone suspicious (Cleopatra), and eventually the arrangement collapses into civil war.</div>
+        <div class="warn-box"><strong>⚠️ Key Exam Point — Proscription:</strong> A <strong>proscription</strong> was an official list of enemies of the state — anyone on the list could be killed and their property seized. The Triumvirs ordered the proscription of Cicero, who had made enemies of Anthony. Cicero was hunted down and killed. This eliminated Rome's greatest orator and defender of the Republic.</div>
+      </div>
+    </div>
+
+    <div class="def-card bc2" onclick="toggleDef(this)">
+      <div class="def-header"><div class="def-term">Battle of Philippi — Defeat of Brutus &amp; Cassius<span class="def-pill pill-exam">EXAM DETAIL</span></div><span class="def-chevron">▼</span></div>
+      <div class="def-body">
+        <div class="def-official" style="background:#eff6ff;border-left:4px solid var(--c2);">The Triumvirs defeated Brutus and Cassius in Philippi in Greece.</div>
+        <p class="def-explain">Brutus and Cassius were the leading assassins of Julius Caesar — the men who stabbed Caesar on the Ides of March (44 BC). They fled to Greece to gather their forces. The Triumvirs pursued them and defeated them at the <strong>Battle of Philippi</strong> in 42 BC. Both Brutus and Cassius committed suicide after the defeat.</p>
+        <div class="example-box"><strong>📌 Why This Matters:</strong> Defeating Brutus and Cassius meant the assassination of Caesar was avenged. It removed the last major republican resistance and confirmed the Triumvirate's control over Rome.</div>
+        <div class="memory-box"><strong>🔮 Memory:</strong> "Brutus and Cassius = Caesar's killers. Philippi = where they were defeated." Think: they tried to save the Republic at Philippi — they failed, the Republic died with them.</div>
+      </div>
+    </div>
+
+    <div class="def-card bc2" onclick="toggleDef(this)">
+      <div class="def-header"><div class="def-term">Anthony &amp; Cleopatra — The Dangerous Alliance<span class="def-pill pill-key">KEY TOPIC</span></div><span class="def-chevron">▼</span></div>
+      <div class="def-body">
+        <div class="def-official" style="background:#eff6ff;border-left:4px solid var(--c2);">Anthony married Octavian's sister, but later remained in the East where he fell in love with Cleopatra, queen of Egypt. Octavian illegally got hold of Anthony's will, which promised large legacies to the children of Cleopatra. This was disliked by Romans, and the Senate declared war on Anthony.</div>
+        <p class="def-explain">Anthony was supposed to cement his alliance with Octavian by marrying his sister Octavia. Instead he stayed in Egypt with Cleopatra, had children with her, and — fatally — left them large portions of the Roman Empire in his will. Octavian used this to destroy Anthony politically.</p>
+        <div class="grid-2" style="margin-top:12px;">
+          <div class="grid-card"><h4>💔 The Problem</h4><ul><li>Anthony married <strong>Octavia</strong> (Octavian's sister) — political alliance</li><li>Then abandoned her for <strong>Cleopatra</strong> of Egypt</li><li>Had children with Cleopatra</li><li>Left them large legacies in his will</li></ul></div>
+          <div class="grid-card"><h4>🗡️ Octavian's Response</h4><ul><li><strong>Illegally obtained</strong> Anthony's will</li><li>Read it publicly — Romans were outraged</li><li>It seemed Anthony planned to give Roman territory to foreign (Egyptian) children</li><li>Senate declared <strong>war on Anthony</strong> (technically on Cleopatra)</li></ul></div>
+        </div>
+        <div class="analogy-box"><strong>🧠 Analogy:</strong> Imagine a senior Irish politician who abandons their Irish spouse, moves to a foreign country, and rewrites their will leaving their government assets to their foreign partner's children. The public outcry would be enormous. That's exactly the situation Octavian exploited against Anthony.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-group">
+    <div class="section-title"><div class="section-icon" style="background:#dbeafe;">🧠</div>Quick Quiz — 2nd Triumvirate</div>
+    <div class="quiz-grid">
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">Who were the 3 members of the Second Triumvirate?<span class="flip-hint">tap</span></div><div class="flip-back">Octavian (West), Mark Anthony (East), Aemilius Lepidus (Africa — sidelined quickly).</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">What happened to Cicero under the Triumvirate?<span class="flip-hint">tap</span></div><div class="flip-back">He was placed on the proscription list (enemies of the state) and killed. Anthony hated Cicero for the Philippics speeches.</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">Where were Brutus and Cassius defeated?<span class="flip-hint">tap</span></div><div class="flip-back">Battle of Philippi in Greece. Both Brutus and Cassius committed suicide after defeat. The last major republican resistance was crushed.</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">How did Octavian use Anthony's will against him?<span class="flip-hint">tap</span></div><div class="flip-back">He illegally obtained Anthony's will and revealed it publicly — it promised large legacies to Cleopatra's children. Romans were outraged. Senate declared war on Anthony.</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ RISE TO POWER ══════════════ -->
+<div class="page" id="page-rise">
+  <div class="hero" style="background:linear-gradient(135deg,#be185d,#ec4899);">
+    <div class="hero-content"><div class="hero-badge">Topic 3</div><h1>📈 Rise to Power</h1><p>How Octavian outmanoeuvred every rival — Cicero, Lepidus, Sextus Pompeius — largely thanks to his brilliant right-hand man Agrippa.</p></div>
+  </div>
+
+  <div class="section-group">
+    <div class="section-title"><div class="section-icon" style="background:#fce7f3;">📈</div>Agrippa — The Key to Everything</div>
+    <div class="def-card bc3 open" onclick="toggleDef(this)">
+      <div class="def-header"><div class="def-term">Marcus Agrippa — Octavian's Right-Hand Man<span class="def-pill pill-key">CRUCIAL PERSON</span></div><span class="def-chevron">▼</span></div>
+      <div class="def-body">
+        <div class="def-official" style="background:#fdf2f8;border-left:4px solid var(--c3);">None of this could have been done without Octavian's right hand man Marcus Agrippa. He became consul after the battle of Actium. He managed affairs in Italy in Octavian's absence. When Octavian fell ill, Agrippa was made the unofficial heir. He was put in easy reach of armies in Syria and the Balkans in case of revolt. He married Julia, Octavian's daughter. They had sons, further strengthening the Julian dynasty.</div>
+        <div class="grid-2" style="margin-top:12px;">
+          <div class="grid-card"><h4>⭐ Why Agrippa Was Essential</h4><ul><li>Brilliant military commander — won key battles for Octavian</li><li><strong>Consul</strong> after Battle of Actium</li><li>Managed Italy when Octavian was away</li><li>Made <strong>unofficial heir</strong> when Octavian fell ill</li><li>Placed near armies (Syria/Balkans) in case of revolt</li></ul></div>
+          <div class="grid-card"><h4>👨‍👩‍👧 Personal Ties</h4><ul><li>Married <strong>Julia</strong> (Octavian's daughter)</li><li>They had sons → further strengthened Julian dynasty</li><li>Agrippa also built the original <strong>Pantheon</strong> and surveyed all Roman roads</li><li>Died in <strong>12 BC</strong></li></ul></div>
+        </div>
+        <div class="analogy-box"><strong>🧠 Analogy:</strong> Agrippa was to Octavian what a brilliant CEO is to a visionary founder. Octavian had the name, the political genius and the vision — but Agrippa actually won the battles, managed the logistics, and kept everything running. Without Agrippa, there is no Augustus.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-group">
+    <div class="section-title"><div class="section-icon" style="background:#fce7f3;">⚓</div>Octavian's Power Grows — Rivals Eliminated</div>
+
+    <div class="def-card bc3" onclick="toggleDef(this)">
+      <div class="def-header"><div class="def-term">The Problem of Land for Soldiers<span class="def-pill pill-key">KEY TENSION</span></div><span class="def-chevron">▼</span></div>
+      <div class="def-body">
+        <div class="def-official" style="background:#fdf2f8;border-left:4px solid var(--c3);">Octavian's power grew in the West, but he had a problem getting land for his soldiers, because when he confiscated land from farmers they threatened his life. Anthony's wife and brother also caused a revolt in Rome, trying to make Anthony return from Egypt, and for a short time they held Rome, but in the end the plan was unsuccessful in all aspects.</div>
+        <p class="def-explain">Roman soldiers expected land as payment after military service. To give veterans land, Octavian had to seize it from Italian farmers — who understandably revolted. Meanwhile Anthony's family was stirring up trouble in Rome itself.</p>
+        <div class="warn-box"><strong>⚠️ Key Exam Point:</strong> This land problem created enormous tension in Italy and nearly destabilised Octavian's base. Anthony's wife <strong>Fulvia</strong> and brother <strong>Lucius Antonius</strong> briefly seized Rome during the <strong>Perusine War</strong> before Octavian regained control.</div>
+      </div>
+    </div>
+
+    <div class="def-card bc3" onclick="toggleDef(this)">
+      <div class="def-header"><div class="def-term">Sextus Pompeius — Threat at Sea<span class="def-pill pill-key">KEY RIVAL</span></div><span class="def-chevron">▼</span></div>
+      <div class="def-body">
+        <div class="def-official" style="background:#fdf2f8;border-left:4px solid var(--c3);">Sextus Pompeius was the commander of the republican fleet and was causing problems in the Mediterranean, threatening to starve Italy. Anthony hurried to make an alliance with Sextus Pompeius. They sailed for Brundisium, and civil war seemed inevitable. Instead the Peace of Brundisium was formed, where all three men retained their provinces. Sextus Pompeius felt excluded and caused havoc on the seas, and in the end he was given a couple of islands, under the new "Treaty of Misenum". This however did not last long and Agrippa soon defeated him.</div>
+        <div class="grid-2" style="margin-top:12px;">
+          <div class="grid-card"><h4>⚓ Who was Sextus Pompeius?</h4><ul><li>Son of Pompey the Great (Caesar's old rival)</li><li>Commander of the <strong>republican fleet</strong></li><li>Controlled the seas around Sicily</li><li>Was <strong>threatening to starve Italy</strong> by blocking grain ships</li></ul></div>
+          <div class="grid-card"><h4>📜 Diplomatic Attempts</h4><ul><li><strong>Peace of Brundisium</strong>: all three (Octavian/Anthony/Lepidus) kept provinces</li><li>Sextus felt left out — caused more havoc</li><li><strong>Treaty of Misenum</strong>: Sextus given islands</li><li>Didn't last — <strong>Agrippa defeated him</strong></li></ul></div>
+        </div>
+        <div class="analogy-box"><strong>🧠 Analogy:</strong> Sextus Pompeius was like a pirate king who controlled the supply routes to a major city. He didn't need to attack Rome directly — just blockade the grain ships and the city would starve. This gave him enormous bargaining power. Eventually Agrippa's naval genius at the Battle of Naulochus ended his threat.</div>
+      </div>
+    </div>
+
+    <div class="def-card bc3" onclick="toggleDef(this)">
+      <div class="def-header"><div class="def-term">Fall of Lepidus — Only Two Left<span class="def-pill pill-key">KEY EVENT</span></div><span class="def-chevron">▼</span></div>
+      <div class="def-body">
+        <div class="def-official" style="background:#fdf2f8;border-left:4px solid var(--c3);">Lepidus now tried to secure himself the provinces that had been given to Pompeius and was therefore dismissed from the Triumvirate. There was now only two leaders.</div>
+        <p class="def-explain">After Sextus Pompeius was defeated, Lepidus tried to seize his former territories for himself — overstepping his authority. Octavian stripped him of his military power and dismissed him from the Triumvirate. Lepidus was allowed to keep the title of <strong>Pontifex Maximus</strong> (chief priest) until he died, but he was politically finished.</p>
+        <div class="example-box"><strong>📌 Result:</strong> The Triumvirate was now just <strong>two men</strong> — Octavian in the West, Anthony in the East. A final confrontation was inevitable.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-group">
+    <div class="section-title"><div class="section-icon" style="background:#fce7f3;">🧠</div>Quick Quiz — Rise to Power</div>
+    <div class="quiz-grid">
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">Why was Agrippa so important to Octavian?<span class="flip-hint">tap</span></div><div class="flip-back">Won key battles, managed Italy in Octavian's absence, made unofficial heir when Octavian was ill, married Julia (Octavian's daughter), gave the dynasty sons.</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">Why was Sextus Pompeius dangerous?<span class="flip-hint">tap</span></div><div class="flip-back">He controlled the republican fleet, threatening to starve Italy by blocking grain ships to the Mediterranean. Who defeated him? Agrippa.</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">What were the Peace of Brundisium and Treaty of Misenum?<span class="flip-hint">tap</span></div><div class="flip-back">Peace of Brundisium: avoided civil war, all three retained provinces. Treaty of Misenum: gave Sextus islands. Neither lasted — Agrippa eventually defeated Sextus.</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">Why was Lepidus dismissed from the Triumvirate?<span class="flip-hint">tap</span></div><div class="flip-back">He tried to seize Sextus Pompeius's former provinces for himself after Sextus was defeated. Octavian dismissed him, leaving only two — Octavian and Anthony.</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ BATTLE OF ACTIUM ══════════════ -->
+<div class="page" id="page-actium">
+  <div class="hero" style="background:linear-gradient(135deg,#047857,#10b981);">
+    <div class="hero-content"><div class="hero-badge">Topic 4</div><h1>🚢 Battle of Actium (31 BC)</h1><p>The naval battle that decided the fate of the Roman world — Octavian vs Anthony and Cleopatra. One side won everything.</p></div>
+  </div>
+
+  <div class="section-group">
+    <div class="section-title"><div class="section-icon" style="background:#d1fae5;">🚢</div>The Battle &amp; Its Aftermath</div>
+
+    <div class="def-card bc4 open" onclick="toggleDef(this)">
+      <div class="def-header"><div class="def-term">Battle of Actium — 2nd September 31 BC<span class="def-pill pill-date">31 BC</span><span class="def-pill pill-key">CRUCIAL EVENT</span></div><span class="def-chevron">▼</span></div>
+      <div class="def-body">
+        <div class="def-official" style="background:#ecfdf5;border-left:4px solid var(--c4);">The battle took place at Actium on the 2nd of September in 31BC. Anthony and Cleopatra fled to Egypt, and both committed suicide. Egypt fell to Rome and became a new province. None of this could have been done without Agrippa.</div>
+        <div class="grid-2" style="margin-top:12px;">
+          <div class="grid-card"><h4>⚔️ The Battle</h4><ul><li>Date: <strong>2nd September 31 BC</strong></li><li>Location: <strong>Actium</strong> — a promontory in western Greece</li><li>Type: <strong>naval battle</strong></li><li>Octavian's fleet commanded by <strong>Agrippa</strong></li><li>Anthony and Cleopatra's fleet was defeated</li></ul></div>
+          <div class="grid-card"><h4>💀 The Aftermath</h4><ul><li>Anthony and Cleopatra <strong>fled to Egypt</strong></li><li>Both committed <strong>suicide</strong></li><li><strong>Egypt fell to Rome</strong> — became a new province</li><li>Octavian was now the undisputed master of the Roman world</li><li>All of this was made possible by <strong>Agrippa</strong></li></ul></div>
+        </div>
+        <div class="analogy-box"><strong>🧠 Analogy:</strong> Actium was the ancient equivalent of a decisive election night. By morning, one person had won everything — no more sharing power, no more Triumvirate, no more rivals. The Roman world had a single ruler. All that remained was deciding what to call himself.</div>
+        <div class="memory-box"><strong>🔮 Memory — Actium:</strong> <strong>"2nd September 31 BC"</strong> — the date that ended the Roman Republic. Anthony and Cleopatra = "fled then died." Egypt = new province (and Rome's grain supply — hugely important!). Agrippa = the man who actually won the battle.</div>
+        <div class="warn-box"><strong>⚠️ Exam Must-Know:</strong> After Actium, Octavian was the SOLE ruler. But he was clever — he didn't call himself king or dictator (those titles had caused Caesar's assassination). He had to find a cleverer way to rule.</div>
+      </div>
+    </div>
+
+    <div class="def-card bc4" onclick="toggleDef(this)">
+      <div class="def-header"><div class="def-term">Victory at Actium — A New Era Begins<span class="def-pill pill-key">KEY CONCEPT</span></div><span class="def-chevron">▼</span></div>
+      <div class="def-body">
+        <div class="def-official" style="background:#ecfdf5;border-left:4px solid var(--c4);">Victory at Actium began a New Era. Octavian preserved the fiction of the Republic. Consuls and other magistrates continued to be elected.</div>
+        <p class="def-explain">This is the core concept about Augustus — he was Rome's first emperor, but he never admitted it. He kept all the old republican institutions (consuls, Senate, elections) running as normal. He just made sure he held all the real power behind the scenes.</p>
+        <div class="analogy-box"><strong>🧠 Analogy:</strong> Think of it like a managing director who technically lets a board of directors vote on everything — but the MD controls the agenda, has a veto on everything that matters, commands the company's security, and can't be fired. The board meetings still happen. People still vote. But everyone knows who's really in charge.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-group">
+    <div class="section-title"><div class="section-icon" style="background:#d1fae5;">🧠</div>Quick Quiz — Battle of Actium</div>
+    <div class="quiz-grid">
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">When and where was the Battle of Actium?<span class="flip-hint">tap</span></div><div class="flip-back">2nd September 31 BC. Actium — a promontory in western Greece. Naval battle. Anthony and Cleopatra's fleet was defeated.</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">What happened to Anthony and Cleopatra after Actium?<span class="flip-hint">tap</span></div><div class="flip-back">They fled to Egypt and both committed suicide. Egypt then fell to Rome and became a new province.</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">Why didn't Octavian call himself king or dictator after winning?<span class="flip-hint">tap</span></div><div class="flip-back">Those titles caused Caesar's assassination. Octavian "preserved the fiction of the Republic" — kept elections and the Senate running while holding all real power behind the scenes.</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ THE SETTLEMENTS ══════════════ -->
+<div class="page" id="page-settlement">
+  <div class="hero" style="background:linear-gradient(135deg,#7c3aed,#a855f7);">
+    <div class="hero-content"><div class="hero-badge">Topic 5</div><h1>📜 The Settlements</h1><p>How Octavian became Augustus — the clever constitutional arrangements that turned a warlord into a "legitimate" ruler while appearing to restore the Republic.</p></div>
+  </div>
+
+  <div class="section-group">
+    <div class="section-title"><div class="section-icon" style="background:#ede9fe;">📜</div>The First Settlement — 27 BC</div>
+
+    <div class="def-card bc5 open" onclick="toggleDef(this)">
+      <div class="def-header"><div class="def-term">The First Settlement of 27 BC<span class="def-pill pill-date">27 BC</span><span class="def-pill pill-key">MOST IMPORTANT EVENT</span></div><span class="def-chevron">▼</span></div>
+      <div class="def-body">
+        <div class="def-official" style="background:#fdf4ff;border-left:4px solid var(--c5);">Octavian gave all power back to the Senate to show the people and Senate he was not a dictator, but as he expected most of this was given back to him. He continued to be elected consul and soon received the name Augustus meaning sacred. Augustus also called himself "Princeps" or "First Citizen". Augustus called all this the First Settlement of 27BC, and that he had restored the republic. His greatest achievement however was persuading the Senators to accept his position as Head of State.</div>
+        <div class="grid-2" style="margin-top:12px;">
+          <div class="grid-card"><h4>📋 What Happened</h4><ul><li>Octavian <strong>handed all power back to the Senate</strong></li><li>The Senate (predictably) gave most of it back to him</li><li>Continued as elected <strong>consul</strong></li><li>Received the title <strong>"Augustus"</strong> = "sacred/revered"</li><li>Called himself <strong>"Princeps"</strong> = First Citizen</li></ul></div>
+          <div class="grid-card"><h4>🏛️ The Political Genius</h4><ul><li>He claimed to have <strong>restored the Republic</strong></li><li>Greatest achievement: <strong>persuading Senators to accept him</strong> as Head of State</li><li>By appearing to give power away, he made it impossible for anyone to claim he was a tyrant</li><li>A masterpiece of political theatre</li></ul></div>
+        </div>
+        <div class="analogy-box"><strong>🧠 Analogy:</strong> Imagine winning a prize and saying "I don't want this, please take it back." Everyone insists you keep it. Now you have exactly what you wanted AND you look humble and selfless. That's precisely what Augustus did with Roman power — he gave it away knowing it would be returned, making him look like he was reluctantly serving rather than greedily ruling.</div>
+        <div class="memory-box"><strong>🔮 Memory — First Settlement:</strong> "27 BC — Augustus gave power to Senate, got it back, got the name Augustus + Princeps." The word AUGUSTUS means "sacred/revered" — it was a religious title, not a political one. Much harder to object to than "king" or "dictator."</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-group">
+    <div class="section-title"><div class="section-icon" style="background:#ede9fe;">📜</div>The Second Settlement — 23 BC</div>
+
+    <div class="def-card bc5" onclick="toggleDef(this)">
+      <div class="def-header"><div class="def-term">The Second Settlement of 23 BC<span class="def-pill pill-date">23 BC</span><span class="def-pill pill-key">IMPORTANT EVENT</span></div><span class="def-chevron">▼</span></div>
+      <div class="def-body">
+        <div class="def-official" style="background:#fdf4ff;border-left:4px solid var(--c5);">In 23BC he became so seriously ill he almost died. He therefore decided to alter his constitutional position. The Senate awarded his Tribunician power for life, which gave him power to propose legislation, convene the Senate and veto any enactments. Next began the second settlement, which began with a rocky start. Augustus controlled the Senate with firmness but respect.</div>
+        <div class="grid-2" style="margin-top:12px;">
+          <div class="grid-card"><h4>🤒 The Trigger</h4><ul><li>Augustus became seriously ill in <strong>23 BC</strong> — nearly died</li><li>Forced to reconsider his constitutional position</li><li>He could no longer simply rely on being elected consul every year</li></ul></div>
+          <div class="grid-card"><h4>💪 Tribunicia Potestas (for life)</h4><ul><li>Senate awarded: <strong>Tribunician power for life</strong></li><li>This gave him power to:<ul><li>Propose <strong>legislation</strong></li><li><strong>Convene</strong> the Senate</li><li><strong>Veto</strong> any enactments</li></ul></li></ul></div>
+        </div>
+        <div class="warn-box"><strong>⚠️ Why Tribunician Power was Brilliant:</strong> Tribunes were traditional protectors of the plebs (common people). The title was popular and democratic-sounding. By holding tribunician power for LIFE, Augustus could block any legislation he didn't like AND propose whatever he wanted — all while sounding like a champion of the people rather than a tyrant.</div>
+        <div class="analogy-box"><strong>🧠 Analogy:</strong> The Second Settlement was like getting a lifetime veto card. Every vote that happens in the Senate — Augustus can veto it. Every law he wants passed — he can propose it. He didn't need to be elected consul year after year; this gave him permanent control much more efficiently.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-group">
+    <div class="section-title"><div class="section-icon" style="background:#ede9fe;">🧠</div>Quick Quiz — The Settlements</div>
+    <div class="quiz-grid">
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">What did Augustus do in the First Settlement (27 BC)?<span class="flip-hint">tap</span></div><div class="flip-back">Gave all power back to the Senate. Senate gave it back to him. He got the title "Augustus" (sacred) and called himself "Princeps" (First Citizen). Claimed to have restored the Republic.</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">What does "Augustus" mean?<span class="flip-hint">tap</span></div><div class="flip-back">Augustus means "sacred" or "revered." It was a religious/honorary title — much harder for people to object to than "king" or "dictator." A masterstroke of political branding.</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">What triggered the Second Settlement and what did it give Augustus?<span class="flip-hint">tap</span></div><div class="flip-back">He became seriously ill in 23 BC. The Senate gave him Tribunician power for life — to propose legislation, convene the Senate, and veto any enactments.</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">What was Augustus's greatest political achievement?<span class="flip-hint">tap</span></div><div class="flip-back">Persuading the Senators to accept his position as Head of State — making absolute power look like reluctant public service.</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ POWERS & TITLES ══════════════ -->
+<div class="page" id="page-powers">
+  <div class="hero" style="background:linear-gradient(135deg,#0891b2,#22d3ee);">
+    <div class="hero-content"><div class="hero-badge">Topic 6</div><h1>👑 Powers &amp; Titles of Augustus</h1><p>Every title he held, every power he possessed — and what each one actually meant. These are exam essentials.</p></div>
+  </div>
+
+  <div class="section-group">
+    <div class="section-title"><div class="section-icon" style="background:#cffafe;">👑</div>All Titles &amp; Powers — Full Detail</div>
+
+    <div class="def-card bc6 open" onclick="toggleDef(this)">
+      <div class="def-header"><div class="def-term">Complete List of Augustus's Powers<span class="def-pill pill-exam">LEARN ALL OF THESE</span></div><span class="def-chevron">▼</span></div>
+      <div class="def-body">
+        <div class="def-official" style="background:#ecfeff;border-left:4px solid var(--c6);">He was named Pontifex Maximus (head of religion), Tribunicia Potestas (civil authority), Proconsulare Imperium (control of the army) and Pater Patriae (father of the nation).</div>
+        <table class="compare-table" style="margin-top:12px;">
+          <tr><th style="background:#0891b2;">Title / Power</th><th style="background:#0891b2;">Latin Meaning</th><th style="background:#0891b2;">What It Gave Him</th></tr>
+          <tr><td><strong>Augustus</strong></td><td>"Sacred / Revered"</td><td>An honorary/religious title. Not a political office — so no one could legally object to it.</td></tr>
+          <tr><td><strong>Princeps</strong></td><td>"First Citizen"</td><td>First among equals — technically just a senior senator. But in practice, the leader of the state. Also used title "First Citizen."</td></tr>
+          <tr><td><strong>Pontifex Maximus</strong></td><td>"Greatest Priest / Head of Religion"</td><td>Control over all religious matters in Rome. Made him the spiritual leader of the Empire. Previously held by Lepidus.</td></tr>
+          <tr><td><strong>Tribunicia Potestas</strong></td><td>"Tribune's Power / Civil Authority"</td><td>For life. Could propose laws, convene the Senate, veto any legislation. Associated with protecting the common people.</td></tr>
+          <tr><td><strong>Proconsulare Imperium</strong></td><td>"Proconsular Command"</td><td>Control over the army. Could command all military forces throughout the Empire. Vital — armies = power in Rome.</td></tr>
+          <tr><td><strong>Pater Patriae</strong></td><td>"Father of the Nation"</td><td>An honorary title given by the Senate. Implied a paternal, caring relationship with all Romans. Enormous emotional authority.</td></tr>
+        </table>
+        <div class="memory-box"><strong>🔮 Memory — The 4 Key Powers:</strong><br><strong>P-T-P-P</strong> = <em>"Pontifex Takes Proconsular Paternity"</em><br>= <strong>P</strong>ontifex Maximus → <strong>T</strong>ribunicia Potestas → <strong>P</strong>roconsulare Imperium → <strong>P</strong>ater Patriae<br>Religion → Civil → Military → Emotional. He controlled EVERYTHING.</div>
+        <div class="analogy-box"><strong>🧠 Analogy:</strong> Think of Augustus's titles like a modern head of state who simultaneously holds: the Pope's spiritual authority (Pontifex Maximus) + a president's veto power (Tribunicia Potestas) + commander-in-chief of the military (Proconsulare Imperium) + the emotional status of a beloved national father figure (Pater Patriae). No single title made him emperor — the combination of all of them did.</div>
+      </div>
+    </div>
+
+    <div class="def-card bc6" onclick="toggleDef(this)">
+      <div class="def-header"><div class="def-term">Pontifex Maximus — Head of Religion<span class="def-pill pill-def">DEFINITION</span></div><span class="def-chevron">▼</span></div>
+      <div class="def-body">
+        <div class="def-official" style="background:#ecfeff;border-left:4px solid var(--c6);">He was named Pontifex Maximus (head of religion).</div>
+        <p class="def-explain">The Pontifex Maximus was the chief priest of Rome — the head of all religious activity. This was previously held by Lepidus (who kept it until he died). When Augustus took over this title, he controlled not just the state but also the spiritual life of every Roman.</p>
+        <div class="example-box"><strong>📌 Historical Legacy:</strong> The title <em>Pontifex Maximus</em> was later adopted by the Bishop of Rome — that's why the <strong>Pope</strong> is still called the "Pontiff" today. Augustus's religious title became the papal title 400 years later!</div>
+        <div class="info-box"><strong>ℹ️ One Thing NOT Built:</strong> One building was never built during Augustus's reign — an imperial palace. He refused to be worshipped as a God in Rome itself, but outside the capital he allowed himself to be made almost Godly. He refused to be worshipped while he lived.</div>
+      </div>
+    </div>
+
+    <div class="def-card bc6" onclick="toggleDef(this)">
+      <div class="def-header"><div class="def-term">Princeps — "First Citizen"<span class="def-pill pill-def">KEY TITLE</span></div><span class="def-chevron">▼</span></div>
+      <div class="def-body">
+        <div class="def-official" style="background:#ecfeff;border-left:4px solid var(--c6);">Augustus also called himself "Princeps" or "First Citizen".</div>
+        <p class="def-explain"><em>Princeps</em> literally means "first." It's where we get the English word "prince." In the Roman context it meant the leading senator — technically just first among equals, not a king or emperor. This was crucial for maintaining the fiction of the Republic.</p>
+        <div class="warn-box"><strong>⚠️ Why "Princeps" was a Masterstroke:</strong> "King" = everyone thinks of a tyrant. "Emperor" = too overtly powerful. "Dictator" = what got Caesar killed. "First Citizen" = sounds reasonable, democratic, temporary. But in practice it meant "the person who controls everything." Augustus essentially invented the word "emperor" while calling himself something harmless.</div>
+        <div class="example-box"><strong>📌 The Name Matters:</strong> This system of government is called the <strong>Principate</strong> (rule by the Princeps). It lasted from Augustus's time until around 284 AD — about 300 years.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-group">
+    <div class="section-title"><div class="section-icon" style="background:#cffafe;">🧠</div>Quick Quiz — Powers &amp; Titles</div>
+    <div class="quiz-grid">
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">What does Pontifex Maximus mean and what did it control?<span class="flip-hint">tap</span></div><div class="flip-back">Greatest Priest / Head of Religion. Controlled all religious matters in Rome. Note: the Pope is still called the Pontiff — this title's legacy!</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">What does Tribunicia Potestas give?<span class="flip-hint">tap</span></div><div class="flip-back">Civil authority — for life. Power to: propose legislation, convene the Senate, veto any enactments. Permanently blocked any legislation he opposed.</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">What does Proconsulare Imperium mean?<span class="flip-hint">tap</span></div><div class="flip-back">Proconsular Command. Control over the army throughout the entire Empire. Military control = real power in Rome.</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">What does Pater Patriae mean and who gave it?<span class="flip-hint">tap</span></div><div class="flip-back">Father of the Nation (Fatherland). Given by the Senate as an honorary title. Gave him enormous emotional authority over all Romans.</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">Why did Augustus refuse an imperial palace?<span class="flip-hint">tap</span></div><div class="flip-back">He refused to be worshipped as a god in Rome itself while he lived — maintaining the fiction that he was just a citizen. Outside Rome he allowed near-Godly status.</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ ROME & REFORMS ══════════════ -->
+<div class="page" id="page-reforms">
+  <div class="hero" style="background:linear-gradient(135deg,#dc2626,#ef4444);">
+    <div class="hero-content"><div class="hero-badge">Topic 7</div><h1>🏛️ Rebuilding Rome &amp; Administrative Reforms</h1><p>"I found Rome a city of brick and left it a city of marble." Augustus transformed not just the city's buildings but its entire system of governance.</p></div>
+  </div>
+
+  <div class="section-group">
+    <div class="section-title"><div class="section-icon" style="background:#fee2e2;">🏛️</div>Building Programme</div>
+
+    <div class="def-card bc7 open" onclick="toggleDef(this)">
+      <div class="def-header"><div class="def-term">Augustus Rebuilds Rome<span class="def-pill pill-key">KEY ACHIEVEMENT</span></div><span class="def-chevron">▼</span></div>
+      <div class="def-body">
+        <div class="def-official" style="background:#fff5f5;border-left:4px solid var(--c7);">Now Augustus began to rebuild Rome. In one year in power he built 82 temples (one was the Pantheon). This was all aided by Agrippa. He also reorganised Rome into districts, each having its own magisti vicorum. They were in charge of everything in their districts. There was also a "Praefectus Urbis" who maintained order in the city.</div>
+        <div class="grid-2" style="margin-top:12px;">
+          <div class="grid-card"><h4>🏗️ Buildings</h4><ul><li>Built <strong>82 temples</strong> in one year</li><li>Including the famous <strong>Pantheon</strong></li><li>All aided by <strong>Agrippa</strong></li><li>Famous quote: "I found Rome a city of brick and left it a city of marble"</li></ul></div>
+          <div class="grid-card"><h4>🏘️ City Administration</h4><ul><li>Reorganised Rome into <strong>districts</strong></li><li>Each district: own <strong>magisti vicorum</strong> (local officers)</li><li>They managed everything in their district</li><li><strong>Praefectus Urbis</strong> = Prefect of the City — maintained order in Rome</li></ul></div>
+        </div>
+        <div class="analogy-box"><strong>🧠 Analogy:</strong> Think of Augustus's city reforms like a modern city council reorganisation. Rome was divided into neighbourhoods (districts), each with its own local officers (magisti vicorum) handling day-to-day management, and an overall city manager (Praefectus Urbis) keeping order across all of them. Rome went from chaotic to structured.</div>
+        <div class="memory-box"><strong>🔮 Memory:</strong> <strong>82 temples in one year</strong>. Remember: "Eight-two temples" — the eight great temples of Rome, times two... and then some. Aided throughout by Agrippa.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-group">
+    <div class="section-title"><div class="section-icon" style="background:#fee2e2;">🗺️</div>Provincial Organisation</div>
+
+    <div class="def-card bc7" onclick="toggleDef(this)">
+      <div class="def-header"><div class="def-term">Division of the Empire into Provinces<span class="def-pill pill-key">KEY REFORM</span></div><span class="def-chevron">▼</span></div>
+      <div class="def-body">
+        <div class="def-official" style="background:#fff5f5;border-left:4px solid var(--c7);">Augustus also divided the Empires provinces into three groups. Imperial Provinces (not pacified and therefore had armies), Senatorial Provinces (peaceful) and Egypt (ruled by Augustus as was Rome's supply of corn).</div>
+        <table class="compare-table" style="margin-top:12px;">
+          <tr><th style="background:#dc2626;">Province Type</th><th style="background:#dc2626;">Characteristics</th><th style="background:#dc2626;">Controlled By</th></tr>
+          <tr><td><strong>Imperial Provinces</strong></td><td>NOT yet fully pacified — had armies stationed in them. Frontier or unstable regions.</td><td>Augustus personally (via appointed governors — legates)</td></tr>
+          <tr><td><strong>Senatorial Provinces</strong></td><td>Peaceful, well-established, no army needed.</td><td>The Senate (via proconsuls)</td></tr>
+          <tr><td><strong>Egypt</strong></td><td>Uniquely important: Rome's grain supply. Too valuable for the Senate to control.</td><td>Augustus personally. No senator could even visit Egypt without permission.</td></tr>
+        </table>
+        <div class="warn-box"><strong>⚠️ Why Egypt Was Special:</strong> Egypt produced most of Rome's grain. Control of Egypt = control of Rome's food supply. Augustus kept Egypt exclusively under his personal control and barred any senator from visiting without permission. Whoever controlled Egypt controlled whether Rome ate or starved.</div>
+        <div class="analogy-box"><strong>🧠 Analogy:</strong> Think of the province system like a franchise. Peaceful, established provinces (Senatorial) = stable franchises the Senate can manage. Unstable frontier provinces (Imperial) = problem branches that need direct head-office control. Egypt = the company's most profitable single asset, kept exclusively by the CEO.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-group">
+    <div class="section-title"><div class="section-icon" style="background:#fee2e2;">💰</div>The Treasury System</div>
+
+    <div class="def-card bc7" onclick="toggleDef(this)">
+      <div class="def-header"><div class="def-term">The Fiscus and Aerarium — Two Treasuries<span class="def-pill pill-key">KEY TOPIC</span></div><span class="def-chevron">▼</span></div>
+      <div class="def-body">
+        <div class="def-official" style="background:#fff5f5;border-left:4px solid var(--c7);">At this time Rome had two treasuries. The Fiscus was one, which was controlled by Augustus and well managed. The Aerarium was the other, the Senatorial treasury which had constant deficits and constantly needed help from the Fiscus. The Senate was therefore dependent on Augustus for financial stability. The main sources of revenue were the land-tax, the poll tax and indirect tax.</div>
+        <div class="grid-2" style="margin-top:12px;">
+          <div class="grid-card"><h4>💰 The Fiscus (Augustus's Treasury)</h4><ul><li>Controlled by <strong>Augustus</strong></li><li><strong>Well managed</strong> — solvent and organised</li><li>Funded by the Imperial Provinces and military taxes</li><li>Had to regularly bail out the Aerarium</li></ul></div>
+          <div class="grid-card"><h4>💸 The Aerarium (Senate's Treasury)</h4><ul><li>The <strong>Senatorial treasury</strong></li><li>Had <strong>constant deficits</strong></li><li>Constantly needed help from the <strong>Fiscus</strong></li><li>Made the Senate <strong>financially dependent</strong> on Augustus</li></ul></div>
+        </div>
+        <div class="example-box"><strong>📌 Revenue Sources (know these):</strong><br>1. <strong>Land-tax</strong> — tax on agricultural land<br>2. <strong>Poll tax</strong> — tax per person (head count)<br>3. <strong>Indirect tax</strong> — taxes on trade, sales, goods</div>
+        <div class="analogy-box"><strong>🧠 Analogy:</strong> The Senate's treasury was like a company credit card that's constantly overdrawn — the Senate kept spending more than they had. Augustus's treasury was the bank account they had to ask when they needed a bailout. Financial dependency = political dependency. Very convenient for Augustus.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-group">
+    <div class="section-title"><div class="section-icon" style="background:#fee2e2;">🧠</div>Quick Quiz — Rome &amp; Reforms</div>
+    <div class="quiz-grid">
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">How many temples did Augustus build in one year?<span class="flip-hint">tap</span></div><div class="flip-back">82 temples — including the Pantheon. All aided by Agrippa.</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">What were the 3 types of provinces?<span class="flip-hint">tap</span></div><div class="flip-back">Imperial Provinces (unstable, had armies — controlled by Augustus). Senatorial Provinces (peaceful — controlled by Senate). Egypt (uniquely ruled by Augustus — Rome's grain supply).</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">What was the Fiscus vs the Aerarium?<span class="flip-hint">tap</span></div><div class="flip-back">Fiscus = Augustus's treasury, well managed. Aerarium = Senate's treasury, constant deficits. Senate depended on Augustus financially = politically controllable.</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">Name the 3 sources of revenue<span class="flip-hint">tap</span></div><div class="flip-back">Land-tax, poll tax, indirect tax.</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">What was the Praefectus Urbis?<span class="flip-hint">tap</span></div><div class="flip-back">The Prefect of the City — a senior official who maintained order in the city of Rome. Oversaw the district magistrates (magisti vicorum).</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ SOCIAL & FOREIGN POLICY ══════════════ -->
+<div class="page" id="page-social">
+  <div class="hero" style="background:linear-gradient(135deg,#d97706,#f59e0b);">
+    <div class="hero-content"><div class="hero-badge">Topic 8</div><h1>👨‍👩‍👧 Social &amp; Foreign Policy</h1><p>Augustus tried to reshape Roman morality through law and expand Rome's borders through careful strategy — with mixed results on both counts.</p></div>
+  </div>
+
+  <div class="section-group">
+    <div class="section-title"><div class="section-icon" style="background:#fef3c7;">💍</div>Social Reforms — Marriage Laws</div>
+
+    <div class="def-card bc8 open" onclick="toggleDef(this)">
+      <div class="def-header"><div class="def-term">Augustus's Marriage &amp; Family Legislation<span class="def-pill pill-key">KEY LAWS — KNOW ALL 3</span></div><span class="def-chevron">▼</span></div>
+      <div class="def-body">
+        <div class="def-official" style="background:#fffbeb;border-left:4px solid var(--c8);">He was married to Livia Drusilla, whose son would later become emperor. He also had many mistresses. This was ironic for the social reforms he made. Augustus encouraged marriage and did this by introducing the following legislations: 1. Lex Iulia de Maritandis (encourage marriage), 2. Ius Trium Puerorum (encourage childbearing), 3. Lex Iulia de Adulteriis Coercendis (discourage divorce). Affairs by men were however looked over, but women could not have affairs.</div>
+        <table class="compare-table" style="margin-top:12px;">
+          <tr><th style="background:#d97706;">Law Name</th><th style="background:#d97706;">Purpose</th><th style="background:#d97706;">Details</th></tr>
+          <tr><td><strong>Lex Iulia de Maritandis</strong></td><td>Encourage marriage</td><td>Penalties for men who remained unmarried past a certain age. Incentives for marrying.</td></tr>
+          <tr><td><strong>Ius Trium Puerorum</strong></td><td>Encourage childbearing</td><td>"Right of Three Children" — fathers of 3+ children received legal privileges and benefits.</td></tr>
+          <tr><td><strong>Lex Iulia de Adulteriis Coercendis</strong></td><td>Discourage divorce &amp; adultery</td><td>Made adultery a criminal offence (especially for women). Men's affairs were overlooked. Women could not have affairs.</td></tr>
+        </table>
+        <div class="warn-box"><strong>⚠️ The Great Irony:</strong> Augustus passed strict laws about marriage and fidelity while himself having <strong>many mistresses</strong>. He was married to <strong>Livia Drusilla</strong> (whose son Tiberius would later become emperor) but this didn't stop him. Laws for others; exemptions for himself.</div>
+        <div class="memory-box"><strong>🔮 Memory — The 3 Laws:</strong><br><em>"Maritandis" = MARRYING (sounds like "matrimony")</em><br><em>"Trium Puerorum" = THREE CHILDREN (tri = three, puero = child/boy)</em><br><em>"Adulteriis Coercendis" = ADULTERY RESTRICTED (adulteriis = adultery)</em></div>
+        <div class="analogy-box"><strong>🧠 Analogy:</strong> Imagine a politician who runs on family values while having affairs — and then passes strict laws about other people's marriages. Augustus was the original "rules for thee but not for me" politician. The laws were real, his personal compliance was non-existent.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-group">
+    <div class="section-title"><div class="section-icon" style="background:#fef3c7;">🗺️</div>Foreign Policy</div>
+
+    <div class="def-card bc8" onclick="toggleDef(this)">
+      <div class="def-header"><div class="def-term">Augustus's Foreign Policy — Consolidation Not Expansion<span class="def-pill pill-key">KEY POLICY</span></div><span class="def-chevron">▼</span></div>
+      <div class="def-body">
+        <div class="def-official" style="background:#fffbeb;border-left:4px solid var(--c8);">Augustus was no warrior and allowed Agrippa to control the armies. His foreign policy was for consolidation and non-expansion. Augustus believed in developing the land borders as opposed to growing the empire. He preferred physical land borders like rivers and mountains as opposed to a line down the sand.</div>
+        <div class="grid-2" style="margin-top:12px;">
+          <div class="grid-card"><h4>🛡️ The Policy Principles</h4><ul><li>Policy: <strong>consolidation</strong>, NOT expansion</li><li>Augustus was <strong>no warrior</strong> — left armies to Agrippa</li><li>Preferred <strong>natural borders</strong>: rivers, mountains</li><li>Opposed to artificial borders (a line in the sand)</li><li>Main aim: expand as far as the <strong>Danube River</strong></li></ul></div>
+          <div class="grid-card"><h4>🏔️ Why Natural Borders?</h4><ul><li>Rivers and mountains are <strong>defensible</strong></li><li>Clear, permanent, recognised by everyone</li><li>An artificial line in the sand requires constant military presence</li><li>Natural barriers = less expensive to defend</li></ul></div>
+        </div>
+        <div class="analogy-box"><strong>🧠 Analogy:</strong> Think of Augustus's border policy like building a garden wall vs drawing a chalk line. The wall (natural border like a river or mountain) is permanent, obvious, and hard to cross. The chalk line (artificial border) needs constant maintenance and people keep stepping over it. Augustus preferred walls.</div>
+      </div>
+    </div>
+
+    <div class="def-card bc8" onclick="toggleDef(this)">
+      <div class="def-header"><div class="def-term">The German Disaster — Battle of Teutoburg Forest<span class="def-pill pill-key">KEY DEFEAT</span></div><span class="def-chevron">▼</span></div>
+      <div class="def-body">
+        <div class="def-official" style="background:#fffbeb;border-left:4px solid var(--c8);">One of Augustus' main aims was to expand the border as far as the Danube River. He gave his stepson Drusus control of the Rhine legions, and once he died these controls were given to his other stepson Tiberius. This changed however when Tiberius went into self-imposed exile. Germany was now considered pacified but this soon changed when the Roman leader Varus and his legions were ambushed by the Germans at Teutoburgiensis Saltus. The Romans were forced to retreat back to the Rhine border. This loss distraught Augustus and he went into mourning for several months. The conquest of all Germany was abandoned.</div>
+        <div class="grid-2" style="margin-top:12px;">
+          <div class="grid-card"><h4>💀 The Disaster</h4><ul><li>Location: <strong>Teutoburgiensis Saltus</strong> (Teutoburg Forest)</li><li>Roman leader: <strong>Varus</strong></li><li>Varus and his legions were <strong>ambushed</strong> by Germans</li><li>Rome forced to retreat to the <strong>Rhine border</strong></li><li>Augustus went into <strong>mourning for several months</strong></li><li>Conquest of all Germany was <strong>abandoned</strong></li></ul></div>
+          <div class="grid-card"><h4>😱 Augustus's Reaction</h4><ul><li>Completely distraught</li><li>Mourned for months</li><li>Famous quote attributed to him: <em>"Varus, give me back my legions!"</em></li><li>Three entire legions (XVII, XVIII, XIX) were destroyed</li><li>Those legion numbers were NEVER used again in Roman history</li></ul></div>
+        </div>
+        <div class="analogy-box"><strong>🧠 Analogy:</strong> The Teutoburg Forest was Rome's equivalent of a catastrophic military disaster — like losing three full divisions in one ambush. The legions weren't just defeated, they were annihilated in a forest ambush by "barbarian" tribes. The psychological impact on Augustus (and Rome) was immense.</div>
+        <div class="warn-box"><strong>⚠️ Why This Matters for the Exam:</strong> The Teutoburg Forest disaster is significant because: (1) it stopped Roman expansion into Germany permanently, (2) the Rhine became Rome's permanent northern border instead of the Elbe, (3) it shattered Augustus personally, (4) the three lost legion numbers (XVII, XVIII, XIX) were retired forever.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-group">
+    <div class="section-title"><div class="section-icon" style="background:#fef3c7;">🧠</div>Quick Quiz — Social &amp; Foreign Policy</div>
+    <div class="quiz-grid">
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">Name the 3 marriage laws and their purposes<span class="flip-hint">tap</span></div><div class="flip-back">1. Lex Iulia de Maritandis — encourage marriage. 2. Ius Trium Puerorum — encourage childbearing (3+ children = privileges). 3. Lex Iulia de Adulteriis Coercendis — discourage divorce/adultery.</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">What was the irony of Augustus's marriage laws?<span class="flip-hint">tap</span></div><div class="flip-back">He had many mistresses while passing strict laws about marriage and fidelity. He was married to Livia Drusilla but the laws applied to others, not himself.</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">What happened at Teutoburgiensis Saltus?<span class="flip-hint">tap</span></div><div class="flip-back">Roman leader Varus and his legions were ambushed by Germans in the Teutoburg Forest. Rome retreated to Rhine. Augustus went into mourning for months. Conquest of Germany abandoned.</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">Why did Augustus prefer natural borders?<span class="flip-hint">tap</span></div><div class="flip-back">Rivers and mountains are defensible, permanent and recognised. An artificial line in the sand requires constant military presence and is much harder to maintain. Less expensive to defend.</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ SUCCESSION ══════════════ -->
+<div class="page" id="page-succession">
+  <div class="hero" style="background:linear-gradient(135deg,#4f46e5,#818cf8);">
+    <div class="hero-content"><div class="hero-badge">Topic 9</div><h1>👶 The Succession Problem</h1><p>Augustus had no blood sons and kept outliving his chosen heirs. The desperate search for a successor shaped — and damaged — the last decades of his reign.</p></div>
+  </div>
+
+  <div class="section-group">
+    <div class="section-title"><div class="section-icon" style="background:#e0e7ff;">👶</div>The Search for an Heir</div>
+
+    <div class="def-card bc9 open" onclick="toggleDef(this)">
+      <div class="def-header"><div class="def-term">The Succession Problem — No Blood Sons<span class="def-pill pill-key">KEY PROBLEM</span></div><span class="def-chevron">▼</span></div>
+      <div class="def-body">
+        <div class="def-official" style="background:#eef2ff;border-left:4px solid var(--c9);">Augustus' final problem was finding an heir. He had no blood related sons, but had two step-sons, one of which was now dead (Drusus). Augustus therefore married his daughter Julia to Marcellus who was his sister's son, but was too young to become heir. Marcellus soon died. Next Augustus married Julia to Agrippa. This marriage produced three sons and two daughters. Augustus adopted the eldest two sons Gaius and Lucius as his own. Agrippa died in 12BC.</div>
+        <div class="timeline">
+          <div class="timeline-item active-item">
+            <div class="timeline-date" style="color:var(--c9)">First Attempt</div>
+            <div class="timeline-text"><strong>Marcellus</strong> (nephew) — married to Julia. Too young to be heir. Died young.</div>
+          </div>
+          <div class="timeline-item active-item">
+            <div class="timeline-date" style="color:var(--c9)">Second Attempt</div>
+            <div class="timeline-text"><strong>Agrippa</strong> — married to Julia. Had 3 sons, 2 daughters. Augustus adopted eldest two sons: <strong>Gaius &amp; Lucius</strong>. Agrippa died <strong>12 BC</strong>.</div>
+          </div>
+          <div class="timeline-item active-item">
+            <div class="timeline-date" style="color:var(--c9)">The Crisis</div>
+            <div class="timeline-text">If Augustus died, adopted sons Gaius &amp; Lucius would have no guardian. Needed someone in charge.</div>
+          </div>
+          <div class="timeline-item active-item">
+            <div class="timeline-date" style="color:var(--c9)">Third Attempt</div>
+            <div class="timeline-text"><strong>Tiberius</strong> forced to marry Julia. Tiberius resented this — he was forced to divorce his beloved wife.</div>
+          </div>
+        </div>
+        <div class="analogy-box"><strong>🧠 Analogy:</strong> Think of Augustus's succession problem like a company founder desperately trying to find a CEO for after they retire — but all their best candidates keep dying or leaving. Every time he found a solution, fate removed it. Eventually the only option left was someone who didn't even want the job (Tiberius).</div>
+      </div>
+    </div>
+
+    <div class="def-card bc9" onclick="toggleDef(this)">
+      <div class="def-header"><div class="def-term">Deaths of Gaius &amp; Lucius — Tiberius Becomes Heir<span class="def-pill pill-key">KEY EVENTS</span></div><span class="def-chevron">▼</span></div>
+      <div class="def-body">
+        <div class="def-official" style="background:#eef2ff;border-left:4px solid var(--c9);">Augustus now realised that if he were to die his two adopted sons would have no guardian. He therefore made Tiberius marry Julia. Tiberius was forced to divorce his much-loved wife, and he therefore resented the move. Soon Gaius began to rise, but this all ended when he was wounded and died at Limyra. His brother Lucius also suddenly died of illness at Marseille two years before. This left only one heir, Tiberius. Augustus adopted Tiberius along with his last remaining grandson, Agrippa Postumus who was later exiled since he was very violent. Some say Tiberius' mother Livia plotted the deaths of all the other heirs to make her son the heir, but this is unlikely.</div>
+        <div class="grid-2" style="margin-top:12px;">
+          <div class="grid-card"><h4>💀 The Deaths</h4><ul><li><strong>Lucius</strong>: died of illness at <strong>Marseille</strong></li><li><strong>Gaius</strong>: wounded and died at <strong>Limyra</strong></li><li>Both died within 2 years of each other</li><li>Only <strong>Tiberius</strong> remained as heir</li></ul></div>
+          <div class="grid-card"><h4>🏛️ What Happened</h4><ul><li>Augustus adopted <strong>Tiberius</strong> as official heir</li><li>Also adopted <strong>Agrippa Postumus</strong> (last grandson)</li><li>Agrippa Postumus later <strong>exiled</strong> — very violent</li><li>Some suspected <strong>Livia</strong> (Tiberius's mother) plotted the deaths — but <em>this is unlikely</em></li></ul></div>
+        </div>
+        <div class="warn-box"><strong>⚠️ Tiberius Was a Reluctant Heir:</strong> Tiberius had been forced to divorce his wife Vipsania (whom he loved) to marry Julia (whom he didn't). He deeply resented this. When Julia was eventually exiled for immorality, Tiberius went into self-imposed exile on Rhodes. He only returned when all other heirs were dead and Augustus had no choice but to name him successor.</div>
+        <div class="example-box"><strong>📌 Livia's Role — Exam Debate:</strong> The accusation that Livia poisoned all the other heirs (Marcellus, Gaius, Lucius) to make Tiberius emperor is ancient gossip from the historian Tacitus. The notes say <em>"this is unlikely"</em> — but you should know the accusation exists and that historians debate it.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-group">
+    <div class="section-title"><div class="section-icon" style="background:#e0e7ff;">🧠</div>Quick Quiz — Succession</div>
+    <div class="quiz-grid">
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">Who was Augustus's first chosen heir?<span class="flip-hint">tap</span></div><div class="flip-back">Marcellus — his nephew (sister's son), married to Julia. Too young, then died young. Never became heir.</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">What were Gaius and Lucius?<span class="flip-hint">tap</span></div><div class="flip-back">Sons of Julia and Agrippa, adopted by Augustus as his own sons. Gaius died at Limyra (wounded). Lucius died of illness at Marseille — 2 years before Gaius.</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">Why did Tiberius resent being made heir?<span class="flip-hint">tap</span></div><div class="flip-back">He was forced to divorce his much-loved wife and marry Julia. He had no choice. He resented the move and later went into self-imposed exile when Julia was exiled.</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">Why was Agrippa Postumus exiled?<span class="flip-hint">tap</span></div><div class="flip-back">He was Augustus's last remaining grandson, adopted alongside Tiberius. But he was very violent and was exiled. Tiberius became the sole heir.</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ DEATH & LEGACY ══════════════ -->
+<div class="page" id="page-death">
+  <div class="hero" style="background:linear-gradient(135deg,#059669,#34d399);">
+    <div class="hero-content"><div class="hero-badge">Topic 10</div><h1>☠️ Death &amp; Legacy of Augustus</h1><p>He died as he lived — managing his image to the very end. His final words were reportedly about playing his role well.</p></div>
+  </div>
+
+  <div class="section-group">
+    <div class="section-title"><div class="section-icon" style="background:#d1fae5;">☠️</div>Death of Augustus</div>
+
+    <div class="def-card bc10 open" onclick="toggleDef(this)">
+      <div class="def-header"><div class="def-term">Augustus's Death &amp; Funeral<span class="def-pill pill-key">KEY FACTS</span></div><span class="def-chevron">▼</span></div>
+      <div class="def-body">
+        <div class="def-official" style="background:#ecfdf5;border-left:4px solid var(--c10);">Augustus began to withdraw from public life and soon fell ill. He died at Nola. He was given a great funeral and placed in the great Mausoleum in Rome. His final words were where he had played his role well.</div>
+        <div class="grid-2" style="margin-top:12px;">
+          <div class="grid-card"><h4>📅 Death Facts</h4><ul><li>Began to <strong>withdraw from public life</strong></li><li>Fell ill</li><li>Died at <strong>Nola</strong> (town in Campania, south Italy)</li><li>Given a <strong>great funeral</strong></li><li>Placed in the great <strong>Mausoleum in Rome</strong></li></ul></div>
+          <div class="grid-card"><h4>🎭 His Final Words</h4><ul><li>Final words: he had <strong>played his role well</strong></li><li>A theatrical metaphor — life as a play/performance</li><li>Deeply appropriate for a man who spent his life performing the role of "First Citizen" rather than admitting he was emperor</li></ul></div>
+        </div>
+        <div class="analogy-box"><strong>🧠 Final Words Analogy:</strong> "Have I played the role well?" — this is remarkable because Augustus always maintained that he was just a citizen serving the state, not a king or emperor. Even at the moment of death, his self-image was of an actor who had performed Rome's most demanding role flawlessly. The "role" was, of course, the fiction of the Republic.</div>
+        <div class="memory-box"><strong>🔮 Memory:</strong> Died at <strong>Nola</strong>. Buried in the <strong>Mausoleum in Rome</strong>. Final words about <strong>playing his role well</strong>. He reigned from 27 BC to <strong>AD 14</strong> — 41 years as Rome's first emperor. His dates: <strong>63 BC – AD 14</strong>.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-group">
+    <div class="section-title"><div class="section-icon" style="background:#d1fae5;">⭐</div>Assessment of Augustus — Was He a Good Emperor?</div>
+
+    <div class="def-card bc10" onclick="toggleDef(this)">
+      <div class="def-header"><div class="def-term">Character &amp; Overall Assessment<span class="def-pill pill-exam">ESSAY POINTS</span></div><span class="def-chevron">▼</span></div>
+      <div class="def-body">
+        <div class="def-official" style="background:#ecfdf5;border-left:4px solid var(--c10);">Augustus was a genuinely liked Emperor. He was in a sense a constitutional monarch. He was an educated man, but no scholar.</div>
+        <div class="grid-2" style="margin-top:12px;">
+          <div class="grid-card"><h4>✅ Positive Points</h4><ul><li><strong>Genuinely liked</strong> by the people</li><li>A <strong>constitutional monarch</strong> — worked within institutions</li><li>Educated man (but no scholar)</li><li>Restored order after decades of civil war</li><li>Built 82 temples, reorganised Rome</li><li>Created a stable administrative system</li><li>The Pax Romana (Roman Peace) began under him</li><li>His system of government lasted ~300 years</li></ul></div>
+          <div class="grid-card"><h4>❌ Negative Points / Complications</h4><ul><li>Destroyed the Republic while pretending to restore it</li><li>His "restoration of the Republic" was a fiction</li><li>Had many mistresses while passing morality laws</li><li>Executed rivals including Cicero (via proscription)</li><li>Struggled badly with succession — political dynasty was unstable</li><li>The German disaster revealed limits of Roman expansion</li></ul></div>
+        </div>
+        <div class="warn-box"><strong>⚠️ Exam Essay Key Point:</strong> Augustus succeeded by making absolute power look like reluctant public service. His greatest skill was not military genius (that was Agrippa's department) but <strong>political genius</strong> — the ability to appear reasonable, republican, and modest while accumulating every major power in Rome.</div>
+        <div class="analogy-box"><strong>🧠 Final Analogy:</strong> Augustus was history's most successful political magician — he made the Roman Republic disappear in front of everyone's eyes while they applauded and thought they were watching it being restored. For 41 years, nobody important called him out on it. That is an extraordinary achievement.</div>
+      </div>
+    </div>
+
+    <div class="def-card bc10" onclick="toggleDef(this)">
+      <div class="def-header"><div class="def-term">Complete Timeline of Augustus's Reign<span class="def-pill pill-exam">REVISION REFERENCE</span></div><span class="def-chevron">▼</span></div>
+      <div class="def-body">
+        <div class="timeline">
+          <div class="timeline-item active-item"><div class="timeline-date" style="color:var(--c10)">63 BC</div><div class="timeline-text">Born on 23rd September. Mother = Julia (Caesar's daughter).</div></div>
+          <div class="timeline-item active-item"><div class="timeline-date" style="color:var(--c10)">44 BC</div><div class="timeline-text">Julius Caesar assassinated. Octavian (age 18) adopted in Caesar's will. Was in Illyricum. Arrives in Rome.</div></div>
+          <div class="timeline-item active-item"><div class="timeline-date" style="color:var(--c10)">43 BC</div><div class="timeline-text">Second Triumvirate formed (Octavian + Anthony + Lepidus). Cicero placed on proscription list and killed.</div></div>
+          <div class="timeline-item active-item"><div class="timeline-date" style="color:var(--c10)">42 BC</div><div class="timeline-text">Battle of Philippi — Brutus and Cassius defeated and commit suicide.</div></div>
+          <div class="timeline-item active-item"><div class="timeline-date" style="color:var(--c10)">36 BC</div><div class="timeline-text">Agrippa defeats Sextus Pompeius. Lepidus tries to seize his territory — dismissed from Triumvirate.</div></div>
+          <div class="timeline-item active-item"><div class="timeline-date" style="color:var(--c10)">31 BC</div><div class="timeline-text">Battle of Actium (2nd September). Anthony and Cleopatra defeated. Both flee to Egypt and commit suicide. Egypt becomes Roman province.</div></div>
+          <div class="timeline-item active-item"><div class="timeline-date" style="color:var(--c10)">27 BC</div><div class="timeline-text">First Settlement. Octavian "gives power to Senate." Receives name AUGUSTUS + title PRINCEPS. Proclaimed to have restored the Republic.</div></div>
+          <div class="timeline-item active-item"><div class="timeline-date" style="color:var(--c10)">23 BC</div><div class="timeline-text">Second Settlement. Nearly died of illness. Senate grants Tribunicia Potestas for life. Proconsulare Imperium confirmed. </div></div>
+          <div class="timeline-item active-item"><div class="timeline-date" style="color:var(--c10)">12 BC</div><div class="timeline-text">Agrippa dies. Becomes Pontifex Maximus (when Lepidus finally dies). Succession crisis begins in earnest.</div></div>
+          <div class="timeline-item active-item"><div class="timeline-date" style="color:var(--c10)">9 BC</div><div class="timeline-text">Stepson Drusus dies. German campaigns stall. Tiberius takes over Rhine legions.</div></div>
+          <div class="timeline-item active-item"><div class="timeline-date" style="color:var(--c10)">2 BC</div><div class="timeline-text">Receives title PATER PATRIAE (Father of the Nation) from Senate.</div></div>
+          <div class="timeline-item active-item"><div class="timeline-date" style="color:var(--c10)">AD 9</div><div class="timeline-text">Battle of Teutoburg Forest — Varus and 3 legions ambushed and destroyed. German conquest abandoned. Augustus mourned for months.</div></div>
+          <div class="timeline-item active-item"><div class="timeline-date" style="color:var(--c10)">AD 14</div><div class="timeline-text">Augustus withdraws from public life, falls ill, dies at Nola. Buried in Mausoleum in Rome. Final words: "Have I played the role well?" Tiberius becomes Emperor.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-group">
+    <div class="section-title"><div class="section-icon" style="background:#d1fae5;">🧠</div>Quick Quiz — Death &amp; Legacy</div>
+    <div class="quiz-grid">
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">Where did Augustus die and where was he buried?<span class="flip-hint">tap</span></div><div class="flip-back">Died at Nola (Campania). Given a great funeral. Buried in the great Mausoleum in Rome.</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">What were Augustus's final words?<span class="flip-hint">tap</span></div><div class="flip-back">"Have I played the role well?" — a theatrical metaphor perfectly in character for a man who spent his life performing the role of "First Citizen" rather than admitting he was Rome's first emperor.</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">How was Augustus described as an emperor?<span class="flip-hint">tap</span></div><div class="flip-back">Genuinely liked by the people. A constitutional monarch in a sense. Educated man but no scholar. Restored order after decades of civil war.</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">What were Augustus's dates?<span class="flip-hint">tap</span></div><div class="flip-back">Born 63 BC. Became Augustus 27 BC. Died AD 14. Reigned as Augustus for 41 years. The system of government he created (the Principate) lasted ~300 years.</div></div></div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">Name 3 achievements and 3 weaknesses of Augustus<span class="flip-hint">tap</span></div><div class="flip-back">Achievements: restored order, built 82 temples, reformed administration, Pax Romana. Weaknesses: destroyed Republic while pretending to save it, hypocritical marriage laws, failed succession planning.</div></div></div>
+    </div>
+  </div>
+</div>
+
+<a href="index.html" class="return-home-btn">🏠 Back to Hub</a>
+
+<script>
+function showPage(id, btn) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  if (btn) btn.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+function toggleDef(card) {
+  card.classList.toggle('open');
+}
+</script>
+</body>
+</html>
