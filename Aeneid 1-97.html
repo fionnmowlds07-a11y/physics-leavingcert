@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LC Latin – Aeneid VI Lines 1–97</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700&family=Lexend+Mega:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#b45309;--gold-l:#fef9e7;--blue:#1d4ed8;--blue-l:#eff6ff;--green:#047857;--green-l:#f0fdf4;--red:#be185d;--red-l:#fdf2f8;--purple:#6d28d9;--purple-l:#f5f3ff;--teal:#0891b2;--teal-l:#ecfeff;--bg:#f8f9fc;--card:#fff;--text:#1a1a2e;--sub:#555577;--border:#e2e6f0;--shadow:0 4px 18px rgba(0,0,0,.08);--radius:14px;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.7;}
+.lat{font-weight:700;color:#1a1a2e;}
+.topbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);border-bottom:2px solid var(--border);padding:0 14px;display:flex;align-items:center;gap:5px;flex-wrap:wrap;min-height:52px;}
+.brand{font-family:'Lexend Mega',sans-serif;font-size:.82rem;font-weight:700;margin-right:4px;white-space:nowrap;}
+.nav-tabs{display:flex;gap:5px;flex-wrap:wrap;}
+.nt{background:none;border:2px solid var(--border);color:var(--sub);font-family:'Lexend',sans-serif;font-size:.71rem;font-weight:600;cursor:pointer;border-radius:20px;padding:3px 10px;transition:all .15s;}
+.nt:hover,.nt.active{background:var(--text);border-color:var(--text);color:#fff;}
+.nt.tg:hover,.nt.tg.active{background:var(--gold);border-color:var(--gold);}
+.nt.tb:hover,.nt.tb.active{background:var(--blue);border-color:var(--blue);}
+.nt.tr:hover,.nt.tr.active{background:var(--red);border-color:var(--red);}
+.nt.tp:hover,.nt.tp.active{background:var(--purple);border-color:var(--purple);}
+.nt.tt:hover,.nt.tt.active{background:var(--teal);border-color:var(--teal);}
+.nt.tgr:hover,.nt.tgr.active{background:var(--green);border-color:var(--green);}
+.page{display:none;max-width:940px;margin:0 auto;padding:24px 16px 80px;}
+.page.active{display:block;}
+.hero{border-radius:var(--radius);padding:26px 30px;margin-bottom:24px;color:#fff;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:rgba(0,0,0,.12);border-radius:var(--radius);}
+.hc{position:relative;z-index:1;}
+.hbadge{display:inline-block;background:rgba(255,255,255,.25);padding:3px 10px;border-radius:20px;font-size:.68rem;font-weight:600;letter-spacing:.05em;margin-bottom:8px;text-transform:uppercase;}
+.hero h1{font-family:'Lexend Mega',sans-serif;font-size:1.5rem;margin-bottom:6px;line-height:1.2;}
+.hero p{font-size:.9rem;opacity:.9;}
+.sg{margin-bottom:28px;}
+.st{font-size:.95rem;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px;padding-bottom:8px;border-bottom:2px solid var(--border);}
+.si{width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0;}
+/* line cards */
+.lc{background:var(--card);border-radius:var(--radius);border:2px solid var(--border);margin-bottom:12px;overflow:hidden;box-shadow:var(--shadow);}
+.lh{display:flex;align-items:flex-start;justify-content:space-between;padding:13px 16px;cursor:pointer;gap:10px;}
+.ln{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--sub);min-width:52px;padding-top:2px;}
+.le{font-size:.9rem;font-weight:600;flex:1;line-height:1.55;}
+.lchev{font-size:.85rem;color:var(--sub);transition:transform .2s;flex-shrink:0;padding-top:2px;}
+.lc.open .lchev{transform:rotate(180deg);}
+.lb{display:none;padding:0 16px 16px;border-top:1px solid var(--border);}
+.lc.open .lb{display:block;}
+/* parallel */
+.par{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0;}
+@media(max-width:580px){.par{grid-template-columns:1fr;}}
+.pe{background:var(--blue-l);border-left:4px solid var(--blue);border-radius:8px;padding:12px 14px;font-size:.88rem;line-height:1.7;}
+.pl{background:var(--gold-l);border-left:4px solid var(--gold);border-radius:8px;padding:12px 14px;font-size:.88rem;line-height:1.7;}
+.plabel{font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;opacity:.65;}
+/* boxes */
+.mem{background:linear-gradient(135deg,#fdf0ff,#f5e6ff);border:2px dashed #c084fc;border-radius:10px;padding:11px 14px;margin:9px 0;font-size:.88rem;}
+.mem strong{color:#6d28d9;}
+.ana{background:linear-gradient(135deg,#fff9e6,#fffdf0);border:2px dashed #fcd34d;border-radius:10px;padding:11px 14px;margin:9px 0;font-size:.88rem;}
+.ana strong{color:#b45309;}
+.wrn{background:#fffbf0;border-left:4px solid #f59e0b;border-radius:0 8px 8px 0;padding:9px 13px;margin:9px 0;font-size:.88rem;}
+.wrn strong{color:#b45309;}
+.story{background:var(--green-l);border-left:4px solid var(--green);border-radius:0 8px 8px 0;padding:10px 13px;margin:9px 0;font-size:.88rem;}
+.story strong{color:var(--green);}
+/* vocab table */
+.vt{width:100%;border-collapse:collapse;font-size:.85rem;margin:10px 0;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);}
+.vt th{padding:8px 12px;color:#fff;font-weight:700;text-align:left;font-size:.72rem;}
+.vt td{padding:8px 12px;background:#fff;border-bottom:1px solid var(--border);vertical-align:top;}
+.vt tr:last-child td{border-bottom:none;}
+.vt tr:nth-child(even) td{background:#fafafe;}
+/* flip cards */
+.qg{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:11px;margin-top:10px;}
+.fc{height:138px;cursor:pointer;perspective:900px;}
+.fi{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .45s cubic-bezier(.4,2,.6,1);}
+.fc.flipped .fi{transform:rotateY(180deg);}
+.ff,.fb{position:absolute;width:100%;height:100%;backface-visibility:hidden;border-radius:var(--radius);display:flex;align-items:center;justify-content:center;text-align:center;padding:13px;border:2px solid var(--border);box-shadow:var(--shadow);}
+.ff{background:#fff;font-weight:700;font-size:.83rem;flex-direction:column;gap:5px;}
+.fb{background:var(--text);color:#fff;font-size:.78rem;transform:rotateY(180deg);line-height:1.45;}
+.fh{font-size:.62rem;color:#aaa;font-weight:400;}
+/* fill blank */
+.bx{background:var(--card);border-radius:var(--radius);border:2px solid var(--border);padding:16px;margin-bottom:12px;box-shadow:var(--shadow);}
+.bx h4{font-size:.88rem;font-weight:700;margin-bottom:10px;}
+.bl{font-size:.9rem;line-height:2.1;margin-bottom:5px;}
+.bi{border:none;border-bottom:2px solid #93c5fd;background:transparent;font-family:'Lexend',sans-serif;font-size:.84rem;width:110px;text-align:center;outline:none;padding:0 3px;color:var(--text);}
+.bi:focus{border-bottom-color:var(--blue);}
+.bi.ok{border-bottom-color:var(--green);background:var(--green-l);}
+.bi.bad{border-bottom-color:var(--red);background:var(--red-l);}
+.cbtn{margin-top:10px;padding:8px 18px;background:var(--blue);color:#fff;border:none;border-radius:20px;font-family:'Lexend',sans-serif;font-weight:600;font-size:.82rem;cursor:pointer;}
+.rbtn{margin-top:10px;margin-left:8px;padding:8px 18px;background:var(--gold);color:#fff;border:none;border-radius:20px;font-family:'Lexend',sans-serif;font-weight:600;font-size:.82rem;cursor:pointer;}
+/* ordering */
+.oe{background:var(--card);border-radius:var(--radius);border:2px solid var(--border);padding:16px;margin-bottom:14px;box-shadow:var(--shadow);}
+.oe h4{font-weight:700;font-size:.88rem;margin-bottom:5px;}
+.oe p{font-size:.8rem;color:var(--sub);margin-bottom:12px;}
+.obank{display:flex;flex-direction:column;gap:7px;}
+.oi{background:#fff;border:2px solid #c4b5fd;border-radius:8px;padding:9px 13px;font-size:.85rem;cursor:pointer;user-select:none;transition:background .15s,border-color .15s;line-height:1.45;}
+.oi:hover{background:#f5f3ff;border-color:var(--purple);}
+.oi.sel{background:#f5f3ff;border-color:var(--purple);}
+.azone{min-height:44px;background:#f5f3ff;border:2px dashed #c4b5fd;border-radius:10px;padding:9px 11px;display:flex;flex-direction:column;gap:6px;margin-top:4px;}
+.azone .emsg{font-size:.78rem;color:var(--sub);font-style:italic;}
+/* mock exam */
+.mock-passage{background:var(--card);border-radius:var(--radius);border:2px solid var(--border);padding:18px;margin-bottom:14px;box-shadow:var(--shadow);}
+.mock-passage h4{font-size:.88rem;font-weight:700;margin-bottom:12px;}
+.mock-lat{background:var(--gold-l);border-left:4px solid var(--gold);border-radius:0 8px 8px 0;padding:13px 15px;margin-bottom:12px;font-size:.88rem;line-height:1.75;}
+.mock-eng{background:var(--blue-l);border-left:4px solid var(--blue);border-radius:0 8px 8px 0;padding:13px 15px;font-size:.88rem;line-height:1.75;margin-top:10px;}
+.sbtn{padding:8px 18px;background:var(--teal);color:#fff;border:none;border-radius:20px;font-family:'Lexend',sans-serif;font-weight:600;font-size:.82rem;cursor:pointer;}
+/* welcome */
+.wg{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px;}
+@media(max-width:600px){.wg{grid-template-columns:1fr 1fr;}}
+.wc{background:#fff;border-radius:var(--radius);border:2px solid var(--border);padding:15px 12px;cursor:pointer;box-shadow:var(--shadow);transition:transform .15s,box-shadow .15s;text-align:center;}
+.wc:hover{transform:translateY(-2px);box-shadow:0 7px 22px rgba(0,0,0,.11);}
+.wci{font-size:1.4rem;margin-bottom:5px;}
+.wct{font-family:'Lexend Mega',sans-serif;font-size:.74rem;font-weight:700;margin-bottom:3px;}
+.wcs{font-size:.7rem;color:var(--sub);}
+.tip{background:#fff;border-radius:var(--radius);padding:16px;margin-top:14px;border:2px solid #fcd34d;box-shadow:var(--shadow);}
+.tip h3{font-weight:700;margin-bottom:6px;font-size:.88rem;}
+.tip ul{padding-left:16px;}
+.tip li{margin-bottom:4px;font-size:.85rem;}
+.bbtn{position:fixed;bottom:22px;right:22px;background:var(--text);color:#fff;padding:8px 16px;border-radius:50px;font-family:'Lexend',sans-serif;font-weight:600;font-size:12px;box-shadow:0 4px 12px rgba(0,0,0,.2);z-index:9999;border:none;cursor:pointer;}
+.res{display:none;margin-top:9px;padding:9px 12px;border-radius:8px;font-size:.85rem;font-weight:600;}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <span class="brand">📜 Aeneid VI · Lines 1–97</span>
+  <div class="nav-tabs">
+    <button class="nt active" onclick="sp('home',this)">🏠 Home</button>
+    <button class="nt tg"     onclick="sp('story',this)">📖 Story</button>
+    <button class="nt tb"     onclick="sp('l1',this)">L 1–13</button>
+    <button class="nt tr"     onclick="sp('l2',this)">L 14–41</button>
+    <button class="nt tp"     onclick="sp('l3',this)">L 42–76</button>
+    <button class="nt tt"     onclick="sp('l4',this)">L 77–97</button>
+    <button class="nt tgr"    onclick="sp('vocab',this)">📝 Vocab</button>
+    <button class="nt tg"     onclick="sp('quiz',this)">🃏 Flashcards</button>
+    <button class="nt tb"     onclick="sp('blank',this)">✏️ Fill-in-Blank</button>
+    <button class="nt tr"     onclick="sp('order',this)">🔀 Line Order</button>
+    <button class="nt tp"     onclick="sp('mock',this)">🎯 Mock Exam</button>
+  </div>
+</div>
+
+<!-- HOME -->
+<div class="page active" id="page-home">
+  <div class="hero" style="background:linear-gradient(135deg,#1a1a2e,#3a2a5e);">
+    <div class="hc"><div class="hbadge">Leaving Cert Latin</div><h1>Aeneid Book VI — Lines 1–97</h1><p>Every line in English + Latin, memory tricks, vocabulary, fill-in-blank, ordering &amp; mock exam passages.</p></div>
+  </div>
+  <div class="wg">
+    <div class="wc" onclick="sp('story',document.querySelector('.tg'))"><div class="wci">📖</div><div class="wct" style="color:var(--gold)">Story Guide</div><div class="wcs">What's happening &amp; why</div></div>
+    <div class="wc" onclick="sp('l1',document.querySelector('.tb'))"><div class="wci">⚓</div><div class="wct" style="color:var(--blue)">Lines 1–13</div><div class="wcs">Arrival at Cumae · The Sibyl</div></div>
+    <div class="wc" onclick="sp('l2',document.querySelector('.tr'))"><div class="wci">🦋</div><div class="wct" style="color:var(--red)">Lines 14–41</div><div class="wcs">Daedalus · Temple carvings</div></div>
+    <div class="wc" onclick="sp('l3',document.querySelector('.tp'))"><div class="wci">🙏</div><div class="wct" style="color:var(--purple)">Lines 42–76</div><div class="wcs">Sibyl's frenzy · Aeneas prays</div></div>
+    <div class="wc" onclick="sp('l4',document.querySelector('.tt'))"><div class="wci">⚔️</div><div class="wct" style="color:var(--teal)">Lines 77–97</div><div class="wcs">The prophecy · Wars &amp; blood</div></div>
+    <div class="wc" onclick="sp('vocab',document.querySelector('.tgr'))"><div class="wci">📝</div><div class="wct" style="color:var(--green)">Key Vocab</div><div class="wcs">All key words &amp; phrases</div></div>
+    <div class="wc" onclick="sp('quiz',document.querySelector('.tg'))"><div class="wci">🃏</div><div class="wct" style="color:var(--gold)">Flashcards</div><div class="wcs">Latin → English drill</div></div>
+    <div class="wc" onclick="sp('blank',document.querySelector('.tb'))"><div class="wci">✏️</div><div class="wct" style="color:var(--blue)">Fill-in-Blank</div><div class="wcs">Complete the translation</div></div>
+    <div class="wc" onclick="sp('order',document.querySelector('.tr'))"><div class="wci">🔀</div><div class="wct" style="color:var(--red)">Line Order</div><div class="wcs">Rebuild scrambled passages</div></div>
+    <div class="wc" onclick="sp('mock',document.querySelector('.tp'))"><div class="wci">🎯</div><div class="wct" style="color:var(--purple)">Mock Exam</div><div class="wcs">Translate, then reveal answer</div></div>
+  </div>
+  <div class="tip"><h3>💡 How to use this guide</h3><ul>
+    <li>Start with <strong>Story Guide</strong> — understand the big picture before memorising lines.</li>
+    <li>Work through each <strong>line section</strong> — study the parallel Latin/English text.</li>
+    <li>Drill <strong>Flashcards</strong> daily — tap to flip Latin → English.</li>
+    <li>Use <strong>Fill-in-Blank</strong> and <strong>Line Order</strong> to test yourself actively.</li>
+    <li><strong>Mock Exam</strong> — translate the Latin on paper, then click Show Answer to check.</li>
+  </ul></div>
+</div>
+
+<!-- STORY -->
+<div class="page" id="page-story">
+  <div class="hero" style="background:linear-gradient(135deg,#b45309,#d97706);">
+    <div class="hc"><div class="hbadge">Start Here</div><h1>📖 Story Guide</h1><p>Understand the big picture before memorising lines — context makes everything stick.</p></div>
+  </div>
+  <div class="sg">
+    <div class="st"><div class="si" style="background:var(--gold-l)">🗺️</div>The Big Picture</div>
+    <div class="story"><strong>Where are we?</strong> Aeneas is the Trojan hero fated to found a new city in Italy (future Rome). Book 6 opens with his arrival at Cumae, Italy. He must find the Sibyl — Apollo's prophetic priestess — who will guide him into the Underworld to visit his dead father Anchises. These 97 lines cover everything up to the Sibyl's terrifying prophecy.</div>
+  </div>
+  <div class="sg">
+    <div class="st"><div class="si" style="background:var(--gold-l)">📋</div>Segment Summaries</div>
+    <div class="lc open" onclick="tl(this)">
+      <div class="lh"><span class="le">⚓ Lines 1–13: Arrival at Cumae</span><span class="lchev">▼</span></div>
+      <div class="lb">
+        <div class="story"><strong>What happens:</strong> The Trojan fleet arrives at Cumae. Ships moor, men leap ashore doing practical things (making fire, hunting, finding water). But Aeneas goes straight to Apollo's heights and the dread Sibyl's cave — whose prophetic mind Apollo fills and through whom he reveals the future.</div>
+        <div class="mem"><strong>🔮 Remember:</strong> Everyone else = tourists. Aeneas = man on a mission. He ignores food, fire and water and heads straight uphill to fate.</div>
+      </div>
+    </div>
+    <div class="lc" onclick="tl(this)">
+      <div class="lh"><span class="le">🦋 Lines 14–41: Daedalus's Temple &amp; Sibyl Commands</span><span class="lchev">▼</span></div>
+      <div class="lb">
+        <div class="story"><strong>What happens:</strong> They see Apollo's temple whose doors were carved by Daedalus (the craftsman who flew from Crete). The carvings show: (1) Death of Androgeos → (2) 7 Athenian youths as tribute → (3) Pasiphae + bull = Minotaur → (4) Labyrinth + Ariadne's thread → (5) Twice Daedalus tried to carve Icarus's fall, twice his hands failed with grief. Before they finish looking, the Sibyl (Deiphobe, daughter of Glaucus) arrives and commands: sacrifice 7 bulls and 7 sheep NOW.</div>
+        <div class="mem"><strong>🔮 Carvings in order:</strong> Androgeos → 7 youths/urn → Pasiphae/Minotaur → Labyrinth/thread → Icarus (twice tried, twice failed).</div>
+        <div class="wrn"><strong>⚠️ Exam:</strong> The Sibyl's full name = <strong>Deiphobe, daughter of Glaucus</strong>, priestess of Phoebus AND Trivia.</div>
+      </div>
+    </div>
+    <div class="lc" onclick="tl(this)">
+      <div class="lh"><span class="le">🙏 Lines 42–76: The Sibyl's Frenzy &amp; Aeneas's Prayer</span><span class="lchev">▼</span></div>
+      <div class="lb">
+        <div class="story"><strong>What happens:</strong> The cave has 100 mouths, 100 gateways. The Sibyl is seized by Apollo: face changes, hair flies loose, chest heaves, grows taller, voice becomes inhuman. She shouts "deus ecce deus!" and demands Aeneas vow and pray immediately. Terrified Aeneas prays to Apollo, thanks him, asks that Trojans settle in Latium, promises temples of solid marble to Apollo and a shrine for the Sibyl. Crucially he asks: don't write on leaves — speak directly.</div>
+        <div class="mem"><strong>🔮 Sibyl's 5 changes:</strong> Expression → Colour → Hair → Chest/Heart → Taller+Voice inhuman.</div>
+        <div class="mem"><strong>🔮 Aeneas's 3 promises:</strong> (1) Marble temple to Apollo (2) Festal days of Phoebus (3) Shrine for Sibyl with chosen priests.</div>
+      </div>
+    </div>
+    <div class="lc" onclick="tl(this)">
+      <div class="lh"><span class="le">⚔️ Lines 77–97: The Prophecy</span><span class="lchev">▼</span></div>
+      <div class="lb">
+        <div class="story"><strong>What happens:</strong> Apollo subdues the raving Sibyl. The 100 mouths burst open. The prophecy: Yes, you'll reach Lavinium — but you'll wish you hadn't. WARS. Tiber foaming with blood. Another Achilles (goddess-born = Turnus). Juno still hostile. An alien bride again causes war. But: do not yield — go boldly. Your safety comes from a Greek city (Evander's Pallanteum).</div>
+        <div class="wrn"><strong>⚠️ THE most important line:</strong> <span class="lat">tu ne cede malis, sed contra audentior ito</span> = "Do not give in to evils, but go more boldly against them." Learn this off perfectly.</div>
+        <div class="mem"><strong>🔮 Prophecy 5 points:</strong> (1) You'll reach Lavinium (2) But wish you hadn't (3) Wars + Tiber foaming blood (4) Another Achilles + Juno (5) Alien bride = cause. Then: bold forward + Greek city saves you.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LINES 1-13 -->
+<div class="page" id="page-l1">
+  <div class="hero" style="background:linear-gradient(135deg,#1d4ed8,#3b82f6);">
+    <div class="hc"><div class="hbadge">Lines 1–13</div><h1>⚓ Arrival at Cumae</h1><p>The fleet lands. Aeneas seeks the Sibyl. Every line with Latin + English.</p></div>
+  </div>
+  <div class="sg">
+    <div class="st"><div class="si" style="background:var(--blue-l)">📖</div>Line by Line</div>
+    <div class="lc open" onclick="tl(this)">
+      <div class="lh"><span class="ln">1–2</span><span class="le">Thus weeping, he speaks and gives reign to the fleet. And at length glides to the Euboean shores of Cumae.</span><span class="lchev">▼</span></div>
+      <div class="lb">
+        <div class="par"><div class="pe"><div class="plabel">🇬🇧 English</div>Thus weeping, he speaks and gives reign to the fleet. And at length glides to the Euboean shores of Cumae.</div><div class="pl"><div class="plabel">🏛️ Latin</div><span class="lat">Sic fatur lacrimans, classique immittit habenas et tandem Euboicis Cumarum adlabitur oris.</span></div></div>
+        <div class="mem"><strong>🔮 Key words:</strong> <span class="lat">lacrimans</span> = weeping (he's just left Dido). <span class="lat">adlabitur</span> = glides smoothly to shore. <span class="lat">classique immittit habenas</span> = gives the fleet free rein (loosens the reins = metaphor).</div>
+      </div>
+    </div>
+    <div class="lc" onclick="tl(this)">
+      <div class="lh"><span class="ln">3–5</span><span class="le">They turn their prows to the seas; then the anchor with biting tooth moored the ships, and the curved boats line the beach. Eagerly the band of warriors leaps out upon the Hesperian strand.</span><span class="lchev">▼</span></div>
+      <div class="lb">
+        <div class="par"><div class="pe"><div class="plabel">🇬🇧 English</div>They turn their prows to the seas; then the anchor with biting tooth moored the ships, and the curved boats line the beach. Eagerly the band of warriors leaps out upon the Hesperian strand.</div><div class="pl"><div class="plabel">🏛️ Latin</div><span class="lat">obvertunt pelago proras; tum dente tenaci ancora fundabat navis et litora curvae praetexunt puppes. iuvenum manus emicat ardens litus in Hesperium.</span></div></div>
+        <div class="wrn"><strong>⚠️ Literary device:</strong> <span class="lat">dente tenaci</span> = "with biting tooth" — a METAPHOR for the anchor gripping the seabed. Examiners love this one.</div>
+        <div class="mem"><strong>🔮</strong> <span class="lat">Hesperium</span> = Hesperian = western = Italy (Italy is "the western land" from a Greek perspective).</div>
+      </div>
+    </div>
+    <div class="lc" onclick="tl(this)">
+      <div class="lh"><span class="ln">6–8</span><span class="le">Some seek the seeds of flame lurking in the veins of flint; some scour the woods, the thick layers of wild beasts and point out the discovered stream.</span><span class="lchev">▼</span></div>
+      <div class="lb">
+        <div class="par"><div class="pe"><div class="plabel">🇬🇧 English</div>Some seek the seeds of flame lurking in the veins of flint; some scour the woods, the thick layers of wild beasts and point out the discovered stream.</div><div class="pl"><div class="plabel">🏛️ Latin</div><span class="lat">quaerit pars semina flammae abstrusa in venis silicis, pars densa ferarum tecta rapit silvas inventaque flumina monstrat.</span></div></div>
+        <div class="mem"><strong>🔮</strong> <span class="lat">semina flammae</span> = seeds of flame = sparks hidden in flint. Fire made by striking flint. While others do practical things, Aeneas goes to the Sibyl — his priorities are spiritual.</div>
+      </div>
+    </div>
+    <div class="lc" onclick="tl(this)">
+      <div class="lh"><span class="ln">9–13</span><span class="le">But the good Aeneas seeks the heights on which high Apollo watches over, and a vast cavern — the retreat of the dread Sibyl — on whom the Delian prophet breathes his great mind and spirit, and reveals to her the future. And now they draw near to the groves of Trivia and the golden abode.</span><span class="lchev">▼</span></div>
+      <div class="lb">
+        <div class="par"><div class="pe"><div class="plabel">🇬🇧 English</div>But the good Aeneas seeks the heights on which high Apollo watches over, and a vast cavern — the retreat of the dread Sibyl — on whom the Delian prophet breathes his great mind and spirit, and reveals to her the future. And now they draw near to the groves of Trivia and the golden abode.</div><div class="pl"><div class="plabel">🏛️ Latin</div><span class="lat">at pius Aeneas arces quibus altus Apollo praesidet horrendaeque procul secreta Sibyllae, antrum immane, petit, magnam cui mentem animumque Delius inspirat vates aperitque futura. iam subeunt Triviae lucos atque aurea tecta.</span></div></div>
+        <div class="wrn"><strong>⚠️ Exam key:</strong> <span class="lat">pius Aeneas</span> = pious/dutiful Aeneas — his defining epithet. <span class="lat">Delius</span> = Apollo (born on island of Delos). <span class="lat">Trivia</span> = Diana/Hecate. <span class="lat">magnam mentem animumque inspirat</span> = Apollo breathes mind and spirit into the Sibyl.</div>
+        <div class="mem"><strong>🔮</strong> <span class="lat">antrum immane</span> = vast/monstrous cavern. <span class="lat">horrendae Sibyllae</span> = of the dread Sibyl. Two strong adjectives — the cave and its occupant are both terrifying.</div>
+      </div>
+    </div>
+  </div>
+  <div class="sg">
+    <div class="st"><div class="si" style="background:var(--blue-l)">🧠</div>Quick Quiz — Lines 1–13</div>
+    <div class="qg">
+      <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fi"><div class="ff"><span class="lat">sic fatur lacrimans</span><span class="fh">tap</span></div><div class="fb">Thus weeping, he speaks. He's crying from leaving Dido behind in Carthage.</div></div></div>
+      <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fi"><div class="ff"><span class="lat">dente tenaci</span><span class="fh">tap</span></div><div class="fb">With biting tooth — METAPHOR for the anchor gripping the seabed. Favourite exam literary device!</div></div></div>
+      <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fi"><div class="ff">What does <em>pius</em> mean?<span class="fh">tap</span></div><div class="fb">Pious/dutiful — devoted to gods, family, and mission. Aeneas's defining quality throughout the Aeneid.</div></div></div>
+      <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fi"><div class="ff">Who is the Delian prophet?<span class="fh">tap</span></div><div class="fb">Apollo — called "Delian" because he was born on the island of Delos.</div></div></div>
+      <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fi"><div class="ff">Who is Trivia?<span class="fh">tap</span></div><div class="fb">Diana/Hecate — goddess of crossroads, the moon, and the Underworld. Her sacred groves are near the Sibyl's cave.</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- LINES 14-41 -->
+<div class="page" id="page-l2">
+  <div class="hero" style="background:linear-gradient(135deg,#be185d,#ec4899);">
+    <div class="hc"><div class="hbadge">Lines 14–41</div><h1>🦋 Daedalus's Temple &amp; The Sibyl Commands</h1><p>The carved temple doors tell the Cretan myths. Then the Sibyl interrupts and commands sacrifice.</p></div>
+  </div>
+  <div class="sg">
+    <div class="st"><div class="si" style="background:var(--red-l)">📖</div>Line by Line</div>
+    <div class="lc open" onclick="tl(this)">
+      <div class="lh"><span class="ln">14–19</span><span class="le">Daedalus, as the story goes, when flying from the kingdom of Minos, dared to entrust himself on rapid wings to the skies…at length lightly settled on the Chalcidian hill. First restored to this Earth, he consecrated to you, Phoebus, the oarage of his wings and built a mighty temple.</span><span class="lchev">▼</span></div>
+      <div class="lb">
+        <div class="par"><div class="pe"><div class="plabel">🇬🇧 English</div>Daedalus, as the story goes, when flying from the kingdom of Minos, dared to entrust himself on rapid wings to the skies. And floated along his unwanted path to the icy North, and at length lightly settled on the Chalcidian hill. First restored to this Earth, he consecrated to you, Phoebus, the oarage of his wings and built a mighty temple.</div><div class="pl"><div class="plabel">🏛️ Latin</div><span class="lat">Daedalus, ut fama est, fugiens Minoia regna praepetibus pennis ausus se credere caelo insuetum per iter gelidas enavit ad Arctos, Chalcidicaque levis tandem super astitit arce. redditus his primum terris tibi, Phoebe, sacravit remigium alarum posuitque immania templa.</span></div></div>
+        <div class="wrn"><strong>⚠️ Famous metaphor:</strong> <span class="lat">remigium alarum</span> = oarage of wings = wings compared to oars. Wings propel through air as oars propel through water. One of the most celebrated metaphors in the Aeneid.</div>
+        <div class="mem"><strong>🔮</strong> <span class="lat">ut fama est</span> = "as the story goes." <span class="lat">praepetibus pennis</span> = on rapid wings. <span class="lat">gelidas ad Arctos</span> = to the icy North (Arctos = constellation = north direction).</div>
+      </div>
+    </div>
+    <div class="lc" onclick="tl(this)">
+      <div class="lh"><span class="ln">20–26</span><span class="le">On the doors: death of Androgeos; children of Cecrops ordered — alas! — to pay tribute of seven sons yearly; the urn with lots drawn. Opposite: Gnosian land; cruel love of the bull, Pasiphae mated by stealth, the Minotaur — monument of wicked passion.</span><span class="lchev">▼</span></div>
+      <div class="lb">
+        <div class="par"><div class="pe"><div class="plabel">🇬🇧 English</div>On the doors is the death of Androgeos; then the children of Cecrops, ordered — alas! — to pay yearly the tribute of seven sons; there stands the urn, lots already drawn. Opposite, the Gnosian land: here the cruel love of the bull, Pasiphae mated by stealth, the Minotaur — record of wicked passion.</div><div class="pl"><div class="plabel">🏛️ Latin</div><span class="lat">in foribus letum Androgeo; tum pendere poenas Cecropidae iussi (miserum!) septena quotannis corpora natorum; stat ductis sortibus urna. contra elata mari respondet Cnosia tellus: hic crudelis amor tauri suppostaque furto Pasiphae mixtumque genus prolesque biformis Minotaurus inest, Veneris monimenta nefandae.</span></div></div>
+        <div class="wrn"><strong>⚠️ miserum!</strong> = alas! Virgil's own emotional interjection — shows his sympathy. Note in exams as a literary device showing authorial feeling.</div>
+        <div class="mem"><strong>🔮 Key phrases:</strong> <span class="lat">Cecropidae</span> = Athenians (Cecrops = mythical Athens founder). <span class="lat">prolesque biformis</span> = twin-shaped offspring = Minotaur (half man, half bull). <span class="lat">Veneris monimenta nefandae</span> = monument/record of wicked passion.</div>
+      </div>
+    </div>
+    <div class="lc" onclick="tl(this)">
+      <div class="lh"><span class="ln">27–33</span><span class="le">Here that house of toil, a maze inextricable. Daedalus, pitying the great love of the princess, himself unwound the deceptive tangle, guiding blind feet by a thread. You too, Icarus, would have a large share in this work, if grief permitted. Twice he tried to depict your fall in gold — twice fell the father's hands.</span><span class="lchev">▼</span></div>
+      <div class="lb">
+        <div class="par"><div class="pe"><div class="plabel">🇬🇧 English</div>Here, that house of toil, a maze inextricable. But Daedalus, pitying the great love of the princess, himself unwound the deceptive tangle of the palace, guiding blind feet by a thread. You too, O Icarus, would have a large share in this great work, if grief permitted it. Twice had he tried to depict your fall in gold, twice fell the father's hands.</div><div class="pl"><div class="plabel">🏛️ Latin</div><span class="lat">hic labor ille domus et inextricabilis error; magnum reginae sed enim miseratus amorem Daedalus ipse dolos tecti ambagesque resolvit, caeca regens filo vestigia. tu quoque magnam partem opere in tanto, sineret dolor, Icare, haberes. bis conatus erat casus effingere in auro, bis patriae cecidere manus.</span></div></div>
+        <div class="wrn"><strong>⚠️ bis...bis</strong> = twice...twice — ANAPHORA for emotional effect. He tried twice, failed twice. The most heartbreaking moment: Daedalus cannot even carve his own son's death because grief stops his hands.</div>
+        <div class="mem"><strong>🔮 hic labor ille domus</strong> = "that house of toil" = the Labyrinth. <span class="lat">inextricabilis error</span> = inextricable maze — this exact word survives in English. <span class="lat">caeca regens filo vestigia</span> = guiding blind footsteps by a thread (Ariadne's thread).</div>
+      </div>
+    </div>
+    <div class="lc" onclick="tl(this)">
+      <div class="lh"><span class="ln">34–41</span><span class="le">Achates arrived with the priestess of Phoebus and Trivia, Deiphobe daughter of Glaucus, who addresses Aeneas: "Not sights like these does the time demand! Sacrifice seven bullocks from the unbroken herd, and as many sheep." The priestess calls the Trojans into the lofty temple.</span><span class="lchev">▼</span></div>
+      <div class="lb">
+        <div class="par"><div class="pe"><div class="plabel">🇬🇧 English</div>…had not Achates arrived, and with him the priestess of Phoebus and Trivia, Deiphobe daughter of Glaucus, who addresses the king Aeneas: "Not sights like these does the time demand! Now it would be better to sacrifice seven bullocks from the unbroken herd, and as many sheep duly chosen." The priestess calls the Trojans into the lofty temple.</div><div class="pl"><div class="plabel">🏛️ Latin</div><span class="lat">Deiphobe Glauci, fatur quae talia regi: 'non hoc ista sibi tempus spectacula poscit; nunc grege de intacto septem mactare iuvencos praestiterit, totidem lectas ex more bidentis.' talibus adfata Aenean Teucros vocat alta in templa sacerdos.</span></div></div>
+        <div class="wrn"><strong>⚠️ Exam essential:</strong> <span class="lat">Deiphobe Glauci</span> = Deiphobe, daughter of Glaucus. Always give the full name! Priestess of BOTH Phoebus (Apollo) AND Trivia (Diana/Hecate). <span class="lat">grege de intacto</span> = from the unbroken herd (animals must be unworked for sacrifice).</div>
+      </div>
+    </div>
+  </div>
+  <div class="sg">
+    <div class="st"><div class="si" style="background:var(--red-l)">🧠</div>Quiz — Lines 14–41</div>
+    <div class="qg">
+      <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fi"><div class="ff"><span class="lat">remigium alarum</span><span class="fh">tap</span></div><div class="fb">Oarage of wings — wings = oars metaphor. Daedalus dedicated his wings to Apollo on arriving at Cumae.</div></div></div>
+      <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fi"><div class="ff"><span class="lat">hic labor ille domus et inextricabilis error</span><span class="fh">tap</span></div><div class="fb">Here that house of toil, a maze inextricable = the Labyrinth. "inextricable" survives directly in English!</div></div></div>
+      <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fi"><div class="ff"><span class="lat">bis conatus erat... bis patriae cecidere manus</span><span class="fh">tap</span></div><div class="fb">Twice he had tried...twice the father's hands fell. ANAPHORA — grief stopped Daedalus carving Icarus's fall.</div></div></div>
+      <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fi"><div class="ff">Full name of the Sibyl?<span class="fh">tap</span></div><div class="fb">Deiphobe, daughter of Glaucus. Priestess of both Phoebus (Apollo) AND Trivia (Diana/Hecate).</div></div></div>
+      <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fi"><div class="ff"><span class="lat">prolesque biformis</span><span class="fh">tap</span></div><div class="fb">Twin-shaped offspring = the Minotaur (half man, half bull). Born of Pasiphae's unnatural love for a bull.</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- LINES 42-76 -->
+<div class="page" id="page-l3">
+  <div class="hero" style="background:linear-gradient(135deg,#6d28d9,#a855f7);">
+    <div class="hc"><div class="hbadge">Lines 42–76</div><h1>🙏 The Sibyl's Frenzy &amp; Aeneas Prays</h1><p>The most dramatic transformation — Apollo seizes the Sibyl. Then Aeneas's prayer.</p></div>
+  </div>
+  <div class="sg">
+    <div class="st"><div class="si" style="background:var(--purple-l)">📖</div>Line by Line</div>
+    <div class="lc open" onclick="tl(this)">
+      <div class="lh"><span class="ln">42–44</span><span class="le">The huge side of the Euboean rock is hewn into a cavern, to where lead a hundred wide mouths, a hundred gateways. From where rush as many voices, the answers of the Sibyl.</span><span class="lchev">▼</span></div>
+      <div class="lb">
+        <div class="par"><div class="pe"><div class="plabel">🇬🇧 English</div>The huge side of the Euboean rock is hewn into a cavern, to where lead a hundred wide mouths, a hundred gateways. From where rush as many voices, the answers of the Sibyl.</div><div class="pl"><div class="plabel">🏛️ Latin</div><span class="lat">Excisum Euboicae latus ingens rupis in antrum, quo lati ducunt aditus centum, ostia centum, unde ruunt totidem voces, responsa Sibyllae.</span></div></div>
+        <div class="mem"><strong>🔮 centum...centum</strong> = hundred...hundred — anaphora. 100 = overwhelming completeness (not literal). Voices RUSH (ruunt) through 100 openings = surround sound of prophecy.</div>
+      </div>
+    </div>
+    <div class="lc" onclick="tl(this)">
+      <div class="lh"><span class="ln">45–53</span><span class="le">"It is time to ask the oracles; the god, behold! The god!" Suddenly neither expression nor colour the same, nor tresses braided; her bosom heaves, wild heart swells with frenzy; she appears taller; voice not mortal — the god is near.</span><span class="lchev">▼</span></div>
+      <div class="lb">
+        <div class="par"><div class="pe"><div class="plabel">🇬🇧 English</div>They had come to the threshold, when the maiden cries, "It is time to ask the oracles; the god, behold! The god!" As thus she spoke, suddenly neither her expression nor her colour was the same, nor did her tresses remain braided; but her bosom heaves, her wild heart swells with frenzy, and she appears taller to view; her voice has no mortal ring to it, since she has been inspired by the nearer presence of the god.</div><div class="pl"><div class="plabel">🏛️ Latin</div><span class="lat">ventum erat ad limen, cum virgo 'poscere fata tempus' ait; 'deus ecce deus!' cui talia fanti ante fores subito non vultus, non color unus, non comptae mansere comae; sed pectus anhelum, et rabie fera corda tument, maiorque videri nec mortale sonans, adflata est numine quando iam propiore dei.</span></div></div>
+        <div class="wrn"><strong>⚠️ deus ecce deus!</strong> = "The god, look! The god!" ANAPHORA — repetition of deus for terror and urgency. THE dramatic moment. The Sibyl's 5 physical changes: (1) expression (2) colour (3) hair loose (4) chest heaves/heart swells (5) taller + inhuman voice.</div>
+        <div class="mem"><strong>🔮 nec mortale sonans</strong> = "not sounding mortal" — her voice is no longer human when Apollo possesses her.</div>
+      </div>
+    </div>
+    <div class="lc" onclick="tl(this)">
+      <div class="lh"><span class="ln">50–57</span><span class="le">"Are you hesitant to vow and pray? Are you slow, Trojan Aeneas? For the mighty mouths of the awestruck house will not gape open." She spoke and was mute. A chill shudder ran through Trojans' sturdy frames.</span><span class="lchev">▼</span></div>
+      <div class="lb">
+        <div class="par"><div class="pe"><div class="plabel">🇬🇧 English</div>"Are you hesitant to vow and pray? Are you slow, Trojan Aeneas? For till then the mighty mouths of the awestruck house will not gape open." So she spoke and was mute. A chill shudder ran through Trojans' sturdy frames.</div><div class="pl"><div class="plabel">🏛️ Latin</div><span class="lat">'cessas in vota precesque, Tros' ait 'Aenea? cessas? neque enim ante dehiscent attonitae magna ora domus.' et talia fata conticuit. gelidus Teucris per dura cucurrit ossa tremor.</span></div></div>
+        <div class="wrn"><strong>⚠️ cessas? cessas?</strong> = ANAPHORA — she shouts the same word twice at Aeneas. Even the hero is frozen in terror. <span class="lat">gelidus per dura cucurrit ossa tremor</span> = icy cold shudder through their hard bones. Physical terror.</div>
+      </div>
+    </div>
+    <div class="lc" onclick="tl(this)">
+      <div class="lh"><span class="ln">56–76</span><span class="le">Aeneas prays to Apollo: "O Phoebus, who pitied Troy's woes, guided Paris's arrow…now at last we grasp Italy's shores. Grant that Trojans rest in Latium. I will build a marble temple to Phoebus and Trivia, festal days in Phoebus's name, a shrine for you. Only — do not write on leaves; chant yourself, I pray."</span><span class="lchev">▼</span></div>
+      <div class="lb">
+        <div class="par"><div class="pe"><div class="plabel">🇬🇧 English</div>"O Phoebus, who hast ever pitied the heavy woes of Troy, thou who didst guide the Dardan shaft and the hand of Paris against the body of Aeacides…Now at last we grasp the shores of Italy which elude us…grant that the Trojans may rest in Latium…Then to Phoebus and to Trivia will I set up a temple of solid marble…Only trust not your verses to leaves lest they fly in disorder, the sport of rushing winds; chant them yourself, I pray."</div><div class="pl"><div class="plabel">🏛️ Latin</div><span class="lat">funditque preces rex pectore ab imo: 'Phoebe, gravis Troiae semper miserate labores…iam tandem Italiae fugientis prendimus oras…da Latio considere Teucros…tum Phoebo et Triviae solido de marmore templum instituam…foliis tantum ne carmina manda, ne turbata volent rapidis ludibria ventis; ipsa canas oro.'</span></div></div>
+        <div class="wrn"><strong>⚠️ foliis tantum ne carmina manda</strong> = "Do not entrust your songs to leaves." Aeneas asks the Sibyl to SPEAK the prophecy, not write on leaves that the wind could scatter — leaves = disordered prophecy. Key detail.</div>
+        <div class="mem"><strong>🔮 Aeneas's promises:</strong> (1) <span class="lat">solido de marmore templum</span> = solid marble temple to Apollo. (2) Festal days in Phoebus's name. (3) Shrine for Sibyl with chosen priests in his realm.</div>
+      </div>
+    </div>
+  </div>
+  <div class="sg">
+    <div class="st"><div class="si" style="background:var(--purple-l)">🧠</div>Quiz — Lines 42–76</div>
+    <div class="qg">
+      <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fi"><div class="ff"><span class="lat">deus ecce deus!</span><span class="fh">tap</span></div><div class="fb">The god, behold! The god! ANAPHORA — the Sibyl announces Apollo is possessing her. Most dramatic exclamation in the passage.</div></div></div>
+      <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fi"><div class="ff">Name the 5 physical changes in the Sibyl<span class="fh">tap</span></div><div class="fb">1. Expression changes. 2. Colour changes. 3. Hair flies loose. 4. Chest heaves / heart swells. 5. Grows taller + inhuman voice.</div></div></div>
+      <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fi"><div class="ff"><span class="lat">gelidus per dura cucurrit ossa tremor</span><span class="fh">tap</span></div><div class="fb">A cold shudder ran through their hard/sturdy bones. Even hardened Trojan warriors are physically terrified.</div></div></div>
+      <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fi"><div class="ff">Why did Aeneas say <span class="lat">foliis ne carmina manda</span>?<span class="fh">tap</span></div><div class="fb">Don't write prophecy on leaves — wind scatters them, order lost. He wants her to SPEAK it so nothing is missed.</div></div></div>
+      <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fi"><div class="ff"><span class="lat">Italiae fugientis prendimus oras</span><span class="fh">tap</span></div><div class="fb">We grasp the shores of Italy which elude us. fugientis = fleeing/elusive — Italy always seemed to slip away from Aeneas.</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- LINES 77-97 -->
+<div class="page" id="page-l4">
+  <div class="hero" style="background:linear-gradient(135deg,#0891b2,#22d3ee);">
+    <div class="hc"><div class="hbadge">Lines 77–97</div><h1>⚔️ The Sibyl's Prophecy</h1><p>Apollo subdues the Sibyl. The 100 mouths burst open. Wars, blood and an alien bride await.</p></div>
+  </div>
+  <div class="sg">
+    <div class="st"><div class="si" style="background:var(--teal-l)">📖</div>Line by Line</div>
+    <div class="lc open" onclick="tl(this)">
+      <div class="lh"><span class="ln">77–82</span><span class="le">The prophetess, not yet enduring the sway of Phoebus, storms wildly in the cavern…so much the more he tires her raving mouth, taming her wild heart, and moulds her by restraint. Now the hundred mouths of the house opened of their own accord.</span><span class="lchev">▼</span></div>
+      <div class="lb">
+        <div class="par"><div class="pe"><div class="plabel">🇬🇧 English</div>But the prophetess, not yet enduring the sway of Phoebus, storms wildly in the cavern, if perchance she may shake the mighty god from off her breast: so much the more he tires her raving mouth, taming her wild heart, and moulds her by restraint. And now the hundred mighty mouths of the house have opened of their own accord, and bring through the air a reply of the prophetess.</div><div class="pl"><div class="plabel">🏛️ Latin</div><span class="lat">At Phoebi nondum patiens immanis in antro bacchatur vates, magnum si pectore possit excussisse deum; tanto magis ille fatigat os rabidum, fera corda domans, fingitque premendo. ostia iamque domus patuere ingentia centum sponte sua vatisque ferunt responsa per auras.</span></div></div>
+        <div class="mem"><strong>🔮 bacchatur</strong> = storms wildly/raves like a Bacchant (from Bacchus = god of frenzy). She's trying to throw Apollo off her like an animal. <span class="lat">fera corda domans</span> = taming her wild heart — Apollo as horse-trainer. <span class="lat">fingitque premendo</span> = moulds her by restraint = shapes her like clay. <span class="lat">sponte sua</span> = of their own accord — the 100 mouths spring open spontaneously.</div>
+      </div>
+    </div>
+    <div class="lc" onclick="tl(this)">
+      <div class="lh"><span class="ln">83–87</span><span class="le">"O you that has fulfilled the mighty perils of the sea — but on land more grievous woes await — into Lavinium the sons of Dardanus shall come — banish this care — but they shall wish they had not come. Wars, grim wars I see, and Tiber foaming with streams of blood."</span><span class="lchev">▼</span></div>
+      <div class="lb">
+        <div class="par"><div class="pe"><div class="plabel">🇬🇧 English</div>"O you that at last has fulfilled the mighty perils of the sea — but on land more grievous woes await you — into the kingdom of Lavinium the sons of Dardanus shall come — banish this care from your heart — but they shall also wish they had not come. Wars, grim wars I see, and Tiber foaming with streams of blood."</div><div class="pl"><div class="plabel">🏛️ Latin</div><span class="lat">'o tandem magnis pelagi defuncte periclis (sed terrae graviora manent), in regna Lavini Dardanidae venient (mitte hanc de pectore curam), sed non et venisse volent. bella, horrida bella, et Thybrim multo spumantem sanguine cerno.</span></div></div>
+        <div class="wrn"><strong>⚠️ bella, horrida bella</strong> = Wars, grim wars — THE most famous phrase in the prophecy. ANAPHORA (repetition of bella) + terrifying epithet horrida. Learn this in Latin! <span class="lat">Thybrim multo spumantem sanguine</span> = Tiber foaming with much blood.</div>
+        <div class="mem"><strong>🔮 Structure:</strong> GOOD (reach Lavinium) → VERY BAD (wish hadn't come) → TERRIBLE (wars + blood-red Tiber).</div>
+      </div>
+    </div>
+    <div class="lc" onclick="tl(this)">
+      <div class="lh"><span class="ln">88–93</span><span class="le">"A Simois, Xanthus, nor a Doric camp shall you lack. Even now another Achilles is provided in Latium, he too goddess-born; nor shall Juno anywhere fail to harass the Trojans, when you are begging in your need — what peoples, what cities of Italy shall you not implore!"</span><span class="lchev">▼</span></div>
+      <div class="lb">
+        <div class="par"><div class="pe"><div class="plabel">🇬🇧 English</div>"A Simois you shall not lack, nor a Xanthus, nor a Doric camp. Even now another Achilles is provided in Latium, he too goddess-born; nor shall Juno anywhere fail to harass the Trojans, when you are begging in your day of need — what peoples, what cities of Italy shall you not implore!"</div><div class="pl"><div class="plabel">🏛️ Latin</div><span class="lat">non Simois tibi nec Xanthus nec Dorica castra defuerint; alius Latio iam partus Achilles, natus et ipse dea; nec Teucris addita Iuno usquam aberit, cum tu supplex in rebus egenis quas gentis Italum aut quas non oraveris urbes!</span></div></div>
+        <div class="mem"><strong>🔮 The parallels:</strong> Simois &amp; Xanthus = Trojan rivers (rivers of blood again). Doric camp = new Greek-style enemy. <span class="lat">alius Achilles, natus et ipse dea</span> = another Achilles, also goddess-born = Turnus (his mother was Venilia). The Trojan War is repeating in Italy.</div>
+      </div>
+    </div>
+    <div class="lc" onclick="tl(this)">
+      <div class="lh"><span class="ln">93–97</span><span class="le">"The cause of all this woe to the Trojans is again an alien bride, again a foreign marriage. But do not give in to any evils, but go forth to meet them more boldly than your fortune shall allow. Your path of safety shall first — little as you would think it — be opened from a Greek city."</span><span class="lchev">▼</span></div>
+      <div class="lb">
+        <div class="par"><div class="pe"><div class="plabel">🇬🇧 English</div>"The cause of all this woe to the Trojans is again an alien bride, again a foreign marriage. But do not give in to any evils, but go forth to meet them more boldly than your fortune shall allow you. Your path of safety shall first, little as you would think it, be opened from a Greek city."</div><div class="pl"><div class="plabel">🏛️ Latin</div><span class="lat">causa mali tanti coniunx iterum hospita Teucris externique iterum thalami. tu ne cede malis, sed contra audentior ito, qua tua te Fortuna sinet. via prima salutis (quod minime reris) Graia pandetur ab urbe.</span></div></div>
+        <div class="wrn"><strong>⚠️ tu ne cede malis, sed contra audentior ito</strong> = "Do not give in to evils, but go more boldly against them." THE most important line in the whole prophecy — arguably of the whole Aeneid. Learn this perfectly in Latin AND English. <span class="lat">coniunx iterum hospita</span> = alien bride again = Lavinia (like Helen caused Troy's war, Lavinia causes Italy's war). <span class="lat">Graia ab urbe</span> = from a Greek city = Evander's Pallanteum (where Rome will be built).</div>
+        <div class="mem"><strong>🔮 Shocking ending:</strong> Salvation from a GREEK city — your former enemy saves you. Deliberately paradoxical and mysterious.</div>
+      </div>
+    </div>
+  </div>
+  <div class="sg">
+    <div class="st"><div class="si" style="background:var(--teal-l)">🧠</div>Quiz — Lines 77–97</div>
+    <div class="qg">
+      <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fi"><div class="ff"><span class="lat">bella, horrida bella</span><span class="fh">tap</span></div><div class="fb">Wars, grim wars. ANAPHORA (bella...bella) + epithet horrida. The most famous phrase in the prophecy. Must know in Latin!</div></div></div>
+      <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fi"><div class="ff"><span class="lat">bacchatur vates</span><span class="fh">tap</span></div><div class="fb">The prophetess storms wildly — bacchatur = raves like a Bacchant. She is resisting Apollo's possession, fighting against him.</div></div></div>
+      <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fi"><div class="ff">Who is <span class="lat">alius Achilles natus et ipse dea</span>?<span class="fh">tap</span></div><div class="fb">Another Achilles, also goddess-born = Turnus. The Italian warrior who opposes Aeneas, son of goddess Venilia. Parallels original Achilles (son of Thetis).</div></div></div>
+      <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fi"><div class="ff"><span class="lat">tu ne cede malis, sed contra audentior ito</span><span class="fh">tap</span></div><div class="fb">Do not give in to evils, but go more boldly against them. THE most important command in the passage — defines Aeneas's character.</div></div></div>
+      <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fi"><div class="ff"><span class="lat">Graia pandetur ab urbe</span><span class="fh">tap</span></div><div class="fb">Will be opened from a Greek city — salvation comes from the enemy! (Evander's Pallanteum/Arcadia, where Rome will be built.)</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- VOCAB -->
+<div class="page" id="page-vocab">
+  <div class="hero" style="background:linear-gradient(135deg,#047857,#10b981);">
+    <div class="hc"><div class="hbadge">Reference</div><h1>📝 Key Vocabulary &amp; People</h1><p>Every essential Latin phrase and key person from Lines 1–97.</p></div>
+  </div>
+  <div class="sg">
+    <div class="st"><div class="si" style="background:var(--green-l)">⭐</div>Must-Know Phrases</div>
+    <table class="vt">
+      <tr><th style="background:var(--green)">Latin</th><th style="background:var(--green)">Translation</th><th style="background:var(--green)">Why Important</th></tr>
+      <tr><td><span class="lat">pius Aeneas</span></td><td>the pious/good Aeneas</td><td>His defining epithet — duty to gods, family, mission</td></tr>
+      <tr><td><span class="lat">dente tenaci</span></td><td>with biting tooth</td><td>Metaphor for anchor — literary device</td></tr>
+      <tr><td><span class="lat">remigium alarum</span></td><td>oarage of wings</td><td>Wings = oars — famous metaphor (lines 19)</td></tr>
+      <tr><td><span class="lat">hic labor ille domus et inextricabilis error</span></td><td>that house of toil, a maze inextricable</td><td>The Labyrinth — famous phrase</td></tr>
+      <tr><td><span class="lat">bis patriae cecidere manus</span></td><td>twice the father's hands fell</td><td>Anaphora — grief stops Daedalus carving Icarus</td></tr>
+      <tr><td><span class="lat">deus ecce deus!</span></td><td>the god, behold! The god!</td><td>Anaphora — Sibyl announces possession by Apollo</td></tr>
+      <tr><td><span class="lat">gelidus per dura cucurrit ossa tremor</span></td><td>cold shudder through sturdy bones</td><td>Physical terror of the Trojans</td></tr>
+      <tr><td><span class="lat">foliis ne carmina manda</span></td><td>do not entrust songs to leaves</td><td>Aeneas's special request — speak, don't write</td></tr>
+      <tr><td><span class="lat">bella, horrida bella</span></td><td>wars, grim wars</td><td>THE most famous phrase — anaphora + epithet</td></tr>
+      <tr><td><span class="lat">Thybrim multo spumantem sanguine</span></td><td>Tiber foaming with much blood</td><td>Vivid prophecy image</td></tr>
+      <tr><td><span class="lat">tu ne cede malis</span></td><td>do not give in to evils</td><td>MOST IMPORTANT LINE — the Aeneid in 4 words</td></tr>
+      <tr><td><span class="lat">contra audentior ito</span></td><td>go more boldly against them</td><td>Paired with above — Aeneas's mission</td></tr>
+      <tr><td><span class="lat">Graia pandetur ab urbe</span></td><td>opened from a Greek city</td><td>Paradoxical ending — salvation from the enemy</td></tr>
+    </table>
+  </div>
+  <div class="sg">
+    <div class="st"><div class="si" style="background:var(--green-l)">👥</div>Key People &amp; Places</div>
+    <table class="vt">
+      <tr><th style="background:var(--green)">Name</th><th style="background:var(--green)">Who/What</th><th style="background:var(--green)">Key Detail</th></tr>
+      <tr><td><strong>Deiphobe</strong></td><td>The Sibyl's name</td><td>Daughter of Glaucus. Priestess of Phoebus AND Trivia.</td></tr>
+      <tr><td><strong>Phoebus / Delius</strong></td><td>Apollo</td><td>God of prophecy. Born on Delos. Possesses the Sibyl.</td></tr>
+      <tr><td><strong>Trivia</strong></td><td>Diana / Hecate</td><td>Goddess of crossroads. Her groves near Sibyl's cave.</td></tr>
+      <tr><td><strong>Daedalus</strong></td><td>Master craftsman</td><td>Flew from Crete. Built Labyrinth. Dedicated wings at Cumae.</td></tr>
+      <tr><td><strong>Icarus</strong></td><td>Daedalus's son</td><td>Flew too close to sun, fell. Father couldn't carve his death.</td></tr>
+      <tr><td><strong>Pasiphae</strong></td><td>Wife of Minos</td><td>Loved a bull (Poseidon's curse). Mother of the Minotaur.</td></tr>
+      <tr><td><strong>Androgeos</strong></td><td>Son of Minos</td><td>Killed by Athenians → 7 Athenian youths tribute to Crete.</td></tr>
+      <tr><td><strong>Cecropidae</strong></td><td>Athenians</td><td>Children of Cecrops (founder of Athens). Paid the tribute.</td></tr>
+      <tr><td><strong>Achates</strong></td><td>Aeneas's companion</td><td>Sent ahead. Arrives with the Sibyl Deiphobe.</td></tr>
+      <tr><td><strong>Lavinium</strong></td><td>Promised city in Italy</td><td>Where Trojans are fated to settle.</td></tr>
+      <tr><td><strong>Turnus</strong></td><td>"Another Achilles"</td><td>Italian king. Opposes Aeneas. Goddess-born (Venilia).</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- FLASHCARDS -->
+<div class="page" id="page-quiz">
+  <div class="hero" style="background:linear-gradient(135deg,#b45309,#d97706);">
+    <div class="hc"><div class="hbadge">Daily Drill</div><h1>🃏 Flashcard Drill — All Lines</h1><p>Tap to flip. Work through all of these every day until the exam.</p></div>
+  </div>
+  <div class="sg">
+    <div class="st"><div class="si" style="background:var(--gold-l)">⚓</div>Lines 1–13</div>
+    <div class="qg">
+      <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fi"><div class="ff"><span class="lat">Sic fatur lacrimans, classique immittit habenas</span><span class="fh">tap</span></div><div class="fb">Thus weeping, he speaks and gives reign to the fleet.</div></div></div>
+      <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fi"><div class="ff"><span class="lat">et tandem Euboicis Cumarum adlabitur oris</span><span class="fh">tap</span></div><div class="fb">And at length glides to the Euboean shores of Cumae.</div></div></div>
+      <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fi"><div class="ff"><span class="lat">tum dente tenaci ancora fundabat navis</span><span class="fh">tap</span></div><div class="fb">Then the anchor with biting tooth moored the ships.</div></div></div>
+      <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fi"><div class="ff"><span class="lat">iuvenum manus emicat ardens litus in Hesperium</span><span class="fh">tap</span></div><div class="fb">Eagerly the band of warriors leaps out upon the Hesperian strand.</div></div></div>
+      <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fi"><div class="ff"><span class="lat">quaerit pars semina flammae abstrusa in venis silicis</span><span class="fh">tap</span></div><div class="fb">Some seek the seeds of flame lurking in the veins of flint.</div></div></div>
+      <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fi"><div class="ff"><span class="lat">at pius Aeneas arces quibus altus Apollo praesidet</span><span class="fh">tap</span></div><div class="fb">But the good Aeneas seeks the heights on which high Apollo watches over.</div></div></div>
+      <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fi"><div class="ff"><span class="lat">magnam cui mentem animumque Delius inspirat vates aperitque futura</span><span class="fh">tap</span></div><div class="fb">On whom the Delian prophet breathes his great mind and spirit, and reveals to her the future.</div></div></div>
+      <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fi"><div class="ff"><span class="lat">iam subeunt Triviae lucos atque aurea tecta</span><span class="fh">tap</span></div><div class="fb">And now they draw near to the groves of Trivia and the golden abode.</div></div></div>
+    </div>
+  </div>
+  <div class="sg">
+    <div class="st"><div class="si" style="background:var(--gold-l)">🦋</div>Lines 14–41</div>
+    <div class="qg">
+      <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fi"><div class="ff"><span class="lat">Daedalus, ut fama est, fugiens Minoia regna praepetibus pennis ausus se credere caelo</span><span class="fh">tap</span></div><div class="fb">Daedalus, as the story goes, flying from the kingdom of Minos, dared to entrust himself on rapid wings to the skies.</div></div></div>
+      <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fi"><div class="ff"><span class="lat">redditus his primum terris tibi, Phoebe, sacravit remigium alarum</span><span class="fh">tap</span></div><div class="fb">First restored to this Earth, he consecrated to you, Phoebus, the oarage of his wings.</div></div></div>
+      <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fi"><div class="ff"><span class="lat">in foribus letum Androgeo; tum pendere poenas Cecropidae iussi (miserum!) septena quotannis corpora natorum</span><span class="fh">tap</span></div><div class="fb">On the doors: the death of Androgeos; then the children of Cecrops ordered — alas! — to pay tribute of seven sons yearly.</div></div></div>
+      <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fi"><div class="ff"><span class="lat">hic crudelis amor tauri suppostaque furto Pasiphae mixtumque genus prolesque biformis Minotaurus inest</span><span class="fh">tap</span></div><div class="fb">Here the cruel love of the bull, Pasiphae mated by stealth, and the twin-shaped offspring, the Minotaur.</div></div></div>
+      <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fi"><div class="ff"><span class="lat">hic labor ille domus et inextricabilis error</span><span class="fh">tap</span></div><div class="fb">Here, that house of toil, a maze inextricable. = The Labyrinth.</div></div></div>
+      <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fi"><div class="ff"><span class="lat">caeca regens filo vestigia</span><span class="fh">tap</span></div><div class="fb">Guiding blind footsteps by a thread. (Ariadne's thread — Daedalus taught her how to use it.)</div></div></div>
+      <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fi"><div class="ff"><span class="lat">bis conatus erat casus effingere in auro, bis patriae cecidere manus</span><span class="fh">tap</span></div><div class="fb">Twice he tried to depict your fall in gold — twice the father's hands fell. Grief stopped Daedalus.</div></div></div>
+      <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fi"><div class="ff"><span class="lat">non hoc ista sibi tempus spectacula poscit; nunc grege de intacto septem mactare iuvencos praestiterit</span><span class="fh">tap</span></div><div class="fb">Not sights like these does the time demand! Now it would be better to sacrifice seven bullocks from the unbroken herd.</div></div></div>
+    </div>
+  </div>
+  <div class="sg">
+    <div class="st"><div class="si" style="background:var(--gold-l)">🙏</div>Lines 42–76</div>
+    <div class="qg">
+      <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fi"><div class="ff"><span class="lat">quo lati ducunt aditus centum, ostia centum</span><span class="fh">tap</span></div><div class="fb">To where lead a hundred wide mouths, a hundred gateways. (Anaphora of centum — overwhelming scale.)</div></div></div>
+      <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fi"><div class="ff"><span class="lat">poscere fata tempus ait; deus ecce deus!</span><span class="fh">tap</span></div><div class="fb">"It is time to ask the oracles; the god, behold! The god!"</div></div></div>
+      <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fi"><div class="ff"><span class="lat">subito non vultus, non color unus, non comptae mansere comae</span><span class="fh">tap</span></div><div class="fb">Suddenly neither her expression nor her colour was the same, nor did her tresses remain braided.</div></div></div>
+      <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fi"><div class="ff"><span class="lat">sed pectus anhelum, et rabie fera corda tument, maiorque videri nec mortale sonans</span><span class="fh">tap</span></div><div class="fb">Her bosom heaves, wild heart swells with frenzy, she appears taller, voice not mortal.</div></div></div>
+      <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fi"><div class="ff"><span class="lat">cessas in vota precesque, Tros Aenea? cessas?</span><span class="fh">tap</span></div><div class="fb">"Are you hesitant to vow and pray? Are you slow, Trojan Aeneas?" (Anaphora of cessas — urgency.)</div></div></div>
+      <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fi"><div class="ff"><span class="lat">gelidus Teucris per dura cucurrit ossa tremor</span><span class="fh">tap</span></div><div class="fb">A chill shudder ran through the Trojans' sturdy frames/bones.</div></div></div>
+      <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fi"><div class="ff"><span class="lat">tum Phoebo et Triviae solido de marmore templum instituam</span><span class="fh">tap</span></div><div class="fb">Then to Phoebus and to Trivia I will set up a temple of solid marble.</div></div></div>
+      <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fi"><div class="ff"><span class="lat">foliis tantum ne carmina manda, ne turbata volent rapidis ludibria ventis; ipsa canas oro</span><span class="fh">tap</span></div><div class="fb">Only trust not your verses to leaves lest they fly in disorder, the sport of rushing winds; chant them yourself, I pray.</div></div></div>
+    </div>
+  </div>
+  <div class="sg">
+    <div class="st"><div class="si" style="background:var(--gold-l)">⚔️</div>Lines 77–97</div>
+    <div class="qg">
+      <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fi"><div class="ff"><span class="lat">At Phoebi nondum patiens immanis in antro bacchatur vates</span><span class="fh">tap</span></div><div class="fb">But the prophetess, not yet enduring the sway of Phoebus, storms wildly in the cavern.</div></div></div>
+      <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fi"><div class="ff"><span class="lat">tanto magis ille fatigat os rabidum, fera corda domans, fingitque premendo</span><span class="fh">tap</span></div><div class="fb">So much the more he tires her raving mouth, taming her wild heart, and moulds her by restraint.</div></div></div>
+      <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fi"><div class="ff"><span class="lat">in regna Lavini Dardanidae venient (mitte hanc de pectore curam), sed non et venisse volent</span><span class="fh">tap</span></div><div class="fb">Into Lavinium the Trojans shall come (banish this care) — but they shall wish they had not come.</div></div></div>
+      <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fi"><div class="ff"><span class="lat">bella, horrida bella, et Thybrim multo spumantem sanguine cerno</span><span class="fh">tap</span></div><div class="fb">Wars, grim wars I see, and Tiber foaming with streams of blood.</div></div></div>
+      <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fi"><div class="ff"><span class="lat">alius Latio iam partus Achilles, natus et ipse dea</span><span class="fh">tap</span></div><div class="fb">Another Achilles is provided in Latium, he too goddess-born. = Turnus, Italian enemy of Aeneas.</div></div></div>
+      <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fi"><div class="ff"><span class="lat">causa mali tanti coniunx iterum hospita Teucris externique iterum thalami</span><span class="fh">tap</span></div><div class="fb">The cause of all this woe is again an alien bride, again a foreign marriage. (Like Helen = Lavinia.)</div></div></div>
+      <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fi"><div class="ff"><span class="lat">tu ne cede malis, sed contra audentior ito</span><span class="fh">tap</span></div><div class="fb">Do not give in to evils, but go more boldly against them. THE most important command in the passage.</div></div></div>
+      <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fi"><div class="ff"><span class="lat">via prima salutis (quod minime reris) Graia pandetur ab urbe</span><span class="fh">tap</span></div><div class="fb">Your path of safety, little as you would think it, shall be opened from a Greek city. (Evander's Pallanteum.)</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- FILL IN BLANK -->
+<div class="page" id="page-blank">
+  <div class="hero" style="background:linear-gradient(135deg,#1d4ed8,#3b82f6);">
+    <div class="hc"><div class="hbadge">Active Recall</div><h1>✏️ Fill-in-the-Blank</h1><p>Complete the English translation by typing the missing words. Then click Check.</p></div>
+  </div>
+  <div class="sg">
+    <div class="st"><div class="si" style="background:var(--blue-l)">✏️</div>Exercise 1 — Lines 1–13</div>
+    <div class="bx" id="ex1">
+      <h4>Complete the translation:</h4>
+      <div class="bl">Thus <input class="bi" data-answer="weeping">, he speaks and gives <input class="bi" data-answer="reign"> to the fleet.</div>
+      <div class="bl">And at length glides to the <input class="bi" data-answer="Euboean"> shores of Cumae.</div>
+      <div class="bl">Then the anchor with <input class="bi" data-answer="biting"> tooth moored the ships.</div>
+      <div class="bl">Eagerly the band of warriors leaps out upon the <input class="bi" data-answer="Hesperian"> strand.</div>
+      <div class="bl">Some seek the seeds of <input class="bi" data-answer="flame"> lurking in the veins of <input class="bi" data-answer="flint">.</div>
+      <div class="bl">But the good Aeneas seeks the heights on which high <input class="bi" data-answer="Apollo"> watches over.</div>
+      <div class="bl">On whom the Delian prophet breathes his great <input class="bi" data-answer="mind"> and spirit, and reveals the <input class="bi" data-answer="future">.</div>
+      <div class="bl">And now they draw near to the groves of Trivia and the <input class="bi" data-answer="golden"> abode.</div>
+      <button class="cbtn" onclick="chk('ex1')">Check</button><button class="rbtn" onclick="rev('ex1')">Reveal All</button>
+    </div>
+  </div>
+  <div class="sg">
+    <div class="st"><div class="si" style="background:var(--blue-l)">✏️</div>Exercise 2 — Lines 14–41 (Daedalus)</div>
+    <div class="bx" id="ex2">
+      <h4>Complete the translation:</h4>
+      <div class="bl">Daedalus, as the story goes, flying from the kingdom of <input class="bi" data-answer="Minos">, dared to entrust himself on <input class="bi" data-answer="rapid"> wings to the skies.</div>
+      <div class="bl">First restored to this Earth, he consecrated to you, Phoebus, the <input class="bi" data-answer="oarage"> of his wings.</div>
+      <div class="bl">On the doors: the death of <input class="bi" data-answer="Androgeos">; the children of Cecrops ordered — <input class="bi" data-answer="alas"> — to pay tribute of <input class="bi" data-answer="seven"> sons.</div>
+      <div class="bl">Here the cruel love of the <input class="bi" data-answer="bull">, Pasiphae mated by <input class="bi" data-answer="stealth">, the <input class="bi" data-answer="Minotaur">.</div>
+      <div class="bl">Here, that house of <input class="bi" data-answer="toil">, a maze <input class="bi" data-answer="inextricable">.</div>
+      <div class="bl">Guiding blind feet by a <input class="bi" data-answer="thread">.</div>
+      <div class="bl">Twice had he tried to depict your <input class="bi" data-answer="fall"> in gold, twice fell the father's <input class="bi" data-answer="hands">.</div>
+      <div class="bl">Not <input class="bi" data-answer="sights"> like these does the time demand! Sacrifice seven <input class="bi" data-answer="bullocks"> from the unbroken herd.</div>
+      <button class="cbtn" onclick="chk('ex2')">Check</button><button class="rbtn" onclick="rev('ex2')">Reveal All</button>
+    </div>
+  </div>
+  <div class="sg">
+    <div class="st"><div class="si" style="background:var(--blue-l)">✏️</div>Exercise 3 — Lines 42–76 (Sibyl's Frenzy)</div>
+    <div class="bx" id="ex3">
+      <h4>Complete the translation:</h4>
+      <div class="bl">"It is time to ask the <input class="bi" data-answer="oracles">; the god, <input class="bi" data-answer="behold">! The god!"</div>
+      <div class="bl">Suddenly neither her <input class="bi" data-answer="expression"> nor her <input class="bi" data-answer="colour"> was the same.</div>
+      <div class="bl">Nor did her <input class="bi" data-answer="tresses"> remain braided; her bosom <input class="bi" data-answer="heaves">.</div>
+      <div class="bl">Her wild heart swells with <input class="bi" data-answer="frenzy">, she appears <input class="bi" data-answer="taller">; voice not <input class="bi" data-answer="mortal">.</div>
+      <div class="bl">"Are you <input class="bi" data-answer="hesitant"> to vow and pray? Are you <input class="bi" data-answer="slow">, Trojan Aeneas?"</div>
+      <div class="bl">A <input class="bi" data-answer="chill"> shudder ran through Trojans' <input class="bi" data-answer="sturdy"> frames.</div>
+      <div class="bl">Do not trust your verses to <input class="bi" data-answer="leaves">; chant them <input class="bi" data-answer="yourself">, I pray.</div>
+      <button class="cbtn" onclick="chk('ex3')">Check</button><button class="rbtn" onclick="rev('ex3')">Reveal All</button>
+    </div>
+  </div>
+  <div class="sg">
+    <div class="st"><div class="si" style="background:var(--blue-l)">✏️</div>Exercise 4 — Lines 77–97 (The Prophecy)</div>
+    <div class="bx" id="ex4">
+      <h4>Complete the translation:</h4>
+      <div class="bl">The prophetess storms <input class="bi" data-answer="wildly"> in the cavern, trying to shake the god off her <input class="bi" data-answer="breast">.</div>
+      <div class="bl">He tires her <input class="bi" data-answer="raving"> mouth, <input class="bi" data-answer="taming"> her wild heart, and <input class="bi" data-answer="moulds"> her by restraint.</div>
+      <div class="bl">Into the kingdom of <input class="bi" data-answer="Lavinium"> the sons of Dardanus shall come.</div>
+      <div class="bl">But they shall also <input class="bi" data-answer="wish"> they had not come.</div>
+      <div class="bl">Wars, <input class="bi" data-answer="grim"> wars I see, and Tiber <input class="bi" data-answer="foaming"> with streams of blood.</div>
+      <div class="bl">Another <input class="bi" data-answer="Achilles"> in Latium, he too <input class="bi" data-answer="goddess-born">.</div>
+      <div class="bl">The cause of all this woe is again an <input class="bi" data-answer="alien"> bride, again a foreign <input class="bi" data-answer="marriage">.</div>
+      <div class="bl">Do not give in to any <input class="bi" data-answer="evils">, but go forth more <input class="bi" data-answer="boldly">.</div>
+      <div class="bl">Your path of safety shall be opened from a <input class="bi" data-answer="Greek"> city.</div>
+      <button class="cbtn" onclick="chk('ex4')">Check</button><button class="rbtn" onclick="rev('ex4')">Reveal All</button>
+    </div>
+  </div>
+</div>
+
+<!-- LINE ORDER -->
+<div class="page" id="page-order">
+  <div class="hero" style="background:linear-gradient(135deg,#be185d,#ec4899);">
+    <div class="hc"><div class="hbadge">Sequence Practice</div><h1>🔀 Put the Lines in Order</h1><p>Click lines in the order they appear in the poem. Green = correct position, Red = wrong.</p></div>
+  </div>
+  <div class="sg">
+    <div class="st"><div class="si" style="background:var(--red-l)">🔀</div>Exercise 1 — Lines 45–57 (Sibyl's Transformation)</div>
+    <div class="oe">
+      <h4>Click each line in the correct order it appears in the text.</h4>
+      <p>Click to select → appears in answer zone. Click again to deselect.</p>
+      <div class="obank" id="bank1">
+        <div class="oi" data-pos="4" onclick="tog(this,'bank1','az1')">Her bosom heaves, wild heart swells with frenzy — she appears taller, voice inhuman.</div>
+        <div class="oi" data-pos="2" onclick="tog(this,'bank1','az1')">"It is time to ask the oracles; the god, behold! The god!"</div>
+        <div class="oi" data-pos="5" onclick="tog(this,'bank1','az1')">"Are you hesitant to vow and pray? Are you slow, Trojan Aeneas?"</div>
+        <div class="oi" data-pos="3" onclick="tog(this,'bank1','az1')">Suddenly neither expression nor colour the same, nor tresses braided.</div>
+        <div class="oi" data-pos="1" onclick="tog(this,'bank1','az1')">They had come to the threshold, when the maiden cries...</div>
+        <div class="oi" data-pos="6" onclick="tog(this,'bank1','az1')">A chill shudder ran through Trojans' sturdy frames.</div>
+      </div>
+      <div style="margin:10px 0 4px;font-size:.83rem;font-weight:700">Your order:</div>
+      <div class="azone" id="az1"><span class="emsg" id="az1-e">Nothing selected yet — click lines above</span></div>
+      <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;">
+        <button class="cbtn" onclick="chkord('az1',6,'r1')">✅ Check Order</button>
+        <button class="rbtn" onclick="rst('bank1','az1','r1')">↺ Reset</button>
+      </div>
+      <div class="res" id="r1"></div>
+    </div>
+  </div>
+  <div class="sg">
+    <div class="st"><div class="si" style="background:var(--red-l)">🔀</div>Exercise 2 — Lines 83–97 (The Prophecy)</div>
+    <div class="oe">
+      <h4>Click each part of the prophecy in the correct order.</h4>
+      <p>Click to select → click again to deselect.</p>
+      <div class="obank" id="bank2">
+        <div class="oi" data-pos="3" onclick="tog(this,'bank2','az2')">Another Achilles, goddess-born, awaits in Latium; Juno still harasses.</div>
+        <div class="oi" data-pos="5" onclick="tog(this,'bank2','az2')">Do not give in to evils — go more boldly against them.</div>
+        <div class="oi" data-pos="2" onclick="tog(this,'bank2','az2')">Wars, grim wars I see, and Tiber foaming with blood.</div>
+        <div class="oi" data-pos="6" onclick="tog(this,'bank2','az2')">Your path of safety shall be opened from a Greek city.</div>
+        <div class="oi" data-pos="4" onclick="tog(this,'bank2','az2')">The cause of all this woe is again an alien bride.</div>
+        <div class="oi" data-pos="1" onclick="tog(this,'bank2','az2')">Into Lavinium the Trojans shall come — but shall wish they had not.</div>
+      </div>
+      <div style="margin:10px 0 4px;font-size:.83rem;font-weight:700">Your order:</div>
+      <div class="azone" id="az2"><span class="emsg" id="az2-e">Nothing selected yet — click lines above</span></div>
+      <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;">
+        <button class="cbtn" onclick="chkord('az2',6,'r2')">✅ Check Order</button>
+        <button class="rbtn" onclick="rst('bank2','az2','r2')">↺ Reset</button>
+      </div>
+      <div class="res" id="r2"></div>
+    </div>
+  </div>
+  <div class="sg">
+    <div class="st"><div class="si" style="background:var(--red-l)">🔀</div>Exercise 3 — Lines 14–27 (Daedalus's Carvings)</div>
+    <div class="oe">
+      <h4>Click each carving panel in the order it appears on the temple doors.</h4>
+      <p>Click to select → click again to deselect.</p>
+      <div class="obank" id="bank3">
+        <div class="oi" data-pos="3" onclick="tog(this,'bank3','az3')">Opposite: Gnosian land — the cruel love of the bull, Pasiphae, the Minotaur.</div>
+        <div class="oi" data-pos="5" onclick="tog(this,'bank3','az3')">Twice he tried to carve Icarus's fall — twice his hands failed with grief.</div>
+        <div class="oi" data-pos="1" onclick="tog(this,'bank3','az3')">On the doors: the death of Androgeos.</div>
+        <div class="oi" data-pos="4" onclick="tog(this,'bank3','az3')">The Labyrinth — house of toil, inextricable maze. Ariadne's thread.</div>
+        <div class="oi" data-pos="2" onclick="tog(this,'bank3','az3')">Children of Cecrops — tribute of seven sons — the urn with lots drawn.</div>
+      </div>
+      <div style="margin:10px 0 4px;font-size:.83rem;font-weight:700">Your order:</div>
+      <div class="azone" id="az3"><span class="emsg" id="az3-e">Nothing selected yet — click lines above</span></div>
+      <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;">
+        <button class="cbtn" onclick="chkord('az3',5,'r3')">✅ Check Order</button>
+        <button class="rbtn" onclick="rst('bank3','az3','r3')">↺ Reset</button>
+      </div>
+      <div class="res" id="r3"></div>
+    </div>
+  </div>
+</div>
+
+<!-- MOCK EXAM -->
+<div class="page" id="page-mock">
+  <div class="hero" style="background:linear-gradient(135deg,#6d28d9,#a855f7);">
+    <div class="hc"><div class="hbadge">Exam Simulation</div><h1>🎯 Mock Exam Passages</h1><p>Translate the Latin on paper. Then click Show Answer to check. This is exactly how the Leaving Cert works.</p></div>
+  </div>
+  <div class="sg">
+    <div class="st"><div class="si" style="background:var(--purple-l)">🎯</div>Passage 1 — Lines 1–15</div>
+    <div class="mock-passage">
+      <h4>Write out your full translation, then click Show Answer:</h4>
+      <div class="mock-lat"><div class="plabel">🏛️ Latin — Translate This</div><span class="lat">Sic fatur lacrimans, classique immittit habenas et tandem Euboicis Cumarum adlabitur oris. obvertunt pelago proras; tum dente tenaci ancora fundabat navis et litora curvae praetexunt puppes. iuvenum manus emicat ardens litus in Hesperium; quaerit pars semina flammae abstrusa in venis silicis, pars densa ferarum tecta rapit silvas inventaque flumina monstrat. at pius Aeneas arces quibus altus Apollo praesidet horrendaeque procul secreta Sibyllae, antrum immane, petit, magnam cui mentem animumque Delius inspirat vates aperitque futura. iam subeunt Triviae lucos atque aurea tecta.</span></div>
+      <button class="sbtn" onclick="tog_ans('a1',this)">👁 Show Answer</button>
+      <div class="mock-eng" id="a1" style="display:none;"><div class="plabel">🇬🇧 Correct Translation</div>Thus weeping, he speaks and gives reign to the fleet. And at length glides to the Euboean shores of Cumae. They turn their prows to the seas; then the anchor with biting tooth moored the ships, and the curved boats line the beach. Eagerly the band of warriors leaps out upon the Hesperian strand. Some seek the seeds of flame lurking in the veins of flint; some scour the woods, the thick layers of wild beasts and point out the discovered stream. But the good Aeneas seeks the heights on which Apollo watches over on high, and a vast cavern — the retreat of the dread Sibyl — on whom the Delian prophet breathes his great mind and spirit, and reveals to her the future. And now they draw near to the groves of Trivia and the golden abode.</div>
+    </div>
+  </div>
+  <div class="sg">
+    <div class="st"><div class="si" style="background:var(--purple-l)">🎯</div>Passage 2 — Lines 42–57</div>
+    <div class="mock-passage">
+      <h4>Write out your full translation, then click Show Answer:</h4>
+      <div class="mock-lat"><div class="plabel">🏛️ Latin</div><span class="lat">Excisum Euboicae latus ingens rupis in antrum, quo lati ducunt aditus centum, ostia centum, unde ruunt totidem voces, responsa Sibyllae. ventum erat ad limen, cum virgo 'poscere fata tempus' ait; 'deus ecce deus!' cui talia fanti ante fores subito non vultus, non color unus, non comptae mansere comae; sed pectus anhelum, et rabie fera corda tument, maiorque videri nec mortale sonans, adflata est numine quando iam propiore dei. 'cessas in vota precesque, Tros' ait 'Aenea? cessas? neque enim ante dehiscent attonitae magna ora domus.' et talia fata conticuit. gelidus Teucris per dura cucurrit ossa tremor, funditque preces rex pectore ab imo:</span></div>
+      <button class="sbtn" onclick="tog_ans('a2',this)">👁 Show Answer</button>
+      <div class="mock-eng" id="a2" style="display:none;"><div class="plabel">🇬🇧 Correct Translation</div>The huge side of the Euboean rock is hewn into a cavern, to where lead a hundred wide mouths, a hundred gateways. From where rush as many voices, the answers of the Sibyl. They had come to the threshold, when the maiden cries, "It is time to ask the oracles; the god, behold! The god!" As thus she spoke before the doors, suddenly neither her expression nor her colour was the same, nor did her tresses remain braided; but her bosom heaves, her wild heart swells with frenzy, and she appears taller to view; her voice has no mortal ring to it, since she has been inspired by the nearer presence of the god. "Are you hesitant to vow and pray? Are you slow, Trojan Aeneas? For till then the mighty mouths of the awestruck house will not gape open." So she spoke and was mute. A chill shudder ran through Trojans' sturdy frames, and their king pours forth prayers from his inmost heart.</div>
+    </div>
+  </div>
+  <div class="sg">
+    <div class="st"><div class="si" style="background:var(--purple-l)">🎯</div>Passage 3 — Lines 77–97 (Most Likely Exam Passage)</div>
+    <div class="mock-passage">
+      <h4>The most commonly examined passage. Write full translation, then check:</h4>
+      <div class="mock-lat"><div class="plabel">🏛️ Latin</div><span class="lat">At Phoebi nondum patiens immanis in antro bacchatur vates, magnum si pectore possit excussisse deum; tanto magis ille fatigat os rabidum, fera corda domans, fingitque premendo. ostia iamque domus patuere ingentia centum sponte sua vatisque ferunt responsa per auras: 'o tandem magnis pelagi defuncte periclis (sed terrae graviora manent), in regna Lavini Dardanidae venient (mitte hanc de pectore curam), sed non et venisse volent. bella, horrida bella, et Thybrim multo spumantem sanguine cerno. non Simois tibi nec Xanthus nec Dorica castra defuerint; alius Latio iam partus Achilles, natus et ipse dea; nec Teucris addita Iuno usquam aberit, cum tu supplex in rebus egenis quas gentis Italum aut quas non oraveris urbes! causa mali tanti coniunx iterum hospita Teucris externique iterum thalami. tu ne cede malis, sed contra audentior ito, qua tua te Fortuna sinet. via prima salutis (quod minime reris) Graia pandetur ab urbe.'</span></div>
+      <button class="sbtn" onclick="tog_ans('a3',this)">👁 Show Answer</button>
+      <div class="mock-eng" id="a3" style="display:none;"><div class="plabel">🇬🇧 Correct Translation</div>But the prophetess, not yet enduring the sway of Phoebus, storms wildly in the cavern, if perchance she may shake the mighty god from off her breast: So much the more he tires her raving mouth, taming her wild heart, and moulds her by restraint. And now the hundred mighty mouths of the house have opened of their own accord, and bring through the air a reply of the prophetess. "O you that at last has fulfilled the mighty perils of the sea — but on land more grievous woes await you — into the kingdom of Lavinium the sons of Dardanus shall come — banish this care from your heart — but they shall also wish they had not come. Wars, grim wars I see, and Tiber foaming with streams of blood. A Simois you shall not lack, nor a Xanthus, nor a Doric camp. Even now another Achilles is provided in Latium, he too goddess-born; nor shall Juno anywhere fail to harass the Trojans, when you are begging in your day of need — what peoples, what cities of Italy shall you not implore! The cause of all this woe to the Trojans is again an alien bride, again a foreign marriage. But do not give in to any evils, but go forth to meet them more boldly than your fortune shall allow you. Your path of safety shall first, little as you would think it, be opened from a Greek city."</div>
+    </div>
+  </div>
+  <div class="sg">
+    <div class="st"><div class="si" style="background:var(--purple-l)">🎯</div>Passage 4 — Lines 55–76 (Aeneas's Prayer)</div>
+    <div class="mock-passage">
+      <h4>Write out your full translation, then click Show Answer:</h4>
+      <div class="mock-lat"><div class="plabel">🏛️ Latin</div><span class="lat">'Phoebe, gravis Troiae semper miserate labores, Dardana qui Paridis derexti tela manusque corpus in Aeacidae, magnas obeuntia terras tot maria intravi duce te penitusque repostas Massylum gentis praetentaque Syrtibus arva: iam tandem Italiae fugientis prendimus oras. hac Troiana tenus fuerit fortuna secuta; vos quoque Pergameae iam fas est parcere genti, dique deaeque omnes... tuque, o sanctissima vates, praescia venturi, da Latio considere Teucros errantisque deos agitataque numina Troiae. tum Phoebo et Triviae solido de marmore templum instituam festosque dies de nomine Phoebi. te quoque magna manent regnis penetralia nostris... foliis tantum ne carmina manda, ne turbata volent rapidis ludibria ventis; ipsa canas oro.' finem dedit ore loquendi.</span></div>
+      <button class="sbtn" onclick="tog_ans('a4',this)">👁 Show Answer</button>
+      <div class="mock-eng" id="a4" style="display:none;"><div class="plabel">🇬🇧 Correct Translation</div>"O Phoebus, who hast ever pitied the heavy woes of Troy, thou who didst guide the Dardan shaft and the hand of Paris against the body of Aeacides. Under thy guidance did I enter upon many seas surrounding mighty lands, the far remote Massylian tribes and the fields that fringe the Syrtes: Now at last we grasp the shores of Italy which elude us. Thus far only may Troy's fortune have followed us. You too, all you gods and goddesses, may now rightly spare the race of Pergamus... And you, most revered prophetess, who hast foreknowledge of the future, grant that the Trojans may rest in Latium, and the wandering gods of Troy. Then to Phoebus and to Trivia will I set up a temple of solid marble, and the festal days in the name of Phoebus. You also a stately shrine awaits in our realm... Only trust not your verses to leaves lest they fly in disorder, the sport of rushing winds; chant them yourself, I pray." And he made an end of speaking.</div>
+    </div>
+  </div>
+</div>
+
+<button class="bbtn" onclick="sp('home',document.querySelector('.nt'))">🏠 Home</button>
+
+<script>
+function sp(id, btn) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nt').forEach(t => t.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  if (btn) btn.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function tl(el) { el.classList.toggle('open'); }
+
+function chk(id) {
+  document.getElementById(id).querySelectorAll('.bi').forEach(i => {
+    i.classList.remove('ok','bad');
+    if (i.value.trim().toLowerCase() === i.dataset.answer.toLowerCase()) i.classList.add('ok');
+    else if (i.value.trim()) i.classList.add('bad');
+  });
+}
+function rev(id) {
+  document.getElementById(id).querySelectorAll('.bi').forEach(i => { i.value = i.dataset.answer; i.classList.add('ok'); });
+}
+
+function tog(item, bankId, zoneId) {
+  const zone = document.getElementById(zoneId);
+  const emsg = document.getElementById(zoneId + '-e');
+  if (item.classList.contains('sel')) {
+    item.classList.remove('sel');
+    item.style.background = '';
+    item.style.borderColor = '';
+    document.getElementById(bankId).appendChild(item);
+  } else {
+    item.classList.add('sel');
+    zone.appendChild(item);
+  }
+  if (emsg) emsg.style.display = zone.querySelectorAll('.oi').length ? 'none' : 'block';
+}
+
+function chkord(zoneId, total, resId) {
+  const zone = document.getElementById(zoneId);
+  const items = Array.from(zone.querySelectorAll('.oi'));
+  const res = document.getElementById(resId);
+  res.style.display = 'block';
+  if (items.length < total) {
+    res.style.background = '#fef3c7'; res.style.color = '#92400e';
+    res.textContent = '⚠️ Select all ' + total + ' lines first.'; return;
+  }
+  let ok = 0;
+  items.forEach((item, i) => {
+    const correct = parseInt(item.dataset.pos) === i + 1;
+    if (correct) { ok++; item.style.background = '#d1fae5'; item.style.borderColor = '#059669'; }
+    else { item.style.background = '#fee2e2'; item.style.borderColor = '#dc2626'; }
+  });
+  if (ok === total) { res.style.background = '#d1fae5'; res.style.color = '#065f46'; res.textContent = '✅ Perfect! All in correct order!'; }
+  else { res.style.background = '#fee2e2'; res.style.color = '#7f1d1d'; res.textContent = ok + '/' + total + ' correct. Green = right place, Red = wrong place.'; }
+}
+
+function rst(bankId, zoneId, resId) {
+  const bank = document.getElementById(bankId);
+  const zone = document.getElementById(zoneId);
+  const emsg = document.getElementById(zoneId + '-e');
+  const res = document.getElementById(resId);
+  Array.from(zone.querySelectorAll('.oi')).forEach(i => {
+    i.classList.remove('sel'); i.style.background = ''; i.style.borderColor = '';
+    bank.appendChild(i);
+  });
+  if (emsg) emsg.style.display = 'block';
+  if (res) { res.style.display = 'none'; res.textContent = ''; }
+}
+
+function tog_ans(divId, btn) {
+  const d = document.getElementById(divId);
+  if (d.style.display === 'none') { d.style.display = 'block'; btn.textContent = '🙈 Hide Answer'; }
+  else { d.style.display = 'none'; btn.textContent = '👁 Show Answer'; }
+}
+</script>
+</body>
+</html>
