@@ -6,274 +6,274 @@
 <title>Latin Hub — Leaving Cert Study Guide</title>
 <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Deca:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #f8f6f2;
-    --card: #ffffff;
-    --text: #1a1a2e;
-    --text-light: #555570;
-    --accent-main: #b71c1c;
-    --accent-secondary: #fbc02d;
-    --accent-tertiary: #5e35b1;
+  :root {
+    --bg: #f8f6f2;
+    --card: #ffffff;
+    --text: #1a1a2e;
+    --text-light: #555570;
+    --accent-main: #b71c1c;
+    --accent-secondary: #fbc02d;
+    --accent-tertiary: #5e35b1;
     --accent-quaternary: #1565c0;
-    --border: #e0dcd4;
-    --shadow: 0 4px 20px rgba(0,0,0,0.06);
-    --shadow-hover: 0 12px 30px rgba(0,0,0,0.12);
-    --radius: 16px;
-  }
+    --border: #e0dcd4;
+    --shadow: 0 4px 20px rgba(0,0,0,0.06);
+    --shadow-hover: 0 12px 30px rgba(0,0,0,0.12);
+    --radius: 16px;
+  }
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
 
-  body {
-    font-family: 'Lexend', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    font-size: 17px;
-    line-height: 1.7;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
+  body {
+    font-family: 'Lexend', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 17px;
+    line-height: 1.7;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
 
-  .top-bar {
-    background: white;
-    border-bottom: 2px solid var(--border);
-    padding: 16px 40px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: sticky;
-    top: 0;
-    z-index: 50;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.02);
-  }
-  .top-bar h1 { font-size: 22px; font-weight: 700; color: var(--text); letter-spacing: 0.02em; margin: 0 auto; }
-  .top-bar span { color: var(--accent-main); }
-  .back-link {
-    position: absolute; left: 40px;
-    text-decoration: none; color: var(--text-light);
-    font-size: 14px; font-weight: 600;
-    display: flex; align-items: center; gap: 6px;
-    transition: color 0.2s;
-  }
-  .back-link:hover { color: var(--accent-main); }
+  .top-bar {
+    background: white;
+    border-bottom: 2px solid var(--border);
+    padding: 16px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+  }
+  .top-bar h1 { font-size: 22px; font-weight: 700; color: var(--text); letter-spacing: 0.02em; margin: 0 auto; }
+  .top-bar span { color: var(--accent-main); }
+  .back-link {
+    position: absolute; left: 40px;
+    text-decoration: none; color: var(--text-light);
+    font-size: 14px; font-weight: 600;
+    display: flex; align-items: center; gap: 6px;
+    transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--accent-main); }
 
-  .hero {
-    background: linear-gradient(135deg, #1a1a2e 0%, #2a0a3a 50%, #1a0b2e 100%);
-    color: white; padding: 80px 40px; text-align: center;
-    position: relative; overflow: hidden;
-  }
-  .hero::after {
-    content: ''; position: absolute; inset: 0;
-    background: url('data:image/svg+xml;utf8,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
-    opacity: 0.6; pointer-events: none;
-  }
-  .hero h2 { font-size: 48px; font-weight: 700; margin-bottom: 16px; animation: slideDown 0.6s ease-out; }
-  .hero p { font-size: 20px; color: rgba(255,255,255,0.85); max-width: 700px; margin: 0 auto; line-height: 1.6; animation: fadeIn 1s ease-out; }
+  .hero {
+    background: linear-gradient(135deg, #1a1a2e 0%, #2a0a3a 50%, #1a0b2e 100%);
+    color: white; padding: 80px 40px; text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .hero::after {
+    content: ''; position: absolute; inset: 0;
+    background: url('data:image/svg+xml;utf8,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+    opacity: 0.6; pointer-events: none;
+  }
+  .hero h2 { font-size: 48px; font-weight: 700; margin-bottom: 16px; animation: slideDown 0.6s ease-out; }
+  .hero p { font-size: 20px; color: rgba(255,255,255,0.85); max-width: 700px; margin: 0 auto; line-height: 1.6; animation: fadeIn 1s ease-out; }
 
-  .dashboard { flex: 1; padding: 60px 40px; max-width: 1200px; margin: 0 auto; width: 100%; }
-  .section-title { font-size: 24px; font-weight: 700; color: var(--text); margin-bottom: 30px; text-align: center; text-transform: uppercase; letter-spacing: 0.05em; }
+  .dashboard { flex: 1; padding: 60px 40px; max-width: 1200px; margin: 0 auto; width: 100%; }
+  .section-title { font-size: 24px; font-weight: 700; color: var(--text); margin-bottom: 30px; text-align: center; text-transform: uppercase; letter-spacing: 0.05em; }
 
-  .topics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; justify-content: center; }
+  .topics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; justify-content: center; }
 
-  .chapter-card {
-    background: var(--card); border: 2px solid var(--border); border-radius: var(--radius);
-    padding: 32px 24px; text-decoration: none; display: flex; flex-direction: column;
-    align-items: center; text-align: center;
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    box-shadow: var(--shadow); position: relative; overflow: hidden;
-    animation: slideUp 0.5s ease-out backwards; max-width: 400px; margin: 0 auto; width: 100%;
-  }
-  .chapter-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 6px; transition: height 0.3s ease; }
-  .chapter-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-hover); border-color: transparent; }
-  .chapter-card:hover::before { height: 12px; }
+  .chapter-card {
+    background: var(--card); border: 2px solid var(--border); border-radius: var(--radius);
+    padding: 32px 24px; text-decoration: none; display: flex; flex-direction: column;
+    align-items: center; text-align: center;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: var(--shadow); position: relative; overflow: hidden;
+    animation: slideUp 0.5s ease-out backwards; max-width: 400px; margin: 0 auto; width: 100%;
+  }
+  .chapter-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 6px; transition: height 0.3s ease; }
+  .chapter-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-hover); border-color: transparent; }
+  .chapter-card:hover::before { height: 12px; }
 
-  .card-theory::before { background: var(--accent-main); }
-  .card-theory:hover { border-color: var(--accent-main); }
-  .card-theory .mc-icon { color: var(--accent-main); background: #ffebee; }
+  .card-theory::before { background: var(--accent-main); }
+  .card-theory:hover { border-color: var(--accent-main); }
+  .card-theory .mc-icon { color: var(--accent-main); background: #ffebee; }
 
-  .card-logic::before { background: var(--accent-secondary); }
-  .card-logic:hover { border-color: var(--accent-secondary); }
-  .card-logic .mc-icon { color: #f57f17; background: #fff9c4; }
+  .card-logic::before { background: var(--accent-secondary); }
+  .card-logic:hover { border-color: var(--accent-secondary); }
+  .card-logic .mc-icon { color: #f57f17; background: #fff9c4; }
 
-  .card-history::before { background: var(--accent-tertiary); }
-  .card-history:hover { border-color: var(--accent-tertiary); }
-  .card-history .mc-icon { color: var(--accent-tertiary); background: #ede7f6; }
+  .card-history::before { background: var(--accent-tertiary); }
+  .card-history:hover { border-color: var(--accent-tertiary); }
+  .card-history .mc-icon { color: var(--accent-tertiary); background: #ede7f6; }
 
   .card-literature::before { background: var(--accent-quaternary); }
   .card-literature:hover { border-color: var(--accent-quaternary); }
   .card-literature .mc-icon { color: var(--accent-quaternary); background: #e3f2fd; }
 
-  .mc-icon { font-size: 42px; width: 80px; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 50%; margin-bottom: 20px; transition: transform 0.3s ease; }
-  .chapter-card:hover .mc-icon { transform: scale(1.1) rotate(5deg); }
-  .mc-title { font-size: 20px; font-weight: 700; color: var(--text); margin-bottom: 10px; }
-  .mc-desc { font-size: 14px; color: var(--text-light); line-height: 1.6; }
-  .mc-action { margin-top: 24px; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text); opacity: 0.6; transition: opacity 0.2s; }
-  .chapter-card:hover .mc-action { opacity: 1; }
+  .mc-icon { font-size: 42px; width: 80px; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 50%; margin-bottom: 20px; transition: transform 0.3s ease; }
+  .chapter-card:hover .mc-icon { transform: scale(1.1) rotate(5deg); }
+  .mc-title { font-size: 20px; font-weight: 700; color: var(--text); margin-bottom: 10px; }
+  .mc-desc { font-size: 14px; color: var(--text-light); line-height: 1.6; }
+  .mc-action { margin-top: 24px; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text); opacity: 0.6; transition: opacity 0.2s; }
+  .chapter-card:hover .mc-action { opacity: 1; }
 
-  .bottom-section { margin-top: 80px; text-align: center; animation: fadeIn 1.2s ease-out; }
-  .info-card {
-    background: var(--card); border: 2px solid var(--border); border-radius: var(--radius);
-    padding: 40px 30px; box-shadow: var(--shadow); transition: transform 0.3s ease;
-    display: flex; flex-direction: column; align-items: center; max-width: 800px; margin: 0 auto;
-  }
-  .info-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); border-color: var(--accent-main); }
-  .info-card h3 { font-size: 22px; font-weight: 700; color: var(--text); margin-bottom: 12px; }
-  .info-card p { font-size: 16px; color: var(--text-light); line-height: 1.7; margin-bottom: 26px; }
-  .study-btn {
-    display: inline-block; background: var(--accent-main); color: white;
-    padding: 12px 28px; border-radius: 8px; font-weight: 600; text-decoration: none;
-    transition: all 0.2s; box-shadow: 0 4px 12px rgba(183, 28, 28, 0.2);
-  }
-  .study-btn:hover { background: #c62828; transform: translateY(-2px); box-shadow: 0 6px 16px rgba(183, 28, 28, 0.4); }
+  .bottom-section { margin-top: 80px; text-align: center; animation: fadeIn 1.2s ease-out; }
+  .info-card {
+    background: var(--card); border: 2px solid var(--border); border-radius: var(--radius);
+    padding: 40px 30px; box-shadow: var(--shadow); transition: transform 0.3s ease;
+    display: flex; flex-direction: column; align-items: center; max-width: 800px; margin: 0 auto;
+  }
+  .info-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); border-color: var(--accent-main); }
+  .info-card h3 { font-size: 22px; font-weight: 700; color: var(--text); margin-bottom: 12px; }
+  .info-card p { font-size: 16px; color: var(--text-light); line-height: 1.7; margin-bottom: 26px; }
+  .study-btn {
+    display: inline-block; background: var(--accent-main); color: white;
+    padding: 12px 28px; border-radius: 8px; font-weight: 600; text-decoration: none;
+    transition: all 0.2s; box-shadow: 0 4px 12px rgba(183, 28, 28, 0.2);
+  }
+  .study-btn:hover { background: #c62828; transform: translateY(-2px); box-shadow: 0 6px 16px rgba(183, 28, 28, 0.4); }
 
-  /* ── PASSWORD OVERLAY ── */
-  #pw-overlay {
-    position: fixed; inset: 0; z-index: 9999;
-    background: linear-gradient(135deg, #1a1a2e 0%, #0d0d1a 100%);
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Lexend', sans-serif;
-  }
-  #pw-box {
-    background: #ffffff; border-radius: 20px; padding: 48px 40px;
-    width: 100%; max-width: 420px; text-align: center;
-    box-shadow: 0 24px 80px rgba(0,0,0,0.4); animation: pwFadeIn 0.4s ease-out;
-  }
-  @keyframes pwFadeIn {
-    from { opacity: 0; transform: translateY(24px) scale(0.97); }
-    to   { opacity: 1; transform: translateY(0) scale(1); }
-  }
-  #pw-lock-icon { font-size: 52px; margin-bottom: 16px; display: block; animation: pwBounce 0.6s ease-out 0.2s both; }
-  @keyframes pwBounce {
-    0%   { transform: scale(0); opacity: 0; }
-    60%  { transform: scale(1.15); opacity: 1; }
-    100% { transform: scale(1); }
-  }
-  #pw-box h2 { font-size: 22px; font-weight: 700; color: #1a1a2e; margin-bottom: 6px; }
-  #pw-box p  { font-size: 14px; color: #555570; margin-bottom: 28px; }
-  #pw-input {
-    width: 100%; padding: 14px 18px; border: 2px solid #e0dcd4; border-radius: 10px;
-    font-family: 'Lexend', sans-serif; font-size: 16px; color: #1a1a2e; outline: none;
-    transition: border-color 0.2s, box-shadow 0.2s; letter-spacing: 0.05em;
-  }
-  #pw-input:focus { border-color: #b71c1c; box-shadow: 0 0 0 4px #b71c1c22; }
-  #pw-input.shake { animation: pwShake 0.4s ease; border-color: #ef4444; box-shadow: 0 0 0 4px #ef444422; }
-  @keyframes pwShake {
-    0%,100% { transform: translateX(0); }
-    20%     { transform: translateX(-8px); }
-    40%     { transform: translateX(8px); }
-    60%     { transform: translateX(-5px); }
-    80%     { transform: translateX(5px); }
-  }
-  #pw-btn {
-    margin-top: 16px; width: 100%; padding: 14px; background: #b71c1c; color: white;
-    border: none; border-radius: 10px; font-family: 'Lexend', sans-serif;
-    font-size: 16px; font-weight: 700; cursor: pointer;
-    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
-    box-shadow: 0 4px 16px #b71c1c44;
-  }
-  #pw-btn:hover { background: #7f0000; transform: translateY(-2px); box-shadow: 0 8px 24px #b71c1c55; }
-  #pw-btn:active { transform: translateY(0); }
-  #pw-error { margin-top: 12px; font-size: 13px; color: #ef4444; font-weight: 600; min-height: 18px; }
-  body.pw-locked { overflow: hidden; }
+  /* ── PASSWORD OVERLAY ── */
+  #pw-overlay {
+    position: fixed; inset: 0; z-index: 9999;
+    background: linear-gradient(135deg, #1a1a2e 0%, #0d0d1a 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Lexend', sans-serif;
+  }
+  #pw-box {
+    background: #ffffff; border-radius: 20px; padding: 48px 40px;
+    width: 100%; max-width: 420px; text-align: center;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.4); animation: pwFadeIn 0.4s ease-out;
+  }
+  @keyframes pwFadeIn {
+    from { opacity: 0; transform: translateY(24px) scale(0.97); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  #pw-lock-icon { font-size: 52px; margin-bottom: 16px; display: block; animation: pwBounce 0.6s ease-out 0.2s both; }
+  @keyframes pwBounce {
+    0%   { transform: scale(0); opacity: 0; }
+    60%  { transform: scale(1.15); opacity: 1; }
+    100% { transform: scale(1); }
+  }
+  #pw-box h2 { font-size: 22px; font-weight: 700; color: #1a1a2e; margin-bottom: 6px; }
+  #pw-box p  { font-size: 14px; color: #555570; margin-bottom: 28px; }
+  #pw-input {
+    width: 100%; padding: 14px 18px; border: 2px solid #e0dcd4; border-radius: 10px;
+    font-family: 'Lexend', sans-serif; font-size: 16px; color: #1a1a2e; outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s; letter-spacing: 0.05em;
+  }
+  #pw-input:focus { border-color: #b71c1c; box-shadow: 0 0 0 4px #b71c1c22; }
+  #pw-input.shake { animation: pwShake 0.4s ease; border-color: #ef4444; box-shadow: 0 0 0 4px #ef444422; }
+  @keyframes pwShake {
+    0%,100% { transform: translateX(0); }
+    20%     { transform: translateX(-8px); }
+    40%     { transform: translateX(8px); }
+    60%     { transform: translateX(-5px); }
+    80%     { transform: translateX(5px); }
+  }
+  #pw-btn {
+    margin-top: 16px; width: 100%; padding: 14px; background: #b71c1c; color: white;
+    border: none; border-radius: 10px; font-family: 'Lexend', sans-serif;
+    font-size: 16px; font-weight: 700; cursor: pointer;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    box-shadow: 0 4px 16px #b71c1c44;
+  }
+  #pw-btn:hover { background: #7f0000; transform: translateY(-2px); box-shadow: 0 8px 24px #b71c1c55; }
+  #pw-btn:active { transform: translateY(0); }
+  #pw-error { margin-top: 12px; font-size: 13px; color: #ef4444; font-weight: 600; min-height: 18px; }
+  body.pw-locked { overflow: hidden; }
 
-  @keyframes slideDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
-  @keyframes slideUp   { from { opacity: 0; transform: translateY(20px);  } to { opacity: 1; transform: translateY(0); } }
-  @keyframes fadeIn    { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes slideDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes slideUp   { from { opacity: 0; transform: translateY(20px);  } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeIn    { from { opacity: 0; } to { opacity: 1; } }
 
-  @media (max-width: 768px) {
-    .top-bar { padding: 16px 20px; }
-    .back-link { position: static; margin-right: auto; }
-    .top-bar h1 { margin-left: auto; margin-right: auto; }
-    .hero { padding: 50px 20px; }
-    .hero h2 { font-size: 32px; }
-    .hero p { font-size: 16px; }
-    .dashboard { padding: 40px 20px; }
-    .topics-grid { grid-template-columns: 1fr; }
-    #pw-box { margin: 20px; padding: 36px 24px; }
-  }
+  @media (max-width: 768px) {
+    .top-bar { padding: 16px 20px; }
+    .back-link { position: static; margin-right: auto; }
+    .top-bar h1 { margin-left: auto; margin-right: auto; }
+    .hero { padding: 50px 20px; }
+    .hero h2 { font-size: 32px; }
+    .hero p { font-size: 16px; }
+    .dashboard { padding: 40px 20px; }
+    .topics-grid { grid-template-columns: 1fr; }
+    #pw-box { margin: 20px; padding: 36px 24px; }
+  }
 </style>
 </head>
 <body>
 
 <div id="pw-overlay">
-  <div id="pw-box">
-    <span id="pw-lock-icon">🔒</span>
-    <h2>Password Protected</h2>
-    <p>This page is restricted to <strong>Latin</strong> students.<br>Enter the password to continue.</p>
-    <input id="pw-input" type="password" placeholder="Enter password…" autocomplete="off" />
-    <button id="pw-btn" onclick="checkPw()">Unlock →</button>
-    <div id="pw-error"></div>
-  </div>
+  <div id="pw-box">
+    <span id="pw-lock-icon">🔒</span>
+    <h2>Password Protected</h2>
+    <p>This page is restricted to <strong>Latin</strong> students.<br>Enter the password to continue.</p>
+    <input id="pw-input" type="password" placeholder="Enter password…" autocomplete="off" />
+    <button id="pw-btn" onclick="checkPw()">Unlock →</button>
+    <div id="pw-error"></div>
+  </div>
 </div>
 <script>
-  (function() {
-    if (localStorage.getItem('lc_latin_unlocked') === 'unlocked') {
-      document.getElementById('pw-overlay').remove();
-      return;
-    }
-    document.body.classList.add('pw-locked');
-  })();
+  (function() {
+    if (localStorage.getItem('lc_latin_unlocked') === 'unlocked') {
+      document.getElementById('pw-overlay').remove();
+      return;
+    }
+    document.body.classList.add('pw-locked');
+  })();
 
-  document.getElementById('pw-input') && document.getElementById('pw-input').addEventListener('keydown', function(e) {
-    if (e.key === 'Enter') checkPw();
-    document.getElementById('pw-error').textContent = '';
-    this.classList.remove('shake');
-  });
+  document.getElementById('pw-input') && document.getElementById('pw-input').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') checkPw();
+    document.getElementById('pw-error').textContent = '';
+    this.classList.remove('shake');
+  });
 
-  function checkPw() {
-    const val = document.getElementById('pw-input').value;
-    if (val === 'ROM') {
-      localStorage.setItem('lc_latin_unlocked', 'unlocked');
-      const overlay = document.getElementById('pw-overlay');
-      overlay.style.transition = 'opacity 0.4s ease';
-      overlay.style.opacity = '0';
-      setTimeout(() => { overlay.remove(); document.body.classList.remove('pw-locked'); }, 400);
-    } else {
-      const inp = document.getElementById('pw-input');
-      inp.classList.remove('shake');
-      void inp.offsetWidth;
-      inp.classList.add('shake');
-      document.getElementById('pw-error').textContent = 'Incorrect password. Please try again.';
-      inp.value = '';
-    }
-  }
+  function checkPw() {
+    const val = document.getElementById('pw-input').value;
+    if (val === 'ROM') {
+      localStorage.setItem('lc_latin_unlocked', 'unlocked');
+      const overlay = document.getElementById('pw-overlay');
+      overlay.style.transition = 'opacity 0.4s ease';
+      overlay.style.opacity = '0';
+      setTimeout(() => { overlay.remove(); document.body.classList.remove('pw-locked'); }, 400);
+    } else {
+      const inp = document.getElementById('pw-input');
+      inp.classList.remove('shake');
+      void inp.offsetWidth;
+      inp.classList.add('shake');
+      document.getElementById('pw-error').textContent = 'Incorrect password. Please try again.';
+      inp.value = '';
+    }
+  }
 </script>
 
-  <div class="top-bar">
-    <a href="index.html" class="back-link">← Master Console</a>
-    <h1>Leaving Cert <span>Latin</span></h1>
-  </div>
+  <div class="top-bar">
+    <a href="index.html" class="back-link">← Master Console</a>
+    <h1>Leaving Cert <span>Latin</span></h1>
+  </div>
 
-  <div class="hero">
-    <h2>Welcome to your Study Hub</h2>
-    <p>Select a section below to launch your interactive notes. Master Latin vocabulary and explore the rich history of Roman art and architecture.</p>
-  </div>
+  <div class="hero">
+    <h2>Welcome to your Study Hub</h2>
+    <p>Select a section below to launch your interactive notes. Master Latin vocabulary and explore the rich history of Roman art and architecture.</p>
+  </div>
 
-  <main class="dashboard">
-    <div class="section-title">Select a topic</div>
-    
-    <div class="topics-grid">
-      
-      <a href="Latin vocab.html" class="chapter-card card-theory">
-        <div class="mc-icon">📜</div>
-        <div class="mc-title">Latin Vocabulary</div>
-        <div class="mc-desc">Practice and master key Latin terms with our interactive flashcards. Essential for translation and comprehension.</div>
-        <div class="mc-action">Start flashcards →</div>
-      </a>
+  <main class="dashboard">
+    <div class="section-title">Select a topic</div>
+    
+    <div class="topics-grid">
+      
+      <a href="Latin vocab.html" class="chapter-card card-theory">
+        <div class="mc-icon">📜</div>
+        <div class="mc-title">Latin Vocabulary</div>
+        <div class="mc-desc">Practice and master key Latin terms with our interactive flashcards. Essential for translation and comprehension.</div>
+        <div class="mc-action">Start flashcards →</div>
+      </a>
 
-      <a href="Art and architecture.html" class="chapter-card card-logic">
-        <div class="mc-icon">🏛️</div>
-        <div class="mc-title">Roman Art & Architecture</div>
-        <div class="mc-desc">Explore comprehensive history notes covering Roman engineering, classical art, and structural masterpieces.</div>
-        <div class="mc-action">View notes →</div>
-      </a>
+      <a href="Art and architecture.html" class="chapter-card card-logic">
+        <div class="mc-icon">🏛️</div>
+        <div class="mc-title">Roman Art & Architecture</div>
+        <div class="mc-desc">Explore comprehensive history notes covering Roman engineering, classical art, and structural masterpieces.</div>
+        <div class="mc-action">View notes →</div>
+      </a>
 
-      <a href="Augustus.html" class="chapter-card card-history">
-        <div class="mc-icon">👑</div>
-        <div class="mc-title">Emperor Augustus</div>
-        <div class="mc-desc">Dive into the life, reign, and political transformations of Rome's first emperor, Augustus.</div>
-        <div class="mc-action">Explore his reign →</div>
-      </a>
+      <a href="Augustus.html" class="chapter-card card-history">
+        <div class="mc-icon">👑</div>
+        <div class="mc-title">Emperor Augustus</div>
+        <div class="mc-desc">Dive into the life, reign, and political transformations of Rome's first emperor, Augustus.</div>
+        <div class="mc-action">Explore his reign →</div>
+      </a>
 
       <a href="aeneid 1-97.html" class="chapter-card card-literature">
         <div class="mc-icon">📖</div>
@@ -282,17 +282,17 @@
         <div class="mc-action">Read the epic →</div>
       </a>
 
-    </div>
+    </div>
 
-    <div class="bottom-section">
-      <div class="info-card">
-        <h3>Keep Track of Your Study 📚</h3>
-        <p>Return to your master dashboard to manage all your Leaving Cert subjects, or head over to the study tracker to analyze your performance and schedule your study sessions.</p>
-        <a href="https://studyrightireland.com" target="_blank" class="study-btn">Visit StudyRightIreland.com</a>
-      </div>
-    </div>
+    <div class="bottom-section">
+      <div class="info-card">
+        <h3>Keep Track of Your Study 📚</h3>
+        <p>Return to your master dashboard to manage all your Leaving Cert subjects, or head over to the study tracker to analyze your performance and schedule your study sessions.</p>
+        <a href="https://studyrightireland.com" target="_blank" class="study-btn">Visit StudyRightIreland.com</a>
+      </div>
+    </div>
 
-  </main>
+  </main>
 
 </body>
 </html>
