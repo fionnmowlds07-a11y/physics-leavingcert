@@ -1,0 +1,1535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Macbeth — Ultimate Themes & Symbols Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #faf9f6;
+  --card: #ffffff;
+  --border: #e8e4dc;
+  --text: #2d2926;
+  --muted: #6b6560;
+  --ambition: #c0392b;
+  --ambition-l: #fdecea;
+  --guilt: #8e44ad;
+  --guilt-l: #f5eeff;
+  --gender: #1a6b3a;
+  --gender-l: #eafaf1;
+  --supernatural: #2c3e50;
+  --supernatural-l: #eaf0f6;
+  --nature: #148f77;
+  --nature-l: #e8faf6;
+  --appearance: #d35400;
+  --appearance-l: #fef6ee;
+  --violence: #922b21;
+  --violence-l: #fdedec;
+  --fate: #2471a3;
+  --fate-l: #eaf4fb;
+  --manhood: #6d4c41;
+  --manhood-l: #fdf0eb;
+  --blood: #c0392b;
+  --blood-l: #fdecea;
+  --sleep: #2980b9;
+  --sleep-l: #ebf5fb;
+  --clothing: #7d6608;
+  --clothing-l: #fef9e7;
+  --halluc: #6c3483;
+  --halluc-l: #f5eef8;
+  --r: 16px; --rs: 10px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);line-height:1.75;font-size:16px;}
+
+/* HEADER */
+header{background:linear-gradient(140deg,#0a0a2e,#1a237e 55%,#0a0a2e);color:#fff;padding:52px 24px 44px;text-align:center;position:relative;overflow:hidden;}
+header::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 70%,rgba(74,20,140,.25),transparent 60%);}
+header h1{font-family:'Nunito',sans-serif;font-size:clamp(2rem,6vw,3.4rem);font-weight:900;letter-spacing:-1px;position:relative;}
+header h1 em{color:#f39c12;font-style:normal;}
+header p{margin-top:10px;font-size:1.05rem;color:rgba(255,255,255,.7);position:relative;}
+.hbadges{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:20px;position:relative;}
+.hbadge{background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.22);color:#fff;padding:5px 15px;border-radius:100px;font-size:.82rem;font-weight:600;}
+
+/* NAV */
+nav{background:#fff;border-bottom:2px solid var(--border);padding:0 20px;position:sticky;top:0;z-index:100;box-shadow:0 2px 10px rgba(0,0,0,.06);overflow-x:auto;white-space:nowrap;}
+nav::-webkit-scrollbar{height:3px;}
+nav::-webkit-scrollbar-thumb{background:#ccc;border-radius:4px;}
+.nav-inner{display:inline-flex;}
+nav button{background:none;border:none;cursor:pointer;padding:15px 18px;font-family:'Lexend',sans-serif;font-size:.88rem;font-weight:600;color:var(--muted);border-bottom:3px solid transparent;transition:all .2s;white-space:nowrap;}
+nav button:hover{color:var(--text);}
+nav button.active{color:#1a237e;border-bottom-color:#1a237e;}
+
+/* MAIN */
+main{max-width:1080px;margin:0 auto;padding:40px 22px 90px;}
+.sec{display:none;animation:fadeIn .3s ease;}
+.sec.active{display:block;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+/* THEME HEADER BANNER */
+.char-banner{border-radius:var(--r);padding:32px 36px;margin-bottom:28px;position:relative;overflow:hidden;}
+.char-banner::after{content:'';position:absolute;right:-20px;top:-20px;width:140px;height:140px;border-radius:50%;opacity:.08;background:currentColor;}
+.char-banner h2{font-family:'Nunito',sans-serif;font-size:2rem;font-weight:900;line-height:1.2;}
+.char-banner .sub{font-size:.9rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin:6px 0 14px;opacity:.75;}
+.char-banner .intro{font-size:1rem;line-height:1.7;max-width:720px;}
+
+/* SECTION LABEL */
+h3.label{font-family:'Nunito',sans-serif;font-size:1.15rem;font-weight:800;margin:32px 0 14px;display:flex;align-items:center;gap:8px;}
+h3.label::after{content:'';flex:1;height:2px;background:var(--border);border-radius:4px;}
+
+/* COLLAPSIBLE */
+.acc{margin-bottom:12px;}
+.acc-btn{width:100%;text-align:left;background:#fff;border:2px solid var(--border);border-radius:var(--rs);padding:15px 20px;font-family:'Lexend',sans-serif;font-size:.95rem;font-weight:600;cursor:pointer;color:var(--text);display:flex;justify-content:space-between;align-items:center;transition:background .15s;}
+.acc-btn:hover{background:#f8f5f0;}
+.acc-btn.open{border-radius:var(--rs) var(--rs) 0 0;border-bottom-color:transparent;}
+.acc-btn .arr{transition:transform .25s;flex-shrink:0;margin-left:10px;}
+.acc-btn.open .arr{transform:rotate(180deg);}
+.acc-body{display:none;background:#fff;border:2px solid var(--border);border-top:none;border-radius:0 0 var(--rs) var(--rs);padding:22px 24px;}
+.acc-body.open{display:block;}
+
+/* QUOTE BLOCK */
+.qblock{border-left:4px solid var(--c,#1a237e);background:var(--cl,#e8eaf6);border-radius:0 var(--rs) var(--rs) 0;padding:18px 20px;margin-bottom:18px;}
+.qblock blockquote{font-family:'Nunito',sans-serif;font-size:1.05rem;font-weight:700;font-style:italic;margin-bottom:8px;color:var(--text);}
+.qref{font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);margin-bottom:12px;}
+.qbody{font-size:.93rem;line-height:1.7;}
+.qbody p{margin-bottom:8px;}
+.kw{display:inline-block;background:rgba(0,0,0,.07);color:var(--text);font-weight:700;font-size:.85rem;padding:2px 9px;border-radius:5px;margin:2px 1px;}
+.tech{display:inline-block;background:var(--c,#1a237e);color:#fff;font-weight:700;font-size:.78rem;padding:2px 9px;border-radius:5px;margin:2px 1px;}
+
+/* BOX TYPES */
+.box{border-radius:var(--rs);padding:16px 20px;margin:16px 0;display:flex;gap:14px;align-items:flex-start;}
+.box .ico{font-size:1.7rem;flex-shrink:0;line-height:1;}
+.box-label{font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.7px;margin-bottom:5px;}
+.box p,.box ul{font-size:.92rem;}
+.box ul{padding-left:16px;}
+.box li{margin-bottom:5px;}
+.analogy{background:#fffbf0;border:2px solid #f39c12;}
+.analogy .box-label{color:#b7770d;}
+.memory{background:#f0fff6;border:2px solid #27ae60;}
+.memory .box-label{color:#1e8449;}
+.exam{background:#eaf4fb;border:2px solid #5dade2;}
+.exam .box-label{color:#1a6b9a;}
+.warning{background:#fff8f0;border:2px solid #e67e22;}
+.warning .box-label{color:#c0392b;}
+
+/* TIMELINE */
+.tl{position:relative;padding-left:30px;margin:8px 0;}
+.tl::before{content:'';position:absolute;left:8px;top:4px;bottom:4px;width:2px;background:var(--border);}
+.tl-item{position:relative;margin-bottom:22px;}
+.tl-item::before{content:'';position:absolute;left:-26px;top:5px;width:14px;height:14px;border-radius:50%;border:2px solid var(--c,#1a237e);background:#fff;}
+.tl-item h4{font-weight:700;font-size:.95rem;margin-bottom:3px;}
+.tl-item p{font-size:.9rem;color:var(--muted);}
+
+/* FOIL */
+.foil{display:grid;grid-template-columns:1fr 48px 1fr;gap:0;margin:16px 0;}
+.foil-col{border:2px solid var(--border);border-radius:var(--rs);padding:18px;}
+.foil-vs{display:flex;align-items:flex-start;justify-content:center;padding-top:22px;font-weight:900;color:var(--muted);font-size:1rem;}
+.foil-col h4{font-weight:800;margin-bottom:10px;}
+.foil-col ul{padding-left:16px;}
+.foil-col li{font-size:.88rem;margin-bottom:5px;}
+@media(max-width:600px){.foil{grid-template-columns:1fr;}.foil-vs{display:none;}}
+
+/* TWO COL */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:14px 0;}
+@media(max-width:600px){.two{grid-template-columns:1fr;}}
+
+/* CARD */
+.card{background:#fff;border:2px solid var(--border);border-radius:var(--rs);padding:18px 20px;}
+.card h4{font-weight:800;margin-bottom:8px;font-size:1rem;}
+.card p{font-size:.9rem;color:var(--muted);}
+.card ul{padding-left:16px;font-size:.9rem;color:var(--muted);}
+.card li{margin-bottom:5px;}
+
+/* OVERVIEW GRID */
+.ov-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:18px;margin-top:22px;}
+.ov-card{background:#fff;border:2px solid var(--border);border-radius:var(--r);padding:22px;cursor:pointer;transition:all .22s;position:relative;overflow:hidden;}
+.ov-card::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;}
+.ov-card:hover{transform:translateY(-4px);box-shadow:0 8px 28px rgba(0,0,0,.12);}
+.ov-card h3{font-family:'Nunito',sans-serif;font-size:1.25rem;font-weight:800;margin-bottom:5px;}
+.ov-card .ov-role{font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px;}
+.ov-card p{font-size:.88rem;color:var(--muted);line-height:1.6;}
+
+/* SYMBOL GRID */
+.sym-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-top:16px;}
+.scard{background:#fff;border:2px solid var(--border);border-radius:var(--rs);padding:18px;border-top:4px solid var(--c,#1a237e);}
+.scard h4{font-weight:800;margin-bottom:4px;}
+.scard .srole{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--c,#1a237e);margin-bottom:10px;}
+.scard p{font-size:.87rem;line-height:1.6;color:var(--muted);}
+.scard .sq{margin-top:10px;padding:8px 12px;background:var(--cl,#e8eaf6);border-left:3px solid var(--c,#1a237e);font-style:italic;font-size:.84rem;color:var(--text);}
+
+/* FLASHCARD */
+.fc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:18px;}
+.fc-wrap{perspective:900px;}
+.fc{width:100%;height:160px;cursor:pointer;transform-style:preserve-3d;transition:transform .45s;border-radius:var(--rs);position:relative;}
+.fc.flipped{transform:rotateY(180deg);}
+.fc-f,.fc-b{position:absolute;inset:0;backface-visibility:hidden;border-radius:var(--rs);padding:20px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;border:2px solid var(--border);}
+.fc-f{background:#fff;}
+.fc-b{transform:rotateY(180deg);}
+.fc-f p{font-style:italic;font-size:.97rem;font-weight:600;line-height:1.5;}
+.fc-b p{font-size:.87rem;line-height:1.5;}
+.fc-hint{font-size:.72rem;color:var(--muted);margin-top:8px;}
+
+/* DIVIDER */
+hr.div{border:none;border-top:2px solid var(--border);margin:32px 0;}
+
+/* SCROLL TOP */
+.stbtn{position:fixed;bottom:26px;right:26px;background:#1a237e;color:#fff;border:none;border-radius:50%;width:46px;height:46px;font-size:1.2rem;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.22);z-index:200;display:flex;align-items:center;justify-content:center;}
+.stbtn:hover{transform:scale(1.1);}
+
+/* ARC BAR */
+.arc-row{margin-bottom:14px;}
+.arc-labels{display:flex;justify-content:space-between;font-size:.82rem;font-weight:700;margin-bottom:4px;}
+.arc-track{background:var(--border);border-radius:100px;height:9px;overflow:hidden;}
+.arc-fill{height:100%;border-radius:100px;}
+
+/* SECTION INTRO BOX */
+.intro-box{background:#fff;border:2px solid var(--border);border-radius:var(--r);padding:20px 26px;margin-bottom:28px;font-size:.96rem;line-height:1.75;}
+
+/* DEBATE BOX */
+.debate{display:grid;grid-template-columns:1fr 1fr;gap:0;border:2px solid var(--border);border-radius:var(--rs);overflow:hidden;margin:14px 0;}
+.debate-col{padding:18px;}
+.debate-col:first-child{border-right:2px solid var(--border);}
+.debate-col h5{font-weight:800;font-size:.88rem;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px;}
+.debate-col ul{padding-left:16px;}
+.debate-col li{font-size:.87rem;margin-bottom:6px;}
+@media(max-width:600px){.debate{grid-template-columns:1fr;}.debate-col:first-child{border-right:none;border-bottom:2px solid var(--border);}}
+
+/* PURPOSE BOX */
+.purpose{background:var(--cl,#e8eaf6);border:2px solid var(--c,#1a237e);border-radius:var(--rs);padding:16px 20px;margin:16px 0;}
+.purpose strong{color:var(--c,#1a237e);font-size:.82rem;text-transform:uppercase;letter-spacing:.5px;display:block;margin-bottom:6px;}
+.purpose p{font-size:.92rem;}
+
+/* CHAR TAG */
+.char-tag{display:inline-block;font-size:.78rem;font-weight:700;padding:3px 10px;border-radius:100px;margin:3px 2px;}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>📌 <em>Macbeth</em> — Themes &amp; Symbols Guide</h1>
+  <p>Leaving Cert English · Every theme, symbol, motif and technique — in full depth</p>
+  <div class="hbadges">
+    <span class="hbadge">🔥 6 Major Themes</span>
+    <span class="hbadge">🩸 8 Key Symbols</span>
+    <span class="hbadge">💬 Deep Quote Analysis</span>
+    <span class="hbadge">🧠 Analogies & Memory Tricks</span>
+    <span class="hbadge">📝 Exam Tips Throughout</span>
+    <span class="hbadge">🃏 Flashcards</span>
+  </div>
+</header>
+
+<nav>
+  <div class="nav-inner">
+    <button class="active" onclick="show('overview')">🏠 Overview</button>
+    <button onclick="show('ambition')">🔥 Ambition</button>
+    <button onclick="show('guilt')">🩸 Guilt</button>
+    <button onclick="show('gender')">♀️ Gender</button>
+    <button onclick="show('supernatural')">🔮 Supernatural</button>
+    <button onclick="show('nature')">🌿 Nature &amp; Order</button>
+    <button onclick="show('appearance')">🎭 Appearance vs Reality</button>
+    <button onclick="show('fate')">⚖️ Fate vs Free Will</button>
+    <button onclick="show('violence')">⚔️ Violence</button>
+    <button onclick="show('symbols')">🔣 Symbols</button>
+    <button onclick="show('flashcards')">🃏 Flashcards</button>
+  </div>
+</nav>
+
+<main>
+
+<!-- ══════════════ OVERVIEW ══════════════ -->
+<div id="overview" class="sec active">
+
+  <div class="intro-box">
+    <strong>How to use this guide:</strong> This covers every theme, symbol, and motif in Macbeth in full exam depth. Each theme section includes: what it means, how it develops across the play, all key quotes with full analysis, which characters carry it, and Shakespeare's purpose. The <strong>Symbols</strong> tab covers all recurring motifs. <strong>Flashcards</strong> let you self-test. Every section ends with exam angles — the specific arguments and comparisons examiners reward.
+  </div>
+
+  <h3 class="label">📊 Theme Importance for the Leaving Cert</h3>
+  <div style="background:#fff;border:2px solid var(--border);border-radius:var(--r);padding:24px;">
+    <div class="arc-row"><div class="arc-labels"><span style="color:var(--ambition);font-weight:800;">Ambition / Power</span><span>★★★★★ — In virtually every question</span></div><div class="arc-track"><div class="arc-fill" style="width:100%;background:var(--ambition);"></div></div></div>
+    <div class="arc-row"><div class="arc-labels"><span style="color:var(--guilt);font-weight:800;">Guilt</span><span>★★★★★ — Always examinable</span></div><div class="arc-track"><div class="arc-fill" style="width:98%;background:var(--guilt);"></div></div></div>
+    <div class="arc-row"><div class="arc-labels"><span style="color:var(--gender);font-weight:800;">Gender / Masculinity</span><span>★★★★☆ — Very frequent</span></div><div class="arc-track"><div class="arc-fill" style="width:83%;background:var(--gender);"></div></div></div>
+    <div class="arc-row"><div class="arc-labels"><span style="color:var(--supernatural);font-weight:800;">The Supernatural</span><span>★★★★☆ — Very frequent</span></div><div class="arc-track"><div class="arc-fill" style="width:80%;background:var(--supernatural);"></div></div></div>
+    <div class="arc-row"><div class="arc-labels"><span style="color:var(--appearance);font-weight:800;">Appearance vs Reality</span><span>★★★★☆ — Runs through everything</span></div><div class="arc-track"><div class="arc-fill" style="width:78%;background:var(--appearance);"></div></div></div>
+    <div class="arc-row"><div class="arc-labels"><span style="color:var(--nature);font-weight:800;">Nature &amp; The Unnatural</span><span>★★★☆☆ — Supporting theme</span></div><div class="arc-track"><div class="arc-fill" style="width:65%;background:var(--nature);"></div></div></div>
+    <div class="arc-row"><div class="arc-labels"><span style="color:var(--fate);font-weight:800;">Fate vs Free Will</span><span>★★★☆☆ — Philosophical depth</span></div><div class="arc-track"><div class="arc-fill" style="width:62%;background:var(--fate);"></div></div></div>
+    <div class="arc-row" style="margin-bottom:0"><div class="arc-labels"><span style="color:var(--violence);font-weight:800;">Violence</span><span>★★★☆☆ — Structural theme</span></div><div class="arc-track"><div class="arc-fill" style="width:58%;background:var(--violence);"></div></div></div>
+  </div>
+
+  <h3 class="label" style="margin-top:32px;">🗺️ Themes at a Glance — Click to Explore</h3>
+  <div class="ov-grid">
+    <div class="ov-card" onclick="show('ambition')">
+      <div style="position:absolute;top:0;left:0;right:0;height:5px;background:var(--ambition);border-radius:var(--r) var(--r) 0 0;"></div>
+      <h3 style="color:var(--ambition);">🔥 Ambition</h3>
+      <div class="ov-role" style="color:var(--ambition);">The Central Theme</div>
+      <p>The engine driving the entire tragedy. Shakespeare shows that ambition without conscience doesn't bring power — it brings destruction, paranoia, and emptiness.</p>
+    </div>
+    <div class="ov-card" onclick="show('guilt')">
+      <div style="position:absolute;top:0;left:0;right:0;height:5px;background:var(--guilt);border-radius:var(--r) var(--r) 0 0;"></div>
+      <h3 style="color:var(--guilt);">🩸 Guilt</h3>
+      <div class="ov-role" style="color:var(--guilt);">The Inescapable Consequence</div>
+      <p>Guilt cannot be rationalized away. It manifests as hallucinations, sleeplessness, and madness. Both Macbeth and Lady Macbeth are destroyed by it — in opposite ways.</p>
+    </div>
+    <div class="ov-card" onclick="show('gender')">
+      <div style="position:absolute;top:0;left:0;right:0;height:5px;background:var(--gender);border-radius:var(--r) var(--r) 0 0;"></div>
+      <h3 style="color:var(--gender);">♀️ Gender</h3>
+      <div class="ov-role" style="color:var(--gender);">Manhood, Womanhood &amp; Power</div>
+      <p>Characters constantly debate what it means to "be a man." Three competing definitions, one conclusion: Lady Macbeth's version destroys everyone it touches.</p>
+    </div>
+    <div class="ov-card" onclick="show('supernatural')">
+      <div style="position:absolute;top:0;left:0;right:0;height:5px;background:var(--supernatural);border-radius:var(--r) var(--r) 0 0;"></div>
+      <h3 style="color:var(--supernatural);">🔮 The Supernatural</h3>
+      <div class="ov-role" style="color:var(--supernatural);">Temptation, Prophecy &amp; Fate</div>
+      <p>The witches don't compel anyone. They exploit existing desires. Shakespeare's message: the supernatural is dangerous because it gives us an excuse for what we already want to do.</p>
+    </div>
+    <div class="ov-card" onclick="show('nature')">
+      <div style="position:absolute;top:0;left:0;right:0;height:5px;background:var(--nature);border-radius:var(--r) var(--r) 0 0;"></div>
+      <h3 style="color:var(--nature);">🌿 Nature &amp; Order</h3>
+      <div class="ov-role" style="color:var(--nature);">The Political &amp; Natural World</div>
+      <p>When Macbeth kills the king, nature itself rebels. Storms, owls killing hawks, horses eating each other. Political disorder creates natural disorder. Order is eventually restored.</p>
+    </div>
+    <div class="ov-card" onclick="show('appearance')">
+      <div style="position:absolute;top:0;left:0;right:0;height:5px;background:var(--appearance);border-radius:var(--r) var(--r) 0 0;"></div>
+      <h3 style="color:var(--appearance);">🎭 Appearance vs Reality</h3>
+      <div class="ov-role" style="color:var(--appearance);">Deception &amp; True Nature</div>
+      <p>Nothing is what it seems. Welcoming castles hide murder. Loyal thanes are killers. The witches' truths are lies. Shakespeare makes deception the very fabric of the play.</p>
+    </div>
+    <div class="ov-card" onclick="show('fate')">
+      <div style="position:absolute;top:0;left:0;right:0;height:5px;background:var(--fate);border-radius:var(--r) var(--r) 0 0;"></div>
+      <h3 style="color:var(--fate);">⚖️ Fate vs Free Will</h3>
+      <div class="ov-role" style="color:var(--fate);">Prophecy vs Choice</div>
+      <p>Did the witches determine Macbeth's downfall, or did he choose it? Banquo heard the same prophecies and resisted. Free will is real — and that makes Macbeth's tragedy his own responsibility.</p>
+    </div>
+    <div class="ov-card" onclick="show('violence')">
+      <div style="position:absolute;top:0;left:0;right:0;height:5px;background:var(--violence);border-radius:var(--r) var(--r) 0 0;"></div>
+      <h3 style="color:var(--violence);">⚔️ Violence</h3>
+      <div class="ov-role" style="color:var(--violence);">The Vicious Cycle</div>
+      <p>Each act of violence creates the necessity for more. Macbeth knows this from the start: "Bloody instructions return to plague the inventor." Violence begets violence, until violence is all he has.</p>
+    </div>
+  </div>
+
+  <h3 class="label" style="margin-top:32px;">🔣 Key Symbols — Quick Reference</h3>
+  <div style="background:#fff;border:2px solid var(--border);border-radius:var(--r);padding:24px;">
+    <p style="font-size:.93rem;margin-bottom:16px;">Click the <strong>Symbols</strong> tab for full analysis. Here's a quick overview of the 8 symbols you must know:</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;">
+      <div style="background:var(--blood-l);border:2px solid var(--blood);border-radius:var(--rs);padding:12px;cursor:pointer;" onclick="show('symbols')"><strong style="color:var(--blood);font-size:.88rem;">🩸 Blood</strong><p style="font-size:.82rem;margin-top:4px;color:var(--muted);">From bravery → guilt. The central motif.</p></div>
+      <div style="background:var(--sleep-l);border:2px solid var(--sleep);border-radius:var(--rs);padding:12px;cursor:pointer;" onclick="show('symbols')"><strong style="color:var(--sleep);font-size:.88rem;">😴 Sleep</strong><p style="font-size:.82rem;margin-top:4px;color:var(--muted);">Innocence and peace. "Murdered" by Macbeth.</p></div>
+      <div style="background:var(--clothing-l);border:2px solid var(--clothing);border-radius:var(--rs);padding:12px;cursor:pointer;" onclick="show('symbols')"><strong style="color:var(--clothing);font-size:.88rem;">👔 Clothing</strong><p style="font-size:.82rem;margin-top:4px;color:var(--muted);">Identity and legitimacy. "Borrowed robes."</p></div>
+      <div style="background:var(--halluc-l);border:2px solid var(--halluc);border-radius:var(--rs);padding:12px;cursor:pointer;" onclick="show('symbols')"><strong style="color:var(--halluc);font-size:.88rem;">🗡️ Dagger / Ghost</strong><p style="font-size:.82rem;margin-top:4px;color:var(--muted);">Guilt made visible. Hallucinations as conscience.</p></div>
+      <div style="background:#fffbf0;border:2px solid #f39c12;border-radius:var(--rs);padding:12px;cursor:pointer;" onclick="show('symbols')"><strong style="color:#b7770d;font-size:.88rem;">🌙 Light &amp; Dark</strong><p style="font-size:.82rem;margin-top:4px;color:var(--muted);">Goodness vs evil. Stars hiding. Candles dying.</p></div>
+      <div style="background:#e8faf6;border:2px solid var(--nature);border-radius:var(--rs);padding:12px;cursor:pointer;" onclick="show('symbols')"><strong style="color:var(--nature);font-size:.88rem;">🌱 Nature / Garden</strong><p style="font-size:.82rem;margin-top:4px;color:var(--muted);">Good kings nurture. Bad kings corrupt.</p></div>
+      <div style="background:var(--gender-l);border:2px solid var(--gender);border-radius:var(--rs);padding:12px;cursor:pointer;" onclick="show('symbols')"><strong style="color:var(--gender);font-size:.88rem;">🍼 Milk</strong><p style="font-size:.82rem;margin-top:4px;color:var(--muted);">Femininity and compassion. "Milk for gall."</p></div>
+      <div style="background:#fdedec;border:2px solid var(--violence);border-radius:var(--rs);padding:12px;cursor:pointer;" onclick="show('symbols')"><strong style="color:var(--violence);font-size:.88rem;">🌲 Birnam Wood</strong><p style="font-size:.82rem;margin-top:4px;color:var(--muted);">Nature defeating the unnatural king.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ AMBITION ══════════════ -->
+<div id="ambition" class="sec" style="--c:var(--ambition);--cl:var(--ambition-l);">
+
+  <div class="char-banner" style="background:var(--ambition-l);color:var(--ambition);">
+    <h2>🔥 Ambition &amp; Power</h2>
+    <div class="sub">The Central Theme · Characters: Macbeth, Lady Macbeth, Duncan, Macduff, Banquo</div>
+    <div class="intro" style="color:var(--text);">Macbeth is fundamentally a play about what happens when ambition is freed from moral restraint. Shakespeare doesn't present ambition as inherently evil — Banquo and Macduff both have ambition. The difference is that Macbeth and Lady Macbeth allow ambition to override every other value they hold. The result is not power — it is emptiness, paranoia, and death.</div>
+  </div>
+
+  <div class="box analogy">
+    <span class="ico">🎰</span>
+    <div>
+      <div class="box-label">Think of it like this</div>
+      <p>Ambition in Macbeth is like a drug. A small amount helps you perform — it's what made Macbeth a great soldier. But once you start chasing the high, you need more and more. You start doing things you never thought you'd do. By the end, you've lost everything that made life worth living, and the drug doesn't even work anymore. You're just doing it to function. That's exactly Macbeth's arc from Act 1 to Act 5.</p>
+    </div>
+  </div>
+
+  <h3 class="label">📈 How Ambition Develops Through the Play</h3>
+  <div class="tl" style="--c:var(--ambition);">
+    <div class="tl-item">
+      <h4>Act 1 — Ambition Awakened (and Suppressed)</h4>
+      <p>The witches don't create Macbeth's ambition — they unlock it. His first aside after the prophecy shows he's already thinking about murder. He tries to suppress it ("Let not light see my black and deep desires") but the seed is planted. Lady Macbeth fans it into flame.</p>
+    </div>
+    <div class="tl-item">
+      <h4>Act 2 — Ambition Acts (and Immediately Regrets)</h4>
+      <p>The murder of Duncan. Macbeth commits the act but is instantly destroyed by guilt. He can't say "Amen." He hears voices. He has not gained the peace of mind he expected — and never will. The gap between what ambition promised and what it delivers opens immediately.</p>
+    </div>
+    <div class="tl-item">
+      <h4>Act 3 — Ambition Perpetuates Itself</h4>
+      <p>Having murdered Duncan, Macbeth realises his ambition has created new threats. He cannot rest — he must kill Banquo to protect the crown he killed to get. "To be thus is nothing, but to be safely thus." Ambition now generates more ambition, in an endless loop.</p>
+    </div>
+    <div class="tl-item">
+      <h4>Act 4 — Ambition Becomes Tyranny</h4>
+      <p>Orders the massacre of Macduff's entire family — including children — with no political justification. Pure terror. "From this moment, the very firstlings of my heart shall be the firstlings of my hand." Ambition has become indistinguishable from cruelty.</p>
+    </div>
+    <div class="tl-item">
+      <h4>Act 5 — Ambition's Promise Revealed as Empty</h4>
+      <p>"Life's but a walking shadow... signifying nothing." At the apex of his power, Macbeth finds existence meaningless. His wife is dead and he can barely feel it. Ambition's ultimate cost: the capacity to feel anything at all.</p>
+    </div>
+  </div>
+
+  <h3 class="label">💬 Key Quotes — Full Analysis</h3>
+
+  <div class="acc">
+    <button class="acc-btn open" onclick="tog(this)">"Let not light see my black and deep desires" (Act 1.4) — Shame of His Own Ambition <span class="arr">▼</span></button>
+    <div class="acc-body open">
+      <div class="qblock"><blockquote>"Stars, hide your fires! / Let not light see my black and deep desires."</blockquote><div class="qref">Act 1, Scene 4 — Macbeth's aside after Duncan names Malcolm as heir</div>
+      <div class="qbody">
+        <p><span class="tech">Light/Dark Imagery</span> — Light represents God, truth, and moral scrutiny. Macbeth wants to hide from divine judgement because his ambition is sinful. He doesn't want God to see what he's thinking.</p>
+        <p><span class="kw">"Black and deep desires"</span> — He describes his own ambition as "black" — evil. This self-awareness is crucial. He knows his desire is wrong. He is not deluded. He is making a conscious choice to pursue something he knows is immoral.</p>
+        <p><span class="tech">Apostrophe</span> — Speaking directly to the stars adds drama and reveals his internal battle. He's not just scheming — he's fighting himself.</p>
+        <p><strong>Exam angle:</strong> Use this quote to prove Macbeth's full moral awareness from the very start. He cannot claim the witches made him do it. He knew what he wanted and chose to pursue it anyway. That's what makes him a tragic hero, not a simple villain.</p>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="acc">
+    <button class="acc-btn" onclick="tog(this)">"Vaulting ambition, which o'erleaps itself" (Act 1.7) — Ambition Self-Diagnosed <span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="qblock"><blockquote>"I have no spur / To prick the sides of my intent, but only / Vaulting ambition, which o'erleaps itself / And falls on th'other."</blockquote><div class="qref">Act 1, Scene 7 — Macbeth's soliloquy before the murder</div>
+      <div class="qbody">
+        <p><span class="tech">Extended Horse Metaphor</span> — "Vaulting" = leaping over a horse. "O'erleaps itself" = jumps too high and crashes on the other side. Ambition overshoots its target and destroys the person who carries it.</p>
+        <p><span class="kw">"No spur"</span> — A spur is used to drive a horse forward. Macbeth admits he has no legitimate cause, no injustice to avenge. His only motivation is personal desire for power. He says this in a speech where he has just listed every reason NOT to kill Duncan — and then Lady Macbeth walks in and he changes his mind anyway.</p>
+        <p>This is arguably the most self-aware moment in the play. Macbeth correctly diagnoses his own fatal flaw, predicts his own downfall, and then commits the crime anyway. That is what makes the play tragic rather than just violent — he could have stopped.</p>
+        <p><strong>Exam angle:</strong> This quote is the play's thesis statement on ambition. Use it whenever you need to show that Shakespeare presents ambition as inherently self-defeating — it always "falls on th'other."</p>
+      </div></div>
+      <div class="box memory"><span class="ico">🧠</span><div><div class="box-label">The Horse Trick</div><p>Horse → jumps too high → crashes on the other side. Macbeth's ambition doesn't help him reach his goal — it causes him to overshoot and destroy himself. He even PREDICTS this will happen. Then does it anyway.</p></div></div>
+    </div>
+  </div>
+
+  <div class="acc">
+    <button class="acc-btn" onclick="tog(this)">"To be thus is nothing, but to be safely thus" (Act 3.1) — Ambition Generates More Ambition <span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="qblock"><blockquote>"To be thus is nothing, / But to be safely thus. — Our fears in Banquo / Stick deep."</blockquote><div class="qref">Act 3, Scene 1 — Macbeth's soliloquy before ordering Banquo's murder</div>
+      <div class="qbody">
+        <p>He is King. He has everything he wanted. And he immediately discovers it isn't enough. Being king means nothing if he cannot hold the crown securely. This is the nature of unchecked ambition — it can never be satisfied.</p>
+        <p><span class="kw">"Safely thus"</span> — He doesn't just want to be king; he wants to be king permanently, unchallenged. But the witches' prophecy about Banquo's line means the crown may pass from his bloodline. So the crown he murdered to obtain is already feeling precarious.</p>
+        <p>This moment shows that ambition creates a trap. The moment you achieve what you wanted through wrong means, you must commit more wrong to protect it. There is no exit once you enter this cycle.</p>
+        <p><strong>Exam angle:</strong> Use this to show ambition as a self-perpetuating cycle. Every crime Macbeth commits makes the next one necessary. This is Shakespeare's structural argument against power-seeking: it can never rest.</p>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="acc">
+    <button class="acc-btn" onclick="tog(this)">"I am cabined, cribbed, confined" (Act 3.4) — Ambition as Prison <span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="qblock"><blockquote>"I am cabined, cribbed, confined, bound in / To saucy doubts and fears."</blockquote><div class="qref">Act 3, Scene 4 — Macbeth hearing that Fleance escaped</div>
+      <div class="qbody">
+        <p><span class="tech">Alliterative Triplet</span> — "Cabined, cribbed, confined" — all three mean trapped or enclosed. The triple repetition with alliteration creates a suffocating, claustrophobic effect. The king who wanted freedom and power is now more imprisoned than ever.</p>
+        <p>Contrast with "vaulting ambition" in Act 1 — that phrase suggests freedom, height, expansion. By Act 3, the same ambition has produced the opposite: total confinement. Shakespeare uses these two quotes together to show the arc: ambition feels limitless at first; it ends in a cage.</p>
+        <p><strong>Exam angle:</strong> Pair this with "vaulting ambition" to show the trajectory of ambition in the play. Start = endless possibility. End = trapped by consequences. This contrast is exactly what Shakespeare means about ambition being self-defeating.</p>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="acc">
+    <button class="acc-btn" onclick="tog(this)">"I have almost forgot the taste of fears" (Act 5.3) — Ambition Empties the Soul <span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="qblock"><blockquote>"I have almost forgot the taste of fears; / The time has been my senses would have cool'd / To hear a night-shriek."</blockquote><div class="qref">Act 5, Scene 3 — Macbeth preparing for the final battle</div>
+      <div class="qbody">
+        <p>Macbeth remembers when he could feel fear — and mourns its absence. Fear is a human emotion. Its loss marks his dehumanisation. Ambition has stripped him of his ability to feel anything.</p>
+        <p><span class="kw">"I have supped full with horrors"</span> (same speech) — He has consumed so much horror that he is numb to it. Like someone who has eaten until they can't taste food anymore, he has experienced so much violence that his emotional palate is dead.</p>
+        <p>This is Shakespeare's most devastating statement about unchecked ambition: it doesn't just destroy others — it destroys your ability to experience life. Macbeth achieves everything he wanted and loses the capacity to feel anything about it.</p>
+        <p><strong>Exam angle:</strong> Use this to argue that ambition's ultimate cost in Macbeth is not death but dehumanisation. Macbeth loses his humanity before he loses his life.</p>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="acc">
+    <button class="acc-btn" onclick="tog(this)">"Life's but a walking shadow... signifying nothing" (Act 5.5) — The Final Emptiness <span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="qblock"><blockquote>"Life's but a walking shadow, a poor player / That struts and frets his hour upon the stage, / And then is heard no more... Signifying nothing."</blockquote><div class="qref">Act 5, Scene 5 — After Lady Macbeth's death</div>
+      <div class="qbody">
+        <p><span class="tech">Theatre Metaphor</span> — Life = a bad performance by a forgettable actor. Shakespeare chose his own profession as the metaphor for emptiness. A playwright saying his own art form is meaningless is a deeply ironic move — it suggests even creating lasting art (like Macbeth) can't give life meaning if you've destroyed everything that matters.</p>
+        <p><span class="kw">"Signifying nothing"</span> — His entire journey — every murder, every paranoid night, every seized crown — amounts to nothing. This is Shakespeare's final verdict on unchecked ambition: it doesn't bring power or happiness. It brings nihilism.</p>
+        <p>His wife has just died. He barely reacts. The man who called her "my dearest partner of greatness" in Act 1 now delivers a speech about meaninglessness. Ambition killed his capacity for love, grief, and connection.</p>
+        <p><strong>Exam angle:</strong> This is the play's ultimate statement on the theme of ambition. Use it as your closing argument: Shakespeare shows that the man who sacrificed everything for power ends up believing life itself has no meaning. Ambition doesn't just fail to deliver — it destroys the person who pursues it.</p>
+      </div></div>
+    </div>
+  </div>
+
+  <h3 class="label">🎯 Characters Who Represent the Ambition Theme</h3>
+  <div class="two">
+    <div class="card"><h4 style="color:var(--ambition);">Macbeth — Ambition Without Restraint</h4><p>Every step of his destruction is caused by ambition. He knows it, names it, and falls victim to it anyway. The most complex example because he is fully self-aware throughout.</p></div>
+    <div class="card"><h4 style="color:var(--guilt);">Lady Macbeth — Ambition by Proxy</h4><p>Her ambition is for Macbeth's advancement, not directly her own. She channels ambition through her husband. This makes her story slightly different — and arguably more tragic, because she loses everything for someone else's crown.</p></div>
+  </div>
+  <div class="two">
+    <div class="card"><h4 style="color:var(--nature);">Banquo — Ambition Controlled</h4><p>Has equal ambition ("May they not be my oracles as well?") but stops himself: "But hush, no more." Proves ambition is not inherently fatal — only when it overrides conscience.</p></div>
+    <div class="card"><h4 style="color:var(--gender);">Macduff — No Personal Ambition</h4><p>"Let me find him, Fortune, and more I beg not." Asks for nothing but justice. The complete absence of personal ambition makes him the moral hero and the instrument of justice.</p></div>
+  </div>
+
+  <div class="purpose" style="--c:var(--ambition);--cl:var(--ambition-l);">
+    <strong>Shakespeare's Message Through This Theme</strong>
+    <p>Macbeth is a political play. Written for King James I, it is a powerful argument against regicide and the unchecked pursuit of power. By showing a genuinely great man utterly destroyed by ambition, Shakespeare sends the message: no crown is worth this cost. The punishment is not just death — it is the loss of sleep, love, friendship, sanity, and finally the capacity to feel anything at all. Power without moral foundation is not power — it is a cage.</p>
+  </div>
+</div>
+
+<!-- ══════════════ GUILT ══════════════ -->
+<div id="guilt" class="sec" style="--c:var(--guilt);--cl:var(--guilt-l);">
+
+  <div class="char-banner" style="background:var(--guilt-l);color:var(--guilt);">
+    <h2>🩸 Guilt</h2>
+    <div class="sub">The Inescapable Consequence · Characters: Macbeth, Lady Macbeth</div>
+    <div class="intro" style="color:var(--text);">Guilt is the engine of destruction in Macbeth. Shakespeare presents it as utterly inescapable — it cannot be rationalised, washed away, or suppressed. It manifests physically in hallucinations, insomnia, and sleepwalking. Both Macbeth and Lady Macbeth are destroyed by it, but in mirror-image ways: Macbeth feels it immediately and then numbs; Lady Macbeth suppresses it and then collapses. Together they demonstrate two paths to the same destination: ruin.</div>
+  </div>
+
+  <div class="box analogy">
+    <span class="ico">🪞</span>
+    <div>
+      <div class="box-label">Think of it like this</div>
+      <p>Guilt in this play is like a dye that gets into fabric. Lady Macbeth thinks you can wash it out with water. Macbeth immediately knows you can't. By Act 5, they both know the truth: "Out, damned spot" — she is scrubbing at stains that will never come out. The guilt was always going to win. The only question was when.</p>
+    </div>
+  </div>
+
+  <h3 class="label">🔄 The Mirror Structure — Macbeth and Lady Macbeth Swap</h3>
+  <div class="box exam"><span class="ico">📌</span><div><div class="box-label">The Key Structural Point — Must Know This</div>
+  <p>Lady Macbeth and Macbeth experience guilt in completely opposite ways, and their trajectories cross:<br><br>
+  <strong>Act 2:</strong> Macbeth is consumed by guilt (can't say Amen, hears voices). Lady Macbeth is calm ("a little water clears us").<br>
+  <strong>Act 3:</strong> Macbeth begins to numb ("scorpions in my mind" but then moves to action). Lady Macbeth begins to crack ("nought's had, all's spent").<br>
+  <strong>Act 5:</strong> Macbeth is almost numb — barely reacts to his wife's death. Lady Macbeth is completely destroyed — sleepwalking, hallucinating, unable to sleep.<br><br>
+  They swap. The strong one falls apart. The one who seemed weak was actually more honest about his guilt. This reversal is one of Shakespeare's greatest structural achievements.</p></div></div>
+
+  <h3 class="label">💬 Key Quotes — Full Analysis</h3>
+
+  <div class="acc">
+    <button class="acc-btn open" onclick="tog(this)">"I had most need of blessing, and 'Amen' stuck in my throat" (Act 2.2) <span class="arr">▼</span></button>
+    <div class="acc-body open">
+      <div class="qblock" style="--c:var(--guilt);--cl:var(--guilt-l);"><blockquote>"I had most need of blessing, and 'Amen' / Stuck in my throat."</blockquote><div class="qref">Act 2, Scene 2 — Macbeth immediately after killing Duncan</div>
+      <div class="qbody">
+        <p><span class="tech">Religious Imagery</span> — He cannot say "Amen" — the word of assent to God. Guilt has severed his connection to God and to prayer. He had "most need of blessing" — the worst moment of his life — and could not access divine forgiveness.</p>
+        <p>This is one of the most psychologically precise moments in the play. The very second the murder is done, Macbeth's conscience begins its work. He doesn't need time to reflect — the guilt is instantaneous.</p>
+        <p><span class="kw">"Stuck in my throat"</span> — Physical language for a spiritual problem. The word couldn't leave his body. His body itself was rejecting the ability to pray, because some part of him knew he no longer deserved it.</p>
+        <p><strong>Exam angle:</strong> Use this to show guilt as spiritual destruction. It's not just psychological — Macbeth's relationship with God, with peace, with redemption is severed the moment he commits murder. The play suggests there is no forgiveness for this crime.</p>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="acc">
+    <button class="acc-btn" onclick="tog(this)">"Macbeth does murder sleep!" (Act 2.2) — Guilt as Prophecy <span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="qblock" style="--c:var(--guilt);--cl:var(--guilt-l);"><blockquote>"Methought I heard a voice cry, 'Sleep no more! / Macbeth does murder sleep' — the innocent sleep; / Sleep, that knits up the ravell'd sleave of care..."</blockquote><div class="qref">Act 2, Scene 2 — Seconds after killing Duncan</div>
+      <div class="qbody">
+        <p><span class="tech">Sleep Symbolism</span> — Sleep = innocence, peace, the ability to rest guilt-free. By murdering the sleeping Duncan, Macbeth has killed his own ability to sleep peacefully. The crime and its consequence are perfectly mirrored.</p>
+        <p><span class="kw">"Knits up the ravell'd sleave of care"</span> — Sleep is a weaver that repairs the "tangled thread" of daily anxiety. It restores us. Macbeth has destroyed his access to this restorative state — and Lady Macbeth's. This voice is prophetic: both characters eventually lose sleep completely.</p>
+        <p><span class="tech">Third Person / Dissociation</span> — "Macbeth does murder sleep" — he refers to himself by name, as though watching from outside. This split from himself is the first sign of psychological fracturing — a direct result of guilt.</p>
+        <p><strong>The fulfilment:</strong> By Act 5, Lady Macbeth is sleepwalking and Macbeth says he "has supped full with horrors." The voice was right. He did murder sleep — for both of them.</p>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="acc">
+    <button class="acc-btn" onclick="tog(this)">"Will all great Neptune's ocean wash this blood clean from my hand?" (Act 2.2) <span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="qblock" style="--c:var(--guilt);--cl:var(--guilt-l);"><blockquote>"Will all great Neptune's ocean wash this blood / Clean from my hand? No — this my hand will rather / The multitudinous seas incarnadine, / Making the green one red."</blockquote><div class="qref">Act 2, Scene 2 — Macbeth after the murder</div>
+      <div class="qbody">
+        <p><span class="tech">Classical Allusion / Hyperbole</span> — Neptune = Roman god of the sea. All the world's oceans cannot wash his hands clean. The scale of the hyperbole shows the enormity of his guilt — it is bigger than the entire natural world.</p>
+        <p>He reverses the direction: not that the ocean washes him clean, but that his blood-guilt would stain the entire ocean red. His sin is so vast it would corrupt nature itself — echoing the natural disorder that follows Duncan's murder (storms, owls killing hawks).</p>
+        <p>Compare to Lady Macbeth's response seconds later: "A little water clears us of this deed." The contrast is stark. He knows the guilt is permanent; she thinks it's temporary. By Act 5, she discovers he was right.</p>
+        <p><strong>Exam angle:</strong> This quote is one of the best for showing guilt as physically inescapable. Pair it with "Out, damned spot" to show the contrast between Macbeth's instant recognition of permanent guilt and Lady Macbeth's delayed recognition of the same truth.</p>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="acc">
+    <button class="acc-btn" onclick="tog(this)">"A little water clears us of this deed" (Act 2.2) — Lady Macbeth's Fatal Delusion <span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="qblock" style="--c:var(--guilt);--cl:var(--guilt-l);"><blockquote>"A little water clears us of this deed. / How easy is it, then!"</blockquote><div class="qref">Act 2, Scene 2 — Lady Macbeth dismissing Macbeth's anguish</div>
+      <div class="qbody">
+        <p>The most powerful example of dramatic irony in the play. The audience will remember these exact words when they watch her scrubbing her hands endlessly in Act 5, unable to remove imaginary blood.</p>
+        <p>She believes guilt is rational — that the conscience can be argued out of its distress. She is catastrophically wrong. The human conscience is emotional and physical, not logical. No amount of rationalisation can override what she has done.</p>
+        <p><span class="kw">"How easy"</span> — She does not just dismiss the guilt; she mocks Macbeth for feeling it. Her confidence here is the seed of her later destruction. The more she suppresses, the more devastating the eventual release.</p>
+        <p><strong>The ironic echo:</strong> Act 2 — "a little water clears us." Act 5 — "all the perfumes of Arabia will not sweeten this little hand." Same hands. Opposite verdict. Shakespeare closes the loop perfectly.</p>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="acc">
+    <button class="acc-btn" onclick="tog(this)">"Nought's had, all's spent, where our desire is got without content" (Act 3.2) <span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="qblock" style="--c:var(--guilt);--cl:var(--guilt-l);"><blockquote>"Nought's had, all's spent, / Where our desire is got without content."</blockquote><div class="qref">Act 3, Scene 2 — Lady Macbeth alone</div>
+      <div class="qbody">
+        <p>Lady Macbeth has achieved everything she planned. She is Queen of Scotland. And she is miserable. This is the first crack in her composure — the first moment she admits, even to herself, that it hasn't worked.</p>
+        <p><span class="kw">"Nought's had, all's spent"</span> — Everything sacrificed, nothing gained. The currency metaphor is brutal: they paid the highest possible price (their souls, their peace) and received nothing of real value in return.</p>
+        <p><span class="kw">"Content"</span> — Not just happiness. "Content" means guilt-free peace of mind. The crown brings luxury but not contentment, because the conscience will not allow contentment when it knows what was done to obtain it.</p>
+        <p>This is Lady Macbeth's quiet admission that she was wrong. The plan didn't work. The murder didn't deliver what she promised. And this admission, coming before the sleepwalking scene, shows that her collapse is not sudden — it has been building since Act 3.</p>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="acc">
+    <button class="acc-btn" onclick="tog(this)">"Out, damned spot! Out, I say!... All the perfumes of Arabia will not sweeten this little hand" (Act 5.1) <span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="qblock" style="--c:var(--guilt);--cl:var(--guilt-l);"><blockquote>"Out, damned spot! Out, I say!... Will these hands ne'er be clean?... Here's the smell of the blood still: all the perfumes of Arabia will not sweeten this little hand."</blockquote><div class="qref">Act 5, Scene 1 — Lady Macbeth sleepwalking</div>
+      <div class="qbody">
+        <p><span class="tech">Sleepwalking as Symbol</span> — Sleep = innocence, peace. Lady Macbeth cannot sleep because she cannot escape her guilt even in unconsciousness. Her waking life's suppression fails in sleep, and the truth comes pouring out.</p>
+        <p><span class="kw">"Damned spot"</span> — The blood she imagines on her hands. The woman who said water was sufficient now cannot stop scrubbing. She can see it, she can smell it ("Here's the smell of blood") — all three senses are infected with guilt.</p>
+        <p><span class="kw">"Little hand"</span> — Why "little"? Two readings: she's trying to minimise what she did (this small hand, this small crime), OR she has regressed to a childlike vulnerability under the crushing weight of guilt. Either reading reveals psychological disintegration.</p>
+        <p><span class="tech">Fragmented Speech</span> — Her sentences are short, broken, non-sequential. She relives different moments: the murder, Banquo, conversations with Macbeth. Her mind is in pieces — guilt has literally fragmented her consciousness.</p>
+        <p>The Doctor's verdict: "More needs she the divine than the physician." Her illness is spiritual and moral. No medicine can cure guilt. This directly states Shakespeare's message about the theme: guilt is beyond human remedy.</p>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="acc">
+    <button class="acc-btn" onclick="tog(this)">"I am in blood stepped in so far..." (Act 3.4) — Guilt and the Point of No Return <span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="qblock" style="--c:var(--guilt);--cl:var(--guilt-l);"><blockquote>"I am in blood / Stepp'd in so far, that, should I wade no more, / Returning were as tedious as go o'er."</blockquote><div class="qref">Act 3, Scene 4 — After seeing Banquo's ghost</div>
+      <div class="qbody">
+        <p><span class="tech">Extended Blood/River Metaphor</span> — He imagines himself wading through a river of blood. He's gone so far he can't return. This is the moment he accepts his guilt as permanent and decides to stop fighting it.</p>
+        <p><span class="kw">"Tedious"</span> — He doesn't say returning is "impossible" or "wrong." He says it would be boring. This chilling word shows his moral numbness accelerating. Guilt is doing what it always does in the play — destroying the capacity for normal feeling.</p>
+        <p>Blood here represents both literal murder and accumulated guilt. Both are now so thick around him that he is drowning. His acceptance of this ("going o'er" rather than returning) marks the moment he stops being a guilty murderer and becomes a committed tyrant.</p>
+        <p><strong>Exam angle:</strong> Use this to mark the transition point in Macbeth's arc. Before this: guilty but still fighting his conscience. After this: numb, committed to violence, no longer capable of the guilt that made him human in Acts 1-2.</p>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="purpose" style="--c:var(--guilt);--cl:var(--guilt-l);">
+    <strong>Shakespeare's Message Through This Theme</strong>
+    <p>Guilt in Macbeth is not a temporary discomfort — it is a permanent, inescapable destruction. Shakespeare shows that the power gained through regicide is not worth the terrible guilt that follows. The message is both moral and political: don't commit murder for advancement because the punishment isn't just death — it's the loss of sleep, sanity, love, faith, and peace. Lady Macbeth thought guilt was temporary. She was wrong. Macbeth knew it was permanent. He was right. Both are destroyed. The only question was how fast.</p>
+  </div>
+</div>
+
+<!-- ══════════════ GENDER ══════════════ -->
+<div id="gender" class="sec" style="--c:var(--gender);--cl:var(--gender-l);">
+
+  <div class="char-banner" style="background:var(--gender-l);color:var(--gender);">
+    <h2>♀️ Gender &amp; Masculinity</h2>
+    <div class="sub">Manhood · Womanhood · Power · Key Motif: Milk · Characters: Lady Macbeth, Macbeth, Macduff, Lady Macduff</div>
+    <div class="intro" style="color:var(--text);">Shakespeare places gender at the heart of this tragedy. Characters constantly debate what it means to "be a man." Through Lady Macbeth's rejection of femininity, Macbeth's conflicted masculinity, and Macduff's emotionally honest manhood, Shakespeare builds a complex argument about gender that ultimately punishes those who weaponise it and rewards those who honour it.</div>
+  </div>
+
+  <div class="box analogy">
+    <span class="ico">⚖️</span>
+    <div>
+      <div class="box-label">Think of it like this</div>
+      <p>Imagine three different people defining "strength." The first says strength means never showing emotion and taking what you want by force. The second says strength means restraint and honour. The third says strength means feeling your pain fully AND still acting with courage. By the end of the play, you can see which definition actually produces strength — and which one destroys the person who holds it.</p>
+    </div>
+  </div>
+
+  <h3 class="label">🏆 The Three Competing Definitions of Manhood</h3>
+  <div class="box exam"><span class="ico">📌</span><div><div class="box-label">This Table = Exam Gold. Know All Three.</div>
+  <p>Shakespeare deliberately gives us three different definitions of manhood, all challenged by different characters, to explore what masculinity really means. The play's verdict is clear — but understanding all three is essential.</p></div></div>
+
+  <div style="background:#fff;border:2px solid var(--border);border-radius:var(--r);overflow:hidden;margin:16px 0;">
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;border-bottom:2px solid var(--border);">
+      <div style="padding:14px 16px;background:var(--guilt-l);border-right:2px solid var(--border);"><strong style="color:var(--guilt);font-size:.85rem;">LADY MACBETH'S DEFINITION</strong></div>
+      <div style="padding:14px 16px;background:var(--ambition-l);border-right:2px solid var(--border);"><strong style="color:var(--ambition);font-size:.85rem;">MACBETH'S DEFINITION</strong></div>
+      <div style="padding:14px 16px;background:var(--gender-l);"><strong style="color:var(--gender);font-size:.85rem;">MACDUFF'S DEFINITION</strong></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;">
+      <div style="padding:16px;border-right:2px solid var(--border);font-size:.88rem;">A real man takes what he wants through force. Compassion = weakness. Courage = willingness to commit violence. Hesitation = cowardice.<br><br><em>"When you durst do it, then you were a man."</em></div>
+      <div style="padding:16px;border-right:2px solid var(--border);font-size:.88rem;">A real man acts within moral bounds. "I dare do all that may become a man; who dares do more is none." He briefly holds this view before Lady M overrides him.<br><br><em>"I dare do all that may become a man."</em></div>
+      <div style="padding:16px;font-size:.88rem;">A real man feels deeply AND acts honourably. Emotion is strength, not weakness. "I must also feel it as a man." Shakespeare's endorsed definition.<br><br><em>"I must also feel it as a man."</em></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;border-top:2px solid var(--border);">
+      <div style="padding:12px 16px;background:#fdecea;border-right:2px solid var(--border);font-size:.82rem;color:var(--ambition);font-weight:700;">Result: Collapse, madness, death</div>
+      <div style="padding:12px 16px;background:#fff3e0;border-right:2px solid var(--border);font-size:.82rem;color:#e65100;font-weight:700;">Result: Abandoned — leads to tyranny</div>
+      <div style="padding:12px 16px;background:var(--gender-l);font-size:.82rem;color:var(--gender);font-weight:700;">Result: Moral integrity, justice, victory</div>
+    </div>
+  </div>
+
+  <h3 class="label">💬 Key Quotes — Full Analysis</h3>
+
+  <div class="acc">
+    <button class="acc-btn open" onclick="tog(this)">"Unsex me here... take my milk for gall" (Act 1.5) — Rejecting Femininity <span class="arr">▼</span></button>
+    <div class="acc-body open">
+      <div class="qblock" style="--c:var(--gender);--cl:var(--gender-l);"><blockquote>"Come, you spirits / That tend on mortal thoughts! Unsex me here, / And fill me from the crown to the toe, top-full / Of direst cruelty... Come to my woman's breast / And take my milk for gall."</blockquote><div class="qref">Act 1, Scene 5 — Lady Macbeth's soliloquy</div>
+      <div class="qbody">
+        <p><span class="kw">"Unsex me here"</span> — She believes femininity will physically prevent her from committing murder. Femininity = kindness, compassion, nurturing. She wants these removed so she can act with what she perceives as masculine decisiveness.</p>
+        <p><span class="kw">"Milk for gall"</span> — <strong>Milk</strong> = maternal instinct, nourishment, the feminine. <strong>Gall</strong> = bile, poison, bitterness. She wants to swap one for the other. This is the antithesis of motherhood.</p>
+        <p><span class="tech">Irony</span> — The fact that she has to BEG spirits to make her cruel proves she is NOT naturally cruel. She has to fight her own nature. This is why guilt destroys her later — the compassion she tried to eliminate was never fully gone.</p>
+        <p>Lady Macbeth calls on spirits (just like the witches). This aligns her with the supernatural and signals to a Jacobean audience that she is "unnatural" — stepping outside her God-ordained role as woman.</p>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="acc">
+    <button class="acc-btn" onclick="tog(this)">"Too full of the milk of human kindness" (Act 1.5) — Kindness as Weakness <span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="qblock" style="--c:var(--gender);--cl:var(--gender-l);"><blockquote>"Yet do I fear thy nature; / It is too full o' the milk of human kindness / To catch the nearest way."</blockquote><div class="qref">Act 1, Scene 5 — Lady Macbeth reading Macbeth's letter</div>
+      <div class="qbody">
+        <p><span class="kw">"Milk of human kindness"</span> — "Milk" = femininity, nurturing, compassion. Lady Macbeth frames kindness as a female quality — a weakness. She views Macbeth's decency as an obstacle, not a virtue.</p>
+        <p><span class="kw">"Too full"</span> — Not just that he has kindness, but that he has too much of it. Like a vessel overfull. This framing positions goodness as excess — something to be drained away rather than celebrated.</p>
+        <p><span class="tech">Dramatic Irony</span> — Lady Macbeth is calling Macbeth "too feminine" for the plan. But she herself couldn't kill Duncan because "he resembled my father." She projects onto him the very weakness she cannot escape.</p>
+        <p><strong>Exam angle:</strong> This is the key quote for showing Lady Macbeth's view that femininity = weakness. Contrast with Lady Macduff, who is feminine and nurturing but is presented by Shakespeare with dignity — her "weakness" (being a mother, staying home) is not punished. Lady Macbeth's "strength" (rejecting femininity) is.</p>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="acc">
+    <button class="acc-btn" onclick="tog(this)">"When you durst do it, then you were a man" (Act 1.7) — Emasculation as Weapon <span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="qblock" style="--c:var(--gender);--cl:var(--gender-l);"><blockquote>"When you durst do it, then you were a man; / And to be more than what you were, you would / Be so much more the man."</blockquote><div class="qref">Act 1, Scene 7 — Lady Macbeth after Macbeth says he won't kill Duncan</div>
+      <div class="qbody">
+        <p>Macbeth has just made the right moral decision — he won't kill Duncan. Lady Macbeth's weapon is his masculinity. She reframes his hesitation as cowardice and his previous ambition as his "true" masculine self.</p>
+        <p><span class="kw">"Durst"</span> — Past tense of "dare." She is saying: when you had the courage to dare, that was when you were a real man. Now you're backing down — therefore you are not. This is manipulation through gender identity.</p>
+        <p>She even uses infanticide to make her point: she says she would have dashed her own baby's brains out rather than break her word. This is the most extreme statement in the play. It works — Macbeth is convinced within minutes.</p>
+        <p><span class="tech">Emasculation</span> — In a warrior patriarchal society, questioning a man's courage was one of the most devastating attacks possible. Lady Macbeth knows exactly what she is doing. This is calculated, not emotional.</p>
+        <p><strong>Exam angle:</strong> This is the key quote for showing gender as a weapon. Lady Macbeth uses masculinity as a tool of manipulation. Compare to Macduff's definition — real manhood is not about being manipulated by someone weaponising your insecurities.</p>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="acc">
+    <button class="acc-btn" onclick="tog(this)">"I dare do all that may become a man; who dares do more, is none" (Act 1.7) — Macbeth's Counter <span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="qblock" style="--c:var(--gender);--cl:var(--gender-l);"><blockquote>"I dare do all that may become a man; / Who dares do more, is none."</blockquote><div class="qref">Act 1, Scene 7 — Macbeth responding to Lady Macbeth</div>
+      <div class="qbody">
+        <p>Macbeth's counter-definition of manhood: a real man acts within moral limits. Doing "more" than what is right — crossing into cruelty or dishonour — makes you "none" — no longer a man at all.</p>
+        <p><span class="kw">"Become a man"</span> — Pun on "become." Both: to look like a man (appropriate behaviour) and to turn into a man (identity). Manhood here is defined by what you DON'T do, not by what you are willing to do.</p>
+        <p>This is Macbeth's best moment on the gender theme. He briefly articulates a healthy and honourable version of masculinity. Then Lady Macbeth destroys it with her continued emasculation, and he abandons this position.</p>
+        <p>The tragedy is that Macbeth's own definition of manhood here is essentially the same as Macduff's. He knew the right answer. He chose the wrong one.</p>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="acc">
+    <button class="acc-btn" onclick="tog(this)">"I must also feel it as a man" (Act 4.3) — The Correct Definition <span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="qblock" style="--c:var(--gender);--cl:var(--gender-l);"><blockquote>"I shall do so; / But I must also feel it as a man. / I cannot but remember such things were / That were most precious to me."</blockquote><div class="qref">Act 4, Scene 3 — Macduff after hearing his family is dead</div>
+      <div class="qbody">
+        <p>Malcolm tells Macduff to fight his grief "like a man" — to suppress and weaponise it. Macduff's response is the play's most important statement on gender.</p>
+        <p><span class="kw">"Also feel"</span> — Not instead of acting, but in addition to acting. Macduff doesn't reject Malcolm's call to fight. He says he must do BOTH — grieve AND fight. Strength and emotion are not opposites in his worldview.</p>
+        <p>This is Shakespeare's endorsed definition of manhood. Macduff is the character who defeats Macbeth, restores justice, and carries the play's moral authority. His view of manhood — that feeling makes you stronger, not weaker — is therefore the play's answer to Lady Macbeth's view.</p>
+        <p><strong>Exam angle:</strong> This is the quote that closes the gender debate. Compare: Lady Macbeth (emotion = weakness), Macbeth Act 1 (the right idea, abandoned), and Macduff (the right idea, maintained). Shakespeare sides with Macduff — the emotionally honest man wins.</p>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="acc">
+    <button class="acc-btn" onclick="tog(this)">"My dearest partner of greatness" (Act 1.5) — The Unusual Marriage <span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="qblock" style="--c:var(--gender);--cl:var(--gender-l);"><blockquote>"My dearest partner of greatness... what greatness is promised thee."</blockquote><div class="qref">Act 1, Scene 5 — Lady Macbeth reading Macbeth's letter</div>
+      <div class="qbody">
+        <p><span class="kw">"Partner"</span> — Not "wife," not "subordinate" — partner. This word is unusual for Jacobean England, where women were expected to be subservient. Macbeth treats Lady Macbeth as an equal, which is presented as both admirable and dangerous.</p>
+        <p>Shakespeare may be suggesting that this unusual equality in their marriage is part of what goes wrong. In a society where gender roles were rigidly defined, their mutual disregard for those roles contributes to the unnatural order that leads to murder.</p>
+        <p>However, it's also possible to read this more sympathetically: their partnership is one of the few genuinely loving relationships in the play. The tragedy is partly that ambition destroys this partnership — by Act 5, he can't react to her death.</p>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="acc">
+    <button class="acc-btn" onclick="tog(this)">"Bring forth men children only!" (Act 1.7) — Macbeth Praises Lady M's Masculine Courage <span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="qblock" style="--c:var(--gender);--cl:var(--gender-l);"><blockquote>"Bring forth men children only; / For thy undaunted mettle should compose / Nothing but males."</blockquote><div class="qref">Act 1, Scene 7 — Macbeth, persuaded to proceed with the murder</div>
+      <div class="qbody">
+        <p>After Lady Macbeth persuades him, Macbeth praises her courage. He says her "undaunted mettle" (fearless quality) is so masculine that she should only produce male children.</p>
+        <p><span class="tech">Dramatic Irony</span> — He is praising her for abandoning the very qualities that made her (and him) human. Her "courage" is actually the suppression of conscience. He is admiring the thing that will ultimately destroy her.</p>
+        <p>There is also a darker reading: by saying she should "bring forth men children only," he may be subtly reminding her of her gender role — her biological function as a woman is to produce children (and specifically male heirs). Even in praising her, he may be re-asserting the patriarchal hierarchy.</p>
+        <p><strong>Exam angle:</strong> This quote is useful for showing the complexity of gender in the play. Lady Macbeth is praised for being "masculine" — but this very quality is presented as unnatural and destructive. Shakespeare is not straightforwardly praising her power; he's showing it as something that will backfire.</p>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="purpose" style="--c:var(--gender);--cl:var(--gender-l);">
+    <strong>Shakespeare's Message Through This Theme</strong>
+    <p>For a Jacobean audience, Lady Macbeth would have been deeply alarming — a woman commanding her husband, calling on spirits, mocking his morality. Shakespeare ultimately <strong>punishes</strong> her for stepping outside her gender role: her madness and death are consequences of acting "unnaturally." This would have reassured conservative Jacobean values. However, a modern reader can also see her more sympathetically — as a woman with real ability trapped in a world where her only power was through manipulation. Her tragedy is also the tragedy of having no legitimate outlet for her intelligence. The play is not simply pro-patriarchal; it is deeply complex about gender, and examiners reward responses that acknowledge this complexity.</p>
+  </div>
+</div>
+
+<!-- ══════════════ SUPERNATURAL ══════════════ -->
+<div id="supernatural" class="sec" style="--c:var(--supernatural);--cl:var(--supernatural-l);">
+
+  <div class="char-banner" style="background:var(--supernatural-l);color:var(--supernatural);">
+    <h2>🔮 The Supernatural</h2>
+    <div class="sub">Prophecy · Equivocation · Temptation · Characters: The Witches, Macbeth, Banquo, Hecate</div>
+    <div class="intro" style="color:var(--text);">The supernatural in Macbeth is not the cause of tragedy — it is the catalyst. The witches never compel anyone to do anything. They offer half-truths to people whose ambition is already primed to receive them. Shakespeare's argument: the supernatural is dangerous not because it has power over us, but because it gives us permission to do what we already secretly want to do.</div>
+  </div>
+
+  <div class="box warning">
+    <span class="ico">⚠️</span>
+    <div>
+      <div class="box-label">The Most Important Point — Examiners Test This</div>
+      <p>The witches never tell Macbeth to kill anyone. They predict he will be king — not that he must commit murder. Banquo hears the same prophecies and resists completely. The tragedy is <strong>Macbeth's choice</strong>, not the witches' command. This is Shakespeare's most important statement about the supernatural: it exploits what is already inside you.</p>
+    </div>
+  </div>
+
+  <h3 class="label">🎯 What the Supernatural Represents</h3>
+  <div class="two">
+    <div class="card"><h4>Temptation</h4><p>The witches show people what they already want. Macbeth "starts" with fear when he hears the prophecy — not because it's shocking, but because it matches his secret desire. They exploit the desire; they don't create it.</p></div>
+    <div class="card"><h4>Equivocation</h4><p>Every prophecy contains a technically-true double meaning designed to mislead. "None of woman born" — Macduff was delivered by C-section. "Birnam Wood marches" — soldiers carry branches. Truth and deception are woven together.</p></div>
+  </div>
+  <div class="two">
+    <div class="card"><h4>Political Purpose (James I)</h4><p>James I wrote <em>Daemonologie</em> (1597) on the dangers of witchcraft. By presenting witches as unambiguously evil and as the source of Scotland's ruin, Shakespeare flatters his royal patron and validates his beliefs.</p></div>
+    <div class="card"><h4>Free Will vs Fate</h4><p>The play deliberately leaves ambiguous whether Macbeth's fate was predetermined. Banquo's resistance suggests free will exists. Macbeth's destruction suggests fate may also be at work. Shakespeare never resolves this — the ambiguity is the point.</p></div>
+  </div>
+
+  <h3 class="label">💬 Key Quotes — Full Analysis</h3>
+
+  <div class="acc">
+    <button class="acc-btn open" onclick="tog(this)">"Fair is foul, and foul is fair" (Act 1.1) — The Play's Central Paradox <span class="arr">▼</span></button>
+    <div class="acc-body open">
+      <div class="qblock" style="--c:var(--supernatural);--cl:var(--supernatural-l);"><blockquote>"Fair is foul, and foul is fair; / Hover through the fog and filthy air."</blockquote><div class="qref">Act 1, Scene 1 — The witches' opening lines. The very first lines spoken in the play.</div>
+      <div class="qbody">
+        <p><span class="tech">Chiasmus</span> — ABBA structure: "Fair is FOUL / FOUL is fair." The mirroring creates a hypnotic, circular quality — suggesting an unstable world where values reverse and nothing stays fixed.</p>
+        <p><span class="tech">Paradox</span> — Something cannot be both fair and foul simultaneously. The witches announce from the very first line that this play will subvert appearances. The theme of deception is stated before any character has spoken.</p>
+        <p><span class="kw">"Fog and filthy air"</span> — Alliteration creates a dark, hissing sound. Fog = obscured vision, confusion. The witches operate in moral and physical obscurity. Their power depends on people not seeing clearly.</p>
+        <p><strong>The echo:</strong> Macbeth's very first line is "So foul and fair a day I have not seen." He unconsciously uses the witches' language before he meets them — suggesting their sensibility already aligns with his. He was already infected.</p>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="acc">
+    <button class="acc-btn" onclick="tog(this)">"The instruments of darkness tell us truths" (Act 1.3) — Banquo's Warning <span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="qblock" style="--c:var(--supernatural);--cl:var(--supernatural-l);"><blockquote>"And oftentimes, to win us to our harm, / The instruments of darkness tell us truths, / Win us with honest trifles, to betray's / In deepest consequence."</blockquote><div class="qref">Act 1, Scene 3 — Banquo immediately after the witches' prophecy</div>
+      <div class="qbody">
+        <p>Banquo immediately and accurately diagnoses the witches' method. He tells this to Macbeth directly. Macbeth ignores it. This makes Macbeth's downfall his own responsibility — he was warned, clearly, by his trusted friend, and chose to believe the witches anyway.</p>
+        <p><span class="kw">"Instruments of darkness"</span> — They are tools, not masters. The real cause of Macbeth's downfall is inside him. The witches are merely the instruments through which his own ambition is expressed.</p>
+        <p><span class="kw">"Honest trifles"</span> — Small truths (Thane of Cawdor being accurate) that establish credibility for the larger, dangerous prediction. The method: build trust with small facts, then use that trust to deliver the destructive prophecy.</p>
+        <p><strong>Exam angle:</strong> This is the key quote for showing the witches' method. Pair it with Macbeth's immediate fascination to contrast Banquo's wisdom with Macbeth's vulnerability. One sees through it; one is consumed by it.</p>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="acc">
+    <button class="acc-btn" onclick="tog(this)">"He seems rapt withal" (Act 1.3) — Macbeth Mesmerised <span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="qblock" style="--c:var(--supernatural);--cl:var(--supernatural-l);"><blockquote>"He seems rapt withal." / "Our partner's rapt."</blockquote><div class="qref">Act 1.3 (Banquo) and Act 1.5 (Lady Macbeth) — both describing Macbeth's reaction to the witches</div>
+      <div class="qbody">
+        <p><span class="kw">"Rapt"</span> — Fascinated, absorbed, entranced. The same word is used twice — by Banquo when Macbeth first hears the prophecy, and by Lady Macbeth when she reads his letter. He is described as spellbound at both moments.</p>
+        <p>The repetition of "rapt" emphasises how completely the witches' prophecy consumes Macbeth. He cannot look away from it. This fascination is itself a symptom of his existing ambition — a person without ambition would not be so transfixed.</p>
+        <p><span class="tech">Dramatic Irony</span> — The audience knows "rapt" also means seized, carried away, lost. Macbeth has been psychologically captured by the prophecy even before he takes any action. The supernatural works on him through his mind, not through magic.</p>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="acc">
+    <button class="acc-btn" onclick="tog(this)">"Something wicked this way comes" (Act 4.1) — The Transformation Complete <span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="qblock" style="--c:var(--supernatural);--cl:var(--supernatural-l);"><blockquote>"By the pricking of my thumbs, / Something wicked this way comes."</blockquote><div class="qref">Act 4, Scene 1 — A witch sensing Macbeth's arrival</div>
+      <div class="qbody">
+        <p>In Act 1, the witches called Macbeth a great warrior. By Act 4, they sense his approach and call him "something wicked." He has become what they represent.</p>
+        <p>This is one of the most important lines for tracing Macbeth's arc. He started as a hero who was tempted by the supernatural. He has become something the supernatural itself recognises as evil. The students of darkness now recognise a graduate.</p>
+        <p><span class="tech">Rhyming Couplet</span> — The witches always rhyme. The sing-song, nursery-rhyme quality makes evil feel casual and inevitable. "Something wicked this way comes" is delivered with the lightness of a weather forecast.</p>
+        <p><strong>Exam angle:</strong> Use this as the definitive marker of Macbeth's moral transformation. He began as someone the witches needed to seduce. He ends as something they simply recognise as one of their own.</p>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="acc">
+    <button class="acc-btn" onclick="tog(this)">"You secret, black and midnight hags" (Act 4.1) — Macbeth's Dependence on Evil <span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="qblock" style="--c:var(--supernatural);--cl:var(--supernatural-l);"><blockquote>"How now, you secret, black and midnight hags! / What is't you do?"</blockquote><div class="qref">Act 4, Scene 1 — Macbeth's greeting to the witches</div>
+      <div class="qbody">
+        <p>Macbeth knows the witches are evil — he calls them "hags." Yet he actively sought them out and demands answers. This shows the depth of his dependence. He knows the source is rotten but needs what it provides.</p>
+        <p><span class="kw">"Secret, black, midnight"</span> — All three words connote darkness, evil, and secrecy. Macbeth's own language has become darker. He speaks the witches' language naturally now.</p>
+        <p>Compare to Act 1, when he was passive and stunned by the witches. Now in Act 4, he is the one seeking them out, commanding them to answer. He has switched from victim to collaborator — perhaps even instigator.</p>
+        <p><strong>Exam angle:</strong> This shows the evolution from Act 1 fascination to Act 4 dependence. The supernatural didn't corrupt Macbeth — he allowed himself to become dependent on it. Each visit to the witches is a choice to deepen his commitment to evil.</p>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="acc">
+    <button class="acc-btn" onclick="tog(this)">"Security is mortals' chiefest enemy" (Act 3.5) — Hecate's Plan <span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="qblock" style="--c:var(--supernatural);--cl:var(--supernatural-l);"><blockquote>"And you all know, security / Is mortals' chiefest enemy."</blockquote><div class="qref">Act 3, Scene 5 — Hecate, planning to destroy Macbeth through false confidence</div>
+      <div class="qbody">
+        <p>Hecate reveals the witches' plan: they will give Macbeth prophecies that make him feel invincible (the three apparitions in Act 4). His false security will be his downfall.</p>
+        <p><span class="kw">"Security"</span> — Overconfidence. Believing yourself safe when you are not. The three apparitions in Act 4 produce exactly this: Macbeth becomes reckless, dismissive of threats, and eventually unable to see the half-truths he is acting on.</p>
+        <p>This is the witches' most sophisticated deception. Not lies — true statements that produce false confidence. "None of woman born shall harm Macbeth" — technically true, but Macbeth interprets it as a blanket protection. His overconfidence makes him careless. His carelessness enables his defeat.</p>
+        <p><strong>Exam angle:</strong> Use this to show the witches are not just passive predictors — they are active agents of Macbeth's destruction. They plan his overconfidence deliberately. This makes the supernatural more sinister: it doesn't just exploit existing weakness, it engineers new ones.</p>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="purpose" style="--c:var(--supernatural);--cl:var(--supernatural-l);">
+    <strong>Shakespeare's Message Through This Theme</strong>
+    <p>The supernatural is dangerous not because it compels us, but because it reflects and amplifies what is already inside us. Every character who engages with the supernatural — Macbeth, Lady Macbeth — is ultimately destroyed. Every character who resists it — Banquo, Macduff — survives or dies with honour. Shakespeare's message is clear: trust the supernatural and it will use your own desires to destroy you. The play was designed to both entertain and warn King James I's court about the genuine danger of dabbling in the occult — while reassuring them that evil supernatural forces can be defeated by moral human ones.</p>
+  </div>
+</div>
+
+<!-- ══════════════ NATURE & ORDER ══════════════ -->
+<div id="nature" class="sec" style="--c:var(--nature);--cl:var(--nature-l);">
+
+  <div class="char-banner" style="background:var(--nature-l);color:var(--nature);">
+    <h2>🌿 Nature &amp; The Unnatural Order</h2>
+    <div class="sub">The Natural World · Political Order · The Divine Right of Kings · Characters: Duncan, Malcolm, Macbeth, Lady Macbeth</div>
+    <div class="intro" style="color:var(--text);">In Jacobean England, the king was seen as God's representative on earth — a divinely appointed guardian of the natural order. When that order is disrupted by regicide, nature itself rebels. Macbeth is the story of how an unnatural political act creates unnatural consequences in every sphere of existence — and how order is eventually restored.</div>
+  </div>
+
+  <div class="box analogy">
+    <span class="ico">⚙️</span>
+    <div>
+      <div class="box-label">Think of it like this</div>
+      <p>Imagine a machine with interlocking gears. Every gear is connected: king → nobles → people → land → weather. Pull out the central gear (the king) and the whole machine breaks down. Gears spin wildly or stop entirely. In Macbeth, Duncan is the central gear. When Macbeth removes him, everything breaks: storms rage, owls kill hawks, horses eat each other, the sun disappears during the day. The machine only works again when the rightful heir (Malcolm) is installed.</p>
+    </div>
+  </div>
+
+  <h3 class="label">🌩️ Nature Disrupted — Evidence Across the Play</h3>
+  <div class="tl" style="--c:var(--nature);">
+    <div class="tl-item">
+      <h4>Act 2, Scene 4 — After Duncan's Murder</h4>
+      <p>Ross describes unnatural events: "darkness does the face of earth entomb when living light should kiss it." Lennox reports: an owl killed a falcon (the smaller bird defeating the larger — unnatural); horses broke out and ate each other; the earth "was feverish and did shake." Nature registers the murder of the king physically.</p>
+    </div>
+    <div class="tl-item">
+      <h4>Act 3 — Macbeth's Reign</h4>
+      <p>Scotland becomes a place of terror, fear, and unrest. "Each new morn / New widows howl, new orphans cry" (Macduff, Act 4.3). The land itself suffers under an illegitimate king. The natural prosperity associated with good kingship (good harvests, peace) is replaced by violence and fear.</p>
+    </div>
+    <div class="tl-item">
+      <h4>Act 5 — Birnam Wood Marches</h4>
+      <p>Nature's final act of rebellion: the forest itself appears to move toward Dunsinane. This fulfils the witches' prophecy in the most literal way possible — nature cooperates in the defeat of the unnatural king. The natural world takes active part in restoring order.</p>
+    </div>
+    <div class="tl-item">
+      <h4>Act 5, Scene 11 — Restoration</h4>
+      <p>Malcolm's final speech uses gardening metaphors — he will "plant" peace, reward loyalty. The natural imagery returns to positive associations. Order is restored; nature can breathe again.</p>
+    </div>
+  </div>
+
+  <h3 class="label">💬 Key Quotes — Full Analysis</h3>
+
+  <div class="acc">
+    <button class="acc-btn open" onclick="tog(this)">"I have begun to plant thee, and will labour to make thee full of growing" (Act 1.4) — Good King as Gardener <span class="arr">▼</span></button>
+    <div class="acc-body open">
+      <div class="qblock" style="--c:var(--nature);--cl:var(--nature-l);"><blockquote>"I have begun to plant thee, and will labour / To make thee full of growing."</blockquote><div class="qref">Act 1, Scene 4 — Duncan to Macbeth</div>
+      <div class="qbody">
+        <p><span class="tech">Nature / Gardening Metaphor</span> — Duncan sees himself as a gardener who nurtures his people. He gives; he cultivates; he invests in others' growth. This is the philosophy of a selfless, natural ruler who works WITH nature rather than against it.</p>
+        <p>Banquo immediately uses the same metaphor: "There, if I grow, the harvest is your own." Good people around Duncan absorb his natural, generous language. They are part of the same garden.</p>
+        <p>Malcolm later uses identical language at the end of the play, pledging to "plant" peace. The gardening metaphor frames good kingship: not seizing and controlling, but nurturing and growing. Macbeth's "vaulting" ambition is the direct opposite — grabbing rather than growing.</p>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="acc">
+    <button class="acc-btn" onclick="tog(this)">"Look like the innocent flower, but be the serpent under't" (Act 1.5) — Corrupting Nature <span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="qblock" style="--c:var(--nature);--cl:var(--nature-l);"><blockquote>"Look like the innocent flower, / But be the serpent under't."</blockquote><div class="qref">Act 1, Scene 5 — Lady Macbeth advising Macbeth</div>
+      <div class="qbody">
+        <p>Where Duncan uses nature metaphors to represent growth and care, Lady Macbeth uses nature to describe deception. She weaponises the natural world — the flower (beauty, innocence, nature) is used to hide the serpent (evil, deception, the devil).</p>
+        <p><span class="tech">Biblical Allusion</span> — The serpent in the Garden of Eden. Lady Macbeth consciously invokes the Fall of Man. She is asking Macbeth to play the devil's role — to use nature's beauty to hide evil.</p>
+        <p><span class="tech">Nature Imagery used Contrastively</span> — Good characters (Duncan, Malcolm) see themselves as gardeners working with nature. Evil characters (Macbeth, Lady Macbeth) try to exploit or hide within nature. This contrast runs through the entire play.</p>
+        <p><strong>Exam angle:</strong> Use this to show how Shakespeare uses nature imagery as a moral barometer. Characters who work WITH nature (gardeners) are good. Characters who use nature as camouflage (serpent in flower) are evil. The natural world itself becomes a system of moral judgement.</p>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="acc">
+    <button class="acc-btn" onclick="tog(this)">"Is't night's predominance, or the day's shame, / That darkness does the face of earth entomb?" (Act 2.4) <span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="qblock" style="--c:var(--nature);--cl:var(--nature-l);"><blockquote>"By the clock 'tis day, / And yet dark night strangles the travelling lamp. / Is't night's predominance, or the day's shame, / That darkness does the face of earth entomb?"</blockquote><div class="qref">Act 2, Scene 4 — Ross, after Duncan's murder</div>
+      <div class="qbody">
+        <p>Ross describes unnatural darkness in the middle of the day after Duncan's murder. The sun itself is obscured. Nature is in mourning for its king — or in rebellion against the unnatural act.</p>
+        <p><span class="kw">"Strangles the travelling lamp"</span> — The sun (lamp) is being strangled — violent language for a natural event. The murder of the king is so unnatural that it physically chokes the light from the world.</p>
+        <p>This scene also describes an owl killing a falcon (normally impossible — the owl is a smaller, weaker bird), and horses breaking free and eating each other. These inversions of natural hierarchy mirror the inversion of political hierarchy: Macbeth (lesser) has killed Duncan (greater).</p>
+        <p><strong>Exam angle:</strong> This scene is crucial for showing the "Nature and Order" theme. Use it to demonstrate how Shakespeare makes the political personal to the natural world — the murder of a king is felt by the earth, the sky, and the animals.</p>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="acc">
+    <button class="acc-btn" onclick="tog(this)">"Unnatural deeds do breed unnatural troubles" (Act 5.1) — The Doctor's Verdict <span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="qblock" style="--c:var(--nature);--cl:var(--nature-l);"><blockquote>"Unnatural deeds / Do breed unnatural troubles."</blockquote><div class="qref">Act 5, Scene 1 — The Doctor, watching Lady Macbeth's sleepwalking</div>
+      <div class="qbody">
+        <p>The Doctor delivers the play's thesis on the Nature theme in two lines. Unnatural acts (regicide) produce unnatural consequences (madness, hallucinations, broken natural order).</p>
+        <p><span class="tech">The word "breed"</span> — Like animals reproducing. Unnatural deeds don't just cause single consequences — they reproduce, creating more and more unnatural trouble. One murder breeds the need for another; guilt breeds madness; madness breeds further collapse.</p>
+        <p>This line applies to both the political level (Scotland under Macbeth) and the personal level (Lady Macbeth's collapse). On both scales, the unnatural act of regicide creates unnatural consequences that spread and multiply.</p>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="purpose" style="--c:var(--nature);--cl:var(--nature-l);">
+    <strong>Shakespeare's Message Through This Theme</strong>
+    <p>The Nature theme is fundamentally about order. Jacobean England operated on the belief that God had arranged society in a specific hierarchy — king at the top, followed by nobles, commoners, and so on. This was called the Great Chain of Being. Disrupting it — especially by killing a king — was not just a crime against a person but an offence against God and the entire natural order of the universe. Shakespeare uses nature's response to Macbeth's crime to make this political argument visually and dramatically. When Malcolm is crowned at the end, the storms stop, the natural imagery becomes positive again, and the world is restored. Order is not just politically restored — it is cosmically restored.</p>
+  </div>
+</div>
+
+<!-- ══════════════ APPEARANCE vs REALITY ══════════════ -->
+<div id="appearance" class="sec" style="--c:var(--appearance);--cl:var(--appearance-l);">
+
+  <div class="char-banner" style="background:var(--appearance-l);color:var(--appearance);">
+    <h2>🎭 Appearance vs Reality</h2>
+    <div class="sub">Deception · True Nature · "Fair is Foul" · Characters: Macbeth, Lady Macbeth, Witches, Duncan, Malcolm</div>
+    <div class="intro" style="color:var(--text);">Nothing in Macbeth is what it appears to be. The welcoming castle hides murder. The loyal thane is the king's killer. The witches' truths are lies. The brave warrior is a man of "black and deep desires." Shakespeare makes deception the very fabric of the play — announced in the first line, present in every scene, and only resolved at the very end when truth finally wins over performance.</div>
+  </div>
+
+  <div class="box analogy">
+    <span class="ico">🎪</span>
+    <div>
+      <div class="box-label">Think of it like this</div>
+      <p>Imagine watching a stage magician. Everything looks impossible — but you know it's a trick. The skill is in getting you to look the wrong way. Macbeth is a play entirely about where you're looking. Every character performing virtue while practising vice. Every surface hiding the opposite truth. The witches announce this in line one: "Fair is foul, and foul is fair." The whole play is the trick. Only at the end, when all the masks fall, does reality reassert itself.</p>
+    </div>
+  </div>
+
+  <h3 class="label">📋 Instances of Appearance vs Reality Across the Play</h3>
+  <div style="background:#fff;border:2px solid var(--border);border-radius:var(--r);overflow:hidden;margin:16px 0;">
+    <div style="background:var(--appearance-l);padding:12px 16px;border-bottom:2px solid var(--border);">
+      <strong style="color:var(--appearance);font-size:.88rem;">THE MAIN EXAMPLES — Know All of These</strong>
+    </div>
+    <div style="padding:0;">
+      <div style="padding:14px 16px;border-bottom:2px solid var(--border);display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+        <div><strong style="font-size:.88rem;">Macbeth's Loyalty</strong><p style="font-size:.85rem;color:var(--muted);margin-top:4px;">Appears: Duncan's most loyal, rewarded thane. Reality: Plotting regicide from Act 1.</p></div>
+        <div><strong style="font-size:.88rem;">Lady Macbeth's Hospitality</strong><p style="font-size:.85rem;color:var(--muted);margin-top:4px;">Appears: Warm, perfect hostess. Reality: Plotting the murder of her royal guest.</p></div>
+      </div>
+      <div style="padding:14px 16px;border-bottom:2px solid var(--border);display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+        <div><strong style="font-size:.88rem;">Inverness Castle</strong><p style="font-size:.85rem;color:var(--muted);margin-top:4px;">Appears: "The air nimbly and sweetly recommends itself" (Duncan). Reality: The place where he will be murdered that night.</p></div>
+        <div><strong style="font-size:.88rem;">The Witches' Prophecies</strong><p style="font-size:.85rem;color:var(--muted);margin-top:4px;">Appears: True predictions about Macbeth's future. Reality: Technically true but deliberately misleading half-truths.</p></div>
+      </div>
+      <div style="padding:14px 16px;border-bottom:2px solid var(--border);display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+        <div><strong style="font-size:.88rem;">The Bloody Captain</strong><p style="font-size:.85rem;color:var(--muted);margin-top:4px;">Appears: Macbeth described as a heroic warrior, loyal to his king. Reality: Macbeth will become the greatest traitor in Scotland.</p></div>
+        <div><strong style="font-size:.88rem;">Macbeth's Grief at Duncan's Death</strong><p style="font-size:.85rem;color:var(--muted);margin-top:4px;">Appears: Shocked and outraged. Reality: The murderer performing innocence.</p></div>
+      </div>
+      <div style="padding:14px 16px;display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+        <div><strong style="font-size:.88rem;">Malcolm's Self-Description (Act 4.3)</strong><p style="font-size:.85rem;color:var(--muted);margin-top:4px;">Appears: Malcolm describes himself as a monster worse than Macbeth. Reality: A loyalty test. He is actually virtuous.</p></div>
+        <div><strong style="font-size:.88rem;">Lady Macbeth's Strength</strong><p style="font-size:.85rem;color:var(--muted);margin-top:4px;">Appears: Fearless, unaffected by guilt ("a little water"). Reality: Completely destroyed by guilt by Act 5.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="label">💬 Key Quotes — Full Analysis</h3>
+
+  <div class="acc">
+    <button class="acc-btn open" onclick="tog(this)">"Fair is foul, and foul is fair" (Act 1.1) — The Theme Announced <span class="arr">▼</span></button>
+    <div class="acc-body open">
+      <div class="qblock" style="--c:var(--appearance);--cl:var(--appearance-l);"><blockquote>"Fair is foul, and foul is fair."</blockquote><div class="qref">Act 1, Scene 1 — The Witches, the very first scene of the play</div>
+      <div class="qbody">
+        <p>Shakespeare announces the theme of Appearance vs Reality in the very first scene, before any major character has spoken. This sets the interpretive frame for the entire play: nothing can be taken at face value.</p>
+        <p><span class="tech">Chiasmus</span> — The mirrored structure enacts what it describes: fair and foul become interchangeable, flipping positions as easily as the words flip in the sentence.</p>
+        <p><span class="kw">"Fog and filthy air"</span> — The witches promise fog — obscured vision, moral confusion. The entire play operates in this fog. Characters cannot see clearly, audiences are deceived, and nothing resolves into clear good or evil until the very end.</p>
+        <p>Macbeth echoes this immediately: "So foul and fair a day I have not seen." He absorbs the witches' language of moral confusion before he even meets them — suggesting his moral sensibility already aligns with theirs.</p>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="acc">
+    <button class="acc-btn" onclick="tog(this)">"There's no art to find the mind's construction in the face" (Act 1.4) — Duncan's Blindness <span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="qblock" style="--c:var(--appearance);--cl:var(--appearance-l);"><blockquote>"There's no art / To find the mind's construction in the face: / He was a gentleman on whom I built / An absolute trust."</blockquote><div class="qref">Act 1, Scene 4 — Duncan speaking of the traitorous old Thane of Cawdor — as Macbeth enters</div>
+      <div class="qbody">
+        <p>Duncan makes this observation about the man who just betrayed him — and then Macbeth walks in. The dramatic irony is devastating: he is about to make exactly the same mistake with an even bigger traitor.</p>
+        <p><span class="kw">"No art"</span> — He acknowledges there is no skill that can read a person's true nature from their face. This is both his wisdom and his fatal flaw: he knows deception exists, but his trusting nature makes him incapable of protecting himself from it.</p>
+        <p>Duncan's trust is presented as a noble quality (a good king trusts and rewards his people) AND a dangerous vulnerability (it makes him unable to detect Macbeth's true intentions). Shakespeare shows how appearances deceive even the wisest and most virtuous people.</p>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="acc">
+    <button class="acc-btn" onclick="tog(this)">"Look like the innocent flower, but be the serpent under't" (Act 1.5) — Deception as Strategy <span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="qblock" style="--c:var(--appearance);--cl:var(--appearance-l);"><blockquote>"Look like the innocent flower, / But be the serpent under't."</blockquote><div class="qref">Act 1, Scene 5 — Lady Macbeth to Macbeth</div>
+      <div class="qbody">
+        <p>Lady Macbeth doesn't just know that appearances differ from reality — she makes it her strategic plan. She will perform innocence while concealing murder. She is the architect of deception in the play.</p>
+        <p><span class="kw">"Innocent flower"</span> — Beautiful, natural, harmless. Exactly how she and Macbeth appear to Duncan when he arrives. <span class="kw">"Serpent"</span> — Evil, deadly, the devil. Exactly what they are.</p>
+        <p><span class="tech">Biblical Allusion</span> — The Garden of Eden. Just as the serpent disguised itself within God's creation to destroy Adam and Eve, Lady Macbeth and Macbeth use the appearance of hospitality to destroy their king. This allusion elevates the crime from murder to something almost cosmically evil.</p>
+        <p>Later, Macbeth uses the same advice: "False face must hide what the false heart doth know" (Act 1.7). He has absorbed her strategy. The performance of innocence becomes their shared method — and eventually their shared destruction, as the performance becomes impossible to maintain.</p>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="acc">
+    <button class="acc-btn" onclick="tog(this)">"Face must hide what the false heart doth know" (Act 1.7) — Macbeth Commits to Deception <span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="qblock" style="--c:var(--appearance);--cl:var(--appearance-l);"><blockquote>"Away, and mock the time with fairest show: / False face must hide what the false heart doth know."</blockquote><div class="qref">Act 1, Scene 7 — Macbeth, at the end of the scene where he commits to murder</div>
+      <div class="qbody">
+        <p>Macbeth commits fully to the theme of deception in this single line. He will wear a false face to "mock the time" — to deceive the present moment, the king, the world.</p>
+        <p><span class="kw">"False heart"</span> — He acknowledges his own inner corruption. His heart is false — not just in the sense of deceptive but in the sense of morally wrong. He knows this and proceeds anyway.</p>
+        <p>This line also marks the end of the last time Macbeth and Banquo speak honestly. From this moment, Macbeth performs. Every smile is a mask. This commitment to deception is what begins to destroy him — maintaining the performance requires more and more violence.</p>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="purpose" style="--c:var(--appearance);--cl:var(--appearance-l);">
+    <strong>Shakespeare's Message Through This Theme</strong>
+    <p>Appearance vs Reality is not just a theme in Macbeth — it is the play's structural principle. The tragedy is built on the gap between what characters show and what they are. Shakespeare's message: deception, no matter how skillfully maintained, cannot be sustained forever. The truth always finds a way out. For Macbeth, it escapes in hallucinations. For Lady Macbeth, it escapes in sleepwalking. The performance always cracks. And when it does, the gap between appearance and reality collapses in the most devastating way possible.</p>
+  </div>
+</div>
+
+<!-- ══════════════ FATE vs FREE WILL ══════════════ -->
+<div id="fate" class="sec" style="--c:var(--fate);--cl:var(--fate-l);">
+
+  <div class="char-banner" style="background:var(--fate-l);color:var(--fate);">
+    <h2>⚖️ Fate vs Free Will</h2>
+    <div class="sub">Prophecy · Choice · Destiny · Characters: Macbeth, Banquo, The Witches</div>
+    <div class="intro" style="color:var(--text);">From the moment the witches prophesy, both the characters and the audience are forced to ask: was Macbeth's downfall fated, or did he choose it? Shakespeare deliberately never resolves this question. But the evidence of the play points strongly toward free will — because Banquo heard the same prophecies and made different choices. That comparison is the key to the entire debate.</div>
+  </div>
+
+  <div class="box analogy">
+    <span class="ico">🎯</span>
+    <div>
+      <div class="box-label">Think of it like this</div>
+      <p>Imagine two people are told by a fortune teller: "You will become very powerful." Person A immediately starts scheming to get there, compromising their values at every step. Person B says "interesting" and waits to see what happens, never acting outside their moral code. Both heard the same prediction. Only one chose to let it corrupt them. That's Macbeth and Banquo. Fate may set the destination — but every step of the journey is a choice.</p>
+    </div>
+  </div>
+
+  <h3 class="label">⚔️ The Debate — Evidence on Both Sides</h3>
+  <div class="debate">
+    <div class="debate-col">
+      <h5 style="color:var(--fate);">🎲 Evidence for FATE</h5>
+      <ul>
+        <li>The witches' prophecies all come true — Thane of Cawdor, king, Birnam Wood marching</li>
+        <li>The play opens with the witches already planning to "meet with Macbeth" — as if his doom is predetermined</li>
+        <li>Macbeth sometimes seems driven by forces beyond himself — "supernatural soliciting cannot be ill, cannot be good"</li>
+        <li>The apparitions in Act 4 seem to confirm an inevitable sequence of events</li>
+        <li>The phrase "If chance will have me king" suggests fate might crown him without action</li>
+      </ul>
+    </div>
+    <div class="debate-col">
+      <h5 style="color:var(--nature);">🧭 Evidence for FREE WILL</h5>
+      <ul>
+        <li><strong>Banquo hears the exact same prophecies and resists entirely</strong> — proving choice is possible</li>
+        <li>The witches never tell Macbeth to kill Duncan — he chooses that himself</li>
+        <li>Macbeth knows the murder is wrong before he commits it — self-awareness = moral choice</li>
+        <li>"Vaulting ambition" — he identifies his own motivation. This is not fate; it's character</li>
+        <li>Every murder after Duncan is Macbeth's own initiative — Banquo, Lady Macduff's family. No prophecy required</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="box exam"><span class="ico">📝</span><div><div class="box-label">The Examiner-Pleasing Answer</div><p>Don't pick a side — show the ambiguity. Shakespeare deliberately leaves the question unresolved. The most sophisticated exam answer acknowledges: <em>while the witches' prophecies create the conditions for Macbeth's choices, Macbeth's own ambition is the engine that drives each specific crime. Fate may have offered the opportunity; free will took it up, at every step.</em></p></div></div>
+
+  <h3 class="label">💬 Key Quotes — Full Analysis</h3>
+
+  <div class="acc">
+    <button class="acc-btn open" onclick="tog(this)">"If chance will have me king, why, chance may crown me / Without my stir" (Act 1.3) — Macbeth Briefly Resists Fate <span class="arr">▼</span></button>
+    <div class="acc-body open">
+      <div class="qblock" style="--c:var(--fate);--cl:var(--fate-l);"><blockquote>"If chance will have me king, why, chance may crown me / Without my stir."</blockquote><div class="qref">Act 1, Scene 3 — Macbeth's aside after the witches' prophecy</div>
+      <div class="qbody">
+        <p>In this brief moment, Macbeth considers that fate might simply crown him without any action on his part. This is the road not taken — and it is the road Banquo takes.</p>
+        <p><span class="kw">"Without my stir"</span> — He briefly imagines doing nothing and letting fate unfold. This is almost exactly Banquo's approach ("But hush, no more"). The difference is that Macbeth dismisses this option almost immediately under the pressure of Lady Macbeth's ambition.</p>
+        <p>This quote proves free will exists in the play. Macbeth considers NOT acting on the prophecy. He has a genuine choice. The fact that he eventually chooses action makes his tragedy self-inflicted, not fated.</p>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="acc">
+    <button class="acc-btn" onclick="tog(this)">"But hush, no more" (Act 3.1) — Banquo Chooses Free Will <span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="qblock" style="--c:var(--fate);--cl:var(--fate-l);"><blockquote>"May they not be my oracles as well / And set me up in hope? But hush, no more."</blockquote><div class="qref">Act 3, Scene 1 — Banquo's soliloquy</div>
+      <div class="qbody">
+        <p>Banquo admits he has ambition — he wonders whether the witches' prophecy might come true for him. Then he stops himself. Three words: "But hush, no more."</p>
+        <p>This is the single most important moment for the free will argument. Banquo experiences the same temptation as Macbeth — the same prophecies, the same possibility of advancement. He chooses, consciously and deliberately, not to act on it.</p>
+        <p>If fate were fixed, Banquo's choice to resist would be impossible. The fact that he resists — and succeeds in resisting — proves that the witches' prophecies do not compel anyone. They only work on people who choose to let them work.</p>
+        <p><strong>Exam angle:</strong> This is the most important free will quote in the play. Banquo is the proof that Macbeth's downfall was chosen, not fated. Use this whenever the question involves fate, the witches' influence, or Macbeth's responsibility.</p>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="acc">
+    <button class="acc-btn" onclick="tog(this)">"From this moment, the very firstlings of my heart / Shall be the firstlings of my hand" (Act 4.1) — Abandoning Free Will <span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="qblock" style="--c:var(--fate);--cl:var(--fate-l);"><blockquote>"From this moment / The very firstlings of my heart shall be / The firstlings of my hand."</blockquote><div class="qref">Act 4, Scene 1 — Macbeth after the witches' second visit</div>
+      <div class="qbody">
+        <p>Macbeth decides to stop deliberating entirely. He will act on every impulse immediately — no more reflection, no more agonising soliloquies. He is handing his actions over to pure instinct.</p>
+        <p>Ironically, this is the moment he most resembles a puppet of fate — he has surrendered his will and is acting purely reactively. But note: this is his own CHOICE. He chooses to stop choosing. He hands himself over to impulse by an act of will.</p>
+        <p>The result of this decision: he immediately orders the massacre of Macduff's family. This is the most monstrous act in the play — and it flows directly from his decision to abandon the deliberation that had previously (however ineffectively) slowed him down.</p>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="acc">
+    <button class="acc-btn" onclick="tog(this)">The Three Apparitions — Prophecy and Its Misuse (Act 4.1) <span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="qbody" style="font-size:.93rem;">
+        <p>The three apparitions are the witches' most sophisticated use of equivocating prophecy. Macbeth hears each one and immediately misinterprets it because his overconfidence (engineered by Hecate's plan) leads him to take the most reassuring possible reading.</p>
+        <br>
+        <div style="margin-bottom:16px;padding:14px;background:var(--fate-l);border-radius:var(--rs);border-left:4px solid var(--fate);">
+          <strong>1st Apparition — Armed Head: "Beware Macduff"</strong>
+          <p style="margin-top:6px;font-size:.9rem;">Macbeth hears this as a warning to eliminate Macduff. He plans to kill him but delays. His decision NOT to act immediately on this warning leads directly to his defeat — Macduff survives to kill him.</p>
+        </div>
+        <div style="margin-bottom:16px;padding:14px;background:var(--fate-l);border-radius:var(--rs);border-left:4px solid var(--fate);">
+          <strong>2nd Apparition — Bloody Child: "None of woman born shall harm Macbeth"</strong>
+          <p style="margin-top:6px;font-size:.9rem;">Macbeth takes this as total invincibility. The truth: Macduff was born by C-section ("untimely ripped"). "Woman born" has a loophole Macbeth never considers. His overconfident interpretation of this prophecy is what makes him reckless enough to be defeated.</p>
+        </div>
+        <div style="padding:14px;background:var(--fate-l);border-radius:var(--rs);border-left:4px solid var(--fate);">
+          <strong>3rd Apparition — Child with Crown and Tree: "Macbeth shall never vanquished be until Great Birnam Wood to high Dunsinane Hill shall come against him"</strong>
+          <p style="margin-top:6px;font-size:.9rem;">Macbeth takes this as permanent security (forests don't move). The truth: Malcolm's soldiers cut branches from Birnam Wood and carry them — the forest "marches." Again, Macbeth's literal interpretation of a metaphorical truth is the mistake that leads to his downfall.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="purpose" style="--c:var(--fate);--cl:var(--fate-l);">
+    <strong>Shakespeare's Message Through This Theme</strong>
+    <p>Shakespeare never resolves the fate vs free will question — and that is deliberate. The ambiguity is the point. What the play does make clear is that even if fate sets the broad outline, every specific crime is Macbeth's own choice. He is never compelled. He is always aware. And Banquo's existence in the play is the ultimate proof: the same fate offered to two people, and only one chose destruction. Macbeth's tragedy is self-authored. That is what makes it a tragedy rather than a horror story.</p>
+  </div>
+</div>
+
+<!-- ══════════════ VIOLENCE ══════════════ -->
+<div id="violence" class="sec" style="--c:var(--violence);--cl:var(--violence-l);">
+
+  <div class="char-banner" style="background:var(--violence-l);color:var(--violence);">
+    <h2>⚔️ Violence</h2>
+    <div class="sub">The Vicious Cycle · Escalation · Consequence · Characters: Macbeth, Lady Macbeth, Macduff</div>
+    <div class="intro" style="color:var(--text);">Macbeth opens with celebrated violence (the Battle) and ends with the violence of justice (Macduff killing Macbeth). Between these two poles, Shakespeare traces how violence changes in nature: from honourable to criminal, from necessary to compulsive, from controlled to chaotic. The central insight is that violence breeds more violence — each act makes the next one necessary.</div>
+  </div>
+
+  <h3 class="label">📈 How Violence Escalates Through the Play</h3>
+  <div class="tl" style="--c:var(--violence);">
+    <div class="tl-item">
+      <h4>Act 1 — Honourable Violence</h4>
+      <p>Macbeth is celebrated for violence on the battlefield: "brave Macbeth... unseamed him from the nave to th' chops." This violence is legitimate, sanctioned, heroic. It serves the king and country. The play begins with the distinction between honourable and criminal violence clearly drawn.</p>
+    </div>
+    <div class="tl-item">
+      <h4>Act 2 — Criminal Violence (The Turning Point)</h4>
+      <p>Duncan's murder. Violence used not to defend but to seize. Macbeth knows immediately that this crosses a line no amount of justification can un-cross: "Bloody instructions, being taught, return to plague th'inventor." He predicted the cycle before he started it.</p>
+    </div>
+    <div class="tl-item">
+      <h4>Act 3 — Violence Begets Violence</h4>
+      <p>Banquo's murder: done to protect the gains of Duncan's murder. The first murder has made the second necessary. "Blood will have blood" — Macbeth knows the cycle is now self-sustaining. He cannot stop without being destroyed by what he's already done.</p>
+    </div>
+    <div class="tl-item">
+      <h4>Act 4 — Violence Without Justification</h4>
+      <p>Massacre of Lady Macduff and her children. No political logic — pure spite, terror, and overreach. This is violence that has completely broken free from any pretence of justification. It is evil for its own sake. Macbeth's humanity is gone.</p>
+    </div>
+    <div class="tl-item">
+      <h4>Act 5 — Restorative Violence</h4>
+      <p>Macduff kills Macbeth. This violence is presented as just — it restores order, avenges innocents, and places the rightful king on the throne. Shakespeare distinguishes between violence that corrupts (Macbeth's murders) and violence that restores (Macduff's justice).</p>
+    </div>
+  </div>
+
+  <h3 class="label">💬 Key Quotes — Full Analysis</h3>
+
+  <div class="acc">
+    <button class="acc-btn open" onclick="tog(this)">"Brave Macbeth — well he deserves that name... unseamed him from the nave to th' chops" (Act 1.2) <span class="arr">▼</span></button>
+    <div class="acc-body open">
+      <div class="qblock" style="--c:var(--violence);--cl:var(--violence-l);"><blockquote>"Brave Macbeth — well he deserves that name... he unseemed him from the nave to th' chops, / And fixed his head upon our battlements."</blockquote><div class="qref">Act 1, Scene 2 — The Captain describing Macbeth in battle</div>
+      <div class="qbody">
+        <p>The play's first description of Macbeth is an act of graphic violence — splitting a man from the stomach to the jaw and mounting his head. Yet this is presented as heroic. Duncan responds with admiration. This violence is sanctioned and celebrated.</p>
+        <p><span class="tech">Dramatic Irony</span> — By the end of the play, Macbeth's own head is mounted on a spike by Macduff. The play opens and closes with decapitated heads — but the first is a villain Macbeth kills in battle; the last is Macbeth himself. The circle is complete.</p>
+        <p>Establishing Macbeth as a violent warrior at the start is crucial. It means his violence later is not out of character — what changes is not his capacity for violence but his direction of it.</p>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="acc">
+    <button class="acc-btn" onclick="tog(this)">"Bloody instructions, which being taught, return to plague th'inventor" (Act 1.7) <span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="qblock" style="--c:var(--violence);--cl:var(--violence-l);"><blockquote>"...this even-handed justice / Commends the ingredients of our poisoned chalice / To our own lips... we but teach / Bloody instructions, which, being taught, return / To plague th'inventor."</blockquote><div class="qref">Act 1, Scene 7 — Macbeth's soliloquy before the murder</div>
+      <div class="qbody">
+        <p>This is Macbeth predicting, before he commits a single crime, that violence will return to destroy him. "Bloody instructions" = methods of violence. By teaching murder (by committing it), he creates a world where murder is taught — and he will be the victim.</p>
+        <p><span class="kw">"Poisoned chalice"</span> — The cup containing poison. He poisons the chalice by murdering Duncan — and then he drinks from it. His own crime creates the environment that will destroy him.</p>
+        <p>This is Shakespeare's structural argument about violence: it is never contained. It spreads. It teaches. It returns. The man who commits murder must then commit more to protect the first, and more to protect those, until violence is all he has left.</p>
+        <p><strong>Exam angle:</strong> This is the play's thesis statement on violence as a cycle. Macbeth says this before any murder — which makes it both prescient and devastating. He knew, and proceeded anyway.</p>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="acc">
+    <button class="acc-btn" onclick="tog(this)">"Blood will have blood" (Act 3.4) — The Cycle Acknowledged <span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="qblock" style="--c:var(--violence);--cl:var(--violence-l);"><blockquote>"It will have blood; they say blood will have blood."</blockquote><div class="qref">Act 3, Scene 4 — Macbeth after seeing Banquo's ghost</div>
+      <div class="qbody">
+        <p>A folk saying turned into one of the play's most resonant lines. Blood demands blood — violence creates the necessity for more violence. Murder cannot be isolated; it spreads like an infection.</p>
+        <p>Macbeth speaks these words after Banquo's ghost has appeared. He knows the ghost is there because he ordered the murder. And he knows more blood will be needed to suppress those who might expose him. The cycle he predicted in Act 1 is now in full motion.</p>
+        <p><span class="tech">Repetition</span> — "Blood will have blood" — the repetition creates a drumbeat quality, like an incantation or a law of nature. This is not just a metaphor; it is presented as an inescapable fact of the world Macbeth has entered.</p>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="acc">
+    <button class="acc-btn" onclick="tog(this)">"From this moment, the very firstlings of my heart shall be the firstlings of my hand" (Act 4.1) — Violence as Pure Instinct <span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="qblock" style="--c:var(--violence);--cl:var(--violence-l);"><blockquote>"From this moment / The very firstlings of my heart shall be / The firstlings of my hand."</blockquote><div class="qref">Act 4, Scene 1</div>
+      <div class="qbody">
+        <p>The moment Macbeth decides to act on every impulse without reflection. This represents the complete destruction of the deliberative moral process that made him a tragic hero in Acts 1-2.</p>
+        <p>In Act 1, Macbeth spent an entire soliloquy agonising over whether to kill Duncan. Now, in Act 4, he decides to kill Macduff's entire family without a single moment of moral deliberation. This is what the cycle of violence does — it eliminates the pause between thought and action, until violence becomes reflexive.</p>
+        <p>The direct consequence: the massacre of Lady Macduff, her children, and servants. Shakespeare places this decision and its immediate consequence together to show how violence, once normalised, knows no limits.</p>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="purpose" style="--c:var(--violence);--cl:var(--violence-l);">
+    <strong>Shakespeare's Message Through This Theme</strong>
+    <p>Shakespeare makes a precise and unflinching argument about violence: it is never contained, never justified, and never clean. Every act of violence in the play — except the final one (Macduff killing Macbeth) — generates more violence than it resolves. Macbeth knew this before he started. The tragedy is not that he didn't understand the cycle; it's that he couldn't stop himself from entering it. The only violence that ends the cycle is the one performed by a man who has no personal ambition — Macduff, who asks for nothing but justice, and whose grief is authentic rather than strategic. Honour can commit violence. Ambition cannot — it only makes it worse.</p>
+  </div>
+</div>
+
+<!-- ══════════════ SYMBOLS ══════════════ -->
+<div id="symbols" class="sec">
+
+  <div style="margin-bottom:28px;">
+    <h2 style="font-family:'Nunito',sans-serif;font-size:1.9rem;font-weight:900;margin-bottom:8px;">🔣 Symbols &amp; Motifs</h2>
+    <p style="color:var(--muted);">Recurring images that carry meaning throughout the entire play — know all of these for the exam</p>
+  </div>
+
+  <div class="intro-box">
+    A symbol in literature is an image or object that carries meaning beyond its literal appearance. Motifs are recurring symbols that gain significance through repetition. In Macbeth, Shakespeare builds an intricate symbolic system where every major image — blood, sleep, clothing, light, darkness — tracks the moral status of the characters and the health of Scotland. If you can connect a symbol to a quote to a theme, you will score highly.
+  </div>
+
+  <!-- BLOOD -->
+  <div class="acc" style="--c:var(--blood);--cl:var(--blood-l);">
+    <button class="acc-btn open" onclick="tog(this)" style="border-left:4px solid var(--blood);">🩸 Blood — From Bravery to Guilt <span class="arr">▼</span></button>
+    <div class="acc-body open">
+      <div style="background:var(--blood-l);padding:14px;border-radius:var(--rs);margin-bottom:16px;">
+        <strong style="color:var(--blood);">What it represents:</strong> Blood begins as a symbol of HEROISM (the Captain's bloody wounds = brave soldier). After Duncan's murder, it transforms into a symbol of GUILT — inescapable, permanent, spreading. By the end, it represents the total moral corruption of both Macbeth and Lady Macbeth.
+      </div>
+      <div class="tl" style="--c:var(--blood);">
+        <div class="tl-item"><h4>Act 1 — Blood as Honour</h4><p>"Brave Macbeth... unseamed him from the nave to th' chops." The bloody captain's wounds = courage. Blood in battle = heroism.</p></div>
+        <div class="tl-item"><h4>Act 2 — Blood as Guilt (First Appearance)</h4><p>"Will all great Neptune's ocean wash this blood clean from my hand?" (Macbeth). "A little water clears us of this deed" (Lady Macbeth — wrong). The divergence in how they read blood reveals their characters.</p></div>
+        <div class="tl-item"><h4>Act 3 — Blood as Cycle</h4><p>"Blood will have blood." / "I am in blood stepped in so far." Blood is now both what he has spilled and what surrounds him.</p></div>
+        <div class="tl-item"><h4>Act 5 — Blood as Psychosis</h4><p>"Out, damned spot!" / "All the perfumes of Arabia will not sweeten this little hand." Lady Macbeth hallucinates blood — guilt has become physically real to her. Blood is now a permanent stain on the conscience.</p></div>
+      </div>
+      <div class="box exam"><span class="ico">📝</span><div><div class="box-label">Exam Angle</div><p>Blood is the play's central motif because it tracks the moral arc. Track it through all five acts: Honour → Murder → Guilt → Cycle → Madness. Show the examiner you understand how a motif changes meaning across a text.</p></div></div>
+    </div>
+  </div>
+
+  <!-- SLEEP -->
+  <div class="acc" style="--c:var(--sleep);--cl:var(--sleep-l);">
+    <button class="acc-btn" onclick="tog(this)" style="border-left:4px solid var(--sleep);">😴 Sleep — Innocence, Peace, and Its Murder <span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div style="background:var(--sleep-l);padding:14px;border-radius:var(--rs);margin-bottom:16px;">
+        <strong style="color:var(--sleep);">What it represents:</strong> Sleep = innocence, purity, freedom from guilt, and peace of mind. By murdering Duncan while he slept, Macbeth symbolically murders these qualities — in Duncan, in himself, and in Lady Macbeth. The loss of sleep throughout the play tracks the loss of inner peace.
+      </div>
+      <h4 style="margin-bottom:10px;font-weight:700;">Key Quotes on Sleep:</h4>
+      <div class="qblock" style="--c:var(--sleep);--cl:var(--sleep-l);margin-bottom:12px;"><blockquote>"Macbeth does murder sleep — the innocent sleep; / Sleep, that knits up the ravell'd sleave of care."</blockquote><div class="qref">Act 2.2 — Macbeth, immediately after killing Duncan</div>
+      <div class="qbody"><p>Sleep = the "knitter" that repairs daily anxiety. By murdering sleeping Duncan, Macbeth destroys his own access to restorative rest. The prophecy is literal: by Act 5, both he and Lady Macbeth have lost sleep entirely.</p></div></div>
+      <div class="qblock" style="--c:var(--sleep);--cl:var(--sleep-l);margin-bottom:12px;"><blockquote>"A heavy summons lies like lead upon me, / And yet I would not sleep."</blockquote><div class="qref">Act 2.1 — Banquo</div>
+      <div class="qbody"><p>Even before the murder, sleep is troubled in Inverness. Banquo's troubled sleep contrasts with the comfort sleep should bring — the castle's moral corruption is already spreading.</p></div></div>
+      <div class="qblock" style="--c:var(--sleep);--cl:var(--sleep-l);"><blockquote>"Her eyes are open... but their sense are shut." / "Look how she rubs her hands... to seem thus washing her hands."</blockquote><div class="qref">Act 5.1 — Doctor and Gentlewoman watching Lady Macbeth</div>
+      <div class="qbody"><p>Lady Macbeth walks but cannot truly wake. She washes but cannot clean. Sleep has been corrupted — she is neither properly asleep nor properly awake. This liminal state (between consciousness and unconsciousness) is guilt refusing to let her rest.</p></div></div>
+      <div class="box memory"><span class="ico">🧠</span><div><div class="box-label">The Sleep Arc</div><p>Act 2: "Macbeth does murder sleep." Act 5: Lady Macbeth sleepwalks; Macbeth says "I have supped full with horrors." He was right — he did murder sleep, for both of them. The prophecy fulfilled over five acts.</p></div></div>
+    </div>
+  </div>
+
+  <!-- CLOTHING -->
+  <div class="acc" style="--c:var(--clothing);--cl:var(--clothing-l);">
+    <button class="acc-btn" onclick="tog(this)" style="border-left:4px solid var(--clothing);">👔 Clothing — Identity, Legitimacy, and Stolen Roles <span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div style="background:var(--clothing-l);padding:14px;border-radius:var(--rs);margin-bottom:16px;">
+        <strong style="color:var(--clothing);">What it represents:</strong> Clothing represents identity and legitimate authority. "Borrowed robes" = a title or position not earned. Macbeth steals the kingship — and like stolen clothes, it never fits properly. The clothing motif runs from Act 1 to Act 5, beginning and ending with the same image: clothes that don't fit.
+      </div>
+      <div class="tl" style="--c:var(--clothing);">
+        <div class="tl-item"><h4>Act 1.3 — "Borrowed Robes"</h4><p>"Why do you dress me in borrowed robes?" — Macbeth, on hearing he is Thane of Cawdor. He doesn't feel entitled to the title. The clothes don't fit because he hasn't earned them. This is Macbeth at his most honest and decent.</p></div>
+        <div class="tl-item"><h4>Act 1.7 — "Golden opinions"</h4><p>Macbeth mentions his "golden opinions" from various people — the good reputation he's just earned. He is wearing these opinions like new clothes. He is about to abandon them for the stolen crown.</p></div>
+        <div class="tl-item"><h4>Act 5.2 — "Giant's Robe / Dwarfish Thief"</h4><p>Angus: "Now does he feel his title / Hang loose about him, like a giant's robe / Upon a dwarfish thief." The kingship hangs on Macbeth like a costume that belongs to someone else. His illegitimate rule is visible to everyone. The stolen clothes never became his.</p></div>
+      </div>
+      <div class="box exam"><span class="ico">📝</span><div><div class="box-label">Perfect Circular Structure</div><p>Act 1: "borrowed robes" — he doesn't feel entitled to the Cawdor title. Act 5: "giant's robe upon a dwarfish thief" — his kingship doesn't fit either. The circle is complete. No matter what he steals, it will never be legitimately his.</p></div></div>
+    </div>
+  </div>
+
+  <!-- LIGHT AND DARK -->
+  <div class="acc" style="--c:#b7770d;--cl:#fffbf0;">
+    <button class="acc-btn" onclick="tog(this)" style="border-left:4px solid #b7770d;">🌙 Light &amp; Darkness — Good, Evil, and Moral Vision <span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div style="background:#fffbf0;padding:14px;border-radius:var(--rs);margin-bottom:16px;">
+        <strong style="color:#b7770d;">What it represents:</strong> Light = goodness, God, divine scrutiny, moral truth. Darkness = evil, secrecy, moral blindness. Characters who are guilty consistently call for darkness to hide their deeds. The play moves from false darkness (deception) toward light (the truth being revealed at the end).
+      </div>
+      <h4 style="margin-bottom:10px;font-weight:700;">Key Quotes on Light and Dark:</h4>
+      <div class="qblock" style="--c:#b7770d;--cl:#fffbf0;margin-bottom:12px;"><blockquote>"Stars, hide your fires! Let not light see my black and deep desires."</blockquote><div class="qref">Act 1.4 — Macbeth</div>
+      <div class="qbody"><p>He wants to hide from divine scrutiny. Light = God's ability to see his sinful ambition. He is not afraid of human observers — he is afraid of divine judgement.</p></div></div>
+      <div class="qblock" style="--c:#b7770d;--cl:#fffbf0;margin-bottom:12px;"><blockquote>"Come, thick night, / And pall thee in the dunnest smoke of hell, / That my keen knife see not the wound it makes."</blockquote><div class="qref">Act 1.5 — Lady Macbeth</div>
+      <div class="qbody"><p>She also calls for darkness — specifically to blind the murder weapon from its own act. Even the knife, if it could see, would refuse to proceed. Lady Macbeth wants to blind every moral witness — including the act of murder itself.</p></div></div>
+      <div class="qblock" style="--c:#b7770d;--cl:#fffbf0;margin-bottom:12px;"><blockquote>"She has light by her continually: 'tis her command."</blockquote><div class="qref">Act 5.1 — Gentlewoman, about Lady Macbeth's sleepwalking</div>
+      <div class="qbody"><p>In Act 1 she called for darkness. By Act 5, she is terrified of it — she must have a candle with her at all times. Darkness = her own guilty mind. The woman who embraced darkness now cannot face it. The reversal completes her arc.</p></div></div>
+      <div class="qblock" style="--c:#b7770d;--cl:#fffbf0;"><blockquote>"Out, out, brief candle! / Life's but a walking shadow."</blockquote><div class="qref">Act 5.5 — Macbeth</div>
+      <div class="qbody"><p>He commands the last light to extinguish itself. He has become darkness. Life itself is now a "shadow" — darkness moving through darkness. He has completed his transformation from light (brave warrior) to shadow (empty tyrant).</p></div></div>
+    </div>
+  </div>
+
+  <!-- MILK -->
+  <div class="acc" style="--c:var(--gender);--cl:var(--gender-l);">
+    <button class="acc-btn" onclick="tog(this)" style="border-left:4px solid var(--gender);">🍼 Milk — Femininity, Compassion, and What Lady Macbeth Rejects <span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div style="background:var(--gender-l);padding:14px;border-radius:var(--rs);margin-bottom:16px;">
+        <strong style="color:var(--gender);">What it represents:</strong> Milk = maternal instinct, nourishment, compassion, femininity, and human kindness. It is associated with everything Lady Macbeth tries to destroy in herself. The motif tracks the loss of humanity in the play.
+      </div>
+      <div class="two" style="margin-top:14px;">
+        <div class="qblock" style="--c:var(--gender);--cl:var(--gender-l);"><blockquote>"It is too full o' the milk of human kindness."</blockquote><div class="qref">Act 1.5 — Lady Macbeth on Macbeth</div>
+        <div class="qbody"><p>Kindness framed as feminine excess — too much "milk." She sees compassion as a flaw to be corrected, not a virtue to be cultivated.</p></div></div>
+        <div class="qblock" style="--c:var(--gender);--cl:var(--gender-l);"><blockquote>"Take my milk for gall."</blockquote><div class="qref">Act 1.5 — Lady Macbeth to spirits</div>
+        <div class="qbody"><p>She asks to replace maternal nourishment (milk) with poison (gall). This is the most direct statement of her rejection of her own humanity — and it will be the source of her downfall.</p></div></div>
+      </div>
+      <div class="box exam"><span class="ico">📝</span><div><div class="box-label">The Irony of Milk</div><p>Lady Macbeth asks to have her milk replaced with poison. But she cannot kill Duncan herself ("he resembled my father"). The milk never left. She suppressed it — but it was always there. And it eventually broke through in Act 5 as guilt, destroying her far more completely than any conscience ever could have.</p></div></div>
+    </div>
+  </div>
+
+  <!-- THE DAGGER / BANQUO'S GHOST -->
+  <div class="acc" style="--c:var(--halluc);--cl:var(--halluc-l);">
+    <button class="acc-btn" onclick="tog(this)" style="border-left:4px solid var(--halluc);">🗡️ The Dagger &amp; Banquo's Ghost — Guilt Made Visible <span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div style="background:var(--halluc-l);padding:14px;border-radius:var(--rs);margin-bottom:16px;">
+        <strong style="color:var(--halluc);">What they represent:</strong> Macbeth's hallucinations (the floating dagger, Banquo's ghost, the voices after the murder) are guilt externalised. They are either supernatural visions or products of a fractured mind — Shakespeare deliberately leaves this ambiguous. Either way, they show Macbeth's conscience refusing to be silenced.
+      </div>
+      <div class="qblock" style="--c:var(--halluc);--cl:var(--halluc-l);margin-bottom:12px;"><blockquote>"Is this a dagger which I see before me, / The handle toward my hand?... Art thou but / A dagger of the mind, a false creation / Proceeding from the heat-oppressed brain?"</blockquote><div class="qref">Act 2.1 — Before killing Duncan</div>
+      <div class="qbody"><p>Macbeth is self-aware enough to question the dagger's reality — "heat-oppressed brain." But his awareness doesn't stop him proceeding. The hallucination is guilt pre-emptively manifesting. His conscience is already screaming before the act.</p></div></div>
+      <div class="qblock" style="--c:var(--halluc);--cl:var(--halluc-l);margin-bottom:12px;"><blockquote>"Never shake thy gory locks at me! / Thou canst not say I did it: never shake / Thy gory locks at me!"</blockquote><div class="qref">Act 3.4 — Macbeth to Banquo's ghost</div>
+      <div class="qbody"><p>Banquo's ghost sits in Macbeth's throne — his public seat of power — and destroys everything Macbeth has worked for in front of all his nobles. Guilt, in physical form, sits on his throne and will not be dislodged.</p>
+      <p>Only Macbeth can see the ghost. This detail is crucial: the haunting is internal. No one else's guilt needs this exorcism because no one else committed these crimes.</p></div></div>
+      <div class="box exam"><span class="ico">📝</span><div><div class="box-label">Supernatural or Psychological?</div><p>This is one of Shakespeare's greatest deliberate ambiguities. Real ghost or guilty hallucination? The answer doesn't matter — what matters is that Macbeth sees it, is destroyed by it, and cannot control or dismiss it. His guilt is beyond his ability to suppress, whatever form it takes.</p></div></div>
+    </div>
+  </div>
+
+  <!-- NATURE/GARDEN -->
+  <div class="acc" style="--c:var(--nature);--cl:var(--nature-l);">
+    <button class="acc-btn" onclick="tog(this)" style="border-left:4px solid var(--nature);">🌱 Nature &amp; Gardens — Good vs Bad Kingship <span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div style="background:var(--nature-l);padding:14px;border-radius:var(--rs);margin-bottom:16px;">
+        <strong style="color:var(--nature);">What it represents:</strong> Garden/nature imagery tracks the moral character of rulers. Good kings (Duncan, Malcolm) use gardening metaphors — they "plant," "nurture," "grow." Bad kings (Macbeth, Lady Macbeth) use nature deceptively or antagonistically — hiding evil in flowers, calling for storms, wishing for darkness.
+      </div>
+      <div class="two">
+        <div class="card"><h4 style="color:var(--nature);">Good King Language</h4><ul><li>"I have begun to plant thee" — Duncan</li><li>"I'll plant your peace" — Malcolm's promise at the end</li><li>"Signs of nobleness, like stars, shall shine on all deservers" — Duncan</li></ul><p style="margin-top:8px;font-size:.85rem;">These metaphors suggest kings as cultivators — their role is to help things grow. Nature cooperates with good government.</p></div>
+        <div class="card"><h4 style="color:var(--ambition);">Bad King Language</h4><ul><li>"Innocent flower / Serpent under't" — Lady Macbeth (weaponising nature)</li><li>"Stars, hide your fires" — Macbeth (fighting nature)</li><li>"Come, thick night" — Lady Macbeth (calling for unnatural darkness)</li></ul><p style="margin-top:8px;font-size:.85rem;">These metaphors suggest rulers who use or corrupt nature. Nature rebels against bad government.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BIRNAM WOOD -->
+  <div class="acc" style="--c:var(--violence);--cl:var(--violence-l);">
+    <button class="acc-btn" onclick="tog(this)" style="border-left:4px solid var(--violence);">🌲 Birnam Wood — Nature's Revenge <span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div style="background:var(--violence-l);padding:14px;border-radius:var(--rs);margin-bottom:16px;">
+        <strong style="color:var(--violence);">What it represents:</strong> Birnam Wood marching on Dunsinane is nature's ultimate act of rebellion against the unnatural king. By having soldiers disguise themselves with branches, Malcolm uses nature as a weapon against Macbeth — the very natural order that Macbeth disrupted now participates in his downfall.
+      </div>
+      <div class="qblock" style="--c:var(--violence);--cl:var(--violence-l);margin-bottom:12px;"><blockquote>"Macbeth shall never vanquished be until / Great Birnam Wood to high Dunsinane Hill / Shall come against him."</blockquote><div class="qref">Act 4.1 — Third Apparition to Macbeth</div>
+      <div class="qbody"><p>Macbeth takes this as permanent security — forests don't move. His literal interpretation of a metaphorical truth is his fatal error. This overconfidence is itself engineered by Hecate ("Security is mortals' chiefest enemy").</p></div></div>
+      <div class="qblock" style="--c:var(--violence);--cl:var(--violence-l);"><blockquote>"Let every soldier hew him down a bough / And bear't before him."</blockquote><div class="qref">Act 5.4 — Malcolm</div>
+      <div class="qbody"><p>Malcolm's army literally brings Birnam Wood to Dunsinane. The "impossible" prophecy is fulfilled through entirely natural, practical means. Nature cooperates in restoring the natural order by "marching" against the unnatural king.</p></div></div>
+      <div class="box exam"><span class="ico">📝</span><div><div class="box-label">Exam Angle — Nature and Order</div><p>Birnam Wood is the perfect synthesis of the Nature and the Supernatural themes. The witches' supernatural prophecy is fulfilled through entirely natural means. Nature itself takes part in deposing the unnatural king. This shows Shakespeare's belief that the natural order will always reassert itself against those who violate it.</p></div></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ══════════════ FLASHCARDS ══════════════ -->
+<div id="flashcards" class="sec">
+
+  <div style="margin-bottom:24px;">
+    <h2 style="font-family:'Nunito',sans-serif;font-size:1.9rem;font-weight:900;margin-bottom:8px;">🃏 Theme &amp; Symbol Flashcards</h2>
+    <p style="color:var(--muted);">Click any card to reveal the key analysis — test yourself before looking!</p>
+  </div>
+
+  <div class="box exam" style="margin-bottom:24px;"><span class="ico">📋</span><div><div class="box-label">Exam Structure Reminder</div><p>For every quote: <strong>Theme → Quote → Technique → Analysis → Message</strong>. Don't just identify the theme — show HOW Shakespeare develops it through specific language and technique choices. The technique analysis is where the marks are.</p></div></div>
+
+  <div class="fc-grid">
+
+    <div class="fc-wrap"><div class="fc" onclick="this.classList.toggle('flipped')">
+      <div class="fc-f" style="border-top:4px solid var(--ambition);"><p>"Vaulting ambition, which o'erleaps itself / And falls on th'other."</p><span class="fc-hint">— Macbeth, 1.7 · Theme: Ambition · Click to flip</span></div>
+      <div class="fc-b" style="background:var(--ambition-l);">
+        <p><strong style="color:var(--ambition);">Horse metaphor.</strong> Ambition = jumping too high, crashing. Macbeth PREDICTS his own downfall in this speech — then does it anyway. Only spur = personal desire, no legitimate cause. Self-awareness = tragic hero.</p>
+      </div>
+    </div></div>
+
+    <div class="fc-wrap"><div class="fc" onclick="this.classList.toggle('flipped')">
+      <div class="fc-f" style="border-top:4px solid var(--guilt);"><p>"Will all great Neptune's ocean wash this blood / Clean from my hand?"</p><span class="fc-hint">— Macbeth, 2.2 · Theme: Guilt · Click to flip</span></div>
+      <div class="fc-b" style="background:var(--guilt-l);">
+        <p><strong style="color:var(--guilt);">Classical allusion + hyperbole.</strong> All the world's oceans can't clean him. His hand would stain the seas red instead. He knew from second one that guilt was permanent — Lady M said "a little water." He was right; she was wrong.</p>
+      </div>
+    </div></div>
+
+    <div class="fc-wrap"><div class="fc" onclick="this.classList.toggle('flipped')">
+      <div class="fc-f" style="border-top:4px solid var(--guilt);"><p>"Out, damned spot! Out, I say!... All the perfumes of Arabia will not sweeten this little hand."</p><span class="fc-hint">— Lady Macbeth, 5.1 · Theme: Guilt · Click to flip</span></div>
+      <div class="fc-b" style="background:var(--guilt-l);">
+        <p><strong style="color:var(--guilt);">Sleepwalking + Blood motif.</strong> Reversal of "a little water clears us." She hallucinates blood she can't remove. Fragmented speech = guilt destroying consciousness. Doctor: "More needs she the divine than the physician."</p>
+      </div>
+    </div></div>
+
+    <div class="fc-wrap"><div class="fc" onclick="this.classList.toggle('flipped')">
+      <div class="fc-f" style="border-top:4px solid var(--gender);"><p>"When you durst do it, then you were a man."</p><span class="fc-hint">— Lady Macbeth, 1.7 · Theme: Gender · Click to flip</span></div>
+      <div class="fc-b" style="background:var(--gender-l);">
+        <p><strong style="color:var(--gender);">Emasculation as weapon.</strong> Manhood = willingness to commit violence (her definition). Overrides Macbeth's correct moral decision. Compare to Macduff: "I must also feel it as a man." Her definition destroys everyone who holds it.</p>
+      </div>
+    </div></div>
+
+    <div class="fc-wrap"><div class="fc" onclick="this.classList.toggle('flipped')">
+      <div class="fc-f" style="border-top:4px solid var(--supernatural);"><p>"Fair is foul, and foul is fair."</p><span class="fc-hint">— Witches, 1.1 · Theme: Appearance vs Reality / Supernatural · Click to flip</span></div>
+      <div class="fc-b" style="background:var(--supernatural-l);">
+        <p><strong style="color:var(--supernatural);">Chiasmus + Paradox.</strong> Play's central theme announced in first line. Nothing is what it seems. Macbeth echoes immediately: "So foul and fair a day" — already infected. Fog = moral obscurity throughout.</p>
+      </div>
+    </div></div>
+
+    <div class="fc-wrap"><div class="fc" onclick="this.classList.toggle('flipped')">
+      <div class="fc-f" style="border-top:4px solid var(--supernatural);"><p>"The instruments of darkness tell us truths, win us with honest trifles."</p><span class="fc-hint">— Banquo, 1.3 · Theme: Supernatural / Free Will · Click to flip</span></div>
+      <div class="fc-b" style="background:var(--supernatural-l);">
+        <p><strong style="color:var(--supernatural);">Witches' method exposed.</strong> Small truths → trust → dangerous deception. Banquo tells Macbeth this DIRECTLY — Macbeth ignores it. Proves free will: he was warned and chose not to listen.</p>
+      </div>
+    </div></div>
+
+    <div class="fc-wrap"><div class="fc" onclick="this.classList.toggle('flipped')">
+      <div class="fc-f" style="border-top:4px solid var(--nature);"><p>"I have begun to plant thee, and will labour to make thee full of growing."</p><span class="fc-hint">— Duncan, 1.4 · Theme: Nature &amp; Order · Click to flip</span></div>
+      <div class="fc-b" style="background:var(--nature-l);">
+        <p><strong style="color:var(--nature);">Gardening metaphor.</strong> Good king = cultivates, gives, nurtures. Opposite of Macbeth's "vaulting" (grabbing). Malcolm uses same metaphor at end = restoration of natural order. Good kings grow things; tyrants destroy them.</p>
+      </div>
+    </div></div>
+
+    <div class="fc-wrap"><div class="fc" onclick="this.classList.toggle('flipped')">
+      <div class="fc-f" style="border-top:4px solid var(--appearance);"><p>"Look like the innocent flower, but be the serpent under't."</p><span class="fc-hint">— Lady Macbeth, 1.5 · Theme: Appearance vs Reality · Click to flip</span></div>
+      <div class="fc-b" style="background:var(--appearance-l);">
+        <p><strong style="color:var(--appearance);">Biblical allusion + Nature imagery.</strong> Eden serpent. Deception as deliberate STRATEGY (not just chance). She uses nature as camouflage for evil. Contrast: Duncan/Malcolm use nature honestly. Evil hides in nature; good cultivates it.</p>
+      </div>
+    </div></div>
+
+    <div class="fc-wrap"><div class="fc" onclick="this.classList.toggle('flipped')">
+      <div class="fc-f" style="border-top:4px solid var(--ambition);"><p>"I am cabined, cribbed, confined, bound in to saucy doubts and fears."</p><span class="fc-hint">— Macbeth, 3.4 · Theme: Ambition · Click to flip</span></div>
+      <div class="fc-b" style="background:var(--ambition-l);">
+        <p><strong style="color:var(--ambition);">Alliterative triplet.</strong> All three = trapped/enclosed. Contrast with "vaulting ambition" (Act 1 = freedom). Same ambition now = prison. Arc: Act 1 limitless expansion → Act 3 total confinement. Ambition promised freedom; delivered a cage.</p>
+      </div>
+    </div></div>
+
+    <div class="fc-wrap"><div class="fc" onclick="this.classList.toggle('flipped')">
+      <div class="fc-f" style="border-top:4px solid var(--fate);"><p>"But hush, no more."</p><span class="fc-hint">— Banquo, 3.1 · Theme: Fate vs Free Will · Click to flip</span></div>
+      <div class="fc-b" style="background:var(--fate-l);">
+        <p><strong style="color:var(--fate);">Free will proof.</strong> Banquo admits he has ambition, considers the prophecy — then stops himself. THREE WORDS that destroy the "fate made Macbeth do it" argument. Same prophecy, different choice. Macbeth's tragedy = self-authored.</p>
+      </div>
+    </div></div>
+
+    <div class="fc-wrap"><div class="fc" onclick="this.classList.toggle('flipped')">
+      <div class="fc-f" style="border-top:4px solid var(--violence);"><p>"Bloody instructions, which being taught, return to plague th'inventor."</p><span class="fc-hint">— Macbeth, 1.7 · Theme: Violence · Click to flip</span></div>
+      <div class="fc-b" style="background:var(--violence-l);">
+        <p><strong style="color:var(--violence);">Cycle of violence predicted.</strong> He says this BEFORE any murder. He knows violence will return to destroy him — and proceeds anyway. "Poisoned chalice" = he poisons the cup, then must drink from it. Every murder creates the need for more.</p>
+      </div>
+    </div></div>
+
+    <div class="fc-wrap"><div class="fc" onclick="this.classList.toggle('flipped')">
+      <div class="fc-f" style="border-top:4px solid var(--guilt);"><p>"Macbeth does murder sleep — the innocent sleep; / Sleep, that knits up the ravell'd sleave of care."</p><span class="fc-hint">— Macbeth, 2.2 · Theme: Guilt / Symbol: Sleep · Click to flip</span></div>
+      <div class="fc-b" style="background:var(--guilt-l);">
+        <p><strong style="color:var(--guilt);">Sleep symbolism.</strong> Sleep = peace, innocence, restoration. Killed Duncan in his sleep = murdered innocence itself. Prophecy: both he and Lady M lose sleep (Act 5). Third person "Macbeth does murder" = dissociation = first sign of fractured mind.</p>
+      </div>
+    </div></div>
+
+    <div class="fc-wrap"><div class="fc" onclick="this.classList.toggle('flipped')">
+      <div class="fc-f" style="border-top:4px solid #b7770d;"><p>"Now does he feel his title hang loose about him, like a giant's robe upon a dwarfish thief."</p><span class="fc-hint">— Angus, 5.2 · Symbol: Clothing · Click to flip</span></div>
+      <div class="fc-b" style="background:#fffbf0;">
+        <p><strong style="color:#b7770d;">Clothing motif — full circle.</strong> Act 1: "borrowed robes." Act 5: "giant's robe on a dwarfish thief." Identity was never legitimately his. The kingship was stolen — stolen things never fit. Everyone can now see it.</p>
+      </div>
+    </div></div>
+
+    <div class="fc-wrap"><div class="fc" onclick="this.classList.toggle('flipped')">
+      <div class="fc-f" style="border-top:4px solid var(--ambition);"><p>"Life's but a walking shadow, a poor player / That struts and frets his hour upon the stage / And then is heard no more... Signifying nothing."</p><span class="fc-hint">— Macbeth, 5.5 · Theme: Ambition · Click to flip</span></div>
+      <div class="fc-b" style="background:var(--ambition-l);">
+        <p><strong style="color:var(--ambition);">Theatre metaphor + nihilism.</strong> At peak power, life = meaningless. Wife dies; barely reacts. Shakespeare chose his own art form as the symbol for emptiness. Power brought him nothing. Ambition's final cost: the inability to feel anything at all.</p>
+      </div>
+    </div></div>
+
+    <div class="fc-wrap"><div class="fc" onclick="this.classList.toggle('flipped')">
+      <div class="fc-f" style="border-top:4px solid var(--nature);"><p>"Unnatural deeds do breed unnatural troubles."</p><span class="fc-hint">— Doctor, 5.1 · Theme: Nature &amp; Order · Click to flip</span></div>
+      <div class="fc-b" style="background:var(--nature-l);">
+        <p><strong style="color:var(--nature);">Play's thesis on nature theme.</strong> "Breed" = like animals multiplying. Unnatural crimes create unnatural consequences — they spread and multiply. Applies to Scotland (political disorder) AND to Lady Macbeth personally (madness). The Doctor speaks as the moral commentator.</p>
+      </div>
+    </div></div>
+
+    <div class="fc-wrap"><div class="fc" onclick="this.classList.toggle('flipped')">
+      <div class="fc-f" style="border-top:4px solid var(--supernatural);"><p>"Security is mortals' chiefest enemy."</p><span class="fc-hint">— Hecate, 3.5 · Theme: Supernatural / Fate · Click to flip</span></div>
+      <div class="fc-b" style="background:var(--supernatural-l);">
+        <p><strong style="color:var(--supernatural);">Hecate's plan revealed.</strong> They will give Macbeth overconfident prophecies to make him reckless. His false security = his downfall. Shows witches as ACTIVE agents of destruction, not passive oracles. Explains why Act 4 apparitions are deliberately misleading.</p>
+      </div>
+    </div></div>
+
+  </div>
+
+</div>
+
+</main>
+
+<button class="stbtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+const SECTIONS = ['overview','ambition','guilt','gender','supernatural','nature','appearance','fate','violence','symbols','flashcards'];
+
+function show(id) {
+  document.querySelectorAll('.sec').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  const idx = SECTIONS.indexOf(id);
+  const btns = document.querySelectorAll('nav button');
+  if (idx >= 0 && btns[idx]) btns[idx].classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function tog(btn) {
+  btn.classList.toggle('open');
+  btn.nextElementSibling.classList.toggle('open');
+}
+
+document.querySelectorAll('.acc-btn.open').forEach(btn => {
+  btn.nextElementSibling.classList.add('open');
+});
+</script>
+</body>
+</html>
