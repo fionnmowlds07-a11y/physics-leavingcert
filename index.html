@@ -15,6 +15,7 @@
     --accent-lcpe: #4caf50; /* Green */
     --accent-compsci: #9c27b0; /* Purple */
     --accent-latin: #b71c1c; /* Roman Red */
+    --accent-english: #3949ab; /* Indigo */
     --accent-general: #00bcd4; /* Cyan */
     --border: #e0dcd4;
     --shadow: 0 4px 20px rgba(0,0,0,0.06);
@@ -136,6 +137,7 @@
   .subject-card:nth-child(2) { animation-delay: 0.2s; }
   .subject-card:nth-child(3) { animation-delay: 0.3s; }
   .subject-card:nth-child(4) { animation-delay: 0.4s; }
+  .subject-card:nth-child(5) { animation-delay: 0.5s; }
 
   .subject-card::before {
     content: '';
@@ -168,6 +170,10 @@
   .card-latin::before { background: var(--accent-latin); }
   .card-latin:hover { border-color: var(--accent-latin); }
   .card-latin .mc-icon { color: var(--accent-latin); background: #ffebee; }
+
+  .card-english::before { background: var(--accent-english); }
+  .card-english:hover { border-color: var(--accent-english); }
+  .card-english .mc-icon { color: var(--accent-english); background: #e8eaf6; }
 
   .mc-icon {
     font-size: 56px;
@@ -332,6 +338,14 @@
         <div class="mc-icon">🏛️</div>
         <div class="mc-title">Latin</div>
         <div class="mc-desc">Master vocabulary, translation skills, and explore Roman history, art, and architecture.</div>
+        <div class="mc-action">Launch Hub →</div>
+      </a>
+
+      <!-- ENGLISH CARD -->
+      <a href="English.html" class="subject-card card-english">
+        <div class="mc-icon">📖</div>
+        <div class="mc-title">English</div>
+        <div class="mc-desc">Master character analysis, themes, imagery, and unpack the symbolism in Shakespeare's Macbeth.</div>
         <div class="mc-action">Launch Hub →</div>
       </a>
 
