@@ -512,7 +512,7 @@
 
   function checkPw() {
     const val = document.getElementById('pw-input').value;
-    if (val === 'LehanePhysics') {
+    if (val === 'LehanePhysics') or (val === 'MrLehane') {
       localStorage.setItem('lc_physics_unlocked', 'unlocked');
       const overlay = document.getElementById('pw-overlay');
       overlay.style.transition = 'opacity 0.4s ease';
