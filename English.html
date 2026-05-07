@@ -13,6 +13,7 @@
     --text-light: #555570;
     --accent-main: #3949ab; /* Royal Blue/Indigo for English */
     --accent-secondary: #ffb300; /* Amber */
+    --accent-tertiary: #43a047; /* Green for Poetry */
     --border: #e0dcd4;
     --shadow: 0 4px 20px rgba(0,0,0,0.06);
     --shadow-hover: 0 12px 30px rgba(0,0,0,0.12);
@@ -172,6 +173,10 @@
   .card-logic:hover { border-color: var(--accent-secondary); }
   .card-logic .mc-icon { color: #f57f17; background: #fff8e1; }
 
+  .card-poetry::before { background: var(--accent-tertiary); }
+  .card-poetry:hover { border-color: var(--accent-tertiary); }
+  .card-poetry .mc-icon { color: #2e7d32; background: #e8f5e9; }
+
   .mc-icon {
     font-size: 42px;
     width: 80px;
@@ -323,6 +328,14 @@
         <div class="mc-title">Themes & Symbolism</div>
         <div class="mc-desc">Explore ambition, guilt, fate versus free will, and the recurring imagery of blood, sleep, and nature.</div>
         <div class="mc-action">View notes →</div>
+      </a>
+
+      <!-- ELIZABETH BISHOP CARD -->
+      <a href="Bishop.html" class="chapter-card card-poetry">
+        <div class="mc-icon">✒️</div>
+        <div class="mc-title">Elizabeth Bishop Poetry</div>
+        <div class="mc-desc">Explore the precise imagery, themes of loss, travel, and observation in Elizabeth Bishop's celebrated poems.</div>
+        <div class="mc-action">Read poems →</div>
       </a>
 
     </div>
