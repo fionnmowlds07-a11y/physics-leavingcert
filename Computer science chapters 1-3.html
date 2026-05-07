@@ -1024,6 +1024,43 @@
       <p class="caption">The Fetch–Decode–Execute Cycle — the heartbeat of every computer</p>
     </div>
     <div class="exam-box"><p>2023 paper asked you to label a FDE cycle diagram. Know: FETCH = CU gets instruction from memory using PC → MAR. DECODE = CU interprets CIR. EXECUTE = ALU performs operation, result in Accumulator.</p></div>
+    <div class="def-box">
+      <p><strong>The Detailed Step-by-Step Cycle:</strong></p>
+    </div>
+    <ol class="steps">
+      <li>
+        <span class="step-num ch3">1</span>
+        <div class="step-content">
+          <strong>FETCH:</strong> Retrieving the instruction.
+          <ul>
+            <li>The address of the next instruction is copied from the <strong>Program Counter (PC)</strong> to the <strong>Memory Address Register (MAR)</strong>.</li>
+            <li>The instruction is fetched from memory and stored in the <strong>Memory Data Register (MDR)</strong>.</li>
+            <li>The instruction is copied from the MDR into the <strong>Current Instruction Register (CIR)</strong>.</li>
+            <li>The <strong>PC</strong> is incremented (adds 1) to point to the next address.</li>
+          </ul>
+        </div>
+      </li>
+      <li>
+        <span class="step-num ch3">2</span>
+        <div class="step-content">
+          <strong>DECODE:</strong> Understanding the instruction.
+          <ul>
+            <li>The <strong>Control Unit (CU)</strong> decodes the instruction held in the <strong>CIR</strong> to determine what action is required.</li>
+          </ul>
+        </div>
+      </li>
+      <li>
+        <span class="step-num ch3">3</span>
+        <div class="step-content">
+          <strong>EXECUTE:</strong> Carrying out the instruction.
+          <ul>
+            <li>The <strong>Control Unit (CU)</strong> coordinates the necessary components.</li>
+            <li>The <strong>ALU</strong> (Arithmetic Logic Unit) performs any calculations or logical operations.</li>
+            <li>The result of the operation is stored in the <strong>Accumulator (ACC)</strong> or written back to memory.</li>
+          </ul>
+        </div>
+      </li>
+    </ol>
   </div>
 
   <!-- 3.3 MEMORY -->
