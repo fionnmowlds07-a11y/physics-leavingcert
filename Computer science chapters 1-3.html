@@ -3,505 +3,1689 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Computer Science Hub — Leaving Cert Study Guide</title>
-<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Deca:wght@400;500;600&display=swap" rel="stylesheet">
+<title>LC Computer Science — Chapters 1, 2 &amp; 3 Ultimate Notes</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #f8f6f2;
-    --card: #ffffff;
-    --text: #1a1a2e;
-    --text-light: #555570;
-    --accent-main: #9c27b0; /* Purple for Computer Science */
-    --accent-secondary: #00bcd4; /* Cyan */
-    --accent-tertiary: #ff9800; /* Orange for Exam Generator */
-    --border: #e0dcd4;
-    --shadow: 0 4px 20px rgba(0,0,0,0.06);
-    --shadow-hover: 0 12px 30px rgba(0,0,0,0.12);
-    --radius: 16px;
+    --bg: #F7F4EF;
+    --surface: #FFFFFF;
+    --surface2: #F0EDE8;
+    --border: #E2DDD7;
+    --text: #2C2825;
+    --text-muted: #7A7068;
+    --ch1: #FF6B6B;
+    --ch1-light: #FFE8E8;
+    --ch1-dark: #C94040;
+    --ch2: #4ECDC4;
+    --ch2-light: #E0F7F6;
+    --ch2-dark: #2A9990;
+    --ch3: #FFB347;
+    --ch3-light: #FFF3E0;
+    --ch3-dark: #CC7A00;
+    --purple: #7C5CBF;
+    --purple-light: #EDE8F7;
+    --green: #56C271;
+    --green-light: #E6F8EB;
+    --radius: 14px;
+    --shadow: 0 4px 20px rgba(0,0,0,0.08);
+    --shadow-hover: 0 8px 32px rgba(0,0,0,0.14);
   }
-
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-
+  * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
     font-family: 'Lexend', sans-serif;
     background: var(--bg);
     color: var(--text);
-    font-size: 17px;
-    line-height: 1.7;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+    line-height: 1.8;
+    font-size: 16px;
+    letter-spacing: 0.01em;
+    word-spacing: 0.05em;
   }
 
-  /* TOP NAV BAR */
-  .top-bar {
-    background: white;
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(247,244,239,0.97);
+    backdrop-filter: blur(10px);
     border-bottom: 2px solid var(--border);
-    padding: 16px 40px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: sticky;
-    top: 0;
-    z-index: 50;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+    padding: 0 24px;
+    display: flex; align-items: center; gap: 8px;
+    flex-wrap: wrap; min-height: 60px;
   }
-  .top-bar h1 { 
-    font-size: 22px; 
-    font-weight: 700; 
-    color: var(--text); 
-    letter-spacing: 0.02em;
-    margin: 0 auto;
+  .nav-logo { font-family: 'Lexend Mega', sans-serif; font-size: 1rem; color: var(--text); margin-right: 12px; }
+  .nav-logo span { color: var(--ch1); }
+  .nav-btn {
+    padding: 6px 14px; border-radius: 20px;
+    border: 2px solid transparent;
+    font-family: 'Lexend', sans-serif;
+    font-size: 0.78rem; font-weight: 600;
+    cursor: pointer; transition: all 0.2s;
+    background: var(--surface); color: var(--text-muted);
   }
-  .top-bar span { color: var(--accent-main); }
-  
-  .back-link {
-    position: absolute;
-    left: 40px;
-    text-decoration: none;
-    color: var(--text-light);
-    font-size: 14px;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    transition: color 0.2s;
-  }
-  .back-link:hover {
-    color: var(--accent-main);
-  }
+  .nav-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+  .nav-btn.ch1 { border-color: var(--ch1); }
+  .nav-btn.ch1.active, .nav-btn.ch1:hover { background: var(--ch1); color: #fff; }
+  .nav-btn.ch2 { border-color: var(--ch2); }
+  .nav-btn.ch2.active, .nav-btn.ch2:hover { background: var(--ch2); color: #fff; }
+  .nav-btn.ch3 { border-color: var(--ch3); }
+  .nav-btn.ch3.active, .nav-btn.ch3:hover { background: var(--ch3); color: var(--text); }
+  .nav-btn.flash { border-color: var(--purple); }
+  .nav-btn.flash.active, .nav-btn.flash:hover { background: var(--purple); color: #fff; }
+  .nav-btn.quiz { border-color: var(--green); }
+  .nav-btn.quiz.active, .nav-btn.quiz:hover { background: var(--green); color: #fff; }
 
-  /* HERO SECTION */
-  .hero {
-    background: linear-gradient(135deg, #1a1a2e 0%, #2a0a3a 50%, #1a0b2e 100%);
-    color: white;
-    padding: 80px 40px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
+  /* ── HERO ── */
+  .hero { padding: 48px 24px 32px; text-align: center; }
+  .hero h1 {
+    font-family: 'Lexend Mega', sans-serif;
+    font-size: clamp(1.6rem, 4vw, 2.8rem);
+    line-height: 1.2; color: var(--text);
   }
-  .hero::after {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: url('data:image/svg+xml;utf8,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
-    opacity: 0.6;
-    pointer-events: none;
-  }
-  .hero h2 { 
-    font-size: 48px; 
-    font-weight: 700; 
-    margin-bottom: 16px; 
-    animation: slideDown 0.6s ease-out;
-  }
-  .hero p { 
-    font-size: 20px; 
-    color: rgba(255,255,255,0.85); 
-    max-width: 700px; 
-    margin: 0 auto; 
-    line-height: 1.6;
-    animation: fadeIn 1s ease-out;
-  }
+  .hero h1 .accent1 { color: var(--ch1); }
+  .hero h1 .accent2 { color: var(--ch2); }
+  .hero h1 .accent3 { color: var(--ch3-dark); }
+  .hero p { margin-top: 12px; color: var(--text-muted); max-width: 620px; margin-left: auto; margin-right: auto; }
+  .chapter-pills { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
+  .pill { padding: 8px 20px; border-radius: 30px; font-weight: 600; font-size: 0.85rem; cursor: pointer; transition: all 0.2s; border: none; }
+  .pill:hover { transform: translateY(-3px); box-shadow: var(--shadow-hover); }
+  .pill1 { background: var(--ch1); color: #fff; }
+  .pill2 { background: var(--ch2); color: #fff; }
+  .pill3 { background: var(--ch3); color: var(--text); }
+  .pill-flash { background: var(--purple); color: #fff; }
+  .pill-quiz { background: var(--green); color: #fff; }
 
-  /* DASHBOARD GRID */
-  .dashboard {
-    flex: 1;
-    padding: 60px 40px;
-    max-width: 1200px;
-    margin: 0 auto;
-    width: 100%;
-  }
-  .section-title {
-    font-size: 24px;
-    font-weight: 700;
-    color: var(--text);
-    margin-bottom: 30px;
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
+  /* ── SECTIONS ── */
+  .section { display: none; padding: 0 16px 60px; max-width: 960px; margin: 0 auto; }
+  .section.active { display: block; animation: fadeIn 0.3s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-  .topics-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 24px;
-    justify-content: center;
-  }
-
-  /* chapter CARDS */
-  .chapter-card {
-    background: var(--card);
-    border: 2px solid var(--border);
+  /* ── TOPIC CARDS ── */
+  .topic-card {
+    background: var(--surface);
     border-radius: var(--radius);
-    padding: 32px 24px;
-    text-decoration: none;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    padding: 28px; margin-bottom: 24px;
     box-shadow: var(--shadow);
-    position: relative;
-    overflow: hidden;
-    animation: slideUp 0.5s ease-out backwards;
-    max-width: 400px;
-    margin: 0 auto;
-    width: 100%;
+    border-left: 5px solid var(--ch1);
+    transition: box-shadow 0.2s;
   }
+  .topic-card:hover { box-shadow: var(--shadow-hover); }
+  .topic-card.ch2 { border-left-color: var(--ch2); }
+  .topic-card.ch3 { border-left-color: var(--ch3); }
+  .topic-card.purple { border-left-color: var(--purple); }
+  .topic-card.green { border-left-color: var(--green); }
+  .topic-card h2 { font-size: 1.25rem; font-weight: 700; margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+  .topic-card h3 { font-size: 1rem; font-weight: 600; margin: 18px 0 8px; }
+  .topic-card p { margin-bottom: 10px; }
+  .topic-card ul, .topic-card ol { padding-left: 22px; margin-bottom: 10px; }
+  .topic-card li { margin-bottom: 5px; }
 
-  .chapter-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 6px;
-    transition: height 0.3s ease;
+  /* ── CHAPTER HEADER ── */
+  .ch-header {
+    background: linear-gradient(135deg, var(--ch1) 0%, var(--ch1-dark) 100%);
+    border-radius: var(--radius); padding: 32px 28px;
+    color: white; margin-bottom: 28px;
+    position: relative; overflow: hidden;
   }
+  .ch-header.ch2 { background: linear-gradient(135deg, var(--ch2) 0%, var(--ch2-dark) 100%); color: var(--text); }
+  .ch-header.ch3 { background: linear-gradient(135deg, var(--ch3) 0%, var(--ch3-dark) 100%); color: var(--text); }
+  .ch-header h1 { font-family: 'Lexend Mega', sans-serif; font-size: 1.6rem; }
+  .ch-header p { opacity: 0.85; margin-top: 8px; }
+  .ch-header .big-num { position: absolute; right: 24px; top: 50%; transform: translateY(-50%); font-family: 'Lexend Mega', sans-serif; font-size: 6rem; opacity: 0.12; line-height: 1; }
 
-  .chapter-card:hover {
-    transform: translateY(-8px);
-    box-shadow: var(--shadow-hover);
-    border-color: transparent;
+  /* ── INFO BOXES ── */
+  .def-box {
+    background: var(--surface2); border: 2px dashed var(--border);
+    border-radius: 10px; padding: 14px 18px; margin: 12px 0; position: relative;
   }
-  .chapter-card:hover::before { height: 12px; }
+  .def-box::before { content: '📖 DEFINITION'; display: block; font-size: 0.68rem; font-weight: 700; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 6px; }
+  .def-box p { margin: 0; font-weight: 500; }
 
-  /* Card Specific Colors */
-  .card-theory::before { background: var(--accent-main); }
-  .card-theory:hover { border-color: var(--accent-main); }
-  .card-theory .mc-icon { color: var(--accent-main); background: #f3e5f5; }
+  .analogy-box { background: #FFF9E6; border: 2px solid #FFD966; border-radius: 10px; padding: 14px 18px; margin: 12px 0; }
+  .analogy-box::before { content: '💡 ANALOGY'; display: block; font-size: 0.68rem; font-weight: 700; letter-spacing: 1px; color: #997700; margin-bottom: 6px; }
 
-  .card-logic::before { background: var(--accent-secondary); }
-  .card-logic:hover { border-color: var(--accent-secondary); }
-  .card-logic .mc-icon { color: var(--accent-secondary); background: #e0f7fa; }
+  .memory-box { background: #F0FFF4; border: 2px solid var(--green); border-radius: 10px; padding: 14px 18px; margin: 12px 0; }
+  .memory-box::before { content: '🧠 MEMORY TRICK'; display: block; font-size: 0.68rem; font-weight: 700; letter-spacing: 1px; color: #267339; margin-bottom: 6px; }
 
-  .card-exam::before { background: var(--accent-tertiary); }
-  .card-exam:hover { border-color: var(--accent-tertiary); }
-  .card-exam .mc-icon { color: var(--accent-tertiary); background: #fff3e0; }
+  .exam-box { background: #FFF0F3; border: 2px solid #FF6B6B; border-radius: 10px; padding: 14px 18px; margin: 12px 0; }
+  .exam-box::before { content: '📝 EXAM TIP'; display: block; font-size: 0.68rem; font-weight: 700; letter-spacing: 1px; color: #C94040; margin-bottom: 6px; }
 
-  .mc-icon {
-    font-size: 42px;
-    width: 80px;
-    height: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    margin-bottom: 20px;
-    transition: transform 0.3s ease;
-  }
-  .chapter-card:hover .mc-icon {
-    transform: scale(1.1) rotate(5deg);
-  }
+  /* ── TABLE ── */
+  .comp-table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 0.88rem; border-radius: 10px; overflow: hidden; }
+  .comp-table th { background: var(--ch1); color: #fff; padding: 10px 14px; text-align: left; font-weight: 600; }
+  .comp-table.ch2 th { background: var(--ch2); color: var(--text); }
+  .comp-table.ch3 th { background: var(--ch3); color: var(--text); }
+  .comp-table.purple th { background: var(--purple); }
+  .comp-table.green th { background: var(--green); color: var(--text); }
+  .comp-table td { padding: 9px 14px; border-bottom: 1px solid var(--border); }
+  .comp-table tr:nth-child(even) td { background: var(--surface2); }
+  .comp-table tr:last-child td { border-bottom: none; }
 
-  .mc-title {
-    font-size: 20px;
-    font-weight: 700;
-    color: var(--text);
-    margin-bottom: 10px;
-  }
-  .mc-desc {
-    font-size: 14px;
-    color: var(--text-light);
-    line-height: 1.6;
-  }
-  .mc-action {
-    margin-top: 24px;
-    font-size: 13px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--text);
-    opacity: 0.6;
-    transition: opacity 0.2s;
-  }
-  .chapter-card:hover .mc-action { opacity: 1; }
+  /* ── DIAGRAMS ── */
+  .diagram-wrap { background: var(--surface2); border-radius: 12px; padding: 20px; margin: 16px 0; overflow-x: auto; }
+  .diagram-wrap p.caption { text-align: center; font-size: 0.8rem; color: var(--text-muted); margin-top: 10px; }
+  svg text { font-family: 'Lexend', sans-serif; }
 
-  /* BOTTOM SECTION (ABOUT ME) */
-  .bottom-section {
-    margin-top: 80px;
-    text-align: center;
-    animation: fadeIn 1.2s ease-out;
-  }
-  .info-card {
-    background: var(--card);
-    border: 2px solid var(--border);
-    border-radius: var(--radius);
-    padding: 40px 30px;
-    box-shadow: var(--shadow);
-    transition: transform 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    max-width: 800px;
-    margin: 0 auto;
-  }
-  .info-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-hover);
-    border-color: var(--accent-main);
-  }
-  
-  .info-card h3 {
-    font-size: 22px;
-    font-weight: 700;
-    color: var(--text);
-    margin-bottom: 12px;
-  }
-  .info-card p {
-    font-size: 16px;
-    color: var(--text-light);
-    line-height: 1.7;
-    margin-bottom: 26px;
-  }
-  
-  /* BUTTON STYLES */
-  .study-btn {
-    display: inline-block;
-    background: var(--accent-main);
-    color: white;
-    padding: 12px 28px;
-    border-radius: 8px;
-    font-weight: 600;
-    text-decoration: none;
-    transition: all 0.2s;
-    box-shadow: 0 4px 12px rgba(156, 39, 176, 0.2);
-  }
-  .study-btn:hover {
-    background: #7b1fa2;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(156, 39, 176, 0.4);
-  }
+  /* ── STEPS ── */
+  .steps { list-style: none; padding: 0; margin: 14px 0; }
+  .steps li { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 12px; }
+  .step-num { min-width: 32px; height: 32px; border-radius: 50%; background: var(--ch1); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85rem; flex-shrink: 0; }
+  .step-num.ch2 { background: var(--ch2); color: var(--text); }
+  .step-num.ch3 { background: var(--ch3); color: var(--text); }
+  .step-num.purple { background: var(--purple); }
+  .step-content { padding-top: 4px; }
 
-  /* ANIMATIONS */
-  @keyframes slideDown { 
-    from { opacity: 0; transform: translateY(-20px); } 
-    to { opacity: 1; transform: translateY(0); } 
-  }
-  @keyframes slideUp { 
-    from { opacity: 0; transform: translateY(20px); } 
-    to { opacity: 1; transform: translateY(0); } 
-  }
-  @keyframes fadeIn { 
-    from { opacity: 0; } 
-    to { opacity: 1; } 
-  }
+  /* ── ACCORDION ── */
+  .accordion { margin: 8px 0; border-radius: 10px; overflow: hidden; border: 2px solid var(--border); }
+  .accordion-header { width: 100%; text-align: left; padding: 13px 18px; background: var(--surface2); border: none; font-family: 'Lexend', sans-serif; font-size: 0.95rem; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: background 0.2s; }
+  .accordion-header:hover { background: var(--border); }
+  .accordion-header .arrow { transition: transform 0.3s; font-size: 0.8rem; }
+  .accordion-header.open .arrow { transform: rotate(180deg); }
+  .accordion-body { display: none; padding: 16px 18px; background: var(--surface); border-top: 2px solid var(--border); }
+  .accordion-body.open { display: block; }
 
-  @media (max-width: 768px) {
-    .top-bar { padding: 16px 20px; }
-    .back-link { position: static; margin-right: auto; }
-    .top-bar h1 { margin-left: auto; margin-right: auto; }
-    .hero { padding: 50px 20px; }
-    .hero h2 { font-size: 32px; }
-    .hero p { font-size: 16px; }
-    .dashboard { padding: 40px 20px; }
-    .topics-grid { grid-template-columns: 1fr; }
-  }
+  /* ── FOUR PILLARS GRID ── */
+  .pillars-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 16px 0; }
+  @media(max-width:600px){ .pillars-grid { grid-template-columns: 1fr; } }
+  .pillar-card { border-radius: 12px; padding: 18px; border: 2px solid; }
+  .pillar-card .p-icon { font-size: 2rem; margin-bottom: 8px; }
+  .pillar-card .p-name { font-weight: 700; font-size: 1.1rem; margin-bottom: 6px; }
+  .pillar-card .p-def { font-size: 0.88rem; }
+  .pc-abs { border-color: var(--ch1); background: var(--ch1-light); }
+  .pc-dec { border-color: var(--ch2); background: var(--ch2-light); }
+  .pc-pat { border-color: var(--ch3); background: var(--ch3-light); }
+  .pc-alg { border-color: var(--purple); background: var(--purple-light); }
 
-  /* ── PASSWORD OVERLAY ── */
-  #pw-overlay {
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
-    background: linear-gradient(135deg, #1a1a2e 0%, #0d0d1a 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Lexend', sans-serif;
+  /* ── BIG O GRID ── */
+  .big-o-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 14px 0; }
+  @media(max-width:600px){ .big-o-grid { grid-template-columns: 1fr; } }
+  .big-o-card { border-radius: 10px; padding: 14px; border: 2px solid; }
+  .big-o-card .notation { font-size: 1.3rem; font-weight: 700; }
+  .big-o-card .label { font-size: 0.8rem; font-weight: 600; margin: 4px 0; }
+  .big-o-card .desc { font-size: 0.82rem; color: var(--text-muted); }
+  .o1 { border-color: #56C271; background: #E6F8EB; }
+  .ologn { border-color: #4ECDC4; background: #E0F7F6; }
+  .on { border-color: #FFB347; background: #FFF3E0; }
+  .on2 { border-color: #FF6B6B; background: #FFE8E8; }
+
+  /* ── BADGE ── */
+  .badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.5px; }
+  .badge-red { background: var(--ch1-light); color: var(--ch1-dark); }
+  .badge-teal { background: var(--ch2-light); color: var(--ch2-dark); }
+  .badge-orange { background: var(--ch3-light); color: var(--ch3-dark); }
+  .badge-purple { background: var(--purple-light); color: var(--purple); }
+  .badge-green { background: var(--green-light); color: #1a7a32; }
+
+  /* ── SORT VISUALISER ── */
+  .sort-demo { background: var(--surface2); border-radius: 12px; padding: 16px; margin: 14px 0; }
+  .sort-bars { display: flex; align-items: flex-end; gap: 4px; height: 80px; margin-bottom: 8px; }
+  .sort-bar { flex: 1; background: var(--ch2); border-radius: 4px 4px 0 0; transition: all 0.4s; display: flex; align-items: flex-end; justify-content: center; font-size: 0.7rem; font-weight: 700; color: white; padding-bottom: 3px; }
+  .sort-bar.active { background: var(--ch1); }
+  .sort-bar.sorted { background: var(--green); }
+  .sort-controls { display: flex; gap: 8px; flex-wrap: wrap; }
+  .sort-btn { padding: 7px 16px; border-radius: 20px; border: none; font-family: 'Lexend', sans-serif; font-size: 0.82rem; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+  .sort-btn.s1 { background: var(--ch1); color: #fff; }
+  .sort-btn.s2 { background: var(--ch2); color: #fff; }
+  .sort-btn.s3 { background: var(--purple); color: #fff; }
+  .sort-btn.reset { background: var(--surface); border: 2px solid var(--border); color: var(--text-muted); }
+
+  /* ── LOGIC GATES GRID ── */
+  .gates-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; margin: 14px 0; }
+  .gate-card { background: var(--surface); border-radius: 12px; padding: 16px; border: 2px solid var(--border); }
+  .gate-card:hover { border-color: var(--ch3); box-shadow: var(--shadow); }
+  .gate-card .gate-name { font-size: 1.1rem; font-weight: 700; margin-bottom: 6px; color: var(--ch3-dark); }
+  .gate-card .gate-rule { font-size: 0.88rem; margin-bottom: 8px; }
+  .gate-card .tt { font-size: 0.82rem; border-collapse: collapse; width: 100%; }
+  .gate-card .tt th { background: var(--ch3); color: var(--text); padding: 4px 8px; }
+  .gate-card .tt td { padding: 3px 8px; border-bottom: 1px solid var(--border); text-align: center; }
+  .gate-card .tt tr:nth-child(even) td { background: var(--surface2); }
+
+  /* ── BINARY CALC ── */
+  .bin-calc { background: #1a1a2e; border-radius: 12px; padding: 20px; margin: 14px 0; color: white; }
+  .bin-calc h4 { color: #4ECDC4; margin-bottom: 12px; font-size: 0.9rem; }
+  .bin-input { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 12px; }
+  .bin-input input {
+    background: #2a2a4a; border: 2px solid #4ECDC4; border-radius: 8px;
+    padding: 8px 12px; color: white; font-family: 'Lexend', monospace;
+    font-size: 1rem; width: 180px;
   }
-  #pw-box {
-    background: #ffffff;
-    border-radius: 20px;
-    padding: 48px 40px;
-    width: 100%;
-    max-width: 420px;
-    text-align: center;
-    box-shadow: 0 24px 80px rgba(0,0,0,0.4);
-    animation: pwFadeIn 0.4s ease-out;
-  }
-  @keyframes pwFadeIn {
-    from { opacity: 0; transform: translateY(24px) scale(0.97); }
-    to   { opacity: 1; transform: translateY(0) scale(1); }
-  }
-  #pw-lock-icon {
-    font-size: 52px;
-    margin-bottom: 16px;
-    display: block;
-    animation: pwBounce 0.6s ease-out 0.2s both;
-  }
-  @keyframes pwBounce {
-    0%   { transform: scale(0); opacity: 0; }
-    60%  { transform: scale(1.15); opacity: 1; }
-    100% { transform: scale(1); }
-  }
-  #pw-box h2 {
-    font-size: 22px;
-    font-weight: 700;
-    color: #1a1a2e;
-    margin-bottom: 6px;
-  }
-  #pw-box p {
-    font-size: 14px;
-    color: #555570;
-    margin-bottom: 28px;
-  }
-  #pw-input {
-    width: 100%;
-    padding: 14px 18px;
-    border: 2px solid #e0dcd4;
-    border-radius: 10px;
-    font-family: 'Lexend', sans-serif;
-    font-size: 16px;
-    color: #1a1a2e;
-    outline: none;
-    transition: border-color 0.2s, box-shadow 0.2s;
-    letter-spacing: 0.05em;
-  }
-  #pw-input:focus {
-    border-color: #9c27b0;
-    box-shadow: 0 0 0 4px #9c27b022;
-  }
-  #pw-input.shake {
-    animation: pwShake 0.4s ease;
-    border-color: #ef4444;
-    box-shadow: 0 0 0 4px #ef444422;
-  }
-  @keyframes pwShake {
-    0%,100% { transform: translateX(0); }
-    20%     { transform: translateX(-8px); }
-    40%     { transform: translateX(8px); }
-    60%     { transform: translateX(-5px); }
-    80%     { transform: translateX(5px); }
-  }
-  #pw-btn {
-    margin-top: 16px;
-    width: 100%;
-    padding: 14px;
-    background: #9c27b0;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    font-family: 'Lexend', sans-serif;
-    font-size: 16px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
-    box-shadow: 0 4px 16px #9c27b044;
-  }
-  #pw-btn:hover {
-    background: #7b1fa2;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px #9c27b055;
-  }
-  #pw-btn:active { transform: translateY(0); }
-  #pw-error {
-    margin-top: 12px;
-    font-size: 13px;
-    color: #ef4444;
-    font-weight: 600;
-    min-height: 18px;
-    transition: opacity 0.2s;
-  }
-  body.pw-locked { overflow: hidden; }
+  .bin-input input:focus { outline: none; border-color: #FFB347; }
+  .bin-result { background: #2a2a4a; border-radius: 8px; padding: 12px; font-size: 0.9rem; min-height: 40px; }
+  .bin-result .res-label { color: #4ECDC4; font-size: 0.75rem; font-weight: 600; margin-bottom: 4px; }
+  .bin-result .res-value { font-size: 1.1rem; font-weight: 700; color: #FFD966; }
+  .convert-btn { padding: 8px 18px; border-radius: 8px; background: #4ECDC4; color: #1a1a2e; border: none; font-family: 'Lexend', sans-serif; font-weight: 700; cursor: pointer; font-size: 0.88rem; }
+  .convert-btn:hover { background: #FFB347; }
+
+  /* ── WATERFALL VS AGILE ── */
+  .method-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 14px 0; }
+  @media(max-width:580px){ .method-compare { grid-template-columns: 1fr; } }
+  .method-card { border-radius: 12px; padding: 18px; border: 2px solid; }
+  .method-card.waterfall { border-color: var(--ch1); background: var(--ch1-light); }
+  .method-card.agile { border-color: var(--ch2); background: var(--ch2-light); }
+  .method-card .m-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; }
+  .method-card .m-pros { color: #267339; font-size: 0.85rem; }
+  .method-card .m-cons { color: #C94040; font-size: 0.85rem; margin-top: 8px; }
+
+  /* ── MEMORY HIERARCHY ── */
+  .mem-pyramid { display: flex; flex-direction: column; align-items: center; gap: 6px; margin: 16px 0; }
+  .mem-level { border-radius: 8px; padding: 10px 16px; text-align: center; font-weight: 600; font-size: 0.9rem; color: white; cursor: pointer; transition: all 0.2s; }
+  .mem-level:hover { filter: brightness(1.1); transform: scale(1.02); }
+  .ml-1 { background: var(--ch1); width: 60%; }
+  .ml-2 { background: var(--ch3-dark); width: 72%; }
+  .ml-3 { background: var(--ch2-dark); width: 84%; }
+  .ml-4 { background: var(--purple); width: 96%; }
+  .mem-label { font-size: 0.75rem; color: var(--text-muted); margin-top: 2px; }
+
+  /* ── FLASHCARD ── */
+  #flashcards { padding: 0 16px 80px; max-width: 900px; margin: 0 auto; display: none; }
+  #flashcards.active { display: block; animation: fadeIn 0.3s ease; }
+  .flash-header { background: linear-gradient(135deg, var(--purple) 0%, #5a3da0 100%); border-radius: var(--radius); padding: 32px 28px; color: white; margin-bottom: 28px; position: relative; overflow: hidden; }
+  .flash-header h1 { font-family: 'Lexend Mega', sans-serif; font-size: 1.6rem; }
+  .flash-header p { opacity: 0.85; margin-top: 8px; }
+  .flash-header .big-num { position: absolute; right: 24px; top: 50%; transform: translateY(-50%); font-family: 'Lexend Mega', sans-serif; font-size: 6rem; opacity: 0.12; line-height: 1; }
+  .flash-controls { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; align-items: center; }
+  .flash-filter { padding: 7px 16px; border-radius: 20px; border: 2px solid var(--border); background: var(--surface); font-family: 'Lexend', sans-serif; font-size: 0.8rem; font-weight: 600; cursor: pointer; transition: all 0.2s; color: var(--text-muted); }
+  .flash-filter.active-ch1 { background: var(--ch1); color: #fff; border-color: var(--ch1); }
+  .flash-filter.active-ch2 { background: var(--ch2); color: var(--text); border-color: var(--ch2); }
+  .flash-filter.active-ch3 { background: var(--ch3); color: var(--text); border-color: var(--ch3); }
+  .flash-filter.active-all { background: var(--purple); color: #fff; border-color: var(--purple); }
+  .flashcard-area { display: flex; flex-direction: column; align-items: center; }
+  .flashcard { width: 100%; max-width: 640px; perspective: 1200px; min-height: 220px; cursor: pointer; margin-bottom: 20px; }
+  .flashcard-inner { position: relative; width: 100%; min-height: 220px; transition: transform 0.55s cubic-bezier(.4,.2,.2,1); transform-style: preserve-3d; }
+  .flashcard.flipped .flashcard-inner { transform: rotateY(180deg); }
+  .flashcard-front, .flashcard-back { position: absolute; width: 100%; min-height: 220px; backface-visibility: hidden; border-radius: var(--radius); padding: 32px 28px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; box-shadow: var(--shadow); }
+  .flashcard-front { background: var(--surface); border: 3px solid var(--purple); }
+  .flashcard-back { background: var(--purple); color: white; transform: rotateY(180deg); }
+  .flashcard-front .card-chapter { font-size: 0.7rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 12px; }
+  .flashcard-front .card-q { font-size: 1.15rem; font-weight: 600; }
+  .flashcard-front .flip-hint { margin-top: 16px; font-size: 0.75rem; color: var(--text-muted); }
+  .flashcard-back .card-a { font-size: 1rem; line-height: 1.7; }
+  .flash-nav { display: flex; gap: 12px; align-items: center; }
+  .flash-btn { padding: 10px 24px; border-radius: 24px; border: none; font-family: 'Lexend', sans-serif; font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: all 0.2s; background: var(--purple); color: #fff; }
+  .flash-btn:hover { background: #5a3da0; transform: translateY(-2px); box-shadow: var(--shadow-hover); }
+  .flash-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+  .flash-counter { font-weight: 600; color: var(--text-muted); font-size: 0.9rem; min-width: 80px; text-align: center; }
+  .flash-progress { width: 100%; max-width: 640px; height: 6px; background: var(--border); border-radius: 3px; margin-bottom: 20px; overflow: hidden; }
+  .flash-progress-bar { height: 100%; background: var(--purple); border-radius: 3px; transition: width 0.4s; }
+  .fc-ch1 { background: var(--ch1-light); color: var(--ch1-dark); }
+  .fc-ch2 { background: var(--ch2-light); color: var(--ch2-dark); }
+  .fc-ch3 { background: var(--ch3-light); color: var(--ch3-dark); }
+
+  /* ── QUIZ ── */
+  #quizsec { padding: 0 16px 80px; max-width: 900px; margin: 0 auto; display: none; }
+  #quizsec.active { display: block; animation: fadeIn 0.3s ease; }
+  .quiz-header { background: linear-gradient(135deg, var(--green) 0%, #2a9940 100%); border-radius: var(--radius); padding: 32px 28px; color: white; margin-bottom: 28px; position: relative; overflow: hidden; }
+  .quiz-header h1 { font-family: 'Lexend Mega', sans-serif; font-size: 1.6rem; }
+  .quiz-header p { opacity: 0.85; margin-top: 8px; }
+  .quiz-q { background: var(--surface); border-radius: var(--radius); padding: 24px 28px; box-shadow: var(--shadow); margin-bottom: 16px; }
+  .quiz-q .q-text { font-weight: 600; font-size: 1.05rem; margin-bottom: 16px; }
+  .quiz-options { display: flex; flex-direction: column; gap: 10px; }
+  .quiz-opt { padding: 12px 18px; border-radius: 10px; border: 2px solid var(--border); background: var(--surface); font-family: 'Lexend', sans-serif; font-size: 0.9rem; cursor: pointer; text-align: left; transition: all 0.2s; font-weight: 500; }
+  .quiz-opt:hover:not(:disabled) { border-color: var(--purple); background: var(--purple-light); }
+  .quiz-opt.correct { border-color: var(--green); background: var(--green-light); color: #1a7a32; }
+  .quiz-opt.wrong { border-color: var(--ch1); background: var(--ch1-light); color: var(--ch1-dark); }
+  .quiz-opt:disabled { cursor: not-allowed; }
+  .quiz-feedback { padding: 12px 18px; border-radius: 10px; margin-top: 12px; font-weight: 500; font-size: 0.9rem; display: none; }
+  .quiz-feedback.show { display: block; }
+  .quiz-feedback.correct { background: var(--green-light); border: 2px solid var(--green); color: #1a7a32; }
+  .quiz-feedback.wrong { background: var(--ch1-light); border: 2px solid var(--ch1); color: var(--ch1-dark); }
+  .quiz-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 16px; }
+  .quiz-score-display { font-weight: 700; font-size: 1.1rem; color: var(--purple); }
+  .quiz-next-btn { padding: 10px 24px; border-radius: 24px; border: none; font-family: 'Lexend', sans-serif; font-size: 0.9rem; font-weight: 600; cursor: pointer; background: var(--green); color: #fff; transition: all 0.2s; }
+  .quiz-next-btn:hover { background: #2a9940; transform: translateY(-2px); }
+
+  /* ── SCROLL TOP ── */
+  #scrollTop { position: fixed; bottom: 24px; right: 24px; width: 42px; height: 42px; background: var(--text); color: #fff; border: none; border-radius: 50%; font-size: 1.1rem; cursor: pointer; box-shadow: var(--shadow-hover); transition: all 0.2s; z-index: 99; opacity: 0; pointer-events: none; }
+  #scrollTop.visible { opacity: 1; pointer-events: all; }
+  #scrollTop:hover { transform: scale(1.1); }
+
+  .icon { font-size: 1.2rem; }
+  code { background: var(--surface2); border-radius: 4px; padding: 2px 6px; font-family: monospace; font-size: 0.88em; }
 </style>
 </head>
 <body>
 
-<div id="pw-overlay">
-  <div id="pw-box">
-    <span id="pw-lock-icon">🔒</span>
-    <h2>Password Protected</h2>
-    <p>This page is restricted to <strong>Computer Science</strong> students.<br>Enter the password to continue.</p>
-    <input id="pw-input" type="password" placeholder="Enter password…" autocomplete="off" />
-    <button id="pw-btn" onclick="checkPw()">Unlock →</button>
-    <div id="pw-error"></div>
+<nav>
+  <span class="nav-logo">LC <span>CS</span></span>
+  <button class="nav-btn ch1 active" onclick="showSection('ch1')">🧠 Ch1: Computational Thinking</button>
+  <button class="nav-btn ch2" onclick="showSection('ch2')">🛠️ Ch2: Software Development</button>
+  <button class="nav-btn ch3" onclick="showSection('ch3')">🖥️ Ch3: Computer Systems</button>
+  <button class="nav-btn flash" onclick="showSection('flashcards')">🃏 Flashcards</button>
+  <button class="nav-btn quiz" onclick="showSection('quizsec')">🎯 Quiz</button>
+</nav>
+
+<div class="hero" id="heroSection">
+  <h1><span class="accent1">Computational Thinking,</span><br><span class="accent2">Software Development</span> &amp; <span class="accent3">Computer Systems</span></h1>
+  <p>Chapters 1, 2 &amp; 3 — complete notes with definitions, analogies, memory tricks, diagrams, flashcards and a quiz to help you ace the exam.</p>
+  <div class="chapter-pills">
+    <button class="pill pill1" onclick="showSection('ch1')">🧠 Chapter 1: Computational Thinking</button>
+    <button class="pill pill2" onclick="showSection('ch2')">🛠️ Chapter 2: Software Development</button>
+    <button class="pill pill3" onclick="showSection('ch3')">🖥️ Chapter 3: Computer Systems</button>
+    <button class="pill pill-flash" onclick="showSection('flashcards')">🃏 Flashcards</button>
+    <button class="pill pill-quiz" onclick="showSection('quizsec')">🎯 Quick Quiz</button>
   </div>
 </div>
-<script>
-  (function() {
-    // If already unlocked in this browser, skip the overlay instantly
-    if (localStorage.getItem('lc_compsci_unlocked') === 'unlocked') {
-      document.getElementById('pw-overlay').remove();
-      return;
-    }
-    document.body.classList.add('pw-locked');
-  })();
 
-  document.getElementById('pw-input') && document.getElementById('pw-input').addEventListener('keydown', function(e) {
-    if (e.key === 'Enter') checkPw();
-    document.getElementById('pw-error').textContent = '';
-    this.classList.remove('shake');
-  });
-
-  function checkPw() {
-    const val = document.getElementById('pw-input').value;
-    if (val === 'MrGarvey') {
-      localStorage.setItem('lc_compsci_unlocked', 'unlocked');
-      const overlay = document.getElementById('pw-overlay');
-      overlay.style.transition = 'opacity 0.4s ease';
-      overlay.style.opacity = '0';
-      setTimeout(() => { overlay.remove(); document.body.classList.remove('pw-locked'); }, 400);
-    } else {
-      const inp = document.getElementById('pw-input');
-      inp.classList.remove('shake');
-      void inp.offsetWidth;
-      inp.classList.add('shake');
-      document.getElementById('pw-error').textContent = 'Incorrect password. Please try again.';
-      inp.value = '';
-    }
-  }
-</script>
-
-
-  <div class="top-bar">
-    <a href="index.html" class="back-link">← Master Console</a>
-    <h1>Leaving Cert <span>Computer Science</span></h1>
+<!-- ===================================================
+     CHAPTER 1 — COMPUTATIONAL THINKING
+     =================================================== -->
+<div id="ch1" class="section active">
+  <div class="ch-header">
+    <h1>🧠 Chapter 1 — Computational Thinking &amp; Algorithms</h1>
+    <p>The mental toolkit of every computer scientist. This chapter is on EVERY paper.</p>
+    <div class="big-num">1</div>
   </div>
 
-  <div class="hero">
-    <h2>Welcome to your Study Hub</h2>
-    <p>Select a chapter below to launch your interactive notes. Master programming concepts, computational thinking, and the underlying architecture of modern technology.</p>
+  <!-- 1.1 FOUR PILLARS -->
+  <div class="topic-card">
+    <h2><span class="icon">🏛️</span> The Four Pillars of Computational Thinking</h2>
+    <p>Computational thinking is a <strong>method of studying a problem and formulating a solution</strong> that can be implemented using a computer. It has <strong>four pillars</strong> — you MUST be able to define all four.</p>
+    <div class="memory-box"><p><strong>A-D-P-A</strong> — <strong>A</strong>bstraction, <strong>D</strong>ecomposition, <strong>P</strong>attern Recognition, <strong>A</strong>lgorithmic Thinking. Remember: "<strong>A Dog Plays Around</strong>"</p></div>
+    <div class="pillars-grid">
+      <div class="pillar-card pc-abs">
+        <div class="p-icon">🎭</div>
+        <div class="p-name">1. Abstraction</div>
+        <div class="def-box"><p>Reducing complexity by <strong>hiding unnecessary detail</strong> and focusing only on the relevant features of a problem.</p></div>
+        <div class="analogy-box"><p>A London Tube map is an abstraction — it shows stations and lines but ignores actual geography, distances, and tunnels. It has only what you need!</p></div>
+        <p><strong>Example:</strong> Modelling traffic — ignore car colour and driver age, focus on number of cars and speed.</p>
+      </div>
+      <div class="pillar-card pc-dec">
+        <div class="p-icon">✂️</div>
+        <div class="p-name">2. Decomposition</div>
+        <div class="def-box"><p>Breaking down a <strong>large complex problem</strong> into smaller, more manageable sub-problems that can each be solved separately.</p></div>
+        <div class="analogy-box"><p>Building a house is decomposed into: foundations, walls, roof, plumbing, electricity, painting. Each team tackles their part!</p></div>
+        <p><strong>Example:</strong> Building a website → header, navigation, content area, footer — each done separately.</p>
+      </div>
+      <div class="pillar-card pc-pat">
+        <div class="p-icon">🔍</div>
+        <div class="p-name">3. Pattern Recognition</div>
+        <div class="def-box"><p>Identifying <strong>similarities, trends, or repetitions</strong> among problems or within data to help solve more complex problems.</p></div>
+        <div class="analogy-box"><p>Like recognising that every morning you do: wake up → shower → eat → leave. Once you spot the pattern, you can automate or optimise it!</p></div>
+        <p><strong>Example:</strong> Noticing that two different problems both need a sorted list — reuse the same sorting solution.</p>
+      </div>
+      <div class="pillar-card pc-alg">
+        <div class="p-icon">📋</div>
+        <div class="p-name">4. Algorithmic Thinking</div>
+        <div class="def-box"><p>A way of getting to a solution through <strong>clear, ordered, step-by-step instructions</strong> that can be implemented by a computer.</p></div>
+        <div class="analogy-box"><p>A recipe is an algorithm — it lists exact steps in order to produce a specific result. Skip a step and the dish fails!</p></div>
+        <p><strong>Example:</strong> A login algorithm: 1. Get username &amp; password. 2. Check database. 3. If match → grant access. 4. Else → show error.</p>
+      </div>
+    </div>
+    <div class="exam-box"><p>These four definitions appear on <strong>almost every exam</strong>. Learn the definitions word-for-word and have a real-world example ready for each one.</p></div>
   </div>
 
-  <main class="dashboard">
-    <div class="section-title">Select a chapter</div>
-    
-    <div class="topics-grid">
-      
-      <!-- CHAPTER 1-3 CARD -->
-      <a href="Computer science chapters 1-3.html" class="chapter-card card-theory">
-        <div class="mc-icon">🧠</div>
-        <div class="mc-title">Chapters 1-3</div>
-        <div class="mc-desc">Dive into computational thinking, explore computer architecture, and understand network and internet protocols.</div>
-        <div class="mc-action">Start chapter →</div>
-      </a>
+  <!-- 1.2 ALGORITHMS -->
+  <div class="topic-card">
+    <h2><span class="icon">📋</span> Algorithms — What Makes a Good One?</h2>
+    <div class="def-box"><p>An <strong>algorithm</strong> is a <em>finite</em>, <em>ordered</em> set of clear instructions that solves a specific problem. It must have an input, a process, and an output.</p></div>
+    <h3>Characteristics of a Good Algorithm</h3>
+    <table class="comp-table">
+      <tr><th>Characteristic</th><th>What it means</th><th>Example</th></tr>
+      <tr><td><strong>Finite</strong></td><td>Must eventually stop — no infinite loops</td><td>A recipe has a final step</td></tr>
+      <tr><td><strong>Well-defined</strong></td><td>Clear inputs and outputs</td><td>"Sort a list of numbers" — input = list, output = sorted list</td></tr>
+      <tr><td><strong>Unambiguous</strong></td><td>No step should be open to interpretation</td><td>"Add a pinch of salt" is bad; "Add 2g of salt" is better</td></tr>
+      <tr><td><strong>Effective</strong></td><td>Each step can actually be carried out</td><td>No impossible or undefined steps</td></tr>
+      <tr><td><strong>Language-independent</strong></td><td>Can be written in any programming language</td><td>Bubble sort works in Python, Java, C…</td></tr>
+    </table>
 
-      <!-- CHAPTER 4-5 CARD -->
-      <a href="Computer science chapters 4-5.html" class="chapter-card card-logic">
-        <div class="mc-icon">🔢</div>
-        <div class="mc-title">Chapters 4-5</div>
-        <div class="mc-desc">Master logic gates, binary conversion, ASCII, and the software development lifecycle.</div>
-        <div class="mc-action">Start chapter →</div>
-      </a>
-
-      <!-- SECTION C EXAM CARD -->
-      <a href="Section C.html" class="chapter-card card-exam">
-        <div class="mc-icon">💻</div>
-        <div class="mc-title">Coding Exam Generator</div>
-        <div class="mc-desc">Practice with the dynamic coding exam generator to hone your applied programming skills for Section C.</div>
-        <div class="mc-action">Start exam →</div>
-      </a>
-
+    <h3>🗺️ Flowchart Symbols — You Must Know These!</h3>
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 700 120" xmlns="http://www.w3.org/2000/svg" width="100%">
+        <!-- Oval -->
+        <ellipse cx="60" cy="60" rx="50" ry="28" fill="#FFE8E8" stroke="#FF6B6B" stroke-width="2"/>
+        <text x="60" y="64" text-anchor="middle" font-size="11" fill="#C94040" font-weight="600">Start/End</text>
+        <!-- Parallelogram -->
+        <polygon points="145,32 215,32 205,88 135,88" fill="#E0F7F6" stroke="#4ECDC4" stroke-width="2"/>
+        <text x="175" y="64" text-anchor="middle" font-size="11" fill="#2A9990" font-weight="600">Input/Output</text>
+        <!-- Rectangle -->
+        <rect x="240" y="32" width="100" height="56" rx="6" fill="#FFF3E0" stroke="#FFB347" stroke-width="2"/>
+        <text x="290" y="64" text-anchor="middle" font-size="11" fill="#CC7A00" font-weight="600">Process</text>
+        <!-- Diamond -->
+        <polygon points="410,32 460,60 410,88 360,60" fill="#EDE8F7" stroke="#7C5CBF" stroke-width="2"/>
+        <text x="410" y="64" text-anchor="middle" font-size="11" fill="#5a3da0" font-weight="600">Decision</text>
+        <!-- Arrow -->
+        <rect x="505" y="32" width="70" height="56" rx="6" fill="#E6F8EB" stroke="#56C271" stroke-width="2"/>
+        <text x="540" y="58" text-anchor="middle" font-size="11" fill="#267339" font-weight="600">Connector/</text>
+        <text x="540" y="72" text-anchor="middle" font-size="11" fill="#267339" font-weight="600">Flow Arrow</text>
+        <text x="60" y="108" text-anchor="middle" font-size="9" fill="#999">Oval</text>
+        <text x="175" y="108" text-anchor="middle" font-size="9" fill="#999">Parallelogram</text>
+        <text x="290" y="108" text-anchor="middle" font-size="9" fill="#999">Rectangle</text>
+        <text x="410" y="108" text-anchor="middle" font-size="9" fill="#999">Diamond</text>
+        <text x="540" y="108" text-anchor="middle" font-size="9" fill="#999">Arrow</text>
+      </svg>
+      <p class="caption">Standard flowchart symbols — appear in almost every exam!</p>
     </div>
 
-    <!-- MORE RESOURCES & ABOUT GRID -->
-    <div class="bottom-section">
-      <div class="info-card">
-        <h3>Keep Track of Your Study 📚</h3>
-        <p>Return to your master dashboard to manage all your Leaving Cert subjects, or head over to the study tracker to analyze your performance and schedule your study sessions.</p>
-        <a href="https://studyrightireland.com" target="_blank" class="study-btn">Visit StudyRightIreland.com</a>
+    <h3>Heuristics</h3>
+    <div class="def-box"><p>A <strong>heuristic</strong> is a "rule of thumb" — a practical approach that finds a <em>good-enough</em> solution quickly when finding the perfect solution would take too long.</p></div>
+    <div class="analogy-box"><p>When you're late and can't find the perfect route, you just take the road you usually use — that's a heuristic! "Good enough, fast enough."</p></div>
+    <p><strong>Examples:</strong> spam filters (score suspicious words), navigation apps (choose a fast enough route without testing every possible road), anti-virus software (flag files that look suspicious).</p>
+    <div class="exam-box"><p>DEB 2023 asked directly: "What is a heuristic?" Know the definition and one example.</p></div>
+  </div>
+
+  <!-- 1.3 TRACE TABLES -->
+  <div class="topic-card">
+    <h2><span class="icon">📊</span> Trace Tables — Step by Step</h2>
+    <div class="def-box"><p>A <strong>trace table</strong> records the value of each variable after every line of code executes. Used to manually check what a program does.</p></div>
+    <div class="analogy-box"><p>A trace table is like a detective's evidence log — you write down what each clue (variable) reveals at each moment in time, step by step.</p></div>
+    <h3>How to complete a trace table:</h3>
+    <ol class="steps">
+      <li><span class="step-num">1</span><div class="step-content">Write a column for each variable and one for the line number.</div></li>
+      <li><span class="step-num">2</span><div class="step-content">Start at line 1. Update ONLY the variable that changes on that line.</div></li>
+      <li><span class="step-num">3</span><div class="step-content">For loops: repeat the row each time the loop runs.</div></li>
+      <li><span class="step-num">4</span><div class="step-content">For IF statements: only follow the branch that applies to the current values.</div></li>
+      <li><span class="step-num">5</span><div class="step-content">Write the final output at the end.</div></li>
+    </ol>
+    <h3>Example Trace Table — Counting Loop</h3>
+    <div style="overflow-x:auto;">
+      <table class="comp-table">
+        <tr><th>Line</th><th>i</th><th>total</th><th>Output</th></tr>
+        <tr><td>1</td><td>—</td><td>0</td><td>—</td></tr>
+        <tr><td>2 (i=1)</td><td>1</td><td>1</td><td>—</td></tr>
+        <tr><td>2 (i=2)</td><td>2</td><td>3</td><td>—</td></tr>
+        <tr><td>2 (i=3)</td><td>3</td><td>6</td><td>—</td></tr>
+        <tr><td>3</td><td>—</td><td>—</td><td>6</td></tr>
+      </table>
+    </div>
+    <div class="exam-box"><p>Trace tables appear on <strong>every exam</strong>. Practice going slowly — one cell at a time. The 2022 paper had an ISBN check digit; DEB 2023 had a while-loop. Never rush!</p></div>
+  </div>
+
+  <!-- 1.4 BIG O -->
+  <div class="topic-card">
+    <h2><span class="icon">📈</span> Algorithmic Complexity — Big O Notation</h2>
+    <div class="def-box"><p><strong>Big O notation</strong> measures the relationship between the size of the input (N) and the number of steps an algorithm takes. It is about <em>amount of work</em>, NOT speed.</p></div>
+    <div class="analogy-box"><p>Big O is like asking "how much messier does my room get if I buy more stuff?" — O(1) means it never gets worse, O(n²) means it gets much, much worse very quickly!</p></div>
+    <div class="big-o-grid">
+      <div class="big-o-card o1">
+        <div class="notation">O(1)</div>
+        <div class="label">Constant</div>
+        <div class="desc">Same time no matter how big the input. Example: looking up an item by index in a list.</div>
+      </div>
+      <div class="big-o-card ologn">
+        <div class="notation">O(log n)</div>
+        <div class="label">Logarithmic</div>
+        <div class="desc">Gets slower very slowly. Example: <strong>Binary Search</strong> — halves the problem each step.</div>
+      </div>
+      <div class="big-o-card on">
+        <div class="notation">O(n)</div>
+        <div class="label">Linear</div>
+        <div class="desc">Doubles when input doubles. Example: <strong>Linear Search</strong> — check each item one by one.</div>
+      </div>
+      <div class="big-o-card on2">
+        <div class="notation">O(n²)</div>
+        <div class="label">Quadratic</div>
+        <div class="desc">Gets very slow for large inputs. Example: <strong>Bubble, Selection, Insertion Sort</strong> — two nested loops.</div>
+      </div>
+    </div>
+    <div class="memory-box"><p>Best to worst: <strong>O(1) → O(log n) → O(n) → O(n²)</strong><br>Think: "Constant is <em>King</em>, Quadratic is <em>Quit</em> using it!"</p></div>
+    <div class="exam-box"><p>Know which Big O applies to: Linear Search = O(n), Binary Search = O(log n), Bubble/Selection/Insertion Sort = O(n²).</p></div>
+  </div>
+
+  <!-- 1.5 SEARCH ALGORITHMS -->
+  <div class="topic-card">
+    <h2><span class="icon">🔎</span> Search Algorithms</h2>
+
+    <div class="accordion">
+      <button class="accordion-header" onclick="toggleAccordion(this)"><span>🔵 Linear Search — O(n)</span><span class="arrow">▼</span></button>
+      <div class="accordion-body">
+        <div class="def-box"><p><strong>Linear Search</strong> — go through each item in the list <em>one by one</em>, comparing it to the target. Return the index if found, -1 if not found.</p></div>
+        <div class="analogy-box"><p>Like looking for your keys by checking every pocket one at a time — tedious but always works!</p></div>
+        <table class="comp-table">
+          <tr><th>Pros</th><th>Cons</th></tr>
+          <tr><td>✅ List does NOT need to be sorted</td><td>❌ Slow — O(n) time complexity</td></tr>
+          <tr><td>✅ Simple to code</td><td>❌ Gets very slow for large lists</td></tr>
+        </table>
       </div>
     </div>
 
-  </main>
+    <div class="accordion">
+      <button class="accordion-header" onclick="toggleAccordion(this)"><span>🟢 Binary Search — O(log n)</span><span class="arrow">▼</span></button>
+      <div class="accordion-body">
+        <div class="def-box"><p><strong>Binary Search</strong> — requires a SORTED list. Look at the middle element: if target is smaller, search left half; if larger, search right half. Keep halving until found.</p></div>
+        <div class="analogy-box"><p>Like finding a name in a phone book — open the middle, decide which half to look in, then repeat. Much faster than reading every page!</p></div>
+        <ol class="steps">
+          <li><span class="step-num ch2">1</span><div class="step-content">Find the <strong>middle element</strong> of the list.</div></li>
+          <li><span class="step-num ch2">2</span><div class="step-content">If middle = target → <strong>found! Stop.</strong></div></li>
+          <li><span class="step-num ch2">3</span><div class="step-content">If target &lt; middle → <strong>search left half.</strong></div></li>
+          <li><span class="step-num ch2">4</span><div class="step-content">If target &gt; middle → <strong>search right half.</strong></div></li>
+          <li><span class="step-num ch2">5</span><div class="step-content">Repeat until found or list is empty.</div></li>
+        </ol>
+        <table class="comp-table ch2">
+          <tr><th>Pros</th><th>Cons</th></tr>
+          <tr><td>✅ Very fast — O(log n)</td><td>❌ Data MUST be sorted first</td></tr>
+          <tr><td>✅ Efficient for large datasets</td><td>❌ Sorting adds its own time cost</td></tr>
+        </table>
+        <div class="memory-box"><p><strong>B</strong>inary = <strong>B</strong>isect = <strong>B</strong>etter! Always halves the problem. Must be <strong>S</strong>orted — think "<strong>S</strong>orted = <strong>S</strong>uper fast Binary"</p></div>
+      </div>
+    </div>
+  </div>
 
+  <!-- 1.6 SORT ALGORITHMS -->
+  <div class="topic-card">
+    <h2><span class="icon">🔀</span> Sorting Algorithms — All O(n²)</h2>
+    <p>All three sorting algorithms you need to know have <strong>O(n²) time complexity</strong> — they use two nested loops. Click the buttons below to see each sort in action!</p>
+
+    <div class="sort-demo">
+      <div class="sort-bars" id="sortBars"></div>
+      <p id="sortStatus" style="font-size:0.85rem; color:var(--text-muted); margin-bottom:10px; min-height:20px;">Ready — press a sort button!</p>
+      <div class="sort-controls">
+        <button class="sort-btn s1" onclick="runSort('bubble')">🫧 Bubble Sort</button>
+        <button class="sort-btn s2" onclick="runSort('selection')">🎯 Selection Sort</button>
+        <button class="sort-btn s3" onclick="runSort('insertion')">📌 Insertion Sort</button>
+        <button class="sort-btn reset" onclick="resetBars()">↺ Reset</button>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <button class="accordion-header" onclick="toggleAccordion(this)"><span>🫧 Bubble Sort — O(n²)</span><span class="arrow">▼</span></button>
+      <div class="accordion-body">
+        <div class="def-box"><p><strong>Bubble Sort</strong> — compare adjacent pairs; if in wrong order, swap them. After each full pass, the largest value "bubbles up" to the end. Repeat until no swaps needed.</p></div>
+        <div class="analogy-box"><p>Like bubbles rising in water — the biggest bubble (largest number) always floats to the top first, then the next biggest, and so on.</p></div>
+        <ol class="steps">
+          <li><span class="step-num">1</span><div class="step-content">Compare elements [0] and [1]. If [0] &gt; [1], <strong>swap</strong> them.</div></li>
+          <li><span class="step-num">2</span><div class="step-content">Move to [1] and [2]. Compare and swap if needed.</div></li>
+          <li><span class="step-num">3</span><div class="step-content">Continue to end of list. After pass 1, <strong>largest is in last position</strong>.</div></li>
+          <li><span class="step-num">4</span><div class="step-content">Repeat for remaining unsorted elements.</div></li>
+          <li><span class="step-num">5</span><div class="step-content"><strong>Optimisation:</strong> if a pass has 0 swaps, the list is sorted — stop early!</div></li>
+        </ol>
+        <div class="memory-box"><p>🫧 Big bubbles rise first! Think of it as: "the big numbers <em>bubble up</em> to the top after each pass."</p></div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <button class="accordion-header" onclick="toggleAccordion(this)"><span>🎯 Selection Sort — O(n²)</span><span class="arrow">▼</span></button>
+      <div class="accordion-body">
+        <div class="def-box"><p><strong>Selection Sort</strong> — find the smallest value in the unsorted part of the list and place it at the start. Repeat for the remaining unsorted section.</p></div>
+        <div class="analogy-box"><p>Like choosing cards from a hand — always grab the smallest card first and put it down in order. Then grab the next smallest, etc.</p></div>
+        <ol class="steps">
+          <li><span class="step-num ch2">1</span><div class="step-content"><strong>Find the minimum</strong> value in the entire unsorted list.</div></li>
+          <li><span class="step-num ch2">2</span><div class="step-content"><strong>Swap</strong> it with the first element of the unsorted portion.</div></li>
+          <li><span class="step-num ch2">3</span><div class="step-content">Move the "sorted boundary" one position to the right.</div></li>
+          <li><span class="step-num ch2">4</span><div class="step-content">Repeat from step 1 on the remaining unsorted section.</div></li>
+        </ol>
+        <div class="memory-box"><p>🎯 "<strong>S</strong>election = <strong>S</strong>mallest first" — always <em>selecting</em> the minimum to slot in next.</p></div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <button class="accordion-header" onclick="toggleAccordion(this)"><span>📌 Insertion Sort — O(n²)</span><span class="arrow">▼</span></button>
+      <div class="accordion-body">
+        <div class="def-box"><p><strong>Insertion Sort</strong> — treat the list as a sorted and unsorted part. Take the next unsorted element and <em>insert it into its correct position</em> in the sorted part by comparing backwards.</p></div>
+        <div class="analogy-box"><p>Like sorting playing cards in your hand — you pick up a new card and slide it into the right position among the cards you're already holding.</p></div>
+        <ol class="steps">
+          <li><span class="step-num purple">1</span><div class="step-content">Start with element at index 1 (element at index 0 is already "sorted").</div></li>
+          <li><span class="step-num purple">2</span><div class="step-content">Compare with the element to its left. If smaller, <strong>shift the left element right</strong>.</div></li>
+          <li><span class="step-num purple">3</span><div class="step-content">Keep comparing leftwards until the correct position is found.</div></li>
+          <li><span class="step-num purple">4</span><div class="step-content"><strong>Insert</strong> the element in the correct position.</div></li>
+          <li><span class="step-num purple">5</span><div class="step-content">Move to the next unsorted element and repeat.</div></li>
+        </ol>
+        <div class="memory-box"><p>📌 "<strong>I</strong>nsertion = <strong>I</strong>nsert into the right place" — like inserting a card into a sorted hand.</p></div>
+      </div>
+    </div>
+
+    <div class="exam-box"><p>You will be asked to <strong>trace a sort</strong> step by step, show each pass, or compare sorts. Remember: all three are O(n²) — inefficient for large datasets. Binary sort (O(n log n)) exists but isn't in the LC syllabus as a sort to trace.</p></div>
+  </div>
+
+  <!-- 1.7 EXAM PUZZLES -->
+  <div class="topic-card">
+    <h2><span class="icon">🧩</span> Exam Puzzles — Applying Computational Thinking</h2>
+    <p>These puzzle types have appeared on past papers. Apply <strong>decomposition + pattern recognition + algorithmic thinking</strong> to solve them.</p>
+
+    <div class="accordion">
+      <button class="accordion-header" onclick="toggleAccordion(this)"><span>🔐 Caesar Cipher — DEB 2023</span><span class="arrow">▼</span></button>
+      <div class="accordion-body">
+        <div class="def-box"><p>A <strong>Caesar Cipher</strong> shifts every letter in the alphabet by a fixed number <em>n</em> (the key). To decode: shift each letter <strong>backwards</strong> by n, wrapping around using modulo.</p></div>
+        <p><strong>Decode formula:</strong> <code>Decoded = (letter_position − n) mod 26</code></p>
+        <div class="analogy-box"><p>Imagine the alphabet as a circle (A after Z). Shift right to encode, shift left to decode. If you shift A back 3, you go Z, Y, X — modulo handles the wrap-around.</p></div>
+        <div class="memory-box"><p>🔐 Caesar said "<strong>Shift it!</strong>" — encode = shift forward n, decode = shift back n. Modulo = handles the wrap-around at Z→A.</p></div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <button class="accordion-header" onclick="toggleAccordion(this)"><span>✏️ Pigpen Cipher — DEB 2024</span><span class="arrow">▼</span></button>
+      <div class="accordion-body">
+        <div class="def-box"><p>The <strong>Pigpen cipher</strong> uses a key diagram made of grid segments and X-grid segments. Each letter is represented by the <em>shape</em> of the segment it sits in.</p></div>
+        <p>To decode: look at the <em>shape</em> of each symbol and find the matching segment in the key grid. No numbers, no maths — pure pattern recognition!</p>
+        <div class="memory-box"><p>🐷 Pigpen = <strong>P</strong>attern recognition — the shape of the cage tells you the letter!</p></div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <button class="accordion-header" onclick="toggleAccordion(this)"><span>🗺️ Manhattan Tourist Problem — DEB 2024</span><span class="arrow">▼</span></button>
+      <div class="accordion-body">
+        <div class="def-box"><p>The <strong>Manhattan Tourist Problem</strong> asks: moving only <em>south</em> or <em>east</em> through a grid, what is the path that maximises the number of attractions visited?</p></div>
+        <p><strong>Method (Dynamic Programming):</strong> Fill in a grid from top-left to bottom-right. Each cell = max(value from above + attraction weight, value from left + attraction weight).</p>
+        <div class="memory-box"><p>🗺️ You can only go <strong>S</strong>outh or <strong>E</strong>ast — never back! Work top-left to bottom-right, always picking the <em>greediest</em> path.</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================================================
+     CHAPTER 2 — SOFTWARE DEVELOPMENT & DESIGN
+     =================================================== -->
+<div id="ch2" class="section">
+  <div class="ch-header ch2">
+    <h1>🛠️ Chapter 2 — Software Development &amp; Design</h1>
+    <p>SDLC, methodologies (Waterfall vs Agile), testing types, UCD, and accessibility.</p>
+    <div class="big-num">2</div>
+  </div>
+
+  <!-- 2.1 SOFTWARE TYPES -->
+  <div class="topic-card ch2">
+    <h2><span class="icon">💾</span> Types of Software</h2>
+    <div class="def-box"><p><strong>Software</strong> is the set of instructions or programs that tell a computer what to do. It is independent of hardware and makes computers programmable.</p></div>
+    <table class="comp-table ch2">
+      <tr><th>Type</th><th>What it does</th><th>Examples</th></tr>
+      <tr><td><strong>System Software</strong></td><td>Manages hardware and core functions</td><td>Windows, macOS, Linux (Operating Systems)</td></tr>
+      <tr><td><strong>Programming Software</strong></td><td>Tools for developers to write code</td><td>VS Code, compilers, debuggers, linkers</td></tr>
+      <tr><td><strong>Application Software</strong></td><td>Helps users perform specific tasks</td><td>Word, Chrome, Spotify, Instagram, games</td></tr>
+    </table>
+    <div class="memory-box"><p><strong>S-P-A</strong> = <strong>S</strong>ystem → <strong>P</strong>rogramming → <strong>A</strong>pplication. Think: "<strong>S</strong>ervers, <strong>P</strong>rogrammers, <strong>A</strong>pps"</p></div>
+  </div>
+
+  <!-- 2.2 SDLC -->
+  <div class="topic-card ch2">
+    <h2><span class="icon">🔄</span> The Software Development Life Cycle (SDLC)</h2>
+    <div class="def-box"><p>The <strong>SDLC</strong> is a structured, repeatable process for designing, developing, and maintaining software. It ensures quality and reduces costly mistakes.</p></div>
+    <div class="analogy-box"><p>Building a house has stages: plan → design → build → inspect → move in → maintain. You wouldn't start building walls before the architect draws the plans! Software is the same.</p></div>
+
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 700 160" xmlns="http://www.w3.org/2000/svg" width="100%">
+        <defs>
+          <marker id="arw" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+            <path d="M0,0 L0,7 L7,3.5 z" fill="#4ECDC4"/>
+          </marker>
+        </defs>
+        <!-- Stage boxes -->
+        <rect x="10" y="55" width="90" height="50" rx="10" fill="#E0F7F6" stroke="#4ECDC4" stroke-width="2"/>
+        <text x="55" y="78" text-anchor="middle" font-size="11" font-weight="700" fill="#2A9990">1. Analysis</text>
+        <text x="55" y="93" text-anchor="middle" font-size="9" fill="#2A9990">Requirements</text>
+        <line x1="100" y1="80" x2="118" y2="80" stroke="#4ECDC4" stroke-width="2" marker-end="url(#arw)"/>
+
+        <rect x="118" y="55" width="90" height="50" rx="10" fill="#FFF3E0" stroke="#FFB347" stroke-width="2"/>
+        <text x="163" y="78" text-anchor="middle" font-size="11" font-weight="700" fill="#CC7A00">2. Planning</text>
+        <text x="163" y="93" text-anchor="middle" font-size="9" fill="#CC7A00">Timeline/Team</text>
+        <line x1="208" y1="80" x2="226" y2="80" stroke="#4ECDC4" stroke-width="2" marker-end="url(#arw)"/>
+
+        <rect x="226" y="55" width="90" height="50" rx="10" fill="#EDE8F7" stroke="#7C5CBF" stroke-width="2"/>
+        <text x="271" y="78" text-anchor="middle" font-size="11" font-weight="700" fill="#5a3da0">3. Design</text>
+        <text x="271" y="93" text-anchor="middle" font-size="9" fill="#5a3da0">UI/Architecture</text>
+        <line x1="316" y1="80" x2="334" y2="80" stroke="#4ECDC4" stroke-width="2" marker-end="url(#arw)"/>
+
+        <rect x="334" y="55" width="90" height="50" rx="10" fill="#FFE8E8" stroke="#FF6B6B" stroke-width="2"/>
+        <text x="379" y="78" text-anchor="middle" font-size="11" font-weight="700" fill="#C94040">4. Develop</text>
+        <text x="379" y="93" text-anchor="middle" font-size="9" fill="#C94040">Write Code</text>
+        <line x1="424" y1="80" x2="442" y2="80" stroke="#4ECDC4" stroke-width="2" marker-end="url(#arw)"/>
+
+        <rect x="442" y="55" width="90" height="50" rx="10" fill="#E6F8EB" stroke="#56C271" stroke-width="2"/>
+        <text x="487" y="78" text-anchor="middle" font-size="11" font-weight="700" fill="#267339">5. Testing</text>
+        <text x="487" y="93" text-anchor="middle" font-size="9" fill="#267339">Find &amp; Fix Bugs</text>
+        <line x1="532" y1="80" x2="550" y2="80" stroke="#4ECDC4" stroke-width="2" marker-end="url(#arw)"/>
+
+        <rect x="550" y="55" width="130" height="50" rx="10" fill="#F0EDE8" stroke="#7A7068" stroke-width="2"/>
+        <text x="615" y="74" text-anchor="middle" font-size="11" font-weight="700" fill="#2C2825">6. Maintenance</text>
+        <text x="615" y="89" text-anchor="middle" font-size="9" fill="#7A7068">Deploy &amp; Update</text>
+
+        <!-- Return arrow at bottom -->
+        <path d="M680,105 C680,145 340,145 35,145 L35,105" stroke="#4ECDC4" stroke-width="1.5" fill="none" stroke-dasharray="5,3"/>
+        <text x="340" y="158" text-anchor="middle" font-size="9" fill="#4ECDC4">Feedback loop — iterate and improve</text>
+      </svg>
+      <p class="caption">The Software Development Life Cycle (SDLC)</p>
+    </div>
+
+    <div class="exam-box"><p>2023 paper asked you to name 2 reasons the SDLC is important. Answer: (1) Structured process reduces costly mistakes. (2) Clarifies roles, milestones and deadlines.</p></div>
+    <div class="memory-box"><p><strong>A-P-D-D-T-M</strong> = <strong>A</strong>nalysis, <strong>P</strong>lanning, <strong>D</strong>esign, <strong>D</strong>evelop, <strong>T</strong>esting, <strong>M</strong>aintenance. "<strong>A</strong>mazing <strong>P</strong>rogrammers <strong>D</strong>esign <strong>D</strong>ope, <strong>T</strong>ested <strong>M</strong>asterpieces"</p></div>
+  </div>
+
+  <!-- 2.3 WATERFALL vs AGILE -->
+  <div class="topic-card ch2">
+    <h2><span class="icon">⚙️</span> Waterfall vs Agile — Development Methodologies</h2>
+    <p>Two approaches to how you ORGANISE the SDLC stages. This comparison is asked on almost every paper!</p>
+
+    <div class="method-compare">
+      <div class="method-card waterfall">
+        <div class="m-title">🌊 Waterfall (Staged)</div>
+        <div class="def-box"><p>Sequential — each stage must be <strong>fully complete</strong> before the next starts. Like a waterfall, the flow only goes downward.</p></div>
+        <div class="m-pros">✅ Clear milestones and deadlines<br>✅ No financial surprises<br>✅ Good documentation<br>✅ Easy to manage fixed-scope projects</div>
+        <div class="m-cons">❌ Very inflexible to change<br>❌ Client has little input during development<br>❌ If an issue found late, must restart<br>❌ Long time before client sees anything</div>
+        <p style="margin-top:10px; font-size:0.85rem;"><strong>Best for:</strong> well-understood, fixed requirements (banking systems, defence, building control systems).</p>
+      </div>
+      <div class="method-card agile">
+        <div class="m-title">🔄 Agile (Iterative)</div>
+        <div class="def-box"><p>Iterative — work in short cycles called <strong>sprints</strong> (1–4 weeks). Get user feedback after each sprint and adjust. All SDLC phases happen repeatedly.</p></div>
+        <div class="m-pros">✅ Very flexible — requirements can change<br>✅ Client is involved throughout<br>✅ Working product delivered early<br>✅ Quick feedback catches issues fast</div>
+        <div class="m-cons">❌ Hard to pin down final cost or date<br>❌ Documentation can be lacking<br>❌ Client must stay engaged throughout<br>❌ Can keep changing if client is unsure</div>
+        <p style="margin-top:10px; font-size:0.85rem;"><strong>Best for:</strong> modern web/app development with evolving requirements. Frameworks: <strong>Scrum, Kanban, XP (Extreme Programming)</strong>.</p>
+      </div>
+    </div>
+    <div class="memory-box"><p>🌊 <strong>Waterfall = one direction, no going back.</strong> 🔄 <strong>Agile = spin around, keep improving.</strong> DEB 2024 asked you to compare them and recommend one — always pick Agile for modern software with changing requirements!</p></div>
+    <div class="exam-box"><p>DEB 2024: "Compare Waterfall and Agile and recommend one for developing a new school app." Answer: Agile — school requirements may change; user testing improves the product; faster delivery of working features.</p></div>
+  </div>
+
+  <!-- 2.4 TESTING -->
+  <div class="topic-card ch2">
+    <h2><span class="icon">🧪</span> Software Testing</h2>
+    <p>Testing shows a program does what it's supposed to do and finds bugs before release.</p>
+
+    <table class="comp-table ch2">
+      <tr><th>Test Type</th><th>What it tests</th><th>Who does it</th></tr>
+      <tr><td><strong>Unit Testing</strong></td><td>Smallest unit of code (one function/method) in isolation</td><td>Developer</td></tr>
+      <tr><td><strong>System Testing</strong></td><td>The whole integrated system working together</td><td>Testing team</td></tr>
+      <tr><td><strong>Functional Testing</strong></td><td>"Does it do what it's supposed to?" — tests against requirements</td><td>QA team</td></tr>
+      <tr><td><strong>Alpha Testing</strong></td><td>Internal testing before public release — developer/in-house team</td><td>Internal team</td></tr>
+      <tr><td><strong>Beta Testing</strong></td><td>Real users testing in a real environment before full launch</td><td>External users</td></tr>
+    </table>
+
+    <div class="accordion">
+      <button class="accordion-header" onclick="toggleAccordion(this)"><span>⬜ Black Box vs White Box Testing</span><span class="arrow">▼</span></button>
+      <div class="accordion-body">
+        <table class="comp-table ch2">
+          <tr><th>Black Box Testing</th><th>White Box Testing</th></tr>
+          <tr><td>Tester does NOT see the code</td><td>Tester CAN see the internal code</td></tr>
+          <tr><td>Only tests inputs and outputs</td><td>Tests specific code paths and branches</td></tr>
+          <tr><td>Tests against requirements</td><td>Tests implementation quality</td></tr>
+          <tr><td>Done by independent testers</td><td>Done by developers</td></tr>
+          <tr><td>📦 You see the <em>box</em> from outside only</td><td>🔍 You see what's <em>inside</em> the box</td></tr>
+        </table>
+        <div class="analogy-box"><p><strong>Black box:</strong> testing a vending machine — you put money in and press buttons, you don't care HOW it works inside, just that you get the right snack. <strong>White box:</strong> testing the internal circuits of the vending machine — you check every wire and mechanism.</p></div>
+        <div class="memory-box"><p>⬛ Black = can't see code (blind). ⬜ White = can see everything (transparent).</p></div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <button class="accordion-header" onclick="toggleAccordion(this)"><span>⚙️ Functional vs Non-Functional Testing</span><span class="arrow">▼</span></button>
+      <div class="accordion-body">
+        <div class="def-box"><p><strong>Functional testing:</strong> "Does it DO what it's meant to?" — tests specific features against requirements (e.g. does login work? Does it calculate the total correctly?).</p></div>
+        <div class="def-box"><p><strong>Non-functional testing:</strong> "HOW WELL does it do it?" — tests performance, usability, security, reliability, scalability.</p></div>
+        <div class="analogy-box"><p><strong>Functional:</strong> Does the car start? Does it brake? <strong>Non-functional:</strong> How fast does it accelerate? How comfortable is it? How safe is it in a crash?</p></div>
+      </div>
+    </div>
+
+    <h3>Types of Errors</h3>
+    <table class="comp-table green">
+      <tr><th>Error Type</th><th>What is it?</th><th>Example</th><th>When found?</th></tr>
+      <tr><td><strong>Syntax Error</strong></td><td>Code violates the grammar of the language</td><td>Missing colon in Python, wrong bracket</td><td>Before running (compile time)</td></tr>
+      <tr><td><strong>Runtime Error</strong></td><td>Code runs but crashes during execution</td><td>Divide by zero, index out of range</td><td>While running</td></tr>
+      <tr><td><strong>Logic Error</strong></td><td>Code runs and finishes but produces wrong result</td><td>Wrong formula, wrong condition in if statement</td><td>During testing</td></tr>
+    </table>
+    <div class="memory-box"><p><strong>S-R-L</strong> = <strong>S</strong>yntax crashes before run, <strong>R</strong>untime crashes during run, <strong>L</strong>ogic is secretly wrong. "<strong>S</strong>tupid <strong>R</strong>ules <strong>L</strong>ove breaking code!"</p></div>
+
+    <h3>Test Cases — Good Practice</h3>
+    <div class="def-box"><p>A <strong>test case</strong> specifies: an input, the expected output, and what is being tested. Good test cases include: normal/typical values, boundary/edge values, and invalid/extreme values.</p></div>
+    <table class="comp-table ch2">
+      <tr><th>Test Case Type</th><th>Description</th><th>Example (sorting a list)</th></tr>
+      <tr><td><strong>Normal</strong></td><td>A typical valid input</td><td>[5, 2, 8, 1, 3]</td></tr>
+      <tr><td><strong>Boundary/Edge</strong></td><td>At the extreme limits</td><td>Empty list [], single element [5]</td></tr>
+      <tr><td><strong>Already sorted</strong></td><td>Best case for some algorithms</td><td>[1, 2, 3, 4, 5]</td></tr>
+      <tr><td><strong>Reverse sorted</strong></td><td>Worst case for most sorts</td><td>[5, 4, 3, 2, 1]</td></tr>
+      <tr><td><strong>Duplicates</strong></td><td>Tests handling of identical values</td><td>[3, 3, 1, 3, 2]</td></tr>
+    </table>
+    <div class="exam-box"><p>2022 paper asked for test cases for insertion sort. Always mention: empty list, single element, already sorted, reverse sorted, duplicates!</p></div>
+  </div>
+
+  <!-- 2.5 UCD -->
+  <div class="topic-card ch2">
+    <h2><span class="icon">👤</span> User-Centred Design (UCD) &amp; Accessibility</h2>
+    <div class="def-box"><p><strong>User-Centred Design (UCD)</strong> is a design philosophy where the needs, abilities, and limitations of end-users are the primary focus at every stage of development.</p></div>
+    <div class="analogy-box"><p>A good restaurant designs its menu for the customer — large text, clear descriptions, pictures — not for what's easiest for the chef to write!</p></div>
+
+    <h3>The 7 Principles of Universal Design</h3>
+    <div class="exam-box"><p>2024 paper asked you to apply 2 principles to a fast-food kiosk. Know all 7!</p></div>
+    <table class="comp-table ch2">
+      <tr><th>#</th><th>Principle</th><th>What it means</th></tr>
+      <tr><td>1</td><td><strong>Equitable Use</strong></td><td>Useful to people with different abilities (e.g. ramps for wheelchair users)</td></tr>
+      <tr><td>2</td><td><strong>Flexibility in Use</strong></td><td>Accommodates different preferences (e.g. left/right-handed scissors)</td></tr>
+      <tr><td>3</td><td><strong>Simple &amp; Intuitive</strong></td><td>Easy to understand regardless of experience (e.g. clear icons)</td></tr>
+      <tr><td>4</td><td><strong>Perceptible Information</strong></td><td>Communicates necessary info effectively (e.g. audio + visual cues)</td></tr>
+      <tr><td>5</td><td><strong>Tolerance for Error</strong></td><td>Minimises hazards and errors (e.g. undo button, confirmation dialogs)</td></tr>
+      <tr><td>6</td><td><strong>Low Physical Effort</strong></td><td>Can be used comfortably with minimal fatigue (e.g. door handles not knobs)</td></tr>
+      <tr><td>7</td><td><strong>Size &amp; Space</strong></td><td>Appropriate space for all users regardless of body size (e.g. wide ATM screens)</td></tr>
+    </table>
+    <div class="memory-box"><p><strong>E-F-S-P-T-L-S</strong> = "Every Fish Swims Past The Lake Shore" → Equitable, Flexible, Simple, Perceptible, Tolerance, Low effort, Size</p></div>
+
+    <h3>User Interface (UI) Types</h3>
+    <table class="comp-table ch2">
+      <tr><th>UI Type</th><th>Description</th><th>Example</th></tr>
+      <tr><td><strong>GUI</strong></td><td>Windows, icons, menus, pointer</td><td>Windows, macOS desktop</td></tr>
+      <tr><td><strong>CLI</strong></td><td>Command line — type text commands</td><td>Terminal, Command Prompt</td></tr>
+      <tr><td><strong>Menu-driven</strong></td><td>Navigate through options menus</td><td>ATM, kiosks, DVD menus</td></tr>
+      <tr><td><strong>Voice/NLU</strong></td><td>Speak to interact</td><td>Siri, Alexa, Google Assistant</td></tr>
+      <tr><td><strong>Touch/Gesture</strong></td><td>Swipe, tap, pinch</td><td>Smartphones, tablets</td></tr>
+    </table>
+
+    <h3>Assistive Technologies</h3>
+    <p>For users with disabilities, these technologies make software accessible:</p>
+    <ul style="padding-left:22px; margin-top:8px;">
+      <li><strong>Screen readers</strong> — read text aloud for visually impaired users</li>
+      <li><strong>Text-to-speech / voice output</strong></li>
+      <li><strong>Voice input</strong> — control with speech</li>
+      <li><strong>High contrast modes</strong> — easier to see for low vision</li>
+      <li><strong>Braille displays</strong> — tactile output for blind users</li>
+      <li><strong>Keyboard navigation</strong> — for users who can't use a mouse</li>
+      <li><strong>Alt-text on images</strong> — description read by screen readers</li>
+    </ul>
+  </div>
+
+  <!-- 2.6 ROLES IN DEVELOPMENT -->
+  <div class="topic-card ch2">
+    <h2><span class="icon">👥</span> Roles in Software Development</h2>
+    <table class="comp-table ch2">
+      <tr><th>Role</th><th>What they do</th></tr>
+      <tr><td><strong>Business Analyst</strong></td><td>Gathers requirements from stakeholders; bridges business &amp; development teams; writes user stories</td></tr>
+      <tr><td><strong>Software Developer</strong></td><td>Writes the code for the application</td></tr>
+      <tr><td><strong>UX/UI Designer</strong></td><td>Designs how the interface looks and feels; focuses on user experience</td></tr>
+      <tr><td><strong>QA Tester</strong></td><td>Tests the software to find and report bugs</td></tr>
+      <tr><td><strong>Project Manager</strong></td><td>Oversees timeline, budget, and team coordination</td></tr>
+      <tr><td><strong>DevOps Engineer</strong></td><td>Manages deployment, automation, and infrastructure</td></tr>
+    </table>
+    <div class="exam-box"><p>2023 paper asked you to describe the role of a Business Analyst. Know: gathering &amp; documenting requirements, writing user stories, mediating between business and developers, validating features.</p></div>
+
+    <h3>Web App vs Mobile App</h3>
+    <table class="comp-table ch2">
+      <tr><th>Web Application</th><th>Mobile Application</th></tr>
+      <tr><td>Works on any device with a browser</td><td>Installed on the device</td></tr>
+      <tr><td>Easier and cheaper to update</td><td>Can use device features (camera, GPS, push notifications)</td></tr>
+      <tr><td>No app-store submission needed</td><td>Can work offline</td></tr>
+      <tr><td>Depends on internet connection</td><td>Often faster and smoother experience</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ===================================================
+     CHAPTER 3 — COMPUTER SYSTEMS
+     =================================================== -->
+<div id="ch3" class="section">
+  <div class="ch-header ch3">
+    <h1>🖥️ Chapter 3 — Computer Systems</h1>
+    <p>Von Neumann, CPU, memory, logic gates, binary, ASCII &amp; Unicode. High-frequency exam topics!</p>
+    <div class="big-num">3</div>
+  </div>
+
+  <!-- 3.1 VON NEUMANN -->
+  <div class="topic-card ch3">
+    <h2><span class="icon">🏗️</span> Von Neumann Architecture</h2>
+    <div class="def-box"><p><strong>Von Neumann Architecture</strong> is the shared blueprint for nearly all modern computers, described by John von Neumann in 1945. It has four key components: CPU, Memory, Input/Output, and a Bus.</p></div>
+    <div class="analogy-box"><p>All houses look different on the outside but share the same rooms: bedroom, kitchen, bathroom. Similarly, all computers look different but share the same core architecture!</p></div>
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 620 320" xmlns="http://www.w3.org/2000/svg" width="100%">
+        <defs>
+          <marker id="a1" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L0,8 L8,4 z" fill="#666"/></marker>
+          <marker id="a2" markerWidth="8" markerHeight="8" refX="2" refY="4" orient="auto-start-reverse"><path d="M0,0 L0,8 L8,4 z" fill="#666"/></marker>
+          <marker id="a3" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L0,8 L8,4 z" fill="#FFB347"/></marker>
+          <marker id="a4" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L0,8 L8,4 z" fill="#7C5CBF"/></marker>
+        </defs>
+        <!-- CPU -->
+        <rect x="200" y="20" width="220" height="185" rx="12" fill="#FFE8E8" stroke="#FF6B6B" stroke-width="2.5"/>
+        <text x="310" y="46" text-anchor="middle" font-weight="700" font-size="14" fill="#C94040">Central Processing Unit</text>
+        <rect x="218" y="56" width="184" height="34" rx="7" fill="#FF6B6B"/>
+        <text x="310" y="78" text-anchor="middle" font-size="12" fill="white" font-weight="600">Control Unit (CU)</text>
+        <rect x="218" y="98" width="184" height="34" rx="7" fill="#FF6B6B"/>
+        <text x="310" y="120" text-anchor="middle" font-size="12" fill="white" font-weight="600">Arithmetic / Logic Unit (ALU)</text>
+        <rect x="218" y="140" width="184" height="50" rx="7" fill="#FF9999"/>
+        <text x="310" y="160" text-anchor="middle" font-size="11" fill="#7a0000" font-weight="600">Registers</text>
+        <text x="228" y="178" font-size="10" fill="#7a0000">PC  CIR  AC  MAR  MDR</text>
+        <!-- Memory -->
+        <rect x="200" y="248" width="220" height="56" rx="10" fill="#E0F7F6" stroke="#4ECDC4" stroke-width="2.5"/>
+        <text x="310" y="282" text-anchor="middle" font-weight="700" font-size="14" fill="#2A9990">Memory (RAM / ROM)</text>
+        <!-- Bus -->
+        <line x1="310" y1="205" x2="310" y2="248" stroke="#555" stroke-width="2.5" marker-end="url(#a1)" marker-start="url(#a2)"/>
+        <rect x="278" y="220" width="64" height="18" rx="5" fill="#f0ede8" stroke="#ccc"/>
+        <text x="310" y="233" text-anchor="middle" font-size="10" fill="#555" font-weight="600">Data Bus</text>
+        <!-- Input -->
+        <rect x="22" y="108" width="110" height="48" rx="10" fill="#FFF3E0" stroke="#FFB347" stroke-width="2.5"/>
+        <text x="77" y="130" text-anchor="middle" font-size="13" font-weight="700" fill="#CC7A00">Input</text>
+        <text x="77" y="148" text-anchor="middle" font-size="10" fill="#997744">keyboard, mouse…</text>
+        <line x1="132" y1="132" x2="200" y2="132" stroke="#FFB347" stroke-width="2.5" marker-end="url(#a3)"/>
+        <!-- Output -->
+        <rect x="488" y="108" width="110" height="48" rx="10" fill="#EDE8F7" stroke="#7C5CBF" stroke-width="2.5"/>
+        <text x="543" y="130" text-anchor="middle" font-size="13" font-weight="700" fill="#5a3da0">Output</text>
+        <text x="543" y="148" text-anchor="middle" font-size="10" fill="#7C5CBF">monitor, printer…</text>
+        <line x1="420" y1="132" x2="488" y2="132" stroke="#7C5CBF" stroke-width="2.5" marker-end="url(#a4)"/>
+      </svg>
+      <p class="caption">Von Neumann Architecture — the universal blueprint of all computers</p>
+    </div>
+    <div class="memory-box"><p><strong>C-M-I-B</strong> = <strong>C</strong>PU, <strong>M</strong>emory, <strong>I</strong>/O, <strong>B</strong>us — "<strong>C</strong>omputers <strong>M</strong>ust <strong>I</strong>nput <strong>B</strong>ytes"</p></div>
+  </div>
+
+  <!-- 3.2 CPU COMPONENTS -->
+  <div class="topic-card ch3">
+    <h2><span class="icon">⚙️</span> CPU Components &amp; Registers</h2>
+    <div class="accordion">
+      <button class="accordion-header" onclick="toggleAccordion(this)"><span>🎯 Control Unit (CU)</span><span class="arrow">▼</span></button>
+      <div class="accordion-body">
+        <div class="def-box"><p>The <strong>Control Unit</strong> directs the operations of the CPU. It fetches, decodes, and coordinates instructions. It does NOT do calculations itself.</p></div>
+        <div class="analogy-box"><p>The CU is the manager of the CPU — gives orders but doesn't do the actual work. It's the boss!</p></div>
+      </div>
+    </div>
+    <div class="accordion">
+      <button class="accordion-header" onclick="toggleAccordion(this)"><span>🔢 Arithmetic / Logic Unit (ALU)</span><span class="arrow">▼</span></button>
+      <div class="accordion-body">
+        <div class="def-box"><p>The <strong>ALU</strong> performs all <em>arithmetic operations</em> (+, -, *, /) and all <em>logical comparisons</em> (AND, OR, NOT, &gt;, &lt;, ==).</p></div>
+        <div class="analogy-box"><p>The ALU is the calculator and decision-maker of the CPU. It does maths and makes yes/no decisions.</p></div>
+      </div>
+    </div>
+    <div class="accordion">
+      <button class="accordion-header" onclick="toggleAccordion(this)"><span>📌 Registers — The CPU's Scratch Pad</span><span class="arrow">▼</span></button>
+      <div class="accordion-body">
+        <div class="def-box"><p><strong>Registers</strong> are tiny, ultra-fast storage locations <em>inside</em> the CPU. They store data currently being processed.</p></div>
+        <div class="analogy-box"><p>A register is like a sticky note right in front of you — tiny but instantly accessible. RAM is like a filing cabinet in the next room.</p></div>
+        <table class="comp-table ch3">
+          <tr><th>Register</th><th>Full Name</th><th>What it stores</th></tr>
+          <tr><td><strong>PC</strong></td><td>Program Counter</td><td>Address of the <em>next instruction</em> to fetch</td></tr>
+          <tr><td><strong>CIR</strong></td><td>Current Instruction Register</td><td>The instruction <em>currently being decoded/executed</em></td></tr>
+          <tr><td><strong>AC</strong></td><td>Accumulator</td><td>The <em>result</em> of the last ALU operation</td></tr>
+          <tr><td><strong>MAR</strong></td><td>Memory Address Register</td><td>The <em>memory address</em> being accessed</td></tr>
+          <tr><td><strong>MDR</strong></td><td>Memory Data Register</td><td>Data being <em>transferred to/from memory</em></td></tr>
+        </table>
+        <div class="memory-box"><p><strong>"People Can Always Make Clever Inventions"</strong><br>→ <strong>P</strong>C, <strong>C</strong>IR, <strong>A</strong>C, <strong>M</strong>AR, <strong>M</strong>DR (MDR = More Data Remembered)</p></div>
+      </div>
+    </div>
+    <div class="accordion">
+      <button class="accordion-header" onclick="toggleAccordion(this)"><span>🕐 Clock Speed &amp; CPU Performance</span><span class="arrow">▼</span></button>
+      <div class="accordion-body">
+        <div class="def-box"><p>The <strong>clock</strong> generates electrical pulses. Each pulse = one fetch-execute cycle. Measured in GHz (gigahertz — billion cycles per second).</p></div>
+        <div class="analogy-box"><p>The clock is like a metronome — the faster it beats, the more notes (instructions) can be played per second.</p></div>
+        <h4>Factors affecting CPU performance:</h4>
+        <ol style="padding-left:22px; margin-top:8px;">
+          <li><strong>Clock speed (GHz)</strong> — higher = more cycles per second</li>
+          <li><strong>Number of cores</strong> — more cores = more tasks simultaneously</li>
+          <li><strong>Cache size</strong> — larger cache = less slow RAM access needed</li>
+          <li><strong>Word size (64-bit vs 32-bit)</strong> — wider word = more data per cycle</li>
+        </ol>
+        <div class="exam-box"><p>2023 paper asked for <strong>two factors</strong> that affect CPU performance. Common answers: clock speed + number of cores. Or clock speed + cache size.</p></div>
+      </div>
+    </div>
+
+    <h3>The Fetch–Decode–Execute Cycle</h3>
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 600 120" xmlns="http://www.w3.org/2000/svg" width="100%">
+        <defs>
+          <marker id="fde1" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L0,8 L8,4 z" fill="#FF6B6B"/></marker>
+          <marker id="fde2" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L0,8 L8,4 z" fill="#FFB347"/></marker>
+          <marker id="fde3" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L0,8 L8,4 z" fill="#4ECDC4"/></marker>
+        </defs>
+        <rect x="20" y="30" width="150" height="60" rx="12" fill="#FFE8E8" stroke="#FF6B6B" stroke-width="2"/>
+        <text x="95" y="55" text-anchor="middle" font-weight="700" font-size="13" fill="#C94040">1. FETCH</text>
+        <text x="95" y="73" text-anchor="middle" font-size="10" fill="#C94040">CU gets next instruction</text>
+        <text x="95" y="84" text-anchor="middle" font-size="10" fill="#C94040">from memory (PC → MAR)</text>
+        <line x1="170" y1="60" x2="215" y2="60" stroke="#FF6B6B" stroke-width="2.5" marker-end="url(#fde1)"/>
+        <rect x="215" y="30" width="150" height="60" rx="12" fill="#FFF3E0" stroke="#FFB347" stroke-width="2"/>
+        <text x="290" y="55" text-anchor="middle" font-weight="700" font-size="13" fill="#CC7A00">2. DECODE</text>
+        <text x="290" y="73" text-anchor="middle" font-size="10" fill="#CC7A00">CU interprets the instruction</text>
+        <text x="290" y="84" text-anchor="middle" font-size="10" fill="#CC7A00">stored in CIR</text>
+        <line x1="365" y1="60" x2="410" y2="60" stroke="#FFB347" stroke-width="2.5" marker-end="url(#fde2)"/>
+        <rect x="410" y="30" width="170" height="60" rx="12" fill="#E0F7F6" stroke="#4ECDC4" stroke-width="2"/>
+        <text x="495" y="55" text-anchor="middle" font-weight="700" font-size="13" fill="#2A9990">3. EXECUTE</text>
+        <text x="495" y="73" text-anchor="middle" font-size="10" fill="#2A9990">ALU or CU carries out the</text>
+        <text x="495" y="84" text-anchor="middle" font-size="10" fill="#2A9990">instruction, result in AC</text>
+        <!-- Loop back -->
+        <path d="M495,90 C495,115 95,115 95,90" stroke="#56C271" stroke-width="1.5" fill="none" stroke-dasharray="5,3" marker-end="url(#fde3)"/>
+        <text x="290" y="113" text-anchor="middle" font-size="9" fill="#56C271">PC increments → repeat for next instruction</text>
+      </svg>
+      <p class="caption">The Fetch–Decode–Execute Cycle — the heartbeat of every computer</p>
+    </div>
+    <div class="exam-box"><p>2023 paper asked you to label a FDE cycle diagram. Know: FETCH = CU gets instruction from memory using PC → MAR. DECODE = CU interprets CIR. EXECUTE = ALU performs operation, result in Accumulator.</p></div>
+    <div class="def-box">
+      <p><strong>The Detailed Step-by-Step Cycle:</strong></p>
+    </div>
+    <ol class="steps">
+      <li>
+        <span class="step-num ch3">1</span>
+        <div class="step-content">
+          <strong>FETCH:</strong> Retrieving the instruction.
+          <ul>
+            <li>The address of the next instruction is copied from the <strong>Program Counter (PC)</strong> to the <strong>Memory Address Register (MAR)</strong>.</li>
+            <li>The instruction is fetched from memory and stored in the <strong>Memory Data Register (MDR)</strong>.</li>
+            <li>The instruction is copied from the MDR into the <strong>Current Instruction Register (CIR)</strong>.</li>
+            <li>The <strong>PC</strong> is incremented (adds 1) to point to the next address.</li>
+          </ul>
+        </div>
+      </li>
+      <li>
+        <span class="step-num ch3">2</span>
+        <div class="step-content">
+          <strong>DECODE:</strong> Understanding the instruction.
+          <ul>
+            <li>The <strong>Control Unit (CU)</strong> decodes the instruction held in the <strong>CIR</strong> to determine what action is required.</li>
+          </ul>
+        </div>
+      </li>
+      <li>
+        <span class="step-num ch3">3</span>
+        <div class="step-content">
+          <strong>EXECUTE:</strong> Carrying out the instruction.
+          <ul>
+            <li>The <strong>Control Unit (CU)</strong> coordinates the necessary components.</li>
+            <li>The <strong>ALU</strong> (Arithmetic Logic Unit) performs any calculations or logical operations.</li>
+            <li>The result of the operation is stored in the <strong>Accumulator (ACC)</strong> or written back to memory.</li>
+          </ul>
+        </div>
+      </li>
+    </ol>
+  </div>
+
+  <!-- 3.3 MEMORY -->
+  <div class="topic-card ch3">
+    <h2><span class="icon">🧠</span> Memory Hierarchy</h2>
+    <p>Memory comes in different types — faster memory is smaller and more expensive. This is the <strong>memory hierarchy</strong>:</p>
+
+    <div class="mem-pyramid">
+      <div class="mem-level ml-1" title="Registers: fastest, smallest">Registers (inside CPU) — fastest &amp; tiniest</div>
+      <div class="mem-level ml-2" title="Cache: very fast">Cache Memory — very fast, small</div>
+      <div class="mem-level ml-3" title="RAM: main memory">RAM (Main Memory) — moderate speed</div>
+      <div class="mem-level ml-4" title="Secondary storage: slow, huge">Secondary Storage (HDD/SSD) — slowest, largest</div>
+    </div>
+    <div class="memory-box"><p>Fastest → Slowest: <strong>R-C-R-S</strong> = <strong>R</strong>egisters, <strong>C</strong>ache, <strong>R</strong>AM, <strong>S</strong>econdary. "<strong>R</strong>eally <strong>C</strong>lever <strong>R</strong>abbits <strong>S</strong>print" 🐇</p></div>
+
+    <h3>RAM vs ROM</h3>
+    <table class="comp-table ch3">
+      <tr><th>Feature</th><th>RAM</th><th>ROM</th></tr>
+      <tr><td>Full name</td><td>Random Access Memory</td><td>Read Only Memory</td></tr>
+      <tr><td>Volatile?</td><td>✅ Yes (lost when power off)</td><td>❌ No (keeps data forever)</td></tr>
+      <tr><td>Can write to it?</td><td>✅ Yes (constantly)</td><td>❌ No (read only)</td></tr>
+      <tr><td>Written by?</td><td>Programs you run</td><td>The manufacturer</td></tr>
+      <tr><td>Used for?</td><td>Currently running programs</td><td>BIOS/firmware (startup)</td></tr>
+    </table>
+    <div class="analogy-box"><p><strong>RAM</strong> = your desk. You work on it during the day, but when you go home (power off), it's cleared. <strong>ROM</strong> = a printed instruction manual — always there, can't be rewritten.</p></div>
+    <div class="memory-box"><p><strong>RAM = Temporarily Accessible, ROM = Permanently Written</strong><br>RAM = "Really Always Missing" when power off. ROM = "Remains On Machine" forever.</p></div>
+
+    <h3>Cache Memory</h3>
+    <div class="def-box"><p><strong>Cache memory</strong> is a small, very fast memory built into or near the CPU. It stores copies of frequently used data and instructions from RAM so the CPU can access them without waiting for slower main memory.</p></div>
+    <div class="analogy-box"><p>The cache is like keeping your most used books on your desk instead of in the library — you can grab them instantly without walking anywhere!</p></div>
+
+    <h3>HDD vs SSD</h3>
+    <table class="comp-table ch3">
+      <tr><th>Feature</th><th>HDD (Hard Disk Drive)</th><th>SSD (Solid State Drive)</th></tr>
+      <tr><td>How it works</td><td>Spinning magnetic disks &amp; read/write head</td><td>Flash memory chips (no moving parts)</td></tr>
+      <tr><td>Speed</td><td>Slower</td><td>Much faster</td></tr>
+      <tr><td>Durability</td><td>Fragile (moving parts)</td><td>More durable</td></tr>
+      <tr><td>Cost per GB</td><td>Cheaper</td><td>More expensive</td></tr>
+      <tr><td>Noise</td><td>Makes noise (spinning)</td><td>Silent</td></tr>
+    </table>
+
+    <h3>Data Units</h3>
+    <table class="comp-table ch3">
+      <tr><th>Unit</th><th>Size</th><th>Memory trick</th></tr>
+      <tr><td><strong>Bit</strong></td><td>1 binary digit (0 or 1)</td><td>Smallest unit</td></tr>
+      <tr><td><strong>Nibble</strong></td><td>4 bits</td><td>Half a byte = "nibble" of a byte!</td></tr>
+      <tr><td><strong>Byte</strong></td><td>8 bits</td><td>1 character in ASCII</td></tr>
+      <tr><td><strong>Kilobyte (KB)</strong></td><td>1,024 bytes</td><td>A short text file</td></tr>
+      <tr><td><strong>Megabyte (MB)</strong></td><td>1,024 KB = 1,048,576 bytes</td><td>A photo</td></tr>
+      <tr><td><strong>Gigabyte (GB)</strong></td><td>1,024 MB</td><td>A movie</td></tr>
+      <tr><td><strong>Megabit (Mb)</strong></td><td>1,048,576 bits</td><td>Used in internet speeds (Mbps)</td></tr>
+    </table>
+    <div class="exam-box"><p>DEB 2024 asked: "How many bits in a nibble? In a megabyte? In a megabit?" Nibble = 4 bits. Megabyte = 8,388,608 bits. Megabit = 1,048,576 bits. Note: megabit (lowercase b) ≠ megabyte (uppercase B)!</p></div>
+  </div>
+
+  <!-- 3.4 BINARY -->
+  <div class="topic-card ch3">
+    <h2><span class="icon">💻</span> Binary, Decimal &amp; Hexadecimal</h2>
+    <div class="def-box"><p>Computers use <strong>binary (base 2)</strong> because transistors have two states: on (1) and off (0). Binary maps perfectly to physical electrical signals.</p></div>
+
+    <h3>Interactive Converter</h3>
+    <div class="bin-calc">
+      <h4>🔢 Number Converter</h4>
+      <div class="bin-input">
+        <input type="text" id="decInput" placeholder="Enter decimal (e.g. 149)" oninput="convertDec()"/>
+        <input type="text" id="binInput" placeholder="Enter binary (e.g. 10010101)" oninput="convertBin()"/>
+        <input type="text" id="hexInput" placeholder="Enter hex (e.g. 3B)" oninput="convertHex()"/>
+      </div>
+      <div class="bin-result">
+        <div class="res-label">CONVERSION RESULT</div>
+        <div class="res-value" id="convResult">Type a number above to convert between decimal, binary, and hex!</div>
+      </div>
+    </div>
+
+    <h3>Decimal → Binary: Place Value Method</h3>
+    <p>Place values for an 8-bit binary number:</p>
+    <table class="comp-table ch3">
+      <tr><th>2⁷</th><th>2⁶</th><th>2⁵</th><th>2⁴</th><th>2³</th><th>2²</th><th>2¹</th><th>2⁰</th></tr>
+      <tr><td>128</td><td>64</td><td>32</td><td>16</td><td>8</td><td>4</td><td>2</td><td>1</td></tr>
+    </table>
+    <ol class="steps">
+      <li><span class="step-num ch3">1</span><div class="step-content">Find the <strong>largest place value ≤ your number</strong>. Put a 1 there.</div></li>
+      <li><span class="step-num ch3">2</span><div class="step-content"><strong>Subtract</strong> that place value from your number.</div></li>
+      <li><span class="step-num ch3">3</span><div class="step-content">Repeat step 1 &amp; 2 with the remainder.</div></li>
+      <li><span class="step-num ch3">4</span><div class="step-content">Put a <strong>0</strong> in any unused place values.</div></li>
+    </ol>
+    <p><strong>Example:</strong> 149 = 128+16+4+1 = <code>10010101</code></p>
+
+    <h3>Binary → Decimal</h3>
+    <p>Multiply each bit by its place value and add up all the 1s. Example: <code>10010101</code> = 128+16+4+1 = <strong>149</strong></p>
+
+    <h3>Hexadecimal (Base 16)</h3>
+    <div class="def-box"><p><strong>Hexadecimal</strong> is a base-16 number system using digits 0–9 and letters A–F (A=10, B=11, C=12, D=13, E=14, F=15). It's used as shorthand for binary because <strong>every byte = exactly 2 hex digits</strong>.</p></div>
+    <div class="analogy-box"><p>Hexadecimal is like a shorthand for binary. Writing FF is much easier than 11111111. This is why colour codes (#FF5733), memory addresses, and other computer data use hex!</p></div>
+    <table class="comp-table ch3">
+      <tr><th>Decimal</th><th>Binary</th><th>Hex</th></tr>
+      <tr><td>0–9</td><td>0000–1001</td><td>0–9</td></tr>
+      <tr><td>10</td><td>1010</td><td>A</td></tr>
+      <tr><td>11</td><td>1011</td><td>B</td></tr>
+      <tr><td>12</td><td>1100</td><td>C</td></tr>
+      <tr><td>13</td><td>1101</td><td>D</td></tr>
+      <tr><td>14</td><td>1110</td><td>E</td></tr>
+      <tr><td>15</td><td>1111</td><td>F</td></tr>
+    </table>
+    <div class="memory-box"><p>After 9 comes A! Remember: <strong>A B C D E F</strong> = <strong>10 11 12 13 14 15</strong>. "<strong>A</strong>wesome <strong>B</strong>its <strong>C</strong>reate <strong>D</strong>igits <strong>E</strong>xceeding <strong>F</strong>ifteen"</p></div>
+    <div class="exam-box"><p>2023 paper: Convert C9₁₆ to decimal. C=12, 9=9. (12×16) + (9×1) = 192+9 = <strong>201</strong>. Hex colour: #0A33F0 = Red=0A=10, Green=33=51, Blue=F0=240.</p></div>
+  </div>
+
+  <!-- 3.5 BINARY ADDITION -->
+  <div class="topic-card ch3">
+    <h2><span class="icon">➕</span> Binary Addition &amp; Overflow</h2>
+    <table class="comp-table ch3">
+      <tr><th>A</th><th>B</th><th>Sum</th><th>Carry</th></tr>
+      <tr><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+      <tr><td>0</td><td>1</td><td>1</td><td>0</td></tr>
+      <tr><td>1</td><td>0</td><td>1</td><td>0</td></tr>
+      <tr><td>1</td><td>1</td><td>0</td><td>1 (carry!)</td></tr>
+    </table>
+    <div class="analogy-box"><p>1+1 in binary = "10" (one zero), just like in decimal when 9+1=10 — you carry 1 into the next column!</p></div>
+    <div class="def-box"><p><strong>Overflow</strong> occurs when the result of a binary addition is too large to store in the available number of bits — a carry out of the highest bit position is generated.</p></div>
+    <div class="analogy-box"><p>Overflow is like trying to fit 10 eggs into a box that only holds 8 — two eggs fall out (the extra bits are lost)!</p></div>
+    <div class="exam-box"><p>If adding two 8-bit numbers produces a 9th bit (carry out of bit 7), that's an overflow error. Most CPUs use 64-bit word size today to avoid this for typical numbers.</p></div>
+  </div>
+
+  <!-- 3.6 ASCII & UNICODE -->
+  <div class="topic-card ch3">
+    <h2><span class="icon">🔤</span> ASCII &amp; Unicode Character Encoding</h2>
+    <table class="comp-table ch3">
+      <tr><th>Feature</th><th>ASCII</th><th>Unicode (UTF-8/UTF-16)</th></tr>
+      <tr><td>Bits used</td><td>7-bit (128 chars) or 8-bit (256 chars)</td><td>Variable: 8–32 bits per character</td></tr>
+      <tr><td>Characters</td><td>Only English/Latin alphabet</td><td>140,000+ chars from all world scripts</td></tr>
+      <tr><td>Languages</td><td>English only</td><td>All languages including Chinese, Arabic, emoji!</td></tr>
+      <tr><td>Memory</td><td>Very compact</td><td>Uses more memory but globally compatible</td></tr>
+      <tr><td>Compatibility</td><td>First 128 chars of Unicode are the same</td><td>Backwards compatible with ASCII</td></tr>
+    </table>
+    <div class="analogy-box"><p>ASCII is like a small local library — great for English books, but doesn't have books in Japanese, Arabic, or emoji. Unicode is like the world's biggest library — every book in every language!</p></div>
+    <div class="memory-box"><p><strong>A</strong>SCII = <strong>A</strong>merican Standard → only American/English characters. <strong>U</strong>nicode = <strong>U</strong>niversal code → every language on Earth!</p></div>
+    <div class="exam-box"><p>2025 paper: Compare ASCII vs Unicode for memory and compatibility. Key points: ASCII uses less memory (7/8 bits vs up to 32), but Unicode supports all world languages and is globally compatible. First 128 characters are the same in both.</p></div>
+  </div>
+
+  <!-- 3.7 LOGIC GATES -->
+  <div class="topic-card ch3">
+    <h2><span class="icon">⚡</span> Logic Gates</h2>
+    <div class="def-box"><p>A <strong>logic gate</strong> is an electronic device that takes binary inputs and produces a binary output based on a logical rule. They are the building blocks of all digital circuits.</p></div>
+    <div class="analogy-box"><p>Logic gates are like smart light switches — they only turn on (output 1) when specific combinations of inputs are correct.</p></div>
+    <div class="gates-grid">
+      <div class="gate-card">
+        <div class="gate-name">AND Gate</div>
+        <div class="gate-rule">Output is 1 ONLY if ALL inputs are 1</div>
+        <table class="tt">
+          <tr><th>A</th><th>B</th><th>A AND B</th></tr>
+          <tr><td>0</td><td>0</td><td>0</td></tr>
+          <tr><td>0</td><td>1</td><td>0</td></tr>
+          <tr><td>1</td><td>0</td><td>0</td></tr>
+          <tr><td>1</td><td>1</td><td>1</td></tr>
+        </table>
+        <div class="memory-box" style="margin-top:8px;"><p>AND = "<strong>Both</strong> must be true"</p></div>
+      </div>
+      <div class="gate-card">
+        <div class="gate-name">OR Gate</div>
+        <div class="gate-rule">Output is 1 if ANY input is 1</div>
+        <table class="tt">
+          <tr><th>A</th><th>B</th><th>A OR B</th></tr>
+          <tr><td>0</td><td>0</td><td>0</td></tr>
+          <tr><td>0</td><td>1</td><td>1</td></tr>
+          <tr><td>1</td><td>0</td><td>1</td></tr>
+          <tr><td>1</td><td>1</td><td>1</td></tr>
+        </table>
+        <div class="memory-box" style="margin-top:8px;"><p>OR = "<strong>Either</strong> will do"</p></div>
+      </div>
+      <div class="gate-card">
+        <div class="gate-name">NOT Gate</div>
+        <div class="gate-rule">Inverts the input (flipper/inverter)</div>
+        <table class="tt">
+          <tr><th>A</th><th>NOT A</th></tr>
+          <tr><td>0</td><td>1</td></tr>
+          <tr><td>1</td><td>0</td></tr>
+        </table>
+        <div class="memory-box" style="margin-top:8px;"><p>NOT = "<strong>Opposite</strong>" always</p></div>
+      </div>
+      <div class="gate-card">
+        <div class="gate-name">NAND Gate</div>
+        <div class="gate-rule">Opposite of AND (0 ONLY when all inputs are 1)</div>
+        <table class="tt">
+          <tr><th>A</th><th>B</th><th>A NAND B</th></tr>
+          <tr><td>0</td><td>0</td><td>1</td></tr>
+          <tr><td>0</td><td>1</td><td>1</td></tr>
+          <tr><td>1</td><td>0</td><td>1</td></tr>
+          <tr><td>1</td><td>1</td><td>0</td></tr>
+        </table>
+        <div class="memory-box" style="margin-top:8px;"><p>NAND = NOT-AND = flip AND's output</p></div>
+      </div>
+      <div class="gate-card">
+        <div class="gate-name">NOR Gate</div>
+        <div class="gate-rule">Opposite of OR (1 ONLY when all inputs are 0)</div>
+        <table class="tt">
+          <tr><th>A</th><th>B</th><th>A NOR B</th></tr>
+          <tr><td>0</td><td>0</td><td>1</td></tr>
+          <tr><td>0</td><td>1</td><td>0</td></tr>
+          <tr><td>1</td><td>0</td><td>0</td></tr>
+          <tr><td>1</td><td>1</td><td>0</td></tr>
+        </table>
+        <div class="memory-box" style="margin-top:8px;"><p>NOR = NOT-OR = flip OR's output</p></div>
+      </div>
+      <div class="gate-card">
+        <div class="gate-name">XOR Gate</div>
+        <div class="gate-rule">Output 1 ONLY if inputs are DIFFERENT</div>
+        <table class="tt">
+          <tr><th>A</th><th>B</th><th>A XOR B</th></tr>
+          <tr><td>0</td><td>0</td><td>0</td></tr>
+          <tr><td>0</td><td>1</td><td>1</td></tr>
+          <tr><td>1</td><td>0</td><td>1</td></tr>
+          <tr><td>1</td><td>1</td><td>0</td></tr>
+        </table>
+        <div class="memory-box" style="margin-top:8px;"><p>XOR = "E<strong>X</strong>clusive OR" = different inputs only</p></div>
+      </div>
+    </div>
+    <div class="exam-box"><p>You must be able to: (1) Complete a truth table for a logic expression. (2) Draw a logic circuit from a Boolean expression. (3) Explain what a Full Adder does. Always work inside-out for complex expressions: evaluate brackets first!</p></div>
+    <div class="def-box"><p><strong>Full Adder</strong> — a circuit that adds three 1-bit inputs (A, B, Carry-in) to produce a Sum and Carry-out. Built using XOR, AND, and OR gates. Multiple full adders chained together can add multi-bit numbers.</p></div>
+
+    <h3>Electronic Components</h3>
+    <table class="comp-table ch3">
+      <tr><th>Component</th><th>What it does</th><th>Analogy</th></tr>
+      <tr><td><strong>Transistor</strong></td><td>Acts as a switch (0 or 1) or amplifier. Billions in a CPU.</td><td>A light switch: ON or OFF</td></tr>
+      <tr><td><strong>Resistor</strong></td><td>Limits and controls current flow</td><td>A speed bump — slows electricity down</td></tr>
+      <tr><td><strong>Capacitor</strong></td><td>Stores electrical charge temporarily; smooths power supply</td><td>A tiny rechargeable battery</td></tr>
+    </table>
+  </div>
+
+  <!-- 3.8 OS -->
+  <div class="topic-card ch3">
+    <h2><span class="icon">🖥️</span> Operating Systems</h2>
+    <div class="def-box"><p>An <strong>Operating System (OS)</strong> manages hardware resources and provides services for programs. Examples: Windows, macOS, Linux, Android, iOS.</p></div>
+    <h3>Key Functions of an OS:</h3>
+    <table class="comp-table ch3">
+      <tr><th>Function</th><th>What it does</th></tr>
+      <tr><td><strong>Resource Management</strong></td><td>Allocates CPU time, RAM, I/O devices, and network bandwidth between competing processes</td></tr>
+      <tr><td><strong>File Management</strong></td><td>Organises files into directories, controls permissions, handles storage and retrieval</td></tr>
+      <tr><td><strong>User Interface</strong></td><td>Provides GUI or CLI for users to interact with the computer</td></tr>
+      <tr><td><strong>Security</strong></td><td>Controls access, manages login, runs firewall</td></tr>
+    </table>
+    <div class="def-box"><p><strong>Virtual Memory</strong> — when RAM is full, the OS moves inactive data to a reserved area of secondary storage (page file/swap space). Allows more programs to run than physical RAM alone. Much slower than real RAM.</p></div>
+    <div class="analogy-box"><p>Virtual memory is like using a USB stick as extra desk space when your real desk is full — it works, but accessing it is much slower than the desk itself!</p></div>
+    <div class="exam-box"><p>2023 paper asked you to define virtual memory and give pros/cons of cloud working. Virtual memory = OS uses secondary storage as extra RAM when RAM is full.</p></div>
+  </div>
+</div>
+
+<!-- ===================================================
+     FLASHCARDS
+     =================================================== -->
+<div id="flashcards">
+  <div class="flash-header">
+    <h1>🃏 Flashcards</h1>
+    <p>Click a card to reveal the answer. Use the filters to focus on one chapter.</p>
+    <div class="big-num">?</div>
+  </div>
+
+  <div class="flash-controls">
+    <button class="flash-filter active-all" onclick="setFilter('all', this)">All Cards</button>
+    <button class="flash-filter" onclick="setFilter('ch1', this)">🧠 Ch1: Computational Thinking</button>
+    <button class="flash-filter" onclick="setFilter('ch2', this)">🛠️ Ch2: Software Dev</button>
+    <button class="flash-filter" onclick="setFilter('ch3', this)">🖥️ Ch3: Computer Systems</button>
+  </div>
+
+  <div class="flash-progress"><div class="flash-progress-bar" id="flashProgressBar"></div></div>
+  <div class="flashcard-area">
+    <div class="flashcard" id="flashcard" onclick="flipCard()">
+      <div class="flashcard-inner">
+        <div class="flashcard-front">
+          <span class="flash-chapter-label fc-ch1" id="cardChapterLabel">Chapter 1</span>
+          <p class="card-q" id="cardQuestion">Loading...</p>
+          <p class="flip-hint">Tap to reveal answer ↻</p>
+        </div>
+        <div class="flashcard-back">
+          <p class="card-a" id="cardAnswer"></p>
+        </div>
+      </div>
+    </div>
+    <div class="flash-nav">
+      <button class="flash-btn" id="prevBtn" onclick="prevCard()">← Prev</button>
+      <span class="flash-counter" id="flashCounter">1 / 1</span>
+      <button class="flash-btn" id="nextBtn" onclick="nextCard()">Next →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===================================================
+     QUIZ
+     =================================================== -->
+<div id="quizsec">
+  <div class="quiz-header">
+    <h1>🎯 Quick Quiz</h1>
+    <p>Test your knowledge across all three chapters. Answer each question, then move on!</p>
+  </div>
+  <div id="quizContainer"></div>
+  <div class="quiz-nav" id="quizNav" style="display:none;">
+    <div class="quiz-score-display" id="quizScoreDisplay">Score: 0 / 0</div>
+    <button class="quiz-next-btn" id="quizNextBtn" onclick="nextQuestion()">Next Question →</button>
+  </div>
+  <div id="quizResult" style="display:none; text-align:center; padding:40px 20px;">
+    <div style="font-size:3rem;">🏆</div>
+    <h2 style="margin:12px 0; font-family:'Lexend Mega',sans-serif;" id="quizResultTitle"></h2>
+    <p id="quizResultText" style="color:var(--text-muted); margin-bottom:20px;"></p>
+    <button class="quiz-next-btn" onclick="restartQuiz()">🔁 Try Again</button>
+  </div>
+</div>
+
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+// ── NAVIGATION ──
+function showSection(id) {
+  document.querySelectorAll('.section, #flashcards, #quizsec').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  const el = document.getElementById(id);
+  if (el) el.classList.add('active');
+  const btnMap = { ch1: 0, ch2: 1, ch3: 2, flashcards: 3, quizsec: 4 };
+  const btns = document.querySelectorAll('.nav-btn');
+  if (id in btnMap) btns[btnMap[id]].classList.add('active');
+  document.getElementById('heroSection').style.display = 'none';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  if (id === 'flashcards') renderCard();
+  if (id === 'quizsec') initQuiz();
+}
+
+// ── ACCORDION ──
+function toggleAccordion(btn) {
+  const body = btn.nextElementSibling;
+  body.classList.toggle('open');
+  btn.classList.toggle('open');
+}
+
+// ── SORT VISUALISER ──
+let sortArr = [];
+let isSorting = false;
+
+function resetBars() {
+  sortArr = [65, 30, 85, 15, 50, 40, 75, 25, 55, 45];
+  renderBars(sortArr, []);
+  document.getElementById('sortStatus').textContent = 'Ready — press a sort button!';
+  isSorting = false;
+}
+
+function renderBars(arr, activeIdx, sortedIdx = []) {
+  const container = document.getElementById('sortBars');
+  container.innerHTML = '';
+  arr.forEach((v, i) => {
+    const bar = document.createElement('div');
+    bar.className = 'sort-bar' + (activeIdx.includes(i) ? ' active' : '') + (sortedIdx.includes(i) ? ' sorted' : '');
+    bar.style.height = (v * 0.75) + 'px';
+    bar.textContent = v;
+    container.appendChild(bar);
+  });
+}
+
+function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+async function runSort(type) {
+  if (isSorting) return;
+  isSorting = true;
+  resetBars();
+  await sleep(100);
+  const arr = [...sortArr];
+  const n = arr.length;
+  const status = document.getElementById('sortStatus');
+
+  if (type === 'bubble') {
+    status.textContent = '🫧 Bubble Sort running...';
+    for (let i = 0; i < n - 1; i++) {
+      for (let j = 0; j < n - i - 1; j++) {
+        renderBars(arr, [j, j+1], Array.from({length:i}, (_,k) => n-1-k));
+        await sleep(250);
+        if (arr[j] > arr[j+1]) { [arr[j], arr[j+1]] = [arr[j+1], arr[j]]; }
+      }
+    }
+  } else if (type === 'selection') {
+    status.textContent = '🎯 Selection Sort running...';
+    for (let i = 0; i < n - 1; i++) {
+      let minIdx = i;
+      for (let j = i + 1; j < n; j++) {
+        renderBars(arr, [j, minIdx], Array.from({length:i}, (_,k) => k));
+        await sleep(250);
+        if (arr[j] < arr[minIdx]) minIdx = j;
+      }
+      [arr[i], arr[minIdx]] = [arr[minIdx], arr[i]];
+    }
+  } else if (type === 'insertion') {
+    status.textContent = '📌 Insertion Sort running...';
+    for (let i = 1; i < n; i++) {
+      let key = arr[i], j = i - 1;
+      while (j >= 0 && arr[j] > key) {
+        arr[j + 1] = arr[j];
+        renderBars(arr, [j, j+1], []);
+        await sleep(250);
+        j--;
+      }
+      arr[j + 1] = key;
+    }
+  }
+  renderBars(arr, [], Array.from({length:n}, (_,k) => k));
+  status.textContent = '✅ Sorted! All elements in order.';
+  isSorting = false;
+}
+resetBars();
+
+// ── BINARY CONVERTER ──
+function convertDec() {
+  const v = parseInt(document.getElementById('decInput').value);
+  if (isNaN(v) || v < 0) return;
+  const bin = v.toString(2).padStart(8, '0');
+  const hex = v.toString(16).toUpperCase().padStart(2, '0');
+  document.getElementById('convResult').innerHTML =
+    `Decimal <strong>${v}</strong> → Binary: <strong>${bin}</strong> → Hex: <strong>${hex}</strong>`;
+}
+function convertBin() {
+  const s = document.getElementById('binInput').value.trim();
+  if (!/^[01]+$/.test(s)) return;
+  const v = parseInt(s, 2);
+  const hex = v.toString(16).toUpperCase().padStart(2, '0');
+  document.getElementById('convResult').innerHTML =
+    `Binary <strong>${s}</strong> → Decimal: <strong>${v}</strong> → Hex: <strong>${hex}</strong>`;
+}
+function convertHex() {
+  const s = document.getElementById('hexInput').value.trim().toUpperCase();
+  if (!/^[0-9A-F]+$/i.test(s)) return;
+  const v = parseInt(s, 16);
+  const bin = v.toString(2).padStart(8, '0');
+  document.getElementById('convResult').innerHTML =
+    `Hex <strong>${s}</strong> → Decimal: <strong>${v}</strong> → Binary: <strong>${bin}</strong>`;
+}
+
+// ── FLASHCARDS ──
+const allCards = [
+  // Ch1 — Computational Thinking
+  { ch:'ch1', q:'Define ABSTRACTION', a:'Reducing complexity by hiding unnecessary detail and focusing only on the relevant features of a problem. Example: a London Tube map ignores actual geography.' },
+  { ch:'ch1', q:'Define DECOMPOSITION', a:'Breaking down a large complex problem into smaller, more manageable sub-problems that can each be solved separately and then combined.' },
+  { ch:'ch1', q:'Define PATTERN RECOGNITION', a:'Identifying similarities, trends, or repetitions among problems or within data to help solve more complex problems.' },
+  { ch:'ch1', q:'Define ALGORITHMIC THINKING', a:'A way of getting to a solution through clear, ordered, step-by-step instructions that can be implemented by a computer.' },
+  { ch:'ch1', q:'What is a HEURISTIC? Give an example.', a:'A "rule of thumb" — a practical approach that finds a good-enough solution quickly when finding the perfect solution would take too long. Example: spam filters scoring suspicious keywords.' },
+  { ch:'ch1', q:'What is Big O notation? What does O(n²) mean?', a:'Big O notation measures the relationship between input size (N) and the number of steps an algorithm takes. O(n²) means if input doubles, work quadruples — very inefficient for large inputs.' },
+  { ch:'ch1', q:'What is the time complexity of Linear Search?', a:'O(n) — linear complexity. As the list grows, the number of comparisons grows equally. The list does NOT need to be sorted.' },
+  { ch:'ch1', q:'What is the time complexity of Binary Search? What is required?', a:'O(log n) — logarithmic. Very fast! But the list MUST be sorted first. Each step halves the search space.' },
+  { ch:'ch1', q:'Describe Bubble Sort and its time complexity.', a:'Compare adjacent pairs; swap if in wrong order. After each pass, the largest element "bubbles up" to its correct position. Time complexity: O(n²).' },
+  { ch:'ch1', q:'Describe Selection Sort and its time complexity.', a:'Find the minimum value in the unsorted portion and swap it with the first unsorted position. Repeat. Time complexity: O(n²).' },
+  { ch:'ch1', q:'Describe Insertion Sort and its time complexity.', a:'Take the next unsorted element and insert it into its correct position in the already-sorted portion by comparing backwards. Time complexity: O(n²).' },
+  { ch:'ch1', q:'What are the standard flowchart symbols?', a:'Oval = Start/End. Parallelogram = Input/Output. Rectangle = Process. Diamond = Decision. Arrow = Flow direction.' },
+  { ch:'ch1', q:'How do you complete a trace table?', a:'Write a column for each variable and one for line number. Go line by line, updating only the variable that changes. For loops, repeat the row each iteration.' },
+  // Ch2 — Software Development
+  { ch:'ch2', q:'Name the 6 stages of the SDLC in order.', a:'Analysis → Planning → Design → Development → Testing → Maintenance. "Amazing Programmers Design Dope Tested Masterpieces!"' },
+  { ch:'ch2', q:'Describe the Waterfall development methodology.', a:'Sequential and linear — each stage must be fully complete before the next begins. Heavy documentation, fixed requirements. Best for well-understood, rigid projects. Inflexible to change.' },
+  { ch:'ch2', q:'Describe the Agile development methodology.', a:'Iterative, incremental approach. Work in short sprints (1-4 weeks), constant user feedback, evolving requirements. Flexible. Frameworks: Scrum, Kanban. Best for modern software development.' },
+  { ch:'ch2', q:'Distinguish Black Box from White Box testing.', a:'Black Box: tester cannot see the code — only tests inputs and outputs. White Box: tester CAN see the code — tests specific internal paths and branches.' },
+  { ch:'ch2', q:'Distinguish Functional from Non-Functional testing.', a:'Functional: "Does it DO what it should?" Tests requirements (does login work?). Non-functional: "How WELL does it do it?" Tests performance, security, usability, reliability.' },
+  { ch:'ch2', q:'Define Unit Testing and give 2 characteristics.', a:'Testing the smallest unit of code (one function or method) in isolation. Characteristics: automated, fast, repeatable, written by developers, tests one specific behaviour.' },
+  { ch:'ch2', q:'Distinguish Alpha from Beta testing.', a:'Alpha testing: internal testing by the development/in-house team before public release. Beta testing: external testing by real users in a real environment before full launch.' },
+  { ch:'ch2', q:'Name and describe 3 types of software errors.', a:'Syntax error: violates language grammar, won\'t run. Runtime error: runs but crashes during execution (divide-by-zero). Logic error: runs and finishes but produces wrong result.' },
+  { ch:'ch2', q:'Define User-Centred Design (UCD).', a:'A design philosophy in which the needs, abilities, and limitations of end-users are the primary focus at every stage of development.' },
+  { ch:'ch2', q:'Name the 7 Principles of Universal Design.', a:'1. Equitable Use, 2. Flexibility in Use, 3. Simple & Intuitive, 4. Perceptible Information, 5. Tolerance for Error, 6. Low Physical Effort, 7. Size & Space for Approach.' },
+  { ch:'ch2', q:'What does a Business Analyst do?', a:'Gathers and documents requirements from stakeholders, writes user stories, bridges the gap between business and development teams, validates that delivered features match needs.' },
+  // Ch3 — Computer Systems
+  { ch:'ch3', q:'Name the 4 key components of Von Neumann Architecture.', a:'CPU (Central Processing Unit), Memory (RAM/ROM), Input/Output devices, and the Bus. Together they form the universal blueprint for all computers.' },
+  { ch:'ch3', q:'Describe the Fetch-Decode-Execute cycle.', a:'FETCH: CU retrieves next instruction from memory (PC → MAR → MDR → CIR). DECODE: CU interprets the instruction in CIR. EXECUTE: ALU/CU carries out the instruction, result stored in Accumulator.' },
+  { ch:'ch3', q:'What does the ALU do? What does the CU do?', a:'ALU performs all arithmetic (+,-,*,/) and logical operations (AND, OR, NOT, comparisons). CU directs the flow of data, coordinates the FDE cycle, does NOT do calculations.' },
+  { ch:'ch3', q:'Name the 5 CPU registers and what each stores.', a:'PC: address of next instruction. CIR: current instruction being decoded. AC (Accumulator): result of last ALU operation. MAR: memory address being accessed. MDR: data being transferred to/from memory.' },
+  { ch:'ch3', q:'Order memory types fastest to slowest.', a:'Registers → Cache → RAM (Main Memory) → Secondary Storage. "Really Clever Rabbits Sprint!" Registers are fastest but smallest; secondary storage is slowest but largest.' },
+  { ch:'ch3', q:'Distinguish RAM from ROM.', a:'RAM: volatile (lost when power off), readable and writable, stores currently running programs. ROM: non-volatile (keeps data forever), read-only, stores BIOS/firmware, written by manufacturer.' },
+  { ch:'ch3', q:'What is Cache Memory? How does it improve performance?', a:'Small, very fast memory built into or near the CPU that stores copies of frequently used data from RAM. Improves performance because CPU accesses cache much faster than waiting for slower RAM.' },
+  { ch:'ch3', q:'Compare HDD vs SSD.', a:'HDD: spinning magnetic disks, cheaper per GB, slower, fragile (moving parts). SSD: flash memory chips, faster, quieter, more durable (no moving parts), more expensive per GB.' },
+  { ch:'ch3', q:'How many bits in a nibble, byte, kilobyte, megabit?', a:'Nibble = 4 bits. Byte = 8 bits. Kilobyte = 8,192 bits. Megabyte = 8,388,608 bits. Megabit = 1,048,576 bits. Note: Megabit ≠ Megabyte (lowercase b ≠ uppercase B).' },
+  { ch:'ch3', q:'How do you convert decimal 149 to binary?', a:'Use place values 128,64,32,16,8,4,2,1. 128 fits (1), 149-128=21. 16 fits (1), 21-16=5. 4 fits (1), 5-4=1. 1 fits (1). Result: 10010101.' },
+  { ch:'ch3', q:'What is hexadecimal? Why is it used?', a:'Hexadecimal is base-16 using digits 0-9 and A-F. Used because every byte = exactly 2 hex digits, making it much more compact and readable than binary. A=10, B=11, C=12, D=13, E=14, F=15.' },
+  { ch:'ch3', q:'What is an overflow error in binary?', a:'When the result of a binary addition is too large to store in the available bits — a carry is generated out of the highest bit position. Example: adding two 8-bit numbers produces a 9th bit.' },
+  { ch:'ch3', q:'Compare ASCII and Unicode.', a:'ASCII: 7-bit (128 chars) or 8-bit (256 chars), covers only English/Latin. Unicode: up to 32 bits, covers 140,000+ characters from all world scripts including emoji. Backwards compatible with ASCII.' },
+  { ch:'ch3', q:'What does an AND gate do? Truth table?', a:'AND gate: output is 1 ONLY if ALL inputs are 1. Truth table: 0 AND 0=0, 0 AND 1=0, 1 AND 0=0, 1 AND 1=1. "Both must be true!"' },
+  { ch:'ch3', q:'What does an XOR gate do?', a:'XOR (Exclusive OR): output is 1 ONLY if the inputs are DIFFERENT. 0 XOR 0=0, 0 XOR 1=1, 1 XOR 0=1, 1 XOR 1=0. Used in the Full Adder circuit.' },
+  { ch:'ch3', q:'What is Virtual Memory?', a:'When RAM is full, the OS moves inactive data to a reserved area of secondary storage (page file/swap). Allows more programs to run than physical RAM allows, but is much slower than real RAM.' },
+  { ch:'ch3', q:'What are the roles of resistors, capacitors, and transistors?', a:'Transistor: switch (0/1) or amplifier — billions in CPUs. Resistor: limits and controls current flow. Capacitor: stores electrical charge temporarily; smooths power supply.' },
+];
+
+let filteredCards = [...allCards];
+let currentCard = 0;
+let isFlipped = false;
+
+function setFilter(ch, btn) {
+  filteredCards = ch === 'all' ? [...allCards] : allCards.filter(c => c.ch === ch);
+  currentCard = 0;
+  isFlipped = false;
+  document.querySelectorAll('.flash-filter').forEach(b => b.className = 'flash-filter');
+  btn.classList.add('active-' + ch === 'all' ? 'all' : ch);
+  if (ch === 'all') btn.classList.add('active-all');
+  else btn.classList.add('active-' + ch);
+  renderCard();
+}
+
+function renderCard() {
+  if (!filteredCards.length) return;
+  const card = filteredCards[currentCard];
+  document.getElementById('cardQuestion').textContent = card.q;
+  document.getElementById('cardAnswer').textContent = card.a;
+  const lbl = document.getElementById('cardChapterLabel');
+  lbl.textContent = card.ch === 'ch1' ? 'Chapter 1' : card.ch === 'ch2' ? 'Chapter 2' : 'Chapter 3';
+  lbl.className = 'flash-chapter-label fc-' + card.ch;
+  document.getElementById('flashCounter').textContent = (currentCard + 1) + ' / ' + filteredCards.length;
+  document.getElementById('prevBtn').disabled = currentCard === 0;
+  document.getElementById('nextBtn').disabled = currentCard === filteredCards.length - 1;
+  const pct = ((currentCard + 1) / filteredCards.length) * 100;
+  document.getElementById('flashProgressBar').style.width = pct + '%';
+  const fc = document.getElementById('flashcard');
+  if (isFlipped) { fc.classList.remove('flipped'); isFlipped = false; }
+}
+
+function flipCard() {
+  const fc = document.getElementById('flashcard');
+  fc.classList.toggle('flipped');
+  isFlipped = fc.classList.contains('flipped');
+}
+function prevCard() { if (currentCard > 0) { currentCard--; isFlipped = false; renderCard(); } }
+function nextCard() { if (currentCard < filteredCards.length - 1) { currentCard++; isFlipped = false; renderCard(); } }
+
+// ── QUIZ ──
+const quizQuestions = [
+  { q: 'Which of the four pillars of computational thinking involves breaking a large problem into smaller sub-problems?', opts: ['Abstraction', 'Decomposition', 'Pattern Recognition', 'Algorithmic Thinking'], ans: 1, exp: 'Decomposition = breaking down a complex problem into smaller, more manageable sub-problems.' },
+  { q: 'What is the time complexity of Binary Search?', opts: ['O(1)', 'O(n)', 'O(log n)', 'O(n²)'], ans: 2, exp: 'Binary Search is O(log n) — it halves the search space with each step.' },
+  { q: 'Which sorting algorithm always has O(n²) complexity and compares adjacent pairs?', opts: ['Binary Search', 'Bubble Sort', 'Insertion Sort', 'Selection Sort'], ans: 1, exp: 'Bubble Sort compares adjacent pairs and swaps them. All three basic sorts are O(n²).' },
+  { q: 'In a trace table, when do you update a variable\'s column?', opts: ['After every line', 'Only when the variable changes', 'At the end of the program', 'Only in loop iterations'], ans: 1, exp: 'In a trace table, update a variable column only on the line where that variable changes value.' },
+  { q: 'What does a heuristic provide?', opts: ['An exact optimal solution', 'A good-enough solution found quickly', 'A solution with O(1) complexity', 'A formal mathematical proof'], ans: 1, exp: 'A heuristic is a rule of thumb — finds a good-enough solution quickly rather than the perfect one.' },
+  { q: 'In the Waterfall methodology, when can you start the next stage?', opts: ['Any time', 'After user feedback', 'Only when the current stage is fully complete', 'After 2 weeks'], ans: 2, exp: 'Waterfall is sequential — each stage must be FULLY complete and signed off before the next begins.' },
+  { q: 'What does an XOR gate output when both inputs are 1?', opts: ['1', '0', 'Undefined', 'Depends on carry'], ans: 1, exp: 'XOR outputs 1 only when inputs are DIFFERENT. 1 XOR 1 = 0 because they are the same.' },
+  { q: 'What does RAM stand for, and is it volatile?', opts: ['Read-Access Memory, no', 'Random Access Memory, yes', 'Random Access Memory, no', 'Read-All Memory, yes'], ans: 1, exp: 'RAM = Random Access Memory. It IS volatile — contents are lost when power is turned off.' },
+  { q: 'Convert binary 10010101 to decimal.', opts: ['149', '147', '153', '165'], ans: 0, exp: '128+16+4+1 = 149. Place values: 128(1) + 64(0) + 32(0) + 16(1) + 8(0) + 4(1) + 2(0) + 1(1) = 149.' },
+  { q: 'What is the correct order of memory from fastest to slowest?', opts: ['RAM → Cache → Registers → SSD', 'Registers → Cache → RAM → Secondary Storage', 'Cache → Registers → RAM → ROM', 'Secondary Storage → RAM → Cache → Registers'], ans: 1, exp: 'Registers → Cache → RAM → Secondary Storage. "Really Clever Rabbits Sprint!" Registers are fastest (inside CPU).' },
+  { q: 'Which testing type tests a single function in isolation?', opts: ['System Testing', 'Beta Testing', 'Unit Testing', 'Functional Testing'], ans: 2, exp: 'Unit Testing tests the smallest unit of code (one function/method) in isolation from the rest of the system.' },
+  { q: 'What is the difference between a syntax error and a logic error?', opts: ['A syntax error runs but gives wrong result; logic error won\'t compile', 'A syntax error won\'t run; logic error runs but gives wrong result', 'Both prevent the code from running', 'Both produce wrong output'], ans: 1, exp: 'Syntax error: code violates grammar rules so it won\'t run. Logic error: code runs and finishes but produces incorrect results.' },
+  { q: 'What does the Control Unit (CU) do in the CPU?', opts: ['Performs arithmetic calculations', 'Stores data permanently', 'Directs operations, fetches and decodes instructions', 'Manages virtual memory'], ans: 2, exp: 'The CU directs the CPU\'s operations. It does NOT do calculations (that\'s the ALU). It fetches, decodes and coordinates.' },
+  { q: 'Which of these is NOT one of the 7 Principles of Universal Design?', opts: ['Equitable Use', 'Low Physical Effort', 'Maximum Complexity', 'Tolerance for Error'], ans: 2, exp: 'The 7 principles are: Equitable Use, Flexibility in Use, Simple & Intuitive, Perceptible Information, Tolerance for Error, Low Physical Effort, Size & Space.' },
+  { q: 'What is hexadecimal A5 in decimal?', opts: ['155', '165', '175', '145'], ans: 1, exp: 'A=10, 5=5. (10×16) + (5×1) = 160 + 5 = 165.' },
+];
+
+let currentQ = 0;
+let score = 0;
+let answered = false;
+
+function initQuiz() {
+  currentQ = 0;
+  score = 0;
+  answered = false;
+  document.getElementById('quizResult').style.display = 'none';
+  document.getElementById('quizContainer').style.display = 'block';
+  document.getElementById('quizNav').style.display = 'none';
+  renderQuestion();
+}
+
+function renderQuestion() {
+  if (currentQ >= quizQuestions.length) {
+    showResult();
+    return;
+  }
+  const qData = quizQuestions[currentQ];
+  answered = false;
+  const container = document.getElementById('quizContainer');
+  container.innerHTML = `
+    <div class="quiz-q">
+      <div class="q-text">Q${currentQ + 1} of ${quizQuestions.length}: ${qData.q}</div>
+      <div class="quiz-options" id="quizOptions">
+        ${qData.opts.map((o, i) => `<button class="quiz-opt" onclick="selectAnswer(${i})">${String.fromCharCode(65+i)}. ${o}</button>`).join('')}
+      </div>
+      <div class="quiz-feedback" id="quizFeedback"></div>
+    </div>
+  `;
+  document.getElementById('quizNav').style.display = 'none';
+}
+
+function selectAnswer(idx) {
+  if (answered) return;
+  answered = true;
+  const qData = quizQuestions[currentQ];
+  const opts = document.querySelectorAll('.quiz-opt');
+  opts.forEach((opt, i) => {
+    opt.disabled = true;
+    if (i === qData.ans) opt.classList.add('correct');
+    else if (i === idx) opt.classList.add('wrong');
+  });
+  const fb = document.getElementById('quizFeedback');
+  fb.classList.add('show');
+  if (idx === qData.ans) {
+    score++;
+    fb.classList.add('correct');
+    fb.textContent = '✅ Correct! ' + qData.exp;
+  } else {
+    fb.classList.add('wrong');
+    fb.textContent = '❌ Not quite. ' + qData.exp;
+  }
+  document.getElementById('quizScoreDisplay').textContent = `Score: ${score} / ${currentQ + 1}`;
+  document.getElementById('quizNav').style.display = 'flex';
+  document.getElementById('quizNextBtn').textContent = currentQ + 1 >= quizQuestions.length ? 'See Results 🏆' : 'Next Question →';
+}
+
+function nextQuestion() {
+  currentQ++;
+  if (currentQ >= quizQuestions.length) { showResult(); return; }
+  renderQuestion();
+}
+
+function showResult() {
+  document.getElementById('quizContainer').style.display = 'none';
+  document.getElementById('quizNav').style.display = 'none';
+  const r = document.getElementById('quizResult');
+  r.style.display = 'block';
+  const pct = Math.round((score / quizQuestions.length) * 100);
+  let title, msg;
+  if (pct >= 90) { title = 'Outstanding! H1 Territory! 🌟'; msg = `You scored ${score}/${quizQuestions.length} (${pct}%). You really know your stuff!`; }
+  else if (pct >= 75) { title = 'Great Work! H2/H3 Range! 💪'; msg = `You scored ${score}/${quizQuestions.length} (${pct}%). A bit more revision and you\'ll nail it!`; }
+  else if (pct >= 55) { title = 'Getting There! Keep Going! 📚'; msg = `You scored ${score}/${quizQuestions.length} (${pct}%). Review the topics you missed and try again.`; }
+  else { title = 'More Revision Needed! 📖'; msg = `You scored ${score}/${quizQuestions.length} (${pct}%). Go back through the notes and try again!`; }
+  document.getElementById('quizResultTitle').textContent = title;
+  document.getElementById('quizResultText').textContent = msg;
+}
+
+function restartQuiz() { initQuiz(); }
+
+// ── SCROLL TO TOP ──
+window.addEventListener('scroll', () => {
+  const btn = document.getElementById('scrollTop');
+  btn.classList.toggle('visible', window.scrollY > 400);
+});
+</script>
 </body>
 </html>
