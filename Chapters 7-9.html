@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LC Computer Science — Chapters 7, 8 &amp; 9</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F7F4EF;
+    --surface: #FFFFFF;
+    --surface2: #F0EDE8;
+    --border: #E2DDD7;
+    --text: #2C2825;
+    --text-muted: #7A7068;
+    /* Ch7 = Networks & Protocols: teal/green */
+    --ch7: #0EA371;
+    --ch7-light: #E0F7EF;
+    --ch7-dark: #086B4C;
+    /* Ch8 = Databases: blue/indigo */
+    --ch8: #3B5BDB;
+    --ch8-light: #E8EEFF;
+    --ch8-dark: #1E3A8A;
+    /* Ch9 = Modelling & Simulation: orange/amber */
+    --ch9: #F97316;
+    --ch9-light: #FFF0E6;
+    --ch9-dark: #C2500A;
+    --purple: #7C5CBF;
+    --purple-light: #EDE8F7;
+    --green: #56C271;
+    --green-light: #E6F8EB;
+    --red: #E84393;
+    --red-light: #FDEAF4;
+    --radius: 14px;
+    --shadow: 0 4px 20px rgba(0,0,0,0.08);
+    --shadow-hover: 0 8px 32px rgba(0,0,0,0.14);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Lexend',sans-serif; background:var(--bg); color:var(--text); line-height:1.8; font-size:16px; }
+
+  nav {
+    position:sticky; top:0; z-index:100;
+    background:rgba(247,244,239,0.96); backdrop-filter:blur(10px);
+    border-bottom:2px solid var(--border);
+    padding:0 20px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; min-height:60px;
+  }
+  .nav-logo { font-family:'Lexend Mega',sans-serif; font-size:1rem; color:var(--text); margin-right:8px; }
+  .nav-logo span { color:var(--ch7); }
+  .nav-btn {
+    padding:6px 13px; border-radius:20px; border:2px solid transparent;
+    font-family:'Lexend',sans-serif; font-size:0.76rem; font-weight:600;
+    cursor:pointer; transition:all 0.2s; background:var(--surface); color:var(--text-muted);
+  }
+  .nav-btn:hover { transform:translateY(-2px); box-shadow:var(--shadow); }
+  .nav-btn.ch7 { border-color:var(--ch7); }
+  .nav-btn.ch7.active,.nav-btn.ch7:hover { background:var(--ch7); color:#fff; }
+  .nav-btn.ch8 { border-color:var(--ch8); }
+  .nav-btn.ch8.active,.nav-btn.ch8:hover { background:var(--ch8); color:#fff; }
+  .nav-btn.ch9 { border-color:var(--ch9); }
+  .nav-btn.ch9.active,.nav-btn.ch9:hover { background:var(--ch9); color:#fff; }
+  .nav-btn.flash { border-color:var(--purple); }
+  .nav-btn.flash.active,.nav-btn.flash:hover { background:var(--purple); color:#fff; }
+
+  /* HERO */
+  .hero { padding:48px 24px 32px; text-align:center; }
+  .hero h1 { font-family:'Lexend Mega',sans-serif; font-size:clamp(1.6rem,4vw,2.8rem); line-height:1.2; }
+  .hero p { margin-top:12px; color:var(--text-muted); max-width:640px; margin-left:auto; margin-right:auto; }
+  .chapter-pills { display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin-top:20px; }
+  .pill { padding:8px 20px; border-radius:30px; font-weight:600; font-size:0.85rem; cursor:pointer; transition:all 0.2s; border:none; }
+  .pill:hover { transform:translateY(-3px); box-shadow:var(--shadow-hover); }
+  .p7 { background:var(--ch7); color:#fff; }
+  .p8 { background:var(--ch8); color:#fff; }
+  .p9 { background:var(--ch9); color:#fff; }
+  .pf { background:var(--purple); color:#fff; }
+
+  /* SECTIONS */
+  .section { display:none; padding:0 16px 60px; max-width:920px; margin:0 auto; }
+  .section.active { display:block; animation:fadeIn 0.3s ease; }
+  @keyframes fadeIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+
+  /* CHAPTER HEADER BANNERS */
+  .ch-header { border-radius:var(--radius); padding:32px 28px; color:white; margin-bottom:28px; position:relative; overflow:hidden; }
+  .ch-header.h7 { background:linear-gradient(135deg,var(--ch7) 0%,var(--ch7-dark) 100%); }
+  .ch-header.h8 { background:linear-gradient(135deg,var(--ch8) 0%,var(--ch8-dark) 100%); }
+  .ch-header.h9 { background:linear-gradient(135deg,var(--ch9) 0%,var(--ch9-dark) 100%); }
+  .ch-header h1 { font-family:'Lexend Mega',sans-serif; font-size:1.6rem; }
+  .ch-header p { opacity:0.85; margin-top:8px; }
+  .ch-header .big-num { position:absolute; right:24px; top:50%; transform:translateY(-50%); font-family:'Lexend Mega',sans-serif; font-size:6rem; opacity:0.13; line-height:1; }
+
+  /* TOPIC CARDS */
+  .topic-card {
+    background:var(--surface); border-radius:var(--radius); padding:28px; margin-bottom:24px;
+    box-shadow:var(--shadow); border-left:5px solid var(--ch7); transition:box-shadow 0.2s;
+  }
+  .topic-card:hover { box-shadow:var(--shadow-hover); }
+  .topic-card.t8 { border-left-color:var(--ch8); }
+  .topic-card.t9 { border-left-color:var(--ch9); }
+  .topic-card.purple { border-left-color:var(--purple); }
+  .topic-card.green { border-left-color:var(--green); }
+  .topic-card.red { border-left-color:var(--red); }
+  .topic-card h2 { font-size:1.22rem; font-weight:700; margin-bottom:14px; display:flex; align-items:center; gap:10px; }
+  .topic-card h3 { font-size:1rem; font-weight:600; margin:18px 0 8px; }
+  .topic-card p { margin-bottom:10px; }
+  .topic-card ul,.topic-card ol { padding-left:22px; margin-bottom:10px; }
+  .topic-card li { margin-bottom:5px; }
+
+  /* SPECIAL BOXES */
+  .def-box { background:var(--surface2); border:2px dashed var(--border); border-radius:10px; padding:14px 18px; margin:12px 0; }
+  .def-box::before { content:'📖 DEFINITION'; display:block; font-size:0.68rem; font-weight:700; letter-spacing:1px; color:var(--text-muted); margin-bottom:6px; }
+  .def-box p { margin:0; font-weight:500; }
+
+  .analogy-box { background:#FFF9E6; border:2px solid #FFD966; border-radius:10px; padding:14px 18px; margin:12px 0; }
+  .analogy-box::before { content:'💡 ANALOGY'; display:block; font-size:0.68rem; font-weight:700; letter-spacing:1px; color:#997700; margin-bottom:6px; }
+
+  .memory-box { background:#F0FFF4; border:2px solid var(--green); border-radius:10px; padding:14px 18px; margin:12px 0; }
+  .memory-box::before { content:'🧠 MEMORY TRICK'; display:block; font-size:0.68rem; font-weight:700; letter-spacing:1px; color:#267339; margin-bottom:6px; }
+
+  .exam-box { background:#FFF0F3; border:2px solid var(--red); border-radius:10px; padding:14px 18px; margin:12px 0; }
+  .exam-box::before { content:'📝 EXAM TIP'; display:block; font-size:0.68rem; font-weight:700; letter-spacing:1px; color:#A81F65; margin-bottom:6px; }
+
+  .warn-box { background:#FFF8E0; border:2px solid #F0B429; border-radius:10px; padding:14px 18px; margin:12px 0; }
+  .warn-box::before { content:'⚠️ WATCH OUT'; display:block; font-size:0.68rem; font-weight:700; letter-spacing:1px; color:#8C6D1F; margin-bottom:6px; }
+
+  /* COMP TABLES */
+  .comp-table { width:100%; border-collapse:collapse; margin:14px 0; font-size:0.87rem; border-radius:10px; overflow:hidden; }
+  .comp-table th { background:var(--ch7); color:#fff; padding:10px 14px; text-align:left; font-weight:600; }
+  .comp-table.t8 th { background:var(--ch8); }
+  .comp-table.t9 th { background:var(--ch9); }
+  .comp-table.tp th { background:var(--purple); }
+  .comp-table td { padding:9px 14px; border-bottom:1px solid var(--border); }
+  .comp-table tr:nth-child(even) td { background:var(--surface2); }
+  .comp-table tr:last-child td { border-bottom:none; }
+
+  /* PROTOCOL CARDS */
+  .proto-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(190px,1fr)); gap:12px; margin:14px 0; }
+  .proto-card { border-radius:12px; padding:16px; border:2px solid var(--border); background:var(--surface); transition:all 0.2s; }
+  .proto-card:hover { border-color:var(--ch7); transform:translateY(-2px); box-shadow:var(--shadow); }
+  .proto-card .pname { font-size:1.1rem; font-weight:700; color:var(--ch7-dark); }
+  .proto-card .pfull { font-size:0.76rem; color:var(--text-muted); margin:3px 0 8px; }
+  .proto-card .puse { font-size:0.84rem; }
+
+  /* NETWORK TYPE CARDS */
+  .network-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:14px; margin:14px 0; }
+  .network-card { border-radius:12px; padding:18px; border:2px solid; transition:all 0.2s; }
+  .network-card:hover { transform:translateY(-3px); box-shadow:var(--shadow-hover); }
+  .network-card.lan { border-color:var(--ch7); background:var(--ch7-light); }
+  .network-card.wan { border-color:var(--ch8); background:var(--ch8-light); }
+  .network-card.pan { border-color:var(--purple); background:var(--purple-light); }
+  .network-card .ntype { font-size:1.5rem; font-weight:700; margin-bottom:4px; }
+  .network-card .nfull { font-size:0.78rem; color:var(--text-muted); margin-bottom:10px; }
+
+  /* TOPOLOGY CARDS */
+  .topo-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:14px; margin:14px 0; }
+  .topo-card { border-radius:12px; padding:18px; border:2px solid var(--border); background:var(--surface); text-align:center; transition:all 0.2s; }
+  .topo-card:hover { transform:translateY(-3px); box-shadow:var(--shadow-hover); border-color:var(--ch7); }
+  .topo-card svg { margin:0 auto 10px; display:block; }
+  .topo-card .tname { font-weight:700; font-size:0.95rem; margin-bottom:6px; }
+  .topo-card .tdesc { font-size:0.79rem; color:var(--text-muted); }
+
+  /* ACCORDION */
+  .accordion { margin:8px 0; border-radius:10px; overflow:hidden; border:2px solid var(--border); }
+  .accordion-header { width:100%; text-align:left; padding:13px 18px; background:var(--surface2); border:none; font-family:'Lexend',sans-serif; font-size:0.94rem; font-weight:600; cursor:pointer; display:flex; justify-content:space-between; align-items:center; transition:background 0.2s; }
+  .accordion-header:hover { background:var(--border); }
+  .accordion-header .arrow { transition:transform 0.3s; font-size:0.8rem; }
+  .accordion-header.open .arrow { transform:rotate(180deg); }
+  .accordion-body { display:none; padding:16px 18px; background:var(--surface); border-top:2px solid var(--border); }
+  .accordion-body.open { display:block; }
+
+  /* DB TABLE DEMO */
+  .db-demo { overflow-x:auto; margin:14px 0; }
+  .db-table { border-collapse:collapse; font-size:0.84rem; min-width:340px; border-radius:10px; overflow:hidden; }
+  .db-table th { background:var(--ch8); color:#fff; padding:9px 14px; text-align:left; font-weight:600; }
+  .db-table td { padding:8px 14px; border-bottom:1px solid var(--border); }
+  .db-table tr:nth-child(even) td { background:var(--ch8-light); }
+  .db-table tr:last-child td { border-bottom:none; }
+  .pk-badge { background:#FFF0F3; color:#A81F65; border:1px solid #A81F65; border-radius:6px; padding:1px 7px; font-size:0.72rem; font-weight:700; margin-left:5px; }
+  .fk-badge { background:var(--ch9-light); color:var(--ch9-dark); border:1px solid var(--ch9-dark); border-radius:6px; padding:1px 7px; font-size:0.72rem; font-weight:700; margin-left:5px; }
+
+  /* KEYS VISUAL */
+  .key-cards { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:14px 0; }
+  @media(max-width:560px){ .key-cards { grid-template-columns:1fr; } }
+  .key-card { border-radius:12px; padding:18px; border:2px solid; }
+  .key-pk { border-color:#A81F65; background:#FFF0F3; }
+  .key-fk { border-color:var(--ch9-dark); background:var(--ch9-light); }
+  .key-card .ktype { font-size:0.68rem; font-weight:700; letter-spacing:1px; text-transform:uppercase; margin-bottom:6px; }
+  .key-pk .ktype { color:#A81F65; }
+  .key-fk .ktype { color:var(--ch9-dark); }
+  .key-card .kname { font-size:1.1rem; font-weight:700; margin-bottom:8px; }
+
+  /* ANALYTICS PIPELINE */
+  .pipeline { display:flex; gap:0; margin:16px 0; overflow-x:auto; padding-bottom:4px; }
+  .pipe-step { flex:1; min-width:90px; padding:12px 8px; text-align:center; background:var(--ch8-light); border:2px solid var(--ch8); position:relative; }
+  .pipe-step:first-child { border-radius:10px 0 0 10px; }
+  .pipe-step:last-child { border-radius:0 10px 10px 0; }
+  .pipe-step:not(:last-child)::after { content:'▶'; position:absolute; right:-13px; top:50%; transform:translateY(-50%); font-size:1rem; color:var(--ch8); z-index:1; background:var(--bg); padding:0 2px; }
+  .pipe-step .psnum { width:28px; height:28px; border-radius:50%; background:var(--ch8); color:#fff; font-weight:700; font-size:0.8rem; display:flex; align-items:center; justify-content:center; margin:0 auto 6px; }
+  .pipe-step .pslabel { font-size:0.74rem; font-weight:600; }
+
+  /* ABM VISUAL CARDS */
+  .abm-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:14px; margin:14px 0; }
+  .abm-card { border-radius:12px; padding:18px; border:2px solid var(--ch9); background:var(--ch9-light); transition:all 0.2s; }
+  .abm-card:hover { transform:translateY(-3px); box-shadow:var(--shadow-hover); }
+  .abm-card .aicon { font-size:2rem; margin-bottom:8px; }
+  .abm-card .atitle { font-weight:700; font-size:0.95rem; margin-bottom:6px; color:var(--ch9-dark); }
+  .abm-card .adesc { font-size:0.82rem; }
+
+  /* STEPS */
+  .steps { list-style:none; padding:0; margin:14px 0; }
+  .steps li { display:flex; gap:14px; align-items:flex-start; margin-bottom:12px; }
+  .step-num { min-width:32px; height:32px; border-radius:50%; background:var(--ch7); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:0.85rem; flex-shrink:0; }
+  .step-num.s8 { background:var(--ch8); }
+  .step-num.s9 { background:var(--ch9); }
+  .step-num.sp { background:var(--purple); }
+  .step-content { padding-top:4px; }
+
+  /* DIAGRAM WRAP */
+  .diagram-wrap { background:var(--surface2); border-radius:12px; padding:20px; margin:16px 0; overflow-x:auto; text-align:center; }
+  .diagram-wrap p.caption { text-align:center; font-size:0.8rem; color:var(--text-muted); margin-top:10px; }
+  svg text { font-family:'Lexend',sans-serif; }
+
+  /* INTERACTIVE QUIZ */
+  .quiz-card { background:var(--surface); border-radius:var(--radius); padding:24px; margin-bottom:16px; border:2px solid var(--border); }
+  .quiz-q { font-weight:600; font-size:1rem; margin-bottom:14px; }
+  .quiz-options { display:flex; flex-direction:column; gap:8px; }
+  .quiz-opt { padding:10px 16px; border-radius:8px; border:2px solid var(--border); background:var(--surface2); cursor:pointer; font-family:'Lexend',sans-serif; font-size:0.9rem; text-align:left; transition:all 0.2s; }
+  .quiz-opt:hover { border-color:var(--ch7); background:var(--ch7-light); }
+  .quiz-opt.correct { border-color:var(--green); background:var(--green-light); color:#267339; font-weight:600; }
+  .quiz-opt.wrong { border-color:#E84393; background:#FDEAF4; color:#A81F65; }
+  .quiz-feedback { margin-top:12px; padding:10px 14px; border-radius:8px; font-size:0.88rem; font-weight:600; display:none; }
+  .quiz-feedback.show { display:block; }
+  .quiz-feedback.good { background:var(--green-light); color:#267339; }
+  .quiz-feedback.bad { background:#FDEAF4; color:#A81F65; }
+  .quiz-next { margin-top:12px; padding:8px 20px; border-radius:20px; border:none; background:var(--ch7); color:#fff; font-family:'Lexend',sans-serif; font-weight:600; font-size:0.88rem; cursor:pointer; display:none; transition:all 0.2s; }
+  .quiz-next:hover { background:var(--ch7-dark); }
+
+  /* MESH CALCULATOR */
+  .mesh-calc { background:var(--surface); border:2px solid var(--ch7); border-radius:12px; padding:20px; margin:14px 0; }
+  .mesh-calc label { font-weight:600; font-size:0.9rem; }
+  .mesh-calc input[type=range] { width:100%; margin:10px 0; accent-color:var(--ch7); }
+  .mesh-result { font-size:1.2rem; font-weight:700; color:var(--ch7-dark); margin-top:8px; }
+
+  /* TCP/IP LAYERS */
+  .tcpip-layers { display:flex; flex-direction:column; gap:6px; margin:14px 0; }
+  .tcpip-layer { border-radius:10px; padding:14px 18px; border:2px solid; display:flex; gap:12px; align-items:center; }
+  .tcpip-layer .lnum { width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:0.85rem; flex-shrink:0; color:#fff; }
+  .tcpip-layer .lname { font-weight:700; font-size:0.95rem; margin-bottom:3px; }
+  .tcpip-layer .lexample { font-size:0.8rem; color:var(--text-muted); }
+  .layer-app { border-color:#0EA371; background:#E0F7EF; }
+  .layer-app .lnum { background:#0EA371; }
+  .layer-trans { border-color:#3B5BDB; background:#E8EEFF; }
+  .layer-trans .lnum { background:#3B5BDB; }
+  .layer-net { border-color:#F97316; background:#FFF0E6; }
+  .layer-net .lnum { background:#F97316; }
+  .layer-data { border-color:var(--purple); background:var(--purple-light); }
+  .layer-data .lnum { background:var(--purple); }
+
+  /* DATA TYPE CARDS */
+  .dtype-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(140px,1fr)); gap:10px; margin:14px 0; }
+  .dtype-card { border-radius:10px; padding:14px; border:2px solid var(--border); background:var(--surface); text-align:center; transition:all 0.2s; }
+  .dtype-card:hover { border-color:var(--ch8); transform:translateY(-2px); }
+  .dtype-card .dtname { font-weight:700; font-size:0.9rem; margin-bottom:4px; color:var(--ch8-dark); }
+  .dtype-card .dtex { font-size:0.78rem; color:var(--text-muted); }
+
+  /* FLASHCARDS */
+  #flashcards { padding:0 16px 80px; max-width:920px; margin:0 auto; display:none; }
+  #flashcards.active { display:block; animation:fadeIn 0.3s ease; }
+  .flash-header { background:linear-gradient(135deg,var(--purple) 0%,#4a288a 100%); border-radius:var(--radius); padding:32px 28px; color:white; margin-bottom:28px; position:relative; overflow:hidden; }
+  .flash-header h1 { font-family:'Lexend Mega',sans-serif; font-size:1.6rem; }
+  .flash-header p { opacity:0.85; margin-top:8px; }
+  .flash-header .big-num { position:absolute; right:24px; top:50%; transform:translateY(-50%); font-family:'Lexend Mega',sans-serif; font-size:6rem; opacity:0.12; line-height:1; }
+  .flash-controls { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:20px; align-items:center; }
+  .flash-filter { padding:7px 16px; border-radius:20px; border:2px solid var(--border); background:var(--surface); font-family:'Lexend',sans-serif; font-size:0.8rem; font-weight:600; cursor:pointer; transition:all 0.2s; color:var(--text-muted); }
+  .flash-filter.active-ch7 { background:var(--ch7); color:#fff; border-color:var(--ch7); }
+  .flash-filter.active-ch8 { background:var(--ch8); color:#fff; border-color:var(--ch8); }
+  .flash-filter.active-ch9 { background:var(--ch9); color:#fff; border-color:var(--ch9); }
+  .flash-filter.active-all { background:var(--purple); color:#fff; border-color:var(--purple); }
+  .flashcard-area { display:flex; flex-direction:column; align-items:center; }
+  .flashcard { width:100%; max-width:640px; perspective:1200px; min-height:220px; cursor:pointer; margin-bottom:20px; }
+  .flashcard-inner { position:relative; width:100%; min-height:220px; transition:transform 0.55s cubic-bezier(.4,.2,.2,1); transform-style:preserve-3d; }
+  .flashcard.flipped .flashcard-inner { transform:rotateY(180deg); }
+  .flashcard-front,.flashcard-back { position:absolute; width:100%; min-height:220px; backface-visibility:hidden; border-radius:var(--radius); padding:32px 28px; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; box-shadow:var(--shadow); }
+  .flashcard-front { background:var(--surface); border:3px solid var(--purple); }
+  .flashcard-back { background:var(--purple); color:white; transform:rotateY(180deg); }
+  .flashcard-front .card-q { font-size:1.12rem; font-weight:600; }
+  .flashcard-front .flip-hint { margin-top:16px; font-size:0.75rem; color:var(--text-muted); }
+  .flashcard-back .card-a { font-size:0.97rem; line-height:1.75; }
+  .flash-nav { display:flex; gap:12px; align-items:center; }
+  .flash-btn { padding:10px 24px; border-radius:24px; border:none; font-family:'Lexend',sans-serif; font-size:0.9rem; font-weight:600; cursor:pointer; transition:all 0.2s; background:var(--purple); color:#fff; }
+  .flash-btn:hover { background:#4a288a; transform:translateY(-2px); }
+  .flash-btn:disabled { opacity:0.4; cursor:not-allowed; transform:none; }
+  .flash-counter { font-weight:600; color:var(--text-muted); font-size:0.9rem; min-width:80px; text-align:center; }
+  .flash-progress { width:100%; max-width:640px; height:6px; background:var(--border); border-radius:3px; margin-bottom:20px; overflow:hidden; }
+  .flash-progress-bar { height:100%; background:var(--purple); border-radius:3px; transition:width 0.4s; }
+  .flash-chapter-label { font-size:0.7rem; font-weight:700; letter-spacing:1px; text-transform:uppercase; padding:3px 10px; border-radius:20px; margin-bottom:8px; }
+  .fc-ch7 { background:var(--ch7-light); color:var(--ch7-dark); }
+  .fc-ch8 { background:var(--ch8-light); color:var(--ch8-dark); }
+  .fc-ch9 { background:var(--ch9-light); color:var(--ch9-dark); }
+
+  #scrollTop { position:fixed; bottom:24px; right:24px; width:42px; height:42px; background:var(--text); color:#fff; border:none; border-radius:50%; font-size:1.1rem; cursor:pointer; box-shadow:var(--shadow-hover); transition:all 0.2s; z-index:99; opacity:0; pointer-events:none; }
+  #scrollTop.visible { opacity:1; pointer-events:all; }
+  #scrollTop:hover { transform:scale(1.1); }
+  .icon { font-size:1.2rem; }
+  .badge { display:inline-block; padding:2px 9px; border-radius:20px; font-size:0.72rem; font-weight:700; letter-spacing:0.5px; }
+  .badge-green { background:var(--ch7-light); color:var(--ch7-dark); }
+  .badge-blue { background:var(--ch8-light); color:var(--ch8-dark); }
+  .badge-orange { background:var(--ch9-light); color:var(--ch9-dark); }
+  .col2 { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  @media(max-width:560px){ .col2 { grid-template-columns:1fr; } }
+  .tag-exam { display:inline-block; background:#FDEAF4; color:#A81F65; border-radius:6px; padding:2px 8px; font-size:0.7rem; font-weight:700; margin-left:6px; }
+  .tag-calc { display:inline-block; background:var(--ch9-light); color:var(--ch9-dark); border-radius:6px; padding:2px 8px; font-size:0.7rem; font-weight:700; margin-left:6px; }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">LC <span>CS</span></span>
+  <button class="nav-btn ch7 active" onclick="showSection('ch7')">🌐 Ch7: Networks &amp; Protocols</button>
+  <button class="nav-btn ch8" onclick="showSection('ch8')">🗄️ Ch8: Databases</button>
+  <button class="nav-btn ch9" onclick="showSection('ch9')">🔬 Ch9: Modelling &amp; Simulation</button>
+  <button class="nav-btn flash" onclick="showSection('flashcards')">🃏 Flashcards</button>
+</nav>
+
+<div class="hero" id="heroSection">
+  <h1 style="color:var(--ch7)">Computer</h1>
+  <h1><span style="color:var(--ch8)">Science</span> <span style="color:var(--ch9)">Revision</span></h1>
+  <p>Chapters 7, 8 &amp; 9 — Networks, Databases &amp; Modelling — explained with simple definitions, analogies, memory tricks, and past exam tips.</p>
+  <div class="chapter-pills">
+    <button class="pill p7" onclick="showSection('ch7')">🌐 Ch7: Networks &amp; Protocols</button>
+    <button class="pill p8" onclick="showSection('ch8')">🗄️ Ch8: Databases</button>
+    <button class="pill p9" onclick="showSection('ch9')">🔬 Ch9: Modelling &amp; Simulation</button>
+    <button class="pill pf" onclick="showSection('flashcards')">🃏 Flashcards</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     CHAPTER 7: NETWORKS & PROTOCOLS
+════════════════════════════════════════════════ -->
+<div class="section active" id="ch7">
+  <div class="ch-header h7">
+    <h1>Chapter 7: Networks &amp; Protocols</h1>
+    <p>How computers talk to each other — the internet, protocols, TCP/IP, topologies, and cybersecurity.</p>
+    <span class="big-num">7</span>
+  </div>
+
+  <!-- 7.1 Internet vs WWW -->
+  <div class="topic-card">
+    <h2><span class="icon">🌍</span> Internet vs World Wide Web <span class="tag-exam">EXAM</span></h2>
+    <div class="def-box"><p>The <strong>Internet</strong> is the global network of connected computers and infrastructure that carries all data (web pages, emails, files, calls). It is <strong>hardware</strong>.</p></div>
+    <div class="def-box"><p>The <strong>World Wide Web (WWW)</strong> is a <em>service</em> that runs on top of the internet — it is the collection of web pages you view in a browser. The WWW is <strong>software / a service</strong>.</p></div>
+    <div class="analogy-box"><p>The <strong>internet</strong> is the road network — all the physical roads, motorways, and infrastructure. The <strong>WWW</strong> is like delivery trucks using those roads. Email, FTP, and video calls are <em>other</em> services using the same road network — not the road itself.</p></div>
+    <div class="memory-box"><p>💡 <strong>Internet = Infrastructure (hardware)</strong>. <strong>WWW = Web pages (service on that hardware)</strong>. The web is a <em>subset</em> of what the internet can do. Not all internet use is web browsing!</p></div>
+    <div class="exam-box"><p>A common exam trap: students say "internet" when they mean "web". Be precise — if you're talking about web pages, say WWW. If you're talking about the underlying connection, say internet.</p></div>
+  </div>
+
+  <!-- 7.2 Network Types -->
+  <div class="topic-card">
+    <h2><span class="icon">📡</span> Network Types: LAN, WAN, PAN</h2>
+    <div class="network-grid">
+      <div class="network-card lan">
+        <div class="ntype">LAN</div>
+        <div class="nfull">Local Area Network</div>
+        <p style="font-size:0.86rem">Covers a small area — one building, school, or office. Fast, private, cheap to run.</p>
+        <p style="font-size:0.82rem;margin-top:6px;color:var(--ch7-dark)"><strong>Example:</strong> School computer network</p>
+      </div>
+      <div class="network-card wan">
+        <div class="ntype">WAN</div>
+        <div class="nfull">Wide Area Network</div>
+        <p style="font-size:0.86rem">Covers large distances — cities, countries, the world. The internet is the biggest WAN.</p>
+        <p style="font-size:0.82rem;margin-top:6px;color:var(--ch8-dark)"><strong>Example:</strong> The internet itself</p>
+      </div>
+      <div class="network-card pan">
+        <div class="ntype">PAN</div>
+        <div class="nfull">Personal Area Network</div>
+        <p style="font-size:0.86rem">Very short range around one person — Bluetooth, USB connections.</p>
+        <p style="font-size:0.82rem;margin-top:6px;color:var(--purple)"><strong>Example:</strong> Phone + earphones via Bluetooth</p>
+      </div>
+    </div>
+    <div class="memory-box"><p><strong>L</strong>ocal = <strong>L</strong>ittle area &nbsp;|&nbsp; <strong>W</strong>ide = <strong>W</strong>orld &nbsp;|&nbsp; <strong>P</strong>ersonal = <strong>P</strong>ocket</p></div>
+  </div>
+
+  <!-- 7.3 Client-Server vs P2P -->
+  <div class="topic-card">
+    <h2><span class="icon">🖥️</span> Client-Server vs Peer-to-Peer <span class="tag-exam">EXAM</span></h2>
+    <div class="col2">
+      <div style="background:var(--ch7-light);border:2px solid var(--ch7);border-radius:12px;padding:18px;">
+        <p style="font-weight:700;color:var(--ch7-dark);margin-bottom:8px;">🏢 Client-Server</p>
+        <p style="font-size:0.85rem">A <strong>dedicated server</strong> stores all data and manages resources. Client computers send requests; server responds. Users must log in.</p>
+        <p style="font-size:0.82rem;margin-top:8px;color:var(--text-muted)"><strong>✅ Advantages:</strong> More secure, central backup, easy to manage, centralised control of access rights.</p>
+        <p style="font-size:0.82rem;margin-top:6px;color:var(--text-muted)"><strong>❌ Disadvantages:</strong> Expensive to set up and maintain. If server fails, ALL computers lose access.</p>
+      </div>
+      <div style="background:var(--ch8-light);border:2px solid var(--ch8);border-radius:12px;padding:18px;">
+        <p style="font-weight:700;color:var(--ch8-dark);margin-bottom:8px;">👥 Peer-to-Peer (P2P)</p>
+        <p style="font-size:0.85rem">All computers are <strong>equal peers</strong> — each can act as both client and server. Data is shared directly between devices.</p>
+        <p style="font-size:0.82rem;margin-top:8px;color:var(--text-muted)"><strong>✅ Advantages:</strong> Cheap, easy to set up. No single point of failure.</p>
+        <p style="font-size:0.82rem;margin-top:6px;color:var(--text-muted)"><strong>❌ Disadvantages:</strong> Less secure, hard to manage, data spread across many computers.</p>
+      </div>
+    </div>
+    <div class="analogy-box"><p><strong>Client-Server</strong> is like a bank — all your money (data) is stored securely in one place (the server), and you visit (log in) to access it. <strong>P2P</strong> is like friends lending each other cash directly — quick and simple but risky if someone is untrustworthy.</p></div>
+    <div class="exam-box"><p>Examcraft 2024 asked: "With respect to data security, why is client-server a good choice?" → Answer: Data stored centrally = easier to apply security controls, encryption, access controls, backups, and audit logs from one location.</p></div>
+  </div>
+
+  <!-- 7.4 Network Topologies -->
+  <div class="topic-card">
+    <h2><span class="icon">🔗</span> Network Topologies <span class="tag-exam">EXAM</span> <span class="tag-calc">CALC</span></h2>
+    <p>A <strong>topology</strong> is the physical or logical arrangement of computers in a network.</p>
+    <div class="topo-grid">
+      <!-- STAR -->
+      <div class="topo-card">
+        <svg width="80" height="80" viewBox="0 0 80 80">
+          <circle cx="40" cy="40" r="10" fill="#0EA371"/>
+          <circle cx="40" cy="12" r="7" fill="#E0F7EF" stroke="#0EA371" stroke-width="2"/>
+          <circle cx="68" cy="40" r="7" fill="#E0F7EF" stroke="#0EA371" stroke-width="2"/>
+          <circle cx="40" cy="68" r="7" fill="#E0F7EF" stroke="#0EA371" stroke-width="2"/>
+          <circle cx="12" cy="40" r="7" fill="#E0F7EF" stroke="#0EA371" stroke-width="2"/>
+          <line x1="40" y1="30" x2="40" y2="19" stroke="#0EA371" stroke-width="2"/>
+          <line x1="50" y1="40" x2="61" y2="40" stroke="#0EA371" stroke-width="2"/>
+          <line x1="40" y1="50" x2="40" y2="61" stroke="#0EA371" stroke-width="2"/>
+          <line x1="30" y1="40" x2="19" y2="40" stroke="#0EA371" stroke-width="2"/>
+        </svg>
+        <div class="tname">⭐ Star</div>
+        <div class="tdesc">All devices connect to a central switch/hub. Easy to add devices. If hub fails, all fail.</div>
+      </div>
+      <!-- BUS -->
+      <div class="topo-card">
+        <svg width="80" height="80" viewBox="0 0 80 80">
+          <line x1="10" y1="40" x2="70" y2="40" stroke="#3B5BDB" stroke-width="3"/>
+          <circle cx="20" cy="25" r="7" fill="#E8EEFF" stroke="#3B5BDB" stroke-width="2"/>
+          <circle cx="40" cy="25" r="7" fill="#E8EEFF" stroke="#3B5BDB" stroke-width="2"/>
+          <circle cx="60" cy="25" r="7" fill="#E8EEFF" stroke="#3B5BDB" stroke-width="2"/>
+          <circle cx="30" cy="55" r="7" fill="#E8EEFF" stroke="#3B5BDB" stroke-width="2"/>
+          <circle cx="50" cy="55" r="7" fill="#E8EEFF" stroke="#3B5BDB" stroke-width="2"/>
+          <line x1="20" y1="32" x2="20" y2="40" stroke="#3B5BDB" stroke-width="2"/>
+          <line x1="40" y1="32" x2="40" y2="40" stroke="#3B5BDB" stroke-width="2"/>
+          <line x1="60" y1="32" x2="60" y2="40" stroke="#3B5BDB" stroke-width="2"/>
+          <line x1="30" y1="48" x2="30" y2="40" stroke="#3B5BDB" stroke-width="2"/>
+          <line x1="50" y1="48" x2="50" y2="40" stroke="#3B5BDB" stroke-width="2"/>
+        </svg>
+        <div class="tname">🚌 Bus</div>
+        <div class="tdesc">All devices share one backbone cable. Simple &amp; cheap. Cable failure = entire network fails.</div>
+      </div>
+      <!-- RING -->
+      <div class="topo-card">
+        <svg width="80" height="80" viewBox="0 0 80 80">
+          <circle cx="40" cy="12" r="7" fill="#FFF0E6" stroke="#F97316" stroke-width="2"/>
+          <circle cx="68" cy="40" r="7" fill="#FFF0E6" stroke="#F97316" stroke-width="2"/>
+          <circle cx="40" cy="68" r="7" fill="#FFF0E6" stroke="#F97316" stroke-width="2"/>
+          <circle cx="12" cy="40" r="7" fill="#FFF0E6" stroke="#F97316" stroke-width="2"/>
+          <path d="M47 16 Q68 16 68 33" stroke="#F97316" stroke-width="2" fill="none"/>
+          <path d="M68 47 Q68 68 47 68" stroke="#F97316" stroke-width="2" fill="none"/>
+          <path d="M33 68 Q12 68 12 47" stroke="#F97316" stroke-width="2" fill="none"/>
+          <path d="M12 33 Q12 12 33 12" stroke="#F97316" stroke-width="2" fill="none"/>
+        </svg>
+        <div class="tname">💍 Ring</div>
+        <div class="tdesc">Devices form a circular chain. Data travels one direction. One failure can break whole ring.</div>
+      </div>
+      <!-- MESH -->
+      <div class="topo-card">
+        <svg width="80" height="80" viewBox="0 0 80 80">
+          <circle cx="20" cy="20" r="7" fill="#EDE8F7" stroke="#7C5CBF" stroke-width="2"/>
+          <circle cx="60" cy="20" r="7" fill="#EDE8F7" stroke="#7C5CBF" stroke-width="2"/>
+          <circle cx="20" cy="60" r="7" fill="#EDE8F7" stroke="#7C5CBF" stroke-width="2"/>
+          <circle cx="60" cy="60" r="7" fill="#EDE8F7" stroke="#7C5CBF" stroke-width="2"/>
+          <circle cx="40" cy="40" r="7" fill="#EDE8F7" stroke="#7C5CBF" stroke-width="2"/>
+          <line x1="27" y1="20" x2="53" y2="20" stroke="#7C5CBF" stroke-width="1.5"/>
+          <line x1="20" y1="27" x2="20" y2="53" stroke="#7C5CBF" stroke-width="1.5"/>
+          <line x1="60" y1="27" x2="60" y2="53" stroke="#7C5CBF" stroke-width="1.5"/>
+          <line x1="27" y1="60" x2="53" y2="60" stroke="#7C5CBF" stroke-width="1.5"/>
+          <line x1="26" y1="25" x2="35" y2="35" stroke="#7C5CBF" stroke-width="1.5"/>
+          <line x1="54" y1="25" x2="45" y2="35" stroke="#7C5CBF" stroke-width="1.5"/>
+          <line x1="26" y1="55" x2="35" y2="45" stroke="#7C5CBF" stroke-width="1.5"/>
+          <line x1="54" y1="55" x2="45" y2="45" stroke="#7C5CBF" stroke-width="1.5"/>
+        </svg>
+        <div class="tname">🕸️ Mesh</div>
+        <div class="tdesc">Every node connects to every other. Highly resilient, multiple paths. Expensive to wire.</div>
+      </div>
+    </div>
+
+    <!-- MESH CALCULATOR -->
+    <h3 style="margin-top:16px">🧮 Mesh Connection Calculator <span class="tag-calc">CALC</span></h3>
+    <div class="mesh-calc">
+      <label>Number of computers: <strong id="meshN">5</strong></label>
+      <input type="range" min="2" max="12" value="5" id="meshSlider" oninput="calcMesh()">
+      <div class="mesh-result" id="meshResult"></div>
+      <p style="font-size:0.82rem;color:var(--text-muted);margin-top:8px">Formula: <strong>n × (n − 1) ÷ 2</strong></p>
+    </div>
+    <div class="exam-box"><p>DEB 2024 asked to derive this formula and calculate connections for 5 computers (answer = 10). Mesh advantages: highly resilient, no single point of failure, multiple routing paths. Disadvantage: expensive, lots of cabling.</p></div>
+  </div>
+
+  <!-- 7.5 Protocols -->
+  <div class="topic-card">
+    <h2><span class="icon">📜</span> What is a Protocol? <span class="tag-exam">EXAM</span></h2>
+    <div class="def-box"><p>A <strong>protocol</strong> is a set of standardised rules that computers follow to communicate — governing things like message format, data size, speed, error checking, and timing. Without protocols, computers from different manufacturers couldn't talk to each other.</p></div>
+    <div class="analogy-box"><p>A protocol is like a shared language combined with manners. When two diplomats meet, they follow a protocol — shake hands, introduce themselves in a set order, speak in an agreed language. Without this, there'd be chaos. TCP/IP is the internet's diplomatic protocol!</p></div>
+    <h3>Key Protocols — Learn ALL of these!</h3>
+    <div class="proto-grid">
+      <div class="proto-card">
+        <div class="pname">HTTP</div>
+        <div class="pfull">HyperText Transfer Protocol</div>
+        <div class="puse">Transfers web pages between browser and web server. Web pages are in hypertext format.</div>
+      </div>
+      <div class="proto-card">
+        <div class="pname">HTTPS</div>
+        <div class="pfull">HTTP Secure</div>
+        <div class="puse">Like HTTP but data is <strong>encrypted</strong>. Used for banking, shopping, logins. Look for the 🔒 padlock.</div>
+      </div>
+      <div class="proto-card">
+        <div class="pname">FTP</div>
+        <div class="pfull">File Transfer Protocol</div>
+        <div class="puse">Sends and receives files to/from a server. Works with all file types.</div>
+      </div>
+      <div class="proto-card">
+        <div class="pname">SMTP</div>
+        <div class="pfull">Simple Mail Transfer Protocol</div>
+        <div class="puse">Used to <em>send</em> emails between mail servers.</div>
+      </div>
+      <div class="proto-card">
+        <div class="pname">IMAP/POP3</div>
+        <div class="pfull">Mail Retrieval Protocols</div>
+        <div class="puse">Used to <em>receive</em> emails. IMAP keeps email on server; POP3 downloads it.</div>
+      </div>
+      <div class="proto-card">
+        <div class="pname">VoIP</div>
+        <div class="pfull">Voice over Internet Protocol</div>
+        <div class="puse">Delivers voice and video calls over the internet (e.g. Zoom, Skype, WhatsApp calls).</div>
+      </div>
+      <div class="proto-card">
+        <div class="pname">TCP</div>
+        <div class="pfull">Transmission Control Protocol</div>
+        <div class="puse">Breaks data into packets, numbers them, reassembles at destination, requests re-send of lost packets.</div>
+      </div>
+      <div class="proto-card">
+        <div class="pname">IP</div>
+        <div class="pfull">Internet Protocol</div>
+        <div class="puse">Gives every device a unique IP address; routes packets across the internet.</div>
+      </div>
+    </div>
+    <div class="memory-box"><p><strong>H</strong>TTP = <strong>H</strong>omepages &nbsp;|&nbsp; <strong>F</strong>TP = <strong>F</strong>iles &nbsp;|&nbsp; <strong>S</strong>MTP = <strong>S</strong>ending email &nbsp;|&nbsp; <strong>V</strong>oIP = <strong>V</strong>oice &nbsp;|&nbsp; <strong>T</strong>CP = <strong>T</strong>ransport (packets) &nbsp;|&nbsp; <strong>I</strong>P = <strong>I</strong>dentity (address)</p></div>
+    <div class="exam-box"><p>DEB papers frequently ask you to fill in a table of protocol names and functions. Also: "Distinguish between IP and VoIP" — IP routes data packets, VoIP delivers real-time voice using that routing system (2025 paper).</p></div>
+  </div>
+
+  <!-- 7.6 TCP/IP Stack -->
+  <div class="topic-card">
+    <h2><span class="icon">📦</span> The TCP/IP Model (4 Layers) <span class="tag-exam">EXAM</span></h2>
+    <p>When data travels across the internet, it passes through <strong>4 layers</strong>. Think of it like sending a package — each layer adds its own envelope and label.</p>
+    <div class="tcpip-layers">
+      <div class="tcpip-layer layer-app">
+        <div class="lnum">4</div>
+        <div>
+          <div class="lname">Application Layer</div>
+          <div class="lexample">Where your apps live. Uses: HTTP, HTTPS, FTP, SMTP, VoIP. This is what the user sees.</div>
+        </div>
+      </div>
+      <div class="tcpip-layer layer-trans">
+        <div class="lnum">3</div>
+        <div>
+          <div class="lname">Transport Layer</div>
+          <div class="lexample">Sets up the communication — agrees packet size, checks for errors. Uses: TCP, UDP. Like agreeing the rules of the conversation.</div>
+        </div>
+      </div>
+      <div class="tcpip-layer layer-net">
+        <div class="lnum">2</div>
+        <div>
+          <div class="lname">Internet (Network) Layer</div>
+          <div class="lexample">Addresses and routes packets across the internet. Uses: IP addresses. Like writing the address on your envelope.</div>
+        </div>
+      </div>
+      <div class="tcpip-layer layer-data">
+        <div class="lnum">1</div>
+        <div>
+          <div class="lname">Data Link Layer (Network Access)</div>
+          <div class="lexample">Physical hardware — cables, WiFi, MAC addresses. How data physically travels. Like the van that actually drives the parcel.</div>
+        </div>
+      </div>
+    </div>
+    <div class="analogy-box"><p>Imagine posting a letter. <strong>Application Layer</strong> = you writing the letter. <strong>Transport Layer</strong> = putting it in an envelope, numbering pages. <strong>Internet Layer</strong> = writing the address on the envelope. <strong>Data Link Layer</strong> = the post van physically driving it there.</p></div>
+    <h3>What TCP actually does:</h3>
+    <ul class="steps">
+      <li><div class="step-num">1</div><div class="step-content">Breaks data into equal-sized <strong>packets</strong></div></li>
+      <li><div class="step-num">2</div><div class="step-content">Assigns <strong>sequence numbers</strong> so packets can be re-ordered</div></li>
+      <li><div class="step-num">3</div><div class="step-content">Adds <strong>check digits</strong> for error detection</div></li>
+      <li><div class="step-num">4</div><div class="step-content"><strong>Reassembles</strong> packets at destination using sequence numbers</div></li>
+      <li><div class="step-num">5</div><div class="step-content">Requests <strong>re-transmission</strong> of any missing or corrupt packets</div></li>
+    </ul>
+    <div class="memory-box"><p><strong>TCP = "Trustworthy Courier Parcels"</strong> — it tracks every parcel (packet), makes sure they all arrive, and asks for replacements if any are lost! Unlike UDP which just fires and forgets.</p></div>
+  </div>
+
+  <!-- 7.7 IP Addresses & DNS -->
+  <div class="topic-card">
+    <h2><span class="icon">📍</span> IP Addresses, MAC Addresses &amp; DNS <span class="tag-exam">EXAM</span></h2>
+    <div class="def-box"><p>An <strong>IP address</strong> is a unique numerical label (e.g. 192.168.1.1) assigned to every device on a network. It identifies WHERE on the internet a device is, so data knows where to go.</p></div>
+    <div class="def-box"><p>A <strong>MAC address</strong> (Media Access Control) is a permanent, unique hardware address burned into every network card at manufacture. Unlike IP addresses, MAC addresses don't change. Format: 6 pairs of hex digits, e.g. A4:B1:3C:22:F0:9D.</p></div>
+    <div class="def-box"><p><strong>DNS</strong> (Domain Name System) is the internet's phone book — it translates human-readable domain names (e.g. www.google.com) into IP addresses (e.g. 142.250.74.46).</p></div>
+    <div class="col2">
+      <div style="background:var(--ch7-light);border:2px solid var(--ch7);border-radius:10px;padding:14px;">
+        <p style="font-weight:700;color:var(--ch7-dark);margin-bottom:6px;">IP vs MAC — Key Difference</p>
+        <p style="font-size:0.84rem"><strong>IP:</strong> Changes with location (dynamic). Identifies position on network.</p>
+        <p style="font-size:0.84rem;margin-top:6px"><strong>MAC:</strong> Never changes. Identifies the physical device.</p>
+      </div>
+      <div style="background:var(--ch9-light);border:2px solid var(--ch9);border-radius:10px;padding:14px;">
+        <p style="font-weight:700;color:var(--ch9-dark);margin-bottom:6px;">IP in Cybercrime <span class="tag-exam">EXAM</span></p>
+        <p style="font-size:0.84rem">Servers log IP addresses for every connection. Law enforcement can subpoena an ISP to find which customer had a specific IP at a specific time, tracing a suspect's identity and location.</p>
+      </div>
+    </div>
+    <div class="analogy-box"><p><strong>IP address</strong> = your home address (can change if you move). <strong>MAC address</strong> = your fingerprint (always the same, part of you forever). DNS = a sat-nav that translates "McDonald's on O'Connell Street" into GPS coordinates.</p></div>
+    <div class="exam-box"><p>DEB 2023 asked: "Why do devices need MAC addresses to connect to the internet?" — MAC addresses identify devices at the hardware level within a local network. Even if IP addresses change, the MAC uniquely identifies the hardware. Also: DEB 2023 asked about DNS as the internet's phone book.</p></div>
+  </div>
+
+  <!-- 7.8 Cybersecurity -->
+  <div class="topic-card red">
+    <h2><span class="icon">🔐</span> Cybersecurity &amp; Data Protection <span class="tag-exam">EXAM</span></h2>
+    <div class="def-box"><p><strong>Ransomware</strong> is a type of malware that encrypts the victim's files and demands payment (a ransom) to restore access. Famous example: 2021 HSE attack in Ireland.</p></div>
+    <h3>Security Measures — Know at least 3!</h3>
+    <table class="comp-table" style="--ch7:#E84393;">
+      <tr><th style="background:#A81F65">Security Measure</th><th style="background:#A81F65">What It Does</th></tr>
+      <tr><td>🔐 <strong>Encryption</strong></td><td>Data converted to unreadable code — useless without the decryption key</td></tr>
+      <tr><td>🔑 <strong>Strong Passwords + 2FA</strong></td><td>Multi-factor authentication requires two forms of proof of identity</td></tr>
+      <tr><td>🛡️ <strong>Firewall</strong></td><td>Monitors and blocks unauthorised network access based on rules</td></tr>
+      <tr><td>💾 <strong>Regular Backups</strong></td><td>Offline backups mean you can recover files even after ransomware</td></tr>
+      <tr><td>🔒 <strong>VPN</strong></td><td>Encrypted tunnel for remote workers — hides data from eavesdroppers</td></tr>
+      <tr><td>🧑‍💻 <strong>Staff Training</strong></td><td>Most breaches start with human error (phishing emails) — training prevents this</td></tr>
+      <tr><td>🔄 <strong>Software Updates</strong></td><td>Patches fix security vulnerabilities that hackers exploit</td></tr>
+    </table>
+    <div class="memory-box"><p><strong>EFF-BVS</strong> = <strong>E</strong>ncryption, <strong>F</strong>irewall, <strong>F</strong>requent backups, <strong>B</strong>iometrics/2FA, <strong>V</strong>PN, <strong>S</strong>taff training</p></div>
+    <div class="exam-box"><p>2022 paper asked about the HSE ransomware attack. 2023 DEB asked for 3 IT security measures for remote working. Data breach impacts on individuals: identity theft, financial loss, psychological harm, medical records exposed.</p></div>
+  </div>
+
+  <!-- 7.9 Practice Quiz -->
+  <div class="topic-card green">
+    <h2><span class="icon">🎯</span> Chapter 7 Quick Quiz</h2>
+    <div id="quiz7"></div>
+    <button class="quiz-next" id="qnext7" onclick="nextQuiz(7)">Next Question ▶</button>
+    <p id="qscore7" style="margin-top:14px;font-weight:700;color:var(--ch7-dark);display:none;"></p>
+  </div>
+</div><!-- end ch7 -->
+
+<!-- ═══════════════════════════════════════════════
+     CHAPTER 8: DATABASES
+════════════════════════════════════════════════ -->
+<div class="section" id="ch8">
+  <div class="ch-header h8">
+    <h1>Chapter 8: Databases &amp; Data Analytics</h1>
+    <p>Organising data with tables, keys, relational design, SQL, data cleaning, and analytics pipelines.</p>
+    <span class="big-num">8</span>
+  </div>
+
+  <!-- 8.1 Core Concepts -->
+  <div class="topic-card t8">
+    <h2><span class="icon">🗄️</span> Core Database Vocabulary <span class="tag-exam">EXAM</span></h2>
+    <div class="def-box"><p>A <strong>database</strong> is an organised collection of structured data, managed by a DBMS (Database Management System). It allows data to be stored, searched, updated, and retrieved efficiently.</p></div>
+    <div class="def-box"><p>A <strong>table</strong> organises data in <strong>rows and columns</strong>. A <strong>record</strong> (row) is a single entry — one person, one book, one transaction. A <strong>field</strong> (column) is a single attribute of every record — like "Name" or "Date".</p></div>
+    <div class="analogy-box"><p>Think of a database like a spreadsheet. The whole <strong>spreadsheet file = database</strong>. Each <strong>sheet tab = a table</strong>. Each <strong>row = a record</strong> (one student). Each <strong>column = a field</strong> (their name, age, etc.).</p></div>
+
+    <!-- DEMO TABLE -->
+    <h3>Example: BOOKS Table</h3>
+    <div class="db-demo">
+      <table class="db-table">
+        <tr><th>book_id <span class="pk-badge">PK</span></th><th>title</th><th>year</th><th>cost</th><th>author</th><th>on_loan</th></tr>
+        <tr><td>1</td><td>The Cat in the Hat</td><td>1957</td><td>6.95</td><td>Dr. Seuss</td><td>Yes</td></tr>
+        <tr><td>2</td><td>Green Eggs and Ham</td><td>1960</td><td>8.95</td><td>Dr. Seuss</td><td>No</td></tr>
+        <tr><td>3</td><td>Horton Hears a Who!</td><td>1954</td><td>10.00</td><td>Dr. Seuss</td><td>No</td></tr>
+        <tr><td>4</td><td>How the Grinch Stole Christmas!</td><td>1957</td><td>9.95</td><td>Dr. Seuss</td><td>Yes</td></tr>
+      </table>
+    </div>
+    <div class="exam-box"><p>2024 paper used this exact table. You were asked to: (i) define "database" and "record" (ii) choose the primary key (iii) identify 2 data inconsistencies. Classic exam structure — be ready for it!</p></div>
+  </div>
+
+  <!-- 8.2 Primary & Foreign Keys -->
+  <div class="topic-card t8">
+    <h2><span class="icon">🔑</span> Primary Keys &amp; Foreign Keys <span class="tag-exam">EXAM</span></h2>
+    <div class="key-cards">
+      <div class="key-card key-pk">
+        <div class="ktype">Primary Key (PK)</div>
+        <div class="kname">🗝️ Unique Identifier</div>
+        <p style="font-size:0.87rem">A field that <strong>uniquely identifies every record</strong> in a table. It must be: <strong>unique</strong> (no two records share the same value) and <strong>not null</strong> (it can never be empty).</p>
+        <p style="font-size:0.84rem;margin-top:8px;color:#A81F65"><strong>Best choice:</strong> a dedicated ID number (e.g. book_id, member_id) rather than a name — names can duplicate!</p>
+      </div>
+      <div class="key-card key-fk">
+        <div class="ktype">Foreign Key (FK)</div>
+        <div class="kname">🔗 Table Link</div>
+        <p style="font-size:0.87rem">A field in one table that <strong>references the primary key of another table</strong>. This links the two tables together — it's how relational databases work.</p>
+        <p style="font-size:0.84rem;margin-top:8px;color:var(--ch9-dark)"><strong>Example:</strong> In LOANS, member_id is a FK referencing MEMBERS.member_id.</p>
+      </div>
+    </div>
+    <div class="analogy-box"><p>A <strong>primary key</strong> is like your passport number — unique to you. A <strong>foreign key</strong> is like writing your passport number on a hotel register — it links YOU (MEMBERS table) to your BOOKING (LOANS table) without copying all your details again.</p></div>
+
+    <!-- Linked tables demo -->
+    <h3 style="margin-top:16px">Example: Relational Design</h3>
+    <div class="col2">
+      <div>
+        <p style="font-weight:700;color:var(--ch8-dark);margin-bottom:6px">MEMBERS table</p>
+        <div class="db-demo">
+          <table class="db-table">
+            <tr><th>member_id <span class="pk-badge">PK</span></th><th>member_name</th></tr>
+            <tr><td>1</td><td>Amy</td></tr>
+            <tr><td>2</td><td>Bill</td></tr>
+            <tr><td>3</td><td>Chloe</td></tr>
+          </table>
+        </div>
+      </div>
+      <div>
+        <p style="font-weight:700;color:var(--ch8-dark);margin-bottom:6px">LOANS table</p>
+        <div class="db-demo">
+          <table class="db-table">
+            <tr><th>member_id <span class="fk-badge">FK</span></th><th>book_id <span class="fk-badge">FK</span></th><th>date_borrowed</th></tr>
+            <tr><td>3</td><td>2</td><td>20/05/2024</td></tr>
+            <tr><td>1</td><td>4</td><td>01/05/2024</td></tr>
+            <tr><td>2</td><td>1</td><td>18/05/2024</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="exam-box"><p>2024 paper: you were given these exact tables and had to fill in 6 empty cells by cross-referencing given information. E.g. "Amy borrowed How the Grinch Stole Christmas! on 1st May" → find Amy's member_id (1) and the book's book_id (4), then enter: 1, 4, 01/05/24.</p></div>
+  </div>
+
+  <!-- 8.3 Relational DB & Data Redundancy -->
+  <div class="topic-card t8">
+    <h2><span class="icon">🔄</span> Relational Databases &amp; Data Redundancy <span class="tag-exam">EXAM</span></h2>
+    <div class="def-box"><p>A <strong>relational database</strong> stores data in multiple linked tables using keys. This avoids storing the same data in multiple places.</p></div>
+    <div class="def-box"><p><strong>Data redundancy</strong> is when the <em>same data is stored unnecessarily in multiple places</em>. This wastes storage and causes inconsistency — if you update one copy but forget another, your data is wrong.</p></div>
+    <div class="analogy-box"><p>Imagine writing every student's home address in EVERY entry in the school register. If they move house, you'd have to update it in 100 places! A relational database instead stores the address ONCE in a STUDENTS table, and just references the student's ID in other tables. Far more efficient and consistent.</p></div>
+
+    <h3>How the LOANS table removes the on_loan field from BOOKS:</h3>
+    <div class="accordion">
+      <button class="accordion-header" onclick="toggleAcc(this)">Click to see the explanation <span class="arrow">▼</span></button>
+      <div class="accordion-body">
+        <p>If we have a separate LOANS table, we can tell whether a book is on loan simply by checking if that book_id appears in the LOANS table. If it's there = on loan. If not = available. So there's no need to store a redundant <code>on_loan</code> Boolean field in BOOKS — the LOANS table already tells us this information. This is exactly what relational design achieves: avoid storing derived or duplicate data.</p>
+      </div>
+    </div>
+    <div class="memory-box"><p><strong>"Don't Repeat Yourself (DRY)"</strong> — the golden rule of relational databases. Every piece of data should exist in only ONE place. Use foreign keys to link, not to copy.</p></div>
+  </div>
+
+  <!-- 8.4 Data Types -->
+  <div class="topic-card t8">
+    <h2><span class="icon">📊</span> Data Types &amp; Data Inconsistencies <span class="tag-exam">EXAM</span></h2>
+    <h3>Common Data Types:</h3>
+    <div class="dtype-grid">
+      <div class="dtype-card"><div class="dtname">Integer</div><div class="dtex">Whole number<br>e.g. 42, -5, 1000</div></div>
+      <div class="dtype-card"><div class="dtname">Real / Float</div><div class="dtex">Decimal number<br>e.g. 9.95, 3.14</div></div>
+      <div class="dtype-card"><div class="dtname">String / Text</div><div class="dtex">Any text<br>e.g. "Dr. Seuss"</div></div>
+      <div class="dtype-card"><div class="dtname">Boolean</div><div class="dtex">True/False only<br>e.g. Yes/No</div></div>
+      <div class="dtype-card"><div class="dtname">Date</div><div class="dtex">Calendar date<br>e.g. 02/03/1904</div></div>
+      <div class="dtype-card"><div class="dtname">List/Array</div><div class="dtex">Collection of items<br>e.g. [1, 2, 3]</div></div>
+    </div>
+    <h3 style="margin-top:16px">Data Inconsistencies — from the 2024 Paper!</h3>
+    <table class="comp-table t8">
+      <tr><th>Inconsistency Type</th><th>Example from BOOKS table</th></tr>
+      <tr><td>Mixed date formats</td><td>02/03/1904 vs March 2, 1904 — same date, different formats</td></tr>
+      <tr><td>Inconsistent Boolean</td><td>Yes / Y / N / No — should all be the same format</td></tr>
+      <tr><td>Typo / misspelling</td><td>Dr. Seuss vs Doc Seus — different values for same person</td></tr>
+      <tr><td>Mixed currency format</td><td>€10 vs 9.95 — inconsistent number formats</td></tr>
+      <tr><td>Missing values (nulls)</td><td>Empty cells where data should exist</td></tr>
+      <tr><td>Duplicates</td><td>Same record entered twice</td></tr>
+      <tr><td>Outliers</td><td>Value wildly outside expected range (e.g. cost = €9999)</td></tr>
+    </table>
+    <div class="warn-box"><p>Data inconsistencies make queries unreliable and reports inaccurate. For example, if you search for "Dr. Seuss", you won't find books by "Doc Seus" — even though it's the same author!</p></div>
+  </div>
+
+  <!-- 8.5 Data Analytics Pipeline -->
+  <div class="topic-card t8">
+    <h2><span class="icon">📈</span> Data Analytics Pipeline <span class="tag-exam">EXAM</span></h2>
+    <p>A data analytics project follows these stages — you need to know all 6:</p>
+    <div class="pipeline">
+      <div class="pipe-step"><div class="psnum">1</div><div class="pslabel">Hypothesis</div></div>
+      <div class="pipe-step"><div class="psnum">2</div><div class="pslabel">Collect Data</div></div>
+      <div class="pipe-step"><div class="psnum">3</div><div class="pslabel">Clean Data</div></div>
+      <div class="pipe-step"><div class="psnum">4</div><div class="pslabel">Analyse</div></div>
+      <div class="pipe-step"><div class="psnum">5</div><div class="pslabel">Conclusions</div></div>
+      <div class="pipe-step"><div class="psnum">6</div><div class="pslabel">Communicate</div></div>
+    </div>
+    <div class="accordion">
+      <button class="accordion-header" onclick="toggleAcc(this)">🔬 What is a Hypothesis? <span class="arrow">▼</span></button>
+      <div class="accordion-body"><p>A hypothesis is an <strong>educated, testable prediction</strong> about your data. It's a statement you want to prove or disprove. Example (from 2024 exam): "Books published before 1960 are more expensive than books published after 1960." You then collect data and analyse it to test this.</p></div>
+    </div>
+    <div class="accordion">
+      <button class="accordion-header" onclick="toggleAcc(this)">🧹 What is Data Cleaning? <span class="arrow">▼</span></button>
+      <div class="accordion-body">
+        <p>Data cleaning removes errors so your analysis is accurate. Types of errors removed:</p>
+        <ul style="margin-top:8px;padding-left:20px;">
+          <li><strong>Missing values</strong> — null/empty cells (fill in or remove)</li>
+          <li><strong>Outliers</strong> — values far outside expected range that distort averages</li>
+          <li><strong>Inconsistent formats</strong> — mixed date/boolean formats (standardise)</li>
+          <li><strong>Duplicates</strong> — same record entered twice (remove one)</li>
+          <li><strong>Typos</strong> — spelling errors in text fields (fix)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="accordion">
+      <button class="accordion-header" onclick="toggleAcc(this)">📊 Continuous vs Discrete Data <span class="arrow">▼</span></button>
+      <div class="accordion-body">
+        <p><strong>Continuous data</strong> can take any value within a range — temperature (30.1°C, 30.12°C, etc.), height, weight. There are infinite possible values between any two points.</p>
+        <p style="margin-top:8px"><strong>Discrete data</strong> can only take specific, separate values — number of students (you can't have 2.7 students!), shoe size, number of goals scored.</p>
+        <p style="margin-top:8px;color:var(--ch8-dark)"><strong>Memory trick:</strong> Discrete = <strong>D</strong>istinct separate values. Continuous = flows <strong>C</strong>ontinuously like a river.</p>
+      </div>
+    </div>
+    <div class="exam-box"><p>2024 exam: suggest 2 hypotheses Alex could test with her library database. Good examples: "More expensive books are borrowed more often" or "Books published before 1960 have higher borrowing rates." Keep hypotheses specific and testable!</p></div>
+  </div>
+
+  <!-- 8.6 Quiz -->
+  <div class="topic-card green">
+    <h2><span class="icon">🎯</span> Chapter 8 Quick Quiz</h2>
+    <div id="quiz8"></div>
+    <button class="quiz-next" id="qnext8" onclick="nextQuiz(8)">Next Question ▶</button>
+    <p id="qscore8" style="margin-top:14px;font-weight:700;color:var(--ch8-dark);display:none;"></p>
+  </div>
+</div><!-- end ch8 -->
+
+<!-- ═══════════════════════════════════════════════
+     CHAPTER 9: MODELLING & SIMULATION
+════════════════════════════════════════════════ -->
+<div class="section" id="ch9">
+  <div class="ch-header h9">
+    <h1>Chapter 9: Modelling &amp; Simulation</h1>
+    <p>Creating simplified virtual versions of real-world systems to test, predict, and explore "what if" scenarios safely.</p>
+    <span class="big-num">9</span>
+  </div>
+
+  <!-- 9.1 Core Definitions -->
+  <div class="topic-card t9">
+    <h2><span class="icon">🔬</span> What is Modelling and Simulation? <span class="tag-exam">EXAM</span></h2>
+    <div class="def-box"><p>A <strong>model</strong> is a <em>simplified representation</em> of a real-world system that captures only the most important variables and relationships — ignoring irrelevant details (abstraction).</p></div>
+    <div class="def-box"><p>A <strong>simulation</strong> is the process of <em>running a model over time</em> to observe behaviour, test scenarios, and predict outcomes. Simulation = model in action.</p></div>
+    <div class="analogy-box"><p>A <strong>model</strong> is like a toy plane — it looks like a real plane but is much simpler (no real engine, no passengers). A <strong>simulation</strong> is putting that toy in a wind tunnel to test what happens. Together they let engineers test designs safely before building the real thing.</p></div>
+    <div class="col2">
+      <div style="background:var(--ch9-light);border:2px solid var(--ch9);border-radius:10px;padding:14px;">
+        <p style="font-weight:700;color:var(--ch9-dark);margin-bottom:8px;">✅ Benefits of Modelling</p>
+        <ul style="font-size:0.84rem;padding-left:18px;">
+          <li>Safe — test dangerous scenarios (nuclear, epidemics) without real risk</li>
+          <li>Cheap — no real resources used</li>
+          <li>Fast — compress time (simulate years in seconds)</li>
+          <li>Repeatable — run the same scenario multiple times with different variables</li>
+          <li>"What if" testing — change one variable and observe results</li>
+        </ul>
+      </div>
+      <div style="background:#FFF0F3;border:2px solid #A81F65;border-radius:10px;padding:14px;">
+        <p style="font-weight:700;color:#A81F65;margin-bottom:8px;">❌ Limitations of Modelling</p>
+        <ul style="font-size:0.84rem;padding-left:18px;">
+          <li>Simplifications may omit key variables</li>
+          <li>Garbage in, garbage out — bad data = bad predictions</li>
+          <li>Can create false confidence in results</li>
+          <li>Real-world complexity is often impossible to fully capture</li>
+          <li>George Box: <em>"All models are wrong, but some are useful."</em></li>
+        </ul>
+      </div>
+    </div>
+    <div class="exam-box"><p>2025 paper asked: "State one limitation and one benefit of modelling." Also asked for 2 areas where modelling improves outcomes (Education, Mental wellbeing, Environment, Traffic management). Know at least 2 areas with a brief description!</p></div>
+  </div>
+
+  <!-- 9.2 Abstraction in Models -->
+  <div class="topic-card t9">
+    <h2><span class="icon">🎨</span> Abstraction in Modelling <span class="tag-exam">EXAM</span></h2>
+    <div class="def-box"><p><strong>Abstraction</strong> is the process of removing unnecessary details from a model so it only includes variables that are relevant to the outcome being studied. This makes the model simpler, faster, and more useful.</p></div>
+    <div class="analogy-box"><p>A <strong>London Underground map</strong> is a brilliant example of abstraction. It shows stations and connections but ignores actual geography, distance between stations, curves of the tunnels, and what's above ground. It removes all the "noise" and shows only what a passenger needs: which line to take and where to change.</p></div>
+    <h3>Examples of abstraction in models:</h3>
+    <table class="comp-table t9">
+      <tr><th>Model Type</th><th>Details Kept</th><th>Details Abstracted Away</th></tr>
+      <tr><td>Traffic flow model</td><td>Speed, direction, road layout</td><td>Car colour, driver name, radio station playing</td></tr>
+      <tr><td>Weather model</td><td>Temperature, pressure, humidity</td><td>Individual leaf positions on trees</td></tr>
+      <tr><td>Disease spread model</td><td>Infection rate, proximity, immunity</td><td>Patient's favourite food, eye colour</td></tr>
+      <tr><td>Driving test model (2025 paper)</td><td>Age, transmission type, instructor experience</td><td>Student's nationality, hair colour</td></tr>
+    </table>
+    <div class="memory-box"><p>Abstraction = <strong>"What actually matters?"</strong> Only include variables that could actually influence the outcome you're modelling. Everything else = irrelevant detail = remove it.</p></div>
+  </div>
+
+  <!-- 9.3 Input & Output Variables -->
+  <div class="topic-card t9">
+    <h2><span class="icon">📥</span> Input Variables, Output Variables &amp; Patterns <span class="tag-exam">EXAM</span></h2>
+    <div class="def-box"><p>An <strong>output variable</strong> is the predicted result or outcome — the thing you're trying to predict. E.g. "Test outcome (PASS/FAIL)"</p></div>
+    <div class="def-box"><p><strong>Input variables</strong> are the features that influence the output. E.g. Age, Transmission type, Instructor experience.</p></div>
+    <h3>2025 Exam Dataset — Driving Test Model:</h3>
+    <div class="db-demo">
+      <table class="db-table">
+        <tr><th>ID</th><th>Gender</th><th>Age</th><th>Transmission</th><th>Instructor Exp (yrs)</th><th>Test Outcome</th></tr>
+        <tr><td>1</td><td>Male</td><td>18</td><td>Manual</td><td>8</td><td style="color:#A81F65;font-weight:700">FAIL</td></tr>
+        <tr><td>2</td><td>Female</td><td>22</td><td>Automatic</td><td>5</td><td style="color:#267339;font-weight:700">PASS</td></tr>
+        <tr><td>3</td><td>Male</td><td>20</td><td>Automatic</td><td>8</td><td style="color:#267339;font-weight:700">PASS</td></tr>
+        <tr><td>4</td><td>Male</td><td>19</td><td>Manual</td><td>3</td><td style="color:#A81F65;font-weight:700">FAIL</td></tr>
+        <tr><td>5</td><td>Female</td><td>30</td><td>Automatic</td><td>12</td><td style="color:#267339;font-weight:700">PASS</td></tr>
+        <tr><td>6</td><td>Female</td><td>25</td><td>Manual</td><td>2</td><td style="color:#A81F65;font-weight:700">FAIL</td></tr>
+        <tr><td>7</td><td>Female</td><td>23</td><td>Automatic</td><td>10</td><td style="color:#267339;font-weight:700">PASS</td></tr>
+        <tr><td>8</td><td>Male</td><td>17</td><td>Manual</td><td>6</td><td style="color:#A81F65;font-weight:700">FAIL</td></tr>
+        <tr><td>9</td><td>Male</td><td>19</td><td>Manual</td><td>5</td><td style="color:#A81F65;font-weight:700">FAIL</td></tr>
+        <tr><td>10</td><td>Female</td><td>21</td><td>Manual</td><td>15</td><td style="color:#267339;font-weight:700">PASS</td></tr>
+      </table>
+    </div>
+    <div class="accordion">
+      <button class="accordion-header" onclick="toggleAcc(this)">👁️ Click to reveal model analysis answers <span class="arrow">▼</span></button>
+      <div class="accordion-body">
+        <p><strong>Output variable:</strong> Test outcome (PASS/FAIL)</p>
+        <p style="margin-top:8px"><strong>Input variables:</strong> Age, Gender, Transmission type, Instructor experience (years)</p>
+        <p style="margin-top:8px"><strong>Pattern 1:</strong> All students who drove Automatic transmission PASSED — none who drove Automatic failed.</p>
+        <p style="margin-top:8px"><strong>Pattern 2:</strong> Students with higher instructor experience tended to pass — the one Manual driver who passed (ID 10) had 15 years' instructor experience (the highest).</p>
+        <p style="margin-top:8px"><strong>Additional variables to add:</strong> Number of lessons taken, number of previous test attempts, weather on test day, time of day, test centre location.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 9.4 Agent-Based Modelling -->
+  <div class="topic-card t9">
+    <h2><span class="icon">🤖</span> Agent-Based Modelling (ABM) <span class="tag-exam">EXAM</span></h2>
+    <div class="def-box"><p><strong>Agent-based modelling (ABM)</strong> is a type of simulation where each individual entity (an <em>agent</em>) is programmed with simple rules. The simulation runs all agents simultaneously and observes how their interactions produce complex system-level outcomes.</p></div>
+    <div class="def-box"><p><strong>Emergent behaviour</strong> is complex, system-level patterns that arise from many simple individual interactions — these patterns are <em>not directly programmed</em>, they just emerge naturally from the interactions of agents following their rules.</p></div>
+    <div class="analogy-box"><p>Think of a <strong>murmuration of starlings</strong> — thousands of birds swirling in amazing coordinated patterns. Nobody is giving orders. Each bird follows 3 simple rules: don't collide, stay close to neighbours, match their direction. The beautiful swirling patterns <em>emerge</em> from those simple individual rules. That's emergent behaviour!</p></div>
+
+    <h3 style="margin-top:16px">Real-World ABM Examples:</h3>
+    <div class="abm-grid">
+      <div class="abm-card">
+        <div class="aicon">🚗</div>
+        <div class="atitle">Traffic Flow</div>
+        <div class="adesc">Each car = an agent. Rules: follow speed limit, brake if car ahead slows. Emergent: traffic jams form even with no accidents — just from individual braking decisions.</div>
+      </div>
+      <div class="abm-card">
+        <div class="aicon">🦠</div>
+        <div class="atitle">Disease Spread</div>
+        <div class="adesc">Each person = an agent with state (susceptible/infected/recovered). Rule: become infected if near an infected agent. Emergent: infection waves, herd immunity thresholds.</div>
+      </div>
+      <div class="abm-card">
+        <div class="aicon">🐜</div>
+        <div class="atitle">Ant Colony</div>
+        <div class="adesc">Each ant = an agent following pheromone trails. Emergent: efficient foraging paths emerge — ants find the shortest route to food without a central planner.</div>
+      </div>
+      <div class="abm-card">
+        <div class="aicon">📈</div>
+        <div class="atitle">Stock Market</div>
+        <div class="adesc">Each trader = an agent. Rules: buy when price drops, sell when it rises. Emergent: market crashes, bubbles, and boom-bust cycles emerge from individual trading decisions.</div>
+      </div>
+    </div>
+
+    <h3 style="margin-top:16px">Disease Spread ABM — 2025 Exam Question in Detail:</h3>
+    <ul class="steps">
+      <li><div class="step-num s9">1</div><div class="step-content">Each person in the school = <strong>one agent</strong>. Each agent has a state: <strong>Susceptible</strong>, <strong>Infected</strong>, or <strong>Recovered</strong>.</div></li>
+      <li><div class="step-num s9">2</div><div class="step-content">Simple rules programmed in: a susceptible agent <strong>becomes infected</strong> if it is close to an infected agent for a certain amount of time.</div></li>
+      <li><div class="step-num s9">3</div><div class="step-content">The simulation runs in <strong>time-steps</strong> (e.g. each step = 1 hour of school). At each step, agents move and interact based on their rules.</div></li>
+      <li><div class="step-num s9">4</div><div class="step-content"><strong>Emergent behaviours</strong> observed: infection waves, clustering around classrooms, herd immunity when enough agents are recovered.</div></li>
+      <li><div class="step-num s9">5</div><div class="step-content"><strong>Test strategies:</strong> Add a "mask rule" (reduces transmission probability) or a "vaccination rule" (starts some agents immune). Measure success by comparing infection rates.</div></li>
+    </ul>
+    <div class="exam-box"><p>DEB 2024 asked: "Name a scenario for ABM and explain benefits." DEB 2023 used traffic. 2025 paper used disease spread. Know: (i) define ABM (ii) define emergent behaviour (iii) describe how ABM works for a specific scenario (iv) name one strategy to test and how to measure success.</p></div>
+  </div>
+
+  <!-- 9.5 Where Modelling is Used -->
+  <div class="topic-card t9">
+    <h2><span class="icon">🌍</span> Where Modelling &amp; Simulation Is Used <span class="tag-exam">EXAM</span></h2>
+    <p>2025 paper asked you to pick 2 areas and describe how modelling helps. Here are all 4 with descriptions:</p>
+    <div class="abm-grid">
+      <div class="abm-card">
+        <div class="aicon">📚</div>
+        <div class="atitle">Education</div>
+        <div class="adesc">Simulate student learning outcomes under different teaching methods. Test virtual labs for dangerous chemistry experiments safely. Flight simulators for pilot training.</div>
+      </div>
+      <div class="abm-card">
+        <div class="aicon">🧠</div>
+        <div class="atitle">Mental Wellbeing</div>
+        <div class="adesc">Model how different interventions (therapy, medication, exercise) reduce anxiety/depression scores over time. Test resource allocation for mental health services without real trials.</div>
+      </div>
+      <div class="abm-card">
+        <div class="aicon">🌱</div>
+        <div class="atitle">Environment</div>
+        <div class="adesc">Simulate climate change impacts, deforestation effects, or pollution spread. Test "what if" scenarios (what if CO₂ emissions halved?) without real-world experimentation.</div>
+      </div>
+      <div class="abm-card">
+        <div class="aicon">🚦</div>
+        <div class="atitle">Traffic Management</div>
+        <div class="adesc">Model traffic flow in a city. Test traffic light timing changes, roundabout designs, or new roads before expensive real-world construction. Identify bottlenecks.</div>
+      </div>
+    </div>
+    <div class="memory-box"><p><strong>E-M-E-T: "Every Model Eliminates Trouble"</strong> = <strong>E</strong>ducation, <strong>M</strong>ental wellbeing, <strong>E</strong>nvironment, <strong>T</strong>raffic management</p></div>
+  </div>
+
+  <!-- 9.6 Quiz -->
+  <div class="topic-card green">
+    <h2><span class="icon">🎯</span> Chapter 9 Quick Quiz</h2>
+    <div id="quiz9"></div>
+    <button class="quiz-next" id="qnext9" onclick="nextQuiz(9)">Next Question ▶</button>
+    <p id="qscore9" style="margin-top:14px;font-weight:700;color:var(--ch9-dark);display:none;"></p>
+  </div>
+</div><!-- end ch9 -->
+
+<!-- ═══════════════════════════════════════════════
+     FLASHCARDS
+════════════════════════════════════════════════ -->
+<div id="flashcards">
+  <div class="flash-header">
+    <h1>🃏 Flashcards — Chapters 7, 8 &amp; 9</h1>
+    <p>Click a card to flip it. Use the filters to focus on one chapter.</p>
+    <span class="big-num">🃏</span>
+  </div>
+  <div class="flash-controls">
+    <button class="flash-filter active-all" id="ff-all" onclick="filterFlash('all')">All Chapters</button>
+    <button class="flash-filter" id="ff-ch7" onclick="filterFlash('ch7')">🌐 Ch7: Networks</button>
+    <button class="flash-filter" id="ff-ch8" onclick="filterFlash('ch8')">🗄️ Ch8: Databases</button>
+    <button class="flash-filter" id="ff-ch9" onclick="filterFlash('ch9')">🔬 Ch9: Modelling</button>
+  </div>
+  <div class="flash-progress"><div class="flash-progress-bar" id="flashBar"></div></div>
+  <div class="flashcard-area">
+    <div class="flashcard" id="flashcard" onclick="flipCard()">
+      <div class="flashcard-inner">
+        <div class="flashcard-front">
+          <div class="flash-chapter-label fc-ch7" id="flashLabel">CHAPTER 7</div>
+          <div class="card-q" id="flashQ">Loading...</div>
+          <div class="flip-hint">👆 Tap to reveal answer</div>
+        </div>
+        <div class="flashcard-back">
+          <div class="card-a" id="flashA"></div>
+        </div>
+      </div>
+    </div>
+    <div class="flash-nav">
+      <button class="flash-btn" id="flashPrev" onclick="prevCard()">◀ Prev</button>
+      <span class="flash-counter" id="flashCounter">1 / 0</span>
+      <button class="flash-btn" id="flashNext" onclick="nextCard()">Next ▶</button>
+    </div>
+  </div>
+</div>
+
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+// ── SECTION NAVIGATION ──────────────────────────────
+function showSection(id) {
+  document.querySelectorAll('.section,#flashcards').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  const target = document.getElementById(id);
+  if (target) target.classList.add('active');
+  const btn = document.querySelector(`.nav-btn.${id}`);
+  if (btn) btn.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// ── ACCORDION ───────────────────────────────────────
+function toggleAcc(header) {
+  const body = header.nextElementSibling;
+  const isOpen = body.classList.contains('open');
+  header.classList.toggle('open', !isOpen);
+  body.classList.toggle('open', !isOpen);
+}
+
+// ── MESH CALCULATOR ──────────────────────────────────
+function calcMesh() {
+  const n = parseInt(document.getElementById('meshSlider').value);
+  document.getElementById('meshN').textContent = n;
+  const connections = (n * (n-1)) / 2;
+  document.getElementById('meshResult').innerHTML =
+    `${n} computers → <strong>${connections} connections</strong> needed (${n} × ${n-1} ÷ 2 = ${connections})`;
+}
+calcMesh();
+
+// ── SCROLL TO TOP ────────────────────────────────────
+window.addEventListener('scroll', () => {
+  const btn = document.getElementById('scrollTop');
+  btn.classList.toggle('visible', window.scrollY > 300);
+});
+
+// ── QUIZ DATA ────────────────────────────────────────
+const quizData = {
+  7: [
+    {q:"What is the difference between the internet and the WWW?", opts:["They are the same thing","The internet is the global network infrastructure; the WWW is a service (web pages) that runs on it","The WWW is the hardware; the internet is the software","The internet is only for emails"], ans:1, exp:"The internet is the physical global network (hardware). The WWW is just one service that uses it — the collection of web pages you access via a browser."},
+    {q:"What is the formula for calculating mesh topology connections?", opts:["n + n - 1","n × n","n × (n-1) ÷ 2","n² ÷ 2 + n"], ans:2, exp:"The formula is n(n-1)/2. For 5 computers: 5×4÷2 = 10 connections. Each computer needs to connect to every OTHER computer."},
+    {q:"What does TCP do?", opts:["Gives every device a unique address","Breaks data into packets, numbers them, reassembles them, and requests re-sending of lost packets","Converts domain names to IP addresses","Encrypts data during transfer"], ans:1, exp:"TCP (Transmission Control Protocol) is responsible for packet management — breaking data up, sequencing, error-checking, and requesting re-transmission of missing packets."},
+    {q:"What does HTTPS protect against compared to HTTP?", opts:["Viruses","Data interception — it encrypts data in transit so hackers can't read it","Spam emails","DDoS attacks"], ans:1, exp:"HTTPS encrypts the data between client and server. Even if a hacker intercepts it, they see scrambled data. Used for all secure transactions (banking, shopping, logins)."},
+    {q:"What is DNS?", opts:["A type of firewall","A protocol for sending emails","A system that translates domain names (like google.com) into IP addresses","A type of network topology"], ans:2, exp:"DNS (Domain Name System) is the internet's phone book — it converts human-readable URLs into the numerical IP addresses computers need to route data correctly."},
+  ],
+  8: [
+    {q:"What is a primary key?", opts:["Any field in a table","A field that uniquely identifies every record; it must be unique and not null","A field that links two tables together","The first field in every table"], ans:1, exp:"A primary key uniquely identifies each record in a table. Best choice: a dedicated ID number (book_id, member_id) because it will never duplicate or be empty."},
+    {q:"What is data redundancy?", opts:["Data that is encrypted","Having a backup of data","The same data stored unnecessarily in multiple places, causing inconsistency and wasted storage","Data that is no longer needed"], ans:2, exp:"Data redundancy means the same information is stored more than once. A relational database avoids this by storing data once and linking tables via foreign keys."},
+    {q:"In the LOANS table, member_id is a ___?", opts:["Primary key","Foreign key","Data type","Boolean field"], ans:1, exp:"member_id in LOANS is a foreign key — it references the primary key (member_id) in the MEMBERS table. This is what links the two tables together."},
+    {q:"What is the correct order of the data analytics pipeline?", opts:["Collect → Analyse → Hypothesise → Clean → Communicate","Hypothesise → Collect → Clean → Analyse → Conclusions → Communicate","Clean → Collect → Hypothesise → Analyse → Report","Analyse → Hypothesise → Collect → Clean → Communicate"], ans:1, exp:"The 6 stages are: Hypothesis → Collect → Clean → Analyse → Conclusions → Communicate. It always starts with a hypothesis — a testable prediction."},
+    {q:"Which of these is an example of a data inconsistency?", opts:["A book with a cost of €9.95","Recording the same date as 02/03/1904 in one row and March 2, 1904 in another","A Boolean field with True values","An integer field containing whole numbers"], ans:1, exp:"Mixed date formats (02/03/1904 vs March 2, 1904) are a data inconsistency — same date, different formats. This would break queries that rely on date comparisons."},
+  ],
+  9: [
+    {q:"What is a simulation?", opts:["A simplified representation of a real-world system","Running a model over time to observe behaviour and predict outcomes","A type of database","A programming language used for AI"], ans:1, exp:"A simulation is running a model over time. The MODEL is the simplified representation; the SIMULATION is the act of running it to see what happens."},
+    {q:"What is emergent behaviour in agent-based modelling?", opts:["Behaviour that is directly programmed into each agent","Complex system-level patterns that arise naturally from many simple individual interactions","The rules that each agent follows","Errors in the simulation"], ans:1, exp:"Emergent behaviour is NOT programmed directly — it appears naturally when agents follow their simple rules and interact. Traffic jams emerge from individual braking; murmuration patterns emerge from birds following 3 simple rules."},
+    {q:"Why is abstraction important in building a model?", opts:["It makes the model look nicer","It removes irrelevant detail so the model focuses only on variables that affect the outcome, making it simpler and faster","It adds more data to make the model more accurate","It allows the model to run on any computer"], ans:1, exp:"Abstraction removes the 'noise' — irrelevant details that don't influence the outcome. A traffic model ignores car colour. A disease model ignores patient's favourite food. This makes models simpler, faster, and clearer."},
+    {q:"In the driving test model (2025 paper), what is the OUTPUT variable?", opts:["Gender","Age","Test outcome (PASS/FAIL)","Instructor experience"], ans:2, exp:"The output variable is what you are trying to PREDICT — Test outcome (PASS/FAIL). All other variables (age, gender, transmission, instructor experience) are INPUT variables that influence this output."},
+    {q:"Which of these is a benefit of modelling and simulation?", opts:["It is always 100% accurate","It allows safe, cheap testing of dangerous or expensive scenarios without real-world risk","It removes the need for data collection","It guarantees correct predictions"], ans:1, exp:"The main benefit is safe, cheap 'what if' testing. You can simulate a nuclear explosion, an epidemic, or a plane crash without any real-world risk or cost. Remember George Box: 'All models are wrong, but some are useful.'"},
+  ]
+};
+
+// ── QUIZ LOGIC ───────────────────────────────────────
+const quizState = {7:{cur:0,score:0,answered:false}, 8:{cur:0,score:0,answered:false}, 9:{cur:0,score:0,answered:false}};
+
+function renderQuiz(ch) {
+  const state = quizState[ch];
+  const data = quizData[ch];
+  if (state.cur >= data.length) {
+    document.getElementById(`quiz${ch}`).innerHTML = `<div class="quiz-card"><p style="font-size:1.1rem;font-weight:700">Quiz complete! 🎉</p></div>`;
+    document.getElementById(`qscore${ch}`).textContent = `Final score: ${state.score} / ${data.length}`;
+    document.getElementById(`qscore${ch}`).style.display = 'block';
+    document.getElementById(`qnext${ch}`).style.display = 'none';
+    return;
+  }
+  const q = data[state.cur];
+  const colorMap = {7:'var(--ch7)',8:'var(--ch8)',9:'var(--ch9)'};
+  let html = `<div class="quiz-card">
+    <div class="quiz-q">Q${state.cur+1}/${data.length}: ${q.q}</div>
+    <div class="quiz-options">`;
+  q.opts.forEach((opt, i) => {
+    html += `<button class="quiz-opt" onclick="answerQuiz(${ch},${i})">${opt}</button>`;
+  });
+  html += `</div>
+    <div class="quiz-feedback" id="qfb${ch}"></div>
+  </div>`;
+  document.getElementById(`quiz${ch}`).innerHTML = html;
+  document.getElementById(`qnext${ch}`).style.display = 'none';
+  state.answered = false;
+}
+
+function answerQuiz(ch, chosen) {
+  const state = quizState[ch];
+  if (state.answered) return;
+  state.answered = true;
+  const q = quizData[ch][state.cur];
+  const opts = document.querySelectorAll(`#quiz${ch} .quiz-opt`);
+  opts.forEach((btn, i) => {
+    btn.disabled = true;
+    if (i === q.ans) btn.classList.add('correct');
+    else if (i === chosen) btn.classList.add('wrong');
+  });
+  const fb = document.getElementById(`qfb${ch}`);
+  fb.classList.add('show');
+  if (chosen === q.ans) {
+    state.score++;
+    fb.classList.add('good');
+    fb.innerHTML = `✅ Correct! ${q.exp}`;
+  } else {
+    fb.classList.add('bad');
+    fb.innerHTML = `❌ Not quite. ${q.exp}`;
+  }
+  document.getElementById(`qnext${ch}`).style.display = 'inline-block';
+}
+
+function nextQuiz(ch) {
+  quizState[ch].cur++;
+  renderQuiz(ch);
+}
+
+// ── FLASHCARD DATA ───────────────────────────────────
+const flashAll = [
+  // Ch7
+  {ch:'ch7',q:'What is the difference between the Internet and the WWW?',a:'Internet = global hardware network infrastructure (cables, routers, devices). WWW = a service running on the internet — the collection of web pages accessible via a browser.'},
+  {ch:'ch7',q:'What is a Protocol?',a:'A set of standardised rules that computers follow to communicate — governing message format, data size, speed, error checking, and timing.'},
+  {ch:'ch7',q:'What is HTTP used for?',a:'HTTP (HyperText Transfer Protocol) transfers web pages between a client browser and a web server.'},
+  {ch:'ch7',q:'What is HTTPS and how does it differ from HTTP?',a:'HTTPS = HTTP Secure. Data is encrypted in transit, so hackers cannot read intercepted data. Used for banking, shopping, and logins (look for the 🔒 padlock).'},
+  {ch:'ch7',q:'What is FTP?',a:'FTP = File Transfer Protocol. Used to send and receive files of any type to/from a server.'},
+  {ch:'ch7',q:'What is SMTP?',a:'SMTP = Simple Mail Transfer Protocol. Used to SEND emails between mail servers.'},
+  {ch:'ch7',q:'What is VoIP?',a:'VoIP = Voice over Internet Protocol. Delivers voice and video calls over the internet (e.g. Zoom, Skype, WhatsApp calls).'},
+  {ch:'ch7',q:'What does TCP do?',a:'Breaks data into equal-sized packets, assigns sequence numbers, adds check digits, reassembles packets at destination, and requests re-transmission of missing/corrupt packets.'},
+  {ch:'ch7',q:'What does IP do?',a:'Gives every device a unique IP address, encapsulates packets with source and destination addresses, and routes packets across the internet.'},
+  {ch:'ch7',q:'Name the 4 layers of TCP/IP from top to bottom.',a:'4. Application Layer (HTTP, HTTPS, FTP, SMTP)\n3. Transport Layer (TCP, UDP)\n2. Internet/Network Layer (IP)\n1. Data Link Layer (physical hardware)'},
+  {ch:'ch7',q:'What is a LAN? Give an example.',a:'LAN = Local Area Network. Covers a small geographic area (one building/campus). Example: school computer network.'},
+  {ch:'ch7',q:'What is a WAN? Give an example.',a:'WAN = Wide Area Network. Spans large distances. The internet is the largest WAN.'},
+  {ch:'ch7',q:'Give the mesh topology connection formula and an example.',a:'Formula: n(n-1)/2. For 5 computers: 5×4÷2 = 10 connections. Advantages: highly resilient, multiple paths, no single point of failure.'},
+  {ch:'ch7',q:'What is DNS and what is it often compared to?',a:'DNS = Domain Name System. Translates human-readable domain names (google.com) into IP addresses (142.250.74.46). Often called "the internet\'s phone book."'},
+  {ch:'ch7',q:'What is ransomware? Give 2 countermeasures.',a:'Ransomware: malware that encrypts victim\'s files and demands payment to restore access. Countermeasures: offline backups, strong passwords + 2FA, staff training, firewalls, regular software updates.'},
+  {ch:'ch7',q:'Advantages of client-server vs peer-to-peer for data security?',a:'Client-server: data stored centrally = easier to apply security controls, encryption, access permissions, backups, and audit logs from one location. P2P has data spread everywhere, harder to secure.'},
+  // Ch8
+  {ch:'ch8',q:'Define: database, table, record, field.',a:'Database: organised collection of structured data. Table: data in rows and columns. Record (row): one single entry. Field (column): one attribute of every record.'},
+  {ch:'ch8',q:'What is a primary key? What makes a good one?',a:'A field that uniquely identifies every record in a table. Must be unique and NOT NULL. Best choice: a dedicated ID number (e.g. book_id) — never a name, which could duplicate.'},
+  {ch:'ch8',q:'What is a foreign key?',a:'A field in one table that references the primary key of another table. It links the two tables together. Example: member_id in LOANS references member_id in MEMBERS.'},
+  {ch:'ch8',q:'What is data redundancy?',a:'The same data stored unnecessarily in multiple places. Causes inconsistency and wastes storage. Relational databases avoid this by storing data once and linking via foreign keys.'},
+  {ch:'ch8',q:'Name 4 types of data inconsistencies.',a:'1. Mixed date formats (02/03/1904 vs March 2, 1904)\n2. Inconsistent Boolean (Yes/Y/N/No)\n3. Spelling typos (Dr. Seuss vs Doc Seus)\n4. Mixed currency/number format (€10 vs 9.95)'},
+  {ch:'ch8',q:'What are the 6 stages of a data analytics pipeline?',a:'1. Hypothesis  2. Collect data  3. Clean data  4. Analyse  5. Draw conclusions  6. Communicate findings'},
+  {ch:'ch8',q:'What is a hypothesis in data analytics?',a:'An educated, testable prediction about your data. A statement you want to prove or disprove by collecting and analysing data. Must be specific and measurable.'},
+  {ch:'ch8',q:'Name and describe 2 types of data errors removed by data cleaning.',a:'1. Missing values: null/empty cells — fill in or remove the record.\n2. Outliers: values far outside expected range that distort statistics.\n3. Duplicates: same record twice — delete one.\n4. Inconsistent formats: standardise date/boolean fields.'},
+  {ch:'ch8',q:'Distinguish continuous vs discrete data.',a:'Continuous: any value in a range — temperature (30.1, 30.12...), height. Infinite possible values.\nDiscrete: only specific separate values — number of students, shoe size. Cannot have 2.7 students.'},
+  {ch:'ch8',q:'What are the main data types in a database?',a:'Integer (whole numbers), Real/Float (decimals), String/Text (any text), Boolean (True/False), Date, List/Array.'},
+  // Ch9
+  {ch:'ch9',q:'What is a model vs a simulation?',a:'Model: a simplified representation of a real-world system — captures key variables, removes irrelevant detail.\nSimulation: running a model over time to observe behaviour and predict outcomes. Simulation = model in action.'},
+  {ch:'ch9',q:'State 1 benefit and 1 limitation of modelling.',a:'Benefit: safe, cheap "what if" testing of dangerous/expensive scenarios (epidemics, nuclear, climate).\nLimitation: simplifications may omit key variables; garbage in = garbage out; can create false confidence.'},
+  {ch:'ch9',q:'Why is abstraction important in modelling?',a:'Abstraction removes irrelevant detail so the model focuses only on variables that actually influence the outcome. Makes it simpler, faster, and more useful. Example: traffic model ignores car colour.'},
+  {ch:'ch9',q:'Define agent-based modelling (ABM).',a:'A simulation where each individual entity (agent) is programmed with simple rules. The simulation runs all agents simultaneously and observes how their interactions produce complex system-level outcomes.'},
+  {ch:'ch9',q:'Define emergent behaviour.',a:'Complex system-level patterns that arise naturally from many simple individual interactions — NOT directly programmed. Example: traffic jams emerge from individual braking; bird murmurations emerge from 3 simple rules.'},
+  {ch:'ch9',q:'Give 2 examples of emergent behaviour from ABM.',a:'1. Traffic jams emerge from individual braking decisions — no one planned the jam.\n2. Infection waves in disease models emerge from individual proximity rules.\n3. Ant foraging paths emerge from pheromone-following rules.'},
+  {ch:'ch9',q:'What are input and output variables in a model?',a:'Output variable: the thing you are predicting (e.g. Test outcome PASS/FAIL).\nInput variables: features that influence the output (e.g. Age, Transmission type, Instructor experience).'},
+  {ch:'ch9',q:'Name 4 areas where modelling and simulation improve outcomes.',a:'1. Education (virtual labs, flight simulators)\n2. Mental wellbeing (test intervention strategies)\n3. Environment (climate change, pollution spread)\n4. Traffic management (test road layouts before building)'},
+  {ch:'ch9',q:'How would you describe ABM for disease spread in a school?',a:'Each person = agent with state (Susceptible/Infected/Recovered). Rule: become infected if near infected agent. Run in time-steps. Emergent: infection waves, herd immunity. Test: add mask rule, measure infection rate reduction.'},
+];
+
+let filteredFlash = [...flashAll];
+let flashIdx = 0;
+
+function filterFlash(ch) {
+  document.querySelectorAll('.flash-filter').forEach(b => {
+    b.classList.remove('active-ch7','active-ch8','active-ch9','active-all');
+  });
+  if (ch === 'all') {
+    filteredFlash = [...flashAll];
+    document.getElementById('ff-all').classList.add('active-all');
+  } else {
+    filteredFlash = flashAll.filter(c => c.ch === ch);
+    document.getElementById(`ff-${ch}`).classList.add(`active-${ch}`);
+  }
+  flashIdx = 0;
+  renderFlash();
+}
+
+function renderFlash() {
+  const card = filteredFlash[flashIdx];
+  document.getElementById('flashcard').classList.remove('flipped');
+  document.getElementById('flashQ').textContent = card.q;
+  document.getElementById('flashA').textContent = card.a;
+  const labelEl = document.getElementById('flashLabel');
+  labelEl.className = `flash-chapter-label fc-${card.ch}`;
+  const labels = {ch7:'CHAPTER 7 — NETWORKS',ch8:'CHAPTER 8 — DATABASES',ch9:'CHAPTER 9 — MODELLING'};
+  labelEl.textContent = labels[card.ch] || card.ch.toUpperCase();
+  document.getElementById('flashCounter').textContent = `${flashIdx+1} / ${filteredFlash.length}`;
+  document.getElementById('flashBar').style.width = `${((flashIdx+1)/filteredFlash.length)*100}%`;
+  document.getElementById('flashPrev').disabled = flashIdx === 0;
+  document.getElementById('flashNext').disabled = flashIdx === filteredFlash.length - 1;
+}
+
+function flipCard() {
+  document.getElementById('flashcard').classList.toggle('flipped');
+}
+function nextCard() {
+  if (flashIdx < filteredFlash.length - 1) { flashIdx++; renderFlash(); }
+}
+function prevCard() {
+  if (flashIdx > 0) { flashIdx--; renderFlash(); }
+}
+
+// ── INIT ─────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  renderFlash();
+  renderQuiz(7);
+  renderQuiz(8);
+  renderQuiz(9);
+});
+</script>
+</body>
+</html>
