@@ -14,6 +14,7 @@
     --accent-main: #9c27b0; /* Purple for Computer Science */
     --accent-secondary: #00bcd4; /* Cyan */
     --accent-tertiary: #ff9800; /* Orange for Exam Generator */
+    --accent-quaternary: #4caf50; /* Green for Databases/Models */
     --border: #e0dcd4;
     --shadow: 0 4px 20px rgba(0,0,0,0.06);
     --shadow-hover: 0 12px 30px rgba(0,0,0,0.12);
@@ -172,6 +173,10 @@
   .card-logic::before { background: var(--accent-secondary); }
   .card-logic:hover { border-color: var(--accent-secondary); }
   .card-logic .mc-icon { color: var(--accent-secondary); background: #e0f7fa; }
+
+  .card-data::before { background: var(--accent-quaternary); }
+  .card-data:hover { border-color: var(--accent-quaternary); }
+  .card-data .mc-icon { color: var(--accent-quaternary); background: #e8f5e9; }
 
   .card-exam::before { background: var(--accent-tertiary); }
   .card-exam:hover { border-color: var(--accent-tertiary); }
@@ -479,6 +484,14 @@
         <div class="mc-icon">🔢</div>
         <div class="mc-title">Chapters 4-5</div>
         <div class="mc-desc">Master logic gates, binary conversion, ASCII, and the software development lifecycle.</div>
+        <div class="mc-action">Start chapter →</div>
+      </a>
+
+      <!-- CHAPTER 7-9 CARD -->
+      <a href="chapters 7-9.html" class="chapter-card card-data">
+        <div class="mc-icon">🗄️</div>
+        <div class="mc-title">Chapters 7-9</div>
+        <div class="mc-desc">Explore databases, the architecture of the internet, and the power of models and simulation.</div>
         <div class="mc-action">Start chapter →</div>
       </a>
 
