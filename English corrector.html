@@ -33,7 +33,7 @@
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);line-height:1.75;font-size:16px;}
 
-/* ── Header — identical gradient to Bishop.html ── */
+/* ── Header ── */
 header{background:linear-gradient(140deg,#1a0a00,#3d1a0a 40%,#1e2a3a 80%,#0a1a2a);color:#fff;padding:52px 24px 44px;text-align:center;position:relative;overflow:hidden;}
 header::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 70% 30%,rgba(139,26,43,.22),transparent 60%);}
 header::after{content:'✍️';position:absolute;right:8%;top:20%;font-size:5rem;opacity:.07;transform:rotate(-10deg);}
@@ -43,7 +43,7 @@ header p{margin-top:10px;font-size:1.05rem;color:rgba(255,255,255,.7);position:r
 .hbadges{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:20px;position:relative;}
 .hbadge{background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.22);color:#fff;padding:5px 15px;border-radius:100px;font-size:.82rem;font-weight:600;}
 
-/* ── Nav — exact Bishop.html style ── */
+/* ── Nav ── */
 nav{background:#fff;border-bottom:2px solid var(--border);padding:0 20px;position:sticky;top:0;z-index:100;box-shadow:0 2px 10px rgba(0,0,0,.06);overflow-x:auto;white-space:nowrap;}
 nav::-webkit-scrollbar{height:3px;}
 nav::-webkit-scrollbar-thumb{background:#ccc;border-radius:4px;}
@@ -52,12 +52,11 @@ nav::-webkit-scrollbar-thumb{background:#ccc;border-radius:4px;}
 .nav-btn:hover{color:var(--text);}
 .nav-btn.active{color:var(--bishop);border-bottom-color:var(--bishop);}
 
-
 /* ── Main ── */
 main{max-width:900px;margin:0 auto;padding:40px 22px 90px;}
 @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 
-/* ── Section label — identical to Bishop.html ── */
+/* ── Section label ── */
 h3.label{font-family:'Nunito',sans-serif;font-size:1.15rem;font-weight:800;margin:32px 0 14px;display:flex;align-items:center;gap:8px;}
 h3.label::after{content:'';flex:1;height:2px;background:var(--border);border-radius:4px;}
 
@@ -125,7 +124,7 @@ textarea:focus,input[type="text"]:focus{outline:none;border-color:var(--bishop);
 .spin{animation:spin 1s linear infinite;display:inline-block;}
 @keyframes spin{to{transform:rotate(360deg)}}
 
-/* ── Info box — matches Bishop.html .box ── */
+/* ── Info box ── */
 .info-box{border-radius:var(--rs);padding:16px 20px;margin:16px 0;display:flex;gap:14px;align-items:flex-start;}
 .info-box .ico{font-size:1.6rem;flex-shrink:0;line-height:1;}
 .info-box-label{font-size:.75rem;font-weight:800;text-transform:uppercase;letter-spacing:.7px;margin-bottom:4px;}
@@ -135,7 +134,6 @@ textarea:focus,input[type="text"]:focus{outline:none;border-color:var(--bishop);
 
 /* ── Results ── */
 .results-card{display:none;margin-top:32px;background:var(--card);border:2px solid var(--border);border-radius:var(--r);overflow:hidden;box-shadow:0 8px 32px rgba(45,41,38,.10);animation:fadeIn .4s ease;}
-
 .results-header{background:linear-gradient(140deg,#1a0a00,#3d1a0a 60%,#1e2a3a);color:#fff;padding:24px 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;}
 .results-header h2{font-family:'Nunito',sans-serif;font-size:1.35rem;font-weight:900;letter-spacing:-.3px;}
 
@@ -157,7 +155,7 @@ textarea:focus,input[type="text"]:focus{outline:none;border-color:var(--bishop);
 .total-score-big span{font-size:1rem;color:var(--muted);font-weight:400;}
 .grade-badge{font-family:'Nunito',sans-serif;font-size:2rem;font-weight:900;color:#fff;background:var(--bishop);border-radius:var(--rs);width:64px;height:64px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(139,26,43,.28);}
 
-/* ── Feedback body — mirrors Bishop.html card/table/list styles ── */
+/* ── Feedback body ── */
 .feedback-body{padding:28px;}
 .feedback-body h3{font-family:'Nunito',sans-serif;font-size:1.05rem;font-weight:800;color:var(--bishop);margin:22px 0 8px;padding-bottom:5px;border-bottom:2px solid var(--border);}
 .feedback-body h3:first-child{margin-top:0;}
@@ -165,7 +163,6 @@ textarea:focus,input[type="text"]:focus{outline:none;border-color:var(--bishop);
 .feedback-body ul,.feedback-body ol{padding-left:22px;margin-bottom:12px;}
 .feedback-body li{margin-bottom:7px;font-size:.93rem;line-height:1.65;color:var(--text);}
 .feedback-body strong{color:var(--bishop);}
-/* Table — identical to .rtable in Bishop.html */
 .feedback-body table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.88rem;}
 .feedback-body th{background:var(--bishop-l);font-weight:700;padding:10px 14px;text-align:left;border-bottom:2px solid var(--border);font-size:.78rem;letter-spacing:.8px;text-transform:uppercase;color:var(--text);}
 .feedback-body td{padding:10px 14px;border-bottom:1px solid var(--border);vertical-align:top;}
@@ -178,8 +175,6 @@ textarea:focus,input[type="text"]:focus{outline:none;border-color:var(--bishop);
 .btn-action:hover{border-color:var(--bishop);color:var(--bishop);background:var(--bishop-l);}
 .btn-action.primary{background:var(--bishop);color:#fff;border-color:var(--bishop);}
 .btn-action.primary:hover{background:#6e1522;}
-
-
 
 /* ── Section inside card ── */
 .section-card{background:var(--card);border:2px solid var(--border);border-radius:var(--r);padding:28px 30px;margin-bottom:24px;}
@@ -199,9 +194,109 @@ textarea:focus,input[type="text"]:focus{outline:none;border-color:var(--bishop);
   .results-actions{padding:0 18px 18px;}
   .total-row{padding:16px 18px;}
 }
+
+  /* ── PASSWORD SCREEN (Section C style) ── */
+  #passwordScreen {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: var(--bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    animation: pwFadeIn 0.4s ease;
+  }
+  @keyframes pwFadeIn { from{opacity:0} to{opacity:1} }
+  #passwordScreen.hidden { display: none; }
+  .pw-card {
+    background: var(--card);
+    border-radius: 20px;
+    padding: 48px 40px;
+    max-width: 480px;
+    width: 100%;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+    text-align: center;
+    border-top: 5px solid var(--bishop);
+  }
+  .pw-icon { font-size: 3rem; margin-bottom: 16px; display: block; }
+  .pw-title { font-family: 'Nunito', sans-serif; font-size: 1.5rem; font-weight: 900; color: var(--text); margin-bottom: 8px; }
+  .pw-subtitle { font-size: 0.9rem; color: var(--muted); line-height: 1.7; margin-bottom: 28px; }
+  .pw-warning {
+    background: #FFF9E6; border: 2px solid #FFD966; border-radius: 10px;
+    padding: 14px 18px; margin-bottom: 28px; font-size: 0.85rem;
+    line-height: 1.65; color: #5a4000; text-align: left;
+  }
+  .pw-warning strong { color: #7a5500; }
+  .pw-warning a { color: var(--bishop); font-weight: 600; }
+  .pw-input-wrap { position: relative; margin-bottom: 14px; }
+  .pw-input {
+    width: 100%; padding: 14px 48px 14px 18px; border: 2px solid var(--border);
+    border-radius: 12px; font-family: 'Lexend', sans-serif; font-size: 1rem;
+    font-weight: 500; color: var(--text); background: var(--card); outline: none;
+    transition: border-color 0.2s; letter-spacing: 0.5px;
+  }
+  .pw-input:focus { border-color: var(--bishop); }
+  .pw-input.error { border-color: #EF4444; animation: pwShake 0.4s ease; }
+  @keyframes pwShake {
+    0%,100% { transform: translateX(0); }
+    20% { transform: translateX(-8px); }
+    40% { transform: translateX(8px); }
+    60% { transform: translateX(-6px); }
+    80% { transform: translateX(6px); }
+  }
+  .pw-toggle {
+    position: absolute; right: 14px; top: 50%; transform: translateY(-50%);
+    background: none; border: none; cursor: pointer; font-size: 1.1rem;
+    color: var(--muted); padding: 4px; line-height: 1;
+  }
+  .pw-error-msg { color: #EF4444; font-size: 0.82rem; font-weight: 600; margin-bottom: 12px; min-height: 18px; }
+  .pw-btn {
+    width: 100%; padding: 14px 24px; border-radius: 12px; border: none;
+    background: linear-gradient(135deg, var(--bishop) 0%, #6e1522 100%);
+    color: white; font-family: 'Lexend', sans-serif; font-size: 1rem;
+    font-weight: 700; cursor: pointer; transition: all 0.2s;
+    box-shadow: 0 4px 20px rgba(139,26,43,0.3);
+  }
+  .pw-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(139,26,43,0.4); }
+  .pw-contact { margin-top: 20px; font-size: 0.8rem; color: var(--muted); line-height: 1.7; }
+  .pw-contact a { color: var(--bishop); font-weight: 600; text-decoration: none; }
+  .pw-contact a:hover { text-decoration: underline; }
 </style>
 </head>
 <body>
+
+<!-- PASSWORD SCREEN -->
+<div id="passwordScreen">
+  <div class="pw-card">
+    <span class="pw-icon">🔐</span>
+    <div class="pw-title">Access Required</div>
+    <p class="pw-subtitle">This tool uses AI APIs which cost money to run. Please enter the password to continue.</p>
+    <div class="pw-warning">
+      <strong>⚠️ Note:</strong> Each marking request costs real money. Please only use this tool if you have been given access. If you need access, contact:<br><br>
+      📧 <a href="mailto:fionnmowlds07@gmail.com">fionnmowlds07@gmail.com</a><br>
+      💬 Or reach out on <strong>Teams</strong>
+    </div>
+    <div class="pw-input-wrap">
+      <input
+        class="pw-input"
+        id="pwInput"
+        type="password"
+        placeholder="Enter password"
+        onkeydown="if(event.key==='Enter') checkPassword()"
+        autocomplete="off"
+        spellcheck="false"
+      />
+      <button class="pw-toggle" onclick="togglePwVisibility()" id="pwToggle" title="Show/hide password">👁</button>
+    </div>
+    <div class="pw-error-msg" id="pwErrorMsg"></div>
+    <button class="pw-btn" onclick="checkPassword()">🔓 Enter</button>
+    <div class="pw-contact">
+      Don't have the password?<br>
+      Contact <a href="mailto:fionnmowlds07@gmail.com">fionnmowlds07@gmail.com</a> or message on <strong>Teams</strong>
+    </div>
+  </div>
+</div>
 
 <!-- ── Header ── -->
 <header>
@@ -373,7 +468,6 @@ let selectedQType    = null;
 let selectedMaxMarks = 0;
 let lastResult       = null;
 
-// ── Boot ─────────────────────────────────────────────────
 window.onload = () => { /* nothing needed */ };
 
 function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
@@ -406,22 +500,18 @@ function handleDrop(e) {
 }
 function handleFiles(e) { processFiles(Array.from(e.target.files)); }
 
-// ── PDF.js setup ─────────────────────────────────────────
-// Loaded as classic scripts via CDN — access via globalThis.pdfjsLib
 const PDFJS_CDN = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.min.mjs';
 
 async function getPdfjsLib() {
   if (window._pdfjsLib) return window._pdfjsLib;
   const mod = await import(PDFJS_CDN);
   const lib = mod.default ?? mod.getDocument ? mod : mod.pdfjsLib ?? mod;
-  // Set worker
   lib.GlobalWorkerOptions.workerSrc =
     'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.worker.min.mjs';
   window._pdfjsLib = lib;
   return lib;
 }
 
-// Render a single PDF page to a JPEG base64 string
 async function pdfPageToJpeg(pdfDoc, pageNum, scale = 2.0) {
   const page   = await pdfDoc.getPage(pageNum);
   const vp     = page.getViewport({ scale });
@@ -430,12 +520,10 @@ async function pdfPageToJpeg(pdfDoc, pageNum, scale = 2.0) {
   canvas.height = vp.height;
   const ctx = canvas.getContext('2d');
   await page.render({ canvasContext: ctx, viewport: vp }).promise;
-  // Convert to JPEG (smaller than PNG, still high quality for text)
   const dataUrl = canvas.toDataURL('image/jpeg', 0.92);
-  return dataUrl.split(',')[1]; // return base64 only
+  return dataUrl.split(',')[1];
 }
 
-// Convert every page of a PDF file into image entries in uploadedFiles
 async function processPdf(file) {
   showPdfProgress(`Reading ${file.name}…`);
   try {
@@ -443,23 +531,15 @@ async function processPdf(file) {
     const arrayBuf = await file.arrayBuffer();
     const pdfDoc   = await pdfjsLib.getDocument({ data: arrayBuf }).promise;
     const total    = pdfDoc.numPages;
-
     for (let p = 1; p <= total; p++) {
       showPdfProgress(`Converting page ${p} of ${total}…`);
       const base64 = await pdfPageToJpeg(pdfDoc, p);
-      // Create a blob URL so we can show a thumbnail
       const blob   = await fetch(`data:image/jpeg;base64,${base64}`).then(r => r.blob());
       const objUrl = URL.createObjectURL(blob);
-      uploadedFiles.push({
-        name:     `${file.name} — page ${p}`,
-        mimeType: 'image/jpeg',
-        base64,
-        objUrl
-      });
+      uploadedFiles.push({ name: `${file.name} — page ${p}`, mimeType: 'image/jpeg', base64, objUrl });
     }
     hidePdfProgress();
-    renderFileChips();
-    renderThumbs();
+    renderFileChips(); renderThumbs();
     document.getElementById('transcript-box').style.display = 'block';
     checkReady();
   } catch (err) {
@@ -469,7 +549,6 @@ async function processPdf(file) {
   }
 }
 
-// Progress indicator for PDF conversion
 function showPdfProgress(msg) {
   let el = document.getElementById('pdf-progress');
   if (!el) {
@@ -486,27 +565,17 @@ function hidePdfProgress() {
   if (el) el.style.display = 'none';
 }
 
-// ── Main file processor ───────────────────────────────────
 function processFiles(files) {
   files.forEach(file => {
     if (file.size > 20 * 1024 * 1024) { alert(`${file.name} is over 20 MB.`); return; }
-
     if (file.type === 'application/pdf') {
-      // PDFs: render each page to an image via PDF.js
       processPdf(file);
     } else {
-      // Images: read directly as before
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = () => {
-        uploadedFiles.push({
-          name:     file.name,
-          mimeType: file.type,
-          base64:   reader.result.split(',')[1],
-          objUrl:   URL.createObjectURL(file)
-        });
-        renderFileChips();
-        renderThumbs();
+        uploadedFiles.push({ name: file.name, mimeType: file.type, base64: reader.result.split(',')[1], objUrl: URL.createObjectURL(file) });
+        renderFileChips(); renderThumbs();
         document.getElementById('transcript-box').style.display = 'block';
         checkReady();
       };
@@ -538,25 +607,19 @@ function renderThumbs() {
   const strip = document.getElementById('thumb-strip');
   strip.innerHTML = '';
   if (!uploadedFiles.length) { document.getElementById('scanner-wrap').classList.remove('active'); return; }
-
   uploadedFiles.forEach((f, i) => {
     const box = document.createElement('div');
     box.className = 'thumb-box' + (i === activeIdx ? ' active' : '');
-    if (f.objUrl) {
-      box.innerHTML = `<img src="${f.objUrl}" alt="p${i+1}">`;
-    } else {
-      box.innerHTML = `<div class="thumb-pdf"><i class="fas fa-file-pdf" style="font-size:1.3rem"></i><span>${i+1}</span></div>`;
-    }
+    if (f.objUrl) { box.innerHTML = `<img src="${f.objUrl}" alt="p${i+1}">`; }
+    else { box.innerHTML = `<div class="thumb-pdf"><i class="fas fa-file-pdf" style="font-size:1.3rem"></i><span>${i+1}</span></div>`; }
     box.onclick = () => setPreview(i);
     strip.appendChild(box);
   });
-
   const add = document.createElement('div');
   add.className = 'thumb-box thumb-add';
   add.innerHTML = '<i class="fas fa-plus"></i>';
   add.onclick = () => document.getElementById('file-input').click();
   strip.appendChild(add);
-
   setPreview(activeIdx);
 }
 
@@ -564,18 +627,11 @@ function setPreview(i) {
   activeIdx = i;
   const f = uploadedFiles[i];
   const wrap = document.getElementById('scanner-wrap');
-  if (f && f.objUrl) {
-    document.getElementById('main-preview').src = f.objUrl;
-    wrap.classList.add('active');
-  } else {
-    wrap.classList.remove('active');
-  }
-  document.querySelectorAll('#thumb-strip .thumb-box:not(.thumb-add)').forEach((b, j) => {
-    b.classList.toggle('active', j === i);
-  });
+  if (f && f.objUrl) { document.getElementById('main-preview').src = f.objUrl; wrap.classList.add('active'); }
+  else { wrap.classList.remove('active'); }
+  document.querySelectorAll('#thumb-strip .thumb-box:not(.thumb-add)').forEach((b, j) => { b.classList.toggle('active', j === i); });
 }
 
-// ── Ready check ──────────────────────────────────────────
 function checkReady() {
   let ok = false;
   if (mode === 'upload') ok = uploadedFiles.length > 0;
@@ -583,7 +639,6 @@ function checkReady() {
   document.getElementById('submit-btn').disabled = !ok;
 }
 
-// ── Submit ───────────────────────────────────────────────
 async function submitForMarking() {
   const prompt = document.getElementById('q-prompt').value.trim();
   if (!selectedQType) { alert('Please select a question type first.'); return; }
@@ -597,13 +652,7 @@ async function submitForMarking() {
   if (mode === 'upload' && uploadedFiles.some(f => f.objUrl)) scanOverlay.style.display = 'block';
 
   try {
-    const payload = {
-      questionType:   selectedQType,
-      maxMarks:       selectedMaxMarks,
-      questionPrompt: prompt,
-      answerMode:     mode
-    };
-
+    const payload = { questionType: selectedQType, maxMarks: selectedMaxMarks, questionPrompt: prompt, answerMode: mode };
     if (mode === 'upload') {
       payload.files = uploadedFiles.map(f => ({ base64: f.base64, mimeType: f.mimeType, name: f.name }));
       const override = document.getElementById('transcript-override').value.trim();
@@ -611,18 +660,15 @@ async function submitForMarking() {
     } else {
       payload.essayText = document.getElementById('typed-essay').value.trim();
     }
-
     const resp = await fetch(EDGE_FN, {
-      method:  'POST',
+      method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${SUPABASE_KEY}` },
-      body:    JSON.stringify(payload)
+      body: JSON.stringify(payload)
     });
     if (!resp.ok) throw new Error(`HTTP ${resp.status}: ${await resp.text()}`);
     const result = await resp.json();
-
     displayResults(result);
     lastResult = { questionType: selectedQType, maxMarks: selectedMaxMarks, questionPrompt: prompt, ...result };
-
   } catch(err) {
     console.error(err);
     document.getElementById('results-card').style.display = 'block';
@@ -636,18 +682,15 @@ async function submitForMarking() {
   }
 }
 
-// ── Display results ──────────────────────────────────────
 function displayResults(result) {
   document.getElementById('results-card').style.display = 'block';
   document.getElementById('results-qtype-label').textContent = selectedQType + ' · ' + selectedMaxMarks + ' marks';
-
   const max  = selectedMaxMarks;
   const pclm = result.pclm || {};
   const maxP = Math.round(max * 0.30);
   const maxC = Math.round(max * 0.30);
   const maxL = Math.round(max * 0.30);
   const maxM = Math.round(max * 0.10);
-
   document.getElementById('pclm-grid').innerHTML = [
     { letter:'P', name:'Purpose',   score: pclm.P ?? '—', max: maxP },
     { letter:'C', name:'Coherence', score: pclm.C ?? '—', max: maxC },
@@ -659,25 +702,18 @@ function displayResults(result) {
       <div class="pclm-name">${b.name}</div>
       <div class="pclm-score">${b.score}<span class="pclm-max"> / ${b.max}</span></div>
     </div>`).join('');
-
   const total = result.totalScore ?? '—';
   const grade = result.grade ?? '—';
   document.getElementById('total-display').innerHTML = `${total} <span>/ ${max}</span>`;
-
   const gEl = document.getElementById('grade-display');
   gEl.textContent = grade;
   if (typeof total === 'number') {
     const pct = (total / max) * 100;
     gEl.style.background = pct >= 85 ? '#1a7a4a' : pct >= 70 ? '#1a6b9a' : pct >= 55 ? '#d35400' : '#8b1a2b';
   }
-
-  // Feedback is HTML from the edge function — set directly
   document.getElementById('feedback-body').innerHTML = result.feedback || 'No feedback returned.';
 }
 
-function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
-
-// ── Reset ─────────────────────────────────────────────────
 function resetForm() {
   uploadedFiles = []; activeIdx = 0;
   ['file-list','thumb-strip','feedback-body','pclm-grid'].forEach(id => document.getElementById(id).innerHTML = '');
@@ -692,6 +728,45 @@ function resetForm() {
   document.getElementById('submit-btn').innerHTML = '<i class="fas fa-wand-magic-sparkles"></i> Mark My Essay';
   document.getElementById('submit-btn').disabled = true;
   window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ─────────────────────────────────────────────
+// PASSWORD GATE
+// ─────────────────────────────────────────────
+(function() {
+  if (localStorage.getItem('lc_english_corrector_unlocked') === 'unlocked') {
+    document.getElementById('passwordScreen').classList.add('hidden');
+  }
+})();
+
+function checkPassword() {
+  const input = document.getElementById('pwInput');
+  const errorMsg = document.getElementById('pwErrorMsg');
+  const val = input.value;
+  if (val === 'FionnMowlds') {
+    localStorage.setItem('lc_english_corrector_unlocked', 'unlocked');
+    document.getElementById('passwordScreen').classList.add('hidden');
+    errorMsg.textContent = '';
+  } else {
+    input.classList.remove('error');
+    void input.offsetWidth;
+    input.classList.add('error');
+    errorMsg.textContent = '❌ Incorrect password. Please try again.';
+    input.value = '';
+    input.focus();
+  }
+}
+
+function togglePwVisibility() {
+  const input = document.getElementById('pwInput');
+  const btn = document.getElementById('pwToggle');
+  if (input.type === 'password') {
+    input.type = 'text';
+    btn.textContent = '🙈';
+  } else {
+    input.type = 'password';
+    btn.textContent = '👁';
+  }
 }
 </script>
 </body>
