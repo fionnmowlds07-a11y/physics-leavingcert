@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LC English — AI Essay Corrector</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.min.mjs" type="module"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.worker.min.mjs" type="module"></script>
+<style>
+/* ── Exact Bishop.html design tokens ── */
+:root {
+  --bg: #faf9f6;
+  --card: #ffffff;
+  --border: #e8e4dc;
+  --text: #2d2926;
+  --muted: #6b6560;
+  --bishop: #8b1a2b;
+  --bishop-l: #fdecea;
+  --amber: #f39c12;
+  --amber-l: #fffbf0;
+  --green: #1a7a4a;
+  --green-l: #f0fff6;
+  --blue: #1a6b9a;
+  --blue-l: #eaf4fb;
+  --orange: #d35400;
+  --orange-l: #fef6ee;
+  --r: 16px;
+  --rs: 10px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);line-height:1.75;font-size:16px;}
+
+/* ── Header — identical gradient to Bishop.html ── */
+header{background:linear-gradient(140deg,#1a0a00,#3d1a0a 40%,#1e2a3a 80%,#0a1a2a);color:#fff;padding:52px 24px 44px;text-align:center;position:relative;overflow:hidden;}
+header::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 70% 30%,rgba(139,26,43,.22),transparent 60%);}
+header::after{content:'✍️';position:absolute;right:8%;top:20%;font-size:5rem;opacity:.07;transform:rotate(-10deg);}
+header h1{font-family:'Nunito',sans-serif;font-size:clamp(1.8rem,5vw,3rem);font-weight:900;letter-spacing:-1px;position:relative;}
+header h1 em{color:var(--amber);font-style:normal;}
+header p{margin-top:10px;font-size:1.05rem;color:rgba(255,255,255,.7);position:relative;}
+.hbadges{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:20px;position:relative;}
+.hbadge{background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.22);color:#fff;padding:5px 15px;border-radius:100px;font-size:.82rem;font-weight:600;}
+
+/* ── Nav — exact Bishop.html style ── */
+nav{background:#fff;border-bottom:2px solid var(--border);padding:0 20px;position:sticky;top:0;z-index:100;box-shadow:0 2px 10px rgba(0,0,0,.06);overflow-x:auto;white-space:nowrap;}
+nav::-webkit-scrollbar{height:3px;}
+nav::-webkit-scrollbar-thumb{background:#ccc;border-radius:4px;}
+.nav-inner{display:inline-flex;align-items:center;}
+.nav-btn{background:none;border:none;cursor:pointer;padding:15px 18px;font-family:'Lexend',sans-serif;font-size:.88rem;font-weight:600;color:var(--muted);border-bottom:3px solid transparent;transition:all .2s;white-space:nowrap;}
+.nav-btn:hover{color:var(--text);}
+.nav-btn.active{color:var(--bishop);border-bottom-color:var(--bishop);}
+
+
+/* ── Main ── */
+main{max-width:900px;margin:0 auto;padding:40px 22px 90px;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── Section label — identical to Bishop.html ── */
+h3.label{font-family:'Nunito',sans-serif;font-size:1.15rem;font-weight:800;margin:32px 0 14px;display:flex;align-items:center;gap:8px;}
+h3.label::after{content:'';flex:1;height:2px;background:var(--border);border-radius:4px;}
+
+/* ── Cards ── */
+.card{background:var(--card);border:2px solid var(--border);border-radius:var(--rs);padding:18px 20px;}
+.card h4{font-weight:700;margin-bottom:6px;font-size:1rem;}
+.card p{font-size:.9rem;color:var(--muted);}
+
+/* ── Question type grid ── */
+.qtype-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px;margin-bottom:28px;}
+.qtype-btn{background:var(--card);border:2px solid var(--border);border-radius:var(--rs);padding:13px 15px;cursor:pointer;font-family:'Lexend',sans-serif;font-size:.88rem;font-weight:600;color:var(--muted);transition:all .2s;text-align:left;display:flex;flex-direction:column;gap:3px;}
+.qtype-btn:hover{border-color:var(--bishop);color:var(--bishop);background:var(--bishop-l);}
+.qtype-btn.active{background:var(--bishop);border-color:var(--bishop);color:#fff;box-shadow:0 4px 14px rgba(139,26,43,.25);}
+.qtype-marks{font-size:.72rem;opacity:.7;font-weight:400;}
+.qtype-btn.active .qtype-marks{opacity:.8;}
+
+/* ── Field label ── */
+.field-label{display:block;font-size:.75rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+
+/* ── Textarea / input ── */
+textarea,input[type="text"]{width:100%;font-family:'Lexend',sans-serif;font-size:.95rem;color:var(--text);background:var(--bg);border:2px solid var(--border);border-radius:var(--rs);padding:14px 16px;resize:vertical;transition:border-color .2s,box-shadow .2s;line-height:1.6;}
+textarea:focus,input[type="text"]:focus{outline:none;border-color:var(--bishop);box-shadow:0 0 0 3px rgba(139,26,43,.10);background:#fff;}
+
+/* ── Mode tabs ── */
+.mode-tabs{display:flex;border:2px solid var(--border);border-radius:var(--rs);overflow:hidden;margin-bottom:20px;}
+.mode-tab{flex:1;padding:13px;background:var(--bg);border:none;border-right:2px solid var(--border);font-family:'Lexend',sans-serif;font-size:.9rem;font-weight:600;color:var(--muted);cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px;}
+.mode-tab:last-child{border-right:none;}
+.mode-tab.active{background:var(--bishop);color:#fff;}
+.mode-tab:hover:not(.active){background:var(--bishop-l);color:var(--bishop);}
+
+/* ── Upload area ── */
+.upload-area{border:2px dashed var(--border);border-radius:var(--r);padding:40px 24px;text-align:center;cursor:pointer;background:var(--bg);transition:all .2s;}
+.upload-area:hover,.upload-area.drag-over{border-color:var(--bishop);background:var(--bishop-l);}
+.upload-icon{font-size:2.6rem;color:var(--bishop);opacity:.7;margin-bottom:12px;}
+.upload-area p{color:var(--muted);font-weight:500;}
+.upload-area small{color:var(--muted);font-size:.8rem;opacity:.8;}
+
+/* ── File chips ── */
+.file-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;}
+.file-chip{display:inline-flex;align-items:center;gap:6px;background:var(--card);border:2px solid var(--border);border-radius:100px;padding:5px 12px;font-size:.8rem;font-weight:600;color:var(--muted);}
+.file-chip.pdf-chip{border-color:var(--orange);color:var(--orange);}
+.chip-remove{background:none;border:none;color:var(--muted);cursor:pointer;font-size:.8rem;padding:0;line-height:1;transition:color .15s;}
+.chip-remove:hover{color:var(--bishop);}
+
+/* ── Thumbnails ── */
+.thumb-strip{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;}
+.thumb-box{width:64px;height:64px;border-radius:var(--rs);border:2px solid var(--border);overflow:hidden;cursor:pointer;transition:border-color .2s,transform .15s;flex-shrink:0;}
+.thumb-box:hover,.thumb-box.active{border-color:var(--bishop);transform:scale(1.06);}
+.thumb-box img{width:100%;height:100%;object-fit:cover;display:block;}
+.thumb-pdf{display:flex;align-items:center;justify-content:center;flex-direction:column;background:var(--orange-l);font-size:.7rem;font-weight:700;color:var(--orange);gap:2px;width:100%;height:100%;}
+.thumb-add{display:flex;align-items:center;justify-content:center;border-style:dashed !important;color:var(--muted);font-size:1.2rem;}
+
+/* ── Scanner ── */
+.scanner-wrap{position:relative;display:none;border-radius:var(--rs);overflow:hidden;margin-top:14px;}
+.scanner-wrap.active{display:block;}
+.scanner-wrap img{width:100%;border-radius:var(--rs);display:block;max-height:400px;object-fit:contain;}
+.scanner-overlay{position:absolute;inset:0;background:rgba(139,26,43,.05);pointer-events:none;}
+.scanner-line{position:absolute;left:0;right:0;height:3px;background:var(--bishop);box-shadow:0 0 12px var(--bishop);animation:scanDown 2s linear infinite;}
+@keyframes scanDown{0%{top:0%}100%{top:100%}}
+
+/* ── Submit button ── */
+.btn-submit{width:100%;padding:17px;background:var(--bishop);color:#fff;border:none;border-radius:var(--rs);font-family:'Nunito',sans-serif;font-size:1.1rem;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:all .25s;box-shadow:0 4px 14px rgba(139,26,43,.22);margin-top:8px;letter-spacing:.2px;}
+.btn-submit:hover:not(:disabled){background:#6e1522;transform:translateY(-2px);box-shadow:0 8px 22px rgba(139,26,43,.32);}
+.btn-submit:disabled{background:var(--border);color:var(--muted);cursor:not-allowed;box-shadow:none;transform:none;}
+.spin{animation:spin 1s linear infinite;display:inline-block;}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ── Info box — matches Bishop.html .box ── */
+.info-box{border-radius:var(--rs);padding:16px 20px;margin:16px 0;display:flex;gap:14px;align-items:flex-start;}
+.info-box .ico{font-size:1.6rem;flex-shrink:0;line-height:1;}
+.info-box-label{font-size:.75rem;font-weight:800;text-transform:uppercase;letter-spacing:.7px;margin-bottom:4px;}
+.info-box p{font-size:.9rem;line-height:1.65;}
+.info-box.warning{background:var(--amber-l);border:2px solid var(--amber);}
+.info-box.warning .info-box-label{color:#b7770d;}
+
+/* ── Results ── */
+.results-card{display:none;margin-top:32px;background:var(--card);border:2px solid var(--border);border-radius:var(--r);overflow:hidden;box-shadow:0 8px 32px rgba(45,41,38,.10);animation:fadeIn .4s ease;}
+
+.results-header{background:linear-gradient(140deg,#1a0a00,#3d1a0a 60%,#1e2a3a);color:#fff;padding:24px 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;}
+.results-header h2{font-family:'Nunito',sans-serif;font-size:1.35rem;font-weight:900;letter-spacing:-.3px;}
+
+/* ── PCLM grid ── */
+.pclm-grid{display:grid;grid-template-columns:repeat(4,1fr);}
+@media(max-width:540px){.pclm-grid{grid-template-columns:repeat(2,1fr);}}
+.pclm-block{padding:20px 12px;text-align:center;border-right:2px solid var(--border);border-bottom:2px solid var(--border);background:var(--card);}
+.pclm-block:nth-child(4n){border-right:none;}
+@media(max-width:540px){.pclm-block:nth-child(2n){border-right:none;}.pclm-block:nth-child(4n){border-right:2px solid var(--border);}}
+.pclm-letter{font-family:'Nunito',sans-serif;font-size:2rem;font-weight:900;color:var(--bishop);line-height:1;margin-bottom:2px;}
+.pclm-name{font-size:.7rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+.pclm-score{font-size:1.45rem;font-weight:700;color:var(--text);}
+.pclm-max{font-size:.8rem;color:var(--muted);font-weight:400;}
+
+/* ── Total row ── */
+.total-row{display:flex;align-items:center;justify-content:space-between;padding:20px 28px;background:var(--bg);border-bottom:2px solid var(--border);flex-wrap:wrap;gap:14px;}
+.total-label{font-size:.72rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
+.total-score-big{font-family:'Nunito',sans-serif;font-size:2.4rem;font-weight:900;color:var(--bishop);line-height:1;}
+.total-score-big span{font-size:1rem;color:var(--muted);font-weight:400;}
+.grade-badge{font-family:'Nunito',sans-serif;font-size:2rem;font-weight:900;color:#fff;background:var(--bishop);border-radius:var(--rs);width:64px;height:64px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(139,26,43,.28);}
+
+/* ── Feedback body — mirrors Bishop.html card/table/list styles ── */
+.feedback-body{padding:28px;}
+.feedback-body h3{font-family:'Nunito',sans-serif;font-size:1.05rem;font-weight:800;color:var(--bishop);margin:22px 0 8px;padding-bottom:5px;border-bottom:2px solid var(--border);}
+.feedback-body h3:first-child{margin-top:0;}
+.feedback-body p{margin-bottom:12px;font-size:.95rem;line-height:1.75;color:var(--text);}
+.feedback-body ul,.feedback-body ol{padding-left:22px;margin-bottom:12px;}
+.feedback-body li{margin-bottom:7px;font-size:.93rem;line-height:1.65;color:var(--text);}
+.feedback-body strong{color:var(--bishop);}
+/* Table — identical to .rtable in Bishop.html */
+.feedback-body table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.88rem;}
+.feedback-body th{background:var(--bishop-l);font-weight:700;padding:10px 14px;text-align:left;border-bottom:2px solid var(--border);font-size:.78rem;letter-spacing:.8px;text-transform:uppercase;color:var(--text);}
+.feedback-body td{padding:10px 14px;border-bottom:1px solid var(--border);vertical-align:top;}
+.feedback-body tr:last-child td{border-bottom:none;}
+.feedback-body tr:nth-child(even) td{background:var(--bg);}
+
+/* ── Action buttons ── */
+.results-actions{display:flex;gap:10px;padding:0 28px 28px;flex-wrap:wrap;}
+.btn-action{flex:1;min-width:130px;padding:12px;border-radius:var(--rs);border:2px solid var(--border);background:var(--bg);color:var(--muted);font-family:'Lexend',sans-serif;font-size:.88rem;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px;transition:all .2s;}
+.btn-action:hover{border-color:var(--bishop);color:var(--bishop);background:var(--bishop-l);}
+.btn-action.primary{background:var(--bishop);color:#fff;border-color:var(--bishop);}
+.btn-action.primary:hover{background:#6e1522;}
+
+
+
+/* ── Section inside card ── */
+.section-card{background:var(--card);border:2px solid var(--border);border-radius:var(--r);padding:28px 30px;margin-bottom:24px;}
+
+/* ── Transcript box ── */
+.transcript-wrap{margin-top:18px;display:none;background:var(--bg);border:2px solid var(--border);border-radius:var(--rs);padding:16px 18px;}
+.transcript-wrap .info-box-label{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:8px;display:block;}
+
+/* ── Scroll top ── */
+.stbtn{position:fixed;bottom:26px;right:26px;background:var(--bishop);color:#fff;border:none;border-radius:50%;width:46px;height:46px;font-size:1.1rem;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.22);z-index:200;display:flex;align-items:center;justify-content:center;transition:transform .2s;}
+.stbtn:hover{transform:scale(1.1);}
+
+@media(max-width:640px){
+  .section-card{padding:18px 16px;}
+  main{padding:24px 14px 60px;}
+  .feedback-body{padding:18px;}
+  .results-actions{padding:0 18px 18px;}
+  .total-row{padding:16px 18px;}
+}
+</style>
+</head>
+<body>
+
+<!-- ── Header ── -->
+<header>
+  <h1>📝 LC English — <em>AI Essay Corrector</em></h1>
+  <p>Leaving Certificate Higher Level · Instant PCLM Marking Feedback</p>
+  <div class="hbadges">
+    <span class="hbadge">🎯 PCLM System</span>
+    <span class="hbadge">📸 Upload Photos or PDF</span>
+    <span class="hbadge">⌨️ Or Type It Out</span>
+    <span class="hbadge">📊 SEC Grade Bands</span>
+    <span class="hbadge">💬 Detailed Feedback</span>
+  </div>
+</header>
+
+<!-- ── Nav ── -->
+<nav>
+  <div class="nav-inner">
+    <button class="nav-btn active" onclick="scrollToTop()">🏠 Corrector</button>
+  </div>
+</nav>
+
+<!-- ── Main ── -->
+<main>
+
+  <!-- Info box -->
+  <div class="info-box warning">
+    <span class="ico">💡</span>
+    <div>
+      <div class="info-box-label">How it works</div>
+      <p>Select your question type, paste the exam prompt, then either upload photos of your written answer (or a PDF) or type it directly. The AI marks it using the official SEC PCLM criteria and gives you a full grade breakdown.</p>
+    </div>
+  </div>
+
+  <!-- Step 1 -->
+  <div class="section-card">
+    <h3 class="label">📋 Step 1 — Select Question Type</h3>
+    <div class="qtype-grid">
+      <button class="qtype-btn" data-type="Composition" data-max="100" onclick="selectQType(this)">
+        Composition <span class="qtype-marks">Paper 1, Sec II · 100m</span>
+      </button>
+      <button class="qtype-btn" data-type="Comparative Full Essay" data-max="70" onclick="selectQType(this)">
+        Comparative Essay <span class="qtype-marks">Paper 2, Sec II · 70m</span>
+      </button>
+      <button class="qtype-btn" data-type="Single Text Essay" data-max="60" onclick="selectQType(this)">
+        Single Text <span class="qtype-marks">Paper 2, Sec I · 60m</span>
+      </button>
+      <button class="qtype-btn" data-type="Prescribed Poetry" data-max="50" onclick="selectQType(this)">
+        Prescribed Poetry <span class="qtype-marks">Paper 2 · 50m</span>
+      </button>
+      <button class="qtype-btn" data-type="Paper 1 QB" data-max="50" onclick="selectQType(this)">
+        Paper 1 Q.B <span class="qtype-marks">50m</span>
+      </button>
+      <button class="qtype-btn" data-type="Comparative Split A" data-max="40" onclick="selectQType(this)">
+        Comparative Split A <span class="qtype-marks">40m</span>
+      </button>
+      <button class="qtype-btn" data-type="Comparative Split B" data-max="30" onclick="selectQType(this)">
+        Comparative Split B <span class="qtype-marks">30m</span>
+      </button>
+      <button class="qtype-btn" data-type="Unseen Poetry" data-max="20" onclick="selectQType(this)">
+        Unseen Poetry <span class="qtype-marks">Paper 1 · 20m</span>
+      </button>
+      <button class="qtype-btn" data-type="Paper 1 QA Sub-Q" data-max="15" onclick="selectQType(this)">
+        Paper 1 QA Sub-Q <span class="qtype-marks">15m</span>
+      </button>
+    </div>
+
+    <label class="field-label" for="q-prompt">Essay Question / Prompt</label>
+    <textarea id="q-prompt" rows="3" placeholder="Paste or type the exact exam question here…" oninput="checkReady()"></textarea>
+  </div>
+
+  <!-- Step 2 -->
+  <div class="section-card">
+    <h3 class="label">✍️ Step 2 — Submit Your Answer</h3>
+
+    <div class="mode-tabs">
+      <button class="mode-tab active" id="tab-upload" onclick="setMode('upload')">
+        <i class="fas fa-cloud-upload-alt"></i> Upload Photos / PDF
+      </button>
+      <button class="mode-tab" id="tab-type" onclick="setMode('type')">
+        <i class="fas fa-keyboard"></i> Type Essay
+      </button>
+    </div>
+
+    <!-- Upload mode -->
+    <div id="mode-upload">
+      <div class="upload-area" id="drop-zone"
+           onclick="document.getElementById('file-input').click()"
+           ondragover="handleDragOver(event)"
+           ondragleave="handleDragLeave(event)"
+           ondrop="handleDrop(event)">
+        <div class="upload-icon"><i class="fas fa-file-arrow-up"></i></div>
+        <p>Click or drag &amp; drop essay pages here</p>
+        <small>JPG, PNG, PDF · Multiple pages supported · Max 10 MB per file</small>
+      </div>
+      <input type="file" id="file-input" accept="image/*,.pdf" multiple hidden onchange="handleFiles(event)">
+
+      <div class="file-list" id="file-list"></div>
+
+      <div class="scanner-wrap" id="scanner-wrap">
+        <img id="main-preview" src="" alt="Preview" />
+        <div class="scanner-overlay" id="scanner-overlay" style="display:none">
+          <div class="scanner-line"></div>
+        </div>
+      </div>
+
+      <div class="thumb-strip" id="thumb-strip"></div>
+
+      <div class="transcript-wrap" id="transcript-box">
+        <span class="info-box-label"><i class="fas fa-pen"></i> Manual Transcript <span style="font-weight:400;text-transform:none;letter-spacing:0"> — optional: type what you wrote if handwriting may be hard to read</span></span>
+        <textarea id="transcript-override" rows="5" placeholder="Type your essay here to guarantee the AI reads every word correctly…"></textarea>
+      </div>
+    </div>
+
+    <!-- Type mode -->
+    <div id="mode-type" style="display:none">
+      <label class="field-label" for="typed-essay">Your Full Essay</label>
+      <textarea id="typed-essay" rows="18" placeholder="Type or paste your complete essay here. Every word will be analysed." oninput="checkReady()"></textarea>
+    </div>
+  </div>
+
+  <!-- Submit -->
+  <button class="btn-submit" id="submit-btn" onclick="submitForMarking()" disabled>
+    <i class="fas fa-wand-magic-sparkles"></i> Mark My Essay
+  </button>
+
+  <!-- Results -->
+  <div class="results-card" id="results-card">
+    <div class="results-header">
+      <h2><i class="fas fa-clipboard-check"></i> PCLM Evaluation</h2>
+      <span style="font-size:.85rem;opacity:.75;font-weight:500;" id="results-qtype-label"></span>
+    </div>
+
+    <div class="pclm-grid" id="pclm-grid"></div>
+
+    <div class="total-row">
+      <div>
+        <div class="total-label">Total Score</div>
+        <div class="total-score-big" id="total-display">— <span>/ —</span></div>
+      </div>
+      <div id="grade-display" class="grade-badge">—</div>
+    </div>
+
+    <div class="feedback-body" id="feedback-body"></div>
+
+    <div class="results-actions">
+      <button class="btn-action primary" onclick="resetForm()">
+        <i class="fas fa-rotate-left"></i> Mark Another Essay
+      </button>
+    </div>
+  </div>
+
+</main>
+
+<button class="stbtn" onclick="scrollToTop()" title="Back to top">
+  <i class="fas fa-arrow-up"></i>
+</button>
+
+<script>
+// ── Config ──────────────────────────────────────────────
+const SUPABASE_URL = 'https://syvxlrcvkvadrcuygvrx.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN5dnhscmN2a3ZhZHJjdXlndnJ4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg3NjIwMTAsImV4cCI6MjA4NDMzODAxMH0.EtQVzBvWYqJXAcH8LKs8ulXxki4O8NcPtwLrKUdhl80';
+const EDGE_FN     = `${SUPABASE_URL}/functions/v1/lc-english-corrector`;
+
+// ── State ────────────────────────────────────────────────
+let mode             = 'upload';
+let uploadedFiles    = [];
+let activeIdx        = 0;
+let selectedQType    = null;
+let selectedMaxMarks = 0;
+let lastResult       = null;
+
+// ── Boot ─────────────────────────────────────────────────
+window.onload = () => { /* nothing needed */ };
+
+function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+
+// ── Q-type ────────────────────────────────────────────────
+function selectQType(btn) {
+  document.querySelectorAll('.qtype-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  selectedQType    = btn.dataset.type;
+  selectedMaxMarks = parseInt(btn.dataset.max);
+  checkReady();
+}
+
+// ── Mode ─────────────────────────────────────────────────
+function setMode(m) {
+  mode = m;
+  document.getElementById('tab-upload').classList.toggle('active', m === 'upload');
+  document.getElementById('tab-type').classList.toggle('active',   m === 'type');
+  document.getElementById('mode-upload').style.display = m === 'upload' ? 'block' : 'none';
+  document.getElementById('mode-type').style.display   = m === 'type'   ? 'block' : 'none';
+  checkReady();
+}
+
+// ── Files ────────────────────────────────────────────────
+function handleDragOver(e)  { e.preventDefault(); e.currentTarget.classList.add('drag-over'); }
+function handleDragLeave(e) { e.currentTarget.classList.remove('drag-over'); }
+function handleDrop(e) {
+  e.preventDefault(); e.currentTarget.classList.remove('drag-over');
+  if (e.dataTransfer.files.length) processFiles(Array.from(e.dataTransfer.files));
+}
+function handleFiles(e) { processFiles(Array.from(e.target.files)); }
+
+// ── PDF.js setup ─────────────────────────────────────────
+// Loaded as classic scripts via CDN — access via globalThis.pdfjsLib
+const PDFJS_CDN = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.min.mjs';
+
+async function getPdfjsLib() {
+  if (window._pdfjsLib) return window._pdfjsLib;
+  const mod = await import(PDFJS_CDN);
+  const lib = mod.default ?? mod.getDocument ? mod : mod.pdfjsLib ?? mod;
+  // Set worker
+  lib.GlobalWorkerOptions.workerSrc =
+    'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.worker.min.mjs';
+  window._pdfjsLib = lib;
+  return lib;
+}
+
+// Render a single PDF page to a JPEG base64 string
+async function pdfPageToJpeg(pdfDoc, pageNum, scale = 2.0) {
+  const page   = await pdfDoc.getPage(pageNum);
+  const vp     = page.getViewport({ scale });
+  const canvas = document.createElement('canvas');
+  canvas.width  = vp.width;
+  canvas.height = vp.height;
+  const ctx = canvas.getContext('2d');
+  await page.render({ canvasContext: ctx, viewport: vp }).promise;
+  // Convert to JPEG (smaller than PNG, still high quality for text)
+  const dataUrl = canvas.toDataURL('image/jpeg', 0.92);
+  return dataUrl.split(',')[1]; // return base64 only
+}
+
+// Convert every page of a PDF file into image entries in uploadedFiles
+async function processPdf(file) {
+  showPdfProgress(`Reading ${file.name}…`);
+  try {
+    const pdfjsLib = await getPdfjsLib();
+    const arrayBuf = await file.arrayBuffer();
+    const pdfDoc   = await pdfjsLib.getDocument({ data: arrayBuf }).promise;
+    const total    = pdfDoc.numPages;
+
+    for (let p = 1; p <= total; p++) {
+      showPdfProgress(`Converting page ${p} of ${total}…`);
+      const base64 = await pdfPageToJpeg(pdfDoc, p);
+      // Create a blob URL so we can show a thumbnail
+      const blob   = await fetch(`data:image/jpeg;base64,${base64}`).then(r => r.blob());
+      const objUrl = URL.createObjectURL(blob);
+      uploadedFiles.push({
+        name:     `${file.name} — page ${p}`,
+        mimeType: 'image/jpeg',
+        base64,
+        objUrl
+      });
+    }
+    hidePdfProgress();
+    renderFileChips();
+    renderThumbs();
+    document.getElementById('transcript-box').style.display = 'block';
+    checkReady();
+  } catch (err) {
+    hidePdfProgress();
+    console.error('PDF render error:', err);
+    alert(`Could not read PDF "${file.name}". Try uploading photos of each page instead.\n\n${err.message}`);
+  }
+}
+
+// Progress indicator for PDF conversion
+function showPdfProgress(msg) {
+  let el = document.getElementById('pdf-progress');
+  if (!el) {
+    el = document.createElement('div');
+    el.id = 'pdf-progress';
+    el.style.cssText = 'margin-top:12px;padding:10px 14px;background:var(--amber-l);border:2px solid var(--amber);border-radius:var(--rs);font-size:.88rem;font-weight:600;color:#b7770d;display:flex;align-items:center;gap:8px;';
+    document.getElementById('mode-upload').appendChild(el);
+  }
+  el.innerHTML = `<span class="spin" style="display:inline-block"><i class="fas fa-circle-notch"></i></span> ${msg}`;
+  el.style.display = 'flex';
+}
+function hidePdfProgress() {
+  const el = document.getElementById('pdf-progress');
+  if (el) el.style.display = 'none';
+}
+
+// ── Main file processor ───────────────────────────────────
+function processFiles(files) {
+  files.forEach(file => {
+    if (file.size > 20 * 1024 * 1024) { alert(`${file.name} is over 20 MB.`); return; }
+
+    if (file.type === 'application/pdf') {
+      // PDFs: render each page to an image via PDF.js
+      processPdf(file);
+    } else {
+      // Images: read directly as before
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        uploadedFiles.push({
+          name:     file.name,
+          mimeType: file.type,
+          base64:   reader.result.split(',')[1],
+          objUrl:   URL.createObjectURL(file)
+        });
+        renderFileChips();
+        renderThumbs();
+        document.getElementById('transcript-box').style.display = 'block';
+        checkReady();
+      };
+    }
+  });
+}
+
+function removeFile(i) {
+  uploadedFiles.splice(i, 1);
+  if (activeIdx >= uploadedFiles.length) activeIdx = Math.max(0, uploadedFiles.length - 1);
+  renderFileChips(); renderThumbs();
+  if (!uploadedFiles.length) {
+    document.getElementById('scanner-wrap').classList.remove('active');
+    document.getElementById('transcript-box').style.display = 'none';
+  }
+  checkReady();
+}
+
+function renderFileChips() {
+  document.getElementById('file-list').innerHTML = uploadedFiles.map((f, i) => `
+    <div class="file-chip ${f.mimeType === 'application/pdf' ? 'pdf-chip' : ''}">
+      <i class="fas ${f.mimeType === 'application/pdf' ? 'fa-file-pdf' : 'fa-image'}"></i>
+      ${f.name.length > 22 ? f.name.slice(0,20)+'…' : f.name}
+      <button class="chip-remove" onclick="removeFile(${i})"><i class="fas fa-times"></i></button>
+    </div>`).join('');
+}
+
+function renderThumbs() {
+  const strip = document.getElementById('thumb-strip');
+  strip.innerHTML = '';
+  if (!uploadedFiles.length) { document.getElementById('scanner-wrap').classList.remove('active'); return; }
+
+  uploadedFiles.forEach((f, i) => {
+    const box = document.createElement('div');
+    box.className = 'thumb-box' + (i === activeIdx ? ' active' : '');
+    if (f.objUrl) {
+      box.innerHTML = `<img src="${f.objUrl}" alt="p${i+1}">`;
+    } else {
+      box.innerHTML = `<div class="thumb-pdf"><i class="fas fa-file-pdf" style="font-size:1.3rem"></i><span>${i+1}</span></div>`;
+    }
+    box.onclick = () => setPreview(i);
+    strip.appendChild(box);
+  });
+
+  const add = document.createElement('div');
+  add.className = 'thumb-box thumb-add';
+  add.innerHTML = '<i class="fas fa-plus"></i>';
+  add.onclick = () => document.getElementById('file-input').click();
+  strip.appendChild(add);
+
+  setPreview(activeIdx);
+}
+
+function setPreview(i) {
+  activeIdx = i;
+  const f = uploadedFiles[i];
+  const wrap = document.getElementById('scanner-wrap');
+  if (f && f.objUrl) {
+    document.getElementById('main-preview').src = f.objUrl;
+    wrap.classList.add('active');
+  } else {
+    wrap.classList.remove('active');
+  }
+  document.querySelectorAll('#thumb-strip .thumb-box:not(.thumb-add)').forEach((b, j) => {
+    b.classList.toggle('active', j === i);
+  });
+}
+
+// ── Ready check ──────────────────────────────────────────
+function checkReady() {
+  let ok = false;
+  if (mode === 'upload') ok = uploadedFiles.length > 0;
+  if (mode === 'type')   ok = document.getElementById('typed-essay').value.trim().length > 20;
+  document.getElementById('submit-btn').disabled = !ok;
+}
+
+// ── Submit ───────────────────────────────────────────────
+async function submitForMarking() {
+  const prompt = document.getElementById('q-prompt').value.trim();
+  if (!selectedQType) { alert('Please select a question type first.'); return; }
+  if (!prompt)        { alert('Please enter the essay question / prompt.'); return; }
+
+  const btn = document.getElementById('submit-btn');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spin"><i class="fas fa-circle-notch"></i></span> Analysing every page…';
+
+  const scanOverlay = document.getElementById('scanner-overlay');
+  if (mode === 'upload' && uploadedFiles.some(f => f.objUrl)) scanOverlay.style.display = 'block';
+
+  try {
+    const payload = {
+      questionType:   selectedQType,
+      maxMarks:       selectedMaxMarks,
+      questionPrompt: prompt,
+      answerMode:     mode
+    };
+
+    if (mode === 'upload') {
+      payload.files = uploadedFiles.map(f => ({ base64: f.base64, mimeType: f.mimeType, name: f.name }));
+      const override = document.getElementById('transcript-override').value.trim();
+      if (override) payload.transcriptOverride = override;
+    } else {
+      payload.essayText = document.getElementById('typed-essay').value.trim();
+    }
+
+    const resp = await fetch(EDGE_FN, {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${SUPABASE_KEY}` },
+      body:    JSON.stringify(payload)
+    });
+    if (!resp.ok) throw new Error(`HTTP ${resp.status}: ${await resp.text()}`);
+    const result = await resp.json();
+
+    displayResults(result);
+    lastResult = { questionType: selectedQType, maxMarks: selectedMaxMarks, questionPrompt: prompt, ...result };
+
+  } catch(err) {
+    console.error(err);
+    document.getElementById('results-card').style.display = 'block';
+    document.getElementById('feedback-body').innerHTML =
+      `<p style="color:var(--bishop)"><i class="fas fa-circle-exclamation"></i> Could not connect to the marking service. Please try again.<br><small style="color:var(--muted)">${err.message}</small></p>`;
+  } finally {
+    scanOverlay.style.display = 'none';
+    btn.disabled = false;
+    btn.innerHTML = '<i class="fas fa-rotate-left"></i> Mark Another Version';
+    document.getElementById('results-card').scrollIntoView({ behavior: 'smooth' });
+  }
+}
+
+// ── Display results ──────────────────────────────────────
+function displayResults(result) {
+  document.getElementById('results-card').style.display = 'block';
+  document.getElementById('results-qtype-label').textContent = selectedQType + ' · ' + selectedMaxMarks + ' marks';
+
+  const max  = selectedMaxMarks;
+  const pclm = result.pclm || {};
+  const maxP = Math.round(max * 0.30);
+  const maxC = Math.round(max * 0.30);
+  const maxL = Math.round(max * 0.30);
+  const maxM = Math.round(max * 0.10);
+
+  document.getElementById('pclm-grid').innerHTML = [
+    { letter:'P', name:'Purpose',   score: pclm.P ?? '—', max: maxP },
+    { letter:'C', name:'Coherence', score: pclm.C ?? '—', max: maxC },
+    { letter:'L', name:'Language',  score: pclm.L ?? '—', max: maxL },
+    { letter:'M', name:'Mechanics', score: pclm.M ?? '—', max: maxM }
+  ].map(b => `
+    <div class="pclm-block">
+      <div class="pclm-letter">${b.letter}</div>
+      <div class="pclm-name">${b.name}</div>
+      <div class="pclm-score">${b.score}<span class="pclm-max"> / ${b.max}</span></div>
+    </div>`).join('');
+
+  const total = result.totalScore ?? '—';
+  const grade = result.grade ?? '—';
+  document.getElementById('total-display').innerHTML = `${total} <span>/ ${max}</span>`;
+
+  const gEl = document.getElementById('grade-display');
+  gEl.textContent = grade;
+  if (typeof total === 'number') {
+    const pct = (total / max) * 100;
+    gEl.style.background = pct >= 85 ? '#1a7a4a' : pct >= 70 ? '#1a6b9a' : pct >= 55 ? '#d35400' : '#8b1a2b';
+  }
+
+  // Feedback is HTML from the edge function — set directly
+  document.getElementById('feedback-body').innerHTML = result.feedback || 'No feedback returned.';
+}
+
+function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+// ── Reset ─────────────────────────────────────────────────
+function resetForm() {
+  uploadedFiles = []; activeIdx = 0;
+  ['file-list','thumb-strip','feedback-body','pclm-grid'].forEach(id => document.getElementById(id).innerHTML = '');
+  document.getElementById('scanner-wrap').classList.remove('active');
+  document.getElementById('transcript-box').style.display = 'none';
+  document.getElementById('transcript-override').value = '';
+  document.getElementById('typed-essay').value = '';
+  document.getElementById('q-prompt').value = '';
+  document.querySelectorAll('.qtype-btn').forEach(b => b.classList.remove('active'));
+  selectedQType = null; selectedMaxMarks = 0; lastResult = null;
+  document.getElementById('results-card').style.display = 'none';
+  document.getElementById('submit-btn').innerHTML = '<i class="fas fa-wand-magic-sparkles"></i> Mark My Essay';
+  document.getElementById('submit-btn').disabled = true;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
