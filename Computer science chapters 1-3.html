@@ -339,11 +339,25 @@
 
   .icon { font-size: 1.2rem; }
   code { background: var(--surface2); border-radius: 4px; padding: 2px 6px; font-family: monospace; font-size: 0.88em; }
+
+  .nav-home {
+    display:inline-flex; align-items:center; gap:5px;
+    padding:5px 12px; border-radius:14px;
+    border:2px solid var(--border); background:var(--surface,#fff);
+    font-family:'Lexend',sans-serif; font-size:0.72rem; font-weight:700;
+    color:var(--text-muted,#7a7068); text-decoration:none; transition:all 0.2s;
+    white-space:nowrap; flex-shrink:0;
+  }
+  .nav-home:hover { background:var(--text,#2c2825); color:#fff; border-color:var(--text,#2c2825); }
+  .nav-divider { width:1px; height:20px; background:var(--border,#e2ddd7); flex-shrink:0; }
+
 </style>
 </head>
 <body>
 
 <nav>
+  <a href="Compsci.html" class="nav-home">🏠 Home</a>
+  <span class="nav-divider"></span>
   <span class="nav-logo">LC <span>CS</span></span>
   <button class="nav-btn ch1 active" onclick="showSection('ch1')">🧠 Ch1: Computational Thinking</button>
   <button class="nav-btn ch2" onclick="showSection('ch2')">🛠️ Ch2: Software Development</button>
