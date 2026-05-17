@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LC Physics — Flashcard Drill</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&family=Lexend+Mega:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#F4F1EC; --surface:#FFFFFF; --surface2:#EDEAE4; --border:#DDD9D2;
+  --text:#1E1C18; --muted:#7A7568; --radius:16px;
+  --shadow:0 4px 24px rgba(0,0,0,0.08); --shadow-lg:0 12px 48px rgba(0,0,0,0.14);
+  --purple:#6B46C1; --purple-d:#4C2E8C;
+  --green:#276749; --green-l:#C6F6D5;
+  --red:#C0392B;   --red-l:#FFE5E3;
+  --amber-l:#FEFCBF; --amber-d:#92621A;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh;}
+
+/* ── SHARED NAV ─────────────────────────────────── */
+.top-nav {
+  position:sticky;top:0;z-index:50;
+  background:rgba(244,241,236,0.96);backdrop-filter:blur(10px);
+  border-bottom:2px solid var(--border);
+  padding:8px 20px;
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+}
+.top-nav .nav-logo {font-family:'Lexend Mega',sans-serif;font-size:0.9rem;color:var(--text);margin-right:4px;}
+.top-nav .nav-logo span{color:#FF6B6B;}
+.nav-home {
+  display:inline-flex;align-items:center;gap:5px;
+  padding:5px 12px;border-radius:16px;border:2px solid var(--border);
+  background:var(--surface);font-family:'Lexend',sans-serif;
+  font-size:0.72rem;font-weight:700;color:var(--muted);
+  text-decoration:none;transition:all 0.2s;
+}
+.nav-home:hover{background:var(--text);color:#fff;border-color:var(--text);transform:translateY(-2px);}
+.nav-divider{width:1px;height:20px;background:var(--border);flex-shrink:0;}
+.nav-def-link {
+  display:inline-flex;align-items:center;gap:4px;
+  padding:5px 12px;border-radius:16px;border:2px solid var(--border);
+  background:var(--surface);font-family:'Lexend',sans-serif;
+  font-size:0.72rem;font-weight:600;color:var(--muted);
+  text-decoration:none;transition:all 0.2s;white-space:nowrap;
+}
+.nav-def-link:hover{border-color:var(--purple);color:var(--purple);transform:translateY(-2px);}
+.nav-def-link.active-file{background:var(--purple);color:#fff;border-color:var(--purple);}
+
+/* ── SCREENS ─────────────────────────────────────── */
+.screen{display:none;min-height:calc(100vh - 52px);}
+.screen.active{display:flex;flex-direction:column;align-items:center;padding:28px 20px 60px;}
+
+/* ── HOME ─────────────────────────────────────────── */
+.home-hero{text-align:center;margin-bottom:28px;width:100%;max-width:860px;}
+.home-hero h1{font-family:'Lexend Mega',sans-serif;font-size:clamp(1.5rem,5vw,2.6rem);line-height:1.15;margin-bottom:10px;}
+.home-hero h1 .hi{color:#FF6B6B;} .home-hero h1 .hii{color:#00B4A6;}
+.home-hero p{color:var(--muted);font-size:0.95rem;}
+.home-stats{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:14px 0 22px;}
+.stat-pill{background:var(--surface);border:2px solid var(--border);border-radius:30px;padding:7px 18px;font-size:0.82rem;font-weight:700;}
+
+/* Overall bar */
+.overall-wrap{width:100%;max-width:520px;background:var(--surface);border:2px solid var(--border);border-radius:var(--radius);padding:18px 22px;margin-bottom:26px;}
+.overall-wrap h3{font-size:0.74rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+.bar-track{background:var(--surface2);border-radius:10px;height:12px;overflow:hidden;margin-bottom:8px;}
+.bar-fill{height:12px;border-radius:10px;background:linear-gradient(90deg,#00B4A6,#6B46C1);transition:width 0.5s ease;}
+.bar-labels{display:flex;justify-content:space-between;font-size:0.76rem;color:var(--muted);font-weight:600;}
+
+/* Chapter grid */
+.chapter-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;width:100%;max-width:880px;}
+.ch-card{background:var(--surface);border-radius:var(--radius);padding:17px 19px;cursor:pointer;border:2px solid var(--border);transition:all 0.2s;position:relative;overflow:hidden;}
+.ch-card::before{content:'';position:absolute;top:0;left:0;width:5px;height:100%;background:var(--cc,#ccc);}
+.ch-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);border-color:var(--cc);}
+.ch-card .cc-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:9px;}
+.ch-card .cc-label{font-weight:700;font-size:0.92rem;line-height:1.3;padding-left:2px;}
+.ch-card .cc-badge{font-size:0.7rem;font-weight:700;color:var(--muted);background:var(--surface2);border-radius:20px;padding:2px 9px;white-space:nowrap;margin-left:6px;}
+.cc-bar-track{background:var(--surface2);border-radius:6px;height:6px;overflow:hidden;margin-bottom:7px;}
+.cc-bar-fill{height:6px;border-radius:6px;background:var(--cc);transition:width 0.4s;}
+.cc-foot{display:flex;justify-content:space-between;font-size:0.73rem;color:var(--muted);font-weight:600;}
+.cc-foot .cc-pct{color:var(--cc);font-weight:800;}
+.all-ch{background:linear-gradient(135deg,var(--purple) 0%,var(--purple-d) 100%);color:#fff;border:none;grid-column:1/-1;}
+.all-ch::before{display:none;} .all-ch:hover{border-color:transparent;}
+.all-ch .cc-label,.all-ch .cc-pct{color:#fff!important;}
+.all-ch .cc-badge{background:rgba(255,255,255,0.2);color:#fff;}
+.all-ch .cc-foot{color:rgba(255,255,255,0.75);}
+.all-ch .cc-bar-track{background:rgba(255,255,255,0.2);}
+.all-ch .cc-bar-fill{background:rgba(255,255,255,0.75);}
+
+/* ── CONFIG ──────────────────────────────────────── */
+.config-box{background:var(--surface);border-radius:20px;padding:28px;width:100%;max-width:500px;box-shadow:var(--shadow);}
+.config-box h2{font-family:'Lexend Mega',sans-serif;font-size:1.15rem;margin-bottom:4px;}
+.config-topic{font-size:0.85rem;color:var(--muted);margin-bottom:22px;}
+.cfg-row{margin-bottom:18px;}
+.cfg-row label{display:block;font-size:0.74rem;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:var(--muted);margin-bottom:9px;}
+.tg{display:flex;gap:7px;flex-wrap:wrap;}
+.tg-btn{padding:7px 16px;border-radius:20px;border:2px solid var(--border);background:var(--surface2);font-family:'Lexend',sans-serif;font-size:0.79rem;font-weight:600;cursor:pointer;transition:all 0.18s;color:var(--muted);}
+.tg-btn.on{background:var(--purple);color:#fff;border-color:var(--purple);}
+.cfg-actions{display:flex;gap:10px;margin-top:22px;}
+.btn-p{flex:1;padding:13px;border-radius:12px;border:none;background:var(--purple);color:#fff;font-family:'Lexend',sans-serif;font-size:0.93rem;font-weight:700;cursor:pointer;transition:all 0.2s;}
+.btn-p:hover{background:var(--purple-d);transform:translateY(-2px);}
+.btn-s{padding:13px 18px;border-radius:12px;border:2px solid var(--border);background:var(--surface2);font-family:'Lexend',sans-serif;font-size:0.88rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);}
+.btn-s:hover{border-color:var(--muted);color:var(--text);}
+
+/* ── QUIZ ────────────────────────────────────────── */
+#quizScreen{padding:0;align-items:stretch;}
+.quiz-bar{
+  position:sticky;top:52px;z-index:9;
+  background:rgba(244,241,236,0.95);backdrop-filter:blur(8px);
+  border-bottom:2px solid var(--border);
+  padding:9px 20px;display:flex;align-items:center;gap:10px;
+}
+.qb-topic{font-size:0.78rem;font-weight:700;color:var(--muted);white-space:nowrap;}
+.qb-track{flex:1;background:var(--border);border-radius:8px;height:8px;overflow:hidden;}
+.qb-fill{height:8px;border-radius:8px;transition:width 0.35s ease;}
+.qb-count{font-size:0.78rem;font-weight:700;color:var(--muted);white-space:nowrap;}
+.btn-quit{padding:4px 11px;border-radius:9px;border:2px solid var(--border);background:transparent;font-family:'Lexend',sans-serif;font-size:0.72rem;font-weight:600;cursor:pointer;color:var(--muted);transition:all 0.2s;}
+.btn-quit:hover{border-color:var(--red);color:var(--red);}
+.quiz-main{flex:1;display:flex;flex-direction:column;align-items:center;padding:26px 20px 40px;max-width:700px;margin:0 auto;width:100%;}
+
+/* Card */
+.flashcard{width:100%;perspective:1400px;cursor:pointer;margin-bottom:22px;min-height:230px;}
+.fc-inner{position:relative;width:100%;min-height:230px;transition:transform 0.52s cubic-bezier(.4,.2,.2,1);transform-style:preserve-3d;}
+.flashcard.flipped .fc-inner{transform:rotateY(180deg);}
+.fc-face{position:absolute;width:100%;min-height:230px;backface-visibility:hidden;border-radius:20px;padding:34px 30px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;box-shadow:var(--shadow-lg);}
+.fc-front{background:var(--surface);border:3px solid var(--border);}
+.fc-back{transform:rotateY(180deg);color:#fff;}
+.fc-badge{font-size:0.64rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);background:var(--surface2);padding:4px 13px;border-radius:20px;margin-bottom:16px;}
+.fc-back .fc-badge{background:rgba(255,255,255,0.22);color:#fff;}
+.fc-q{font-size:clamp(1rem,2.8vw,1.35rem);font-weight:700;line-height:1.45;color:var(--text);}
+.fc-hint{margin-top:18px;font-size:0.7rem;color:var(--muted);}
+.fc-hint kbd{background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:2px 6px;font-family:inherit;font-size:0.68rem;}
+.fc-a{font-size:clamp(0.86rem,2vw,1.02rem);line-height:1.7;opacity:0.96;}
+
+/* Verdict */
+.verdict-row{display:flex;gap:12px;width:100%;max-width:500px;opacity:0;pointer-events:none;transition:opacity 0.28s;margin-bottom:18px;}
+.verdict-row.show{opacity:1;pointer-events:auto;}
+.btn-wrong{flex:1;padding:13px;border-radius:13px;border:2px solid transparent;background:var(--red-l);color:var(--red);font-family:'Lexend',sans-serif;font-size:0.92rem;font-weight:700;cursor:pointer;transition:all 0.2s;}
+.btn-wrong:hover{background:var(--red);color:#fff;transform:translateY(-2px);}
+.btn-right{flex:1;padding:13px;border-radius:13px;border:2px solid transparent;background:var(--green-l);color:var(--green);font-family:'Lexend',sans-serif;font-size:0.92rem;font-weight:700;cursor:pointer;transition:all 0.2s;}
+.btn-right:hover{background:var(--green);color:#fff;transform:translateY(-2px);}
+.quiz-btns{display:flex;gap:10px;align-items:center;}
+.btn-flip{padding:11px 26px;border-radius:12px;border:none;background:var(--purple);color:#fff;font-family:'Lexend',sans-serif;font-size:0.86rem;font-weight:700;cursor:pointer;transition:all 0.2s;}
+.btn-flip:hover{background:var(--purple-d);transform:translateY(-2px);}
+.kbd-hint{margin-top:10px;font-size:0.7rem;color:var(--muted);}
+.kbd-hint kbd{background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:2px 6px;font-family:inherit;font-size:0.68rem;}
+
+/* ── RESULTS ─────────────────────────────────────── */
+.results-wrap{width:100%;max-width:620px;}
+.results-hero{text-align:center;margin-bottom:26px;}
+.score-ring{width:136px;height:136px;border-radius:50%;display:inline-flex;flex-direction:column;align-items:center;justify-content:center;position:relative;margin-bottom:14px;}
+.score-ring svg{position:absolute;top:0;left:0;width:136px;height:136px;transform:rotate(-90deg);}
+.ring-bg{fill:none;stroke:var(--surface2);stroke-width:10;}
+.ring-fg{fill:none;stroke-width:10;stroke-linecap:round;transition:stroke-dashoffset 1s ease;}
+.ring-inner{position:relative;z-index:1;text-align:center;}
+.ring-pct{font-family:'Lexend Mega',sans-serif;font-size:1.9rem;line-height:1;}
+.ring-sub{font-size:0.58rem;color:var(--muted);letter-spacing:1px;text-transform:uppercase;}
+.results-hero h2{font-family:'Lexend Mega',sans-serif;font-size:1.4rem;margin-bottom:6px;}
+.results-hero .res-msg{color:var(--muted);font-size:0.9rem;}
+.res-card{background:var(--surface);border-radius:var(--radius);padding:20px 22px;margin-bottom:14px;box-shadow:var(--shadow);}
+.res-card h3{font-size:0.74rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+.improve-box{background:var(--amber-l);border:2px solid #F6E05E;border-radius:var(--radius);padding:16px 20px;margin-bottom:14px;}
+.improve-box h3{font-size:0.74rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--amber-d);margin-bottom:10px;}
+.improve-list{list-style:none;}
+.improve-list li{font-size:0.84rem;padding:5px 0;display:flex;gap:8px;border-bottom:1px solid rgba(0,0,0,0.06);}
+.improve-list li:last-child{border-bottom:none;}
+.improve-list li::before{content:'→';color:var(--amber-d);font-weight:700;flex-shrink:0;}
+.bd-row{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--surface2);}
+.bd-row:last-child{border-bottom:none;}
+.bd-icon{width:24px;text-align:center;font-size:1rem;flex-shrink:0;}
+.bd-term{flex:1;font-size:0.86rem;font-weight:600;}
+.bd-tag{font-size:0.72rem;font-weight:700;padding:3px 9px;border-radius:11px;}
+.bd-tag.right{background:var(--green-l);color:var(--green);}
+.bd-tag.wrong{background:var(--red-l);color:var(--red);}
+.res-actions{display:flex;gap:10px;flex-wrap:wrap;}
+.res-actions .btn-p{flex:1;min-width:130px;}
+.res-actions .btn-s{flex:1;min-width:130px;}
+</style>
+<style>
+:root {
+  --bg:#F4F1EC; --surface:#FFFFFF; --surface2:#EDEAE4; --border:#DDD9D2;
+  --text:#1E1C18; --muted:#7A7568; --radius:16px;
+  --shadow:0 4px 24px rgba(0,0,0,0.08); --shadow-lg:0 12px 48px rgba(0,0,0,0.14);
+  --purple:#6B46C1; --purple-d:#4C2E8C;
+  --green:#276749; --green-l:#C6F6D5;
+  --red:#C0392B;   --red-l:#FFE5E3;
+  --amber-l:#FEFCBF; --amber-d:#92621A;
+}
+body { font-family:'Lexend',sans-serif; background:var(--bg); color:var(--text); line-height:1.6; min-height:100vh; }
+
+.top-nav {
+  position:sticky;top:0;z-index:50;
+  background:rgba(244,241,236,0.96);backdrop-filter:blur(10px);
+  border-bottom:2px solid var(--border);
+  padding:8px 20px;
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+}
+.top-nav .nav-logo {font-family:'Lexend Mega',sans-serif;font-size:0.9rem;color:var(--text);margin-right:4px;}
+.top-nav .nav-logo span{color:#E8637A;}
+.nav-home {
+  display:inline-flex;align-items:center;gap:5px;
+  padding:5px 12px;border-radius:16px;border:2px solid var(--border);
+  background:var(--surface);font-family:'Lexend',sans-serif;
+  font-size:0.72rem;font-weight:700;color:var(--muted);
+  text-decoration:none;transition:all 0.2s;
+}
+.nav-home:hover{background:var(--text);color:#fff;border-color:var(--text);transform:translateY(-2px);}
+.nav-divider{width:1px;height:20px;background:var(--border);flex-shrink:0;}
+.nav-def-link {
+  display:inline-flex;align-items:center;gap:4px;
+  padding:5px 11px;border-radius:16px;border:2px solid var(--border);
+  background:var(--surface);font-family:'Lexend',sans-serif;
+  font-size:0.68rem;font-weight:600;color:var(--muted);
+  text-decoration:none;transition:all 0.2s;white-space:nowrap;
+}
+.nav-def-link:hover{border-color:var(--purple);color:var(--purple);transform:translateY(-2px);}
+
+.screen{display:none;min-height:calc(100vh - 52px);}
+.screen.active{display:flex;flex-direction:column;align-items:center;padding:28px 20px 60px;}
+
+.home-hero{text-align:center;margin-bottom:28px;width:100%;max-width:860px;}
+.home-hero h1{font-family:'Lexend Mega',sans-serif;font-size:clamp(1.5rem,5vw,2.6rem);line-height:1.15;margin-bottom:10px;}
+.home-hero h1 .hi{color:#E8637A;} .home-hero h1 .hii{color:#3A86FF;}
+.home-hero p{color:var(--muted);font-size:0.95rem;}
+.home-stats{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:14px 0 22px;}
+.stat-pill{background:var(--surface);border:2px solid var(--border);border-radius:30px;padding:7px 18px;font-size:0.82rem;font-weight:700;}
+
+.overall-wrap{width:100%;max-width:520px;background:var(--surface);border:2px solid var(--border);border-radius:var(--radius);padding:18px 22px;margin-bottom:26px;}
+.overall-wrap h3{font-size:0.74rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+.bar-track{background:var(--surface2);border-radius:10px;height:12px;overflow:hidden;margin-bottom:8px;}
+.bar-fill{height:12px;border-radius:10px;background:linear-gradient(90deg,#E8637A,#6B46C1);transition:width 0.5s ease;}
+.bar-labels{display:flex;justify-content:space-between;font-size:0.76rem;color:var(--muted);font-weight:600;}
+
+.chapter-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;width:100%;max-width:880px;}
+.ch-card{background:var(--surface);border-radius:var(--radius);padding:17px 19px;cursor:pointer;border:2px solid var(--border);transition:all 0.2s;position:relative;overflow:hidden;}
+.ch-card::before{content:'';position:absolute;top:0;left:0;width:5px;height:100%;background:var(--cc,#ccc);}
+.ch-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);border-color:var(--cc);}
+.ch-card .cc-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:9px;}
+.ch-card .cc-label{font-weight:700;font-size:0.88rem;line-height:1.3;padding-left:2px;}
+.ch-card .cc-badge{font-size:0.7rem;font-weight:700;color:var(--muted);background:var(--surface2);border-radius:20px;padding:2px 9px;white-space:nowrap;margin-left:6px;}
+.cc-bar-track{background:var(--surface2);border-radius:6px;height:6px;overflow:hidden;margin-bottom:7px;}
+.cc-bar-fill{height:6px;border-radius:6px;background:var(--cc);transition:width 0.4s;}
+.cc-foot{display:flex;justify-content:space-between;font-size:0.73rem;color:var(--muted);font-weight:600;}
+.cc-foot .cc-pct{color:var(--cc);font-weight:800;}
+.all-ch{background:linear-gradient(135deg,var(--purple) 0%,var(--purple-d) 100%);color:#fff;border:none;grid-column:1/-1;}
+.all-ch::before{display:none;} .all-ch:hover{border-color:transparent;}
+.all-ch .cc-label,.all-ch .cc-pct{color:#fff!important;}
+.all-ch .cc-badge{background:rgba(255,255,255,0.2);color:#fff;}
+.all-ch .cc-foot{color:rgba(255,255,255,0.75);}
+.all-ch .cc-bar-track{background:rgba(255,255,255,0.2);}
+.all-ch .cc-bar-fill{background:rgba(255,255,255,0.75);}
+
+.config-box{background:var(--surface);border-radius:20px;padding:28px;width:100%;max-width:500px;box-shadow:var(--shadow);}
+.config-box h2{font-family:'Lexend Mega',sans-serif;font-size:1.15rem;margin-bottom:4px;}
+.config-topic{font-size:0.85rem;color:var(--muted);margin-bottom:22px;}
+.cfg-row{margin-bottom:18px;}
+.cfg-row label{display:block;font-size:0.74rem;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:var(--muted);margin-bottom:9px;}
+.tg{display:flex;gap:7px;flex-wrap:wrap;}
+.tg-btn{padding:7px 16px;border-radius:20px;border:2px solid var(--border);background:var(--surface2);font-family:'Lexend',sans-serif;font-size:0.79rem;font-weight:600;cursor:pointer;transition:all 0.18s;color:var(--muted);}
+.tg-btn.on{background:var(--purple);color:#fff;border-color:var(--purple);}
+.cfg-actions{display:flex;gap:10px;margin-top:22px;}
+.btn-p{flex:1;padding:13px;border-radius:12px;border:none;background:var(--purple);color:#fff;font-family:'Lexend',sans-serif;font-size:0.93rem;font-weight:700;cursor:pointer;transition:all 0.2s;}
+.btn-p:hover{background:var(--purple-d);transform:translateY(-2px);}
+.btn-s{padding:13px 18px;border-radius:12px;border:2px solid var(--border);background:var(--surface2);font-family:'Lexend',sans-serif;font-size:0.88rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);}
+.btn-s:hover{border-color:var(--muted);color:var(--text);}
+
+#quizScreen{padding:0;align-items:stretch;}
+.quiz-bar{position:sticky;top:52px;z-index:9;background:rgba(244,241,236,0.95);backdrop-filter:blur(8px);border-bottom:2px solid var(--border);padding:9px 20px;display:flex;align-items:center;gap:10px;}
+.qb-topic{font-size:0.78rem;font-weight:700;color:var(--muted);white-space:nowrap;}
+.qb-track{flex:1;background:var(--border);border-radius:8px;height:8px;overflow:hidden;}
+.qb-fill{height:8px;border-radius:8px;transition:width 0.35s ease;}
+.qb-count{font-size:0.78rem;font-weight:700;color:var(--muted);white-space:nowrap;}
+.btn-quit{padding:4px 11px;border-radius:9px;border:2px solid var(--border);background:transparent;font-family:'Lexend',sans-serif;font-size:0.72rem;font-weight:600;cursor:pointer;color:var(--muted);transition:all 0.2s;}
+.btn-quit:hover{border-color:var(--red);color:var(--red);}
+.quiz-main{flex:1;display:flex;flex-direction:column;align-items:center;padding:26px 20px 40px;max-width:700px;margin:0 auto;width:100%;}
+
+.flashcard{width:100%;perspective:1400px;cursor:pointer;margin-bottom:22px;min-height:230px;}
+.fc-inner{position:relative;width:100%;min-height:230px;transition:transform 0.52s cubic-bezier(.4,.2,.2,1);transform-style:preserve-3d;}
+.flashcard.flipped .fc-inner{transform:rotateY(180deg);}
+.fc-face{position:absolute;width:100%;min-height:230px;backface-visibility:hidden;border-radius:20px;padding:34px 30px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;box-shadow:var(--shadow-lg);}
+.fc-front{background:var(--surface);border:3px solid var(--border);}
+.fc-back{transform:rotateY(180deg);color:#fff;}
+.fc-badge{font-size:0.64rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);background:var(--surface2);padding:4px 13px;border-radius:20px;margin-bottom:16px;}
+.fc-back .fc-badge{background:rgba(255,255,255,0.22);color:#fff;}
+.fc-q{font-size:clamp(1rem,2.8vw,1.35rem);font-weight:700;line-height:1.45;color:var(--text);}
+.fc-hint{margin-top:18px;font-size:0.7rem;color:var(--muted);}
+.fc-hint kbd{background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:2px 6px;font-family:inherit;font-size:0.68rem;}
+.fc-a{font-size:clamp(0.86rem,2vw,1.02rem);line-height:1.7;opacity:0.96;}
+
+.verdict-row{display:flex;gap:12px;width:100%;max-width:500px;opacity:0;pointer-events:none;transition:opacity 0.28s;margin-bottom:18px;}
+.verdict-row.show{opacity:1;pointer-events:auto;}
+.btn-wrong{flex:1;padding:13px;border-radius:13px;border:2px solid transparent;background:var(--red-l);color:var(--red);font-family:'Lexend',sans-serif;font-size:0.92rem;font-weight:700;cursor:pointer;transition:all 0.2s;}
+.btn-wrong:hover{background:var(--red);color:#fff;transform:translateY(-2px);}
+.btn-right{flex:1;padding:13px;border-radius:13px;border:2px solid transparent;background:var(--green-l);color:var(--green);font-family:'Lexend',sans-serif;font-size:0.92rem;font-weight:700;cursor:pointer;transition:all 0.2s;}
+.btn-right:hover{background:var(--green);color:#fff;transform:translateY(-2px);}
+.quiz-btns{display:flex;gap:10px;align-items:center;}
+.btn-flip{padding:11px 26px;border-radius:12px;border:none;background:var(--purple);color:#fff;font-family:'Lexend',sans-serif;font-size:0.86rem;font-weight:700;cursor:pointer;transition:all 0.2s;}
+.btn-flip:hover{background:var(--purple-d);transform:translateY(-2px);}
+.kbd-hint{margin-top:10px;font-size:0.7rem;color:var(--muted);}
+.kbd-hint kbd{background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:2px 6px;font-family:inherit;font-size:0.68rem;}
+
+#resultsScreen{align-items:center;padding:32px 20px 60px;}
+.results-wrap{width:100%;max-width:620px;}
+.results-hero{text-align:center;margin-bottom:26px;}
+.score-ring{width:136px;height:136px;border-radius:50%;display:inline-flex;flex-direction:column;align-items:center;justify-content:center;position:relative;margin-bottom:14px;}
+.score-ring svg{position:absolute;top:0;left:0;width:136px;height:136px;transform:rotate(-90deg);}
+.ring-bg{fill:none;stroke:var(--surface2);stroke-width:10;}
+.ring-fg{fill:none;stroke-width:10;stroke-linecap:round;transition:stroke-dashoffset 1s ease;}
+.ring-inner{position:relative;z-index:1;text-align:center;}
+.ring-pct{font-family:'Lexend Mega',sans-serif;font-size:1.9rem;line-height:1;}
+.ring-sub{font-size:0.58rem;color:var(--muted);letter-spacing:1px;text-transform:uppercase;}
+.results-hero h2{font-family:'Lexend Mega',sans-serif;font-size:1.4rem;margin-bottom:6px;}
+.results-hero .res-msg{color:var(--muted);font-size:0.9rem;}
+.res-card{background:var(--surface);border-radius:var(--radius);padding:20px 22px;margin-bottom:14px;box-shadow:var(--shadow);}
+.res-card h3{font-size:0.74rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+.improve-box{background:var(--amber-l);border:2px solid #F6E05E;border-radius:var(--radius);padding:16px 20px;margin-bottom:14px;}
+.improve-box h3{font-size:0.74rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--amber-d);margin-bottom:10px;}
+.improve-list{list-style:none;}
+.improve-list li{font-size:0.84rem;padding:5px 0;display:flex;gap:8px;border-bottom:1px solid rgba(0,0,0,0.06);}
+.improve-list li:last-child{border-bottom:none;}
+.improve-list li::before{content:'→';color:var(--amber-d);font-weight:700;flex-shrink:0;}
+.bd-row{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--surface2);}
+.bd-row:last-child{border-bottom:none;}
+.bd-icon{width:24px;text-align:center;font-size:1rem;flex-shrink:0;}
+.bd-term{flex:1;font-size:0.86rem;font-weight:600;}
+.bd-tag{font-size:0.72rem;font-weight:700;padding:3px 9px;border-radius:11px;}
+.bd-tag.right{background:var(--green-l);color:var(--green);}
+.bd-tag.wrong{background:var(--red-l);color:var(--red);}
+.res-actions{display:flex;gap:10px;flex-wrap:wrap;}
+.res-actions .btn-p{flex:1;min-width:130px;}
+.res-actions .btn-s{flex:1;min-width:130px;}
+</style>
+</head>
+<body>
+
+<nav class="top-nav">
+  <span class="nav-logo">LC <span>Physics</span></span>
+  <a href="Physics.html" class="nav-home">🏠 Home</a>
+  <span class="nav-divider"></span>
+  <a href="Physics_Glossary_1_BasicMotionForce.html"        class="nav-def-link">1: Basic/Motion</a>
+  <a href="Physics_Glossary_2_MomentsWorkCircularSHM.html"  class="nav-def-link">2: Moments/Work</a>
+  <a href="Physics_Glossary_3_Optics.html"                  class="nav-def-link">3: Optics</a>
+  <a href="Physics_Glossary_4_Heat.html"                    class="nav-def-link">4: Heat</a>
+  <a href="Physics_Glossary_5_Waves.html"                   class="nav-def-link">5: Waves</a>
+  <a href="Physics_Glossary_6_Electricity.html"             class="nav-def-link">6: Electricity</a>
+  <a href="Physics_Glossary_7_ModernParticle.html"          class="nav-def-link">7: Modern/Particle</a>
+</nav>
+
+<div class="screen active" id="homeScreen">
+  <div class="home-hero">
+    <h1><span class="hi">LC Physics</span> <span class="hii">Flashcards</span></h1>
+    <p>187 terms · 16 topics · Track your mastery, shuffle, score yourself</p>
+  </div>
+  <div class="home-stats">
+    <span class="stat-pill">🃏 187 Cards</span>
+    <span class="stat-pill">📚 16 Topics</span>
+    <span class="stat-pill" id="todayPill">🔥 0 studied today</span>
+  </div>
+  <div class="overall-wrap">
+    <h3>Overall Mastery</h3>
+    <div class="bar-track"><div class="bar-fill" id="overallFill" style="width:0%"></div></div>
+    <div class="bar-labels">
+      <span id="overallLeft">0 mastered</span>
+      <span id="overallRight">0% of all cards</span>
+    </div>
+  </div>
+  <div class="chapter-grid" id="chapterGrid"></div>
+</div>
+
+<div class="screen" id="configScreen">
+  <div class="config-box">
+    <h2>Study Session</h2>
+    <p class="config-topic" id="configLabel">All Topics</p>
+    <div class="cfg-row">
+      <label>Filter</label>
+      <div class="tg">
+        <button class="tg-btn on" data-f="all"  onclick="setCfg('filter','all',this)">All Cards</button>
+        <button class="tg-btn"    data-f="core" onclick="setCfg('filter','core',this)">⭐ Core Only</button>
+      </div>
+    </div>
+    <div class="cfg-row">
+      <label>Order</label>
+      <div class="tg">
+        <button class="tg-btn on"  data-o="order"   onclick="setCfg('order','order',this)">In Order</button>
+        <button class="tg-btn"     data-o="shuffle" onclick="setCfg('order','shuffle',this)">🔀 Shuffle</button>
+      </div>
+    </div>
+    <div class="cfg-row">
+      <label>Cards to Show</label>
+      <div class="tg">
+        <button class="tg-btn on" data-s="all"   onclick="setCfg('show','all',this)">All</button>
+        <button class="tg-btn"    data-s="wrong" onclick="setCfg('show','wrong',this)">❌ Missed Only</button>
+      </div>
+    </div>
+    <div class="cfg-actions">
+      <button class="btn-s" onclick="goScreen('homeScreen')">← Back</button>
+      <button class="btn-p" onclick="startQuiz()">Start →</button>
+    </div>
+  </div>
+</div>
+
+<div class="screen" id="quizScreen">
+  <div class="quiz-bar">
+    <span class="qb-topic" id="qbTopic">—</span>
+    <div class="qb-track"><div class="qb-fill" id="qbFill" style="width:0%"></div></div>
+    <span class="qb-count" id="qbCount">0 / 0</span>
+    <button class="btn-quit" onclick="confirmQuit()">✕ Quit</button>
+  </div>
+  <div class="quiz-main">
+    <div class="flashcard" id="flashcard" onclick="flipCard()">
+      <div class="fc-inner">
+        <div class="fc-face fc-front">
+          <div class="fc-badge" id="fcBadge">—</div>
+          <div class="fc-q" id="fcQ">—</div>
+          <div class="fc-hint">Click card or press <kbd>Space</kbd> to flip</div>
+        </div>
+        <div class="fc-face fc-back" id="fcBack">
+          <div class="fc-badge" id="fcBadgeBack">—</div>
+          <div class="fc-a" id="fcA">—</div>
+        </div>
+      </div>
+    </div>
+    <div class="verdict-row" id="verdictRow">
+      <button class="btn-wrong" onclick="mark(false)">✗ &nbsp;Got it wrong</button>
+      <button class="btn-right" onclick="mark(true)">✓ &nbsp;Got it right</button>
+    </div>
+    <div class="quiz-btns">
+      <button class="btn-flip" onclick="flipCard()">Flip</button>
+    </div>
+    <p class="kbd-hint"><kbd>Space</kbd> flip &nbsp;·&nbsp; <kbd>←</kbd> wrong &nbsp;·&nbsp; <kbd>→</kbd> right</p>
+  </div>
+</div>
+
+<div class="screen" id="resultsScreen">
+  <div class="results-wrap">
+    <div class="results-hero">
+      <div class="score-ring">
+        <svg viewBox="0 0 136 136">
+          <circle class="ring-bg" cx="68" cy="68" r="58"/>
+          <circle class="ring-fg" id="ringFg" cx="68" cy="68" r="58"
+            stroke-dasharray="364" stroke-dashoffset="364" stroke="#6B46C1"/>
+        </svg>
+        <div class="ring-inner">
+          <div class="ring-pct" id="ringPct">0%</div>
+          <div class="ring-sub">Score</div>
+        </div>
+      </div>
+      <h2 id="resHeading">Done!</h2>
+      <p class="res-msg" id="resMsg">—</p>
+    </div>
+    <div class="improve-box" id="improveBox" style="display:none">
+      <h3>📌 Focus On These</h3>
+      <ul class="improve-list" id="improveList"></ul>
+    </div>
+    <div class="res-card">
+      <h3>Full Breakdown</h3>
+      <div id="breakdownList"></div>
+    </div>
+    <div class="res-actions">
+      <button class="btn-s" onclick="goScreen('homeScreen')">🏠 Home</button>
+      <button class="btn-p" id="retryBtn" onclick="retryWrong()">🔁 Retry Wrong</button>
+      <button class="btn-p" onclick="openConfig(currentTopic)" style="background:var(--green)">↩ Redo</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const ALL_CARDS = [
+  {topic:'p1a',label:'⚖️ Basics & Motion',q:'Scalar',a:'A quantity that has magnitude only — no direction. Examples: speed, mass, temperature, energy.',priority:'core'},
+  {topic:'p1a',label:'⚖️ Basics & Motion',q:'Vector',a:'A quantity that has both magnitude and direction. Examples: velocity, force, displacement, momentum.',priority:'core'},
+  {topic:'p1a',label:'⚖️ Basics & Motion',q:'Mass',a:'The quantity of matter in a body, regardless of volume or forces acting on it. Symbol: m. Unit: kg.',priority:'core'},
+  {topic:'p1a',label:'⚖️ Basics & Motion',q:'Weight',a:'The force of gravity acting on a body. W = mg. Unit: N. Weight is a vector; mass is a scalar.',priority:'core'},
+  {topic:'p1a',label:'⚖️ Basics & Motion',q:'Distance',a:'The total path length travelled — a scalar quantity. Unit: m.',priority:'core'},
+  {topic:'p1a',label:'⚖️ Basics & Motion',q:'Displacement',a:'The straight-line distance from start to finish in a stated direction. A vector. Symbol: s. Unit: m.',priority:'core'},
+  {topic:'p1a',label:'⚖️ Basics & Motion',q:'Velocity',a:'The rate of change of displacement with respect to time. v = s/t. A vector. Unit: m/s.',priority:'core'},
+  {topic:'p1a',label:'⚖️ Basics & Motion',q:'Speed',a:'Distance travelled per unit time. A scalar. Unit: m/s.',priority:'core'},
+  {topic:'p1a',label:'⚖️ Basics & Motion',q:'Acceleration',a:'The rate of change of velocity with respect to time. a = (v−u)/t. Unit: m/s².',priority:'core'},
+  {topic:'p1b',label:'💪 Force & Laws',q:'Newton\'s First Law',a:'A body remains at rest or in uniform motion unless acted upon by an external resultant force.',priority:'core'},
+  {topic:'p1b',label:'💪 Force & Laws',q:'Newton\'s Second Law',a:'The rate of change of momentum is directly proportional to the applied force and acts in the same direction. F = ma.',priority:'core'},
+  {topic:'p1b',label:'💪 Force & Laws',q:'Newton\'s Third Law',a:'For every action there is an equal and opposite reaction — forces act on DIFFERENT objects.',priority:'core'},
+  {topic:'p1b',label:'💪 Force & Laws',q:'Momentum',a:'The product of a body\'s mass and velocity. p = mv. A vector. Unit: kg m/s.',priority:'core'},
+  {topic:'p1b',label:'💪 Force & Laws',q:'Principle of Conservation of Momentum',a:'In a closed system, total momentum before = total momentum after a collision.',priority:'core'},
+  {topic:'p1b',label:'💪 Force & Laws',q:'Force',a:'Anything that causes a body to accelerate — a push or pull. Unit: N. F = ma.',priority:'core'},
+  {topic:'p1b',label:'💪 Force & Laws',q:'Friction',a:'The force opposing relative motion between two surfaces in contact.',priority:'core'},
+  {topic:'p1c',label:'🔩 Pressure',q:'Density',a:'Mass per unit volume. ρ = m/V. Unit: kg/m³.',priority:'core'},
+  {topic:'p1c',label:'🔩 Pressure',q:'Pressure',a:'Force per unit area. P = F/A. Unit: Pa (pascals). 1 Pa = 1 N/m².',priority:'core'},
+  {topic:'p1c',label:'🔩 Pressure',q:'Archimedes\' Principle',a:'A body fully or partially immersed in a fluid experiences an upthrust equal to the weight of fluid displaced.',priority:'core'},
+  {topic:'p1c',label:'🔩 Pressure',q:'Law of Flotation',a:'A floating body displaces fluid equal in weight to its own weight.',priority:'useful'},
+  {topic:'p2a',label:'⚙️ Moments',q:'Moment (Torque)',a:'The product of the force and the perpendicular distance from the axis to the force. Unit: N m.',priority:'core'},
+  {topic:'p2a',label:'⚙️ Moments',q:'Couple',a:'Two equal, parallel forces acting in opposite directions, creating a turning effect without translation.',priority:'core'},
+  {topic:'p2a',label:'⚙️ Moments',q:'Conditions for Equilibrium',a:'1. Sum of clockwise moments = sum of anticlockwise moments. 2. Sum of upward forces = sum of downward forces.',priority:'core'},
+  {topic:'p2a',label:'⚙️ Moments',q:'Centre of Gravity',a:'The point through which the entire weight of an object appears to act.',priority:'core'},
+  {topic:'p2a',label:'⚙️ Moments',q:'Lever',a:'A rigid body free to rotate about a fixed point (the fulcrum).',priority:'useful'},
+  {topic:'p2b',label:'⚡ Work & Energy',q:'Work',a:'Energy transferred when a force moves a body through a displacement in the direction of the force. W = Fd. Unit: J.',priority:'core'},
+  {topic:'p2b',label:'⚡ Work & Energy',q:'Energy',a:'The ability to do work. Unit: J.',priority:'core'},
+  {topic:'p2b',label:'⚡ Work & Energy',q:'Kinetic Energy',a:'Energy due to motion. KE = ½mv².',priority:'core'},
+  {topic:'p2b',label:'⚡ Work & Energy',q:'Gravitational Potential Energy',a:'Energy due to position. GPE = mgh.',priority:'core'},
+  {topic:'p2b',label:'⚡ Work & Energy',q:'Power',a:'The rate of doing work or rate of energy conversion. P = W/t = Fv. Unit: W.',priority:'core'},
+  {topic:'p2b',label:'⚡ Work & Energy',q:'Efficiency',a:'Useful energy output / total energy input × 100%. Expressed as a percentage.',priority:'core'},
+  {topic:'p2b',label:'⚡ Work & Energy',q:'Principle of Conservation of Energy',a:'Energy cannot be created or destroyed — only converted from one form to another.',priority:'core'},
+  {topic:'p2b',label:'⚡ Work & Energy',q:'Joule (unit)',a:'Work done when 1 N moves an object 1 m in the direction of the force.',priority:'useful'},
+  {topic:'p2b',label:'⚡ Work & Energy',q:'Watt (unit)',a:'Doing 1 joule of work per second = 1 watt of power.',priority:'useful'},
+  {topic:'p2b',label:'⚡ Work & Energy',q:'Renewable Energy',a:'Energy from a source that is naturally replenished and won\'t run out, e.g. wind, solar, tidal.',priority:'useful'},
+  {topic:'p2b',label:'⚡ Work & Energy',q:'Non-Renewable Energy',a:'Energy from a source that will eventually run out, e.g. oil, coal, natural gas.',priority:'useful'},
+  {topic:'p2c',label:'🌀 Circular Motion',q:'Radian',a:'The angle subtended at the centre of a circle by an arc equal to the radius. 2π rad = 360°.',priority:'core'},
+  {topic:'p2c',label:'🌀 Circular Motion',q:'Angular Velocity (ω)',a:'The rate of change of angle with respect to time. ω = θ/t = 2πf. Unit: rad/s.',priority:'core'},
+  {topic:'p2c',label:'🌀 Circular Motion',q:'Centripetal Force',a:'The force directed towards the centre of a circular path needed to keep a body moving in a circle. F = mv²/r.',priority:'core'},
+  {topic:'p2c',label:'🌀 Circular Motion',q:'Centripetal Acceleration',a:'The acceleration directed towards the centre. a = v²/r = ω²r.',priority:'core'},
+  {topic:'p2c',label:'🌀 Circular Motion',q:'Period (T)',a:'Time for one complete revolution. T = 1/f = 2π/ω. Unit: s.',priority:'core'},
+  {topic:'p2c',label:'🌀 Circular Motion',q:'Geostationary Orbit',a:'An orbit where the satellite\'s period = Earth\'s rotation (24 h), so it appears stationary. Only one possible altitude.',priority:'core'},
+  {topic:'p2c',label:'🌀 Circular Motion',q:'Newton\'s Law of Universal Gravitation',a:'Force between two masses: F = Gm₁m₂/r². Proportional to product of masses, inversely proportional to r².',priority:'core'},
+  {topic:'p2c',label:'🌀 Circular Motion',q:'Kepler\'s Third Law',a:'T² ∝ r³ — the square of the orbital period is proportional to the cube of the orbital radius.',priority:'useful'},
+  {topic:'p2d',label:'〰️ SHM',q:'Simple Harmonic Motion (SHM)',a:'Motion where acceleration ∝ −displacement (always directed towards equilibrium). a = −ω²x.',priority:'core'},
+  {topic:'p2d',label:'〰️ SHM',q:'Amplitude',a:'The maximum displacement from the equilibrium position.',priority:'core'},
+  {topic:'p2d',label:'〰️ SHM',q:'Frequency (f)',a:'Number of complete oscillations per second. f = 1/T. Unit: Hz.',priority:'core'},
+  {topic:'p2d',label:'〰️ SHM',q:'Damping',a:'Progressive reduction in amplitude of oscillations due to energy loss (friction, air resistance).',priority:'core'},
+  {topic:'p2d',label:'〰️ SHM',q:'Hooke\'s Law',a:'The restoring force is directly proportional to extension, provided the elastic limit is not exceeded. F = −kx.',priority:'core'},
+  {topic:'p2d',label:'〰️ SHM',q:'Oscillation',a:'Back-and-forth motion about an equilibrium position with a regular period.',priority:'useful'},
+  {topic:'p3a',label:'🪞 Reflection',q:'Reflection',a:'The bouncing of light off a surface.',priority:'core'},
+  {topic:'p3a',label:'🪞 Reflection',q:'Laws of Reflection',a:'1. Incident ray, reflected ray and normal all in same plane. 2. Angle of incidence = angle of reflection.',priority:'core'},
+  {topic:'p3a',label:'🪞 Reflection',q:'Real Image',a:'Image formed by actual intersection of light rays — can be projected on a screen.',priority:'core'},
+  {topic:'p3a',label:'🪞 Reflection',q:'Virtual Image',a:'Image formed by apparent (extrapolated) intersection of rays — cannot be projected.',priority:'core'},
+  {topic:'p3a',label:'🪞 Reflection',q:'Focal Length (f)',a:'Distance from pole to focal point of a curved mirror or lens. f = r/2 for mirrors.',priority:'core'},
+  {topic:'p3a',label:'🪞 Reflection',q:'Magnification (m)',a:'Ratio of image size to object size. m = v/u. Positive = upright, negative = inverted.',priority:'core'},
+  {topic:'p3a',label:'🪞 Reflection',q:'Parallax',a:'Apparent change in position of an object when viewed from two different positions.',priority:'useful'},
+  {topic:'p3a',label:'🪞 Reflection',q:'Centre of Curvature (C)',a:'Centre of the sphere from which a curved mirror is derived. C = 2f from the pole.',priority:'useful'},
+  {topic:'p3b',label:'🔍 Refraction',q:'Refraction',a:'The bending of light as it passes from one medium to another, due to a change in speed.',priority:'core'},
+  {topic:'p3b',label:'🔍 Refraction',q:'Laws of Refraction (Snell\'s Law)',a:'1. Incident ray, refracted ray and normal lie in the same plane. 2. n₁sinθ₁ = n₂sinθ₂.',priority:'core'},
+  {topic:'p3b',label:'🔍 Refraction',q:'Refractive Index (n)',a:'n = sin i / sin r = c/v. Ratio of sines of angles; also equals speed of light in vacuum / speed in medium.',priority:'core'},
+  {topic:'p3b',label:'🔍 Refraction',q:'Critical Angle',a:'Angle of incidence in the denser medium that produces 90° refraction in the less dense medium. sin C = 1/n.',priority:'core'},
+  {topic:'p3b',label:'🔍 Refraction',q:'Total Internal Reflection',a:'Occurs when angle > critical angle in denser medium — light is fully reflected back. Basis of optic fibres.',priority:'core'},
+  {topic:'p3b',label:'🔍 Refraction',q:'Power of a Lens',a:'P = 1/f. Unit: dioptres (D). Converging = positive, diverging = negative.',priority:'core'},
+  {topic:'p3b',label:'🔍 Refraction',q:'Dispersion',a:'Separation of white light into colours by a prism — different wavelengths refract by different amounts.',priority:'core'},
+  {topic:'p3b',label:'🔍 Refraction',q:'Accommodation',a:'Eye\'s ability to change focal length of lens to focus objects at different distances.',priority:'useful'},
+  {topic:'p3b',label:'🔍 Refraction',q:'Primary Colours (light)',a:'Red, green and blue — combine to make white light.',priority:'useful'},
+  {topic:'p3b',label:'🔍 Refraction',q:'Secondary Colours (light)',a:'Yellow (R+G), Cyan (G+B), Magenta (R+B).',priority:'useful'},
+  {topic:'p3b',label:'🔍 Refraction',q:'Complementary Colours',a:'Primary + secondary pairs that make white: Blue+Yellow, Green+Magenta, Red+Cyan.',priority:'useful'},
+  {topic:'p3b',label:'🔍 Refraction',q:'Inferior Mirage',a:'Warm air near ground + cooler air above — sky appears reflected on hot ground.',priority:'useful'},
+  {topic:'p3b',label:'🔍 Refraction',q:'Superior Mirage',a:'Cool air near ground + warmer air above — distant objects appear elevated.',priority:'useful'},
+  {topic:'p4a',label:'🌡️ Heat',q:'Heat',a:'A form of energy that flows from hotter to cooler bodies. Unit: J.',priority:'core'},
+  {topic:'p4a',label:'🌡️ Heat',q:'Temperature',a:'The degree of hotness of a body — related to average kinetic energy of particles. Unit: K or °C.',priority:'core'},
+  {topic:'p4a',label:'🌡️ Heat',q:'Kelvin (unit)',a:'SI unit of temperature. 0 K = absolute zero. K = °C + 273.',priority:'core'},
+  {topic:'p4a',label:'🌡️ Heat',q:'Thermometric Property',a:'A physical property that changes measurably and reproducibly with temperature (e.g. length of liquid, resistance).',priority:'core'},
+  {topic:'p4a',label:'🌡️ Heat',q:'Heat Capacity (C)',a:'Heat energy needed to raise the temperature of a body by 1 K. C = Q/ΔT. Unit: J/K.',priority:'core'},
+  {topic:'p4a',label:'🌡️ Heat',q:'Specific Heat Capacity (c)',a:'Heat needed to raise 1 kg of a substance by 1 K. Q = mcΔT. Unit: J/kg/K. Water: 4200 J/kg/K.',priority:'core'},
+  {topic:'p4a',label:'🌡️ Heat',q:'Latent Heat (L)',a:'Heat needed to change state without temperature change. Unit: J.',priority:'core'},
+  {topic:'p4a',label:'🌡️ Heat',q:'Specific Latent Heat (l)',a:'Heat needed to change state of 1 kg without temperature change. Q = ml. Unit: J/kg.',priority:'core'},
+  {topic:'p4a',label:'🌡️ Heat',q:'Specific Latent Heat of Fusion (Lf)',a:'Heat to change 1 kg from solid to liquid (at melting point) without temperature change.',priority:'core'},
+  {topic:'p4a',label:'🌡️ Heat',q:'Specific Latent Heat of Vaporisation (Lv)',a:'Heat to change 1 kg from liquid to gas (at boiling point) without temperature change.',priority:'core'},
+  {topic:'p4a',label:'🌡️ Heat',q:'Conduction',a:'Transfer of heat through a solid by molecule-to-molecule kinetic energy transfer, without bulk movement.',priority:'core'},
+  {topic:'p4a',label:'🌡️ Heat',q:'Convection',a:'Transfer of heat through a fluid by the physical movement (circulation) of the fluid.',priority:'core'},
+  {topic:'p4a',label:'🌡️ Heat',q:'Radiation',a:'Transfer of heat as electromagnetic waves (IR) — no medium required.',priority:'core'},
+  {topic:'p4a',label:'🌡️ Heat',q:'Solar Constant',a:'Average solar energy hitting 1 m² of Earth\'s atmosphere per second. ≈ 1.35 kW/m².',priority:'core'},
+  {topic:'p4a',label:'🌡️ Heat',q:'U-Value',a:'Heat energy transmitted per second through 1 m² of material with 1 K temperature difference across it. Lower = better insulator.',priority:'core'},
+  {topic:'p4a',label:'🌡️ Heat',q:'Boyle\'s Law',a:'At constant temperature, pressure ∝ 1/volume for a fixed mass of gas. pV = constant.',priority:'core'},
+  {topic:'p4a',label:'🌡️ Heat',q:'Archimedes\' Principle',a:'Upthrust on immersed body = weight of fluid displaced. Upthrust = ρVg.',priority:'core'},
+  {topic:'p4a',label:'🌡️ Heat',q:'Law of Flotation',a:'A floating body displaces fluid equal in weight to its own weight.',priority:'useful'},
+  {topic:'p5a',label:'〜 Waves',q:'Wave',a:'A disturbance that transfers energy through a medium without net displacement of the medium.',priority:'core'},
+  {topic:'p5a',label:'〜 Waves',q:'Transverse Wave',a:'Vibrations perpendicular to the direction of propagation. Examples: light, EM waves, water waves.',priority:'core'},
+  {topic:'p5a',label:'〜 Waves',q:'Longitudinal Wave',a:'Vibrations parallel to the direction of propagation. Example: sound.',priority:'core'},
+  {topic:'p5a',label:'〜 Waves',q:'Frequency (f)',a:'Number of complete oscillations per second. Unit: Hz. f = 1/T.',priority:'core'},
+  {topic:'p5a',label:'〜 Waves',q:'Wavelength (λ)',a:'Distance between two successive points in phase (e.g. crest to crest). Unit: m.',priority:'core'},
+  {topic:'p5a',label:'〜 Waves',q:'Wave Velocity (v)',a:'Speed of energy propagation. v = fλ. Unit: m/s.',priority:'core'},
+  {topic:'p5a',label:'〜 Waves',q:'Amplitude',a:'Maximum displacement of a particle from its rest position.',priority:'core'},
+  {topic:'p5a',label:'〜 Waves',q:'Interference',a:'Superposition of waves; resultant amplitude = algebraic sum of individual amplitudes.',priority:'core'},
+  {topic:'p5a',label:'〜 Waves',q:'Constructive Interference',a:'Waves combine to give greater amplitude. Path difference = nλ.',priority:'core'},
+  {topic:'p5a',label:'〜 Waves',q:'Destructive Interference',a:'Waves combine to give lesser amplitude. Path difference = (n+½)λ.',priority:'core'},
+  {topic:'p5a',label:'〜 Waves',q:'Diffraction',a:'Spreading of a wave through a gap or around an obstacle. Greatest when gap ≈ wavelength.',priority:'core'},
+  {topic:'p5a',label:'〜 Waves',q:'Polarisation',a:'Vibrations confined to a single plane. Only transverse waves can be polarised.',priority:'core'},
+  {topic:'p5a',label:'〜 Waves',q:'Stationary/Standing Wave',a:'Formed when two waves of equal frequency/amplitude travel in opposite directions and superpose.',priority:'core'},
+  {topic:'p5a',label:'〜 Waves',q:'Node',a:'Point on a standing wave with zero displacement (stationary).',priority:'core'},
+  {topic:'p5a',label:'〜 Waves',q:'Antinode',a:'Point on a standing wave with maximum displacement.',priority:'core'},
+  {topic:'p5a',label:'〜 Waves',q:'Fundamental Frequency',a:'Lowest natural frequency; corresponds to standing wave with 1 antinode (2 nodes). = 1st harmonic.',priority:'core'},
+  {topic:'p5a',label:'〜 Waves',q:'Harmonics',a:'Integer multiples of fundamental: 1st harmonic = f, 2nd = 2f, etc.',priority:'core'},
+  {topic:'p5a',label:'〜 Waves',q:'Overtones',a:'Frequencies above fundamental: 1st overtone = 2f, 2nd overtone = 3f. (1st overtone = 2nd harmonic)',priority:'core'},
+  {topic:'p5a',label:'〜 Waves',q:'Doppler Effect',a:'Apparent change in frequency due to relative motion between source and observer.',priority:'core'},
+  {topic:'p5a',label:'〜 Waves',q:'Resonance',a:'Large-amplitude oscillations when driving frequency = natural frequency.',priority:'core'},
+  {topic:'p5a',label:'〜 Waves',q:'Coherent Sources',a:'Sources with the same frequency that are in phase — needed for stable interference patterns.',priority:'core'},
+  {topic:'p5a',label:'〜 Waves',q:'Electromagnetic Spectrum',a:'Full range of EM waves (no medium needed). Radio → Microwave → IR → Visible → UV → X-ray → Gamma. All travel at c in vacuum.',priority:'core'},
+  {topic:'p5a',label:'〜 Waves',q:'Sound Intensity',a:'Power per unit area perpendicular to propagation. Unit: W/m².',priority:'useful'},
+  {topic:'p5a',label:'〜 Waves',q:'Threshold of Hearing',a:'Minimum audible intensity at 1000 Hz: I₀ = 1×10⁻¹² W/m².',priority:'useful'},
+  {topic:'p6a',label:'⚡ Electricity',q:'Potential Difference (Voltage)',a:'Work done per unit positive charge between two points. V = W/q. Unit: V.',priority:'core'},
+  {topic:'p6a',label:'⚡ Electricity',q:'EMF',a:'Potential difference between terminals of a source when no current flows — max voltage. Unit: V.',priority:'core'},
+  {topic:'p6a',label:'⚡ Electricity',q:'Current',a:'Rate of flow of electric charge. I = Q/t. Unit: A.',priority:'core'},
+  {topic:'p6a',label:'⚡ Electricity',q:'Ampere (unit)',a:'SI unit of current. 1 A = 1 C/s. Defined by force between parallel conductors.',priority:'core'},
+  {topic:'p6a',label:'⚡ Electricity',q:'Resistance',a:'Opposition to current flow. R = V/I. Unit: Ω.',priority:'core'},
+  {topic:'p6a',label:'⚡ Electricity',q:'Ohm\'s Law',a:'At constant temperature, V ∝ I through a conductor. V = IR.',priority:'core'},
+  {topic:'p6a',label:'⚡ Electricity',q:'Coulomb\'s Law',a:'F = kq₁q₂/r². Force ∝ product of charges, inversely ∝ r². k = 9×10⁹ N m²/C².',priority:'core'},
+  {topic:'p6a',label:'⚡ Electricity',q:'Electric Field Strength',a:'Force per unit positive charge at a point. E = F/q. Unit: N/C or V/m.',priority:'core'},
+  {topic:'p6a',label:'⚡ Electricity',q:'Capacitance',a:'Ratio of charge stored to potential difference. C = Q/V. Unit: F (farads).',priority:'core'},
+  {topic:'p6a',label:'⚡ Electricity',q:'Resistivity',a:'Intrinsic resistance property of a material. R = ρl/A. Unit: Ω m.',priority:'core'},
+  {topic:'p6a',label:'⚡ Electricity',q:'Joule\'s Law',a:'Rate of heat in conductor ∝ I². P = I²R.',priority:'core'},
+  {topic:'p6a',label:'⚡ Electricity',q:'P-N Junction',a:'P and N semiconductors joined — current flows one way only (forward bias: P to positive terminal).',priority:'core'},
+  {topic:'p6a',label:'⚡ Electricity',q:'P-Type Semiconductor',a:'Silicon doped with boron — extra holes as majority carriers. Net charge = 0.',priority:'core'},
+  {topic:'p6a',label:'⚡ Electricity',q:'N-Type Semiconductor',a:'Silicon doped with phosphorus — extra electrons as majority carriers. Net charge = 0.',priority:'core'},
+  {topic:'p6a',label:'⚡ Electricity',q:'Doping',a:'Controlled addition of impurities to a semiconductor to increase conductivity.',priority:'core'},
+  {topic:'p6a',label:'⚡ Electricity',q:'Rectification',a:'Conversion of AC to DC using a diode or bridge rectifier.',priority:'core'},
+  {topic:'p6a',label:'⚡ Electricity',q:'Fuse',a:'Safety device — thin wire melts if current exceeds rating, breaking circuit. Single use.',priority:'core'},
+  {topic:'p6a',label:'⚡ Electricity',q:'MCB',a:'Miniature Circuit Breaker — resettable safety device that breaks circuit at preset current.',priority:'core'},
+  {topic:'p6a',label:'⚡ Electricity',q:'RCD',a:'Residual Current Device — compares outgoing/returning current; trips if difference detected.',priority:'core'},
+  {topic:'p6a',label:'⚡ Electricity',q:'Semiconductor',a:'Material with resistivity between conductor and insulator — conductivity controllable.',priority:'core'},
+  {topic:'p6a',label:'⚡ Electricity',q:'Series Circuit',a:'Single path — same current through all. R_total = R₁+R₂+...',priority:'useful'},
+  {topic:'p6a',label:'⚡ Electricity',q:'Parallel Circuit',a:'Multiple paths — voltage same across each branch. 1/R_total = 1/R₁+1/R₂+...',priority:'useful'},
+  {topic:'p6a',label:'⚡ Electricity',q:'Wheatstone Bridge',a:'Circuit for finding unknown resistance using ratio balance. P/Q = R/S when balanced.',priority:'useful'},
+  {topic:'p6a',label:'⚡ Electricity',q:'LED',a:'Light-Emitting Diode — emits light when in forward bias as holes and electrons recombine.',priority:'useful'},
+  {topic:'p6a',label:'⚡ Electricity',q:'Thermistor',a:'Semiconductor whose resistance decreases as temperature increases.',priority:'useful'},
+  {topic:'p6a',label:'⚡ Electricity',q:'LDR',a:'Light-Dependent Resistor — resistance decreases as light intensity increases.',priority:'useful'},
+  {topic:'p6b',label:'🧲 Magnetism',q:'Magnetic Flux Density (B)',a:'Force per unit current per unit length on a conductor at right angles to the field. Unit: T (tesla).',priority:'core'},
+  {topic:'p6b',label:'🧲 Magnetism',q:'Electromagnetic Induction',a:'Creation of EMF in a conductor due to changing magnetic flux through a circuit.',priority:'core'},
+  {topic:'p6b',label:'🧲 Magnetism',q:'Faraday\'s Law',a:'Induced EMF ∝ rate of change of magnetic flux. EMF = −NΔΦ/Δt.',priority:'core'},
+  {topic:'p6b',label:'🧲 Magnetism',q:'Lenz\'s Law',a:'Induced current direction always opposes the change that caused it — conservation of energy.',priority:'core'},
+  {topic:'p6b',label:'🧲 Magnetism',q:'Transformer',a:'Changes AC voltage by mutual induction. Vs/Vp = Ns/Np (ideal). Works only with AC.',priority:'core'},
+  {topic:'p6b',label:'🧲 Magnetism',q:'Magnetic Flux (Φ)',a:'Number of field lines through a surface. Φ = BA cosθ. Unit: Wb (weber).',priority:'core'},
+  {topic:'p6b',label:'🧲 Magnetism',q:'Fleming\'s Left-Hand Rule',a:'Thumb = Force, Index = B-field direction, Middle = Current direction (all perpendicular).',priority:'core'},
+  {topic:'p6b',label:'🧲 Magnetism',q:'Mutual Induction',a:'Changing current in one coil induces EMF in nearby coil. Basis of transformer.',priority:'core'},
+  {topic:'p6b',label:'🧲 Magnetism',q:'Self-Induction',a:'Changing current in a coil induces a back-EMF in itself.',priority:'useful'},
+  {topic:'p6b',label:'🧲 Magnetism',q:'Electrical Generator',a:'Uses EM induction to convert mechanical to electrical energy.',priority:'useful'},
+  {topic:'p7a',label:'⚛️ Modern Physics',q:'Photoelectric Effect',a:'Emission of electrons from a metal surface when EM radiation of sufficient frequency falls on it.',priority:'core'},
+  {topic:'p7a',label:'⚛️ Modern Physics',q:'Photon',a:'A discrete packet (quantum) of EM energy. E = hf. h = 6.63×10⁻³⁴ J s.',priority:'core'},
+  {topic:'p7a',label:'⚛️ Modern Physics',q:'Threshold Frequency (f₀)',a:'Minimum frequency for photoemission from a given metal. hf₀ = work function.',priority:'core'},
+  {topic:'p7a',label:'⚛️ Modern Physics',q:'Work Function (φ)',a:'Minimum energy needed to remove an electron from a metal surface. φ = hf₀. Unit: J or eV.',priority:'core'},
+  {topic:'p7a',label:'⚛️ Modern Physics',q:'Electronvolt (eV)',a:'Energy gained/lost by an electron through 1 V potential difference. 1 eV = 1.6×10⁻¹⁹ J.',priority:'core'},
+  {topic:'p7a',label:'⚛️ Modern Physics',q:'Thermionic Emission',a:'Emission of electrons from the surface of a hot metal.',priority:'core'},
+  {topic:'p7a',label:'⚛️ Modern Physics',q:'Energy Level',a:'A fixed, discrete energy state an electron can occupy in an atom.',priority:'core'},
+  {topic:'p7a',label:'⚛️ Modern Physics',q:'Emission Spectrum',a:'Bright lines on dark background produced by electrons falling to lower energy levels.',priority:'useful'},
+  {topic:'p7a',label:'⚛️ Modern Physics',q:'X-Rays',a:'High-frequency EM radiation produced by rapid deceleration of electrons hitting a metal target.',priority:'useful'},
+  {topic:'p7b',label:'☢️ Nuclear Physics',q:'Atomic Number (Z)',a:'Number of protons in the nucleus — defines the element. Also = number of electrons in neutral atom.',priority:'core'},
+  {topic:'p7b',label:'☢️ Nuclear Physics',q:'Mass Number (A)',a:'Total number of protons + neutrons in the nucleus. A = Z + N.',priority:'core'},
+  {topic:'p7b',label:'☢️ Nuclear Physics',q:'Isotopes',a:'Same element (same Z) but different mass numbers (different number of neutrons).',priority:'core'},
+  {topic:'p7b',label:'☢️ Nuclear Physics',q:'Radioactivity',a:'Spontaneous disintegration of an unstable nucleus with emission of radiation.',priority:'core'},
+  {topic:'p7b',label:'☢️ Nuclear Physics',q:'Alpha (α) Radiation',a:'Helium nuclei (⁴₂He) emitted from nucleus. Stopped by paper. Highly ionising. Z−2, A−4.',priority:'core'},
+  {topic:'p7b',label:'☢️ Nuclear Physics',q:'Beta (β) Radiation',a:'Fast electrons from nucleus (neutron → proton). Stopped by aluminium. Z+1, A unchanged.',priority:'core'},
+  {topic:'p7b',label:'☢️ Nuclear Physics',q:'Gamma (γ) Radiation',a:'High-frequency EM from nucleus. Stopped by lead/concrete. No change to Z or A.',priority:'core'},
+  {topic:'p7b',label:'☢️ Nuclear Physics',q:'Half-Life (T½)',a:'Time for half of radioactive nuclei to decay. N = N₀(½)^(t/T½).',priority:'core'},
+  {topic:'p7b',label:'☢️ Nuclear Physics',q:'Activity (A)',a:'Number of nuclei decaying per second. Unit: Bq. A = λN.',priority:'core'},
+  {topic:'p7b',label:'☢️ Nuclear Physics',q:'Nuclear Fission',a:'Splitting of a large nucleus into two smaller ones with release of neutrons and energy.',priority:'core'},
+  {topic:'p7b',label:'☢️ Nuclear Physics',q:'Nuclear Fusion',a:'Joining of two light nuclei to form a heavier one, releasing enormous energy.',priority:'core'},
+  {topic:'p7b',label:'☢️ Nuclear Physics',q:'Critical Mass',a:'Minimum mass of fissile material needed to sustain a chain reaction.',priority:'core'},
+  {topic:'p7b',label:'☢️ Nuclear Physics',q:'Moderator',a:'Slows neutrons in a reactor (graphite or heavy water) so they cause fission.',priority:'core'},
+  {topic:'p7b',label:'☢️ Nuclear Physics',q:'Control Rods',a:'Neutron-absorbing rods (e.g. boron) that control the rate of fission in a reactor.',priority:'core'},
+  {topic:'p7b',label:'☢️ Nuclear Physics',q:'Law of Radioactive Decay',a:'Activity ∝ number of undecayed nuclei. A = λN, N = N₀e^(−λt).',priority:'useful'},
+  {topic:'p7c',label:'🔬 Particle Physics',q:'Strong Nuclear Force',a:'Binds protons and neutrons in nucleus — strongest force, short range (≈10⁻¹⁵ m). Acts on hadrons.',priority:'core'},
+  {topic:'p7c',label:'🔬 Particle Physics',q:'Weak Nuclear Force',a:'Responsible for beta decay. Very short range (≈10⁻¹⁸ m). Second weakest.',priority:'core'},
+  {topic:'p7c',label:'🔬 Particle Physics',q:'Gravitational Force',a:'Weakest force — attracts all bodies with mass. Infinite range.',priority:'core'},
+  {topic:'p7c',label:'🔬 Particle Physics',q:'Electromagnetic Force',a:'Acts on charged particles. Second strongest. Infinite range. Responsible for light and chemistry.',priority:'core'},
+  {topic:'p7c',label:'🔬 Particle Physics',q:'Antimatter',a:'Matter composed of antiparticles — same mass but opposite charge.',priority:'core'},
+  {topic:'p7c',label:'🔬 Particle Physics',q:'Pair Production',a:'Gamma photon → particle + antiparticle near a nucleus. Energy needed: E ≥ 2m₀c².',priority:'core'},
+  {topic:'p7c',label:'🔬 Particle Physics',q:'Pair Annihilation',a:'Particle + antiparticle → two gamma photons. Mass → energy.',priority:'core'},
+  {topic:'p7c',label:'🔬 Particle Physics',q:'Quarks',a:'Fundamental particles with fractional charge forming hadrons. 6 types. Up (+2/3), Down (−1/3).',priority:'core'},
+  {topic:'p7c',label:'🔬 Particle Physics',q:'Leptons',a:'Fundamental fermions not subject to the strong force. 6 types: e, μ, τ and their neutrinos.',priority:'core'},
+  {topic:'p7c',label:'🔬 Particle Physics',q:'Hadrons',a:'Particles subject to the strong force — made of quarks. Includes baryons and mesons.',priority:'core'},
+  {topic:'p7c',label:'🔬 Particle Physics',q:'Baryons',a:'Hadrons made of 3 quarks. Proton (uud), neutron (udd).',priority:'core'},
+  {topic:'p7c',label:'🔬 Particle Physics',q:'Mesons',a:'Hadrons made of 1 quark + 1 antiquark. Pion (ud̄).',priority:'core'},
+  {topic:'p7c',label:'🔬 Particle Physics',q:'Neutrino',a:'Lepton with zero charge and near-zero mass. Produced in beta decay.',priority:'useful'},
+  {topic:'p7c',label:'🔬 Particle Physics',q:'Antiparticle',a:'Same mass as counterpart but opposite charge. e.g. positron is antiparticle of electron.',priority:'useful'}
+];
+
+const TOPIC_META = {
+  'p1a': {label:'⚖️ Basics & Motion',   color:'#3A86FF', file:'Physics_Glossary_1_BasicMotionForce.html'},
+  'p1b': {label:'💪 Force & Laws',       color:'#1A5CC8', file:'Physics_Glossary_1_BasicMotionForce.html'},
+  'p1c': {label:'🔩 Pressure',           color:'#0D3D8A', file:'Physics_Glossary_1_BasicMotionForce.html'},
+  'p2a': {label:'⚙️ Moments',            color:'#F77F00', file:'Physics_Glossary_2_MomentsWorkCircularSHM.html'},
+  'p2b': {label:'⚡ Work & Energy',       color:'#CC5500', file:'Physics_Glossary_2_MomentsWorkCircularSHM.html'},
+  'p2c': {label:'🌀 Circular Motion',    color:'#993300', file:'Physics_Glossary_2_MomentsWorkCircularSHM.html'},
+  'p2d': {label:'〰️ SHM',                color:'#FF9500', file:'Physics_Glossary_2_MomentsWorkCircularSHM.html'},
+  'p3a': {label:'🪞 Reflection',         color:'#56C271', file:'Physics_Glossary_3_Optics.html'},
+  'p3b': {label:'🔍 Refraction',         color:'#267339', file:'Physics_Glossary_3_Optics.html'},
+  'p4a': {label:'🌡️ Heat',               color:'#E8637A', file:'Physics_Glossary_4_Heat.html'},
+  'p5a': {label:'〜 Waves',              color:'#7C5CBF', file:'Physics_Glossary_5_Waves.html'},
+  'p6a': {label:'⚡ Electricity',         color:'#CC7A00', file:'Physics_Glossary_6_Electricity.html'},
+  'p6b': {label:'🧲 Magnetism',          color:'#997700', file:'Physics_Glossary_6_Electricity.html'},
+  'p7a': {label:'⚛️ Modern Physics',     color:'#9B5DE5', file:'Physics_Glossary_7_ModernParticle.html'},
+  'p7b': {label:'☢️ Nuclear Physics',    color:'#6B2DAF', file:'Physics_Glossary_7_ModernParticle.html'},
+  'p7c': {label:'🔬 Particle Physics',   color:'#4A0080', file:'Physics_Glossary_7_ModernParticle.html'},
+};
+const TOPIC_ORDER = ['p1a','p1b','p1c','p2a','p2b','p2c','p2d','p3a','p3b','p4a','p5a','p6a','p6b','p7a','p7b','p7c'];
+
+ALL_CARDS.sort((a,b)=>TOPIC_ORDER.indexOf(a.topic)-TOPIC_ORDER.indexOf(b.topic));
+
+const PROGRESS_KEY = 'lcphysics_progress';
+const TODAY_KEY    = 'lcphysics_today';
+
+async function storageGet(key) {
+  try { if(window.storage){ const r=await window.storage.get(key); return r?JSON.parse(r.value):null; } } catch(e){}
+  try { const v=localStorage.getItem(key); return v?JSON.parse(v):null; } catch(e){ return null; }
+}
+async function storageSet(key,val) {
+  const str=JSON.stringify(val);
+  try { if(window.storage){ await window.storage.set(key,str); return; } } catch(e){}
+  try { localStorage.setItem(key,str); } catch(e){}
+}
+
+let progress={};
+let todayData={date:'',count:0};
+
+async function loadAll() {
+  progress=(await storageGet(PROGRESS_KEY))||{};
+  todayData=(await storageGet(TODAY_KEY))||{date:'',count:0};
+  const today=new Date().toDateString();
+  if(todayData.date!==today) todayData={date:today,count:0};
+}
+async function saveProgress(){ await storageSet(PROGRESS_KEY,progress); }
+async function saveToday(){ await storageSet(TODAY_KEY,todayData); }
+
+function isMastered(q){ return progress[q]&&progress[q].right>0; }
+function hasMissed(q){ return progress[q]&&progress[q].wrong>0&&!isMastered(q); }
+
+let currentTopic='all';
+let sessionCards=[];
+let sessionIdx=0;
+let sessionRes=[];
+let flipped=false;
+let cfg={filter:'all',order:'order',show:'all'};
+
+function buildHome() {
+  const mastered=ALL_CARDS.filter(c=>isMastered(c.q)).length;
+  const pct=Math.round(mastered/ALL_CARDS.length*100);
+  document.getElementById('overallFill').style.width=pct+'%';
+  document.getElementById('overallLeft').textContent=mastered+' mastered';
+  document.getElementById('overallRight').textContent=pct+'% of all cards';
+  document.getElementById('todayPill').textContent='🔥 '+todayData.count+' studied today';
+
+  const grid=document.getElementById('chapterGrid');
+  grid.innerHTML='';
+
+  const allCard=document.createElement('div');
+  allCard.className='ch-card all-ch';
+  allCard.onclick=()=>openConfig('all');
+  allCard.innerHTML=`<div class="cc-top"><span class="cc-label">📚 All Topics — Full Drill</span><span class="cc-badge">${ALL_CARDS.length} cards</span></div><div class="cc-bar-track"><div class="cc-bar-fill" style="width:${pct}%"></div></div><div class="cc-foot"><span>${mastered} mastered</span><span class="cc-pct">${pct}%</span></div>`;
+  grid.appendChild(allCard);
+
+  TOPIC_ORDER.forEach(tid=>{
+    const meta=TOPIC_META[tid];
+    const cards=ALL_CARDS.filter(c=>c.topic===tid);
+    const m=cards.filter(c=>isMastered(c.q)).length;
+    const p=Math.round(m/cards.length*100);
+    const el=document.createElement('div');
+    el.className='ch-card';
+    el.style.setProperty('--cc',meta.color);
+    el.onclick=()=>openConfig(tid);
+    el.innerHTML=`<div class="cc-top"><span class="cc-label">${meta.label}</span><span class="cc-badge">${cards.length} cards</span></div><div class="cc-bar-track"><div class="cc-bar-fill" style="width:${p}%"></div></div><div class="cc-foot"><span>${m} / ${cards.length} mastered</span><span class="cc-pct">${p}%</span></div>`;
+    grid.appendChild(el);
+  });
+}
+
+function openConfig(topicId) {
+  currentTopic=topicId;
+  document.getElementById('configLabel').textContent=topicId==='all'?'All Topics':TOPIC_META[topicId].label;
+  goScreen('configScreen');
+}
+function setCfg(type,val,btn) {
+  cfg[type]=val;
+  btn.closest('.tg').querySelectorAll('.tg-btn').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+}
+
+function startQuiz() {
+  let pool=currentTopic==='all'?[...ALL_CARDS]:ALL_CARDS.filter(c=>c.topic===currentTopic);
+  if(cfg.filter==='core') pool=pool.filter(c=>c.priority==='core');
+  if(cfg.show==='wrong'){ const missed=pool.filter(c=>hasMissed(c.q)); if(missed.length) pool=missed; }
+  if(!pool.length){ alert('No cards match those filters!'); return; }
+  if(cfg.order==='shuffle'){ for(let i=pool.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [pool[i],pool[j]]=[pool[j],pool[i]]; } }
+  sessionCards=pool; sessionIdx=0; sessionRes=[]; flipped=false;
+  const color=currentTopic==='all'?'#6B46C1':TOPIC_META[currentTopic].color;
+  document.getElementById('qbFill').style.background=`linear-gradient(90deg,${color},#6B46C1)`;
+  document.getElementById('fcBack').style.background=`linear-gradient(135deg,${color} 0%,#2d1b6e 100%)`;
+  goScreen('quizScreen'); renderCard();
+}
+
+function renderCard() {
+  const c=sessionCards[sessionIdx];
+  const lbl=TOPIC_META[c.topic].label;
+  document.getElementById('fcBadge').textContent=lbl;
+  document.getElementById('fcBadgeBack').textContent=lbl;
+  document.getElementById('fcQ').textContent=c.q;
+  document.getElementById('fcA').textContent=c.a;
+  document.getElementById('qbTopic').textContent=lbl;
+  document.getElementById('qbCount').textContent=(sessionIdx+1)+' / '+sessionCards.length;
+  document.getElementById('qbFill').style.width=(sessionIdx/sessionCards.length*100)+'%';
+  flipped=false;
+  document.getElementById('flashcard').classList.remove('flipped');
+  document.getElementById('verdictRow').classList.remove('show');
+}
+
+function flipCard() {
+  flipped=!flipped;
+  document.getElementById('flashcard').classList.toggle('flipped',flipped);
+  if(flipped) document.getElementById('verdictRow').classList.add('show');
+}
+
+async function mark(correct) {
+  const c=sessionCards[sessionIdx];
+  sessionRes.push({card:c,correct});
+  if(!progress[c.q]) progress[c.q]={right:0,wrong:0};
+  if(correct) progress[c.q].right++; else progress[c.q].wrong++;
+  todayData.count++;
+  await saveProgress(); await saveToday();
+  sessionIdx++;
+  if(sessionIdx>=sessionCards.length) showResults(); else renderCard();
+}
+
+function confirmQuit() { if(!sessionRes.length||confirm('Quit? Progress so far is saved.')) goScreen('homeScreen'); }
+
+function showResults() {
+  const total=sessionRes.length;
+  const correct=sessionRes.filter(r=>r.correct).length;
+  const pct=total?Math.round(correct/total*100):0;
+  const circ=364; const offset=circ-(pct/100)*circ;
+  const col=pct>=80?'#276749':pct>=50?'#6B46C1':'#C0392B';
+  const fg=document.getElementById('ringFg');
+  fg.setAttribute('stroke-dashoffset',circ); fg.setAttribute('stroke',col);
+  document.getElementById('ringPct').textContent=pct+'%';
+  document.getElementById('ringPct').style.color=col;
+  setTimeout(()=>fg.setAttribute('stroke-dashoffset',offset),80);
+  const msgs=[[100,'🏆 Perfect!','Every card nailed — flawless.'],
+    [80,'🎉 Great Work!',`${correct} / ${total} — well on top of it.`],
+    [60,'👍 Solid Effort',`${correct} / ${total} — solid, a few to polish.`],
+    [40,'📖 Keep Going',`${correct} / ${total} — good effort, check the list below.`],
+    [0,'💪 Keep At It',`${correct} / ${total} — tough session, now you know what to target.`]];
+  const [,h,m]=msgs.find(([t])=>pct>=t);
+  document.getElementById('resHeading').textContent=h;
+  document.getElementById('resMsg').textContent=m;
+  const wrong=sessionRes.filter(r=>!r.correct);
+  const ib=document.getElementById('improveBox');
+  if(wrong.length){ ib.style.display='block'; document.getElementById('improveList').innerHTML=wrong.map(r=>`<li><strong>${r.card.q}</strong> — ${r.card.a.slice(0,90)}${r.card.a.length>90?'…':''}</li>`).join(''); } else ib.style.display='none';
+  document.getElementById('breakdownList').innerHTML=sessionRes.map(r=>`<div class="bd-row"><span class="bd-icon">${r.correct?'✅':'❌'}</span><span class="bd-term">${r.card.q}</span><span class="bd-tag ${r.correct?'right':'wrong'}">${r.correct?'Got it':'Missed'}</span></div>`).join('');
+  document.getElementById('retryBtn').style.display=wrong.length?'':'none';
+  goScreen('resultsScreen'); window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function retryWrong() {
+  const wrong=sessionRes.filter(r=>!r.correct).map(r=>r.card);
+  if(!wrong.length) return;
+  sessionCards=cfg.order==='shuffle'?shuffle([...wrong]):wrong;
+  sessionIdx=0; sessionRes=[]; goScreen('quizScreen'); renderCard();
+}
+
+function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+
+document.addEventListener('keydown',e=>{
+  if(!document.getElementById('quizScreen').classList.contains('active')) return;
+  if(e.key===' '){ e.preventDefault(); flipCard(); }
+  if(e.key==='ArrowLeft'&&flipped) mark(false);
+  if(e.key==='ArrowRight'&&flipped) mark(true);
+});
+
+function goScreen(id) {
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(id==='homeScreen') buildHome();
+}
+
+loadAll().then(()=>buildHome());
+</script>
+</body>
+</html>

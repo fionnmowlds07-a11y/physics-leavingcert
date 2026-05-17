@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LC Physics — Basic Quantities, Motion &amp; Force</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F7F4EF;
+    --surface: #FFFFFF;
+    --surface2: #F0EDE8;
+    --border: #E2DDD7;
+    --text: #2C2825;
+    --text-muted: #7A7068;
+    --t1: #FF6B6B; --t1-light: #FFE8E8; --t1-dark: #C94040;
+    --t2: #4ECDC4; --t2-light: #E0F7F6; --t2-dark: #2A9990;
+    --t3: #FFB347; --t3-light: #FFF3E0; --t3-dark: #CC7A00;
+    --t4: #7C5CBF; --t4-light: #EDE8F7; --t4-dark: #5a3da0;
+    --t5: #56C271; --t5-light: #E6F8EB; --t5-dark: #267339;
+    --t6: #E8637A; --t6-light: #FCE8EC; --t6-dark: #B03050;
+    --t7: #3A86FF; --t7-light: #E0ECFF; --t7-dark: #1A5CC8;
+    --t8: #F77F00; --t8-light: #FFF0DC; --t8-dark: #B85A00;
+    --t9: #2EC4B6; --t9-light: #E0FAF7; --t9-dark: #1A9088;
+    --t10: #9B5DE5; --t10-light: #F3EAFF; --t10-dark: #6B2DAF;
+    --t11: #D62828; --t11-light: #FFECEC; --t11-dark: #9A1A1A;
+    --purple: #7C5CBF; --purple-light: #EDE8F7;
+    --green: #56C271; --green-light: #E6F8EB;
+    --radius: 14px;
+    --shadow: 0 4px 20px rgba(0,0,0,0.08);
+    --shadow-hover: 0 8px 32px rgba(0,0,0,0.14);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Lexend', sans-serif; background: var(--bg); color: var(--text); line-height: 1.8; font-size: 16px; }
+
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(247,244,239,0.96);
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid var(--border);
+    padding: 8px 16px;
+    display: flex; align-items: center; gap: 6px;
+    flex-wrap: wrap; min-height: 56px;
+  }
+  .nav-logo { font-family: 'Lexend Mega', sans-serif; font-size: 0.95rem; color: var(--text); margin-right: 6px; }
+  .nav-logo span { color: var(--t1); }
+  .nav-btn {
+    padding: 5px 11px; border-radius: 18px;
+    border: 2px solid transparent;
+    font-family: 'Lexend', sans-serif;
+    font-size: 0.72rem; font-weight: 600;
+    cursor: pointer; transition: all 0.2s;
+    background: var(--surface); color: var(--text-muted);
+    white-space: nowrap;
+  }
+  .nav-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+  .nav-btn.t1  { border-color: var(--t1); }  .nav-btn.t1.active,  .nav-btn.t1:hover  { background: var(--t1);  color:#fff; }
+  .nav-btn.t2  { border-color: var(--t2); }  .nav-btn.t2.active,  .nav-btn.t2:hover  { background: var(--t2);  color:var(--text); }
+  .nav-btn.t3  { border-color: var(--t3); }  .nav-btn.t3.active,  .nav-btn.t3:hover  { background: var(--t3);  color:var(--text); }
+  .nav-btn.t4  { border-color: var(--t4); }  .nav-btn.t4.active,  .nav-btn.t4:hover  { background: var(--t4);  color:#fff; }
+  .nav-btn.t5  { border-color: var(--t5); }  .nav-btn.t5.active,  .nav-btn.t5:hover  { background: var(--t5);  color:#fff; }
+  .nav-btn.t6  { border-color: var(--t6); }  .nav-btn.t6.active,  .nav-btn.t6:hover  { background: var(--t6);  color:#fff; }
+  .nav-btn.t7  { border-color: var(--t7); }  .nav-btn.t7.active,  .nav-btn.t7:hover  { background: var(--t7);  color:#fff; }
+  .nav-btn.t8  { border-color: var(--t8); }  .nav-btn.t8.active,  .nav-btn.t8:hover  { background: var(--t8);  color:#fff; }
+  .nav-btn.t9  { border-color: var(--t9); }  .nav-btn.t9.active,  .nav-btn.t9:hover  { background: var(--t9);  color:#fff; }
+  .nav-btn.t10 { border-color: var(--t10); } .nav-btn.t10.active, .nav-btn.t10:hover { background: var(--t10); color:#fff; }
+  .nav-btn.t11 { border-color: var(--t11); } .nav-btn.t11.active, .nav-btn.t11:hover { background: var(--t11); color:#fff; }
+  .nav-btn.flash { border-color: var(--purple); } .nav-btn.flash.active, .nav-btn.flash:hover { background: var(--purple); color:#fff; }
+
+  .hero { padding: 44px 24px 28px; text-align: center; }
+  .hero h1 { font-family: 'Lexend Mega', sans-serif; font-size: clamp(1.5rem,4vw,2.6rem); line-height:1.2; }
+  .hero h1 .a1{color:var(--t1);} .hero h1 .a2{color:var(--t2-dark);} .hero h1 .a3{color:var(--t3-dark);}
+  .hero p { margin-top:10px; color:var(--text-muted); max-width:620px; margin-left:auto; margin-right:auto; }
+  .stats-row { display:flex; justify-content:center; gap:20px; flex-wrap:wrap; margin-top:20px; }
+  .stat-chip { background:var(--surface); border:2px solid var(--border); border-radius:30px; padding:8px 20px; font-size:0.85rem; font-weight:600; }
+  .chapter-pills { display:flex; justify-content:center; gap:8px; flex-wrap:wrap; margin-top:20px; }
+  .pill { padding:7px 16px; border-radius:28px; font-weight:600; font-size:0.78rem; cursor:pointer; transition:all 0.2s; border:none; }
+  .pill:hover { transform:translateY(-3px); box-shadow:var(--shadow-hover); }
+
+  .section { display:none; padding:0 16px 60px; max-width:920px; margin:0 auto; }
+  .section.active { display:block; animation:fadeIn 0.3s ease; }
+  @keyframes fadeIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+
+  .ch-header {
+    border-radius:var(--radius); padding:28px 28px; color:white;
+    margin-bottom:24px; position:relative; overflow:hidden;
+  }
+  .ch-header h1 { font-family:'Lexend Mega',sans-serif; font-size:1.45rem; }
+  .ch-header p { opacity:0.88; margin-top:7px; font-size:0.92rem; }
+  .ch-header .big-num { position:absolute; right:22px; top:50%; transform:translateY(-50%); font-family:'Lexend Mega',sans-serif; font-size:5.5rem; opacity:0.12; line-height:1; }
+
+  .topic-card {
+    background:var(--surface); border-radius:var(--radius); padding:24px;
+    margin-bottom:20px; box-shadow:var(--shadow);
+    border-left:5px solid var(--t1); transition:box-shadow 0.2s;
+  }
+  .topic-card:hover { box-shadow:var(--shadow-hover); }
+  .topic-card h2 { font-size:1.15rem; font-weight:700; margin-bottom:12px; display:flex; align-items:center; gap:8px; }
+  .topic-card h3 { font-size:0.95rem; font-weight:600; margin:16px 0 7px; }
+  .topic-card p { margin-bottom:9px; }
+  .topic-card ul { padding-left:20px; margin-bottom:9px; }
+  .topic-card li { margin-bottom:4px; }
+
+  /* Term entry */
+  .term-entry { margin-bottom:18px; padding-bottom:18px; border-bottom:1px solid var(--border); }
+  .term-entry:last-child { border-bottom:none; margin-bottom:0; padding-bottom:0; }
+  .term-name { font-size:1.05rem; font-weight:700; margin-bottom:6px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+
+  /* Boxes */
+  .def-box { background:var(--surface2); border:2px dashed var(--border); border-radius:10px; padding:12px 16px; margin:8px 0; position:relative; }
+  .def-box::before { content:'📖 DEFINITION'; display:block; font-size:0.65rem; font-weight:700; letter-spacing:1px; color:var(--text-muted); margin-bottom:5px; }
+  .def-box p { margin:0; font-weight:500; }
+  .analogy-box { background:#FFF9E6; border:2px solid #FFD966; border-radius:10px; padding:12px 16px; margin:8px 0; }
+  .analogy-box::before { content:'💡 ANALOGY'; display:block; font-size:0.65rem; font-weight:700; letter-spacing:1px; color:#997700; margin-bottom:5px; }
+  .memory-box { background:#F0FFF4; border:2px solid var(--green); border-radius:10px; padding:12px 16px; margin:8px 0; }
+  .memory-box::before { content:'🧠 MEMORY TRICK'; display:block; font-size:0.65rem; font-weight:700; letter-spacing:1px; color:#267339; margin-bottom:5px; }
+  .exam-box { background:#FFF0F3; border:2px solid var(--t1); border-radius:10px; padding:12px 16px; margin:8px 0; }
+  .exam-box::before { content:'📝 EXAM TIP'; display:block; font-size:0.65rem; font-weight:700; letter-spacing:1px; color:var(--t1-dark); margin-bottom:5px; }
+  .code-box { background:#1e1e2e; color:#cdd6f4; border-radius:10px; padding:12px 16px; margin:8px 0; font-family:monospace; font-size:0.88rem; overflow-x:auto; }
+
+  .badge { display:inline-block; padding:2px 9px; border-radius:18px; font-size:0.68rem; font-weight:700; letter-spacing:0.4px; }
+  .b-core   { background:#FFE8E8; color:#C94040; }
+  .b-useful { background:#E0F7F6; color:#2A9990; }
+  .b-extra  { background:#F0EDE8; color:#7A7068; }
+
+  comp-table, .comp-table { width:100%; border-collapse:collapse; margin:12px 0; font-size:0.86rem; border-radius:10px; overflow:hidden; }
+  .comp-table th { background:var(--t1); color:#fff; padding:9px 12px; text-align:left; font-weight:600; }
+  .comp-table td { padding:8px 12px; border-bottom:1px solid var(--border); }
+  .comp-table tr:nth-child(even) td { background:var(--surface2); }
+  .comp-table tr:last-child td { border-bottom:none; }
+
+  /* Big O grid */
+  .big-o-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:14px 0; }
+  @media(max-width:580px){ .big-o-grid{grid-template-columns:1fr;} }
+  .big-o-card { border-radius:10px; padding:13px; border:2px solid; }
+  .big-o-card .notation { font-size:1.25rem; font-weight:700; }
+  .big-o-card .label { font-size:0.78rem; font-weight:600; margin:3px 0; }
+  .big-o-card .desc { font-size:0.8rem; color:var(--text-muted); }
+  .o1    { border-color:#56C271; background:#E6F8EB; }
+  .ologn { border-color:#4ECDC4; background:#E0F7F6; }
+  .on    { border-color:#FFB347; background:#FFF3E0; }
+  .on2   { border-color:#FF6B6B; background:#FFE8E8; }
+  .onlogn{ border-color:#C9A800; background:#FFFBE0; }
+
+  /* Accordion for less-important terms */
+  .accordion { margin:8px 0; border-radius:10px; overflow:hidden; border:2px solid var(--border); }
+  .accordion-header { width:100%; text-align:left; padding:11px 16px; background:var(--surface2); border:none; font-family:'Lexend',sans-serif; font-size:0.92rem; font-weight:600; cursor:pointer; display:flex; justify-content:space-between; align-items:center; transition:background 0.2s; }
+  .accordion-header:hover { background:var(--border); }
+  .accordion-header .arrow { transition:transform 0.3s; font-size:0.78rem; }
+  .accordion-header.open .arrow { transform:rotate(180deg); }
+  .accordion-body { display:none; padding:14px 16px; background:var(--surface); border-top:2px solid var(--border); }
+  .accordion-body.open { display:block; }
+
+  /* Flashcards */
+  #flashcards { padding:0 16px 80px; max-width:920px; margin:0 auto; display:none; }
+  
+  .flash-header { background:linear-gradient(135deg,var(--purple) 0%,#5a3da0 100%); border-radius:var(--radius); padding:28px; color:white; margin-bottom:24px; position:relative; overflow:hidden; }
+  .flash-header h1 { font-family:'Lexend Mega',sans-serif; font-size:1.45rem; }
+  .flash-header p { opacity:0.85; margin-top:7px; }
+  .flash-header .big-num { position:absolute; right:22px; top:50%; transform:translateY(-50%); font-family:'Lexend Mega',sans-serif; font-size:5.5rem; opacity:0.12; }
+
+  .flash-controls { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:18px; align-items:center; }
+  .flash-filter { padding:6px 14px; border-radius:18px; border:2px solid var(--border); background:var(--surface); font-family:'Lexend',sans-serif; font-size:0.76rem; font-weight:600; cursor:pointer; transition:all 0.2s; color:var(--text-muted); }
+  .flash-filter:hover, .flash-filter.factive { background:var(--purple); color:#fff; border-color:var(--purple); }
+
+  .flashcard-area { display:flex; flex-direction:column; align-items:center; }
+  .flashcard { width:100%; max-width:640px; perspective:1200px; min-height:200px; cursor:pointer; margin-bottom:18px; }
+  .flashcard-inner { position:relative; width:100%; min-height:200px; transition:transform 0.55s cubic-bezier(.4,.2,.2,1); transform-style:preserve-3d; }
+  .flashcard.flipped .flashcard-inner { transform:rotateY(180deg); }
+  .flashcard-front, .flashcard-back { position:absolute; width:100%; min-height:200px; backface-visibility:hidden; border-radius:var(--radius); padding:28px 24px; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; box-shadow:var(--shadow); }
+  .flashcard-front { background:var(--surface); border:3px solid var(--purple); }
+  .flashcard-back { background:var(--purple); color:white; transform:rotateY(180deg); }
+  .flashcard-front .card-topic { font-size:0.68rem; font-weight:700; letter-spacing:1px; text-transform:uppercase; margin-bottom:10px; color:var(--text-muted); }
+  .flashcard-front .card-q { font-size:1.1rem; font-weight:600; }
+  .flashcard-front .flip-hint { margin-top:14px; font-size:0.72rem; color:var(--text-muted); }
+  .flashcard-back .card-a { font-size:0.95rem; line-height:1.7; }
+  .flash-nav { display:flex; gap:12px; align-items:center; }
+  .flash-btn { padding:9px 22px; border-radius:22px; border:none; font-family:'Lexend',sans-serif; font-size:0.88rem; font-weight:600; cursor:pointer; transition:all 0.2s; background:var(--purple); color:#fff; }
+  .flash-btn:hover { background:#5a3da0; transform:translateY(-2px); box-shadow:var(--shadow-hover); }
+  .flash-btn:disabled { opacity:0.4; cursor:not-allowed; transform:none; }
+  .flash-counter { font-weight:600; color:var(--text-muted); font-size:0.88rem; min-width:80px; text-align:center; }
+  .flash-progress { width:100%; max-width:640px; height:6px; background:var(--border); border-radius:3px; margin-bottom:16px; overflow:hidden; }
+  .flash-progress-bar { height:100%; background:var(--purple); border-radius:3px; transition:width 0.4s; }
+
+  #scrollTop { position:fixed; bottom:22px; right:22px; width:40px; height:40px; background:var(--text); color:#fff; border:none; border-radius:50%; font-size:1rem; cursor:pointer; box-shadow:var(--shadow-hover); transition:all 0.2s; z-index:99; opacity:0; pointer-events:none; }
+  #scrollTop.visible { opacity:1; pointer-events:all; }
+  #scrollTop:hover { transform:scale(1.1); }
+  .icon { font-size:1.15rem; }
+
+  /* search bar */
+  .search-wrap { max-width:920px; margin:0 auto 4px; padding:0 16px; }
+  .search-input { width:100%; padding:11px 18px; border-radius:30px; border:2px solid var(--border); font-family:'Lexend',sans-serif; font-size:0.92rem; background:var(--surface); color:var(--text); outline:none; transition:border-color 0.2s; }
+  .search-input:focus { border-color:var(--purple); }
+  .search-result-count { font-size:0.8rem; color:var(--text-muted); text-align:center; margin:6px 0 0; }
+
+  /* colour overrides per topic */
+  .tc-t1  { border-left-color:var(--t1);  } .tc-t2  { border-left-color:var(--t2);  }
+  .tc-t3  { border-left-color:var(--t3);  } .tc-t4  { border-left-color:var(--t4);  }
+  .tc-t5  { border-left-color:var(--t5);  } .tc-t6  { border-left-color:var(--t6);  }
+  .tc-t7  { border-left-color:var(--t7);  } .tc-t8  { border-left-color:var(--t8);  }
+  .tc-t9  { border-left-color:var(--t9);  } .tc-t10 { border-left-color:var(--t10); }
+  .tc-t11 { border-left-color:var(--t11); }
+
+  /* ── shared navbar additions ── */
+  .nav-home {
+    display:inline-flex; align-items:center; gap:5px;
+    padding:5px 13px; border-radius:18px;
+    border:2px solid var(--border);
+    background:var(--surface);
+    font-family:'Lexend',sans-serif; font-size:0.72rem; font-weight:700;
+    color:var(--text-muted); text-decoration:none;
+    transition:all 0.2s; white-space:nowrap;
+  }
+  .nav-home:hover { background:var(--text); color:#fff; border-color:var(--text); transform:translateY(-2px); }
+  .nav-flashcards {
+    display:inline-flex; align-items:center; gap:5px;
+    padding:5px 13px; border-radius:18px;
+    border:2px solid var(--purple); background:var(--surface);
+    font-family:'Lexend',sans-serif; font-size:0.72rem; font-weight:700;
+    color:var(--purple); text-decoration:none;
+    transition:all 0.2s; white-space:nowrap; margin-left:auto;
+  }
+  .nav-flashcards:hover { background:var(--purple); color:#fff; transform:translateY(-2px); }
+  .nav-divider { width:1px; height:20px; background:var(--border); margin:0 4px; flex-shrink:0; }
+
+
+  /* ── improved nav file links ── */
+  .nav-home {
+    display:inline-flex; align-items:center; gap:5px;
+    padding:5px 12px; border-radius:14px;
+    border:2px solid var(--border); background:var(--surface);
+    font-family:'Lexend',sans-serif; font-size:0.72rem; font-weight:700;
+    color:var(--text-muted); text-decoration:none; transition:all 0.2s;
+    white-space:nowrap; flex-shrink:0;
+  }
+  .nav-home:hover { background:var(--text); color:#fff; border-color:var(--text); }
+  .nav-divider { width:1px; height:18px; background:var(--border); flex-shrink:0; }
+  .nav-file-link {
+    display:inline-flex; align-items:center;
+    padding:5px 11px; border-radius:14px;
+    border:2px solid var(--border); background:var(--surface);
+    font-family:'Lexend',sans-serif; font-size:0.7rem; font-weight:700;
+    color:var(--text-muted); text-decoration:none; transition:all 0.2s;
+    white-space:nowrap;
+  }
+  .nav-file-link:hover { border-color:var(--purple); color:var(--purple); transform:translateY(-1px); }
+  .nav-file-link.current { background:var(--purple); color:#fff; border-color:var(--purple); }
+  .nav-file-link.fc-link { border-color:var(--purple); color:var(--purple); }
+  .nav-file-link.fc-link:hover { background:var(--purple); color:#fff; }
+  /* label above file links group */
+  .nav-files-group {
+    display:flex; align-items:center; gap:6px; flex-wrap:wrap;
+  }
+  .nav-files-label {
+    font-size:0.62rem; font-weight:800; letter-spacing:0.8px;
+    text-transform:uppercase; color:var(--text-muted);
+    white-space:nowrap; flex-shrink:0;
+  }
+  /* hero simplified — no switcher section */
+  .hero-compact {
+    text-align:center; padding:28px 20px 16px;
+    border-bottom:2px solid var(--border);
+    margin-bottom:20px;
+    background:var(--surface);
+  }
+  .hero-compact h1 { font-family:'Lexend Mega',sans-serif; font-size:clamp(1.1rem,3vw,1.6rem); margin-bottom:6px; }
+  .hero-compact p  { color:var(--text-muted); font-size:0.85rem; max-width:640px; margin:0 auto 14px; }
+  .hero-compact .topic-pills { display:flex; justify-content:center; gap:8px; flex-wrap:wrap; }
+  .hero-compact .topic-pill {
+    padding:9px 20px; border-radius:24px; border:none;
+    font-family:'Lexend',sans-serif; font-size:0.82rem; font-weight:700;
+    cursor:pointer; transition:all 0.2s; box-shadow:0 2px 8px rgba(0,0,0,0.12);
+  }
+  .hero-compact .topic-pill:hover { transform:translateY(-2px); box-shadow:0 4px 14px rgba(0,0,0,0.18); }
+  .hero-compact .pill-hint {
+    margin-top:10px; font-size:0.72rem; color:var(--text-muted);
+  }
+
+  .nav-home {
+    display:inline-flex; align-items:center; gap:5px;
+    padding:5px 12px; border-radius:14px;
+    border:2px solid var(--border); background:var(--surface);
+    font-family:'Lexend',sans-serif; font-size:0.72rem; font-weight:700;
+    color:var(--text-muted); text-decoration:none; transition:all 0.2s;
+    white-space:nowrap; flex-shrink:0;
+  }
+  .nav-home:hover { background:var(--text); color:#fff; border-color:var(--text); }
+  .nav-divider { width:1px; height:18px; background:var(--border); flex-shrink:0; }
+  .nav-file-link {
+    display:inline-flex; align-items:center;
+    padding:5px 10px; border-radius:14px;
+    border:2px solid var(--border); background:var(--surface);
+    font-family:'Lexend',sans-serif; font-size:0.68rem; font-weight:700;
+    color:var(--text-muted); text-decoration:none; transition:all 0.2s;
+    white-space:nowrap;
+  }
+  .nav-file-link:hover { border-color:var(--purple); color:var(--purple); transform:translateY(-1px); }
+  .nav-file-link.current { background:var(--purple); color:#fff; border-color:var(--purple); }
+  .nav-file-link.fc-link { border-color:var(--purple); color:var(--purple); }
+  .nav-file-link.fc-link:hover { background:var(--purple); color:#fff; }
+  .nav-files-group { display:flex; align-items:center; gap:5px; flex-wrap:wrap; }
+  .nav-files-label { font-size:0.62rem; font-weight:800; letter-spacing:0.8px; text-transform:uppercase; color:var(--text-muted); white-space:nowrap; flex-shrink:0; }
+  .hero-compact {
+    text-align:center; padding:28px 20px 16px;
+    border-bottom:2px solid var(--border); margin-bottom:20px;
+    background:var(--surface);
+  }
+  .hero-compact h1 { font-family:'Lexend Mega',sans-serif; font-size:clamp(1.1rem,3vw,1.6rem); margin-bottom:6px; }
+  .hero-compact p  { color:var(--text-muted); font-size:0.85rem; max-width:640px; margin:0 auto 14px; }
+  .hero-compact .topic-pills { display:flex; justify-content:center; gap:8px; flex-wrap:wrap; }
+  .hero-compact .topic-pill {
+    padding:9px 20px; border-radius:24px; border:none;
+    font-family:'Lexend',sans-serif; font-size:0.82rem; font-weight:700;
+    cursor:pointer; transition:all 0.2s; box-shadow:0 2px 8px rgba(0,0,0,0.12);
+  }
+  .hero-compact .topic-pill:hover { transform:translateY(-2px); box-shadow:0 4px 14px rgba(0,0,0,0.18); }
+  .hero-compact .pill-hint { margin-top:10px; font-size:0.72rem; color:var(--text-muted); }
+
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="Physics.html" class="nav-home">🏠 Home</a>
+  <span class="nav-divider"></span>
+  <button class="nav-btn p1a" data-id="p1a" onclick="showTopic('p1a')">⚖️ Basics &amp; Motion</button>
+  <button class="nav-btn p1b" data-id="p1b" onclick="showTopic('p1b')">💪 Force &amp; Laws</button>
+  <button class="nav-btn p1c" data-id="p1c" onclick="showTopic('p1c')">🔩 Pressure</button>
+  <span class="nav-divider"></span>
+  <div class="nav-files-group">
+    <span class="nav-files-label">Files:</span>
+    <a href="Physics_Glossary_1_BasicMotionForce.html" class="nav-file-link current">1: Basic / Motion / Force</a>
+    <a href="Physics_Glossary_2_MomentsWorkCircularSHM.html" class="nav-file-link ">2: Moments / Work / Circular / SHM</a>
+    <a href="Physics_Glossary_3_Optics.html" class="nav-file-link ">3: Optics</a>
+    <a href="Physics_Glossary_4_Heat.html" class="nav-file-link ">4: Heat</a>
+    <a href="Physics_Glossary_5_Waves.html" class="nav-file-link ">5: Waves</a>
+    <a href="Physics_Glossary_6_Electricity.html" class="nav-file-link ">6: Electricity & Magnetism</a>
+    <a href="Physics_Glossary_7_ModernParticle.html" class="nav-file-link ">7: Modern & Particle Physics</a>
+    <a href="Physics_Glossary_0_Flashcards.html" class="nav-file-link fc-link">🃏 Flashcards</a>
+  </div>
+</nav>
+
+<div class="hero-compact" id="heroSection">
+  <h1>Basic Quantities, Motion &amp; Force <span style="font-size:0.6em;color:var(--text-muted);font-family:'Lexend',sans-serif;font-weight:600;">— File 1 of 7</span></h1>
+  <p>Scalars, vectors, displacement, velocity, acceleration, Newton's laws, momentum, pressure · 20 terms</p>
+  <div class="topic-pills">
+    <button class="topic-pill" style="background:#3A86FF;color:#fff" onclick="showTopic('p1a')">⚖️ Basics &amp; Motion</button>
+    <button class="topic-pill" style="background:#1A5CC8;color:#fff" onclick="showTopic('p1b')">💪 Force &amp; Laws</button>
+    <button class="topic-pill" style="background:#0D3D8A;color:#fff" onclick="showTopic('p1c')">🔩 Pressure</button>
+  </div>
+  <p class="pill-hint">Click a topic above to jump in ↑</p>
+</div>
+
+<div class="section" id="p1a">
+  <div class="ch-header" style="background:#3A86FF">
+    <h1>⚖️ Basic Quantities & Linear Motion</h1>
+  </div>
+  <div class="topic-card" style="border-left-color:#3A86FF">
+    <div class="term-entry">
+      <div class="term-name">Scalar</div>
+      <div class="def-box"><p>A quantity that has magnitude only, with no direction.</p></div>
+      <div class="analogy-box"><p>Like saying a bag weighs 5 kg — just a size, no direction needed.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Vector</div>
+      <div class="def-box"><p>A quantity that has both magnitude and direction.</p></div>
+      <div class="analogy-box"><p>Like giving directions: 5 km north — you need both the amount and where.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Mass <span style="font-size:0.78rem;color:var(--text-muted);font-weight:500;">(kg (m))</span></div>
+      <div class="def-box"><p>The quantity of matter in a body, regardless of its volume or any forces acting on it.</p></div>
+      <div class="analogy-box"><p>Mass is how much "stuff" is in something. It never changes no matter where you are — on the moon or on Earth.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Weight <span style="font-size:0.78rem;color:var(--text-muted);font-weight:500;">(N (W))</span></div>
+      <div class="def-box"><p>The force of gravity acting on a body.</p></div>
+      <div class="analogy-box"><p>Weight is the pull the Earth has on your mass. The same person weighs less on the Moon because gravity is weaker there.</p></div>
+      <div class="exam-box"><p>Weight = mass × gravitational field strength (W = mg). Weight is a force, not the same as mass!</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Distance <span style="font-size:0.78rem;color:var(--text-muted);font-weight:500;">(m)</span></div>
+      <div class="def-box"><p>The total path length travelled by an object.</p></div>
+      <div class="analogy-box"><p>If you walk around a square field and come back, distance = full perimeter walked.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Displacement <span style="font-size:0.78rem;color:var(--text-muted);font-weight:500;">(m (s))</span></div>
+      <div class="def-box"><p>The distance travelled in a given direction — the straight-line distance from start to finish.</p></div>
+      <div class="analogy-box"><p>Driving 3 km north then 4 km east — displacement is 5 km northeast (the straight line), but distance is 7 km.</p></div>
+      <div class="exam-box"><p>Displacement is a vector. Always state the direction.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Speed <span style="font-size:0.78rem;color:var(--text-muted);font-weight:500;">(m/s)</span></div>
+      <div class="def-box"><p>The distance travelled per unit time.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Velocity <span style="font-size:0.78rem;color:var(--text-muted);font-weight:500;">(m/s (v or u))</span></div>
+      <div class="def-box"><p>The rate of change of displacement with respect to time — speed in a stated direction.</p></div>
+      <div class="analogy-box"><p>A car doing 60 km/h around a corner is at constant speed but changing velocity because direction is changing.</p></div>
+      <div class="exam-box"><p>Velocity is a vector. Distinguish it clearly from speed in exams.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Acceleration <span style="font-size:0.78rem;color:var(--text-muted);font-weight:500;">(m/s² (a))</span></div>
+      <div class="def-box"><p>The rate of change of velocity with respect to time.</p></div>
+      <div class="analogy-box"><p>A car accelerating from 0 to 60 km/h in 10 s — the change in velocity per second.</p></div>
+      <div class="exam-box"><p>Can be negative (deceleration). a = (v-u)/t</p></div>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="p1b">
+  <div class="ch-header" style="background:#1A5CC8">
+    <h1>💪 Force & Laws of Motion</h1>
+  </div>
+  <div class="topic-card" style="border-left-color:#1A5CC8">
+    <div class="term-entry">
+      <div class="term-name">Force <span style="font-size:0.78rem;color:var(--text-muted);font-weight:500;">(N (F))</span></div>
+      <div class="def-box"><p>Anything that causes a body to accelerate — a push or pull that changes the state of rest or motion of an object.</p></div>
+      <div class="analogy-box"><p>A kick is a force — it changes the motion of a football.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Newton's First Law</div>
+      <div class="def-box"><p>A body remains at rest or in uniform motion unless acted upon by an external resultant force.</p></div>
+      <div class="analogy-box"><p>A book on a table stays still because the forces balance. A puck on ice keeps sliding because there's almost no friction.</p></div>
+      <div class="exam-box"><p>Key word: "resultant" force. If forces balance = no acceleration, not necessarily no motion.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Newton's Second Law</div>
+      <div class="def-box"><p>The rate of change of momentum of a body is directly proportional to the applied force and takes place in the same direction as the force. (F = ma)</p></div>
+      <div class="analogy-box"><p>A heavier shopping trolley needs more force to accelerate at the same rate as an empty one.</p></div>
+      <div class="exam-box"><p>F = ma. Also expressible as F = Δp/Δt. Both forms may be needed.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Newton's Third Law</div>
+      <div class="def-box"><p>For every action there is an equal and opposite reaction.</p></div>
+      <div class="analogy-box"><p>When you push off a wall, the wall pushes you back equally. Rocket thrust: gases expelled down, rocket goes up.</p></div>
+      <div class="exam-box"><p>Forces act on DIFFERENT objects. They don't cancel each other.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Momentum <span style="font-size:0.78rem;color:var(--text-muted);font-weight:500;">(kg m/s (p))</span></div>
+      <div class="def-box"><p>The product of a body's mass and velocity.</p></div>
+      <div class="analogy-box"><p>A slow-moving lorry can have more momentum than a fast bicycle because of its huge mass.</p></div>
+      <div class="exam-box"><p>p = mv. Momentum is conserved in collisions if no external force acts.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Principle of Conservation of Momentum</div>
+      <div class="def-box"><p>In a closed system where no external forces act, the total momentum before a collision equals the total momentum after.</p></div>
+      <div class="analogy-box"><p>Two ice-skaters pushing off each other: both move apart, but total momentum stays zero.</p></div>
+      <div class="exam-box"><p>Always check: is the system closed? State this in your answer.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Friction</div>
+      <div class="def-box"><p>The force that opposes relative motion between two surfaces in contact.</p></div>
+      <div class="analogy-box"><p>Rubbing your hands together — that resistance is friction, which also generates heat.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Weight <span style="font-size:0.78rem;color:var(--text-muted);font-weight:500;">(N)</span></div>
+      <div class="def-box"><p>The force of gravity acting on a body. W = mg.</p></div>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="p1c">
+  <div class="ch-header" style="background:#0D3D8A">
+    <h1>🔩 Pressure & Density</h1>
+  </div>
+  <div class="topic-card" style="border-left-color:#0D3D8A">
+    <div class="term-entry">
+      <div class="term-name">Density <span style="font-size:0.78rem;color:var(--text-muted);font-weight:500;">(kg/m³ (ρ))</span></div>
+      <div class="def-box"><p>Mass per unit volume.</p></div>
+      <div class="analogy-box"><p>Lead is dense — lots of mass packed into a small space. Foam has low density — lots of volume, little mass.</p></div>
+      <div class="exam-box"><p>ρ = m/V</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Pressure <span style="font-size:0.78rem;color:var(--text-muted);font-weight:500;">(Pa (p))</span></div>
+      <div class="def-box"><p>Force per unit area.</p></div>
+      <div class="analogy-box"><p>A stiletto heel exerts far more pressure than a flat shoe — same force, tiny area.</p></div>
+      <div class="exam-box"><p>P = F/A. 1 Pa = 1 N/m²</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Volume <span style="font-size:0.78rem;color:var(--text-muted);font-weight:500;">(m³ (V))</span></div>
+      <div class="def-box"><p>The amount of space that a substance or object occupies.</p></div>
+    </div>
+  </div>
+</div>
+
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:24px;right:24px;width:44px;height:44px;border-radius:50%;background:var(--purple);color:#fff;border:none;font-size:1.2rem;cursor:pointer;box-shadow:var(--shadow);opacity:0;transition:opacity 0.3s;pointer-events:none;">↑</button>
+
+<script>
+
+function showTopic(id) {
+  document.querySelectorAll('.section').forEach(s => { s.style.display = 'none'; });
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  var el = document.getElementById(id);
+  if (el) { el.style.display = 'block'; }
+  var btn = document.querySelector('.nav-btn[data-id="' + id + '"]');
+  if (btn) btn.classList.add('active');
+  if (el) el.scrollIntoView({behavior:'smooth', block:'start'});
+}
+window.addEventListener('scroll', function() {
+  var btn = document.getElementById('scrollTop');
+  if (btn) btn.classList.toggle('visible', window.scrollY > 400);
+});
+window.addEventListener('DOMContentLoaded', function() {
+  var firstBtn = document.querySelector('.nav-btn[data-id]');
+  if (firstBtn) firstBtn.classList.add('active');
+});
+
+</script>
+</body>
+</html>

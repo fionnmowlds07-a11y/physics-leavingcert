@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LC Physics — Optics</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F7F4EF;
+    --surface: #FFFFFF;
+    --surface2: #F0EDE8;
+    --border: #E2DDD7;
+    --text: #2C2825;
+    --text-muted: #7A7068;
+    --t1: #FF6B6B; --t1-light: #FFE8E8; --t1-dark: #C94040;
+    --t2: #4ECDC4; --t2-light: #E0F7F6; --t2-dark: #2A9990;
+    --t3: #FFB347; --t3-light: #FFF3E0; --t3-dark: #CC7A00;
+    --t4: #7C5CBF; --t4-light: #EDE8F7; --t4-dark: #5a3da0;
+    --t5: #56C271; --t5-light: #E6F8EB; --t5-dark: #267339;
+    --t6: #E8637A; --t6-light: #FCE8EC; --t6-dark: #B03050;
+    --t7: #3A86FF; --t7-light: #E0ECFF; --t7-dark: #1A5CC8;
+    --t8: #F77F00; --t8-light: #FFF0DC; --t8-dark: #B85A00;
+    --t9: #2EC4B6; --t9-light: #E0FAF7; --t9-dark: #1A9088;
+    --t10: #9B5DE5; --t10-light: #F3EAFF; --t10-dark: #6B2DAF;
+    --t11: #D62828; --t11-light: #FFECEC; --t11-dark: #9A1A1A;
+    --purple: #7C5CBF; --purple-light: #EDE8F7;
+    --green: #56C271; --green-light: #E6F8EB;
+    --radius: 14px;
+    --shadow: 0 4px 20px rgba(0,0,0,0.08);
+    --shadow-hover: 0 8px 32px rgba(0,0,0,0.14);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Lexend', sans-serif; background: var(--bg); color: var(--text); line-height: 1.8; font-size: 16px; }
+
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(247,244,239,0.96);
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid var(--border);
+    padding: 8px 16px;
+    display: flex; align-items: center; gap: 6px;
+    flex-wrap: wrap; min-height: 56px;
+  }
+  .nav-logo { font-family: 'Lexend Mega', sans-serif; font-size: 0.95rem; color: var(--text); margin-right: 6px; }
+  .nav-logo span { color: var(--t1); }
+  .nav-btn {
+    padding: 5px 11px; border-radius: 18px;
+    border: 2px solid transparent;
+    font-family: 'Lexend', sans-serif;
+    font-size: 0.72rem; font-weight: 600;
+    cursor: pointer; transition: all 0.2s;
+    background: var(--surface); color: var(--text-muted);
+    white-space: nowrap;
+  }
+  .nav-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+  .nav-btn.t1  { border-color: var(--t1); }  .nav-btn.t1.active,  .nav-btn.t1:hover  { background: var(--t1);  color:#fff; }
+  .nav-btn.t2  { border-color: var(--t2); }  .nav-btn.t2.active,  .nav-btn.t2:hover  { background: var(--t2);  color:var(--text); }
+  .nav-btn.t3  { border-color: var(--t3); }  .nav-btn.t3.active,  .nav-btn.t3:hover  { background: var(--t3);  color:var(--text); }
+  .nav-btn.t4  { border-color: var(--t4); }  .nav-btn.t4.active,  .nav-btn.t4:hover  { background: var(--t4);  color:#fff; }
+  .nav-btn.t5  { border-color: var(--t5); }  .nav-btn.t5.active,  .nav-btn.t5:hover  { background: var(--t5);  color:#fff; }
+  .nav-btn.t6  { border-color: var(--t6); }  .nav-btn.t6.active,  .nav-btn.t6:hover  { background: var(--t6);  color:#fff; }
+  .nav-btn.t7  { border-color: var(--t7); }  .nav-btn.t7.active,  .nav-btn.t7:hover  { background: var(--t7);  color:#fff; }
+  .nav-btn.t8  { border-color: var(--t8); }  .nav-btn.t8.active,  .nav-btn.t8:hover  { background: var(--t8);  color:#fff; }
+  .nav-btn.t9  { border-color: var(--t9); }  .nav-btn.t9.active,  .nav-btn.t9:hover  { background: var(--t9);  color:#fff; }
+  .nav-btn.t10 { border-color: var(--t10); } .nav-btn.t10.active, .nav-btn.t10:hover { background: var(--t10); color:#fff; }
+  .nav-btn.t11 { border-color: var(--t11); } .nav-btn.t11.active, .nav-btn.t11:hover { background: var(--t11); color:#fff; }
+  .nav-btn.flash { border-color: var(--purple); } .nav-btn.flash.active, .nav-btn.flash:hover { background: var(--purple); color:#fff; }
+
+  .hero { padding: 44px 24px 28px; text-align: center; }
+  .hero h1 { font-family: 'Lexend Mega', sans-serif; font-size: clamp(1.5rem,4vw,2.6rem); line-height:1.2; }
+  .hero h1 .a1{color:var(--t1);} .hero h1 .a2{color:var(--t2-dark);} .hero h1 .a3{color:var(--t3-dark);}
+  .hero p { margin-top:10px; color:var(--text-muted); max-width:620px; margin-left:auto; margin-right:auto; }
+  .stats-row { display:flex; justify-content:center; gap:20px; flex-wrap:wrap; margin-top:20px; }
+  .stat-chip { background:var(--surface); border:2px solid var(--border); border-radius:30px; padding:8px 20px; font-size:0.85rem; font-weight:600; }
+  .chapter-pills { display:flex; justify-content:center; gap:8px; flex-wrap:wrap; margin-top:20px; }
+  .pill { padding:7px 16px; border-radius:28px; font-weight:600; font-size:0.78rem; cursor:pointer; transition:all 0.2s; border:none; }
+  .pill:hover { transform:translateY(-3px); box-shadow:var(--shadow-hover); }
+
+  .section { display:none; padding:0 16px 60px; max-width:920px; margin:0 auto; }
+  .section.active { display:block; animation:fadeIn 0.3s ease; }
+  @keyframes fadeIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+
+  .ch-header {
+    border-radius:var(--radius); padding:28px 28px; color:white;
+    margin-bottom:24px; position:relative; overflow:hidden;
+  }
+  .ch-header h1 { font-family:'Lexend Mega',sans-serif; font-size:1.45rem; }
+  .ch-header p { opacity:0.88; margin-top:7px; font-size:0.92rem; }
+  .ch-header .big-num { position:absolute; right:22px; top:50%; transform:translateY(-50%); font-family:'Lexend Mega',sans-serif; font-size:5.5rem; opacity:0.12; line-height:1; }
+
+  .topic-card {
+    background:var(--surface); border-radius:var(--radius); padding:24px;
+    margin-bottom:20px; box-shadow:var(--shadow);
+    border-left:5px solid var(--t1); transition:box-shadow 0.2s;
+  }
+  .topic-card:hover { box-shadow:var(--shadow-hover); }
+  .topic-card h2 { font-size:1.15rem; font-weight:700; margin-bottom:12px; display:flex; align-items:center; gap:8px; }
+  .topic-card h3 { font-size:0.95rem; font-weight:600; margin:16px 0 7px; }
+  .topic-card p { margin-bottom:9px; }
+  .topic-card ul { padding-left:20px; margin-bottom:9px; }
+  .topic-card li { margin-bottom:4px; }
+
+  /* Term entry */
+  .term-entry { margin-bottom:18px; padding-bottom:18px; border-bottom:1px solid var(--border); }
+  .term-entry:last-child { border-bottom:none; margin-bottom:0; padding-bottom:0; }
+  .term-name { font-size:1.05rem; font-weight:700; margin-bottom:6px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+
+  /* Boxes */
+  .def-box { background:var(--surface2); border:2px dashed var(--border); border-radius:10px; padding:12px 16px; margin:8px 0; position:relative; }
+  .def-box::before { content:'📖 DEFINITION'; display:block; font-size:0.65rem; font-weight:700; letter-spacing:1px; color:var(--text-muted); margin-bottom:5px; }
+  .def-box p { margin:0; font-weight:500; }
+  .analogy-box { background:#FFF9E6; border:2px solid #FFD966; border-radius:10px; padding:12px 16px; margin:8px 0; }
+  .analogy-box::before { content:'💡 ANALOGY'; display:block; font-size:0.65rem; font-weight:700; letter-spacing:1px; color:#997700; margin-bottom:5px; }
+  .memory-box { background:#F0FFF4; border:2px solid var(--green); border-radius:10px; padding:12px 16px; margin:8px 0; }
+  .memory-box::before { content:'🧠 MEMORY TRICK'; display:block; font-size:0.65rem; font-weight:700; letter-spacing:1px; color:#267339; margin-bottom:5px; }
+  .exam-box { background:#FFF0F3; border:2px solid var(--t1); border-radius:10px; padding:12px 16px; margin:8px 0; }
+  .exam-box::before { content:'📝 EXAM TIP'; display:block; font-size:0.65rem; font-weight:700; letter-spacing:1px; color:var(--t1-dark); margin-bottom:5px; }
+  .code-box { background:#1e1e2e; color:#cdd6f4; border-radius:10px; padding:12px 16px; margin:8px 0; font-family:monospace; font-size:0.88rem; overflow-x:auto; }
+
+  .badge { display:inline-block; padding:2px 9px; border-radius:18px; font-size:0.68rem; font-weight:700; letter-spacing:0.4px; }
+  .b-core   { background:#FFE8E8; color:#C94040; }
+  .b-useful { background:#E0F7F6; color:#2A9990; }
+  .b-extra  { background:#F0EDE8; color:#7A7068; }
+
+  comp-table, .comp-table { width:100%; border-collapse:collapse; margin:12px 0; font-size:0.86rem; border-radius:10px; overflow:hidden; }
+  .comp-table th { background:var(--t1); color:#fff; padding:9px 12px; text-align:left; font-weight:600; }
+  .comp-table td { padding:8px 12px; border-bottom:1px solid var(--border); }
+  .comp-table tr:nth-child(even) td { background:var(--surface2); }
+  .comp-table tr:last-child td { border-bottom:none; }
+
+  /* Big O grid */
+  .big-o-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:14px 0; }
+  @media(max-width:580px){ .big-o-grid{grid-template-columns:1fr;} }
+  .big-o-card { border-radius:10px; padding:13px; border:2px solid; }
+  .big-o-card .notation { font-size:1.25rem; font-weight:700; }
+  .big-o-card .label { font-size:0.78rem; font-weight:600; margin:3px 0; }
+  .big-o-card .desc { font-size:0.8rem; color:var(--text-muted); }
+  .o1    { border-color:#56C271; background:#E6F8EB; }
+  .ologn { border-color:#4ECDC4; background:#E0F7F6; }
+  .on    { border-color:#FFB347; background:#FFF3E0; }
+  .on2   { border-color:#FF6B6B; background:#FFE8E8; }
+  .onlogn{ border-color:#C9A800; background:#FFFBE0; }
+
+  /* Accordion for less-important terms */
+  .accordion { margin:8px 0; border-radius:10px; overflow:hidden; border:2px solid var(--border); }
+  .accordion-header { width:100%; text-align:left; padding:11px 16px; background:var(--surface2); border:none; font-family:'Lexend',sans-serif; font-size:0.92rem; font-weight:600; cursor:pointer; display:flex; justify-content:space-between; align-items:center; transition:background 0.2s; }
+  .accordion-header:hover { background:var(--border); }
+  .accordion-header .arrow { transition:transform 0.3s; font-size:0.78rem; }
+  .accordion-header.open .arrow { transform:rotate(180deg); }
+  .accordion-body { display:none; padding:14px 16px; background:var(--surface); border-top:2px solid var(--border); }
+  .accordion-body.open { display:block; }
+
+  /* Flashcards */
+  #flashcards { padding:0 16px 80px; max-width:920px; margin:0 auto; display:none; }
+  
+  .flash-header { background:linear-gradient(135deg,var(--purple) 0%,#5a3da0 100%); border-radius:var(--radius); padding:28px; color:white; margin-bottom:24px; position:relative; overflow:hidden; }
+  .flash-header h1 { font-family:'Lexend Mega',sans-serif; font-size:1.45rem; }
+  .flash-header p { opacity:0.85; margin-top:7px; }
+  .flash-header .big-num { position:absolute; right:22px; top:50%; transform:translateY(-50%); font-family:'Lexend Mega',sans-serif; font-size:5.5rem; opacity:0.12; }
+
+  .flash-controls { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:18px; align-items:center; }
+  .flash-filter { padding:6px 14px; border-radius:18px; border:2px solid var(--border); background:var(--surface); font-family:'Lexend',sans-serif; font-size:0.76rem; font-weight:600; cursor:pointer; transition:all 0.2s; color:var(--text-muted); }
+  .flash-filter:hover, .flash-filter.factive { background:var(--purple); color:#fff; border-color:var(--purple); }
+
+  .flashcard-area { display:flex; flex-direction:column; align-items:center; }
+  .flashcard { width:100%; max-width:640px; perspective:1200px; min-height:200px; cursor:pointer; margin-bottom:18px; }
+  .flashcard-inner { position:relative; width:100%; min-height:200px; transition:transform 0.55s cubic-bezier(.4,.2,.2,1); transform-style:preserve-3d; }
+  .flashcard.flipped .flashcard-inner { transform:rotateY(180deg); }
+  .flashcard-front, .flashcard-back { position:absolute; width:100%; min-height:200px; backface-visibility:hidden; border-radius:var(--radius); padding:28px 24px; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; box-shadow:var(--shadow); }
+  .flashcard-front { background:var(--surface); border:3px solid var(--purple); }
+  .flashcard-back { background:var(--purple); color:white; transform:rotateY(180deg); }
+  .flashcard-front .card-topic { font-size:0.68rem; font-weight:700; letter-spacing:1px; text-transform:uppercase; margin-bottom:10px; color:var(--text-muted); }
+  .flashcard-front .card-q { font-size:1.1rem; font-weight:600; }
+  .flashcard-front .flip-hint { margin-top:14px; font-size:0.72rem; color:var(--text-muted); }
+  .flashcard-back .card-a { font-size:0.95rem; line-height:1.7; }
+  .flash-nav { display:flex; gap:12px; align-items:center; }
+  .flash-btn { padding:9px 22px; border-radius:22px; border:none; font-family:'Lexend',sans-serif; font-size:0.88rem; font-weight:600; cursor:pointer; transition:all 0.2s; background:var(--purple); color:#fff; }
+  .flash-btn:hover { background:#5a3da0; transform:translateY(-2px); box-shadow:var(--shadow-hover); }
+  .flash-btn:disabled { opacity:0.4; cursor:not-allowed; transform:none; }
+  .flash-counter { font-weight:600; color:var(--text-muted); font-size:0.88rem; min-width:80px; text-align:center; }
+  .flash-progress { width:100%; max-width:640px; height:6px; background:var(--border); border-radius:3px; margin-bottom:16px; overflow:hidden; }
+  .flash-progress-bar { height:100%; background:var(--purple); border-radius:3px; transition:width 0.4s; }
+
+  #scrollTop { position:fixed; bottom:22px; right:22px; width:40px; height:40px; background:var(--text); color:#fff; border:none; border-radius:50%; font-size:1rem; cursor:pointer; box-shadow:var(--shadow-hover); transition:all 0.2s; z-index:99; opacity:0; pointer-events:none; }
+  #scrollTop.visible { opacity:1; pointer-events:all; }
+  #scrollTop:hover { transform:scale(1.1); }
+  .icon { font-size:1.15rem; }
+
+  /* search bar */
+  .search-wrap { max-width:920px; margin:0 auto 4px; padding:0 16px; }
+  .search-input { width:100%; padding:11px 18px; border-radius:30px; border:2px solid var(--border); font-family:'Lexend',sans-serif; font-size:0.92rem; background:var(--surface); color:var(--text); outline:none; transition:border-color 0.2s; }
+  .search-input:focus { border-color:var(--purple); }
+  .search-result-count { font-size:0.8rem; color:var(--text-muted); text-align:center; margin:6px 0 0; }
+
+  /* colour overrides per topic */
+  .tc-t1  { border-left-color:var(--t1);  } .tc-t2  { border-left-color:var(--t2);  }
+  .tc-t3  { border-left-color:var(--t3);  } .tc-t4  { border-left-color:var(--t4);  }
+  .tc-t5  { border-left-color:var(--t5);  } .tc-t6  { border-left-color:var(--t6);  }
+  .tc-t7  { border-left-color:var(--t7);  } .tc-t8  { border-left-color:var(--t8);  }
+  .tc-t9  { border-left-color:var(--t9);  } .tc-t10 { border-left-color:var(--t10); }
+  .tc-t11 { border-left-color:var(--t11); }
+
+  /* ── shared navbar additions ── */
+  .nav-home {
+    display:inline-flex; align-items:center; gap:5px;
+    padding:5px 13px; border-radius:18px;
+    border:2px solid var(--border);
+    background:var(--surface);
+    font-family:'Lexend',sans-serif; font-size:0.72rem; font-weight:700;
+    color:var(--text-muted); text-decoration:none;
+    transition:all 0.2s; white-space:nowrap;
+  }
+  .nav-home:hover { background:var(--text); color:#fff; border-color:var(--text); transform:translateY(-2px); }
+  .nav-flashcards {
+    display:inline-flex; align-items:center; gap:5px;
+    padding:5px 13px; border-radius:18px;
+    border:2px solid var(--purple); background:var(--surface);
+    font-family:'Lexend',sans-serif; font-size:0.72rem; font-weight:700;
+    color:var(--purple); text-decoration:none;
+    transition:all 0.2s; white-space:nowrap; margin-left:auto;
+  }
+  .nav-flashcards:hover { background:var(--purple); color:#fff; transform:translateY(-2px); }
+  .nav-divider { width:1px; height:20px; background:var(--border); margin:0 4px; flex-shrink:0; }
+
+
+  /* ── improved nav file links ── */
+  .nav-home {
+    display:inline-flex; align-items:center; gap:5px;
+    padding:5px 12px; border-radius:14px;
+    border:2px solid var(--border); background:var(--surface);
+    font-family:'Lexend',sans-serif; font-size:0.72rem; font-weight:700;
+    color:var(--text-muted); text-decoration:none; transition:all 0.2s;
+    white-space:nowrap; flex-shrink:0;
+  }
+  .nav-home:hover { background:var(--text); color:#fff; border-color:var(--text); }
+  .nav-divider { width:1px; height:18px; background:var(--border); flex-shrink:0; }
+  .nav-file-link {
+    display:inline-flex; align-items:center;
+    padding:5px 11px; border-radius:14px;
+    border:2px solid var(--border); background:var(--surface);
+    font-family:'Lexend',sans-serif; font-size:0.7rem; font-weight:700;
+    color:var(--text-muted); text-decoration:none; transition:all 0.2s;
+    white-space:nowrap;
+  }
+  .nav-file-link:hover { border-color:var(--purple); color:var(--purple); transform:translateY(-1px); }
+  .nav-file-link.current { background:var(--purple); color:#fff; border-color:var(--purple); }
+  .nav-file-link.fc-link { border-color:var(--purple); color:var(--purple); }
+  .nav-file-link.fc-link:hover { background:var(--purple); color:#fff; }
+  /* label above file links group */
+  .nav-files-group {
+    display:flex; align-items:center; gap:6px; flex-wrap:wrap;
+  }
+  .nav-files-label {
+    font-size:0.62rem; font-weight:800; letter-spacing:0.8px;
+    text-transform:uppercase; color:var(--text-muted);
+    white-space:nowrap; flex-shrink:0;
+  }
+  /* hero simplified — no switcher section */
+  .hero-compact {
+    text-align:center; padding:28px 20px 16px;
+    border-bottom:2px solid var(--border);
+    margin-bottom:20px;
+    background:var(--surface);
+  }
+  .hero-compact h1 { font-family:'Lexend Mega',sans-serif; font-size:clamp(1.1rem,3vw,1.6rem); margin-bottom:6px; }
+  .hero-compact p  { color:var(--text-muted); font-size:0.85rem; max-width:640px; margin:0 auto 14px; }
+  .hero-compact .topic-pills { display:flex; justify-content:center; gap:8px; flex-wrap:wrap; }
+  .hero-compact .topic-pill {
+    padding:9px 20px; border-radius:24px; border:none;
+    font-family:'Lexend',sans-serif; font-size:0.82rem; font-weight:700;
+    cursor:pointer; transition:all 0.2s; box-shadow:0 2px 8px rgba(0,0,0,0.12);
+  }
+  .hero-compact .topic-pill:hover { transform:translateY(-2px); box-shadow:0 4px 14px rgba(0,0,0,0.18); }
+  .hero-compact .pill-hint {
+    margin-top:10px; font-size:0.72rem; color:var(--text-muted);
+  }
+
+  .nav-home {
+    display:inline-flex; align-items:center; gap:5px;
+    padding:5px 12px; border-radius:14px;
+    border:2px solid var(--border); background:var(--surface);
+    font-family:'Lexend',sans-serif; font-size:0.72rem; font-weight:700;
+    color:var(--text-muted); text-decoration:none; transition:all 0.2s;
+    white-space:nowrap; flex-shrink:0;
+  }
+  .nav-home:hover { background:var(--text); color:#fff; border-color:var(--text); }
+  .nav-divider { width:1px; height:18px; background:var(--border); flex-shrink:0; }
+  .nav-file-link {
+    display:inline-flex; align-items:center;
+    padding:5px 10px; border-radius:14px;
+    border:2px solid var(--border); background:var(--surface);
+    font-family:'Lexend',sans-serif; font-size:0.68rem; font-weight:700;
+    color:var(--text-muted); text-decoration:none; transition:all 0.2s;
+    white-space:nowrap;
+  }
+  .nav-file-link:hover { border-color:var(--purple); color:var(--purple); transform:translateY(-1px); }
+  .nav-file-link.current { background:var(--purple); color:#fff; border-color:var(--purple); }
+  .nav-file-link.fc-link { border-color:var(--purple); color:var(--purple); }
+  .nav-file-link.fc-link:hover { background:var(--purple); color:#fff; }
+  .nav-files-group { display:flex; align-items:center; gap:5px; flex-wrap:wrap; }
+  .nav-files-label { font-size:0.62rem; font-weight:800; letter-spacing:0.8px; text-transform:uppercase; color:var(--text-muted); white-space:nowrap; flex-shrink:0; }
+  .hero-compact {
+    text-align:center; padding:28px 20px 16px;
+    border-bottom:2px solid var(--border); margin-bottom:20px;
+    background:var(--surface);
+  }
+  .hero-compact h1 { font-family:'Lexend Mega',sans-serif; font-size:clamp(1.1rem,3vw,1.6rem); margin-bottom:6px; }
+  .hero-compact p  { color:var(--text-muted); font-size:0.85rem; max-width:640px; margin:0 auto 14px; }
+  .hero-compact .topic-pills { display:flex; justify-content:center; gap:8px; flex-wrap:wrap; }
+  .hero-compact .topic-pill {
+    padding:9px 20px; border-radius:24px; border:none;
+    font-family:'Lexend',sans-serif; font-size:0.82rem; font-weight:700;
+    cursor:pointer; transition:all 0.2s; box-shadow:0 2px 8px rgba(0,0,0,0.12);
+  }
+  .hero-compact .topic-pill:hover { transform:translateY(-2px); box-shadow:0 4px 14px rgba(0,0,0,0.18); }
+  .hero-compact .pill-hint { margin-top:10px; font-size:0.72rem; color:var(--text-muted); }
+
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="Physics.html" class="nav-home">🏠 Home</a>
+  <span class="nav-divider"></span>
+  <button class="nav-btn p3a" data-id="p3a" onclick="showTopic('p3a')">🪞 Reflection</button>
+  <button class="nav-btn p3b" data-id="p3b" onclick="showTopic('p3b')">🔍 Refraction &amp; Lenses</button>
+  <span class="nav-divider"></span>
+  <div class="nav-files-group">
+    <span class="nav-files-label">Files:</span>
+    <a href="Physics_Glossary_1_BasicMotionForce.html" class="nav-file-link ">1: Basic / Motion / Force</a>
+    <a href="Physics_Glossary_2_MomentsWorkCircularSHM.html" class="nav-file-link ">2: Moments / Work / Circular / SHM</a>
+    <a href="Physics_Glossary_3_Optics.html" class="nav-file-link current">3: Optics</a>
+    <a href="Physics_Glossary_4_Heat.html" class="nav-file-link ">4: Heat</a>
+    <a href="Physics_Glossary_5_Waves.html" class="nav-file-link ">5: Waves</a>
+    <a href="Physics_Glossary_6_Electricity.html" class="nav-file-link ">6: Electricity & Magnetism</a>
+    <a href="Physics_Glossary_7_ModernParticle.html" class="nav-file-link ">7: Modern & Particle Physics</a>
+    <a href="Physics_Glossary_0_Flashcards.html" class="nav-file-link fc-link">🃏 Flashcards</a>
+  </div>
+</nav>
+
+<div class="hero-compact" id="heroSection">
+  <h1>Optics <span style="font-size:0.6em;color:var(--text-muted);font-family:'Lexend',sans-serif;font-weight:600;">— File 3 of 7</span></h1>
+  <p>Reflection, refraction, lenses, TIR, colours, dispersion · 38 terms</p>
+  <div class="topic-pills">
+    <button class="topic-pill" style="background:#56C271;color:#fff" onclick="showTopic('p3a')">🪞 Reflection</button>
+    <button class="topic-pill" style="background:#267339;color:#fff" onclick="showTopic('p3b')">🔍 Refraction &amp; Lenses</button>
+  </div>
+  <p class="pill-hint">Click a topic above to jump in ↑</p>
+</div>
+
+<div class="section" id="p3a">
+  <div class="ch-header" style="background:#56C271">
+    <h1>🪞 Reflection & Mirrors</h1>
+  </div>
+  <div class="topic-card" style="border-left-color:#56C271">
+    <div class="term-entry">
+      <div class="term-name">Light</div>
+      <div class="def-box"><p>Electromagnetic radiation detectable by the human eye. Wavelength: 400 nm–700 nm.</p></div>
+      <div class="analogy-box"><p>Visible light is a tiny slice of the full electromagnetic spectrum — from violet to red.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Self-Luminous</div>
+      <div class="def-box"><p>An object that produces its own light (e.g. the sun, a light bulb).</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Non-Luminous</div>
+      <div class="def-box"><p>An object that does not produce its own light but is visible because it reflects light (e.g. the Moon).</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Reflection</div>
+      <div class="def-box"><p>The bouncing of light off a surface.</p></div>
+      <div class="analogy-box"><p>You see yourself in a mirror because light bounces off the mirror back to your eyes.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Laws of Reflection</div>
+      <div class="def-box"><p>1. The incident ray, reflected ray, and normal all lie in the same plane. 2. The angle of incidence equals the angle of reflection.</p></div>
+      <div class="exam-box"><p>Both laws must be stated for full marks.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Normal</div>
+      <div class="def-box"><p>The perpendicular line drawn at the point where light meets a surface.</p></div>
+      <div class="analogy-box"><p>The normal is your reference line — angles are always measured from the normal, never from the surface.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Incident Ray</div>
+      <div class="def-box"><p>The ray of light approaching the mirror or surface.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Reflected Ray</div>
+      <div class="def-box"><p>The ray leaving the mirror after reflection.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Real Image</div>
+      <div class="def-box"><p>An image formed by the actual intersection of light rays — can be projected onto a screen.</p></div>
+      <div class="analogy-box"><p>A cinema projector produces a real image on the screen.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Virtual Image</div>
+      <div class="def-box"><p>An image formed by the apparent (extrapolated) intersection of light rays — cannot be projected onto a screen.</p></div>
+      <div class="analogy-box"><p>Your reflection in a flat mirror is virtual — the light doesn't actually come from behind the mirror.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Parallax</div>
+      <div class="def-box"><p>The apparent change in position of an object when viewed from two different positions.</p></div>
+      <div class="analogy-box"><p>Hold your finger up and look at it with each eye alternately — it seems to jump. That's parallax.</p></div>
+      <div class="exam-box"><p>No parallax method is used to find focal length of a concave mirror.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Centre of Curvature (C)</div>
+      <div class="def-box"><p>The centre of the sphere from which a curved mirror's surface is a section.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Principal Axis</div>
+      <div class="def-box"><p>The line joining the optical centre of the mirror to C, passing through the pole.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Pole (P)</div>
+      <div class="def-box"><p>The point where the principal axis intersects the mirror surface.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Focal Point (F)</div>
+      <div class="def-box"><p>The point on the principal axis where parallel rays converge (concave) or appear to diverge from (convex) after reflection. F is halfway between C and P.</p></div>
+      <div class="exam-box"><p>f = r/2 where r = radius of curvature</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Focal Length (f) <span style="font-size:0.78rem;color:var(--text-muted);font-weight:500;">(m (f))</span></div>
+      <div class="def-box"><p>The distance from the pole to the focal point.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Object Distance (u) <span style="font-size:0.78rem;color:var(--text-muted);font-weight:500;">(m (u))</span></div>
+      <div class="def-box"><p>The distance from the object to the optical centre (pole or lens centre).</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Image Distance (v) <span style="font-size:0.78rem;color:var(--text-muted);font-weight:500;">(m (v))</span></div>
+      <div class="def-box"><p>The distance from the image to the optical centre.</p></div>
+      <div class="exam-box"><p>Use sign convention: real = positive, virtual = negative for mirrors.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Magnification (m)</div>
+      <div class="def-box"><p>The ratio of image height to object height, or image distance to object distance.</p></div>
+      <div class="exam-box"><p>m = v/u. Positive = upright, negative = inverted.</p></div>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="p3b">
+  <div class="ch-header" style="background:#267339">
+    <h1>🔍 Refraction, Lenses & Colours</h1>
+  </div>
+  <div class="topic-card" style="border-left-color:#267339">
+    <div class="term-entry">
+      <div class="term-name">Refraction</div>
+      <div class="def-box"><p>The bending of light as it passes from one medium to another due to a change in speed.</p></div>
+      <div class="analogy-box"><p>A straw in a glass of water appears bent at the surface — that's refraction.</p></div>
+      <div class="exam-box"><p>Light bends towards the normal when entering a denser medium, away when leaving.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Laws of Refraction (Snell's Law)</div>
+      <div class="def-box"><p>1. The incident ray, refracted ray, and normal lie in the same plane. 2. n₁sin θ₁ = n₂sin θ₂ (the ratio of sines is constant for a given pair of media).</p></div>
+      <div class="exam-box"><p>Both laws must be stated. Know the formula n = sin i / sin r.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Refractive Index (n) <span style="font-size:0.78rem;color:var(--text-muted);font-weight:500;">(no unit (n))</span></div>
+      <div class="def-box"><p>The ratio of the sine of the angle of incidence in air to the sine of the angle of refraction in the medium.</p></div>
+      <div class="analogy-box"><p>A denser material (glass, water) bends light more — higher refractive index.</p></div>
+      <div class="exam-box"><p>n = sin i / sin r = c/v (speed of light in vacuum / speed in medium)</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Critical Angle</div>
+      <div class="def-box"><p>The angle of incidence in the denser medium that results in an angle of refraction of 90° in the less dense medium.</p></div>
+      <div class="analogy-box"><p>Think of it as the "tipping point" — any angle larger causes total internal reflection.</p></div>
+      <div class="exam-box"><p>sin C = 1/n</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Total Internal Reflection</div>
+      <div class="def-box"><p>When light travelling from a denser to a less dense medium strikes the boundary at an angle greater than the critical angle, and is completely reflected back into the denser medium.</p></div>
+      <div class="analogy-box"><p>Optical fibres use this — light bounces along inside the glass fibre with no escape.</p></div>
+      <div class="exam-box"><p>Two conditions: 1. Light going from denser to less dense medium. 2. Angle > critical angle. Both must be stated.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Optic Fibre</div>
+      <div class="def-box"><p>A thin, transparent material through which light travels by repeated total internal reflection.</p></div>
+      <div class="analogy-box"><p>Internet data (as light pulses) travels through optic fibres across oceans at near light speed.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Accommodation</div>
+      <div class="def-box"><p>The ability of the eye to change the focal length of its lens to focus on objects at different distances.</p></div>
+      <div class="analogy-box"><p>Your eye muscles squeeze or relax the lens to focus close or far — like adjusting a camera lens.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Power of a Lens <span style="font-size:0.78rem;color:var(--text-muted);font-weight:500;">(D (P))</span></div>
+      <div class="def-box"><p>The reciprocal of the focal length: P = 1/f. Measured in dioptres (D).</p></div>
+      <div class="exam-box"><p>Converging lens: positive power. Diverging lens: negative power.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Lens Power (Dioptres) <span style="font-size:0.78rem;color:var(--text-muted);font-weight:500;">(m⁻¹ or D)</span></div>
+      <div class="def-box"><p>The ability of a lens to converge or diverge light rays. P = 1/f.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Superior Mirage</div>
+      <div class="def-box"><p>A mirage caused by cold, dense air near the ground with warmer air above, making distant objects appear elevated.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Inferior Mirage</div>
+      <div class="def-box"><p>A mirage caused by hot air near the ground (less dense) under cooler air above, making the sky appear reflected on the ground — looks like water on a hot road.</p></div>
+      <div class="analogy-box"><p>A hot road appearing wet is an inferior mirage — light from the sky bends upward through hot air near the tarmac.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Spectrometer</div>
+      <div class="def-box"><p>An instrument used to examine light spectra and measure the wavelength of light.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Primary Colours (light)</div>
+      <div class="def-box"><p>Red, green, and blue — the three colours that combine to make white light.</p></div>
+      <div class="exam-box"><p>Different from paint primaries! Light primaries: R, G, B.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Secondary Colours (light)</div>
+      <div class="def-box"><p>Colours formed by mixing two primary colours in equal intensity: yellow (R+G), cyan (G+B), magenta (R+B).</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Complementary Colours</div>
+      <div class="def-box"><p>A primary and secondary colour that combine to make white light. Blue+Yellow, Green+Magenta, Red+Cyan.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Dispersion</div>
+      <div class="def-box"><p>The separation of white light into its component colours (spectrum) when it passes through a prism.</p></div>
+      <div class="analogy-box"><p>A prism splits white light into a rainbow — different wavelengths refract by different amounts.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Monochromatic Light</div>
+      <div class="def-box"><p>Light of a single wavelength (one colour only).</p></div>
+      <div class="analogy-box"><p>Laser light is monochromatic — all the same wavelength.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Fluorescence</div>
+      <div class="def-box"><p>The absorption of UV radiation by a material and its re-emission as visible light.</p></div>
+      <div class="analogy-box"><p>Highlighter pens glow under UV light — they absorb UV and re-emit visible light.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Infra-red Light</div>
+      <div class="def-box"><p>Electromagnetic radiation with wavelength just longer than visible red light, emitted by warm objects.</p></div>
+      <div class="analogy-box"><p>Night-vision cameras detect IR — warm bodies glow in the dark to the camera.</p></div>
+    </div>
+  </div>
+</div>
+
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:24px;right:24px;width:44px;height:44px;border-radius:50%;background:var(--purple);color:#fff;border:none;font-size:1.2rem;cursor:pointer;box-shadow:var(--shadow);opacity:0;transition:opacity 0.3s;pointer-events:none;">↑</button>
+
+<script>
+
+function showTopic(id) {
+  document.querySelectorAll('.section').forEach(s => { s.style.display = 'none'; });
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  var el = document.getElementById(id);
+  if (el) { el.style.display = 'block'; }
+  var btn = document.querySelector('.nav-btn[data-id="' + id + '"]');
+  if (btn) btn.classList.add('active');
+  if (el) el.scrollIntoView({behavior:'smooth', block:'start'});
+}
+window.addEventListener('scroll', function() {
+  var btn = document.getElementById('scrollTop');
+  if (btn) btn.classList.toggle('visible', window.scrollY > 400);
+});
+window.addEventListener('DOMContentLoaded', function() {
+  var firstBtn = document.querySelector('.nav-btn[data-id]');
+  if (firstBtn) firstBtn.classList.add('active');
+});
+
+</script>
+</body>
+</html>
