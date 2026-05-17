@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LC CS — Flashcard Drill</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&family=Lexend+Mega:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#F4F1EC; --surface:#FFFFFF; --surface2:#EDEAE4; --border:#DDD9D2;
+  --text:#1E1C18; --muted:#7A7568; --radius:16px;
+  --shadow:0 4px 24px rgba(0,0,0,0.08); --shadow-lg:0 12px 48px rgba(0,0,0,0.14);
+  --purple:#6B46C1; --purple-d:#4C2E8C;
+  --green:#276749; --green-l:#C6F6D5;
+  --red:#C0392B;   --red-l:#FFE5E3;
+  --amber-l:#FEFCBF; --amber-d:#92621A;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh;}
+
+/* ── SHARED NAV ─────────────────────────────────── */
+.top-nav {
+  position:sticky;top:0;z-index:50;
+  background:rgba(244,241,236,0.96);backdrop-filter:blur(10px);
+  border-bottom:2px solid var(--border);
+  padding:8px 20px;
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+}
+.top-nav .nav-logo {font-family:'Lexend Mega',sans-serif;font-size:0.9rem;color:var(--text);margin-right:4px;}
+.top-nav .nav-logo span{color:#FF6B6B;}
+.nav-home {
+  display:inline-flex;align-items:center;gap:5px;
+  padding:5px 12px;border-radius:16px;border:2px solid var(--border);
+  background:var(--surface);font-family:'Lexend',sans-serif;
+  font-size:0.72rem;font-weight:700;color:var(--muted);
+  text-decoration:none;transition:all 0.2s;
+}
+.nav-home:hover{background:var(--text);color:#fff;border-color:var(--text);transform:translateY(-2px);}
+.nav-divider{width:1px;height:20px;background:var(--border);flex-shrink:0;}
+.nav-def-link {
+  display:inline-flex;align-items:center;gap:4px;
+  padding:5px 12px;border-radius:16px;border:2px solid var(--border);
+  background:var(--surface);font-family:'Lexend',sans-serif;
+  font-size:0.72rem;font-weight:600;color:var(--muted);
+  text-decoration:none;transition:all 0.2s;white-space:nowrap;
+}
+.nav-def-link:hover{border-color:var(--purple);color:var(--purple);transform:translateY(-2px);}
+.nav-def-link.active-file{background:var(--purple);color:#fff;border-color:var(--purple);}
+
+/* ── SCREENS ─────────────────────────────────────── */
+.screen{display:none;min-height:calc(100vh - 52px);}
+.screen.active{display:flex;flex-direction:column;align-items:center;padding:28px 20px 60px;}
+
+/* ── HOME ─────────────────────────────────────────── */
+.home-hero{text-align:center;margin-bottom:28px;width:100%;max-width:860px;}
+.home-hero h1{font-family:'Lexend Mega',sans-serif;font-size:clamp(1.5rem,5vw,2.6rem);line-height:1.15;margin-bottom:10px;}
+.home-hero h1 .hi{color:#FF6B6B;} .home-hero h1 .hii{color:#00B4A6;}
+.home-hero p{color:var(--muted);font-size:0.95rem;}
+.home-stats{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:14px 0 22px;}
+.stat-pill{background:var(--surface);border:2px solid var(--border);border-radius:30px;padding:7px 18px;font-size:0.82rem;font-weight:700;}
+
+/* Overall bar */
+.overall-wrap{width:100%;max-width:520px;background:var(--surface);border:2px solid var(--border);border-radius:var(--radius);padding:18px 22px;margin-bottom:26px;}
+.overall-wrap h3{font-size:0.74rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+.bar-track{background:var(--surface2);border-radius:10px;height:12px;overflow:hidden;margin-bottom:8px;}
+.bar-fill{height:12px;border-radius:10px;background:linear-gradient(90deg,#00B4A6,#6B46C1);transition:width 0.5s ease;}
+.bar-labels{display:flex;justify-content:space-between;font-size:0.76rem;color:var(--muted);font-weight:600;}
+
+/* Chapter grid */
+.chapter-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;width:100%;max-width:880px;}
+.ch-card{background:var(--surface);border-radius:var(--radius);padding:17px 19px;cursor:pointer;border:2px solid var(--border);transition:all 0.2s;position:relative;overflow:hidden;}
+.ch-card::before{content:'';position:absolute;top:0;left:0;width:5px;height:100%;background:var(--cc,#ccc);}
+.ch-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);border-color:var(--cc);}
+.ch-card .cc-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:9px;}
+.ch-card .cc-label{font-weight:700;font-size:0.92rem;line-height:1.3;padding-left:2px;}
+.ch-card .cc-badge{font-size:0.7rem;font-weight:700;color:var(--muted);background:var(--surface2);border-radius:20px;padding:2px 9px;white-space:nowrap;margin-left:6px;}
+.cc-bar-track{background:var(--surface2);border-radius:6px;height:6px;overflow:hidden;margin-bottom:7px;}
+.cc-bar-fill{height:6px;border-radius:6px;background:var(--cc);transition:width 0.4s;}
+.cc-foot{display:flex;justify-content:space-between;font-size:0.73rem;color:var(--muted);font-weight:600;}
+.cc-foot .cc-pct{color:var(--cc);font-weight:800;}
+.all-ch{background:linear-gradient(135deg,var(--purple) 0%,var(--purple-d) 100%);color:#fff;border:none;grid-column:1/-1;}
+.all-ch::before{display:none;} .all-ch:hover{border-color:transparent;}
+.all-ch .cc-label,.all-ch .cc-pct{color:#fff!important;}
+.all-ch .cc-badge{background:rgba(255,255,255,0.2);color:#fff;}
+.all-ch .cc-foot{color:rgba(255,255,255,0.75);}
+.all-ch .cc-bar-track{background:rgba(255,255,255,0.2);}
+.all-ch .cc-bar-fill{background:rgba(255,255,255,0.75);}
+
+/* ── CONFIG ──────────────────────────────────────── */
+.config-box{background:var(--surface);border-radius:20px;padding:28px;width:100%;max-width:500px;box-shadow:var(--shadow);}
+.config-box h2{font-family:'Lexend Mega',sans-serif;font-size:1.15rem;margin-bottom:4px;}
+.config-topic{font-size:0.85rem;color:var(--muted);margin-bottom:22px;}
+.cfg-row{margin-bottom:18px;}
+.cfg-row label{display:block;font-size:0.74rem;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:var(--muted);margin-bottom:9px;}
+.tg{display:flex;gap:7px;flex-wrap:wrap;}
+.tg-btn{padding:7px 16px;border-radius:20px;border:2px solid var(--border);background:var(--surface2);font-family:'Lexend',sans-serif;font-size:0.79rem;font-weight:600;cursor:pointer;transition:all 0.18s;color:var(--muted);}
+.tg-btn.on{background:var(--purple);color:#fff;border-color:var(--purple);}
+.cfg-actions{display:flex;gap:10px;margin-top:22px;}
+.btn-p{flex:1;padding:13px;border-radius:12px;border:none;background:var(--purple);color:#fff;font-family:'Lexend',sans-serif;font-size:0.93rem;font-weight:700;cursor:pointer;transition:all 0.2s;}
+.btn-p:hover{background:var(--purple-d);transform:translateY(-2px);}
+.btn-s{padding:13px 18px;border-radius:12px;border:2px solid var(--border);background:var(--surface2);font-family:'Lexend',sans-serif;font-size:0.88rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);}
+.btn-s:hover{border-color:var(--muted);color:var(--text);}
+
+/* ── QUIZ ────────────────────────────────────────── */
+#quizScreen{padding:0;align-items:stretch;}
+.quiz-bar{
+  position:sticky;top:52px;z-index:9;
+  background:rgba(244,241,236,0.95);backdrop-filter:blur(8px);
+  border-bottom:2px solid var(--border);
+  padding:9px 20px;display:flex;align-items:center;gap:10px;
+}
+.qb-topic{font-size:0.78rem;font-weight:700;color:var(--muted);white-space:nowrap;}
+.qb-track{flex:1;background:var(--border);border-radius:8px;height:8px;overflow:hidden;}
+.qb-fill{height:8px;border-radius:8px;transition:width 0.35s ease;}
+.qb-count{font-size:0.78rem;font-weight:700;color:var(--muted);white-space:nowrap;}
+.btn-quit{padding:4px 11px;border-radius:9px;border:2px solid var(--border);background:transparent;font-family:'Lexend',sans-serif;font-size:0.72rem;font-weight:600;cursor:pointer;color:var(--muted);transition:all 0.2s;}
+.btn-quit:hover{border-color:var(--red);color:var(--red);}
+.quiz-main{flex:1;display:flex;flex-direction:column;align-items:center;padding:26px 20px 40px;max-width:700px;margin:0 auto;width:100%;}
+
+/* Card */
+.flashcard{width:100%;perspective:1400px;cursor:pointer;margin-bottom:22px;min-height:230px;}
+.fc-inner{position:relative;width:100%;min-height:230px;transition:transform 0.52s cubic-bezier(.4,.2,.2,1);transform-style:preserve-3d;}
+.flashcard.flipped .fc-inner{transform:rotateY(180deg);}
+.fc-face{position:absolute;width:100%;min-height:230px;backface-visibility:hidden;border-radius:20px;padding:34px 30px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;box-shadow:var(--shadow-lg);}
+.fc-front{background:var(--surface);border:3px solid var(--border);}
+.fc-back{transform:rotateY(180deg);color:#fff;}
+.fc-badge{font-size:0.64rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);background:var(--surface2);padding:4px 13px;border-radius:20px;margin-bottom:16px;}
+.fc-back .fc-badge{background:rgba(255,255,255,0.22);color:#fff;}
+.fc-q{font-size:clamp(1rem,2.8vw,1.35rem);font-weight:700;line-height:1.45;color:var(--text);}
+.fc-hint{margin-top:18px;font-size:0.7rem;color:var(--muted);}
+.fc-hint kbd{background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:2px 6px;font-family:inherit;font-size:0.68rem;}
+.fc-a{font-size:clamp(0.86rem,2vw,1.02rem);line-height:1.7;opacity:0.96;}
+
+/* Verdict */
+.verdict-row{display:flex;gap:12px;width:100%;max-width:500px;opacity:0;pointer-events:none;transition:opacity 0.28s;margin-bottom:18px;}
+.verdict-row.show{opacity:1;pointer-events:auto;}
+.btn-wrong{flex:1;padding:13px;border-radius:13px;border:2px solid transparent;background:var(--red-l);color:var(--red);font-family:'Lexend',sans-serif;font-size:0.92rem;font-weight:700;cursor:pointer;transition:all 0.2s;}
+.btn-wrong:hover{background:var(--red);color:#fff;transform:translateY(-2px);}
+.btn-right{flex:1;padding:13px;border-radius:13px;border:2px solid transparent;background:var(--green-l);color:var(--green);font-family:'Lexend',sans-serif;font-size:0.92rem;font-weight:700;cursor:pointer;transition:all 0.2s;}
+.btn-right:hover{background:var(--green);color:#fff;transform:translateY(-2px);}
+.quiz-btns{display:flex;gap:10px;align-items:center;}
+.btn-flip{padding:11px 26px;border-radius:12px;border:none;background:var(--purple);color:#fff;font-family:'Lexend',sans-serif;font-size:0.86rem;font-weight:700;cursor:pointer;transition:all 0.2s;}
+.btn-flip:hover{background:var(--purple-d);transform:translateY(-2px);}
+.kbd-hint{margin-top:10px;font-size:0.7rem;color:var(--muted);}
+.kbd-hint kbd{background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:2px 6px;font-family:inherit;font-size:0.68rem;}
+
+/* ── RESULTS ─────────────────────────────────────── */
+.results-wrap{width:100%;max-width:620px;}
+.results-hero{text-align:center;margin-bottom:26px;}
+.score-ring{width:136px;height:136px;border-radius:50%;display:inline-flex;flex-direction:column;align-items:center;justify-content:center;position:relative;margin-bottom:14px;}
+.score-ring svg{position:absolute;top:0;left:0;width:136px;height:136px;transform:rotate(-90deg);}
+.ring-bg{fill:none;stroke:var(--surface2);stroke-width:10;}
+.ring-fg{fill:none;stroke-width:10;stroke-linecap:round;transition:stroke-dashoffset 1s ease;}
+.ring-inner{position:relative;z-index:1;text-align:center;}
+.ring-pct{font-family:'Lexend Mega',sans-serif;font-size:1.9rem;line-height:1;}
+.ring-sub{font-size:0.58rem;color:var(--muted);letter-spacing:1px;text-transform:uppercase;}
+.results-hero h2{font-family:'Lexend Mega',sans-serif;font-size:1.4rem;margin-bottom:6px;}
+.results-hero .res-msg{color:var(--muted);font-size:0.9rem;}
+.res-card{background:var(--surface);border-radius:var(--radius);padding:20px 22px;margin-bottom:14px;box-shadow:var(--shadow);}
+.res-card h3{font-size:0.74rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+.improve-box{background:var(--amber-l);border:2px solid #F6E05E;border-radius:var(--radius);padding:16px 20px;margin-bottom:14px;}
+.improve-box h3{font-size:0.74rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--amber-d);margin-bottom:10px;}
+.improve-list{list-style:none;}
+.improve-list li{font-size:0.84rem;padding:5px 0;display:flex;gap:8px;border-bottom:1px solid rgba(0,0,0,0.06);}
+.improve-list li:last-child{border-bottom:none;}
+.improve-list li::before{content:'→';color:var(--amber-d);font-weight:700;flex-shrink:0;}
+.bd-row{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--surface2);}
+.bd-row:last-child{border-bottom:none;}
+.bd-icon{width:24px;text-align:center;font-size:1rem;flex-shrink:0;}
+.bd-term{flex:1;font-size:0.86rem;font-weight:600;}
+.bd-tag{font-size:0.72rem;font-weight:700;padding:3px 9px;border-radius:11px;}
+.bd-tag.right{background:var(--green-l);color:var(--green);}
+.bd-tag.wrong{background:var(--red-l);color:var(--red);}
+.res-actions{display:flex;gap:10px;flex-wrap:wrap;}
+.res-actions .btn-p{flex:1;min-width:130px;}
+.res-actions .btn-s{flex:1;min-width:130px;}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+  SHARED NAV
+═══════════════════════════════════════════════ -->
+<nav class="top-nav">
+  <span class="nav-logo">LC <span>CS</span></span>
+  <a href="Compsci.html" class="nav-home">🏠 Home</a>
+  <span class="nav-divider"></span>
+  <a href="LCCS_Glossary_1_CompThinking_Python.html"     class="nav-def-link">🧠+🐍 File 1</a>
+  <a href="LCCS_Glossary_2_Embedded_Data.html"           class="nav-def-link">⚡+📊 File 2</a>
+  <a href="LCCS_Glossary_3_Web_Systems.html"             class="nav-def-link">🌐+🖥️ File 3</a>
+  <a href="LCCS_Glossary_4_Algorithms_SoftDev.html"      class="nav-def-link">🔍+🛠️ File 4</a>
+  <a href="LCCS_Glossary_5_Databases_AI_Coursework.html" class="nav-def-link">🗄️+🤖 File 5</a>
+</nav>
+
+<!-- ═══════════════════════════════════════════
+  SCREEN: HOME
+═══════════════════════════════════════════════ -->
+<div class="screen active" id="homeScreen">
+  <div class="home-hero">
+    <h1><span class="hi">LC CS</span> <span class="hii">Flashcards</span></h1>
+    <p>236 terms · 11 topics · Track your mastery, shuffle, and score yourself</p>
+  </div>
+  <div class="home-stats">
+    <span class="stat-pill">🃏 236 Cards</span>
+    <span class="stat-pill">📚 11 Topics</span>
+    <span class="stat-pill" id="todayPill">🔥 0 studied today</span>
+  </div>
+  <div class="overall-wrap">
+    <h3>Overall Mastery</h3>
+    <div class="bar-track"><div class="bar-fill" id="overallFill" style="width:0%"></div></div>
+    <div class="bar-labels">
+      <span id="overallLeft">0 mastered</span>
+      <span id="overallRight">0% of all cards</span>
+    </div>
+  </div>
+  <div class="chapter-grid" id="chapterGrid"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+  SCREEN: CONFIG
+═══════════════════════════════════════════════ -->
+<div class="screen" id="configScreen">
+  <div class="config-box">
+    <h2>Study Session</h2>
+    <p class="config-topic" id="configLabel">All Topics</p>
+    <div class="cfg-row">
+      <label>Filter</label>
+      <div class="tg">
+        <button class="tg-btn on" data-f="all"  onclick="setCfg('filter','all',this)">All Cards</button>
+        <button class="tg-btn"    data-f="core" onclick="setCfg('filter','core',this)">⭐ Core Only</button>
+      </div>
+    </div>
+    <div class="cfg-row">
+      <label>Order</label>
+      <div class="tg">
+        <button class="tg-btn on"  data-o="order"   onclick="setCfg('order','order',this)">In Order</button>
+        <button class="tg-btn"     data-o="shuffle" onclick="setCfg('order','shuffle',this)">🔀 Shuffle</button>
+      </div>
+    </div>
+    <div class="cfg-row">
+      <label>Cards to Show</label>
+      <div class="tg">
+        <button class="tg-btn on" data-s="all"   onclick="setCfg('show','all',this)">All</button>
+        <button class="tg-btn"    data-s="wrong" onclick="setCfg('show','wrong',this)">❌ Missed Only</button>
+      </div>
+    </div>
+    <div class="cfg-actions">
+      <button class="btn-s" onclick="goScreen('homeScreen')">← Back</button>
+      <button class="btn-p" onclick="startQuiz()">Start →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+  SCREEN: QUIZ
+═══════════════════════════════════════════════ -->
+<div class="screen" id="quizScreen">
+  <div class="quiz-bar">
+    <span class="qb-topic" id="qbTopic">—</span>
+    <div class="qb-track"><div class="qb-fill" id="qbFill" style="width:0%"></div></div>
+    <span class="qb-count" id="qbCount">0 / 0</span>
+    <button class="btn-quit" onclick="confirmQuit()">✕ Quit</button>
+  </div>
+  <div class="quiz-main">
+    <div class="flashcard" id="flashcard" onclick="flipCard()">
+      <div class="fc-inner">
+        <div class="fc-face fc-front">
+          <div class="fc-badge" id="fcBadge">—</div>
+          <div class="fc-q" id="fcQ">—</div>
+          <div class="fc-hint">Click card or press <kbd>Space</kbd> to flip</div>
+        </div>
+        <div class="fc-face fc-back" id="fcBack">
+          <div class="fc-badge" id="fcBadgeBack">—</div>
+          <div class="fc-a" id="fcA">—</div>
+        </div>
+      </div>
+    </div>
+    <div class="verdict-row" id="verdictRow">
+      <button class="btn-wrong" onclick="mark(false)">✗ &nbsp;Got it wrong</button>
+      <button class="btn-right" onclick="mark(true)">✓ &nbsp;Got it right</button>
+    </div>
+    <div class="quiz-btns">
+      <button class="btn-flip" onclick="flipCard()">Flip</button>
+    </div>
+    <p class="kbd-hint"><kbd>Space</kbd> flip &nbsp;·&nbsp; <kbd>←</kbd> wrong &nbsp;·&nbsp; <kbd>→</kbd> right</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+  SCREEN: RESULTS
+═══════════════════════════════════════════════ -->
+<div class="screen" id="resultsScreen">
+  <div class="results-wrap">
+    <div class="results-hero">
+      <div class="score-ring">
+        <svg viewBox="0 0 136 136">
+          <circle class="ring-bg" cx="68" cy="68" r="58"/>
+          <circle class="ring-fg" id="ringFg" cx="68" cy="68" r="58"
+            stroke-dasharray="364" stroke-dashoffset="364" stroke="#6B46C1"/>
+        </svg>
+        <div class="ring-inner">
+          <div class="ring-pct" id="ringPct">0%</div>
+          <div class="ring-sub">Score</div>
+        </div>
+      </div>
+      <h2 id="resHeading">Done!</h2>
+      <p class="res-msg" id="resMsg">—</p>
+    </div>
+    <div class="improve-box" id="improveBox" style="display:none">
+      <h3>📌 Focus On These</h3>
+      <ul class="improve-list" id="improveList"></ul>
+    </div>
+    <div class="res-card">
+      <h3>Full Breakdown</h3>
+      <div id="breakdownList"></div>
+    </div>
+    <div class="res-actions">
+      <button class="btn-s" onclick="goScreen('homeScreen')">🏠 Home</button>
+      <button class="btn-p" id="retryBtn" onclick="retryWrong()">🔁 Retry Wrong</button>
+      <button class="btn-p" onclick="openConfig(currentTopic)" style="background:var(--green)">↩ Redo</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ════════════════════════════════════════════
+// DATA
+// ════════════════════════════════════════════
+const ALL_CARDS = [
+  {topic:'t1',label:'🧠 Comp Thinking',q:'Computer Science',a:'The study of computers, algorithmic processes, programming, computational thinking, computer systems, data, and the impact of computing on society.',priority:'core'},
+  {topic:'t1',label:'🧠 Comp Thinking',q:'Computational Thinking',a:'A problem-solving approach using decomposition, abstraction, pattern recognition, logic and algorithms so a solution can be automated or implemented by a computer.',priority:'core'},
+  {topic:'t1',label:'🧠 Comp Thinking',q:'Decomposition',a:'Breaking a large or difficult problem into smaller, more manageable parts.',priority:'core'},
+  {topic:'t1',label:'🧠 Comp Thinking',q:'Abstraction',a:'Ignoring unnecessary detail and focusing on the important features of a problem or system.',priority:'core'},
+  {topic:'t1',label:'🧠 Comp Thinking',q:'Pattern Recognition',a:'Identifying similarities, repeated structures or trends that can help solve a problem.',priority:'core'},
+  {topic:'t1',label:'🧠 Comp Thinking',q:'Generalisation',a:'Creating a solution that works for a whole class of similar problems, not only one specific example.',priority:'core'},
+  {topic:'t1',label:'🧠 Comp Thinking',q:'Algorithmic Thinking',a:'Designing a clear sequence of steps that can solve a problem.',priority:'core'},
+  {topic:'t1',label:'🧠 Comp Thinking',q:'Logic',a:'Reasoning about conditions that are either true or false, often using Boolean expressions and logic gates.',priority:'core'},
+  {topic:'t1',label:'🧠 Comp Thinking',q:'Automation',a:'Using computing technology to carry out tasks with little or no human intervention.',priority:'core'},
+  {topic:'t1',label:'🧠 Comp Thinking',q:'Computational Artefact',a:'A digital product created using computing, such as a program, website, simulation, animation, app, data visualisation or embedded system.',priority:'core'},
+  {topic:'t1',label:'🧠 Comp Thinking',q:'Heuristic',a:'A rule-of-thumb or approximate problem-solving method used when finding the perfect solution would take too long or use too many resources.',priority:'core'},
+  {topic:'t1',label:'🧠 Comp Thinking',q:'Model',a:'A simplified representation of a real-world system used to understand, predict or test ideas.',priority:'core'},
+  {topic:'t1',label:'🧠 Comp Thinking',q:'Simulation',a:'A computer-based imitation of a real process or system, often used to test what might happen under different conditions.',priority:'core'},
+  {topic:'t1',label:'🧠 Comp Thinking',q:'State',a:'The current condition or configuration of a system at a particular moment.',priority:'core'},
+  {topic:'t1',label:'🧠 Comp Thinking',q:'State Transition',a:'A change from one state to another caused by an input, rule or event.',priority:'core'},
+  {topic:'t1',label:'🧠 Comp Thinking',q:'Finite State Machine (FSM)',a:'A model made of a finite number of states and rules for moving between states based on inputs.',priority:'core'},
+  {topic:'t1',label:'🧠 Comp Thinking',q:'Turing Machine',a:'A theoretical model of computation using states, rules and a tape. Used to reason about what can and cannot be computed.',priority:'core'},
+  {topic:'t1',label:'🧠 Comp Thinking',q:'Problem-Solving Process',a:'A systematic approach: Investigate → Plan/Design → Create → Test/Evaluate → Iterate.',priority:'core'},
+  {topic:'t1',label:'🧠 Comp Thinking',q:'Iteration (design process)',a:'Repeating and improving a solution based on testing, feedback or new requirements.',priority:'core'},
+  {topic:'t1',label:'🧠 Comp Thinking',q:'Computable',a:'A problem is computable if an algorithm or machine can solve it in a finite number of steps.',priority:'useful'},
+  {topic:'t2',label:'🐍 Python',q:'Program',a:'A set of instructions written in a programming language to make a computer perform a task.',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'Source Code',a:'The human-readable instructions written by a programmer before/while a program runs.',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'Interpreter',a:'A program that executes high-level code by translating and running it line by line as needed.',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'Compiler',a:'Software that translates a whole high-level program into machine code or another lower-level form before it runs.',priority:'useful'},
+  {topic:'t2',label:'🐍 Python',q:'Syntax',a:'The rules for writing valid code in a programming language.',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'Syntax Error',a:'An error caused by breaking the grammar/rules of the programming language, so the code cannot run.',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'Logic Error',a:'An error where code runs but gives the wrong result because the algorithm or reasoning is incorrect.',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'Runtime Error',a:'An error that occurs while a program is running, often because of invalid data or an impossible operation.',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'Bug',a:'A mistake or fault in a program that causes incorrect or unexpected behaviour.',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'Debugging',a:'Finding, understanding and fixing errors in a program.',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'Variable',a:'A named location/reference used to store a value while a program runs.',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'Assignment',a:'Giving a value to a variable. In Python done using =. Example: x = 5.',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'Assignment Operator',a:'The = symbol in programming when it assigns the right-hand value/expression to the variable on the left. RHS is calculated first.',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'Data Type',a:'A category of data that tells the computer what kind of value is stored. Core types: int, float, str, bool, list.',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'Integer',a:'A whole number data type, such as -3, 0, 5 or 255. Python type: int.',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'Float',a:'A decimal/floating-point number data type such as 3.14. Python type: float.',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'String',a:'A sequence of characters used for text, written inside quotes. Python type: str.',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'Boolean',a:'A data type with only two possible values: True or False.',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'Type Conversion / Casting',a:'Changing a value from one data type to another, such as int("5") or str(25). Important because input() returns a string.',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'Operator',a:'A symbol or keyword performing an operation: +, -, *, /, %, //, **.',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'Operator Precedence',a:'The order in which operations are evaluated. BIMDAS: Brackets, Indices, Multiplication/Division, Addition/Subtraction.',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'Function',a:'A named reusable block of code that performs a task and may accept parameters and return a value.',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'Parameter',a:'A variable listed in a function definition that receives an argument value.',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'Argument',a:'A value passed into a function when it is called.',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'Return Statement',a:'A statement that sends a value back from a function to the calling code, often ending the function.',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'Recursion',a:'A technique where a function calls itself to solve smaller versions of a problem.',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'Base Case',a:'The condition in a recursive function that stops further recursive calls. Without it: stack overflow!',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'Selection',a:'Choosing between different paths based on a condition. Uses if, elif, else.',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'Iteration / Loop',a:'Repeating a set of instructions multiple times.',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'For Loop',a:'A loop that iterates over a sequence or range, when the number of iterations is known.',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'While Loop',a:'A loop that repeats while a condition remains True, often when the number of iterations is not known in advance.',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'Infinite Loop',a:'A loop that never ends because its stopping condition is never reached. Usually a logic error.',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'List / Array',a:'An ordered collection of values stored under one variable name. Python lists use square brackets.',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'Index',a:'The position number used to access an item in a list or string. Python starts at 0.',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'Zero-Based Indexing',a:'First item is at index 0, second at index 1, etc.',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'Slice',a:'A part of a string or list selected using start:stop indexes. The stop index is NOT included.',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'len()',a:'Python function that returns the number of items in a sequence (list or string).',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'append()',a:'List method that adds an item to the end of a list.',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'Module / Library',a:'Reusable code imported into a program to provide extra functions. Examples: random, math, pandas, matplotlib.',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'String Concatenation',a:'Joining strings together using +. Example: "Hello" + " " + "World"',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'Dictionary',a:'A Python data structure that stores key-value pairs.',priority:'useful'},
+  {topic:'t3',label:'⚡ Embedded',q:'Embedded System',a:'A computer system built into a larger device to perform a specific task, often with limited memory, power and user interface.',priority:'core'},
+  {topic:'t3',label:'⚡ Embedded',q:'Microcontroller',a:'A small computer on a single chip used to control hardware such as sensors, LEDs and motors.',priority:'core'},
+  {topic:'t3',label:'⚡ Embedded',q:'Sensor',a:'An input device that detects a physical quantity such as light, temperature, movement or moisture.',priority:'core'},
+  {topic:'t3',label:'⚡ Embedded',q:'Actuator',a:'An output device that causes a physical action, such as a motor, buzzer or servo.',priority:'core'},
+  {topic:'t3',label:'⚡ Embedded',q:'Digital Input',a:'An input with discrete states, usually on/off, 1/0, True/False.',priority:'core'},
+  {topic:'t3',label:'⚡ Embedded',q:'Analogue Input',a:'An input that can vary continuously over a range, such as light level or temperature.',priority:'core'},
+  {topic:'t3',label:'⚡ Embedded',q:'Logic Gate',a:'An electronic/computational component that performs a Boolean operation on one or more inputs to produce an output.',priority:'core'},
+  {topic:'t3',label:'⚡ Embedded',q:'Truth Table',a:'A table listing every possible input combination and the corresponding output of a Boolean expression or logic circuit.',priority:'core'},
+  {topic:'t3',label:'⚡ Embedded',q:'AND Gate',a:'Outputs 1/True only when ALL inputs are 1/True.',priority:'core'},
+  {topic:'t3',label:'⚡ Embedded',q:'OR Gate',a:'Outputs 1/True when AT LEAST ONE input is 1/True.',priority:'core'},
+  {topic:'t3',label:'⚡ Embedded',q:'NOT Gate',a:'Outputs the OPPOSITE of its input. Also called an inverter.',priority:'core'},
+  {topic:'t3',label:'⚡ Embedded',q:'Transistor',a:'A semiconductor component used as an electronic switch or amplifier; basic building block of logic circuits and processors.',priority:'core'},
+  {topic:'t3',label:'⚡ Embedded',q:'Integrated Circuit',a:'A chip containing many electronic components/transistors on a single piece of semiconductor material.',priority:'core'},
+  {topic:'t3',label:'⚡ Embedded',q:'Voltage',a:'Electrical potential difference; a "push" that can cause current to flow in a circuit. Measured in volts (V).',priority:'core'},
+  {topic:'t3',label:'⚡ Embedded',q:'Current',a:'The flow of electric charge in a circuit, measured in amperes (A).',priority:'core'},
+  {topic:'t3',label:'⚡ Embedded',q:'Resistor',a:'A component that limits current flow in a circuit.',priority:'core'},
+  {topic:'t4',label:'📊 Data',q:'Data',a:'Raw facts, values or observations that can be stored and processed by a computer.',priority:'core'},
+  {topic:'t4',label:'📊 Data',q:'Information',a:'Data that has been processed or given context so it becomes meaningful.',priority:'core'},
+  {topic:'t4',label:'📊 Data',q:'Dataset',a:'A collection of related data values, usually organised in records, tables or files.',priority:'core'},
+  {topic:'t4',label:'📊 Data',q:'Record',a:'A complete set of fields about one item/entity. In a table: a row.',priority:'core'},
+  {topic:'t4',label:'📊 Data',q:'Field',a:'One category/attribute in a record. In a table: a column.',priority:'core'},
+  {topic:'t4',label:'📊 Data',q:'CSV File',a:'Comma-Separated Values: plain-text format where rows are stored line by line and fields separated by commas.',priority:'core'},
+  {topic:'t4',label:'📊 Data',q:'Open Data',a:'Data publicly available for people to use, reuse and share, often from governments or organisations.',priority:'core'},
+  {topic:'t4',label:'📊 Data',q:'Data Analytics',a:'The process of collecting, cleaning, analysing and interpreting data to find patterns, answer questions or support decisions.',priority:'core'},
+  {topic:'t4',label:'📊 Data',q:'Hypothesis',a:'A testable prediction or proposed explanation that can be investigated using data.',priority:'core'},
+  {topic:'t4',label:'📊 Data',q:'Data Cleaning',a:'Finding and fixing/removing problems in data, such as missing values, duplicates, inconsistent formats or outliers.',priority:'core'},
+  {topic:'t4',label:'📊 Data',q:'Validation',a:'Checking that input data is reasonable and follows rules before it is accepted or processed.',priority:'core'},
+  {topic:'t4',label:'📊 Data',q:'Missing Value',a:'A data item that is blank or absent when a value is expected.',priority:'core'},
+  {topic:'t4',label:'📊 Data',q:'Duplicate Record',a:'A repeated record that appears more than once in a dataset.',priority:'core'},
+  {topic:'t4',label:'📊 Data',q:'Outlier / Anomaly',a:'A value that is unusual compared with the rest of the data — may be an error or a genuine exceptional case.',priority:'core'},
+  {topic:'t4',label:'📊 Data',q:'Inconsistent Format',a:'When similar data is written in different formats, such as dates recorded in multiple ways.',priority:'core'},
+  {topic:'t4',label:'📊 Data',q:'Mean',a:'The arithmetic average: total of values divided by the number of values.',priority:'core'},
+  {topic:'t4',label:'📊 Data',q:'Median',a:'The middle value when values are sorted. If two middle values, take their mean.',priority:'core'},
+  {topic:'t4',label:'📊 Data',q:'Mode',a:'The most frequently occurring value in a dataset.',priority:'core'},
+  {topic:'t4',label:'📊 Data',q:'Frequency',a:'The number of times a value or category occurs in a dataset.',priority:'core'},
+  {topic:'t4',label:'📊 Data',q:'Data Visualisation',a:'Representing data graphically using charts, graphs or other visuals. Charts need title, axis labels and legend.',priority:'core'},
+  {topic:'t4',label:'📊 Data',q:'Bar Chart',a:'A chart using separate bars to compare categories or discrete values.',priority:'core'},
+  {topic:'t4',label:'📊 Data',q:'Line Graph',a:'A chart using points connected by lines to show change over time or sequence.',priority:'core'},
+  {topic:'t4',label:'📊 Data',q:'Axis Label',a:'Text that identifies what a chart axis represents and often its unit.',priority:'core'},
+  {topic:'t4',label:'📊 Data',q:'Legend',a:'A key that explains colours/lines/categories in a chart.',priority:'core'},
+  {topic:'t5',label:'🌐 Web/Net',q:'HTML',a:'HyperText Markup Language: markup language used to structure content on webpages.',priority:'core'},
+  {topic:'t5',label:'🌐 Web/Net',q:'CSS',a:'Cascading Style Sheets: language used to style and lay out webpages.',priority:'core'},
+  {topic:'t5',label:'🌐 Web/Net',q:'JavaScript',a:'A programming language used to add interactivity to webpages.',priority:'core'},
+  {topic:'t5',label:'🌐 Web/Net',q:'HTML Tag',a:'A markup instruction written in angle brackets, such as <p> or <h1>.',priority:'core'},
+  {topic:'t5',label:'🌐 Web/Net',q:'HTML Element',a:'Complete part of a webpage: opening tag + content + closing tag. E.g. <p>Hello</p>.',priority:'core'},
+  {topic:'t5',label:'🌐 Web/Net',q:'HTML Attribute',a:'Extra information inside an opening tag, such as href in <a> or src in <img>.',priority:'core'},
+  {topic:'t5',label:'🌐 Web/Net',q:'Hyperlink',a:'A clickable link using the <a> tag and href attribute.',priority:'core'},
+  {topic:'t5',label:'🌐 Web/Net',q:'Client-Server Model',a:'A model where a client requests a service/resource and a server processes the request and sends a response.',priority:'core'},
+  {topic:'t5',label:'🌐 Web/Net',q:'Protocol',a:'An agreed set of rules for communication between devices/systems. Examples: HTTP, HTTPS, TCP, IP.',priority:'core'},
+  {topic:'t5',label:'🌐 Web/Net',q:'HTTP',a:'HyperText Transfer Protocol: protocol for transferring web pages between browser and server. Unsecured.',priority:'core'},
+  {topic:'t5',label:'🌐 Web/Net',q:'HTTPS',a:'Secure version of HTTP that uses encryption/TLS to protect data in transit.',priority:'core'},
+  {topic:'t5',label:'🌐 Web/Net',q:'TCP',a:'Transmission Control Protocol: breaks data into packets, numbers them, checks delivery and reassembles them in order.',priority:'core'},
+  {topic:'t5',label:'🌐 Web/Net',q:'IP',a:'Internet Protocol: responsible for addressing and routing packets across networks.',priority:'core'},
+  {topic:'t5',label:'🌐 Web/Net',q:'Packet',a:'A small chunk of data sent across a network with addressing/control information.',priority:'core'},
+  {topic:'t5',label:'🌐 Web/Net',q:'IP Address',a:'A numerical address used to identify a device/network interface on an IP network.',priority:'core'},
+  {topic:'t5',label:'🌐 Web/Net',q:'Encryption',a:'Transforming data into unreadable form using a key so it cannot be understood without decryption.',priority:'core'},
+  {topic:'t5',label:'🌐 Web/Net',q:'Decryption',a:'Converting encrypted data back into readable form using the correct key.',priority:'core'},
+  {topic:'t5',label:'🌐 Web/Net',q:'URL',a:'Uniform Resource Locator: the address used to locate a resource on the web.',priority:'core'},
+  {topic:'t6',label:'🖥️ Systems',q:'Operating System (OS)',a:'System software that controls hardware resources and provides services/interface for users and applications.',priority:'core'},
+  {topic:'t6',label:'🖥️ Systems',q:'Resource Management',a:'How the OS controls and coordinates hardware resources such as CPU time, memory, storage and I/O devices.',priority:'core'},
+  {topic:'t6',label:'🖥️ Systems',q:'File Management',a:'How the OS organises, stores, tracks and controls access to files on storage devices.',priority:'core'},
+  {topic:'t6',label:'🖥️ Systems',q:'Memory Management',a:'How the OS allocates RAM to programs and manages movement of data between memory and storage.',priority:'core'},
+  {topic:'t6',label:'🖥️ Systems',q:'CPU',a:'Central Processing Unit: main processor that fetches, decodes and executes instructions. Contains ALU, CU, registers, cache.',priority:'core'},
+  {topic:'t6',label:'🖥️ Systems',q:'ALU',a:'Arithmetic Logic Unit: CPU component that performs arithmetic and logical operations.',priority:'core'},
+  {topic:'t6',label:'🖥️ Systems',q:'Control Unit (CU)',a:'CPU component that directs and coordinates operations — fetching, decoding and executing instructions.',priority:'core'},
+  {topic:'t6',label:'🖥️ Systems',q:'Register',a:'A very small, very fast storage location inside the CPU used to hold data temporarily.',priority:'core'},
+  {topic:'t6',label:'🖥️ Systems',q:'Program Counter (PC)',a:'A register that stores the memory address of the next instruction to be executed.',priority:'core'},
+  {topic:'t6',label:'🖥️ Systems',q:'Cache',a:'Fast, small memory close to or inside the CPU used to store frequently needed data/instructions.',priority:'core'},
+  {topic:'t6',label:'🖥️ Systems',q:'Clock Speed',a:'The number of CPU clock pulses per second, usually measured in hertz. Higher = more cycles per second.',priority:'core'},
+  {topic:'t6',label:'🖥️ Systems',q:'Core (CPU)',a:'A processing unit within a CPU capable of executing instructions. Multiple cores allow parallel processing.',priority:'core'},
+  {topic:'t6',label:'🖥️ Systems',q:'Fetch-Decode-Execute Cycle',a:'The repeated process: Fetch instruction from memory → Decode what to do → Execute it.',priority:'core'},
+  {topic:'t6',label:'🖥️ Systems',q:'RAM',a:'Random Access Memory: volatile primary memory used to store programs/data while running. Lost when power off.',priority:'core'},
+  {topic:'t6',label:'🖥️ Systems',q:'ROM',a:'Read-Only Memory: non-volatile memory storing permanent/start-up instructions (firmware). Contrast with RAM.',priority:'core'},
+  {topic:'t6',label:'🖥️ Systems',q:'Volatile Memory',a:'Memory whose contents are lost when power is switched off (RAM, registers).',priority:'core'},
+  {topic:'t6',label:'🖥️ Systems',q:'Non-Volatile Memory',a:'Memory that keeps data when power is off (ROM, SSDs, hard drives).',priority:'core'},
+  {topic:'t6',label:'🖥️ Systems',q:'Secondary Storage',a:'Long-term non-volatile storage for files and programs: HDDs, SSDs, USB drives.',priority:'core'},
+  {topic:'t6',label:'🖥️ Systems',q:'HDD vs SSD',a:'HDD: magnetic, moving parts, cheaper/GB. SSD: electronic, no moving parts, faster, more durable.',priority:'core'},
+  {topic:'t6',label:'🖥️ Systems',q:'Virtual Memory',a:'Technique using storage as extra temporary memory when RAM is full. Slower than RAM.',priority:'core'},
+  {topic:'t6',label:'🖥️ Systems',q:'Bit',a:'Smallest unit of data, representing a binary value 0 or 1.',priority:'core'},
+  {topic:'t6',label:'🖥️ Systems',q:'Byte',a:'A group of 8 bits.',priority:'core'},
+  {topic:'t6',label:'🖥️ Systems',q:'Binary',a:'Base-2 number system using digits 0 and 1. All computer data is represented in binary.',priority:'core'},
+  {topic:'t6',label:'🖥️ Systems',q:'Hexadecimal',a:'Base-16 number system using digits 0-9 and A-F. Compact representation of binary. Used for colours, memory addresses.',priority:'core'},
+  {topic:'t6',label:'🖥️ Systems',q:'ASCII',a:'Character encoding standard representing common characters using numeric codes. 7 bits = 128 characters.',priority:'core'},
+  {topic:'t6',label:'🖥️ Systems',q:'Unicode',a:'Character encoding standard for characters from many languages including emojis. More globally compatible than ASCII.',priority:'core'},
+  {topic:'t6',label:'🖥️ Systems',q:'RGB Colour',a:'Colour represented using red, green and blue values (0-255 each) or as hex pairs.',priority:'core'},
+  {topic:'t6',label:'🖥️ Systems',q:'Moore\'s Law',a:'The observation that transistor count on ICs roughly doubles every two years. Now approaching physical limits.',priority:'core'},
+  {topic:'t6',label:'🖥️ Systems',q:'Cloud Computing',a:'Using remote servers over the internet for storage, software or computing, instead of local machines.',priority:'core'},
+  {topic:'t6',label:'🖥️ Systems',q:'Internet of Things (IoT)',a:'Network of everyday devices with sensors/software/network connectivity that collect and exchange data.',priority:'core'},
+  {topic:'t6',label:'🖥️ Systems',q:'Biometric Authentication',a:'Verifying identity using biological characteristics such as fingerprint, face or iris.',priority:'core'},
+  {topic:'t6',label:'🖥️ Systems',q:'High-Level Language',a:'Programming language closer to human language, independent of CPU architecture. Examples: Python, JavaScript.',priority:'core'},
+  {topic:'t6',label:'🖥️ Systems',q:'Machine Code',a:'Low-level binary instructions that can be executed directly by a processor.',priority:'core'},
+  {topic:'t7',label:'🔍 Algorithms',q:'Algorithm',a:'A finite, ordered set of unambiguous steps for solving a problem or performing a task.',priority:'core'},
+  {topic:'t7',label:'🔍 Algorithms',q:'Pseudocode',a:'A language-independent way of describing an algorithm using structured plain English/code-like notation.',priority:'core'},
+  {topic:'t7',label:'🔍 Algorithms',q:'Flowchart',a:'A diagram representing an algorithm using symbols and arrows to show flow of control.',priority:'core'},
+  {topic:'t7',label:'🔍 Algorithms',q:'Trace Table',a:'A table used to follow the values of variables step by step as an algorithm/program runs.',priority:'core'},
+  {topic:'t7',label:'🔍 Algorithms',q:'Linear Search',a:'Checks items one by one until the target is found or list ends. Works on unsorted data. O(n) worst case.',priority:'core'},
+  {topic:'t7',label:'🔍 Algorithms',q:'Binary Search',a:'For sorted data: compares target with middle item and discards half the list each time. O(log n).',priority:'core'},
+  {topic:'t7',label:'🔍 Algorithms',q:'Bubble Sort',a:'Repeatedly compares adjacent items and swaps if wrong order. O(n²). Largest items "bubble" to the end.',priority:'core'},
+  {topic:'t7',label:'🔍 Algorithms',q:'Selection Sort',a:'Repeatedly selects the smallest remaining item and moves it to its correct position. O(n²).',priority:'core'},
+  {topic:'t7',label:'🔍 Algorithms',q:'Quicksort',a:'Divide-and-conquer: partitions list around a pivot and recursively sorts sub-lists. Best case O(n log n), worst O(n²).',priority:'core'},
+  {topic:'t7',label:'🔍 Algorithms',q:'Pivot',a:'The selected value used by quicksort to partition the list. A bad pivot choice degrades performance.',priority:'core'},
+  {topic:'t7',label:'🔍 Algorithms',q:'Big O Notation',a:'Notation for describing the growth rate of an algorithm\'s time/space requirements as input size increases.',priority:'core'},
+  {topic:'t7',label:'🔍 Algorithms',q:'O(1)',a:'Constant time: running time does not grow with input size. Example: accessing a list item by index.',priority:'core'},
+  {topic:'t7',label:'🔍 Algorithms',q:'O(log n)',a:'Logarithmic time: problem is repeatedly halved. Example: binary search.',priority:'core'},
+  {topic:'t7',label:'🔍 Algorithms',q:'O(n)',a:'Linear time: work grows in proportion to input size. Example: linear search.',priority:'core'},
+  {topic:'t7',label:'🔍 Algorithms',q:'O(n²)',a:'Quadratic time: work grows with the square of input size, from nested comparisons. Example: bubble sort.',priority:'core'},
+  {topic:'t7',label:'🔍 Algorithms',q:'Time Complexity',a:'How the time/number of operations needed by an algorithm grows as input size grows.',priority:'core'},
+  {topic:'t7',label:'🔍 Algorithms',q:'Best Case',a:'The input situation where an algorithm performs as efficiently as possible.',priority:'core'},
+  {topic:'t7',label:'🔍 Algorithms',q:'Worst Case',a:'The input situation where an algorithm performs the maximum expected work.',priority:'core'},
+  {topic:'t7',label:'🔍 Algorithms',q:'Efficiency',a:'How well an algorithm or system uses resources such as time, memory, CPU or energy.',priority:'core'},
+  {topic:'t8',label:'🛠️ Soft Dev',q:'SDLC',a:'Software Development Life Cycle: structured process for planning, designing, implementing, testing, deploying and maintaining software.',priority:'core'},
+  {topic:'t8',label:'🛠️ Soft Dev',q:'Waterfall Model',a:'Phases completed in sequence before moving on. Structured but inflexible.',priority:'core'},
+  {topic:'t8',label:'🛠️ Soft Dev',q:'Agile / Iterative Model',a:'Builds software in repeated cycles with regular feedback. Flexible when requirements may change.',priority:'core'},
+  {topic:'t8',label:'🛠️ Soft Dev',q:'Stakeholder',a:'Any person or group affected by or interested in a system.',priority:'core'},
+  {topic:'t8',label:'🛠️ Soft Dev',q:'Functional Requirement',a:'Describes what the system must do. Example: "calculate totals", "save records".',priority:'core'},
+  {topic:'t8',label:'🛠️ Soft Dev',q:'Non-Functional Requirement',a:'Describes how well the system should perform: usability, speed, reliability, security, accessibility.',priority:'core'},
+  {topic:'t8',label:'🛠️ Soft Dev',q:'Wireframe',a:'Low-fidelity sketch showing layout and structure of a webpage/interface — no real content or full styling.',priority:'core'},
+  {topic:'t8',label:'🛠️ Soft Dev',q:'Prototype',a:'A simplified working version of a system for testing/feedback. Higher fidelity than a wireframe.',priority:'core'},
+  {topic:'t8',label:'🛠️ Soft Dev',q:'User-Centred Design',a:'Designing a system around the needs, goals, abilities and feedback of its users.',priority:'core'},
+  {topic:'t8',label:'🛠️ Soft Dev',q:'GUI',a:'Graphical User Interface: uses windows, icons, menus and pointers/touch.',priority:'core'},
+  {topic:'t8',label:'🛠️ Soft Dev',q:'CLI',a:'Command Line Interface: text-based, users type commands. Requires knowledge of commands.',priority:'core'},
+  {topic:'t8',label:'🛠️ Soft Dev',q:'Universal Design',a:'Designing products to be usable by as many people as possible. Principles: equitable, flexible, simple, error-tolerant.',priority:'core'},
+  {topic:'t8',label:'🛠️ Soft Dev',q:'Accessibility',a:'Designing systems so people with different needs/abilities can use them effectively.',priority:'core'},
+  {topic:'t8',label:'🛠️ Soft Dev',q:'Assistive Technology',a:'Technology helping people with disabilities. Examples: screen readers, braille displays, voice recognition.',priority:'core'},
+  {topic:'t8',label:'🛠️ Soft Dev',q:'Unit Testing',a:'Testing small individual components/functions of code, usually by the developer.',priority:'core'},
+  {topic:'t8',label:'🛠️ Soft Dev',q:'System Testing',a:'Testing the whole system to check it works as intended under realistic conditions.',priority:'core'},
+  {topic:'t8',label:'🛠️ Soft Dev',q:'Functional Testing',a:'Testing whether features meet their functional requirements from the user\'s perspective.',priority:'core'},
+  {topic:'t8',label:'🛠️ Soft Dev',q:'Non-Functional Testing',a:'Testing qualities: performance, usability, reliability, security, compatibility, scalability.',priority:'core'},
+  {topic:'t8',label:'🛠️ Soft Dev',q:'Regression Testing',a:'Retesting existing functionality after changes to ensure new changes didn\'t break working code.',priority:'core'},
+  {topic:'t8',label:'🛠️ Soft Dev',q:'Test Case',a:'A specific input/action and expected result used to check whether code/system works correctly.',priority:'core'},
+  {topic:'t9',label:'🗄️ Databases',q:'Database',a:'An organised collection of related data stored so it can be accessed, managed and updated efficiently.',priority:'core'},
+  {topic:'t9',label:'🗄️ Databases',q:'DBMS',a:'Database Management System: software used to create, manage, query and control access to databases.',priority:'core'},
+  {topic:'t9',label:'🗄️ Databases',q:'Relational Database',a:'Stores data in related tables (rows and columns) linked by primary and foreign keys.',priority:'core'},
+  {topic:'t9',label:'🗄️ Databases',q:'Primary Key',a:'A field that uniquely identifies each record in a table. Must be unique and not blank.',priority:'core'},
+  {topic:'t9',label:'🗄️ Databases',q:'Foreign Key',a:'A field in one table that refers to the primary key of another table, creating a relationship.',priority:'core'},
+  {topic:'t9',label:'🗄️ Databases',q:'One-to-Many Relationship',a:'One record in a table can be linked to many records in another. Example: one owner → many dogs.',priority:'core'},
+  {topic:'t9',label:'🗄️ Databases',q:'Query',a:'A request for specific data from a database, often written in SQL.',priority:'core'},
+  {topic:'t9',label:'🗄️ Databases',q:'Data Redundancy',a:'Unnecessary duplication of data in a database. Relational design reduces redundancy.',priority:'core'},
+  {topic:'t9',label:'🗄️ Databases',q:'Data Integrity',a:'The accuracy, consistency and reliability of data over its lifecycle.',priority:'core'},
+  {topic:'t9',label:'🗄️ Databases',q:'SQL SELECT',a:'SQL command to retrieve data: SELECT name FROM Students WHERE age > 18 ORDER BY score DESC',priority:'useful'},
+  {topic:'t9',label:'🗄️ Databases',q:'CRUD',a:'Create, Read, Update, Delete — the four basic operations on stored data.',priority:'useful'},
+  {topic:'t10',label:'🤖 AI/Ethics',q:'Artificial Intelligence (AI)',a:'Design/study of computer systems that can perform tasks normally associated with human intelligence.',priority:'core'},
+  {topic:'t10',label:'🤖 AI/Ethics',q:'Narrow AI',a:'AI designed for a specific task only, without general human-like intelligence. Examples: recommender systems, image classifiers.',priority:'core'},
+  {topic:'t10',label:'🤖 AI/Ethics',q:'AGI',a:'Artificial General Intelligence: hypothetical AI that could learn and solve many different problems like a human. Does not exist yet.',priority:'core'},
+  {topic:'t10',label:'🤖 AI/Ethics',q:'Generative AI',a:'AI that can generate new content (text, images, code, audio, video) in response to prompts.',priority:'core'},
+  {topic:'t10',label:'🤖 AI/Ethics',q:'Machine Learning',a:'Type of AI where systems learn patterns from data rather than being explicitly programmed with rules.',priority:'core'},
+  {topic:'t10',label:'🤖 AI/Ethics',q:'Training Data',a:'Data used to teach/train a machine learning model. Quality and diversity affect results.',priority:'core'},
+  {topic:'t10',label:'🤖 AI/Ethics',q:'Algorithmic Bias',a:'Unfair or skewed results caused by biased data, design choices or assumptions in an algorithm/model.',priority:'core'},
+  {topic:'t10',label:'🤖 AI/Ethics',q:'Confidence Score',a:'A model\'s estimate (%) of how likely its classification/prediction is correct.',priority:'core'},
+  {topic:'t10',label:'🤖 AI/Ethics',q:'Recommendation System',a:'System that suggests items/content based on user data, preferences or behaviour.',priority:'core'},
+  {topic:'t10',label:'🤖 AI/Ethics',q:'Computer Vision',a:'AI field that enables computers to interpret images/video, often identifying objects or patterns.',priority:'core'},
+  {topic:'t10',label:'🤖 AI/Ethics',q:'Agent-Based Modelling (ABM)',a:'Modelling where individual agents follow rules and interact, producing overall system behaviour.',priority:'core'},
+  {topic:'t10',label:'🤖 AI/Ethics',q:'Emergent Behaviour',a:'Complex overall behaviour arising from many simple interactions between agents.',priority:'useful'},
+  {topic:'t10',label:'🤖 AI/Ethics',q:'GDPR',a:'EU data protection law: rules for personal data handling including fairness, transparency, minimisation, rights of individuals.',priority:'core'},
+  {topic:'t10',label:'🤖 AI/Ethics',q:'Malware',a:'Malicious software designed to harm, disrupt or gain unauthorised access to systems/data.',priority:'core'},
+  {topic:'t10',label:'🤖 AI/Ethics',q:'Ransomware',a:'Malware that blocks/encrypts access to data and demands payment to restore it.',priority:'core'},
+  {topic:'t10',label:'🤖 AI/Ethics',q:'Phishing',a:'A social-engineering attack tricking people into revealing information via fake messages.',priority:'core'},
+  {topic:'t10',label:'🤖 AI/Ethics',q:'Firewall',a:'A security system that monitors/filters network traffic based on rules.',priority:'core'},
+  {topic:'t10',label:'🤖 AI/Ethics',q:'Filter Bubble / Echo Chamber',a:'Algorithms repeatedly showing content matching existing views, reducing exposure to other perspectives.',priority:'core'},
+  {topic:'t10',label:'🤖 AI/Ethics',q:'Facial Recognition Software (FRS)',a:'Technology identifying/verifying a person by analysing facial features. Benefits: security. Concerns: privacy, bias, false positives.',priority:'core'},
+  {topic:'t10',label:'🤖 AI/Ethics',q:'Hallucination (AI)',a:'When a generative AI produces information that sounds plausible but is false or unsupported.',priority:'useful'},
+  {topic:'t11',label:'📋 Coursework',q:'Coursework Project',a:'Externally assessed individual project: create a computational artefact and report. Worth 30% of LC CS.',priority:'core'},
+  {topic:'t11',label:'📋 Coursework',q:'Brief',a:'The official task requirements that the coursework artefact/report must respond to.',priority:'core'},
+  {topic:'t11',label:'📋 Coursework',q:'Investigation (section)',a:'Report section showing research into the brief, existing systems and chosen topic. Do NOT just describe your artefact.',priority:'core'},
+  {topic:'t11',label:'📋 Coursework',q:'Evaluation (section)',a:'Judging how well the final artefact meets the brief and suggesting justified improvements.',priority:'core'},
+  {topic:'t11',label:'📋 Coursework',q:'Test Table',a:'Table recording tests carried out, expected results, actual results and outcome/fix.',priority:'core'},
+  {topic:'t11',label:'📋 Coursework',q:'Progress Log',a:'A record of development milestones and work completed over time. Update weekly/fortnightly.',priority:'core'},
+  {topic:'t3',label:'⚡ Embedded',q:'Pulse-Width Modulation (PWM)',a:'Simulates variable output by switching a digital signal on and off rapidly with different duty cycles. Used for LED brightness and motor speed.',priority:'extra'},
+  {topic:'t2',label:'🐍 Python',q:'Thonny / IDLE / VS Code',a:'Examples of IDEs used for Python in schools. Thonny and IDLE are beginner-friendly; VS Code is professional. Tool names are not core exam definitions.',priority:'extra'},
+  {topic:'t2',label:'🐍 Python',q:'Python Keyword List',a:'Reserved Python words: if, else, def, while, return, etc. Cannot be used as variable names. No need to memorise every keyword.',priority:'extra'},
+  {topic:'t4',label:'📊 Analytics',q:'NumPy',a:'Python library for numerical computation and arrays. Useful for advanced analytics but not usually essential at LC level.',priority:'extra'},
+  {topic:'t4',label:'📊 Analytics',q:'Seaborn / Plotly / Pygal',a:'Python visualisation libraries sometimes used for charts in coursework. Useful alternatives to Matplotlib.',priority:'extra'},
+  {topic:'t3',label:'⚡ Embedded',q:'MakeCode',a:'Block-based and JavaScript coding environment used with the micro:bit. Useful for embedded tasks in class.',priority:'extra'},
+  {topic:'t6',label:'🖥️ Systems',q:'Personal Computer',a:'A general-purpose computer affordable and practical for individual users. The PC revolution in the 1970s–80s transformed computing into an everyday activity.',priority:'useful'},
+  {topic:'t7',label:'🔍 Algorithms',q:'O(n log n) — Linearithmic',a:'Efficient sorting complexity where the list is divided and each level processes all items. Example: quicksort best case / merge sort.',priority:'useful'}
+];
+
+const TOPIC_META = {
+  't1':  {label:'🧠 Computational Thinking', color:'#FF6B6B', file:'LCCS_Glossary_1_CompThinking_Python.html'},
+  't2':  {label:'🐍 Python',                 color:'#00B4A6', file:'LCCS_Glossary_1_CompThinking_Python.html'},
+  't3':  {label:'⚡ Embedded Systems',        color:'#F4A426', file:'LCCS_Glossary_2_Embedded_Data.html'},
+  't4':  {label:'📊 Data & Analytics',        color:'#7C5CBF', file:'LCCS_Glossary_2_Embedded_Data.html'},
+  't5':  {label:'🌐 Web & Networks',          color:'#38A169', file:'LCCS_Glossary_3_Web_Systems.html'},
+  't6':  {label:'🖥️ Computer Systems',        color:'#E8637A', file:'LCCS_Glossary_3_Web_Systems.html'},
+  't7':  {label:'🔍 Algorithms',              color:'#3A86FF', file:'LCCS_Glossary_4_Algorithms_SoftDev.html'},
+  't8':  {label:'🛠️ Software Dev',            color:'#E07B00', file:'LCCS_Glossary_4_Algorithms_SoftDev.html'},
+  't9':  {label:'🗄️ Databases',               color:'#0097A7', file:'LCCS_Glossary_5_Databases_AI_Coursework.html'},
+  't10': {label:'🤖 AI & Ethics',             color:'#7B2FBE', file:'LCCS_Glossary_5_Databases_AI_Coursework.html'},
+  't11': {label:'📋 Coursework',              color:'#C0392B', file:'LCCS_Glossary_5_Databases_AI_Coursework.html'},
+};
+const TOPIC_ORDER = ['t1','t2','t3','t4','t5','t6','t7','t8','t9','t10','t11'];
+
+ALL_CARDS.sort((a,b)=>TOPIC_ORDER.indexOf(a.topic)-TOPIC_ORDER.indexOf(b.topic));
+
+// ════════════════════════════════════════════
+// SYSTEM STORAGE  (window.storage API)
+// Falls back to localStorage if unavailable
+// ════════════════════════════════════════════
+const PROGRESS_KEY = 'lccs_progress';
+const TODAY_KEY    = 'lccs_today';
+
+async function storageGet(key) {
+  try {
+    if (window.storage) {
+      const r = await window.storage.get(key);
+      return r ? JSON.parse(r.value) : null;
+    }
+  } catch(e) {}
+  // fallback
+  try { const v = localStorage.getItem(key); return v ? JSON.parse(v) : null; } catch(e) { return null; }
+}
+
+async function storageSet(key, val) {
+  const str = JSON.stringify(val);
+  try {
+    if (window.storage) { await window.storage.set(key, str); return; }
+  } catch(e) {}
+  try { localStorage.setItem(key, str); } catch(e) {}
+}
+
+// ════════════════════════════════════════════
+// PROGRESS HELPERS
+// ════════════════════════════════════════════
+let progress = {};   // {cardQ: {right:n, wrong:n}}
+let todayData = {date:'', count:0};
+
+async function loadAll() {
+  progress  = (await storageGet(PROGRESS_KEY)) || {};
+  todayData = (await storageGet(TODAY_KEY))    || {date:'', count:0};
+  const today = new Date().toDateString();
+  if (todayData.date !== today) { todayData = {date:today, count:0}; }
+}
+
+async function saveProgress() { await storageSet(PROGRESS_KEY, progress); }
+async function saveToday()    { await storageSet(TODAY_KEY, todayData); }
+
+function isMastered(q) { return progress[q] && progress[q].right > 0; }
+function hasMissed(q)  { return progress[q] && progress[q].wrong > 0 && !isMastered(q); }
+
+// ════════════════════════════════════════════
+// STATE
+// ════════════════════════════════════════════
+let currentTopic  = 'all';
+let sessionCards  = [];
+let sessionIdx    = 0;
+let sessionRes    = [];
+let flipped       = false;
+let cfg = { filter:'all', order:'order', show:'all' };
+
+// ════════════════════════════════════════════
+// HOME
+// ════════════════════════════════════════════
+function buildHome() {
+  // Overall
+  const mastered = ALL_CARDS.filter(c=>isMastered(c.q)).length;
+  const pct = Math.round(mastered / ALL_CARDS.length * 100);
+  document.getElementById('overallFill').style.width  = pct + '%';
+  document.getElementById('overallLeft').textContent  = mastered + ' mastered';
+  document.getElementById('overallRight').textContent = pct + '% of all cards';
+  document.getElementById('todayPill').textContent    = '🔥 ' + todayData.count + ' studied today';
+
+  const grid = document.getElementById('chapterGrid');
+  grid.innerHTML = '';
+
+  // All-topics card
+  const allCard = document.createElement('div');
+  allCard.className = 'ch-card all-ch';
+  allCard.onclick   = ()=>openConfig('all');
+  allCard.innerHTML = `
+    <div class="cc-top"><span class="cc-label">📚 All Topics — Full Drill</span><span class="cc-badge">${ALL_CARDS.length} cards</span></div>
+    <div class="cc-bar-track"><div class="cc-bar-fill" style="width:${pct}%"></div></div>
+    <div class="cc-foot"><span>${mastered} mastered</span><span class="cc-pct">${pct}%</span></div>`;
+  grid.appendChild(allCard);
+
+  TOPIC_ORDER.forEach(tid=>{
+    const meta  = TOPIC_META[tid];
+    const cards = ALL_CARDS.filter(c=>c.topic===tid);
+    const m     = cards.filter(c=>isMastered(c.q)).length;
+    const p     = Math.round(m/cards.length*100);
+    const el    = document.createElement('div');
+    el.className= 'ch-card';
+    el.style.setProperty('--cc', meta.color);
+    el.onclick  = ()=>openConfig(tid);
+    el.innerHTML= `
+      <div class="cc-top"><span class="cc-label">${meta.label}</span><span class="cc-badge">${cards.length} cards</span></div>
+      <div class="cc-bar-track"><div class="cc-bar-fill" style="width:${p}%"></div></div>
+      <div class="cc-foot"><span>${m} / ${cards.length} mastered</span><span class="cc-pct">${p}%</span></div>`;
+    grid.appendChild(el);
+  });
+}
+
+// ════════════════════════════════════════════
+// CONFIG
+// ════════════════════════════════════════════
+function openConfig(topicId) {
+  currentTopic = topicId;
+  document.getElementById('configLabel').textContent =
+    topicId === 'all' ? 'All Topics' : TOPIC_META[topicId].label;
+  goScreen('configScreen');
+}
+function setCfg(type, val, btn) {
+  cfg[type] = val;
+  btn.closest('.tg').querySelectorAll('.tg-btn').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+}
+
+// ════════════════════════════════════════════
+// QUIZ
+// ════════════════════════════════════════════
+function startQuiz() {
+  let pool = currentTopic === 'all'
+    ? [...ALL_CARDS]
+    : ALL_CARDS.filter(c=>c.topic===currentTopic);
+
+  if (cfg.filter === 'core') pool = pool.filter(c=>c.priority==='core');
+
+  if (cfg.show === 'wrong') {
+    const missed = pool.filter(c=>hasMissed(c.q));
+    if (missed.length) pool = missed;
+  }
+
+  if (!pool.length) { alert('No cards match those filters!'); return; }
+
+  if (cfg.order === 'shuffle') {
+    for (let i=pool.length-1;i>0;i--) {
+      const j=Math.floor(Math.random()*(i+1));
+      [pool[i],pool[j]]=[pool[j],pool[i]];
+    }
+  }
+
+  sessionCards = pool; sessionIdx = 0; sessionRes = []; flipped = false;
+
+  const color = currentTopic==='all' ? '#6B46C1' : TOPIC_META[currentTopic].color;
+  document.getElementById('qbFill').style.background    = `linear-gradient(90deg,${color},#6B46C1)`;
+  document.getElementById('fcBack').style.background    = `linear-gradient(135deg,${color} 0%,#2d1b6e 100%)`;
+
+  goScreen('quizScreen');
+  renderCard();
+}
+
+function renderCard() {
+  const c = sessionCards[sessionIdx];
+  const lbl = TOPIC_META[c.topic].label;
+  document.getElementById('fcBadge').textContent    = lbl;
+  document.getElementById('fcBadgeBack').textContent= lbl;
+  document.getElementById('fcQ').textContent        = c.q;
+  document.getElementById('fcA').textContent        = c.a;
+  document.getElementById('qbTopic').textContent    = lbl;
+  document.getElementById('qbCount').textContent    = (sessionIdx+1)+' / '+sessionCards.length;
+  document.getElementById('qbFill').style.width     = (sessionIdx/sessionCards.length*100)+'%';
+  flipped = false;
+  document.getElementById('flashcard').classList.remove('flipped');
+  document.getElementById('verdictRow').classList.remove('show');
+}
+
+function flipCard() {
+  flipped = !flipped;
+  document.getElementById('flashcard').classList.toggle('flipped', flipped);
+  if (flipped) document.getElementById('verdictRow').classList.add('show');
+}
+
+async function mark(correct) {
+  const c = sessionCards[sessionIdx];
+  sessionRes.push({card:c, correct});
+  if (!progress[c.q]) progress[c.q]={right:0,wrong:0};
+  if (correct) progress[c.q].right++; else progress[c.q].wrong++;
+  todayData.count++;
+  await saveProgress();
+  await saveToday();
+  sessionIdx++;
+  if (sessionIdx >= sessionCards.length) showResults();
+  else renderCard();
+}
+
+function confirmQuit() {
+  if (!sessionRes.length || confirm('Quit? Progress so far is saved.')) goScreen('homeScreen');
+}
+
+// ════════════════════════════════════════════
+// RESULTS
+// ════════════════════════════════════════════
+function showResults() {
+  const total   = sessionRes.length;
+  const correct = sessionRes.filter(r=>r.correct).length;
+  const pct     = total ? Math.round(correct/total*100) : 0;
+
+  // Ring
+  const circ = 364;
+  const offset = circ-(pct/100)*circ;
+  const col = pct>=80?'#276749':pct>=50?'#6B46C1':'#C0392B';
+  const fg = document.getElementById('ringFg');
+  fg.setAttribute('stroke-dashoffset', circ);
+  fg.setAttribute('stroke', col);
+  document.getElementById('ringPct').textContent = pct+'%';
+  document.getElementById('ringPct').style.color  = col;
+  setTimeout(()=>fg.setAttribute('stroke-dashoffset', offset), 80);
+
+  const msgs = [
+    [100, '🏆 Perfect Score!',  'Flawless — every single card nailed.'],
+    [80,  '🎉 Great Work!',     `${correct} / ${total} — you're well on top of this.`],
+    [60,  '👍 Solid Effort',    `${correct} / ${total} — solid, with a few to polish.`],
+    [40,  '📖 Keep Studying',   `${correct} / ${total} — good effort, focus on the list below.`],
+    [0,   '💪 Keep At It',      `${correct} / ${total} — tough session, but now you know exactly what to target.`],
+  ];
+  const [,h,m] = msgs.find(([t])=>pct>=t);
+  document.getElementById('resHeading').textContent = h;
+  document.getElementById('resMsg').textContent     = m;
+
+  const wrong = sessionRes.filter(r=>!r.correct);
+  const ib = document.getElementById('improveBox');
+  if (wrong.length) {
+    ib.style.display = 'block';
+    document.getElementById('improveList').innerHTML = wrong.map(r=>
+      `<li><strong>${r.card.q}</strong> — ${r.card.a.slice(0,90)}${r.card.a.length>90?'…':''}</li>`
+    ).join('');
+  } else ib.style.display = 'none';
+
+  document.getElementById('breakdownList').innerHTML = sessionRes.map(r=>`
+    <div class="bd-row">
+      <span class="bd-icon">${r.correct?'✅':'❌'}</span>
+      <span class="bd-term">${r.card.q}</span>
+      <span class="bd-tag ${r.correct?'right':'wrong'}">${r.correct?'Got it':'Missed'}</span>
+    </div>`).join('');
+
+  document.getElementById('retryBtn').style.display = wrong.length ? '' : 'none';
+  goScreen('resultsScreen');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function retryWrong() {
+  const wrong = sessionRes.filter(r=>!r.correct).map(r=>r.card);
+  if (!wrong.length) return;
+  sessionCards = cfg.order==='shuffle' ? shuffle([...wrong]) : wrong;
+  sessionIdx = 0; sessionRes = [];
+  goScreen('quizScreen'); renderCard();
+}
+
+function shuffle(a) {
+  for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}
+  return a;
+}
+
+// ════════════════════════════════════════════
+// KEYBOARD
+// ════════════════════════════════════════════
+document.addEventListener('keydown', e=>{
+  if (!document.getElementById('quizScreen').classList.contains('active')) return;
+  if (e.key===' ')           { e.preventDefault(); flipCard(); }
+  if (e.key==='ArrowLeft'  && flipped) mark(false);
+  if (e.key==='ArrowRight' && flipped) mark(true);
+});
+
+// ════════════════════════════════════════════
+// SCREEN MANAGER
+// ════════════════════════════════════════════
+function goScreen(id) {
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+  if (id==='homeScreen') buildHome();
+}
+
+// ════════════════════════════════════════════
+// INIT
+// ════════════════════════════════════════════
+loadAll().then(()=>buildHome());
+</script>
+</body>
+</html>
