@@ -15,6 +15,7 @@
     --accent-secondary: #00bcd4; /* Cyan */
     --accent-tertiary: #ff9800; /* Orange for Exam Generator */
     --accent-quaternary: #4caf50; /* Green for Databases/Models */
+    --accent-quinary: #e91e63; /* Pink for Glossary */
     --border: #e0dcd4;
     --shadow: 0 4px 20px rgba(0,0,0,0.06);
     --shadow-hover: 0 12px 30px rgba(0,0,0,0.12);
@@ -181,6 +182,10 @@
   .card-exam::before { background: var(--accent-tertiary); }
   .card-exam:hover { border-color: var(--accent-tertiary); }
   .card-exam .mc-icon { color: var(--accent-tertiary); background: #fff3e0; }
+
+  .card-glossary::before { background: var(--accent-quinary); }
+  .card-glossary:hover { border-color: var(--accent-quinary); }
+  .card-glossary .mc-icon { color: var(--accent-quinary); background: #fce4ec; }
 
   .mc-icon {
     font-size: 42px;
@@ -501,6 +506,14 @@
         <div class="mc-title">Coding Exam Generator</div>
         <div class="mc-desc">Practice with the dynamic coding exam generator to hone your applied programming skills for Section C.</div>
         <div class="mc-action">Start exam →</div>
+      </a>
+
+      <!-- GLOSSARY CARD -->
+      <a href="LCCS_Glossary_1_CompThinking_Python.html" class="chapter-card card-glossary">
+        <div class="mc-icon">📖</div>
+        <div class="mc-title">Definitions & Explanations</div>
+        <div class="mc-desc">Master key computer science terminology, definitions, and core concepts.</div>
+        <div class="mc-action">Open glossary →</div>
       </a>
 
     </div>
