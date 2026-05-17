@@ -281,11 +281,25 @@
   .col2{display:grid;grid-template-columns:1fr 1fr;gap:14px;} @media(max-width:560px){.col2{grid-template-columns:1fr;}}
   .badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:.72rem;font-weight:700;letter-spacing:.5px;}
   .b4{background:var(--ch4-light);color:var(--ch4-dark);} .b5{background:var(--ch5-light);color:var(--ch5-dark);} .b6{background:var(--ch6-light);color:var(--ch6-dark);}
+
+  .nav-home {
+    display:inline-flex; align-items:center; gap:5px;
+    padding:5px 12px; border-radius:14px;
+    border:2px solid var(--border); background:var(--surface,#fff);
+    font-family:'Lexend',sans-serif; font-size:0.72rem; font-weight:700;
+    color:var(--text-muted,#7a7068); text-decoration:none; transition:all 0.2s;
+    white-space:nowrap; flex-shrink:0;
+  }
+  .nav-home:hover { background:var(--text,#2c2825); color:#fff; border-color:var(--text,#2c2825); }
+  .nav-divider { width:1px; height:20px; background:var(--border,#e2ddd7); flex-shrink:0; }
+
 </style>
 </head>
 <body>
 
 <nav>
+  <a href="Compsci.html" class="nav-home">🏠 Home</a>
+  <span class="nav-divider"></span>
   <span class="nav-logo">LC <span>CS</span></span>
   <button class="nav-btn ch4 active" onclick="showSection('ch4')">🌍 Ch4: Computers &amp; Society</button>
   <button class="nav-btn ch5" onclick="showSection('ch5')">📊 Ch5: Data &amp; Numbers</button>
