@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LC CS — Web & Networks / Computer Systems</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F7F4EF;
+    --surface: #FFFFFF;
+    --surface2: #F0EDE8;
+    --border: #E2DDD7;
+    --text: #2C2825;
+    --text-muted: #7A7068;
+    --t1: #FF6B6B; --t1-light: #FFE8E8; --t1-dark: #C94040;
+    --t2: #4ECDC4; --t2-light: #E0F7F6; --t2-dark: #2A9990;
+    --t3: #FFB347; --t3-light: #FFF3E0; --t3-dark: #CC7A00;
+    --t4: #7C5CBF; --t4-light: #EDE8F7; --t4-dark: #5a3da0;
+    --t5: #56C271; --t5-light: #E6F8EB; --t5-dark: #267339;
+    --t6: #E8637A; --t6-light: #FCE8EC; --t6-dark: #B03050;
+    --t7: #3A86FF; --t7-light: #E0ECFF; --t7-dark: #1A5CC8;
+    --t8: #F77F00; --t8-light: #FFF0DC; --t8-dark: #B85A00;
+    --t9: #2EC4B6; --t9-light: #E0FAF7; --t9-dark: #1A9088;
+    --t10: #9B5DE5; --t10-light: #F3EAFF; --t10-dark: #6B2DAF;
+    --t11: #D62828; --t11-light: #FFECEC; --t11-dark: #9A1A1A;
+    --purple: #7C5CBF; --purple-light: #EDE8F7;
+    --green: #56C271; --green-light: #E6F8EB;
+    --radius: 14px;
+    --shadow: 0 4px 20px rgba(0,0,0,0.08);
+    --shadow-hover: 0 8px 32px rgba(0,0,0,0.14);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Lexend', sans-serif; background: var(--bg); color: var(--text); line-height: 1.8; font-size: 16px; }
+
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(247,244,239,0.96);
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid var(--border);
+    padding: 8px 16px;
+    display: flex; align-items: center; gap: 6px;
+    flex-wrap: wrap; min-height: 56px;
+  }
+  .nav-logo { font-family: 'Lexend Mega', sans-serif; font-size: 0.95rem; color: var(--text); margin-right: 6px; }
+  .nav-logo span { color: var(--t1); }
+  .nav-btn {
+    padding: 5px 11px; border-radius: 18px;
+    border: 2px solid transparent;
+    font-family: 'Lexend', sans-serif;
+    font-size: 0.72rem; font-weight: 600;
+    cursor: pointer; transition: all 0.2s;
+    background: var(--surface); color: var(--text-muted);
+    white-space: nowrap;
+  }
+  .nav-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+  .nav-btn.t1  { border-color: var(--t1); }  .nav-btn.t1.active,  .nav-btn.t1:hover  { background: var(--t1);  color:#fff; }
+  .nav-btn.t2  { border-color: var(--t2); }  .nav-btn.t2.active,  .nav-btn.t2:hover  { background: var(--t2);  color:var(--text); }
+  .nav-btn.t3  { border-color: var(--t3); }  .nav-btn.t3.active,  .nav-btn.t3:hover  { background: var(--t3);  color:var(--text); }
+  .nav-btn.t4  { border-color: var(--t4); }  .nav-btn.t4.active,  .nav-btn.t4:hover  { background: var(--t4);  color:#fff; }
+  .nav-btn.t5  { border-color: var(--t5); }  .nav-btn.t5.active,  .nav-btn.t5:hover  { background: var(--t5);  color:#fff; }
+  .nav-btn.t6  { border-color: var(--t6); }  .nav-btn.t6.active,  .nav-btn.t6:hover  { background: var(--t6);  color:#fff; }
+  .nav-btn.t7  { border-color: var(--t7); }  .nav-btn.t7.active,  .nav-btn.t7:hover  { background: var(--t7);  color:#fff; }
+  .nav-btn.t8  { border-color: var(--t8); }  .nav-btn.t8.active,  .nav-btn.t8:hover  { background: var(--t8);  color:#fff; }
+  .nav-btn.t9  { border-color: var(--t9); }  .nav-btn.t9.active,  .nav-btn.t9:hover  { background: var(--t9);  color:#fff; }
+  .nav-btn.t10 { border-color: var(--t10); } .nav-btn.t10.active, .nav-btn.t10:hover { background: var(--t10); color:#fff; }
+  .nav-btn.t11 { border-color: var(--t11); } .nav-btn.t11.active, .nav-btn.t11:hover { background: var(--t11); color:#fff; }
+  .nav-btn.flash { border-color: var(--purple); } .nav-btn.flash.active, .nav-btn.flash:hover { background: var(--purple); color:#fff; }
+
+  .hero { padding: 44px 24px 28px; text-align: center; }
+  .hero h1 { font-family: 'Lexend Mega', sans-serif; font-size: clamp(1.5rem,4vw,2.6rem); line-height:1.2; }
+  .hero h1 .a1{color:var(--t1);} .hero h1 .a2{color:var(--t2-dark);} .hero h1 .a3{color:var(--t3-dark);}
+  .hero p { margin-top:10px; color:var(--text-muted); max-width:620px; margin-left:auto; margin-right:auto; }
+  .stats-row { display:flex; justify-content:center; gap:20px; flex-wrap:wrap; margin-top:20px; }
+  .stat-chip { background:var(--surface); border:2px solid var(--border); border-radius:30px; padding:8px 20px; font-size:0.85rem; font-weight:600; }
+  .chapter-pills { display:flex; justify-content:center; gap:8px; flex-wrap:wrap; margin-top:20px; }
+  .pill { padding:7px 16px; border-radius:28px; font-weight:600; font-size:0.78rem; cursor:pointer; transition:all 0.2s; border:none; }
+  .pill:hover { transform:translateY(-3px); box-shadow:var(--shadow-hover); }
+
+  .section { display:none; padding:0 16px 60px; max-width:920px; margin:0 auto; }
+  .section.active { display:block; animation:fadeIn 0.3s ease; }
+  @keyframes fadeIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+
+  .ch-header {
+    border-radius:var(--radius); padding:28px 28px; color:white;
+    margin-bottom:24px; position:relative; overflow:hidden;
+  }
+  .ch-header h1 { font-family:'Lexend Mega',sans-serif; font-size:1.45rem; }
+  .ch-header p { opacity:0.88; margin-top:7px; font-size:0.92rem; }
+  .ch-header .big-num { position:absolute; right:22px; top:50%; transform:translateY(-50%); font-family:'Lexend Mega',sans-serif; font-size:5.5rem; opacity:0.12; line-height:1; }
+
+  .topic-card {
+    background:var(--surface); border-radius:var(--radius); padding:24px;
+    margin-bottom:20px; box-shadow:var(--shadow);
+    border-left:5px solid var(--t1); transition:box-shadow 0.2s;
+  }
+  .topic-card:hover { box-shadow:var(--shadow-hover); }
+  .topic-card h2 { font-size:1.15rem; font-weight:700; margin-bottom:12px; display:flex; align-items:center; gap:8px; }
+  .topic-card h3 { font-size:0.95rem; font-weight:600; margin:16px 0 7px; }
+  .topic-card p { margin-bottom:9px; }
+  .topic-card ul { padding-left:20px; margin-bottom:9px; }
+  .topic-card li { margin-bottom:4px; }
+
+  /* Term entry */
+  .term-entry { margin-bottom:18px; padding-bottom:18px; border-bottom:1px solid var(--border); }
+  .term-entry:last-child { border-bottom:none; margin-bottom:0; padding-bottom:0; }
+  .term-name { font-size:1.05rem; font-weight:700; margin-bottom:6px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+
+  /* Boxes */
+  .def-box { background:var(--surface2); border:2px dashed var(--border); border-radius:10px; padding:12px 16px; margin:8px 0; position:relative; }
+  .def-box::before { content:'📖 DEFINITION'; display:block; font-size:0.65rem; font-weight:700; letter-spacing:1px; color:var(--text-muted); margin-bottom:5px; }
+  .def-box p { margin:0; font-weight:500; }
+  .analogy-box { background:#FFF9E6; border:2px solid #FFD966; border-radius:10px; padding:12px 16px; margin:8px 0; }
+  .analogy-box::before { content:'💡 ANALOGY'; display:block; font-size:0.65rem; font-weight:700; letter-spacing:1px; color:#997700; margin-bottom:5px; }
+  .memory-box { background:#F0FFF4; border:2px solid var(--green); border-radius:10px; padding:12px 16px; margin:8px 0; }
+  .memory-box::before { content:'🧠 MEMORY TRICK'; display:block; font-size:0.65rem; font-weight:700; letter-spacing:1px; color:#267339; margin-bottom:5px; }
+  .exam-box { background:#FFF0F3; border:2px solid var(--t1); border-radius:10px; padding:12px 16px; margin:8px 0; }
+  .exam-box::before { content:'📝 EXAM TIP'; display:block; font-size:0.65rem; font-weight:700; letter-spacing:1px; color:var(--t1-dark); margin-bottom:5px; }
+  .code-box { background:#1e1e2e; color:#cdd6f4; border-radius:10px; padding:12px 16px; margin:8px 0; font-family:monospace; font-size:0.88rem; overflow-x:auto; }
+
+  .badge { display:inline-block; padding:2px 9px; border-radius:18px; font-size:0.68rem; font-weight:700; letter-spacing:0.4px; }
+  .b-core   { background:#FFE8E8; color:#C94040; }
+  .b-useful { background:#E0F7F6; color:#2A9990; }
+  .b-extra  { background:#F0EDE8; color:#7A7068; }
+
+  comp-table, .comp-table { width:100%; border-collapse:collapse; margin:12px 0; font-size:0.86rem; border-radius:10px; overflow:hidden; }
+  .comp-table th { background:var(--t1); color:#fff; padding:9px 12px; text-align:left; font-weight:600; }
+  .comp-table td { padding:8px 12px; border-bottom:1px solid var(--border); }
+  .comp-table tr:nth-child(even) td { background:var(--surface2); }
+  .comp-table tr:last-child td { border-bottom:none; }
+
+  /* Big O grid */
+  .big-o-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:14px 0; }
+  @media(max-width:580px){ .big-o-grid{grid-template-columns:1fr;} }
+  .big-o-card { border-radius:10px; padding:13px; border:2px solid; }
+  .big-o-card .notation { font-size:1.25rem; font-weight:700; }
+  .big-o-card .label { font-size:0.78rem; font-weight:600; margin:3px 0; }
+  .big-o-card .desc { font-size:0.8rem; color:var(--text-muted); }
+  .o1    { border-color:#56C271; background:#E6F8EB; }
+  .ologn { border-color:#4ECDC4; background:#E0F7F6; }
+  .on    { border-color:#FFB347; background:#FFF3E0; }
+  .on2   { border-color:#FF6B6B; background:#FFE8E8; }
+  .onlogn{ border-color:#C9A800; background:#FFFBE0; }
+
+  /* Accordion for less-important terms */
+  .accordion { margin:8px 0; border-radius:10px; overflow:hidden; border:2px solid var(--border); }
+  .accordion-header { width:100%; text-align:left; padding:11px 16px; background:var(--surface2); border:none; font-family:'Lexend',sans-serif; font-size:0.92rem; font-weight:600; cursor:pointer; display:flex; justify-content:space-between; align-items:center; transition:background 0.2s; }
+  .accordion-header:hover { background:var(--border); }
+  .accordion-header .arrow { transition:transform 0.3s; font-size:0.78rem; }
+  .accordion-header.open .arrow { transform:rotate(180deg); }
+  .accordion-body { display:none; padding:14px 16px; background:var(--surface); border-top:2px solid var(--border); }
+  .accordion-body.open { display:block; }
+
+  /* Flashcards */
+  #flashcards { padding:0 16px 80px; max-width:920px; margin:0 auto; display:none; }
+  
+  .flash-header { background:linear-gradient(135deg,var(--purple) 0%,#5a3da0 100%); border-radius:var(--radius); padding:28px; color:white; margin-bottom:24px; position:relative; overflow:hidden; }
+  .flash-header h1 { font-family:'Lexend Mega',sans-serif; font-size:1.45rem; }
+  .flash-header p { opacity:0.85; margin-top:7px; }
+  .flash-header .big-num { position:absolute; right:22px; top:50%; transform:translateY(-50%); font-family:'Lexend Mega',sans-serif; font-size:5.5rem; opacity:0.12; }
+
+  .flash-controls { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:18px; align-items:center; }
+  .flash-filter { padding:6px 14px; border-radius:18px; border:2px solid var(--border); background:var(--surface); font-family:'Lexend',sans-serif; font-size:0.76rem; font-weight:600; cursor:pointer; transition:all 0.2s; color:var(--text-muted); }
+  .flash-filter:hover, .flash-filter.factive { background:var(--purple); color:#fff; border-color:var(--purple); }
+
+  .flashcard-area { display:flex; flex-direction:column; align-items:center; }
+  .flashcard { width:100%; max-width:640px; perspective:1200px; min-height:200px; cursor:pointer; margin-bottom:18px; }
+  .flashcard-inner { position:relative; width:100%; min-height:200px; transition:transform 0.55s cubic-bezier(.4,.2,.2,1); transform-style:preserve-3d; }
+  .flashcard.flipped .flashcard-inner { transform:rotateY(180deg); }
+  .flashcard-front, .flashcard-back { position:absolute; width:100%; min-height:200px; backface-visibility:hidden; border-radius:var(--radius); padding:28px 24px; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; box-shadow:var(--shadow); }
+  .flashcard-front { background:var(--surface); border:3px solid var(--purple); }
+  .flashcard-back { background:var(--purple); color:white; transform:rotateY(180deg); }
+  .flashcard-front .card-topic { font-size:0.68rem; font-weight:700; letter-spacing:1px; text-transform:uppercase; margin-bottom:10px; color:var(--text-muted); }
+  .flashcard-front .card-q { font-size:1.1rem; font-weight:600; }
+  .flashcard-front .flip-hint { margin-top:14px; font-size:0.72rem; color:var(--text-muted); }
+  .flashcard-back .card-a { font-size:0.95rem; line-height:1.7; }
+  .flash-nav { display:flex; gap:12px; align-items:center; }
+  .flash-btn { padding:9px 22px; border-radius:22px; border:none; font-family:'Lexend',sans-serif; font-size:0.88rem; font-weight:600; cursor:pointer; transition:all 0.2s; background:var(--purple); color:#fff; }
+  .flash-btn:hover { background:#5a3da0; transform:translateY(-2px); box-shadow:var(--shadow-hover); }
+  .flash-btn:disabled { opacity:0.4; cursor:not-allowed; transform:none; }
+  .flash-counter { font-weight:600; color:var(--text-muted); font-size:0.88rem; min-width:80px; text-align:center; }
+  .flash-progress { width:100%; max-width:640px; height:6px; background:var(--border); border-radius:3px; margin-bottom:16px; overflow:hidden; }
+  .flash-progress-bar { height:100%; background:var(--purple); border-radius:3px; transition:width 0.4s; }
+
+  #scrollTop { position:fixed; bottom:22px; right:22px; width:40px; height:40px; background:var(--text); color:#fff; border:none; border-radius:50%; font-size:1rem; cursor:pointer; box-shadow:var(--shadow-hover); transition:all 0.2s; z-index:99; opacity:0; pointer-events:none; }
+  #scrollTop.visible { opacity:1; pointer-events:all; }
+  #scrollTop:hover { transform:scale(1.1); }
+  .icon { font-size:1.15rem; }
+
+  /* search bar */
+  .search-wrap { max-width:920px; margin:0 auto 4px; padding:0 16px; }
+  .search-input { width:100%; padding:11px 18px; border-radius:30px; border:2px solid var(--border); font-family:'Lexend',sans-serif; font-size:0.92rem; background:var(--surface); color:var(--text); outline:none; transition:border-color 0.2s; }
+  .search-input:focus { border-color:var(--purple); }
+  .search-result-count { font-size:0.8rem; color:var(--text-muted); text-align:center; margin:6px 0 0; }
+
+  /* colour overrides per topic */
+  .tc-t1  { border-left-color:var(--t1);  } .tc-t2  { border-left-color:var(--t2);  }
+  .tc-t3  { border-left-color:var(--t3);  } .tc-t4  { border-left-color:var(--t4);  }
+  .tc-t5  { border-left-color:var(--t5);  } .tc-t6  { border-left-color:var(--t6);  }
+  .tc-t7  { border-left-color:var(--t7);  } .tc-t8  { border-left-color:var(--t8);  }
+  .tc-t9  { border-left-color:var(--t9);  } .tc-t10 { border-left-color:var(--t10); }
+  .tc-t11 { border-left-color:var(--t11); }
+</style>
+<style>
+  .file-nav { margin-left:auto; display:flex; align-items:center; gap:4px; font-size:0.72rem; font-weight:600; color:var(--text-muted); }
+  .file-link { padding:3px 8px; border-radius:10px; border:2px solid var(--border); color:var(--text-muted); text-decoration:none; font-size:0.72rem; font-weight:600; transition:all 0.2s; }
+  .file-link:hover { background:var(--t2); color:var(--text); border-color:var(--t2); }
+  .file-link.active { background:var(--purple); color:#fff; border-color:var(--purple); }
+  .file-pills { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-top:14px; }
+  .file-pill { padding:6px 14px; border-radius:20px; border:2px solid var(--border); background:var(--surface); color:var(--text-muted); text-decoration:none; font-size:0.78rem; font-weight:600; transition:all 0.2s; }
+  .file-pill:hover { background:var(--t2); color:var(--text); border-color:var(--t2); }
+  .file-pill.pill-active { background:var(--purple); color:#fff; border-color:var(--purple); }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">LC <span>CS</span></span>
+  <button class="nav-btn t5" data-id="t5" onclick="showTopic('t5')">🌐 Web & Networks</button>
+  <button class="nav-btn t6" data-id="t6" onclick="showTopic('t6')">🖥️ Computer Systems</button>
+  <button class="nav-btn flash" data-id="flashcards" onclick="showTopic('flashcards')">🃏 Flashcards</button>
+  <span class="file-nav">📂 <a href="LCCS_Glossary_1_CompThinking_Python.html" class="file-link">1</a> <a href="LCCS_Glossary_2_Embedded_Data.html" class="file-link">2</a> <a href="LCCS_Glossary_3_Web_Systems.html" class="file-linkactive">3</a> <a href="LCCS_Glossary_4_Algorithms_SoftDev.html" class="file-link">4</a> <a href="LCCS_Glossary_5_Databases_AI_Coursework.html" class="file-link">5</a></span>
+</nav>
+
+<div class="hero" id="heroSection">
+  <h1><span class="a1">LC CS</span> <span class="a2">Definitions</span></h1>
+  <p style="font-size:1rem;font-weight:600;color:var(--text);margin-top:6px;">Web &amp; Networks / Computer Systems</p>
+  <p style="margin-top:6px;color:var(--text-muted);">HTML/CSS/JS, protocols, internet · CPU, memory, binary, logic</p>
+  <div class="stats-row" style="margin-top:14px;">
+    <span class="stat-chip">File 3 of 5</span>
+    <span class="stat-chip">52 Flashcards in this file</span>
+  </div>
+  <div class="chapter-pills" style="margin-top:16px;">
+    <button class="pill" style="background:var(--t5);color:#fff" onclick="showTopic('t5')">🌐 Web & Networks</button>
+    <button class="pill" style="background:var(--t6);color:#fff" onclick="showTopic('t6')">🖥️ Computer Systems</button>
+    <button class="pill" style="background:var(--purple);color:#fff" onclick="showTopic('flashcards')">🃏 Flashcards</button>
+  </div>
+  <p style="margin-top:16px;font-size:0.8rem;color:var(--text-muted);">Jump to another file:</p>
+  <div class="file-pills">
+      <a href="LCCS_Glossary_1_CompThinking_Python.html" class="file-pill">1: Comp Thinking + Python</a>
+      <a href="LCCS_Glossary_2_Embedded_Data.html" class="file-pill">2: Embedded + Data</a>
+      <a href="LCCS_Glossary_3_Web_Systems.html" class="file-pill pill-active">3: Web + Systems</a>
+      <a href="LCCS_Glossary_4_Algorithms_SoftDev.html" class="file-pill">4: Algorithms + Soft Dev</a>
+      <a href="LCCS_Glossary_5_Databases_AI_Coursework.html" class="file-pill">5: Databases + AI + Coursework</a>
+  </div>
+</div>
+
+<div class="section" id="t5">
+  <div class="ch-header" style="background:linear-gradient(135deg,var(--t5) 0%,var(--t5-dark) 100%);">
+    <h1>🌐 Web, Networks, HTML/CSS/JavaScript</h1>
+    <p>How the internet works, web technologies, and protocols.</p>
+    <span class="big-num">5</span>
+  </div>
+
+  <div class="topic-card tc-t5">
+    <h2><span class="icon">🕸️</span> Web Technologies</h2>
+    <div class="term-entry">
+      <div class="term-name">HTML <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>HyperText Markup Language: the markup language used to structure content on webpages.</p></div>
+      <div class="analogy-box"><p>The skeleton of a webpage. HTML provides the bones and structure — headings, paragraphs, images, links. CSS adds skin and styling on top.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">CSS <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>Cascading Style Sheets: a language used to style and lay out webpages, including colours, fonts, spacing and positioning.</p></div>
+      <div class="analogy-box"><p>If HTML is the skeleton, CSS is the clothing and appearance — it makes things look good without changing the underlying structure.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">JavaScript <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>A programming language used to add interactivity to webpages.</p></div>
+      <div class="analogy-box"><p>HTML = skeleton, CSS = appearance, JavaScript = the muscles that make it move and react. Click a button, see a drop-down, fill a form that validates in real-time — all JavaScript.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Webpage <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>A single HTML document that can be displayed in a web browser.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Website <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>A collection of linked webpages and resources. Your coursework report must be accessible from index.html.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">HTML Tag <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>A markup instruction written in angle brackets, such as <code>&lt;p&gt;</code> or <code>&lt;h1&gt;</code>.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">HTML Element <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>A complete part of a webpage, usually made of an opening tag, content and a closing tag. Example: <code>&lt;p&gt;Hello&lt;/p&gt;</code></p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">HTML Attribute <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>Extra information inside an opening tag, such as <code>href</code> in an <code>&lt;a&gt;</code> tag or <code>src</code> in an <code>&lt;img&gt;</code> tag.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Hyperlink <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>A clickable link that takes the user to another page, file, section or resource. Uses the <code>&lt;a&gt;</code> tag and <code>href</code> attribute.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Form <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>A webpage section used to collect user input.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Event <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>An action such as a click, keypress or form submission that code can respond to.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Event Listener <span class="badge b-useful">USEFUL</span></div>
+      <div class="def-box"><p>JavaScript code that waits for a particular event and runs a function when it occurs.</p></div>
+      <div class="analogy-box"><p>Like a doorbell. The listener waits patiently. When someone presses the button (event), it runs the code (rings the bell).</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">DOM (Document Object Model) <span class="badge b-useful">USEFUL</span></div>
+      <div class="def-box"><p>A browser's structured representation of a webpage that JavaScript can read and change.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Responsive Design <span class="badge b-useful">USEFUL</span></div>
+      <div class="def-box"><p>Designing a webpage/interface so it works well on different screen sizes/devices.</p></div>
+    </div>
+  </div>
+
+  <div class="topic-card tc-t5">
+    <h2><span class="icon">🌍</span> Networks &amp; Protocols</h2>
+    <div class="term-entry">
+      <div class="term-name">Web Browser <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>Software used to request, interpret and display webpages. Examples: Chrome, Edge, Firefox.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Web Server <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>A computer/program that stores web resources and sends them to clients in response to requests.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Client-Server Model <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>A model where a client requests a service/resource and a server processes the request and sends back a response.</p></div>
+      <div class="analogy-box"><p>A restaurant: you (client) order food; the kitchen (server) prepares it and sends it back. The waiter is the network. 2022 exam used browser/server directly.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Request <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>A message sent by a client asking a server for a resource or service.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Response <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>The server's reply to a client request, such as an HTML page or data.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">URL <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>Uniform Resource Locator: the address used to locate a resource on the web.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Protocol <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>An agreed set of rules for communication between devices/systems. Examples: HTTP, HTTPS, TCP, IP.</p></div>
+      <div class="analogy-box"><p>Like a language — both sides need to agree on the same rules to communicate. If one device speaks HTTP and the other speaks a different protocol, they can't understand each other.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">HTTP <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>HyperText Transfer Protocol: protocol used for transferring web pages/resources between browser and server. Unsecured.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">HTTPS <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>Secure version of HTTP that uses encryption/TLS to protect data in transit.</p></div>
+      <div class="exam-box"><p>The padlock in your browser = HTTPS. Know the difference from HTTP and why it matters (encryption).</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">TCP <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>Transmission Control Protocol: breaks data into packets, numbers them, checks delivery and reassembles them in order.</p></div>
+      <div class="analogy-box"><p>Sending a long letter by tearing it into numbered pages and posting them separately. TCP ensures all pages arrive and puts them back in order.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">IP <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>Internet Protocol: responsible for addressing and routing packets across networks.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">VoIP <span class="badge b-useful">USEFUL</span></div>
+      <div class="def-box"><p>Voice over Internet Protocol: using IP networks to carry voice/video communication, such as Zoom or WhatsApp calls.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Packet <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>A small chunk of data sent across a network with addressing/control information.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Packet Switching <span class="badge b-useful">USEFUL</span></div>
+      <div class="def-box"><p>Sending data as separate packets that may travel different routes and are reassembled at the destination.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">IP Address <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>A numerical address used to identify a device/network interface on an IP network.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">DNS <span class="badge b-useful">USEFUL</span></div>
+      <div class="def-box"><p>Domain Name System: translates human-readable domain names (like google.com) into IP addresses.</p></div>
+      <div class="analogy-box"><p>The phonebook of the internet. You know a name (google.com), DNS finds the number (IP address) for you.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Encryption <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>Transforming data into unreadable form using a key so it cannot be understood without decryption.</p></div>
+      <div class="analogy-box"><p>Scrambling the letters in a message using a secret code. Only someone with the key can unscramble it.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Decryption <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>Converting encrypted data back into readable form using the correct key.</p></div>
+    </div>
+  </div>
+</div>
+<div class="section" id="t6">
+  <div class="ch-header" style="background:linear-gradient(135deg,var(--t6) 0%,var(--t6-dark) 100%);">
+    <h1>🖥️ Computer Systems, Hardware &amp; OS</h1>
+    <p>CPU internals, memory, storage, operating systems and data representation.</p>
+    <span class="big-num">6</span>
+  </div>
+
+  <div class="topic-card tc-t6">
+    <h2><span class="icon">🏗️</span> Hardware &amp; Software</h2>
+    <div class="term-entry">
+      <div class="term-name">Computer System <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>A combination of hardware, software, data, communications and users working together.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Hardware <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>The physical parts of a computer system, such as CPU, RAM, keyboard, screen or storage.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Software <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>Programs and data/instructions that run on computer hardware.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">System Software <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>Software that manages computer hardware and provides a platform for application software, such as an operating system.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Application Software <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>Software designed to help users perform specific tasks, such as word processing, browsing or editing images.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Operating System (OS) <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>System software that controls hardware resources and provides services/interface for users and applications.</p></div>
+      <div class="analogy-box"><p>The OS is the manager of a building. It controls who uses which rooms (memory management), schedules meetings (processor scheduling), and provides services to the people inside (applications).</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Resource Management <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>How the OS controls and coordinates hardware resources such as CPU time, memory, storage and input/output devices.</p></div>
+      <div class="exam-box"><p>Directly asked in 2025 — know the four main OS functions: file management, memory management, resource management, and processor scheduling.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">File Management <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>How the OS organises, stores, tracks and controls access to files on storage devices.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Memory Management <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>How the OS allocates RAM to programs and manages movement of data between memory and storage.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Processor Scheduling <span class="badge b-useful">USEFUL</span></div>
+      <div class="def-box"><p>How the OS decides which process uses the CPU and when.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Firmware <span class="badge b-useful">USEFUL</span></div>
+      <div class="def-box"><p>Software stored in hardware, often in ROM/flash, that controls low-level device operation. Example: BIOS/UEFI.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">BIOS / UEFI <span class="badge b-useful">USEFUL</span></div>
+      <div class="def-box"><p>Firmware used during computer start-up to initialise hardware and load the operating system.</p></div>
+    </div>
+  </div>
+
+  <div class="topic-card tc-t6">
+    <h2><span class="icon">⚙️</span> CPU Architecture</h2>
+    <div class="term-entry">
+      <div class="term-name">CPU (Central Processing Unit) <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>The main processor that fetches, decodes and executes instructions. Contains the ALU, CU, registers and cache.</p></div>
+      <div class="analogy-box"><p>The brain of the computer. Just as your brain processes information, makes decisions, and coordinates your body, the CPU processes instructions and coordinates all other components.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">ALU (Arithmetic Logic Unit) <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>CPU component that performs arithmetic (add, subtract, multiply) and logical operations (AND, OR, NOT, comparisons).</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Control Unit (CU) <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>CPU component that directs and coordinates operations, including fetching, decoding and executing instructions.</p></div>
+      <div class="analogy-box"><p>The conductor of an orchestra. The CU doesn't play any instruments itself — it coordinates all the other parts (ALU, registers, memory) to work together in the right order.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Register <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>A very small, very fast storage location inside the CPU used to hold data, instructions or addresses temporarily.</p></div>
+      <div class="analogy-box"><p>The scratchpad on a chef's counter — tiny, right there at hand, used for the current calculation. Much faster than going to the fridge (RAM) or pantry (storage).</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Program Counter (PC) <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>A register that stores the memory address of the next instruction to be executed.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Accumulator (ACC) <span class="badge b-useful">USEFUL</span></div>
+      <div class="def-box"><p>A CPU register used to store intermediate results/data being operated on by the ALU.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Cache <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>Fast, small memory close to or inside the CPU used to store frequently needed data/instructions.</p></div>
+      <div class="analogy-box"><p>A chef keeps their most-used spices on the counter (cache) rather than fetching them from the cupboard (RAM) every time. Faster access = faster cooking/processing.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Clock Speed <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>The number of CPU clock pulses per second, usually measured in hertz (Hz). Higher speed can mean more cycles per second.</p></div>
+      <div class="analogy-box"><p>Like the tempo of a metronome — a faster beat means the CPU can do more "ticks" of work per second.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Core <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>A processing unit within a CPU capable of executing instructions. Multiple cores can process more work in parallel.</p></div>
+      <div class="analogy-box"><p>A quad-core CPU is like having 4 chefs in one kitchen — they can cook 4 different dishes simultaneously instead of one at a time.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Fetch-Decode-Execute Cycle <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>The repeated process by which the CPU: (1) Fetches an instruction from memory, (2) Decodes it to find out what to do, (3) Executes it.</p></div>
+      <div class="memory-box"><p><strong>F</strong>etch → <strong>D</strong>ecode → <strong>E</strong>xecute. Like: <strong>F</strong>ind the recipe, <strong>D</strong>ecide what it says, <strong>D</strong>o it.</p></div>
+    </div>
+  </div>
+
+  <div class="topic-card tc-t6">
+    <h2><span class="icon">💾</span> Memory &amp; Storage</h2>
+    <div class="term-entry">
+      <div class="term-name">RAM (Random Access Memory) <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>Volatile primary memory used to store programs/data while the computer is running. Contents lost when power is off.</p></div>
+      <div class="analogy-box"><p>Your desk surface while you work. You spread papers (open programs) across it. When you finish work and clear the desk, everything is gone — nothing is permanently stored.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">ROM (Read-Only Memory) <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>Non-volatile memory used to store permanent/start-up instructions such as firmware. Cannot be easily changed.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Volatile Memory <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>Memory whose contents are lost when power is switched off, such as RAM and registers.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Non-Volatile Memory <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>Memory/storage that keeps data when power is off, such as ROM, SSDs and hard drives.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Primary Memory <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>Memory directly accessible by the CPU, mainly RAM, ROM and cache/registers.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Secondary Storage <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>Long-term non-volatile storage for files and programs, such as HDDs, SSDs and USB drives.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">HDD (Hard Disk Drive) <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>Magnetic secondary storage with spinning platters and moving parts. Generally cheaper per GB, but slower than SSD.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">SSD (Solid State Drive) <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>Electronic secondary storage with no moving parts, usually faster, more durable and lighter than HDD.</p></div>
+      <div class="exam-box"><p>Common comparison question: HDD vs SSD — HDD cheaper/larger capacity, SSD faster/more durable/no moving parts.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Virtual Memory <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>A memory-management technique where storage (HDD/SSD) is used as extra temporary memory when RAM is full.</p></div>
+      <div class="analogy-box"><p>When your desk is full, you put some papers in a drawer (storage). You can still access them but it takes longer to get them. Virtual memory is slower because storage is slower than RAM.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Bus <span class="badge b-useful">USEFUL</span></div>
+      <div class="def-box"><p>A communication pathway that carries data, addresses or control signals between computer components.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Motherboard <span class="badge b-useful">USEFUL</span></div>
+      <div class="def-box"><p>The main circuit board that connects CPU, memory, storage and other components.</p></div>
+    </div>
+  </div>
+
+  <div class="topic-card tc-t6">
+    <h2><span class="icon">🔢</span> Data Representation</h2>
+    <div class="term-entry">
+      <div class="term-name">Bit <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>The smallest unit of data, representing a binary value 0 or 1.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Byte <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>A group of 8 bits. Used in storage and character encoding contexts.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Binary <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>Base-2 number system using only digits 0 and 1. Computers represent all data in binary.</p></div>
+      <div class="analogy-box"><p>Like a light switch — only two states. Computers are built from billions of transistors each in state 0 or 1. From these two states, everything — numbers, text, images, video — can be encoded.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Decimal <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>Base-10 number system using digits 0-9. The normal human number system.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Hexadecimal <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>Base-16 number system using digits 0-9 and letters A-F. Often used as a compact representation of binary.</p></div>
+      <div class="analogy-box"><p>A shorthand for binary — every 4 binary bits become one hex digit. So <code>1111</code> = F, making long binary numbers much easier to read. Used for colours (#FF6B6B), memory addresses, and more.</p></div>
+      <div class="exam-box"><p>2025 exam asked about #0A33F0 style hex colour conversion. Know how to convert hex pairs to RGB values (0–255).</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">ASCII <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>A character encoding standard that represents common characters using numeric codes. Standard ASCII uses 7 bits (128 characters).</p></div>
+      <div class="analogy-box"><p>Like a secret code where A=65, B=66 etc. The computer stores numbers; when displaying text it looks up what character each number represents.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Unicode <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>A character encoding standard designed to represent characters from many languages and symbols, including emojis.</p></div>
+      <div class="exam-box"><p>Unicode is more globally compatible than ASCII — ASCII can't represent Irish fada characters, Chinese characters, or emojis. Unicode can.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Character Encoding <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>A system for representing characters as numbers/binary so computers can store and transmit text. ASCII and Unicode are examples.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">RGB Colour <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>A way of representing colour using red, green and blue component values, often 0–255 each or as hexadecimal pairs.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Pixel <span class="badge b-useful">USEFUL</span></div>
+      <div class="def-box"><p>The smallest addressable picture element in a digital image.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Resolution <span class="badge b-useful">USEFUL</span></div>
+      <div class="def-box"><p>The number/detail of pixels in an image or display, often expressed as width × height or pixels per inch (PPI).</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Compression <span class="badge b-useful">USEFUL</span></div>
+      <div class="def-box"><p>Reducing the number of bits needed to store/transmit data.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Lossless Compression <span class="badge b-useful">USEFUL</span></div>
+      <div class="def-box"><p>Compression where original data can be perfectly reconstructed. Useful for text/code/data files.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Lossy Compression <span class="badge b-useful">USEFUL</span></div>
+      <div class="def-box"><p>Compression where some data/detail is permanently removed to reduce file size. Common for images/audio/video (e.g. JPEG, MP3).</p></div>
+      <div class="analogy-box"><p>Lossless = zipping a file — compress and restore perfectly. Lossy = making a photocopy — you lose some quality but the file is much smaller.</p></div>
+    </div>
+  </div>
+
+  <div class="topic-card tc-t6">
+    <h2><span class="icon">🕰️</span> Languages, History &amp; Emerging Tech</h2>
+    <div class="term-entry">
+      <div class="term-name">Machine Code <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>Low-level binary instructions that can be executed directly by a processor.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Assembly Language <span class="badge b-useful">USEFUL</span></div>
+      <div class="def-box"><p>A low-level programming language using mnemonics closely related to machine instructions.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">High-Level Language <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>A programming language closer to human language and independent of a specific CPU architecture, such as Python or JavaScript.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Low-Level Language <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>A programming language close to machine code and tied to processor architecture, such as assembly.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Moore's Law <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>The observation that the number of transistors on integrated circuits roughly doubles over time, historically about every two years.</p></div>
+      <div class="exam-box"><p>Know the limitation: we are approaching physical limits to how small transistors can be made (near atomic scale).</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Vacuum Tube <span class="badge b-useful">USEFUL</span></div>
+      <div class="def-box"><p>An early electronic component used before transistors; bulky, hot and less reliable.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Microprocessor <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>A CPU implemented on a single integrated circuit/chip. Key milestone in computing history.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">ARPANET <span class="badge b-useful">USEFUL</span></div>
+      <div class="def-box"><p>Early packet-switching network considered a forerunner of the Internet. Developed in the late 1960s.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Personal Computer <span class="badge b-useful">USEFUL</span></div>
+      <div class="def-box"><p>A general-purpose computer affordable and practical for individual users. The PC revolution in the 1970s–80s changed computing from a specialist tool to an everyday device.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Cloud Computing <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>Using remote servers over the internet for storage, software or computing resources instead of relying only on local machines.</p></div>
+      <div class="analogy-box"><p>Instead of keeping all your files on your laptop, you store them in Google Drive — they live on someone else's server somewhere in the world. You access them over the internet.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Edge Computing <span class="badge b-useful">USEFUL</span></div>
+      <div class="def-box"><p>Processing data close to where it is generated instead of sending everything to central cloud servers.</p></div>
+      <div class="exam-box"><p>Key advantage: reduced latency (less delay) because data doesn't have to travel far.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Internet of Things (IoT) <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>A network of everyday physical devices with sensors/software/network connectivity that collect and exchange data.</p></div>
+      <div class="analogy-box"><p>Your smart home: fridge, thermostat, doorbell, and kettle all connected to the internet and each other. The "things" (not just computers) are all on the network.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Quantum Computing <span class="badge b-useful">USEFUL</span></div>
+      <div class="def-box"><p>Computing approach using quantum phenomena; may solve certain problems dramatically faster than classical computers, but is expensive and complex.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Blockchain <span class="badge b-useful">USEFUL</span></div>
+      <div class="def-box"><p>A decentralised, tamper-resistant ledger where records are linked using cryptographic methods.</p></div>
+      <div class="analogy-box"><p>A public notebook shared by thousands of people simultaneously. When a new transaction is added, everyone's copy updates. Changing one entry would be spotted immediately because it wouldn't match everyone else's copy.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Biometric Authentication <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>Verifying identity using biological characteristics such as fingerprint, face or iris.</p></div>
+      <div class="exam-box"><p>Discuss: convenience (+), hard to steal (+), privacy concerns (−), spoofing risk (−).</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- FLASHCARDS -->
+<div id="flashcards" class="section" style="padding:0 16px 80px;max-width:920px;margin:0 auto;">
+  <div class="flash-header">
+    <h1>🃏 Flashcard Drill</h1>
+    <p>Web &amp; Networks / Computer Systems · 52 cards · Space = flip · ← → = navigate</p>
+    <span class="big-num">?</span>
+  </div>
+  <div class="flash-controls">
+    <button class="flash-filter factive" onclick="filterFlash('all',this)">All</button>
+    <button class="flash-filter" onclick="filterFlash('core',this)">⭐ Core Only</button>
+    <button class="flash-filter" onclick="filterFlash('t5',this)">🌐 Web & Networks</button>
+    <button class="flash-filter" onclick="filterFlash('t6',this)">🖥️ Computer Systems</button>
+
+  </div>
+  <div style="font-size:0.8rem;color:var(--text-muted);margin-bottom:10px;">
+    <span id="flashCounter">1 / 52</span>
+    <div style="background:var(--border);border-radius:10px;height:6px;margin-top:6px;">
+      <div id="flashProgressBar" style="background:var(--purple);height:6px;border-radius:10px;width:0%;transition:width 0.3s;"></div>
+    </div>
+  </div>
+  <div class="flashcard-area">
+    <div class="flashcard" id="flashcard" onclick="flipCard()">
+      <div class="flashcard-inner">
+        <div class="flashcard-front">
+          <div class="card-topic" id="cardTopic"></div>
+          <div class="card-q" id="cardQ"></div>
+          <div class="flip-hint">Click or press Space to reveal</div>
+        </div>
+        <div class="flashcard-back">
+          <div class="card-a" id="cardA"></div>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;gap:12px;margin-top:4px;">
+      <button class="btn-nav" id="prevBtn" onclick="prevCard()">← Prev</button>
+      <button class="btn-nav" id="nextBtn" onclick="nextCard()">Next →</button>
+    </div>
+  </div>
+</div>
+
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:24px;right:24px;width:44px;height:44px;border-radius:50%;background:var(--purple);color:#fff;border:none;font-size:1.2rem;cursor:pointer;box-shadow:var(--shadow);opacity:0;transition:opacity 0.3s;pointer-events:none;" class="">↑</button>
+
+<script>
+const cards = [
+  {topic:'t5',label:'🌐 Web/Net',q:'HTML',a:'HyperText Markup Language: markup language used to structure content on webpages.',priority:'core'},
+  {topic:'t5',label:'🌐 Web/Net',q:'CSS',a:'Cascading Style Sheets: language used to style and lay out webpages.',priority:'core'},
+  {topic:'t5',label:'🌐 Web/Net',q:'JavaScript',a:'A programming language used to add interactivity to webpages.',priority:'core'},
+  {topic:'t5',label:'🌐 Web/Net',q:'HTML Tag',a:'A markup instruction written in angle brackets, such as <p> or <h1>.',priority:'core'},
+  {topic:'t5',label:'🌐 Web/Net',q:'HTML Element',a:'Complete part of a webpage: opening tag + content + closing tag. E.g. <p>Hello</p>.',priority:'core'},
+  {topic:'t5',label:'🌐 Web/Net',q:'HTML Attribute',a:'Extra information inside an opening tag, such as href in <a> or src in <img>.',priority:'core'},
+  {topic:'t5',label:'🌐 Web/Net',q:'Hyperlink',a:'A clickable link using the <a> tag and href attribute.',priority:'core'},
+  {topic:'t5',label:'🌐 Web/Net',q:'Client-Server Model',a:'A model where a client requests a service/resource and a server processes the request and sends a response.',priority:'core'},
+  {topic:'t5',label:'🌐 Web/Net',q:'Protocol',a:'An agreed set of rules for communication between devices/systems. Examples: HTTP, HTTPS, TCP, IP.',priority:'core'},
+  {topic:'t5',label:'🌐 Web/Net',q:'HTTP',a:'HyperText Transfer Protocol: protocol for transferring web pages between browser and server. Unsecured.',priority:'core'},
+  {topic:'t5',label:'🌐 Web/Net',q:'HTTPS',a:'Secure version of HTTP that uses encryption/TLS to protect data in transit.',priority:'core'},
+  {topic:'t5',label:'🌐 Web/Net',q:'TCP',a:'Transmission Control Protocol: breaks data into packets, numbers them, checks delivery and reassembles them in order.',priority:'core'},
+  {topic:'t5',label:'🌐 Web/Net',q:'IP',a:'Internet Protocol: responsible for addressing and routing packets across networks.',priority:'core'},
+  {topic:'t5',label:'🌐 Web/Net',q:'Packet',a:'A small chunk of data sent across a network with addressing/control information.',priority:'core'},
+  {topic:'t5',label:'🌐 Web/Net',q:'IP Address',a:'A numerical address used to identify a device/network interface on an IP network.',priority:'core'},
+  {topic:'t5',label:'🌐 Web/Net',q:'Encryption',a:'Transforming data into unreadable form using a key so it cannot be understood without decryption.',priority:'core'},
+  {topic:'t5',label:'🌐 Web/Net',q:'Decryption',a:'Converting encrypted data back into readable form using the correct key.',priority:'core'},
+  {topic:'t5',label:'🌐 Web/Net',q:'URL',a:'Uniform Resource Locator: the address used to locate a resource on the web.',priority:'core'},
+  {topic:'t6',label:'🖥️ Systems',q:'Operating System (OS)',a:'System software that controls hardware resources and provides services/interface for users and applications.',priority:'core'},
+  {topic:'t6',label:'🖥️ Systems',q:'Resource Management',a:'How the OS controls and coordinates hardware resources such as CPU time, memory, storage and I/O devices.',priority:'core'},
+  {topic:'t6',label:'🖥️ Systems',q:'File Management',a:'How the OS organises, stores, tracks and controls access to files on storage devices.',priority:'core'},
+  {topic:'t6',label:'🖥️ Systems',q:'Memory Management',a:'How the OS allocates RAM to programs and manages movement of data between memory and storage.',priority:'core'},
+  {topic:'t6',label:'🖥️ Systems',q:'CPU',a:'Central Processing Unit: main processor that fetches, decodes and executes instructions. Contains ALU, CU, registers, cache.',priority:'core'},
+  {topic:'t6',label:'🖥️ Systems',q:'ALU',a:'Arithmetic Logic Unit: CPU component that performs arithmetic and logical operations.',priority:'core'},
+  {topic:'t6',label:'🖥️ Systems',q:'Control Unit (CU)',a:'CPU component that directs and coordinates operations — fetching, decoding and executing instructions.',priority:'core'},
+  {topic:'t6',label:'🖥️ Systems',q:'Register',a:'A very small, very fast storage location inside the CPU used to hold data temporarily.',priority:'core'},
+  {topic:'t6',label:'🖥️ Systems',q:'Program Counter (PC)',a:'A register that stores the memory address of the next instruction to be executed.',priority:'core'},
+  {topic:'t6',label:'🖥️ Systems',q:'Cache',a:'Fast, small memory close to or inside the CPU used to store frequently needed data/instructions.',priority:'core'},
+  {topic:'t6',label:'🖥️ Systems',q:'Clock Speed',a:'The number of CPU clock pulses per second, usually measured in hertz. Higher = more cycles per second.',priority:'core'},
+  {topic:'t6',label:'🖥️ Systems',q:'Core (CPU)',a:'A processing unit within a CPU capable of executing instructions. Multiple cores allow parallel processing.',priority:'core'},
+  {topic:'t6',label:'🖥️ Systems',q:'Fetch-Decode-Execute Cycle',a:'The repeated process: Fetch instruction from memory → Decode what to do → Execute it.',priority:'core'},
+  {topic:'t6',label:'🖥️ Systems',q:'RAM',a:'Random Access Memory: volatile primary memory used to store programs/data while running. Lost when power off.',priority:'core'},
+  {topic:'t6',label:'🖥️ Systems',q:'ROM',a:'Read-Only Memory: non-volatile memory storing permanent/start-up instructions (firmware). Contrast with RAM.',priority:'core'},
+  {topic:'t6',label:'🖥️ Systems',q:'Volatile Memory',a:'Memory whose contents are lost when power is switched off (RAM, registers).',priority:'core'},
+  {topic:'t6',label:'🖥️ Systems',q:'Non-Volatile Memory',a:'Memory that keeps data when power is off (ROM, SSDs, hard drives).',priority:'core'},
+  {topic:'t6',label:'🖥️ Systems',q:'Secondary Storage',a:'Long-term non-volatile storage for files and programs: HDDs, SSDs, USB drives.',priority:'core'},
+  {topic:'t6',label:'🖥️ Systems',q:'HDD vs SSD',a:'HDD: magnetic, moving parts, cheaper/GB. SSD: electronic, no moving parts, faster, more durable.',priority:'core'},
+  {topic:'t6',label:'🖥️ Systems',q:'Virtual Memory',a:'Technique using storage as extra temporary memory when RAM is full. Slower than RAM.',priority:'core'},
+  {topic:'t6',label:'🖥️ Systems',q:'Bit',a:'Smallest unit of data, representing a binary value 0 or 1.',priority:'core'},
+  {topic:'t6',label:'🖥️ Systems',q:'Byte',a:'A group of 8 bits.',priority:'core'},
+  {topic:'t6',label:'🖥️ Systems',q:'Binary',a:'Base-2 number system using digits 0 and 1. All computer data is represented in binary.',priority:'core'},
+  {topic:'t6',label:'🖥️ Systems',q:'Hexadecimal',a:'Base-16 number system using digits 0-9 and A-F. Compact representation of binary. Used for colours, memory addresses.',priority:'core'},
+  {topic:'t6',label:'🖥️ Systems',q:'ASCII',a:'Character encoding standard representing common characters using numeric codes. 7 bits = 128 characters.',priority:'core'},
+  {topic:'t6',label:'🖥️ Systems',q:'Unicode',a:'Character encoding standard for characters from many languages including emojis. More globally compatible than ASCII.',priority:'core'},
+  {topic:'t6',label:'🖥️ Systems',q:'RGB Colour',a:'Colour represented using red, green and blue values (0-255 each) or as hex pairs.',priority:'core'},
+  {topic:'t6',label:'🖥️ Systems',q:'Moore\'s Law',a:'The observation that transistor count on ICs roughly doubles every two years. Now approaching physical limits.',priority:'core'},
+  {topic:'t6',label:'🖥️ Systems',q:'Cloud Computing',a:'Using remote servers over the internet for storage, software or computing, instead of local machines.',priority:'core'},
+  {topic:'t6',label:'🖥️ Systems',q:'Internet of Things (IoT)',a:'Network of everyday devices with sensors/software/network connectivity that collect and exchange data.',priority:'core'},
+  {topic:'t6',label:'🖥️ Systems',q:'Biometric Authentication',a:'Verifying identity using biological characteristics such as fingerprint, face or iris.',priority:'core'},
+  {topic:'t6',label:'🖥️ Systems',q:'High-Level Language',a:'Programming language closer to human language, independent of CPU architecture. Examples: Python, JavaScript.',priority:'core'},
+  {topic:'t6',label:'🖥️ Systems',q:'Machine Code',a:'Low-level binary instructions that can be executed directly by a processor.',priority:'core'},
+  {topic:'t6',label:'🖥️ Systems',q:'Personal Computer',a:'A general-purpose computer affordable and practical for individual users. The PC revolution in the 1970s–80s transformed computing into an everyday activity.',priority:'useful'}
+];
+
+const firstTopic = 't5';
+
+
+let filtered = [...cards];
+let currentIdx = 0;
+
+function filterFlash(topic, btn) {
+  document.querySelectorAll('.flash-filter').forEach(b => b.classList.remove('factive'));
+  btn.classList.add('factive');
+  if (topic === 'all') {
+    filtered = [...cards];
+  } else if (topic === 'core') {
+    filtered = cards.filter(c => c.priority === 'core');
+  } else {
+    filtered = cards.filter(c => c.topic === topic);
+  }
+  currentIdx = 0;
+  showCard();
+}
+
+function showCard() {
+  const c = filtered[currentIdx];
+  document.getElementById('cardTopic').textContent = c.label;
+  document.getElementById('cardQ').textContent = c.q;
+  document.getElementById('cardA').textContent = c.a;
+  document.getElementById('flashCounter').textContent = (currentIdx+1) + ' / ' + filtered.length;
+  const pct = ((currentIdx+1)/filtered.length*100).toFixed(0);
+  document.getElementById('flashProgressBar').style.width = pct + '%';
+  document.getElementById('prevBtn').disabled = currentIdx === 0;
+  document.getElementById('nextBtn').disabled = currentIdx === filtered.length-1;
+  document.getElementById('flashcard').classList.remove('flipped');
+}
+
+function flipCard() {
+  document.getElementById('flashcard').classList.toggle('flipped');
+}
+
+function nextCard() {
+  if (currentIdx < filtered.length-1) { currentIdx++; showCard(); }
+}
+
+function prevCard() {
+  if (currentIdx > 0) { currentIdx--; showCard(); }
+}
+
+document.addEventListener('keydown', function(e) {
+  if (!document.getElementById('flashcards').classList.contains('active')) return;
+  if (e.key === 'ArrowRight') nextCard();
+  if (e.key === 'ArrowLeft')  prevCard();
+  if (e.key === ' ') { e.preventDefault(); flipCard(); }
+});
+
+function showTopic(id) {
+  document.querySelectorAll('.section, #flashcards').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  const el = document.getElementById(id);
+  if (el) { el.classList.add('active'); }
+  const navBtn = document.querySelector('.nav-btn[data-id="' + id + '"]');
+  if (navBtn) navBtn.classList.add('active');
+  document.getElementById('heroSection').style.display = 'none';
+  window.scrollTo({top:0,behavior:'smooth'});
+  if (id === 'flashcards') { showCard(); }
+}
+
+window.addEventListener('scroll', () => {
+  const btn = document.getElementById('scrollTop');
+  if(btn) btn.classList.toggle('visible', window.scrollY > 400);
+});
+
+// Init
+showTopic(firstTopic);
+document.getElementById('heroSection').style.display = '';
+
+
+// Also make #flashcards active class work
+const flashDiv = document.getElementById('flashcards');
+Object.defineProperty(flashDiv.style, 'display', {
+  get() { return this._display || 'none'; },
+  set(v) { this._display = v; flashDiv.style.cssText = flashDiv.style.cssText; }
+});
+</script>
+
+</body>
+</html>

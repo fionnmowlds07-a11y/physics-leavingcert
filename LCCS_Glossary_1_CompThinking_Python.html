@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LC CS — Computational Thinking & Python</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F7F4EF;
+    --surface: #FFFFFF;
+    --surface2: #F0EDE8;
+    --border: #E2DDD7;
+    --text: #2C2825;
+    --text-muted: #7A7068;
+    --t1: #FF6B6B; --t1-light: #FFE8E8; --t1-dark: #C94040;
+    --t2: #4ECDC4; --t2-light: #E0F7F6; --t2-dark: #2A9990;
+    --t3: #FFB347; --t3-light: #FFF3E0; --t3-dark: #CC7A00;
+    --t4: #7C5CBF; --t4-light: #EDE8F7; --t4-dark: #5a3da0;
+    --t5: #56C271; --t5-light: #E6F8EB; --t5-dark: #267339;
+    --t6: #E8637A; --t6-light: #FCE8EC; --t6-dark: #B03050;
+    --t7: #3A86FF; --t7-light: #E0ECFF; --t7-dark: #1A5CC8;
+    --t8: #F77F00; --t8-light: #FFF0DC; --t8-dark: #B85A00;
+    --t9: #2EC4B6; --t9-light: #E0FAF7; --t9-dark: #1A9088;
+    --t10: #9B5DE5; --t10-light: #F3EAFF; --t10-dark: #6B2DAF;
+    --t11: #D62828; --t11-light: #FFECEC; --t11-dark: #9A1A1A;
+    --purple: #7C5CBF; --purple-light: #EDE8F7;
+    --green: #56C271; --green-light: #E6F8EB;
+    --radius: 14px;
+    --shadow: 0 4px 20px rgba(0,0,0,0.08);
+    --shadow-hover: 0 8px 32px rgba(0,0,0,0.14);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Lexend', sans-serif; background: var(--bg); color: var(--text); line-height: 1.8; font-size: 16px; }
+
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(247,244,239,0.96);
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid var(--border);
+    padding: 8px 16px;
+    display: flex; align-items: center; gap: 6px;
+    flex-wrap: wrap; min-height: 56px;
+  }
+  .nav-logo { font-family: 'Lexend Mega', sans-serif; font-size: 0.95rem; color: var(--text); margin-right: 6px; }
+  .nav-logo span { color: var(--t1); }
+  .nav-btn {
+    padding: 5px 11px; border-radius: 18px;
+    border: 2px solid transparent;
+    font-family: 'Lexend', sans-serif;
+    font-size: 0.72rem; font-weight: 600;
+    cursor: pointer; transition: all 0.2s;
+    background: var(--surface); color: var(--text-muted);
+    white-space: nowrap;
+  }
+  .nav-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+  .nav-btn.t1  { border-color: var(--t1); }  .nav-btn.t1.active,  .nav-btn.t1:hover  { background: var(--t1);  color:#fff; }
+  .nav-btn.t2  { border-color: var(--t2); }  .nav-btn.t2.active,  .nav-btn.t2:hover  { background: var(--t2);  color:var(--text); }
+  .nav-btn.t3  { border-color: var(--t3); }  .nav-btn.t3.active,  .nav-btn.t3:hover  { background: var(--t3);  color:var(--text); }
+  .nav-btn.t4  { border-color: var(--t4); }  .nav-btn.t4.active,  .nav-btn.t4:hover  { background: var(--t4);  color:#fff; }
+  .nav-btn.t5  { border-color: var(--t5); }  .nav-btn.t5.active,  .nav-btn.t5:hover  { background: var(--t5);  color:#fff; }
+  .nav-btn.t6  { border-color: var(--t6); }  .nav-btn.t6.active,  .nav-btn.t6:hover  { background: var(--t6);  color:#fff; }
+  .nav-btn.t7  { border-color: var(--t7); }  .nav-btn.t7.active,  .nav-btn.t7:hover  { background: var(--t7);  color:#fff; }
+  .nav-btn.t8  { border-color: var(--t8); }  .nav-btn.t8.active,  .nav-btn.t8:hover  { background: var(--t8);  color:#fff; }
+  .nav-btn.t9  { border-color: var(--t9); }  .nav-btn.t9.active,  .nav-btn.t9:hover  { background: var(--t9);  color:#fff; }
+  .nav-btn.t10 { border-color: var(--t10); } .nav-btn.t10.active, .nav-btn.t10:hover { background: var(--t10); color:#fff; }
+  .nav-btn.t11 { border-color: var(--t11); } .nav-btn.t11.active, .nav-btn.t11:hover { background: var(--t11); color:#fff; }
+  .nav-btn.flash { border-color: var(--purple); } .nav-btn.flash.active, .nav-btn.flash:hover { background: var(--purple); color:#fff; }
+
+  .hero { padding: 44px 24px 28px; text-align: center; }
+  .hero h1 { font-family: 'Lexend Mega', sans-serif; font-size: clamp(1.5rem,4vw,2.6rem); line-height:1.2; }
+  .hero h1 .a1{color:var(--t1);} .hero h1 .a2{color:var(--t2-dark);} .hero h1 .a3{color:var(--t3-dark);}
+  .hero p { margin-top:10px; color:var(--text-muted); max-width:620px; margin-left:auto; margin-right:auto; }
+  .stats-row { display:flex; justify-content:center; gap:20px; flex-wrap:wrap; margin-top:20px; }
+  .stat-chip { background:var(--surface); border:2px solid var(--border); border-radius:30px; padding:8px 20px; font-size:0.85rem; font-weight:600; }
+  .chapter-pills { display:flex; justify-content:center; gap:8px; flex-wrap:wrap; margin-top:20px; }
+  .pill { padding:7px 16px; border-radius:28px; font-weight:600; font-size:0.78rem; cursor:pointer; transition:all 0.2s; border:none; }
+  .pill:hover { transform:translateY(-3px); box-shadow:var(--shadow-hover); }
+
+  .section { display:none; padding:0 16px 60px; max-width:920px; margin:0 auto; }
+  .section.active { display:block; animation:fadeIn 0.3s ease; }
+  @keyframes fadeIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+
+  .ch-header {
+    border-radius:var(--radius); padding:28px 28px; color:white;
+    margin-bottom:24px; position:relative; overflow:hidden;
+  }
+  .ch-header h1 { font-family:'Lexend Mega',sans-serif; font-size:1.45rem; }
+  .ch-header p { opacity:0.88; margin-top:7px; font-size:0.92rem; }
+  .ch-header .big-num { position:absolute; right:22px; top:50%; transform:translateY(-50%); font-family:'Lexend Mega',sans-serif; font-size:5.5rem; opacity:0.12; line-height:1; }
+
+  .topic-card {
+    background:var(--surface); border-radius:var(--radius); padding:24px;
+    margin-bottom:20px; box-shadow:var(--shadow);
+    border-left:5px solid var(--t1); transition:box-shadow 0.2s;
+  }
+  .topic-card:hover { box-shadow:var(--shadow-hover); }
+  .topic-card h2 { font-size:1.15rem; font-weight:700; margin-bottom:12px; display:flex; align-items:center; gap:8px; }
+  .topic-card h3 { font-size:0.95rem; font-weight:600; margin:16px 0 7px; }
+  .topic-card p { margin-bottom:9px; }
+  .topic-card ul { padding-left:20px; margin-bottom:9px; }
+  .topic-card li { margin-bottom:4px; }
+
+  /* Term entry */
+  .term-entry { margin-bottom:18px; padding-bottom:18px; border-bottom:1px solid var(--border); }
+  .term-entry:last-child { border-bottom:none; margin-bottom:0; padding-bottom:0; }
+  .term-name { font-size:1.05rem; font-weight:700; margin-bottom:6px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+
+  /* Boxes */
+  .def-box { background:var(--surface2); border:2px dashed var(--border); border-radius:10px; padding:12px 16px; margin:8px 0; position:relative; }
+  .def-box::before { content:'📖 DEFINITION'; display:block; font-size:0.65rem; font-weight:700; letter-spacing:1px; color:var(--text-muted); margin-bottom:5px; }
+  .def-box p { margin:0; font-weight:500; }
+  .analogy-box { background:#FFF9E6; border:2px solid #FFD966; border-radius:10px; padding:12px 16px; margin:8px 0; }
+  .analogy-box::before { content:'💡 ANALOGY'; display:block; font-size:0.65rem; font-weight:700; letter-spacing:1px; color:#997700; margin-bottom:5px; }
+  .memory-box { background:#F0FFF4; border:2px solid var(--green); border-radius:10px; padding:12px 16px; margin:8px 0; }
+  .memory-box::before { content:'🧠 MEMORY TRICK'; display:block; font-size:0.65rem; font-weight:700; letter-spacing:1px; color:#267339; margin-bottom:5px; }
+  .exam-box { background:#FFF0F3; border:2px solid var(--t1); border-radius:10px; padding:12px 16px; margin:8px 0; }
+  .exam-box::before { content:'📝 EXAM TIP'; display:block; font-size:0.65rem; font-weight:700; letter-spacing:1px; color:var(--t1-dark); margin-bottom:5px; }
+  .code-box { background:#1e1e2e; color:#cdd6f4; border-radius:10px; padding:12px 16px; margin:8px 0; font-family:monospace; font-size:0.88rem; overflow-x:auto; }
+
+  .badge { display:inline-block; padding:2px 9px; border-radius:18px; font-size:0.68rem; font-weight:700; letter-spacing:0.4px; }
+  .b-core   { background:#FFE8E8; color:#C94040; }
+  .b-useful { background:#E0F7F6; color:#2A9990; }
+  .b-extra  { background:#F0EDE8; color:#7A7068; }
+
+  comp-table, .comp-table { width:100%; border-collapse:collapse; margin:12px 0; font-size:0.86rem; border-radius:10px; overflow:hidden; }
+  .comp-table th { background:var(--t1); color:#fff; padding:9px 12px; text-align:left; font-weight:600; }
+  .comp-table td { padding:8px 12px; border-bottom:1px solid var(--border); }
+  .comp-table tr:nth-child(even) td { background:var(--surface2); }
+  .comp-table tr:last-child td { border-bottom:none; }
+
+  /* Big O grid */
+  .big-o-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:14px 0; }
+  @media(max-width:580px){ .big-o-grid{grid-template-columns:1fr;} }
+  .big-o-card { border-radius:10px; padding:13px; border:2px solid; }
+  .big-o-card .notation { font-size:1.25rem; font-weight:700; }
+  .big-o-card .label { font-size:0.78rem; font-weight:600; margin:3px 0; }
+  .big-o-card .desc { font-size:0.8rem; color:var(--text-muted); }
+  .o1    { border-color:#56C271; background:#E6F8EB; }
+  .ologn { border-color:#4ECDC4; background:#E0F7F6; }
+  .on    { border-color:#FFB347; background:#FFF3E0; }
+  .on2   { border-color:#FF6B6B; background:#FFE8E8; }
+  .onlogn{ border-color:#C9A800; background:#FFFBE0; }
+
+  /* Accordion for less-important terms */
+  .accordion { margin:8px 0; border-radius:10px; overflow:hidden; border:2px solid var(--border); }
+  .accordion-header { width:100%; text-align:left; padding:11px 16px; background:var(--surface2); border:none; font-family:'Lexend',sans-serif; font-size:0.92rem; font-weight:600; cursor:pointer; display:flex; justify-content:space-between; align-items:center; transition:background 0.2s; }
+  .accordion-header:hover { background:var(--border); }
+  .accordion-header .arrow { transition:transform 0.3s; font-size:0.78rem; }
+  .accordion-header.open .arrow { transform:rotate(180deg); }
+  .accordion-body { display:none; padding:14px 16px; background:var(--surface); border-top:2px solid var(--border); }
+  .accordion-body.open { display:block; }
+
+  /* Flashcards */
+  #flashcards { padding:0 16px 80px; max-width:920px; margin:0 auto; display:none; }
+  
+  .flash-header { background:linear-gradient(135deg,var(--purple) 0%,#5a3da0 100%); border-radius:var(--radius); padding:28px; color:white; margin-bottom:24px; position:relative; overflow:hidden; }
+  .flash-header h1 { font-family:'Lexend Mega',sans-serif; font-size:1.45rem; }
+  .flash-header p { opacity:0.85; margin-top:7px; }
+  .flash-header .big-num { position:absolute; right:22px; top:50%; transform:translateY(-50%); font-family:'Lexend Mega',sans-serif; font-size:5.5rem; opacity:0.12; }
+
+  .flash-controls { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:18px; align-items:center; }
+  .flash-filter { padding:6px 14px; border-radius:18px; border:2px solid var(--border); background:var(--surface); font-family:'Lexend',sans-serif; font-size:0.76rem; font-weight:600; cursor:pointer; transition:all 0.2s; color:var(--text-muted); }
+  .flash-filter:hover, .flash-filter.factive { background:var(--purple); color:#fff; border-color:var(--purple); }
+
+  .flashcard-area { display:flex; flex-direction:column; align-items:center; }
+  .flashcard { width:100%; max-width:640px; perspective:1200px; min-height:200px; cursor:pointer; margin-bottom:18px; }
+  .flashcard-inner { position:relative; width:100%; min-height:200px; transition:transform 0.55s cubic-bezier(.4,.2,.2,1); transform-style:preserve-3d; }
+  .flashcard.flipped .flashcard-inner { transform:rotateY(180deg); }
+  .flashcard-front, .flashcard-back { position:absolute; width:100%; min-height:200px; backface-visibility:hidden; border-radius:var(--radius); padding:28px 24px; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; box-shadow:var(--shadow); }
+  .flashcard-front { background:var(--surface); border:3px solid var(--purple); }
+  .flashcard-back { background:var(--purple); color:white; transform:rotateY(180deg); }
+  .flashcard-front .card-topic { font-size:0.68rem; font-weight:700; letter-spacing:1px; text-transform:uppercase; margin-bottom:10px; color:var(--text-muted); }
+  .flashcard-front .card-q { font-size:1.1rem; font-weight:600; }
+  .flashcard-front .flip-hint { margin-top:14px; font-size:0.72rem; color:var(--text-muted); }
+  .flashcard-back .card-a { font-size:0.95rem; line-height:1.7; }
+  .flash-nav { display:flex; gap:12px; align-items:center; }
+  .flash-btn { padding:9px 22px; border-radius:22px; border:none; font-family:'Lexend',sans-serif; font-size:0.88rem; font-weight:600; cursor:pointer; transition:all 0.2s; background:var(--purple); color:#fff; }
+  .flash-btn:hover { background:#5a3da0; transform:translateY(-2px); box-shadow:var(--shadow-hover); }
+  .flash-btn:disabled { opacity:0.4; cursor:not-allowed; transform:none; }
+  .flash-counter { font-weight:600; color:var(--text-muted); font-size:0.88rem; min-width:80px; text-align:center; }
+  .flash-progress { width:100%; max-width:640px; height:6px; background:var(--border); border-radius:3px; margin-bottom:16px; overflow:hidden; }
+  .flash-progress-bar { height:100%; background:var(--purple); border-radius:3px; transition:width 0.4s; }
+
+  #scrollTop { position:fixed; bottom:22px; right:22px; width:40px; height:40px; background:var(--text); color:#fff; border:none; border-radius:50%; font-size:1rem; cursor:pointer; box-shadow:var(--shadow-hover); transition:all 0.2s; z-index:99; opacity:0; pointer-events:none; }
+  #scrollTop.visible { opacity:1; pointer-events:all; }
+  #scrollTop:hover { transform:scale(1.1); }
+  .icon { font-size:1.15rem; }
+
+  /* search bar */
+  .search-wrap { max-width:920px; margin:0 auto 4px; padding:0 16px; }
+  .search-input { width:100%; padding:11px 18px; border-radius:30px; border:2px solid var(--border); font-family:'Lexend',sans-serif; font-size:0.92rem; background:var(--surface); color:var(--text); outline:none; transition:border-color 0.2s; }
+  .search-input:focus { border-color:var(--purple); }
+  .search-result-count { font-size:0.8rem; color:var(--text-muted); text-align:center; margin:6px 0 0; }
+
+  /* colour overrides per topic */
+  .tc-t1  { border-left-color:var(--t1);  } .tc-t2  { border-left-color:var(--t2);  }
+  .tc-t3  { border-left-color:var(--t3);  } .tc-t4  { border-left-color:var(--t4);  }
+  .tc-t5  { border-left-color:var(--t5);  } .tc-t6  { border-left-color:var(--t6);  }
+  .tc-t7  { border-left-color:var(--t7);  } .tc-t8  { border-left-color:var(--t8);  }
+  .tc-t9  { border-left-color:var(--t9);  } .tc-t10 { border-left-color:var(--t10); }
+  .tc-t11 { border-left-color:var(--t11); }
+</style>
+<style>
+  .file-nav { margin-left:auto; display:flex; align-items:center; gap:4px; font-size:0.72rem; font-weight:600; color:var(--text-muted); }
+  .file-link { padding:3px 8px; border-radius:10px; border:2px solid var(--border); color:var(--text-muted); text-decoration:none; font-size:0.72rem; font-weight:600; transition:all 0.2s; }
+  .file-link:hover { background:var(--t2); color:var(--text); border-color:var(--t2); }
+  .file-link.active { background:var(--purple); color:#fff; border-color:var(--purple); }
+  .file-pills { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-top:14px; }
+  .file-pill { padding:6px 14px; border-radius:20px; border:2px solid var(--border); background:var(--surface); color:var(--text-muted); text-decoration:none; font-size:0.78rem; font-weight:600; transition:all 0.2s; }
+  .file-pill:hover { background:var(--t2); color:var(--text); border-color:var(--t2); }
+  .file-pill.pill-active { background:var(--purple); color:#fff; border-color:var(--purple); }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">LC <span>CS</span></span>
+  <button class="nav-btn t1" data-id="t1" onclick="showTopic('t1')">🧠 Comp Thinking</button>
+  <button class="nav-btn t2" data-id="t2" onclick="showTopic('t2')">🐍 Python</button>
+  <button class="nav-btn flash" data-id="flashcards" onclick="showTopic('flashcards')">🃏 Flashcards</button>
+  <span class="file-nav">📂 <a href="LCCS_Glossary_1_CompThinking_Python.html" class="file-linkactive">1</a> <a href="LCCS_Glossary_2_Embedded_Data.html" class="file-link">2</a> <a href="LCCS_Glossary_3_Web_Systems.html" class="file-link">3</a> <a href="LCCS_Glossary_4_Algorithms_SoftDev.html" class="file-link">4</a> <a href="LCCS_Glossary_5_Databases_AI_Coursework.html" class="file-link">5</a></span>
+</nav>
+
+<div class="hero" id="heroSection">
+  <h1><span class="a1">LC CS</span> <span class="a2">Definitions</span></h1>
+  <p style="font-size:1rem;font-weight:600;color:var(--text);margin-top:6px;">Computational Thinking &amp; Python</p>
+  <p style="margin-top:6px;color:var(--text-muted);">Decomposition, patterns, abstraction, algorithms · Python syntax, data types, functions, files</p>
+  <div class="stats-row" style="margin-top:14px;">
+    <span class="stat-chip">File 1 of 5</span>
+    <span class="stat-chip">63 Flashcards in this file</span>
+  </div>
+  <div class="chapter-pills" style="margin-top:16px;">
+    <button class="pill" style="background:var(--t1);color:#fff" onclick="showTopic('t1')">🧠 Comp Thinking</button>
+    <button class="pill" style="background:var(--t2);color:var(--text)" onclick="showTopic('t2')">🐍 Python</button>
+    <button class="pill" style="background:var(--purple);color:#fff" onclick="showTopic('flashcards')">🃏 Flashcards</button>
+  </div>
+  <p style="margin-top:16px;font-size:0.8rem;color:var(--text-muted);">Jump to another file:</p>
+  <div class="file-pills">
+      <a href="LCCS_Glossary_1_CompThinking_Python.html" class="file-pill pill-active">1: Comp Thinking + Python</a>
+      <a href="LCCS_Glossary_2_Embedded_Data.html" class="file-pill">2: Embedded + Data</a>
+      <a href="LCCS_Glossary_3_Web_Systems.html" class="file-pill">3: Web + Systems</a>
+      <a href="LCCS_Glossary_4_Algorithms_SoftDev.html" class="file-pill">4: Algorithms + Soft Dev</a>
+      <a href="LCCS_Glossary_5_Databases_AI_Coursework.html" class="file-pill">5: Databases + AI + Coursework</a>
+  </div>
+</div>
+
+<div class="section" id="t1">
+  <div class="ch-header" style="background:linear-gradient(135deg,var(--t1) 0%,var(--t1-dark) 100%);">
+    <h1>🧠 Computational Thinking &amp; Foundations</h1>
+    <p>The problem-solving mindset behind all of computer science.</p>
+    <span class="big-num">1</span>
+  </div>
+
+  <div class="topic-card tc-t1">
+    <h2><span class="icon">🔑</span> Core Concepts</h2>
+
+    <div class="term-entry">
+      <div class="term-name">Computer Science <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>The study of computers, algorithmic processes, programming, computational thinking, computer systems, data, and the impact of computing on society.</p></div>
+      <div class="exam-box"><p>Be able to describe CS as <strong>more than just coding</strong> — it includes data, systems, society and problem-solving.</p></div>
+    </div>
+
+    <div class="term-entry">
+      <div class="term-name">Computational Thinking <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>A problem-solving approach that uses ideas such as decomposition, abstraction, pattern recognition, logic and algorithms so that a solution can be automated or implemented by a computer.</p></div>
+      <div class="analogy-box"><p>Think of how a chef approaches a new recipe. They <em>break it down</em> into stages (decomposition), ignore irrelevant details like what colour plate to use (abstraction), notice that sauces always need similar steps (pattern recognition), and follow a recipe (algorithm). That's computational thinking in real life.</p></div>
+    </div>
+
+    <div class="term-entry">
+      <div class="term-name">Decomposition <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>Breaking a large or difficult problem into smaller, more manageable parts.</p></div>
+      <div class="analogy-box"><p>Building a house: instead of "build a house," you break it into: lay foundation → build walls → add roof → install plumbing → decorate. Each part is tackled separately.</p></div>
+    </div>
+
+    <div class="term-entry">
+      <div class="term-name">Abstraction <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>Ignoring unnecessary detail and focusing on the important features of a problem or system.</p></div>
+      <div class="analogy-box"><p>A map is an abstraction of the real world — it shows roads and landmarks but ignores the colour of buildings, the height of trees, or what's in shop windows. Only what matters for navigation is included.</p></div>
+      <div class="exam-box"><p>Exam questions often ask: "What details are <em>ignored</em> in this model/diagram?" — that's testing your understanding of abstraction.</p></div>
+    </div>
+
+    <div class="term-entry">
+      <div class="term-name">Pattern Recognition <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>Identifying similarities, repeated structures or trends that can help solve a problem.</p></div>
+      <div class="analogy-box"><p>Spotting that every morning you wake up, brush your teeth, and have breakfast in the same order — that's a pattern. In coding, you notice that calculating an average always needs the same steps regardless of what data it is.</p></div>
+    </div>
+
+    <div class="term-entry">
+      <div class="term-name">Generalisation <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>Creating a solution that works for a whole class of similar problems, not only one specific example.</p></div>
+      <div class="analogy-box"><p>Instead of writing a recipe specifically for chocolate cake, you write a general "bake a cake" recipe that works for any flavour by changing the ingredients. Your solution generalises.</p></div>
+    </div>
+
+    <div class="term-entry">
+      <div class="term-name">Algorithmic Thinking <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>Designing a clear sequence of steps that can solve a problem.</p></div>
+      <div class="analogy-box"><p>Writing directions to your house: "Turn left at the church, go straight for 200m, turn right at the school…" Every step is specific, ordered and unambiguous — just like an algorithm.</p></div>
+    </div>
+
+    <div class="term-entry">
+      <div class="term-name">Logic <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>Reasoning about conditions that are either true or false, often using Boolean expressions and logic gates.</p></div>
+      <div class="analogy-box"><p>A bouncer at a club: "You can enter IF you are over 18 AND have ID." Two conditions, both must be true. That's Boolean logic with an AND.</p></div>
+    </div>
+
+    <div class="term-entry">
+      <div class="term-name">Automation <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>Using computing technology to carry out tasks with little or no human intervention.</p></div>
+      <div class="analogy-box"><p>A dishwasher automates washing up — you load it, press start, and it does the work. Similarly, a program can automatically send emails, process data, or control machinery.</p></div>
+    </div>
+
+    <div class="term-entry">
+      <div class="term-name">Computational Artefact <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>A digital product created using computing, such as a program, website, simulation, animation, app, data visualisation or embedded system.</p></div>
+      <div class="exam-box"><p>Your LCCS coursework project <em>is</em> a computational artefact — make sure you can describe what yours does using this term.</p></div>
+    </div>
+
+    <div class="term-entry">
+      <div class="term-name">Heuristic <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>A rule-of-thumb or approximate problem-solving method used when finding the perfect solution would take too long or use too many resources.</p></div>
+      <div class="analogy-box"><p>If you need to guess how long a journey will take, you might say "about 30 minutes per 30km on a motorway" — that's a heuristic. It's not exact, but it's good enough and fast. Used in route-planning problems like the Travelling Salesperson Problem.</p></div>
+    </div>
+
+    <div class="term-entry">
+      <div class="term-name">Model <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>A simplified representation of a real-world system used to understand, predict or test ideas.</p></div>
+      <div class="analogy-box"><p>A weather forecast model isn't the actual atmosphere — it's a simplified mathematical copy. Scientists adjust variables and see what happens without needing to change real weather.</p></div>
+    </div>
+
+    <div class="term-entry">
+      <div class="term-name">Simulation <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>A computer-based imitation of a real process or system, often used to test what might happen under different conditions.</p></div>
+      <div class="analogy-box"><p>Flight simulators train pilots without using a real plane. The computer mimics real flight conditions — crashes don't hurt anyone. A pandemic simulation lets scientists test "what if we introduce a vaccine?" without risking real lives.</p></div>
+    </div>
+
+    <div class="term-entry">
+      <div class="term-name">State <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>The current condition or configuration of a system at a particular moment.</p></div>
+      <div class="analogy-box"><p>A traffic light has states: Red, Amber, Green. At any given moment, it is in exactly one state. Similarly, a game character can be in state "walking," "jumping," or "dead."</p></div>
+    </div>
+
+    <div class="term-entry">
+      <div class="term-name">State Transition <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>A change from one state to another caused by an input, rule or event.</p></div>
+      <div class="analogy-box"><p>The traffic light transitions: Red → (timer expires) → Green → (timer expires) → Amber → (timer expires) → Red. Each transition is triggered by an event.</p></div>
+    </div>
+
+    <div class="term-entry">
+      <div class="term-name">Finite State Machine (FSM) <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>A model made of a finite number of states and rules for moving between states based on inputs.</p></div>
+      <div class="analogy-box"><p>A simple vending machine is an FSM: states are "waiting," "item selected," "payment received," "dispensing." It moves between states based on inputs (button press, coins inserted).</p></div>
+      <div class="exam-box"><p>Exam may show a state diagram and ask you to trace the final state given a sequence of inputs.</p></div>
+    </div>
+
+    <div class="term-entry">
+      <div class="term-name">Turing Machine <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>A theoretical model of computation using states, rules and a tape. It is used to reason about what can and cannot be computed.</p></div>
+      <div class="analogy-box"><p>Imagine an infinitely long paper tape and a robot that can read one symbol at a time, write a new symbol, and move left or right. Simple as it sounds, this model can in theory compute anything a modern computer can — it's the foundation of computer science theory.</p></div>
+    </div>
+
+    <div class="term-entry">
+      <div class="term-name">Computable <span class="badge b-useful">USEFUL</span></div>
+      <div class="def-box"><p>A problem is computable if an algorithm or machine can solve it in a finite number of steps.</p></div>
+    </div>
+
+    <div class="term-entry">
+      <div class="term-name">Problem-Solving Process <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>A systematic approach: investigate, plan/design, create, test/evaluate and iterate.</p></div>
+      <div class="memory-box"><p><strong>I</strong> <strong>P</strong>lan <strong>C</strong>arefully, <strong>T</strong>hen <strong>I</strong>mprove → Investigate, Plan, Create, Test, Iterate.</p></div>
+    </div>
+
+    <div class="term-entry">
+      <div class="term-name">Iteration (design process) <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>Repeating and improving a solution based on testing, feedback or new requirements.</p></div>
+      <div class="analogy-box"><p>An artist sketches a draft, gets feedback ("nose looks wrong"), improves it, gets more feedback, and repeats. Each pass is an iteration. Note: this is different from a loop in code, though both involve repetition.</p></div>
+    </div>
+  </div>
+</div>
+<div class="section" id="t2">
+  <div class="ch-header" style="background:linear-gradient(135deg,#3776AB 0%,#1a4d75 100%);">
+    <h1>🐍 Python &amp; Programming Basics</h1>
+    <p>Variables, data types, loops, functions and everything Python.</p>
+    <span class="big-num">2</span>
+  </div>
+
+  <div class="topic-card tc-t2">
+    <h2><span class="icon">📝</span> Programs &amp; Source Code</h2>
+
+    <div class="term-entry">
+      <div class="term-name">Program <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>A set of instructions written in a programming language to make a computer perform a task.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Source Code <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>The human-readable instructions written by a programmer before/while a program runs.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Script <span class="badge b-useful">USEFUL</span></div>
+      <div class="def-box"><p>A program file, often a small Python program, that can be run by an interpreter.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">IDE (Integrated Development Environment) <span class="badge b-useful">USEFUL</span></div>
+      <div class="def-box"><p>Software used to write, edit, run and debug programs. Examples: IDLE, Thonny, VS Code.</p></div>
+      <div class="analogy-box"><p>An IDE is like a fully kitted workshop — it has the workbench (editor), tools (debugger), and a way to test your work (run button), all in one place. Writing code in a basic text editor without an IDE is like building furniture with just a knife.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Interpreter <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>A program that executes high-level code, such as Python, by translating and running it line by line as needed.</p></div>
+      <div class="analogy-box"><p>Like a live interpreter at a United Nations meeting — they translate each sentence as the speaker says it, immediately. Python is normally interpreted.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Compiler <span class="badge b-useful">USEFUL</span></div>
+      <div class="def-box"><p>Software that translates a whole high-level program into machine code or another lower-level form before it runs.</p></div>
+      <div class="analogy-box"><p>Like translating an entire book from Irish to English before publishing it. The whole translation happens first, then you read the finished book. Faster to run than an interpreter, but the translation step takes time upfront.</p></div>
+    </div>
+  </div>
+
+  <div class="topic-card tc-t2">
+    <h2><span class="icon">🐛</span> Errors &amp; Debugging</h2>
+    <div class="term-entry">
+      <div class="term-name">Syntax <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>The rules for writing valid code in a programming language.</p></div>
+      <div class="analogy-box"><p>Just like English has grammar rules (capital letter at start of sentence, full stop at end), Python has syntax rules. Break them and the language won't understand you.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Syntax Error <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>An error caused by breaking the grammar/rules of the programming language, so the code cannot run correctly.</p></div>
+      <div class="exam-box"><p>Examples: missing colon after <code>if</code>, unclosed bracket, wrong capitalisation of <code>True</code>.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Logic Error <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>An error where code runs but gives the wrong result because the algorithm or reasoning is incorrect.</p></div>
+      <div class="analogy-box"><p>You follow a recipe perfectly but accidentally used salt instead of sugar — the cake bakes fine (no syntax error!) but tastes terrible. The process ran, but the logic was wrong.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Runtime Error <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>An error that occurs while a program is running, often because of invalid data or an impossible operation.</p></div>
+      <div class="analogy-box"><p>A car that starts fine (no syntax error) but breaks down mid-journey when you hit a pothole (unexpected condition at runtime). Example: dividing by zero, or accessing list index 10 when the list only has 5 items.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Bug <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>A mistake or fault in a program that causes incorrect or unexpected behaviour.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Debugging <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>Finding, understanding and fixing errors in a program.</p></div>
+      <div class="exam-box"><p>Mention trace tables, print statements, and careful checking of output as debugging methods.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Comment <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>Text in code for humans to read that is ignored by the computer when the program runs. In Python, single-line comments begin with #.</p></div>
+    </div>
+  </div>
+
+  <div class="topic-card tc-t2">
+    <h2><span class="icon">📦</span> Variables &amp; Data Types</h2>
+    <div class="term-entry">
+      <div class="term-name">Variable <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>A named location/reference used to store a value while a program runs.</p></div>
+      <div class="analogy-box"><p>A labelled box. The label is the variable name (<code>score</code>), the thing inside is the value (<code>42</code>). You can replace what's inside the box at any time.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Value <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>The item of data stored in a variable, such as 5, "hello" or True.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Assignment <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>Giving a value to a variable. In Python this is done using =, for example <code>x = 5</code>.</p></div>
+      <div class="exam-box"><p>Do not confuse <code>=</code> (assignment) with <code>==</code> (checking equality). Very common exam mistake!</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Assignment Operator <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>The = symbol in programming when it assigns the right-hand value/expression to the variable on the left. The right-hand side is always calculated first.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Expression <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>A piece of code that evaluates to a value, such as <code>x + 2</code> or <code>len(names)</code>.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Operator <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>A symbol or keyword that performs an operation on values, such as +, -, *, /, %, // or **.</p></div>
+      <div class="memory-box"><p><code>%</code> = modulo (remainder after division). <code>//</code> = integer/floor division. <code>**</code> = power/exponent.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Operand <span class="badge b-useful">USEFUL</span></div>
+      <div class="def-box"><p>A value or variable that an operator acts on. In <code>x + 3</code>, x and 3 are operands.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Operator Precedence <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>The order in which operations are evaluated when there are multiple operators in an expression.</p></div>
+      <div class="memory-box"><p><strong>BIMDAS</strong>: Brackets, Indices (powers), Multiplication/Division, Addition/Subtraction — same as maths.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Integer <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>A whole number data type, such as -3, 0, 5 or 255. In Python the type is <code>int</code>.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Float <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>A decimal/floating-point number data type, such as 3.14 or -99.99. In Python the type is <code>float</code>.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">String <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>A sequence of characters used for text, usually written inside quotes, such as "Hello". In Python the type is <code>str</code>.</p></div>
+      <div class="exam-box"><p>Phone numbers should be strings (not ints) if you don't need to do maths with them — otherwise leading zeros get cut off.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Boolean <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>A data type with only two possible values: <code>True</code> or <code>False</code>.</p></div>
+      <div class="analogy-box"><p>A light switch is Boolean — it's either on or off, nothing in between.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Data Type <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>A category of data that tells the computer what kind of value is being stored and what operations make sense.</p></div>
+      <div class="exam-box"><p>Core Python types: int, float, str, bool, list.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Type Conversion / Casting <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>Changing a value from one data type to another, such as <code>int("5")</code> or <code>str(25)</code>.</p></div>
+      <div class="exam-box"><p><code>input()</code> always returns a string — you must cast to <code>int</code> or <code>float</code> if you need a number.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Input <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>Data supplied to a program, system or algorithm — for example through the keyboard, a sensor or a file.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Output <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>Data produced by a program, system or algorithm — for example text on a screen, a chart or a signal to an actuator.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">print() <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>A Python function that displays output on the screen.</p></div>
+      <div class="code-box">print("Hello")<br>print("Score:", score, end="")</div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">input() <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>A Python function that reads text typed by the user and returns it as a string.</p></div>
+      <div class="code-box">age = int(input("Enter your age: "))</div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Keyword <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>A reserved word in a programming language with special meaning, such as <code>if</code>, <code>else</code>, <code>while</code> or <code>def</code>. Cannot be used as variable names.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Camel Case <span class="badge b-useful">USEFUL</span></div>
+      <div class="def-box"><p>A naming convention where words are joined and later words begin with capital letters, e.g. <code>houseNumber</code>.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Thonny / IDLE / VS Code <span class="badge b-extra">EXTRA</span></div>
+      <div class="def-box"><p>Examples of IDEs/editors commonly used for Python or web development in schools. Thonny and IDLE are beginner-friendly; VS Code is a professional editor. Tool names are not core syllabus definitions but useful to recognise.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Python Keyword List <span class="badge b-extra">EXTRA</span></div>
+      <div class="def-box"><p>The full list of reserved Python words such as <code>if</code>, <code>else</code>, <code>def</code>, <code>while</code>, <code>return</code>. You don't need to memorise every keyword, but know they cannot be used as variable names.</p></div>
+    </div>
+
+  <div class="topic-card tc-t2">
+    <h2><span class="icon">🔁</span> Functions</h2>
+    <div class="term-entry">
+      <div class="term-name">Argument <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>A value passed into a function when it is called, such as 5 in <code>print(5)</code>.</p></div>
+      <div class="analogy-box"><p>You order a pizza (call the function) and specify "pepperoni" (argument). The pizza place uses your specification to make the right pizza.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Parameter <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>A variable listed in a function definition that receives an argument value.</p></div>
+      <div class="memory-box"><p><strong>P</strong>arameter = in the function <strong>d</strong>e<strong>f</strong>inition. <strong>A</strong>rgument = what you pass when you <strong>c</strong>all it.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Function <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>A named reusable block of code that performs a task and may accept parameters and return a value.</p></div>
+      <div class="analogy-box"><p>A function is like a microwave. You put food in (arguments), it does its thing, and gives you back heated food (return value). You can use the microwave over and over without rewriting "how to heat food" each time.</p></div>
+      <div class="code-box">def greet(name):<br>&nbsp;&nbsp;return "Hello, " + name</div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Return Statement <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>A statement that sends a value back from a function to the code that called it, often ending the function.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Procedure <span class="badge b-useful">USEFUL</span></div>
+      <div class="def-box"><p>A reusable block of code that carries out a task but is mainly used for its action rather than returning a value. In Python, usually just a function without a useful return.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Recursion <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>A technique where a function calls itself to solve smaller versions of a problem.</p></div>
+      <div class="analogy-box"><p>Russian nesting dolls (matryoshka). To open the full set, you open the outer doll, which reveals a smaller doll, which you open again… until you reach the tiniest doll (base case) which doesn't open further.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Base Case <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>The condition in a recursive function that stops further recursive calls.</p></div>
+      <div class="exam-box"><p>Without a base case, recursion never stops → stack overflow!</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Recursive Case <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>The part of a recursive function that calls the function again with a smaller/simpler problem, working towards the base case.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Stack Overflow <span class="badge b-useful">USEFUL</span></div>
+      <div class="def-box"><p>An error that can occur when too many function calls are stored on the call stack, often from uncontrolled recursion.</p></div>
+    </div>
+  </div>
+
+  <div class="topic-card tc-t2">
+    <h2><span class="icon">🔀</span> Selection &amp; Iteration</h2>
+    <div class="term-entry">
+      <div class="term-name">Selection <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>Choosing between different paths in an algorithm/program based on a condition, usually using if, elif and else.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Condition <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>A Boolean expression used to decide whether a block of code should run. Example: <code>if score >= 50:</code></p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">If Statement <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>A selection statement that runs a block of code only when a condition is True. Indentation is part of Python syntax.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Elif <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>Python keyword meaning "else if"; used to check another condition after a previous if/elif is False.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Else <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>A selection branch that runs when all previous if/elif conditions are False. Often used as the default case.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Iteration / Loop <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>Repeating a set of instructions multiple times.</p></div>
+      <div class="analogy-box"><p>A washing machine drum spinning: it repeats the same rotation over and over until done. Each spin is one iteration.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">For Loop <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>A loop that iterates over a sequence or a range of values, often when the number of iterations is known.</p></div>
+      <div class="code-box">for i in range(5):<br>&nbsp;&nbsp;print(i)</div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">While Loop <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>A loop that repeats while a condition remains True, often when the number of iterations is not known in advance.</p></div>
+      <div class="analogy-box"><p>Stirring a pot of jam: you keep stirring <em>while</em> the jam hasn't set. You don't know how many stirs that will take — you just keep going until the condition changes.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Nested Loop <span class="badge b-useful">USEFUL</span></div>
+      <div class="def-box"><p>A loop placed inside another loop. Useful for grids, tables and repeated repeated tasks.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Infinite Loop <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>A loop that never ends because its stopping condition is never reached. Usually a logic error.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Sequence <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>Executing instructions one after another in order. One of the three building blocks: sequence, selection, iteration.</p></div>
+    </div>
+  </div>
+
+  <div class="topic-card tc-t2">
+    <h2><span class="icon">📋</span> Lists, Strings &amp; Modules</h2>
+    <div class="term-entry">
+      <div class="term-name">List / Array <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>An ordered collection of values stored under one variable name. Python lists use square brackets.</p></div>
+      <div class="analogy-box"><p>A numbered shopping list. Each item has a position (index). You can read, change or remove any item using its position number.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Element <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>A single item in a list or array.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Index <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>The position number used to access an item in a list or string. Python starts indexing at 0.</p></div>
+      <div class="exam-box"><p>First item is at index 0, not 1. Trying to access index 5 in a 5-item list causes a runtime error (max index is 4).</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Zero-Based Indexing <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>A numbering system where the first item is at index 0, the second at index 1, and so on.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Slice <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>A part of a string or list selected using start and stop indexes, such as <code>name[0:2]</code>. The stop index is not included.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">len() <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>A Python function that returns the number of items in a sequence such as a list or string.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">append() <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>A list method that adds an item to the end of a list.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Dictionary <span class="badge b-useful">USEFUL</span></div>
+      <div class="def-box"><p>A Python data structure that stores key-value pairs.</p></div>
+      <div class="analogy-box"><p>Like a real dictionary — you look up a word (key) and get its definition (value). <code>{"name": "Alice", "age": 17}</code></p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Tuple <span class="badge b-useful">USEFUL</span></div>
+      <div class="def-box"><p>An ordered collection similar to a list but typically immutable (cannot be changed after creation).</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Module / Library <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>Reusable code that can be imported into a program to provide extra functions or tools.</p></div>
+      <div class="analogy-box"><p>Like downloading an app — instead of writing your own camera software, you import a library that already does it. Examples: <code>random</code>, <code>math</code>, <code>pandas</code>, <code>matplotlib</code>.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Import Statement <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>A statement that makes code from a module/library available in your program. Example: <code>from random import randint</code>.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Random Value <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>A value generated unpredictably within a defined range or set, often used in simulations/games.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">String Concatenation <span class="badge b-core">CORE</span></div>
+      <div class="def-box"><p>Joining strings together using + or another method. Example: <code>"Hello" + " " + "World"</code></p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">String Replication <span class="badge b-useful">USEFUL</span></div>
+      <div class="def-box"><p>Repeating a string using *, such as <code>"Hi" * 3</code> gives <code>"HiHiHi"</code>.</p></div>
+    </div>
+    <div class="term-entry">
+      <div class="term-name">Escape Character <span class="badge b-useful">USEFUL</span></div>
+      <div class="def-box"><p>A character sequence beginning with backslash used to represent special characters such as newline <code>\n</code> or tab <code>\t</code>.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- FLASHCARDS -->
+<div id="flashcards" class="section" style="padding:0 16px 80px;max-width:920px;margin:0 auto;">
+  <div class="flash-header">
+    <h1>🃏 Flashcard Drill</h1>
+    <p>Computational Thinking &amp; Python · 63 cards · Space = flip · ← → = navigate</p>
+    <span class="big-num">?</span>
+  </div>
+  <div class="flash-controls">
+    <button class="flash-filter factive" onclick="filterFlash('all',this)">All</button>
+    <button class="flash-filter" onclick="filterFlash('core',this)">⭐ Core Only</button>
+    <button class="flash-filter" onclick="filterFlash('t1',this)">🧠 Comp Thinking</button>
+    <button class="flash-filter" onclick="filterFlash('t2',this)">🐍 Python</button>
+
+  </div>
+  <div style="font-size:0.8rem;color:var(--text-muted);margin-bottom:10px;">
+    <span id="flashCounter">1 / 63</span>
+    <div style="background:var(--border);border-radius:10px;height:6px;margin-top:6px;">
+      <div id="flashProgressBar" style="background:var(--purple);height:6px;border-radius:10px;width:0%;transition:width 0.3s;"></div>
+    </div>
+  </div>
+  <div class="flashcard-area">
+    <div class="flashcard" id="flashcard" onclick="flipCard()">
+      <div class="flashcard-inner">
+        <div class="flashcard-front">
+          <div class="card-topic" id="cardTopic"></div>
+          <div class="card-q" id="cardQ"></div>
+          <div class="flip-hint">Click or press Space to reveal</div>
+        </div>
+        <div class="flashcard-back">
+          <div class="card-a" id="cardA"></div>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;gap:12px;margin-top:4px;">
+      <button class="btn-nav" id="prevBtn" onclick="prevCard()">← Prev</button>
+      <button class="btn-nav" id="nextBtn" onclick="nextCard()">Next →</button>
+    </div>
+  </div>
+</div>
+
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:24px;right:24px;width:44px;height:44px;border-radius:50%;background:var(--purple);color:#fff;border:none;font-size:1.2rem;cursor:pointer;box-shadow:var(--shadow);opacity:0;transition:opacity 0.3s;pointer-events:none;" class="">↑</button>
+
+<script>
+const cards = [
+  {topic:'t1',label:'🧠 Comp Thinking',q:'Computer Science',a:'The study of computers, algorithmic processes, programming, computational thinking, computer systems, data, and the impact of computing on society.',priority:'core'},
+  {topic:'t1',label:'🧠 Comp Thinking',q:'Computational Thinking',a:'A problem-solving approach using decomposition, abstraction, pattern recognition, logic and algorithms so a solution can be automated or implemented by a computer.',priority:'core'},
+  {topic:'t1',label:'🧠 Comp Thinking',q:'Decomposition',a:'Breaking a large or difficult problem into smaller, more manageable parts.',priority:'core'},
+  {topic:'t1',label:'🧠 Comp Thinking',q:'Abstraction',a:'Ignoring unnecessary detail and focusing on the important features of a problem or system.',priority:'core'},
+  {topic:'t1',label:'🧠 Comp Thinking',q:'Pattern Recognition',a:'Identifying similarities, repeated structures or trends that can help solve a problem.',priority:'core'},
+  {topic:'t1',label:'🧠 Comp Thinking',q:'Generalisation',a:'Creating a solution that works for a whole class of similar problems, not only one specific example.',priority:'core'},
+  {topic:'t1',label:'🧠 Comp Thinking',q:'Algorithmic Thinking',a:'Designing a clear sequence of steps that can solve a problem.',priority:'core'},
+  {topic:'t1',label:'🧠 Comp Thinking',q:'Logic',a:'Reasoning about conditions that are either true or false, often using Boolean expressions and logic gates.',priority:'core'},
+  {topic:'t1',label:'🧠 Comp Thinking',q:'Automation',a:'Using computing technology to carry out tasks with little or no human intervention.',priority:'core'},
+  {topic:'t1',label:'🧠 Comp Thinking',q:'Computational Artefact',a:'A digital product created using computing, such as a program, website, simulation, animation, app, data visualisation or embedded system.',priority:'core'},
+  {topic:'t1',label:'🧠 Comp Thinking',q:'Heuristic',a:'A rule-of-thumb or approximate problem-solving method used when finding the perfect solution would take too long or use too many resources.',priority:'core'},
+  {topic:'t1',label:'🧠 Comp Thinking',q:'Model',a:'A simplified representation of a real-world system used to understand, predict or test ideas.',priority:'core'},
+  {topic:'t1',label:'🧠 Comp Thinking',q:'Simulation',a:'A computer-based imitation of a real process or system, often used to test what might happen under different conditions.',priority:'core'},
+  {topic:'t1',label:'🧠 Comp Thinking',q:'State',a:'The current condition or configuration of a system at a particular moment.',priority:'core'},
+  {topic:'t1',label:'🧠 Comp Thinking',q:'State Transition',a:'A change from one state to another caused by an input, rule or event.',priority:'core'},
+  {topic:'t1',label:'🧠 Comp Thinking',q:'Finite State Machine (FSM)',a:'A model made of a finite number of states and rules for moving between states based on inputs.',priority:'core'},
+  {topic:'t1',label:'🧠 Comp Thinking',q:'Turing Machine',a:'A theoretical model of computation using states, rules and a tape. Used to reason about what can and cannot be computed.',priority:'core'},
+  {topic:'t1',label:'🧠 Comp Thinking',q:'Problem-Solving Process',a:'A systematic approach: Investigate → Plan/Design → Create → Test/Evaluate → Iterate.',priority:'core'},
+  {topic:'t1',label:'🧠 Comp Thinking',q:'Iteration (design process)',a:'Repeating and improving a solution based on testing, feedback or new requirements.',priority:'core'},
+  {topic:'t1',label:'🧠 Comp Thinking',q:'Computable',a:'A problem is computable if an algorithm or machine can solve it in a finite number of steps.',priority:'useful'},
+  {topic:'t2',label:'🐍 Python',q:'Program',a:'A set of instructions written in a programming language to make a computer perform a task.',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'Source Code',a:'The human-readable instructions written by a programmer before/while a program runs.',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'Interpreter',a:'A program that executes high-level code by translating and running it line by line as needed.',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'Compiler',a:'Software that translates a whole high-level program into machine code or another lower-level form before it runs.',priority:'useful'},
+  {topic:'t2',label:'🐍 Python',q:'Syntax',a:'The rules for writing valid code in a programming language.',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'Syntax Error',a:'An error caused by breaking the grammar/rules of the programming language, so the code cannot run.',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'Logic Error',a:'An error where code runs but gives the wrong result because the algorithm or reasoning is incorrect.',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'Runtime Error',a:'An error that occurs while a program is running, often because of invalid data or an impossible operation.',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'Bug',a:'A mistake or fault in a program that causes incorrect or unexpected behaviour.',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'Debugging',a:'Finding, understanding and fixing errors in a program.',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'Variable',a:'A named location/reference used to store a value while a program runs.',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'Assignment',a:'Giving a value to a variable. In Python done using =. Example: x = 5.',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'Assignment Operator',a:'The = symbol in programming when it assigns the right-hand value/expression to the variable on the left. RHS is calculated first.',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'Data Type',a:'A category of data that tells the computer what kind of value is stored. Core types: int, float, str, bool, list.',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'Integer',a:'A whole number data type, such as -3, 0, 5 or 255. Python type: int.',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'Float',a:'A decimal/floating-point number data type such as 3.14. Python type: float.',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'String',a:'A sequence of characters used for text, written inside quotes. Python type: str.',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'Boolean',a:'A data type with only two possible values: True or False.',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'Type Conversion / Casting',a:'Changing a value from one data type to another, such as int("5") or str(25). Important because input() returns a string.',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'Operator',a:'A symbol or keyword performing an operation: +, -, *, /, %, //, **.',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'Operator Precedence',a:'The order in which operations are evaluated. BIMDAS: Brackets, Indices, Multiplication/Division, Addition/Subtraction.',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'Function',a:'A named reusable block of code that performs a task and may accept parameters and return a value.',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'Parameter',a:'A variable listed in a function definition that receives an argument value.',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'Argument',a:'A value passed into a function when it is called.',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'Return Statement',a:'A statement that sends a value back from a function to the calling code, often ending the function.',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'Recursion',a:'A technique where a function calls itself to solve smaller versions of a problem.',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'Base Case',a:'The condition in a recursive function that stops further recursive calls. Without it: stack overflow!',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'Selection',a:'Choosing between different paths based on a condition. Uses if, elif, else.',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'Iteration / Loop',a:'Repeating a set of instructions multiple times.',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'For Loop',a:'A loop that iterates over a sequence or range, when the number of iterations is known.',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'While Loop',a:'A loop that repeats while a condition remains True, often when the number of iterations is not known in advance.',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'Infinite Loop',a:'A loop that never ends because its stopping condition is never reached. Usually a logic error.',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'List / Array',a:'An ordered collection of values stored under one variable name. Python lists use square brackets.',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'Index',a:'The position number used to access an item in a list or string. Python starts at 0.',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'Zero-Based Indexing',a:'First item is at index 0, second at index 1, etc.',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'Slice',a:'A part of a string or list selected using start:stop indexes. The stop index is NOT included.',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'len()',a:'Python function that returns the number of items in a sequence (list or string).',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'append()',a:'List method that adds an item to the end of a list.',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'Module / Library',a:'Reusable code imported into a program to provide extra functions. Examples: random, math, pandas, matplotlib.',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'String Concatenation',a:'Joining strings together using +. Example: "Hello" + " " + "World"',priority:'core'},
+  {topic:'t2',label:'🐍 Python',q:'Dictionary',a:'A Python data structure that stores key-value pairs.',priority:'useful'},
+  {topic:'t2',label:'🐍 Python',q:'Thonny / IDLE / VS Code',a:'Examples of IDEs used for Python in schools. Thonny and IDLE are beginner-friendly; VS Code is professional. Tool names are not core exam definitions.',priority:'extra'},
+  {topic:'t2',label:'🐍 Python',q:'Python Keyword List',a:'Reserved Python words: if, else, def, while, return, etc. Cannot be used as variable names. No need to memorise every keyword.',priority:'extra'}
+];
+
+const firstTopic = 't1';
+
+
+let filtered = [...cards];
+let currentIdx = 0;
+
+function filterFlash(topic, btn) {
+  document.querySelectorAll('.flash-filter').forEach(b => b.classList.remove('factive'));
+  btn.classList.add('factive');
+  if (topic === 'all') {
+    filtered = [...cards];
+  } else if (topic === 'core') {
+    filtered = cards.filter(c => c.priority === 'core');
+  } else {
+    filtered = cards.filter(c => c.topic === topic);
+  }
+  currentIdx = 0;
+  showCard();
+}
+
+function showCard() {
+  const c = filtered[currentIdx];
+  document.getElementById('cardTopic').textContent = c.label;
+  document.getElementById('cardQ').textContent = c.q;
+  document.getElementById('cardA').textContent = c.a;
+  document.getElementById('flashCounter').textContent = (currentIdx+1) + ' / ' + filtered.length;
+  const pct = ((currentIdx+1)/filtered.length*100).toFixed(0);
+  document.getElementById('flashProgressBar').style.width = pct + '%';
+  document.getElementById('prevBtn').disabled = currentIdx === 0;
+  document.getElementById('nextBtn').disabled = currentIdx === filtered.length-1;
+  document.getElementById('flashcard').classList.remove('flipped');
+}
+
+function flipCard() {
+  document.getElementById('flashcard').classList.toggle('flipped');
+}
+
+function nextCard() {
+  if (currentIdx < filtered.length-1) { currentIdx++; showCard(); }
+}
+
+function prevCard() {
+  if (currentIdx > 0) { currentIdx--; showCard(); }
+}
+
+document.addEventListener('keydown', function(e) {
+  if (!document.getElementById('flashcards').classList.contains('active')) return;
+  if (e.key === 'ArrowRight') nextCard();
+  if (e.key === 'ArrowLeft')  prevCard();
+  if (e.key === ' ') { e.preventDefault(); flipCard(); }
+});
+
+function showTopic(id) {
+  document.querySelectorAll('.section, #flashcards').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  const el = document.getElementById(id);
+  if (el) { el.classList.add('active'); }
+  const navBtn = document.querySelector('.nav-btn[data-id="' + id + '"]');
+  if (navBtn) navBtn.classList.add('active');
+  document.getElementById('heroSection').style.display = 'none';
+  window.scrollTo({top:0,behavior:'smooth'});
+  if (id === 'flashcards') { showCard(); }
+}
+
+window.addEventListener('scroll', () => {
+  const btn = document.getElementById('scrollTop');
+  if(btn) btn.classList.toggle('visible', window.scrollY > 400);
+});
+
+// Init
+showTopic(firstTopic);
+document.getElementById('heroSection').style.display = '';
+
+
+// Also make #flashcards active class work
+const flashDiv = document.getElementById('flashcards');
+Object.defineProperty(flashDiv.style, 'display', {
+  get() { return this._display || 'none'; },
+  set(v) { this._display = v; flashDiv.style.cssText = flashDiv.style.cssText; }
+});
+</script>
+
+</body>
+</html>
