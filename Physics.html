@@ -22,6 +22,7 @@
     --accent9: #607d8b; /* Slate for Experiments */
     --accent10: #009688; /* Teal for DEB Papers */
     --accent11: #e91e63; /* Pink for Glossary */
+    --accent12: #673ab7; /* Deep Purple for Demonstrations */
     --border: #e0dcd4;
     --shadow: 0 4px 20px rgba(0,0,0,0.06);
     --shadow-hover: 0 12px 30px rgba(0,0,0,0.12);
@@ -164,6 +165,7 @@
   .chapter-card:nth-child(9) { animation-delay: 0.5s; }
   .chapter-card:nth-child(10) { animation-delay: 0.55s; }
   .chapter-card:nth-child(11) { animation-delay: 0.6s; }
+  .chapter-card:nth-child(12) { animation-delay: 0.65s; }
 
   .chapter-card::before {
     content: '';
@@ -224,6 +226,10 @@
   .card-glossary::before { background: var(--accent11); }
   .card-glossary:hover { border-color: var(--accent11); }
   .card-glossary .mc-icon { color: var(--accent11); background: #fce4ec; }
+
+  .card-demo::before { background: var(--accent12); }
+  .card-demo:hover { border-color: var(--accent12); }
+  .card-demo .mc-icon { color: var(--accent12); background: #ede7f6; }
 
   .mc-icon {
     font-size: 42px;
@@ -627,6 +633,13 @@
         <div class="mc-title">Definitions, Explanations & Flashcards</div>
         <div class="mc-desc">Master key physics terminology, definitions, flashcards, and core concepts.</div>
         <div class="mc-action">Open glossary →</div>
+      </a>
+
+      <a href="Physics_Demo_1_Mechanics.html" class="chapter-card card-demo">
+        <div class="mc-icon">🎭</div>
+        <div class="mc-title">Physics Demonstrations</div>
+        <div class="mc-desc">Watch and learn from practical, real-world physics demonstrations across all major topics.</div>
+        <div class="mc-action">View demonstrations →</div>
       </a>
 
     </div>
