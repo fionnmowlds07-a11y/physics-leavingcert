@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LC Physics Demos — Electricity A (Demos 1–15)</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F7F4EF;
+    --surface: #FFFFFF;
+    --surface2: #F0EDE8;
+    --border: #E2DDD7;
+    --text: #2C2825;
+    --text-muted: #7A7068;
+    --t1: #FF6B6B; --t1-light: #FFE8E8; --t1-dark: #C94040;
+    --t2: #4ECDC4; --t2-light: #E0F7F6; --t2-dark: #2A9990;
+    --t3: #FFB347; --t3-light: #FFF3E0; --t3-dark: #CC7A00;
+    --t4: #7C5CBF; --t4-light: #EDE8F7; --t4-dark: #5a3da0;
+    --t5: #56C271; --t5-light: #E6F8EB; --t5-dark: #267339;
+    --t6: #E8637A; --t6-light: #FCE8EC; --t6-dark: #B03050;
+    --t7: #3A86FF; --t7-light: #E0ECFF; --t7-dark: #1A5CC8;
+    --t8: #F77F00; --t8-light: #FFF0DC; --t8-dark: #B85A00;
+    --t9: #2EC4B6; --t9-light: #E0FAF7; --t9-dark: #1A9088;
+    --t10: #9B5DE5; --t10-light: #F3EAFF; --t10-dark: #6B2DAF;
+    --t11: #D62828; --t11-light: #FFECEC; --t11-dark: #9A1A1A;
+    --purple: #7C5CBF; --purple-light: #EDE8F7;
+    --green: #56C271; --green-light: #E6F8EB;
+    --radius: 14px;
+    --shadow: 0 4px 20px rgba(0,0,0,0.08);
+    --shadow-hover: 0 8px 32px rgba(0,0,0,0.14);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Lexend', sans-serif; background: var(--bg); color: var(--text); line-height: 1.8; font-size: 16px; }
+
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(247,244,239,0.96);
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid var(--border);
+    padding: 8px 16px;
+    display: flex; align-items: center; gap: 6px;
+    flex-wrap: wrap; min-height: 56px;
+  }
+  .nav-logo { font-family: 'Lexend Mega', sans-serif; font-size: 0.95rem; color: var(--text); margin-right: 6px; }
+  .nav-logo span { color: var(--t1); }
+  .nav-btn {
+    padding: 5px 11px; border-radius: 18px;
+    border: 2px solid transparent;
+    font-family: 'Lexend', sans-serif;
+    font-size: 0.72rem; font-weight: 600;
+    cursor: pointer; transition: all 0.2s;
+    background: var(--surface); color: var(--text-muted);
+    white-space: nowrap;
+  }
+  .nav-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+  .nav-btn.t1  { border-color: var(--t1); }  .nav-btn.t1.active,  .nav-btn.t1:hover  { background: var(--t1);  color:#fff; }
+  .nav-btn.t2  { border-color: var(--t2); }  .nav-btn.t2.active,  .nav-btn.t2:hover  { background: var(--t2);  color:var(--text); }
+  .nav-btn.t3  { border-color: var(--t3); }  .nav-btn.t3.active,  .nav-btn.t3:hover  { background: var(--t3);  color:var(--text); }
+  .nav-btn.t4  { border-color: var(--t4); }  .nav-btn.t4.active,  .nav-btn.t4:hover  { background: var(--t4);  color:#fff; }
+  .nav-btn.t5  { border-color: var(--t5); }  .nav-btn.t5.active,  .nav-btn.t5:hover  { background: var(--t5);  color:#fff; }
+  .nav-btn.t6  { border-color: var(--t6); }  .nav-btn.t6.active,  .nav-btn.t6:hover  { background: var(--t6);  color:#fff; }
+  .nav-btn.t7  { border-color: var(--t7); }  .nav-btn.t7.active,  .nav-btn.t7:hover  { background: var(--t7);  color:#fff; }
+  .nav-btn.t8  { border-color: var(--t8); }  .nav-btn.t8.active,  .nav-btn.t8:hover  { background: var(--t8);  color:#fff; }
+  .nav-btn.t9  { border-color: var(--t9); }  .nav-btn.t9.active,  .nav-btn.t9:hover  { background: var(--t9);  color:#fff; }
+  .nav-btn.t10 { border-color: var(--t10); } .nav-btn.t10.active, .nav-btn.t10:hover { background: var(--t10); color:#fff; }
+  .nav-btn.t11 { border-color: var(--t11); } .nav-btn.t11.active, .nav-btn.t11:hover { background: var(--t11); color:#fff; }
+  .nav-btn.flash { border-color: var(--purple); } .nav-btn.flash.active, .nav-btn.flash:hover { background: var(--purple); color:#fff; }
+
+  .hero { padding: 44px 24px 28px; text-align: center; }
+  .hero h1 { font-family: 'Lexend Mega', sans-serif; font-size: clamp(1.5rem,4vw,2.6rem); line-height:1.2; }
+  .hero h1 .a1{color:var(--t1);} .hero h1 .a2{color:var(--t2-dark);} .hero h1 .a3{color:var(--t3-dark);}
+  .hero p { margin-top:10px; color:var(--text-muted); max-width:620px; margin-left:auto; margin-right:auto; }
+  .stats-row { display:flex; justify-content:center; gap:20px; flex-wrap:wrap; margin-top:20px; }
+  .stat-chip { background:var(--surface); border:2px solid var(--border); border-radius:30px; padding:8px 20px; font-size:0.85rem; font-weight:600; }
+  .chapter-pills { display:flex; justify-content:center; gap:8px; flex-wrap:wrap; margin-top:20px; }
+  .pill { padding:7px 16px; border-radius:28px; font-weight:600; font-size:0.78rem; cursor:pointer; transition:all 0.2s; border:none; }
+  .pill:hover { transform:translateY(-3px); box-shadow:var(--shadow-hover); }
+
+  .section { display:none; padding:0 16px 60px; max-width:920px; margin:0 auto; }
+  .section.active { display:block; animation:fadeIn 0.3s ease; }
+  @keyframes fadeIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+
+  .ch-header {
+    border-radius:var(--radius); padding:28px 28px; color:white;
+    margin-bottom:24px; position:relative; overflow:hidden;
+  }
+  .ch-header h1 { font-family:'Lexend Mega',sans-serif; font-size:1.45rem; }
+  .ch-header p { opacity:0.88; margin-top:7px; font-size:0.92rem; }
+  .ch-header .big-num { position:absolute; right:22px; top:50%; transform:translateY(-50%); font-family:'Lexend Mega',sans-serif; font-size:5.5rem; opacity:0.12; line-height:1; }
+
+  .topic-card {
+    background:var(--surface); border-radius:var(--radius); padding:24px;
+    margin-bottom:20px; box-shadow:var(--shadow);
+    border-left:5px solid var(--t1); transition:box-shadow 0.2s;
+  }
+  .topic-card:hover { box-shadow:var(--shadow-hover); }
+  .topic-card h2 { font-size:1.15rem; font-weight:700; margin-bottom:12px; display:flex; align-items:center; gap:8px; }
+  .topic-card h3 { font-size:0.95rem; font-weight:600; margin:16px 0 7px; }
+  .topic-card p { margin-bottom:9px; }
+  .topic-card ul { padding-left:20px; margin-bottom:9px; }
+  .topic-card li { margin-bottom:4px; }
+
+  /* Term entry */
+  .term-entry { margin-bottom:18px; padding-bottom:18px; border-bottom:1px solid var(--border); }
+  .term-entry:last-child { border-bottom:none; margin-bottom:0; padding-bottom:0; }
+  .term-name { font-size:1.05rem; font-weight:700; margin-bottom:6px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+
+  /* Boxes */
+  .def-box { background:var(--surface2); border:2px dashed var(--border); border-radius:10px; padding:12px 16px; margin:8px 0; position:relative; }
+  .def-box::before { content:'📖 DEFINITION'; display:block; font-size:0.65rem; font-weight:700; letter-spacing:1px; color:var(--text-muted); margin-bottom:5px; }
+  .def-box p { margin:0; font-weight:500; }
+  .analogy-box { background:#FFF9E6; border:2px solid #FFD966; border-radius:10px; padding:12px 16px; margin:8px 0; }
+  .analogy-box::before { content:'💡 ANALOGY'; display:block; font-size:0.65rem; font-weight:700; letter-spacing:1px; color:#997700; margin-bottom:5px; }
+  .memory-box { background:#F0FFF4; border:2px solid var(--green); border-radius:10px; padding:12px 16px; margin:8px 0; }
+  .memory-box::before { content:'🧠 MEMORY TRICK'; display:block; font-size:0.65rem; font-weight:700; letter-spacing:1px; color:#267339; margin-bottom:5px; }
+  .exam-box { background:#FFF0F3; border:2px solid var(--t1); border-radius:10px; padding:12px 16px; margin:8px 0; }
+  .exam-box::before { content:'📝 EXAM TIP'; display:block; font-size:0.65rem; font-weight:700; letter-spacing:1px; color:var(--t1-dark); margin-bottom:5px; }
+  .code-box { background:#1e1e2e; color:#cdd6f4; border-radius:10px; padding:12px 16px; margin:8px 0; font-family:monospace; font-size:0.88rem; overflow-x:auto; }
+
+  .badge { display:inline-block; padding:2px 9px; border-radius:18px; font-size:0.68rem; font-weight:700; letter-spacing:0.4px; }
+  .b-core   { background:#FFE8E8; color:#C94040; }
+  .b-useful { background:#E0F7F6; color:#2A9990; }
+  .b-extra  { background:#F0EDE8; color:#7A7068; }
+
+  comp-table, .comp-table { width:100%; border-collapse:collapse; margin:12px 0; font-size:0.86rem; border-radius:10px; overflow:hidden; }
+  .comp-table th { background:var(--t1); color:#fff; padding:9px 12px; text-align:left; font-weight:600; }
+  .comp-table td { padding:8px 12px; border-bottom:1px solid var(--border); }
+  .comp-table tr:nth-child(even) td { background:var(--surface2); }
+  .comp-table tr:last-child td { border-bottom:none; }
+
+  /* Big O grid */
+  .big-o-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:14px 0; }
+  @media(max-width:580px){ .big-o-grid{grid-template-columns:1fr;} }
+  .big-o-card { border-radius:10px; padding:13px; border:2px solid; }
+  .big-o-card .notation { font-size:1.25rem; font-weight:700; }
+  .big-o-card .label { font-size:0.78rem; font-weight:600; margin:3px 0; }
+  .big-o-card .desc { font-size:0.8rem; color:var(--text-muted); }
+  .o1    { border-color:#56C271; background:#E6F8EB; }
+  .ologn { border-color:#4ECDC4; background:#E0F7F6; }
+  .on    { border-color:#FFB347; background:#FFF3E0; }
+  .on2   { border-color:#FF6B6B; background:#FFE8E8; }
+  .onlogn{ border-color:#C9A800; background:#FFFBE0; }
+
+  /* Accordion for less-important terms */
+  .accordion { margin:8px 0; border-radius:10px; overflow:hidden; border:2px solid var(--border); }
+  .accordion-header { width:100%; text-align:left; padding:11px 16px; background:var(--surface2); border:none; font-family:'Lexend',sans-serif; font-size:0.92rem; font-weight:600; cursor:pointer; display:flex; justify-content:space-between; align-items:center; transition:background 0.2s; }
+  .accordion-header:hover { background:var(--border); }
+  .accordion-header .arrow { transition:transform 0.3s; font-size:0.78rem; }
+  .accordion-header.open .arrow { transform:rotate(180deg); }
+  .accordion-body { display:none; padding:14px 16px; background:var(--surface); border-top:2px solid var(--border); }
+  .accordion-body.open { display:block; }
+
+  /* Flashcards */
+  #flashcards { padding:0 16px 80px; max-width:920px; margin:0 auto; display:none; }
+  
+  .flash-header { background:linear-gradient(135deg,var(--purple) 0%,#5a3da0 100%); border-radius:var(--radius); padding:28px; color:white; margin-bottom:24px; position:relative; overflow:hidden; }
+  .flash-header h1 { font-family:'Lexend Mega',sans-serif; font-size:1.45rem; }
+  .flash-header p { opacity:0.85; margin-top:7px; }
+  .flash-header .big-num { position:absolute; right:22px; top:50%; transform:translateY(-50%); font-family:'Lexend Mega',sans-serif; font-size:5.5rem; opacity:0.12; }
+
+  .flash-controls { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:18px; align-items:center; }
+  .flash-filter { padding:6px 14px; border-radius:18px; border:2px solid var(--border); background:var(--surface); font-family:'Lexend',sans-serif; font-size:0.76rem; font-weight:600; cursor:pointer; transition:all 0.2s; color:var(--text-muted); }
+  .flash-filter:hover, .flash-filter.factive { background:var(--purple); color:#fff; border-color:var(--purple); }
+
+  .flashcard-area { display:flex; flex-direction:column; align-items:center; }
+  .flashcard { width:100%; max-width:640px; perspective:1200px; min-height:200px; cursor:pointer; margin-bottom:18px; }
+  .flashcard-inner { position:relative; width:100%; min-height:200px; transition:transform 0.55s cubic-bezier(.4,.2,.2,1); transform-style:preserve-3d; }
+  .flashcard.flipped .flashcard-inner { transform:rotateY(180deg); }
+  .flashcard-front, .flashcard-back { position:absolute; width:100%; min-height:200px; backface-visibility:hidden; border-radius:var(--radius); padding:28px 24px; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; box-shadow:var(--shadow); }
+  .flashcard-front { background:var(--surface); border:3px solid var(--purple); }
+  .flashcard-back { background:var(--purple); color:white; transform:rotateY(180deg); }
+  .flashcard-front .card-topic { font-size:0.68rem; font-weight:700; letter-spacing:1px; text-transform:uppercase; margin-bottom:10px; color:var(--text-muted); }
+  .flashcard-front .card-q { font-size:1.1rem; font-weight:600; }
+  .flashcard-front .flip-hint { margin-top:14px; font-size:0.72rem; color:var(--text-muted); }
+  .flashcard-back .card-a { font-size:0.95rem; line-height:1.7; }
+  .flash-nav { display:flex; gap:12px; align-items:center; }
+  .flash-btn { padding:9px 22px; border-radius:22px; border:none; font-family:'Lexend',sans-serif; font-size:0.88rem; font-weight:600; cursor:pointer; transition:all 0.2s; background:var(--purple); color:#fff; }
+  .flash-btn:hover { background:#5a3da0; transform:translateY(-2px); box-shadow:var(--shadow-hover); }
+  .flash-btn:disabled { opacity:0.4; cursor:not-allowed; transform:none; }
+  .flash-counter { font-weight:600; color:var(--text-muted); font-size:0.88rem; min-width:80px; text-align:center; }
+  .flash-progress { width:100%; max-width:640px; height:6px; background:var(--border); border-radius:3px; margin-bottom:16px; overflow:hidden; }
+  .flash-progress-bar { height:100%; background:var(--purple); border-radius:3px; transition:width 0.4s; }
+
+  #scrollTop { position:fixed; bottom:22px; right:22px; width:40px; height:40px; background:var(--text); color:#fff; border:none; border-radius:50%; font-size:1rem; cursor:pointer; box-shadow:var(--shadow-hover); transition:all 0.2s; z-index:99; opacity:0; pointer-events:none; }
+  #scrollTop.visible { opacity:1; pointer-events:all; }
+  #scrollTop:hover { transform:scale(1.1); }
+  .icon { font-size:1.15rem; }
+
+  /* search bar */
+  .search-wrap { max-width:920px; margin:0 auto 4px; padding:0 16px; }
+  .search-input { width:100%; padding:11px 18px; border-radius:30px; border:2px solid var(--border); font-family:'Lexend',sans-serif; font-size:0.92rem; background:var(--surface); color:var(--text); outline:none; transition:border-color 0.2s; }
+  .search-input:focus { border-color:var(--purple); }
+  .search-result-count { font-size:0.8rem; color:var(--text-muted); text-align:center; margin:6px 0 0; }
+
+  /* colour overrides per topic */
+  .tc-t1  { border-left-color:var(--t1);  } .tc-t2  { border-left-color:var(--t2);  }
+  .tc-t3  { border-left-color:var(--t3);  } .tc-t4  { border-left-color:var(--t4);  }
+  .tc-t5  { border-left-color:var(--t5);  } .tc-t6  { border-left-color:var(--t6);  }
+  .tc-t7  { border-left-color:var(--t7);  } .tc-t8  { border-left-color:var(--t8);  }
+  .tc-t9  { border-left-color:var(--t9);  } .tc-t10 { border-left-color:var(--t10); }
+  .tc-t11 { border-left-color:var(--t11); }
+
+  /* ── shared navbar additions ── */
+  .nav-home {
+    display:inline-flex; align-items:center; gap:5px;
+    padding:5px 13px; border-radius:18px;
+    border:2px solid var(--border);
+    background:var(--surface);
+    font-family:'Lexend',sans-serif; font-size:0.72rem; font-weight:700;
+    color:var(--text-muted); text-decoration:none;
+    transition:all 0.2s; white-space:nowrap;
+  }
+  .nav-home:hover { background:var(--text); color:#fff; border-color:var(--text); transform:translateY(-2px); }
+  .nav-flashcards {
+    display:inline-flex; align-items:center; gap:5px;
+    padding:5px 13px; border-radius:18px;
+    border:2px solid var(--purple); background:var(--surface);
+    font-family:'Lexend',sans-serif; font-size:0.72rem; font-weight:700;
+    color:var(--purple); text-decoration:none;
+    transition:all 0.2s; white-space:nowrap; margin-left:auto;
+  }
+  .nav-flashcards:hover { background:var(--purple); color:#fff; transform:translateY(-2px); }
+  .nav-divider { width:1px; height:20px; background:var(--border); margin:0 4px; flex-shrink:0; }
+
+
+  /* ── improved nav file links ── */
+  .nav-home {
+    display:inline-flex; align-items:center; gap:5px;
+    padding:5px 12px; border-radius:14px;
+    border:2px solid var(--border); background:var(--surface);
+    font-family:'Lexend',sans-serif; font-size:0.72rem; font-weight:700;
+    color:var(--text-muted); text-decoration:none; transition:all 0.2s;
+    white-space:nowrap; flex-shrink:0;
+  }
+  .nav-home:hover { background:var(--text); color:#fff; border-color:var(--text); }
+  .nav-divider { width:1px; height:18px; background:var(--border); flex-shrink:0; }
+  .nav-file-link {
+    display:inline-flex; align-items:center;
+    padding:5px 11px; border-radius:14px;
+    border:2px solid var(--border); background:var(--surface);
+    font-family:'Lexend',sans-serif; font-size:0.7rem; font-weight:700;
+    color:var(--text-muted); text-decoration:none; transition:all 0.2s;
+    white-space:nowrap;
+  }
+  .nav-file-link:hover { border-color:var(--purple); color:var(--purple); transform:translateY(-1px); }
+  .nav-file-link.current { background:var(--purple); color:#fff; border-color:var(--purple); }
+  .nav-file-link.fc-link { border-color:var(--purple); color:var(--purple); }
+  .nav-file-link.fc-link:hover { background:var(--purple); color:#fff; }
+  /* label above file links group */
+  .nav-files-group {
+    display:flex; align-items:center; gap:6px; flex-wrap:wrap;
+  }
+  .nav-files-label {
+    font-size:0.62rem; font-weight:800; letter-spacing:0.8px;
+    text-transform:uppercase; color:var(--text-muted);
+    white-space:nowrap; flex-shrink:0;
+  }
+  /* hero simplified — no switcher section */
+  .hero-compact {
+    text-align:center; padding:28px 20px 16px;
+    border-bottom:2px solid var(--border);
+    margin-bottom:20px;
+    background:var(--surface);
+  }
+  .hero-compact h1 { font-family:'Lexend Mega',sans-serif; font-size:clamp(1.1rem,3vw,1.6rem); margin-bottom:6px; }
+  .hero-compact p  { color:var(--text-muted); font-size:0.85rem; max-width:640px; margin:0 auto 14px; }
+  .hero-compact .topic-pills { display:flex; justify-content:center; gap:8px; flex-wrap:wrap; }
+  .hero-compact .topic-pill {
+    padding:9px 20px; border-radius:24px; border:none;
+    font-family:'Lexend',sans-serif; font-size:0.82rem; font-weight:700;
+    cursor:pointer; transition:all 0.2s; box-shadow:0 2px 8px rgba(0,0,0,0.12);
+  }
+  .hero-compact .topic-pill:hover { transform:translateY(-2px); box-shadow:0 4px 14px rgba(0,0,0,0.18); }
+  .hero-compact .pill-hint {
+    margin-top:10px; font-size:0.72rem; color:var(--text-muted);
+  }
+
+  .nav-home {
+    display:inline-flex; align-items:center; gap:5px;
+    padding:5px 12px; border-radius:14px;
+    border:2px solid var(--border); background:var(--surface);
+    font-family:'Lexend',sans-serif; font-size:0.72rem; font-weight:700;
+    color:var(--text-muted); text-decoration:none; transition:all 0.2s;
+    white-space:nowrap; flex-shrink:0;
+  }
+  .nav-home:hover { background:var(--text); color:#fff; border-color:var(--text); }
+  .nav-divider { width:1px; height:18px; background:var(--border); flex-shrink:0; }
+  .nav-file-link {
+    display:inline-flex; align-items:center;
+    padding:5px 10px; border-radius:14px;
+    border:2px solid var(--border); background:var(--surface);
+    font-family:'Lexend',sans-serif; font-size:0.68rem; font-weight:700;
+    color:var(--text-muted); text-decoration:none; transition:all 0.2s;
+    white-space:nowrap;
+  }
+  .nav-file-link:hover { border-color:var(--purple); color:var(--purple); transform:translateY(-1px); }
+  .nav-file-link.current { background:var(--purple); color:#fff; border-color:var(--purple); }
+  .nav-file-link.fc-link { border-color:var(--purple); color:var(--purple); }
+  .nav-file-link.fc-link:hover { background:var(--purple); color:#fff; }
+  .nav-files-group { display:flex; align-items:center; gap:5px; flex-wrap:wrap; }
+  .nav-files-label { font-size:0.62rem; font-weight:800; letter-spacing:0.8px; text-transform:uppercase; color:var(--text-muted); white-space:nowrap; flex-shrink:0; }
+  .hero-compact {
+    text-align:center; padding:28px 20px 16px;
+    border-bottom:2px solid var(--border); margin-bottom:20px;
+    background:var(--surface);
+  }
+  .hero-compact h1 { font-family:'Lexend Mega',sans-serif; font-size:clamp(1.1rem,3vw,1.6rem); margin-bottom:6px; }
+  .hero-compact p  { color:var(--text-muted); font-size:0.85rem; max-width:640px; margin:0 auto 14px; }
+  .hero-compact .topic-pills { display:flex; justify-content:center; gap:8px; flex-wrap:wrap; }
+  .hero-compact .topic-pill {
+    padding:9px 20px; border-radius:24px; border:none;
+    font-family:'Lexend',sans-serif; font-size:0.82rem; font-weight:700;
+    cursor:pointer; transition:all 0.2s; box-shadow:0 2px 8px rgba(0,0,0,0.12);
+  }
+  .hero-compact .topic-pill:hover { transform:translateY(-2px); box-shadow:0 4px 14px rgba(0,0,0,0.18); }
+  .hero-compact .pill-hint { margin-top:10px; font-size:0.72rem; color:var(--text-muted); }
+
+
+  .demo-card { background:var(--surface); border-radius:var(--radius); padding:24px 26px; margin-bottom:22px; box-shadow:var(--shadow); border-left:5px solid var(--accent,var(--t7)); transition:box-shadow 0.2s; }
+  .demo-card:hover { box-shadow:var(--shadow-hover); }
+  .demo-num { display:inline-flex; align-items:center; justify-content:center; width:32px; height:32px; border-radius:50%; background:var(--accent,var(--t7)); color:#fff; font-size:0.8rem; font-weight:800; flex-shrink:0; margin-right:10px; }
+  .demo-title { font-family:'Lexend Mega',sans-serif; font-size:1.05rem; font-weight:700; display:flex; align-items:center; margin-bottom:16px; }
+  .demo-title span { color:var(--text); }
+  .box-apparatus { background:#EEF6FF; border:2px solid #3A86FF; border-radius:10px; padding:13px 16px; margin:10px 0; }
+  .box-apparatus::before { content:'🔬 APPARATUS'; display:block; font-size:0.65rem; font-weight:800; letter-spacing:1px; color:#1A5CC8; margin-bottom:6px; }
+  .box-method { background:#F0FFF4; border:2px solid var(--green); border-radius:10px; padding:13px 16px; margin:10px 0; }
+  .box-method::before { content:'⚗️ METHOD'; display:block; font-size:0.65rem; font-weight:800; letter-spacing:1px; color:#267339; margin-bottom:6px; }
+  .box-observation { background:#FFF9E6; border:2px solid #FFD966; border-radius:10px; padding:13px 16px; margin:10px 0; }
+  .box-observation::before { content:'👁️ OBSERVATION'; display:block; font-size:0.65rem; font-weight:800; letter-spacing:1px; color:#997700; margin-bottom:6px; }
+  .box-diagram { background:var(--surface2); border:2px dashed var(--border); border-radius:10px; padding:16px; margin:10px 0; text-align:center; }
+  .box-diagram::before { content:'📐 DIAGRAM'; display:block; font-size:0.65rem; font-weight:800; letter-spacing:1px; color:var(--text-muted); margin-bottom:10px; text-align:left; }
+  .box-analogy { background:#F3EAFF; border:2px solid var(--t10); border-radius:10px; padding:13px 16px; margin:10px 0; }
+  .box-analogy::before { content:'💡 ANALOGY'; display:block; font-size:0.65rem; font-weight:800; letter-spacing:1px; color:#6B2DAF; margin-bottom:6px; }
+  .box-exam { background:#FFF0F3; border:2px solid var(--t1); border-radius:10px; padding:13px 16px; margin:10px 0; }
+  .box-exam::before { content:'📝 EXAM TIP'; display:block; font-size:0.65rem; font-weight:800; letter-spacing:1px; color:#C94040; margin-bottom:6px; }
+  .box-apparatus ul, .box-method ol, .box-observation ul, .box-observation ol { padding-left:20px; margin:4px 0; }
+  .box-apparatus ul li, .box-method ol li, .box-observation ul li, .box-observation ol li { margin-bottom:4px; font-size:0.92rem; line-height:1.6; }
+  .demo-svg { width:100%; max-width:520px; height:auto; display:block; margin:0 auto; }
+  .svg-label { font-family:'Lexend',sans-serif; font-size:12px; fill:#2C2825; }
+  .svg-label-sm { font-family:'Lexend',sans-serif; font-size:10px; fill:#7A7068; }
+  .nav-home { display:inline-flex; align-items:center; gap:5px; padding:5px 12px; border-radius:14px; border:2px solid var(--border); background:var(--surface); font-family:'Lexend',sans-serif; font-size:0.72rem; font-weight:700; color:var(--text-muted); text-decoration:none; transition:all 0.2s; white-space:nowrap; flex-shrink:0; }
+  .nav-home:hover { background:var(--text); color:#fff; border-color:var(--text); }
+  .nav-divider { width:1px; height:18px; background:var(--border); flex-shrink:0; }
+  .nav-file-link { display:inline-flex; align-items:center; padding:5px 10px; border-radius:14px; border:2px solid var(--border); background:var(--surface); font-family:'Lexend',sans-serif; font-size:0.68rem; font-weight:700; color:var(--text-muted); text-decoration:none; transition:all 0.2s; white-space:nowrap; }
+  .nav-file-link:hover { border-color:var(--purple); color:var(--purple); transform:translateY(-1px); }
+  .nav-file-link.current { background:var(--purple); color:#fff; border-color:var(--purple); }
+  .nav-files-group { display:flex; align-items:center; gap:5px; flex-wrap:wrap; }
+  .nav-files-label { font-size:0.62rem; font-weight:800; letter-spacing:0.8px; text-transform:uppercase; color:var(--text-muted); white-space:nowrap; flex-shrink:0; }
+  .hero-compact { text-align:center; padding:28px 20px 16px; border-bottom:2px solid var(--border); margin-bottom:20px; background:var(--surface); }
+  .hero-compact h1 { font-family:'Lexend Mega',sans-serif; font-size:clamp(1.1rem,3vw,1.6rem); margin-bottom:6px; }
+  .hero-compact p  { color:var(--text-muted); font-size:0.85rem; max-width:640px; margin:0 auto 14px; }
+  .hero-compact .topic-pills { display:flex; justify-content:center; gap:8px; flex-wrap:wrap; }
+  .hero-compact .topic-pill { padding:9px 20px; border-radius:24px; border:none; font-family:'Lexend',sans-serif; font-size:0.82rem; font-weight:700; cursor:pointer; transition:all 0.2s; box-shadow:0 2px 8px rgba(0,0,0,0.12); }
+  .hero-compact .topic-pill:hover { transform:translateY(-2px); box-shadow:0 4px 14px rgba(0,0,0,0.18); }
+  .hero-compact .pill-hint { margin-top:10px; font-size:0.72rem; color:var(--text-muted); }
+
+</style>
+</head>
+<body>
+<nav>
+  <a href="Physics.html" class="nav-home">🏠 Home</a>
+  <span class="nav-divider"></span>
+  <button class="nav-btn" data-id="elec_a" style="border-color:#FFB347" onclick="showTopic('elec_a')">⚡ Electricity A</button>
+  <span class="nav-divider"></span>
+  <div class="nav-files-group">
+    <span class="nav-files-label">Files:</span>
+    <a href="Physics_Demo_1_Mechanics.html" class="nav-file-link ">1: Mechanics</a>
+    <a href="Physics_Demo_2_Heat.html" class="nav-file-link ">2: Heat</a>
+    <a href="Physics_Demo_3_WavesSoundLight.html" class="nav-file-link ">3: Waves, Sound & Light</a>
+    <a href="Physics_Demo_4_Electricity_A.html" class="nav-file-link current">4a: Electricity A</a>
+    <a href="Physics_Demo_5_Electricity_B.html" class="nav-file-link ">4b: Electricity B + Modern</a>
+  </div>
+</nav>
+<div class="hero-compact" id="heroSection">
+  <h1>LC Physics Demonstrations <span style="font-size:0.6em;color:var(--text-muted);font-family:'Lexend',sans-serif;font-weight:600;">— File 4 of 5</span></h1>
+  <p>Static electricity, capacitance, conductors/insulators, Ohm's Law, electrolysis, P-N junction · 15 demonstrations</p>
+  <div class="topic-pills">
+    <button class="topic-pill" style="background:#FFB347;color:var(--text)" onclick="showTopic('elec_a')">⚡ Electricity A</button>
+  </div>
+  <p class="pill-hint">Click a topic above to jump in ↑</p>
+</div>
+<div class="section" id="elec_a" style="padding:0 16px 60px;max-width:960px;margin:0 auto;display:none;"><div class="ch-header" style="background:#FFB347;margin-bottom:24px;"><h1>⚡ Electricity Demonstrations A (1–15)</h1></div><div class="demo-card" style="--accent:#E8637A"><div class="demo-title"><span class="demo-num">1</span><span>Forces Between Charges</span></div><div class="box-apparatus"><ul><li>Two lightweight conducting balls on nylon threads</li><li>Van de Graaff generator or charged rods (glass + ebonite)</li><li>Silk and wool cloths</li></ul></div><div class="box-method"><ol><li>Suspend two metallised balls near each other on nylon threads.</li><li>Charge both balls the same type (both + via Van de Graaff).</li><li>Observe: balls repel, hanging apart.</li><li>Now give one ball + and one − charge (opposite charges).</li><li>Observe: balls attract.</li></ol></div><div class="box-diagram"><svg class="demo-svg" viewBox="0 0 400 120" xmlns="http://www.w3.org/2000/svg"><defs><marker id="a1" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#E8637A"/></marker><marker id="a2" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#3A86FF"/></marker></defs><text x="200" y="16" text-anchor="middle" class="svg-label" font-weight="700">Charged Balls on Threads</text><line x1="105" y1="25" x2="85" y2="70" stroke="#2C2825" stroke-width="1.5"/><line x1="125" y1="25" x2="145" y2="70" stroke="#2C2825" stroke-width="1.5"/><circle cx="85" cy="80" r="10" fill="#E8637A" opacity="0.8"/><text x="85" y="84" text-anchor="middle" class="svg-label-sm" fill="#fff">+</text><circle cx="145" cy="80" r="10" fill="#E8637A" opacity="0.8"/><text x="145" y="84" text-anchor="middle" class="svg-label-sm" fill="#fff">+</text><line x1="75" y1="80" x2="55" y2="80" stroke="#E8637A" stroke-width="2" marker-end="url(#a1)"/><line x1="155" y1="80" x2="175" y2="80" stroke="#E8637A" stroke-width="2" marker-end="url(#a1)"/><text x="115" y="108" text-anchor="middle" class="svg-label-sm" fill="#C94040">Like charges REPEL</text><line x1="255" y1="25" x2="240" y2="70" stroke="#2C2825" stroke-width="1.5"/><line x1="285" y1="25" x2="300" y2="70" stroke="#2C2825" stroke-width="1.5"/><circle cx="240" cy="80" r="10" fill="#E8637A" opacity="0.8"/><text x="240" y="84" text-anchor="middle" class="svg-label-sm" fill="#fff">+</text><circle cx="300" cy="80" r="10" fill="#3A86FF" opacity="0.8"/><text x="300" y="84" text-anchor="middle" class="svg-label-sm" fill="#fff">−</text><line x1="250" y1="80" x2="288" y2="80" stroke="#E8637A" stroke-width="2" marker-end="url(#a1)"/><line x1="289" y1="80" x2="252" y2="80" stroke="#3A86FF" stroke-width="2" marker-end="url(#a2)"/><text x="270" y="108" text-anchor="middle" class="svg-label-sm" fill="#1A5CC8">Unlike ATTRACT</text></svg></div><div class="box-observation"><ul><li>Same charges: balls repel, hanging apart.</li><li>Opposite charges: balls attract, moving towards each other.</li><li>Confirms: like charges repel; unlike charges attract (Coulomb's Law).</li></ul></div><div class="box-analogy"><p>Like magnets — two north poles push apart, north and south snap together.</p></div><div class="box-exam"><p>F ∝ q₁q₂/r² (Coulomb's Law). Like charges repel; unlike attract. State this exactly.</p></div></div><div class="demo-card" style="--accent:#3A86FF"><div class="demo-title"><span class="demo-num">2</span><span>Charging by Induction</span></div><div class="box-apparatus"><ul><li>Metal conductor on insulating stand</li><li>Charged plastic rod</li><li>Earth connection (wire)</li><li>Gold-leaf electroscope</li></ul></div><div class="box-method"><ol><li>Bring positively charged rod near (NOT touching) the conductor.</li><li>While rod is near, briefly earth the far end of the conductor.</li><li>Remove earth first, then remove charged rod.</li><li>Test conductor with electroscope.</li></ol></div><div class="box-diagram"><svg class="demo-svg" viewBox="0 0 400 80" xmlns="http://www.w3.org/2000/svg"><text x="200" y="45" text-anchor="middle" class="svg-label" font-size="11">Bring rod near → Earth → Remove earth → Remove rod → Conductor charged opposite to rod</text></svg></div><div class="box-observation"><ul><li>Conductor is negatively charged (opposite to rod) without contact.</li><li>Gold-leaf opens on testing.</li><li>Inducing rod retains its charge — induction not conduction.</li></ul></div><div class="box-analogy"><p>Like a magnet near a nail — the nail becomes magnetised without touching.</p></div><div class="box-exam"><p>Sequence matters: (1) bring rod near, (2) earth conductor, (3) remove earth, (4) remove rod. Charge = opposite sign to inducing charge.</p></div></div><div class="demo-card" style="--accent:#F77F00"><div class="demo-title"><span class="demo-num">3</span><span>Demonstration of Point Discharge</span></div><div class="box-apparatus"><ul><li>Pointed conductor connected to Van de Graaff generator</li><li>Lighted candle (~10 cm from point)</li><li>Smoke strips as alternative indicators</li></ul></div><div class="box-method"><ol><li>Charge the pointed conductor to high potential.</li><li>Hold lit candle approximately 5–10 cm from the point.</li><li>Switch on generator.</li><li>Observe the candle flame.</li></ol></div><div class="box-diagram"><svg class="demo-svg" viewBox="0 0 400 80" xmlns="http://www.w3.org/2000/svg"><text x="200" y="45" text-anchor="middle" class="svg-label" font-size="11">Pointed conductor at high V → strong field at tip → ionises air → ion wind deflects candle</text></svg></div><div class="box-observation"><ul><li>Candle flame is blown away from the point — 'electric wind'.</li><li>Strong field at the point ionises air; ions repelled create an ion wind.</li><li>Rounded conductor shows no effect — sharpness is key.</li></ul></div><div class="box-analogy"><p>Like a water hose nozzle — sharpest point concentrates the electric field just as narrow nozzle concentrates flow.</p></div><div class="box-exam"><p>Field is greatest at sharp points (high charge density). Ionised air ions repelled = electric wind. This is why lightning conductors have sharp points.</p></div></div><div class="demo-card" style="--accent:#56C271"><div class="demo-title"><span class="demo-num">4</span><span>Charge on Outside of Hollow Conductor</span></div><div class="box-apparatus"><ul><li>Hollow metal can (Faraday's ice pail) on insulating stand</li><li>Van de Graaff generator</li><li>Proof plane (metal disc on insulating handle)</li><li>Gold-leaf electroscope</li></ul></div><div class="box-method"><ol><li>Charge the hollow can via Van de Graaff. Disconnect generator.</li><li>Sample charge from INSIDE with proof plane → test on electroscope.</li><li>Discharge electroscope. Sample from OUTSIDE with proof plane → test.</li><li>Compare leaf deflections.</li></ol></div><div class="box-diagram"><svg class="demo-svg" viewBox="0 0 400 80" xmlns="http://www.w3.org/2000/svg"><text x="200" y="45" text-anchor="middle" class="svg-label" font-size="11">Proof plane from INSIDE hollow can → no leaf deflection. From OUTSIDE → leaf opens. Charge on outer surface only.</text></svg></div><div class="box-observation"><ul><li>Inside: negligible leaf deflection — no charge inside.</li><li>Outside: significant leaf deflection — charge present.</li><li>All excess charge resides on the outer surface — Faraday cage effect.</li></ul></div><div class="box-analogy"><p>A car during lightning: charge stays outside — the metal body shields the interior. Same principle.</p></div><div class="box-exam"><p>State: 'For a hollow conductor in electrostatic equilibrium, the electric field inside is zero. All excess charge resides on the outer surface.' This is the Faraday cage principle.</p></div></div><div class="demo-card" style="--accent:#9B5DE5"><div class="demo-title"><span class="demo-num">5</span><span>Electric Field Pattern</span></div><div class="box-apparatus"><ul><li>Two metal plate electrodes or point electrodes</li><li>Castor oil in a shallow dish</li><li>Semolina grains scattered in oil</li><li>EHT supply (~5–10 kV)</li></ul></div><div class="box-method"><ol><li>Place dish of oil on non-conducting surface. Scatter semolina evenly.</li><li>Insert electrodes. Connect to EHT. Switch on.</li><li>Observe alignment of semolina grains.</li></ol></div><div class="box-diagram"><svg class="demo-svg" viewBox="0 0 400 80" xmlns="http://www.w3.org/2000/svg"><text x="200" y="45" text-anchor="middle" class="svg-label" font-size="11">Parallel plates + semolina oil: uniform field (straight lines). Point charges: radial field (circles outward).</text></svg></div><div class="box-observation"><ul><li>Parallel plates: semolina aligns perpendicular to plates — uniform field.</li><li>Point charges: semolina radiates outward — radial field.</li><li>At sharp points: grains closer together — stronger field.</li></ul></div><div class="box-analogy"><p>Like iron filings in a magnetic field — semolina rotates to align with the electric field.</p></div><div class="box-exam"><p>Parallel plates = uniform field (equal spacing). Point charge = radial field (lines outward from +). Field lines go from + to −, never cross.</p></div></div><div class="demo-card" style="--accent:#F77F00"><div class="demo-title"><span class="demo-num">6</span><span>Capacitance of Parallel Plate Capacitor</span></div><div class="box-apparatus"><ul><li>Large parallel plate capacitor on insulating supports</li><li>Electrometer or high-impedance voltmeter</li><li>EHT to charge capacitor</li><li>Dielectric sheet (glass/perspex)</li><li>Ruler</li></ul></div><div class="box-method"><ol><li>Charge capacitor to fixed voltage. Disconnect supply (constant Q).</li><li>Measure voltage V.</li><li>Increase plate separation d — observe V change.</li><li>Return to original. Insert dielectric — observe V change.</li><li>Decrease plate area — observe V change.</li></ol></div><div class="box-diagram"><svg class="demo-svg" viewBox="0 0 400 80" xmlns="http://www.w3.org/2000/svg"><text x="200" y="45" text-anchor="middle" class="svg-label" font-size="11">Charged cap (constant Q). Increase d → V rises (C falls). Insert dielectric → V falls (C rises). C = ε₀εᵣA/d</text></svg></div><div class="box-observation"><ul><li>Increasing d: voltage rises (C decreases). C ∝ 1/d.</li><li>Inserting dielectric: voltage falls (C increases).</li><li>Decreasing area: voltage rises (C decreases). C ∝ A.</li><li>Verifies C = ε₀εᵣA/d.</li></ul></div><div class="box-analogy"><p>A capacitor is like a sponge — larger area, smaller gap, better material = more charge stored.</p></div><div class="box-exam"><p>C = ε₀εᵣA/d. Three factors: plate area (↑A → ↑C), separation (↑d → ↓C), dielectric (↑εᵣ → ↑C).</p></div></div><div class="demo-card" style="--accent:#2EC4B6"><div class="demo-title"><span class="demo-num">7</span><span>Capacitor Stores Energy</span></div><div class="box-apparatus"><ul><li>Large capacitor (1000–4700 μF electrolytic)</li><li>9V battery</li><li>LED + 470 Ω resistor</li><li>Switch</li><li>Connecting wires</li></ul></div><div class="box-method"><ol><li>Connect capacitor to 9V battery for 5–10 seconds (charge it).</li><li>Disconnect battery.</li><li>Connect LED + resistor across capacitor.</li><li>Close switch — observe LED.</li></ol></div><div class="box-diagram"><svg class="demo-svg" viewBox="0 0 400 80" xmlns="http://www.w3.org/2000/svg"><text x="200" y="45" text-anchor="middle" class="svg-label" font-size="11">Charge capacitor from battery → disconnect → connect LED → LED flashes (stored energy = ½CV² released)</text></svg></div><div class="box-observation"><ul><li>LED flashes briefly and brightly — capacitor releases stored energy.</li><li>Flash fades quickly as capacitor discharges.</li><li>Demonstrates energy stored = ½CV².</li></ul></div><div class="box-analogy"><p>A capacitor is like a bucket of water — the battery fills it, remove the tap, connect a pipe and the water empties quickly.</p></div><div class="box-exam"><p>Energy = ½QV = ½CV² = Q²/2C. Show calculation if C and V given.</p></div></div><div class="demo-card" style="--accent:#E8637A"><div class="demo-title"><span class="demo-num">8</span><span>Capacitors Conduct AC but Not DC</span></div><div class="box-apparatus"><ul><li>Capacitor (10–100 μF)</li><li>LED</li><li>Signal generator (AC) and battery (DC)</li><li>Connecting wires</li></ul></div><div class="box-method"><ol><li>DC test: connect capacitor in series with LED and DC battery. Observe.</li><li>AC test: replace battery with signal generator at 50–100 Hz. Observe.</li></ol></div><div class="box-diagram"><svg class="demo-svg" viewBox="0 0 400 80" xmlns="http://www.w3.org/2000/svg"><text x="200" y="45" text-anchor="middle" class="svg-label" font-size="11">DC + capacitor + LED: LED goes out after brief flash. AC + capacitor + LED: LED glows continuously.</text></svg></div><div class="box-observation"><ul><li>DC: LED flickers briefly (charging flash) then goes out — capacitor blocks steady DC.</li><li>AC: LED glows continuously — capacitor repeatedly charges/discharges each cycle.</li><li>Capacitor passes AC, blocks DC (in steady state).</li></ul></div><div class="box-analogy"><p>Like a revolving door — AC keeps spinning through; DC stands still and gets blocked once charged.</p></div><div class="box-exam"><p>State: 'Capacitor blocks steady DC (current stops when fully charged) but allows AC (charges/discharges each cycle).' Basis of capacitive coupling in electronics.</p></div></div><div class="demo-card" style="--accent:#56C271"><div class="demo-title"><span class="demo-num">9</span><span>Conductor/Insulator Test with Ammeter</span></div><div class="box-apparatus"><ul><li>Battery (6–9V)</li><li>Ammeter (milliammeter)</li><li>Connecting wires with crocodile clips</li><li>Test materials: copper, aluminium, graphite, steel, rubber, plastic, wood, glass</li></ul></div><div class="box-method"><ol><li>Build series circuit: battery → ammeter → two crocodile clip leads.</li><li>Bridge gap with each test material. Record ammeter deflection.</li><li>Group materials as conductors (deflection) or insulators (none).</li></ol></div><div class="box-diagram"><svg class="demo-svg" viewBox="0 0 400 80" xmlns="http://www.w3.org/2000/svg"><text x="200" y="45" text-anchor="middle" class="svg-label" font-size="11">Circuit: battery → ammeter → crocodile clips → test material. Metal → deflection. Rubber/plastic → none.</text></svg></div><div class="box-observation"><ul><li>Metals (copper, aluminium, steel): large deflection — good conductors.</li><li>Graphite: small deflection — conductor but not as good.</li><li>Rubber, plastic, glass, dry wood: no deflection — insulators.</li></ul></div><div class="box-analogy"><p>A conductor is a motorway for charge; an insulator is a wall; a semiconductor is a country road.</p></div><div class="box-exam"><p>Conductor: many free electrons. Insulator: tightly bound electrons, no free carriers. Examples: conductor = Cu, Al; insulator = rubber, glass.</p></div></div><div class="demo-card" style="--accent:#9B5DE5"><div class="demo-title"><span class="demo-num">10</span><span>Electroplating by Electrolysis</span></div><div class="box-apparatus"><ul><li>Two copper electrodes</li><li>Copper sulfate (CuSO₄) solution</li><li>Beaker</li><li>Battery (6–9V)</li><li>Ammeter</li><li>Balance</li></ul></div><div class="box-method"><ol><li>Clean and weigh both electrodes. Label anode (+) and cathode (−).</li><li>Connect anode to positive terminal, cathode to negative.</li><li>Run current for 10–15 minutes. Record ammeter.</li><li>Remove, dry carefully, re-weigh both electrodes.</li></ol></div><div class="box-diagram"><svg class="demo-svg" viewBox="0 0 400 130" xmlns="http://www.w3.org/2000/svg"><text x="200" y="16" text-anchor="middle" class="svg-label" font-weight="700">Copper Electroplating</text><path d="M80,45 L65,120 L335,120 L320,45 Z" fill="#E0ECFF" stroke="#2EC4B6" stroke-width="2" opacity="0.5"/><text x="200" y="90" text-anchor="middle" class="svg-label-sm" fill="#1A9088">CuSO₄ solution</text><rect x="110" y="30" width="18" height="80" rx="3" fill="#FFB347" stroke="#CC7A00" stroke-width="2"/><text x="119" y="25" text-anchor="middle" class="svg-label-sm">Anode(+)</text><text x="119" y="118" text-anchor="middle" class="svg-label-sm">Cu dissolves</text><rect x="275" y="30" width="18" height="80" rx="3" fill="#B0B0B0" stroke="#808080" stroke-width="2"/><text x="284" y="25" text-anchor="middle" class="svg-label-sm">Cathode(−)</text><text x="284" y="118" text-anchor="middle" class="svg-label-sm">Cu deposits</text><rect x="155" y="15" width="90" height="22" rx="3" fill="#2C2825" opacity="0.8"/><text x="200" y="30" text-anchor="middle" class="svg-label-sm" fill="#fff">Battery (DC)</text></svg></div><div class="box-observation"><ul><li>Cathode gains mass — copper deposited on it.</li><li>Anode loses mass — copper dissolves into solution.</li><li>Mass gained at cathode ≈ mass lost at anode.</li><li>Verifies Faraday's First Law of Electrolysis.</li></ul></div><div class="box-analogy"><p>Like a 3D printer using electricity — copper atoms are 'printed' one by one onto the cathode from the solution.</p></div><div class="box-exam"><p>Faraday's First Law: 'Mass deposited ∝ charge passed.' m = ZIt, Z = electrochemical equivalent. Cathode always gains; anode always loses (if copper anode in CuSO₄).</p></div></div><div class="demo-card" style="--accent:#3A86FF"><div class="demo-title"><span class="demo-num">11</span><span>Magnetic Effect of Current</span></div><div class="box-apparatus"><ul><li>Straight wire through horizontal card</li><li>Iron filings or compass needles</li><li>Power supply (DC, 3–6V)</li><li>Switch</li></ul></div><div class="box-method"><ol><li>Pass wire vertically through card with iron filings. Connect to power.</li><li>Switch on current. Gently tap card.</li><li>Observe iron filings. Place compass needles around wire.</li><li>Reverse current — observe deflection reversal.</li></ol></div><div class="box-diagram"><svg class="demo-svg" viewBox="0 0 400 80" xmlns="http://www.w3.org/2000/svg"><text x="200" y="45" text-anchor="middle" class="svg-label" font-size="11">Wire through card + iron filings: concentric circles. Compass deflects tangentially. Right-Hand Grip Rule.</text></svg></div><div class="box-observation"><ul><li>Iron filings form concentric circles around wire.</li><li>Compass needles deflect tangentially.</li><li>Reversing current reverses field direction.</li><li>Closer to wire = stronger field (tighter rings).</li></ul></div><div class="box-analogy"><p>Like ripples in a pond — except the 'ripples' (magnetic field) are circles around the wire rather than expanding outward.</p></div><div class="box-exam"><p>Right-Hand Grip Rule: thumb = current direction, fingers = field direction. State: 'A current-carrying conductor produces a circular magnetic field.'</p></div></div><div class="demo-card" style="--accent:#E8637A"><div class="demo-title"><span class="demo-num">12</span><span>Heating Effect of Current</span></div><div class="box-apparatus"><ul><li>Thin nichrome resistance wire (28 SWG, ~20 cm)</li><li>Thick connecting wires</li><li>Battery (6V) or power supply</li><li>Variable resistor (rheostat)</li><li>Ammeter</li><li>Switch</li></ul></div><div class="box-method"><ol><li>Connect thin wire in series with rheostat and ammeter.</li><li>Start at maximum resistance (minimum current). Switch on.</li><li>Gradually decrease resistance to increase current.</li><li>Observe thin wire at different currents.</li></ol></div><div class="box-diagram"><svg class="demo-svg" viewBox="0 0 400 80" xmlns="http://www.w3.org/2000/svg"><text x="200" y="45" text-anchor="middle" class="svg-label" font-size="11">Thin resistance wire in series with rheostat: increase current → wire heats → glows red → white. P = I²R.</text></svg></div><div class="box-observation"><ul><li>At low current: wire feels warm.</li><li>At higher current: wire glows red then white.</li><li>Thin wire heats most (highest R = ρl/A; smaller A → higher R).</li><li>Thick wires stay cool — low resistance.</li><li>Demonstrates Joule's Law: P ∝ I².</li></ul></div><div class="box-analogy"><p>Like a toaster — thin high-resistance element gets very hot while thick wires to the plug stay cool.</p></div><div class="box-exam"><p>Joule's Law: 'Rate of heat ∝ I². P = I²R.' H = I²Rt. Doubling I quadruples power output.</p></div></div><div class="demo-card" style="--accent:#56C271"><div class="demo-title"><span class="demo-num">13</span><span>Rheostat as Potentiometer</span></div><div class="box-apparatus"><ul><li>Rheostat (variable resistor, 50 Ω)</li><li>Battery (6V)</li><li>Voltmeter (0–6V)</li><li>Connecting wires</li><li>Switch</li></ul></div><div class="box-method"><ol><li>Connect both end terminals of rheostat to battery.</li><li>Connect voltmeter between sliding contact and one end.</li><li>Switch on. Move slider from one end to other.</li><li>Observe voltmeter reading.</li></ol></div><div class="box-diagram"><svg class="demo-svg" viewBox="0 0 400 80" xmlns="http://www.w3.org/2000/svg"><text x="200" y="45" text-anchor="middle" class="svg-label" font-size="11">Rheostat ends across battery. Voltmeter from slider to one end. Slide across: 0V to full battery voltage.</text></svg></div><div class="box-observation"><ul><li>Slider moved end to end: voltmeter varies continuously from 0V to full battery voltage.</li><li>Voltage output proportional to fraction of resistance used.</li><li>Demonstrates rheostat as potential divider.</li></ul></div><div class="box-analogy"><p>Like a volume knob — you can set any volume level between silent (0V) and maximum (battery V).</p></div><div class="box-exam"><p>V_out = V_in × R₂/(R₁+R₂). A potentiometer gives variable voltage from 0 to Vmax. Different from simple variable resistor (which limits current but output stays connected to supply).</p></div></div><div class="demo-card" style="--accent:#3A86FF"><div class="demo-title"><span class="demo-num">14</span><span>Ohm's Law</span></div><div class="box-apparatus"><ul><li>Known resistor (10 Ω wire-wound)</li><li>Rheostat</li><li>Battery (6V)</li><li>Ammeter (0–1A)</li><li>Voltmeter (0–6V)</li><li>Switch</li><li>Connecting wires</li></ul></div><div class="box-method"><ol><li>Connect R in series with rheostat, ammeter, battery, switch.</li><li>Connect voltmeter in parallel across R.</li><li>Start at max resistance (min current). Record V and I.</li><li>Decrease rheostat in steps — take at least 5 readings.</li><li>Plot V (y-axis) vs I (x-axis).</li></ol></div><div class="box-diagram"><svg class="demo-svg" viewBox="0 0 400 130" xmlns="http://www.w3.org/2000/svg"><text x="200" y="16" text-anchor="middle" class="svg-label" font-weight="700">Ohm's Law — V vs I Graph</text><rect x="230" y="28" width="155" height="95" rx="4" fill="#FAFAFA" stroke="#E2DDD7" stroke-width="1.5"/><line x1="245" y1="112" x2="378" y2="112" stroke="#2C2825" stroke-width="1.5"/><line x1="245" y1="112" x2="245" y2="35" stroke="#2C2825" stroke-width="1.5"/><text x="373" y="123" class="svg-label-sm">I(A)</text><text x="232" y="40" class="svg-label-sm">V</text><line x1="245" y1="112" x2="375" y2="38" stroke="#3A86FF" stroke-width="2"/><text x="348" y="50" class="svg-label-sm" fill="#1A5CC8">V=IR</text><text x="200" y="122" text-anchor="middle" class="svg-label-sm">Straight line through origin: V ∝ I (Ohm's Law). Slope = R.</text></svg></div><div class="box-observation"><ul><li>V increases proportionally with I.</li><li>Graph: straight line through origin — confirms V ∝ I.</li><li>Slope = R = ΔV/ΔI, agrees with marked value.</li><li>Verifies Ohm's Law: V = IR at constant temperature.</li></ul></div><div class="box-analogy"><p>Like a garden hose — harder pressure (higher V) → faster flow (higher I), ratio always the same (constant R).</p></div><div class="box-exam"><p>Must state 'at constant temperature.' V vs I graph: straight line through origin, slope = R. 'Current is directly proportional to potential difference.'</p></div></div><div class="demo-card" style="--accent:#9B5DE5"><div class="demo-title"><span class="demo-num">15</span><span>Current Flow Across P-N Junction</span></div><div class="box-apparatus"><ul><li>P-N junction diode (or LED)</li><li>Resistor (470 Ω)</li><li>Battery (9V)</li><li>Ammeter (milliammeter)</li><li>Switch</li><li>Connecting wires</li></ul></div><div class="box-method"><ol><li>Forward bias: connect + terminal to P-type (anode), − to N-type (cathode). Include ammeter and resistor.</li><li>Switch on. Observe ammeter.</li><li>Reverse bias: swap battery connections. Observe ammeter.</li></ol></div><div class="box-diagram"><svg class="demo-svg" viewBox="0 0 400 110" xmlns="http://www.w3.org/2000/svg"><text x="200" y="16" text-anchor="middle" class="svg-label" font-weight="700">P-N Junction — Forward vs Reverse Bias</text><text x="100" y="38" text-anchor="middle" class="svg-label" fill="#267339">Forward: LED ON</text><rect x="45" y="48" width="30" height="20" rx="3" fill="#FFB347" stroke="#CC7A00" stroke-width="1.5"/><text x="60" y="61" text-anchor="middle" class="svg-label-sm">+  −</text><rect x="80" y="45" width="25" height="25" rx="3" fill="#E8637A" opacity="0.7"/><text x="92" y="61" text-anchor="middle" class="svg-label-sm" fill="#fff">P</text><rect x="105" y="45" width="25" height="25" rx="3" fill="#3A86FF" opacity="0.7"/><text x="117" y="61" text-anchor="middle" class="svg-label-sm" fill="#fff">N</text><polygon points="132,53 148,58 132,63" fill="#56C271"/><text x="140" y="80" text-anchor="middle" class="svg-label-sm" fill="#267339">Current flows ✓</text><text x="300" y="38" text-anchor="middle" class="svg-label" fill="#C94040">Reverse: LED OFF</text><rect x="245" y="48" width="30" height="20" rx="3" fill="#FFB347" stroke="#CC7A00" stroke-width="1.5"/><text x="260" y="61" text-anchor="middle" class="svg-label-sm">−  +</text><rect x="280" y="45" width="25" height="25" rx="3" fill="#3A86FF" opacity="0.7"/><text x="292" y="61" text-anchor="middle" class="svg-label-sm" fill="#fff">N</text><rect x="305" y="45" width="25" height="25" rx="3" fill="#E8637A" opacity="0.7"/><text x="317" y="61" text-anchor="middle" class="svg-label-sm" fill="#fff">P</text><polygon points="332,53 348,58 332,63" fill="#E2DDD7"/><text x="340" y="80" text-anchor="middle" class="svg-label-sm" fill="#C94040">No current ✗</text></svg></div><div class="box-observation"><ul><li>Forward bias: clear current flows — junction conducts.</li><li>Reverse bias: ammeter reads zero — junction does not conduct.</li><li>LED: emits light only in forward bias.</li><li>P-N junction is a one-way valve for current.</li></ul></div><div class="box-analogy"><p>Like a one-way turnstile — correct direction: sail through; wrong way: blocked.</p></div><div class="box-exam"><p>Forward bias: + to P, − to N. Depletion layer narrows, current flows. Reverse bias: depletion layer widens, no current. Applications: rectification (AC→DC), LED.</p></div></div></div>
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:24px;right:24px;width:44px;height:44px;border-radius:50%;background:var(--purple);color:#fff;border:none;font-size:1.2rem;cursor:pointer;box-shadow:var(--shadow);opacity:0;transition:opacity 0.3s;pointer-events:none;">↑</button>
+<script>
+function showTopic(id) {
+  document.querySelectorAll('.section').forEach(s => { s.style.display = 'none'; });
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  var el = document.getElementById(id);
+  if (el) { el.style.display = 'block'; }
+  var btn = document.querySelector('.nav-btn[data-id="' + id + '"]');
+  if (btn) btn.classList.add('active');
+  if (el) el.scrollIntoView({behavior:'smooth', block:'start'});
+}
+window.addEventListener('scroll', function() {
+  var btn = document.getElementById('scrollTop');
+  if (btn) btn.classList.toggle('visible', window.scrollY > 400);
+});
+window.addEventListener('DOMContentLoaded', function() {
+  var firstBtn = document.querySelector('.nav-btn[data-id]');
+  if (firstBtn) firstBtn.classList.add('active');
+});
+</script>
+</body>
+</html>

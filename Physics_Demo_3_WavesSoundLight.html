@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LC Physics Demos — Waves, Sound & Light</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F7F4EF;
+    --surface: #FFFFFF;
+    --surface2: #F0EDE8;
+    --border: #E2DDD7;
+    --text: #2C2825;
+    --text-muted: #7A7068;
+    --t1: #FF6B6B; --t1-light: #FFE8E8; --t1-dark: #C94040;
+    --t2: #4ECDC4; --t2-light: #E0F7F6; --t2-dark: #2A9990;
+    --t3: #FFB347; --t3-light: #FFF3E0; --t3-dark: #CC7A00;
+    --t4: #7C5CBF; --t4-light: #EDE8F7; --t4-dark: #5a3da0;
+    --t5: #56C271; --t5-light: #E6F8EB; --t5-dark: #267339;
+    --t6: #E8637A; --t6-light: #FCE8EC; --t6-dark: #B03050;
+    --t7: #3A86FF; --t7-light: #E0ECFF; --t7-dark: #1A5CC8;
+    --t8: #F77F00; --t8-light: #FFF0DC; --t8-dark: #B85A00;
+    --t9: #2EC4B6; --t9-light: #E0FAF7; --t9-dark: #1A9088;
+    --t10: #9B5DE5; --t10-light: #F3EAFF; --t10-dark: #6B2DAF;
+    --t11: #D62828; --t11-light: #FFECEC; --t11-dark: #9A1A1A;
+    --purple: #7C5CBF; --purple-light: #EDE8F7;
+    --green: #56C271; --green-light: #E6F8EB;
+    --radius: 14px;
+    --shadow: 0 4px 20px rgba(0,0,0,0.08);
+    --shadow-hover: 0 8px 32px rgba(0,0,0,0.14);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Lexend', sans-serif; background: var(--bg); color: var(--text); line-height: 1.8; font-size: 16px; }
+
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(247,244,239,0.96);
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid var(--border);
+    padding: 8px 16px;
+    display: flex; align-items: center; gap: 6px;
+    flex-wrap: wrap; min-height: 56px;
+  }
+  .nav-logo { font-family: 'Lexend Mega', sans-serif; font-size: 0.95rem; color: var(--text); margin-right: 6px; }
+  .nav-logo span { color: var(--t1); }
+  .nav-btn {
+    padding: 5px 11px; border-radius: 18px;
+    border: 2px solid transparent;
+    font-family: 'Lexend', sans-serif;
+    font-size: 0.72rem; font-weight: 600;
+    cursor: pointer; transition: all 0.2s;
+    background: var(--surface); color: var(--text-muted);
+    white-space: nowrap;
+  }
+  .nav-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+  .nav-btn.t1  { border-color: var(--t1); }  .nav-btn.t1.active,  .nav-btn.t1:hover  { background: var(--t1);  color:#fff; }
+  .nav-btn.t2  { border-color: var(--t2); }  .nav-btn.t2.active,  .nav-btn.t2:hover  { background: var(--t2);  color:var(--text); }
+  .nav-btn.t3  { border-color: var(--t3); }  .nav-btn.t3.active,  .nav-btn.t3:hover  { background: var(--t3);  color:var(--text); }
+  .nav-btn.t4  { border-color: var(--t4); }  .nav-btn.t4.active,  .nav-btn.t4:hover  { background: var(--t4);  color:#fff; }
+  .nav-btn.t5  { border-color: var(--t5); }  .nav-btn.t5.active,  .nav-btn.t5:hover  { background: var(--t5);  color:#fff; }
+  .nav-btn.t6  { border-color: var(--t6); }  .nav-btn.t6.active,  .nav-btn.t6:hover  { background: var(--t6);  color:#fff; }
+  .nav-btn.t7  { border-color: var(--t7); }  .nav-btn.t7.active,  .nav-btn.t7:hover  { background: var(--t7);  color:#fff; }
+  .nav-btn.t8  { border-color: var(--t8); }  .nav-btn.t8.active,  .nav-btn.t8:hover  { background: var(--t8);  color:#fff; }
+  .nav-btn.t9  { border-color: var(--t9); }  .nav-btn.t9.active,  .nav-btn.t9:hover  { background: var(--t9);  color:#fff; }
+  .nav-btn.t10 { border-color: var(--t10); } .nav-btn.t10.active, .nav-btn.t10:hover { background: var(--t10); color:#fff; }
+  .nav-btn.t11 { border-color: var(--t11); } .nav-btn.t11.active, .nav-btn.t11:hover { background: var(--t11); color:#fff; }
+  .nav-btn.flash { border-color: var(--purple); } .nav-btn.flash.active, .nav-btn.flash:hover { background: var(--purple); color:#fff; }
+
+  .hero { padding: 44px 24px 28px; text-align: center; }
+  .hero h1 { font-family: 'Lexend Mega', sans-serif; font-size: clamp(1.5rem,4vw,2.6rem); line-height:1.2; }
+  .hero h1 .a1{color:var(--t1);} .hero h1 .a2{color:var(--t2-dark);} .hero h1 .a3{color:var(--t3-dark);}
+  .hero p { margin-top:10px; color:var(--text-muted); max-width:620px; margin-left:auto; margin-right:auto; }
+  .stats-row { display:flex; justify-content:center; gap:20px; flex-wrap:wrap; margin-top:20px; }
+  .stat-chip { background:var(--surface); border:2px solid var(--border); border-radius:30px; padding:8px 20px; font-size:0.85rem; font-weight:600; }
+  .chapter-pills { display:flex; justify-content:center; gap:8px; flex-wrap:wrap; margin-top:20px; }
+  .pill { padding:7px 16px; border-radius:28px; font-weight:600; font-size:0.78rem; cursor:pointer; transition:all 0.2s; border:none; }
+  .pill:hover { transform:translateY(-3px); box-shadow:var(--shadow-hover); }
+
+  .section { display:none; padding:0 16px 60px; max-width:920px; margin:0 auto; }
+  .section.active { display:block; animation:fadeIn 0.3s ease; }
+  @keyframes fadeIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+
+  .ch-header {
+    border-radius:var(--radius); padding:28px 28px; color:white;
+    margin-bottom:24px; position:relative; overflow:hidden;
+  }
+  .ch-header h1 { font-family:'Lexend Mega',sans-serif; font-size:1.45rem; }
+  .ch-header p { opacity:0.88; margin-top:7px; font-size:0.92rem; }
+  .ch-header .big-num { position:absolute; right:22px; top:50%; transform:translateY(-50%); font-family:'Lexend Mega',sans-serif; font-size:5.5rem; opacity:0.12; line-height:1; }
+
+  .topic-card {
+    background:var(--surface); border-radius:var(--radius); padding:24px;
+    margin-bottom:20px; box-shadow:var(--shadow);
+    border-left:5px solid var(--t1); transition:box-shadow 0.2s;
+  }
+  .topic-card:hover { box-shadow:var(--shadow-hover); }
+  .topic-card h2 { font-size:1.15rem; font-weight:700; margin-bottom:12px; display:flex; align-items:center; gap:8px; }
+  .topic-card h3 { font-size:0.95rem; font-weight:600; margin:16px 0 7px; }
+  .topic-card p { margin-bottom:9px; }
+  .topic-card ul { padding-left:20px; margin-bottom:9px; }
+  .topic-card li { margin-bottom:4px; }
+
+  /* Term entry */
+  .term-entry { margin-bottom:18px; padding-bottom:18px; border-bottom:1px solid var(--border); }
+  .term-entry:last-child { border-bottom:none; margin-bottom:0; padding-bottom:0; }
+  .term-name { font-size:1.05rem; font-weight:700; margin-bottom:6px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+
+  /* Boxes */
+  .def-box { background:var(--surface2); border:2px dashed var(--border); border-radius:10px; padding:12px 16px; margin:8px 0; position:relative; }
+  .def-box::before { content:'📖 DEFINITION'; display:block; font-size:0.65rem; font-weight:700; letter-spacing:1px; color:var(--text-muted); margin-bottom:5px; }
+  .def-box p { margin:0; font-weight:500; }
+  .analogy-box { background:#FFF9E6; border:2px solid #FFD966; border-radius:10px; padding:12px 16px; margin:8px 0; }
+  .analogy-box::before { content:'💡 ANALOGY'; display:block; font-size:0.65rem; font-weight:700; letter-spacing:1px; color:#997700; margin-bottom:5px; }
+  .memory-box { background:#F0FFF4; border:2px solid var(--green); border-radius:10px; padding:12px 16px; margin:8px 0; }
+  .memory-box::before { content:'🧠 MEMORY TRICK'; display:block; font-size:0.65rem; font-weight:700; letter-spacing:1px; color:#267339; margin-bottom:5px; }
+  .exam-box { background:#FFF0F3; border:2px solid var(--t1); border-radius:10px; padding:12px 16px; margin:8px 0; }
+  .exam-box::before { content:'📝 EXAM TIP'; display:block; font-size:0.65rem; font-weight:700; letter-spacing:1px; color:var(--t1-dark); margin-bottom:5px; }
+  .code-box { background:#1e1e2e; color:#cdd6f4; border-radius:10px; padding:12px 16px; margin:8px 0; font-family:monospace; font-size:0.88rem; overflow-x:auto; }
+
+  .badge { display:inline-block; padding:2px 9px; border-radius:18px; font-size:0.68rem; font-weight:700; letter-spacing:0.4px; }
+  .b-core   { background:#FFE8E8; color:#C94040; }
+  .b-useful { background:#E0F7F6; color:#2A9990; }
+  .b-extra  { background:#F0EDE8; color:#7A7068; }
+
+  comp-table, .comp-table { width:100%; border-collapse:collapse; margin:12px 0; font-size:0.86rem; border-radius:10px; overflow:hidden; }
+  .comp-table th { background:var(--t1); color:#fff; padding:9px 12px; text-align:left; font-weight:600; }
+  .comp-table td { padding:8px 12px; border-bottom:1px solid var(--border); }
+  .comp-table tr:nth-child(even) td { background:var(--surface2); }
+  .comp-table tr:last-child td { border-bottom:none; }
+
+  /* Big O grid */
+  .big-o-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:14px 0; }
+  @media(max-width:580px){ .big-o-grid{grid-template-columns:1fr;} }
+  .big-o-card { border-radius:10px; padding:13px; border:2px solid; }
+  .big-o-card .notation { font-size:1.25rem; font-weight:700; }
+  .big-o-card .label { font-size:0.78rem; font-weight:600; margin:3px 0; }
+  .big-o-card .desc { font-size:0.8rem; color:var(--text-muted); }
+  .o1    { border-color:#56C271; background:#E6F8EB; }
+  .ologn { border-color:#4ECDC4; background:#E0F7F6; }
+  .on    { border-color:#FFB347; background:#FFF3E0; }
+  .on2   { border-color:#FF6B6B; background:#FFE8E8; }
+  .onlogn{ border-color:#C9A800; background:#FFFBE0; }
+
+  /* Accordion for less-important terms */
+  .accordion { margin:8px 0; border-radius:10px; overflow:hidden; border:2px solid var(--border); }
+  .accordion-header { width:100%; text-align:left; padding:11px 16px; background:var(--surface2); border:none; font-family:'Lexend',sans-serif; font-size:0.92rem; font-weight:600; cursor:pointer; display:flex; justify-content:space-between; align-items:center; transition:background 0.2s; }
+  .accordion-header:hover { background:var(--border); }
+  .accordion-header .arrow { transition:transform 0.3s; font-size:0.78rem; }
+  .accordion-header.open .arrow { transform:rotate(180deg); }
+  .accordion-body { display:none; padding:14px 16px; background:var(--surface); border-top:2px solid var(--border); }
+  .accordion-body.open { display:block; }
+
+  /* Flashcards */
+  #flashcards { padding:0 16px 80px; max-width:920px; margin:0 auto; display:none; }
+  
+  .flash-header { background:linear-gradient(135deg,var(--purple) 0%,#5a3da0 100%); border-radius:var(--radius); padding:28px; color:white; margin-bottom:24px; position:relative; overflow:hidden; }
+  .flash-header h1 { font-family:'Lexend Mega',sans-serif; font-size:1.45rem; }
+  .flash-header p { opacity:0.85; margin-top:7px; }
+  .flash-header .big-num { position:absolute; right:22px; top:50%; transform:translateY(-50%); font-family:'Lexend Mega',sans-serif; font-size:5.5rem; opacity:0.12; }
+
+  .flash-controls { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:18px; align-items:center; }
+  .flash-filter { padding:6px 14px; border-radius:18px; border:2px solid var(--border); background:var(--surface); font-family:'Lexend',sans-serif; font-size:0.76rem; font-weight:600; cursor:pointer; transition:all 0.2s; color:var(--text-muted); }
+  .flash-filter:hover, .flash-filter.factive { background:var(--purple); color:#fff; border-color:var(--purple); }
+
+  .flashcard-area { display:flex; flex-direction:column; align-items:center; }
+  .flashcard { width:100%; max-width:640px; perspective:1200px; min-height:200px; cursor:pointer; margin-bottom:18px; }
+  .flashcard-inner { position:relative; width:100%; min-height:200px; transition:transform 0.55s cubic-bezier(.4,.2,.2,1); transform-style:preserve-3d; }
+  .flashcard.flipped .flashcard-inner { transform:rotateY(180deg); }
+  .flashcard-front, .flashcard-back { position:absolute; width:100%; min-height:200px; backface-visibility:hidden; border-radius:var(--radius); padding:28px 24px; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; box-shadow:var(--shadow); }
+  .flashcard-front { background:var(--surface); border:3px solid var(--purple); }
+  .flashcard-back { background:var(--purple); color:white; transform:rotateY(180deg); }
+  .flashcard-front .card-topic { font-size:0.68rem; font-weight:700; letter-spacing:1px; text-transform:uppercase; margin-bottom:10px; color:var(--text-muted); }
+  .flashcard-front .card-q { font-size:1.1rem; font-weight:600; }
+  .flashcard-front .flip-hint { margin-top:14px; font-size:0.72rem; color:var(--text-muted); }
+  .flashcard-back .card-a { font-size:0.95rem; line-height:1.7; }
+  .flash-nav { display:flex; gap:12px; align-items:center; }
+  .flash-btn { padding:9px 22px; border-radius:22px; border:none; font-family:'Lexend',sans-serif; font-size:0.88rem; font-weight:600; cursor:pointer; transition:all 0.2s; background:var(--purple); color:#fff; }
+  .flash-btn:hover { background:#5a3da0; transform:translateY(-2px); box-shadow:var(--shadow-hover); }
+  .flash-btn:disabled { opacity:0.4; cursor:not-allowed; transform:none; }
+  .flash-counter { font-weight:600; color:var(--text-muted); font-size:0.88rem; min-width:80px; text-align:center; }
+  .flash-progress { width:100%; max-width:640px; height:6px; background:var(--border); border-radius:3px; margin-bottom:16px; overflow:hidden; }
+  .flash-progress-bar { height:100%; background:var(--purple); border-radius:3px; transition:width 0.4s; }
+
+  #scrollTop { position:fixed; bottom:22px; right:22px; width:40px; height:40px; background:var(--text); color:#fff; border:none; border-radius:50%; font-size:1rem; cursor:pointer; box-shadow:var(--shadow-hover); transition:all 0.2s; z-index:99; opacity:0; pointer-events:none; }
+  #scrollTop.visible { opacity:1; pointer-events:all; }
+  #scrollTop:hover { transform:scale(1.1); }
+  .icon { font-size:1.15rem; }
+
+  /* search bar */
+  .search-wrap { max-width:920px; margin:0 auto 4px; padding:0 16px; }
+  .search-input { width:100%; padding:11px 18px; border-radius:30px; border:2px solid var(--border); font-family:'Lexend',sans-serif; font-size:0.92rem; background:var(--surface); color:var(--text); outline:none; transition:border-color 0.2s; }
+  .search-input:focus { border-color:var(--purple); }
+  .search-result-count { font-size:0.8rem; color:var(--text-muted); text-align:center; margin:6px 0 0; }
+
+  /* colour overrides per topic */
+  .tc-t1  { border-left-color:var(--t1);  } .tc-t2  { border-left-color:var(--t2);  }
+  .tc-t3  { border-left-color:var(--t3);  } .tc-t4  { border-left-color:var(--t4);  }
+  .tc-t5  { border-left-color:var(--t5);  } .tc-t6  { border-left-color:var(--t6);  }
+  .tc-t7  { border-left-color:var(--t7);  } .tc-t8  { border-left-color:var(--t8);  }
+  .tc-t9  { border-left-color:var(--t9);  } .tc-t10 { border-left-color:var(--t10); }
+  .tc-t11 { border-left-color:var(--t11); }
+
+  /* ── shared navbar additions ── */
+  .nav-home {
+    display:inline-flex; align-items:center; gap:5px;
+    padding:5px 13px; border-radius:18px;
+    border:2px solid var(--border);
+    background:var(--surface);
+    font-family:'Lexend',sans-serif; font-size:0.72rem; font-weight:700;
+    color:var(--text-muted); text-decoration:none;
+    transition:all 0.2s; white-space:nowrap;
+  }
+  .nav-home:hover { background:var(--text); color:#fff; border-color:var(--text); transform:translateY(-2px); }
+  .nav-flashcards {
+    display:inline-flex; align-items:center; gap:5px;
+    padding:5px 13px; border-radius:18px;
+    border:2px solid var(--purple); background:var(--surface);
+    font-family:'Lexend',sans-serif; font-size:0.72rem; font-weight:700;
+    color:var(--purple); text-decoration:none;
+    transition:all 0.2s; white-space:nowrap; margin-left:auto;
+  }
+  .nav-flashcards:hover { background:var(--purple); color:#fff; transform:translateY(-2px); }
+  .nav-divider { width:1px; height:20px; background:var(--border); margin:0 4px; flex-shrink:0; }
+
+
+  /* ── improved nav file links ── */
+  .nav-home {
+    display:inline-flex; align-items:center; gap:5px;
+    padding:5px 12px; border-radius:14px;
+    border:2px solid var(--border); background:var(--surface);
+    font-family:'Lexend',sans-serif; font-size:0.72rem; font-weight:700;
+    color:var(--text-muted); text-decoration:none; transition:all 0.2s;
+    white-space:nowrap; flex-shrink:0;
+  }
+  .nav-home:hover { background:var(--text); color:#fff; border-color:var(--text); }
+  .nav-divider { width:1px; height:18px; background:var(--border); flex-shrink:0; }
+  .nav-file-link {
+    display:inline-flex; align-items:center;
+    padding:5px 11px; border-radius:14px;
+    border:2px solid var(--border); background:var(--surface);
+    font-family:'Lexend',sans-serif; font-size:0.7rem; font-weight:700;
+    color:var(--text-muted); text-decoration:none; transition:all 0.2s;
+    white-space:nowrap;
+  }
+  .nav-file-link:hover { border-color:var(--purple); color:var(--purple); transform:translateY(-1px); }
+  .nav-file-link.current { background:var(--purple); color:#fff; border-color:var(--purple); }
+  .nav-file-link.fc-link { border-color:var(--purple); color:var(--purple); }
+  .nav-file-link.fc-link:hover { background:var(--purple); color:#fff; }
+  /* label above file links group */
+  .nav-files-group {
+    display:flex; align-items:center; gap:6px; flex-wrap:wrap;
+  }
+  .nav-files-label {
+    font-size:0.62rem; font-weight:800; letter-spacing:0.8px;
+    text-transform:uppercase; color:var(--text-muted);
+    white-space:nowrap; flex-shrink:0;
+  }
+  /* hero simplified — no switcher section */
+  .hero-compact {
+    text-align:center; padding:28px 20px 16px;
+    border-bottom:2px solid var(--border);
+    margin-bottom:20px;
+    background:var(--surface);
+  }
+  .hero-compact h1 { font-family:'Lexend Mega',sans-serif; font-size:clamp(1.1rem,3vw,1.6rem); margin-bottom:6px; }
+  .hero-compact p  { color:var(--text-muted); font-size:0.85rem; max-width:640px; margin:0 auto 14px; }
+  .hero-compact .topic-pills { display:flex; justify-content:center; gap:8px; flex-wrap:wrap; }
+  .hero-compact .topic-pill {
+    padding:9px 20px; border-radius:24px; border:none;
+    font-family:'Lexend',sans-serif; font-size:0.82rem; font-weight:700;
+    cursor:pointer; transition:all 0.2s; box-shadow:0 2px 8px rgba(0,0,0,0.12);
+  }
+  .hero-compact .topic-pill:hover { transform:translateY(-2px); box-shadow:0 4px 14px rgba(0,0,0,0.18); }
+  .hero-compact .pill-hint {
+    margin-top:10px; font-size:0.72rem; color:var(--text-muted);
+  }
+
+  .nav-home {
+    display:inline-flex; align-items:center; gap:5px;
+    padding:5px 12px; border-radius:14px;
+    border:2px solid var(--border); background:var(--surface);
+    font-family:'Lexend',sans-serif; font-size:0.72rem; font-weight:700;
+    color:var(--text-muted); text-decoration:none; transition:all 0.2s;
+    white-space:nowrap; flex-shrink:0;
+  }
+  .nav-home:hover { background:var(--text); color:#fff; border-color:var(--text); }
+  .nav-divider { width:1px; height:18px; background:var(--border); flex-shrink:0; }
+  .nav-file-link {
+    display:inline-flex; align-items:center;
+    padding:5px 10px; border-radius:14px;
+    border:2px solid var(--border); background:var(--surface);
+    font-family:'Lexend',sans-serif; font-size:0.68rem; font-weight:700;
+    color:var(--text-muted); text-decoration:none; transition:all 0.2s;
+    white-space:nowrap;
+  }
+  .nav-file-link:hover { border-color:var(--purple); color:var(--purple); transform:translateY(-1px); }
+  .nav-file-link.current { background:var(--purple); color:#fff; border-color:var(--purple); }
+  .nav-file-link.fc-link { border-color:var(--purple); color:var(--purple); }
+  .nav-file-link.fc-link:hover { background:var(--purple); color:#fff; }
+  .nav-files-group { display:flex; align-items:center; gap:5px; flex-wrap:wrap; }
+  .nav-files-label { font-size:0.62rem; font-weight:800; letter-spacing:0.8px; text-transform:uppercase; color:var(--text-muted); white-space:nowrap; flex-shrink:0; }
+  .hero-compact {
+    text-align:center; padding:28px 20px 16px;
+    border-bottom:2px solid var(--border); margin-bottom:20px;
+    background:var(--surface);
+  }
+  .hero-compact h1 { font-family:'Lexend Mega',sans-serif; font-size:clamp(1.1rem,3vw,1.6rem); margin-bottom:6px; }
+  .hero-compact p  { color:var(--text-muted); font-size:0.85rem; max-width:640px; margin:0 auto 14px; }
+  .hero-compact .topic-pills { display:flex; justify-content:center; gap:8px; flex-wrap:wrap; }
+  .hero-compact .topic-pill {
+    padding:9px 20px; border-radius:24px; border:none;
+    font-family:'Lexend',sans-serif; font-size:0.82rem; font-weight:700;
+    cursor:pointer; transition:all 0.2s; box-shadow:0 2px 8px rgba(0,0,0,0.12);
+  }
+  .hero-compact .topic-pill:hover { transform:translateY(-2px); box-shadow:0 4px 14px rgba(0,0,0,0.18); }
+  .hero-compact .pill-hint { margin-top:10px; font-size:0.72rem; color:var(--text-muted); }
+
+
+  /* Demo-specific styles */
+  .demo-card {
+    background: var(--surface); border-radius: var(--radius);
+    padding: 24px 26px; margin-bottom: 22px;
+    box-shadow: var(--shadow); border-left: 5px solid var(--accent, var(--t7));
+    transition: box-shadow 0.2s;
+  }
+  .demo-card:hover { box-shadow: var(--shadow-hover); }
+  .demo-num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 32px; height: 32px; border-radius: 50%;
+    background: var(--accent, var(--t7)); color: #fff;
+    font-size: 0.8rem; font-weight: 800; flex-shrink: 0; margin-right: 10px;
+  }
+  .demo-title {
+    font-family: 'Lexend Mega', sans-serif;
+    font-size: 1.05rem; font-weight: 700;
+    display: flex; align-items: center; margin-bottom: 16px;
+  }
+  .demo-title span { color: var(--text); }
+
+  .box-apparatus { background: #EEF6FF; border: 2px solid #3A86FF; border-radius: 10px; padding: 13px 16px; margin: 10px 0; }
+  .box-apparatus::before { content: '🔬 APPARATUS'; display: block; font-size: 0.65rem; font-weight: 800; letter-spacing: 1px; color: #1A5CC8; margin-bottom: 6px; }
+  .box-method { background: #F0FFF4; border: 2px solid var(--green); border-radius: 10px; padding: 13px 16px; margin: 10px 0; }
+  .box-method::before { content: '⚗️ METHOD'; display: block; font-size: 0.65rem; font-weight: 800; letter-spacing: 1px; color: #267339; margin-bottom: 6px; }
+  .box-observation { background: #FFF9E6; border: 2px solid #FFD966; border-radius: 10px; padding: 13px 16px; margin: 10px 0; }
+  .box-observation::before { content: '👁️ OBSERVATION'; display: block; font-size: 0.65rem; font-weight: 800; letter-spacing: 1px; color: #997700; margin-bottom: 6px; }
+  .box-diagram { background: var(--surface2); border: 2px dashed var(--border); border-radius: 10px; padding: 16px; margin: 10px 0; text-align: center; }
+  .box-diagram::before { content: '📐 DIAGRAM'; display: block; font-size: 0.65rem; font-weight: 800; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 10px; text-align: left; }
+  .box-analogy { background: #F3EAFF; border: 2px solid var(--t10); border-radius: 10px; padding: 13px 16px; margin: 10px 0; }
+  .box-analogy::before { content: '💡 ANALOGY'; display: block; font-size: 0.65rem; font-weight: 800; letter-spacing: 1px; color: #6B2DAF; margin-bottom: 6px; }
+  .box-exam { background: #FFF0F3; border: 2px solid var(--t1); border-radius: 10px; padding: 13px 16px; margin: 10px 0; }
+  .box-exam::before { content: '📝 EXAM TIP'; display: block; font-size: 0.65rem; font-weight: 800; letter-spacing: 1px; color: #C94040; margin-bottom: 6px; }
+
+  .box-apparatus ul, .box-method ol, .box-observation ul, .box-observation ol {
+    padding-left: 20px; margin: 4px 0;
+  }
+  .box-apparatus ul li, .box-method ol li, .box-observation ul li, .box-observation ol li {
+    margin-bottom: 4px; font-size: 0.92rem; line-height: 1.6;
+  }
+  .box-method ol { counter-reset: none; }
+
+  /* SVG diagram styles */
+  .demo-svg { width: 100%; max-width: 520px; height: auto; display: block; margin: 0 auto; }
+  .svg-label { font-family: 'Lexend', sans-serif; font-size: 12px; fill: #2C2825; }
+  .svg-label-sm { font-family: 'Lexend', sans-serif; font-size: 10px; fill: #7A7068; }
+  .svg-arrow { fill: none; stroke: #2C2825; stroke-width: 1.5; marker-end: url(#arr); }
+
+  .nav-home {
+    display:inline-flex; align-items:center; gap:5px;
+    padding:5px 12px; border-radius:14px;
+    border:2px solid var(--border); background:var(--surface);
+    font-family:'Lexend',sans-serif; font-size:0.72rem; font-weight:700;
+    color:var(--text-muted); text-decoration:none; transition:all 0.2s;
+    white-space:nowrap; flex-shrink:0;
+  }
+  .nav-home:hover { background:var(--text); color:#fff; border-color:var(--text); }
+  .nav-divider { width:1px; height:18px; background:var(--border); flex-shrink:0; }
+  .nav-file-link {
+    display:inline-flex; align-items:center;
+    padding:5px 10px; border-radius:14px;
+    border:2px solid var(--border); background:var(--surface);
+    font-family:'Lexend',sans-serif; font-size:0.68rem; font-weight:700;
+    color:var(--text-muted); text-decoration:none; transition:all 0.2s;
+    white-space:nowrap;
+  }
+  .nav-file-link:hover { border-color:var(--purple); color:var(--purple); transform:translateY(-1px); }
+  .nav-file-link.current { background:var(--purple); color:#fff; border-color:var(--purple); }
+  .nav-files-group { display:flex; align-items:center; gap:5px; flex-wrap:wrap; }
+  .nav-files-label { font-size:0.62rem; font-weight:800; letter-spacing:0.8px; text-transform:uppercase; color:var(--text-muted); white-space:nowrap; flex-shrink:0; }
+  .hero-compact {
+    text-align:center; padding:28px 20px 16px;
+    border-bottom:2px solid var(--border); margin-bottom:20px;
+    background:var(--surface);
+  }
+  .hero-compact h1 { font-family:'Lexend Mega',sans-serif; font-size:clamp(1.1rem,3vw,1.6rem); margin-bottom:6px; }
+  .hero-compact p  { color:var(--text-muted); font-size:0.85rem; max-width:640px; margin:0 auto 14px; }
+  .hero-compact .topic-pills { display:flex; justify-content:center; gap:8px; flex-wrap:wrap; }
+  .hero-compact .topic-pill {
+    padding:9px 20px; border-radius:24px; border:none;
+    font-family:'Lexend',sans-serif; font-size:0.82rem; font-weight:700;
+    cursor:pointer; transition:all 0.2s; box-shadow:0 2px 8px rgba(0,0,0,0.12);
+  }
+  .hero-compact .topic-pill:hover { transform:translateY(-2px); box-shadow:0 4px 14px rgba(0,0,0,0.18); }
+  .hero-compact .pill-hint { margin-top:10px; font-size:0.72rem; color:var(--text-muted); }
+
+</style>
+</head>
+<body>
+<nav>
+  <a href="Physics.html" class="nav-home">🏠 Home</a>
+  <span class="nav-divider"></span>
+  <button class="nav-btn" data-id="waves" style="border-color:#7C5CBF" onclick="showTopic('waves')">〜 Waves, Sound & Light</button>
+  <span class="nav-divider"></span>
+  <div class="nav-files-group">
+    <span class="nav-files-label">Files:</span>
+    <a href="Physics_Demo_1_Mechanics.html" class="nav-file-link ">1: Mechanics</a>
+    <a href="Physics_Demo_2_Heat.html" class="nav-file-link ">2: Heat</a>
+    <a href="Physics_Demo_3_WavesSoundLight.html" class="nav-file-link current">3: Waves, Sound & Light</a>
+    <a href="Physics_Demo_4_Electricity_A.html" class="nav-file-link ">4a: Electricity A</a>
+    <a href="Physics_Demo_5_Electricity_B.html" class="nav-file-link ">4b: Electricity B + Modern</a>
+  </div>
+</nav>
+<div class="hero-compact" id="heroSection">
+  <h1>LC Physics Demonstrations <span style="font-size:0.6em;color:var(--text-muted);font-family:'Lexend',sans-serif;font-weight:600;">— File 3 of 5</span></h1>
+  <p>Ripple tank, Doppler, interference, resonance, reflection, TIR, diffraction, colours, dispersion, IR, UV, polarisation · 14 demonstrations</p>
+  <div class="topic-pills">
+    <button class="topic-pill" style="background:#7C5CBF;color:#fff" onclick="showTopic('waves')">〜 Waves, Sound & Light</button>
+  </div>
+  <p class="pill-hint">Click a topic above to jump in ↑</p>
+</div>
+<div class="section" id="waves" style="padding:0 16px 60px;max-width:960px;margin:0 auto;display:none;">
+  <div class="ch-header" style="background:#7C5CBF;margin-bottom:24px;">
+    <h1>〜 Waves, Sound &amp; Light Demonstrations</h1>
+  </div>
+  <div class="demo-card" style="--accent:#3A86FF">
+  <div class="demo-title"><span class="demo-num">1</span><span>Ripple Tank — Reflection, Refraction, Diffraction, Interference</span></div>
+  <div class="box-apparatus"><ul><li>Ripple tank with transparent base, water, light source (stroboscope)</li><li>Plane wave dipper (bar vibrator) and point source dipper</li><li>Metal barriers and small gaps</li><li>White paper below tank to observe shadow wave patterns</li><li>Power supply</li></ul></div><div class="box-method"><ol><li>Fill the ripple tank with water to approximately 1 cm depth. Place white paper below.</li><li>Attach the bar vibrator (plane waves) and switch on — observe straight parallel waves.</li><li>Reflection: place a metal barrier at an angle. Observe waves reflecting off it — angle of incidence equals angle of reflection.</li><li>Refraction: place a flat piece of perspex in the tank (raises the floor, creating shallow water). Observe waves slow down and change direction in shallow water.</li><li>Diffraction: use barriers with a small gap. Observe circular spreading of waves beyond the gap.</li><li>Interference: use the two-point source dipper. Observe alternating regions of constructive and destructive interference.</li></ol></div><div class="box-diagram"><svg class="demo-svg" viewBox="0 0 480 180" xmlns="http://www.w3.org/2000/svg">
+  <text x="240" y="18" text-anchor="middle" class="svg-label" font-weight="700">Ripple Tank — Reflection, Refraction, Diffraction, Interference</text>
+  <rect x="30" y="30" width="420" height="140" rx="6" fill="#E0F7F6" stroke="#2EC4B6" stroke-width="2"/>
+  <!-- Plane waves (parallel lines) -->
+  <line x1="50" y1="60" x2="160" y2="60" stroke="#3A86FF" stroke-width="2"/>
+  <line x1="50" y1="78" x2="160" y2="78" stroke="#3A86FF" stroke-width="2"/>
+  <line x1="50" y1="96" x2="160" y2="96" stroke="#3A86FF" stroke-width="2"/>
+  <text x="105" y="50" text-anchor="middle" class="svg-label-sm" fill="#1A5CC8">Reflection off barrier</text>
+  <!-- Barrier -->
+  <line x1="160" y1="45" x2="160" y2="115" stroke="#2C2825" stroke-width="3"/>
+  <!-- Reflected waves -->
+  <line x1="160" y1="60" x2="250" y2="60" stroke="#E8637A" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <line x1="160" y1="78" x2="250" y2="78" stroke="#E8637A" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <!-- Gap for diffraction -->
+  <line x1="290" y1="45" x2="290" y2="88" stroke="#2C2825" stroke-width="3"/>
+  <line x1="290" y1="102" x2="290" y2="130" stroke="#2C2825" stroke-width="3"/>
+  <!-- Circular waves after gap (diffraction) -->
+  <path d="M292,95 Q320,75 350,95 Q320,115 292,95" fill="none" stroke="#56C271" stroke-width="1.5"/>
+  <path d="M293,95 Q330,60 370,95 Q330,130 293,95" fill="none" stroke="#56C271" stroke-width="1.5" opacity="0.6"/>
+  <text x="360" y="50" text-anchor="middle" class="svg-label-sm" fill="#267339">Diffraction</text>
+</svg></div><div class="box-observation"><ul><li>Reflection: plane waves reflect off a barrier with equal angles.</li><li>Refraction: waves change direction and wavelength at the shallow/deep boundary (speed changes, frequency stays constant).</li><li>Diffraction: waves spread out in circular arcs after passing through a narrow gap (most pronounced when gap ≈ wavelength).</li><li>Interference: stable pattern of alternating loud (constructive) and quiet (destructive) regions.</li></ul></div><div class="box-analogy"><p>The ripple tank is like a physics lab in a tray — every major wave property can be seen with your own eyes in the water surface.</p></div><div class="box-exam"><p>For refraction: wavelength decreases in shallow water (speed decreases); frequency stays constant. v = fλ.</p></div>
+</div><div class="demo-card" style="--accent:#F77F00">
+  <div class="demo-title"><span class="demo-num">2</span><span>Demonstration of the Doppler Effect</span></div>
+  <div class="box-apparatus"><ul><li>Electronic buzzer or small loudspeaker emitting a constant frequency tone</li><li>Battery</li><li>String (~1 m)</li><li>Open space or long corridor</li></ul></div><div class="box-method"><ol><li>Attach the buzzer (connected to battery) to the end of the string.</li><li>Swing the buzzer in a circle above your head, or whirl it in a large horizontal circle.</li><li>Listen to the pitch as the buzzer moves towards and then away from the ear.</li><li>Alternative: record the sound with a smartphone while walking past a stationary buzzer, then play it back.</li></ol></div><div class="box-diagram"><svg class="demo-svg" viewBox="0 0 480 160" xmlns="http://www.w3.org/2000/svg">
+  <defs><marker id="arrD" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#3A86FF"/></marker></defs>
+  <text x="240" y="18" text-anchor="middle" class="svg-label" font-weight="700">Doppler Effect — Moving Sound Source</text>
+  <!-- Source moving right -->
+  <rect x="200" y="65" width="40" height="25" rx="4" fill="#E8637A" opacity="0.85"/>
+  <text x="220" y="82" text-anchor="middle" class="svg-label-sm" fill="#fff">buzzer</text>
+  <line x1="245" y1="77" x2="290" y2="77" stroke="#3A86FF" stroke-width="2" marker-end="url(#arrD)"/>
+  <text x="268" y="70" text-anchor="middle" class="svg-label-sm" fill="#1A5CC8">v</text>
+  <!-- Compressed waves in front -->
+  <ellipse cx="320" cy="77" rx="20" ry="15" fill="none" stroke="#3A86FF" stroke-width="1.5"/>
+  <ellipse cx="335" cy="77" rx="12" ry="9" fill="none" stroke="#3A86FF" stroke-width="1.5"/>
+  <text x="340" y="50" text-anchor="middle" class="svg-label-sm" fill="#1A5CC8">compressed waves</text>
+  <text x="340" y="62" text-anchor="middle" class="svg-label-sm" fill="#1A5CC8">higher f (observer hears higher pitch)</text>
+  <!-- Stretched waves behind -->
+  <ellipse cx="155" cy="77" rx="25" ry="18" fill="none" stroke="#E8637A" stroke-width="1.5"/>
+  <ellipse cx="140" cy="77" rx="15" ry="11" fill="none" stroke="#E8637A" stroke-width="1.5"/>
+  <text x="120" y="50" text-anchor="middle" class="svg-label-sm" fill="#C94040">stretched waves</text>
+  <text x="120" y="62" text-anchor="middle" class="svg-label-sm" fill="#C94040">lower f (observer hears lower pitch)</text>
+  <!-- Observer right -->
+  <text x="430" y="80" class="svg-label-sm">👂</text>
+  <!-- Observer left -->
+  <text x="50" y="80" class="svg-label-sm">👂</text>
+</svg></div><div class="box-observation"><ul><li>When the buzzer moves towards the listener, the pitch is higher than the actual frequency (waves compressed — shorter wavelength).</li><li>When the buzzer moves away, the pitch is lower (waves stretched — longer wavelength).</li><li>The faster the speed of the source, the greater the frequency shift.</li></ul></div><div class="box-analogy"><p>Like a police siren — as the car approaches you it sounds higher, and as it drives away it drops to a lower pitch. The sound frequency hasn't changed; it's the compression of waves in front and stretching behind.</p></div><div class="box-exam"><p>State: 'The Doppler effect is the apparent change in frequency due to relative motion between source and observer.' f_observed > f_source when approaching; f_observed < f_source when receding.</p></div>
+</div><div class="demo-card" style="--accent:#56C271">
+  <div class="demo-title"><span class="demo-num">3</span><span>Demonstration of Interference (Sound)</span></div>
+  <div class="box-apparatus"><ul><li>Two loudspeakers connected to the same signal generator (same frequency, same phase)</li><li>Signal generator (set to ~1000 Hz)</li><li>Long room or open space</li></ul></div><div class="box-method"><ol><li>Connect both loudspeakers to the same signal generator output so they produce identical sound waves in phase.</li><li>Place the speakers about 1–2 metres apart, facing the same direction.</li><li>Walk slowly in a line parallel to the speakers, at a distance of about 3–4 metres.</li><li>Listen carefully as you walk — note the alternating loud and quiet regions.</li></ol></div><div class="box-diagram"><svg class="demo-svg" viewBox="0 0 480 180" xmlns="http://www.w3.org/2000/svg">
+  <text x="240" y="18" text-anchor="middle" class="svg-label" font-weight="700">Sound Interference — Two Loudspeakers</text>
+  <!-- Two speakers -->
+  <rect x="70" y="60" width="35" height="55" rx="5" fill="#3A86FF" opacity="0.8"/>
+  <text x="87" y="92" text-anchor="middle" class="svg-label-sm" fill="#fff">S₁</text>
+  <rect x="370" y="60" width="35" height="55" rx="5" fill="#3A86FF" opacity="0.8"/>
+  <text x="387" y="92" text-anchor="middle" class="svg-label-sm" fill="#fff">S₂</text>
+  <!-- Signal generator -->
+  <rect x="195" y="145" width="90" height="25" rx="4" fill="#2C2825" opacity="0.8"/>
+  <text x="240" y="162" text-anchor="middle" class="svg-label-sm" fill="#fff">Signal Generator</text>
+  <line x1="105" y1="112" x2="195" y2="157" stroke="#2C2825" stroke-width="1" stroke-dasharray="4,2"/>
+  <line x1="370" y1="112" x2="285" y2="157" stroke="#2C2825" stroke-width="1" stroke-dasharray="4,2"/>
+  <!-- Constructive nodes -->
+  <circle cx="240" cy="88" r="8" fill="#56C271" opacity="0.8"/>
+  <text x="240" y="79" text-anchor="middle" class="svg-label-sm" fill="#267339">LOUD</text>
+  <!-- Destructive nodes -->
+  <circle cx="180" cy="100" r="6" fill="#E8637A" opacity="0.5"/>
+  <text x="165" y="118" text-anchor="middle" class="svg-label-sm" fill="#C94040">quiet</text>
+  <circle cx="300" cy="100" r="6" fill="#E8637A" opacity="0.5"/>
+  <text x="310" y="118" text-anchor="middle" class="svg-label-sm" fill="#C94040">quiet</text>
+  <text x="240" y="145" text-anchor="middle" class="svg-label-sm">Walk parallel to line of speakers → alternating loud &amp; quiet regions</text>
+</svg></div><div class="box-observation"><ul><li>Clear alternating regions of loud sound (constructive interference: path difference = nλ) and quiet/silence (destructive interference: path difference = (n+½)λ).</li><li>The spacing of loud/quiet regions increases as frequency decreases (wavelength increases).</li><li>Moving closer to the speakers makes the pattern more widely spaced.</li></ul></div><div class="box-analogy"><p>Like two people in a pool making identical ripples — where the ripple crests meet you get a big splash (constructive), where a crest meets a trough they cancel out (destructive).</p></div><div class="box-exam"><p>Path difference for constructive interference = nλ. For destructive = (n + ½)λ. Speakers must be coherent (same frequency and phase).</p></div>
+</div><div class="demo-card" style="--accent:#9B5DE5">
+  <div class="demo-title"><span class="demo-num">4</span><span>Sound Needs a Medium — Bell in Vacuum Jar</span></div>
+  <div class="box-apparatus"><ul><li>Electric bell (battery-operated or wired)</li><li>Large glass bell jar with airtight seal</li><li>Vacuum pump</li><li>Rubber mounting pad to suspend the bell (reduces solid-conducted vibration)</li><li>Battery and connecting wires passed through airtight grommet</li></ul></div><div class="box-method"><ol><li>Mount the electric bell inside the bell jar on a rubber pad — rubber reduces vibration conducted through solid supports.</li><li>Connect the bell to a battery via wires sealed through the base.</li><li>Switch on the bell — you can hear it ringing clearly.</li><li>Switch on the vacuum pump to remove air from the jar.</li><li>Observe the sound level as air is progressively removed.</li></ol></div><div class="box-diagram"><svg class="demo-svg" viewBox="0 0 480 160" xmlns="http://www.w3.org/2000/svg">
+  <text x="240" y="18" text-anchor="middle" class="svg-label" font-weight="700">Sound Needs a Medium — Bell in Vacuum Jar</text>
+  <!-- Glass dome -->
+  <ellipse cx="240" cy="120" rx="120" ry="70" fill="#E0ECFF" stroke="#3A86FF" stroke-width="2" opacity="0.5"/>
+  <!-- Bell inside -->
+  <path d="M215,90 Q240,60 265,90 L275,115 L205,115 Z" fill="#FFB347" stroke="#CC7A00" stroke-width="1.5"/>
+  <rect x="232" y="115" width="16" height="10" rx="2" fill="#CC7A00"/>
+  <text x="240" y="140" text-anchor="middle" class="svg-label-sm">Electric bell</text>
+  <!-- Vacuum pump -->
+  <rect x="380" y="100" width="60" height="30" rx="5" fill="#E2DDD7" stroke="#7A7068" stroke-width="1.5"/>
+  <line x1="360" y1="120" x2="380" y2="120" stroke="#7A7068" stroke-width="1.5"/>
+  <text x="410" y="118" text-anchor="middle" class="svg-label-sm">Vacuum</text>
+  <text x="410" y="130" text-anchor="middle" class="svg-label-sm">pump</text>
+  <!-- No sound indicator -->
+  <text x="80" y="80" class="svg-label-sm" fill="#C94040">Sound fades</text>
+  <text x="80" y="95" class="svg-label-sm" fill="#C94040">as air removed</text>
+  <text x="80" y="110" class="svg-label-sm" fill="#C94040">→ no sound</text>
+  <text x="80" y="125" class="svg-label-sm" fill="#C94040">in vacuum</text>
+</svg></div><div class="box-observation"><ul><li>As air is pumped out, the ringing sound becomes progressively quieter.</li><li>In a near-vacuum, the bell is almost inaudible (you may still hear faint sound through the rubber mount and jar itself).</li><li>When air is let back in, the sound returns.</li><li>This demonstrates that sound requires a material medium to travel — it cannot propagate through a vacuum.</li></ul></div><div class="box-analogy"><p>Astronauts on the Moon cannot speak to each other through the air (there is none) — they must use radio waves (EM radiation), which unlike sound, require no medium.</p></div><div class="box-exam"><p>State: 'Sound is a mechanical (longitudinal) wave and requires a medium for propagation. EM waves do not require a medium.' This experiment provides evidence for both.</p></div>
+</div><div class="demo-card" style="--accent:#E8637A">
+  <div class="demo-title"><span class="demo-num">5</span><span>Demonstration of Resonance</span></div>
+  <div class="box-apparatus"><ul><li>Two identical tuning forks (same frequency, e.g. 440 Hz) mounted on resonance boxes</li><li>OR Barton's pendulums: several pendulums of different lengths on a shared support string, one matching the 'driver' length</li><li>Stopwatch and metre rule</li></ul></div><div class="box-method"><ol><li>Strike one tuning fork (Fork A) hard with a rubber mallet.</li><li>After a few seconds, stop Fork A with your hand (touch it to stop vibration).</li><li>Hold Fork A close to Fork B's opening. Remove Fork A and listen to Fork B.</li><li>Alternative — Barton's pendulums: set the driver pendulum swinging; observe which other pendulum swings most.</li><li>Repeat with a fork of different frequency — Fork B does not resonate.</li></ol></div><div class="box-diagram"><svg class="demo-svg" viewBox="0 0 480 180" xmlns="http://www.w3.org/2000/svg">
+  <text x="240" y="18" text-anchor="middle" class="svg-label" font-weight="700">Resonance — Resonance Tubes or Barton's Pendulums</text>
+  <!-- Two tuning forks -->
+  <rect x="80" y="60" width="20" height="80" rx="4" fill="#2C2825" opacity="0.8"/>
+  <path d="M75,60 L80,40 L100,40 L105,60" fill="#2C2825" opacity="0.8"/>
+  <text x="90" y="160" text-anchor="middle" class="svg-label-sm">Fork A</text>
+  <text x="90" y="172" text-anchor="middle" class="svg-label-sm">440 Hz</text>
+  <rect x="360" y="60" width="20" height="80" rx="4" fill="#56C271" opacity="0.8"/>
+  <path d="M355,60 L360,40 L380,40 L385,60" fill="#56C271" opacity="0.8"/>
+  <text x="370" y="160" text-anchor="middle" class="svg-label-sm">Fork B</text>
+  <text x="370" y="172" text-anchor="middle" class="svg-label-sm">440 Hz</text>
+  <!-- Sound waves between -->
+  <path d="M105,85 Q170,70 240,85 Q310,100 365,85" fill="none" stroke="#3A86FF" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <text x="240" y="75" text-anchor="middle" class="svg-label-sm" fill="#1A5CC8">Sound waves transferred</text>
+  <!-- Hit fork A label -->
+  <text x="80" y="40" class="svg-label-sm" fill="#C94040">Strike!</text>
+  <!-- Fork B vibrates label -->
+  <text x="335" y="40" class="svg-label-sm" fill="#267339">Vibrates!</text>
+  <text x="240" y="145" text-anchor="middle" class="svg-label-sm">Fork B vibrates because it has the same natural frequency as Fork A</text>
+</svg></div><div class="box-observation"><ul><li>Fork B vibrates and emits sound even though it was not struck directly — resonance has occurred.</li><li>This only happens when Fork A and B have the same natural frequency.</li><li>With Barton's pendulums: only the pendulum with the same natural frequency as the driver swings with large amplitude.</li><li>This is resonance: maximum energy transfer when driving frequency equals natural frequency.</li></ul></div><div class="box-analogy"><p>A child on a swing: if you push at exactly the right frequency (matching its natural frequency), the amplitude builds up dramatically. Push at the wrong time and nothing happens.</p></div><div class="box-exam"><p>State both conditions: (1) driving frequency = natural frequency, (2) large amplitude oscillations result. Mention resonance can be harmful (Tacoma Narrows Bridge) or useful (tuning a radio).</p></div>
+</div><div class="demo-card" style="--accent:#2EC4B6">
+  <div class="demo-title"><span class="demo-num">6</span><span>No-Parallax — Locating Image in a Plane Mirror</span></div>
+  <div class="box-apparatus"><ul><li>Plane mirror (rectangular, ~20 cm)</li><li>Retort stand and clamp to hold mirror vertically</li><li>Two optical pins (or sewing pins)</li><li>Soft board and paper</li><li>Ruler and pencil</li></ul></div><div class="box-method"><ol><li>Pin the mirror vertically using the retort stand. Mark the mirror position on the paper.</li><li>Place object pin P₁ in front of the mirror at a known distance.</li><li>Look into the mirror and position the search pin P₂ behind the mirror so that it coincides with the image of P₁ — move your eye laterally to check for parallax.</li><li>When there is no parallax (the search pin and image move together as you move your head), P₂ is at the image position.</li><li>Measure the image distance and compare with the object distance.</li></ol></div><div class="box-diagram"><svg class="demo-svg" viewBox="0 0 480 180" xmlns="http://www.w3.org/2000/svg">
+  <text x="240" y="18" text-anchor="middle" class="svg-label" font-weight="700">No-Parallax Method — Image in Plane Mirror</text>
+  <!-- Mirror -->
+  <rect x="220" y="40" width="8" height="120" rx="2" fill="#B8D4FF" stroke="#3A86FF" stroke-width="2"/>
+  <text x="224" y="35" class="svg-label-sm" fill="#1A5CC8">Mirror</text>
+  <!-- Object pin -->
+  <line x1="120" y1="95" x2="120" y2="150" stroke="#E8637A" stroke-width="2"/>
+  <circle cx="120" cy="92" r="5" fill="#E8637A"/>
+  <text x="120" y="165" text-anchor="middle" class="svg-label-sm" fill="#C94040">Object pin</text>
+  <!-- Image pin behind mirror -->
+  <line x1="330" y1="95" x2="330" y2="150" stroke="#56C271" stroke-width="2" stroke-dasharray="5,3"/>
+  <circle cx="330" cy="92" r="5" fill="#56C271" opacity="0.7"/>
+  <text x="330" y="165" text-anchor="middle" class="svg-label-sm" fill="#267339">Search pin (image location)</text>
+  <!-- Eye -->
+  <text x="60" y="100" class="svg-label">👁️</text>
+  <!-- Light rays -->
+  <line x1="120" y1="100" x2="222" y2="100" stroke="#7A7068" stroke-width="1" stroke-dasharray="3,2"/>
+  <line x1="222" y1="100" x2="330" y2="100" stroke="#7A7068" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="240" y="145" text-anchor="middle" class="svg-label-sm">Move laterally → when image &amp; search pin don't separate = no parallax → image located</text>
+</svg></div><div class="box-observation"><ul><li>Image distance = object distance (for a plane mirror).</li><li>Image is virtual (behind the mirror), upright, and the same size as the object.</li><li>When the search pin is correctly placed, it does not appear to separate from the image when viewed from different positions (no parallax).</li><li>Image is laterally inverted.</li></ul></div><div class="box-analogy"><p>No-parallax is like lining up the back and front sights of a gun — when both are perfectly aligned in your line of sight, there is no offset between them regardless of small head movements.</p></div><div class="box-exam"><p>State: 'No parallax occurs when the image and the search pin are at the same position in space.' The image in a plane mirror is: virtual, same size, same distance behind mirror, upright, laterally inverted.</p></div>
+</div><div class="demo-card" style="--accent:#3A86FF">
+  <div class="demo-title"><span class="demo-num">7</span><span>Demonstration of the Second Law of Reflection</span></div>
+  <div class="box-apparatus"><ul><li>Plane mirror on a stand</li><li>Soft board and white paper</li><li>Ray box (with single-slit attachment) or laser</li><li>Protractor and ruler</li><li>Pencil</li></ul></div><div class="box-method"><ol><li>Place the mirror on the paper and draw the mirror line. Mark the point of incidence (where ray hits mirror).</li><li>Draw the normal (perpendicular to mirror surface at the point of incidence).</li><li>Direct the ray box beam at the mirror at a known angle of incidence i.</li><li>Trace the incident and reflected rays on the paper.</li><li>Measure the angle of incidence and angle of reflection (both from the normal) using a protractor.</li><li>Repeat for at least three different angles of incidence.</li></ol></div><div class="box-diagram"><svg class="demo-svg" viewBox="0 0 480 180" xmlns="http://www.w3.org/2000/svg">
+  <defs><marker id="arrRL" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#3A86FF"/></marker>
+  <marker id="arrRL2" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#E8637A"/></marker></defs>
+  <text x="240" y="18" text-anchor="middle" class="svg-label" font-weight="700">Second Law of Reflection — Plane Mirror &amp; Pins</text>
+  <!-- Mirror surface -->
+  <rect x="150" y="100" width="180" height="8" rx="3" fill="#B8D4FF" stroke="#3A86FF" stroke-width="2"/>
+  <!-- Normal -->
+  <line x1="240" y1="30" x2="240" y2="108" stroke="#7A7068" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <text x="248" y="35" class="svg-label-sm" fill="#7A7068">Normal</text>
+  <!-- Incident ray -->
+  <line x1="150" y1="45" x2="240" y2="107" stroke="#3A86FF" stroke-width="2" marker-end="url(#arrRL)"/>
+  <text x="165" y="60" class="svg-label-sm" fill="#1A5CC8">incident ray</text>
+  <!-- Reflected ray -->
+  <line x1="240" y1="107" x2="330" y2="45" stroke="#E8637A" stroke-width="2" marker-end="url(#arrRL2)"/>
+  <text x="315" y="60" class="svg-label-sm" fill="#C94040">reflected ray</text>
+  <!-- Angle i -->
+  <path d="M225,92 Q240,75 252,85" fill="none" stroke="#3A86FF" stroke-width="1.5"/>
+  <text x="218" y="80" class="svg-label-sm" fill="#1A5CC8">i</text>
+  <!-- Angle r -->
+  <path d="M228,86 Q240,72 256,84" fill="none" stroke="#E8637A" stroke-width="1.5"/>
+  <text x="258" y="80" class="svg-label-sm" fill="#C94040">r</text>
+  <text x="240" y="145" text-anchor="middle" class="svg-label-sm">Angle of incidence i = angle of reflection r (measured from normal)</text>
+  <text x="240" y="162" text-anchor="middle" class="svg-label-sm">Both rays and normal lie in the same plane</text>
+</svg></div><div class="box-observation"><ul><li>For every angle of incidence measured, the angle of reflection is equal: i = r.</li><li>Both the incident ray, reflected ray, and normal all lie in the same plane (the paper).</li><li>This confirms the Second Law of Reflection.</li></ul></div><div class="box-analogy"><p>Exactly like a snooker ball bouncing off a cushion — the ball leaves at the same angle it arrived at, measured from the perpendicular to the cushion.</p></div><div class="box-exam"><p>State BOTH laws of reflection for full marks: (1) The incident ray, reflected ray and normal lie in the same plane. (2) The angle of incidence equals the angle of reflection. Angles measured from the normal, not from the surface.</p></div>
+</div><div class="demo-card" style="--accent:#56C271">
+  <div class="demo-title"><span class="demo-num">8</span><span>Total Internal Reflection and Critical Angle</span></div>
+  <div class="box-apparatus"><ul><li>Semi-circular glass or perspex block</li><li>Ray box (single slit) or laser</li><li>Protractor and white paper</li><li>Ruler and pencil</li></ul></div><div class="box-method"><ol><li>Place the semi-circular block flat-side down on white paper. Trace its outline.</li><li>Direct the ray into the curved surface so it hits the flat surface perpendicularly (to avoid refraction at entry).</li><li>Gradually increase the angle of incidence at the flat surface from 0° upward.</li><li>At each angle, trace the incident ray, refracted ray (if present), and reflected ray.</li><li>Identify the critical angle C as the angle at which the refracted ray just grazes the surface (refraction angle = 90°).</li><li>Beyond this angle, observe total internal reflection — no refracted ray, only reflected ray.</li></ol></div><div class="box-diagram"><svg class="demo-svg" viewBox="0 0 480 180" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+  <marker id="arrT" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#3A86FF"/></marker>
+  <marker id="arrT2" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#56C271"/></marker>
+  <marker id="arrT3" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#E8637A"/></marker>
+  </defs>
+  <text x="240" y="18" text-anchor="middle" class="svg-label" font-weight="700">Total Internal Reflection — Semi-circular Block</text>
+  <!-- Dense medium (glass) -->
+  <rect x="100" y="90" width="280" height="70" rx="5" fill="#E0ECFF" stroke="#3A86FF" stroke-width="2" opacity="0.6"/>
+  <text x="240" y="150" text-anchor="middle" class="svg-label-sm" fill="#1A5CC8">Glass (denser medium)</text>
+  <!-- Interface line -->
+  <line x1="100" y1="90" x2="380" y2="90" stroke="#3A86FF" stroke-width="2"/>
+  <!-- Ray below critical angle (refracted) -->
+  <line x1="160" y1="140" x2="200" y2="90" stroke="#3A86FF" stroke-width="2" marker-end="url(#arrT)"/>
+  <line x1="200" y1="90" x2="170" y2="40" stroke="#56C271" stroke-width="2" marker-end="url(#arrT2)"/>
+  <text x="145" y="55" class="svg-label-sm" fill="#267339">refracted (escapes)</text>
+  <text x="155" y="68" class="svg-label-sm" fill="#267339">i &lt; C</text>
+  <!-- Ray at/above critical angle (TIR) -->
+  <line x1="240" y1="145" x2="280" y2="90" stroke="#3A86FF" stroke-width="2" marker-end="url(#arrT)"/>
+  <line x1="280" y1="90" x2="340" y2="145" stroke="#E8637A" stroke-width="2" marker-end="url(#arrT3)"/>
+  <text x="300" y="70" class="svg-label-sm" fill="#C94040">TIR! i &gt; C</text>
+  <text x="240" y="45" text-anchor="middle" class="svg-label-sm">Normal</text>
+  <line x1="280" y1="30" x2="280" y2="90" stroke="#7A7068" stroke-width="1" stroke-dasharray="4,2"/>
+</svg></div><div class="box-observation"><ul><li>For angles less than the critical angle: a refracted ray (in air) and a weaker reflected ray are observed.</li><li>At exactly the critical angle: the refracted ray travels along the glass–air boundary (90° to normal).</li><li>For angles greater than the critical angle: no refracted ray — only a bright reflected ray inside the glass (TIR).</li><li>Measured critical angle can be used to calculate refractive index: n = 1/sin C.</li></ul></div><div class="box-analogy"><p>Think of trying to escape from a swimming pool by climbing up the side — at a shallow angle you can get out, but beyond a certain angle the wall just bounces you back. The glass–air boundary acts the same way for light rays.</p></div><div class="box-exam"><p>Two conditions for TIR: (1) light travelling from denser to less dense medium, (2) angle of incidence > critical angle. Formula: sin C = 1/n. Use this to calculate n or C.</p></div>
+</div><div class="demo-card" style="--accent:#7C5CBF">
+  <div class="demo-title"><span class="demo-num">9</span><span>Wave Nature of Light (Double Slit / Young's Experiment)</span></div>
+  <div class="box-apparatus"><ul><li>Laser (red, 650 nm) or bright monochromatic light source</li><li>Double slit card (or diffraction grating)</li><li>White screen (or wall) at least 1–2 m from slits</li><li>Metre rule</li><li>Optional: ruler for measuring fringe spacing</li></ul></div><div class="box-method"><ol><li>Set up the laser to shine through the double slit onto a white screen approximately 2 m away.</li><li>Observe the pattern produced on the screen.</li><li>Measure the fringe spacing (distance between adjacent bright fringes).</li><li>Block one slit — observe the diffraction pattern from a single slit changes to a single-slit diffraction envelope.</li><li>Replace double slit with a diffraction grating — observe clearly separated bright maxima.</li></ol></div><div class="box-diagram"><svg class="demo-svg" viewBox="0 0 480 160" xmlns="http://www.w3.org/2000/svg">
+  <text x="240" y="18" text-anchor="middle" class="svg-label" font-weight="700">Wave Nature of Light — Double Slit / Diffraction Grating</text>
+  <!-- Laser source -->
+  <rect x="20" y="65" width="60" height="30" rx="4" fill="#E8637A" opacity="0.8"/>
+  <text x="50" y="83" text-anchor="middle" class="svg-label-sm" fill="#fff">Laser</text>
+  <!-- Rays to slit -->
+  <line x1="80" y1="80" x2="200" y2="80" stroke="#E8637A" stroke-width="2"/>
+  <!-- Double slit -->
+  <rect x="200" y="50" width="8" height="18" rx="1" fill="#2C2825"/>
+  <rect x="200" y="75" width="8" height="8" rx="1" fill="none"/>
+  <rect x="200" y="90" width="8" height="18" rx="1" fill="#2C2825"/>
+  <text x="204" y="45" text-anchor="middle" class="svg-label-sm">Double slit</text>
+  <!-- Screen with fringes -->
+  <rect x="380" y="35" width="10" height="110" rx="2" fill="#2C2825"/>
+  <text x="385" y="30" class="svg-label-sm">Screen</text>
+  <!-- Bright fringes -->
+  <line x1="390" y1="55" x2="430" y2="55" stroke="#FFD700" stroke-width="3"/>
+  <line x1="390" y1="75" x2="430" y2="75" stroke="#FFD700" stroke-width="5"/>
+  <line x1="390" y1="95" x2="430" y2="95" stroke="#FFD700" stroke-width="3"/>
+  <line x1="390" y1="115" x2="430" y2="115" stroke="#FFD700" stroke-width="3"/>
+  <!-- Dark fringes -->
+  <text x="445" y="65" class="svg-label-sm">dark</text>
+  <text x="445" y="82" class="svg-label-sm" fill="#FFB347">bright</text>
+  <text x="445" y="100" class="svg-label-sm">dark</text>
+  <!-- Fanning lines -->
+  <line x1="208" y1="80" x2="382" y2="55" stroke="#FFD700" stroke-width="1" stroke-dasharray="4,2" opacity="0.6"/>
+  <line x1="208" y1="80" x2="382" y2="80" stroke="#FFD700" stroke-width="1" stroke-dasharray="4,2" opacity="0.8"/>
+  <line x1="208" y1="80" x2="382" y2="105" stroke="#FFD700" stroke-width="1" stroke-dasharray="4,2" opacity="0.6"/>
+</svg></div><div class="box-observation"><ul><li>A series of alternating bright and dark vertical fringes is observed on the screen.</li><li>This interference pattern is only possible if light is a wave.</li><li>Bright fringes: constructive interference (path difference = nλ).</li><li>Dark fringes: destructive interference (path difference = (n+½)λ).</li><li>Fringe spacing increases with wavelength and distance to screen; decreases with slit separation.</li></ul></div><div class="box-analogy"><p>Just like the sound interference pattern with two speakers — where two waves from coherent sources meet, you get reinforcement (bright) or cancellation (dark).</p></div><div class="box-exam"><p>Formula: λ = ax/d (a = slit separation, x = fringe spacing, d = slit to screen distance). State this demonstrates the wave nature of light by producing an interference pattern — a particle model could not explain this.</p></div>
+</div><div class="demo-card" style="--accent:#E8637A">
+  <div class="demo-title"><span class="demo-num">10</span><span>Demonstration of Addition of Colours</span></div>
+  <div class="box-apparatus"><ul><li>Three identical projectors or spotlights with red, green, and blue filters (or coloured torches)</li><li>White screen in a darkened room</li><li>Optional: Newton's colour wheel (motor-driven disc with coloured sectors)</li></ul></div><div class="box-method"><ol><li>In a darkened room, project three overlapping circles of red, green, and blue light onto a white screen.</li><li>Observe the colour where each pair of colours overlaps, and where all three overlap.</li><li>Alternative with Newton's wheel: spin the colour wheel at high speed and observe the colour perceived.</li></ol></div><div class="box-diagram"><svg class="demo-svg" viewBox="0 0 480 140" xmlns="http://www.w3.org/2000/svg">
+  <text x="240" y="18" text-anchor="middle" class="svg-label" font-weight="700">Addition of Colours — Coloured Spotlights on White Screen</text>
+  <!-- Three overlapping circles -->
+  <circle cx="200" cy="80" r="50" fill="red" opacity="0.4"/>
+  <circle cx="260" cy="80" r="50" fill="blue" opacity="0.4"/>
+  <circle cx="230" cy="55" r="50" fill="green" opacity="0.4"/>
+  <!-- Labels -->
+  <text x="170" y="115" text-anchor="middle" class="svg-label-sm">Red</text>
+  <text x="290" y="115" text-anchor="middle" class="svg-label-sm">Blue</text>
+  <text x="230" y="30" text-anchor="middle" class="svg-label-sm">Green</text>
+  <!-- Overlap labels -->
+  <text x="215" y="100" text-anchor="middle" class="svg-label-sm">Magenta</text>
+  <text x="248" y="100" text-anchor="middle" class="svg-label-sm">Cyan</text>
+  <text x="230" y="70" text-anchor="middle" class="svg-label-sm">Yellow</text>
+  <text x="230" y="84" text-anchor="middle" class="svg-label-sm" font-weight="700">White</text>
+</svg></div><div class="box-observation"><ul><li>Red + Green = Yellow</li><li>Green + Blue = Cyan</li><li>Red + Blue = Magenta</li><li>Red + Green + Blue = White light</li><li>Newton's wheel: spinning rapidly produces an impression of white or grey due to persistence of vision.</li><li>This demonstrates additive colour mixing.</li></ul></div><div class="box-analogy"><p>Colour monitors (TV, phone screens) use exactly this system — each pixel is made of tiny red, green, and blue dots. Your brain adds them together to perceive millions of colours.</p></div><div class="box-exam"><p>Primary colours of light: Red, Green, Blue (RGB). Different from paint/pigment primaries. State these are 'additive primary colours.' Complementary pairs: R+Cyan=White, G+Magenta=White, B+Yellow=White.</p></div>
+</div><div class="demo-card" style="--accent:#FFB347">
+  <div class="demo-title"><span class="demo-num">11</span><span>Demonstration of Dispersion of White Light</span></div>
+  <div class="box-apparatus"><ul><li>Glass prism (equilateral or right-angle prism)</li><li>Ray box or narrow beam of sunlight through a slit</li><li>White card or screen</li></ul></div><div class="box-method"><ol><li>Place the prism on a white card in a darkened room. Direct a narrow beam of white light at one face of the prism.</li><li>Observe the light emerging from the opposite face on the white screen or card.</li><li>Mark the colours and measure the angular spread.</li><li>Optional: use a second prism to recombine the colours back to white light.</li></ol></div><div class="box-diagram"><svg class="demo-svg" viewBox="0 0 480 150" xmlns="http://www.w3.org/2000/svg">
+  <defs><marker id="arrDisp" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#2C2825"/></marker></defs>
+  <text x="240" y="18" text-anchor="middle" class="svg-label" font-weight="700">Dispersion of White Light — Glass Prism</text>
+  <!-- Incident white light -->
+  <line x1="40" y1="80" x2="170" y2="80" stroke="#D0D0D0" stroke-width="4" marker-end="url(#arrDisp)"/>
+  <text x="100" y="72" text-anchor="middle" class="svg-label-sm">White light</text>
+  <!-- Prism -->
+  <polygon points="170,40 260,130 80,130" transform="translate(100,0)" fill="#B8D4FF" stroke="#3A86FF" stroke-width="2" opacity="0.8"/>
+  <text x="230" y="105" text-anchor="middle" class="svg-label-sm" fill="#1A5CC8">Prism</text>
+  <!-- Dispersed rays -->
+  <line x1="295" y1="70" x2="420" y2="40" stroke="violet" stroke-width="2"/>
+  <text x="435" y="40" class="svg-label-sm" fill="purple">Violet (most bent)</text>
+  <line x1="295" y1="75" x2="420" y2="60" stroke="blue" stroke-width="2"/>
+  <line x1="295" y1="80" x2="420" y2="80" stroke="green" stroke-width="2"/>
+  <line x1="295" y1="85" x2="420" y2="100" stroke="#FFB347" stroke-width="2"/>
+  <text x="435" y="100" class="svg-label-sm" fill="#CC7A00">Orange</text>
+  <line x1="295" y1="90" x2="420" y2="120" stroke="red" stroke-width="2"/>
+  <text x="435" y="120" class="svg-label-sm" fill="red">Red (least bent)</text>
+</svg></div><div class="box-observation"><ul><li>White light is dispersed into a continuous visible spectrum: red, orange, yellow, green, blue, indigo, violet (ROYGBIV).</li><li>Violet light is refracted most (highest refractive index in glass, shortest wavelength).</li><li>Red light is refracted least (lowest refractive index in glass, longest wavelength).</li><li>A second inverted prism recombines the colours back to white — proving the prism did not add colour.</li></ul></div><div class="box-analogy"><p>A prism is like a slow-motion camera for light — white light enters as a single beam but the different wavelengths travel at slightly different speeds in glass, causing them to separate and fan out into the rainbow.</p></div><div class="box-exam"><p>Dispersion occurs because different wavelengths have different refractive indices in glass (violet highest, red lowest). State: 'Dispersion is the separation of white light into its constituent colours due to different wavelengths being refracted by different amounts.'</p></div>
+</div><div class="demo-card" style="--accent:#E8637A">
+  <div class="demo-title"><span class="demo-num">12</span><span>Detection of Infrared Radiation</span></div>
+  <div class="box-apparatus"><ul><li>Infrared source: Leslie's cube with hot water, or a radiant heater, or TV remote control</li><li>Thermopile connected to a galvanometer (or sensitive IR detector/camera)</li><li>Black card to block visible light (proves it is IR, not visible light)</li><li>Prism to show IR is beyond red in the spectrum</li></ul></div><div class="box-method"><ol><li>Direct the thermopile at the hot object (Leslie's cube or heater). Record galvanometer reading.</li><li>Interpose a glass plate — glass blocks IR partially. Note change in reading.</li><li>Place a black card in the path — the card blocks visible light but passes IR. Note galvanometer still deflects.</li><li>Classic spectrum method: produce a spectrum with a prism. Move the thermopile beyond the red end of the visible spectrum — galvanometer still deflects, showing IR radiation beyond visible red.</li></ol></div><div class="box-observation"><ul><li>The thermopile registers a deflection when facing the hot source, even when visible light is blocked.</li><li>The detector responds beyond the red end of the visible spectrum — confirming IR is beyond red light.</li><li>This demonstrates that infrared radiation exists and carries energy.</li><li>Dull black surfaces emit most IR (as shown by Leslie's cube).</li></ul></div><div class="box-analogy"><p>Your skin is a natural IR detector — you feel warmth from a fire even when looking away or in a darkened room. This shows IR is distinct from visible light but transfers heat energy the same way.</p></div><div class="box-exam"><p>State: 'Infrared radiation is EM radiation with wavelength greater than visible red (~700 nm to 1 mm). It is detected by a thermopile or thermocouple. It transfers heat energy without a medium.'</p></div>
+</div><div class="demo-card" style="--accent:#9B5DE5">
+  <div class="demo-title"><span class="demo-num">13</span><span>Detection of Ultraviolet Radiation</span></div>
+  <div class="box-apparatus"><ul><li>UV lamp (long-wave UV, e.g. black light)</li><li>Fluorescent material (fluorescent paper, tonic water, washing powder residue on white paper, UV-reactive paint)</li><li>Piece of glass (blocks UV) and quartz glass (passes UV)</li><li>Dark room</li></ul></div><div class="box-method"><ol><li>In a darkened room, direct the UV lamp at a piece of fluorescent material (e.g. white paper washed with fluorescent detergent, or tonic water in a glass).</li><li>Observe the bright blue-white glow — fluorescence shows UV is present.</li><li>Interpose a piece of ordinary glass between lamp and material — fluorescence stops (glass absorbs UV).</li><li>Replace with quartz glass — fluorescence resumes (quartz passes UV).</li></ol></div><div class="box-observation"><ul><li>Fluorescent materials glow brightly when exposed to UV — they absorb UV and re-emit as visible light.</li><li>Ordinary glass blocks UV radiation (no fluorescence through glass).</li><li>Quartz glass transmits UV (fluorescence continues through quartz).</li><li>This demonstrates UV radiation exists beyond the violet end of the visible spectrum.</li></ul></div><div class="box-analogy"><p>UV is to our eyes what dog-whistle frequency is to our ears — our senses can't detect it directly, but we can see its effect through fluorescence, just as we can hear a dog react to sounds we cannot.</p></div><div class="box-exam"><p>State: 'UV radiation has wavelength shorter than visible violet (~10 nm to 400 nm). It cannot be detected by the eye directly but causes fluorescence. Glass absorbs UV; quartz transmits it.'</p></div>
+</div><div class="demo-card" style="--accent:#7C5CBF">
+  <div class="demo-title"><span class="demo-num">14</span><span>Light is a Transverse Wave — Polarisation</span></div>
+  <div class="box-apparatus"><ul><li>Two Polaroid filters (polarising sheets or lenses)</li><li>Light source (lamp or projector — NOT a laser unless safety-rated)</li><li>Rotating mount for second Polaroid</li></ul></div><div class="box-method"><ol><li>Place the first Polaroid (Polariser P1) in front of the light source — it only transmits light vibrating in one plane.</li><li>Look through the second Polaroid (Analyser P2) at the light through P1.</li><li>Slowly rotate P2 through 360°.</li><li>Observe the intensity of transmitted light as P2 is rotated.</li></ol></div><div class="box-diagram"><svg class="demo-svg" viewBox="0 0 480 160" xmlns="http://www.w3.org/2000/svg">
+  <text x="240" y="18" text-anchor="middle" class="svg-label" font-weight="700">Polarisation — Two Polaroid Filters</text>
+  <!-- Light source -->
+  <rect x="20" y="65" width="50" height="30" rx="4" fill="#FFD700" opacity="0.8"/>
+  <text x="45" y="83" text-anchor="middle" class="svg-label-sm">Light</text>
+  <!-- Unpolarised rays -->
+  <line x1="70" y1="75" x2="130" y2="75" stroke="#FFD700" stroke-width="3"/>
+  <line x1="90" y1="68" x2="90" y2="82" stroke="#FFD700" stroke-width="1.5"/>
+  <line x1="105" y1="66" x2="105" y2="84" stroke="#E8637A" stroke-width="1.5"/>
+  <line x1="120" y1="70" x2="120" y2="80" stroke="#3A86FF" stroke-width="1.5"/>
+  <!-- First polaroid -->
+  <rect x="132" y="50" width="10" height="50" rx="2" fill="#7C5CBF"/>
+  <text x="137" y="45" text-anchor="middle" class="svg-label-sm" fill="#4C2E8C">P1 (V)</text>
+  <!-- Partially polarised -->
+  <line x1="142" y1="75" x2="220" y2="75" stroke="#FFD700" stroke-width="3"/>
+  <line x1="160" y1="68" x2="160" y2="82" stroke="#FFD700" stroke-width="2"/>
+  <line x1="185" y1="68" x2="185" y2="82" stroke="#FFD700" stroke-width="2"/>
+  <!-- Second polaroid - aligned -->
+  <rect x="222" y="50" width="10" height="50" rx="2" fill="#7C5CBF"/>
+  <text x="227" y="45" text-anchor="middle" class="svg-label-sm" fill="#4C2E8C">P2 (V)</text>
+  <!-- Light passes through -->
+  <line x1="232" y1="75" x2="310" y2="75" stroke="#FFD700" stroke-width="3"/>
+  <text x="270" y="65" text-anchor="middle" class="svg-label-sm" fill="#267339">Light passes</text>
+  <!-- Third polaroid - crossed -->
+  <rect x="340" y="50" width="10" height="50" rx="2" fill="#E8637A"/>
+  <text x="345" y="45" text-anchor="middle" class="svg-label-sm" fill="#C94040">P3 (H)</text>
+  <!-- Blocked -->
+  <text x="400" y="78" class="svg-label" fill="#C94040">✗ dark</text>
+  <text x="240" y="135" text-anchor="middle" class="svg-label-sm">Rotate P2 by 90° → light blocked (crossed polaroids)</text>
+</svg></div><div class="box-observation"><ul><li>When P1 and P2 are aligned (transmission axes parallel): maximum brightness.</li><li>As P2 is rotated, intensity gradually decreases.</li><li>When P2 has been rotated 90° (crossed polaroids): no light passes — minimum brightness (extinction).</li><li>At 180° alignment: maximum brightness again.</li><li>This variation in intensity with rotation is only possible if light is a TRANSVERSE wave (vibrations perpendicular to direction of travel).</li><li>Longitudinal waves (like sound) cannot be polarised.</li></ul></div><div class="box-analogy"><p>Like trying to push a fence post through a set of railings — if the post is aligned with the gaps it passes through; rotate it 90° and it's blocked. Polaroid filters are like railings for light waves.</p></div><div class="box-exam"><p>State: 'Polarisation can only occur with transverse waves. Since light can be polarised, this is evidence that light is a transverse wave.' Longitudinal waves (sound) cannot be polarised — a key distinction.</p></div>
+</div>
+</div>
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:24px;right:24px;width:44px;height:44px;border-radius:50%;background:var(--purple);color:#fff;border:none;font-size:1.2rem;cursor:pointer;box-shadow:var(--shadow);opacity:0;transition:opacity 0.3s;pointer-events:none;">↑</button>
+<script>
+
+function showTopic(id) {
+  document.querySelectorAll('.section').forEach(s => { s.style.display = 'none'; });
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  var el = document.getElementById(id);
+  if (el) { el.style.display = 'block'; }
+  var btn = document.querySelector('.nav-btn[data-id="' + id + '"]');
+  if (btn) btn.classList.add('active');
+  if (el) el.scrollIntoView({behavior:'smooth', block:'start'});
+}
+window.addEventListener('scroll', function() {
+  var btn = document.getElementById('scrollTop');
+  if (btn) btn.classList.toggle('visible', window.scrollY > 400);
+});
+window.addEventListener('DOMContentLoaded', function() {
+  var firstBtn = document.querySelector('.nav-btn[data-id]');
+  if (firstBtn) firstBtn.classList.add('active');
+});
+
+</script>
+</body>
+</html>

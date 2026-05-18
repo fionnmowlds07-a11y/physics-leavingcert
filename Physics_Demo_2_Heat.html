@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LC Physics Demos — Heat</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F7F4EF;
+    --surface: #FFFFFF;
+    --surface2: #F0EDE8;
+    --border: #E2DDD7;
+    --text: #2C2825;
+    --text-muted: #7A7068;
+    --t1: #FF6B6B; --t1-light: #FFE8E8; --t1-dark: #C94040;
+    --t2: #4ECDC4; --t2-light: #E0F7F6; --t2-dark: #2A9990;
+    --t3: #FFB347; --t3-light: #FFF3E0; --t3-dark: #CC7A00;
+    --t4: #7C5CBF; --t4-light: #EDE8F7; --t4-dark: #5a3da0;
+    --t5: #56C271; --t5-light: #E6F8EB; --t5-dark: #267339;
+    --t6: #E8637A; --t6-light: #FCE8EC; --t6-dark: #B03050;
+    --t7: #3A86FF; --t7-light: #E0ECFF; --t7-dark: #1A5CC8;
+    --t8: #F77F00; --t8-light: #FFF0DC; --t8-dark: #B85A00;
+    --t9: #2EC4B6; --t9-light: #E0FAF7; --t9-dark: #1A9088;
+    --t10: #9B5DE5; --t10-light: #F3EAFF; --t10-dark: #6B2DAF;
+    --t11: #D62828; --t11-light: #FFECEC; --t11-dark: #9A1A1A;
+    --purple: #7C5CBF; --purple-light: #EDE8F7;
+    --green: #56C271; --green-light: #E6F8EB;
+    --radius: 14px;
+    --shadow: 0 4px 20px rgba(0,0,0,0.08);
+    --shadow-hover: 0 8px 32px rgba(0,0,0,0.14);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Lexend', sans-serif; background: var(--bg); color: var(--text); line-height: 1.8; font-size: 16px; }
+
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(247,244,239,0.96);
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid var(--border);
+    padding: 8px 16px;
+    display: flex; align-items: center; gap: 6px;
+    flex-wrap: wrap; min-height: 56px;
+  }
+  .nav-logo { font-family: 'Lexend Mega', sans-serif; font-size: 0.95rem; color: var(--text); margin-right: 6px; }
+  .nav-logo span { color: var(--t1); }
+  .nav-btn {
+    padding: 5px 11px; border-radius: 18px;
+    border: 2px solid transparent;
+    font-family: 'Lexend', sans-serif;
+    font-size: 0.72rem; font-weight: 600;
+    cursor: pointer; transition: all 0.2s;
+    background: var(--surface); color: var(--text-muted);
+    white-space: nowrap;
+  }
+  .nav-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+  .nav-btn.t1  { border-color: var(--t1); }  .nav-btn.t1.active,  .nav-btn.t1:hover  { background: var(--t1);  color:#fff; }
+  .nav-btn.t2  { border-color: var(--t2); }  .nav-btn.t2.active,  .nav-btn.t2:hover  { background: var(--t2);  color:var(--text); }
+  .nav-btn.t3  { border-color: var(--t3); }  .nav-btn.t3.active,  .nav-btn.t3:hover  { background: var(--t3);  color:var(--text); }
+  .nav-btn.t4  { border-color: var(--t4); }  .nav-btn.t4.active,  .nav-btn.t4:hover  { background: var(--t4);  color:#fff; }
+  .nav-btn.t5  { border-color: var(--t5); }  .nav-btn.t5.active,  .nav-btn.t5:hover  { background: var(--t5);  color:#fff; }
+  .nav-btn.t6  { border-color: var(--t6); }  .nav-btn.t6.active,  .nav-btn.t6:hover  { background: var(--t6);  color:#fff; }
+  .nav-btn.t7  { border-color: var(--t7); }  .nav-btn.t7.active,  .nav-btn.t7:hover  { background: var(--t7);  color:#fff; }
+  .nav-btn.t8  { border-color: var(--t8); }  .nav-btn.t8.active,  .nav-btn.t8:hover  { background: var(--t8);  color:#fff; }
+  .nav-btn.t9  { border-color: var(--t9); }  .nav-btn.t9.active,  .nav-btn.t9:hover  { background: var(--t9);  color:#fff; }
+  .nav-btn.t10 { border-color: var(--t10); } .nav-btn.t10.active, .nav-btn.t10:hover { background: var(--t10); color:#fff; }
+  .nav-btn.t11 { border-color: var(--t11); } .nav-btn.t11.active, .nav-btn.t11:hover { background: var(--t11); color:#fff; }
+  .nav-btn.flash { border-color: var(--purple); } .nav-btn.flash.active, .nav-btn.flash:hover { background: var(--purple); color:#fff; }
+
+  .hero { padding: 44px 24px 28px; text-align: center; }
+  .hero h1 { font-family: 'Lexend Mega', sans-serif; font-size: clamp(1.5rem,4vw,2.6rem); line-height:1.2; }
+  .hero h1 .a1{color:var(--t1);} .hero h1 .a2{color:var(--t2-dark);} .hero h1 .a3{color:var(--t3-dark);}
+  .hero p { margin-top:10px; color:var(--text-muted); max-width:620px; margin-left:auto; margin-right:auto; }
+  .stats-row { display:flex; justify-content:center; gap:20px; flex-wrap:wrap; margin-top:20px; }
+  .stat-chip { background:var(--surface); border:2px solid var(--border); border-radius:30px; padding:8px 20px; font-size:0.85rem; font-weight:600; }
+  .chapter-pills { display:flex; justify-content:center; gap:8px; flex-wrap:wrap; margin-top:20px; }
+  .pill { padding:7px 16px; border-radius:28px; font-weight:600; font-size:0.78rem; cursor:pointer; transition:all 0.2s; border:none; }
+  .pill:hover { transform:translateY(-3px); box-shadow:var(--shadow-hover); }
+
+  .section { display:none; padding:0 16px 60px; max-width:920px; margin:0 auto; }
+  .section.active { display:block; animation:fadeIn 0.3s ease; }
+  @keyframes fadeIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+
+  .ch-header {
+    border-radius:var(--radius); padding:28px 28px; color:white;
+    margin-bottom:24px; position:relative; overflow:hidden;
+  }
+  .ch-header h1 { font-family:'Lexend Mega',sans-serif; font-size:1.45rem; }
+  .ch-header p { opacity:0.88; margin-top:7px; font-size:0.92rem; }
+  .ch-header .big-num { position:absolute; right:22px; top:50%; transform:translateY(-50%); font-family:'Lexend Mega',sans-serif; font-size:5.5rem; opacity:0.12; line-height:1; }
+
+  .topic-card {
+    background:var(--surface); border-radius:var(--radius); padding:24px;
+    margin-bottom:20px; box-shadow:var(--shadow);
+    border-left:5px solid var(--t1); transition:box-shadow 0.2s;
+  }
+  .topic-card:hover { box-shadow:var(--shadow-hover); }
+  .topic-card h2 { font-size:1.15rem; font-weight:700; margin-bottom:12px; display:flex; align-items:center; gap:8px; }
+  .topic-card h3 { font-size:0.95rem; font-weight:600; margin:16px 0 7px; }
+  .topic-card p { margin-bottom:9px; }
+  .topic-card ul { padding-left:20px; margin-bottom:9px; }
+  .topic-card li { margin-bottom:4px; }
+
+  /* Term entry */
+  .term-entry { margin-bottom:18px; padding-bottom:18px; border-bottom:1px solid var(--border); }
+  .term-entry:last-child { border-bottom:none; margin-bottom:0; padding-bottom:0; }
+  .term-name { font-size:1.05rem; font-weight:700; margin-bottom:6px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+
+  /* Boxes */
+  .def-box { background:var(--surface2); border:2px dashed var(--border); border-radius:10px; padding:12px 16px; margin:8px 0; position:relative; }
+  .def-box::before { content:'📖 DEFINITION'; display:block; font-size:0.65rem; font-weight:700; letter-spacing:1px; color:var(--text-muted); margin-bottom:5px; }
+  .def-box p { margin:0; font-weight:500; }
+  .analogy-box { background:#FFF9E6; border:2px solid #FFD966; border-radius:10px; padding:12px 16px; margin:8px 0; }
+  .analogy-box::before { content:'💡 ANALOGY'; display:block; font-size:0.65rem; font-weight:700; letter-spacing:1px; color:#997700; margin-bottom:5px; }
+  .memory-box { background:#F0FFF4; border:2px solid var(--green); border-radius:10px; padding:12px 16px; margin:8px 0; }
+  .memory-box::before { content:'🧠 MEMORY TRICK'; display:block; font-size:0.65rem; font-weight:700; letter-spacing:1px; color:#267339; margin-bottom:5px; }
+  .exam-box { background:#FFF0F3; border:2px solid var(--t1); border-radius:10px; padding:12px 16px; margin:8px 0; }
+  .exam-box::before { content:'📝 EXAM TIP'; display:block; font-size:0.65rem; font-weight:700; letter-spacing:1px; color:var(--t1-dark); margin-bottom:5px; }
+  .code-box { background:#1e1e2e; color:#cdd6f4; border-radius:10px; padding:12px 16px; margin:8px 0; font-family:monospace; font-size:0.88rem; overflow-x:auto; }
+
+  .badge { display:inline-block; padding:2px 9px; border-radius:18px; font-size:0.68rem; font-weight:700; letter-spacing:0.4px; }
+  .b-core   { background:#FFE8E8; color:#C94040; }
+  .b-useful { background:#E0F7F6; color:#2A9990; }
+  .b-extra  { background:#F0EDE8; color:#7A7068; }
+
+  comp-table, .comp-table { width:100%; border-collapse:collapse; margin:12px 0; font-size:0.86rem; border-radius:10px; overflow:hidden; }
+  .comp-table th { background:var(--t1); color:#fff; padding:9px 12px; text-align:left; font-weight:600; }
+  .comp-table td { padding:8px 12px; border-bottom:1px solid var(--border); }
+  .comp-table tr:nth-child(even) td { background:var(--surface2); }
+  .comp-table tr:last-child td { border-bottom:none; }
+
+  /* Big O grid */
+  .big-o-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:14px 0; }
+  @media(max-width:580px){ .big-o-grid{grid-template-columns:1fr;} }
+  .big-o-card { border-radius:10px; padding:13px; border:2px solid; }
+  .big-o-card .notation { font-size:1.25rem; font-weight:700; }
+  .big-o-card .label { font-size:0.78rem; font-weight:600; margin:3px 0; }
+  .big-o-card .desc { font-size:0.8rem; color:var(--text-muted); }
+  .o1    { border-color:#56C271; background:#E6F8EB; }
+  .ologn { border-color:#4ECDC4; background:#E0F7F6; }
+  .on    { border-color:#FFB347; background:#FFF3E0; }
+  .on2   { border-color:#FF6B6B; background:#FFE8E8; }
+  .onlogn{ border-color:#C9A800; background:#FFFBE0; }
+
+  /* Accordion for less-important terms */
+  .accordion { margin:8px 0; border-radius:10px; overflow:hidden; border:2px solid var(--border); }
+  .accordion-header { width:100%; text-align:left; padding:11px 16px; background:var(--surface2); border:none; font-family:'Lexend',sans-serif; font-size:0.92rem; font-weight:600; cursor:pointer; display:flex; justify-content:space-between; align-items:center; transition:background 0.2s; }
+  .accordion-header:hover { background:var(--border); }
+  .accordion-header .arrow { transition:transform 0.3s; font-size:0.78rem; }
+  .accordion-header.open .arrow { transform:rotate(180deg); }
+  .accordion-body { display:none; padding:14px 16px; background:var(--surface); border-top:2px solid var(--border); }
+  .accordion-body.open { display:block; }
+
+  /* Flashcards */
+  #flashcards { padding:0 16px 80px; max-width:920px; margin:0 auto; display:none; }
+  
+  .flash-header { background:linear-gradient(135deg,var(--purple) 0%,#5a3da0 100%); border-radius:var(--radius); padding:28px; color:white; margin-bottom:24px; position:relative; overflow:hidden; }
+  .flash-header h1 { font-family:'Lexend Mega',sans-serif; font-size:1.45rem; }
+  .flash-header p { opacity:0.85; margin-top:7px; }
+  .flash-header .big-num { position:absolute; right:22px; top:50%; transform:translateY(-50%); font-family:'Lexend Mega',sans-serif; font-size:5.5rem; opacity:0.12; }
+
+  .flash-controls { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:18px; align-items:center; }
+  .flash-filter { padding:6px 14px; border-radius:18px; border:2px solid var(--border); background:var(--surface); font-family:'Lexend',sans-serif; font-size:0.76rem; font-weight:600; cursor:pointer; transition:all 0.2s; color:var(--text-muted); }
+  .flash-filter:hover, .flash-filter.factive { background:var(--purple); color:#fff; border-color:var(--purple); }
+
+  .flashcard-area { display:flex; flex-direction:column; align-items:center; }
+  .flashcard { width:100%; max-width:640px; perspective:1200px; min-height:200px; cursor:pointer; margin-bottom:18px; }
+  .flashcard-inner { position:relative; width:100%; min-height:200px; transition:transform 0.55s cubic-bezier(.4,.2,.2,1); transform-style:preserve-3d; }
+  .flashcard.flipped .flashcard-inner { transform:rotateY(180deg); }
+  .flashcard-front, .flashcard-back { position:absolute; width:100%; min-height:200px; backface-visibility:hidden; border-radius:var(--radius); padding:28px 24px; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; box-shadow:var(--shadow); }
+  .flashcard-front { background:var(--surface); border:3px solid var(--purple); }
+  .flashcard-back { background:var(--purple); color:white; transform:rotateY(180deg); }
+  .flashcard-front .card-topic { font-size:0.68rem; font-weight:700; letter-spacing:1px; text-transform:uppercase; margin-bottom:10px; color:var(--text-muted); }
+  .flashcard-front .card-q { font-size:1.1rem; font-weight:600; }
+  .flashcard-front .flip-hint { margin-top:14px; font-size:0.72rem; color:var(--text-muted); }
+  .flashcard-back .card-a { font-size:0.95rem; line-height:1.7; }
+  .flash-nav { display:flex; gap:12px; align-items:center; }
+  .flash-btn { padding:9px 22px; border-radius:22px; border:none; font-family:'Lexend',sans-serif; font-size:0.88rem; font-weight:600; cursor:pointer; transition:all 0.2s; background:var(--purple); color:#fff; }
+  .flash-btn:hover { background:#5a3da0; transform:translateY(-2px); box-shadow:var(--shadow-hover); }
+  .flash-btn:disabled { opacity:0.4; cursor:not-allowed; transform:none; }
+  .flash-counter { font-weight:600; color:var(--text-muted); font-size:0.88rem; min-width:80px; text-align:center; }
+  .flash-progress { width:100%; max-width:640px; height:6px; background:var(--border); border-radius:3px; margin-bottom:16px; overflow:hidden; }
+  .flash-progress-bar { height:100%; background:var(--purple); border-radius:3px; transition:width 0.4s; }
+
+  #scrollTop { position:fixed; bottom:22px; right:22px; width:40px; height:40px; background:var(--text); color:#fff; border:none; border-radius:50%; font-size:1rem; cursor:pointer; box-shadow:var(--shadow-hover); transition:all 0.2s; z-index:99; opacity:0; pointer-events:none; }
+  #scrollTop.visible { opacity:1; pointer-events:all; }
+  #scrollTop:hover { transform:scale(1.1); }
+  .icon { font-size:1.15rem; }
+
+  /* search bar */
+  .search-wrap { max-width:920px; margin:0 auto 4px; padding:0 16px; }
+  .search-input { width:100%; padding:11px 18px; border-radius:30px; border:2px solid var(--border); font-family:'Lexend',sans-serif; font-size:0.92rem; background:var(--surface); color:var(--text); outline:none; transition:border-color 0.2s; }
+  .search-input:focus { border-color:var(--purple); }
+  .search-result-count { font-size:0.8rem; color:var(--text-muted); text-align:center; margin:6px 0 0; }
+
+  /* colour overrides per topic */
+  .tc-t1  { border-left-color:var(--t1);  } .tc-t2  { border-left-color:var(--t2);  }
+  .tc-t3  { border-left-color:var(--t3);  } .tc-t4  { border-left-color:var(--t4);  }
+  .tc-t5  { border-left-color:var(--t5);  } .tc-t6  { border-left-color:var(--t6);  }
+  .tc-t7  { border-left-color:var(--t7);  } .tc-t8  { border-left-color:var(--t8);  }
+  .tc-t9  { border-left-color:var(--t9);  } .tc-t10 { border-left-color:var(--t10); }
+  .tc-t11 { border-left-color:var(--t11); }
+
+  /* ── shared navbar additions ── */
+  .nav-home {
+    display:inline-flex; align-items:center; gap:5px;
+    padding:5px 13px; border-radius:18px;
+    border:2px solid var(--border);
+    background:var(--surface);
+    font-family:'Lexend',sans-serif; font-size:0.72rem; font-weight:700;
+    color:var(--text-muted); text-decoration:none;
+    transition:all 0.2s; white-space:nowrap;
+  }
+  .nav-home:hover { background:var(--text); color:#fff; border-color:var(--text); transform:translateY(-2px); }
+  .nav-flashcards {
+    display:inline-flex; align-items:center; gap:5px;
+    padding:5px 13px; border-radius:18px;
+    border:2px solid var(--purple); background:var(--surface);
+    font-family:'Lexend',sans-serif; font-size:0.72rem; font-weight:700;
+    color:var(--purple); text-decoration:none;
+    transition:all 0.2s; white-space:nowrap; margin-left:auto;
+  }
+  .nav-flashcards:hover { background:var(--purple); color:#fff; transform:translateY(-2px); }
+  .nav-divider { width:1px; height:20px; background:var(--border); margin:0 4px; flex-shrink:0; }
+
+
+  /* ── improved nav file links ── */
+  .nav-home {
+    display:inline-flex; align-items:center; gap:5px;
+    padding:5px 12px; border-radius:14px;
+    border:2px solid var(--border); background:var(--surface);
+    font-family:'Lexend',sans-serif; font-size:0.72rem; font-weight:700;
+    color:var(--text-muted); text-decoration:none; transition:all 0.2s;
+    white-space:nowrap; flex-shrink:0;
+  }
+  .nav-home:hover { background:var(--text); color:#fff; border-color:var(--text); }
+  .nav-divider { width:1px; height:18px; background:var(--border); flex-shrink:0; }
+  .nav-file-link {
+    display:inline-flex; align-items:center;
+    padding:5px 11px; border-radius:14px;
+    border:2px solid var(--border); background:var(--surface);
+    font-family:'Lexend',sans-serif; font-size:0.7rem; font-weight:700;
+    color:var(--text-muted); text-decoration:none; transition:all 0.2s;
+    white-space:nowrap;
+  }
+  .nav-file-link:hover { border-color:var(--purple); color:var(--purple); transform:translateY(-1px); }
+  .nav-file-link.current { background:var(--purple); color:#fff; border-color:var(--purple); }
+  .nav-file-link.fc-link { border-color:var(--purple); color:var(--purple); }
+  .nav-file-link.fc-link:hover { background:var(--purple); color:#fff; }
+  /* label above file links group */
+  .nav-files-group {
+    display:flex; align-items:center; gap:6px; flex-wrap:wrap;
+  }
+  .nav-files-label {
+    font-size:0.62rem; font-weight:800; letter-spacing:0.8px;
+    text-transform:uppercase; color:var(--text-muted);
+    white-space:nowrap; flex-shrink:0;
+  }
+  /* hero simplified — no switcher section */
+  .hero-compact {
+    text-align:center; padding:28px 20px 16px;
+    border-bottom:2px solid var(--border);
+    margin-bottom:20px;
+    background:var(--surface);
+  }
+  .hero-compact h1 { font-family:'Lexend Mega',sans-serif; font-size:clamp(1.1rem,3vw,1.6rem); margin-bottom:6px; }
+  .hero-compact p  { color:var(--text-muted); font-size:0.85rem; max-width:640px; margin:0 auto 14px; }
+  .hero-compact .topic-pills { display:flex; justify-content:center; gap:8px; flex-wrap:wrap; }
+  .hero-compact .topic-pill {
+    padding:9px 20px; border-radius:24px; border:none;
+    font-family:'Lexend',sans-serif; font-size:0.82rem; font-weight:700;
+    cursor:pointer; transition:all 0.2s; box-shadow:0 2px 8px rgba(0,0,0,0.12);
+  }
+  .hero-compact .topic-pill:hover { transform:translateY(-2px); box-shadow:0 4px 14px rgba(0,0,0,0.18); }
+  .hero-compact .pill-hint {
+    margin-top:10px; font-size:0.72rem; color:var(--text-muted);
+  }
+
+  .nav-home {
+    display:inline-flex; align-items:center; gap:5px;
+    padding:5px 12px; border-radius:14px;
+    border:2px solid var(--border); background:var(--surface);
+    font-family:'Lexend',sans-serif; font-size:0.72rem; font-weight:700;
+    color:var(--text-muted); text-decoration:none; transition:all 0.2s;
+    white-space:nowrap; flex-shrink:0;
+  }
+  .nav-home:hover { background:var(--text); color:#fff; border-color:var(--text); }
+  .nav-divider { width:1px; height:18px; background:var(--border); flex-shrink:0; }
+  .nav-file-link {
+    display:inline-flex; align-items:center;
+    padding:5px 10px; border-radius:14px;
+    border:2px solid var(--border); background:var(--surface);
+    font-family:'Lexend',sans-serif; font-size:0.68rem; font-weight:700;
+    color:var(--text-muted); text-decoration:none; transition:all 0.2s;
+    white-space:nowrap;
+  }
+  .nav-file-link:hover { border-color:var(--purple); color:var(--purple); transform:translateY(-1px); }
+  .nav-file-link.current { background:var(--purple); color:#fff; border-color:var(--purple); }
+  .nav-file-link.fc-link { border-color:var(--purple); color:var(--purple); }
+  .nav-file-link.fc-link:hover { background:var(--purple); color:#fff; }
+  .nav-files-group { display:flex; align-items:center; gap:5px; flex-wrap:wrap; }
+  .nav-files-label { font-size:0.62rem; font-weight:800; letter-spacing:0.8px; text-transform:uppercase; color:var(--text-muted); white-space:nowrap; flex-shrink:0; }
+  .hero-compact {
+    text-align:center; padding:28px 20px 16px;
+    border-bottom:2px solid var(--border); margin-bottom:20px;
+    background:var(--surface);
+  }
+  .hero-compact h1 { font-family:'Lexend Mega',sans-serif; font-size:clamp(1.1rem,3vw,1.6rem); margin-bottom:6px; }
+  .hero-compact p  { color:var(--text-muted); font-size:0.85rem; max-width:640px; margin:0 auto 14px; }
+  .hero-compact .topic-pills { display:flex; justify-content:center; gap:8px; flex-wrap:wrap; }
+  .hero-compact .topic-pill {
+    padding:9px 20px; border-radius:24px; border:none;
+    font-family:'Lexend',sans-serif; font-size:0.82rem; font-weight:700;
+    cursor:pointer; transition:all 0.2s; box-shadow:0 2px 8px rgba(0,0,0,0.12);
+  }
+  .hero-compact .topic-pill:hover { transform:translateY(-2px); box-shadow:0 4px 14px rgba(0,0,0,0.18); }
+  .hero-compact .pill-hint { margin-top:10px; font-size:0.72rem; color:var(--text-muted); }
+
+
+  /* Demo-specific styles */
+  .demo-card {
+    background: var(--surface); border-radius: var(--radius);
+    padding: 24px 26px; margin-bottom: 22px;
+    box-shadow: var(--shadow); border-left: 5px solid var(--accent, var(--t7));
+    transition: box-shadow 0.2s;
+  }
+  .demo-card:hover { box-shadow: var(--shadow-hover); }
+  .demo-num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 32px; height: 32px; border-radius: 50%;
+    background: var(--accent, var(--t7)); color: #fff;
+    font-size: 0.8rem; font-weight: 800; flex-shrink: 0; margin-right: 10px;
+  }
+  .demo-title {
+    font-family: 'Lexend Mega', sans-serif;
+    font-size: 1.05rem; font-weight: 700;
+    display: flex; align-items: center; margin-bottom: 16px;
+  }
+  .demo-title span { color: var(--text); }
+
+  .box-apparatus { background: #EEF6FF; border: 2px solid #3A86FF; border-radius: 10px; padding: 13px 16px; margin: 10px 0; }
+  .box-apparatus::before { content: '🔬 APPARATUS'; display: block; font-size: 0.65rem; font-weight: 800; letter-spacing: 1px; color: #1A5CC8; margin-bottom: 6px; }
+  .box-method { background: #F0FFF4; border: 2px solid var(--green); border-radius: 10px; padding: 13px 16px; margin: 10px 0; }
+  .box-method::before { content: '⚗️ METHOD'; display: block; font-size: 0.65rem; font-weight: 800; letter-spacing: 1px; color: #267339; margin-bottom: 6px; }
+  .box-observation { background: #FFF9E6; border: 2px solid #FFD966; border-radius: 10px; padding: 13px 16px; margin: 10px 0; }
+  .box-observation::before { content: '👁️ OBSERVATION'; display: block; font-size: 0.65rem; font-weight: 800; letter-spacing: 1px; color: #997700; margin-bottom: 6px; }
+  .box-diagram { background: var(--surface2); border: 2px dashed var(--border); border-radius: 10px; padding: 16px; margin: 10px 0; text-align: center; }
+  .box-diagram::before { content: '📐 DIAGRAM'; display: block; font-size: 0.65rem; font-weight: 800; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 10px; text-align: left; }
+  .box-analogy { background: #F3EAFF; border: 2px solid var(--t10); border-radius: 10px; padding: 13px 16px; margin: 10px 0; }
+  .box-analogy::before { content: '💡 ANALOGY'; display: block; font-size: 0.65rem; font-weight: 800; letter-spacing: 1px; color: #6B2DAF; margin-bottom: 6px; }
+  .box-exam { background: #FFF0F3; border: 2px solid var(--t1); border-radius: 10px; padding: 13px 16px; margin: 10px 0; }
+  .box-exam::before { content: '📝 EXAM TIP'; display: block; font-size: 0.65rem; font-weight: 800; letter-spacing: 1px; color: #C94040; margin-bottom: 6px; }
+
+  .box-apparatus ul, .box-method ol, .box-observation ul, .box-observation ol {
+    padding-left: 20px; margin: 4px 0;
+  }
+  .box-apparatus ul li, .box-method ol li, .box-observation ul li, .box-observation ol li {
+    margin-bottom: 4px; font-size: 0.92rem; line-height: 1.6;
+  }
+  .box-method ol { counter-reset: none; }
+
+  /* SVG diagram styles */
+  .demo-svg { width: 100%; max-width: 520px; height: auto; display: block; margin: 0 auto; }
+  .svg-label { font-family: 'Lexend', sans-serif; font-size: 12px; fill: #2C2825; }
+  .svg-label-sm { font-family: 'Lexend', sans-serif; font-size: 10px; fill: #7A7068; }
+  .svg-arrow { fill: none; stroke: #2C2825; stroke-width: 1.5; marker-end: url(#arr); }
+
+  .nav-home {
+    display:inline-flex; align-items:center; gap:5px;
+    padding:5px 12px; border-radius:14px;
+    border:2px solid var(--border); background:var(--surface);
+    font-family:'Lexend',sans-serif; font-size:0.72rem; font-weight:700;
+    color:var(--text-muted); text-decoration:none; transition:all 0.2s;
+    white-space:nowrap; flex-shrink:0;
+  }
+  .nav-home:hover { background:var(--text); color:#fff; border-color:var(--text); }
+  .nav-divider { width:1px; height:18px; background:var(--border); flex-shrink:0; }
+  .nav-file-link {
+    display:inline-flex; align-items:center;
+    padding:5px 10px; border-radius:14px;
+    border:2px solid var(--border); background:var(--surface);
+    font-family:'Lexend',sans-serif; font-size:0.68rem; font-weight:700;
+    color:var(--text-muted); text-decoration:none; transition:all 0.2s;
+    white-space:nowrap;
+  }
+  .nav-file-link:hover { border-color:var(--purple); color:var(--purple); transform:translateY(-1px); }
+  .nav-file-link.current { background:var(--purple); color:#fff; border-color:var(--purple); }
+  .nav-files-group { display:flex; align-items:center; gap:5px; flex-wrap:wrap; }
+  .nav-files-label { font-size:0.62rem; font-weight:800; letter-spacing:0.8px; text-transform:uppercase; color:var(--text-muted); white-space:nowrap; flex-shrink:0; }
+  .hero-compact {
+    text-align:center; padding:28px 20px 16px;
+    border-bottom:2px solid var(--border); margin-bottom:20px;
+    background:var(--surface);
+  }
+  .hero-compact h1 { font-family:'Lexend Mega',sans-serif; font-size:clamp(1.1rem,3vw,1.6rem); margin-bottom:6px; }
+  .hero-compact p  { color:var(--text-muted); font-size:0.85rem; max-width:640px; margin:0 auto 14px; }
+  .hero-compact .topic-pills { display:flex; justify-content:center; gap:8px; flex-wrap:wrap; }
+  .hero-compact .topic-pill {
+    padding:9px 20px; border-radius:24px; border:none;
+    font-family:'Lexend',sans-serif; font-size:0.82rem; font-weight:700;
+    cursor:pointer; transition:all 0.2s; box-shadow:0 2px 8px rgba(0,0,0,0.12);
+  }
+  .hero-compact .topic-pill:hover { transform:translateY(-2px); box-shadow:0 4px 14px rgba(0,0,0,0.18); }
+  .hero-compact .pill-hint { margin-top:10px; font-size:0.72rem; color:var(--text-muted); }
+
+</style>
+</head>
+<body>
+<nav>
+  <a href="Physics.html" class="nav-home">🏠 Home</a>
+  <span class="nav-divider"></span>
+  <button class="nav-btn" data-id="heat" style="border-color:#E8637A" onclick="showTopic('heat')">🌡️ Heat</button>
+  <span class="nav-divider"></span>
+  <div class="nav-files-group">
+    <span class="nav-files-label">Files:</span>
+    <a href="Physics_Demo_1_Mechanics.html" class="nav-file-link ">1: Mechanics</a>
+    <a href="Physics_Demo_2_Heat.html" class="nav-file-link current">2: Heat</a>
+    <a href="Physics_Demo_3_WavesSoundLight.html" class="nav-file-link ">3: Waves, Sound & Light</a>
+    <a href="Physics_Demo_4_Electricity_A.html" class="nav-file-link ">4a: Electricity A</a>
+    <a href="Physics_Demo_5_Electricity_B.html" class="nav-file-link ">4b: Electricity B + Modern</a>
+  </div>
+</nav>
+<div class="hero-compact" id="heroSection">
+  <h1>LC Physics Demonstrations <span style="font-size:0.6em;color:var(--text-muted);font-family:'Lexend',sans-serif;font-weight:600;">— File 2 of 5</span></h1>
+  <p>Thermometric properties, conduction, convection, radiation, Leslie cube · 6 demonstrations</p>
+  <div class="topic-pills">
+    <button class="topic-pill" style="background:#E8637A;color:#fff" onclick="showTopic('heat')">🌡️ Heat</button>
+  </div>
+  <p class="pill-hint">Click a topic above to jump in ↑</p>
+</div>
+<div class="section" id="heat" style="padding:0 16px 60px;max-width:960px;margin:0 auto;display:none;">
+  <div class="ch-header" style="background:#E8637A;margin-bottom:24px;">
+    <h1>🌡️ Heat Demonstrations</h1>
+  </div>
+  <div class="demo-card" style="--accent:#3A86FF">
+  <div class="demo-title"><span class="demo-num">1</span><span>Demonstrations of Thermometric Properties</span></div>
+  <div class="box-apparatus"><ul><li>Mercury-in-glass thermometer</li><li>Thermocouple thermometer with galvanometer or mV meter</li><li>Platinum resistance thermometer (with Wheatstone bridge or ohmmeter)</li><li>Constant volume gas thermometer (optional)</li><li>Beakers of water at known temperatures (ice, room temp, boiling)</li></ul></div><div class="box-method"><ol><li>Place each thermometer type into a beaker of ice-water (0°C). Record each reading.</li><li>Transfer to a beaker of boiling water (100°C). Record each reading again.</li><li>Point out that each relies on a different physical property that changes with temperature: mercury-in-glass → length of liquid column; thermocouple → EMF between junctions; platinum resistance → electrical resistance; constant volume gas thermometer → pressure of gas.</li></ol></div><div class="box-diagram"><svg class="demo-svg" viewBox="0 0 480 160" xmlns="http://www.w3.org/2000/svg">
+  <text x="240" y="18" text-anchor="middle" class="svg-label" font-weight="700">Thermometric Properties</text>
+  <!-- Mercury thermometer -->
+  <rect x="50" y="50" width="14" height="80" rx="7" fill="#E0ECFF" stroke="#3A86FF" stroke-width="1.5"/>
+  <rect x="55" y="90" width="4" height="35" rx="2" fill="#E8637A"/>
+  <circle cx="57" cy="130" r="8" fill="#E8637A"/>
+  <text x="57" y="150" text-anchor="middle" class="svg-label-sm">Mercury</text>
+  <!-- Thermocouple -->
+  <line x1="160" y1="50" x2="160" y2="130" stroke="#FFB347" stroke-width="2"/>
+  <line x1="165" y1="50" x2="165" y2="130" stroke="#7A7068" stroke-width="2"/>
+  <circle cx="162" cy="130" r="4" fill="#2C2825"/>
+  <text x="162" y="150" text-anchor="middle" class="svg-label-sm">Thermocouple</text>
+  <!-- Resistance thermometer -->
+  <rect x="250" y="70" width="60" height="40" rx="5" fill="#F0FFF4" stroke="#56C271" stroke-width="1.5"/>
+  <text x="280" y="93" text-anchor="middle" class="svg-label-sm">Pt wire</text>
+  <text x="280" y="150" text-anchor="middle" class="svg-label-sm">Resistance Thermometer</text>
+  <!-- Gas thermometer -->
+  <circle cx="420" cy="110" r="25" fill="#FFF9E6" stroke="#FFB347" stroke-width="2"/>
+  <line x1="420" y1="85" x2="420" y2="50" stroke="#FFB347" stroke-width="1.5"/>
+  <rect x="412" y="42" width="16" height="8" rx="2" fill="#E2DDD7"/>
+  <text x="420" y="150" text-anchor="middle" class="svg-label-sm">Gas Thermometer</text>
+</svg></div><div class="box-observation"><ul><li>Each thermometer responds to temperature change through a different physical property.</li><li>All read approximately the same temperature when immersed in the same medium.</li><li>The thermometric property used determines the type and accuracy of the thermometer.</li></ul></div><div class="box-analogy"><p>Each thermometer is like a different translator for the same book — they all communicate 'temperature' but through different languages (length, voltage, resistance, pressure).</p></div><div class="box-exam"><p>List 4 thermometric properties: length of liquid column, EMF of thermocouple, resistance of platinum wire, pressure of gas at constant volume. Know one advantage of each type.</p></div>
+</div><div class="demo-card" style="--accent:#9B5DE5">
+  <div class="demo-title"><span class="demo-num">2</span><span>Different Thermometers Give Different Readings</span></div>
+  <div class="box-apparatus"><ul><li>Mercury-in-glass thermometer</li><li>Thermocouple thermometer</li><li>Resistance thermometer</li><li>Large beaker of water</li><li>Thermostatic water bath or Bunsen burner</li></ul></div><div class="box-method"><ol><li>Heat the water bath to approximately 60°C.</li><li>Immerse all three thermometers simultaneously in the same bath.</li><li>Read and record each thermometer's value when stable.</li><li>Note that none of the thermometers will agree exactly — they differ slightly because they are calibrated against different physical properties that do not all change identically with temperature.</li><li>The International Temperature Scale defines exact agreement points — but between them, thermometers based on different properties diverge slightly.</li></ol></div><div class="box-diagram"><svg class="demo-svg" viewBox="0 0 480 160" xmlns="http://www.w3.org/2000/svg">
+  <text x="240" y="18" text-anchor="middle" class="svg-label" font-weight="700">Different Thermometers — Same Hot Water Bath</text>
+  <!-- Water bath -->
+  <rect x="130" y="60" width="220" height="80" rx="8" fill="#E0F7F6" stroke="#2EC4B6" stroke-width="2"/>
+  <text x="240" y="115" text-anchor="middle" class="svg-label-sm" fill="#1A9088">Hot water bath (~60°C)</text>
+  <!-- Mercury therm -->
+  <rect x="165" y="40" width="10" height="70" rx="5" fill="#FFE8E8" stroke="#E8637A" stroke-width="1.5"/>
+  <rect x="168" y="75" width="4" height="30" rx="2" fill="#E8637A"/>
+  <text x="170" y="35" text-anchor="middle" class="svg-label-sm" fill="#C94040">Mercury: 58°C</text>
+  <!-- Thermocouple -->
+  <line x1="245" y1="40" x2="245" y2="110" stroke="#3A86FF" stroke-width="2"/>
+  <line x1="249" y1="40" x2="249" y2="110" stroke="#FFB347" stroke-width="2"/>
+  <text x="247" y="35" text-anchor="middle" class="svg-label-sm" fill="#3A86FF">TC: 61°C</text>
+  <!-- Resistance -->
+  <rect x="300" y="55" width="40" height="25" rx="4" fill="#F0FFF4" stroke="#56C271" stroke-width="1.5"/>
+  <text x="320" y="40" text-anchor="middle" class="svg-label-sm" fill="#267339">Pt: 59.5°C</text>
+  <!-- Note -->
+  <text x="240" y="155" text-anchor="middle" class="svg-label-sm">Different properties give slightly different readings at same temperature</text>
+</svg></div><div class="box-observation"><ul><li>The three thermometers give slightly different readings at the same temperature.</li><li>This occurs because different thermometric properties (e.g. length of mercury column, resistance of platinum) do not change proportionally in the same way at all temperatures.</li><li>The differences are small but measurable.</li></ul></div><div class="box-analogy"><p>It's like measuring a room's length using a steel ruler versus a wooden ruler on a hot day — the steel barely expands but the wood does, so they give slightly different readings.</p></div><div class="box-exam"><p>Explanation: different thermometric properties do not change linearly in the same way. The thermodynamic temperature scale (Kelvin) provides a standard reference.</p></div>
+</div><div class="demo-card" style="--accent:#F77F00">
+  <div class="demo-title"><span class="demo-num">3</span><span>How Different Solids Conduct Heat at Different Rates</span></div>
+  <div class="box-apparatus"><ul><li>Rods of equal length and diameter: copper, aluminium, iron, glass (or wood)</li><li>Petroleum jelly (Vaseline) and small identical metal balls or wax pellets</li><li>Bunsen burner</li><li>Retort stand and clamp</li><li>Ruler</li></ul></div><div class="box-method"><ol><li>Clamp each rod horizontally from one end. Attach small metal balls to the other end of each rod using small blobs of petroleum jelly as adhesive.</li><li>Apply the Bunsen burner flame simultaneously to the clamped end of all rods (same starting time and same heat source position).</li><li>Observe the order in which the wax melts (or the balls drop off each rod).</li><li>Record the time taken for the ball to drop off each rod.</li></ol></div><div class="box-diagram"><svg class="demo-svg" viewBox="0 0 480 160" xmlns="http://www.w3.org/2000/svg">
+  <text x="240" y="18" text-anchor="middle" class="svg-label" font-weight="700">Heat Conduction — Wax Pellet Method</text>
+  <!-- Rods -->
+  <rect x="40" y="70" width="110" height="18" rx="3" fill="#FFD700" stroke="#CC8800" stroke-width="2"/>
+  <text x="95" y="62" text-anchor="middle" class="svg-label">Copper</text>
+  <rect x="160" y="70" width="110" height="18" rx="3" fill="#B0B0B0" stroke="#808080" stroke-width="2"/>
+  <text x="215" y="62" text-anchor="middle" class="svg-label">Aluminium</text>
+  <rect x="280" y="70" width="110" height="18" rx="3" fill="#8B4513" stroke="#5D2906" stroke-width="2"/>
+  <text x="335" y="62" text-anchor="middle" class="svg-label">Wood/Glass</text>
+  <!-- Wax pellets along each rod -->
+  <circle cx="100" cy="79" r="5" fill="#FFF9E6" stroke="#FFD966" stroke-width="1.5"/>
+  <circle cx="130" cy="79" r="5" fill="#FFF9E6" stroke="#FFD966" stroke-width="1.5"/>
+  <circle cx="220" cy="79" r="5" fill="#FFF9E6" stroke="#FFD966" stroke-width="1.5"/>
+  <circle cx="250" cy="79" r="5" fill="#FFF9E6" stroke="#FFD966" stroke-width="1.5"/>
+  <circle cx="340" cy="79" r="5" fill="#FFF9E6" stroke="#FFD966" stroke-width="1.5"/>
+  <!-- Bunsen at start -->
+  <rect x="20" y="65" width="22" height="35" rx="3" fill="#E8637A" opacity="0.8"/>
+  <text x="31" y="112" text-anchor="middle" class="svg-label-sm" fill="#C94040">Heat</text>
+  <!-- Arrow showing heat travel -->
+  <text x="240" y="115" text-anchor="middle" class="svg-label-sm">Wax melts furthest along copper (best conductor), least along wood</text>
+  <text x="240" y="135" text-anchor="middle" class="svg-label-sm">Conductivity: copper &gt; aluminium &gt;&gt; wood/glass</text>
+</svg></div><div class="box-observation"><ul><li>The ball falls off the copper rod first, then aluminium, then iron, then glass/wood last (or not at all in the time of the experiment).</li><li>This demonstrates that metals conduct heat much faster than non-metals.</li><li>Conductivity order: copper > aluminium > iron >> glass/wood.</li></ul></div><div class="box-analogy"><p>Think of how quickly a metal spoon in hot soup heats up compared to a wooden spoon — the metal conducts heat rapidly to your hand, the wood barely at all.</p></div><div class="box-exam"><p>State: 'Heat is conducted through a solid by the transfer of kinetic energy from particle to particle without bulk movement of the material.' Metals are good conductors due to free electrons.</p></div>
+</div><div class="demo-card" style="--accent:#56C271">
+  <div class="demo-title"><span class="demo-num">4</span><span>Demonstration of Convection in a Liquid</span></div>
+  <div class="box-apparatus"><ul><li>Beaker of cold water</li><li>Potassium permanganate (KMnO₄) crystals</li><li>Bunsen burner and tripod</li><li>Dropping pipette or spatula</li><li>Ruler</li></ul></div><div class="box-method"><ol><li>Fill a large beaker with cold water. Allow it to settle.</li><li>Using a dropping pipette, carefully place one or two crystals of KMnO₄ at the bottom of the beaker — ideally directly above where the burner will be placed.</li><li>Gently apply heat with the Bunsen burner directly below the crystal position.</li><li>Observe the coloured stream of water from the crystals.</li></ol></div><div class="box-diagram"><svg class="demo-svg" viewBox="0 0 480 200" xmlns="http://www.w3.org/2000/svg">
+  <defs><marker id="arrCL" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#E8637A"/></marker>
+  <marker id="arrCL2" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#3A86FF"/></marker></defs>
+  <text x="240" y="18" text-anchor="middle" class="svg-label" font-weight="700">Convection in Liquid — Potassium Permanganate</text>
+  <!-- Beaker -->
+  <path d="M110,40 L80,180 L400,180 L370,40 Z" fill="#E0F7F6" stroke="#2EC4B6" stroke-width="2" opacity="0.6"/>
+  <!-- KMnO4 crystal -->
+  <circle cx="180" cy="170" r="6" fill="#9B5DE5"/>
+  <text x="180" y="190" text-anchor="middle" class="svg-label-sm" fill="#6B2DAF">KMnO₄</text>
+  <!-- Bunsen flame under -->
+  <path d="M160,182 Q175,192 180,180 Q185,192 200,182" fill="#E8637A" opacity="0.7"/>
+  <text x="180" y="200" text-anchor="middle" class="svg-label-sm" fill="#C94040">heat</text>
+  <!-- Convection current arrows -->
+  <path d="M183,165 Q183,120 240,100 Q300,80 320,130 Q335,160 310,168" fill="none" stroke="#E8637A" stroke-width="2" marker-end="url(#arrCL)"/>
+  <path d="M308,172 Q280,175 240,175 Q210,175 186,170" fill="none" stroke="#3A86FF" stroke-width="2" marker-end="url(#arrCL2)" stroke-dasharray="5,3"/>
+  <text x="260" y="100" class="svg-label-sm" fill="#C94040">purple stream rises</text>
+  <text x="240" y="162" text-anchor="middle" class="svg-label-sm" fill="#1A5CC8">cool water sinks</text>
+</svg></div><div class="box-observation"><ul><li>A purple stream of water rises upward from the KMnO₄ crystals at the heated point.</li><li>At the top of the beaker the stream cools, sinks at the sides, and flows back along the bottom — creating a convection current.</li><li>The entire circulation pattern can be followed by the purple colour.</li><li>This demonstrates that heat transfer in liquids occurs by bulk movement of the fluid.</li></ul></div><div class="box-analogy"><p>Exactly like a lava lamp — the heated liquid at the bottom becomes less dense and rises while cooler, denser liquid sinks. The KMnO₄ makes the flow visible.</p></div><div class="box-exam"><p>Key phrase: 'Hot liquid is less dense and rises; cooler liquid is more dense and sinks, setting up a convection current.' Convection requires fluid (liquid or gas) — it cannot occur in solids.</p></div>
+</div><div class="demo-card" style="--accent:#E8637A">
+  <div class="demo-title"><span class="demo-num">5</span><span>Demonstration of Convection in a Gas</span></div>
+  <div class="box-apparatus"><ul><li>Wooden or cardboard box with two glass chimneys inserted through the top (about 30 cm apart)</li><li>Lighted candle</li><li>Smouldering taper or incense stick (to produce visible smoke)</li><li>Optional: glass front panel to view inside</li></ul></div><div class="box-method"><ol><li>Set up the box with two chimneys. Light the candle and place it directly below one chimney (Chimney B).</li><li>Allow time for a temperature difference to establish.</li><li>Hold the smouldering taper above Chimney A (the one without the candle) and observe the smoke movement.</li><li>The smoke provides visible evidence of the convection current direction.</li></ol></div><div class="box-diagram"><svg class="demo-svg" viewBox="0 0 480 200" xmlns="http://www.w3.org/2000/svg">
+  <defs><marker id="arrCG" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#E8637A"/></marker>
+  <marker id="arrCG2" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#3A86FF"/></marker></defs>
+  <text x="240" y="18" text-anchor="middle" class="svg-label" font-weight="700">Convection in Gas — Candle in Box</text>
+  <!-- Box -->
+  <rect x="80" y="50" width="320" height="140" rx="5" fill="#FFF9F0" stroke="#E2DDD7" stroke-width="2"/>
+  <!-- Two chimneys -->
+  <rect x="140" y="30" width="20" height="40" rx="3" fill="#E2DDD7" stroke="#7A7068" stroke-width="1.5"/>
+  <rect x="320" y="30" width="20" height="40" rx="3" fill="#E2DDD7" stroke="#7A7068" stroke-width="1.5"/>
+  <text x="150" y="25" text-anchor="middle" class="svg-label-sm">Chimney A</text>
+  <text x="330" y="25" text-anchor="middle" class="svg-label-sm">Chimney B</text>
+  <!-- Candle under chimney B -->
+  <rect x="325" y="150" width="10" height="30" rx="2" fill="#FFF9E6" stroke="#FFD966" stroke-width="1"/>
+  <ellipse cx="330" cy="148" rx="4" ry="6" fill="#E8637A" opacity="0.8"/>
+  <text x="330" y="195" text-anchor="middle" class="svg-label-sm">candle</text>
+  <!-- Smoke goes down chimney A (cool) -->
+  <path d="M150,68 L150,90 Q150,115 180,130 Q220,148 270,150 Q300,152 320,150" fill="none" stroke="#3A86FF" stroke-width="2" marker-end="url(#arrCG2)" stroke-dasharray="6,3"/>
+  <!-- Hot air rises up chimney B -->
+  <path d="M330,148 L330,68" fill="none" stroke="#E8637A" stroke-width="2" marker-end="url(#arrCG)"/>
+  <text x="145" y="110" class="svg-label-sm" fill="#1A5CC8">smoke in</text>
+  <text x="335" y="110" class="svg-label-sm" fill="#C94040">hot air out</text>
+</svg></div><div class="box-observation"><ul><li>Smoke from the taper held above Chimney A is drawn down and into the box.</li><li>Hot air (heated by the candle) rises up and out through Chimney B.</li><li>This creates a convection current: cool air enters through Chimney A, is heated by the candle, and exits through Chimney B.</li><li>This demonstrates convection in a gas.</li></ul></div><div class="box-analogy"><p>This is exactly how old mine ventilation systems worked — a furnace at one shaft drew fresh air in from another shaft, circulating air through the mine by convection.</p></div><div class="box-exam"><p>State: 'Hot air above the candle expands, becomes less dense and rises up Chimney B. Cooler, denser air flows in through Chimney A to replace it, setting up a convection current.'</p></div>
+</div><div class="demo-card" style="--accent:#FFB347">
+  <div class="demo-title"><span class="demo-num">6</span><span>Demonstration of Heat Transfer by Radiation</span></div>
+  <div class="box-apparatus"><ul><li>Leslie's cube (a hollow metal cube with 4 different faces: shiny silver, dull black, dull white, shiny white/polished metal)</li><li>Thermopile connected to a galvanometer</li><li>Boiling water or very hot water</li><li>Metre rule</li></ul></div><div class="box-method"><ol><li>Fill the Leslie's cube with boiling water. Set it on a heat-proof mat.</li><li>Place the thermopile at a fixed distance (e.g. 20 cm) from each face in turn — ensuring same distance each time.</li><li>Record the galvanometer deflection for each face: shiny silver, polished, dull white, dull black.</li><li>The galvanometer reading indicates the intensity of thermal radiation detected.</li></ol></div><div class="box-diagram"><svg class="demo-svg" viewBox="0 0 480 180" xmlns="http://www.w3.org/2000/svg">
+  <defs><marker id="arrR2" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#E8637A"/></marker></defs>
+  <text x="240" y="18" text-anchor="middle" class="svg-label" font-weight="700">Leslie's Cube — Radiation from Different Surfaces</text>
+  <!-- Cube in centre -->
+  <rect x="195" y="60" width="90" height="90" rx="4" fill="#FFE8E8" stroke="#E8637A" stroke-width="2"/>
+  <text x="240" y="100" text-anchor="middle" class="svg-label">Leslie's</text>
+  <text x="240" y="118" text-anchor="middle" class="svg-label">Cube</text>
+  <text x="240" y="136" text-anchor="middle" class="svg-label-sm">Hot water inside</text>
+  <!-- Labels on each face -->
+  <text x="155" y="108" text-anchor="middle" class="svg-label-sm">dull black</text>
+  <text x="330" y="90" text-anchor="middle" class="svg-label-sm">shiny</text>
+  <text x="330" y="105" text-anchor="middle" class="svg-label-sm">silver</text>
+  <text x="240" y="50" text-anchor="middle" class="svg-label-sm">dull white</text>
+  <!-- Thermopile detectors -->
+  <rect x="60" y="95" width="55" height="20" rx="4" fill="#3A86FF" opacity="0.7"/>
+  <text x="87" y="109" text-anchor="middle" class="svg-label-sm" fill="#fff">thermopile</text>
+  <rect x="365" y="95" width="55" height="20" rx="4" fill="#3A86FF" opacity="0.7"/>
+  <text x="392" y="109" text-anchor="middle" class="svg-label-sm" fill="#fff">thermopile</text>
+  <!-- Radiation arrows -->
+  <line x1="195" y1="105" x2="118" y2="105" stroke="#E8637A" stroke-width="2" marker-end="url(#arrR2)"/>
+  <line x1="285" y1="105" x2="362" y2="105" stroke="#E8637A" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrR2)"/>
+  <text x="87" y="140" text-anchor="middle" class="svg-label-sm">strong signal</text>
+  <text x="392" y="140" text-anchor="middle" class="svg-label-sm">weak signal</text>
+</svg></div><div class="box-observation"><ul><li>The dull black surface gives the highest galvanometer reading — it radiates most heat.</li><li>The shiny silver surface gives the lowest reading — it radiates least heat.</li><li>Order of emission: dull black > dull white > polished/shiny silver.</li><li>This demonstrates that dark, rough surfaces are the best emitters of thermal radiation.</li></ul></div><div class="box-analogy"><p>Black tarmac on a sunny day gets far hotter than a white-painted road surface because it absorbs (and also emits) radiation better — same principle as the Leslie cube.</p></div><div class="box-exam"><p>Must state: 'Heat radiation is electromagnetic (infrared) waves and requires no medium.' Good absorbers are good emitters. Black body = perfect absorber and emitter. No medium needed.</p></div>
+</div>
+</div>
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:24px;right:24px;width:44px;height:44px;border-radius:50%;background:var(--purple);color:#fff;border:none;font-size:1.2rem;cursor:pointer;box-shadow:var(--shadow);opacity:0;transition:opacity 0.3s;pointer-events:none;">↑</button>
+<script>
+
+function showTopic(id) {
+  document.querySelectorAll('.section').forEach(s => { s.style.display = 'none'; });
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  var el = document.getElementById(id);
+  if (el) { el.style.display = 'block'; }
+  var btn = document.querySelector('.nav-btn[data-id="' + id + '"]');
+  if (btn) btn.classList.add('active');
+  if (el) el.scrollIntoView({behavior:'smooth', block:'start'});
+}
+window.addEventListener('scroll', function() {
+  var btn = document.getElementById('scrollTop');
+  if (btn) btn.classList.toggle('visible', window.scrollY > 400);
+});
+window.addEventListener('DOMContentLoaded', function() {
+  var firstBtn = document.querySelector('.nav-btn[data-id]');
+  if (firstBtn) firstBtn.classList.add('active');
+});
+
+</script>
+</body>
+</html>

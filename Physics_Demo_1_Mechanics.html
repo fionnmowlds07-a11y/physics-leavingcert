@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LC Physics Demos — Mechanics</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F7F4EF;
+    --surface: #FFFFFF;
+    --surface2: #F0EDE8;
+    --border: #E2DDD7;
+    --text: #2C2825;
+    --text-muted: #7A7068;
+    --t1: #FF6B6B; --t1-light: #FFE8E8; --t1-dark: #C94040;
+    --t2: #4ECDC4; --t2-light: #E0F7F6; --t2-dark: #2A9990;
+    --t3: #FFB347; --t3-light: #FFF3E0; --t3-dark: #CC7A00;
+    --t4: #7C5CBF; --t4-light: #EDE8F7; --t4-dark: #5a3da0;
+    --t5: #56C271; --t5-light: #E6F8EB; --t5-dark: #267339;
+    --t6: #E8637A; --t6-light: #FCE8EC; --t6-dark: #B03050;
+    --t7: #3A86FF; --t7-light: #E0ECFF; --t7-dark: #1A5CC8;
+    --t8: #F77F00; --t8-light: #FFF0DC; --t8-dark: #B85A00;
+    --t9: #2EC4B6; --t9-light: #E0FAF7; --t9-dark: #1A9088;
+    --t10: #9B5DE5; --t10-light: #F3EAFF; --t10-dark: #6B2DAF;
+    --t11: #D62828; --t11-light: #FFECEC; --t11-dark: #9A1A1A;
+    --purple: #7C5CBF; --purple-light: #EDE8F7;
+    --green: #56C271; --green-light: #E6F8EB;
+    --radius: 14px;
+    --shadow: 0 4px 20px rgba(0,0,0,0.08);
+    --shadow-hover: 0 8px 32px rgba(0,0,0,0.14);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Lexend', sans-serif; background: var(--bg); color: var(--text); line-height: 1.8; font-size: 16px; }
+
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(247,244,239,0.96);
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid var(--border);
+    padding: 8px 16px;
+    display: flex; align-items: center; gap: 6px;
+    flex-wrap: wrap; min-height: 56px;
+  }
+  .nav-logo { font-family: 'Lexend Mega', sans-serif; font-size: 0.95rem; color: var(--text); margin-right: 6px; }
+  .nav-logo span { color: var(--t1); }
+  .nav-btn {
+    padding: 5px 11px; border-radius: 18px;
+    border: 2px solid transparent;
+    font-family: 'Lexend', sans-serif;
+    font-size: 0.72rem; font-weight: 600;
+    cursor: pointer; transition: all 0.2s;
+    background: var(--surface); color: var(--text-muted);
+    white-space: nowrap;
+  }
+  .nav-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+  .nav-btn.t1  { border-color: var(--t1); }  .nav-btn.t1.active,  .nav-btn.t1:hover  { background: var(--t1);  color:#fff; }
+  .nav-btn.t2  { border-color: var(--t2); }  .nav-btn.t2.active,  .nav-btn.t2:hover  { background: var(--t2);  color:var(--text); }
+  .nav-btn.t3  { border-color: var(--t3); }  .nav-btn.t3.active,  .nav-btn.t3:hover  { background: var(--t3);  color:var(--text); }
+  .nav-btn.t4  { border-color: var(--t4); }  .nav-btn.t4.active,  .nav-btn.t4:hover  { background: var(--t4);  color:#fff; }
+  .nav-btn.t5  { border-color: var(--t5); }  .nav-btn.t5.active,  .nav-btn.t5:hover  { background: var(--t5);  color:#fff; }
+  .nav-btn.t6  { border-color: var(--t6); }  .nav-btn.t6.active,  .nav-btn.t6:hover  { background: var(--t6);  color:#fff; }
+  .nav-btn.t7  { border-color: var(--t7); }  .nav-btn.t7.active,  .nav-btn.t7:hover  { background: var(--t7);  color:#fff; }
+  .nav-btn.t8  { border-color: var(--t8); }  .nav-btn.t8.active,  .nav-btn.t8:hover  { background: var(--t8);  color:#fff; }
+  .nav-btn.t9  { border-color: var(--t9); }  .nav-btn.t9.active,  .nav-btn.t9:hover  { background: var(--t9);  color:#fff; }
+  .nav-btn.t10 { border-color: var(--t10); } .nav-btn.t10.active, .nav-btn.t10:hover { background: var(--t10); color:#fff; }
+  .nav-btn.t11 { border-color: var(--t11); } .nav-btn.t11.active, .nav-btn.t11:hover { background: var(--t11); color:#fff; }
+  .nav-btn.flash { border-color: var(--purple); } .nav-btn.flash.active, .nav-btn.flash:hover { background: var(--purple); color:#fff; }
+
+  .hero { padding: 44px 24px 28px; text-align: center; }
+  .hero h1 { font-family: 'Lexend Mega', sans-serif; font-size: clamp(1.5rem,4vw,2.6rem); line-height:1.2; }
+  .hero h1 .a1{color:var(--t1);} .hero h1 .a2{color:var(--t2-dark);} .hero h1 .a3{color:var(--t3-dark);}
+  .hero p { margin-top:10px; color:var(--text-muted); max-width:620px; margin-left:auto; margin-right:auto; }
+  .stats-row { display:flex; justify-content:center; gap:20px; flex-wrap:wrap; margin-top:20px; }
+  .stat-chip { background:var(--surface); border:2px solid var(--border); border-radius:30px; padding:8px 20px; font-size:0.85rem; font-weight:600; }
+  .chapter-pills { display:flex; justify-content:center; gap:8px; flex-wrap:wrap; margin-top:20px; }
+  .pill { padding:7px 16px; border-radius:28px; font-weight:600; font-size:0.78rem; cursor:pointer; transition:all 0.2s; border:none; }
+  .pill:hover { transform:translateY(-3px); box-shadow:var(--shadow-hover); }
+
+  .section { display:none; padding:0 16px 60px; max-width:920px; margin:0 auto; }
+  .section.active { display:block; animation:fadeIn 0.3s ease; }
+  @keyframes fadeIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+
+  .ch-header {
+    border-radius:var(--radius); padding:28px 28px; color:white;
+    margin-bottom:24px; position:relative; overflow:hidden;
+  }
+  .ch-header h1 { font-family:'Lexend Mega',sans-serif; font-size:1.45rem; }
+  .ch-header p { opacity:0.88; margin-top:7px; font-size:0.92rem; }
+  .ch-header .big-num { position:absolute; right:22px; top:50%; transform:translateY(-50%); font-family:'Lexend Mega',sans-serif; font-size:5.5rem; opacity:0.12; line-height:1; }
+
+  .topic-card {
+    background:var(--surface); border-radius:var(--radius); padding:24px;
+    margin-bottom:20px; box-shadow:var(--shadow);
+    border-left:5px solid var(--t1); transition:box-shadow 0.2s;
+  }
+  .topic-card:hover { box-shadow:var(--shadow-hover); }
+  .topic-card h2 { font-size:1.15rem; font-weight:700; margin-bottom:12px; display:flex; align-items:center; gap:8px; }
+  .topic-card h3 { font-size:0.95rem; font-weight:600; margin:16px 0 7px; }
+  .topic-card p { margin-bottom:9px; }
+  .topic-card ul { padding-left:20px; margin-bottom:9px; }
+  .topic-card li { margin-bottom:4px; }
+
+  /* Term entry */
+  .term-entry { margin-bottom:18px; padding-bottom:18px; border-bottom:1px solid var(--border); }
+  .term-entry:last-child { border-bottom:none; margin-bottom:0; padding-bottom:0; }
+  .term-name { font-size:1.05rem; font-weight:700; margin-bottom:6px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+
+  /* Boxes */
+  .def-box { background:var(--surface2); border:2px dashed var(--border); border-radius:10px; padding:12px 16px; margin:8px 0; position:relative; }
+  .def-box::before { content:'📖 DEFINITION'; display:block; font-size:0.65rem; font-weight:700; letter-spacing:1px; color:var(--text-muted); margin-bottom:5px; }
+  .def-box p { margin:0; font-weight:500; }
+  .analogy-box { background:#FFF9E6; border:2px solid #FFD966; border-radius:10px; padding:12px 16px; margin:8px 0; }
+  .analogy-box::before { content:'💡 ANALOGY'; display:block; font-size:0.65rem; font-weight:700; letter-spacing:1px; color:#997700; margin-bottom:5px; }
+  .memory-box { background:#F0FFF4; border:2px solid var(--green); border-radius:10px; padding:12px 16px; margin:8px 0; }
+  .memory-box::before { content:'🧠 MEMORY TRICK'; display:block; font-size:0.65rem; font-weight:700; letter-spacing:1px; color:#267339; margin-bottom:5px; }
+  .exam-box { background:#FFF0F3; border:2px solid var(--t1); border-radius:10px; padding:12px 16px; margin:8px 0; }
+  .exam-box::before { content:'📝 EXAM TIP'; display:block; font-size:0.65rem; font-weight:700; letter-spacing:1px; color:var(--t1-dark); margin-bottom:5px; }
+  .code-box { background:#1e1e2e; color:#cdd6f4; border-radius:10px; padding:12px 16px; margin:8px 0; font-family:monospace; font-size:0.88rem; overflow-x:auto; }
+
+  .badge { display:inline-block; padding:2px 9px; border-radius:18px; font-size:0.68rem; font-weight:700; letter-spacing:0.4px; }
+  .b-core   { background:#FFE8E8; color:#C94040; }
+  .b-useful { background:#E0F7F6; color:#2A9990; }
+  .b-extra  { background:#F0EDE8; color:#7A7068; }
+
+  comp-table, .comp-table { width:100%; border-collapse:collapse; margin:12px 0; font-size:0.86rem; border-radius:10px; overflow:hidden; }
+  .comp-table th { background:var(--t1); color:#fff; padding:9px 12px; text-align:left; font-weight:600; }
+  .comp-table td { padding:8px 12px; border-bottom:1px solid var(--border); }
+  .comp-table tr:nth-child(even) td { background:var(--surface2); }
+  .comp-table tr:last-child td { border-bottom:none; }
+
+  /* Big O grid */
+  .big-o-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:14px 0; }
+  @media(max-width:580px){ .big-o-grid{grid-template-columns:1fr;} }
+  .big-o-card { border-radius:10px; padding:13px; border:2px solid; }
+  .big-o-card .notation { font-size:1.25rem; font-weight:700; }
+  .big-o-card .label { font-size:0.78rem; font-weight:600; margin:3px 0; }
+  .big-o-card .desc { font-size:0.8rem; color:var(--text-muted); }
+  .o1    { border-color:#56C271; background:#E6F8EB; }
+  .ologn { border-color:#4ECDC4; background:#E0F7F6; }
+  .on    { border-color:#FFB347; background:#FFF3E0; }
+  .on2   { border-color:#FF6B6B; background:#FFE8E8; }
+  .onlogn{ border-color:#C9A800; background:#FFFBE0; }
+
+  /* Accordion for less-important terms */
+  .accordion { margin:8px 0; border-radius:10px; overflow:hidden; border:2px solid var(--border); }
+  .accordion-header { width:100%; text-align:left; padding:11px 16px; background:var(--surface2); border:none; font-family:'Lexend',sans-serif; font-size:0.92rem; font-weight:600; cursor:pointer; display:flex; justify-content:space-between; align-items:center; transition:background 0.2s; }
+  .accordion-header:hover { background:var(--border); }
+  .accordion-header .arrow { transition:transform 0.3s; font-size:0.78rem; }
+  .accordion-header.open .arrow { transform:rotate(180deg); }
+  .accordion-body { display:none; padding:14px 16px; background:var(--surface); border-top:2px solid var(--border); }
+  .accordion-body.open { display:block; }
+
+  /* Flashcards */
+  #flashcards { padding:0 16px 80px; max-width:920px; margin:0 auto; display:none; }
+  
+  .flash-header { background:linear-gradient(135deg,var(--purple) 0%,#5a3da0 100%); border-radius:var(--radius); padding:28px; color:white; margin-bottom:24px; position:relative; overflow:hidden; }
+  .flash-header h1 { font-family:'Lexend Mega',sans-serif; font-size:1.45rem; }
+  .flash-header p { opacity:0.85; margin-top:7px; }
+  .flash-header .big-num { position:absolute; right:22px; top:50%; transform:translateY(-50%); font-family:'Lexend Mega',sans-serif; font-size:5.5rem; opacity:0.12; }
+
+  .flash-controls { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:18px; align-items:center; }
+  .flash-filter { padding:6px 14px; border-radius:18px; border:2px solid var(--border); background:var(--surface); font-family:'Lexend',sans-serif; font-size:0.76rem; font-weight:600; cursor:pointer; transition:all 0.2s; color:var(--text-muted); }
+  .flash-filter:hover, .flash-filter.factive { background:var(--purple); color:#fff; border-color:var(--purple); }
+
+  .flashcard-area { display:flex; flex-direction:column; align-items:center; }
+  .flashcard { width:100%; max-width:640px; perspective:1200px; min-height:200px; cursor:pointer; margin-bottom:18px; }
+  .flashcard-inner { position:relative; width:100%; min-height:200px; transition:transform 0.55s cubic-bezier(.4,.2,.2,1); transform-style:preserve-3d; }
+  .flashcard.flipped .flashcard-inner { transform:rotateY(180deg); }
+  .flashcard-front, .flashcard-back { position:absolute; width:100%; min-height:200px; backface-visibility:hidden; border-radius:var(--radius); padding:28px 24px; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; box-shadow:var(--shadow); }
+  .flashcard-front { background:var(--surface); border:3px solid var(--purple); }
+  .flashcard-back { background:var(--purple); color:white; transform:rotateY(180deg); }
+  .flashcard-front .card-topic { font-size:0.68rem; font-weight:700; letter-spacing:1px; text-transform:uppercase; margin-bottom:10px; color:var(--text-muted); }
+  .flashcard-front .card-q { font-size:1.1rem; font-weight:600; }
+  .flashcard-front .flip-hint { margin-top:14px; font-size:0.72rem; color:var(--text-muted); }
+  .flashcard-back .card-a { font-size:0.95rem; line-height:1.7; }
+  .flash-nav { display:flex; gap:12px; align-items:center; }
+  .flash-btn { padding:9px 22px; border-radius:22px; border:none; font-family:'Lexend',sans-serif; font-size:0.88rem; font-weight:600; cursor:pointer; transition:all 0.2s; background:var(--purple); color:#fff; }
+  .flash-btn:hover { background:#5a3da0; transform:translateY(-2px); box-shadow:var(--shadow-hover); }
+  .flash-btn:disabled { opacity:0.4; cursor:not-allowed; transform:none; }
+  .flash-counter { font-weight:600; color:var(--text-muted); font-size:0.88rem; min-width:80px; text-align:center; }
+  .flash-progress { width:100%; max-width:640px; height:6px; background:var(--border); border-radius:3px; margin-bottom:16px; overflow:hidden; }
+  .flash-progress-bar { height:100%; background:var(--purple); border-radius:3px; transition:width 0.4s; }
+
+  #scrollTop { position:fixed; bottom:22px; right:22px; width:40px; height:40px; background:var(--text); color:#fff; border:none; border-radius:50%; font-size:1rem; cursor:pointer; box-shadow:var(--shadow-hover); transition:all 0.2s; z-index:99; opacity:0; pointer-events:none; }
+  #scrollTop.visible { opacity:1; pointer-events:all; }
+  #scrollTop:hover { transform:scale(1.1); }
+  .icon { font-size:1.15rem; }
+
+  /* search bar */
+  .search-wrap { max-width:920px; margin:0 auto 4px; padding:0 16px; }
+  .search-input { width:100%; padding:11px 18px; border-radius:30px; border:2px solid var(--border); font-family:'Lexend',sans-serif; font-size:0.92rem; background:var(--surface); color:var(--text); outline:none; transition:border-color 0.2s; }
+  .search-input:focus { border-color:var(--purple); }
+  .search-result-count { font-size:0.8rem; color:var(--text-muted); text-align:center; margin:6px 0 0; }
+
+  /* colour overrides per topic */
+  .tc-t1  { border-left-color:var(--t1);  } .tc-t2  { border-left-color:var(--t2);  }
+  .tc-t3  { border-left-color:var(--t3);  } .tc-t4  { border-left-color:var(--t4);  }
+  .tc-t5  { border-left-color:var(--t5);  } .tc-t6  { border-left-color:var(--t6);  }
+  .tc-t7  { border-left-color:var(--t7);  } .tc-t8  { border-left-color:var(--t8);  }
+  .tc-t9  { border-left-color:var(--t9);  } .tc-t10 { border-left-color:var(--t10); }
+  .tc-t11 { border-left-color:var(--t11); }
+
+  /* ── shared navbar additions ── */
+  .nav-home {
+    display:inline-flex; align-items:center; gap:5px;
+    padding:5px 13px; border-radius:18px;
+    border:2px solid var(--border);
+    background:var(--surface);
+    font-family:'Lexend',sans-serif; font-size:0.72rem; font-weight:700;
+    color:var(--text-muted); text-decoration:none;
+    transition:all 0.2s; white-space:nowrap;
+  }
+  .nav-home:hover { background:var(--text); color:#fff; border-color:var(--text); transform:translateY(-2px); }
+  .nav-flashcards {
+    display:inline-flex; align-items:center; gap:5px;
+    padding:5px 13px; border-radius:18px;
+    border:2px solid var(--purple); background:var(--surface);
+    font-family:'Lexend',sans-serif; font-size:0.72rem; font-weight:700;
+    color:var(--purple); text-decoration:none;
+    transition:all 0.2s; white-space:nowrap; margin-left:auto;
+  }
+  .nav-flashcards:hover { background:var(--purple); color:#fff; transform:translateY(-2px); }
+  .nav-divider { width:1px; height:20px; background:var(--border); margin:0 4px; flex-shrink:0; }
+
+
+  /* ── improved nav file links ── */
+  .nav-home {
+    display:inline-flex; align-items:center; gap:5px;
+    padding:5px 12px; border-radius:14px;
+    border:2px solid var(--border); background:var(--surface);
+    font-family:'Lexend',sans-serif; font-size:0.72rem; font-weight:700;
+    color:var(--text-muted); text-decoration:none; transition:all 0.2s;
+    white-space:nowrap; flex-shrink:0;
+  }
+  .nav-home:hover { background:var(--text); color:#fff; border-color:var(--text); }
+  .nav-divider { width:1px; height:18px; background:var(--border); flex-shrink:0; }
+  .nav-file-link {
+    display:inline-flex; align-items:center;
+    padding:5px 11px; border-radius:14px;
+    border:2px solid var(--border); background:var(--surface);
+    font-family:'Lexend',sans-serif; font-size:0.7rem; font-weight:700;
+    color:var(--text-muted); text-decoration:none; transition:all 0.2s;
+    white-space:nowrap;
+  }
+  .nav-file-link:hover { border-color:var(--purple); color:var(--purple); transform:translateY(-1px); }
+  .nav-file-link.current { background:var(--purple); color:#fff; border-color:var(--purple); }
+  .nav-file-link.fc-link { border-color:var(--purple); color:var(--purple); }
+  .nav-file-link.fc-link:hover { background:var(--purple); color:#fff; }
+  /* label above file links group */
+  .nav-files-group {
+    display:flex; align-items:center; gap:6px; flex-wrap:wrap;
+  }
+  .nav-files-label {
+    font-size:0.62rem; font-weight:800; letter-spacing:0.8px;
+    text-transform:uppercase; color:var(--text-muted);
+    white-space:nowrap; flex-shrink:0;
+  }
+  /* hero simplified — no switcher section */
+  .hero-compact {
+    text-align:center; padding:28px 20px 16px;
+    border-bottom:2px solid var(--border);
+    margin-bottom:20px;
+    background:var(--surface);
+  }
+  .hero-compact h1 { font-family:'Lexend Mega',sans-serif; font-size:clamp(1.1rem,3vw,1.6rem); margin-bottom:6px; }
+  .hero-compact p  { color:var(--text-muted); font-size:0.85rem; max-width:640px; margin:0 auto 14px; }
+  .hero-compact .topic-pills { display:flex; justify-content:center; gap:8px; flex-wrap:wrap; }
+  .hero-compact .topic-pill {
+    padding:9px 20px; border-radius:24px; border:none;
+    font-family:'Lexend',sans-serif; font-size:0.82rem; font-weight:700;
+    cursor:pointer; transition:all 0.2s; box-shadow:0 2px 8px rgba(0,0,0,0.12);
+  }
+  .hero-compact .topic-pill:hover { transform:translateY(-2px); box-shadow:0 4px 14px rgba(0,0,0,0.18); }
+  .hero-compact .pill-hint {
+    margin-top:10px; font-size:0.72rem; color:var(--text-muted);
+  }
+
+  .nav-home {
+    display:inline-flex; align-items:center; gap:5px;
+    padding:5px 12px; border-radius:14px;
+    border:2px solid var(--border); background:var(--surface);
+    font-family:'Lexend',sans-serif; font-size:0.72rem; font-weight:700;
+    color:var(--text-muted); text-decoration:none; transition:all 0.2s;
+    white-space:nowrap; flex-shrink:0;
+  }
+  .nav-home:hover { background:var(--text); color:#fff; border-color:var(--text); }
+  .nav-divider { width:1px; height:18px; background:var(--border); flex-shrink:0; }
+  .nav-file-link {
+    display:inline-flex; align-items:center;
+    padding:5px 10px; border-radius:14px;
+    border:2px solid var(--border); background:var(--surface);
+    font-family:'Lexend',sans-serif; font-size:0.68rem; font-weight:700;
+    color:var(--text-muted); text-decoration:none; transition:all 0.2s;
+    white-space:nowrap;
+  }
+  .nav-file-link:hover { border-color:var(--purple); color:var(--purple); transform:translateY(-1px); }
+  .nav-file-link.current { background:var(--purple); color:#fff; border-color:var(--purple); }
+  .nav-file-link.fc-link { border-color:var(--purple); color:var(--purple); }
+  .nav-file-link.fc-link:hover { background:var(--purple); color:#fff; }
+  .nav-files-group { display:flex; align-items:center; gap:5px; flex-wrap:wrap; }
+  .nav-files-label { font-size:0.62rem; font-weight:800; letter-spacing:0.8px; text-transform:uppercase; color:var(--text-muted); white-space:nowrap; flex-shrink:0; }
+  .hero-compact {
+    text-align:center; padding:28px 20px 16px;
+    border-bottom:2px solid var(--border); margin-bottom:20px;
+    background:var(--surface);
+  }
+  .hero-compact h1 { font-family:'Lexend Mega',sans-serif; font-size:clamp(1.1rem,3vw,1.6rem); margin-bottom:6px; }
+  .hero-compact p  { color:var(--text-muted); font-size:0.85rem; max-width:640px; margin:0 auto 14px; }
+  .hero-compact .topic-pills { display:flex; justify-content:center; gap:8px; flex-wrap:wrap; }
+  .hero-compact .topic-pill {
+    padding:9px 20px; border-radius:24px; border:none;
+    font-family:'Lexend',sans-serif; font-size:0.82rem; font-weight:700;
+    cursor:pointer; transition:all 0.2s; box-shadow:0 2px 8px rgba(0,0,0,0.12);
+  }
+  .hero-compact .topic-pill:hover { transform:translateY(-2px); box-shadow:0 4px 14px rgba(0,0,0,0.18); }
+  .hero-compact .pill-hint { margin-top:10px; font-size:0.72rem; color:var(--text-muted); }
+
+
+  /* Demo-specific styles */
+  .demo-card {
+    background: var(--surface); border-radius: var(--radius);
+    padding: 24px 26px; margin-bottom: 22px;
+    box-shadow: var(--shadow); border-left: 5px solid var(--accent, var(--t7));
+    transition: box-shadow 0.2s;
+  }
+  .demo-card:hover { box-shadow: var(--shadow-hover); }
+  .demo-num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 32px; height: 32px; border-radius: 50%;
+    background: var(--accent, var(--t7)); color: #fff;
+    font-size: 0.8rem; font-weight: 800; flex-shrink: 0; margin-right: 10px;
+  }
+  .demo-title {
+    font-family: 'Lexend Mega', sans-serif;
+    font-size: 1.05rem; font-weight: 700;
+    display: flex; align-items: center; margin-bottom: 16px;
+  }
+  .demo-title span { color: var(--text); }
+
+  .box-apparatus { background: #EEF6FF; border: 2px solid #3A86FF; border-radius: 10px; padding: 13px 16px; margin: 10px 0; }
+  .box-apparatus::before { content: '🔬 APPARATUS'; display: block; font-size: 0.65rem; font-weight: 800; letter-spacing: 1px; color: #1A5CC8; margin-bottom: 6px; }
+  .box-method { background: #F0FFF4; border: 2px solid var(--green); border-radius: 10px; padding: 13px 16px; margin: 10px 0; }
+  .box-method::before { content: '⚗️ METHOD'; display: block; font-size: 0.65rem; font-weight: 800; letter-spacing: 1px; color: #267339; margin-bottom: 6px; }
+  .box-observation { background: #FFF9E6; border: 2px solid #FFD966; border-radius: 10px; padding: 13px 16px; margin: 10px 0; }
+  .box-observation::before { content: '👁️ OBSERVATION'; display: block; font-size: 0.65rem; font-weight: 800; letter-spacing: 1px; color: #997700; margin-bottom: 6px; }
+  .box-diagram { background: var(--surface2); border: 2px dashed var(--border); border-radius: 10px; padding: 16px; margin: 10px 0; text-align: center; }
+  .box-diagram::before { content: '📐 DIAGRAM'; display: block; font-size: 0.65rem; font-weight: 800; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 10px; text-align: left; }
+  .box-analogy { background: #F3EAFF; border: 2px solid var(--t10); border-radius: 10px; padding: 13px 16px; margin: 10px 0; }
+  .box-analogy::before { content: '💡 ANALOGY'; display: block; font-size: 0.65rem; font-weight: 800; letter-spacing: 1px; color: #6B2DAF; margin-bottom: 6px; }
+  .box-exam { background: #FFF0F3; border: 2px solid var(--t1); border-radius: 10px; padding: 13px 16px; margin: 10px 0; }
+  .box-exam::before { content: '📝 EXAM TIP'; display: block; font-size: 0.65rem; font-weight: 800; letter-spacing: 1px; color: #C94040; margin-bottom: 6px; }
+
+  .box-apparatus ul, .box-method ol, .box-observation ul, .box-observation ol {
+    padding-left: 20px; margin: 4px 0;
+  }
+  .box-apparatus ul li, .box-method ol li, .box-observation ul li, .box-observation ol li {
+    margin-bottom: 4px; font-size: 0.92rem; line-height: 1.6;
+  }
+  .box-method ol { counter-reset: none; }
+
+  /* SVG diagram styles */
+  .demo-svg { width: 100%; max-width: 520px; height: auto; display: block; margin: 0 auto; }
+  .svg-label { font-family: 'Lexend', sans-serif; font-size: 12px; fill: #2C2825; }
+  .svg-label-sm { font-family: 'Lexend', sans-serif; font-size: 10px; fill: #7A7068; }
+  .svg-arrow { fill: none; stroke: #2C2825; stroke-width: 1.5; marker-end: url(#arr); }
+
+  .nav-home {
+    display:inline-flex; align-items:center; gap:5px;
+    padding:5px 12px; border-radius:14px;
+    border:2px solid var(--border); background:var(--surface);
+    font-family:'Lexend',sans-serif; font-size:0.72rem; font-weight:700;
+    color:var(--text-muted); text-decoration:none; transition:all 0.2s;
+    white-space:nowrap; flex-shrink:0;
+  }
+  .nav-home:hover { background:var(--text); color:#fff; border-color:var(--text); }
+  .nav-divider { width:1px; height:18px; background:var(--border); flex-shrink:0; }
+  .nav-file-link {
+    display:inline-flex; align-items:center;
+    padding:5px 10px; border-radius:14px;
+    border:2px solid var(--border); background:var(--surface);
+    font-family:'Lexend',sans-serif; font-size:0.68rem; font-weight:700;
+    color:var(--text-muted); text-decoration:none; transition:all 0.2s;
+    white-space:nowrap;
+  }
+  .nav-file-link:hover { border-color:var(--purple); color:var(--purple); transform:translateY(-1px); }
+  .nav-file-link.current { background:var(--purple); color:#fff; border-color:var(--purple); }
+  .nav-files-group { display:flex; align-items:center; gap:5px; flex-wrap:wrap; }
+  .nav-files-label { font-size:0.62rem; font-weight:800; letter-spacing:0.8px; text-transform:uppercase; color:var(--text-muted); white-space:nowrap; flex-shrink:0; }
+  .hero-compact {
+    text-align:center; padding:28px 20px 16px;
+    border-bottom:2px solid var(--border); margin-bottom:20px;
+    background:var(--surface);
+  }
+  .hero-compact h1 { font-family:'Lexend Mega',sans-serif; font-size:clamp(1.1rem,3vw,1.6rem); margin-bottom:6px; }
+  .hero-compact p  { color:var(--text-muted); font-size:0.85rem; max-width:640px; margin:0 auto 14px; }
+  .hero-compact .topic-pills { display:flex; justify-content:center; gap:8px; flex-wrap:wrap; }
+  .hero-compact .topic-pill {
+    padding:9px 20px; border-radius:24px; border:none;
+    font-family:'Lexend',sans-serif; font-size:0.82rem; font-weight:700;
+    cursor:pointer; transition:all 0.2s; box-shadow:0 2px 8px rgba(0,0,0,0.12);
+  }
+  .hero-compact .topic-pill:hover { transform:translateY(-2px); box-shadow:0 4px 14px rgba(0,0,0,0.18); }
+  .hero-compact .pill-hint { margin-top:10px; font-size:0.72rem; color:var(--text-muted); }
+
+</style>
+</head>
+<body>
+<nav>
+  <a href="Physics.html" class="nav-home">🏠 Home</a>
+  <span class="nav-divider"></span>
+  <button class="nav-btn" data-id="mech" style="border-color:#3A86FF" onclick="showTopic('mech')">⚙️ Mechanics</button>
+  <span class="nav-divider"></span>
+  <div class="nav-files-group">
+    <span class="nav-files-label">Files:</span>
+    <a href="Physics_Demo_1_Mechanics.html" class="nav-file-link current">1: Mechanics</a>
+    <a href="Physics_Demo_2_Heat.html" class="nav-file-link ">2: Heat</a>
+    <a href="Physics_Demo_3_WavesSoundLight.html" class="nav-file-link ">3: Waves, Sound & Light</a>
+    <a href="Physics_Demo_4_Electricity_A.html" class="nav-file-link ">4a: Electricity A</a>
+    <a href="Physics_Demo_5_Electricity_B.html" class="nav-file-link ">4b: Electricity B + Modern</a>
+  </div>
+</nav>
+<div class="hero-compact" id="heroSection">
+  <h1>LC Physics Demonstrations <span style="font-size:0.6em;color:var(--text-muted);font-family:'Lexend',sans-serif;font-weight:600;">— File 1 of 5</span></h1>
+  <p>Vectors, momentum, pressure, Archimedes, energy conversion, circular motion, SHM · 7 demonstrations</p>
+  <div class="topic-pills">
+    <button class="topic-pill" style="background:#3A86FF;color:#fff" onclick="showTopic('mech')">⚙️ Mechanics</button>
+  </div>
+  <p class="pill-hint">Click a topic above to jump in ↑</p>
+</div>
+<div class="section" id="mech" style="padding:0 16px 60px;max-width:960px;margin:0 auto;display:none;">
+  <div class="ch-header" style="background:#3A86FF;margin-bottom:24px;">
+    <h1>⚙️ Mechanics Demonstrations</h1>
+  </div>
+  <div class="demo-card" style="--accent:#3A86FF">
+  <div class="demo-title"><span class="demo-num">1</span><span>Find the Resultant of Two Vectors</span></div>
+  <div class="box-apparatus"><ul><li>Cork board / soft board mounted on retort stand</li><li>Two spring balances (0–5 N)</li><li>Several known weights</li><li>String or thread</li><li>Sheets of paper pinned to board</li><li>Protractor and ruler</li><li>Drawing pins</li></ul></div><div class="box-method"><ol><li>Pin a large sheet of paper to the cork board.</li><li>Attach three strings to a single pin or knot at a central point O on the board.</li><li>Hang known weights from two of the strings — these represent forces F₁ and F₂ at different angles.</li><li>The third string holds a counterbalancing weight (or is pulled by hand so the knot stays at O).</li><li>Mark the point O and trace each string direction onto the paper with a pencil.</li><li>Record the magnitude of each force (F₁, F₂) against their respective string lines.</li><li>Remove the paper. Draw vectors to scale along the traced lines.</li><li>Complete the parallelogram: draw lines parallel to each vector from the tip of the other.</li><li>The diagonal of the parallelogram from O gives the resultant R — measure its length and angle.</li></ol></div><div class="box-diagram"><svg class="demo-svg" viewBox="0 0 480 220" xmlns="http://www.w3.org/2000/svg">
+  <defs><marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#2C2825"/></marker>
+  <marker id="arrR" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#E8637A"/></marker>
+  <marker id="arrB" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#3A86FF"/></marker>
+  <marker id="arrG" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#56C271"/></marker></defs>
+  <text x="240" y="18" text-anchor="middle" class="svg-label" font-weight="700">Resultant of Two Vectors (Cork-Board Method)</text>
+  <!-- Board -->
+  <rect x="30" y="35" width="420" height="170" rx="6" fill="#FFF9F0" stroke="#E2DDD7" stroke-width="2"/>
+  <!-- Pin at origin -->
+  <circle cx="200" cy="150" r="5" fill="#2C2825"/>
+  <!-- Force A -->
+  <line x1="200" y1="150" x2="310" y2="70" stroke="#3A86FF" stroke-width="2.5" marker-end="url(#arrB)"/>
+  <text x="268" y="95" class="svg-label" fill="#3A86FF">F₁ = 3N</text>
+  <!-- Force B -->
+  <line x1="200" y1="150" x2="340" y2="165" stroke="#E8637A" stroke-width="2.5" marker-end="url(#arrR)"/>
+  <text x="320" y="182" class="svg-label" fill="#E8637A">F₂ = 4N</text>
+  <!-- Parallelogram construction -->
+  <line x1="310" y1="70" x2="450" y2="85" stroke="#7A7068" stroke-width="1" stroke-dasharray="5,3"/>
+  <line x1="340" y1="165" x2="450" y2="85" stroke="#7A7068" stroke-width="1" stroke-dasharray="5,3"/>
+  <!-- Resultant -->
+  <line x1="200" y1="150" x2="443" y2="88" stroke="#56C271" stroke-width="3" marker-end="url(#arrG)"/>
+  <text x="360" y="125" class="svg-label" fill="#56C271">R = 5N</text>
+  <!-- Labels -->
+  <text x="195" y="170" class="svg-label-sm">O (pin)</text>
+  <text x="35" y="55" class="svg-label-sm">Cork board / paper on retort stand</text>
+</svg></div><div class="box-observation"><ul><li>The diagonal of the parallelogram represents the resultant force in both magnitude and direction.</li><li>The resultant balances the equal and opposite equilibrant force (the third string).</li><li>Measured resultant magnitude and direction match the calculated values.</li></ul></div><div class="box-analogy"><p>Think of two people pulling a boat at different angles with ropes — the boat doesn't go in either person's direction but somewhere in between, exactly as predicted by the parallelogram.</p></div><div class="box-exam"><p>State the scale you used. Show the parallelogram construction. State: 'Resultant = diagonal of parallelogram from the point of application.'</p></div>
+</div><div class="demo-card" style="--accent:#F77F00">
+  <div class="demo-title"><span class="demo-num">2</span><span>Conservation of Momentum</span></div>
+  <div class="box-apparatus"><ul><li>Linear air track (or smooth runway with two trolleys)</li><li>Two trolleys of known mass with Velcro/sticky bumper (for perfectly inelastic collision)</li><li>Ticker-tape timer and tape (or two light gates with data-logger)</li><li>Metre rule</li><li>Balance to measure trolley masses</li></ul></div><div class="box-method"><ol><li>Set up the air track horizontally. Measure and record masses m₁ and m₂.</li><li>Attach ticker tape to trolley A. Thread it through the ticker-tape timer.</li><li>Hold trolley B stationary at the centre. Start the ticker-tape timer.</li><li>Release trolley A from the end — it travels and collides with trolley B, sticking together.</li><li>From the ticker tape, measure the dot-spacing before collision (for u₁) and after (for v).</li><li>Calculate momentum before: p_before = m₁u₁ (trolley B has u₂ = 0)</li><li>Calculate momentum after: p_after = (m₁ + m₂)v</li><li>Compare p_before and p_after.</li></ol></div><div class="box-diagram"><svg class="demo-svg" viewBox="0 0 480 160" xmlns="http://www.w3.org/2000/svg">
+  <defs><marker id="arrM" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#3A86FF"/></marker>
+  <marker id="arrM2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#E8637A"/></marker></defs>
+  <text x="240" y="18" text-anchor="middle" class="svg-label" font-weight="700">Air Track — Conservation of Momentum</text>
+  <!-- Track -->
+  <rect x="20" y="90" width="440" height="8" rx="2" fill="#E2DDD7"/>
+  <!-- Trolley A (before) -->
+  <rect x="60" y="65" width="80" height="25" rx="4" fill="#3A86FF" opacity="0.85"/>
+  <text x="100" y="82" text-anchor="middle" class="svg-label" fill="#fff">m₁ u₁</text>
+  <!-- Trolley B (stationary) -->
+  <rect x="250" y="65" width="80" height="25" rx="4" fill="#E8637A" opacity="0.85"/>
+  <text x="290" y="82" text-anchor="middle" class="svg-label" fill="#fff">m₂ u₂=0</text>
+  <!-- Arrow showing A moving right -->
+  <line x1="145" y1="77" x2="245" y2="77" stroke="#3A86FF" stroke-width="2" marker-end="url(#arrM)"/>
+  <!-- After collision label -->
+  <text x="240" y="125" text-anchor="middle" class="svg-label-sm">After: both move together (v)</text>
+  <!-- Combined trolley after -->
+  <rect x="320" y="65" width="100" height="25" rx="4" fill="#7C5CBF" opacity="0.75"/>
+  <text x="370" y="82" text-anchor="middle" class="svg-label" fill="#fff">(m₁+m₂) v</text>
+  <line x1="425" y1="77" x2="450" y2="77" stroke="#7C5CBF" stroke-width="2" marker-end="url(#arrM2)"/>
+  <!-- ticker tape label -->
+  <text x="50" y="145" class="svg-label-sm">Ticker tape / light gates record speeds before and after collision</text>
+</svg></div><div class="box-observation"><ul><li>Momentum before collision (m₁u₁) ≈ momentum after collision ((m₁+m₂)v).</li><li>Any small difference is due to friction — the track minimises this.</li><li>The total momentum is conserved within experimental error.</li></ul></div><div class="box-analogy"><p>Like a train carriage rolling into a stationary one and coupling — the joined carriages move on more slowly but with the same total momentum as the original moving carriage.</p></div><div class="box-exam"><p>Must state 'system is closed' (no external forces). Show all calculations. Write: 'Within experimental error, momentum is conserved.'</p></div>
+</div><div class="demo-card" style="--accent:#E8637A">
+  <div class="demo-title"><span class="demo-num">3</span><span>Demonstration of Atmospheric Pressure</span></div>
+  <div class="box-apparatus"><ul><li>Empty aluminium soft-drink can (or round tin)</li><li>Bunsen burner / hotplate</li><li>Tongs</li><li>Bowl of cold water</li><li>Alternative: Magdeburg hemispheres and vacuum pump</li></ul></div><div class="box-method"><ol><li>Place a small amount of water (~10 mL) in the bottom of the can.</li><li>Heat the can on the Bunsen burner until the water boils vigorously and steam pours from the opening — this drives most of the air out, replacing it with steam.</li><li>Using tongs, quickly invert the can and plunge its opening into a bowl of cold water.</li><li>Observe what happens.</li></ol></div><div class="box-apparatus"><ul><li>Magdeburg hemispheres alternative: join the two hemispheres, pump out the air with the vacuum pump; two students try to pull them apart.</li></ul></div><div class="box-diagram"><svg class="demo-svg" viewBox="0 0 480 200" xmlns="http://www.w3.org/2000/svg">
+  <text x="240" y="18" text-anchor="middle" class="svg-label" font-weight="700">Magdeburg Hemispheres / Collapsing Can</text>
+  <!-- Collapsing can -->
+  <rect x="160" y="40" width="160" height="120" rx="10" fill="#E0ECFF" stroke="#3A86FF" stroke-width="2"/>
+  <text x="240" y="80" text-anchor="middle" class="svg-label">Empty can</text>
+  <text x="240" y="100" text-anchor="middle" class="svg-label-sm">(steam drives out air)</text>
+  <!-- Arrows pushing inward -->
+  <text x="70" y="105" class="svg-label" fill="#3A86FF">→ atm P</text>
+  <text x="320" y="105" class="svg-label" fill="#3A86FF">atm P ←</text>
+  <text x="240" y="145" text-anchor="middle" class="svg-label-sm">Air pressure from outside crushes can</text>
+  <text x="240" y="165" text-anchor="middle" class="svg-label-sm">when low pressure inside</text>
+  <!-- vacuum label -->
+  <text x="240" y="118" text-anchor="middle" class="svg-label" fill="#C94040">low P inside</text>
+</svg></div><div class="box-observation"><ul><li>The can is instantly crushed inward with a loud bang.</li><li>The steam condenses rapidly, creating very low pressure inside the can.</li><li>Atmospheric pressure (~101 kPa) outside pushes in from all sides, collapsing the can.</li><li>For Magdeburg hemispheres: the joined hemispheres cannot be pulled apart because atmospheric pressure holds them together — until air is let back in.</li></ul></div><div class="box-analogy"><p>The can is like a bag with air pumped out — the outside pressure, normally balanced by internal pressure, now has nothing to push against and crushes inward.</p></div><div class="box-exam"><p>State clearly: 'The crushing force is atmospheric pressure (~101 kPa) acting on the external surface when internal pressure is reduced.'</p></div>
+</div><div class="demo-card" style="--accent:#56C271">
+  <div class="demo-title"><span class="demo-num">4</span><span>Verify Archimedes' Principle</span></div>
+  <div class="box-apparatus"><ul><li>Overflow can (Eureka can) filled to the spout with water</li><li>Stone or metal object of known weight</li><li>Spring balance (0–5 N range)</li><li>Measuring cylinder or small beaker to collect displaced water</li><li>Ruler, string</li></ul></div><div class="box-method"><ol><li>Weigh the stone in air using the spring balance. Record weight W₁.</li><li>Fill the overflow can to the level of the spout. Place collection beaker under the spout.</li><li>Lower the stone gently into the water using the string — displaced water flows into the beaker.</li><li>Read the new spring balance reading W₂ (apparent weight in water).</li><li>Weigh the collected overflow water using the spring balance. Record W₃.</li><li>Calculate upthrust = W₁ − W₂. Compare with W₃.</li></ol></div><div class="box-diagram"><svg class="demo-svg" viewBox="0 0 480 200" xmlns="http://www.w3.org/2000/svg">
+  <defs><marker id="arrA" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#3A86FF"/></marker>
+  <marker id="arrA2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#E8637A"/></marker></defs>
+  <text x="240" y="18" text-anchor="middle" class="svg-label" font-weight="700">Archimedes' Principle — Overflow Can Method</text>
+  <!-- Spring balance -->
+  <rect x="195" y="30" width="90" height="30" rx="5" fill="#E2DDD7" stroke="#7A7068" stroke-width="1.5"/>
+  <text x="240" y="50" text-anchor="middle" class="svg-label-sm">Spring Balance: W₁</text>
+  <!-- String -->
+  <line x1="240" y1="60" x2="240" y2="90" stroke="#2C2825" stroke-width="1.5"/>
+  <!-- Stone in water -->
+  <rect x="210" y="115" width="60" height="45" rx="4" fill="#FFB347" stroke="#CC7A00" stroke-width="2"/>
+  <text x="240" y="142" text-anchor="middle" class="svg-label-sm">Stone: W₂</text>
+  <!-- Overflow can -->
+  <rect x="150" y="90" width="180" height="90" rx="4" fill="#E0ECFF" stroke="#3A86FF" stroke-width="2" opacity="0.7"/>
+  <text x="165" y="110" class="svg-label-sm" fill="#1A5CC8">Water</text>
+  <!-- Overflow spout -->
+  <rect x="328" y="120" width="30" height="8" rx="2" fill="#3A86FF" opacity="0.6"/>
+  <!-- Collection beaker -->
+  <rect x="365" y="125" width="50" height="45" rx="4" fill="#E0ECFF" stroke="#3A86FF" stroke-width="1.5"/>
+  <text x="390" y="165" text-anchor="middle" class="svg-label-sm">Overflow = Upthrust</text>
+  <!-- Forces arrows -->
+  <line x1="268" y1="130" x2="268" y2="100" stroke="#3A86FF" stroke-width="2" marker-end="url(#arrA)"/>
+  <text x="272" y="118" class="svg-label-sm" fill="#3A86FF">U</text>
+  <line x1="215" y1="130" x2="215" y2="160" stroke="#E8637A" stroke-width="2" marker-end="url(#arrA2)"/>
+  <text x="192" y="152" class="svg-label-sm" fill="#C94040">W</text>
+</svg></div><div class="box-observation"><ul><li>Upthrust (W₁ − W₂) equals the weight of water displaced (W₃) within experimental error.</li><li>This verifies Archimedes' Principle: upthrust = weight of fluid displaced.</li></ul></div><div class="box-analogy"><p>When you step into a bath and water spills over the edge, the weight of that spilled water equals the upward push you feel — that's exactly what this experiment shows.</p></div><div class="box-exam"><p>Show calculation: Upthrust = W₁ − W₂. Weight displaced = W₃. Conclusion: upthrust = weight of displaced fluid. State units (N) throughout.</p></div>
+</div><div class="demo-card" style="--accent:#9B5DE5">
+  <div class="demo-title"><span class="demo-num">5</span><span>Demonstration of an Energy Conversion</span></div>
+  <div class="box-apparatus"><ul><li>Simple pendulum: string (~1 m), heavy bob (50–100 g), retort stand and clamp</li><li>Alternatively: trolley on ramp, metre rule, ticker tape</li><li>Ruler to measure height of bob</li></ul></div><div class="box-method"><ol><li>Set up the pendulum on the retort stand. Mark the equilibrium position of the bob with chalk.</li><li>Pull the bob to one side (height h above equilibrium) — this is the starting position.</li><li>Release from rest. The bob swings through the equilibrium point and rises to an equal height on the other side.</li><li>Using a ruler, measure the height at both extreme positions and at the centre (lowest point).</li><li>Discuss: at top of swing, all energy is GPE = mgh. At bottom, all energy is KE = ½mv².</li></ol></div><div class="box-diagram"><svg class="demo-svg" viewBox="0 0 480 180" xmlns="http://www.w3.org/2000/svg">
+  <text x="240" y="18" text-anchor="middle" class="svg-label" font-weight="700">Pendulum: PE ↔ KE Energy Conversion</text>
+  <!-- String pivot -->
+  <rect x="220" y="30" width="40" height="8" rx="2" fill="#2C2825"/>
+  <!-- String -->
+  <line x1="240" y1="38" x2="130" y2="130" stroke="#7A7068" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <line x1="240" y1="38" x2="240" y2="145" stroke="#2C2825" stroke-width="1.5"/>
+  <line x1="240" y1="38" x2="350" y2="130" stroke="#7A7068" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <!-- Bob at top left (high PE) -->
+  <circle cx="130" cy="130" r="14" fill="#E8637A" opacity="0.7"/>
+  <text x="92" y="155" class="svg-label-sm" fill="#C94040">Max PE, KE=0</text>
+  <!-- Bob at bottom (max KE) -->
+  <circle cx="240" cy="145" r="14" fill="#56C271"/>
+  <text x="215" y="168" class="svg-label-sm" fill="#267339">Max KE, PE=0</text>
+  <!-- Bob at top right (high PE) -->
+  <circle cx="350" cy="130" r="14" fill="#E8637A" opacity="0.7"/>
+  <text x="340" y="155" class="svg-label-sm" fill="#C94040">Max PE, KE=0</text>
+  <!-- Arc arrow -->
+  <path d="M 145,125 Q 240,70 335,125" fill="none" stroke="#3A86FF" stroke-width="1.5" stroke-dasharray="6,3"/>
+</svg></div><div class="box-observation"><ul><li>The bob rises to approximately the same height on each side — demonstrating conservation of energy.</li><li>At the extreme positions, the bob is momentarily stationary (KE = 0, GPE = maximum).</li><li>At the lowest point, the bob moves fastest (KE = maximum, GPE = minimum/zero).</li><li>Slight loss of height over successive swings is due to air resistance (energy converted to heat).</li></ul></div><div class="box-analogy"><p>A skateboarder on a half-pipe converts PE at the top of each side into KE at the bottom and back again — the skater reaches the same height each time (ignoring friction).</p></div><div class="box-exam"><p>Write: 'Total mechanical energy is conserved (PE + KE = constant), with small losses to friction/air resistance.' Quote the Principle of Conservation of Energy.</p></div>
+</div><div class="demo-card" style="--accent:#F77F00">
+  <div class="demo-title"><span class="demo-num">6</span><span>Demonstration of Circular Motion</span></div>
+  <div class="box-apparatus"><ul><li>Rubber bung (~50 g)</li><li>Glass tube (~30 cm, fire-polished ends)</li><li>String (1–1.5 m) threaded through the tube</li><li>Paper clip and small hanging mass (e.g. 50 g weight) attached below the tube</li><li>Metre rule, stopwatch</li></ul></div><div class="box-method"><ol><li>Thread the string through the glass tube. Tie the rubber bung to one end; attach a known hanging mass (mg) to the lower end via a paper clip.</li><li>Holding the tube vertically, swing the bung in a horizontal circle above the tube.</li><li>Adjust the speed of rotation until the paper clip just remains stationary (the string neither rises nor falls).</li><li>At this point, the tension T in the string = mg (weight of hanging mass) = centripetal force.</li><li>Measure the radius r of the circular path and use a stopwatch to time 20 revolutions to find period T.</li><li>Verify: mg = mv²/r = mω²r.</li></ol></div><div class="box-diagram"><svg class="demo-svg" viewBox="0 0 480 200" xmlns="http://www.w3.org/2000/svg">
+  <defs><marker id="arrC" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#3A86FF"/></marker>
+  <marker id="arrC2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#E8637A"/></marker></defs>
+  <text x="240" y="18" text-anchor="middle" class="svg-label" font-weight="700">Bung on String — Circular Motion</text>
+  <!-- Circular path -->
+  <circle cx="240" cy="110" r="90" fill="none" stroke="#E2DDD7" stroke-width="2" stroke-dasharray="8,4"/>
+  <!-- String from hand to bung -->
+  <line x1="240" y1="110" x2="320" y2="32" stroke="#2C2825" stroke-width="2"/>
+  <circle cx="240" cy="110" r="8" fill="#7A7068"/>
+  <text x="248" y="115" class="svg-label-sm">(hand)</text>
+  <!-- Bung -->
+  <circle cx="320" cy="32" r="10" fill="#3A86FF"/>
+  <text x="334" y="38" class="svg-label-sm" fill="#3A86FF">bung</text>
+  <!-- Velocity arrow (tangential) -->
+  <line x1="320" y1="32" x2="380" y2="65" stroke="#56C271" stroke-width="2" marker-end="url(#arrC)"/>
+  <text x="375" y="58" class="svg-label-sm" fill="#267339">v (tangential)</text>
+  <!-- Centripetal force arrow (inward) -->
+  <line x1="312" y1="38" x2="258" y2="87" stroke="#E8637A" stroke-width="2" marker-end="url(#arrC2)"/>
+  <text x="250" y="60" class="svg-label-sm" fill="#C94040">T (centripetal)</text>
+  <!-- Hanging weight below -->
+  <line x1="240" y1="118" x2="240" y2="168" stroke="#2C2825" stroke-width="1.5"/>
+  <rect x="224" y="168" width="32" height="18" rx="3" fill="#FFB347"/>
+  <text x="240" y="181" text-anchor="middle" class="svg-label-sm">mass (mg)</text>
+</svg></div><div class="box-observation"><ul><li>When the bung is spun at the correct speed, the hanging mass remains stationary — indicating the centripetal force equals mg.</li><li>If the bung is spun faster, the paper clip rises (less string below = smaller radius).</li><li>If slower, the paper clip falls.</li><li>This confirms: centripetal force = mv²/r.</li></ul></div><div class="box-analogy"><p>Like a ball on a string swung around your head — the string tension (which you feel in your hand) is the centripetal force pulling the ball inward, exactly like gravity keeping a satellite in orbit.</p></div><div class="box-exam"><p>State clearly which force provides the centripetal force (tension in string). Formula: F = mv²/r. Note: centripetal force is not a separate force — it is the name for the net inward force.</p></div>
+</div><div class="demo-card" style="--accent:#2EC4B6">
+  <div class="demo-title"><span class="demo-num">7</span><span>Demonstration of Simple Harmonic Motion</span></div>
+  <div class="box-apparatus"><ul><li>Spring (Hooke's law spring, spring constant k known or to be found)</li><li>Known mass m (e.g. 100–200 g)</li><li>Retort stand and clamp</li><li>Ruler (clamped vertically) and pointer</li><li>Stopwatch</li><li>Alternatively: simple pendulum</li></ul></div><div class="box-method"><ol><li>Clamp the spring to the retort stand. Attach mass m to the lower end.</li><li>Allow the spring–mass system to reach equilibrium. Mark the equilibrium position on the ruler.</li><li>Pull the mass down by a small distance x (amplitude ~2–3 cm) and release.</li><li>The mass oscillates up and down. Time 20 complete oscillations with a stopwatch.</li><li>Calculate period T = total time / 20.</li><li>Repeat with different amplitudes — observe that T remains the same.</li><li>Note: the acceleration is always directed back towards the equilibrium position, and is proportional to displacement.</li></ol></div><div class="box-diagram"><svg class="demo-svg" viewBox="0 0 480 200" xmlns="http://www.w3.org/2000/svg">
+  <defs><marker id="arrS" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#9B5DE5"/></marker></defs>
+  <text x="240" y="18" text-anchor="middle" class="svg-label" font-weight="700">Pendulum / Spring–Mass System: SHM</text>
+  <!-- Ceiling -->
+  <rect x="190" y="30" width="100" height="8" rx="2" fill="#2C2825"/>
+  <!-- Spring coils -->
+  <path d="M240,38 Q250,48 240,55 Q230,62 240,69 Q250,76 240,83 Q230,90 240,97 Q250,104 240,111" fill="none" stroke="#3A86FF" stroke-width="2"/>
+  <!-- Mass -->
+  <rect x="210" y="111" width="60" height="35" rx="5" fill="#9B5DE5"/>
+  <text x="240" y="133" text-anchor="middle" class="svg-label" fill="#fff">mass m</text>
+  <!-- Equilibrium line -->
+  <line x1="160" y1="128" x2="340" y2="128" stroke="#E8637A" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <text x="345" y="132" class="svg-label-sm" fill="#C94040">equilibrium</text>
+  <!-- Displacement arrows -->
+  <line x1="160" y1="128" x2="160" y2="80" stroke="#9B5DE5" stroke-width="1.5" marker-end="url(#arrS)"/>
+  <text x="100" y="110" class="svg-label-sm" fill="#9B5DE5">+x (max)</text>
+  <line x1="160" y1="128" x2="160" y2="176" stroke="#9B5DE5" stroke-width="1.5" marker-end="url(#arrS)"/>
+  <text x="100" y="165" class="svg-label-sm" fill="#9B5DE5">-x (max)</text>
+  <!-- SHM wave -->
+  <path d="M340,128 Q360,90 380,128 Q400,166 420,128 Q440,90 460,128" fill="none" stroke="#56C271" stroke-width="2"/>
+  <text x="380" y="185" text-anchor="middle" class="svg-label-sm" fill="#267339">Displacement vs. time</text>
+</svg></div><div class="box-observation"><ul><li>The mass oscillates about the equilibrium position with a constant period.</li><li>The period is independent of amplitude (as long as the elastic limit is not exceeded).</li><li>This satisfies the two conditions for SHM: a ∝ x and a is directed towards equilibrium.</li><li>Period formula: T = 2π√(m/k) — doubling the mass increases T by √2.</li></ul></div><div class="box-analogy"><p>Like a bouncing car suspension — the heavier the car the slower it bounces, but it always bounces at the same rate regardless of how far you push it down (small displacements).</p></div><div class="box-exam"><p>Must state BOTH conditions for SHM: (1) a ∝ displacement, (2) a is always directed towards the equilibrium position. The period is independent of amplitude.</p></div>
+</div>
+</div>
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:24px;right:24px;width:44px;height:44px;border-radius:50%;background:var(--purple);color:#fff;border:none;font-size:1.2rem;cursor:pointer;box-shadow:var(--shadow);opacity:0;transition:opacity 0.3s;pointer-events:none;">↑</button>
+<script>
+
+function showTopic(id) {
+  document.querySelectorAll('.section').forEach(s => { s.style.display = 'none'; });
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  var el = document.getElementById(id);
+  if (el) { el.style.display = 'block'; }
+  var btn = document.querySelector('.nav-btn[data-id="' + id + '"]');
+  if (btn) btn.classList.add('active');
+  if (el) el.scrollIntoView({behavior:'smooth', block:'start'});
+}
+window.addEventListener('scroll', function() {
+  var btn = document.getElementById('scrollTop');
+  if (btn) btn.classList.toggle('visible', window.scrollY > 400);
+});
+window.addEventListener('DOMContentLoaded', function() {
+  var firstBtn = document.querySelector('.nav-btn[data-id]');
+  if (firstBtn) firstBtn.classList.add('active');
+});
+
+</script>
+</body>
+</html>

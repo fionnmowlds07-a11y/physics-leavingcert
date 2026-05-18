@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LC Physics Demos — Electricity B + Modern Physics + Applied</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F7F4EF;
+    --surface: #FFFFFF;
+    --surface2: #F0EDE8;
+    --border: #E2DDD7;
+    --text: #2C2825;
+    --text-muted: #7A7068;
+    --t1: #FF6B6B; --t1-light: #FFE8E8; --t1-dark: #C94040;
+    --t2: #4ECDC4; --t2-light: #E0F7F6; --t2-dark: #2A9990;
+    --t3: #FFB347; --t3-light: #FFF3E0; --t3-dark: #CC7A00;
+    --t4: #7C5CBF; --t4-light: #EDE8F7; --t4-dark: #5a3da0;
+    --t5: #56C271; --t5-light: #E6F8EB; --t5-dark: #267339;
+    --t6: #E8637A; --t6-light: #FCE8EC; --t6-dark: #B03050;
+    --t7: #3A86FF; --t7-light: #E0ECFF; --t7-dark: #1A5CC8;
+    --t8: #F77F00; --t8-light: #FFF0DC; --t8-dark: #B85A00;
+    --t9: #2EC4B6; --t9-light: #E0FAF7; --t9-dark: #1A9088;
+    --t10: #9B5DE5; --t10-light: #F3EAFF; --t10-dark: #6B2DAF;
+    --t11: #D62828; --t11-light: #FFECEC; --t11-dark: #9A1A1A;
+    --purple: #7C5CBF; --purple-light: #EDE8F7;
+    --green: #56C271; --green-light: #E6F8EB;
+    --radius: 14px;
+    --shadow: 0 4px 20px rgba(0,0,0,0.08);
+    --shadow-hover: 0 8px 32px rgba(0,0,0,0.14);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Lexend', sans-serif; background: var(--bg); color: var(--text); line-height: 1.8; font-size: 16px; }
+
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(247,244,239,0.96);
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid var(--border);
+    padding: 8px 16px;
+    display: flex; align-items: center; gap: 6px;
+    flex-wrap: wrap; min-height: 56px;
+  }
+  .nav-logo { font-family: 'Lexend Mega', sans-serif; font-size: 0.95rem; color: var(--text); margin-right: 6px; }
+  .nav-logo span { color: var(--t1); }
+  .nav-btn {
+    padding: 5px 11px; border-radius: 18px;
+    border: 2px solid transparent;
+    font-family: 'Lexend', sans-serif;
+    font-size: 0.72rem; font-weight: 600;
+    cursor: pointer; transition: all 0.2s;
+    background: var(--surface); color: var(--text-muted);
+    white-space: nowrap;
+  }
+  .nav-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+  .nav-btn.t1  { border-color: var(--t1); }  .nav-btn.t1.active,  .nav-btn.t1:hover  { background: var(--t1);  color:#fff; }
+  .nav-btn.t2  { border-color: var(--t2); }  .nav-btn.t2.active,  .nav-btn.t2:hover  { background: var(--t2);  color:var(--text); }
+  .nav-btn.t3  { border-color: var(--t3); }  .nav-btn.t3.active,  .nav-btn.t3:hover  { background: var(--t3);  color:var(--text); }
+  .nav-btn.t4  { border-color: var(--t4); }  .nav-btn.t4.active,  .nav-btn.t4:hover  { background: var(--t4);  color:#fff; }
+  .nav-btn.t5  { border-color: var(--t5); }  .nav-btn.t5.active,  .nav-btn.t5:hover  { background: var(--t5);  color:#fff; }
+  .nav-btn.t6  { border-color: var(--t6); }  .nav-btn.t6.active,  .nav-btn.t6:hover  { background: var(--t6);  color:#fff; }
+  .nav-btn.t7  { border-color: var(--t7); }  .nav-btn.t7.active,  .nav-btn.t7:hover  { background: var(--t7);  color:#fff; }
+  .nav-btn.t8  { border-color: var(--t8); }  .nav-btn.t8.active,  .nav-btn.t8:hover  { background: var(--t8);  color:#fff; }
+  .nav-btn.t9  { border-color: var(--t9); }  .nav-btn.t9.active,  .nav-btn.t9:hover  { background: var(--t9);  color:#fff; }
+  .nav-btn.t10 { border-color: var(--t10); } .nav-btn.t10.active, .nav-btn.t10:hover { background: var(--t10); color:#fff; }
+  .nav-btn.t11 { border-color: var(--t11); } .nav-btn.t11.active, .nav-btn.t11:hover { background: var(--t11); color:#fff; }
+  .nav-btn.flash { border-color: var(--purple); } .nav-btn.flash.active, .nav-btn.flash:hover { background: var(--purple); color:#fff; }
+
+  .hero { padding: 44px 24px 28px; text-align: center; }
+  .hero h1 { font-family: 'Lexend Mega', sans-serif; font-size: clamp(1.5rem,4vw,2.6rem); line-height:1.2; }
+  .hero h1 .a1{color:var(--t1);} .hero h1 .a2{color:var(--t2-dark);} .hero h1 .a3{color:var(--t3-dark);}
+  .hero p { margin-top:10px; color:var(--text-muted); max-width:620px; margin-left:auto; margin-right:auto; }
+  .stats-row { display:flex; justify-content:center; gap:20px; flex-wrap:wrap; margin-top:20px; }
+  .stat-chip { background:var(--surface); border:2px solid var(--border); border-radius:30px; padding:8px 20px; font-size:0.85rem; font-weight:600; }
+  .chapter-pills { display:flex; justify-content:center; gap:8px; flex-wrap:wrap; margin-top:20px; }
+  .pill { padding:7px 16px; border-radius:28px; font-weight:600; font-size:0.78rem; cursor:pointer; transition:all 0.2s; border:none; }
+  .pill:hover { transform:translateY(-3px); box-shadow:var(--shadow-hover); }
+
+  .section { display:none; padding:0 16px 60px; max-width:920px; margin:0 auto; }
+  .section.active { display:block; animation:fadeIn 0.3s ease; }
+  @keyframes fadeIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+
+  .ch-header {
+    border-radius:var(--radius); padding:28px 28px; color:white;
+    margin-bottom:24px; position:relative; overflow:hidden;
+  }
+  .ch-header h1 { font-family:'Lexend Mega',sans-serif; font-size:1.45rem; }
+  .ch-header p { opacity:0.88; margin-top:7px; font-size:0.92rem; }
+  .ch-header .big-num { position:absolute; right:22px; top:50%; transform:translateY(-50%); font-family:'Lexend Mega',sans-serif; font-size:5.5rem; opacity:0.12; line-height:1; }
+
+  .topic-card {
+    background:var(--surface); border-radius:var(--radius); padding:24px;
+    margin-bottom:20px; box-shadow:var(--shadow);
+    border-left:5px solid var(--t1); transition:box-shadow 0.2s;
+  }
+  .topic-card:hover { box-shadow:var(--shadow-hover); }
+  .topic-card h2 { font-size:1.15rem; font-weight:700; margin-bottom:12px; display:flex; align-items:center; gap:8px; }
+  .topic-card h3 { font-size:0.95rem; font-weight:600; margin:16px 0 7px; }
+  .topic-card p { margin-bottom:9px; }
+  .topic-card ul { padding-left:20px; margin-bottom:9px; }
+  .topic-card li { margin-bottom:4px; }
+
+  /* Term entry */
+  .term-entry { margin-bottom:18px; padding-bottom:18px; border-bottom:1px solid var(--border); }
+  .term-entry:last-child { border-bottom:none; margin-bottom:0; padding-bottom:0; }
+  .term-name { font-size:1.05rem; font-weight:700; margin-bottom:6px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+
+  /* Boxes */
+  .def-box { background:var(--surface2); border:2px dashed var(--border); border-radius:10px; padding:12px 16px; margin:8px 0; position:relative; }
+  .def-box::before { content:'📖 DEFINITION'; display:block; font-size:0.65rem; font-weight:700; letter-spacing:1px; color:var(--text-muted); margin-bottom:5px; }
+  .def-box p { margin:0; font-weight:500; }
+  .analogy-box { background:#FFF9E6; border:2px solid #FFD966; border-radius:10px; padding:12px 16px; margin:8px 0; }
+  .analogy-box::before { content:'💡 ANALOGY'; display:block; font-size:0.65rem; font-weight:700; letter-spacing:1px; color:#997700; margin-bottom:5px; }
+  .memory-box { background:#F0FFF4; border:2px solid var(--green); border-radius:10px; padding:12px 16px; margin:8px 0; }
+  .memory-box::before { content:'🧠 MEMORY TRICK'; display:block; font-size:0.65rem; font-weight:700; letter-spacing:1px; color:#267339; margin-bottom:5px; }
+  .exam-box { background:#FFF0F3; border:2px solid var(--t1); border-radius:10px; padding:12px 16px; margin:8px 0; }
+  .exam-box::before { content:'📝 EXAM TIP'; display:block; font-size:0.65rem; font-weight:700; letter-spacing:1px; color:var(--t1-dark); margin-bottom:5px; }
+  .code-box { background:#1e1e2e; color:#cdd6f4; border-radius:10px; padding:12px 16px; margin:8px 0; font-family:monospace; font-size:0.88rem; overflow-x:auto; }
+
+  .badge { display:inline-block; padding:2px 9px; border-radius:18px; font-size:0.68rem; font-weight:700; letter-spacing:0.4px; }
+  .b-core   { background:#FFE8E8; color:#C94040; }
+  .b-useful { background:#E0F7F6; color:#2A9990; }
+  .b-extra  { background:#F0EDE8; color:#7A7068; }
+
+  comp-table, .comp-table { width:100%; border-collapse:collapse; margin:12px 0; font-size:0.86rem; border-radius:10px; overflow:hidden; }
+  .comp-table th { background:var(--t1); color:#fff; padding:9px 12px; text-align:left; font-weight:600; }
+  .comp-table td { padding:8px 12px; border-bottom:1px solid var(--border); }
+  .comp-table tr:nth-child(even) td { background:var(--surface2); }
+  .comp-table tr:last-child td { border-bottom:none; }
+
+  /* Big O grid */
+  .big-o-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:14px 0; }
+  @media(max-width:580px){ .big-o-grid{grid-template-columns:1fr;} }
+  .big-o-card { border-radius:10px; padding:13px; border:2px solid; }
+  .big-o-card .notation { font-size:1.25rem; font-weight:700; }
+  .big-o-card .label { font-size:0.78rem; font-weight:600; margin:3px 0; }
+  .big-o-card .desc { font-size:0.8rem; color:var(--text-muted); }
+  .o1    { border-color:#56C271; background:#E6F8EB; }
+  .ologn { border-color:#4ECDC4; background:#E0F7F6; }
+  .on    { border-color:#FFB347; background:#FFF3E0; }
+  .on2   { border-color:#FF6B6B; background:#FFE8E8; }
+  .onlogn{ border-color:#C9A800; background:#FFFBE0; }
+
+  /* Accordion for less-important terms */
+  .accordion { margin:8px 0; border-radius:10px; overflow:hidden; border:2px solid var(--border); }
+  .accordion-header { width:100%; text-align:left; padding:11px 16px; background:var(--surface2); border:none; font-family:'Lexend',sans-serif; font-size:0.92rem; font-weight:600; cursor:pointer; display:flex; justify-content:space-between; align-items:center; transition:background 0.2s; }
+  .accordion-header:hover { background:var(--border); }
+  .accordion-header .arrow { transition:transform 0.3s; font-size:0.78rem; }
+  .accordion-header.open .arrow { transform:rotate(180deg); }
+  .accordion-body { display:none; padding:14px 16px; background:var(--surface); border-top:2px solid var(--border); }
+  .accordion-body.open { display:block; }
+
+  /* Flashcards */
+  #flashcards { padding:0 16px 80px; max-width:920px; margin:0 auto; display:none; }
+  
+  .flash-header { background:linear-gradient(135deg,var(--purple) 0%,#5a3da0 100%); border-radius:var(--radius); padding:28px; color:white; margin-bottom:24px; position:relative; overflow:hidden; }
+  .flash-header h1 { font-family:'Lexend Mega',sans-serif; font-size:1.45rem; }
+  .flash-header p { opacity:0.85; margin-top:7px; }
+  .flash-header .big-num { position:absolute; right:22px; top:50%; transform:translateY(-50%); font-family:'Lexend Mega',sans-serif; font-size:5.5rem; opacity:0.12; }
+
+  .flash-controls { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:18px; align-items:center; }
+  .flash-filter { padding:6px 14px; border-radius:18px; border:2px solid var(--border); background:var(--surface); font-family:'Lexend',sans-serif; font-size:0.76rem; font-weight:600; cursor:pointer; transition:all 0.2s; color:var(--text-muted); }
+  .flash-filter:hover, .flash-filter.factive { background:var(--purple); color:#fff; border-color:var(--purple); }
+
+  .flashcard-area { display:flex; flex-direction:column; align-items:center; }
+  .flashcard { width:100%; max-width:640px; perspective:1200px; min-height:200px; cursor:pointer; margin-bottom:18px; }
+  .flashcard-inner { position:relative; width:100%; min-height:200px; transition:transform 0.55s cubic-bezier(.4,.2,.2,1); transform-style:preserve-3d; }
+  .flashcard.flipped .flashcard-inner { transform:rotateY(180deg); }
+  .flashcard-front, .flashcard-back { position:absolute; width:100%; min-height:200px; backface-visibility:hidden; border-radius:var(--radius); padding:28px 24px; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; box-shadow:var(--shadow); }
+  .flashcard-front { background:var(--surface); border:3px solid var(--purple); }
+  .flashcard-back { background:var(--purple); color:white; transform:rotateY(180deg); }
+  .flashcard-front .card-topic { font-size:0.68rem; font-weight:700; letter-spacing:1px; text-transform:uppercase; margin-bottom:10px; color:var(--text-muted); }
+  .flashcard-front .card-q { font-size:1.1rem; font-weight:600; }
+  .flashcard-front .flip-hint { margin-top:14px; font-size:0.72rem; color:var(--text-muted); }
+  .flashcard-back .card-a { font-size:0.95rem; line-height:1.7; }
+  .flash-nav { display:flex; gap:12px; align-items:center; }
+  .flash-btn { padding:9px 22px; border-radius:22px; border:none; font-family:'Lexend',sans-serif; font-size:0.88rem; font-weight:600; cursor:pointer; transition:all 0.2s; background:var(--purple); color:#fff; }
+  .flash-btn:hover { background:#5a3da0; transform:translateY(-2px); box-shadow:var(--shadow-hover); }
+  .flash-btn:disabled { opacity:0.4; cursor:not-allowed; transform:none; }
+  .flash-counter { font-weight:600; color:var(--text-muted); font-size:0.88rem; min-width:80px; text-align:center; }
+  .flash-progress { width:100%; max-width:640px; height:6px; background:var(--border); border-radius:3px; margin-bottom:16px; overflow:hidden; }
+  .flash-progress-bar { height:100%; background:var(--purple); border-radius:3px; transition:width 0.4s; }
+
+  #scrollTop { position:fixed; bottom:22px; right:22px; width:40px; height:40px; background:var(--text); color:#fff; border:none; border-radius:50%; font-size:1rem; cursor:pointer; box-shadow:var(--shadow-hover); transition:all 0.2s; z-index:99; opacity:0; pointer-events:none; }
+  #scrollTop.visible { opacity:1; pointer-events:all; }
+  #scrollTop:hover { transform:scale(1.1); }
+  .icon { font-size:1.15rem; }
+
+  /* search bar */
+  .search-wrap { max-width:920px; margin:0 auto 4px; padding:0 16px; }
+  .search-input { width:100%; padding:11px 18px; border-radius:30px; border:2px solid var(--border); font-family:'Lexend',sans-serif; font-size:0.92rem; background:var(--surface); color:var(--text); outline:none; transition:border-color 0.2s; }
+  .search-input:focus { border-color:var(--purple); }
+  .search-result-count { font-size:0.8rem; color:var(--text-muted); text-align:center; margin:6px 0 0; }
+
+  /* colour overrides per topic */
+  .tc-t1  { border-left-color:var(--t1);  } .tc-t2  { border-left-color:var(--t2);  }
+  .tc-t3  { border-left-color:var(--t3);  } .tc-t4  { border-left-color:var(--t4);  }
+  .tc-t5  { border-left-color:var(--t5);  } .tc-t6  { border-left-color:var(--t6);  }
+  .tc-t7  { border-left-color:var(--t7);  } .tc-t8  { border-left-color:var(--t8);  }
+  .tc-t9  { border-left-color:var(--t9);  } .tc-t10 { border-left-color:var(--t10); }
+  .tc-t11 { border-left-color:var(--t11); }
+
+  /* ── shared navbar additions ── */
+  .nav-home {
+    display:inline-flex; align-items:center; gap:5px;
+    padding:5px 13px; border-radius:18px;
+    border:2px solid var(--border);
+    background:var(--surface);
+    font-family:'Lexend',sans-serif; font-size:0.72rem; font-weight:700;
+    color:var(--text-muted); text-decoration:none;
+    transition:all 0.2s; white-space:nowrap;
+  }
+  .nav-home:hover { background:var(--text); color:#fff; border-color:var(--text); transform:translateY(-2px); }
+  .nav-flashcards {
+    display:inline-flex; align-items:center; gap:5px;
+    padding:5px 13px; border-radius:18px;
+    border:2px solid var(--purple); background:var(--surface);
+    font-family:'Lexend',sans-serif; font-size:0.72rem; font-weight:700;
+    color:var(--purple); text-decoration:none;
+    transition:all 0.2s; white-space:nowrap; margin-left:auto;
+  }
+  .nav-flashcards:hover { background:var(--purple); color:#fff; transform:translateY(-2px); }
+  .nav-divider { width:1px; height:20px; background:var(--border); margin:0 4px; flex-shrink:0; }
+
+
+  /* ── improved nav file links ── */
+  .nav-home {
+    display:inline-flex; align-items:center; gap:5px;
+    padding:5px 12px; border-radius:14px;
+    border:2px solid var(--border); background:var(--surface);
+    font-family:'Lexend',sans-serif; font-size:0.72rem; font-weight:700;
+    color:var(--text-muted); text-decoration:none; transition:all 0.2s;
+    white-space:nowrap; flex-shrink:0;
+  }
+  .nav-home:hover { background:var(--text); color:#fff; border-color:var(--text); }
+  .nav-divider { width:1px; height:18px; background:var(--border); flex-shrink:0; }
+  .nav-file-link {
+    display:inline-flex; align-items:center;
+    padding:5px 11px; border-radius:14px;
+    border:2px solid var(--border); background:var(--surface);
+    font-family:'Lexend',sans-serif; font-size:0.7rem; font-weight:700;
+    color:var(--text-muted); text-decoration:none; transition:all 0.2s;
+    white-space:nowrap;
+  }
+  .nav-file-link:hover { border-color:var(--purple); color:var(--purple); transform:translateY(-1px); }
+  .nav-file-link.current { background:var(--purple); color:#fff; border-color:var(--purple); }
+  .nav-file-link.fc-link { border-color:var(--purple); color:var(--purple); }
+  .nav-file-link.fc-link:hover { background:var(--purple); color:#fff; }
+  /* label above file links group */
+  .nav-files-group {
+    display:flex; align-items:center; gap:6px; flex-wrap:wrap;
+  }
+  .nav-files-label {
+    font-size:0.62rem; font-weight:800; letter-spacing:0.8px;
+    text-transform:uppercase; color:var(--text-muted);
+    white-space:nowrap; flex-shrink:0;
+  }
+  /* hero simplified — no switcher section */
+  .hero-compact {
+    text-align:center; padding:28px 20px 16px;
+    border-bottom:2px solid var(--border);
+    margin-bottom:20px;
+    background:var(--surface);
+  }
+  .hero-compact h1 { font-family:'Lexend Mega',sans-serif; font-size:clamp(1.1rem,3vw,1.6rem); margin-bottom:6px; }
+  .hero-compact p  { color:var(--text-muted); font-size:0.85rem; max-width:640px; margin:0 auto 14px; }
+  .hero-compact .topic-pills { display:flex; justify-content:center; gap:8px; flex-wrap:wrap; }
+  .hero-compact .topic-pill {
+    padding:9px 20px; border-radius:24px; border:none;
+    font-family:'Lexend',sans-serif; font-size:0.82rem; font-weight:700;
+    cursor:pointer; transition:all 0.2s; box-shadow:0 2px 8px rgba(0,0,0,0.12);
+  }
+  .hero-compact .topic-pill:hover { transform:translateY(-2px); box-shadow:0 4px 14px rgba(0,0,0,0.18); }
+  .hero-compact .pill-hint {
+    margin-top:10px; font-size:0.72rem; color:var(--text-muted);
+  }
+
+  .nav-home {
+    display:inline-flex; align-items:center; gap:5px;
+    padding:5px 12px; border-radius:14px;
+    border:2px solid var(--border); background:var(--surface);
+    font-family:'Lexend',sans-serif; font-size:0.72rem; font-weight:700;
+    color:var(--text-muted); text-decoration:none; transition:all 0.2s;
+    white-space:nowrap; flex-shrink:0;
+  }
+  .nav-home:hover { background:var(--text); color:#fff; border-color:var(--text); }
+  .nav-divider { width:1px; height:18px; background:var(--border); flex-shrink:0; }
+  .nav-file-link {
+    display:inline-flex; align-items:center;
+    padding:5px 10px; border-radius:14px;
+    border:2px solid var(--border); background:var(--surface);
+    font-family:'Lexend',sans-serif; font-size:0.68rem; font-weight:700;
+    color:var(--text-muted); text-decoration:none; transition:all 0.2s;
+    white-space:nowrap;
+  }
+  .nav-file-link:hover { border-color:var(--purple); color:var(--purple); transform:translateY(-1px); }
+  .nav-file-link.current { background:var(--purple); color:#fff; border-color:var(--purple); }
+  .nav-file-link.fc-link { border-color:var(--purple); color:var(--purple); }
+  .nav-file-link.fc-link:hover { background:var(--purple); color:#fff; }
+  .nav-files-group { display:flex; align-items:center; gap:5px; flex-wrap:wrap; }
+  .nav-files-label { font-size:0.62rem; font-weight:800; letter-spacing:0.8px; text-transform:uppercase; color:var(--text-muted); white-space:nowrap; flex-shrink:0; }
+  .hero-compact {
+    text-align:center; padding:28px 20px 16px;
+    border-bottom:2px solid var(--border); margin-bottom:20px;
+    background:var(--surface);
+  }
+  .hero-compact h1 { font-family:'Lexend Mega',sans-serif; font-size:clamp(1.1rem,3vw,1.6rem); margin-bottom:6px; }
+  .hero-compact p  { color:var(--text-muted); font-size:0.85rem; max-width:640px; margin:0 auto 14px; }
+  .hero-compact .topic-pills { display:flex; justify-content:center; gap:8px; flex-wrap:wrap; }
+  .hero-compact .topic-pill {
+    padding:9px 20px; border-radius:24px; border:none;
+    font-family:'Lexend',sans-serif; font-size:0.82rem; font-weight:700;
+    cursor:pointer; transition:all 0.2s; box-shadow:0 2px 8px rgba(0,0,0,0.12);
+  }
+  .hero-compact .topic-pill:hover { transform:translateY(-2px); box-shadow:0 4px 14px rgba(0,0,0,0.18); }
+  .hero-compact .pill-hint { margin-top:10px; font-size:0.72rem; color:var(--text-muted); }
+
+
+  .demo-card { background:var(--surface); border-radius:var(--radius); padding:24px 26px; margin-bottom:22px; box-shadow:var(--shadow); border-left:5px solid var(--accent,var(--t7)); transition:box-shadow 0.2s; }
+  .demo-card:hover { box-shadow:var(--shadow-hover); }
+  .demo-num { display:inline-flex; align-items:center; justify-content:center; width:32px; height:32px; border-radius:50%; background:var(--accent,var(--t7)); color:#fff; font-size:0.8rem; font-weight:800; flex-shrink:0; margin-right:10px; }
+  .demo-title { font-family:'Lexend Mega',sans-serif; font-size:1.05rem; font-weight:700; display:flex; align-items:center; margin-bottom:16px; }
+  .demo-title span { color:var(--text); }
+  .box-apparatus { background:#EEF6FF; border:2px solid #3A86FF; border-radius:10px; padding:13px 16px; margin:10px 0; }
+  .box-apparatus::before { content:'🔬 APPARATUS'; display:block; font-size:0.65rem; font-weight:800; letter-spacing:1px; color:#1A5CC8; margin-bottom:6px; }
+  .box-method { background:#F0FFF4; border:2px solid var(--green); border-radius:10px; padding:13px 16px; margin:10px 0; }
+  .box-method::before { content:'⚗️ METHOD'; display:block; font-size:0.65rem; font-weight:800; letter-spacing:1px; color:#267339; margin-bottom:6px; }
+  .box-observation { background:#FFF9E6; border:2px solid #FFD966; border-radius:10px; padding:13px 16px; margin:10px 0; }
+  .box-observation::before { content:'👁️ OBSERVATION'; display:block; font-size:0.65rem; font-weight:800; letter-spacing:1px; color:#997700; margin-bottom:6px; }
+  .box-diagram { background:var(--surface2); border:2px dashed var(--border); border-radius:10px; padding:16px; margin:10px 0; text-align:center; }
+  .box-diagram::before { content:'📐 DIAGRAM'; display:block; font-size:0.65rem; font-weight:800; letter-spacing:1px; color:var(--text-muted); margin-bottom:10px; text-align:left; }
+  .box-analogy { background:#F3EAFF; border:2px solid var(--t10); border-radius:10px; padding:13px 16px; margin:10px 0; }
+  .box-analogy::before { content:'💡 ANALOGY'; display:block; font-size:0.65rem; font-weight:800; letter-spacing:1px; color:#6B2DAF; margin-bottom:6px; }
+  .box-exam { background:#FFF0F3; border:2px solid var(--t1); border-radius:10px; padding:13px 16px; margin:10px 0; }
+  .box-exam::before { content:'📝 EXAM TIP'; display:block; font-size:0.65rem; font-weight:800; letter-spacing:1px; color:#C94040; margin-bottom:6px; }
+  .box-apparatus ul, .box-method ol, .box-observation ul, .box-observation ol { padding-left:20px; margin:4px 0; }
+  .box-apparatus ul li, .box-method ol li, .box-observation ul li, .box-observation ol li { margin-bottom:4px; font-size:0.92rem; line-height:1.6; }
+  .demo-svg { width:100%; max-width:520px; height:auto; display:block; margin:0 auto; }
+  .svg-label { font-family:'Lexend',sans-serif; font-size:12px; fill:#2C2825; }
+  .svg-label-sm { font-family:'Lexend',sans-serif; font-size:10px; fill:#7A7068; }
+  .nav-home { display:inline-flex; align-items:center; gap:5px; padding:5px 12px; border-radius:14px; border:2px solid var(--border); background:var(--surface); font-family:'Lexend',sans-serif; font-size:0.72rem; font-weight:700; color:var(--text-muted); text-decoration:none; transition:all 0.2s; white-space:nowrap; flex-shrink:0; }
+  .nav-home:hover { background:var(--text); color:#fff; border-color:var(--text); }
+  .nav-divider { width:1px; height:18px; background:var(--border); flex-shrink:0; }
+  .nav-file-link { display:inline-flex; align-items:center; padding:5px 10px; border-radius:14px; border:2px solid var(--border); background:var(--surface); font-family:'Lexend',sans-serif; font-size:0.68rem; font-weight:700; color:var(--text-muted); text-decoration:none; transition:all 0.2s; white-space:nowrap; }
+  .nav-file-link:hover { border-color:var(--purple); color:var(--purple); transform:translateY(-1px); }
+  .nav-file-link.current { background:var(--purple); color:#fff; border-color:var(--purple); }
+  .nav-files-group { display:flex; align-items:center; gap:5px; flex-wrap:wrap; }
+  .nav-files-label { font-size:0.62rem; font-weight:800; letter-spacing:0.8px; text-transform:uppercase; color:var(--text-muted); white-space:nowrap; flex-shrink:0; }
+  .hero-compact { text-align:center; padding:28px 20px 16px; border-bottom:2px solid var(--border); margin-bottom:20px; background:var(--surface); }
+  .hero-compact h1 { font-family:'Lexend Mega',sans-serif; font-size:clamp(1.1rem,3vw,1.6rem); margin-bottom:6px; }
+  .hero-compact p  { color:var(--text-muted); font-size:0.85rem; max-width:640px; margin:0 auto 14px; }
+  .hero-compact .topic-pills { display:flex; justify-content:center; gap:8px; flex-wrap:wrap; }
+  .hero-compact .topic-pill { padding:9px 20px; border-radius:24px; border:none; font-family:'Lexend',sans-serif; font-size:0.82rem; font-weight:700; cursor:pointer; transition:all 0.2s; box-shadow:0 2px 8px rgba(0,0,0,0.12); }
+  .hero-compact .topic-pill:hover { transform:translateY(-2px); box-shadow:0 4px 14px rgba(0,0,0,0.18); }
+  .hero-compact .pill-hint { margin-top:10px; font-size:0.72rem; color:var(--text-muted); }
+
+</style>
+</head>
+<body>
+<nav>
+  <a href="Physics.html" class="nav-home">🏠 Home</a>
+  <span class="nav-divider"></span>
+  <button class="nav-btn" data-id="elec_b" style="border-color:#3A86FF" onclick="showTopic('elec_b')">⚡ Electricity B</button>
+  <button class="nav-btn" data-id="modern" style="border-color:#9B5DE5" onclick="showTopic('modern')">⚛️ Modern Physics</button>
+  <button class="nav-btn" data-id="applied" style="border-color:#F77F00" onclick="showTopic('applied')">🔌 Applied Electricity</button>
+  <span class="nav-divider"></span>
+  <div class="nav-files-group">
+    <span class="nav-files-label">Files:</span>
+    <a href="Physics_Demo_1_Mechanics.html" class="nav-file-link ">1: Mechanics</a>
+    <a href="Physics_Demo_2_Heat.html" class="nav-file-link ">2: Heat</a>
+    <a href="Physics_Demo_3_WavesSoundLight.html" class="nav-file-link ">3: Waves, Sound & Light</a>
+    <a href="Physics_Demo_4_Electricity_A.html" class="nav-file-link ">4a: Electricity A</a>
+    <a href="Physics_Demo_5_Electricity_B.html" class="nav-file-link current">4b: Electricity B + Modern</a>
+  </div>
+</nav>
+<div class="hero-compact" id="heroSection">
+  <h1>LC Physics Demonstrations <span style="font-size:0.6em;color:var(--text-muted);font-family:'Lexend',sans-serif;font-weight:600;">— File 5 of 5</span></h1>
+  <p>Magnetism, induction, Faraday, Lenz, transformer, self-induction, photoelectric, spectra, radiation, relay, motor, logic · 24 demonstrations</p>
+  <div class="topic-pills">
+    <button class="topic-pill" style="background:#3A86FF;color:#fff" onclick="showTopic('elec_b')">⚡ Electricity B</button>
+    <button class="topic-pill" style="background:#9B5DE5;color:#fff" onclick="showTopic('modern')">⚛️ Modern Physics</button>
+    <button class="topic-pill" style="background:#F77F00;color:#fff" onclick="showTopic('applied')">🔌 Applied Electricity</button>
+  </div>
+  <p class="pill-hint">Click a topic above to jump in ↑</p>
+</div>
+<div class="section" id="elec_b" style="padding:0 16px 60px;max-width:960px;margin:0 auto;display:none;"><div class="ch-header" style="background:#3A86FF;margin-bottom:24px;"><h1>⚡ Electricity Demonstrations B (16–28)</h1></div><div class="demo-card" style="--accent:#FFB347"><div class="demo-title"><span class="demo-num">16</span><span>Demonstration of a Light-Dependent Resistor (LDR)</span></div><div class="box-apparatus"><ul><li>LDR (light-dependent resistor)</li><li>Ohmmeter (or multimeter on Ω setting)</li><li>Torch or bench lamp</li><li>Black card or opaque cover</li><li>Connecting wires</li></ul></div><div class="box-method"><ol><li>Connect the LDR to the ohmmeter.</li><li>Place the LDR in normal room light — record the resistance.</li><li>Cover the LDR completely with the black card (darkness) — record resistance.</li><li>Shine a bright torch directly onto the LDR — record the resistance.</li><li>Repeat with different light intensities (e.g. vary the distance of the torch).</li><li>Plot resistance vs. light intensity if time allows.</li></ol></div><div class="box-diagram"><svg class="demo-svg" viewBox="0 0 480 130" xmlns="http://www.w3.org/2000/svg">
+  <text x="240" y="16" text-anchor="middle" class="svg-label" font-weight="700">LDR — Light Changes Resistance</text>
+  <rect x="30" y="45" width="40" height="25" rx="3" fill="#FFB347" stroke="#CC7A00" stroke-width="1.5"/>
+  <text x="50" y="60" text-anchor="middle" class="svg-label-sm">Bat.</text>
+  <rect x="130" y="42" width="50" height="30" rx="4" fill="#E0ECFF" stroke="#3A86FF" stroke-width="2"/>
+  <text x="155" y="60" text-anchor="middle" class="svg-label-sm">LDR</text>
+  <line x1="148" y1="33" x2="138" y2="42" stroke="#FFD700" stroke-width="1.5"/>
+  <line x1="162" y1="33" x2="152" y2="42" stroke="#FFD700" stroke-width="1.5"/>
+  <circle cx="290" cy="57" r="18" fill="#FFF9E6" stroke="#FFB347" stroke-width="1.5"/>
+  <text x="290" y="61" text-anchor="middle" class="svg-label-sm">Ω</text>
+  <line x1="70" y1="57" x2="130" y2="57" stroke="#2C2825" stroke-width="1.5"/>
+  <line x1="180" y1="57" x2="272" y2="57" stroke="#2C2825" stroke-width="1.5"/>
+  <line x1="308" y1="57" x2="430" y2="57" stroke="#2C2825" stroke-width="1.5"/>
+  <line x1="430" y1="57" x2="430" y2="95" stroke="#2C2825" stroke-width="1.5"/>
+  <line x1="430" y1="95" x2="50" y2="95" stroke="#2C2825" stroke-width="1.5"/>
+  <line x1="50" y1="95" x2="50" y2="70" stroke="#2C2825" stroke-width="1.5"/>
+  <text x="240" y="118" text-anchor="middle" class="svg-label-sm">Cover LDR (dark) → high Ω; shine torch → low Ω (ohmmeter confirms)</text>
+</svg></div><div class="box-observation"><ul><li>In darkness: resistance is high (typically 1 MΩ or more).</li><li>In room light: resistance is moderate (tens of kΩ).</li><li>In bright light: resistance is low (hundreds of Ω).</li><li>As light intensity increases, resistance decreases — demonstrating the LDR's light-sensitive behaviour.</li><li>This is due to photons releasing charge carriers in the semiconductor material.</li></ul></div><div class="box-analogy"><p>Like a drawbridge: in darkness it's up (high resistance, no current flows); in bright light it lowers (low resistance, current flows freely). Street lights use exactly this principle — when the LDR detects daylight, it turns the lamp off.</p></div><div class="box-exam"><p>State: 'An LDR is a semiconductor device whose resistance decreases as light intensity increases. It is used in light-activated switches and automatic streetlights.'</p></div></div><div class="demo-card" style="--accent:#E8637A"><div class="demo-title"><span class="demo-num">17</span><span>Demonstration of a Thermistor</span></div><div class="box-apparatus"><ul><li>NTC (negative temperature coefficient) thermistor</li><li>Ohmmeter (multimeter on Ω setting)</li><li>Beakers of water at different temperatures: cold (ice water ~0°C), room temperature, warm (~50°C), hot (~80°C)</li><li>Thermometer</li><li>Connecting wires</li></ul></div><div class="box-method"><ol><li>Connect the thermistor to the ohmmeter.</li><li>Immerse the thermistor in ice-cold water (~0°C). Record temperature and resistance after 30 seconds.</li><li>Move to room temperature water (~20°C). Record.</li><li>Move to warm water (~50°C). Record.</li><li>Move to hot water (~80°C). Record.</li><li>Plot a graph of resistance vs. temperature.</li><li>Observe: as temperature increases, resistance decreases.</li></ol></div><div class="box-diagram"><svg class="demo-svg" viewBox="0 0 480 130" xmlns="http://www.w3.org/2000/svg">
+  <text x="240" y="16" text-anchor="middle" class="svg-label" font-weight="700">NTC Thermistor — Resistance Falls as Temperature Rises</text>
+  <circle cx="80" cy="60" r="18" fill="#FFF9E6" stroke="#FFB347" stroke-width="1.5"/>
+  <text x="80" y="64" text-anchor="middle" class="svg-label-sm">Ω</text>
+  <rect x="190" y="45" width="40" height="30" rx="4" fill="#FFE8E8" stroke="#E8637A" stroke-width="2"/>
+  <text x="210" y="63" text-anchor="middle" class="svg-label-sm">NTC</text>
+  <path d="M160,80 L148,118 L278,118 L266,80 Z" fill="#E0F7F6" stroke="#2EC4B6" stroke-width="1.5" opacity="0.6"/>
+  <text x="213" y="106" text-anchor="middle" class="svg-label-sm" fill="#1A9088">hot water</text>
+  <line x1="98" y1="60" x2="190" y2="60" stroke="#2C2825" stroke-width="1.5"/>
+  <line x1="230" y1="60" x2="380" y2="60" stroke="#2C2825" stroke-width="1.5"/>
+  <line x1="380" y1="60" x2="380" y2="90" stroke="#2C2825" stroke-width="1.5"/>
+  <line x1="80" y1="78" x2="80" y2="90" stroke="#2C2825" stroke-width="1.5"/>
+  <line x1="80" y1="90" x2="380" y2="90" stroke="#2C2825" stroke-width="1.5"/>
+  <text x="240" y="118" text-anchor="middle" class="svg-label-sm">Immerse in hot water → ohmmeter reading falls → resistance decreases with temperature</text>
+</svg></div><div class="box-observation"><ul><li>At 0°C: very high resistance (e.g. 10–30 kΩ).</li><li>At room temperature: moderate resistance (e.g. 5–10 kΩ).</li><li>At 80°C: much lower resistance (e.g. 200–500 Ω).</li><li>The relationship is non-linear — resistance falls rapidly at first then more slowly.</li><li>This demonstrates that NTC thermistors have a resistance that decreases with increasing temperature.</li></ul></div><div class="box-analogy"><p>Like traffic on a road on a cold day versus a hot day — in cold weather (high resistance) there are fewer free charge carriers (fewer cars), so current flows slowly. Warm the material and more carriers are freed, reducing resistance.</p></div><div class="box-exam"><p>State: 'An NTC (Negative Temperature Coefficient) thermistor has resistance that decreases as temperature increases. Used in thermostats, digital thermometers, and temperature-sensing circuits.'</p></div></div><div class="demo-card" style="--accent:#3A86FF"><div class="demo-title"><span class="demo-num">18</span><span>Plot the Magnetic Field of a Bar Magnet</span></div><div class="box-apparatus"><ul><li>Bar magnet</li><li>Large sheet of white paper</li><li>Several small compass needles (or one compass moved systematically)</li><li>Pencil</li><li>Ruler</li></ul></div><div class="box-method"><ol><li>Place the bar magnet in the centre of the paper. Trace its outline.</li><li>Place a compass near the north pole of the magnet. Mark a dot where the south end of the needle points. Move the compass so the north end is now at the marked dot. Mark the new position of the south end.</li><li>Continue this process (dot-to-dot method) until the field line reaches the south pole of the magnet or goes off the paper.</li><li>Repeat for many different starting positions to map out multiple field lines.</li><li>Alternatively: scatter iron filings on a card over the magnet and observe the pattern directly.</li></ol></div><div class="box-diagram"><svg class="demo-svg" viewBox="0 0 480 140" xmlns="http://www.w3.org/2000/svg">
+  <defs><marker id="aBM" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#3A86FF"/></marker></defs>
+  <text x="240" y="16" text-anchor="middle" class="svg-label" font-weight="700">Bar Magnet Field — Iron Filings on Card</text>
+  <rect x="175" y="60" width="60" height="28" rx="3" fill="#E8637A"/>
+  <rect x="235" y="60" width="60" height="28" rx="3" fill="#3A86FF"/>
+  <text x="205" y="78" text-anchor="middle" class="svg-label" fill="#fff">N</text>
+  <text x="265" y="78" text-anchor="middle" class="svg-label" fill="#fff">S</text>
+  <path d="M175,74 Q120,40 85,74 Q120,108 175,74" fill="none" stroke="#3A86FF" stroke-width="1.5" stroke-dasharray="4,2" marker-end="url(#aBM)"/>
+  <path d="M295,74 Q355,40 390,74 Q355,108 295,74" fill="none" stroke="#3A86FF" stroke-width="1.5" stroke-dasharray="4,2" marker-end="url(#aBM)"/>
+  <path d="M175,74 Q175,130 240,138 Q305,130 295,74" fill="none" stroke="#3A86FF" stroke-width="1.5" stroke-dasharray="4,2" marker-end="url(#aBM)"/>
+  <text x="240" y="130" text-anchor="middle" class="svg-label-sm">Lines emerge from N, enter S; dense near poles = strong field</text>
+</svg></div><div class="box-observation"><ul><li>Field lines emerge from the north pole and enter the south pole.</li><li>Lines are closest together near the poles (strongest field) and spread out further away.</li><li>Field lines never cross.</li><li>The pattern is symmetric about the magnet's axis.</li><li>Iron filings align along the field lines, creating a clear visual pattern.</li></ul></div><div class="box-analogy"><p>Magnetic field lines are like invisible elastic bands stretching from N to S — they try to contract (causing attraction between opposite poles) and repel sideways (causing repulsion between like poles).</p></div><div class="box-exam"><p>State: 'Magnetic field lines go from N to S outside the magnet, and from S to N inside. They show the direction of force on a free north pole at that point. Lines never cross.'</p></div></div><div class="demo-card" style="--accent:#56C271"><div class="demo-title"><span class="demo-num">19</span><span>Plot Magnetic Field Due to Wire, Loop, and Solenoid</span></div><div class="box-apparatus"><ul><li>Long straight wire (copper, ~20 cm, insulated)</li><li>Circular loop of wire (~10 cm diameter)</li><li>Solenoid (wound coil, ~50–100 turns)</li><li>DC power supply (3–6V)</li><li>Small compass needles</li><li>Iron filings on card (for wire)</li><li>Ruler and paper</li></ul></div><div class="box-method"><ol><li>Straight wire: pass the wire vertically through a horizontal card with iron filings scattered on it. Connect to power supply. Observe the pattern.</li><li>Alternatively use compass needles at several positions around the wire.</li><li>Loop: hold the wire loop horizontally. Place compass at centre and at various points. Switch on current — observe needle directions.</li><li>Solenoid: place compass needles along the axis inside and outside the solenoid. Switch on current — map the field.</li></ol></div><div class="box-diagram"><svg class="demo-svg" viewBox="0 0 480 130" xmlns="http://www.w3.org/2000/svg">
+  <defs><marker id="aSol" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#3A86FF"/></marker></defs>
+  <text x="240" y="16" text-anchor="middle" class="svg-label" font-weight="700">Solenoid Field — Uniform Inside, Bar-Magnet Outside</text>
+  <path d="M80,75 Q95,58 110,75 Q125,92 140,75 Q155,58 170,75 Q185,92 200,75 Q215,58 230,75 Q245,92 260,75 Q275,58 290,75 Q305,92 320,75 Q335,58 350,75 Q365,92 380,75" fill="none" stroke="#E8637A" stroke-width="2.5"/>
+  <text x="60" y="68" class="svg-label" fill="#E8637A">N</text>
+  <text x="395" y="68" class="svg-label" fill="#3A86FF">S</text>
+  <line x1="110" y1="75" x2="165" y2="75" stroke="#3A86FF" stroke-width="1.5" marker-end="url(#aSol)"/>
+  <line x1="200" y1="75" x2="255" y2="75" stroke="#3A86FF" stroke-width="1.5" marker-end="url(#aSol)"/>
+  <line x1="290" y1="75" x2="345" y2="75" stroke="#3A86FF" stroke-width="1.5" marker-end="url(#aSol)"/>
+  <path d="M65,75 Q65,30 230,18 Q395,30 395,75" fill="none" stroke="#3A86FF" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#aSol)"/>
+  <text x="240" y="118" text-anchor="middle" class="svg-label-sm">Inside: uniform parallel lines (compasses align). Outside: identical to bar magnet</text>
+</svg></div><div class="box-observation"><ul><li>Straight wire: iron filings form concentric circles around the wire. Compass needles point tangentially (Right-Hand Grip Rule).</li><li>Circular loop: field is perpendicular to the loop at the centre. Outside the loop, lines curve around like a bar magnet.</li><li>Solenoid: inside, field lines are parallel and uniform (like a bar magnet's field). Outside, the pattern is identical to a bar magnet (N at one end, S at the other).</li><li>Reversing current reverses field direction in all three cases.</li></ul></div><div class="box-analogy"><p>A solenoid is an electromagnet — it behaves exactly like a bar magnet while current flows. This is why electromagnets in cranes and MRI machines use solenoid coils.</p></div><div class="box-exam"><p>Know all three field patterns: straight wire (circles), loop (like bar magnet but flattened), solenoid (uniform inside, bar magnet outside). Right-Hand Grip Rule: thumb = current direction, fingers = B direction.</p></div></div><div class="demo-card" style="--accent:#F77F00"><div class="demo-title"><span class="demo-num">20</span><span>Force on a Current-Carrying Conductor in a Magnetic Field</span></div><div class="box-apparatus"><ul><li>Horseshoe magnet (or two strong bar magnets facing each other)</li><li>Flexible aluminium strip or lightweight wire suspended between the poles</li><li>DC power supply (6–12V)</li><li>Switch</li><li>Connecting wires</li><li>Rheostat (to vary current)</li></ul></div><div class="box-method"><ol><li>Suspend the aluminium strip or wire loosely between the poles of the horseshoe magnet so it can move freely.</li><li>Connect the strip in a circuit with the power supply and switch.</li><li>Switch on the current and observe the strip's movement.</li><li>Reverse the current connections and observe again.</li><li>Increase the current and observe the effect on the deflection.</li><li>Try rotating the magnet 90° so the field direction changes.</li></ol></div><div class="box-diagram"><svg class="demo-svg" viewBox="0 0 480 160" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+  <marker id="aFW" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#56C271"/></marker>
+  <marker id="aFWI" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#E8637A"/></marker>
+  </defs>
+  <text x="240" y="16" text-anchor="middle" class="svg-label" font-weight="700">Force on Current-Carrying Conductor — Fleming's Left-Hand Rule</text>
+  <path d="M155,50 Q135,95 155,140 L175,140 Q155,95 175,50 Z" fill="#3A86FF" opacity="0.7"/>
+  <path d="M300,50 Q320,95 300,140 L325,140 Q345,95 325,50 Z" fill="#E8637A" opacity="0.7"/>
+  <text x="165" y="148" text-anchor="middle" class="svg-label-sm" fill="#1A5CC8">N</text>
+  <text x="312" y="148" text-anchor="middle" class="svg-label-sm" fill="#C94040">S</text>
+  <text x="240" y="78" text-anchor="middle" class="svg-label-sm" fill="#7A7068">B ⊗ (into page)</text>
+  <rect x="228" y="48" width="22" height="100" rx="3" fill="#FFB347" stroke="#CC7A00" stroke-width="1.5"/>
+  <line x1="239" y1="48" x2="239" y2="62" stroke="#E8637A" stroke-width="2" marker-end="url(#aFWI)"/>
+  <text x="255" y="58" class="svg-label-sm" fill="#C94040">I↑</text>
+  <line x1="255" y1="98" x2="292" y2="98" stroke="#56C271" stroke-width="3" marker-end="url(#aFW)"/>
+  <text x="310" y="102" class="svg-label-sm" fill="#267339">F</text>
+  <text x="240" y="152" text-anchor="middle" class="svg-label-sm">F = BIl. Reverse current → force reverses. Basis of electric motor</text>
+</svg></div><div class="box-observation"><ul><li>When current flows, the wire deflects (moves) in a direction predicted by Fleming's Left-Hand Rule.</li><li>Reversing the current reverses the direction of deflection.</li><li>Increasing the current increases the deflection.</li><li>Rotating the magnet changes the deflection direction.</li><li>This demonstrates that a current-carrying conductor in a magnetic field experiences a force: F = BIl.</li></ul></div><div class="box-analogy"><p>This is the exact principle used in every electric motor and loudspeaker — a current-carrying wire in a magnetic field experiences a force, and that force does mechanical work (moves the speaker cone or spins the motor).</p></div><div class="box-exam"><p>State: 'A current-carrying conductor placed in a magnetic field experiences a force. F = BIl. Direction given by Fleming's Left-Hand Rule (FBI): Thumb=Force, Index=B-field, Middle=Current direction.'</p></div></div><div class="demo-card" style="--accent:#9B5DE5"><div class="demo-title"><span class="demo-num">21</span><span>Demonstration of the Principle on Which the Ampere is Based</span></div><div class="box-apparatus"><ul><li>Two long parallel conducting rails (or wires) mounted about 1 cm apart</li><li>DC power supply (capable of 5–10A)</li><li>Ammeter</li><li>Sensitive balance or current balance (or use a flexible wire visible deflection)</li><li>Connecting wires</li></ul></div><div class="box-method"><ol><li>Mount two parallel wire segments, each approximately 30 cm long, separated by a measured distance (e.g. 1 cm or 5 cm).</li><li>Pass current through both wires in the same direction first — observe the interaction.</li><li>Reverse the current in one wire (so currents are in opposite directions) — observe the interaction.</li><li>Note: the SI definition of 1 ampere is the current that, in two infinitely long parallel conductors 1 m apart in a vacuum, produces a force of 2×10⁻⁷ N per metre of length.</li></ol></div><div class="box-diagram"><svg class="demo-svg" viewBox="0 0 480 140" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+  <marker id="aAD" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#E8637A"/></marker>
+  <marker id="aAD2" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#3A86FF"/></marker>
+  </defs>
+  <text x="240" y="16" text-anchor="middle" class="svg-label" font-weight="700">Principle of the Ampere — Two Parallel Current-Carrying Wires</text>
+  <rect x="160" y="35" width="12" height="90" rx="3" fill="#E8637A" opacity="0.8"/>
+  <line x1="166" y1="35" x2="166" y2="50" stroke="#E8637A" stroke-width="2" marker-end="url(#aAD)"/>
+  <text x="152" y="30" text-anchor="middle" class="svg-label-sm" fill="#C94040">I₁↓</text>
+  <rect x="298" y="35" width="12" height="90" rx="3" fill="#3A86FF" opacity="0.8"/>
+  <line x1="304" y1="35" x2="304" y2="50" stroke="#3A86FF" stroke-width="2" marker-end="url(#aAD2)"/>
+  <text x="318" y="30" text-anchor="middle" class="svg-label-sm" fill="#1A5CC8">I₂↓</text>
+  <line x1="172" y1="80" x2="298" y2="80" stroke="#56C271" stroke-width="2.5"/>
+  <text x="235" y="72" text-anchor="middle" class="svg-label-sm" fill="#267339">Attract (same direction)</text>
+  <line x1="172" y1="118" x2="298" y2="118" stroke="#2C2825" stroke-width="1.5"/>
+  <line x1="172" y1="113" x2="172" y2="123" stroke="#2C2825" stroke-width="1.5"/>
+  <line x1="298" y1="113" x2="298" y2="123" stroke="#2C2825" stroke-width="1.5"/>
+  <text x="235" y="133" text-anchor="middle" class="svg-label-sm">1m apart, 1A each → force = 2×10⁻⁷ N/m (definition of the Ampere)</text>
+</svg></div><div class="box-observation"><ul><li>Currents in the same direction: wires attract each other.</li><li>Currents in opposite directions: wires repel each other.</li><li>Greater current leads to a stronger force.</li><li>Closer wires experience a stronger force.</li><li>This demonstrates the force between current-carrying conductors — the principle underlying the SI definition of the ampere.</li></ul></div><div class="box-analogy"><p>Two rivers flowing in the same direction tend to merge (attract); flowing in opposite directions they push apart. Current-carrying wires behave the same way through their magnetic fields.</p></div><div class="box-exam"><p>State the definition of 1 ampere: 'The constant current which, when flowing in two straight parallel conductors of infinite length, of negligible circular cross-section, placed 1 m apart in a vacuum, produces between them a force of 2×10⁻⁷ N per metre of length.'</p></div></div><div class="demo-card" style="--accent:#3A86FF"><div class="demo-title"><span class="demo-num">22</span><span>Electromagnetic Induction — Faraday's Law</span></div><div class="box-apparatus"><ul><li>Solenoid (coil of ~500–1000 turns)</li><li>Bar magnet</li><li>Sensitive galvanometer or milliammeter</li><li>Connecting wires</li></ul></div><div class="box-method"><ol><li>Connect the solenoid to the galvanometer.</li><li>Hold the magnet stationary near (but not inside) the solenoid — observe the galvanometer.</li><li>Plunge the magnet rapidly into the solenoid — observe the galvanometer.</li><li>Hold the magnet stationary inside the solenoid — observe the galvanometer.</li><li>Withdraw the magnet rapidly — observe the galvanometer.</li><li>Repeat plunging the magnet at different speeds.</li><li>Try a weaker/stronger magnet or a coil with more turns.</li></ol></div><div class="box-diagram"><svg class="demo-svg" viewBox="0 0 480 140" xmlns="http://www.w3.org/2000/svg">
+  <defs><marker id="aEM" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#3A86FF"/></marker></defs>
+  <text x="240" y="16" text-anchor="middle" class="svg-label" font-weight="700">Faraday's Law — Moving Magnet → Induced EMF in Coil</text>
+  <ellipse cx="260" cy="75" rx="60" ry="38" fill="#E0ECFF" stroke="#3A86FF" stroke-width="2" opacity="0.7"/>
+  <path d="M200,75 Q215,58 230,75 Q245,92 260,75 Q275,58 290,75 Q305,92 318,75" fill="none" stroke="#3A86FF" stroke-width="2"/>
+  <rect x="50" y="60" width="50" height="28" rx="4" fill="#E8637A" opacity="0.8"/>
+  <rect x="100" y="60" width="30" height="28" rx="4" fill="#3A86FF" opacity="0.8"/>
+  <text x="75" y="77" text-anchor="middle" class="svg-label-sm" fill="#fff">S</text>
+  <text x="115" y="77" text-anchor="middle" class="svg-label-sm" fill="#fff">N</text>
+  <line x1="130" y1="74" x2="198" y2="74" stroke="#2C2825" stroke-width="1.5" marker-end="url(#aEM)"/>
+  <text x="165" y="65" text-anchor="middle" class="svg-label-sm">→ move</text>
+  <circle cx="400" cy="75" r="22" fill="#FFF9E6" stroke="#FFB347" stroke-width="1.5"/>
+  <text x="400" y="72" text-anchor="middle" class="svg-label-sm">G</text>
+  <text x="400" y="84" text-anchor="middle" class="svg-label-sm">deflects!</text>
+  <line x1="318" y1="75" x2="378" y2="75" stroke="#2C2825" stroke-width="1.5"/>
+  <line x1="200" y1="95" x2="200" y2="120" stroke="#2C2825" stroke-width="1.5"/>
+  <line x1="200" y1="120" x2="400" y2="120" stroke="#2C2825" stroke-width="1.5"/>
+  <line x1="400" y1="120" x2="400" y2="97" stroke="#2C2825" stroke-width="1.5"/>
+  <text x="240" y="135" text-anchor="middle" class="svg-label-sm">Faster movement → greater deflection. Stop → zero. EMF = −NΔΦ/Δt</text>
+</svg></div><div class="box-observation"><ul><li>Stationary magnet: no galvanometer deflection.</li><li>Magnet moving into solenoid: galvanometer deflects in one direction.</li><li>Magnet stationary inside: no deflection.</li><li>Magnet withdrawn: galvanometer deflects in the opposite direction.</li><li>Faster movement: larger deflection (greater EMF).</li><li>More turns: larger deflection.</li><li>This verifies Faraday's Law: EMF is proportional to the rate of change of magnetic flux (E = −NΔΦ/Δt).</li></ul></div><div class="box-analogy"><p>Like squeezing a water pistol — nothing comes out when stationary; push quickly and a strong jet appears; pull back the plunger and it draws in. The faster you move, the more powerful the effect.</p></div><div class="box-exam"><p>Faraday's Law: 'The magnitude of the induced EMF is equal to the rate of change of magnetic flux linkage. EMF = −NΔΦ/Δt.' Must mention: (1) changing flux, (2) EMF proportional to rate of change, (3) N = number of turns.</p></div></div><div class="demo-card" style="--accent:#E8637A"><div class="demo-title"><span class="demo-num">23</span><span>Demonstration of Lenz's Law</span></div><div class="box-apparatus"><ul><li>Solenoid connected to a galvanometer (same as Faraday's Law setup)</li><li>Bar magnet</li><li>Optionally: two identical solenoids, one connected to battery (to act as electromagnet)</li></ul></div><div class="box-method"><ol><li>Connect the solenoid to the galvanometer.</li><li>Note the galvanometer deflection direction when the north pole of the magnet is pushed into the solenoid.</li><li>Using the Right-Hand Grip Rule (or known compass), determine what polarity the near end of the solenoid has adopted.</li><li>Note it is the same pole as the approaching magnet (N approaching → solenoid acts as N at that end — opposing the approach).</li><li>Now withdraw the north pole — observe the galvanometer deflects in the opposite direction. The solenoid now acts as a S pole at that end, attracting the retreating magnet, opposing its removal.</li><li>This shows the induced current always acts to oppose the change causing it.</li></ol></div><div class="box-diagram"><svg class="demo-svg" viewBox="0 0 480 130" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+  <marker id="aLZ" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#3A86FF"/></marker>
+  </defs>
+  <text x="240" y="16" text-anchor="middle" class="svg-label" font-weight="700">Lenz's Law — Induced Current Opposes Change</text>
+  <path d="M148,55 Q163,38 178,55 Q193,72 208,55 Q223,38 238,55 Q253,72 268,55 Q283,38 298,55 Q313,72 328,55" fill="none" stroke="#3A86FF" stroke-width="2.5"/>
+  <text x="60" y="52" class="svg-label" fill="#E8637A">N</text>
+  <text x="335" y="52" class="svg-label" fill="#3A86FF">S</text>
+  <rect x="25" y="40" width="45" height="25" rx="3" fill="#3A86FF" opacity="0.7"/>
+  <rect x="70" y="40" width="28" height="25" rx="3" fill="#E8637A" opacity="0.7"/>
+  <text x="48" y="55" text-anchor="middle" class="svg-label-sm" fill="#fff">N</text>
+  <text x="84" y="55" text-anchor="middle" class="svg-label-sm" fill="#fff">S</text>
+  <line x1="98" y1="52" x2="146" y2="52" stroke="#2C2825" stroke-width="1.5" marker-end="url(#aLZ)"/>
+  <text x="122" y="44" text-anchor="middle" class="svg-label-sm">→</text>
+  <text x="155" y="32" class="svg-label-sm" fill="#C94040">N induced here</text>
+  <text x="155" y="22" class="svg-label-sm" fill="#C94040">(repels magnet)</text>
+  <circle cx="390" cy="52" r="20" fill="#FFF9E6" stroke="#FFB347" stroke-width="1.5"/>
+  <text x="390" y="56" text-anchor="middle" class="svg-label-sm">G</text>
+  <line x1="328" y1="52" x2="370" y2="52" stroke="#2C2825" stroke-width="1.5"/>
+  <line x1="148" y1="68" x2="148" y2="100" stroke="#2C2825" stroke-width="1.5"/>
+  <line x1="148" y1="100" x2="390" y2="100" stroke="#2C2825" stroke-width="1.5"/>
+  <line x1="390" y1="100" x2="390" y2="72" stroke="#2C2825" stroke-width="1.5"/>
+  <text x="240" y="118" text-anchor="middle" class="svg-label-sm">Solenoid end nearest magnet becomes N pole → repels incoming N pole</text>
+</svg></div><div class="box-observation"><ul><li>When the magnet approaches: induced current creates a pole that repels the magnet (opposes approach).</li><li>When the magnet is withdrawn: induced current creates a pole that attracts the magnet (opposes withdrawal).</li><li>In both cases, the induced effect opposes the change — confirming Lenz's Law.</li><li>More force is needed to move the magnet quickly (energy must be supplied to overcome the opposing force).</li></ul></div><div class="box-analogy"><p>Like pushing a door that has a spring — the harder you push (faster you move the magnet), the stronger the spring pushes back. Lenz's Law is nature's 'fight back' — it always opposes change, consistent with conservation of energy.</p></div><div class="box-exam"><p>Lenz's Law: 'The direction of an induced current is always such as to oppose the change producing it.' This is a consequence of the law of conservation of energy — if the induced current helped the cause, it would create energy from nothing.</p></div></div><div class="demo-card" style="--accent:#56C271"><div class="demo-title"><span class="demo-num">24</span><span>Electromagnetic Damping</span></div><div class="box-apparatus"><ul><li>Horseshoe magnet (strong neodymium or electromagnetic)</li><li>Aluminium plate or disc mounted on a pivot (pendulum-style)</li><li>Retort stand to support the pendulum</li><li>Alternatively: copper tube and strong neodymium magnet</li></ul></div><div class="box-method"><ol><li>Set up the aluminium plate as a pendulum so it can swing freely between the poles of the horseshoe magnet.</li><li>First, swing the plate with the magnet removed (or turned off if electromagnetic) — observe how many swings it makes before stopping.</li><li>Now swing the plate so it passes between the magnet poles.</li><li>Observe the number of swings before it stops.</li><li>Alternative: drop a neodymium magnet through a copper tube and a plastic tube — compare the fall times.</li></ol></div><div class="box-diagram"><svg class="demo-svg" viewBox="0 0 480 150" xmlns="http://www.w3.org/2000/svg">
+  <text x="240" y="16" text-anchor="middle" class="svg-label" font-weight="700">Electromagnetic Damping — Al Plate in Horseshoe Magnet</text>
+  <path d="M168,42 Q148,82 168,122 L190,122 Q170,82 190,42 Z" fill="#3A86FF" opacity="0.7"/>
+  <path d="M282,42 Q302,82 282,122 L305,122 Q325,82 305,42 Z" fill="#E8637A" opacity="0.7"/>
+  <text x="180" y="132" text-anchor="middle" class="svg-label-sm" fill="#1A5CC8">N</text>
+  <text x="294" y="132" text-anchor="middle" class="svg-label-sm" fill="#C94040">S</text>
+  <rect x="226" y="38" width="22" height="88" rx="3" fill="#D0D0D0" stroke="#808080" stroke-width="1.5"/>
+  <text x="237" y="88" text-anchor="middle" class="svg-label-sm">Al</text>
+  <path d="M237,22 Q190,82 237,82" fill="none" stroke="#56C271" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <text x="120" y="78" text-anchor="middle" class="svg-label-sm" fill="#267339">Free swing</text>
+  <path d="M237,22 Q237,45 237,62" fill="none" stroke="#E8637A" stroke-width="2"/>
+  <text x="365" y="75" text-anchor="middle" class="svg-label-sm" fill="#C94040">With magnet:</text>
+  <text x="365" y="90" text-anchor="middle" class="svg-label-sm" fill="#C94040">stops instantly</text>
+  <text x="240" y="140" text-anchor="middle" class="svg-label-sm">Eddy currents in Al create opposing force (Lenz) → rapid damping</text>
+</svg></div><div class="box-observation"><ul><li>Without magnet: pendulum swings many times, losing energy only slowly to air resistance.</li><li>With magnet: pendulum stops almost immediately (within one or two swings).</li><li>With the copper tube: the magnet falls through the copper tube much more slowly than through the plastic tube.</li><li>The stronger the magnet or thicker the conductor, the greater the damping effect.</li><li>This demonstrates electromagnetic damping due to eddy currents induced in the conductor opposing the motion (Lenz's Law).</li></ul></div><div class="box-analogy"><p>Like dragging a metal plate through thick treacle — the treacle (eddy currents) provides resistance proportional to speed. This is why maglev brakes in trains and magnetic brakes in rollercoasters stop vehicles smoothly without mechanical contact.</p></div><div class="box-exam"><p>State: 'As the aluminium plate moves through the magnetic field, eddy currents are induced. By Lenz's Law, these currents create a force opposing the motion, rapidly reducing the amplitude — electromagnetic damping.'</p></div></div><div class="demo-card" style="--accent:#2EC4B6"><div class="demo-title"><span class="demo-num">25</span><span>Use of Oscilloscope to Show AC and DC</span></div><div class="box-apparatus"><ul><li>Cathode Ray Oscilloscope (CRO) or digital oscilloscope</li><li>AC source: signal generator or mains transformer output (~6V AC)</li><li>DC source: battery (6–9V)</li><li>Connecting wires</li><li>Time/division and Volts/division controls</li></ul></div><div class="box-method"><ol><li>Connect the DC battery to the Y-input of the oscilloscope.</li><li>Adjust Y-sensitivity and timebase to display the signal. Observe the trace.</li><li>Disconnect battery. Connect the AC signal generator output (set to ~50 Hz) to the Y-input.</li><li>Adjust Y-sensitivity and timebase until a clear waveform is visible.</li><li>From the AC waveform, read off: peak voltage (amplitude × V/div), period (one complete wave × time/div), and calculate frequency = 1/T.</li></ol></div><div class="box-diagram"><svg class="demo-svg" viewBox="0 0 480 140" xmlns="http://www.w3.org/2000/svg">
+  <text x="240" y="16" text-anchor="middle" class="svg-label" font-weight="700">Oscilloscope — AC and DC Waveforms</text>
+  <rect x="28" y="30" width="180" height="95" rx="8" fill="#001100" stroke="#3A86FF" stroke-width="2"/>
+  <text x="118" y="26" text-anchor="middle" class="svg-label-sm" fill="#3A86FF">AC</text>
+  <path d="M38,80 Q58,44 78,80 Q98,116 118,80 Q138,44 158,80 Q178,116 198,80" fill="none" stroke="#00FF00" stroke-width="2"/>
+  <line x1="38" y1="80" x2="198" y2="80" stroke="#333" stroke-width="1"/>
+  <rect x="268" y="30" width="180" height="95" rx="8" fill="#001100" stroke="#3A86FF" stroke-width="2"/>
+  <text x="358" y="26" text-anchor="middle" class="svg-label-sm" fill="#3A86FF">DC</text>
+  <line x1="278" y1="72" x2="438" y2="72" stroke="#00FF00" stroke-width="2"/>
+  <line x1="278" y1="80" x2="438" y2="80" stroke="#333" stroke-width="1"/>
+  <text x="118" y="134" text-anchor="middle" class="svg-label-sm">Sinusoidal wave</text>
+  <text x="358" y="134" text-anchor="middle" class="svg-label-sm">Flat line above zero</text>
+</svg></div><div class="box-observation"><ul><li>DC: a horizontal straight line above the zero axis — constant positive voltage with time.</li><li>AC: a smooth sinusoidal wave above and below the zero axis — voltage alternates between positive and negative.</li><li>Increasing the DC voltage moves the line upward.</li><li>Increasing the AC frequency compresses the wave pattern horizontally.</li><li>This confirms that AC alternates direction (and polarity) while DC is constant.</li></ul></div><div class="box-analogy"><p>The oscilloscope is like a heart monitor but for electricity — a flat line means constant DC (steady heartbeat), a regular wave means AC (rhythmic heartbeat), and a jagged trace means irregular AC.</p></div><div class="box-exam"><p>From an oscilloscope trace: Peak voltage = amplitude × (V/div setting). Period T = one cycle width × (time/div setting). Frequency f = 1/T. RMS voltage = peak voltage / √2 (for sinusoidal AC).</p></div></div><div class="demo-card" style="--accent:#9B5DE5"><div class="demo-title"><span class="demo-num">26</span><span>Demonstration of Mutual Induction</span></div><div class="box-apparatus"><ul><li>Two coils: primary (~200 turns) and secondary (~200 turns) wound on the same iron C-core or soft iron ring (or one inside the other)</li><li>AC signal generator (or battery with switch for primary)</li><li>Galvanometer connected to secondary</li><li>Switch</li></ul></div><div class="box-method"><ol><li>Place the primary and secondary coils on the same iron core.</li><li>Connect the primary to the AC signal generator (or battery and switch). Connect secondary to galvanometer.</li><li>Switch on the AC — observe the galvanometer.</li><li>Now use DC with a switch: close the switch — observe the galvanometer on make.</li><li>Leave the switch closed — observe the galvanometer reading.</li><li>Open the switch — observe the galvanometer on break.</li><li>Vary the frequency of the AC and note the change in galvanometer deflection.</li></ol></div><div class="box-diagram"><svg class="demo-svg" viewBox="0 0 480 130" xmlns="http://www.w3.org/2000/svg">
+  <defs><marker id="aMF" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#56C271"/></marker></defs>
+  <text x="240" y="16" text-anchor="middle" class="svg-label" font-weight="700">Mutual Induction — Two Coils, Iron Core</text>
+  <rect x="168" y="52" width="144" height="38" rx="4" fill="#D0D0D0" stroke="#808080" stroke-width="2"/>
+  <text x="240" y="74" text-anchor="middle" class="svg-label-sm">Iron core</text>
+  <path d="M78,71 Q91,55 104,71 Q117,87 130,71 Q143,55 156,71 Q169,87 175,71" fill="none" stroke="#E8637A" stroke-width="2.5"/>
+  <text x="128" y="45" text-anchor="middle" class="svg-label-sm" fill="#C94040">Primary (AC)</text>
+  <path d="M305,71 Q318,55 331,71 Q344,87 357,71 Q370,55 383,71 Q396,87 402,71" fill="none" stroke="#3A86FF" stroke-width="2.5"/>
+  <text x="355" y="45" text-anchor="middle" class="svg-label-sm" fill="#1A5CC8">Secondary (G)</text>
+  <circle cx="38" cy="71" r="16" fill="#FFF9E6" stroke="#FFB347" stroke-width="1.5"/>
+  <text x="38" y="75" text-anchor="middle" class="svg-label-sm">AC</text>
+  <line x1="54" y1="71" x2="76" y2="71" stroke="#2C2825" stroke-width="1.5"/>
+  <circle cx="440" cy="71" r="16" fill="#FFF9E6" stroke="#FFB347" stroke-width="1.5"/>
+  <text x="440" y="75" text-anchor="middle" class="svg-label-sm">G</text>
+  <line x1="402" y1="71" x2="424" y2="71" stroke="#2C2825" stroke-width="1.5"/>
+  <line x1="168" y1="71" x2="312" y2="71" stroke="#56C271" stroke-width="1.5" marker-end="url(#aMF)" stroke-dasharray="5,3"/>
+  <text x="240" y="110" text-anchor="middle" class="svg-label-sm">Switch AC on/off → G kicks each time → changing flux in core → EMF in secondary</text>
+</svg></div><div class="box-observation"><ul><li>AC in primary: galvanometer shows a continuous deflection (alternating as AC changes direction).</li><li>DC in primary, switch closed: galvanometer kicks momentarily on making the circuit (changing flux).</li><li>DC steady: no galvanometer reading (flux is constant, no change → no EMF).</li><li>DC switch opened: galvanometer kicks in opposite direction on breaking the circuit.</li><li>This demonstrates mutual induction: a changing current in one coil induces an EMF in the adjacent coil.</li></ul></div><div class="box-analogy"><p>Like two tuning forks close together — strike one and the other vibrates at the same frequency. The primary coil 'rings' with AC current; the changing magnetic field 'rings' the secondary by mutual induction.</p></div><div class="box-exam"><p>Mutual induction: 'A changing current in the primary coil produces a changing magnetic flux in the core, which induces an EMF in the secondary coil.' This is the basis of the transformer. Key: the flux must be changing — steady DC produces no EMF.</p></div></div><div class="demo-card" style="--accent:#3A86FF"><div class="demo-title"><span class="demo-num">27</span><span>Demonstration of a Transformer</span></div><div class="box-apparatus"><ul><li>Step-up or step-down transformer (or construct one: primary ~100 turns, secondary ~500 turns on laminated iron core)</li><li>AC signal generator or low-voltage AC power supply (6V AC)</li><li>Voltmeters (AC) for both primary and secondary</li><li>Ammeter (to verify inverse relationship between V and I for ideal transformer)</li></ul></div><div class="box-method"><ol><li>Connect the primary coil to the AC supply. Connect AC voltmeters to both primary and secondary.</li><li>Switch on the AC supply. Record Vp and Vs.</li><li>Calculate the ratio Vs/Vp and compare with Ns/Np.</li><li>Try a step-down configuration (Ns < Np) — observe Vs < Vp.</li><li>Try a step-up configuration (Ns > Np) — observe Vs > Vp.</li><li>Optionally: connect a load to the secondary and measure both currents — verify Vp × Ip ≈ Vs × Is (power conservation).</li></ol></div><div class="box-diagram"><svg class="demo-svg" viewBox="0 0 480 140" xmlns="http://www.w3.org/2000/svg">
+  <text x="240" y="16" text-anchor="middle" class="svg-label" font-weight="700">Transformer — Step-Up / Step-Down AC Voltage</text>
+  <rect x="162" y="48" width="156" height="60" rx="4" fill="#C8C8C8" stroke="#808080" stroke-width="2"/>
+  <rect x="185" y="62" width="110" height="32" rx="3" fill="#F7F4EF"/>
+  <text x="240" y="82" text-anchor="middle" class="svg-label-sm">Laminated iron core</text>
+  <path d="M75,73 Q88,58 101,73 Q114,88 127,73 Q140,58 153,73 Q166,88 168,78" fill="none" stroke="#E8637A" stroke-width="2.5"/>
+  <text x="118" y="48" text-anchor="middle" class="svg-label-sm" fill="#C94040">Np (primary)</text>
+  <path d="M312,78 Q325,58 338,78 Q351,98 364,78 Q377,58 390,78 Q403,98 408,82" fill="none" stroke="#3A86FF" stroke-width="2.5"/>
+  <text x="365" y="48" text-anchor="middle" class="svg-label-sm" fill="#1A5CC8">Ns (secondary)</text>
+  <circle cx="38" cy="78" r="16" fill="#FFF9E6" stroke="#FFB347" stroke-width="1.5"/>
+  <text x="38" y="82" text-anchor="middle" class="svg-label-sm">Vp</text>
+  <line x1="54" y1="78" x2="73" y2="78" stroke="#2C2825" stroke-width="1.5"/>
+  <rect x="415" y="65" width="48" height="24" rx="4" fill="#E0ECFF" stroke="#3A86FF" stroke-width="1.5"/>
+  <text x="439" y="80" text-anchor="middle" class="svg-label-sm">Vs</text>
+  <line x1="408" y1="78" x2="415" y2="78" stroke="#2C2825" stroke-width="1.5"/>
+  <text x="240" y="125" text-anchor="middle" class="svg-label-sm">Vs/Vp = Ns/Np. Step-up: Ns&gt;Np → Vs&gt;Vp. Step-down: Ns&lt;Np → Vs&lt;Vp. AC only.</text>
+</svg></div><div class="box-observation"><ul><li>Vs/Vp = Ns/Np is verified experimentally.</li><li>Step-up (Ns > Np): Vs > Vp. Step-down (Ns < Np): Vs < Vp.</li><li>Energy is conserved: Ip × Vp ≈ Is × Vs (for an efficient transformer).</li><li>The transformer only works with AC — no output with DC.</li><li>This demonstrates the transformer equation and the principle of mutual induction in a practical device.</li></ul></div><div class="box-analogy"><p>A transformer is like a lever for voltage — just as a long lever arm can create large force from a small input, many secondary turns create large voltage from small primary voltage. You gain voltage but lose current (or vice versa), and the power stays the same.</p></div><div class="box-exam"><p>Transformer equation: Vs/Vp = Ns/Np = Ip/Is (ideal transformer). Power conservation: VpIp = VsIs. Transformers only work with AC. Applications: mains supply step-down (from 230V to 12V), grid transmission step-up (to ~400kV to reduce I²R losses).</p></div></div><div class="demo-card" style="--accent:#E8637A"><div class="demo-title"><span class="demo-num">28</span><span>Demonstration of Self-Induction</span></div><div class="box-apparatus"><ul><li>Large inductance coil (solenoid with iron core, e.g. 1–5 H)</li><li>LED (or small bulb)</li><li>Resistor (same resistance as the coil's DC resistance)</li><li>Battery (6–12V)</li><li>Switch</li></ul></div><div class="box-method"><ol><li>Build the circuit: battery, switch, with the coil and LED in series. Also include the resistor in parallel with the coil.</li><li>Switch on — observe the LED.</li><li>The LED lights up, but with a slight delay compared to a purely resistive circuit.</li><li>Switch off rapidly — observe a bright flash of the LED as the switch opens.</li><li>Optional comparison: replace coil with plain wire — LED extinguishes immediately on switching off.</li></ol></div><div class="box-diagram"><svg class="demo-svg" viewBox="0 0 480 130" xmlns="http://www.w3.org/2000/svg">
+  <text x="240" y="16" text-anchor="middle" class="svg-label" font-weight="700">Self-Induction — Coil Delays Current Rise (Back-EMF)</text>
+  <rect x="30" y="50" width="40" height="25" rx="3" fill="#FFB347" stroke="#CC7A00" stroke-width="1.5"/>
+  <text x="50" y="65" text-anchor="middle" class="svg-label-sm">Bat.</text>
+  <path d="M130,62 Q143,47 156,62 Q169,77 182,62 Q195,47 208,62 Q221,77 234,62 Q247,47 260,62" fill="none" stroke="#3A86FF" stroke-width="2.5"/>
+  <text x="195" y="42" text-anchor="middle" class="svg-label-sm" fill="#1A5CC8">Inductor (coil)</text>
+  <rect x="310" y="50" width="30" height="25" rx="3" fill="#E2DDD7" stroke="#7A7068" stroke-width="1.5"/>
+  <text x="325" y="65" text-anchor="middle" class="svg-label-sm">R</text>
+  <polygon points="380,55 400,62 380,69" fill="#56C271"/>
+  <line x1="400" y1="55" x2="400" y2="69" stroke="#56C271" stroke-width="2"/>
+  <text x="390" y="42" text-anchor="middle" class="svg-label-sm" fill="#267339">LED</text>
+  <line x1="70" y1="62" x2="130" y2="62" stroke="#2C2825" stroke-width="1.5"/>
+  <line x1="260" y1="62" x2="310" y2="62" stroke="#2C2825" stroke-width="1.5"/>
+  <line x1="340" y1="62" x2="380" y2="62" stroke="#2C2825" stroke-width="1.5"/>
+  <line x1="400" y1="62" x2="430" y2="62" stroke="#2C2825" stroke-width="1.5"/>
+  <line x1="430" y1="62" x2="430" y2="100" stroke="#2C2825" stroke-width="1.5"/>
+  <line x1="430" y1="100" x2="50" y2="100" stroke="#2C2825" stroke-width="1.5"/>
+  <line x1="50" y1="100" x2="50" y2="75" stroke="#2C2825" stroke-width="1.5"/>
+  <text x="240" y="118" text-anchor="middle" class="svg-label-sm">Switch on → LED brightens slowly (back-EMF opposes rise). Switch off → LED flashes bright (stored energy released)</text>
+</svg></div><div class="box-observation"><ul><li>On switching on: the LED brightens gradually rather than instantly — the coil's back-EMF opposes the rising current.</li><li>On switching off: the LED flashes brightly for a moment before going dark — the coil releases stored energy as the magnetic field collapses, briefly maintaining the current.</li><li>The flash on switching off is often brighter and more distinct than the steady brightness when on.</li><li>With plain wire: no flash on switch-off — only the coil exhibits this effect.</li><li>This demonstrates self-induction: the coil induces a back-EMF opposing any change in the current through it.</li></ul></div><div class="box-analogy"><p>Like a flywheel in an engine — it resists changes in rotational speed, smoothing out variations. The inductor resists changes in current flow for the same reason: any change in current creates a changing magnetic field, which induces a back-EMF opposing that change (Lenz's Law).</p></div><div class="box-exam"><p>Self-induction: 'When the current in a coil changes, the resulting change in magnetic flux induces a back-EMF in the coil itself, opposing the change in current.' Induced EMF = −L(dI/dt) where L = self-inductance. Energy stored = ½LI².</p></div></div></div>
+
+<div class="section" id="modern" style="padding:0 16px 60px;max-width:960px;margin:0 auto;display:none;"><div class="ch-header" style="background:#9B5DE5;margin-bottom:24px;"><h1>⚛️ Modern Physics Demonstrations</h1></div><div class="demo-card" style="--accent:#9B5DE5"><div class="demo-title"><span class="demo-num">1</span><span>Thermionic Emission — CRT and Deflection of Electrons</span></div><div class="box-apparatus"><ul><li>Cathode ray tube (CRT) — evacuated glass tube with heated cathode and anode</li><li>EHT (Extra High Tension) supply (~1–5 kV)</li><li>Pair of deflecting plates (electric field) or external magnets (magnetic field)</li><li>Fluorescent screen or phosphor-coated screen at end of tube</li></ul></div><div class="box-method"><ol><li>Connect the heater supply to the cathode — the cathode glows red-hot, emitting electrons (thermionic emission).</li><li>Apply the EHT between cathode and anode — electrons are accelerated toward the anode.</li><li>Electrons pass through a small hole in the anode and travel as a beam to the fluorescent screen, showing as a bright spot.</li><li>Apply a voltage to the deflecting plates — observe the spot deflect (electric field deflection).</li><li>Remove the plates. Bring a bar magnet near the tube — observe the spot deflect in a different direction (magnetic field deflection).</li></ol></div><div class="box-diagram"><svg class="demo-svg" viewBox="0 0 480 140" xmlns="http://www.w3.org/2000/svg">
+  <defs><marker id="aCRT" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#00FF00"/></marker></defs>
+  <text x="240" y="16" text-anchor="middle" class="svg-label" font-weight="700">Thermionic Emission &amp; CRT — Cathode Ray Tube</text>
+  <rect x="30" y="50" width="60" height="60" rx="4" fill="#2C2825" stroke="#7A7068" stroke-width="1.5"/>
+  <text x="60" y="78" text-anchor="middle" class="svg-label-sm" fill="#FFB347">Cathode</text>
+  <text x="60" y="90" text-anchor="middle" class="svg-label-sm" fill="#FFB347">(hot)</text>
+  <line x1="90" y1="80" x2="150" y2="80" stroke="#00FF00" stroke-width="2" marker-end="url(#aCRT)"/>
+  <text x="120" y="72" text-anchor="middle" class="svg-label-sm" fill="#00AA00">e⁻ beam</text>
+  <rect x="148" y="60" width="18" height="40" rx="2" fill="#E2DDD7" stroke="#7A7068" stroke-width="1.5"/>
+  <text x="157" y="110" text-anchor="middle" class="svg-label-sm">Anode</text>
+  <rect x="220" y="48" width="8" height="20" rx="1" fill="#3A86FF"/>
+  <rect x="220" y="88" width="8" height="20" rx="1" fill="#E8637A"/>
+  <text x="215" y="40" class="svg-label-sm" fill="#3A86FF">+</text>
+  <text x="215" y="125" class="svg-label-sm" fill="#C94040">−</text>
+  <text x="240" y="72" text-anchor="middle" class="svg-label-sm">deflecting</text>
+  <text x="240" y="84" text-anchor="middle" class="svg-label-sm">plates</text>
+  <line x1="228" y1="80" x2="280" y2="60" stroke="#00FF00" stroke-width="2" marker-end="url(#aCRT)"/>
+  <rect x="350" y="35" width="90" height="100" rx="8" fill="#001100" stroke="#7A7068" stroke-width="2"/>
+  <circle cx="395" cy="80" r="8" fill="#00FF00" opacity="0.8"/>
+  <text x="395" y="120" text-anchor="middle" class="svg-label-sm" fill="#00AA00">fluorescent screen</text>
+  <text x="240" y="132" text-anchor="middle" class="svg-label-sm">E field deflects beam up/down; B field deflects it into/out of page. Spot moves on screen.</text>
+</svg></div><div class="box-observation"><ul><li>The bright spot on the screen confirms a beam of electrons (cathode rays) is produced.</li><li>Electric field (plates): spot deflects toward the positive plate — confirms electrons are negative.</li><li>Magnetic field (bar magnet): spot deflects perpendicular to both the beam and the field — consistent with the magnetic force on a moving charge (F = Bqv).</li><li>Reversing either field reverses the deflection.</li><li>This demonstrates thermionic emission and shows the charge and mass properties of electrons.</li></ul></div><div class="box-analogy"><p>Like a garden hose nozzle for electrons: the hot cathode sprays electrons in all directions (thermionic emission), the electric field between cathode and anode accelerates them into a beam, and the deflecting fields steer the beam like a nozzle controlling water flow.</p></div><div class="box-exam"><p>State: 'Thermionic emission is the emission of electrons from the surface of a hot metal. In a CRT, these electrons are accelerated by an electric field and deflected by electric or magnetic fields. The spot moves toward the positive plate (electric) or perpendicular to B (magnetic): F = Bqv.'</p></div></div><div class="demo-card" style="--accent:#3A86FF"><div class="demo-title"><span class="demo-num">2</span><span>Photoelectric Effect — Gold Leaf Electroscope</span></div><div class="box-apparatus"><ul><li>Gold leaf electroscope</li><li>Zinc plate (cleaned with emery paper)</li><li>UV lamp (long-wave UV source)</li><li>Visible light source (torch)</li><li>Glass plate (to block UV)</li><li>Electrostatic charging rod (or Van de Graaff)</li></ul></div><div class="box-method"><ol><li>Clean the zinc plate with emery paper to remove any oxide layer. Place it on top of the electroscope.</li><li>Give the electroscope a negative charge using the charging rod — the gold leaves diverge, confirming charge.</li><li>Shine the UV lamp directly onto the zinc plate — observe the leaves.</li><li>Interpose the glass plate between the UV lamp and the zinc — observe the leaves.</li><li>Try bright visible light instead of UV — observe the leaves.</li><li>Now charge the electroscope positively. Shine UV on the zinc — observe the leaves.</li></ol></div><div class="box-diagram"><svg class="demo-svg" viewBox="0 0 480 140" xmlns="http://www.w3.org/2000/svg">
+  <defs><marker id="aPE" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#FFD700"/></marker>
+  <marker id="aPE2" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#3A86FF"/></marker></defs>
+  <text x="240" y="16" text-anchor="middle" class="svg-label" font-weight="700">Photoelectric Effect — Gold Leaf Electroscope</text>
+  <rect x="210" y="38" width="60" height="60" rx="4" fill="#FFD700" stroke="#CC8800" stroke-width="2" opacity="0.8"/>
+  <text x="240" y="72" text-anchor="middle" class="svg-label-sm">Zinc plate</text>
+  <line x1="240" y1="98" x2="240" y2="130" stroke="#2C2825" stroke-width="2"/>
+  <line x1="228" y1="125" x2="240" y2="115" stroke="#E8637A" stroke-width="2"/>
+  <line x1="252" y1="125" x2="240" y2="115" stroke="#E8637A" stroke-width="2"/>
+  <text x="265" y="128" class="svg-label-sm" fill="#C94040">leaves fall</text>
+  <text x="265" y="118" class="svg-label-sm" fill="#C94040">(discharge)</text>
+  <line x1="60" y1="60" x2="208" y2="60" stroke="#FFD700" stroke-width="2.5" marker-end="url(#aPE)"/>
+  <line x1="60" y1="70" x2="208" y2="70" stroke="#FFD700" stroke-width="2" marker-end="url(#aPE)"/>
+  <text x="60" y="50" class="svg-label-sm" fill="#997700">UV light</text>
+  <line x1="240" y1="38" x2="215" y2="18" stroke="#3A86FF" stroke-width="1.5" marker-end="url(#aPE2)"/>
+  <line x1="240" y1="38" x2="240" y2="15" stroke="#3A86FF" stroke-width="1.5" marker-end="url(#aPE2)"/>
+  <line x1="240" y1="38" x2="265" y2="18" stroke="#3A86FF" stroke-width="1.5" marker-end="url(#aPE2)"/>
+  <text x="240" y="12" text-anchor="middle" class="svg-label-sm" fill="#1A5CC8">e⁻ emitted</text>
+  <text x="240" y="135" text-anchor="middle" class="svg-label-sm">Negative plate + UV → leaves collapse (electrons emitted). Visible light → no effect below threshold frequency.</text>
+</svg></div><div class="box-observation"><ul><li>UV on negatively charged zinc plate: the leaves slowly collapse — electrons are emitted, discharging the plate.</li><li>Glass interposed: leaves stop collapsing (glass absorbs UV — no photoelectric effect).</li><li>Visible light: no effect on the leaves, regardless of intensity — below the threshold frequency.</li><li>Positively charged plate with UV: leaves stay open (even if electrons are emitted they are recaptured by the positive plate).</li><li>This demonstrates the photoelectric effect and provides evidence for the particle nature of light (photons).</li></ul></div><div class="box-analogy"><p>Like a locked gate that only opens to a specific key — the 'key' is the photon frequency. A photon below the threshold frequency (even millions of them) can never unlock the gate and release an electron. Only photons above threshold frequency have enough energy (hf > φ).</p></div><div class="box-exam"><p>Einstein's equation: hf = φ + ½mv²_max. Threshold frequency: f₀ = φ/h. State: 'Intensity affects number of photoelectrons; frequency determines whether emission occurs at all.' This cannot be explained by the wave model of light — evidence for photons.</p></div></div><div class="demo-card" style="--accent:#F77F00"><div class="demo-title"><span class="demo-num">3</span><span>Photoelectric Effect — Using a Photocell</span></div><div class="box-apparatus"><ul><li>Photocell (vacuum photodiode or phototube)</li><li>Sensitive galvanometer or microammeter</li><li>Light sources of different frequencies (UV, violet, green, red LEDs or filtered light)</li><li>Variable voltage supply (to apply stopping potential)</li><li>Connecting wires</li></ul></div><div class="box-method"><ol><li>Connect the photocell in series with the galvanometer.</li><li>Shine UV light onto the photocell — observe the galvanometer.</li><li>Replace with visible violet light — observe current.</li><li>Try green, then red light — observe whether current flows.</li><li>Note the threshold frequency (the frequency below which no current flows, regardless of intensity).</li><li>For above-threshold frequencies: increase intensity of light — observe how current changes.</li><li>Apply a reverse voltage (stopping potential) to find the maximum kinetic energy of emitted electrons.</li></ol></div><div class="box-observation"><ul><li>UV and high-frequency visible light: galvanometer deflects — photocurrent flows.</li><li>Below threshold frequency (typically red for zinc): no current, even at maximum intensity.</li><li>Above threshold: current increases proportionally with light intensity.</li><li>Maximum kinetic energy of electrons (from stopping potential) increases with frequency, not intensity.</li><li>This confirms the quantum nature of light: each photon gives all its energy to one electron.</li></ul></div><div class="box-analogy"><p>Like a coin-operated machine that only accepts 50-cent coins (threshold frequency). Putting in 100 one-cent coins (high intensity, low frequency) does nothing. One 50-cent coin (a single high-frequency photon) opens the machine immediately.</p></div><div class="box-exam"><p>The photocell gives more precise quantitative data than the electroscope. State: 'Stopping potential Vs = ½mv²_max/e. Maximum KE = eVs = hf − hf₀. A graph of KE vs f gives a straight line with slope h and x-intercept f₀.'</p></div></div><div class="demo-card" style="--accent:#56C271"><div class="demo-title"><span class="demo-num">4</span><span>Rutherford's Gold Foil Experiment</span></div><div class="box-apparatus"><ul><li>Alpha particle source (Americium-241 or similar in a sealed holder)</li><li>Ultra-thin gold foil (~1000 atoms thick)</li><li>Zinc sulfide fluorescent screen (360° screen around foil)</li><li>Microscope or detector</li><li>Lead collimator</li><li>Darkened room</li></ul></div><div class="box-method"><ol><li>Set up the source so a narrow collimated beam of alpha particles hits the gold foil at the centre.</li><li>Surround the foil with a zinc sulfide screen capable of detecting alpha particles at all angles.</li><li>Count flashes on the screen at various angles: near 0° (straight through), at 90°, and near 180° (back-scattered).</li><li>Record the number of alpha particles detected at each angle.</li></ol></div><div class="box-observation"><ul><li>Most alpha particles pass straight through (or very small deflection) — as if the gold foil is mostly empty space.</li><li>A small fraction deflect through large angles (>90°).</li><li>A very small fraction (about 1 in 8000) bounce almost straight back (~180°).</li><li>This distribution can ONLY be explained by the existence of a tiny, dense, positively charged nucleus.</li><li>'Like firing cannon balls at tissue paper and some bouncing back' — Rutherford.</li></ul></div><div class="box-analogy"><p>Rutherford himself said it: 'It was as if you fired artillery shells at tissue paper and they bounced back.' The few that bounced back proved something tiny and incredibly dense existed at the centre of the atom — the nucleus.</p></div><div class="box-exam"><p>Conclusions from Rutherford experiment: (1) atom is mostly empty space; (2) there is a tiny, dense, positively-charged nucleus; (3) electrons orbit at relatively large distances. This replaced the Thomson 'plum-pudding' model.</p></div></div><div class="demo-card" style="--accent:#E8637A"><div class="demo-title"><span class="demo-num">5</span><span>Demonstration of Line Spectra and Continuous Spectra</span></div><div class="box-apparatus"><ul><li>Spectrometer (diffraction grating type)</li><li>Incandescent lamp or sunlight (continuous spectrum source)</li><li>Gas discharge tubes: hydrogen, sodium, neon (line spectrum sources)</li><li>Diffraction grating (600 lines/mm)</li><li>Power supply for discharge tubes</li></ul></div><div class="box-method"><ol><li>Set up the spectrometer. Point at the incandescent lamp through a narrow slit.</li><li>Look through the eyepiece — observe the continuous spectrum.</li><li>Replace with the hydrogen discharge tube — observe the spectrum.</li><li>Record the positions of bright lines. Identify the Balmer series lines.</li><li>Repeat with sodium (two yellow lines) and neon (characteristic orange-red lines).</li><li>Compare continuous and line spectra visually.</li></ol></div><div class="box-diagram"><svg class="demo-svg" viewBox="0 0 480 130" xmlns="http://www.w3.org/2000/svg">
+  <text x="240" y="16" text-anchor="middle" class="svg-label" font-weight="700">Line Spectra vs. Continuous Spectra — Spectrometer</text>
+  <rect x="28" y="35" width="180" height="75" rx="4" fill="#001100" stroke="#3A86FF" stroke-width="2"/>
+  <text x="118" y="30" text-anchor="middle" class="svg-label-sm" fill="#3A86FF">Continuous spectrum (white light)</text>
+  <rect x="35" y="42" width="24" height="60" fill="violet" opacity="0.7"/>
+  <rect x="59" y="42" width="20" height="60" fill="blue" opacity="0.7"/>
+  <rect x="79" y="42" width="20" height="60" fill="green" opacity="0.7"/>
+  <rect x="99" y="42" width="24" height="60" fill="yellow" opacity="0.8"/>
+  <rect x="123" y="42" width="20" height="60" fill="orange" opacity="0.7"/>
+  <rect x="143" y="42" width="24" height="60" fill="red" opacity="0.7"/>
+  <rect x="268" y="35" width="180" height="75" rx="4" fill="#001100" stroke="#3A86FF" stroke-width="2"/>
+  <text x="358" y="30" text-anchor="middle" class="svg-label-sm" fill="#3A86FF">Line spectrum (H₂ gas)</text>
+  <line x1="295" y1="42" x2="295" y2="110" stroke="red" stroke-width="3"/>
+  <line x1="330" y1="42" x2="330" y2="110" stroke="cyan" stroke-width="3"/>
+  <line x1="355" y1="42" x2="355" y2="110" stroke="blue" stroke-width="2.5"/>
+  <line x1="372" y1="42" x2="372" y2="110" stroke="violet" stroke-width="2"/>
+  <text x="118" y="120" text-anchor="middle" class="svg-label-sm">All wavelengths (rainbow)</text>
+  <text x="358" y="120" text-anchor="middle" class="svg-label-sm">Discrete bright lines only (unique to element)</text>
+</svg></div><div class="box-observation"><ul><li>Incandescent lamp: continuous spectrum — all colours present from red to violet without gaps.</li><li>Hydrogen tube: only a few bright lines (red at 656 nm, blue-green at 486 nm, violet at 434 nm and 410 nm) on a dark background — these are the Balmer series.</li><li>Sodium: characteristic two close yellow lines (D-lines at 589 nm and 589.6 nm).</li><li>Neon: characteristic orange-red lines.</li><li>Each element has a unique set of spectral lines — its 'fingerprint'.</li></ul></div><div class="box-analogy"><p>A line spectrum is like a fingerprint or barcode for each element — no two elements have exactly the same set of lines. Astronomers use this to identify elements in stars millions of light years away.</p></div><div class="box-exam"><p>State: 'Line spectra arise from electrons falling from higher to lower energy levels, emitting photons of specific frequencies: E = hf = E₂ − E₁. Each element's spectrum is unique. Continuous spectra come from hot dense objects (incandescent solids).'</p></div></div><div class="demo-card" style="--accent:#9B5DE5"><div class="demo-title"><span class="demo-num">6</span><span>Ionising Effect of Radioactivity — GM Tube</span></div><div class="box-apparatus"><ul><li>Geiger-Müller (GM) tube connected to rate meter or counter</li><li>Radioactive source (alpha, beta, or gamma emitter — handled by teacher only, under safety rules)</li><li>Lead shield</li><li>Background radiation measurement</li></ul></div><div class="box-method"><ol><li>First measure background radiation count rate with no source present. Record for 60 seconds.</li><li>Bring a known source close to the GM tube window. Record count rate.</li><li>Move the source further away — observe count rate fall with distance.</li><li>Interpose absorbing materials: paper (for alpha), aluminium sheet (for beta), lead bricks (for gamma).</li><li>Record count rates with each absorber in place.</li><li>Calculate the activity and compare alpha, beta, gamma penetrating power.</li></ol></div><div class="box-observation"><ul><li>Background radiation detected even with no source present.</li><li>Source present: count rate greatly increases.</li><li>Paper stops alpha particles — count falls to background for alpha source.</li><li>Aluminium (a few mm) stops beta particles.</li><li>Gamma rays are never fully stopped — lead only reduces the count rate.</li><li>This demonstrates the ionising effect of radioactivity (ionising the gas inside the GM tube creates the electrical pulse) and the different penetrating powers.</li></ul></div><div class="box-analogy"><p>Alpha particles are like bowling balls — heavy, slow, highly ionising but stopped by paper. Beta particles are like tennis balls — faster, less ionising, stopped by aluminium. Gamma rays are like laser beams — weakly ionising but penetrate everything; only distance and thick lead reduce them.</p></div><div class="box-exam"><p>Know the penetrating power order: α (stopped by paper/5cm air), β (stopped by few mm Al), γ (reduced by thick Pb, never fully stopped). GM tube detects ionising radiation by the ionisation it causes in the gas inside.</p></div></div><div class="demo-card" style="--accent:#3A86FF"><div class="demo-title"><span class="demo-num">7</span><span>Penetrating Power of α, β and γ — GM Tube and Absorbers</span></div><div class="box-apparatus"><ul><li>GM tube and counter/rate meter</li><li>Radioactive sources: alpha (e.g. Am-241), beta (e.g. Sr-90), gamma (e.g. Co-60) — teacher-handled under safety regulations</li><li>Absorbers: sheet of paper, thin aluminium foil (~2mm), thick aluminium (~5mm), lead sheet (~10mm)</li><li>Ruler (to measure source-detector distance)</li><li>Lead screen for protection</li></ul></div><div class="box-method"><ol><li>Measure background count rate for 60 seconds first.</li><li>Place the alpha source at fixed distance from GM tube. Record count rate (no absorber).</li><li>Insert paper between source and tube — observe if count falls to background.</li><li>Repeat for beta source: insert paper, then thin aluminium, then 5mm aluminium.</li><li>Repeat for gamma source: insert each absorber and lead.</li><li>Record all count rates in a table.</li></ol></div><div class="box-diagram"><svg class="demo-svg" viewBox="0 0 480 130" xmlns="http://www.w3.org/2000/svg">
+  <text x="240" y="16" text-anchor="middle" class="svg-label" font-weight="700">Penetrating Power of α, β, γ — GM Tube</text>
+  <rect x="30" y="50" width="60" height="40" rx="4" fill="#9B5DE5" opacity="0.8"/>
+  <text x="60" y="74" text-anchor="middle" class="svg-label-sm" fill="#fff">Source</text>
+  <line x1="90" y1="62" x2="150" y2="62" stroke="#E8637A" stroke-width="2"/>
+  <text x="120" y="55" text-anchor="middle" class="svg-label-sm" fill="#C94040">α</text>
+  <rect x="150" y="50" width="20" height="40" rx="2" fill="#E2DDD7" stroke="#7A7068" stroke-width="1.5"/>
+  <text x="160" y="102" text-anchor="middle" class="svg-label-sm">paper</text>
+  <line x1="90" y1="72" x2="230" y2="72" stroke="#3A86FF" stroke-width="2"/>
+  <text x="160" y="84" text-anchor="middle" class="svg-label-sm" fill="#1A5CC8">β</text>
+  <rect x="230" y="50" width="20" height="40" rx="2" fill="#B8B8B8" stroke="#808080" stroke-width="1.5"/>
+  <text x="240" y="102" text-anchor="middle" class="svg-label-sm">Al</text>
+  <line x1="90" y1="80" x2="360" y2="80" stroke="#56C271" stroke-width="2"/>
+  <text x="250" y="92" text-anchor="middle" class="svg-label-sm" fill="#267339">γ</text>
+  <rect x="360" y="45" width="25" height="50" rx="2" fill="#2C2825" stroke="#7A7068" stroke-width="1.5"/>
+  <text x="372" y="102" text-anchor="middle" class="svg-label-sm">Pb</text>
+  <rect x="400" y="50" width="55" height="40" rx="4" fill="#E0ECFF" stroke="#3A86FF" stroke-width="1.5"/>
+  <text x="427" y="74" text-anchor="middle" class="svg-label-sm">GM Tube</text>
+  <text x="240" y="120" text-anchor="middle" class="svg-label-sm">α stopped by paper; β stopped by Al; γ reduced by lead (never fully stopped)</text>
+</svg></div><div class="box-observation"><ul><li>Alpha: completely stopped by a single sheet of paper (or ~5 cm of air).</li><li>Beta: passes through paper; stopped by a few mm of aluminium.</li><li>Gamma: passes through paper and aluminium; significantly reduced but never fully stopped by lead.</li><li>The count rate always includes some background — must subtract background from each reading.</li><li>This clearly demonstrates the different penetrating powers of the three types of nuclear radiation.</li></ul></div><div class="box-analogy"><p>Alpha, beta, gamma are like three different bullets. Alpha is a slow musket ball — powerful damage up close but stopped by thin armour (paper). Beta is a rifle bullet — moderate penetration, stopped by aluminium armour. Gamma is a laser — easily penetrates but damages less per unit length; needs massive shielding.</p></div><div class="box-exam"><p>Know and justify the penetrating power in terms of mass and charge: α (charge +2, mass 4) — most ionising, least penetrating; β (charge −1, mass ~1/2000) — moderate; γ (charge 0, massless) — least ionising, most penetrating. Always subtract background count.</p></div></div></div>
+
+<div class="section" id="applied" style="padding:0 16px 60px;max-width:960px;margin:0 auto;display:none;"><div class="ch-header" style="background:#F77F00;margin-bottom:24px;"><h1>🔌 Applied Electricity (Option 2)</h1></div><div class="demo-card" style="--accent:#F77F00"><div class="demo-title"><span class="demo-num">1</span><span>Electromagnetic Relay</span></div><div class="box-apparatus"><ul><li>Relay module or construct one: solenoid (~200 turns) on iron core</li><li>Iron armature (strip of steel) on pivot</li><li>Two contact points (normally open)</li><li>Low-voltage circuit: 3V battery, switch, solenoid</li><li>High-voltage circuit: 9V battery, lamp or motor</li><li>Connecting wires</li></ul></div><div class="box-method"><ol><li>Build the low-voltage control circuit: battery → switch → solenoid → back to battery.</li><li>Build the high-voltage output circuit: battery → lamp → relay contact → back to battery (circuit open until relay closes).</li><li>Open the relay (control switch off) — observe the lamp.</li><li>Close the control switch — current flows through the solenoid.</li><li>Observe the armature and the lamp.</li><li>Open the control switch — observe what happens.</li></ol></div><div class="box-diagram"><svg class="demo-svg" viewBox="0 0 480 140" xmlns="http://www.w3.org/2000/svg">
+  <text x="240" y="16" text-anchor="middle" class="svg-label" font-weight="700">Electromagnetic Relay — Low Current Controls High Current</text>
+  <rect x="25" y="45" width="40" height="25" rx="3" fill="#FFB347" stroke="#CC7A00" stroke-width="1.5"/>
+  <text x="45" y="60" text-anchor="middle" class="svg-label-sm">Low V</text>
+  <path d="M100,57 Q113,43 126,57 Q139,71 152,57 Q165,43 178,57" fill="none" stroke="#3A86FF" stroke-width="2.5"/>
+  <text x="140" y="40" text-anchor="middle" class="svg-label-sm" fill="#1A5CC8">Solenoid</text>
+  <rect x="195" y="45" width="45" height="35" rx="3" fill="#D0D0D0" stroke="#808080" stroke-width="1.5"/>
+  <text x="217" y="67" text-anchor="middle" class="svg-label-sm">Iron</text>
+  <text x="217" y="77" text-anchor="middle" class="svg-label-sm">core</text>
+  <rect x="245" y="52" width="60" height="10" rx="2" fill="#FFB347" stroke="#CC7A00" stroke-width="1.5"/>
+  <text x="275" y="62" text-anchor="middle" class="svg-label-sm">arm</text>
+  <circle cx="318" cy="57" r="5" fill="#2C2825"/>
+  <circle cx="318" cy="78" r="5" fill="#56C271"/>
+  <text x="332" y="61" class="svg-label-sm">contacts</text>
+  <line x1="65" y1="57" x2="100" y2="57" stroke="#2C2825" stroke-width="1.5"/>
+  <line x1="65" y1="82" x2="65" y2="95" stroke="#2C2825" stroke-width="1.5"/>
+  <line x1="65" y1="95" x2="178" y2="95" stroke="#2C2825" stroke-width="1.5"/>
+  <line x1="178" y1="57" x2="195" y2="57" stroke="#2C2825" stroke-width="1.5"/>
+  <rect x="360" y="45" width="40" height="25" rx="3" fill="#E8637A" opacity="0.8"/>
+  <text x="380" y="60" text-anchor="middle" class="svg-label-sm" fill="#fff">High V</text>
+  <line x1="360" y1="57" x2="323" y2="57" stroke="#E8637A" stroke-width="1.5"/>
+  <polygon points="340,72 360,78 340,84" fill="#56C271"/>
+  <line x1="360" y1="78" x2="360" y2="100" stroke="#56C271" stroke-width="1.5"/>
+  <line x1="360" y1="100" x2="323" y2="100" stroke="#56C271" stroke-width="1.5"/>
+  <line x1="323" y1="78" x2="323" y2="100" stroke="#56C271" stroke-width="1.5"/>
+  <text x="240" y="128" text-anchor="middle" class="svg-label-sm">Low current in solenoid → magnetic core attracts arm → closes high-current contacts (motor, lamp etc.)</text>
+</svg></div><div class="box-observation"><ul><li>Control switch open: solenoid off, armature not attracted, contacts open → lamp off.</li><li>Control switch closed: solenoid energised, iron core becomes magnetised, attracts armature down → contacts close → lamp lights.</li><li>Control switch opened: solenoid de-energised, spring returns armature → contacts open → lamp off.</li><li>This demonstrates the electromagnetic relay: a small current in the control circuit operates a switch for a much larger current.</li></ul></div><div class="box-analogy"><p>Like a digital switch with physical separation: the small control circuit (like a computer signal) operates a physically separate high-power circuit — the relay is the bridge between them. Used in car starters, industrial control systems, and safety systems.</p></div><div class="box-exam"><p>State: 'A relay uses the electromagnetic effect of a small current in a solenoid to operate a mechanical switch that controls a larger current in a separate circuit. The two circuits are electrically isolated.' Applications: car ignition, central heating thermostats, industrial safety cut-outs.</p></div></div><div class="demo-card" style="--accent:#9B5DE5"><div class="demo-title"><span class="demo-num">2</span><span>Principle of the DC Motor</span></div><div class="box-apparatus"><ul><li>Simple DC motor (or construct one: rectangular coil, horseshoe magnet, commutator, carbon brushes)</li><li>DC power supply (6–12V)</li><li>Ammeter</li><li>Rheostat to vary speed</li><li>OR: use a commercial hobby motor with visible commutator</li></ul></div><div class="box-method"><ol><li>Set up the motor so the coil is between the poles of the horseshoe magnet.</li><li>Connect to the DC supply through the switch.</li><li>Switch on — observe the rotation direction.</li><li>Reverse the current (swap supply leads) — observe rotation direction.</li><li>Increase the current via rheostat — observe speed change.</li><li>Remove the magnet — observe the motor stops.</li><li>Identify the role of the commutator: it reverses the current every half-turn to maintain continuous rotation.</li></ol></div><div class="box-diagram"><svg class="demo-svg" viewBox="0 0 480 150" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+  <marker id="aDCM" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#56C271"/></marker>
+  <marker id="aDCMI" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#E8637A"/></marker>
+  </defs>
+  <text x="240" y="16" text-anchor="middle" class="svg-label" font-weight="700">DC Motor Principle — Current-Carrying Coil in Magnetic Field</text>
+  <path d="M145,40 Q125,80 145,120 L167,120 Q147,80 167,40 Z" fill="#3A86FF" opacity="0.7"/>
+  <path d="M308,40 Q328,80 308,120 L332,120 Q352,80 332,40 Z" fill="#E8637A" opacity="0.7"/>
+  <text x="157" y="130" text-anchor="middle" class="svg-label-sm" fill="#1A5CC8">N</text>
+  <text x="320" y="130" text-anchor="middle" class="svg-label-sm" fill="#C94040">S</text>
+  <rect x="220" y="38" width="40" height="84" rx="4" fill="#FFF9E6" stroke="#FFB347" stroke-width="2"/>
+  <text x="240" y="85" text-anchor="middle" class="svg-label-sm">Coil</text>
+  <line x1="230" y1="38" x2="230" y2="55" stroke="#E8637A" stroke-width="2" marker-end="url(#aDCMI)"/>
+  <line x1="250" y1="122" x2="250" y2="105" stroke="#E8637A" stroke-width="2" marker-end="url(#aDCMI)"/>
+  <line x1="167" y1="80" x2="220" y2="80" stroke="#56C271" stroke-width="2.5" marker-end="url(#aDCM)"/>
+  <line x1="260" y1="80" x2="308" y2="80" stroke="#56C271" stroke-width="2.5" marker-end="url(#aDCM)"/>
+  <text x="148" y="80" text-anchor="middle" class="svg-label-sm" fill="#267339">F→</text>
+  <text x="332" y="80" text-anchor="middle" class="svg-label-sm" fill="#267339">←F</text>
+  <text x="240" y="32" text-anchor="middle" class="svg-label-sm">Couple of forces → rotation</text>
+  <text x="240" y="143" text-anchor="middle" class="svg-label-sm">F = BIl on each side of coil; forces form couple → continuous rotation. Commutator reverses current each half-turn.</text>
+</svg></div><div class="box-observation"><ul><li>Coil rotates continuously when current is applied in the presence of the magnetic field.</li><li>Reversing current reverses rotation direction.</li><li>Increasing current (field strength) increases speed and torque.</li><li>Without the commutator, the coil would only make half a turn then reverse.</li><li>The commutator reverses the current every half-turn — maintaining torque in the same rotational direction.</li><li>Force on each side of the coil: F = BIl. The couple of two forces creates the torque.</li></ul></div><div class="box-analogy"><p>Like pedalling a bicycle — if you could only push down on one side, you'd only get half a rotation. The commutator is like having both feet on the pedals — it switches which coil side is being 'pushed' every half-turn so rotation continues smoothly.</p></div><div class="box-exam"><p>State: 'The DC motor works because a current-carrying conductor in a magnetic field experiences a force (F = BIl). The two sides of the coil experience equal and opposite forces, creating a couple. The commutator reverses the current each half-turn to maintain continuous rotation in one direction.'</p></div></div><div class="demo-card" style="--accent:#3A86FF"><div class="demo-title"><span class="demo-num">3</span><span>Principle of the Induction Motor</span></div><div class="box-apparatus"><ul><li>Strong horseshoe magnet (permanent, neodymium type for best effect) on a motorised turntable</li><li>Aluminium disc mounted on a vertical axle so it can spin freely</li><li>OR: egg-shaped copper shell with rotating magnet</li></ul></div><div class="box-method"><ol><li>Mount the aluminium disc centrally between or near the poles of the horseshoe magnet.</li><li>Slowly rotate the magnet around the disc by hand or with a motor.</li><li>Observe the aluminium disc.</li><li>Increase the rotation speed of the magnet — observe the disc's behaviour.</li><li>Stop rotating the magnet — observe the disc.</li><li>Note that the disc lags behind the magnet's rotation (it never quite reaches the same speed).</li></ol></div><div class="box-diagram"><svg class="demo-svg" viewBox="0 0 480 130" xmlns="http://www.w3.org/2000/svg">
+  <defs><marker id="aIM" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#3A86FF"/></marker></defs>
+  <text x="240" y="16" text-anchor="middle" class="svg-label" font-weight="700">Induction Motor Principle — Rotating Magnet Drags Disc</text>
+  <ellipse cx="240" cy="72" rx="80" ry="50" fill="#E0ECFF" stroke="#3A86FF" stroke-width="2" opacity="0.5"/>
+  <text x="240" y="76" text-anchor="middle" class="svg-label-sm">Aluminium disc (rotor)</text>
+  <rect x="145" y="58" width="35" height="30" rx="4" fill="#3A86FF" opacity="0.8"/>
+  <text x="162" y="76" text-anchor="middle" class="svg-label-sm" fill="#fff">N</text>
+  <rect x="300" y="58" width="35" height="30" rx="4" fill="#E8637A" opacity="0.8"/>
+  <text x="317" y="76" text-anchor="middle" class="svg-label-sm" fill="#fff">S</text>
+  <path d="M325,52 Q360,72 325,92" fill="none" stroke="#56C271" stroke-width="2" marker-end="url(#aIM)"/>
+  <text x="375" y="76" text-anchor="middle" class="svg-label-sm" fill="#267339">rotate</text>
+  <text x="375" y="88" text-anchor="middle" class="svg-label-sm" fill="#267700">magnet</text>
+  <path d="M238,32 Q268,42 268,72 Q268,102 238,112" fill="none" stroke="#E8637A" stroke-width="2" marker-end="url(#aIM)" stroke-dasharray="5,3"/>
+  <text x="280" y="50" class="svg-label-sm" fill="#C94040">disc</text>
+  <text x="280" y="62" class="svg-label-sm" fill="#C94040">follows</text>
+  <text x="240" y="120" text-anchor="middle" class="svg-label-sm">Rotating magnet → changing flux → eddy currents in disc → disc dragged along (Lenz)</text>
+</svg></div><div class="box-observation"><ul><li>When the magnet rotates, the aluminium disc begins to rotate in the same direction.</li><li>The disc always lags slightly behind the speed of the rotating magnet.</li><li>Faster magnet rotation → faster disc rotation.</li><li>The disc cannot reach the same speed as the magnet (if it did, there would be no change in flux, no eddy currents, no force).</li><li>Stopping the magnet: the disc immediately decelerates.</li><li>This demonstrates the principle of the induction motor — eddy currents (Lenz's Law) cause the rotor to follow the rotating magnetic field.</li></ul></div><div class="box-analogy"><p>Like a dog chasing a car — the dog (rotor) always follows the car (rotating field) but can never catch it. If it did catch it there would be no relative motion, no flux change, no induced force, and the dog would slow down.</p></div><div class="box-exam"><p>State: 'In an induction motor, a rotating magnetic field induces eddy currents in the rotor. By Lenz's Law, these currents produce a force that causes the rotor to follow the rotating field. The rotor always lags the stator field (slip). No brushes or commutator needed — the motor is robust and maintenance-free.'</p></div></div><div class="demo-card" style="--accent:#56C271"><div class="demo-title"><span class="demo-num">4</span><span>Truth Tables for AND, OR and NOT Gates</span></div><div class="box-apparatus"><ul><li>Logic gate kit (CMOS 4000 or TTL 7400 series ICs) or breadboard circuit</li><li>OR digital logic trainer</li><li>LED indicators (output)</li><li>Switches (two for AND/OR, one for NOT) representing inputs</li><li>5V power supply</li><li>Connecting wires or patch leads</li></ul></div><div class="box-method"><ol><li>Connect the AND gate (e.g. 7408 IC or build from two transistors) with two switch inputs (A and B) and an LED output.</li><li>Systematically set A=0, B=0: observe LED. Set A=0, B=1: observe. Set A=1, B=0: observe. Set A=1, B=1: observe.</li><li>Record all four input combinations and LED states in a truth table.</li><li>Repeat for OR gate (e.g. 7432) and NOT gate (7404 inverter) — only one input needed for NOT.</li><li>Verify: AND → output only HIGH when ALL inputs HIGH. OR → output HIGH if ANY input HIGH. NOT → inverts input.</li></ol></div><div class="box-diagram"><svg class="demo-svg" viewBox="0 0 480 140" xmlns="http://www.w3.org/2000/svg">
+  <text x="240" y="16" text-anchor="middle" class="svg-label" font-weight="700">Logic Gates — AND, OR, NOT Truth Tables</text>
+  <!-- AND gate -->
+  <rect x="25" y="32" width="100" height="80" rx="6" fill="#EEF6FF" stroke="#3A86FF" stroke-width="1.5"/>
+  <text x="75" y="50" text-anchor="middle" class="svg-label" font-weight="700" fill="#1A5CC8">AND</text>
+  <text x="75" y="65" text-anchor="middle" class="svg-label-sm">A B → Q</text>
+  <text x="75" y="78" text-anchor="middle" class="svg-label-sm">0 0 → 0</text>
+  <text x="75" y="90" text-anchor="middle" class="svg-label-sm">0 1 → 0</text>
+  <text x="75" y="102" text-anchor="middle" class="svg-label-sm">1 0 → 0</text>
+  <text x="75" y="114" text-anchor="middle" class="svg-label-sm" fill="#267339">1 1 → 1</text>
+  <!-- OR gate -->
+  <rect x="190" y="32" width="100" height="80" rx="6" fill="#F0FFF4" stroke="#56C271" stroke-width="1.5"/>
+  <text x="240" y="50" text-anchor="middle" class="svg-label" font-weight="700" fill="#267339">OR</text>
+  <text x="240" y="65" text-anchor="middle" class="svg-label-sm">A B → Q</text>
+  <text x="240" y="78" text-anchor="middle" class="svg-label-sm">0 0 → 0</text>
+  <text x="240" y="90" text-anchor="middle" class="svg-label-sm" fill="#267339">0 1 → 1</text>
+  <text x="240" y="102" text-anchor="middle" class="svg-label-sm" fill="#267339">1 0 → 1</text>
+  <text x="240" y="114" text-anchor="middle" class="svg-label-sm" fill="#267339">1 1 → 1</text>
+  <!-- NOT gate -->
+  <rect x="355" y="32" width="100" height="80" rx="6" fill="#FFF0F3" stroke="#E8637A" stroke-width="1.5"/>
+  <text x="405" y="50" text-anchor="middle" class="svg-label" font-weight="700" fill="#C94040">NOT</text>
+  <text x="405" y="65" text-anchor="middle" class="svg-label-sm">A → Q</text>
+  <text x="405" y="85" text-anchor="middle" class="svg-label-sm" fill="#267339">0 → 1</text>
+  <text x="405" y="105" text-anchor="middle" class="svg-label-sm" fill="#C94040">1 → 0</text>
+  <text x="240" y="132" text-anchor="middle" class="svg-label-sm">Use switches as inputs (0=open, 1=closed) and LED as output — verify each truth table</text>
+</svg></div><div class="box-observation"><ul><li>AND gate truth table: 0+0=0, 0+1=0, 1+0=0, 1+1=1 — LED only lights when BOTH switches closed.</li><li>OR gate truth table: 0+0=0, 0+1=1, 1+0=1, 1+1=1 — LED lights when ANY switch is closed.</li><li>NOT gate: 0→1, 1→0 — LED is ON when switch is OFF and vice versa.</li><li>This demonstrates Boolean logic operations implemented in electronic circuits.</li></ul></div><div class="box-analogy"><p>AND: like two switches in series — both must be on for current to flow (a car door AND seat belt sensor both active). OR: like two switches in parallel — either one allows current to flow (alarm triggered by door OR window sensor). NOT: like an inverter — lights on when lock is OFF.</p></div><div class="box-exam"><p>Know all three truth tables by heart. AND: only 1,1→1. OR: only 0,0→0. NOT: 0→1, 1→0. High = 1 = logic HIGH voltage. Low = 0 = logic LOW (near 0V). These are the fundamental building blocks of all digital electronics and computers.</p></div></div></div>
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:24px;right:24px;width:44px;height:44px;border-radius:50%;background:var(--purple);color:#fff;border:none;font-size:1.2rem;cursor:pointer;box-shadow:var(--shadow);opacity:0;transition:opacity 0.3s;pointer-events:none;">↑</button>
+<script>
+function showTopic(id) {
+  document.querySelectorAll('.section').forEach(s => { s.style.display = 'none'; });
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  var el = document.getElementById(id);
+  if (el) { el.style.display = 'block'; }
+  var btn = document.querySelector('.nav-btn[data-id="' + id + '"]');
+  if (btn) btn.classList.add('active');
+  if (el) el.scrollIntoView({behavior:'smooth', block:'start'});
+}
+window.addEventListener('scroll', function() {
+  var btn = document.getElementById('scrollTop');
+  if (btn) btn.classList.toggle('visible', window.scrollY > 400);
+});
+window.addEventListener('DOMContentLoaded', function() {
+  var firstBtn = document.querySelector('.nav-btn[data-id]');
+  if (firstBtn) firstBtn.classList.add('active');
+});
+</script>
+</body>
+</html>
