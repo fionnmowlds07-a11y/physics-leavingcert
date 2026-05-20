@@ -143,15 +143,41 @@
   .bc4{border-color:#6ee7b7!important;} .bc5{border-color:#c4b5fd!important;} .bc6{border-color:#67e8f9!important;}
   .bc7{border-color:#fca5a5!important;} .bc8{border-color:#fcd34d!important;} .bc9{border-color:#a5b4fc!important;}
   .bc10{border-color:#6ee7b7!important;}
+
+  /* ── SHARED HOME NAV ── */
+  .top-nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.97);backdrop-filter:blur(10px);border-bottom:2px solid var(--border);padding:8px 16px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .top-nav .nav-logo{font-family:'Lexend Mega',sans-serif;font-size:.82rem;font-weight:700;color:var(--text);margin-right:2px;white-space:nowrap;}
+  .top-nav .nav-logo span{color:#b45309;}
+  .nav-home-btn{display:inline-flex;align-items:center;gap:5px;padding:5px 13px;border-radius:16px;border:2px solid var(--border);background:#fff;font-family:'Lexend',sans-serif;font-size:.72rem;font-weight:700;color:#555577;text-decoration:none;transition:all .2s;white-space:nowrap;}
+  .nav-home-btn:hover{background:#1a1a2e;color:#fff;border-color:#1a1a2e;transform:translateY(-2px);}
+  .nav-divider{width:1px;height:20px;background:var(--border);flex-shrink:0;}
+  /* hamburger */
+  .nav-hamburger{display:none;background:#fff;border:2px solid var(--border);border-radius:8px;padding:4px 10px;font-size:1.1rem;cursor:pointer;line-height:1;flex-shrink:0;}
+  @media(max-width:700px){
+    .nav-hamburger{display:block;}
+    .top-nav .nav-tabs-wrap{display:none;}
+  }
+  /* mobile drawer */
+  .nav-drawer{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.45);}
+  .nav-drawer.open{display:block;}
+  .nav-panel{position:absolute;top:0;left:0;width:72vw;max-width:290px;height:100%;background:#fff;padding:18px 14px;overflow-y:auto;display:flex;flex-direction:column;gap:7px;box-shadow:4px 0 24px rgba(0,0,0,.18);}
+  .nav-panel .nav-panel-title{font-family:'Lexend Mega',sans-serif;font-size:.72rem;font-weight:700;color:#555577;padding-left:4px;margin-bottom:4px;}
+  .nav-panel .nav-home-btn{width:100%;justify-content:flex-start;margin-bottom:4px;}
+  .nav-panel hr.nav-hr{border:none;border-top:2px solid var(--border);margin:2px 0 6px;}
+
+  .nav-tabs-wrap{display:flex;gap:6px;flex-wrap:wrap;align-items:center;}
 </style>
 </head>
 <body>
 
-<!-- ══════════════ TOPBAR ══════════════ -->
-<div class="topbar">
-  <span class="topbar-brand">🏛 LC Latin – Augustus</span>
-  <div class="nav-tabs">
-    <button class="nav-tab active"  onclick="showPage('home',this)">🏠 Home</button>
+<!-- ══════════════ TOP NAV ══════════════ -->
+<nav class="top-nav" id="topNav">
+  <span class="nav-logo">LC <span>Latin</span></span>
+  <a href="Latin.html" class="nav-home-btn">🏠 Home</a>
+  <span class="nav-divider"></span>
+  <button class="nav-hamburger" onclick="openNavDrawer()" aria-label="Menu">☰</button>
+  <div class="nav-tabs-wrap nav-tabs">
+    <button class="nav-tab active" onclick="showPage('home',this)">🏠 Overview</button>
     <button class="nav-tab p1"  onclick="showPage('early',this)">👶 Early Life</button>
     <button class="nav-tab p2"  onclick="showPage('triumvirate',this)">⚔️ 2nd Triumvirate</button>
     <button class="nav-tab p3"  onclick="showPage('rise',this)">📈 Rise to Power</button>
@@ -163,6 +189,27 @@
     <button class="nav-tab p9"  onclick="showPage('succession',this)">👶 Succession Problem</button>
     <button class="nav-tab p10" onclick="showPage('death',this)">☠️ Death &amp; Legacy</button>
   </div>
+</nav>
+
+<!-- MOBILE DRAWER -->
+<div class="nav-drawer" id="navDrawer" onclick="closeNavDrawer(event)">
+  <div class="nav-panel" id="navPanel">
+    <div class="nav-panel-title">🏛 LC Latin – Augustus</div>
+    <a href="Latin.html" class="nav-home-btn">🏠 Home</a>
+    <hr class="nav-hr">
+    <button class="nav-tab active" onclick="closeNavDrawer(); showPage('home',this)">🏠 Overview</button>
+    <button class="nav-tab p1"  onclick="closeNavDrawer(); showPage('early',this)">👶 Early Life</button>
+    <button class="nav-tab p2"  onclick="closeNavDrawer(); showPage('triumvirate',this)">⚔️ 2nd Triumvirate</button>
+    <button class="nav-tab p3"  onclick="closeNavDrawer(); showPage('rise',this)">📈 Rise to Power</button>
+    <button class="nav-tab p4"  onclick="closeNavDrawer(); showPage('actium',this)">🚢 Battle of Actium</button>
+    <button class="nav-tab p5"  onclick="closeNavDrawer(); showPage('settlement',this)">📜 The Settlements</button>
+    <button class="nav-tab p6"  onclick="closeNavDrawer(); showPage('powers',this)">👑 Powers &amp; Titles</button>
+    <button class="nav-tab p7"  onclick="closeNavDrawer(); showPage('reforms',this)">🏛️ Rome &amp; Reforms</button>
+    <button class="nav-tab p8"  onclick="closeNavDrawer(); showPage('social',this)">👨‍👩‍👧 Social &amp; Foreign Policy</button>
+    <button class="nav-tab p9"  onclick="closeNavDrawer(); showPage('succession',this)">👶 Succession Problem</button>
+    <button class="nav-tab p10" onclick="closeNavDrawer(); showPage('death',this)">☠️ Death &amp; Legacy</button>
+  </div>
+</div>
 </div>
 
 <!-- ══════════════ HOME ══════════════ -->
@@ -804,7 +851,7 @@
   </div>
 </div>
 
-<a href="index.html" class="return-home-btn">🏠 Back to Hub</a>
+
 
 <script>
 function showPage(id, btn) {
@@ -816,6 +863,13 @@ function showPage(id, btn) {
 }
 function toggleDef(card) {
   card.classList.toggle('open');
+}
+
+// ── MOBILE DRAWER ──
+function openNavDrawer(){document.getElementById('navDrawer').classList.add('open');}
+function closeNavDrawer(e){
+  var panel=document.getElementById('navPanel');
+  if(!e||!panel.contains(e.target)){document.getElementById('navDrawer').classList.remove('open');}
 }
 </script>
 </body>
