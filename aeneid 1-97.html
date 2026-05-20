@@ -10,8 +10,14 @@
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.7;}
 .lat{font-weight:700;color:#1a1a2e;}
-.topbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);border-bottom:2px solid var(--border);padding:0 14px;display:flex;align-items:center;gap:5px;flex-wrap:wrap;min-height:52px;}
-.brand{font-family:'Lexend Mega',sans-serif;font-size:.82rem;font-weight:700;margin-right:4px;white-space:nowrap;}
+/* ── TOP NAV (Physics-style) ── */
+.top-nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);border-bottom:2px solid var(--border);padding:8px 14px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.top-nav .nav-logo{font-family:'Lexend Mega',sans-serif;font-size:.82rem;font-weight:700;margin-right:4px;white-space:nowrap;}
+.top-nav .nav-logo span{color:#b45309;}
+.nav-home{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border-radius:16px;border:2px solid var(--border);background:#fff;font-family:'Lexend',sans-serif;font-size:.72rem;font-weight:700;color:var(--sub);text-decoration:none;transition:all .2s;}
+.nav-home:hover{background:var(--text);color:#fff;border-color:var(--text);transform:translateY(-2px);}
+.nav-divider{width:1px;height:20px;background:var(--border);flex-shrink:0;}
+/* internal page tabs */
 .nav-tabs{display:flex;gap:5px;flex-wrap:wrap;}
 .nt{background:none;border:2px solid var(--border);color:var(--sub);font-family:'Lexend',sans-serif;font-size:.71rem;font-weight:600;cursor:pointer;border-radius:20px;padding:3px 10px;transition:all .15s;}
 .nt:hover,.nt.active{background:var(--text);border-color:var(--text);color:#fff;}
@@ -173,11 +179,12 @@ body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);font
 </head>
 <body>
 
-<div class="topbar">
-  <button class="nav-hamburger" onclick="openDrawer()" aria-label="Menu">☰</button>
-  <span class="brand">📜 Aeneid VI · Lines 1–97</span>
+<nav class="top-nav">
+  <span class="nav-logo">LC <span>Latin</span></span>
+  <a href="Latin.html" class="nav-home">🏠 Home</a>
+  <span class="nav-divider"></span>
   <div class="nav-tabs">
-    <button class="nt active" onclick="sp('home',this)">🏠 Home</button>
+    <button class="nt active" onclick="sp('home',this)">📜 Aeneid VI</button>
     <button class="nt tg"     onclick="sp('story',this)">📖 Story</button>
     <button class="nt tb"     onclick="sp('l1',this)">L 1–13</button>
     <button class="nt tr"     onclick="sp('l2',this)">L 14–41</button>
@@ -192,7 +199,7 @@ body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);font
     <button class="nt tgr"    onclick="sp('order',this)">🔀 Line Order</button>
     <button class="nt tg"     onclick="sp('mock',this)">🎯 Mock Exam</button>
   </div>
-</div>
+</nav>
 
 <!-- MOBILE DRAWER -->
 <div class="nav-drawer" id="navDrawer" onclick="closeDrawer(event)">
