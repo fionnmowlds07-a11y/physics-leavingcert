@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bishop — Filling Station</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F7F4EF;--surface:#FFFFFF;--surface2:#F0EDE8;--border:#E2DDD7;--text:#2C2825;--muted:#7A7068;--c:#d35400;--cl:#fef6ee;--cd:#8a3500;--radius:14px;--shadow:0 4px 20px rgba(0,0,0,0.08);--shadow-h:0 8px 32px rgba(0,0,0,0.14);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;font-size:16px;}
+nav{position:sticky;top:0;z-index:100;background:rgba(247,244,239,0.97);backdrop-filter:blur(10px);border-bottom:2px solid var(--border);padding:8px 16px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;min-height:52px;}
+.nav-logo{font-family:'Lexend Mega',sans-serif;font-size:0.85rem;color:var(--text);margin-right:4px;text-decoration:none;white-space:nowrap;}.nav-logo span{color:var(--c);}
+.nav-divider{width:1px;height:20px;background:var(--border);flex-shrink:0;}
+.nav-btn{padding:5px 11px;border-radius:18px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.72rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);text-decoration:none;white-space:nowrap;}
+.nav-btn:hover{background:var(--c);color:#fff;border-color:var(--c);transform:translateY(-2px);}
+.nav-btn.active{background:var(--c);color:#fff;border-color:var(--c);}
+.nav-btn.fish:hover,.nav-btn.fish.active{background:#1a6b9a;border-color:#1a6b9a;color:#fff;}
+.nav-btn.prodigal:hover,.nav-btn.prodigal.active{background:#8e44ad;border-color:#8e44ad;color:#fff;}
+.nav-btn.sestina:hover,.nav-btn.sestina.active{background:#1a6b3a;border-color:#1a6b3a;color:#fff;}
+.nav-btn.armadillo:hover,.nav-btn.armadillo.active{background:#8b1a2b;border-color:#8b1a2b;color:#fff;}
+.nav-btn.flash{border-color:#2c3e50;}.nav-btn.flash:hover{background:#2c3e50;border-color:#2c3e50;color:#fff;}
+.nav-btn.links{border-color:#148f77;}.nav-btn.links:hover{background:#148f77;border-color:#148f77;color:#fff;}
+.section{padding:0 16px 80px;max-width:940px;margin:0 auto;}
+.hero{background:linear-gradient(135deg,var(--cd),var(--c));color:#fff;padding:44px 32px 36px;text-align:center;margin-bottom:32px;}
+.hero .poem-label{font-size:0.75rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;opacity:0.75;margin-bottom:10px;}
+.hero h1{font-family:'Lexend Mega',sans-serif;font-size:clamp(1.8rem,5vw,3rem);line-height:1.15;margin-bottom:12px;}
+.hero p{opacity:0.88;max-width:620px;margin:0 auto;font-size:0.96rem;}
+.hero-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px;}
+.hero-chip{background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:4px 14px;border-radius:20px;font-size:0.75rem;font-weight:600;}
+.tab-bar{display:flex;gap:4px;flex-wrap:wrap;padding:22px 0 8px;border-bottom:2px solid var(--border);margin-bottom:28px;}
+.tab{padding:8px 18px;border-radius:10px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.8rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);}
+.tab:hover,.tab.active{background:var(--c);color:#fff;border-color:var(--c);}
+.tab-panel{display:none;}.tab-panel.active{display:block;animation:fadeIn 0.25s ease;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.info-card{background:var(--surface);border-radius:var(--radius);padding:24px 26px;margin-bottom:20px;box-shadow:var(--shadow);border-left:5px solid var(--c);}
+.info-card h2{font-size:1.1rem;font-weight:700;margin-bottom:12px;}
+.info-card p{margin-bottom:9px;font-size:0.94rem;}
+.info-card ul{padding-left:20px;margin-bottom:9px;}
+.info-card li{margin-bottom:5px;font-size:0.93rem;}
+.quote-block{border-left:4px solid var(--c);background:var(--cl);border-radius:0 var(--radius) var(--radius) 0;padding:16px 20px;margin:16px 0;}
+.quote-block blockquote{font-family:'Lexend Mega',sans-serif;font-size:1rem;font-style:italic;margin-bottom:8px;line-height:1.5;}
+.quote-ref{font-size:0.73rem;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--muted);margin-bottom:10px;}
+.quote-body p{margin-bottom:8px;font-size:0.91rem;line-height:1.75;}
+.tech-pill{display:inline-block;background:var(--c);color:#fff;font-size:0.72rem;font-weight:700;padding:2px 9px;border-radius:5px;margin:2px;}
+.kw{display:inline-block;background:rgba(0,0,0,0.07);font-weight:700;font-size:0.85rem;padding:1px 8px;border-radius:4px;margin:1px;}
+.box{border-radius:var(--radius);padding:14px 18px;margin:14px 0;display:flex;gap:12px;align-items:flex-start;}
+.box .ico{font-size:1.5rem;flex-shrink:0;line-height:1.2;}
+.box-label{font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;margin-bottom:4px;}
+.box p,.box li{font-size:0.91rem;}.box ul{padding-left:16px;}.box li{margin-bottom:4px;}
+.b-analogy{background:#fffbf0;border:2px solid #f39c12;}.b-analogy .box-label{color:#b7770d;}
+.b-exam{background:#eaf4fb;border:2px solid #5dade2;}.b-exam .box-label{color:#1a6b9a;}
+.b-memory{background:#f0fff6;border:2px solid #27ae60;}.b-memory .box-label{color:#1e8449;}
+.b-link{background:#e8faf6;border:2px solid #148f77;}.b-link .box-label{color:#0d6b56;}
+.acc{margin-bottom:10px;}
+.acc-btn{width:100%;text-align:left;background:var(--surface);border:2px solid var(--border);border-radius:var(--radius);padding:14px 18px;font-family:'Lexend',sans-serif;font-size:0.92rem;font-weight:600;cursor:pointer;color:var(--text);display:flex;justify-content:space-between;align-items:center;transition:background 0.15s;}
+.acc-btn:hover{background:#f8f5f0;}.acc-btn.open{border-radius:var(--radius) var(--radius) 0 0;border-bottom-color:transparent;}
+.acc-btn .arr{transition:transform 0.25s;margin-left:8px;flex-shrink:0;}
+.acc-btn.open .arr{transform:rotate(180deg);}
+.acc-body{display:none;background:var(--surface);border:2px solid var(--border);border-top:none;border-radius:0 0 var(--radius) var(--radius);padding:20px 22px;}
+.acc-body.open{display:block;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:14px 0;}
+@media(max-width:600px){.two-col{grid-template-columns:1fr;}}
+.stanza-block{background:var(--surface);border:2px solid var(--border);border-radius:var(--radius);padding:22px 24px;margin-bottom:18px;border-top:4px solid var(--c);}
+.stanza-block .stanza-label{font-size:0.72rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+.stanza-block .poem-text{font-style:italic;font-size:0.9rem;line-height:1.8;border-left:3px solid var(--cl);padding:10px 14px;margin-bottom:14px;background:var(--cl);border-radius:0 8px 8px 0;}
+.stanza-block h3{font-size:1rem;font-weight:700;margin:12px 0 8px;}
+.stanza-block p{font-size:0.92rem;margin-bottom:8px;}
+h3.label{font-family:'Lexend Mega',sans-serif;font-size:0.95rem;font-weight:700;margin:28px 0 14px;display:flex;align-items:center;gap:8px;}
+h3.label::after{content:'';flex:1;height:2px;background:var(--border);border-radius:4px;}
+.scroll-top{position:fixed;bottom:24px;right:24px;background:var(--c);color:#fff;border:none;border-radius:50%;width:44px;height:44px;font-size:1.1rem;cursor:pointer;box-shadow:var(--shadow-h);z-index:200;}
+
+.nav-btn.home{border-color:#2c3e50;font-weight:700;}
+.nav-btn.home:hover,.nav-btn.home.active{background:#2c3e50;border-color:#2c3e50;color:#fff;}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="Bishop.html">✒️ <span>Bishop</span></a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn home" href="Bishop.html">🏠 Home</a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn fish" href="Bishop_Fish.html">🐟 The Fish</a>
+  <a class="nav-btn prodigal" href="Bishop_Prodigal.html">🐷 The Prodigal</a>
+  <a class="nav-btn sestina" href="Bishop_Sestina.html">🏠 Sestina</a>
+  <a class="nav-btn armadillo" href="Bishop_Armadillo.html">🦔 The Armadillo</a>
+  <a class="nav-btn active" href="Bishop_Filling.html">⛽ Filling Station</a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn flash" href="Bishop_Flashcards.html">🃏 Flashcards</a>
+  <a class="nav-btn links" href="Bishop_Links.html">🔗 Links</a>
+</nav>
+
+<div class="section">
+<div class="hero">
+  <div class="poem-label">Poem 5 · Questions of Travel, 1965</div>
+  <h1>⛽ Filling Station</h1>
+  <p>An oily, grimy filling station hides something extraordinary: quiet, invisible love. Someone has made this ugly place feel like a home — somebody loves us all.</p>
+  <div class="hero-chips">
+    <span class="hero-chip">~42 lines · 6 Stanzas</span>
+    <span class="hero-chip">Conversational Tone</span>
+    <span class="hero-chip">Narrative → Allegorical</span>
+    <span class="hero-chip">Epiphany Ending</span>
+  </div>
+</div>
+
+<div class="tab-bar">
+  <button class="tab active" onclick="openTab('overview')">📖 Overview</button>
+  <button class="tab" onclick="openTab('analysis')">🔍 Stanza Analysis</button>
+  <button class="tab" onclick="openTab('quotes')">💬 Key Quotes</button>
+  <button class="tab" onclick="openTab('context')">🧭 Context</button>
+</div>
+
+<div class="tab-panel active" id="overview">
+  <div class="box b-analogy"><span class="ico">🤔</span><div><div class="box-label">The Simple Version</div>
+  <p>Bishop visits a very dirty, oil-covered filling station somewhere in California. A father and his sons work there, completely covered in grease. She is amused and slightly appalled. But as she looks more carefully, she notices things that don't belong here: a hand-embroidered doily, a plant (a begonia), oil cans arranged neatly. Someone has tried to make this ugly, functional place feel like a home. At the end, she realises there is an absent figure — probably a mother — whose love has quietly shaped this place. The poem ends with one of her most famous lines: "Somebody loves us all."</p></div></div>
+
+  <div class="two-col">
+    <div class="info-card"><h2>📋 At a Glance</h2>
+    <ul>
+      <li><strong>Theme:</strong> Family; a mother's love; the ordinary made extraordinary</li>
+      <li><strong>Tone:</strong> Playful, feigns confusion and disapproval → genuine wonder → moved</li>
+      <li><strong>Form:</strong> Narrative account with allegorical lesson at the end</li>
+      <li><strong>Mood:</strong> Wryly humorous → curious → deeply emotional</li>
+      <li><strong>Effect:</strong> Entertaining, then suddenly moving; evokes sympathy for the poet</li>
+    </ul></div>
+    <div class="info-card"><h2>🎯 The Central Journey</h2>
+    <p>Bishop enters the filling station thinking it is just a dirty, ugly, functional place. She observes the family with gentle mockery. Then she notices the domestic details — the doily, the plant, the arranged cans — and they don't fit. Why are they here? Who put them here?</p>
+    <p>The answer to that question is the poem. Someone — not present — has quietly, lovingly shaped this place. Their love is invisible but its effects are everywhere.</p></div>
+  </div>
+</div>
+
+<div class="tab-panel" id="analysis">
+  <div class="stanza-block">
+    <div class="stanza-label">Stanza 1 — Setting the Scene</div>
+    <div class="poem-text">Oh, but it is dirty!<br>—oil-soaked, oil-permeated<br>to a disturbing, over-all<br>black translucency.<br>Be careful with that match!</div>
+    <h3>What's Happening</h3>
+    <p><span class="kw">"Oh, but it is dirty!"</span> — The exclamation mark signals Bishop's characteristic playfulness. She is almost delighted by the dirtiness. The conversational opener ("Oh, but") makes her sound like she is talking directly to us — chatty, amused, present.</p>
+    <p><span class="kw">"black translucency"</span> — a striking paradox. Something dark but still letting light through. Even in the very first stanza, in the very first description, Bishop finds something that is not simply ugly. Light exists even in the blackness.</p>
+    <p><span class="kw">"Be careful with that match!"</span> — A sudden, playful warning. She imagines the station catching fire. But it also suggests something more: the place is vulnerable, precarious. A home that could easily be destroyed.</p>
+  </div>
+
+  <div class="stanza-block">
+    <div class="stanza-label">Stanzas 2–3 — The Family</div>
+    <div class="poem-text">It is a father and his sons;<br>they are quite thoroughly dirty,<br>this little family. They seem<br>to quite thoroughly enjoy it,<br>the "quick and saucy" sons,<br>the father and his grease-soaked suit.</div>
+    <h3>What's Happening</h3>
+    <p>The family is introduced with warmth and gentle humour. They are "quite thoroughly dirty" — the repetition of "quite thoroughly" is amused, not disgusted. She likes them.</p>
+    <p>The sons are "quick and saucy" — Bishop seems charmed by their energy and hustling. The father wears a "monkey suit" that "cuts him under the arms" — funny, human, real.</p>
+    <p>Despite the griminess, there is a sense of this family <em>belonging</em> here, being at home in their work. They are comfortable in this environment. This is their world — and she is a visitor in it.</p>
+    <p>Stanza 3 introduces the "cement porch" and "dirty dog" — further domestic details. Someone has tried to create a home here. The dog is a pet. The porch is a place to sit. These small details hint at what is to come.</p>
+  </div>
+
+  <div class="stanza-block">
+    <div class="stanza-label">Stanzas 4–5 — The Domestic Details That Don't Fit</div>
+    <div class="poem-text">Some comic books provide<br>the only note of color —<br>of certain color. They lie<br>upon a big dim doily<br>draping a taboret<br>(part of the set), beside<br>a big hirsute begonia.</div>
+    <h3>What's Happening</h3>
+    <p>The comic books are mentioned first — the only colour in this drab place. They also suggest a child nearby, or a welcome for children — someone has made this a place where children are comfortable.</p>
+    <p>Then the doily appears: <span class="kw">"a big dim doily"</span>. Why is there a doily in a filling station? A doily is a delicate, hand-embroidered domestic object — entirely out of place here. But it is here. Someone put it here.</p>
+    <p>The begonia — a plant. Plants need care; they need watering. Someone is tending this plant. Someone cares enough about this grimy place to nurture something living in it.</p>
+    <p>Stanza 5 focuses further on the doily, now described in loving detail: "embroidered in daisy stitch / with marguerites." The detail is precise — someone spent real time making this. It was not bought; it was made. This is an object of love.</p>
+  </div>
+
+  <div class="stanza-block">
+    <div class="stanza-label">Stanza 5 — "Why Oh Why the Doily?"</div>
+    <div class="poem-text">Why oh why the doily?<br>(Embroidered in daisy stitch<br>with marguerites, I think,<br>and heavy with gray crochet.)</div>
+    <h3>What's Happening</h3>
+    <p><span class="kw">"Why oh why"</span> — the double "why" shows genuine puzzlement. The repeated question is humorous on the surface but serious underneath: Bishop really wants to know. The answer will be the poem's revelation.</p>
+    <p>The doily is described in extraordinary detail — "daisy stitch," "marguerites," "gray crochet." This is someone who knows needlework. The poem slows down here, dwelling on the object with the same attention that Bishop gives to the fish's scales or the armadillo's flight. Close observation is her method. The object will tell her something if she looks closely enough.</p>
+  </div>
+
+  <div class="stanza-block">
+    <div class="stanza-label">Stanza 6 — "Somebody Loves Us All" (THE EPIPHANY)</div>
+    <div class="poem-text">Somebody embroidered the doily.<br>Somebody waters the plant,<br>or oils it, maybe. Somebody<br>arranges the rows of cans<br>so that they softly say:<br>ESSO—SO—SO—SO<br>to high-strung automobiles.<br>Somebody loves us all.</div>
+    <h3>What's Happening — THE EPIPHANY</h3>
+    <p><span class="tech-pill">Anaphora</span> "Somebody...Somebody...Somebody" — three repetitions building to the final revelation. Each "somebody" names another act of love: the embroidery, the watering, the arranging. An absent figure has been quietly at work throughout.</p>
+    <p><span class="kw">"ESSO—SO—SO—SO"</span> — playful, musical. The oil can labels become a little lullaby. Even a brand name, in Bishop's hands, becomes gentle and comforting. "High-strung automobiles" — even cars are given feelings, are "soothed" by the arranged cans. This is Bishop's humour and her ear for language at its best.</p>
+    <p><span class="kw">"Somebody loves us all."</span> — Five words. The entire poem has been building to these five words. The "somebody" is almost certainly an absent mother figure — a woman whose love has shaped this place even in her absence.</p>
+    <div class="box b-memory"><span class="ico">🧠</span><div><div class="box-label">Why This Line Is So Powerful for Bishop</div><p>Bishop grew up without her mother (committed to an institution when Bishop was 5). She never had the domestic, maternal love that this filling station quietly displays. The realisation that love can be present even when the person is absent — that love leaves traces in the objects it touches — may be Bishop coming to terms, late in life, with the love her own absent mother may have had for her. This line contains everything.</p></div></div>
+    <div class="box b-exam"><span class="ico">📝</span><div><div class="box-label">Exam Tip — The Ending</div><p>"Somebody loves us all" is one of Bishop's most important lines. Use it to demonstrate: (1) her observational style leading to epiphany; (2) her use of the ordinary to reveal the extraordinary; (3) the personal emotional depth hidden beneath her careful, descriptive surface. Always connect it to her motherless childhood.</p></div></div>
+  </div>
+</div>
+
+<div class="tab-panel" id="quotes">
+  <div class="acc">
+    <button class="acc-btn open" onclick="tog(this)">"Oh, but it is dirty!" (Line 1) <span class="arr">▼</span></button>
+    <div class="acc-body open">
+      <div class="quote-block"><blockquote>"Oh, but it is dirty!"</blockquote><div class="quote-ref">Line 1 — Opening</div>
+      <div class="quote-body"><p><span class="tech-pill">Tone</span> <span class="tech-pill">Conversational</span> The exclamation mark signals amusement, not horror. "Oh, but" is conversational — she is talking to us directly. This sets up the poem's tone: playful observation that will deepen into something unexpected. Compare to the Armadillo's tone of wonder — both poems move from surface observation to a deeper emotional revelation.</p></div></div>
+    </div>
+  </div>
+  <div class="acc">
+    <button class="acc-btn" onclick="tog(this)">"Why oh why the doily?" <span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="quote-block"><blockquote>"Why oh why the doily?"</blockquote><div class="quote-ref">Stanza 5</div>
+      <div class="quote-body"><p><span class="tech-pill">Repetition</span> <span class="tech-pill">Rhetorical Question</span> The repeated "why" shows genuine puzzlement — the doily is the pivot of the poem. It is the detail that doesn't fit, the detail that demands explanation. The question drives the poem forward toward its answer. The doily is described in precise, expert detail — "daisy stitch," "marguerites" — someone who knows embroidery made this with care and love.</p></div></div>
+    </div>
+  </div>
+  <div class="acc">
+    <button class="acc-btn" onclick="tog(this)">"ESSO—SO—SO—SO / to high-strung automobiles." <span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="quote-block"><blockquote>"so that they softly say: / ESSO—SO—SO—SO / to high-strung automobiles."</blockquote><div class="quote-ref">Stanza 6</div>
+      <div class="quote-body"><p><span class="tech-pill">Sound</span> <span class="tech-pill">Humour</span> <span class="tech-pill">Personification</span> The oil cans seem to hum a little lullaby to the cars. Even a commercial brand name becomes musical and comforting in Bishop's hands. The cars are "high-strung" — given anxiety, feelings. This playfulness makes the subsequent emotional landing ("Somebody loves us all") even more powerful by contrast.</p></div></div>
+    </div>
+  </div>
+  <div class="acc">
+    <button class="acc-btn" onclick="tog(this)">"Somebody loves us all." (Final line) — THE KEY QUOTE <span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="quote-block"><blockquote>"Somebody embroidered the doily. / Somebody waters the plant, / or oils it, maybe. Somebody / arranges the rows of cans... / Somebody loves us all."</blockquote><div class="quote-ref">Final Stanza — The epiphany</div>
+      <div class="quote-body">
+        <p><span class="tech-pill">Anaphora</span> <span class="tech-pill">Epiphany</span> Three "Somebodys" building to the final revelation. An absent figure — almost certainly a mother — has been quietly at work, making this ugly place feel cared for, making it feel like a home.</p>
+        <p>"Somebody loves us all" — the "us all" is significant. Not just the family. All of us. Love is available everywhere, hidden in overlooked objects, tended by invisible hands.</p>
+        <div class="box b-link"><span class="ico">🔗</span><div><div class="box-label">Link to Other Poems</div><p>Compare to the ending of <strong>The Fish</strong>: "And I let the fish go." Both are short, quiet lines after long build-ups. Both are epiphanies — moments where close observation reveals something profound and universal. Both are about recognising something that was always there, just unseen.</p></div></div>
+      </div></div>
+    </div>
+  </div>
+</div>
+
+<div class="tab-panel" id="context">
+  <div class="info-card"><h2>🧭 Bishop's Motherless Childhood</h2>
+  <p>Bishop's mother was committed to a mental asylum in 1916, when Bishop was 5. She never saw her again. Growing up, Bishop moved from relatives to relatives — her grandparents in Nova Scotia, her father's family in Massachusetts, an aunt in Boston. She never had the stable maternal home that this filling station quietly displays.</p>
+  <p>The realisation in the poem's final line — that an absent person's love can still be present in the objects they have touched and tended — may be Bishop's way of coming to terms with her own mother's love for her, which she never directly experienced. Your notes suggest she "realizes now that her mother loved her, despite what she might have previously thought." This makes "Somebody loves us all" one of the most personally significant lines she ever wrote.</p></div>
+
+  <div class="two-col">
+    <div class="box b-link" style="margin:0;"><span class="ico">🔗</span><div><div class="box-label">Links to Other Poems</div>
+    <ul style="padding-left:16px;font-size:0.9rem;">
+      <li><strong>Sestina:</strong> Both feature a caring female figure (grandmother / absent mother) providing quiet domestic warmth</li>
+      <li><strong>The Fish:</strong> Both end with a quiet epiphany after careful observation — "Somebody loves us all" / "And I let the fish go"</li>
+      <li><strong>The Prodigal:</strong> Both deal with the concept of "home" — what makes a place home, what love does to a place</li>
+      <li><strong>Armadillo:</strong> Both feature careful observation of an ordinary place/event that reveals something extraordinary</li>
+    </ul></div></div>
+    <div class="box b-exam" style="margin:0;"><span class="ico">📝</span><div><div class="box-label">Past Exam Links</div>
+    <ul style="padding-left:16px;font-size:0.9rem;">
+      <li><strong>2019:</strong> "analytical but rarely emotional" — the final line is pure emotion, barely analytical at all</li>
+      <li><strong>2016:</strong> "highly detailed observation" — the doily, the begonia, the oil cans, the "daisy stitch and marguerites" — precise, loving observation</li>
+      <li><strong>2013:</strong> "carefully judged use of language aids the reader" — "Somebody loves us all" is the most carefully judged five words in the collection</li>
+    </ul></div></div>
+  </div>
+</div>
+</div>
+
+<button class="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<script>
+function openTab(id){document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.getElementById(id).classList.add('active');event.target.classList.add('active');window.scrollTo({top:0,behavior:'smooth'});}
+function tog(btn){btn.classList.toggle('open');btn.nextElementSibling.classList.toggle('open');}
+</script>
+</body>
+</html>

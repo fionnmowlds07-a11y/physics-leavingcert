@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bishop — Sestina</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F7F4EF;--surface:#FFFFFF;--surface2:#F0EDE8;--border:#E2DDD7;--text:#2C2825;--muted:#7A7068;--c:#1a6b3a;--cl:#eafaf1;--cd:#0d4a22;--radius:14px;--shadow:0 4px 20px rgba(0,0,0,0.08);--shadow-h:0 8px 32px rgba(0,0,0,0.14);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;font-size:16px;}
+nav{position:sticky;top:0;z-index:100;background:rgba(247,244,239,0.97);backdrop-filter:blur(10px);border-bottom:2px solid var(--border);padding:8px 16px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;min-height:52px;}
+.nav-logo{font-family:'Lexend Mega',sans-serif;font-size:0.85rem;color:var(--text);margin-right:4px;text-decoration:none;white-space:nowrap;}.nav-logo span{color:var(--c);}
+.nav-divider{width:1px;height:20px;background:var(--border);flex-shrink:0;}
+.nav-btn{padding:5px 11px;border-radius:18px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.72rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);text-decoration:none;white-space:nowrap;}
+.nav-btn:hover{background:var(--c);color:#fff;border-color:var(--c);transform:translateY(-2px);}
+.nav-btn.active{background:var(--c);color:#fff;border-color:var(--c);}
+.nav-btn.fish:hover,.nav-btn.fish.active{background:#1a6b9a;border-color:#1a6b9a;color:#fff;}
+.nav-btn.prodigal:hover,.nav-btn.prodigal.active{background:#8e44ad;border-color:#8e44ad;color:#fff;}
+.nav-btn.armadillo:hover,.nav-btn.armadillo.active{background:#8b1a2b;border-color:#8b1a2b;color:#fff;}
+.nav-btn.filling:hover,.nav-btn.filling.active{background:#d35400;border-color:#d35400;color:#fff;}
+.nav-btn.flash{border-color:#2c3e50;}.nav-btn.flash:hover{background:#2c3e50;border-color:#2c3e50;color:#fff;}
+.nav-btn.links{border-color:#148f77;}.nav-btn.links:hover{background:#148f77;border-color:#148f77;color:#fff;}
+.section{padding:0 16px 80px;max-width:940px;margin:0 auto;}
+.hero{background:linear-gradient(135deg,var(--cd),var(--c));color:#fff;padding:44px 32px 36px;text-align:center;margin-bottom:32px;}
+.hero .poem-label{font-size:0.75rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;opacity:0.75;margin-bottom:10px;}
+.hero h1{font-family:'Lexend Mega',sans-serif;font-size:clamp(1.8rem,5vw,3rem);line-height:1.15;margin-bottom:12px;}
+.hero p{opacity:0.88;max-width:620px;margin:0 auto;font-size:0.96rem;}
+.hero-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px;}
+.hero-chip{background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:4px 14px;border-radius:20px;font-size:0.75rem;font-weight:600;}
+.tab-bar{display:flex;gap:4px;flex-wrap:wrap;padding:22px 0 8px;border-bottom:2px solid var(--border);margin-bottom:28px;}
+.tab{padding:8px 18px;border-radius:10px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.8rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);}
+.tab:hover,.tab.active{background:var(--c);color:#fff;border-color:var(--c);}
+.tab-panel{display:none;}.tab-panel.active{display:block;animation:fadeIn 0.25s ease;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.info-card{background:var(--surface);border-radius:var(--radius);padding:24px 26px;margin-bottom:20px;box-shadow:var(--shadow);border-left:5px solid var(--c);}
+.info-card h2{font-size:1.1rem;font-weight:700;margin-bottom:12px;}
+.info-card p{margin-bottom:9px;font-size:0.94rem;}
+.info-card ul{padding-left:20px;margin-bottom:9px;}
+.info-card li{margin-bottom:5px;font-size:0.93rem;}
+.quote-block{border-left:4px solid var(--c);background:var(--cl);border-radius:0 var(--radius) var(--radius) 0;padding:16px 20px;margin:16px 0;}
+.quote-block blockquote{font-family:'Lexend Mega',sans-serif;font-size:1rem;font-style:italic;margin-bottom:8px;line-height:1.5;}
+.quote-ref{font-size:0.73rem;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--muted);margin-bottom:10px;}
+.quote-body p{margin-bottom:8px;font-size:0.91rem;line-height:1.75;}
+.tech-pill{display:inline-block;background:var(--c);color:#fff;font-size:0.72rem;font-weight:700;padding:2px 9px;border-radius:5px;margin:2px;}
+.kw{display:inline-block;background:rgba(0,0,0,0.07);font-weight:700;font-size:0.85rem;padding:1px 8px;border-radius:4px;margin:1px;}
+.box{border-radius:var(--radius);padding:14px 18px;margin:14px 0;display:flex;gap:12px;align-items:flex-start;}
+.box .ico{font-size:1.5rem;flex-shrink:0;line-height:1.2;}
+.box-label{font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;margin-bottom:4px;}
+.box p,.box li{font-size:0.91rem;}.box ul{padding-left:16px;}.box li{margin-bottom:4px;}
+.b-analogy{background:#fffbf0;border:2px solid #f39c12;}.b-analogy .box-label{color:#b7770d;}
+.b-exam{background:#eaf4fb;border:2px solid #5dade2;}.b-exam .box-label{color:#1a6b9a;}
+.b-memory{background:#f0fff6;border:2px solid #27ae60;}.b-memory .box-label{color:#1e8449;}
+.b-warn{background:#fff8f0;border:2px solid #e67e22;}.b-warn .box-label{color:#c0392b;}
+.b-link{background:#e8faf6;border:2px solid #148f77;}.b-link .box-label{color:#0d6b56;}
+.acc{margin-bottom:10px;}
+.acc-btn{width:100%;text-align:left;background:var(--surface);border:2px solid var(--border);border-radius:var(--radius);padding:14px 18px;font-family:'Lexend',sans-serif;font-size:0.92rem;font-weight:600;cursor:pointer;color:var(--text);display:flex;justify-content:space-between;align-items:center;transition:background 0.15s;}
+.acc-btn:hover{background:#f8f5f0;}
+.acc-btn.open{border-radius:var(--radius) var(--radius) 0 0;border-bottom-color:transparent;}
+.acc-btn .arr{transition:transform 0.25s;margin-left:8px;flex-shrink:0;}
+.acc-btn.open .arr{transform:rotate(180deg);}
+.acc-body{display:none;background:var(--surface);border:2px solid var(--border);border-top:none;border-radius:0 0 var(--radius) var(--radius);padding:20px 22px;}
+.acc-body.open{display:block;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:14px 0;}
+@media(max-width:600px){.two-col{grid-template-columns:1fr;}}
+.stanza-block{background:var(--surface);border:2px solid var(--border);border-radius:var(--radius);padding:22px 24px;margin-bottom:18px;border-top:4px solid var(--c);}
+.stanza-block .stanza-label{font-size:0.72rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+.stanza-block .poem-text{font-style:italic;font-size:0.9rem;line-height:1.8;border-left:3px solid var(--cl);padding:10px 14px;margin-bottom:14px;background:var(--cl);border-radius:0 8px 8px 0;}
+.stanza-block h3{font-size:1rem;font-weight:700;margin:12px 0 8px;}
+.stanza-block p{font-size:0.92rem;margin-bottom:8px;}
+.word-pills{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0;}
+.word-pill{padding:7px 16px;border-radius:20px;background:var(--cl);border:2px solid var(--c);color:var(--cd);font-size:0.85rem;font-weight:700;}
+h3.label{font-family:'Lexend Mega',sans-serif;font-size:0.95rem;font-weight:700;margin:28px 0 14px;display:flex;align-items:center;gap:8px;}
+h3.label::after{content:'';flex:1;height:2px;background:var(--border);border-radius:4px;}
+.scroll-top{position:fixed;bottom:24px;right:24px;background:var(--c);color:#fff;border:none;border-radius:50%;width:44px;height:44px;font-size:1.1rem;cursor:pointer;box-shadow:var(--shadow-h);z-index:200;}
+
+.nav-btn.home{border-color:#2c3e50;font-weight:700;}
+.nav-btn.home:hover,.nav-btn.home.active{background:#2c3e50;border-color:#2c3e50;color:#fff;}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="Bishop.html">✒️ <span>Bishop</span></a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn home" href="Bishop.html">🏠 Home</a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn fish" href="Bishop_Fish.html">🐟 The Fish</a>
+  <a class="nav-btn prodigal" href="Bishop_Prodigal.html">🐷 The Prodigal</a>
+  <a class="nav-btn active" href="Bishop_Sestina.html">🏠 Sestina</a>
+  <a class="nav-btn armadillo" href="Bishop_Armadillo.html">🦔 The Armadillo</a>
+  <a class="nav-btn filling" href="Bishop_Filling.html">⛽ Filling Station</a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn flash" href="Bishop_Flashcards.html">🃏 Flashcards</a>
+  <a class="nav-btn links" href="Bishop_Links.html">🔗 Links</a>
+</nav>
+
+<div class="section">
+<div class="hero">
+  <div class="poem-label">Poem 3 · Questions of Travel, 1965</div>
+  <h1>🏠 Sestina</h1>
+  <p>A child processes hidden grief through art, sitting with her grandmother in Nova Scotia. Loss, family, and the mystery of home — in one of poetry's most demanding forms.</p>
+  <div class="hero-chips">
+    <span class="hero-chip">39 lines · Sestina Form</span>
+    <span class="hero-chip">6 End-Words Rotate</span>
+    <span class="hero-chip">Originally "Early Sorrow"</span>
+    <span class="hero-chip">Autobiographical</span>
+  </div>
+</div>
+
+<div class="tab-bar">
+  <button class="tab active" onclick="openTab('overview')">📖 Overview</button>
+  <button class="tab" onclick="openTab('form')">📐 The Sestina Form</button>
+  <button class="tab" onclick="openTab('analysis')">🔍 Stanza Analysis</button>
+  <button class="tab" onclick="openTab('quotes')">💬 Key Quotes</button>
+  <button class="tab" onclick="openTab('context')">🧭 Context</button>
+</div>
+
+<div class="tab-panel active" id="overview">
+  <div class="box b-analogy"><span class="ico">🤔</span><div><div class="box-label">The Simple Version</div>
+  <p>A young child (Bishop herself) sits with her grandmother in a kitchen in Nova Scotia. It is raining. They read jokes from an almanac and seem to be having a cosy afternoon. But underneath the cheerfulness, both are hiding enormous grief. The child draws pictures — a house, a path, a man with "buttons like tears." Through drawing, she is processing loss she cannot yet talk about. The poem asks: what does "home" mean to someone who has never had one?</p></div></div>
+
+  <div class="two-col">
+    <div class="info-card">
+      <h2>📋 At a Glance</h2>
+      <ul>
+        <li><strong>Theme:</strong> Childhood loss, family, home, art as therapy</li>
+        <li><strong>Tone:</strong> Gentle sadness, naïvety, surface cheer</li>
+        <li><strong>Form:</strong> Sestina — six sestets + one tercet</li>
+        <li><strong>The Six End-Words:</strong> house, grandmother, child, stove, almanac, tears</li>
+        <li><strong>Mood:</strong> Grief, incomprehension, quiet sorrow</li>
+        <li><strong>Effect:</strong> Deeply moving — we feel we know the poet intimately</li>
+      </ul>
+    </div>
+    <div class="info-card">
+      <h2>🗓️ Background</h2>
+      <ul>
+        <li>From <em>Questions of Travel</em> (1965) — Bishop was over 50 when she wrote it</li>
+        <li>Set in Nova Scotia, where she lived happily with her grandparents as a child</li>
+        <li>Originally titled "Early Sorrow" — later renamed to draw attention to the form itself</li>
+        <li>One of the first poems in which she directly addresses her difficult childhood</li>
+        <li>The grandmother is the one positive, stable figure in her childhood</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="tab-panel" id="form">
+  <div class="info-card">
+    <h2>📐 What is a Sestina?</h2>
+    <p>A sestina is an ancient, highly demanding poetic form with very strict rules:</p>
+    <ul>
+      <li>Six stanzas of six lines each (sestets)</li>
+      <li>One final stanza of three lines (tercet)</li>
+      <li>The same <strong>six words</strong> must end every line in every stanza</li>
+      <li>But they rotate in a specific mathematical pattern — no word ends the same line twice in the sestets</li>
+      <li>In the final tercet, all six words appear — two per line</li>
+    </ul>
+  </div>
+
+  <div class="info-card">
+    <h2>🌀 The Six End-Words and What They Represent</h2>
+    <div class="word-pills">
+      <span class="word-pill">house</span>
+      <span class="word-pill">grandmother</span>
+      <span class="word-pill">child</span>
+      <span class="word-pill">stove</span>
+      <span class="word-pill">almanac</span>
+      <span class="word-pill">tears</span>
+    </div>
+    <p>These six words are not random — they represent the entire world of the poem:</p>
+    <ul>
+      <li><strong>house:</strong> the question of home — what it means, whether the child can have one</li>
+      <li><strong>grandmother:</strong> the one stable, loving presence in Bishop's childhood</li>
+      <li><strong>child:</strong> Bishop herself, but distanced into third person</li>
+      <li><strong>stove:</strong> domestic warmth, comfort — but also becomes menacing as the poem progresses</li>
+      <li><strong>almanac:</strong> knowledge, prediction, the future — but only "half open"</li>
+      <li><strong>tears:</strong> grief — hidden, present, unavoidable</li>
+    </ul>
+  </div>
+
+  <div class="info-card">
+    <h2>🎠 Why Does the Form Matter?</h2>
+    <p>The sestina's constant repetition of the same six words mimics the way grief works: <strong>you keep coming back to the same people, the same objects, the same memories.</strong> You don't move past them; you just keep encountering them from different angles.</p>
+    <p>The form also gave Bishop — writing about her most painful childhood memories — a structure to contain and process her feelings. The strict rules keep the poet focused. Your notes describe it as "keeping the poet's mind focused on elements that need to be discussed — maybe allowing her to deal with her grief in a structured way."</p>
+    <div class="box b-exam"><span class="ico">📝</span><div><div class="box-label">Exam Tip — The Form Question</div>
+    <p>If asked "does the form add to the meaning?" — YES. The repetitiveness of the sestina form IS the meaning. Grief is repetitive. The child keeps drawing houses. The grandmother keeps trying to make things warm and cosy. The tears keep appearing. The carousel of six words mirrors the carousel of memory and grief.</p></div></div>
+  </div>
+
+  <div class="info-card">
+    <h2>📌 The Title Change</h2>
+    <p>The poem was originally called <strong>"Early Sorrow"</strong> but Bishop later renamed it <strong>"Sestina."</strong> Why? By calling it "Sestina," she draws our attention to the <em>form</em> rather than just the content. She is saying: the structure itself — its repetitiveness, its rigidity, its circling back — is the meaning. The structure IS the grief.</p>
+  </div>
+</div>
+
+<div class="tab-panel" id="analysis">
+
+  <div class="stanza-block">
+    <div class="stanza-label">Stanza 1 — The False Cosiness</div>
+    <div class="poem-text">September rain falls on the house.<br>In the failing light, the old grandmother<br>sits in the kitchen with the child<br>beside the Little Marvel Stove,<br>reading the jokes from the almanac,<br>laughing and talking to hide her tears.</div>
+    <h3>What's Happening</h3>
+    <p>The opening seems warm and domestic — grandmother and child reading jokes, laughing. But the final line shatters this: they are laughing <em>to hide their tears.</em></p>
+    <p>Reading back over the stanza, the foreshadowing is visible: the "failing light," the September rain. These were not just atmospheric details — they were signals of the hidden grief.</p>
+    <p><span class="tech-pill">Dramatic Irony</span> We now have to re-read the whole stanza. The cheerfulness was performance. The performance of happiness to cover sadness is something Bishop did throughout her life — and that she does with her poetry.</p>
+  </div>
+
+  <div class="stanza-block">
+    <div class="stanza-label">Stanza 2 — Inevitable Grief</div>
+    <div class="poem-text">She thinks that her equinoctial tears<br>and the rain that beats on the roof of the house<br>were both foretold by the almanac,<br>but only known to a grandmother.</div>
+    <h3>What's Happening</h3>
+    <p>The grandmother believes the tears are as inevitable as the equinox — predicted, seasonal, beyond anyone's control. She is the only one who knows the full extent of the family's hardship.</p>
+    <p><span class="tech-pill">Pathetic Fallacy</span> The rain and the tears are linked — as if the weather itself is crying "because" the child is sad. The external world reflects the internal emotional state.</p>
+    <p>The grandmother holds knowledge — she knows what the almanac "foretold." She is the centre of the child's world, the keeper of truth, the guardian. The child senses things but does not fully understand them.</p>
+  </div>
+
+  <div class="stanza-block">
+    <div class="stanza-label">Stanza 3 — The Stove Becomes Menacing</div>
+    <div class="poem-text">...the child<br>is watching the teakettle's small hard tears<br>dance like mad on the hot black stove,<br>the way the rain must dance on the house.</div>
+    <h3>What's Happening</h3>
+    <p>The child is distracted by the kettle's boiling water droplets — described as "small hard tears" dancing "like mad." The stove that was once cosy and domestic is now becoming sinister.</p>
+    <p><span class="tech-pill">Personification</span> Even the kettle cries. The domestic objects are beginning to reflect the emotional reality underneath the surface cheerfulness.</p>
+    <p><span class="kw">"like mad"</span> — The word "mad" carries enormous weight. Bishop's mother was committed to a mental institution. The child watching the "mad" dancing droplets may be unconsciously connecting this to her mother's illness — thoughts that surround her, inescapable.</p>
+  </div>
+
+  <div class="stanza-block">
+    <div class="stanza-label">Stanza 4 — The Half-Open Almanac</div>
+    <div class="poem-text">Bird-like, the almanac<br>hovers half open above the child,<br>hovers above the old grandmother<br>and her teacup full of dark brown tears.<br>She shivers and says she thinks the house<br>feels chilly, and puts more wood in the stove.</div>
+    <h3>What's Happening</h3>
+    <p>The almanac "hovers half open" — a menacing, bird-like presence. The almanac holds answers, but only half of them are available to the child. She only ever has half the picture.</p>
+    <p><span class="kw">"half open"</span> — the child has only half-answers. She knows something is wrong but nobody has explained it in full. This is the condition of her childhood — perpetually searching for meaning, never quite getting the whole truth.</p>
+    <p>The grandmother shivers and puts wood in the stove — a practical, domestic act of care. She is trying to create warmth and normalcy even as everything threatens to become dark and cold.</p>
+  </div>
+
+  <div class="stanza-block">
+    <div class="stanza-label">Stanza 5 — The Drawing (Key Stanza)</div>
+    <div class="poem-text">It was to be, says the Marvel Stove.<br>I know what I know, says the almanac.<br>With crayons the child draws a rigid house<br>and a winding pathway. Then the child<br>puts in a man with buttons like tears<br>and shows it proudly to the grandmother.</div>
+    <h3>What's Happening — THE CENTRAL IMAGE</h3>
+    <p>Objects begin to speak — the stove and almanac are personified. The child draws a picture.</p>
+    <p><span class="kw">"rigid house"</span> — the house is stiff, structured, like the sestina form itself. A house as the child imagines it should be — stable, solid. But also lifeless, rigid, unfeeling.</p>
+    <p><span class="kw">"winding pathway"</span> — unlike the rigid house, the path is winding. Like Bishop's own life journey — uncertain, twisting, never quite arriving.</p>
+    <p><span class="kw">"a man with buttons like tears"</span> — the man is almost certainly the child's father, whom Bishop never knew. "Buttons like tears" — his memory is soaked in loss. She places him in the drawing, giving him a presence she never had in real life. <strong>Art becomes the way she processes what cannot be spoken.</strong></p>
+  </div>
+
+  <div class="stanza-block">
+    <div class="stanza-label">Stanza 6 — Secret Knowledge</div>
+    <div class="poem-text">But secretly, while the grandmother<br>busies herself about the stove,<br>the little moons fall down like tears<br>from between the pages of the almanac<br>into the flower bed the child<br>has carefully placed in the front of the house.</div>
+    <h3>What's Happening</h3>
+    <p>While the grandmother is busy, knowledge falls "secretly" from the almanac — like tears, like "little moons" — into the flower bed the child has drawn.</p>
+    <p>"Secretly" — the child is absorbing knowledge and emotional understanding without quite realising it. It seeps into her, like the almanac's pages falling open. She doesn't understand how she knows things are different — the knowledge just kind of seeped in.</p>
+    <p>The flower bed could represent possibility, growth — the chance that from grief, something may eventually bloom. The child has "carefully placed" it — suggesting care, intentionality, even hope.</p>
+  </div>
+
+  <div class="stanza-block">
+    <div class="stanza-label">Stanza 7 (Tercet) — The Final Image</div>
+    <div class="poem-text">Time to plant tears, says the almanac.<br>The grandmother sings to the marvellous stove<br>and the child draws another inscrutable house.</div>
+    <h3>What's Happening — THE ENDING</h3>
+    <p><span class="kw">"Time to plant tears"</span> — does planting tears mean more grief is coming? Or that from grief something grows? The ambiguity is intentional — Bishop resists easy consolation.</p>
+    <p><span class="kw">"another inscrutable house"</span> — "inscrutable" means impossible to understand. The child draws "another" house — she keeps trying. But she cannot understand what a real home feels like because she has never had one. She will keep trying, and it will remain a mystery.</p>
+    <p><strong>The disconnect:</strong> The grandmother is linked to the stove (warmth, domesticity, home). The child is linked to her art (inscrutable house). There is a gentle separation — the grandmother belongs to the home; the child belongs to her imagination.</p>
+    <div class="box b-exam"><span class="ico">📝</span><div><div class="box-label">Final Tercet — Key Exam Point</div>
+    <p>In the final tercet, only objects end the lines (stove, almanac, house) — all human connection has been removed from the line endings. What does this mean? The people will eventually leave (the grandmother dies; Bishop moves away) but the objects — and the memories they carry — will remain. This is how grief works: the people go, but the things they touched stay.</p></div></div>
+  </div>
+
+</div>
+
+<div class="tab-panel" id="quotes">
+
+  <div class="acc">
+    <button class="acc-btn open" onclick="tog(this)">"laughing and talking to hide her tears." (Line 6) <span class="arr">▼</span></button>
+    <div class="acc-body open">
+      <div class="quote-block"><blockquote>"laughing and talking to hide her tears."</blockquote>
+      <div class="quote-ref">Line 6 — End of Stanza 1</div>
+      <div class="quote-body">
+        <p><span class="tech-pill">Contrast</span> <span class="tech-pill">Dramatic Irony</span> The poem seems cosy until this final line. "Hide" is the key word — both grandmother and child suppress their grief through cheerfulness. This mirrors what Bishop does with her poetry: hiding intense personal pain behind careful, controlled language.</p>
+        <p>Reading back, everything in Stanza 1 looks different: the "failing light," the September rain were already foreshadowing the hidden sorrow.</p>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="acc">
+    <button class="acc-btn" onclick="tog(this)">"dance like mad on the hot black stove" (Line 15) <span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="quote-block"><blockquote>"the teakettle's small hard tears / dance like mad on the hot black stove"</blockquote>
+      <div class="quote-ref">Lines 14–15</div>
+      <div class="quote-body">
+        <p><span class="tech-pill">Personification</span> <span class="tech-pill">Pathetic Fallacy</span> Even the kettle cries. "Mad" carries enormous weight — Bishop's mother was committed to a mental institution. The word is never used casually by Bishop. The domestic stove, once comforting, is now "hot black" and threatening.</p>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="acc">
+    <button class="acc-btn" onclick="tog(this)">"hovers half open above the child" (Line 20) <span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="quote-block"><blockquote>"Bird-like, the almanac / hovers half open above the child"</blockquote>
+      <div class="quote-ref">Lines 19–20</div>
+      <div class="quote-body">
+        <p><span class="tech-pill">Personification</span> <span class="tech-pill">Symbolism</span> "Half open" — the child only ever has half the answers. She knows something is wrong but hasn't been told the full truth. The almanac is menacing, bird-like, hovering over her — full of knowledge she can't quite reach. Your notes link this to the poem's structure itself: the final stanza is "half length" — a tercet, not a sestet. The poem, like the almanac, is half open. Unfinished. Still searching.</p>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="acc">
+    <button class="acc-btn" onclick="tog(this)">"puts in a man with buttons like tears" (Line 29) <span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="quote-block"><blockquote>"puts in a man with buttons like tears"</blockquote>
+      <div class="quote-ref">Line 29</div>
+      <div class="quote-body">
+        <p><span class="tech-pill">Symbolism</span> <span class="tech-pill">Art as Therapy</span> The man with "buttons like tears" is almost certainly Bishop's father, whom she never knew. She places him in her drawing because she cannot place him in her life. "Buttons like tears" — his memory is inseparable from loss. The drawing gives him a presence that reality never provided.</p>
+        <p>This is the poem's central insight about art: <strong>drawing (and poetry) can do what life cannot</strong> — it can give a place to those we have lost.</p>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="acc">
+    <button class="acc-btn" onclick="tog(this)">"the child draws another inscrutable house." (Line 39) <span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="quote-block"><blockquote>"Time to plant tears, says the almanac. / The grandmother sings to the marvellous stove / and the child draws another inscrutable house."</blockquote>
+      <div class="quote-ref">Lines 37–39 — The final tercet</div>
+      <div class="quote-body">
+        <p><span class="tech-pill">Symbolism</span> <span class="tech-pill">Form</span> "Inscrutable" = impossible to understand. The child draws "another" house — she keeps trying to understand home. But she has never had a stable one, so every house she draws remains a mystery to her. This is the poem's central unanswered question, and it runs through all of Bishop's work: <em>what is home?</em></p>
+        <div class="box b-link"><span class="ico">🔗</span><div><div class="box-label">Link to Other Poems</div><p>Compare to "The Prodigal" where "home" appears only in the very last line after 27 lines of avoidance — home as a destination that is difficult, ambivalent, but ultimately necessary. Compare also to "Filling Station" where someone has made a home out of an unlikely place — suggesting that home is not a building but what love does to a place.</p></div></div>
+      </div></div>
+    </div>
+  </div>
+</div>
+
+<div class="tab-panel" id="context">
+  <div class="info-card">
+    <h2>🧭 Bishop's Childhood — Why This Poem Is Personal</h2>
+    <p>Bishop's father died when she was an infant. Her mother suffered a mental breakdown and was committed to a mental asylum in 1916 — Bishop never saw her again. She was sent to live with her grandparents in Nova Scotia, where she had a genuinely happy time, developing a love of fishing and of the natural world. When she was taken away to live with her father's family in Massachusetts, she described it as feeling "like a kidnapping."</p>
+    <p>The grandmother in this poem is the one truly stable, loving presence in Bishop's childhood. Writing this poem at over 50 years old, she is looking back at that time with adult understanding — seeing both the warmth of the grandmother's care and the grief that both of them were trying to suppress.</p>
+  </div>
+
+  <div class="two-col">
+    <div class="box b-link" style="margin:0;"><span class="ico">🔗</span><div><div class="box-label">Links to Other Poems</div>
+    <ul style="padding-left:16px;font-size:0.9rem;">
+      <li><strong>Filling Station:</strong> Both explore an absent mother figure's love — in Sestina through the grandmother's nurturing presence; in Filling Station through the doily and plant</li>
+      <li><strong>The Prodigal:</strong> Both feature figures suppressing pain — laughing to hide tears (Sestina) vs hiding pints (Prodigal)</li>
+      <li><strong>The Fish:</strong> Both end on a note of mystery and ambiguity — the fish's eyes don't return her stare; the house remains inscrutable</li>
+      <li><strong>Armadillo:</strong> Both feature the destruction of a settled home (owls' nest; the child's home in Nova Scotia)</li>
+    </ul></div></div>
+    <div class="box b-exam" style="margin:0;"><span class="ico">📝</span><div><div class="box-label">Past Exam Links</div>
+    <ul style="padding-left:16px;font-size:0.9rem;">
+      <li><strong>2019:</strong> "analytical but rarely emotional" — Sestina is an emotional masterpiece hidden behind rigorous analytical structure. The best counter-argument to this claim</li>
+      <li><strong>2016:</strong> "highly detailed observation of personal experience" — directly autobiographical, from the grandmother to the Nova Scotia setting</li>
+      <li><strong>2009:</strong> "interesting questions by means of a unique style" — the sestina form is uniquely suited to exploring how grief circles back on itself</li>
+    </ul></div></div>
+  </div>
+</div>
+
+</div>
+
+<button class="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<script>
+function openTab(id){document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.getElementById(id).classList.add('active');event.target.classList.add('active');window.scrollTo({top:0,behavior:'smooth'});}
+function tog(btn){btn.classList.toggle('open');btn.nextElementSibling.classList.toggle('open');}
+</script>
+</body>
+</html>

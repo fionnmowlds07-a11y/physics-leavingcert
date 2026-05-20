@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bishop — Thematic Links</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F7F4EF;--surface:#FFFFFF;--surface2:#F0EDE8;--border:#E2DDD7;
+  --text:#2C2825;--muted:#7A7068;--radius:14px;
+  --shadow:0 4px 20px rgba(0,0,0,0.08);--shadow-h:0 8px 32px rgba(0,0,0,0.14);
+  --fish:#1a6b9a;--fish-l:#eaf4fb;
+  --prodigal:#8e44ad;--prodigal-l:#f5eeff;
+  --sestina:#1a6b3a;--sestina-l:#eafaf1;
+  --armadillo:#8b1a2b;--armadillo-l:#fdecea;
+  --filling:#d35400;--filling-l:#fef6ee;
+  --links:#148f77;--links-l:#e8faf6;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;font-size:16px;}
+
+nav{position:sticky;top:0;z-index:100;background:rgba(247,244,239,0.97);backdrop-filter:blur(10px);border-bottom:2px solid var(--border);padding:8px 16px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;min-height:52px;}
+.nav-logo{font-family:'Lexend Mega',sans-serif;font-size:0.85rem;color:var(--text);margin-right:4px;text-decoration:none;white-space:nowrap;}.nav-logo span{color:var(--links);}
+.nav-divider{width:1px;height:20px;background:var(--border);flex-shrink:0;}
+.nav-btn{padding:5px 11px;border-radius:18px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.72rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);text-decoration:none;white-space:nowrap;}
+.nav-btn:hover{transform:translateY(-2px);}
+.nav-btn.fish:hover,.nav-btn.fish.active{background:var(--fish);border-color:var(--fish);color:#fff;}
+.nav-btn.prodigal:hover,.nav-btn.prodigal.active{background:var(--prodigal);border-color:var(--prodigal);color:#fff;}
+.nav-btn.sestina:hover,.nav-btn.sestina.active{background:var(--sestina);border-color:var(--sestina);color:#fff;}
+.nav-btn.armadillo:hover,.nav-btn.armadillo.active{background:var(--armadillo);border-color:var(--armadillo);color:#fff;}
+.nav-btn.filling:hover,.nav-btn.filling.active{background:var(--filling);border-color:var(--filling);color:#fff;}
+.nav-btn.flash:hover{background:#2c3e50;border-color:#2c3e50;color:#fff;}
+.nav-btn.links.active,.nav-btn.links:hover{background:var(--links);border-color:var(--links);color:#fff;}
+
+/* PAGE HERO */
+.page-hero{background:linear-gradient(135deg,#0a2a1a,#0d3a2a,#0a1a2e);color:#fff;padding:48px 24px 36px;text-align:center;}
+.page-hero h1{font-family:'Lexend Mega',sans-serif;font-size:clamp(1.6rem,4vw,2.4rem);margin-bottom:10px;}
+.page-hero p{opacity:0.82;max-width:620px;margin:0 auto;font-size:0.95rem;}
+
+/* TAB BAR */
+.tab-bar{display:flex;gap:4px;flex-wrap:wrap;padding:24px 16px 0;max-width:1040px;margin:0 auto;border-bottom:2px solid var(--border);}
+.tab{padding:8px 18px;border-radius:10px 10px 0 0;border:2px solid transparent;background:transparent;font-family:'Lexend',sans-serif;font-size:0.8rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);}
+.tab:hover,.tab.active{background:var(--surface);border-color:var(--border);border-bottom-color:var(--surface);color:var(--links);margin-bottom:-2px;}
+.tab.active{color:var(--links);font-weight:700;}
+
+.tab-panel{display:none;max-width:1040px;margin:0 auto;padding:32px 16px 80px;}
+.tab-panel.active{display:block;animation:fadeIn 0.3s ease;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+/* INFO CARD */
+.info-card{background:var(--surface);border-radius:var(--radius);padding:24px 26px;margin-bottom:20px;box-shadow:var(--shadow);border-left:5px solid var(--links);}
+.info-card h2{font-size:1.1rem;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.info-card p{margin-bottom:9px;font-size:0.94rem;}
+.info-card ul{padding-left:20px;margin-bottom:9px;}
+.info-card li{margin-bottom:6px;font-size:0.93rem;}
+
+/* LINK CARDS */
+.link-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px;margin:18px 0;}
+.link-card{background:var(--surface);border-radius:var(--radius);padding:20px 22px;box-shadow:var(--shadow);border-top:4px solid var(--c,#148f77);}
+.link-card h4{font-size:0.95rem;font-weight:700;color:var(--c,#148f77);margin-bottom:8px;display:flex;align-items:center;gap:6px;}
+.link-card p{font-size:0.88rem;color:var(--muted);line-height:1.65;}
+
+/* COMPARISON TABLE */
+.cmp-table{width:100%;border-collapse:collapse;margin:16px 0;font-size:0.87rem;}
+.cmp-table th{padding:10px 14px;text-align:left;font-weight:700;border-bottom:2px solid var(--border);background:var(--links-l);color:var(--links);}
+.cmp-table td{padding:10px 14px;border-bottom:1px solid var(--border);vertical-align:top;}
+.cmp-table tr:last-child td{border-bottom:none;}
+.cmp-table tr:nth-child(even) td{background:var(--surface2);}
+
+/* POEM BADGE */
+.pbadge{display:inline-block;padding:2px 10px;border-radius:20px;font-size:0.72rem;font-weight:700;margin:1px 2px;}
+.pb-fish{background:var(--fish-l);color:var(--fish);}
+.pb-prodigal{background:var(--prodigal-l);color:var(--prodigal);}
+.pb-sestina{background:var(--sestina-l);color:var(--sestina);}
+.pb-armadillo{background:var(--armadillo-l);color:var(--armadillo);}
+.pb-filling{background:var(--filling-l);color:var(--filling);}
+
+/* THEME SECTION */
+.theme-header{background:var(--links-l);border:2px solid var(--links);border-radius:var(--radius);padding:20px 24px;margin-bottom:20px;}
+.theme-header h2{font-family:'Lexend Mega',sans-serif;font-size:1.1rem;color:var(--links);margin-bottom:6px;}
+.theme-header p{font-size:0.92rem;color:var(--muted);}
+
+/* QUOTE PAIRS */
+.quote-pair{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:14px 0;}
+@media(max-width:600px){.quote-pair{grid-template-columns:1fr;}}
+.qp-card{background:var(--surface);border-radius:var(--radius);padding:16px 18px;border:2px solid var(--border);border-top:3px solid var(--c,var(--links));}
+.qp-card .poem-name{font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:0.8px;color:var(--c,var(--links));margin-bottom:8px;}
+.qp-card blockquote{font-style:italic;font-size:0.88rem;line-height:1.55;margin-bottom:8px;}
+.qp-card p{font-size:0.84rem;color:var(--muted);}
+
+/* BOXES */
+.box{border-radius:var(--radius);padding:14px 18px;margin:14px 0;display:flex;gap:12px;align-items:flex-start;}
+.box .ico{font-size:1.5rem;flex-shrink:0;line-height:1.2;}
+.box-label{font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;margin-bottom:4px;}
+.box p,.box li{font-size:0.91rem;}.box ul{padding-left:16px;}.box li{margin-bottom:5px;}
+.b-exam{background:#eaf4fb;border:2px solid #5dade2;}.b-exam .box-label{color:#1a6b9a;}
+.b-key{background:var(--links-l);border:2px solid var(--links);}.b-key .box-label{color:var(--links);}
+
+/* EPIPHANY VISUAL */
+.epiphany-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0;}
+@media(max-width:600px){.epiphany-row{grid-template-columns:1fr;}}
+.epiphany-card{background:var(--surface);border-radius:var(--radius);padding:16px;border:2px solid var(--border);text-align:center;}
+.epiphany-card .ep-arrow{font-size:1.4rem;margin:6px 0;}
+.epiphany-card h5{font-size:0.8rem;font-weight:700;margin-bottom:4px;}
+.epiphany-card p{font-size:0.78rem;color:var(--muted);}
+
+/* EXAM ANSWER SCAFFOLD */
+.scaffold{background:var(--surface);border:2px solid var(--links);border-radius:var(--radius);padding:22px 24px;margin:16px 0;}
+.scaffold h3{font-size:1rem;font-weight:700;color:var(--links);margin-bottom:14px;}
+.scaffold-step{display:flex;gap:14px;margin-bottom:16px;align-items:flex-start;}
+.step-num{background:var(--links);color:#fff;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:0.78rem;font-weight:800;flex-shrink:0;margin-top:2px;}
+.step-content h4{font-size:0.9rem;font-weight:700;margin-bottom:4px;}
+.step-content p{font-size:0.87rem;color:var(--muted);}
+
+h3.label{font-family:'Lexend Mega',sans-serif;font-size:0.95rem;font-weight:700;margin:28px 0 14px;display:flex;align-items:center;gap:8px;}
+h3.label::after{content:'';flex:1;height:2px;background:var(--border);border-radius:4px;}
+
+.scroll-top{position:fixed;bottom:24px;right:24px;background:var(--links);color:#fff;border:none;border-radius:50%;width:44px;height:44px;font-size:1.1rem;cursor:pointer;box-shadow:var(--shadow-h);z-index:200;}
+
+.nav-btn.home{border-color:#2c3e50;font-weight:700;}
+.nav-btn.home:hover,.nav-btn.home.active{background:#2c3e50;border-color:#2c3e50;color:#fff;}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="Bishop.html">✒️ <span>Bishop</span></a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn home" href="Bishop.html">🏠 Home</a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn fish" href="Bishop_Fish.html">🐟 The Fish</a>
+  <a class="nav-btn prodigal" href="Bishop_Prodigal.html">🐷 The Prodigal</a>
+  <a class="nav-btn sestina" href="Bishop_Sestina.html">🏠 Sestina</a>
+  <a class="nav-btn armadillo" href="Bishop_Armadillo.html">🦔 The Armadillo</a>
+  <a class="nav-btn filling" href="Bishop_Filling.html">⛽ Filling Station</a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn flash" href="Bishop_Flashcards.html">🃏 Flashcards</a>
+  <a class="nav-btn links active" href="Bishop_Links.html">🔗 Links</a>
+</nav>
+
+<div class="page-hero">
+  <h1>🔗 Thematic Links & Connections</h1>
+  <p>How the five poems connect across shared ideas — the key to excellent exam answers about Bishop's work as a whole.</p>
+</div>
+
+<div class="tab-bar">
+  <button class="tab active" onclick="openTab('home')">🏠 Home & Belonging</button>
+  <button class="tab" onclick="openTab('epiphany')">✨ Epiphany</button>
+  <button class="tab" onclick="openTab('self')">🪞 Bishop as Character</button>
+  <button class="tab" onclick="openTab('nature')">🌿 Nature & Destruction</button>
+  <button class="tab" onclick="openTab('loss')">💔 Loss & Recovery</button>
+  <button class="tab" onclick="openTab('form')">📐 Form as Meaning</button>
+  <button class="tab" onclick="openTab('exam')">📝 Exam Answers</button>
+</div>
+
+<!-- ═══════════════ HOME & BELONGING ═══════════════ -->
+<div class="tab-panel active" id="home">
+  <div class="theme-header">
+    <h2>🏠 Home & Belonging — The Central Obsession</h2>
+    <p>The question of home — what it means, whether you can have one, what love does to a place — runs through every single Bishop poem. She never had a stable home as a child, and this shapes everything she writes.</p>
+  </div>
+
+  <div class="box b-key"><span class="ico">🔑</span><div><div class="box-label">The Core Idea</div>
+  <p>For Bishop, "home" is never simply a building. It is something earned through love, care, and time. Several of her poems ask the same question from different angles: <em>what makes a place feel like home?</em> The answer she reaches is always the same: love. But love is often absent, invisible, or found in unexpected places.</p></div></div>
+
+  <div class="link-grid">
+    <div class="link-card" style="--c:var(--sestina);">
+      <h4>🏠 Sestina — The Inscrutable House</h4>
+      <p>The child draws "another inscrutable house" — she cannot understand what home means because she has never had a stable one. The form of the sestina itself is like a house she keeps rebuilding, never quite getting it right.</p>
+    </div>
+    <div class="link-card" style="--c:var(--prodigal);">
+      <h4>🐷 The Prodigal — Home as Last Resort</h4>
+      <p>"Home" appears only in the very last line, after 27 lines of avoidance. For Bishop, home was not always safe or welcoming — she described being moved as a child as "a kidnapping." Yet home remains the destination of recovery.</p>
+    </div>
+    <div class="link-card" style="--c:var(--filling);">
+      <h4>⛽ Filling Station — Love Makes a Home</h4>
+      <p>The most direct answer to the home question: an unlikely, grimy filling station is transformed into something home-like through quiet, invisible love. Home is not a building — it is what love does to a place.</p>
+    </div>
+    <div class="link-card" style="--c:var(--armadillo);">
+      <h4>🦔 The Armadillo — Home Destroyed</h4>
+      <p>The "ancient owls' nest" — established over generations — is destroyed in moments by fire. This mirrors Bishop's own experience of losing her home in Nova Scotia. The nest's destruction is the poem's central horror.</p>
+    </div>
+    <div class="link-card" style="--c:var(--fish);">
+      <h4>🐟 The Fish — No Fixed Home</h4>
+      <p>The fish is pulled from its habitat — its home — and examined. Bishop herself noted she felt "like a fish out of water" when she started at the Library of Congress. The fish's release is also a return home.</p>
+    </div>
+  </div>
+
+  <h3 class="label">📊 How "Home" Works in Each Poem</h3>
+  <table class="cmp-table">
+    <tr><th>Poem</th><th>What "Home" Means</th><th>Outcome</th></tr>
+    <tr><td><span class="pbadge pb-sestina">Sestina</span></td><td>A place the child cannot picture or draw</td><td>Remains "inscrutable" — unknown, unreachable</td></tr>
+    <tr><td><span class="pbadge pb-prodigal">The Prodigal</span></td><td>A last resort after years of avoidance</td><td>Decision to return — but not yet achieved</td></tr>
+    <tr><td><span class="pbadge pb-filling">Filling Station</span></td><td>Something love creates in any space</td><td>Found in the most unlikely place</td></tr>
+    <tr><td><span class="pbadge pb-armadillo">The Armadillo</span></td><td>An ancient, settled nest — fragile</td><td>Destroyed by human action</td></tr>
+    <tr><td><span class="pbadge pb-fish">The Fish</span></td><td>The water the fish is pulled from</td><td>Restored — she lets it return home</td></tr>
+  </table>
+
+  <div class="box b-exam"><span class="ico">📝</span><div><div class="box-label">Exam Argument: Home</div>
+  <p><em>"Home is Bishop's central preoccupation across all five poems. Rather than simply longing for home, she interrogates what home means — reaching the conclusion, most fully expressed in 'Filling Station,' that home is not a place but what love does to a place. This insight is made more powerful by the biographical context of her own rootless childhood."</em></p></div></div>
+</div>
+
+<!-- ═══════════════ EPIPHANY ═══════════════ -->
+<div class="tab-panel" id="epiphany">
+  <div class="theme-header">
+    <h2>✨ The Epiphany Pattern — Observation Leads to Insight</h2>
+    <p>Almost every Bishop poem follows the same structural pattern: close, careful observation of something → a building of detail → a sudden moment of realisation. This is her signature move. Understanding it is key to analysing any of her poems.</p>
+  </div>
+
+  <div class="box b-key"><span class="ico">🔑</span><div><div class="box-label">The Pattern Explained Simply</div>
+  <p>Bishop looks very carefully at something ordinary — a fish, a filling station, some balloons — and keeps looking until she understands something she didn't before. The poem <em>is</em> the act of looking. The epiphany is what looking reveals. Her poems teach us that <strong>if you pay attention to the world, the world will show you something profound.</strong></p></div></div>
+
+  <div class="epiphany-row">
+    <div class="epiphany-card" style="border-top:4px solid var(--fish);">
+      <span class="pbadge pb-fish">The Fish</span>
+      <div class="ep-arrow">👁️</div>
+      <h5>Observes fish closely for 75 lines</h5>
+      <p>Sees the hooks — five previous escapes — like medals</p>
+      <div class="ep-arrow">↓</div>
+      <h5>"rainbow, rainbow, rainbow! / And I let the fish go."</h5>
+    </div>
+    <div class="epiphany-card" style="border-top:4px solid var(--filling);">
+      <span class="pbadge pb-filling">Filling Station</span>
+      <div class="ep-arrow">👁️</div>
+      <h5>Observes the dirty station, notices domestic details</h5>
+      <p>Asks "why oh why the doily?" — realises someone cares</p>
+      <div class="ep-arrow">↓</div>
+      <h5>"Somebody loves us all."</h5>
+    </div>
+    <div class="epiphany-card" style="border-top:4px solid var(--armadillo);">
+      <span class="pbadge pb-armadillo">The Armadillo</span>
+      <div class="ep-arrow">👁️</div>
+      <h5>Watches beautiful fire balloons rise</h5>
+      <p>Sees the destruction when one crashes</p>
+      <div class="ep-arrow">↓</div>
+      <h5>"Too pretty, dreamlike mimicry!"</h5>
+    </div>
+  </div>
+
+  <h3 class="label">💬 Epiphany Endings — Side by Side</h3>
+  <div class="quote-pair">
+    <div class="qp-card" style="--c:var(--fish);">
+      <div class="poem-name">🐟 The Fish</div>
+      <blockquote>"until everything / was rainbow, rainbow, rainbow! / And I let the fish go."</blockquote>
+      <p>Quiet, understated, five final words. Joy expressed through repetition. Release.</p>
+    </div>
+    <div class="qp-card" style="--c:var(--filling);">
+      <div class="poem-name">⛽ Filling Station</div>
+      <blockquote>"Somebody loves us all."</blockquote>
+      <p>Five words. After 40 lines of observation. Universal love revealed. Wonder.</p>
+    </div>
+  </div>
+  <div class="quote-pair">
+    <div class="qp-card" style="--c:var(--armadillo);">
+      <div class="poem-name">🦔 The Armadillo</div>
+      <blockquote>"Too pretty, dreamlike mimicry! / O falling fire and piercing cry / and panic, and a weak mailed fist / clenched ignorant against the sky!"</blockquote>
+      <p>Angry epiphany — the realisation that beauty masked danger. Outrage rather than wonder.</p>
+    </div>
+    <div class="qp-card" style="--c:var(--prodigal);">
+      <div class="poem-name">🐷 The Prodigal</div>
+      <blockquote>"it took him a long time / finally to make his mind up to go home."</blockquote>
+      <p>An epiphany of resignation — the long, slow arrival at a decision. Not joyful but necessary.</p>
+    </div>
+  </div>
+
+  <div class="box b-exam"><span class="ico">📝</span><div><div class="box-label">Exam Argument: Epiphany</div>
+  <p><em>"Bishop's poetry consistently follows a pattern of close observation leading to a moment of sudden insight — an epiphany. In 'The Fish,' 75 lines of detailed description culminate in an explosion of joy: 'rainbow, rainbow, rainbow!' In 'Filling Station,' 40 lines of playful observation resolve in a quietly devastating realisation: 'Somebody loves us all.' Even the angry epiphany of 'The Armadillo' — 'Too pretty, dreamlike mimicry!' — follows this pattern. Her endings are always earned, always understated, always powerful."</em></p></div></div>
+</div>
+
+<!-- ═══════════════ BISHOP AS CHARACTER ═══════════════ -->
+<div class="tab-panel" id="self">
+  <div class="theme-header">
+    <h2>🪞 Bishop as Character — The Poems as Self-Portrait</h2>
+    <p>Bishop rarely writes "I am sad" or "I am struggling." Instead, she creates a character or finds a creature in the world that embodies her own experience, and uses that as a mirror. Understanding this makes every poem more powerful.</p>
+  </div>
+
+  <div class="box b-key"><span class="ico">🔑</span><div><div class="box-label">The Key Technique: Distancing</div>
+  <p>Bishop uses distancing techniques to write about painful personal experience: third person ("he," "the child," "a man"), indirect metaphor (the fish, the armadillo), and careful control of tone. But the biographical parallels are always there. Your notes make this explicit: "she sees herself as a character in the poem. The poems serve as metaphors."</p></div></div>
+
+  <div class="link-grid">
+    <div class="link-card" style="--c:var(--fish);">
+      <h4>🐟 The Fish = Bishop</h4>
+      <p>Battered but surviving; carrying the marks of past struggles "like medals." Five previous captures = five previous crises survived. She looks into the fish's eyes seeking connection — because she sees herself. Letting it go = granting herself the freedom she needs.</p>
+    </div>
+    <div class="link-card" style="--c:var(--prodigal);">
+      <h4>🐷 The Prodigal = Bishop</h4>
+      <p>He hides his pints; she hides her alcoholism. He lives in shame; she moved from friends' homes in shame. He uses beautiful sunrises to avoid facing reality; she used poetry to process what she couldn't say directly. She understands him because she is him.</p>
+    </div>
+    <div class="link-card" style="--c:var(--sestina);">
+      <h4>🏠 "The Child" in Sestina = Bishop</h4>
+      <p>Never named. Distanced into third person. But the setting (Nova Scotia grandmother), the lost father (man with buttons like tears), the hidden grief — all autobiographical. The distancing is protective: she can write about pain without being overwhelmed by it.</p>
+    </div>
+    <div class="link-card" style="--c:var(--armadillo);">
+      <h4>🦔 The Armadillo = Bishop</h4>
+      <p>Hard on the outside (her controlled, careful poetic style), soft inside (the deep emotional vulnerability underneath). The armadillo fleeing "hastily, all alone" mirrors Bishop being uprooted from Nova Scotia — her own "ancient" home taken away. "Head down, tail down" = Bishop's sorrow.</p>
+    </div>
+    <div class="link-card" style="--c:var(--filling);">
+      <h4>⛽ The Speaker in Filling Station = Bishop</h4>
+      <p>The child who grew up without a mother, realising that a mother's love can exist even in absence — felt through the objects it has touched. "Somebody loves us all" may be Bishop finally accepting that her absent mother loved her, despite everything.</p>
+    </div>
+  </div>
+
+  <h3 class="label">🔬 The Mirror Method — How to Spot It</h3>
+  <table class="cmp-table">
+    <tr><th>In the Poem</th><th>In Bishop's Life</th><th>Poem</th></tr>
+    <tr><td>Fish — battered, surviving, marked by past struggles</td><td>Bishop — alcoholism, depression, loss, moving on</td><td><span class="pbadge pb-fish">The Fish</span></td></tr>
+    <tr><td>Prodigal — hiding pints, living in shame, slow recovery</td><td>Bishop — alcoholism, moving from friends' homes in shame</td><td><span class="pbadge pb-prodigal">The Prodigal</span></td></tr>
+    <tr><td>The child drawing houses she can't understand</td><td>Bishop — moved from home to home as a child, never stable</td><td><span class="pbadge pb-sestina">Sestina</span></td></tr>
+    <tr><td>Armadillo — uprooted from ancient nest, alone</td><td>Bishop — taken from Nova Scotia grandparents (felt like "kidnapping")</td><td><span class="pbadge pb-armadillo">Armadillo</span></td></tr>
+    <tr><td>Absent mother's love visible in domestic objects</td><td>Bishop — grew up without her mother (committed to asylum)</td><td><span class="pbadge pb-filling">Filling Station</span></td></tr>
+  </table>
+
+  <div class="box b-exam"><span class="ico">📝</span><div><div class="box-label">Exam Argument: Confessional Poetry</div>
+  <p><em>"Bishop is often described as a confessional poet — but her confessions are always indirect, always coded. She uses animals, children, and third-person figures as mirrors for her own experience. The fish's battle scars become her own; the Prodigal's shame becomes her own; the child's inscrutable houses become her own search for belonging. This indirection is not evasiveness — it is artistry. By displacing her pain onto a fish, a pig sty, or a child's drawing, she achieves a universality that direct confession would not."</em></p></div></div>
+</div>
+
+<!-- ═══════════════ NATURE & DESTRUCTION ═══════════════ -->
+<div class="tab-panel" id="nature">
+  <div class="theme-header">
+    <h2>🌿 Nature & Destruction — The World as Teacher</h2>
+    <p>Bishop loved the natural world — she was a keen fisherwoman, a careful observer of animals and landscapes. But she never romanticises nature. She shows it clearly, including how human actions damage it.</p>
+  </div>
+
+  <div class="box b-key"><span class="ico">🔑</span><div><div class="box-label">The Core Idea</div>
+  <p>Bishop uses nature in two ways: as a source of beauty and wonder (the fish, the fire balloons, the barnyard sunrise), and as a victim of human carelessness (the armadillo, the burning owls' nest). She never separates beauty from vulnerability — in the natural world, the most beautiful things are often the most fragile.</p></div></div>
+
+  <div class="quote-pair">
+    <div class="qp-card" style="--c:var(--fish);">
+      <div class="poem-name">🐟 The Fish — Respectful Observation</div>
+      <blockquote>"Like medals with their ribbons / frayed and wavering, / a five-haired beard of wisdom"</blockquote>
+      <p>Human encounters nature with respect. She observes carefully, understands, and gives the fish its freedom. The model of how humans should interact with animals.</p>
+    </div>
+    <div class="qp-card" style="--c:var(--armadillo);">
+      <div class="poem-name">🦔 The Armadillo — Careless Destruction</div>
+      <blockquote>"a weak mailed fist / clenched ignorant against the sky!"</blockquote>
+      <p>Human action (even well-intentioned) destroys innocent lives. The armadillo cannot understand why. This is the counter-example to The Fish: what happens when humans don't stop to look and respect.</p>
+    </div>
+  </div>
+
+  <div class="info-card">
+    <h2>🌅 Nature as Emotional Barometer</h2>
+    <p>In many of Bishop's poems, the natural world reflects — or reveals — the emotional state of the speaker or characters:</p>
+    <ul>
+      <li><strong>The Prodigal:</strong> Morning sunrise = false hope (beautiful but deceptive); evening star = truth (unwelcome but real)</li>
+      <li><strong>Sestina:</strong> September rain = grief; "equinoctial tears" — nature's rhythms mirror human sorrow</li>
+      <li><strong>The Fish:</strong> The rainbow at the end is literally formed by oil — beauty emerging from the ugliest, most mundane part of the natural setting</li>
+      <li><strong>The Armadillo:</strong> Fire balloons rise beautifully toward the religious — then crash. Nature's own fire (the sun, the stars) is contrasted with human-made fire (the balloons) — one gives life, one destroys</li>
+    </ul>
+  </div>
+
+  <div class="box b-exam"><span class="ico">📝</span><div><div class="box-label">Exam Argument: Nature</div>
+  <p><em>"Bishop uses the natural world as both a source of beauty and a moral measuring stick. In 'The Fish,' careful observation of a creature leads to a decision to respect it. In 'The Armadillo,' the failure to consider the consequences of human action leads to an innocent creature's suffering. Together, the two poems make a coherent argument: the natural world rewards attention and punishes carelessness."</em></p></div></div>
+</div>
+
+<!-- ═══════════════ LOSS & RECOVERY ═══════════════ -->
+<div class="tab-panel" id="loss">
+  <div class="theme-header">
+    <h2>💔 Loss, Grief & Recovery — The Emotional Thread</h2>
+    <p>Loss runs through every Bishop poem — loss of parents, of home, of self, of dignity. But so does recovery. She never leaves her characters — or her readers — without some form of hope or grace.</p>
+  </div>
+
+  <div class="link-grid">
+    <div class="link-card" style="--c:var(--sestina);">
+      <h4>🏠 Sestina — Childhood Grief</h4>
+      <p>Loss of father (never known), loss of mother (effectively), loss of stable home. The sestina form itself embodies grief — the six words keep returning, like memories that won't leave. Art (drawing) is the child's way of processing what cannot be spoken.</p>
+    </div>
+    <div class="link-card" style="--c:var(--prodigal);">
+      <h4>🐷 The Prodigal — Loss of Self, Recovery</h4>
+      <p>The Prodigal has lost his dignity, his home, his sense of self through addiction. The poem charts recovery — not as a dramatic redemption but as a long, slow, reluctant decision. "It took him a long time / finally to make his mind up."</p>
+    </div>
+    <div class="link-card" style="--c:var(--filling);">
+      <h4>⛽ Filling Station — Loss of Mother, Found Love</h4>
+      <p>Bishop grew up without her mother. The poem's revelation — that an absent person's love can still be felt in the objects they touched — is her way of finding her mother's love late in life. Recovery through recognition of invisible love.</p>
+    </div>
+    <div class="link-card" style="--c:var(--fish);">
+      <h4>🐟 The Fish — Loss and Resilience</h4>
+      <p>The fish has "lost" five battles (been caught five times) — but survived each one. Bishop looks at this and sees not loss but resilience. The scars are medals. This reframing of loss as survival is central to Bishop's outlook.</p>
+    </div>
+    <div class="link-card" style="--c:var(--armadillo);">
+      <h4>🦔 The Armadillo — Loss Without Recovery</h4>
+      <p>The armadillo loses its home; the owls lose their nest. Unlike the other poems, there is no epiphany of grace here — only outrage. This is Bishop's darkest poem, where loss has no consolation. The final image is helplessness, not redemption.</p>
+    </div>
+  </div>
+
+  <h3 class="label">⚖️ Loss vs. Recovery — The Spectrum</h3>
+  <table class="cmp-table">
+    <tr><th>Poem</th><th>Type of Loss</th><th>Is There Recovery?</th><th>How?</th></tr>
+    <tr><td><span class="pbadge pb-fish">The Fish</span></td><td>Habitual capture (past suffering)</td><td>Yes — complete</td><td>Recognition + release = freedom</td></tr>
+    <tr><td><span class="pbadge pb-prodigal">The Prodigal</span></td><td>Addiction, shame, isolation</td><td>Tentative — just beginning</td><td>Decision to go home (slant rhyme suggests incompleteness)</td></tr>
+    <tr><td><span class="pbadge pb-sestina">Sestina</span></td><td>Father, mother, home</td><td>Partial — through art</td><td>Drawing processes what words can't; but house remains "inscrutable"</td></tr>
+    <tr><td><span class="pbadge pb-armadillo">The Armadillo</span></td><td>Home, habitat, safety</td><td>No</td><td>Outrage, not consolation — the darkest poem</td></tr>
+    <tr><td><span class="pbadge pb-filling">Filling Station</span></td><td>Absent mother's love</td><td>Yes — fully</td><td>Love found in unexpected place; acceptance and wonder</td></tr>
+  </table>
+
+  <div class="box b-exam"><span class="ico">📝</span><div><div class="box-label">Exam Argument: Loss and Recovery</div>
+  <p><em>"Loss is present in every Bishop poem, but she resists easy consolation. Recovery, when it comes, is always partial, quiet, or unexpected — found in a rainbow on oily water, in a doily in a filling station, in the slow decision to go home. Only in 'The Armadillo' does she deny us even this: the poem ends in helplessness and outrage, making it her most devastating statement about what cannot be recovered."</em></p></div></div>
+</div>
+
+<!-- ═══════════════ FORM AS MEANING ═══════════════ -->
+<div class="tab-panel" id="form">
+  <div class="theme-header">
+    <h2>📐 Form as Meaning — Structure IS the Content</h2>
+    <p>Bishop never chose a poetic form arbitrarily. In her work, the structure of a poem always mirrors or deepens its meaning. Understanding the form is understanding the poem.</p>
+  </div>
+
+  <div class="link-grid">
+    <div class="link-card" style="--c:var(--prodigal);">
+      <h4>🐷 The Prodigal — Double Sonnet</h4>
+      <p><strong>Sonnet 1 (Shakespearean, ordered):</strong> Mirrors denial — controlled, structured, self-deceiving.<br><strong>Sonnet 2 (looser):</strong> Mirrors the collapse of denial as reality arrives.<br><strong>Slant rhyme at end:</strong> "home"/"more" — recovery is incomplete. The broken rhyme = the unfinished journey.</p>
+    </div>
+    <div class="link-card" style="--c:var(--sestina);">
+      <h4>🏠 Sestina — The Sestina Form</h4>
+      <p><strong>Six words repeat throughout:</strong> Mirrors how grief circles back — the same memories, the same people, the same losses, encountered again from different angles.<br><strong>Rigid structure:</strong> Gives the poet a container for overwhelming emotion. The structure IS the coping mechanism.<br><strong>Final tercet (half-length):</strong> Like the "half-open" almanac — unfinished, still searching.</p>
+    </div>
+    <div class="link-card" style="--c:var(--fish);">
+      <h4>🐟 The Fish — Free Verse Narrative</h4>
+      <p><strong>No rhyme scheme:</strong> Feels like speech, like a story being told in the moment. The enjambment keeps pulling us forward — mimicking the breathless, building observation.<br><strong>76 lines:</strong> The length is the point — you must look for as long as she looks. The epiphany at line 76 is earned by the patience of the preceding 75.</p>
+    </div>
+    <div class="link-card" style="--c:var(--armadillo);">
+      <h4>🦔 The Armadillo — Quatrains + Italics</h4>
+      <p><strong>Regular quatrains:</strong> The controlled, observational description of the balloons. Order = wonder.<br><strong>Rhyme weakens after crash:</strong> Your notes observe that "the rhyme scheme is destroyed after the event occurs" — the broken rhyme mirrors the broken habitat.<br><strong>Italicised final stanza:</strong> A different voice, dropped composure, raw emotion.</p>
+    </div>
+    <div class="link-card" style="--c:var(--filling);">
+      <h4>⛽ Filling Station — Narrative to Allegorical</h4>
+      <p><strong>Begins as comedy:</strong> Conversational, playful tone, the amused observer.<br><strong>Gradually deepens:</strong> The "why oh why the doily?" question shifts the register.<br><strong>Ends as allegory:</strong> "Somebody loves us all" — the specific filling station becomes universal. The form mirrors the emotional journey from surface to depth.</p>
+    </div>
+  </div>
+
+  <div class="box b-exam"><span class="ico">📝</span><div><div class="box-label">Exam Argument: Form</div>
+  <p><em>"Bishop's choice of form is never arbitrary. The sestina's repetitive structure mirrors grief's repetitiveness; the double sonnet's structural shift mirrors the Prodigal's psychological journey from denial to reality; the free verse of 'The Fish' mimics the breathless immediacy of direct experience. In every case, the form is not a container for meaning — it IS meaning."</em></p></div></div>
+</div>
+
+<!-- ═══════════════ EXAM ANSWERS ═══════════════ -->
+<div class="tab-panel" id="exam">
+  <div class="theme-header">
+    <h2>📝 Building Exam Answers — Scaffolded Structures</h2>
+    <p>Use these structures as frameworks. Each past exam question is mapped to the themes and poems that best answer it.</p>
+  </div>
+
+  <h3 class="label">📋 Past Exam Questions — Which Poems to Use</h3>
+  <table class="cmp-table">
+    <tr><th>Year</th><th>The Question</th><th>Best Poems</th><th>Key Argument</th></tr>
+    <tr><td>2019</td><td>"analytical but rarely emotional"</td><td><span class="pbadge pb-armadillo">Armadillo</span><span class="pbadge pb-sestina">Sestina</span><span class="pbadge pb-prodigal">Prodigal</span></td><td>DISAGREE. The italicised stanza of Armadillo is pure emotion; Sestina is deeply moving; the Prodigal's slant rhyme is heartbreaking. She is BOTH analytical AND emotional simultaneously.</td></tr>
+    <tr><td>2017</td><td>"language and imagery to confront life's harsh realities"</td><td><span class="pbadge pb-prodigal">Prodigal</span><span class="pbadge pb-fish">Fish</span><span class="pbadge pb-armadillo">Armadillo</span></td><td>Pig sty (Prodigal); gills "fresh and crisp with blood" (Fish); burning animals (Armadillo). She never looks away from ugliness.</td></tr>
+    <tr><td>2016</td><td>"highly detailed observation to explore unique personal experiences"</td><td><span class="pbadge pb-fish">Fish</span><span class="pbadge pb-sestina">Sestina</span><span class="pbadge pb-filling">Filling Station</span></td><td>All three show minute observation leading to personal revelation. The fish's hooks; the child's drawing; the doily.</td></tr>
+    <tr><td>2013</td><td>"carefully judged use of language aids reader to uncover intensity of feeling"</td><td><span class="pbadge pb-fish">Fish</span><span class="pbadge pb-filling">Filling Station</span><span class="pbadge pb-prodigal">Prodigal</span></td><td>"And I let the fish go." / "Somebody loves us all." / "almost might endure" — three examples of precisely judged language that carries emotional intensity through restraint, not explosion.</td></tr>
+    <tr><td>2009</td><td>"interesting questions by means of a unique style"</td><td>All five</td><td>What does a survivor's survival mean? What makes a home? Can hope be misplaced? How can beauty cause destruction? Bishop asks questions — she rarely answers them directly.</td></tr>
+  </table>
+
+  <h3 class="label">🏗️ Scaffold for a Strong Bishop Essay Paragraph</h3>
+  <div class="scaffold">
+    <h3>The P.E.E.L.L. Method — for Bishop specifically</h3>
+    <div class="scaffold-step">
+      <div class="step-num">P</div>
+      <div class="step-content"><h4>Point — Make the claim about her style/theme</h4>
+      <p>"Bishop's poetry consistently uses close observation of the natural world as a pathway to emotional and philosophical insight."</p></div>
+    </div>
+    <div class="scaffold-step">
+      <div class="step-num">E</div>
+      <div class="step-content"><h4>Evidence — Quote from a poem</h4>
+      <p>"This is most clear in 'The Fish,' where 75 lines of detailed observation culminate in the realisation that the fish's old hooks are 'like medals with their ribbons / frayed and wavering, a five-haired beard of wisdom.'"</p></div>
+    </div>
+    <div class="scaffold-step">
+      <div class="step-num">E</div>
+      <div class="step-content"><h4>Explanation — Unpack the quote, name the technique</h4>
+      <p>"The extended metaphor transforms the fish into a war veteran — a survivor deserving of respect. Bishop uses personification ('beard of wisdom') to grant the fish the moral authority of an elder."</p></div>
+    </div>
+    <div class="scaffold-step">
+      <div class="step-num">L</div>
+      <div class="step-content"><h4>Link — Connect to another poem</h4>
+      <p>"A similar moment of recognition occurs in 'Filling Station,' where the doily — 'embroidered in daisy stitch' — reveals the presence of an invisible love. Again, careful observation of a small, overlooked detail unlocks a deeper truth."</p></div>
+    </div>
+    <div class="scaffold-step">
+      <div class="step-num">L</div>
+      <div class="step-content"><h4>Life — Connect to Bishop's biography</h4>
+      <p>"This observational method reflects Bishop's personal philosophy: that paying close attention to the world — however damaged or ordinary it appears — will always reveal something worth knowing."</p></div>
+    </div>
+  </div>
+
+  <h3 class="label">💡 Three Killer Arguments — Memorise These</h3>
+  <div class="link-grid">
+    <div class="link-card" style="--c:var(--links);">
+      <h4>🎯 Argument 1: The Epiphany Pattern</h4>
+      <p>"Bishop's most distinctive technique is to build through patient, detailed observation toward a single, understated moment of insight. Her epiphanies — 'And I let the fish go,' 'Somebody loves us all' — are quiet, not dramatic. They carry enormous emotional weight precisely because they are not overstated. She trusts the detail to do the work."</p>
+    </div>
+    <div class="link-card" style="--c:var(--links);">
+      <h4>🎯 Argument 2: The Confessional Method</h4>
+      <p>"Bishop is a confessional poet, but her confessions are always coded. She displaces her personal pain — alcoholism, motherlessness, rootlessness — onto fish, pig sties, and inscrutable houses. This indirection is not evasiveness: it gives her pain universal resonance. Her suffering becomes our suffering."</p>
+    </div>
+    <div class="link-card" style="--c:var(--links);">
+      <h4>🎯 Argument 3: Form as Meaning</h4>
+      <p>"In Bishop's work, structure is never decorative — it is expressive. The sestina's repetition mirrors grief; the double sonnet's structural shift mirrors recovery; the free verse of 'The Fish' mirrors direct experience. To understand the form of a Bishop poem is to understand half its meaning before you have read a single line."</p>
+    </div>
+  </div>
+</div>
+
+<button class="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+function openTab(id){
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>

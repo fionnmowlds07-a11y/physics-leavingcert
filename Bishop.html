@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elizabeth Bishop — Poetry Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Deca:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f8f6f2;
+    --card: #ffffff;
+    --text: #1a1a2e;
+    --text-light: #555570;
+    --accent-main: #1a6b3a;
+    --accent-secondary: #1a6b9a;
+    --accent-tertiary: #8b1a2b;
+    --accent-purple: #8e44ad;
+    --accent-orange: #d35400;
+    --accent-dark: #2c3e50;
+    --border: #e0dcd4;
+    --shadow: 0 4px 20px rgba(0,0,0,0.06);
+    --shadow-hover: 0 12px 30px rgba(0,0,0,0.12);
+    --radius: 16px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Lexend', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 17px;
+    line-height: 1.7;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  .top-bar {
+    background: white;
+    border-bottom: 2px solid var(--border);
+    padding: 16px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+  }
+  .top-bar h1 { font-size: 22px; font-weight: 700; color: var(--text); letter-spacing: 0.02em; margin: 0 auto; }
+  .top-bar span { color: var(--accent-main); }
+  .back-link {
+    position: absolute; left: 40px;
+    text-decoration: none; color: var(--text-light);
+    font-size: 14px; font-weight: 600;
+    display: flex; align-items: center; gap: 6px;
+    transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--accent-main); }
+  .hero {
+    background: linear-gradient(135deg, #0a1a0e 0%, #1a3a1a 40%, #0d1a2e 80%, #0a0d1a 100%);
+    color: white; padding: 80px 40px; text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '✒️';
+    position: absolute; right: 8%; top: 20%;
+    font-size: 6rem; opacity: 0.06;
+    transform: rotate(-15deg);
+  }
+  .hero::after {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 60% 40%, rgba(26,107,58,0.15), transparent 60%);
+    pointer-events: none;
+  }
+  .hero h2 { font-size: 48px; font-weight: 700; margin-bottom: 16px; animation: slideDown 0.6s ease-out; position: relative; z-index: 1; }
+  .hero p { font-size: 20px; color: rgba(255,255,255,0.85); max-width: 700px; margin: 0 auto; line-height: 1.6; animation: fadeIn 1s ease-out; position: relative; z-index: 1; }
+
+  .dashboard { flex: 1; padding: 60px 40px; max-width: 1280px; margin: 0 auto; width: 100%; }
+  .section-title { font-size: 13px; font-weight: 800; color: var(--text-light); margin-bottom: 30px; text-align: center; text-transform: uppercase; letter-spacing: 0.12em; }
+
+  .topics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; justify-content: center; margin-bottom: 60px; }
+
+  .chapter-card {
+    background: var(--card); border: 2px solid var(--border); border-radius: var(--radius);
+    padding: 32px 24px; text-decoration: none; display: flex; flex-direction: column;
+    align-items: center; text-align: center;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: var(--shadow); position: relative; overflow: hidden;
+    animation: slideUp 0.5s ease-out backwards;
+  }
+  .chapter-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 6px; transition: height 0.3s ease; }
+  .chapter-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-hover); border-color: transparent; }
+  .chapter-card:hover::before { height: 12px; }
+
+  /* poem cards */
+  .card-fish::before    { background: #1a6b9a; }
+  .card-fish:hover      { border-color: #1a6b9a; }
+  .card-fish .mc-icon   { color: #1a6b9a; background: #eaf4fb; }
+
+  .card-prodigal::before  { background: #8e44ad; }
+  .card-prodigal:hover    { border-color: #8e44ad; }
+  .card-prodigal .mc-icon { color: #8e44ad; background: #f5eeff; }
+
+  .card-sestina::before  { background: #1a6b3a; }
+  .card-sestina:hover    { border-color: #1a6b3a; }
+  .card-sestina .mc-icon { color: #1a6b3a; background: #eafaf1; }
+
+  .card-armadillo::before  { background: #8b1a2b; }
+  .card-armadillo:hover    { border-color: #8b1a2b; }
+  .card-armadillo .mc-icon { color: #8b1a2b; background: #fdecea; }
+
+  .card-filling::before  { background: #d35400; }
+  .card-filling:hover    { border-color: #d35400; }
+  .card-filling .mc-icon { color: #d35400; background: #fef6ee; }
+
+  /* utility cards */
+  .card-flash::before  { background: #2c3e50; }
+  .card-flash:hover    { border-color: #2c3e50; }
+  .card-flash .mc-icon { color: #2c3e50; background: #eaf0f6; }
+
+  .card-links::before  { background: #148f77; }
+  .card-links:hover    { border-color: #148f77; }
+  .card-links .mc-icon { color: #148f77; background: #e8faf6; }
+
+  .mc-icon { font-size: 42px; width: 80px; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 50%; margin-bottom: 20px; transition: transform 0.3s ease; }
+  .chapter-card:hover .mc-icon { transform: scale(1.1) rotate(5deg); }
+  .mc-title { font-size: 20px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+  .mc-subtitle { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-light); margin-bottom: 10px; }
+  .mc-desc { font-size: 14px; color: var(--text-light); line-height: 1.6; }
+  .mc-action { margin-top: 24px; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text); opacity: 0.55; transition: opacity 0.2s; }
+  .chapter-card:hover .mc-action { opacity: 1; }
+
+  .section-divider { border: none; border-top: 2px solid var(--border); margin: 10px 0 40px; }
+  .section-label-row { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; }
+  .section-label-row .label { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-light); white-space: nowrap; }
+  .section-label-row::after { content: ''; flex: 1; height: 2px; background: var(--border); border-radius: 4px; }
+
+  .bottom-section { margin-top: 20px; text-align: center; animation: fadeIn 1.2s ease-out; }
+  .info-card {
+    background: var(--card); border: 2px solid var(--border); border-radius: var(--radius);
+    padding: 40px 30px; box-shadow: var(--shadow); transition: transform 0.3s ease;
+    display: flex; flex-direction: column; align-items: center; max-width: 800px; margin: 0 auto;
+  }
+  .info-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); border-color: var(--accent-main); }
+  .info-card h3 { font-size: 22px; font-weight: 700; color: var(--text); margin-bottom: 12px; }
+  .info-card p { font-size: 16px; color: var(--text-light); line-height: 1.7; margin-bottom: 26px; }
+  .study-btn {
+    display: inline-block; background: var(--accent-main); color: white;
+    padding: 12px 28px; border-radius: 8px; font-weight: 600; text-decoration: none;
+    transition: all 0.2s; box-shadow: 0 4px 12px rgba(26,107,58,0.22);
+  }
+  .study-btn:hover { background: #0d4a22; transform: translateY(-2px); }
+
+  @keyframes slideDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes slideUp   { from { opacity: 0; transform: translateY(20px);  } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeIn    { from { opacity: 0; } to { opacity: 1; } }
+
+  @media (max-width: 768px) {
+    .top-bar { padding: 16px 20px; }
+    .back-link { position: static; margin-right: auto; }
+    .top-bar h1 { margin-left: auto; margin-right: auto; }
+    .hero { padding: 50px 20px; }
+    .hero h2 { font-size: 32px; }
+    .hero p { font-size: 16px; }
+    .dashboard { padding: 40px 20px; }
+    .topics-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="top-bar">
+    <a href="English.html" class="back-link">← English Hub</a>
+    <h1>Elizabeth <span>Bishop</span></h1>
+  </div>
+
+  <div class="hero">
+    <h2>Elizabeth Bishop — Poetry</h2>
+    <p>Select a poem for deep in-depth notes, use the flashcard drill to test all your quotes, or explore thematic links across every poem.</p>
+  </div>
+
+  <main class="dashboard">
+
+    <div class="section-label-row"><span class="label">📖 Poem-by-Poem Study</span></div>
+    <div class="topics-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
+
+      <a href="Bishop_Fish.html" class="chapter-card card-fish" style="animation-delay:0.05s">
+        <div class="mc-icon">🐟</div>
+        <div class="mc-subtitle">Poem 1 · North &amp; South, 1946</div>
+        <div class="mc-title">The Fish</div>
+        <div class="mc-desc">Survival, resilience, and an unexpected epiphany. Bishop catches a remarkable fish and finds wisdom in its scars.</div>
+        <div class="mc-action">Study in depth →</div>
+      </a>
+
+      <a href="Bishop_Prodigal.html" class="chapter-card card-prodigal" style="animation-delay:0.1s">
+        <div class="mc-icon">🐷</div>
+        <div class="mc-subtitle">Poem 2 · A Cold Spring, 1955</div>
+        <div class="mc-title">The Prodigal</div>
+        <div class="mc-desc">Alcoholism, shame, and the long road to recovery. A double sonnet of denial, darkness, and tentative hope.</div>
+        <div class="mc-action">Study in depth →</div>
+      </a>
+
+      <a href="Bishop_Sestina.html" class="chapter-card card-sestina" style="animation-delay:0.15s">
+        <div class="mc-icon">🏠</div>
+        <div class="mc-subtitle">Poem 3 · Questions of Travel, 1965</div>
+        <div class="mc-title">Sestina</div>
+        <div class="mc-desc">A child processes hidden grief with her grandmother. Loss, art as therapy, and the mystery of home in a rigid poetic form.</div>
+        <div class="mc-action">Study in depth →</div>
+      </a>
+
+      <a href="Bishop_Armadillo.html" class="chapter-card card-armadillo" style="animation-delay:0.2s">
+        <div class="mc-icon">🦔</div>
+        <div class="mc-subtitle">Poem 4 · Questions of Travel, 1965</div>
+        <div class="mc-title">The Armadillo</div>
+        <div class="mc-desc">Beauty turning to destruction. Illegal fire balloons devastate wildlife — an allegory of human impact on the natural world.</div>
+        <div class="mc-action">Study in depth →</div>
+      </a>
+
+      <a href="Bishop_Filling.html" class="chapter-card card-filling" style="animation-delay:0.25s">
+        <div class="mc-icon">⛽</div>
+        <div class="mc-subtitle">Poem 5 · Questions of Travel, 1965</div>
+        <div class="mc-title">Filling Station</div>
+        <div class="mc-desc">A dirty, oily station hides unexpected tenderness. Someone has quietly made this place a home — somebody loves us all.</div>
+        <div class="mc-action">Study in depth →</div>
+      </a>
+
+    </div>
+
+    <div class="section-label-row"><span class="label">🛠️ Revision Tools</span></div>
+    <div class="topics-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+
+      <a href="Bishop_Flashcards.html" class="chapter-card card-flash" style="animation-delay:0.3s">
+        <div class="mc-icon">🃏</div>
+        <div class="mc-subtitle">All 5 Poems · Quote Drill</div>
+        <div class="mc-title">Flashcard Drill</div>
+        <div class="mc-desc">Test every key quote from every poem. Flip-cards organised by poem — quote on the front, technique &amp; analysis on the back.</div>
+        <div class="mc-action">Start drilling →</div>
+      </a>
+
+      <a href="Bishop_Links.html" class="chapter-card card-links" style="animation-delay:0.35s">
+        <div class="mc-icon">🔗</div>
+        <div class="mc-subtitle">Cross-Poem Connections</div>
+        <div class="mc-title">Thematic Links</div>
+        <div class="mc-desc">How the poems connect across shared themes — home, epiphany, nature, loss, Bishop as character, and form as meaning.</div>
+        <div class="mc-action">Explore links →</div>
+      </a>
+
+    </div>
+
+    <div class="bottom-section">
+      <div class="info-card">
+        <h3>Quick Tip for the Exam 📝</h3>
+        <p>Always link poems together in your answers. Examiners reward students who show they can see Bishop's work as a whole — her consistent themes, her observational style, and her use of personal experience as metaphor. Use the Thematic Links file to practice this.</p>
+        <a href="English.html" class="study-btn">← Back to English Hub</a>
+      </div>
+    </div>
+
+  </main>
+
+</body>
+</html>
