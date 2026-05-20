@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bishop — The Fish</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#F7F4EF; --surface:#FFFFFF; --surface2:#F0EDE8; --border:#E2DDD7;
+  --text:#2C2825; --muted:#7A7068;
+  --c:#1a6b9a; --cl:#eaf4fb; --cd:#0d4470;
+  --radius:14px; --shadow:0 4px 20px rgba(0,0,0,0.08); --shadow-h:0 8px 32px rgba(0,0,0,0.14);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;font-size:16px;}
+
+nav{position:sticky;top:0;z-index:100;background:rgba(247,244,239,0.97);backdrop-filter:blur(10px);border-bottom:2px solid var(--border);padding:8px 16px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;min-height:52px;}
+.nav-logo{font-family:'Lexend Mega',sans-serif;font-size:0.85rem;color:var(--text);margin-right:4px;text-decoration:none;white-space:nowrap;}
+.nav-logo span{color:var(--c);}
+.nav-divider{width:1px;height:20px;background:var(--border);flex-shrink:0;}
+.nav-btn{padding:5px 11px;border-radius:18px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.72rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);text-decoration:none;white-space:nowrap;}
+.nav-btn:hover,.nav-btn.active{background:var(--c);color:#fff;border-color:var(--c);transform:translateY(-2px);}
+.nav-btn.home:hover,.nav-btn.home.active{background:var(--text);border-color:var(--text);}
+.nav-btn.flash{border-color:#2c3e50;} .nav-btn.flash:hover{background:#2c3e50;border-color:#2c3e50;color:#fff;}
+.nav-btn.links{border-color:#148f77;} .nav-btn.links:hover{background:#148f77;border-color:#148f77;color:#fff;}
+
+.section{display:none;padding:0 16px 80px;max-width:940px;margin:0 auto;}
+.section.active{display:block;animation:fadeIn 0.3s ease;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+.hero{background:linear-gradient(135deg,var(--cd),var(--c));color:#fff;padding:44px 32px 36px;text-align:center;margin-bottom:32px;}
+.hero .poem-label{font-size:0.75rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;opacity:0.75;margin-bottom:10px;}
+.hero h1{font-family:'Lexend Mega',sans-serif;font-size:clamp(1.8rem,5vw,3rem);line-height:1.15;margin-bottom:12px;}
+.hero p{opacity:0.88;max-width:620px;margin:0 auto;font-size:0.96rem;}
+.hero-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px;}
+.hero-chip{background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:4px 14px;border-radius:20px;font-size:0.75rem;font-weight:600;}
+
+.tab-bar{display:flex;gap:4px;flex-wrap:wrap;padding:22px 0 8px;border-bottom:2px solid var(--border);margin-bottom:28px;}
+.tab{padding:8px 18px;border-radius:10px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.8rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);}
+.tab:hover,.tab.active{background:var(--c);color:#fff;border-color:var(--c);}
+
+.tab-panel{display:none;} .tab-panel.active{display:block;animation:fadeIn 0.25s ease;}
+
+/* Cards and blocks */
+.info-card{background:var(--surface);border-radius:var(--radius);padding:24px 26px;margin-bottom:20px;box-shadow:var(--shadow);border-left:5px solid var(--c);}
+.info-card h2{font-size:1.1rem;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.info-card p{margin-bottom:9px;font-size:0.94rem;}
+.info-card ul{padding-left:20px;margin-bottom:9px;}
+.info-card li{margin-bottom:5px;font-size:0.93rem;}
+
+.quote-block{border-left:4px solid var(--c);background:var(--cl);border-radius:0 var(--radius) var(--radius) 0;padding:16px 20px;margin:16px 0;}
+.quote-block blockquote{font-family:'Lexend Mega',sans-serif;font-size:1rem;font-style:italic;margin-bottom:8px;line-height:1.5;}
+.quote-ref{font-size:0.73rem;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--muted);margin-bottom:10px;}
+.quote-body{font-size:0.91rem;line-height:1.75;}
+.quote-body p{margin-bottom:8px;}
+
+.tech-pill{display:inline-block;background:var(--c);color:#fff;font-size:0.72rem;font-weight:700;padding:2px 9px;border-radius:5px;margin:2px 2px;}
+.kw{display:inline-block;background:rgba(0,0,0,0.07);font-weight:700;font-size:0.85rem;padding:1px 8px;border-radius:4px;margin:1px;}
+
+.box{border-radius:var(--radius);padding:14px 18px;margin:14px 0;display:flex;gap:12px;align-items:flex-start;}
+.box .ico{font-size:1.5rem;flex-shrink:0;line-height:1.2;}
+.box-label{font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;margin-bottom:4px;}
+.box p,.box li{font-size:0.91rem;}
+.box ul{padding-left:16px;}
+.box li{margin-bottom:4px;}
+.b-analogy{background:#fffbf0;border:2px solid #f39c12;} .b-analogy .box-label{color:#b7770d;}
+.b-exam{background:#eaf4fb;border:2px solid #5dade2;} .b-exam .box-label{color:#1a6b9a;}
+.b-memory{background:#f0fff6;border:2px solid #27ae60;} .b-memory .box-label{color:#1e8449;}
+.b-warn{background:#fff8f0;border:2px solid #e67e22;} .b-warn .box-label{color:#c0392b;}
+.b-link{background:#e8faf6;border:2px solid #148f77;} .b-link .box-label{color:#0d6b56;}
+
+.acc{margin-bottom:10px;}
+.acc-btn{width:100%;text-align:left;background:var(--surface);border:2px solid var(--border);border-radius:var(--radius);padding:14px 18px;font-family:'Lexend',sans-serif;font-size:0.92rem;font-weight:600;cursor:pointer;color:var(--text);display:flex;justify-content:space-between;align-items:center;transition:background 0.15s;}
+.acc-btn:hover{background:#f8f5f0;}
+.acc-btn.open{border-radius:var(--radius) var(--radius) 0 0;border-bottom-color:transparent;}
+.acc-btn .arr{transition:transform 0.25s;margin-left:8px;flex-shrink:0;}
+.acc-btn.open .arr{transform:rotate(180deg);}
+.acc-body{display:none;background:var(--surface);border:2px solid var(--border);border-top:none;border-radius:0 0 var(--radius) var(--radius);padding:20px 22px;}
+.acc-body.open{display:block;}
+
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:14px 0;}
+@media(max-width:600px){.two-col{grid-template-columns:1fr;}}
+
+.stanza-block{background:var(--surface);border:2px solid var(--border);border-radius:var(--radius);padding:22px 24px;margin-bottom:18px;border-top:4px solid var(--c);}
+.stanza-block .stanza-label{font-size:0.72rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+.stanza-block .poem-text{font-style:italic;font-size:0.9rem;line-height:1.8;color:var(--text);border-left:3px solid var(--cl);padding-left:14px;margin-bottom:14px;background:var(--cl);border-radius:0 8px 8px 0;padding:10px 14px;}
+.stanza-block h3{font-size:1rem;font-weight:700;margin:12px 0 8px;}
+.stanza-block p{font-size:0.92rem;margin-bottom:8px;}
+
+.pill{display:inline-block;padding:5px 14px;border-radius:100px;font-size:0.78rem;font-weight:700;margin:3px;}
+.pills-row{display:flex;flex-wrap:wrap;gap:4px;margin:10px 0;}
+
+.scroll-top{position:fixed;bottom:24px;right:24px;background:var(--c);color:#fff;border:none;border-radius:50%;width:44px;height:44px;font-size:1.1rem;cursor:pointer;box-shadow:var(--shadow-h);z-index:200;}
+.scroll-top:hover{transform:scale(1.1);}
+
+h3.label{font-family:'Lexend Mega',sans-serif;font-size:0.95rem;font-weight:700;margin:28px 0 14px;display:flex;align-items:center;gap:8px;}
+h3.label::after{content:'';flex:1;height:2px;background:var(--border);border-radius:4px;}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="Bishop.html">✒️ <span>Bishop</span></a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn active" href="Bishop_Fish.html">🐟 The Fish</a>
+  <a class="nav-btn" href="Bishop_Prodigal.html">🐷 The Prodigal</a>
+  <a class="nav-btn" href="Bishop_Sestina.html">🏠 Sestina</a>
+  <a class="nav-btn" href="Bishop_Armadillo.html">🦔 The Armadillo</a>
+  <a class="nav-btn" href="Bishop_Filling.html">⛽ Filling Station</a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn flash" href="Bishop_Flashcards.html">🃏 Flashcards</a>
+  <a class="nav-btn links" href="Bishop_Links.html">🔗 Links</a>
+</nav>
+
+<div class="section active" id="main">
+
+<div class="hero">
+  <div class="poem-label">Poem 1 · North &amp; South, 1946</div>
+  <h1>🐟 The Fish</h1>
+  <p>Survival, observation, and an unexpected epiphany. Bishop catches an extraordinary fish and — through close, loving attention — discovers a survivor deserving of freedom.</p>
+  <div class="hero-chips">
+    <span class="hero-chip">76 lines · Free Verse</span>
+    <span class="hero-chip">No Rhyme Scheme</span>
+    <span class="hero-chip">Narrative / Conversational</span>
+    <span class="hero-chip">Epiphany at Line 75</span>
+  </div>
+</div>
+
+<div class="tab-bar">
+  <button class="tab active" onclick="openTab('overview')">📖 Overview</button>
+  <button class="tab" onclick="openTab('analysis')">🔍 Line Analysis</button>
+  <button class="tab" onclick="openTab('quotes')">💬 Key Quotes</button>
+  <button class="tab" onclick="openTab('techniques')">🎨 Techniques</button>
+  <button class="tab" onclick="openTab('context')">🧭 Context</button>
+</div>
+
+<!-- ── OVERVIEW ── -->
+<div class="tab-panel active" id="overview">
+
+  <div class="box b-analogy">
+    <span class="ico">🤔</span>
+    <div><div class="box-label">The Simple Version — What's Happening</div>
+    <p>Bishop goes fishing on her own and catches one remarkable fish. Instead of feeling triumphant, she becomes fascinated by it. She holds it up and looks at it closely — its old, worn skin, its enormous eyes, and most importantly: five old hooks and broken fishing lines stuck in its lip. This fish has been caught five times before and escaped every single time. She has a sudden realisation — this battered, ancient creature is a <em>survivor</em>. Joy floods the boat like a rainbow. She lets it go.</p></div>
+  </div>
+
+  <h3 class="label">📋 Snapshot</h3>
+  <div class="two-col">
+    <div class="info-card" style="border-left-color:#1a6b9a;">
+      <h2>🗓️ Background</h2>
+      <ul>
+        <li>Written in Florida, c. 1940. Published in her first collection <em>North &amp; South</em> (1946)</li>
+        <li>Based on a real fishing trip — Bishop was a keen fisherwoman from her time in Nova Scotia</li>
+        <li>She called it "that damn fish" because it was reprinted so often</li>
+        <li>She described herself in 1947 as "like a fish out of water" — the fish may be partly self-portrait</li>
+        <li>She once wrote to Robert Lowell: "I was the loneliest person who ever lived" — the poem is about finding kinship in unexpected places</li>
+      </ul>
+    </div>
+    <div class="info-card" style="border-left-color:#1a6b9a;">
+      <h2>🎯 At a Glance</h2>
+      <ul>
+        <li><strong>Theme:</strong> Surviving adversity; second chances; respect for life</li>
+        <li><strong>Tone:</strong> Curious → admiring → celebratory</li>
+        <li><strong>Form:</strong> Free verse, long descriptive narrative — like a story being told aloud</li>
+        <li><strong>Mood:</strong> Celebratory, elation at the end</li>
+        <li><strong>Effect:</strong> Allegorical — teaches a lesson about resilience and letting go</li>
+        <li><strong>Key moment:</strong> Line 75 — "And I let the fish go."</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 class="label">🌊 The Central Ideas</h3>
+  <div class="info-card">
+    <h2>Why Does She Let It Go?</h2>
+    <p>The fish hasn't done anything extraordinary in this moment — it just hangs there. But the speaker's <strong>close observation</strong> reveals a hidden story: five previous captures, five escapes. Each broken hook is a battle scar, a medal. She realises she is looking at a fellow survivor. This is Bishop's core belief: <em>if you look closely enough at anything, you will find something profound.</em></p>
+    <p>The fish is also a metaphor for Bishop herself — battered, living with the marks of past struggles (alcoholism, depression, loss), but still here, still surviving. Letting the fish go is an act of recognition and respect. It has earned its freedom.</p>
+  </div>
+
+  <div class="box b-exam">
+    <span class="ico">📝</span>
+    <div><div class="box-label">Exam Tip — What to Argue</div>
+    <p>If asked about Bishop's use of language and imagery: argue that she uses <strong>close observation of the natural world as a pathway to emotional and philosophical insight</strong>. The fish starts as a caught object and becomes a symbol of survival. Her detailed, domestic similes (wallpaper, roses, medals) make the extraordinary feel familiar, which is exactly how her epiphanies work — they sneak up on you through ordinary detail.</p></div>
+  </div>
+
+</div>
+
+<!-- ── LINE ANALYSIS ── -->
+<div class="tab-panel" id="analysis">
+
+  <div class="stanza-block">
+    <div class="stanza-label">Lines 1–8 — The Catch</div>
+    <div class="poem-text">I caught a tremendous fish<br>and held him beside the boat<br>half out of water, with my hook<br>fast in a corner of his mouth.<br>He didn't fight.<br>He hadn't fought at all.</div>
+    <h3>What's Happening</h3>
+    <p>The poem opens in medias res — we're already in the middle of the action. The fish is described as "tremendous" immediately, giving it status. The crucial detail: <strong>it didn't fight</strong>. This is the first mystery. Why won't it fight? This passivity is what draws her in and starts the poem's journey of observation.</p>
+    <p><span class="tech-pill">Repetition</span> "He didn't fight. He hadn't fought at all." — the repetition emphasises the strangeness. It also immediately humanises the fish: "he," not "it."</p>
+    <div class="box b-memory"><span class="ico">🧠</span><div><div class="box-label">Remember</div><p>The fish's stillness is the catalyst for the whole poem. If it had fought back, she would have simply landed it. Its dignity creates the space for her to look, and looking changes everything.</p></div></div>
+  </div>
+
+  <div class="stanza-block">
+    <div class="stanza-label">Lines 9–22 — The Skin and Body</div>
+    <div class="poem-text">He hung a grunting weight,<br>battered and venerable<br>and homely. Here and there<br>his brown skin hung in strips<br>like ancient wallpaper,<br>and its pattern of darker brown<br>was like wallpaper:<br>shapes like full-blown roses<br>stained and lost through age...</div>
+    <h3>What's Happening</h3>
+    <p>Bishop describes the fish in extraordinary detail — not beautiful in any conventional sense, but deeply interesting. "Battered and venerable and homely" — these three adjectives (a triad) capture it perfectly: worn, deserving of respect, and ordinary-looking all at once.</p>
+    <p><span class="tech-pill">Simile</span> "like ancient wallpaper" — a deliberately domestic comparison. Wallpaper is found inside homes; choosing it to describe fish skin makes the unfamiliar (fish) feel familiar (home). "Ancient" gives it age, dignity, history.</p>
+    <p><span class="tech-pill">Imagery</span> "shapes like full-blown roses" — even in decay, there is beauty. She refuses to see the fish as just ugly or damaged. She finds floral shapes in its worn skin. This teaches us to look for beauty in overlooked, aging things.</p>
+  </div>
+
+  <div class="stanza-block">
+    <div class="stanza-label">Lines 33–44 — The Eyes</div>
+    <div class="poem-text">I looked into his eyes<br>which were far larger than mine<br>but shallower, and yellowed,<br>the irises backed and packed<br>with tarnished tinfoil<br>seen through the lenses<br>of old scratched isinglass.<br>They shifted a little, but not<br>to return my stare.</div>
+    <h3>What's Happening</h3>
+    <p>This is the first real attempt at <strong>connection</strong>. She looks into the fish's eyes — but it doesn't look back. This refusal to engage is significant: the fish is not performing for her. It simply exists, on its own terms. She can't quite reach it.</p>
+    <p><span class="tech-pill">Perspective Shift</span> "far larger than mine" — she is comparing their eyes. She is now seeing the fish as her equal, a fellow creature with its own perception of the world.</p>
+    <p>The eyes are described as tarnished, scratched, old — but still there, still open. This is another layer of the fish's age and survival.</p>
+  </div>
+
+  <div class="stanza-block">
+    <div class="stanza-label">Lines 45–64 — The Five Hooks (Key Passage)</div>
+    <div class="poem-text">and then I saw<br>that from his lower lip<br>— if you could call it a lip —<br>grim, wet, and weaponlike,<br>hung five old pieces of fish-line,<br>or four and a wire leader<br>with the swivel still attached,<br>with all their five big hooks<br>grown firmly in his mouth...<br>Like medals with their ribbons<br>frayed and wavering,<br>a five-haired beard of wisdom<br>trailing from his aching jaw.</div>
+    <h3>What's Happening — THE TURNING POINT</h3>
+    <p>This is the emotional climax of the poem. The broken fishing lines embedded in the fish's lip tell its whole story: it has been caught five times before and escaped every single time. These are its battle scars — its proof of survival.</p>
+    <p><span class="tech-pill">Metaphor</span> <span class="kw">"Like medals with their ribbons"</span> — the hooks become military medals. The fish is now a war veteran who has survived multiple battles. This is the moment the poem transforms entirely.</p>
+    <p><span class="tech-pill">Personification</span> <span class="kw">"beard of wisdom"</span> — the fish is now a wise old man. "Wisdom" comes from surviving experience. This fish has earned its place in the world.</p>
+    <div class="box b-analogy"><span class="ico">🎖️</span><div><div class="box-label">Think of it like this</div><p>Imagine meeting someone very old covered in scars. Instead of pity, you realise each scar is a story of survival — they got knocked down five times and got back up six. That's the fish. The scars aren't weakness; they're proof of resilience. Bishop sees herself in this creature.</p></div></div>
+  </div>
+
+  <div class="stanza-block">
+    <div class="stanza-label">Lines 65–76 — Victory and Release (The Epiphany)</div>
+    <div class="poem-text">I stared and stared<br>and victory filled up<br>the little rented boat,<br>from the pool of bilge<br>where oil had spread a rainbow<br>around the rusted engine<br>to the bailer rusted orange,<br>the sun-cracked thwarts,<br>the oarlocks on their strings,<br>the gunnels — until everything<br>was rainbow, rainbow, rainbow!<br>And I let the fish go.</div>
+    <h3>What's Happening — THE EPIPHANY</h3>
+    <p><span class="tech-pill">Colour Imagery</span> The poem begins in dull browns and ends in an explosion of colour. Oil on bilge water creates a rainbow — beauty found in the dirtiest, most functional part of the boat.</p>
+    <p><span class="tech-pill">Repetition</span> <span class="kw">"rainbow, rainbow, rainbow!"</span> — the triad and exclamation mark signal the epiphany: a burst of joy, wonder, and realisation flooding through her. Three repetitions = completeness, fullness, overflow.</p>
+    <p>The final line — <span class="kw">"And I let the fish go."</span> — is five words after 75 lines of build-up. The simplicity is the power. She gives the fish its freedom because it has earned it. Perhaps she finds a kind of freedom herself in letting go.</p>
+    <div class="box b-exam"><span class="ico">📝</span><div><div class="box-label">Exam Tip — The Ending</div><p>The contrast between the setting (dirty, oily, rusted boat) and the rainbow perfectly embodies Bishop's philosophy: <em>beauty exists in unexpected, overlooked places</em>. If asked about a moment of insight or how she uses language to create effect, this ending is always your best example.</p></div></div>
+  </div>
+
+</div>
+
+<!-- ── KEY QUOTES ── -->
+<div class="tab-panel" id="quotes">
+
+  <div class="acc">
+    <button class="acc-btn open" onclick="tog(this)">"He didn't fight. He hadn't fought at all." (Lines 5–6) <span class="arr">▼</span></button>
+    <div class="acc-body open">
+      <div class="quote-block"><blockquote>"He didn't fight. He hadn't fought at all."</blockquote>
+      <div class="quote-ref">Lines 5–6 — The very first description</div>
+      <div class="quote-body">
+        <p><span class="tech-pill">Repetition</span> The repetition of "fight" with the addition of "at all" deepens the emphasis. This is unusual behaviour for a caught fish — its stillness is dignified, almost otherworldly.</p>
+        <p>Already calling it "he" (not "it") signals that Bishop is granting the fish personhood from the opening lines. This small pronoun choice sets up everything that follows.</p>
+        <p><strong>Why it matters:</strong> The fish's passivity is what makes her look. If it fought back she'd land it and move on. Its stillness creates the space for close observation — which is the whole point of Bishop's poetry.</p>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="acc">
+    <button class="acc-btn" onclick="tog(this)">"his brown skin hung in strips / like ancient wallpaper" (Lines 10–11) <span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="quote-block"><blockquote>"his brown skin hung in strips / like ancient wallpaper"</blockquote>
+      <div class="quote-ref">Lines 10–11</div>
+      <div class="quote-body">
+        <p><span class="tech-pill">Simile</span> <span class="tech-pill">Domestic Imagery</span> "Ancient wallpaper" is deliberately homely — something from indoors, something old, worn but once decorative. It makes the exotic (old fish) feel familiar and even affectionate.</p>
+        <p>"Ancient" is key — it gives the fish age, history, and dignity. Not "old" or "damaged" — "ancient," like a monument or an artefact.</p>
+        <p>Immediately followed by beauty: "shapes like full-blown roses / stained and lost through age." She refuses to stop at the unpleasant — she finds the aesthetic even in decay.</p>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="acc">
+    <button class="acc-btn" onclick="tog(this)">"Like medals with their ribbons / frayed and wavering, / a five-haired beard of wisdom" (Lines 61–63) <span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="quote-block"><blockquote>"Like medals with their ribbons / frayed and wavering, / a five-haired beard of wisdom / trailing from his aching jaw."</blockquote>
+      <div class="quote-ref">Lines 61–64 — The emotional turning point</div>
+      <div class="quote-body">
+        <p><span class="tech-pill">Extended Metaphor</span> <span class="tech-pill">Personification</span> The hooks become military medals — the fish is a veteran. "Frayed and wavering" — the ribbons (lines) are old and worn, just like real battle medals.</p>
+        <p>"Beard of wisdom" — the fish is now a wise elder, its experience encoded in the very hooks still in its jaw. Wisdom comes from surviving. The fish has survived five captures. That is extraordinary.</p>
+        <p><strong>Link to Bishop's life:</strong> She too had survived enormous hardships. This is the moment she sees herself in the fish — a fellow survivor carrying the marks of past struggles.</p>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="acc">
+    <button class="acc-btn" onclick="tog(this)">"until everything / was rainbow, rainbow, rainbow! / And I let the fish go." (Lines 74–76) <span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="quote-block"><blockquote>"until everything / was rainbow, rainbow, rainbow! / And I let the fish go."</blockquote>
+      <div class="quote-ref">Lines 74–76 — The epiphany and ending</div>
+      <div class="quote-body">
+        <p><span class="tech-pill">Repetition / Triad</span> Three "rainbows" — Bishop's signature technique for marking a moment of intense feeling. The excess of the word mirrors the excess of joy and wonder flooding through her.</p>
+        <p><span class="tech-pill">Colour Imagery</span> The poem moves from dull browns (Line 1) to this explosion of colour. The rainbow is formed by oil on bilge water — beauty born from the ugliest part of the scene. This is Bishop's philosophy in miniature.</p>
+        <p>"And I let the fish go." — understated, five words, enormous weight. The simplicity is the power. Everything has built to this moment of recognition and release.</p>
+        <div class="box b-link"><span class="ico">🔗</span><div><div class="box-label">Link to Other Poems</div><p>Compare to the release at the end of "Filling Station" ("Somebody loves us all.") — both are quiet, understated epiphany lines that arrive after long build-ups of observation. Both suggest Bishop's belief that close attention to the world reveals hidden grace.</p></div></div>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="acc">
+    <button class="acc-btn" onclick="tog(this)">"battered and venerable / and homely" (Lines 8–9) — The Defining Triad <span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="quote-block"><blockquote>"He hung a grunting weight, / battered and venerable / and homely."</blockquote>
+      <div class="quote-ref">Lines 7–9</div>
+      <div class="quote-body">
+        <p><span class="tech-pill">Triad</span> Three adjectives that perfectly capture the fish: <span class="kw">battered</span> (damaged by life), <span class="kw">venerable</span> (deserving deep respect), <span class="kw">homely</span> (ordinary-looking, plain). These three together say everything about how Bishop sees the fish and, by extension, how she sees resilience and worth.</p>
+        <p>"Venerable" is an extraordinary word choice for a fish — it is typically reserved for religious figures, ancient institutions, elders. Using it here immediately elevates the fish to a figure of moral weight.</p>
+      </div></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ── TECHNIQUES ── -->
+<div class="tab-panel" id="techniques">
+
+  <div class="info-card">
+    <h2>🎨 Poetic Techniques — Full Breakdown</h2>
+    <p>Your notes (from the image you uploaded) list these techniques. Here they are explained in full with examples from the poem.</p>
+  </div>
+
+  <div class="acc">
+    <button class="acc-btn open" onclick="tog(this)">Sound — Alliteration, Assonance, Sibilance <span class="arr">▼</span></button>
+    <div class="acc-body open">
+      <p><strong>What it is:</strong> Sound devices that speed up or slow down the poem based on the speaker's excitement or the subject matter.</p>
+      <p><strong>Examples:</strong></p>
+      <ul style="padding-left:20px;margin-top:8px;">
+        <li><span class="kw">Sibilance:</span> "shiny entrails," "sea-lice," "stared and stared" — the soft 's' sounds slow the poem down, creating a sense of quiet, close observation</li>
+        <li><span class="kw">Alliteration:</span> "battered and venerable" — the repeated 'v' creates emphasis</li>
+        <li><span class="kw">Assonance:</span> The 'o' sounds in "coarse," "bones," "blown" create a flowing, musical quality</li>
+      </ul>
+      <div class="box b-exam"><span class="ico">📝</span><div><div class="box-label">Exam Tip</div><p>When discussing sound, always explain the <em>effect</em> — don't just name the device. "The sibilance in 'stared and stared' slows the line, creating a sense of the speaker's absorbed, reverent attention."</p></div></div>
+    </div>
+  </div>
+
+  <div class="acc">
+    <button class="acc-btn" onclick="tog(this)">Enjambment — The Run-On Lines <span class="arr">▼</span></button>
+    <div class="acc-body">
+      <p><strong>What it is:</strong> Lines that run into the next without a pause at the end — no full stop or comma at the line break.</p>
+      <p><strong>Effect in The Fish:</strong> The poem flows almost like prose being spoken aloud — like someone excitedly describing what they saw. The enjambment mirrors the speaker's breathless, building observation as she discovers more and more detail about the fish.</p>
+      <p><strong>Example:</strong> "and then I saw / that from his lower lip / — if you could call it a lip —" — the enjambment here keeps pulling us forward, mimicking the speaker's momentum as she makes her discovery.</p>
+    </div>
+  </div>
+
+  <div class="acc">
+    <button class="acc-btn" onclick="tog(this)">Repetition and Triads <span class="arr">▼</span></button>
+    <div class="acc-body">
+      <p><strong>What it is:</strong> Repeating words or phrases for emphasis; triads are groups of three words/phrases.</p>
+      <p><strong>Examples:</strong></p>
+      <ul style="padding-left:20px;margin-top:8px;">
+        <li>"He didn't fight. He hadn't fought at all." — repetition of "fight" with intensification</li>
+        <li>"battered and venerable and homely" — triad of adjectives</li>
+        <li>"rainbow, rainbow, rainbow!" — the epiphany. Three repetitions = completeness and overflow of feeling</li>
+        <li>"I stared and stared" — repetition creates a sense of absorbed wonder</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="acc">
+    <button class="acc-btn" onclick="tog(this)">Similes — Domestic and Unusual <span class="arr">▼</span></button>
+    <div class="acc-body">
+      <p><strong>Your notes say:</strong> "As and like something else: help the reader understand her viewpoint, these are straightforward. Some are also domestic/homely."</p>
+      <p><strong>Domestic similes:</strong></p>
+      <ul style="padding-left:20px;margin-top:8px;">
+        <li>"like ancient wallpaper" — inside the home, old, worn but once decorative</li>
+        <li>"packed in like feathers" (the flesh) — familiar, soft, domestic</li>
+        <li>"like a big peony" (the swim bladder) — like a garden flower</li>
+      </ul>
+      <p><strong>More striking similes:</strong></p>
+      <ul style="padding-left:20px;margin-top:8px;">
+        <li>"Like medals with their ribbons" — the hooks as war medals</li>
+        <li>"like the tipping of an object toward the light" — the shifting of the eyes</li>
+      </ul>
+      <p><strong>Effect:</strong> The domestic similes make the unfamiliar fish feel familiar and even affectionate. They show Bishop's observational style — using what she knows (home, everyday objects) to describe what she sees.</p>
+    </div>
+  </div>
+
+  <div class="acc">
+    <button class="acc-btn" onclick="tog(this)">Personification — Making the Fish Human <span class="arr">▼</span></button>
+    <div class="acc-body">
+      <p><strong>Your notes say:</strong> "Gives the fish human qualities — allowing us to understand it and empathise with it."</p>
+      <p><strong>Examples:</strong></p>
+      <ul style="padding-left:20px;margin-top:8px;">
+        <li>"He" throughout — not "it"</li>
+        <li>"sullen face, the mechanism of his jaw" — human facial anatomy</li>
+        <li>"if you could call it a lip" — she is reaching for human vocabulary to describe the fish, half-aware of the stretch she's making</li>
+        <li>"beard of wisdom" — the fish as a wise old man</li>
+        <li>"his aching jaw" — attributing pain and physical feeling to the fish</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="acc">
+    <button class="acc-btn" onclick="tog(this)">Specialist Language — Authentic Voice <span class="arr">▼</span></button>
+    <div class="acc-body">
+      <p><strong>Your notes say:</strong> "Specialised language specific to boating — 'Wire leader,' 'swivel,' 'bilge,' 'bailer,' 'gunnels' — makes her account legitimate and authentic."</p>
+      <p><strong>Effect:</strong> Using the correct technical vocabulary for fishing and boating establishes Bishop as a <em>real fisherwoman</em> who knows what she's talking about. This gives the poem authority and credibility — we trust her description because she clearly has the knowledge to back it up.</p>
+      <p>It also grounds the poem in a very specific, real world. This is not a symbolic or imaginary fish in a symbolic ocean — it is a real fish, in a real rented boat, with real fishing equipment. The specificity makes the emotional journey more powerful.</p>
+    </div>
+  </div>
+
+  <div class="acc">
+    <button class="acc-btn" onclick="tog(this)">No Rhyme Scheme — The Conversational Narrative <span class="arr">▼</span></button>
+    <div class="acc-body">
+      <p><strong>Your notes say:</strong> "No rhyming scheme, very formal, written as a narrative with conversational tone. As if telling a story. 'From his lower lip — if you could call it a lip.'"</p>
+      <p><strong>Effect:</strong> The absence of a rhyme scheme makes the poem feel like natural speech — like Bishop is telling us what happened, exactly as it happened, in real time. This intimacy is crucial: we are placed beside her in the boat, sharing the experience.</p>
+      <p>The conversational asides ("if you could call it a lip," "I think") reinforce this — she is thinking out loud, inviting us into her mind.</p>
+    </div>
+  </div>
+
+  <div class="acc">
+    <button class="acc-btn" onclick="tog(this)">Colour Imagery — The Emotional Journey <span class="arr">▼</span></button>
+    <div class="acc-body">
+      <p><strong>Your notes say:</strong> "Colour: rot and old, to hope-filled and bright."</p>
+      <p>The poem's colour arc perfectly traces its emotional arc:</p>
+      <ul style="padding-left:20px;margin-top:8px;">
+        <li><strong>Opening:</strong> "brown," "darker brown," "tarnished tinfoil" — dull, earthy, aged</li>
+        <li><strong>Middle:</strong> "dramatic reds and blacks," "pink swim-bladder like a big peony" — richer colour, more life</li>
+        <li><strong>End:</strong> "orange," and then the explosion — "rainbow, rainbow, rainbow!" — full spectrum of colour, hope, joy</li>
+      </ul>
+      <p>Crucially, the rainbow is made from oil on dirty bilge water — beauty found in the most unglamorous, functional part of the boat. This is Bishop's philosophy: extraordinary beauty hides in ordinary, even ugly, places.</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- ── CONTEXT ── -->
+<div class="tab-panel" id="context">
+
+  <div class="info-card">
+    <h2>🧭 Biographical Context — Why Bishop Wrote This</h2>
+    <p>Bishop was a keen fisherwoman, learned during her happy years living with her grandparents in Nova Scotia as a child. Fishing was one of the few sources of joy and stability in an otherwise turbulent childhood.</p>
+    <p>She wrote this poem in Florida, c.1940, during a period of relative calm in her life. But she was already dealing with alcoholism, depression, and a deep sense of loneliness. In 1948, she wrote to Robert Lowell: "When you write my epitaph you must say I was the loneliest person who ever lived."</p>
+    <p>The fish, battered but surviving, carrying the marks of five previous escapes "like medals" — this is Bishop's own resilience reflected back at her. <strong>She identifies with the fish.</strong> The act of letting it go is an act of recognition: this creature has earned its freedom, just as she might hope to earn hers.</p>
+  </div>
+
+  <div class="info-card">
+    <h2>📖 The Biblical Undertone</h2>
+    <p>Fish have enormous symbolic weight in Christian tradition — they represent Christ, faith, transformation. Five is also a significant number (the five wounds of Christ). The "five old pieces of fish-line" could carry a quiet religious resonance, though Bishop never makes it explicit.</p>
+    <p>More likely, the number five simply reinforces the fish's extraordinary resilience — five captures, five escapes. The accumulation of the number makes the survival feel almost miraculous.</p>
+  </div>
+
+  <div class="two-col">
+    <div class="box b-link" style="margin:0;">
+      <span class="ico">🔗</span>
+      <div><div class="box-label">Links to Other Bishop Poems</div>
+      <ul style="padding-left:16px;font-size:0.9rem;">
+        <li><strong>The Prodigal:</strong> Both feature a figure who has survived repeated hardship. The Prodigal's "almost might endure" vs the fish's medals</li>
+        <li><strong>Filling Station:</strong> Both end with a quiet epiphany after close observation</li>
+        <li><strong>The Armadillo:</strong> Both show deep empathy for animals as sentient beings</li>
+        <li><strong>Sestina:</strong> The child looks into the grandmother's almanac as Bishop looks into the fish's eyes — both seeking connection and understanding</li>
+      </ul>
+      </div>
+    </div>
+    <div class="box b-exam" style="margin:0;">
+      <span class="ico">📝</span>
+      <div><div class="box-label">Past Exam Links</div>
+      <ul style="padding-left:16px;font-size:0.9rem;">
+        <li><strong>2017:</strong> "language and imagery to confront life's harsh realities" — use this poem as Exhibit A</li>
+        <li><strong>2016:</strong> "highly detailed observation of people, places and events" — this poem is the perfect example</li>
+        <li><strong>2013:</strong> "carefully judged use of language aids the reader to uncover the intensity of feeling" — the ending here perfectly demonstrates this</li>
+        <li><strong>2009:</strong> "interesting questions delivered by means of a unique style" — the poem asks: what does something's survival mean? What do we owe survivors?</li>
+      </ul>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</div><!-- /main section -->
+
+<button class="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+function openTab(id) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function tog(btn) {
+  btn.classList.toggle('open');
+  btn.nextElementSibling.classList.toggle('open');
+}
+</script>
+</body>
+</html>
