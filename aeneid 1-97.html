@@ -111,11 +111,70 @@ body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);font
 .tip li{margin-bottom:4px;font-size:.85rem;}
 .bbtn{position:fixed;bottom:22px;right:22px;background:var(--text);color:#fff;padding:8px 16px;border-radius:50px;font-family:'Lexend',sans-serif;font-weight:600;font-size:12px;box-shadow:0 4px 12px rgba(0,0,0,.2);z-index:9999;border:none;cursor:pointer;}
 .res{display:none;margin-top:9px;padding:9px 12px;border-radius:8px;font-size:.85rem;font-weight:600;}
+
+/* ── MOBILE NAV ── */
+.nav-hamburger{display:none;background:none;border:2px solid var(--border);border-radius:8px;padding:4px 9px;font-size:1.1rem;cursor:pointer;line-height:1;}
+.nav-drawer{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.45);}
+.nav-drawer.open{display:block;}
+.nav-panel{position:absolute;top:0;left:0;width:72vw;max-width:280px;height:100%;background:#fff;padding:18px 14px;overflow-y:auto;display:flex;flex-direction:column;gap:7px;box-shadow:4px 0 24px rgba(0,0,0,.18);}
+.nav-panel .nt{width:100%;text-align:left;border-radius:10px;font-size:.8rem;padding:9px 14px;}
+.nav-panel-title{font-family:'Lexend Mega',sans-serif;font-size:.75rem;font-weight:700;margin-bottom:4px;color:var(--sub);padding-left:4px;}
+@media(max-width:700px){.nav-tabs{display:none;}.nav-hamburger{display:block;}}
+
+/* ── PROGRESS SYSTEM ── */
+.prog-bar-wrap{background:var(--border);border-radius:20px;height:10px;overflow:hidden;margin:6px 0 2px;}
+.prog-bar-fill{height:100%;border-radius:20px;background:linear-gradient(90deg,var(--green),#34d399);transition:width .5s ease;}
+.prog-label{font-size:.72rem;color:var(--sub);font-weight:600;}
+.mark-btn{margin-top:10px;padding:7px 16px;border:2px solid var(--green);background:#fff;color:var(--green);border-radius:20px;font-family:'Lexend',sans-serif;font-weight:700;font-size:.78rem;cursor:pointer;transition:all .15s;}
+.mark-btn.done{background:var(--green);color:#fff;}
+.mark-btn.done::before{content:'✓ ';}
+.prog-dashboard{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;margin-top:14px;}
+.prog-card{background:#fff;border:2px solid var(--border);border-radius:var(--radius);padding:14px;box-shadow:var(--shadow);}
+.prog-card h4{font-size:.78rem;font-weight:700;margin-bottom:6px;}
+.prog-card .pcount{font-size:1.4rem;font-weight:700;color:var(--green);}
+.prog-card .ptotal{font-size:.75rem;color:var(--sub);}
+.prog-reset{margin-top:10px;padding:6px 14px;background:none;border:2px solid #f87171;color:#f87171;border-radius:20px;font-family:'Lexend',sans-serif;font-weight:600;font-size:.75rem;cursor:pointer;}
+
+/* ── SPACED REPETITION ── */
+.sr-wrap{position:relative;}
+.sr-card-area{min-height:260px;display:flex;align-items:center;justify-content:center;}
+.sr-card{background:#fff;border:2px solid var(--border);border-radius:var(--radius);padding:28px 24px;width:100%;max-width:520px;text-align:center;box-shadow:var(--shadow);cursor:pointer;}
+.sr-card .lat{font-size:1.05rem;line-height:1.65;}
+.sr-card .sr-hint{font-size:.7rem;color:#aaa;margin-top:10px;}
+.sr-answer{display:none;margin-top:14px;font-size:.9rem;line-height:1.6;background:var(--blue-l);border-left:4px solid var(--blue);border-radius:0 8px 8px 0;padding:12px 14px;text-align:left;}
+.sr-btns{display:flex;gap:10px;justify-content:center;margin-top:14px;flex-wrap:wrap;}
+.sr-btn-got{padding:10px 24px;background:var(--green);color:#fff;border:none;border-radius:20px;font-family:'Lexend',sans-serif;font-weight:700;font-size:.85rem;cursor:pointer;}
+.sr-btn-miss{padding:10px 24px;background:#f87171;color:#fff;border:none;border-radius:20px;font-family:'Lexend',sans-serif;font-weight:700;font-size:.85rem;cursor:pointer;}
+.sr-btn-flip{padding:10px 24px;background:var(--blue);color:#fff;border:none;border-radius:20px;font-family:'Lexend',sans-serif;font-weight:700;font-size:.85rem;cursor:pointer;}
+.sr-status{text-align:center;font-size:.8rem;color:var(--sub);margin-bottom:10px;font-weight:600;}
+.sr-done{text-align:center;padding:40px 20px;}
+.sr-done h3{font-size:1.2rem;font-weight:700;margin-bottom:8px;}
+.sr-done p{font-size:.9rem;color:var(--sub);}
+.sr-restart{margin-top:16px;padding:10px 24px;background:var(--gold);color:#fff;border:none;border-radius:20px;font-family:'Lexend',sans-serif;font-weight:700;font-size:.85rem;cursor:pointer;}
+
+/* ── BLIND TRANSLATION ── */
+.blind-wrap{background:var(--card);border-radius:var(--radius);border:2px solid var(--border);padding:18px;margin-bottom:14px;box-shadow:var(--shadow);}
+.blind-lat{background:var(--gold-l);border-left:4px solid var(--gold);border-radius:0 8px 8px 0;padding:13px 15px;margin-bottom:12px;font-size:.9rem;line-height:1.8;}
+.blind-ta{width:100%;min-height:110px;border:2px solid var(--border);border-radius:10px;padding:12px;font-family:'Lexend',sans-serif;font-size:.88rem;line-height:1.7;resize:vertical;outline:none;color:var(--text);}
+.blind-ta:focus{border-color:var(--blue);}
+.blind-reveal{margin-top:10px;padding:8px 18px;background:var(--teal);color:#fff;border:none;border-radius:20px;font-family:'Lexend',sans-serif;font-weight:600;font-size:.82rem;cursor:pointer;}
+.blind-answer{display:none;margin-top:12px;background:var(--blue-l);border-left:4px solid var(--blue);border-radius:0 8px 8px 0;padding:13px 15px;font-size:.88rem;line-height:1.75;}
+
+/* ── KEY PHRASES TAB ── */
+.kp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin-top:10px;}
+.kp-card{background:#fff;border:2px solid var(--border);border-radius:var(--radius);padding:15px;box-shadow:var(--shadow);}
+.kp-latin{font-family:'Lexend',sans-serif;font-weight:700;font-size:.95rem;color:var(--text);margin-bottom:5px;}
+.kp-eng{font-size:.85rem;color:var(--sub);margin-bottom:7px;line-height:1.5;}
+.kp-badge{display:inline-block;font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:2px 8px;border-radius:20px;margin-right:4px;}
+.kp-must{background:#fef3c7;color:#92400e;}
+.kp-dev{background:#ede9fe;color:#5b21b6;}
+.kp-story{background:#d1fae5;color:#065f46;}
 </style>
 </head>
 <body>
 
 <div class="topbar">
+  <button class="nav-hamburger" onclick="openDrawer()" aria-label="Menu">☰</button>
   <span class="brand">📜 Aeneid VI · Lines 1–97</span>
   <div class="nav-tabs">
     <button class="nt active" onclick="sp('home',this)">🏠 Home</button>
@@ -125,10 +184,34 @@ body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);font
     <button class="nt tp"     onclick="sp('l3',this)">L 42–76</button>
     <button class="nt tt"     onclick="sp('l4',this)">L 77–97</button>
     <button class="nt tgr"    onclick="sp('vocab',this)">📝 Vocab</button>
-    <button class="nt tg"     onclick="sp('quiz',this)">🃏 Flashcards</button>
-    <button class="nt tb"     onclick="sp('blank',this)">✏️ Fill-in-Blank</button>
-    <button class="nt tr"     onclick="sp('order',this)">🔀 Line Order</button>
-    <button class="nt tp"     onclick="sp('mock',this)">🎯 Mock Exam</button>
+    <button class="nt tg"     onclick="sp('phrases',this)">⭐ Key Phrases</button>
+    <button class="nt tb"     onclick="sp('quiz',this)">🃏 Flashcards</button>
+    <button class="nt tr"     onclick="sp('sr',this)">🔁 Spaced Rep</button>
+    <button class="nt tp"     onclick="sp('blank',this)">✏️ Fill-in-Blank</button>
+    <button class="nt tt"     onclick="sp('blind',this)">🙈 Blind Trans</button>
+    <button class="nt tgr"    onclick="sp('order',this)">🔀 Line Order</button>
+    <button class="nt tg"     onclick="sp('mock',this)">🎯 Mock Exam</button>
+  </div>
+</div>
+
+<!-- MOBILE DRAWER -->
+<div class="nav-drawer" id="navDrawer" onclick="closeDrawer(event)">
+  <div class="nav-panel" id="navPanel">
+    <div class="nav-panel-title">📜 Aeneid VI · Lines 1–97</div>
+    <button class="nt" onclick="spd('home',this)">🏠 Home</button>
+    <button class="nt tg"  onclick="spd('story',this)">📖 Story Guide</button>
+    <button class="nt tb"  onclick="spd('l1',this)">⚓ Lines 1–13</button>
+    <button class="nt tr"  onclick="spd('l2',this)">🦋 Lines 14–41</button>
+    <button class="nt tp"  onclick="spd('l3',this)">🙏 Lines 42–76</button>
+    <button class="nt tt"  onclick="spd('l4',this)">⚔️ Lines 77–97</button>
+    <button class="nt tgr" onclick="spd('vocab',this)">📝 Vocabulary</button>
+    <button class="nt tg"  onclick="spd('phrases',this)">⭐ Key Phrases</button>
+    <button class="nt tb"  onclick="spd('quiz',this)">🃏 Flashcards</button>
+    <button class="nt tr"  onclick="spd('sr',this)">🔁 Spaced Repetition</button>
+    <button class="nt tp"  onclick="spd('blank',this)">✏️ Fill-in-Blank</button>
+    <button class="nt tt"  onclick="spd('blind',this)">🙈 Blind Translation</button>
+    <button class="nt tgr" onclick="spd('order',this)">🔀 Line Order</button>
+    <button class="nt tg"  onclick="spd('mock',this)">🎯 Mock Exam</button>
   </div>
 </div>
 
@@ -137,6 +220,18 @@ body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);font
   <div class="hero" style="background:linear-gradient(135deg,#1a1a2e,#3a2a5e);">
     <div class="hc"><div class="hbadge">Leaving Cert Latin</div><h1>Aeneid Book VI — Lines 1–97</h1><p>Every line in English + Latin, memory tricks, vocabulary, fill-in-blank, ordering &amp; mock exam passages.</p></div>
   </div>
+
+  <!-- PROGRESS DASHBOARD -->
+  <div class="sg">
+    <div class="st"><div class="si" style="background:var(--green-l)">📊</div>Your Progress</div>
+    <div class="prog-dashboard" id="progDashboard">
+      <div class="prog-card"><div class="pcount" id="pc-sections">0</div><div class="ptotal">/ 4 line sections studied</div><div class="prog-bar-wrap"><div class="prog-bar-fill" id="pb-sections" style="width:0%"></div></div></div>
+      <div class="prog-card"><div class="pcount" id="pc-sr">0</div><div class="ptotal">/ 30 spaced-rep cards mastered</div><div class="prog-bar-wrap"><div class="prog-bar-fill" id="pb-sr" style="width:0%"></div></div></div>
+      <div class="prog-card"><div class="pcount" id="pc-blind">0</div><div class="ptotal">/ 4 blind translations attempted</div><div class="prog-bar-wrap"><div class="prog-bar-fill" id="pb-blind" style="width:0%"></div></div></div>
+    </div>
+    <button class="prog-reset" onclick="resetProgress()">↺ Reset all progress</button>
+  </div>
+
   <div class="wg">
     <div class="wc" onclick="sp('story',document.querySelector('.tg'))"><div class="wci">📖</div><div class="wct" style="color:var(--gold)">Story Guide</div><div class="wcs">What's happening &amp; why</div></div>
     <div class="wc" onclick="sp('l1',document.querySelector('.tb'))"><div class="wci">⚓</div><div class="wct" style="color:var(--blue)">Lines 1–13</div><div class="wcs">Arrival at Cumae · The Sibyl</div></div>
@@ -144,17 +239,22 @@ body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);font
     <div class="wc" onclick="sp('l3',document.querySelector('.tp'))"><div class="wci">🙏</div><div class="wct" style="color:var(--purple)">Lines 42–76</div><div class="wcs">Sibyl's frenzy · Aeneas prays</div></div>
     <div class="wc" onclick="sp('l4',document.querySelector('.tt'))"><div class="wci">⚔️</div><div class="wct" style="color:var(--teal)">Lines 77–97</div><div class="wcs">The prophecy · Wars &amp; blood</div></div>
     <div class="wc" onclick="sp('vocab',document.querySelector('.tgr'))"><div class="wci">📝</div><div class="wct" style="color:var(--green)">Key Vocab</div><div class="wcs">All key words &amp; phrases</div></div>
-    <div class="wc" onclick="sp('quiz',document.querySelector('.tg'))"><div class="wci">🃏</div><div class="wct" style="color:var(--gold)">Flashcards</div><div class="wcs">Latin → English drill</div></div>
-    <div class="wc" onclick="sp('blank',document.querySelector('.tb'))"><div class="wci">✏️</div><div class="wct" style="color:var(--blue)">Fill-in-Blank</div><div class="wcs">Complete the translation</div></div>
-    <div class="wc" onclick="sp('order',document.querySelector('.tr'))"><div class="wci">🔀</div><div class="wct" style="color:var(--red)">Line Order</div><div class="wcs">Rebuild scrambled passages</div></div>
-    <div class="wc" onclick="sp('mock',document.querySelector('.tp'))"><div class="wci">🎯</div><div class="wct" style="color:var(--purple)">Mock Exam</div><div class="wcs">Translate, then reveal answer</div></div>
+    <div class="wc" onclick="sp('phrases',document.querySelector('.tg'))"><div class="wci">⭐</div><div class="wct" style="color:var(--gold)">Key Phrases</div><div class="wcs">Must-know Latin at a glance</div></div>
+    <div class="wc" onclick="sp('quiz',document.querySelector('.tb'))"><div class="wci">🃏</div><div class="wct" style="color:var(--blue)">Flashcards</div><div class="wcs">Latin → English drill</div></div>
+    <div class="wc" onclick="sp('sr',document.querySelector('.tr'))"><div class="wci">🔁</div><div class="wct" style="color:var(--red)">Spaced Repetition</div><div class="wcs">Smart review · missed cards repeat</div></div>
+    <div class="wc" onclick="sp('blank',document.querySelector('.tp'))"><div class="wci">✏️</div><div class="wct" style="color:var(--purple)">Fill-in-Blank</div><div class="wcs">Complete the translation</div></div>
+    <div class="wc" onclick="sp('blind',document.querySelector('.tt'))"><div class="wci">🙈</div><div class="wct" style="color:var(--teal)">Blind Translation</div><div class="wcs">Latin only → write your own</div></div>
+    <div class="wc" onclick="sp('order',document.querySelector('.tgr'))"><div class="wci">🔀</div><div class="wct" style="color:var(--green)">Line Order</div><div class="wcs">Rebuild scrambled passages</div></div>
+    <div class="wc" onclick="sp('mock',document.querySelector('.tg'))"><div class="wci">🎯</div><div class="wct" style="color:var(--gold)">Mock Exam</div><div class="wcs">Translate, then reveal answer</div></div>
   </div>
   <div class="tip"><h3>💡 How to use this guide</h3><ul>
     <li>Start with <strong>Story Guide</strong> — understand the big picture before memorising lines.</li>
-    <li>Work through each <strong>line section</strong> — study the parallel Latin/English text.</li>
-    <li>Drill <strong>Flashcards</strong> daily — tap to flip Latin → English.</li>
+    <li>Work through each <strong>line section</strong> — study the parallel Latin/English text, then click <em>Mark as Studied</em>.</li>
+    <li>Drill <strong>Spaced Repetition</strong> daily — missed cards come back automatically until mastered.</li>
+    <li>Use <strong>Blind Translation</strong> for the highest-value exam prep — write from Latin only, then check.</li>
     <li>Use <strong>Fill-in-Blank</strong> and <strong>Line Order</strong> to test yourself actively.</li>
     <li><strong>Mock Exam</strong> — translate the Latin on paper, then click Show Answer to check.</li>
+    <li>Check <strong>⭐ Key Phrases</strong> the night before your exam — all must-know phrases in one place.</li>
   </ul></div>
 </div>
 
@@ -251,6 +351,9 @@ body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);font
       <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fi"><div class="ff">Who is Trivia?<span class="fh">tap</span></div><div class="fb">Diana/Hecate — goddess of crossroads, the moon, and the Underworld. Her sacred groves are near the Sibyl's cave.</div></div></div>
     </div>
   </div>
+  <div style="text-align:center;padding:10px 0 4px;">
+    <button class="mark-btn" id="mark-l1" onclick="markStudied('l1',this)">Mark Lines 1–13 as Studied</button>
+  </div>
 </div>
 
 <!-- LINES 14-41 -->
@@ -302,6 +405,9 @@ body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);font
       <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fi"><div class="ff"><span class="lat">prolesque biformis</span><span class="fh">tap</span></div><div class="fb">Twin-shaped offspring = the Minotaur (half man, half bull). Born of Pasiphae's unnatural love for a bull.</div></div></div>
     </div>
   </div>
+  <div style="text-align:center;padding:10px 0 4px;">
+    <button class="mark-btn" id="mark-l2" onclick="markStudied('l2',this)">Mark Lines 14–41 as Studied</button>
+  </div>
 </div>
 
 <!-- LINES 42-76 -->
@@ -352,6 +458,9 @@ body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);font
       <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fi"><div class="ff"><span class="lat">Italiae fugientis prendimus oras</span><span class="fh">tap</span></div><div class="fb">We grasp the shores of Italy which elude us. fugientis = fleeing/elusive — Italy always seemed to slip away from Aeneas.</div></div></div>
     </div>
   </div>
+  <div style="text-align:center;padding:10px 0 4px;">
+    <button class="mark-btn" id="mark-l3" onclick="markStudied('l3',this)">Mark Lines 42–76 as Studied</button>
+  </div>
 </div>
 
 <!-- LINES 77-97 -->
@@ -400,6 +509,115 @@ body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);font
       <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fi"><div class="ff">Who is <span class="lat">alius Achilles natus et ipse dea</span>?<span class="fh">tap</span></div><div class="fb">Another Achilles, also goddess-born = Turnus. The Italian warrior who opposes Aeneas, son of goddess Venilia. Parallels original Achilles (son of Thetis).</div></div></div>
       <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fi"><div class="ff"><span class="lat">tu ne cede malis, sed contra audentior ito</span><span class="fh">tap</span></div><div class="fb">Do not give in to evils, but go more boldly against them. THE most important command in the passage — defines Aeneas's character.</div></div></div>
       <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fi"><div class="ff"><span class="lat">Graia pandetur ab urbe</span><span class="fh">tap</span></div><div class="fb">Will be opened from a Greek city — salvation comes from the enemy! (Evander's Pallanteum/Arcadia, where Rome will be built.)</div></div></div>
+    </div>
+  </div>
+  <div style="text-align:center;padding:10px 0 4px;">
+    <button class="mark-btn" id="mark-l4" onclick="markStudied('l4',this)">Mark Lines 77–97 as Studied</button>
+  </div>
+</div>
+
+<!-- KEY PHRASES -->
+<div class="page" id="page-phrases">
+  <div class="hero" style="background:linear-gradient(135deg,#b45309,#d97706);">
+    <div class="hc"><div class="hbadge">Last-Minute Revision</div><h1>⭐ Key Phrases Quick-Reference</h1><p>Every must-know Latin phrase — exam devices, essential translations, and key names. All in one place.</p></div>
+  </div>
+  <div class="sg">
+    <div class="st"><div class="si" style="background:var(--gold-l)">🎯</div>Must-Learn Latin (Exam Essentials)</div>
+    <div class="kp-grid">
+      <div class="kp-card"><div class="kp-latin lat">tu ne cede malis, sed contra audentior ito</div><div class="kp-eng">Do not give in to evils, but go more boldly against them.</div><span class="kp-badge kp-must">⭐ Most Important</span><span class="kp-badge kp-dev">Command</span></div>
+      <div class="kp-card"><div class="kp-latin lat">bella, horrida bella</div><div class="kp-eng">Wars, grim wars.</div><span class="kp-badge kp-must">⭐ Learn in Latin</span><span class="kp-badge kp-dev">Anaphora</span></div>
+      <div class="kp-card"><div class="kp-latin lat">deus ecce deus!</div><div class="kp-eng">The god, behold! The god!</div><span class="kp-badge kp-must">⭐ Learn in Latin</span><span class="kp-badge kp-dev">Anaphora</span></div>
+      <div class="kp-card"><div class="kp-latin lat">pius Aeneas</div><div class="kp-eng">The pious / dutiful Aeneas.</div><span class="kp-badge kp-must">⭐ Defining epithet</span></div>
+      <div class="kp-card"><div class="kp-latin lat">remigium alarum</div><div class="kp-eng">Oarage of wings — wings compared to oars.</div><span class="kp-badge kp-dev">Metaphor</span><span class="kp-badge kp-must">⭐ Famous</span></div>
+      <div class="kp-card"><div class="kp-latin lat">hic labor ille domus et inextricabilis error</div><div class="kp-eng">Here that house of toil, a maze inextricable. (= the Labyrinth)</div><span class="kp-badge kp-must">⭐ Famous phrase</span></div>
+      <div class="kp-card"><div class="kp-latin lat">bis conatus erat... bis patriae cecidere manus</div><div class="kp-eng">Twice he tried… twice the father's hands fell.</div><span class="kp-badge kp-dev">Anaphora (bis)</span><span class="kp-badge kp-story">Emotion</span></div>
+      <div class="kp-card"><div class="kp-latin lat">dente tenaci</div><div class="kp-eng">With biting tooth — the anchor gripping the seabed.</div><span class="kp-badge kp-dev">Metaphor</span></div>
+      <div class="kp-card"><div class="kp-latin lat">gelidus per dura cucurrit ossa tremor</div><div class="kp-eng">A cold shudder ran through their sturdy bones.</div><span class="kp-badge kp-story">Physical terror</span></div>
+      <div class="kp-card"><div class="kp-latin lat">foliis ne carmina manda</div><div class="kp-eng">Do not entrust your songs to leaves.</div><span class="kp-badge kp-must">⭐ Key request</span></div>
+      <div class="kp-card"><div class="kp-latin lat">Thybrim multo spumantem sanguine</div><div class="kp-eng">Tiber foaming with much blood.</div><span class="kp-badge kp-story">Prophecy image</span></div>
+      <div class="kp-card"><div class="kp-latin lat">Graia pandetur ab urbe</div><div class="kp-eng">Your safety shall be opened from a Greek city. (= Evander's Pallanteum)</div><span class="kp-badge kp-story">Paradox</span></div>
+      <div class="kp-card"><div class="kp-latin lat">cessas? cessas?</div><div class="kp-eng">Are you slow? Are you slow? (Sibyl shouts at Aeneas)</div><span class="kp-badge kp-dev">Anaphora</span></div>
+      <div class="kp-card"><div class="kp-latin lat">alius Latio iam partus Achilles, natus et ipse dea</div><div class="kp-eng">Another Achilles is provided in Latium, he too goddess-born. (= Turnus)</div><span class="kp-badge kp-story">Parallel</span></div>
+      <div class="kp-card"><div class="kp-latin lat">causa mali tanti coniunx iterum hospita</div><div class="kp-eng">The cause of all this woe is again an alien bride. (= Lavinia, like Helen)</div><span class="kp-badge kp-story">Pattern repeats</span></div>
+      <div class="kp-card"><div class="kp-latin lat">miserum!</div><div class="kp-eng">Alas! (Virgil's own interjection — authorial emotion)</div><span class="kp-badge kp-dev">Authorial voice</span></div>
+    </div>
+  </div>
+  <div class="sg">
+    <div class="st"><div class="si" style="background:var(--gold-l)">👥</div>Must-Know Names at a Glance</div>
+    <div class="kp-grid">
+      <div class="kp-card"><div class="kp-latin">Deiphobe, daughter of Glaucus</div><div class="kp-eng">The Sibyl's full name. Priestess of both Phoebus (Apollo) AND Trivia (Diana/Hecate).</div><span class="kp-badge kp-must">⭐ Full name required</span></div>
+      <div class="kp-card"><div class="kp-latin">Phoebus / Delius / Apollo</div><div class="kp-eng">Same god, three names. Delius = born on Delos. Phoebus = the bright one.</div><span class="kp-badge kp-must">⭐ Know all names</span></div>
+      <div class="kp-card"><div class="kp-latin">Trivia</div><div class="kp-eng">Diana/Hecate — goddess of crossroads, moon, underworld.</div></div>
+      <div class="kp-card"><div class="kp-latin">Turnus</div><div class="kp-eng">"Another Achilles" — Italian king who opposes Aeneas. Goddess-born (mother = Venilia).</div><span class="kp-badge kp-story">Parallel to Achilles</span></div>
+      <div class="kp-card"><div class="kp-latin">Daedalus</div><div class="kp-eng">Master craftsman. Flew from Crete. Built Labyrinth. Dedicated wings (remigium alarum) at Cumae.</div></div>
+      <div class="kp-card"><div class="kp-latin">Lavinium</div><div class="kp-eng">The promised city in Italy — where Trojans are fated to settle.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- SPACED REPETITION -->
+<div class="page" id="page-sr">
+  <div class="hero" style="background:linear-gradient(135deg,#be185d,#ec4899);">
+    <div class="hc"><div class="hbadge">Smart Review</div><h1>🔁 Spaced Repetition Drill</h1><p>Click "Got it" or "Missed it". Missed cards come back again until you master them all.</p></div>
+  </div>
+  <div class="sg">
+    <div class="sr-wrap">
+      <div class="sr-status" id="srStatus">Loading cards…</div>
+      <div class="sr-card-area" id="srCardArea">
+        <div class="sr-card" id="srCard" onclick="srFlip()">
+          <div class="lat" id="srLatin" style="font-size:1rem;"></div>
+          <div class="sr-hint">tap to reveal translation</div>
+          <div class="sr-answer" id="srAnswer"></div>
+        </div>
+      </div>
+      <div class="sr-btns" id="srBtns" style="display:none;">
+        <button class="sr-btn-miss" onclick="srResult(false)">✗ Missed it</button>
+        <button class="sr-btn-flip" onclick="srFlip()">👁 Reveal</button>
+        <button class="sr-btn-got" onclick="srResult(true)">✓ Got it</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BLIND TRANSLATION -->
+<div class="page" id="page-blind">
+  <div class="hero" style="background:linear-gradient(135deg,#0891b2,#22d3ee);">
+    <div class="hc"><div class="hbadge">Highest Difficulty</div><h1>🙈 Blind Translation</h1><p>Latin only — write your own translation from scratch, then reveal to compare. This is the closest thing to the actual exam.</p></div>
+  </div>
+  <div class="sg">
+    <div class="st"><div class="si" style="background:var(--teal-l)">🙈</div>Passage 1 — Lines 1–13</div>
+    <div class="blind-wrap">
+      <div class="blind-lat"><div class="plabel">🏛️ Latin — translate this:</div><span class="lat">Sic fatur lacrimans, classique immittit habenas et tandem Euboicis Cumarum adlabitur oris. obvertunt pelago proras; tum dente tenaci ancora fundabat navis et litora curvae praetexunt puppes. iuvenum manus emicat ardens litus in Hesperium. quaerit pars semina flammae abstrusa in venis silicis, pars densa ferarum tecta rapit silvas inventaque flumina monstrat. at pius Aeneas arces quibus altus Apollo praesidet horrendaeque procul secreta Sibyllae, antrum immane, petit, magnam cui mentem animumque Delius inspirat vates aperitque futura. iam subeunt Triviae lucos atque aurea tecta.</span></div>
+      <textarea class="blind-ta" placeholder="Write your translation here… take your time."></textarea>
+      <button class="blind-reveal" onclick="blindReveal('br1',this,'bl1')">👁 Reveal Correct Translation</button>
+      <div class="blind-answer" id="br1"><div class="plabel">🇬🇧 Correct Translation</div>Thus weeping, he speaks and gives reign to the fleet. And at length glides to the Euboean shores of Cumae. They turn their prows to the seas; then the anchor with biting tooth moored the ships, and the curved boats line the beach. Eagerly the band of warriors leaps out upon the Hesperian strand. Some seek the seeds of flame lurking in the veins of flint; some scour the woods, the thick layers of wild beasts and point out the discovered stream. But the good Aeneas seeks the heights on which high Apollo watches over, and a vast cavern — the retreat of the dread Sibyl — on whom the Delian prophet breathes his great mind and spirit, and reveals to her the future. And now they draw near to the groves of Trivia and the golden abode.</div>
+    </div>
+  </div>
+  <div class="sg">
+    <div class="st"><div class="si" style="background:var(--teal-l)">🙈</div>Passage 2 — Lines 14–41</div>
+    <div class="blind-wrap">
+      <div class="blind-lat"><div class="plabel">🏛️ Latin — translate this:</div><span class="lat">Daedalus, ut fama est, fugiens Minoia regna praepetibus pennis ausus se credere caelo insuetum per iter gelidas enavit ad Arctos, Chalcidicaque levis tandem super astitit arce. redditus his primum terris tibi, Phoebe, sacravit remigium alarum posuitque immania templa. in foribus letum Androgeo; tum pendere poenas Cecropidae iussi (miserum!) septena quotannis corpora natorum; stat ductis sortibus urna. contra elata mari respondet Cnosia tellus: hic crudelis amor tauri suppostaque furto Pasiphae mixtumque genus prolesque biformis Minotaurus inest, Veneris monimenta nefandae. hic labor ille domus et inextricabilis error; magnum reginae sed enim miseratus amorem Daedalus ipse dolos tecti ambagesque resolvit, caeca regens filo vestigia. tu quoque magnam partem opere in tanto, sineret dolor, Icare, haberes. bis conatus erat casus effingere in auro, bis patriae cecidere manus. Deiphobe Glauci, fatur quae talia regi: 'non hoc ista sibi tempus spectacula poscit; nunc grege de intacto septem mactare iuvencos praestiterit, totidem lectas ex more bidentis.'</span></div>
+      <textarea class="blind-ta" placeholder="Write your translation here…"></textarea>
+      <button class="blind-reveal" onclick="blindReveal('br2',this,'bl2')">👁 Reveal Correct Translation</button>
+      <div class="blind-answer" id="br2"><div class="plabel">🇬🇧 Correct Translation</div>Daedalus, as the story goes, when flying from the kingdom of Minos, dared to entrust himself on rapid wings to the skies. And floated along his unwanted path to the icy North, and at length lightly settled on the Chalcidian hill. First restored to this Earth, he consecrated to you, Phoebus, the oarage of his wings and built a mighty temple. On the doors is the death of Androgeos; then the children of Cecrops, ordered — alas! — to pay yearly the tribute of seven sons; there stands the urn, lots already drawn. Opposite, the Gnosian land: here the cruel love of the bull, Pasiphae mated by stealth, the Minotaur — record of wicked passion. Here, that house of toil, a maze inextricable. But Daedalus, pitying the great love of the princess, himself unwound the deceptive tangle of the palace, guiding blind feet by a thread. You too, O Icarus, would have a large share in this great work, if grief permitted it. Twice had he tried to depict your fall in gold, twice fell the father's hands. Deiphobe, daughter of Glaucus, addresses king Aeneas: "Not sights like these does the time demand! Now it would be better to sacrifice seven bullocks from the unbroken herd, and as many sheep duly chosen."</div>
+    </div>
+  </div>
+  <div class="sg">
+    <div class="st"><div class="si" style="background:var(--teal-l)">🙈</div>Passage 3 — Lines 42–76</div>
+    <div class="blind-wrap">
+      <div class="blind-lat"><div class="plabel">🏛️ Latin — translate this:</div><span class="lat">Excisum Euboicae latus ingens rupis in antrum, quo lati ducunt aditus centum, ostia centum, unde ruunt totidem voces, responsa Sibyllae. ventum erat ad limen, cum virgo 'poscere fata tempus' ait; 'deus ecce deus!' cui talia fanti ante fores subito non vultus, non color unus, non comptae mansere comae; sed pectus anhelum, et rabie fera corda tument, maiorque videri nec mortale sonans, adflata est numine quando iam propiore dei. 'cessas in vota precesque, Tros' ait 'Aenea? cessas? neque enim ante dehiscent attonitae magna ora domus.' et talia fata conticuit. gelidus Teucris per dura cucurrit ossa tremor. funditque preces rex pectore ab imo: 'Phoebe, gravis Troiae semper miserate labores, Dardana qui Paridis derexti tela manusque corpus in Aeacidae, magnas obeuntia terras tot maria intravi duce te penitusque repostas Massylum gentis praetentaque Syrtibus arva: iam tandem Italiae fugientis prendimus oras. da Latio considere Teucros errantisque deos agitataque numina Troiae. tum Phoebo et Triviae solido de marmore templum instituam festosque dies de nomine Phoebi. foliis tantum ne carmina manda, ne turbata volent rapidis ludibria ventis; ipsa canas oro.'</span></div>
+      <textarea class="blind-ta" placeholder="Write your translation here…"></textarea>
+      <button class="blind-reveal" onclick="blindReveal('br3',this,'bl3')">👁 Reveal Correct Translation</button>
+      <div class="blind-answer" id="br3"><div class="plabel">🇬🇧 Correct Translation</div>The huge side of the Euboean rock is hewn into a cavern, to where lead a hundred wide mouths, a hundred gateways. From where rush as many voices, the answers of the Sibyl. They had come to the threshold, when the maiden cries, "It is time to ask the oracles; the god, behold! The god!" As thus she spoke, suddenly neither her expression nor her colour was the same, nor did her tresses remain braided; but her bosom heaves, her wild heart swells with frenzy, and she appears taller to view; her voice has no mortal ring to it, since she has been inspired by the nearer presence of the god. "Are you hesitant to vow and pray? Are you slow, Trojan Aeneas? For till then the mighty mouths of the awestruck house will not gape open." So she spoke and was mute. A chill shudder ran through Trojans' sturdy frames. And the king pours forth prayers from the depths of his heart: "O Phoebus, who hast ever pitied the heavy woes of Troy, thou who didst guide the Dardan shaft and the hand of Paris against the body of Aeacides. Under thy guidance did I enter upon many seas surrounding mighty lands, the far remote Massylian tribes and the fields that fringe the Syrtes: Now at last we grasp the shores of Italy which elude us. Grant that the Trojans may rest in Latium, and the wandering gods of Troy. Then to Phoebus and to Trivia will I set up a temple of solid marble, and the festal days in the name of Phoebus. Only trust not your verses to leaves lest they fly in disorder, the sport of rushing winds; chant them yourself, I pray."</div>
+    </div>
+  </div>
+  <div class="sg">
+    <div class="st"><div class="si" style="background:var(--teal-l)">🙈</div>Passage 4 — Lines 77–97</div>
+    <div class="blind-wrap">
+      <div class="blind-lat"><div class="plabel">🏛️ Latin — translate this:</div><span class="lat">At Phoebi nondum patiens immanis in antro bacchatur vates, magnum si pectore possit excussisse deum; tanto magis ille fatigat os rabidum, fera corda domans, fingitque premendo. ostia iamque domus patuere ingentia centum sponte sua vatisque ferunt responsa per auras. 'o tandem magnis pelagi defuncte periclis (sed terrae graviora manent), in regna Lavini Dardanidae venient (mitte hanc de pectore curam), sed non et venisse volent. bella, horrida bella, et Thybrim multo spumantem sanguine cerno. non Simois tibi nec Xanthus nec Dorica castra defuerint; alius Latio iam partus Achilles, natus et ipse dea; nec Teucris addita Iuno usquam aberit, cum tu supplex in rebus egenis quas gentis Italum aut quas non oraveris urbes! causa mali tanti coniunx iterum hospita Teucris externique iterum thalami. tu ne cede malis, sed contra audentior ito, qua tua te Fortuna sinet. via prima salutis (quod minime reris) Graia pandetur ab urbe.'</span></div>
+      <textarea class="blind-ta" placeholder="Write your translation here…"></textarea>
+      <button class="blind-reveal" onclick="blindReveal('br4',this,'bl4')">👁 Reveal Correct Translation</button>
+      <div class="blind-answer" id="br4"><div class="plabel">🇬🇧 Correct Translation</div>But the prophetess, not yet enduring the sway of Phoebus, storms wildly in the cavern, if perchance she may shake the mighty god from off her breast: so much the more he tires her raving mouth, taming her wild heart, and moulds her by restraint. And now the hundred mighty mouths of the house have opened of their own accord, and bring through the air a reply of the prophetess. "O you that at last has fulfilled the mighty perils of the sea — but on land more grievous woes await you — into the kingdom of Lavinium the sons of Dardanus shall come — banish this care from your heart — but they shall also wish they had not come. Wars, grim wars I see, and Tiber foaming with streams of blood. A Simois you shall not lack, nor a Xanthus, nor a Doric camp. Even now another Achilles is provided in Latium, he too goddess-born; nor shall Juno anywhere fail to harass the Trojans, when you are begging in your day of need — what peoples, what cities of Italy shall you not implore! The cause of all this woe to the Trojans is again an alien bride, again a foreign marriage. But do not give in to any evils, but go forth to meet them more boldly than your fortune shall allow you. Your path of safety shall first, little as you would think it, be opened from a Greek city."</div>
     </div>
   </div>
 </div>
@@ -691,6 +909,7 @@ body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);font
 <button class="bbtn" onclick="sp('home',document.querySelector('.nt'))">🏠 Home</button>
 
 <script>
+// ── PAGE NAVIGATION ──
 function sp(id, btn) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.nt').forEach(t => t.classList.remove('active'));
@@ -698,8 +917,21 @@ function sp(id, btn) {
   if (btn) btn.classList.add('active');
   window.scrollTo({top:0,behavior:'smooth'});
 }
+function spd(id, btn) { // navigate from drawer
+  closeDrawer();
+  setTimeout(() => sp(id, null), 120);
+}
 function tl(el) { el.classList.toggle('open'); }
 
+// ── MOBILE DRAWER ──
+function openDrawer() { document.getElementById('navDrawer').classList.add('open'); }
+function closeDrawer(e) {
+  if (!e || !document.getElementById('navPanel').contains(e.target)) {
+    document.getElementById('navDrawer').classList.remove('open');
+  }
+}
+
+// ── FILL-IN-BLANK ──
 function chk(id) {
   document.getElementById(id).querySelectorAll('.bi').forEach(i => {
     i.classList.remove('ok','bad');
@@ -711,6 +943,7 @@ function rev(id) {
   document.getElementById(id).querySelectorAll('.bi').forEach(i => { i.value = i.dataset.answer; i.classList.add('ok'); });
 }
 
+// ── LINE ORDER ──
 function tog(item, bankId, zoneId) {
   const zone = document.getElementById(zoneId);
   const emsg = document.getElementById(zoneId + '-e');
@@ -725,7 +958,6 @@ function tog(item, bankId, zoneId) {
   }
   if (emsg) emsg.style.display = zone.querySelectorAll('.oi').length ? 'none' : 'block';
 }
-
 function chkord(zoneId, total, resId) {
   const zone = document.getElementById(zoneId);
   const items = Array.from(zone.querySelectorAll('.oi'));
@@ -744,7 +976,6 @@ function chkord(zoneId, total, resId) {
   if (ok === total) { res.style.background = '#d1fae5'; res.style.color = '#065f46'; res.textContent = '✅ Perfect! All in correct order!'; }
   else { res.style.background = '#fee2e2'; res.style.color = '#7f1d1d'; res.textContent = ok + '/' + total + ' correct. Green = right place, Red = wrong place.'; }
 }
-
 function rst(bankId, zoneId, resId) {
   const bank = document.getElementById(bankId);
   const zone = document.getElementById(zoneId);
@@ -758,11 +989,192 @@ function rst(bankId, zoneId, resId) {
   if (res) { res.style.display = 'none'; res.textContent = ''; }
 }
 
+// ── MOCK EXAM ──
 function tog_ans(divId, btn) {
   const d = document.getElementById(divId);
   if (d.style.display === 'none') { d.style.display = 'block'; btn.textContent = '🙈 Hide Answer'; }
   else { d.style.display = 'none'; btn.textContent = '👁 Show Answer'; }
 }
+
+// ── PROGRESS TRACKING (localStorage) ──
+function getProgress() {
+  try { return JSON.parse(localStorage.getItem('aeneid_progress') || '{}'); } catch(e) { return {}; }
+}
+function saveProgress(p) {
+  try { localStorage.setItem('aeneid_progress', JSON.stringify(p)); } catch(e) {}
+}
+function markStudied(key, btn) {
+  const p = getProgress();
+  if (p['section_' + key]) {
+    delete p['section_' + key];
+    btn.classList.remove('done');
+    btn.textContent = btn.textContent.replace('✓ ', '').replace('Studied ✓', 'as Studied');
+  } else {
+    p['section_' + key] = true;
+    btn.classList.add('done');
+  }
+  saveProgress(p);
+  updateDashboard();
+}
+function updateDashboard() {
+  const p = getProgress();
+  const sects = ['l1','l2','l3','l4'];
+  const studiedCount = sects.filter(k => p['section_' + k]).length;
+  document.getElementById('pc-sections').textContent = studiedCount;
+  document.getElementById('pb-sections').style.width = (studiedCount / 4 * 100) + '%';
+  const mastered = srData.filter(c => c.mastered).length;
+  document.getElementById('pc-sr').textContent = mastered;
+  document.getElementById('pb-sr').style.width = (mastered / srData.length * 100) + '%';
+  const blindCount = Object.keys(p).filter(k => k.startsWith('blind_')).length;
+  document.getElementById('pc-blind').textContent = blindCount;
+  document.getElementById('pb-blind').style.width = (blindCount / 4 * 100) + '%';
+  // restore mark buttons
+  sects.forEach(k => {
+    const btn = document.getElementById('mark-' + k);
+    if (btn && p['section_' + k]) btn.classList.add('done');
+  });
+}
+function resetProgress() {
+  if (!confirm('Reset all progress? This cannot be undone.')) return;
+  try { localStorage.removeItem('aeneid_progress'); } catch(e) {}
+  srData.forEach(c => { c.mastered = false; c.missed = false; });
+  document.querySelectorAll('.mark-btn').forEach(b => b.classList.remove('done'));
+  updateDashboard();
+  initSR();
+}
+
+// ── BLIND TRANSLATION ──
+function blindReveal(answerId, btn, key) {
+  const d = document.getElementById(answerId);
+  if (d.style.display === 'none' || !d.style.display) {
+    d.style.display = 'block';
+    btn.textContent = '🙈 Hide Answer';
+    const p = getProgress();
+    p['blind_' + key] = true;
+    saveProgress(p);
+    updateDashboard();
+  } else {
+    d.style.display = 'none';
+    btn.textContent = '👁 Reveal Correct Translation';
+  }
+}
+
+// ── SPACED REPETITION ──
+const srData = [
+  {lat:'Sic fatur lacrimans, classique immittit habenas', eng:'Thus weeping, he speaks and gives reign to the fleet.', mastered:false, missed:false},
+  {lat:'et tandem Euboicis Cumarum adlabitur oris', eng:'And at length glides to the Euboean shores of Cumae.', mastered:false, missed:false},
+  {lat:'tum dente tenaci ancora fundabat navis', eng:'Then the anchor with biting tooth moored the ships.', mastered:false, missed:false},
+  {lat:'iuvenum manus emicat ardens litus in Hesperium', eng:'Eagerly the band of warriors leaps out upon the Hesperian strand.', mastered:false, missed:false},
+  {lat:'quaerit pars semina flammae abstrusa in venis silicis', eng:'Some seek the seeds of flame lurking in the veins of flint.', mastered:false, missed:false},
+  {lat:'at pius Aeneas arces quibus altus Apollo praesidet', eng:'But the good Aeneas seeks the heights on which high Apollo watches over.', mastered:false, missed:false},
+  {lat:'magnam cui mentem animumque Delius inspirat vates aperitque futura', eng:'On whom the Delian prophet breathes his great mind and spirit, and reveals to her the future.', mastered:false, missed:false},
+  {lat:'iam subeunt Triviae lucos atque aurea tecta', eng:'And now they draw near to the groves of Trivia and the golden abode.', mastered:false, missed:false},
+  {lat:'Daedalus, ut fama est, fugiens Minoia regna praepetibus pennis ausus se credere caelo', eng:'Daedalus, as the story goes, flying from the kingdom of Minos, dared to entrust himself on rapid wings to the skies.', mastered:false, missed:false},
+  {lat:'redditus his primum terris tibi, Phoebe, sacravit remigium alarum', eng:'First restored to this Earth, he consecrated to you, Phoebus, the oarage of his wings.', mastered:false, missed:false},
+  {lat:'in foribus letum Androgeo; tum pendere poenas Cecropidae iussi (miserum!)', eng:'On the doors: the death of Androgeos; then the children of Cecrops ordered — alas! — to pay tribute.', mastered:false, missed:false},
+  {lat:'hic crudelis amor tauri suppostaque furto Pasiphae prolesque biformis Minotaurus inest', eng:'Here the cruel love of the bull, Pasiphae mated by stealth, the twin-shaped offspring, the Minotaur.', mastered:false, missed:false},
+  {lat:'hic labor ille domus et inextricabilis error', eng:'Here, that house of toil, a maze inextricable. (= the Labyrinth)', mastered:false, missed:false},
+  {lat:'caeca regens filo vestigia', eng:'Guiding blind footsteps by a thread. (Ariadne\'s thread)', mastered:false, missed:false},
+  {lat:'bis conatus erat casus effingere in auro, bis patriae cecidere manus', eng:'Twice he tried to depict your fall in gold — twice fell the father\'s hands.', mastered:false, missed:false},
+  {lat:'non hoc ista sibi tempus spectacula poscit', eng:'Not sights like these does the time demand!', mastered:false, missed:false},
+  {lat:'quo lati ducunt aditus centum, ostia centum', eng:'To where lead a hundred wide mouths, a hundred gateways.', mastered:false, missed:false},
+  {lat:'poscere fata tempus ait; deus ecce deus!', eng:'"It is time to ask the oracles; the god, behold! The god!"', mastered:false, missed:false},
+  {lat:'subito non vultus, non color unus, non comptae mansere comae', eng:'Suddenly neither her expression nor her colour was the same, nor did her tresses remain braided.', mastered:false, missed:false},
+  {lat:'sed pectus anhelum, et rabie fera corda tument, maiorque videri nec mortale sonans', eng:'Her bosom heaves, wild heart swells with frenzy, she appears taller, voice not mortal.', mastered:false, missed:false},
+  {lat:'cessas in vota precesque, Tros Aenea? cessas?', eng:'"Are you hesitant to vow and pray? Are you slow, Trojan Aeneas?"', mastered:false, missed:false},
+  {lat:'gelidus Teucris per dura cucurrit ossa tremor', eng:'A chill shudder ran through the Trojans\' sturdy frames.', mastered:false, missed:false},
+  {lat:'tum Phoebo et Triviae solido de marmore templum instituam', eng:'Then to Phoebus and to Trivia I will set up a temple of solid marble.', mastered:false, missed:false},
+  {lat:'foliis tantum ne carmina manda, ne turbata volent rapidis ludibria ventis; ipsa canas oro', eng:'Only trust not your verses to leaves lest they fly in disorder, the sport of rushing winds; chant them yourself, I pray.', mastered:false, missed:false},
+  {lat:'At Phoebi nondum patiens immanis in antro bacchatur vates', eng:'But the prophetess, not yet enduring the sway of Phoebus, storms wildly in the cavern.', mastered:false, missed:false},
+  {lat:'tanto magis ille fatigat os rabidum, fera corda domans, fingitque premendo', eng:'So much the more he tires her raving mouth, taming her wild heart, and moulds her by restraint.', mastered:false, missed:false},
+  {lat:'in regna Lavini Dardanidae venient (mitte hanc de pectore curam), sed non et venisse volent', eng:'Into Lavinium the Trojans shall come (banish this care) — but they shall wish they had not come.', mastered:false, missed:false},
+  {lat:'bella, horrida bella, et Thybrim multo spumantem sanguine cerno', eng:'Wars, grim wars I see, and Tiber foaming with streams of blood.', mastered:false, missed:false},
+  {lat:'tu ne cede malis, sed contra audentior ito', eng:'Do not give in to evils, but go more boldly against them.', mastered:false, missed:false},
+  {lat:'via prima salutis (quod minime reris) Graia pandetur ab urbe', eng:'Your path of safety, little as you would think it, shall be opened from a Greek city.', mastered:false, missed:false},
+];
+
+let srQueue = [];
+let srCurrent = null;
+let srFlipped = false;
+
+function initSR() {
+  srQueue = srData.filter(c => !c.mastered).map((c,i) => ({...c, idx: srData.indexOf(c)}));
+  // shuffle
+  for (let i = srQueue.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [srQueue[i], srQueue[j]] = [srQueue[j], srQueue[i]];
+  }
+  srNext();
+}
+
+function srNext() {
+  // add any missed cards back to end of queue
+  srFlipped = false;
+  const remaining = srData.filter(c => !c.mastered);
+  if (remaining.length === 0) {
+    document.getElementById('srCardArea').innerHTML = `<div class="sr-done"><h3>🎉 All ${srData.length} cards mastered!</h3><p>Brilliant work. Your progress has been saved.</p><button class="sr-restart" onclick="srRestart()">↺ Practice Again</button></div>`;
+    document.getElementById('srBtns').style.display = 'none';
+    document.getElementById('srStatus').textContent = '';
+    updateDashboard();
+    return;
+  }
+  if (srQueue.length === 0) {
+    // refill with missed cards
+    srQueue = srData.filter(c => !c.mastered && c.missed).map(c => ({...c, idx: srData.indexOf(c)}));
+    if (srQueue.length === 0) srQueue = srData.filter(c => !c.mastered).map(c => ({...c, idx: srData.indexOf(c)}));
+    for (let i = srQueue.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [srQueue[i], srQueue[j]] = [srQueue[j], srQueue[i]];
+    }
+  }
+  srCurrent = srQueue.shift();
+  const mastered = srData.filter(c => c.mastered).length;
+  document.getElementById('srStatus').textContent = `${mastered} / ${srData.length} mastered · ${srData.filter(c=>!c.mastered).length} remaining`;
+  const card = document.getElementById('srCard');
+  if (!card) {
+    document.getElementById('srCardArea').innerHTML = `<div class="sr-card" id="srCard" onclick="srFlip()"><div class="lat" id="srLatin"></div><div class="sr-hint">tap to reveal translation</div><div class="sr-answer" id="srAnswer"></div></div>`;
+  }
+  document.getElementById('srLatin').textContent = srCurrent.lat;
+  document.getElementById('srAnswer').style.display = 'none';
+  document.getElementById('srAnswer').textContent = srCurrent.eng;
+  document.getElementById('srBtns').style.display = 'none';
+}
+
+function srFlip() {
+  if (srFlipped) return;
+  srFlipped = true;
+  document.getElementById('srAnswer').style.display = 'block';
+  document.getElementById('srBtns').style.display = 'flex';
+}
+
+function srResult(got) {
+  if (!srCurrent) return;
+  const card = srData[srCurrent.idx];
+  if (got) {
+    card.mastered = true;
+    card.missed = false;
+  } else {
+    card.mastered = false;
+    card.missed = true;
+    srQueue.push({...srData[srCurrent.idx], idx: srCurrent.idx}); // put back
+  }
+  updateDashboard();
+  srNext();
+}
+
+function srRestart() {
+  srData.forEach(c => { c.mastered = false; c.missed = false; });
+  document.getElementById('srCardArea').innerHTML = `<div class="sr-card" id="srCard" onclick="srFlip()"><div class="lat" id="srLatin"></div><div class="sr-hint">tap to reveal translation</div><div class="sr-answer" id="srAnswer"></div></div>`;
+  document.getElementById('srBtns').style.display = 'none';
+  initSR();
+  updateDashboard();
+}
+
+// ── INIT ──
+window.addEventListener('DOMContentLoaded', () => {
+  updateDashboard();
+  initSR();
+});
 </script>
 </body>
 </html>
