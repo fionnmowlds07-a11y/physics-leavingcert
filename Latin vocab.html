@@ -483,14 +483,46 @@
     .card.touch-hint-left .face::before  { background: rgba(217,119,6,0.15); opacity: 1; }
     .card.touch-hint-right .face::before { background: rgba(5,150,105,0.15); opacity: 1; }
   }
+
+  /* ── SHARED HOME NAV ── */
+  .top-nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.97);backdrop-filter:blur(10px);border-bottom:2px solid var(--border);padding:8px 16px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .top-nav .nav-logo{font-family:'Lexend Mega',sans-serif;font-size:.82rem;font-weight:700;color:var(--text);margin-right:2px;white-space:nowrap;}
+  .top-nav .nav-logo span{color:#b45309;}
+  .nav-home-btn{display:inline-flex;align-items:center;gap:5px;padding:5px 13px;border-radius:16px;border:2px solid var(--border);background:#fff;font-family:'Lexend',sans-serif;font-size:.72rem;font-weight:700;color:#555577;text-decoration:none;transition:all .2s;white-space:nowrap;}
+  .nav-home-btn:hover{background:#1a1a2e;color:#fff;border-color:#1a1a2e;transform:translateY(-2px);}
+  .nav-divider{width:1px;height:20px;background:var(--border);flex-shrink:0;}
+  /* hamburger */
+  .nav-hamburger{display:none;background:#fff;border:2px solid var(--border);border-radius:8px;padding:4px 10px;font-size:1.1rem;cursor:pointer;line-height:1;flex-shrink:0;}
+  @media(max-width:700px){
+    .nav-hamburger{display:block;}
+    .top-nav .nav-tabs-wrap{display:none;}
+  }
+  /* mobile drawer */
+  .nav-drawer{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.45);}
+  .nav-drawer.open{display:block;}
+  .nav-panel{position:absolute;top:0;left:0;width:72vw;max-width:290px;height:100%;background:#fff;padding:18px 14px;overflow-y:auto;display:flex;flex-direction:column;gap:7px;box-shadow:4px 0 24px rgba(0,0,0,.18);}
+  .nav-panel .nav-panel-title{font-family:'Lexend Mega',sans-serif;font-size:.72rem;font-weight:700;color:#555577;padding-left:4px;margin-bottom:4px;}
+  .nav-panel .nav-home-btn{width:100%;justify-content:flex-start;margin-bottom:4px;}
+  .nav-panel hr.nav-hr{border:none;border-top:2px solid var(--border);margin:2px 0 6px;}
+
 </style>
 </head>
 <body>
 
-<!-- TOP BAR -->
-<div class="topbar">
-  <span class="topbar-brand">🏛 Senior Cycle Latin</span>
-  <span class="topbar-badge">Vocabulary Flashcards</span>
+<!-- ══════════════ TOP NAV ══════════════ -->
+<nav class="top-nav" id="topNav">
+  <span class="nav-logo">LC <span>Latin</span></span>
+  <a href="Latin.html" class="nav-home-btn">🏠 Home</a>
+  <span class="nav-divider"></span>
+  <span style="font-family:'Lexend Mega',sans-serif;font-size:.75rem;font-weight:700;color:#555577;">Vocabulary Flashcards</span>
+</nav>
+
+<!-- MOBILE DRAWER (no internal tabs for vocab) -->
+<div class="nav-drawer" id="navDrawer" onclick="closeNavDrawer(event)">
+  <div class="nav-panel" id="navPanel">
+    <div class="nav-panel-title">🏛 LC Latin – Vocabulary</div>
+    <a href="Latin.html" class="nav-home-btn">🏠 Home</a>
+  </div>
 </div>
 
 <div class="page-wrap">
@@ -2466,44 +2498,13 @@ if(savedAppState.currentCardId !== undefined && savedAppState.currentCardId !== 
   if(idx >= 0) current = idx;
 }
 render();
+
+// ── MOBILE DRAWER ──
+function openNavDrawer(){document.getElementById('navDrawer').classList.add('open');}
+function closeNavDrawer(e){
+  var panel=document.getElementById('navPanel');
+  if(!e||!panel.contains(e.target)){document.getElementById('navDrawer').classList.remove('open');}
+}
 </script>
-<a href="index.html" class="return-home-btn">
-  <span>🏠</span> Back to Hub
-</a>
-<style>
-  .return-home-btn {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    background: #1a1d2e; /* Matches your --text variable */
-    color: white !important;
-    padding: 12px 24px;
-    border-radius: 50px;
-    text-decoration: none;
-    font-family: 'Lexend', sans-serif;
-    font-weight: 600;
-    font-size: 15px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    z-index: 9999;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    transition: all 0.3s ease;
-  }
-  .return-home-btn:hover {
-    transform: translateY(-5px);
-    background: #7c3aed; /* Changed to match your --c4 purple theme */
-    color: white !important;
-    box-shadow: 0 8px 25px rgba(124, 58, 237, 0.4);
-  }
-  @media (max-width: 768px) {
-    .return-home-btn {
-      bottom: 20px;
-      right: 20px;
-      padding: 10px 18px;
-      font-size: 14px;
-    }
-  }
-</style>
 </body>
 </html>
