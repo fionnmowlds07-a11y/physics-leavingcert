@@ -3,1161 +3,258 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Elizabeth Bishop — Ultimate Poetry Revision Guide</title>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<title>Elizabeth Bishop — Poetry Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Deca:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg: #faf9f6;
-  --card: #ffffff;
-  --border: #e8e4dc;
-  --text: #2d2926;
-  --muted: #6b6560;
-  --fish: #1a6b9a;
-  --fish-l: #eaf4fb;
-  --prodigal: #8e44ad;
-  --prodigal-l: #f5eeff;
-  --sestina: #1a6b3a;
-  --sestina-l: #eafaf1;
-  --armadillo: #c0392b;
-  --armadillo-l: #fdecea;
-  --filling: #d35400;
-  --filling-l: #fef6ee;
-  --waiting: #2c3e50;
-  --waiting-l: #eaf0f6;
-  --bishop: #8b1a2b;
-  --bishop-l: #fdecea;
-  --themes: #148f77;
-  --themes-l: #e8faf6;
-  --r: 16px; --rs: 10px;
-}
-*{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);line-height:1.75;font-size:16px;}
+  :root {
+    --bg: #f8f6f2;
+    --card: #ffffff;
+    --text: #1a1a2e;
+    --text-light: #555570;
+    --accent-main: #1a6b3a;
+    --accent-secondary: #1a6b9a;
+    --accent-tertiary: #8b1a2b;
+    --accent-purple: #8e44ad;
+    --accent-orange: #d35400;
+    --accent-dark: #2c3e50;
+    --border: #e0dcd4;
+    --shadow: 0 4px 20px rgba(0,0,0,0.06);
+    --shadow-hover: 0 12px 30px rgba(0,0,0,0.12);
+    --radius: 16px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Lexend', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 17px;
+    line-height: 1.7;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  .top-bar {
+    background: white;
+    border-bottom: 2px solid var(--border);
+    padding: 16px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+  }
+  .top-bar h1 { font-size: 22px; font-weight: 700; color: var(--text); letter-spacing: 0.02em; margin: 0 auto; }
+  .top-bar span { color: var(--accent-main); }
+  .back-link {
+    position: absolute; left: 40px;
+    text-decoration: none; color: var(--text-light);
+    font-size: 14px; font-weight: 600;
+    display: flex; align-items: center; gap: 6px;
+    transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--accent-main); }
+  .hero {
+    background: linear-gradient(135deg, #0a1a0e 0%, #1a3a1a 40%, #0d1a2e 80%, #0a0d1a 100%);
+    color: white; padding: 80px 40px; text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '✒️';
+    position: absolute; right: 8%; top: 20%;
+    font-size: 6rem; opacity: 0.06;
+    transform: rotate(-15deg);
+  }
+  .hero::after {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 60% 40%, rgba(26,107,58,0.15), transparent 60%);
+    pointer-events: none;
+  }
+  .hero h2 { font-size: 48px; font-weight: 700; margin-bottom: 16px; animation: slideDown 0.6s ease-out; position: relative; z-index: 1; }
+  .hero p { font-size: 20px; color: rgba(255,255,255,0.85); max-width: 700px; margin: 0 auto; line-height: 1.6; animation: fadeIn 1s ease-out; position: relative; z-index: 1; }
 
-/* HEADER */
-header{background:linear-gradient(140deg,#1a0a00,#3d1a0a 40%,#1e2a3a 80%,#0a1a2a);color:#fff;padding:52px 24px 44px;text-align:center;position:relative;overflow:hidden;}
-header::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 70% 30%,rgba(139,26,43,.22),transparent 60%);}
-header::after{content:'🐟';position:absolute;right:8%;top:20%;font-size:5rem;opacity:.07;transform:rotate(-20deg);}
-header h1{font-family:'Nunito',sans-serif;font-size:clamp(1.8rem,5vw,3.2rem);font-weight:900;letter-spacing:-1px;position:relative;}
-header h1 em{color:#f39c12;font-style:normal;}
-header p{margin-top:10px;font-size:1.05rem;color:rgba(255,255,255,.7);position:relative;}
-.hbadges{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:20px;position:relative;}
-.hbadge{background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.22);color:#fff;padding:5px 15px;border-radius:100px;font-size:.82rem;font-weight:600;}
+  .dashboard { flex: 1; padding: 60px 40px; max-width: 1280px; margin: 0 auto; width: 100%; }
+  .section-title { font-size: 13px; font-weight: 800; color: var(--text-light); margin-bottom: 30px; text-align: center; text-transform: uppercase; letter-spacing: 0.12em; }
 
-/* NAV */
-nav{background:#fff;border-bottom:2px solid var(--border);padding:0 20px;position:sticky;top:0;z-index:100;box-shadow:0 2px 10px rgba(0,0,0,.06);overflow-x:auto;white-space:nowrap;}
-nav::-webkit-scrollbar{height:3px;}
-nav::-webkit-scrollbar-thumb{background:#ccc;border-radius:4px;}
-.nav-inner{display:inline-flex;}
-nav button{background:none;border:none;cursor:pointer;padding:15px 18px;font-family:'Lexend',sans-serif;font-size:.88rem;font-weight:600;color:var(--muted);border-bottom:3px solid transparent;transition:all .2s;white-space:nowrap;}
-nav button:hover{color:var(--text);}
-nav button.active{color:var(--bishop);border-bottom-color:var(--bishop);}
+  .topics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; justify-content: center; margin-bottom: 60px; }
 
-/* MAIN */
-main{max-width:1080px;margin:0 auto;padding:40px 22px 90px;}
-.sec{display:none;animation:fadeIn .3s ease;}
-.sec.active{display:block;}
-@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+  .chapter-card {
+    background: var(--card); border: 2px solid var(--border); border-radius: var(--radius);
+    padding: 32px 24px; text-decoration: none; display: flex; flex-direction: column;
+    align-items: center; text-align: center;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: var(--shadow); position: relative; overflow: hidden;
+    animation: slideUp 0.5s ease-out backwards;
+  }
+  .chapter-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 6px; transition: height 0.3s ease; }
+  .chapter-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-hover); border-color: transparent; }
+  .chapter-card:hover::before { height: 12px; }
 
-/* BANNER */
-.char-banner{border-radius:var(--r);padding:32px 36px;margin-bottom:28px;position:relative;overflow:hidden;}
-.char-banner::after{content:'';position:absolute;right:-20px;top:-20px;width:140px;height:140px;border-radius:50%;opacity:.08;background:currentColor;}
-.char-banner h2{font-family:'Nunito',sans-serif;font-size:2rem;font-weight:900;line-height:1.2;}
-.char-banner .sub{font-size:.9rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin:6px 0 14px;opacity:.75;}
-.char-banner .intro{font-size:1rem;line-height:1.7;max-width:720px;}
+  /* poem cards */
+  .card-fish::before    { background: #1a6b9a; }
+  .card-fish:hover      { border-color: #1a6b9a; }
+  .card-fish .mc-icon   { color: #1a6b9a; background: #eaf4fb; }
 
-/* SECTION LABEL */
-h3.label{font-family:'Nunito',sans-serif;font-size:1.15rem;font-weight:800;margin:32px 0 14px;display:flex;align-items:center;gap:8px;}
-h3.label::after{content:'';flex:1;height:2px;background:var(--border);border-radius:4px;}
+  .card-prodigal::before  { background: #8e44ad; }
+  .card-prodigal:hover    { border-color: #8e44ad; }
+  .card-prodigal .mc-icon { color: #8e44ad; background: #f5eeff; }
 
-/* COLLAPSIBLE */
-.acc{margin-bottom:12px;}
-.acc-btn{width:100%;text-align:left;background:#fff;border:2px solid var(--border);border-radius:var(--rs);padding:15px 20px;font-family:'Lexend',sans-serif;font-size:.95rem;font-weight:600;cursor:pointer;color:var(--text);display:flex;justify-content:space-between;align-items:center;transition:background .15s;}
-.acc-btn:hover{background:#f8f5f0;}
-.acc-btn.open{border-radius:var(--rs) var(--rs) 0 0;border-bottom-color:transparent;}
-.acc-btn .arr{transition:transform .25s;flex-shrink:0;margin-left:10px;}
-.acc-btn.open .arr{transform:rotate(180deg);}
-.acc-body{display:none;background:#fff;border:2px solid var(--border);border-top:none;border-radius:0 0 var(--rs) var(--rs);padding:22px 24px;}
-.acc-body.open{display:block;}
+  .card-sestina::before  { background: #1a6b3a; }
+  .card-sestina:hover    { border-color: #1a6b3a; }
+  .card-sestina .mc-icon { color: #1a6b3a; background: #eafaf1; }
 
-/* QUOTE BLOCK */
-.qblock{border-left:4px solid var(--c,#8b1a2b);background:var(--cl,#fdecea);border-radius:0 var(--rs) var(--rs) 0;padding:18px 20px;margin-bottom:18px;}
-.qblock blockquote{font-family:'Nunito',sans-serif;font-size:1.05rem;font-weight:700;font-style:italic;margin-bottom:8px;color:var(--text);}
-.qref{font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);margin-bottom:12px;}
-.qbody{font-size:.93rem;line-height:1.7;}
-.qbody p{margin-bottom:8px;}
-.kw{display:inline-block;background:rgba(0,0,0,.07);color:var(--text);font-weight:700;font-size:.85rem;padding:2px 9px;border-radius:5px;margin:2px 1px;}
-.tech{display:inline-block;background:var(--c,#8b1a2b);color:#fff;font-weight:700;font-size:.78rem;padding:2px 9px;border-radius:5px;margin:2px 1px;}
+  .card-armadillo::before  { background: #8b1a2b; }
+  .card-armadillo:hover    { border-color: #8b1a2b; }
+  .card-armadillo .mc-icon { color: #8b1a2b; background: #fdecea; }
 
-/* INFO BOXES */
-.box{border-radius:var(--rs);padding:16px 20px;margin:16px 0;display:flex;gap:14px;align-items:flex-start;}
-.box .ico{font-size:1.7rem;flex-shrink:0;line-height:1;}
-.box-label{font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.7px;margin-bottom:5px;}
-.box p,.box ul{font-size:.92rem;}
-.box ul{padding-left:16px;}
-.box li{margin-bottom:5px;}
-.analogy{background:#fffbf0;border:2px solid #f39c12;}
-.analogy .box-label{color:#b7770d;}
-.memory{background:#f0fff6;border:2px solid #27ae60;}
-.memory .box-label{color:#1e8449;}
-.exam{background:#eaf4fb;border:2px solid #5dade2;}
-.exam .box-label{color:#1a6b9a;}
-.warning{background:#fff8f0;border:2px solid #e67e22;}
-.warning .box-label{color:#c0392b;}
+  .card-filling::before  { background: #d35400; }
+  .card-filling:hover    { border-color: #d35400; }
+  .card-filling .mc-icon { color: #d35400; background: #fef6ee; }
 
-/* TIMELINE */
-.tl{position:relative;padding-left:30px;margin:8px 0;}
-.tl::before{content:'';position:absolute;left:8px;top:4px;bottom:4px;width:2px;background:var(--border);}
-.tl-item{position:relative;margin-bottom:22px;}
-.tl-item::before{content:'';position:absolute;left:-26px;top:5px;width:14px;height:14px;border-radius:50%;border:2px solid var(--c,#8b1a2b);background:#fff;}
-.tl-item h4{font-weight:700;font-size:.95rem;margin-bottom:3px;}
-.tl-item p{font-size:.9rem;color:var(--muted);}
+  /* utility cards */
+  .card-flash::before  { background: #2c3e50; }
+  .card-flash:hover    { border-color: #2c3e50; }
+  .card-flash .mc-icon { color: #2c3e50; background: #eaf0f6; }
 
-/* PILLS */
-.pills{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0;}
-.pill{padding:5px 14px;border-radius:100px;font-size:.8rem;font-weight:700;}
+  .card-links::before  { background: #148f77; }
+  .card-links:hover    { border-color: #148f77; }
+  .card-links .mc-icon { color: #148f77; background: #e8faf6; }
 
-/* TWO COL */
-.two{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:14px 0;}
-@media(max-width:600px){.two{grid-template-columns:1fr;}}
+  .mc-icon { font-size: 42px; width: 80px; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 50%; margin-bottom: 20px; transition: transform 0.3s ease; }
+  .chapter-card:hover .mc-icon { transform: scale(1.1) rotate(5deg); }
+  .mc-title { font-size: 20px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+  .mc-subtitle { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-light); margin-bottom: 10px; }
+  .mc-desc { font-size: 14px; color: var(--text-light); line-height: 1.6; }
+  .mc-action { margin-top: 24px; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text); opacity: 0.55; transition: opacity 0.2s; }
+  .chapter-card:hover .mc-action { opacity: 1; }
 
-/* CARD */
-.card{background:#fff;border:2px solid var(--border);border-radius:var(--rs);padding:18px 20px;}
-.card h4{font-weight:800;margin-bottom:8px;font-size:1rem;}
-.card p,.card li{font-size:.9rem;color:var(--muted);}
+  .section-divider { border: none; border-top: 2px solid var(--border); margin: 10px 0 40px; }
+  .section-label-row { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; }
+  .section-label-row .label { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-light); white-space: nowrap; }
+  .section-label-row::after { content: ''; flex: 1; height: 2px; background: var(--border); border-radius: 4px; }
 
-/* OVERVIEW GRID */
-.ov-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:18px;margin-top:22px;}
-.ov-card{background:#fff;border:2px solid var(--border);border-radius:var(--r);padding:22px;cursor:pointer;transition:all .22s;position:relative;overflow:hidden;}
-.ov-card::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;}
-.ov-card:hover{transform:translateY(-4px);box-shadow:0 8px 28px rgba(0,0,0,.12);}
-.ov-card h3{font-family:'Nunito',sans-serif;font-size:1.25rem;font-weight:800;margin-bottom:5px;}
-.ov-card .ov-role{font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px;}
-.ov-card p{font-size:.88rem;color:var(--muted);line-height:1.6;}
+  .bottom-section { margin-top: 20px; text-align: center; animation: fadeIn 1.2s ease-out; }
+  .info-card {
+    background: var(--card); border: 2px solid var(--border); border-radius: var(--radius);
+    padding: 40px 30px; box-shadow: var(--shadow); transition: transform 0.3s ease;
+    display: flex; flex-direction: column; align-items: center; max-width: 800px; margin: 0 auto;
+  }
+  .info-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); border-color: var(--accent-main); }
+  .info-card h3 { font-size: 22px; font-weight: 700; color: var(--text); margin-bottom: 12px; }
+  .info-card p { font-size: 16px; color: var(--text-light); line-height: 1.7; margin-bottom: 26px; }
+  .study-btn {
+    display: inline-block; background: var(--accent-main); color: white;
+    padding: 12px 28px; border-radius: 8px; font-weight: 600; text-decoration: none;
+    transition: all 0.2s; box-shadow: 0 4px 12px rgba(26,107,58,0.22);
+  }
+  .study-btn:hover { background: #0d4a22; transform: translateY(-2px); }
 
-/* FLASHCARD */
-.fc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:18px;}
-.fc-wrap{perspective:900px;}
-.fc{width:100%;height:180px;cursor:pointer;transform-style:preserve-3d;transition:transform .45s;border-radius:var(--rs);position:relative;}
-.fc.flipped{transform:rotateY(180deg);}
-.fc-f,.fc-b{position:absolute;inset:0;backface-visibility:hidden;border-radius:var(--rs);padding:20px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;border:2px solid var(--border);}
-.fc-f{background:#fff;}
-.fc-b{transform:rotateY(180deg);}
-.fc-f p{font-style:italic;font-size:.97rem;font-weight:600;line-height:1.5;}
-.fc-b p{font-size:.85rem;line-height:1.5;}
-.fc-hint{font-size:.72rem;color:var(--muted);margin-top:8px;}
+  @keyframes slideDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes slideUp   { from { opacity: 0; transform: translateY(20px);  } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeIn    { from { opacity: 0; } to { opacity: 1; } }
 
-/* DIVIDER */
-hr.div{border:none;border-top:2px solid var(--border);margin:32px 0;}
-
-/* SCROLL TOP */
-.stbtn{position:fixed;bottom:26px;right:26px;background:var(--bishop);color:#fff;border:none;border-radius:50%;width:46px;height:46px;font-size:1.2rem;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.22);z-index:200;display:flex;align-items:center;justify-content:center;}
-.stbtn:hover{transform:scale(1.1);}
-
-/* SECTION INTRO BOX */
-.intro-box{background:#fff;border:2px solid var(--border);border-radius:var(--r);padding:20px 26px;margin-bottom:28px;font-size:.96rem;line-height:1.75;}
-
-/* FC SECTION HEADER */
-.fc-section-label{font-family:'Nunito',sans-serif;font-size:1rem;font-weight:800;text-transform:uppercase;letter-spacing:.8px;margin:28px 0 14px;padding:10px 16px;border-radius:var(--rs);display:inline-block;}
-
-/* MINOR GRID */
-.minor-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px;margin-top:16px;}
-.mcard{background:#fff;border:2px solid var(--border);border-radius:var(--rs);padding:18px;border-top:4px solid var(--c,#8b1a2b);}
-.mcard h4{font-weight:800;margin-bottom:4px;}
-.mcard .mrole{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--c,#8b1a2b);margin-bottom:10px;}
-.mcard p{font-size:.87rem;line-height:1.6;color:var(--muted);}
-.mcard .mq{margin-top:10px;padding:8px 12px;background:var(--cl,#fdecea);border-left:3px solid var(--c,#8b1a2b);font-style:italic;font-size:.84rem;color:var(--text);}
-
-/* THEME GRID */
-.theme-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px;margin-top:16px;}
-.theme-card{background:#fff;border:2px solid var(--border);border-radius:var(--rs);padding:20px;border-left:5px solid var(--c,#148f77);}
-.theme-card h4{font-weight:800;margin-bottom:6px;color:var(--c,#148f77);}
-.theme-card p{font-size:.9rem;line-height:1.65;color:var(--muted);}
-
-/* ARC BAR */
-.arc-row{margin-bottom:14px;}
-.arc-labels{display:flex;justify-content:space-between;font-size:.82rem;font-weight:700;margin-bottom:4px;}
-.arc-track{background:var(--border);border-radius:100px;height:9px;overflow:hidden;}
-.arc-fill{height:100%;border-radius:100px;}
-
-/* TABLE */
-.rtable{width:100%;border-collapse:collapse;margin:16px 0;font-size:.88rem;}
-.rtable th{background:var(--bishop-l);font-weight:800;padding:10px 14px;text-align:left;border-bottom:2px solid var(--border);}
-.rtable td{padding:10px 14px;border-bottom:1px solid var(--border);vertical-align:top;}
-.rtable tr:last-child td{border-bottom:none;}
-.rtable tr:nth-child(even) td{background:#faf9f6;}
+  @media (max-width: 768px) {
+    .top-bar { padding: 16px 20px; }
+    .back-link { position: static; margin-right: auto; }
+    .top-bar h1 { margin-left: auto; margin-right: auto; }
+    .hero { padding: 50px 20px; }
+    .hero h2 { font-size: 32px; }
+    .hero p { font-size: 16px; }
+    .dashboard { padding: 40px 20px; }
+    .topics-grid { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body>
 
-<header>
-  <h1>✍️ <em>Elizabeth Bishop</em> — Ultimate Revision Guide</h1>
-  <p>Leaving Cert English · Every poem, every quote, every technique, every connection</p>
-  <div class="hbadges">
-    <span class="hbadge">📖 5 Poems Covered</span>
-    <span class="hbadge">💬 Deep Quote Analysis</span>
-    <span class="hbadge">🔗 Thematic Links</span>
-    <span class="hbadge">🃏 Flashcards by Poem</span>
-    <span class="hbadge">🖊️ Poetic Techniques</span>
-    <span class="hbadge">📝 Exam Tips</span>
-  </div>
-</header>
-
-<nav>
-  <div class="nav-inner">
-    <button class="active" onclick="show('overview')">🏠 Overview</button>
-    <button onclick="show('fish')">🐟 The Fish</button>
-    <button onclick="show('prodigal')">🐷 The Prodigal</button>
-    <button onclick="show('sestina')">🏠 Sestina</button>
-    <button onclick="show('armadillo')">🦔 The Armadillo</button>
-    <button onclick="show('filling')">⛽ Filling Station</button>
-    <button onclick="show('themes')">🔗 Thematic Links</button>
-    <button onclick="show('flashcards')">🃏 Flashcards</button>
-  </div>
-</nav>
-
-<main>
-
-<!-- ===================== OVERVIEW ===================== -->
-<div class="sec active" id="overview">
-  <div class="char-banner" style="background:linear-gradient(135deg,#1a0a00,#2c1a10);color:#fff;">
-    <div class="sub" style="color:#f39c12;">The Poet — Overview</div>
-    <h2>Elizabeth Bishop (1911–1979)</h2>
-    <div class="intro" style="color:rgba(255,255,255,.85);">A deeply personal, observational poet who turned painful experiences — loss, alcoholism, loneliness, and a childhood without a stable home — into carefully crafted, beautifully detailed poetry. She believed that looking closely at the world around you could help you understand yourself.</div>
+  <div class="top-bar">
+    <a href="English (1).html" class="back-link">← English Hub</a>
+    <h1>Elizabeth <span>Bishop</span></h1>
   </div>
 
-  <div class="box warning">
-    <span class="ico">💡</span>
-    <div>
-      <div class="box-label">The Key Thing to Understand About Bishop</div>
-      <p>Bishop rarely says "I am sad" or "I feel lost." Instead, she describes something in the outside world — a fish, a pig sty, a filling station — and uses that to show what she's feeling inside. The outside world becomes a mirror for her inner world. This is what makes her poetry so clever and so moving.</p>
-    </div>
+  <div class="hero">
+    <h2>Elizabeth Bishop — Poetry</h2>
+    <p>Select a poem for deep in-depth notes, use the flashcard drill to test all your quotes, or explore thematic links across every poem.</p>
   </div>
 
-  <h3 class="label">📖 Her Life — Why It Matters for the Poems</h3>
-  <div class="tl" style="--c: var(--bishop);">
-    <div class="tl-item">
-      <h4>Born 1911 in Massachusetts</h4>
-      <p>Her father died when she was an infant. This meant she never really knew him — you can see this in "Sestina" where the child draws "a man with buttons like tears."</p>
-    </div>
-    <div class="tl-item">
-      <h4>Mother committed to a mental asylum in 1916</h4>
-      <p>Her mother was so devastated by her father's death that she suffered a mental breakdown. Bishop never saw her again. This left her with a lasting sense of loss and no stable home.</p>
-    </div>
-    <div class="tl-item">
-      <h4>Sent to live with grandparents in Nova Scotia</h4>
-      <p>She was happy here. She became a keen fisherwoman — which directly inspired "The Fish." The grandmother in "Sestina" is based on this time. When she was taken away to live with her father's family in Massachusetts, she described it as feeling "like a kidnapping."</p>
-    </div>
-    <div class="tl-item">
-      <h4>Struggled with alcoholism and depression throughout her life</h4>
-      <p>She had to move from friends' homes out of shame. This is why she identified so strongly with the character in "The Prodigal," who is also hiding his drinking and living in shame.</p>
-    </div>
-    <div class="tl-item">
-      <h4>Lived for years in Brazil with her partner Lota</h4>
-      <p>This was the happiest period of her life. She described Lota's later death as devastating. Her love of travel and the natural world is reflected throughout her poetry.</p>
-    </div>
-    <div class="tl-item">
-      <h4>Won the Pulitzer Prize in 1956</h4>
-      <p>Despite publishing only five slim collections in 35 years, she is considered one of the greatest poets in the English language. She cared deeply about quality over quantity.</p>
-    </div>
-  </div>
+  <main class="dashboard">
 
-  <h3 class="label">🎨 Her Style — How She Writes</h3>
-  <div class="two">
-    <div class="card">
-      <h4>Observational Style</h4>
-      <p>She describes things in extraordinary detail — the fish's scales, the smell of the pig sty, the oil on the cans in the filling station. This attention to detail makes the reader feel they are really there. It also gives her a way to explore her feelings without stating them directly.</p>
-    </div>
-    <div class="card">
-      <h4>Confessional but Distanced</h4>
-      <p>Her poems are deeply personal, but she often hides herself behind third-person figures — "the child," "the old grandmother," "he." This is a way of writing about painful things while keeping a safe emotional distance.</p>
-    </div>
-    <div class="card">
-      <h4>Vivid Imagery & Colour</h4>
-      <p>She uses lots of colour and sensory detail, likely influenced by her love of painting. Think of the rainbow at the end of "The Fish," the red sunrise in "The Prodigal," or the "dark brown tears" in "Sestina." Colour often signals a change in mood.</p>
-    </div>
-    <div class="card">
-      <h4>Conversational Tone</h4>
-      <p>Despite using complex forms, her poems often feel like someone telling you a story. She uses ordinary language, sometimes even humour. This makes deeply sad content feel very real and close — as if she's talking directly to you.</p>
-    </div>
-    <div class="card">
-      <h4>Moments of Epiphany</h4>
-      <p>Many of her poems build toward a sudden moment of realisation — an epiphany. In "The Fish," it's the moment she sees the rainbow and lets the fish go. In "The Prodigal," it's the growing dark that forces him to face reality. These moments feel earned and genuine.</p>
-    </div>
-    <div class="card">
-      <h4>Variety of Forms</h4>
-      <p>She uses sonnets ("The Prodigal"), sestinas ("Sestina"), and free verse ("The Fish"). Her choice of form always means something — the tight structure of the sestina mirrors the way grief keeps repeating; the loosening of the sonnet form in "The Prodigal" mirrors his uncertain journey home.</p>
-    </div>
-  </div>
+    <div class="section-label-row"><span class="label">📖 Poem-by-Poem Study</span></div>
+    <div class="topics-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
 
-  <h3 class="label">🌊 Core Themes</h3>
-  <div class="pills">
-    <span class="pill" style="background:var(--fish-l);color:var(--fish);">Home & Belonging</span>
-    <span class="pill" style="background:var(--prodigal-l);color:var(--prodigal);">Redemption & Recovery</span>
-    <span class="pill" style="background:var(--sestina-l);color:var(--sestina);">Childhood & Loss</span>
-    <span class="pill" style="background:var(--armadillo-l);color:var(--armadillo);">Nature & Destruction</span>
-    <span class="pill" style="background:var(--filling-l);color:var(--filling);">Survival & Resilience</span>
-    <span class="pill" style="background:var(--waiting-l);color:var(--waiting);">Identity & Isolation</span>
-    <span class="pill" style="background:#fff3e0;color:#8b4513;">Personal Experience as Metaphor</span>
-    <span class="pill" style="background:#e8f5e9;color:#2e7d32;">Travel & Observation</span>
-  </div>
+      <a href="Bishop_Fish.html" class="chapter-card card-fish" style="animation-delay:0.05s">
+        <div class="mc-icon">🐟</div>
+        <div class="mc-subtitle">Poem 1 · North &amp; South, 1946</div>
+        <div class="mc-title">The Fish</div>
+        <div class="mc-desc">Survival, resilience, and an unexpected epiphany. Bishop catches a remarkable fish and finds wisdom in its scars.</div>
+        <div class="mc-action">Study in depth →</div>
+      </a>
 
-  <h3 class="label">📚 The Poems — Quick Overview (click a card to go there)</h3>
-  <div class="ov-grid">
-    <div class="ov-card" onclick="show('fish')" style="--c:var(--fish);">
-      <div style="position:absolute;top:0;left:0;right:0;height:5px;background:var(--fish);border-radius:var(--r) var(--r) 0 0;"></div>
-      <div class="ov-role" style="color:var(--fish);">First Collection, 1946</div>
-      <h3>🐟 The Fish</h3>
-      <p>She catches a remarkable fish and, after studying it closely, is so impressed by its survival that she lets it go. A poem about respect, resilience, and finding beauty in unlikely places.</p>
+      <a href="Bishop_Prodigal.html" class="chapter-card card-prodigal" style="animation-delay:0.1s">
+        <div class="mc-icon">🐷</div>
+        <div class="mc-subtitle">Poem 2 · A Cold Spring, 1955</div>
+        <div class="mc-title">The Prodigal</div>
+        <div class="mc-desc">Alcoholism, shame, and the long road to recovery. A double sonnet of denial, darkness, and tentative hope.</div>
+        <div class="mc-action">Study in depth →</div>
+      </a>
+
+      <a href="Bishop_Sestina.html" class="chapter-card card-sestina" style="animation-delay:0.15s">
+        <div class="mc-icon">🏠</div>
+        <div class="mc-subtitle">Poem 3 · Questions of Travel, 1965</div>
+        <div class="mc-title">Sestina</div>
+        <div class="mc-desc">A child processes hidden grief with her grandmother. Loss, art as therapy, and the mystery of home in a rigid poetic form.</div>
+        <div class="mc-action">Study in depth →</div>
+      </a>
+
+      <a href="Bishop_Armadillo.html" class="chapter-card card-armadillo" style="animation-delay:0.2s">
+        <div class="mc-icon">🦔</div>
+        <div class="mc-subtitle">Poem 4 · Questions of Travel, 1965</div>
+        <div class="mc-title">The Armadillo</div>
+        <div class="mc-desc">Beauty turning to destruction. Illegal fire balloons devastate wildlife — an allegory of human impact on the natural world.</div>
+        <div class="mc-action">Study in depth →</div>
+      </a>
+
+      <a href="Bishop_Filling.html" class="chapter-card card-filling" style="animation-delay:0.25s">
+        <div class="mc-icon">⛽</div>
+        <div class="mc-subtitle">Poem 5 · Questions of Travel, 1965</div>
+        <div class="mc-title">Filling Station</div>
+        <div class="mc-desc">A dirty, oily station hides unexpected tenderness. Someone has quietly made this place a home — somebody loves us all.</div>
+        <div class="mc-action">Study in depth →</div>
+      </a>
+
     </div>
-    <div class="ov-card" onclick="show('prodigal')" style="--c:var(--prodigal);">
-      <div style="position:absolute;top:0;left:0;right:0;height:5px;background:var(--prodigal);border-radius:var(--r) var(--r) 0 0;"></div>
-      <div class="ov-role" style="color:var(--prodigal);">A Cold Spring, 1955</div>
-      <h3>🐷 The Prodigal</h3>
-      <p>Based on the biblical Prodigal Son, but written through the lens of alcoholism. A man living in a pig sty, hiding his shame, slowly facing the reality that he needs to go home.</p>
+
+    <div class="section-label-row"><span class="label">🛠️ Revision Tools</span></div>
+    <div class="topics-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+
+      <a href="Bishop_Flashcards.html" class="chapter-card card-flash" style="animation-delay:0.3s">
+        <div class="mc-icon">🃏</div>
+        <div class="mc-subtitle">All 5 Poems · Quote Drill</div>
+        <div class="mc-title">Flashcard Drill</div>
+        <div class="mc-desc">Test every key quote from every poem. Flip-cards organised by poem — quote on the front, technique &amp; analysis on the back.</div>
+        <div class="mc-action">Start drilling →</div>
+      </a>
+
+      <a href="Bishop_Links.html" class="chapter-card card-links" style="animation-delay:0.35s">
+        <div class="mc-icon">🔗</div>
+        <div class="mc-subtitle">Cross-Poem Connections</div>
+        <div class="mc-title">Thematic Links</div>
+        <div class="mc-desc">How the poems connect across shared themes — home, epiphany, nature, loss, Bishop as character, and form as meaning.</div>
+        <div class="mc-action">Explore links →</div>
+      </a>
+
     </div>
-    <div class="ov-card" onclick="show('sestina')" style="--c:var(--sestina);">
-      <div style="position:absolute;top:0;left:0;right:0;height:5px;background:var(--sestina);border-radius:var(--r) var(--r) 0 0;"></div>
-      <div class="ov-role" style="color:var(--sestina);">Questions of Travel, 1965</div>
-      <h3>🏠 Sestina</h3>
-      <p>A child sits with her grandmother in Nova Scotia. Using art to process unspoken grief. A deeply personal poem about childhood loss, family, and the impossibility of drawing "home."</p>
-    </div>
-    <div class="ov-card" onclick="show('armadillo')" style="--c:var(--armadillo);">
-      <div style="position:absolute;top:0;left:0;right:0;height:5px;background:var(--armadillo);border-radius:var(--r) var(--r) 0 0;"></div>
-      <div class="ov-role" style="color:var(--armadillo);">Questions of Travel, 1965</div>
-      <h3>🦔 The Armadillo</h3>
-      <p>Fire balloons, released during a Brazilian festival, crash and devastate wildlife — including an armadillo. A poem about how beauty can become destruction, and the vulnerability of innocent creatures.</p>
-    </div>
-    <div class="ov-card" onclick="show('filling')" style="--c:var(--filling);">
-      <div style="position:absolute;top:0;left:0;right:0;height:5px;background:var(--filling);border-radius:var(--r) var(--r) 0 0;"></div>
-      <div class="ov-role" style="color:var(--filling);">Questions of Travel, 1965</div>
-      <h3>⛽ Filling Station</h3>
-      <p>She visits a dirty, oily filling station and notices small domestic details — a doily, a plant, arranged cans — that suggest someone cares about this place. A poem about a mother's invisible love.</p>
-    </div>
-  </div>
 
-  <h3 class="label">📋 Poems at a Glance — Summary Table</h3>
-  <table class="rtable">
-    <tr><th>Poem</th><th>Theme</th><th>Tone</th><th>Form</th><th>Effect</th></tr>
-    <tr><td><strong>The Fish</strong></td><td>Surviving adversity and second chances</td><td>Curious, admiring, celebratory</td><td>Long descriptive narrative (free verse)</td><td>Uplifting, teaches a lesson — allegorical</td></tr>
-    <tr><td><strong>The Prodigal</strong></td><td>Debasement, addiction and redemption</td><td>Resigned, fretful, nervously hopeful</td><td>Double sonnet</td><td>Disturbing, evoking sympathy, biographical</td></tr>
-    <tr><td><strong>Sestina</strong></td><td>Childhood loss, family, power of imagination</td><td>Sadness, naïvety</td><td>Archaic sestina form with strict rules</td><td>Moving — we feel we know the poet deeply</td></tr>
-    <tr><td><strong>The Armadillo</strong></td><td>Adverse effect of mankind on the natural world</td><td>Admiring, then horrified, angry</td><td>Allegory with slant rhyme</td><td>Evokes empathy for suffering animals</td></tr>
-    <tr><td><strong>Filling Station</strong></td><td>Family; a mother's love</td><td>Playful, confused, enquiring</td><td>Narrative account with allegorical ending</td><td>Entertaining, then deeply moving</td></tr>
-  </table>
-</div>
-
-<!-- ===================== THE FISH ===================== -->
-<div class="sec" id="fish">
-  <div class="char-banner" style="background:linear-gradient(135deg,var(--fish),#0d4a73);color:#fff;--c:var(--fish);">
-    <div class="sub" style="color:rgba(255,255,255,.75);">Poem 1 · First Collection (1946)</div>
-    <h2>🐟 The Fish</h2>
-    <div class="intro" style="color:rgba(255,255,255,.85);">She catches a remarkable, ancient-looking fish and instead of feeling proud, she becomes fascinated by it. She studies it in detail, notices all the old fishing lines stuck in its mouth (signs of previous escapes), and has a sudden moment of realisation — this fish is a survivor, like her. Everything fills with a rainbow of colour, and she lets it go. This poem is about respect, adversity, and finding hope in unexpected places.</div>
-  </div>
-
-  <div class="box analogy">
-    <span class="ico">🤔</span>
-    <div>
-      <div class="box-label">The Simple Version</div>
-      <p>Think of catching a fish and noticing it has loads of old scars and broken hooks in its mouth — it has been caught many times before and escaped every time. You suddenly feel like this battered old fish deserves to live more than you deserve to keep it. That moment of realisation is the whole poem.</p>
-    </div>
-  </div>
-
-  <h3 class="label">🎭 Poetic Techniques Used</h3>
-  <div class="pills">
-    <span class="pill" style="background:var(--fish-l);color:var(--fish);">Sound — Alliteration, Assonance, Sibilance</span>
-    <span class="pill" style="background:var(--fish-l);color:var(--fish);">Enjambment</span>
-    <span class="pill" style="background:var(--fish-l);color:var(--fish);">Repetition ("rainbow, rainbow, rainbow!")</span>
-    <span class="pill" style="background:var(--fish-l);color:var(--fish);">No Rhyme Scheme — Narrative/Conversational</span>
-    <span class="pill" style="background:var(--fish-l);color:var(--fish);">Vivid Imagery & Colour</span>
-    <span class="pill" style="background:var(--fish-l);color:var(--fish);">Similes (domestic & unusual)</span>
-    <span class="pill" style="background:var(--fish-l);color:var(--fish);">Personification</span>
-    <span class="pill" style="background:var(--fish-l);color:var(--fish);">Specialist Language</span>
-    <span class="pill" style="background:var(--fish-l);color:var(--fish);">Triads</span>
-  </div>
-
-  <div class="box exam">
-    <span class="ico">📝</span>
-    <div>
-      <div class="box-label">Exam Tip — The Poetic Techniques Image</div>
-      <p>Your notes contain an image listing these techniques. Key ones to mention: <strong>Sound devices</strong> speed up/slow down the poem based on excitement. <strong>Repetition</strong> of "rainbow" shows the sudden explosion of joy — the epiphany. <strong>Similes</strong> like "like full blown roses" and "packed in like feathers" use homely, everyday comparisons to help us understand the fish's body. <strong>Personification</strong> gives the fish human qualities so we empathise with it. <strong>Specialist language</strong> ("wire leader," "swivel," "bilge") makes Bishop sound like a real fisherwoman — authentic and trustworthy.</p>
-    </div>
-  </div>
-
-  <h3 class="label">💬 Key Quotes — Full Analysis</h3>
-
-  <div class="acc">
-    <button class="acc-btn open" onclick="tog(this)">"He didn't fight. He hadn't fought at all." (Lines 5–6) — The Fish's Strange Dignity <span class="arr">▼</span></button>
-    <div class="acc-body open">
-      <div class="qblock" style="--c:var(--fish);--cl:var(--fish-l);"><blockquote>"He didn't fight. He hadn't fought at all."</blockquote>
-      <div class="qref">Lines 5–6 — First description of the fish</div>
-      <div class="qbody">
-        <p><span class="tech" style="background:var(--fish);">Repetition</span> The word "fight" is repeated to really emphasise that this fish is doing something unusual — it is completely still. This creates a sense of mystery. Why won't it fight?</p>
-        <p>This is the first hint that this fish is different. It's so old and experienced, it doesn't bother struggling. It just hangs there with a kind of dignity. Bishop is already giving it respect even before she fully understands it.</p>
-        <p><span class="kw">He</span> — Notice she calls it "he," not "it." She is already beginning to humanise the fish from the very first lines.</p>
-      </div></div>
-      <div class="box memory"><span class="ico">🧠</span><div><div class="box-label">Remember</div><p>The fish not fighting is what makes Bishop look closer. If it had fought back, she might have just pulled it in and been done with it. Its stillness is what starts her journey of observation and respect.</p></div></div>
-    </div>
-  </div>
-
-  <div class="acc">
-    <button class="acc-btn" onclick="tog(this)">"his brown skin hung in strips like ancient wallpaper" (Lines 10–11) — Age and Beauty Together <span class="arr">▼</span></button>
-    <div class="acc-body">
-      <div class="qblock" style="--c:var(--fish);--cl:var(--fish-l);"><blockquote>"his brown skin hung in strips / like ancient wallpaper"</blockquote>
-      <div class="qref">Lines 10–11 — Describing the fish's skin</div>
-      <div class="qbody">
-        <p><span class="tech" style="background:var(--fish);">Simile</span> The comparison to "ancient wallpaper" is a very unusual choice. Wallpaper is something found in a home — it is domestic and familiar. But "ancient" tells us it is old, worn, even tattered.</p>
-        <p>This is a perfect example of Bishop's <strong>homely similes</strong>. She uses ordinary household objects to describe nature. This helps us visualise something unfamiliar (fish skin) through something familiar (old wallpaper peeling off a wall).</p>
-        <p>Crucially, she then immediately sees beauty in this: <em>"shapes like full-blown roses / stained and lost through age."</em> She is not disgusted by the fish's age and deterioration — she finds it beautiful. This teaches us to look at damaged, old things with respect rather than pity.</p>
-        <p><span class="tech" style="background:var(--fish);">Imagery</span> The roses are a striking image — even in decay, there is beauty. This mirrors Bishop's own life, where she found beauty in difficult, damaged experiences.</p>
-      </div></div>
-    </div>
-  </div>
-
-  <div class="acc">
-    <button class="acc-btn" onclick="tog(this)">"the frightening gills, fresh and crisp with blood" (Lines 23–25) — Facing Harsh Reality <span class="arr">▼</span></button>
-    <div class="acc-body">
-      <div class="qblock" style="--c:var(--fish);--cl:var(--fish-l);"><blockquote>"the frightening gills, / fresh and crisp with blood, / that can cut so badly"</blockquote>
-      <div class="qref">Lines 23–25 — Describing the fish's gills</div>
-      <div class="qbody">
-        <p>This is an important moment. Bishop doesn't look away from the ugly, painful realities of nature. The gills are "frightening" and dangerous. She is honest about this.</p>
-        <p>Notice how she describes the oxygen as "terrible oxygen" — from the fish's point of view, the air is deadly. This is a moment where she begins to truly empathise with the fish, imagining how frightening and painful this experience must be <em>for the fish.</em></p>
-        <p><span class="tech" style="background:var(--fish);">Perspective Shift</span> This is key to understanding the poem. Bishop moves from observer to empathiser. She stops seeing the fish as her catch and starts seeing it as a living creature in distress.</p>
-      </div></div>
-    </div>
-  </div>
-
-  <div class="acc">
-    <button class="acc-btn" onclick="tog(this)">"five old pieces of fish-line... like medals" (Lines 51–62) — The Fish as Veteran <span class="arr">▼</span></button>
-    <div class="acc-body">
-      <div class="qblock" style="--c:var(--fish);--cl:var(--fish-l);"><blockquote>"hung five old pieces of fish-line... Like medals with their ribbons / frayed and wavering, / a five-haired beard of wisdom / trailing from his aching jaw."</blockquote>
-      <div class="qref">Lines 51–64 — Discovering the old fishing lines</div>
-      <div class="qbody">
-        <p><span class="tech" style="background:var(--fish);">Personification</span> The old fishing lines in the fish's mouth are described as "medals" — comparing the fish to a war veteran who has survived many battles. This is the moment the poem shifts completely.</p>
-        <p>The fish has been caught five times before and escaped. Each time, it broke free, leaving behind a bit of line. These broken lines are now its battle scars, its proof of survival.</p>
-        <p><span class="kw">"beard of wisdom"</span> — The fish is now like an old, wise man. "Wisdom" comes from experience and survival. This fish has earned its place in the world.</p>
-        <p>This moment clearly connects to Bishop's own life — she too had survived enormous hardships (the loss of both parents, alcoholism, depression, loneliness). She sees herself in the fish.</p>
-      </div></div>
-      <div class="box analogy"><span class="ico">🎖️</span><div><div class="box-label">Think of it like this</div><p>Imagine meeting someone very old who has scars all over them. Instead of feeling sorry for them, you realise each scar is a story of survival — they got knocked down five times and got up six. That's how Bishop sees this fish. The scars are proof of resilience, not weakness.</p></div></div>
-    </div>
-  </div>
-
-  <div class="acc">
-    <button class="acc-btn" onclick="tog(this)">"until everything was rainbow, rainbow, rainbow! / And I let the fish go." (Lines 74–76) — The Epiphany <span class="arr">▼</span></button>
-    <div class="acc-body">
-      <div class="qblock" style="--c:var(--fish);--cl:var(--fish-l);"><blockquote>"until everything / was rainbow, rainbow, rainbow! / And I let the fish go."</blockquote>
-      <div class="qref">Lines 74–76 — The ending</div>
-      <div class="qbody">
-        <p><span class="tech" style="background:var(--fish);">Repetition</span> "Rainbow, rainbow, rainbow!" — the three-fold repetition (a triad) suggests an explosion of joy and wonder. The whole boat is suddenly filled with colour and light. This is the epiphany — the sudden moment of realisation.</p>
-        <p>The rainbow is formed by oil spreading on the bilge water. Even in something dirty and ugly (oily water), Bishop finds a rainbow. This is her whole philosophy: beauty exists in unexpected, overlooked places.</p>
-        <p><span class="tech" style="background:var(--fish);">Colour Imagery</span> The poem begins in dull, earthly tones (brown, grey) and ends in a burst of rainbow colour. This reflects her emotional journey — from detached observer to joyful understanding.</p>
-        <p><span class="kw">"I let the fish go"</span> — Simple, understated, enormously powerful. After 76 lines of close observation, this five-word sentence carries all the emotional weight. She gives the fish its freedom because it has earned it — and perhaps, in letting it go, she finds a kind of freedom herself.</p>
-      </div></div>
-      <div class="box exam"><span class="ico">📝</span><div><div class="box-label">Exam Tip</div><p>This ending is one of Bishop's most famous moments. If asked about her use of language to create effect, or about moments of insight in her poetry, always reference this ending. The contrast between the dull reality of the scene (dirty boat, oily water) and the beauty of the rainbow perfectly captures her ability to find wonder in the ordinary.</p></div></div>
-    </div>
-  </div>
-</div>
-
-<!-- ===================== THE PRODIGAL ===================== -->
-<div class="sec" id="prodigal">
-  <div class="char-banner" style="background:linear-gradient(135deg,#3d0070,#1a0050);color:#fff;--c:var(--prodigal);">
-    <div class="sub" style="color:rgba(255,255,255,.75);">Poem 2 · A Cold Spring (1955)</div>
-    <h2>🐷 The Prodigal</h2>
-    <div class="intro" style="color:rgba(255,255,255,.85);">Based on the biblical story of the Prodigal Son — a man who runs away from home and ends up living in poverty with pigs. But Bishop updates it to be about alcoholism. A man lives in a pig sty, hiding his shame, hiding his bottles, and slowly — painfully slowly — comes to terms with the fact that he needs to go home. Bishop wrote this because she understood it personally: she struggled with alcoholism and often had to leave friends' homes out of shame.</div>
-  </div>
-
-  <div class="box analogy">
-    <span class="ico">🤔</span>
-    <div>
-      <div class="box-label">The Simple Version</div>
-      <p>Think of someone who has hit rock bottom. They know they need help, but admitting that is the hardest thing in the world. So they keep telling themselves things are fine, that tomorrow will be better. This poem is about that long, painful journey from denial to finally, finally deciding to go home and face reality.</p>
-    </div>
-  </div>
-
-  <h3 class="label">📐 The Form — Two Sonnets, Not One</h3>
-  <div class="two">
-    <div class="card">
-      <h4>Sonnet 1 (Lines 1–14) — The Shakespearean Sonnet</h4>
-      <p>More ordered and structured. Three quatrains (four-line sections) and a rhyming couplet. This represents the man telling himself everything is okay — imposing a false sense of order on his chaotic life. The structured form mirrors his <strong>denial</strong>.</p>
-    </div>
-    <div class="card">
-      <h4>Sonnet 2 (Lines 15–28) — The Looser Sonnet</h4>
-      <p>Less ordered. The rhyme scheme breaks down. This represents reality crashing in — the dark evening, the nightmarish imagery, the dawning truth. The unravelling form mirrors his <strong>unravelling denial</strong>. The final words "home" and "time" don't properly rhyme — this is called <strong>slant rhyme</strong>, suggesting all is still not well even at the end.</p>
-    </div>
-  </div>
-
-  <div class="box exam">
-    <span class="ico">📝</span>
-    <div>
-      <div class="box-label">Exam Tip — Form Question</div>
-      <p>If asked why the poem is split into two sonnets with different structures, say: <em>The first sonnet's ordered structure mirrors the Prodigal's denial and false hope. The second sonnet's looser structure mirrors the collapse of that denial as reality — represented by darkness and nightmarish imagery — closes in. The slant rhyme at the end ("home"/"time") suggests recovery is not complete — the journey is only just beginning.</em></p>
-    </div>
-  </div>
-
-  <h3 class="label">💬 Key Quotes — Full Analysis</h3>
-
-  <div class="acc">
-    <button class="acc-btn open" onclick="tog(this)">"The brown enormous odor he lived by" (Line 1) — Rock Bottom <span class="arr">▼</span></button>
-    <div class="acc-body open">
-      <div class="qblock" style="--c:var(--prodigal);--cl:var(--prodigal-l);"><blockquote>"The brown enormous odor he lived by"</blockquote>
-      <div class="qref">Line 1 — Opening line</div>
-      <div class="qbody">
-        <p><span class="tech" style="background:var(--prodigal);">Imagery</span> The poem opens not with a beautiful image, but with a smell — an enormous, brown smell. This immediately puts us inside a dark, suffocating space.</p>
-        <p>"Brown" is not a vibrant colour — it is dull, earthy, associated with dirt and decay. The word "enormous" suggests this smell has taken over everything; it is inescapable.</p>
-        <p>Starting with the word "The" (not "A") suggests we are entering a world that already exists — as if we have been dropped into the middle of his miserable situation. There is no romantic build-up. This is his life.</p>
-      </div></div>
-    </div>
-  </div>
-
-  <div class="acc">
-    <button class="acc-btn" onclick="tog(this)">"the pigs' eyes followed him, a cheerful stare — / even to the sow that always ate her young" (Lines 6–7) — Disturbing Judgement <span class="arr">▼</span></button>
-    <div class="acc-body">
-      <div class="qblock" style="--c:var(--prodigal);--cl:var(--prodigal-l);"><blockquote>"Light-lashed, self-righteous, above moving snouts, / the pigs' eyes followed him, a cheerful stare — / even to the sow that always ate her young"</blockquote>
-      <div class="qref">Lines 5–8 — Describing the pigs</div>
-      <div class="qbody">
-        <p><span class="tech" style="background:var(--prodigal);">Personification</span> The pigs are described as "self-righteous" — as if they are judging him morally. Even animals that do terrible things (like a sow that eats her young) somehow seem to be looking down at him.</p>
-        <p>This creates a deeply disturbing and dark-comic effect. The man is so low, so deeply in denial, that even the worst animals seem to have moral authority over him.</p>
-        <p>It also conveys his state of mind — when you are struggling with addiction, you feel that even animals are judging you. His sense of shame is so extreme it is distorting his perception of reality.</p>
-        <p><span class="kw">"till, sickening, he leaned to scratch her head"</span> — Despite knowing this pig eats her young, he is so lonely that he tries to make friends with her anyway. This is a heartbreaking image of loneliness and desperation.</p>
-      </div></div>
-    </div>
-  </div>
-
-  <div class="acc">
-    <button class="acc-btn" onclick="tog(this)">"the burning puddles seemed to reassure" (Line 12) — Misplaced Hope <span class="arr">▼</span></button>
-    <div class="acc-body">
-      <div class="qblock" style="--c:var(--prodigal);--cl:var(--prodigal-l);"><blockquote>"the sunrise glazed the barnyard mud with red; / the burning puddles seemed to reassure. / And then he thought he almost might endure / his exile yet another year or more."</blockquote>
-      <div class="qref">Lines 11–14 — End of the first sonnet</div>
-      <div class="qbody">
-        <p>There is a sudden burst of colour — "red," "burning." The sunrise makes the muddy barnyard briefly beautiful. This is a moment of hope.</p>
-        <p>But look carefully: <span class="kw">"seemed to reassure"</span> — not "did reassure." "Seemed" is doing important work here. It is not real reassurance. It is only an appearance of hope.</p>
-        <p><span class="kw">"almost might endure"</span> — even more qualified. Not "could endure," not "will endure" — "almost might." This is the language of someone who is trying very hard to convince themselves that things are okay, but is not fully convincing even themselves.</p>
-        <p><span class="tech" style="background:var(--prodigal);">Colour Imagery</span> The red sunrise is a brief flash of beauty in a dull, brown world. But it is still the sunrise over a pig sty — he is still hiding his bottles and living in filth. Can hope sometimes be misplaced?</p>
-      </div></div>
-      <div class="box warning"><span class="ico">⚠️</span><div><div class="box-label">Key Idea for the Exam</div><p>This is Bishop's central question about addiction and recovery: can hope be misplaced? He sees the beauty of the sunrise as a reason to endure another year. But this is dangerous — he is using a beautiful moment to justify staying in a terrible situation. Real recovery requires facing reality, not beautiful sunrises.</p></div></div>
-    </div>
-  </div>
-
-  <div class="acc">
-    <button class="acc-btn" onclick="tog(this)">"But evenings the first star came to warn." (Line 15) — Reality Arrives <span class="arr">▼</span></button>
-    <div class="acc-body">
-      <div class="qblock" style="--c:var(--prodigal);--cl:var(--prodigal-l);"><blockquote>"But evenings the first star came to warn."</blockquote>
-      <div class="qref">Line 15 — Opening of the second sonnet</div>
-      <div class="qbody">
-        <p><span class="kw">"But"</span> — This single word instantly destroys everything the first sonnet built up. "But" signals a reversal. Whatever hope or comfort was found in the morning, the evenings bring something different.</p>
-        <p><span class="tech" style="background:var(--prodigal);">Personification</span> The star "warns" him — nature itself is sending him a message. The evening represents reality, truth, the darkness he has been avoiding.</p>
-        <p>Where the morning was red and warm (false hope), the evening brings storm imagery: "overhanging clouds of hay" (foreboding), "pitchforks as faint forked lightning" (storm, threat), "shutting away the animals in the Ark" (shelter, but also the sense of a coming disaster).</p>
-        <p>The animals are "safe and companionable" inside — but he is outside, isolated. This contrast between the warmth inside and his isolation outside is painfully clear.</p>
-      </div></div>
-    </div>
-  </div>
-
-  <div class="acc">
-    <button class="acc-btn" onclick="tog(this)">"it took him a long time / finally to make his mind up to go home." (Lines 27–28) — The Journey to Recovery <span class="arr">▼</span></button>
-    <div class="acc-body">
-      <div class="qblock" style="--c:var(--prodigal);--cl:var(--prodigal-l);"><blockquote>"But it took him a long time / finally to make his mind up to go home."</blockquote>
-      <div class="qref">Lines 27–28 — Final lines of the poem</div>
-      <div class="qbody">
-        <p>The poem ends very quietly, almost understated. After all the nightmarish imagery (slimy boards, bats, "shuddering insights"), this simple, almost plain statement carries enormous weight.</p>
-        <p><span class="kw">"a long time"</span> — This is the honest truth about addiction and recovery. It doesn't happen quickly. It is a long, difficult process. Bishop is not romanticising recovery — she is showing how hard it actually is.</p>
-        <p><span class="kw">"home"</span> — Note that for Bishop, "home" was not always a safe or happy place (her father died, her mother was committed, she was moved around as a child). Yet home represents recovery, facing the world, reconnecting. That it is still the destination says something important.</p>
-        <p><span class="tech" style="background:var(--prodigal);">Slant Rhyme</span> "home" and "time" do not perfectly rhyme — this is deliberate. It suggests that even after this decision, everything is not neatly resolved. The journey is only beginning. The broken rhyme mirrors the unfinished recovery.</p>
-      </div></div>
-      <div class="box memory"><span class="ico">🧠</span><div><div class="box-label">Why Bishop Understood This Poem</div><p>She wrote this from personal experience of alcoholism. She didn't judge the Prodigal — she understood him. That understanding and empathy is why this poem feels so real and so compassionate rather than preachy or moralistic.</p></div></div>
-    </div>
-  </div>
-</div>
-
-<!-- ===================== SESTINA ===================== -->
-<div class="sec" id="sestina">
-  <div class="char-banner" style="background:linear-gradient(135deg,#0d4a2a,#1a4060);color:#fff;--c:var(--sestina);">
-    <div class="sub" style="color:rgba(255,255,255,.75);">Poem 3 · Questions of Travel (1965)</div>
-    <h2>🏠 Sestina</h2>
-    <div class="intro" style="color:rgba(255,255,255,.85);">A child sits in a kitchen with her grandmother in Nova Scotia. It is raining. The grandmother reads from an almanac. The child draws pictures. Everything seems cosy — but underneath, both the child and grandmother are hiding enormous grief. The child draws a house, a winding path, and a man with "buttons like tears." This poem is about how grief surrounds us even when we try to stay cheerful, and how art — drawing, poetry — is a way of processing things we can't yet say out loud.</div>
-  </div>
-
-  <h3 class="label">📐 The Sestina Form — Why It Matters</h3>
-  <div class="intro-box">
-    <p>A sestina is a very strict, ancient poetic form. It has <strong>six six-line stanzas</strong> (sestets) plus a <strong>final three-line stanza</strong> (tercet). The same six words must end every line of every stanza — but they rotate in a specific pattern so the same word never ends the same line twice.</p>
-    <br>
-    <p>The six words in this poem are: <strong>house, grandmother, child, stove, almanac, tears.</strong></p>
-    <br>
-    <p><strong>Why does this matter?</strong> The constant repetition of these words is like a nursery rhyme — familiar, childlike, circular. But it also reflects how grief works: you keep coming back to the same things, the same people, the same objects. The rigid structure also gave Bishop (writing about her own painful childhood) a way to stay focused and process grief in a structured way, rather than being overwhelmed by it.</p>
-  </div>
-
-  <div class="box analogy">
-    <span class="ico">🎠</span>
-    <div>
-      <div class="box-label">The Carousel Idea</div>
-      <p>Think of the poem like a carousel — the same six words keep coming around and around, just in a different order each time. This creates a dizzying, repetitive quality that mirrors the way grief and childhood memory work. You don't move past them; you just keep encountering them from different angles.</p>
-    </div>
-  </div>
-
-  <h3 class="label">💬 Key Quotes — Full Analysis</h3>
-
-  <div class="acc">
-    <button class="acc-btn open" onclick="tog(this)">"laughing and talking to hide her tears." (Line 6) — The Hidden Grief <span class="arr">▼</span></button>
-    <div class="acc-body open">
-      <div class="qblock" style="--c:var(--sestina);--cl:var(--sestina-l);"><blockquote>"laughing and talking to hide her tears."</blockquote>
-      <div class="qref">Line 6 — End of the first stanza</div>
-      <div class="qbody">
-        <p>The first stanza seems warm and cosy — grandmother and child reading jokes from an almanac. Then the final line reveals everything: they are laughing to hide their tears.</p>
-        <p><span class="tech" style="background:var(--sestina);">Dramatic Irony</span> We now have to re-read the whole first stanza differently. The "failing light," the September rain — these weren't just atmosphere. They were foreshadowing the grief underneath the cheerfulness.</p>
-        <p>This is typical of Bishop's style — she sets up a scene that seems ordinary, then reveals a deeper, sadder truth hiding beneath it. The contrast between the cosy domestic scene and the hidden grief makes the grief feel more real, not less.</p>
-        <p><span class="kw">"hide"</span> — This is key. Neither the grandmother nor the child talks about their grief directly. Instead, they perform cheerfulness. This is exactly what Bishop herself did — she hid her personal struggles behind careful, beautiful poetry.</p>
-      </div></div>
-    </div>
-  </div>
-
-  <div class="acc">
-    <button class="acc-btn" onclick="tog(this)">"the teakettle's small hard tears / dance like mad on the hot black stove" (Lines 14–15) — When Objects Reflect Emotions <span class="arr">▼</span></button>
-    <div class="acc-body">
-      <div class="qblock" style="--c:var(--sestina);--cl:var(--sestina-l);"><blockquote>"the teakettle's small hard tears / dance like mad on the hot black stove"</blockquote>
-      <div class="qref">Lines 14–15 — Stanza 3</div>
-      <div class="qbody">
-        <p><span class="tech" style="background:var(--sestina);">Pathetic Fallacy</span> The boiling water droplets from the kettle are described as "tears" — as if even the kettle is crying. The domestic objects in the poem begin to reflect the emotions of the people around them.</p>
-        <p><span class="kw">"dance like mad"</span> — The word "mad" is very carefully chosen. Bishop's mother had been committed to a mental institution. The word carries an enormous amount of weight. The child watching the "mad" dancing droplets may be unconsciously connecting this to her mother's illness.</p>
-        <p><span class="tech" style="background:var(--sestina);">Personification</span> The stove, which was cosy and warm in stanza 1, now feels more menacing. "Hot black" is threatening, not comforting. As the child's sorrow grows, the domestic objects that were once comforting begin to feel dangerous.</p>
-      </div></div>
-    </div>
-  </div>
-
-  <div class="acc">
-    <button class="acc-btn" onclick="tog(this)">"the almanac / hovers half open above the child" (Lines 19–20) — Half-Answers <span class="arr">▼</span></button>
-    <div class="acc-body">
-      <div class="qblock" style="--c:var(--sestina);--cl:var(--sestina-l);"><blockquote>"Bird-like, the almanac / hovers half open above the child"</blockquote>
-      <div class="qref">Lines 19–20 — Stanza 4</div>
-      <div class="qbody">
-        <p>An almanac is a book that tells you things — the weather, predictions, useful knowledge. It "holds answers," as your notes say. So what does it mean that it "hovers half open"?</p>
-        <p><span class="kw">"half open"</span> — The child only ever has half the answers. She doesn't fully understand what has happened to her family. She knows something is wrong, but nobody has explained it to her in full. This is the condition of her childhood — perpetually searching for meaning, never quite getting the whole picture.</p>
-        <p><span class="tech" style="background:var(--sestina);">Personification</span> The almanac hovers "bird-like" above her — alive, slightly threatening, full of knowledge she can't quite reach. Your notes make a clever link here: the poem itself is "half length" in the final stanza (a tercet, not a sestet) — as if the poem, like the almanac, is also half open, unfinished.</p>
-      </div></div>
-    </div>
-  </div>
-
-  <div class="acc">
-    <button class="acc-btn" onclick="tog(this)">"puts in a man with buttons like tears" (Line 29) — The Lost Father <span class="arr">▼</span></button>
-    <div class="acc-body">
-      <div class="qblock" style="--c:var(--sestina);--cl:var(--sestina-l);"><blockquote>"With crayons the child draws a rigid house / and a winding pathway. Then the child / puts in a man with buttons like tears"</blockquote>
-      <div class="qref">Lines 27–29 — Stanza 5</div>
-      <div class="qbody">
-        <p>The child draws a picture. The house is <span class="kw">"rigid"</span> — straight, structured, like the sestina form itself. But the pathway is <span class="kw">"winding"</span> — like Bishop's own uncertain life journey.</p>
-        <p>The man with "buttons like tears" is almost certainly the child's father — whom Bishop never knew. The buttons are like tears because his memory is associated with loss. He is in the drawing, but decorated with sadness.</p>
-        <p><span class="tech" style="background:var(--sestina);">Symbolism</span> Art becomes the way the child processes loss. She can't talk about her father, so she draws him. The drawing is her way of giving him a place in her world, even if she never knew him in real life.</p>
-        <p>This connects to the broader theme: <strong>art and creativity as therapy</strong>. The child uses drawing; Bishop uses poetry. Both are ways of making sense of grief.</p>
-      </div></div>
-    </div>
-  </div>
-
-  <div class="acc">
-    <button class="acc-btn" onclick="tog(this)">"Time to plant tears, says the almanac. / ...the child draws another inscrutable house." (Lines 37–39) — Endless Grief, Endless Searching <span class="arr">▼</span></button>
-    <div class="acc-body">
-      <div class="qblock" style="--c:var(--sestina);--cl:var(--sestina-l);"><blockquote>"Time to plant tears, says the almanac. / The grandmother sings to the marvellous stove / and the child draws another inscrutable house."</blockquote>
-      <div class="qref">Lines 37–39 — Final stanza (the tercet)</div>
-      <div class="qbody">
-        <p><span class="kw">"Time to plant tears"</span> — This is a remarkable image. You plant seeds to grow something. Are tears being "planted" here — suggesting more grief is coming, that sadness grows? Or is this something more hopeful — that from grief, something can eventually grow?</p>
-        <p><span class="kw">"inscrutable house"</span> — "Inscrutable" means "impossible to understand." The child can't draw a house she understands, because she doesn't know what a real home feels like. She has never had a stable, permanent home. So every house she draws is "another" one — she keeps trying to understand home, but it remains a mystery.</p>
-        <p><span class="tech" style="background:var(--sestina);">Disconnect</span> Notice the final stanza: the grandmother is linked to the stove (warmth, home, domesticity) and the child is linked to her art. There is a gentle disconnect between them — the grandmother belongs to the home; the child belongs to her imagination and her art.</p>
-        <p>In the final tercet, only objects end the lines (stove, almanac, house) — no people. All human connection has been removed from the line endings. This subtly suggests that the people in this scene will eventually be gone, but the objects — and the memories — will remain.</p>
-      </div></div>
-      <div class="box exam"><span class="ico">📝</span><div><div class="box-label">Key Exam Point</div><p>The poem was originally called "Early Sorrow" but later renamed "Sestina." Why? The title draws our attention to the <em>form</em> rather than the content. By calling it "Sestina," Bishop is saying: the form itself — its repetitiveness, its rigidity, its circling back — is the meaning. The structure IS the grief.</p></div></div>
-    </div>
-  </div>
-</div>
-
-<!-- ===================== THE ARMADILLO ===================== -->
-<div class="sec" id="armadillo">
-  <div class="char-banner" style="background:linear-gradient(135deg,#6b0000,#1a0a00);color:#fff;--c:var(--armadillo);">
-    <div class="sub" style="color:rgba(255,255,255,.75);">Poem 4 · Questions of Travel (1965) · Dedicated to Robert Lowell</div>
-    <h2>🦔 The Armadillo</h2>
-    <div class="intro" style="color:rgba(255,255,255,.85);">Set in Brazil on St. John's Day (June 24th), when locals traditionally release fire balloons into the sky as offerings to saints. The balloons are beautiful — but they are also illegal and dangerous. One crashes into a cliff, setting fire to an owls' nest and driving an armadillo from its home. The poem begins in wonder and ends in horror. It is an allegory — the fire balloons represent how human actions (often done with good intentions or in celebration) can destroy the natural world.</div>
-  </div>
-
-  <div class="box analogy">
-    <span class="ico">🤔</span>
-    <div>
-      <div class="box-label">The Simple Version</div>
-      <p>Imagine beautiful fireworks being set off in a nature reserve. They look wonderful in the sky. But one crashes and starts a wildfire, burning the nests of owls and forcing animals to flee. The people releasing them never meant harm — but that doesn't stop the harm happening. That tension between beauty and destruction is what this poem is about.</p>
-    </div>
-  </div>
-
-  <h3 class="label">💬 Key Quotes — Full Analysis</h3>
-
-  <div class="acc">
-    <button class="acc-btn open" onclick="tog(this)">"the frail, illegal fire balloons appear. / Climbing the mountain height" (Lines 3–4) — Beauty and Danger Together <span class="arr">▼</span></button>
-    <div class="acc-body open">
-      <div class="qblock" style="--c:var(--armadillo);--cl:var(--armadillo-l);"><blockquote>"the frail, illegal fire balloons appear. / Climbing the mountain height,"</blockquote>
-      <div class="qref">Lines 3–4 — First stanza</div>
-      <div class="qbody">
-        <p>Two words immediately stand out: <span class="kw">"frail"</span> and <span class="kw">"illegal."</span> The balloons are beautiful but fragile and technically not allowed. This sets up the central tension of the whole poem: something can be lovely and harmful at the same time.</p>
-        <p>The balloons "climb" — as if they are alive, purposeful. They are "rising toward a saint" (line 5) — being sent up as a religious offering. This is important: the people releasing them mean well. This makes the destruction that follows even more tragic.</p>
-        <p><span class="tech" style="background:var(--armadillo);">Irony</span> These balloons are sent up as an act of devotion to a saint — but they end up causing suffering to innocent animals. Good intentions do not prevent harm.</p>
-      </div></div>
-    </div>
-  </div>
-
-  <div class="acc">
-    <button class="acc-btn" onclick="tog(this)">"the paper chambers flush and fill with light / that comes and goes, like hearts." (Lines 7–8) — The Heart Image <span class="arr">▼</span></button>
-    <div class="acc-body">
-      <div class="qblock" style="--c:var(--armadillo);--cl:var(--armadillo-l);"><blockquote>"the paper chambers flush and fill with light / that comes and goes, like hearts."</blockquote>
-      <div class="qref">Lines 7–8 — Second stanza</div>
-      <div class="qbody">
-        <p>The "paper chambers" are the inside of the balloons — they fill with hot air from the candle, making them glow. The light "comes and goes" — flickering as the candle inside pulses.</p>
-        <p><span class="kw">"like hearts"</span> — This is a startling and beautiful simile. The glowing, pulsing balloons are compared to hearts beating. This gives them a living quality — as if they are alive, with heartbeats.</p>
-        <p>But it is also ominous: hearts can stop. The balloons can fall. This small simile foreshadows the destruction to come.</p>
-      </div></div>
-    </div>
-  </div>
-
-  <div class="acc">
-    <button class="acc-btn" onclick="tog(this)">"suddenly turning dangerous" (Line 20) — The Shift in the Poem <span class="arr">▼</span></button>
-    <div class="acc-body">
-      <div class="qblock" style="--c:var(--armadillo);--cl:var(--armadillo-l);"><blockquote>"or, in the downdraft from a peak, / suddenly turning dangerous."</blockquote>
-      <div class="qref">Lines 19–20 — End of the fifth stanza</div>
-      <div class="qbody">
-        <p>This is the pivot point of the entire poem. Up to this point, the balloons have been described with wonder and beauty. "Suddenly" — everything changes.</p>
-        <p><span class="kw">"suddenly"</span> is a very ordinary word, but placed at the end of a stanza like this, it acts like a turning point or cliff-hanger. The next stanza shows us what "dangerous" means: a balloon crashes against a cliff.</p>
-        <p><span class="tech" style="background:var(--armadillo);">Structure</span> This transition mirrors how quickly beauty can turn to catastrophe. There is no warning, no gradual build-up. "Suddenly" it is all different. This is true of many environmental disasters — they happen fast, even when the causes have been building slowly.</p>
-      </div></div>
-    </div>
-  </div>
-
-  <div class="acc">
-    <button class="acc-btn" onclick="tog(this)">"Hastily, all alone, / a glistening armadillo left the scene, / rose-flecked, head down, tail down" (Lines 29–32) — The Armadillo Flees <span class="arr">▼</span></button>
-    <div class="acc-body">
-      <div class="qblock" style="--c:var(--armadillo);--cl:var(--armadillo-l);"><blockquote>"Hastily, all alone, / a glistening armadillo left the scene, / rose-flecked, head down, tail down,"</blockquote>
-      <div class="qref">Lines 29–32 — The armadillo appears</div>
-      <div class="qbody">
-        <p><span class="tech" style="background:var(--armadillo);">Punctuation</span> The commas slow down the line: "Hastily, all alone." This draws out the sadness of the image. The pausing rhythm makes us look at the armadillo carefully, feeling its isolation and distress.</p>
-        <p><span class="kw">"head down, tail down"</span> — The repeated "down" emphasises defeat, sorrow, shame. The armadillo is fleeing with its head bowed — like someone walking away from a disaster with nothing left.</p>
-        <p><span class="kw">"rose-flecked"</span> — The armadillo is covered in glowing embers from the fire. Beautiful word, terrifying reality. Even here, in a moment of destruction, Bishop finds visual beauty — which makes the horror more powerful, not less.</p>
-        <p>Your notes connect this to Bishop's own life: the armadillo leaving the "ancient owls' nest" mirrors Bishop leaving her grandparents' home in Nova Scotia — an "ancient," settled family — feeling devastated. The armadillo, hard on the outside but soft inside, may also represent Bishop herself.</p>
-      </div></div>
-    </div>
-  </div>
-
-  <div class="acc">
-    <button class="acc-btn" onclick="tog(this)">"Too pretty, dreamlike mimicry! / O falling fire and piercing cry / and panic, and a weak mailed fist / clenched ignorant against the sky!" (Lines 37–40) — Rage and Helplessness <span class="arr">▼</span></button>
-    <div class="acc-body">
-      <div class="qblock" style="--c:var(--armadillo);--cl:var(--armadillo-l);"><blockquote>"Too pretty, dreamlike mimicry! / O falling fire and piercing cry / and panic, and a weak mailed fist / clenched ignorant against the sky!"</blockquote>
-      <div class="qref">Lines 37–40 — Final stanza (in italics)</div>
-      <div class="qbody">
-        <p>The final stanza is written in italics — it is a different voice, more emotional, more direct. This is Bishop finally dropping her observational composure and expressing her anger.</p>
-        <p><span class="kw">"Too pretty"</span> — She is turning on herself, or on the situation. The balloons were too beautiful, too "dreamlike." We were seduced by their beauty and missed the danger.</p>
-        <p><span class="tech" style="background:var(--armadillo);">Slant Rhyme</span> After the regular rhyme scheme of the earlier stanzas, the rhyme scheme becomes rougher here, more jagged — just as the situation has become rougher and more brutal.</p>
-        <p><span class="kw">"mailed fist / clenched ignorant against the sky"</span> — The armadillo curled into a ball (its natural defence) looks like a small armoured fist raised at the sky. But it is "ignorant" — it doesn't understand why this is happening to it. It has done nothing wrong. Its rage and confusion are heartbreaking and futile.</p>
-        <p><span class="tech" style="background:var(--armadillo);">Allegory</span> The poem is an allegory. The armadillo represents all innocent creatures — and perhaps all vulnerable people — caught in the crossfire of human actions they cannot understand or control.</p>
-      </div></div>
-      <div class="box exam"><span class="ico">📝</span><div><div class="box-label">Exam Tip</div><p>This poem was dedicated to Robert Lowell, who then wrote his own poem "Skunk Hour" as a response. If asked about links between poets or influences, you can mention this. The poem also connects to themes in "The Fish" — Bishop's respect for and empathy with animals.</p></div></div>
-    </div>
-  </div>
-</div>
-
-<!-- ===================== FILLING STATION ===================== -->
-<div class="sec" id="filling">
-  <div class="char-banner" style="background:linear-gradient(135deg,#5d2700,#1a1a00);color:#fff;--c:var(--filling);">
-    <div class="sub" style="color:rgba(255,255,255,.75);">Poem 5 · Questions of Travel (1965)</div>
-    <h2>⛽ Filling Station</h2>
-    <div class="intro" style="color:rgba(255,255,255,.85);">She visits a dirty, oil-covered filling station somewhere in California. A father and his sons work there, covered in grease. She is playfully appalled. But as she looks more closely, she notices things that don't belong: a doily, a plant (begonia), oil cans arranged prettily. Someone has tried to make this ugly place feel like a home. Someone cares. By the end, she realises there is an absent figure — likely a mother — whose love has quietly shaped this place. Someone loves these people, and loves the world itself.</div>
-  </div>
-
-  <h3 class="label">💬 Key Quotes — Full Analysis</h3>
-
-  <div class="acc">
-    <button class="acc-btn open" onclick="tog(this)">"Oh, but it is dirty! / —'oil-soaked, oil-permeated / to a disturbing, over-all / black translucency.'" (Lines 1–4) — Setting the Scene with Humour <span class="arr">▼</span></button>
-    <div class="acc-body open">
-      <div class="qblock" style="--c:var(--filling);--cl:var(--filling-l);"><blockquote>"Oh, but it is dirty! / —oil-soaked, oil-permeated / to a disturbing, over-all / black translucency."</blockquote>
-      <div class="qref">Lines 1–4 — Opening</div>
-      <div class="qbody">
-        <p><span class="kw">"Oh, but it is dirty!"</span> — The exclamation mark signals Bishop's characteristic humour. She is not horrified — she is almost delighted by how dirty it is. This conversational, playful tone is typical of her style.</p>
-        <p>The word "little" (used elsewhere in the poem) gives a kind of affectionate, almost "cute" quality to the filling station — as if she finds it endearing despite its filthiness.</p>
-        <p><span class="tech" style="background:var(--filling);">Imagery</span> "Black translucency" is a striking phrase — something that is dark but still lets light through. Even at the start, even in the dirt, there is a hint that light and beauty exist here. This prepares us for the poem's conclusion.</p>
-      </div></div>
-    </div>
-  </div>
-
-  <div class="acc">
-    <button class="acc-btn" onclick="tog(this)">"Father wears a dirty, / oil-soaked monkey suit / that cuts him under the arms" (Lines 10–12) — The Family <span class="arr">▼</span></button>
-    <div class="acc-body">
-      <div class="qblock" style="--c:var(--filling);--cl:var(--filling-l);"><blockquote>"Father wears a dirty, / oil-soaked monkey suit / that cuts him under the arms, / and the greasy sons assist him"</blockquote>
-      <div class="qref">Lines 10–14 — Introducing the family</div>
-      <div class="qbody">
-        <p>The family is introduced with gentle humour. The father and his sons are "quite thoroughly oily" — completely covered in grease. But she describes the sons as "quick and saucy" — she seems to enjoy their energy and hustle.</p>
-        <p><span class="kw">"monkey suit"</span> — An informal, playful term. Despite the grim surroundings, there is a warmth to how Bishop describes this family. She is not looking down on them.</p>
-        <p>The family "all quite thoroughly dirty" but alive and energetic — this mirrors Bishop's tendency to find vitality and worth in overlooked, unglamorous places. Just as she found the fish beautiful despite its battered appearance, she finds this family admirable despite their grimy work.</p>
-      </div></div>
-    </div>
-  </div>
-
-  <div class="acc">
-    <button class="acc-btn" onclick="tog(this)">"Why oh why the doily?" — The Domestic Details <span class="arr">▼</span></button>
-    <div class="acc-body">
-      <div class="qblock" style="--c:var(--filling);--cl:var(--filling-l);"><blockquote>"Why oh why the doily? / (Embroidered in daisy stitch / with marguerites, I think, / and heavy with gray crochet.)"</blockquote>
-      <div class="qref">Lines 28–31 — Stanza 5</div>
-      <div class="qbody">
-        <p><span class="kw">"Why oh why"</span> — The repetition of "why" shows Bishop's wonder and confusion. What is a delicate, hand-embroidered doily doing in a dirty, oil-covered filling station? It doesn't belong — and yet it is there.</p>
-        <p>The doily is described in loving detail: "daisy stitch," "marguerites," "heavy with gray crochet." Whoever made it put time, skill, and care into it. This is not a practical object — it is a loving one.</p>
-        <p><span class="tech" style="background:var(--filling);">Imagery</span> The doily, the begonia plant, the prettily arranged oil cans — these are all domestic touches. Someone has been trying to make this ugly, functional place feel like a home. But who?</p>
-      </div></div>
-    </div>
-  </div>
-
-  <div class="acc">
-    <button class="acc-btn" onclick="tog(this)">"Somebody embroidered the doily... / Somebody loves us all." (Lines 35–42) — The Absent Mother <span class="arr">▼</span></button>
-    <div class="acc-body open">
-      <div class="qblock" style="--c:var(--filling);--cl:var(--filling-l);"><blockquote>"Somebody embroidered the doily. / Somebody waters the plant, / or oils it, maybe. Somebody / arranges the rows of cans / so that they softly say: / ESSO—SO—SO—SO / to high-strung automobiles. / Somebody loves us all."</blockquote>
-      <div class="qref">Lines 35–42 — Final stanza</div>
-      <div class="qbody">
-        <p>This is the emotional climax of the poem. "Somebody" — she doesn't know who, but somebody has done all these careful, loving things.</p>
-        <p><span class="tech" style="background:var(--filling);">Anaphora</span> The repeated "Somebody" (three times) builds to the final revelation. It creates a sense of mystery — this person is unseen, unnamed — but their love is visible everywhere in the small details they have left behind.</p>
-        <p><span class="kw">"ESSO—SO—SO—SO"</span> — This is playful and musical. The oil can labels seem to hum a little lullaby. Even the brand name on a can becomes a gentle sound of comfort. This is Bishop's humour and her ear for language at their best.</p>
-        <p><span class="kw">"Somebody loves us all."</span> — This simple line is one of the most moving endings in Bishop's poetry. The "somebody" is likely an absent mother figure. For Bishop, who grew up without a mother, this realisation — that even in the most overlooked, dirty, ordinary place, love can be quietly present — was enormously meaningful.</p>
-        <p>Your notes suggest she may have realised through this poem that her own mother, despite her absence, had loved her. The filling station becomes a kind of universal symbol for the invisible, taken-for-granted love that keeps the world bearable.</p>
-      </div></div>
-      <div class="box memory"><span class="ico">🧠</span><div><div class="box-label">The Key Idea</div><p>Bishop enters the filling station thinking it is just a dirty, ugly place. By the end, she sees that love has been quietly at work there all along, in the smallest domestic details. This is her epiphany — and it connects to her whole life: even in the most difficult, seemingly loveless circumstances, there is someone who cares.</p></div></div>
-    </div>
-  </div>
-</div>
-
-<!-- ===================== THEMATIC LINKS ===================== -->
-<div class="sec" id="themes">
-  <div class="char-banner" style="background:linear-gradient(135deg,#0a3a2a,#0a1a3a);color:#fff;">
-    <div class="sub" style="color:rgba(255,255,255,.75);">Connections Across the Poems</div>
-    <h2>🔗 Thematic Links & Connections</h2>
-    <div class="intro" style="color:rgba(255,255,255,.85);">Bishop's poems are deeply connected to each other. She returns to the same themes, the same preoccupations, the same techniques again and again. Understanding these connections is key to doing well in the exam — it shows you can think about her work as a whole, not just poem by poem.</div>
-  </div>
-
-  <h3 class="label">🏠 Theme 1: Home, Belonging & The Search for Stability</h3>
-  <div class="theme-grid">
-    <div class="theme-card" style="--c:var(--sestina);">
-      <h4>Sestina</h4>
-      <p>The child draws an "inscrutable house" — she cannot understand what home means because she has never had a truly stable one. The house in her drawing is always rigid, always incomplete. Home is something she searches for but cannot fully picture.</p>
-    </div>
-    <div class="theme-card" style="--c:var(--prodigal);">
-      <h4>The Prodigal</h4>
-      <p>"Home" is mentioned at the very end — it takes "a long time" to decide to go there. For Bishop, home was not always safe or welcoming (she described being moved to her father's family as "kidnapping"). Yet home remains the destination, the place of recovery. Ambivalent but necessary.</p>
-    </div>
-    <div class="theme-card" style="--c:var(--filling);">
-      <h4>Filling Station</h4>
-      <p>An unlikely, dirty place is transformed into something home-like through love and care. The doily, the plant, the arranged cans — somebody has made a home out of this. Bishop suggests that home is not a building; it is what love does to a place.</p>
-    </div>
-    <div class="theme-card" style="--c:var(--armadillo);">
-      <h4>The Armadillo</h4>
-      <p>The armadillo's home — the "ancient owls' nest" — is destroyed by forces beyond its control. This mirrors Bishop's own experience of losing her home in Nova Scotia. The nest represents a settled, established home; its destruction represents the loss that came with being uprooted.</p>
-    </div>
-  </div>
-
-  <h3 class="label">🔍 Theme 2: Observational Style and the Epiphany</h3>
-  <div class="intro-box">
-    <p>One of Bishop's most distinctive qualities is that she <strong>observes something closely</strong> and builds toward a moment of sudden understanding — an <strong>epiphany</strong>. This pattern appears in almost every poem.</p>
-  </div>
-  <div class="theme-grid">
-    <div class="theme-card" style="--c:var(--fish);">
-      <h4>The Fish</h4>
-      <p>Observes the fish in minute detail for 75 lines → Epiphany: sees the rainbow in the oily water, realises the fish is a survivor deserving of freedom → "And I let the fish go."</p>
-    </div>
-    <div class="theme-card" style="--c:var(--filling);">
-      <h4>Filling Station</h4>
-      <p>Observes the dirty station and the domestic details that don't fit → Epiphany: realises someone has been quietly, lovingly caring for this place → "Somebody loves us all."</p>
-    </div>
-    <div class="theme-card" style="--c:var(--armadillo);">
-      <h4>The Armadillo</h4>
-      <p>Observes the beautiful balloons → Observes the destruction they cause → Epiphany (with anger): "Too pretty, dreamlike mimicry!" — beauty that causes harm is not innocent.</p>
-    </div>
-  </div>
-
-  <h3 class="label">🪞 Theme 3: Bishop as Character in Her Own Poems</h3>
-  <div class="intro-box">
-    <p>A crucial point your notes make: <strong>Bishop sees herself as a character in her poems.</strong> The poems serve as metaphors for her own life and struggles. She doesn't always say "I" — she might use "he" or "the child" — but she is always there.</p>
-  </div>
-  <div class="theme-grid">
-    <div class="theme-card" style="--c:var(--fish);">
-      <h4>The Fish = Bishop herself</h4>
-      <p>The fish, battered but surviving, carrying the marks of previous escapes "like medals" — this is Bishop's own resilience. She too survived alcoholism, depression, the loss of her partner, a chaotic childhood. She looks into the fish's eyes and sees herself.</p>
-    </div>
-    <div class="theme-card" style="--c:var(--prodigal);">
-      <h4>The Prodigal = Bishop herself</h4>
-      <p>The Prodigal hiding his bottles, living in shame, finding brief moments of hope in sunrises, slowly deciding to face reality — this is Bishop's own experience of alcoholism. She understood this character from the inside, not the outside.</p>
-    </div>
-    <div class="theme-card" style="--c:var(--sestina);">
-      <h4>"The Child" in Sestina = Bishop herself</h4>
-      <p>The child in Sestina is never named "Elizabeth" — she is distanced as "the child." But the setting (Nova Scotia, her grandmother), the lost father, the hidden grief — all of this is autobiographical. The distancing is a way of writing about pain with some protection.</p>
-    </div>
-  </div>
-
-  <h3 class="label">🌿 Theme 4: Nature, Destruction & Human Impact</h3>
-  <div class="theme-grid">
-    <div class="theme-card" style="--c:var(--armadillo);">
-      <h4>The Armadillo</h4>
-      <p>The most direct treatment of this theme. Human celebration (fire balloons) causes environmental destruction. The armadillo is innocent; the owls are innocent; the rabbit is innocent. None of them chose this. Human actions — even well-intentioned ones — can destroy nature.</p>
-    </div>
-    <div class="theme-card" style="--c:var(--fish);">
-      <h4>The Fish</h4>
-      <p>The act of fishing — catching a creature from its habitat — is the starting point. Bishop's decision to <em>observe</em> the fish rather than immediately act on it (throwing it in the cooler) is what leads to her epiphany. Pausing to truly look at nature changes how you treat it.</p>
-    </div>
-  </div>
-
-  <h3 class="label">💔 Theme 5: Grief, Loss & Recovery</h3>
-  <div class="theme-grid">
-    <div class="theme-card" style="--c:var(--sestina);">
-      <h4>Sestina — Childhood Loss</h4>
-      <p>Loss of father, loss of mother (effectively), loss of a stable home. The child processes this through drawing. The grief is everywhere — in the rain, the tears, the dark teacup — even when the characters try to hide it through cheerfulness.</p>
-    </div>
-    <div class="theme-card" style="--c:var(--prodigal);">
-      <h4>The Prodigal — Addiction and Redemption</h4>
-      <p>Loss of self, dignity, and home through addiction. The recovery is slow and not fully complete by the poem's end. But the decision to go home — however long it takes — represents hope. Recovery is possible, even if the rhyme at the end ("home"/"time") doesn't quite work yet.</p>
-    </div>
-    <div class="theme-card" style="--c:var(--filling);">
-      <h4>Filling Station — The Absent Mother's Love</h4>
-      <p>Bishop grew up without a mother. The realisation at the end of Filling Station — that an absent person's love can still be felt in small domestic details — may be her way of coming to terms with her own mother's love for her, despite the absence.</p>
-    </div>
-  </div>
-
-  <h3 class="label">📋 Quick-Reference Connections for the Exam</h3>
-  <table class="rtable">
-    <tr><th>If asked about...</th><th>Use these poems</th><th>Key link</th></tr>
-    <tr><td>Home / Belonging</td><td>Sestina, Prodigal, Filling Station, Armadillo</td><td>All explore what "home" means — as a place, a feeling, a loss</td></tr>
-    <tr><td>Personal experience</td><td>All five poems</td><td>Bishop sees herself in each — the fish, the Prodigal, the child</td></tr>
-    <tr><td>Nature & observation</td><td>Fish, Armadillo, Filling Station</td><td>Close observation leads to understanding and epiphany</td></tr>
-    <tr><td>Childhood & loss</td><td>Sestina, Filling Station</td><td>Both deal with absent parents and the search for love</td></tr>
-    <tr><td>Redemption & hope</td><td>Fish, Prodigal, Filling Station</td><td>All end with a moment of grace, acceptance, or release</td></tr>
-    <tr><td>Form mirrors meaning</td><td>Prodigal (sonnets), Sestina (sestina form)</td><td>Structure is not decoration — it IS the meaning</td></tr>
-  </table>
-</div>
-
-<!-- ===================== FLASHCARDS ===================== -->
-<div class="sec" id="flashcards">
-  <div class="char-banner" style="background:linear-gradient(135deg,#1a1a2e,#16213e);color:#fff;">
-    <div class="sub" style="color:rgba(255,255,255,.75);">Revision Tool</div>
-    <h2>🃏 Quote Flashcards — Test Yourself</h2>
-    <div class="intro" style="color:rgba(255,255,255,.85);">Click any card to reveal the analysis. Use these to test yourself — cover the front, see the quote, and try to explain what it means and what technique is being used before you flip it.</div>
-  </div>
-
-  <div class="fc-section-label" style="background:var(--fish-l);color:var(--fish);">🐟 The Fish</div>
-  <div class="fc-grid">
-
-    <div class="fc-wrap"><div class="fc" onclick="this.classList.toggle('flipped')">
-      <div class="fc-f" style="border-top:4px solid var(--fish);"><p>"He didn't fight. He hadn't fought at all."</p><span class="fc-hint">The Fish · Click to flip</span></div>
-      <div class="fc-b" style="background:var(--fish-l);">
-        <p><strong style="color:var(--fish);">Repetition. Dignity.</strong> The fish's stillness is mysterious and earns our respect from the start. By not fighting, it signals this is not an ordinary catch — it invites close observation. Already Bishop humanises it: "he," not "it."</p>
+    <div class="bottom-section">
+      <div class="info-card">
+        <h3>Quick Tip for the Exam 📝</h3>
+        <p>Always link poems together in your answers. Examiners reward students who show they can see Bishop's work as a whole — her consistent themes, her observational style, and her use of personal experience as metaphor. Use the Thematic Links file to practice this.</p>
+        <a href="English (1).html" class="study-btn">← Back to English Hub</a>
       </div>
-    </div></div>
+    </div>
 
-    <div class="fc-wrap"><div class="fc" onclick="this.classList.toggle('flipped')">
-      <div class="fc-f" style="border-top:4px solid var(--fish);"><p>"his brown skin hung in strips / like ancient wallpaper"</p><span class="fc-hint">The Fish · Click to flip</span></div>
-      <div class="fc-b" style="background:var(--fish-l);">
-        <p><strong style="color:var(--fish);">Simile. Homely Imagery.</strong> Compares the fish's skin to old wallpaper — ordinary and familiar. "Ancient" gives it age and dignity. She immediately sees beauty in this decay: "shapes like full-blown roses." Damaged things can still be beautiful.</p>
-      </div>
-    </div></div>
+  </main>
 
-    <div class="fc-wrap"><div class="fc" onclick="this.classList.toggle('flipped')">
-      <div class="fc-f" style="border-top:4px solid var(--fish);"><p>"Like medals with their ribbons / frayed and wavering, / a five-haired beard of wisdom"</p><span class="fc-hint">The Fish · Click to flip</span></div>
-      <div class="fc-b" style="background:var(--fish-l);">
-        <p><strong style="color:var(--fish);">Personification. Extended Metaphor.</strong> The old hooks and lines = battle medals. The fish is a veteran survivor. "Beard of wisdom" — now a wise old man. This is the poem's emotional turning point. The fish has earned its freedom.</p>
-      </div>
-    </div></div>
-
-    <div class="fc-wrap"><div class="fc" onclick="this.classList.toggle('flipped')">
-      <div class="fc-f" style="border-top:4px solid var(--fish);"><p>"until everything / was rainbow, rainbow, rainbow! / And I let the fish go."</p><span class="fc-hint">The Fish · Click to flip</span></div>
-      <div class="fc-b" style="background:var(--fish-l);">
-        <p><strong style="color:var(--fish);">Repetition. Epiphany. Colour Imagery.</strong> The triad "rainbow, rainbow, rainbow!" = explosion of joy and wonder. Oil on bilge water = unexpected beauty. The simple ending = enormous emotional weight. She finds freedom in letting go.</p>
-      </div>
-    </div></div>
-
-  </div>
-
-  <div class="fc-section-label" style="background:var(--prodigal-l);color:var(--prodigal);">🐷 The Prodigal</div>
-  <div class="fc-grid">
-
-    <div class="fc-wrap"><div class="fc" onclick="this.classList.toggle('flipped')">
-      <div class="fc-f" style="border-top:4px solid var(--prodigal);"><p>"The brown enormous odor he lived by"</p><span class="fc-hint">The Prodigal · Click to flip</span></div>
-      <div class="fc-b" style="background:var(--prodigal-l);">
-        <p><strong style="color:var(--prodigal);">Imagery. Colour.</strong> "Brown" = dull, dirty, decayed. "Enormous" = this smell has taken over his entire world. Opens with the senses — puts us inside his suffocating life immediately. No build-up; this is rock bottom.</p>
-      </div>
-    </div></div>
-
-    <div class="fc-wrap"><div class="fc" onclick="this.classList.toggle('flipped')">
-      <div class="fc-f" style="border-top:4px solid var(--prodigal);"><p>"the burning puddles seemed to reassure. / And then he thought he almost might endure"</p><span class="fc-hint">The Prodigal · Click to flip</span></div>
-      <div class="fc-b" style="background:var(--prodigal-l);">
-        <p><strong style="color:var(--prodigal);">Colour. Qualified Language.</strong> "Seemed" and "almost might" — this is hope, but deeply uncertain hope. He is trying to convince himself things are fine. Misplaced hope: using a beautiful sunrise to justify staying in a terrible situation.</p>
-      </div>
-    </div></div>
-
-    <div class="fc-wrap"><div class="fc" onclick="this.classList.toggle('flipped')">
-      <div class="fc-f" style="border-top:4px solid var(--prodigal);"><p>"But evenings the first star came to warn."</p><span class="fc-hint">The Prodigal · Click to flip</span></div>
-      <div class="fc-b" style="background:var(--prodigal-l);">
-        <p><strong style="color:var(--prodigal);">Contrast. Personification. Structure.</strong> The word "But" at the start instantly destroys Sonnet 1's false hope. The star "warns" — nature signals danger. Evening = reality and truth. Storm imagery follows: the denial is collapsing.</p>
-      </div>
-    </div></div>
-
-    <div class="fc-wrap"><div class="fc" onclick="this.classList.toggle('flipped')">
-      <div class="fc-f" style="border-top:4px solid var(--prodigal);"><p>"it took him a long time / finally to make his mind up to go home."</p><span class="fc-hint">The Prodigal · Click to flip</span></div>
-      <div class="fc-b" style="background:var(--prodigal-l);">
-        <p><strong style="color:var(--prodigal);">Slant Rhyme. Understatement.</strong> "home" and "time" don't rhyme — recovery is not yet complete. "A long time" = honest truth about addiction. Not dramatic; just quietly, painfully real. The journey home is only just beginning.</p>
-      </div>
-    </div></div>
-
-  </div>
-
-  <div class="fc-section-label" style="background:var(--sestina-l);color:var(--sestina);">🏠 Sestina</div>
-  <div class="fc-grid">
-
-    <div class="fc-wrap"><div class="fc" onclick="this.classList.toggle('flipped')">
-      <div class="fc-f" style="border-top:4px solid var(--sestina);"><p>"laughing and talking to hide her tears."</p><span class="fc-hint">Sestina · Click to flip</span></div>
-      <div class="fc-b" style="background:var(--sestina-l);">
-        <p><strong style="color:var(--sestina);">Contrast. Dramatic Irony.</strong> The poem seems cosy until this final line of stanza 1. "Hide" is key — both grandmother and child suppress their grief through cheerfulness. Bishop herself hid pain behind careful, polished poetry.</p>
-      </div>
-    </div></div>
-
-    <div class="fc-wrap"><div class="fc" onclick="this.classList.toggle('flipped')">
-      <div class="fc-f" style="border-top:4px solid var(--sestina);"><p>"the teakettle's small hard tears / dance like mad on the hot black stove"</p><span class="fc-hint">Sestina · Click to flip</span></div>
-      <div class="fc-b" style="background:var(--sestina-l);">
-        <p><strong style="color:var(--sestina);">Personification. Pathetic Fallacy.</strong> Even the kettle cries. "Mad" — loaded word: Bishop's mother was committed to an asylum. Objects that were cosy now become menacing as the child's sorrow grows.</p>
-      </div>
-    </div></div>
-
-    <div class="fc-wrap"><div class="fc" onclick="this.classList.toggle('flipped')">
-      <div class="fc-f" style="border-top:4px solid var(--sestina);"><p>"puts in a man with buttons like tears"</p><span class="fc-hint">Sestina · Click to flip</span></div>
-      <div class="fc-b" style="background:var(--sestina-l);">
-        <p><strong style="color:var(--sestina);">Symbolism. Art Therapy.</strong> The man = Bishop's father, whom she never knew. "Buttons like tears" = his memory is soaked in loss. The child can't speak about her grief, so she draws it. Art is Bishop's way of processing what cannot be said.</p>
-      </div>
-    </div></div>
-
-    <div class="fc-wrap"><div class="fc" onclick="this.classList.toggle('flipped')">
-      <div class="fc-f" style="border-top:4px solid var(--sestina);"><p>"the child draws another inscrutable house."</p><span class="fc-hint">Sestina · Click to flip</span></div>
-      <div class="fc-b" style="background:var(--sestina-l);">
-        <p><strong style="color:var(--sestina);">Symbolism. Form.</strong> "Inscrutable" = cannot be understood. The child cannot draw a home she has never had. "Another" — she keeps trying. Home is the poem's great mystery. Links to the wider theme across Bishop's work.</p>
-      </div>
-    </div></div>
-
-  </div>
-
-  <div class="fc-section-label" style="background:var(--armadillo-l);color:var(--armadillo);">🦔 The Armadillo</div>
-  <div class="fc-grid">
-
-    <div class="fc-wrap"><div class="fc" onclick="this.classList.toggle('flipped')">
-      <div class="fc-f" style="border-top:4px solid var(--armadillo);"><p>"the frail, illegal fire balloons appear"</p><span class="fc-hint">The Armadillo · Click to flip</span></div>
-      <div class="fc-b" style="background:var(--armadillo-l);">
-        <p><strong style="color:var(--armadillo);">Tension. Irony.</strong> "Frail" = fragile, beautiful. "Illegal" = dangerous, forbidden. Both words together immediately establish the central tension: this is something wonderful that is also a threat. Good intentions do not prevent harm.</p>
-      </div>
-    </div></div>
-
-    <div class="fc-wrap"><div class="fc" onclick="this.classList.toggle('flipped')">
-      <div class="fc-f" style="border-top:4px solid var(--armadillo);"><p>"Hastily, all alone, / a glistening armadillo left the scene, / rose-flecked, head down, tail down,"</p><span class="fc-hint">The Armadillo · Click to flip</span></div>
-      <div class="fc-b" style="background:var(--armadillo-l);">
-        <p><strong style="color:var(--armadillo);">Punctuation. Imagery.</strong> Commas slow the line, making us linger on the armadillo's sadness. "Head down, tail down" = defeated, shamed. "Rose-flecked" = covered in glowing embers — beauty and horror in one image. Connects to Bishop leaving Nova Scotia.</p>
-      </div>
-    </div></div>
-
-    <div class="fc-wrap"><div class="fc" onclick="this.classList.toggle('flipped')">
-      <div class="fc-f" style="border-top:4px solid var(--armadillo);"><p>"a weak mailed fist / clenched ignorant against the sky!"</p><span class="fc-hint">The Armadillo · Click to flip</span></div>
-      <div class="fc-b" style="background:var(--armadillo-l);">
-        <p><strong style="color:var(--armadillo);">Personification. Allegory. Tone.</strong> The armadillo curled in defence = a tiny armoured fist of rage. "Ignorant" = it doesn't know WHY this happened. Its helplessness is heartbreaking. Allegory: all innocent creatures caught in human crossfire.</p>
-      </div>
-    </div></div>
-
-    <div class="fc-wrap"><div class="fc" onclick="this.classList.toggle('flipped')">
-      <div class="fc-f" style="border-top:4px solid var(--armadillo);"><p>"Too pretty, dreamlike mimicry!"</p><span class="fc-hint">The Armadillo · Click to flip</span></div>
-      <div class="fc-b" style="background:var(--armadillo-l);">
-        <p><strong style="color:var(--armadillo);">Tone Shift. Italics.</strong> The final stanza is in italics — a different voice, emotional and angry. She turns on the beauty she admired. "Too pretty" = we were seduced. The exclamation mark = outrage. This is Bishop finally dropping her observational composure.</p>
-      </div>
-    </div></div>
-
-  </div>
-
-  <div class="fc-section-label" style="background:var(--filling-l);color:var(--filling);">⛽ Filling Station</div>
-  <div class="fc-grid">
-
-    <div class="fc-wrap"><div class="fc" onclick="this.classList.toggle('flipped')">
-      <div class="fc-f" style="border-top:4px solid var(--filling);"><p>"Oh, but it is dirty! / —oil-soaked, oil-permeated"</p><span class="fc-hint">Filling Station · Click to flip</span></div>
-      <div class="fc-b" style="background:var(--filling-l);">
-        <p><strong style="color:var(--filling);">Tone. Conversational Style.</strong> The exclamation mark signals Bishop's characteristic humour — almost delighted by the dirtiness. Conversational opening ("Oh, but it is") makes us feel like she is talking directly to us. Playful, not horrified.</p>
-      </div>
-    </div></div>
-
-    <div class="fc-wrap"><div class="fc" onclick="this.classList.toggle('flipped')">
-      <div class="fc-f" style="border-top:4px solid var(--filling);"><p>"Why oh why the doily?"</p><span class="fc-hint">Filling Station · Click to flip</span></div>
-      <div class="fc-b" style="background:var(--filling-l);">
-        <p><strong style="color:var(--filling);">Repetition. Question.</strong> The repeated "why" shows Bishop's genuine puzzlement. A doily in a grease-covered filling station makes no practical sense — which means it is there for an emotional reason. This question is the hinge of the whole poem.</p>
-      </div>
-    </div></div>
-
-    <div class="fc-wrap"><div class="fc" onclick="this.classList.toggle('flipped')">
-      <div class="fc-f" style="border-top:4px solid var(--filling);"><p>"Somebody loves us all."</p><span class="fc-hint">Filling Station · Click to flip</span></div>
-      <div class="fc-b" style="background:var(--filling-l);">
-        <p><strong style="color:var(--filling);">Anaphora. Epiphany. Universal.</strong> Three "Somebodys" build to this simple, powerful conclusion. An absent figure (likely a mother) has quietly loved this place into a home. For Bishop, who grew up without her mother, this realisation was enormous: love can be present even when the person is absent.</p>
-      </div>
-    </div></div>
-
-    <div class="fc-wrap"><div class="fc" onclick="this.classList.toggle('flipped')">
-      <div class="fc-f" style="border-top:4px solid var(--filling);"><p>"ESSO—SO—SO—SO / to high-strung automobiles."</p><span class="fc-hint">Filling Station · Click to flip</span></div>
-      <div class="fc-b" style="background:var(--filling-l);">
-        <p><strong style="color:var(--filling);">Sound. Humour.</strong> The oil cans seem to hum a little song. Even a brand name becomes musical in Bishop's hands. "High-strung" — the cars are given feelings. Playful and gentle. Shows Bishop's ear for the music in everyday language.</p>
-      </div>
-    </div></div>
-
-  </div>
-
-</div>
-
-</main>
-
-<button class="stbtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
-
-<script>
-const SECTIONS = ['overview','fish','prodigal','sestina','armadillo','filling','themes','flashcards'];
-
-function show(id) {
-  document.querySelectorAll('.sec').forEach(s => s.classList.remove('active'));
-  document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  const idx = SECTIONS.indexOf(id);
-  const btns = document.querySelectorAll('nav button');
-  if (idx >= 0 && btns[idx]) btns[idx].classList.add('active');
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-
-function tog(btn) {
-  btn.classList.toggle('open');
-  btn.nextElementSibling.classList.toggle('open');
-}
-</script>
-<a href="index.html" class="return-home-btn">
-  <span>🏠</span> Back to Hub
-</a>
-<style>
-  .return-home-btn {
-    position: fixed;
-    bottom: 30px;
-    left: 30px;
-    background: #1a1d2e; /* Matches your --text variable */
-    color: white !important;
-    padding: 12px 24px;
-    border-radius: 50px;
-    text-decoration: none;
-    font-family: 'Lexend', sans-serif;
-    font-weight: 600;
-    font-size: 15px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    z-index: 9999;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    transition: all 0.3s ease;
-  }
-  .return-home-btn:hover {
-    transform: translateY(-5px);
-    background: #7c3aed; /* Changed to match your --c4 purple theme */
-    color: white !important;
-    box-shadow: 0 8px 25px rgba(124, 58, 237, 0.4);
-  }
-  @media (max-width: 768px) {
-    .return-home-btn {
-      bottom: 20px;
-      right: 20px;
-      padding: 10px 18px;
-      font-size: 14px;
-    }
-  }
-</style>
 </body>
 </html>
