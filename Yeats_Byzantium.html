@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yeats — Sailing to Byzantium</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F7F4EF;--surface:#FFFFFF;--surface2:#F0EDE8;--border:#E2DDD7;--text:#2C2825;--muted:#7A7068;--c:#4a1a7a;--cl:#f0e8f8;--cd:#280a44;--radius:14px;--shadow:0 4px 20px rgba(0,0,0,0.08);--shadow-h:0 8px 32px rgba(0,0,0,0.14);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;font-size:16px;}
+nav{position:sticky;top:0;z-index:100;background:rgba(247,244,239,0.97);backdrop-filter:blur(10px);border-bottom:2px solid var(--border);padding:8px 16px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;min-height:52px;}
+.nav-logo{font-family:'Lexend Mega',sans-serif;font-size:0.85rem;color:var(--text);margin-right:4px;text-decoration:none;white-space:nowrap;}.nav-logo span{color:#8B6914;}
+.nav-divider{width:1px;height:20px;background:var(--border);flex-shrink:0;}
+.nav-btn{padding:5px 11px;border-radius:18px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.72rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);text-decoration:none;white-space:nowrap;}
+.nav-btn:hover{transform:translateY(-2px);}
+.nav-btn.home:hover,.nav-btn.home.active{background:#2c2825;border-color:#2c2825;color:#fff;}
+.nav-btn.innisfree:hover,.nav-btn.innisfree.active{background:#1a6b3a;border-color:#1a6b3a;color:#fff;}
+.nav-btn.swans:hover,.nav-btn.swans.active{background:#1a3a6b;border-color:#1a3a6b;color:#fff;}
+.nav-btn.sept:hover,.nav-btn.sept.active{background:#7a1a1a;border-color:#7a1a1a;color:#fff;}
+.nav-btn.easter:hover,.nav-btn.easter.active{background:#8B6914;border-color:#8B6914;color:#fff;}
+.nav-btn.byz:hover,.nav-btn.byz.active{background:#4a1a7a;border-color:#4a1a7a;color:#fff;}
+.nav-btn.acre:hover,.nav-btn.acre.active{background:#3a5a1a;border-color:#3a5a1a;color:#fff;}
+.nav-btn.flash:hover,.nav-btn.flash.active{background:#3a3a5a;border-color:#3a3a5a;color:#fff;}
+.nav-btn.links:hover,.nav-btn.links.active{background:#5a1a3a;border-color:#5a1a3a;color:#fff;}
+.section{padding:0 16px 80px;max-width:940px;margin:0 auto;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.hero{background:linear-gradient(135deg,var(--cd),var(--c));color:#fff;padding:44px 32px 36px;text-align:center;margin-bottom:32px;}
+.hero .poem-label{font-size:0.75rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;opacity:0.75;margin-bottom:10px;}
+.hero h1{font-family:'Lexend Mega',sans-serif;font-size:clamp(1.6rem,4vw,2.6rem);line-height:1.15;margin-bottom:12px;}
+.hero p{opacity:0.88;max-width:620px;margin:0 auto;font-size:0.96rem;}
+.hero-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px;}
+.hero-chip{background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:4px 14px;border-radius:20px;font-size:0.75rem;font-weight:600;}
+.tab-bar{display:flex;gap:4px;flex-wrap:wrap;padding:22px 0 8px;border-bottom:2px solid var(--border);margin-bottom:28px;}
+.tab{padding:8px 18px;border-radius:10px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.8rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);}
+.tab:hover,.tab.active{background:var(--c);color:#fff;border-color:var(--c);}
+.tab-panel{display:none;}.tab-panel.active{display:block;animation:fadeIn 0.25s ease;}
+.info-card{background:var(--surface);border-radius:var(--radius);padding:24px 26px;margin-bottom:20px;box-shadow:var(--shadow);border-left:5px solid var(--c);}
+.info-card h2{font-size:1.1rem;font-weight:700;margin-bottom:12px;}
+.info-card p{margin-bottom:9px;font-size:0.94rem;}
+.info-card ul{padding-left:20px;margin-bottom:9px;}
+.info-card li{margin-bottom:5px;font-size:0.93rem;}
+.quote-block{border-left:4px solid var(--c);background:var(--cl);border-radius:0 var(--radius) var(--radius) 0;padding:16px 20px;margin:16px 0;}
+.quote-block blockquote{font-family:'Lexend Mega',sans-serif;font-size:0.95rem;font-style:italic;margin-bottom:8px;line-height:1.5;}
+.quote-ref{font-size:0.73rem;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--muted);margin-bottom:10px;}
+.quote-body{font-size:0.91rem;line-height:1.75;}
+.quote-body p{margin-bottom:8px;}
+.tech-pill{display:inline-block;background:var(--c);color:#fff;font-size:0.72rem;font-weight:700;padding:2px 9px;border-radius:5px;margin:2px;}
+.box{border-radius:var(--radius);padding:14px 18px;margin:14px 0;display:flex;gap:12px;align-items:flex-start;}
+.box .ico{font-size:1.5rem;flex-shrink:0;line-height:1.2;}
+.box-label{font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;margin-bottom:4px;}
+.box p,.box li{font-size:0.91rem;}.box ul{padding-left:16px;}.box li{margin-bottom:4px;}
+.b-exam{background:#eaf4fb;border:2px solid #5dade2;}.b-exam .box-label{color:#1a6b9a;}
+.b-tip{background:#fffbf0;border:2px solid #f39c12;}.b-tip .box-label{color:#b7770d;}
+.acc{margin-bottom:10px;}
+.acc-btn{width:100%;text-align:left;background:var(--surface);border:2px solid var(--border);border-radius:var(--radius);padding:14px 18px;font-family:'Lexend',sans-serif;font-size:0.92rem;font-weight:600;cursor:pointer;color:var(--text);display:flex;justify-content:space-between;align-items:center;transition:background 0.15s;}
+.acc-btn:hover{background:#f8f5f0;}
+.acc-btn.open{border-radius:var(--radius) var(--radius) 0 0;border-bottom-color:transparent;}
+.acc-btn .arr{transition:transform 0.25s;margin-left:8px;flex-shrink:0;}
+.acc-btn.open .arr{transform:rotate(180deg);}
+.acc-body{display:none;background:var(--surface);border:2px solid var(--border);border-top:none;border-radius:0 0 var(--radius) var(--radius);padding:20px 22px;}
+.acc-body.open{display:block;}
+.acc-body p{font-size:0.91rem;margin-bottom:8px;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.label{font-size:0.72rem;font-weight:800;text-transform:uppercase;letter-spacing:0.8px;color:var(--muted);margin-bottom:16px;display:block;}
+.poem-text{background:var(--surface);border:2px solid var(--border);border-radius:var(--radius);padding:28px 32px;font-family:Georgia,serif;font-size:1.05rem;line-height:2;box-shadow:var(--shadow);}
+.poem-text .stanza{margin-bottom:1.6em;}
+.poem-text .stanza-label{font-family:'Lexend',sans-serif;font-size:0.65rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:6px;}
+@media(max-width:680px){.two-col{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="Yeats.html">🏆 <span>Yeats</span></a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn home" href="Yeats.html">Home</a>
+  <a class="nav-btn innisfree" href="Yeats_Innisfree.html">Innisfree</a>
+  <a class="nav-btn swans" href="Yeats_Swans.html">Swans</a>
+  <a class="nav-btn sept" href="Yeats_September1913.html">Sept. 1913</a>
+  <a class="nav-btn easter" href="Yeats_Easter1916.html">Easter 1916</a>
+  <a class="nav-btn byz active" href="Yeats_Byzantium.html">Byzantium</a>
+  <a class="nav-btn acre" href="Yeats_AcreOfGrass.html">Acre of Grass</a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn flash" href="Yeats_Flashcards.html">🃏 Flashcards</a>
+  <a class="nav-btn links" href="Yeats_Links.html">🔗 Links</a>
+</nav>
+
+<div class="hero">
+  <div class="poem-label">Poem 5 · The Tower · 1928</div>
+  <h1>Sailing to Byzantium</h1>
+  <p>An aged man sails away from mortal Ireland toward the eternal holy city — a visionary meditation on art, soul, immortality, and the decaying body.</p>
+  <div class="hero-chips">
+    <span class="hero-chip">Art &amp; Immortality</span>
+    <span class="hero-chip">Body vs Soul</span>
+    <span class="hero-chip">Ageing</span>
+    <span class="hero-chip">Escapism</span>
+    <span class="hero-chip">Mysticism</span>
+  </div>
+</div>
+
+<div class="section">
+  <div class="tab-bar">
+    <button class="tab active" onclick="switchTab(this,'overview')">📋 Overview</button>
+    <button class="tab" onclick="switchTab(this,'poem')">📜 The Poem</button>
+    <button class="tab" onclick="switchTab(this,'stanzas')">🔍 Stanza Analysis</button>
+    <button class="tab" onclick="switchTab(this,'quotes')">💬 Key Quotes</button>
+    <button class="tab" onclick="switchTab(this,'techniques')">🎨 Techniques</button>
+    <button class="tab" onclick="switchTab(this,'context')">🎓 Exam Prep</button>
+  </div>
+
+  <div class="tab-panel active" id="overview">
+    <div class="info-card">
+      <h2>📋 Background &amp; Overview</h2>
+      <p>This is the opening poem of <em>The Tower</em> (1928), widely regarded as Yeats's greatest collection. He was over 60 when he wrote it, married, with children, but acutely conscious of his ageing body and mortality. The poem projects his fears onto a persona — an "aged man" — who sails on an imaginary voyage to Byzantium, the ancient city he saw as the holy centre of Western civilisation.</p>
+      <p>Yeats believed Byzantium was the meeting point of East and West, and that its art — golden mosaics, intricate craftsmanship — represented the closest humans had come to creating something eternal. His voyage is spiritual, not literal: he seeks transcendence through art.</p>
+    </div>
+    <div class="info-card">
+      <h2>🎯 Core Themes</h2>
+      <ul>
+        <li><strong>Body vs Soul:</strong> The central conflict. The body decays, ages, becomes a "tattered coat upon a stick." But the soul is immortal and can be strengthened through art and intellect.</li>
+        <li><strong>Art as Immortality:</strong> Great art outlasts human bodies. The golden mosaics of Byzantium will exist long after their creators are dead. Yeats wants to become — metaphorically — a work of art.</li>
+        <li><strong>Escapism:</strong> Like Innisfree but far more extreme. This time, Yeats is not escaping to nature but to eternity itself — to a realm beyond mortal decay.</li>
+        <li><strong>Young/Old, Time/Eternity:</strong> The mortal country of the first stanza is full of "the young in one another's arms" — vibrant but dying. Byzantium represents the timeless, the eternal, the intellectual.</li>
+        <li><strong>The Singing School:</strong> Art, creativity, and the soul's expression are what give the aged body value. "Sing" and "singing" run through the poem as a thread connecting soul to immortality.</li>
+      </ul>
+    </div>
+    <div class="info-card">
+      <h2>🏛️ What was Byzantium?</h2>
+      <p>The Byzantine Empire lasted from roughly 330 to 1453 AD — a continuation of the Roman Empire in its eastern provinces. Its capital Constantinople (now Istanbul) was the meeting point of European and Asian culture. Byzantine art was famous for its extraordinary gold mosaics, intricate religious imagery, and timeless quality — art that seemed to transcend individual human creation. Yeats believed that Celtic art (including the Book of Kells) was influenced by Byzantine art, making the journey from Ireland to Byzantium a cultural homecoming as well as a spiritual voyage.</p>
+    </div>
+    <div class="box b-exam">
+      <div class="ico">🎓</div>
+      <div><div class="box-label">Key Exam Approach</div>
+      <p>There are three main exam angles for this poem: (1) escapism — the desire to leave the mortal world behind; (2) art and immortality — the poem argues that great art conquers death; (3) the relationship between body and soul. You can discuss all three, but choose the one you know best and develop it with close quotation.</p></div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="poem">
+    <div class="poem-text">
+      <div class="stanza">
+        <div class="stanza-label">Stanza 1 — The Country (Ireland)</div>
+        That is no country for old men. The young<br>
+        In one another's arms, birds in the trees,<br>
+        — Those dying generations — at their song,<br>
+        The salmon-falls, the mackerel-crowded seas,<br>
+        Fish, flesh, or fowl, commend all summer long<br>
+        Whatever is begotten, born, and dies.<br>
+        Caught in that sensual music all neglect<br>
+        Monuments of unageing intellect.
+      </div>
+      <div class="stanza">
+        <div class="stanza-label">Stanza 2 — The Old Man</div>
+        An aged man is but a paltry thing,<br>
+        A tattered coat upon a stick, unless<br>
+        Soul clap its hands and sing, and louder sing<br>
+        For every tatter in its mortal dress,<br>
+        Nor is there singing school but studying<br>
+        Monuments of its own magnificence;<br>
+        And therefore I have sailed the seas and come<br>
+        To the holy city of Byzantium.
+      </div>
+      <div class="stanza">
+        <div class="stanza-label">Stanza 3 — Prayer to the Sages</div>
+        O sages standing in God's holy fire<br>
+        As in the gold mosaic of a wall,<br>
+        Come from the holy fire, perne in a gyre,<br>
+        And be the singing-masters of my soul.<br>
+        Consume my heart away; sick with desire<br>
+        And fastened to a dying animal<br>
+        It knows not what it is; and gather me<br>
+        Into the artifice of eternity.
+      </div>
+      <div class="stanza">
+        <div class="stanza-label">Stanza 4 — The Golden Bird</div>
+        Once out of nature I shall never take<br>
+        My bodily form from any natural thing,<br>
+        But such a form as Grecian goldsmiths make<br>
+        Of hammered gold and gold enamelling<br>
+        To keep a drowsy Emperor awake;<br>
+        Or set upon a golden bough to sing<br>
+        To lords and ladies of Byzantium<br>
+        Of what is past, or passing, or to come.
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="stanzas">
+    <span class="label">Stanza-by-Stanza Analysis</span>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>Stanza 1 — "That is no country for old men"</span><span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="quote-block"><blockquote>"That is no country for old men. The young / In one another's arms, birds in the trees, / — Those dying generations — at their song"</blockquote></div>
+      <p>The poem opens mid-journey — Yeats has already left, already sailing. "That" looks back at the country he has departed. Ireland is beautiful — "salmon-falls," "mackerel-crowded seas," the young, the birds, the abundant sensory life. But it is a country of the body, of the flesh, and bodies die. "Those dying generations" — every creature in this vibrant world is mortal. The irony is devastating: the most alive-seeming things are the most dying.</p>
+      <p>The young are "caught in that sensual music" — they are so absorbed in the pleasures of the body that they neglect "Monuments of unageing intellect." This is Yeats's argument: sensual life is beautiful but temporary. Art and intellect endure. The young cannot see this — but the old man sees it clearly and painfully.</p>
+    </div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>Stanza 2 — The Scarecrow: Body vs Soul</span><span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="quote-block"><blockquote>"An aged man is but a paltry thing, / A tattered coat upon a stick, unless / Soul clap its hands and sing"</blockquote></div>
+      <p>This is the emotional nadir of the poem — the moment of maximum vulnerability. An old man stripped of the "sensual music" of the first stanza is a scarecrow: "a tattered coat upon a stick." The body is literally falling apart. "Paltry" — worth nothing, pitifully small. This is Yeats confronting his own physical decay with absolute honesty.</p>
+      <p>But the turn is immediate and urgent: "unless / Soul clap its hands and sing." If the soul is active, creative, singing — then the decaying body is irrelevant. And crucially, the soul must sing "louder sing / For every tatter in its mortal dress" — the more the body decays, the louder the soul must respond. Physical decline drives spiritual and creative intensity. This is the poem's central argument: art compensates for, and ultimately transcends, physical mortality.</p>
+    </div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>Stanza 3 — Prayer to the Sages: "Consume my heart away"</span><span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="quote-block"><blockquote>"Consume my heart away; sick with desire / And fastened to a dying animal / It knows not what it is; and gather me / Into the artifice of eternity."</blockquote></div>
+      <p>In the great Byzantine mosaics, holy figures — sages — stand in golden fire. Yeats addresses them as if they are alive and present, asking them to be the "singing-masters of my soul." This is prayer — urgent, desperate, sincere. He wants guidance for his soul's creative work.</p>
+      <p>"Consume my heart away" — a shocking request. He wants the holy fire to burn away his human heart, with all its desires and emotions. His heart is "sick with desire" — still longing, still aching (for Maude Gonne, for youth, for what he cannot have). The heart is "fastened to a dying animal" — the body is literally a dying animal dragging the soul down with it. He wants to be free of this. "Gather me / Into the artifice of eternity" — he wants to become part of something eternal and crafted, like the mosaics themselves. "Artifice" is key: not natural, but made. Art is superior to nature because it does not decay.</p>
+    </div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>Stanza 4 — The Golden Bird: Art as Immortality</span><span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="quote-block"><blockquote>"Such a form as Grecian goldsmiths make / Of hammered gold and gold enamelling... / Of what is past, or passing, or to come."</blockquote></div>
+      <p>In the final stanza, Yeats describes what he would become "once out of nature" — once free of his mortal body. He would take the form of a golden bird, made by craftsmen, set "upon a golden bough to sing." This bird is artificial, eternal, indestructible — the opposite of the "dying animal" his soul is currently fastened to.</p>
+      <p>The golden bird sings "of what is past, or passing, or to come" — the past, present, and future simultaneously. This is prophecy, omniscience — the bird/poet has transcended time entirely, seeing all of it at once. The repetition of "gold" throughout the stanza is almost overwhelming — golden goldsmiths, hammered gold, gold enamelling, golden bough. This is Yeats's imagination fully unleashed, perhaps even satirising its own excess. Is this too much? Or is this what eternity looks like? Both readings are valid.</p>
+    </div></div>
+  </div>
+
+  <div class="tab-panel" id="quotes">
+    <span class="label">Key Quotes</span>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"A tattered coat upon a stick" — the scarecrow of old age</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Metaphor</span><span class="tech-pill">Vulnerability</span><span class="tech-pill">Body</span>
+    <div class="quote-block"><div class="quote-ref">Technique: Dehumanising metaphor — the body as useless scarecrow</div><blockquote>"A tattered coat upon a stick"</blockquote><div class="quote-body"><p>The most devastating metaphor for old age in all of Yeats. A scarecrow has no life, no soul, no use except to scare away birds. The tattered coat is literally falling apart. The stick is just a stick. This is what age does to the body — reduces it to a scarecrow, an empty shell. But the power is in what comes next: unless the soul sings, the body is nothing. The metaphor sets up the argument.</p></div></div></div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"Soul clap its hands and sing" — the soul's response</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Personification</span><span class="tech-pill">Joy</span><span class="tech-pill">Soul</span>
+    <div class="quote-block"><div class="quote-ref">Technique: Physical action of soul — making the intangible tangible</div><blockquote>"Soul clap its hands and sing, and louder sing"</blockquote><div class="quote-body"><p>The soul is given physical action — it "claps its hands." This is exuberant, joyful, defiant. The soul does not quietly accept the decay of the body; it celebrates, it makes noise, it sings louder as the body falls further apart. The repetition of "sing" — "and louder sing" — suggests escalation, urgency. The worse the body gets, the more urgent the soul's creative response.</p></div></div></div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"fastened to a dying animal" — the body as prison</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Metaphor</span><span class="tech-pill">Body/Soul</span><span class="tech-pill">Entrapment</span>
+    <div class="quote-block"><div class="quote-ref">Technique: Dehumanising metaphor — the body as dying animal</div><blockquote>"fastened to a dying animal"</blockquote><div class="quote-body"><p>"Fastened" suggests imprisonment, being chained. The soul is chained to the body — the body is not a home but a prison. Worse, it is a "dying animal" — the most graphic possible image of the body's mortality. Animals die messily, slowly, painfully. The soul is attached to this process, unable to free itself. This is Yeats's most visceral expression of the desire to escape physical existence.</p></div></div></div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"the artifice of eternity" — art as transcendence</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Paradox</span><span class="tech-pill">Art</span><span class="tech-pill">Immortality</span>
+    <div class="quote-block"><div class="quote-ref">Technique: Paradoxical phrase — the made thing as more lasting than the natural</div><blockquote>"the artifice of eternity"</blockquote><div class="quote-body"><p>A profound paradox. "Artifice" means something made — artificial, crafted, not natural. "Eternity" is the opposite of anything made — it is infinite, uncreated. Yet Yeats puts them together. He argues that art — the made thing — is the closest humans can come to eternity. Natural things die; made things (the golden bird, the mosaic, the poem) endure. Art is the artifice of eternity — the human-made equivalent of the divine permanence Yeats seeks.</p></div></div></div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"Of what is past, or passing, or to come" — the prophetic bird</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Tricolon</span><span class="tech-pill">Prophecy</span><span class="tech-pill">Immortality</span>
+    <div class="quote-block"><div class="quote-ref">Technique: Tricolon covering all of time — the poet as prophet</div><blockquote>"Of what is past, or passing, or to come."</blockquote><div class="quote-body"><p>The golden bird sings about the past, the present, and the future — simultaneously. It has transcended time entirely. This is the artist as prophet: not trapped in a single moment, but perceiving and singing the whole of time at once. The three-part structure (past/passing/to come) is elegant and complete. If Yeats's soul becomes this golden bird, his poetry will outlast his body — and it has.</p></div></div></div></div>
+  </div>
+
+  <div class="tab-panel" id="techniques">
+    <span class="label">Poetic Techniques</span>
+    <div class="two-col">
+      <div class="info-card"><h2>📏 Form: ottava rima</h2><p>Eight-line stanzas rhyming abababcc — the Italian form used by Ariosto and others. The tight interlocking rhymes reflect the intricate craftsmanship of Byzantine art: the poem is itself a mosaic of sounds and patterns. The closing couplet (cc) in each stanza ties everything together neatly, like a golden clasp.</p></div>
+      <div class="info-card"><h2>🎵 Repetition of "Sing"</h2><p>"Sing," "singing-masters," "soul clap its hands and sing, and louder sing," "set upon a golden bough to sing" — the word runs through the poem as a thread. It connects the soul's creative expression with immortality. Song is what the soul does; song is what the golden bird does; song is what Yeats's poem itself is. The repetition argues that art = soul = immortality.</p></div>
+      <div class="info-card"><h2>🔀 Contrast: Young/Old, Body/Soul</h2><p>Every contrast in the poem is between mortal and immortal: the young and sensual vs the aged and intellectual; the natural and dying vs the artificial and eternal; the "salmon-falls" of the mortal country vs the golden mosaics of Byzantium. Yeats structures the entire poem around this opposition.</p></div>
+      <div class="info-card"><h2>🟡 Gold Imagery</h2><p>The final stanza is saturated with gold: "hammered gold and gold enamelling," "golden bough," "Grecian goldsmiths." Gold is eternal, incorruptible, precious, artificial. The accumulation of gold imagery is almost overwhelming — deliberately so. Eternity is this bright, this artificial, this overwhelming.</p></div>
+      <div class="info-card"><h2>⟶ Enjambment</h2><p>Used to carry energy through lines, particularly in stanza 3 where the prayer is urgent and unstoppable: "Consume my heart away; sick with desire / And fastened to a dying animal / It knows not what it is." The enjambment creates the feeling of desperation, of thoughts tumbling over themselves in urgency.</p></div>
+      <div class="info-card"><h2>🔊 Alliteration</h2><p>"Monuments of its own magnificence" — the "m" sounds create a musical, self-regarding quality appropriate to great art. Harsh "t" sounds emphasise physical pain: "tattered coat upon a stick." Sound always mirrors meaning in Yeats.</p></div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="context">
+    <span class="label">Context &amp; Exam Preparation</span>
+    <div class="box b-exam"><div class="ico">🎓</div><div><div class="box-label">Three Exam Angles</div>
+    <p><strong>1. Escapism:</strong> The speaker wants to leave mortal Ireland for eternal Byzantium — escaping the "sensual music" of dying flesh. Compare to Innisfree (simpler escape) and An Acre of Grass (refusal to escape into quiet). <strong>2. Art &amp; Immortality:</strong> The poem argues that art outlasts the body. The golden bird is the poem itself — it will sing "of what is past, or passing, or to come" long after Yeats dies. <strong>3. Body/Soul:</strong> The central tension. "Fastened to a dying animal" vs "Soul clap its hands and sing" — the body decays but the soul can be liberated through art.</p></div></div>
+    <div class="info-card"><h2>Links to Other Yeats Poems</h2><ul>
+      <li><strong>The Wild Swans at Coole:</strong> Both deal with ageing. But in Swans, Yeats laments; in Byzantium, he fights back through art. Compare as two responses to the same problem — one elegiac, one defiant.</li>
+      <li><strong>An Acre of Grass:</strong> Both are late poems about old age, but Byzantium seeks transcendence through eternity while Acre of Grass seeks "frenzy" and earthly creative passion. Two very different solutions.</li>
+      <li><strong>The Lake Isle of Innisfree:</strong> Both are poems of escape. Innisfree escapes to simple nature; Byzantium escapes to art and immortality. One is pastoral, one is metaphysical.</li>
+    </ul></div>
+    <div class="box b-tip"><div class="ico">💡</div><div><div class="box-label">The Key Quote Pair</div>
+    <p>Use "fastened to a dying animal" alongside "the artifice of eternity" — one is the problem (the body imprisons the soul), the other is the solution (art creates something that outlasts the body). Together they summarise the poem's entire argument.</p></div></div>
+  </div>
+</div>
+
+<script>
+function switchTab(btn,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(id).classList.add('active');}
+function toggleAcc(btn){const body=btn.nextElementSibling;const isOpen=btn.classList.contains('open');document.querySelectorAll('.acc-btn.open').forEach(b=>{b.classList.remove('open');b.nextElementSibling.classList.remove('open');});if(!isOpen){btn.classList.add('open');body.classList.add('open');}}
+</script>
+</body>
+</html>

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yeats — September 1913</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F7F4EF;--surface:#FFFFFF;--surface2:#F0EDE8;--border:#E2DDD7;--text:#2C2825;--muted:#7A7068;--c:#7a1a1a;--cl:#f8e8e8;--cd:#4a0808;--radius:14px;--shadow:0 4px 20px rgba(0,0,0,0.08);--shadow-h:0 8px 32px rgba(0,0,0,0.14);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;font-size:16px;}
+nav{position:sticky;top:0;z-index:100;background:rgba(247,244,239,0.97);backdrop-filter:blur(10px);border-bottom:2px solid var(--border);padding:8px 16px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;min-height:52px;}
+.nav-logo{font-family:'Lexend Mega',sans-serif;font-size:0.85rem;color:var(--text);margin-right:4px;text-decoration:none;white-space:nowrap;}.nav-logo span{color:#8B6914;}
+.nav-divider{width:1px;height:20px;background:var(--border);flex-shrink:0;}
+.nav-btn{padding:5px 11px;border-radius:18px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.72rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);text-decoration:none;white-space:nowrap;}
+.nav-btn:hover{transform:translateY(-2px);}
+.nav-btn.home:hover,.nav-btn.home.active{background:#2c2825;border-color:#2c2825;color:#fff;}
+.nav-btn.innisfree:hover,.nav-btn.innisfree.active{background:#1a6b3a;border-color:#1a6b3a;color:#fff;}
+.nav-btn.swans:hover,.nav-btn.swans.active{background:#1a3a6b;border-color:#1a3a6b;color:#fff;}
+.nav-btn.sept:hover,.nav-btn.sept.active{background:#7a1a1a;border-color:#7a1a1a;color:#fff;}
+.nav-btn.easter:hover,.nav-btn.easter.active{background:#8B6914;border-color:#8B6914;color:#fff;}
+.nav-btn.byz:hover,.nav-btn.byz.active{background:#4a1a7a;border-color:#4a1a7a;color:#fff;}
+.nav-btn.acre:hover,.nav-btn.acre.active{background:#3a5a1a;border-color:#3a5a1a;color:#fff;}
+.nav-btn.flash:hover,.nav-btn.flash.active{background:#3a3a5a;border-color:#3a3a5a;color:#fff;}
+.nav-btn.links:hover,.nav-btn.links.active{background:#5a1a3a;border-color:#5a1a3a;color:#fff;}
+.section{padding:0 16px 80px;max-width:940px;margin:0 auto;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.hero{background:linear-gradient(135deg,var(--cd),var(--c));color:#fff;padding:44px 32px 36px;text-align:center;margin-bottom:32px;}
+.hero .poem-label{font-size:0.75rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;opacity:0.75;margin-bottom:10px;}
+.hero h1{font-family:'Lexend Mega',sans-serif;font-size:clamp(1.6rem,4vw,2.6rem);line-height:1.15;margin-bottom:12px;}
+.hero p{opacity:0.88;max-width:620px;margin:0 auto;font-size:0.96rem;}
+.hero-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px;}
+.hero-chip{background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:4px 14px;border-radius:20px;font-size:0.75rem;font-weight:600;}
+.tab-bar{display:flex;gap:4px;flex-wrap:wrap;padding:22px 0 8px;border-bottom:2px solid var(--border);margin-bottom:28px;}
+.tab{padding:8px 18px;border-radius:10px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.8rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);}
+.tab:hover,.tab.active{background:var(--c);color:#fff;border-color:var(--c);}
+.tab-panel{display:none;}.tab-panel.active{display:block;animation:fadeIn 0.25s ease;}
+.info-card{background:var(--surface);border-radius:var(--radius);padding:24px 26px;margin-bottom:20px;box-shadow:var(--shadow);border-left:5px solid var(--c);}
+.info-card h2{font-size:1.1rem;font-weight:700;margin-bottom:12px;}
+.info-card p{margin-bottom:9px;font-size:0.94rem;}
+.info-card ul{padding-left:20px;margin-bottom:9px;}
+.info-card li{margin-bottom:5px;font-size:0.93rem;}
+.quote-block{border-left:4px solid var(--c);background:var(--cl);border-radius:0 var(--radius) var(--radius) 0;padding:16px 20px;margin:16px 0;}
+.quote-block blockquote{font-family:'Lexend Mega',sans-serif;font-size:0.95rem;font-style:italic;margin-bottom:8px;line-height:1.5;}
+.quote-ref{font-size:0.73rem;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--muted);margin-bottom:10px;}
+.quote-body{font-size:0.91rem;line-height:1.75;}
+.quote-body p{margin-bottom:8px;}
+.tech-pill{display:inline-block;background:var(--c);color:#fff;font-size:0.72rem;font-weight:700;padding:2px 9px;border-radius:5px;margin:2px;}
+.box{border-radius:var(--radius);padding:14px 18px;margin:14px 0;display:flex;gap:12px;align-items:flex-start;}
+.box .ico{font-size:1.5rem;flex-shrink:0;line-height:1.2;}
+.box-label{font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;margin-bottom:4px;}
+.box p,.box li{font-size:0.91rem;}.box ul{padding-left:16px;}.box li{margin-bottom:4px;}
+.b-exam{background:#eaf4fb;border:2px solid #5dade2;}.b-exam .box-label{color:#1a6b9a;}
+.b-tip{background:#fffbf0;border:2px solid #f39c12;}.b-tip .box-label{color:#b7770d;}
+.acc{margin-bottom:10px;}
+.acc-btn{width:100%;text-align:left;background:var(--surface);border:2px solid var(--border);border-radius:var(--radius);padding:14px 18px;font-family:'Lexend',sans-serif;font-size:0.92rem;font-weight:600;cursor:pointer;color:var(--text);display:flex;justify-content:space-between;align-items:center;transition:background 0.15s;}
+.acc-btn:hover{background:#f8f5f0;}
+.acc-btn.open{border-radius:var(--radius) var(--radius) 0 0;border-bottom-color:transparent;}
+.acc-btn .arr{transition:transform 0.25s;margin-left:8px;flex-shrink:0;}
+.acc-btn.open .arr{transform:rotate(180deg);}
+.acc-body{display:none;background:var(--surface);border:2px solid var(--border);border-top:none;border-radius:0 0 var(--radius) var(--radius);padding:20px 22px;}
+.acc-body.open{display:block;}
+.acc-body p{font-size:0.91rem;margin-bottom:8px;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.label{font-size:0.72rem;font-weight:800;text-transform:uppercase;letter-spacing:0.8px;color:var(--muted);margin-bottom:16px;display:block;}
+.poem-text{background:var(--surface);border:2px solid var(--border);border-radius:var(--radius);padding:28px 32px;font-family:Georgia,serif;font-size:1.05rem;line-height:2;box-shadow:var(--shadow);}
+.poem-text .stanza{margin-bottom:1.6em;}
+.poem-text .stanza-label{font-family:'Lexend',sans-serif;font-size:0.65rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:6px;}
+.refrain{font-style:italic;color:var(--c);font-weight:600;}
+@media(max-width:680px){.two-col{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="Yeats.html">🏆 <span>Yeats</span></a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn home" href="Yeats.html">Home</a>
+  <a class="nav-btn innisfree" href="Yeats_Innisfree.html">Innisfree</a>
+  <a class="nav-btn swans" href="Yeats_Swans.html">Swans</a>
+  <a class="nav-btn sept active" href="Yeats_September1913.html">Sept. 1913</a>
+  <a class="nav-btn easter" href="Yeats_Easter1916.html">Easter 1916</a>
+  <a class="nav-btn byz" href="Yeats_Byzantium.html">Byzantium</a>
+  <a class="nav-btn acre" href="Yeats_AcreOfGrass.html">Acre of Grass</a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn flash" href="Yeats_Flashcards.html">🃏 Flashcards</a>
+  <a class="nav-btn links" href="Yeats_Links.html">🔗 Links</a>
+</nav>
+
+<div class="hero">
+  <div class="poem-label">Poem 3 · Responsibilities · 1914</div>
+  <h1>September 1913</h1>
+  <p>A savage rhetorical attack on the materialistic Irish middle class — who have betrayed the heroic sacrifice of Romantic Ireland for the sake of money and slavish prayer.</p>
+  <div class="hero-chips">
+    <span class="hero-chip">Nationalism</span>
+    <span class="hero-chip">Materialism</span>
+    <span class="hero-chip">Heroic Past</span>
+    <span class="hero-chip">Bitter Irony</span>
+    <span class="hero-chip">Irish Identity</span>
+  </div>
+</div>
+
+<div class="section">
+  <div class="tab-bar">
+    <button class="tab active" onclick="switchTab(this,'overview')">📋 Overview</button>
+    <button class="tab" onclick="switchTab(this,'poem')">📜 The Poem</button>
+    <button class="tab" onclick="switchTab(this,'stanzas')">🔍 Stanza Analysis</button>
+    <button class="tab" onclick="switchTab(this,'quotes')">💬 Key Quotes</button>
+    <button class="tab" onclick="switchTab(this,'techniques')">🎨 Techniques</button>
+    <button class="tab" onclick="switchTab(this,'context')">🎓 Exam Prep</button>
+  </div>
+
+  <div class="tab-panel active" id="overview">
+    <div class="info-card">
+      <h2>📋 Background &amp; Overview</h2>
+      <p>The immediate trigger for this poem was the Dublin Corporation's refusal to build a gallery to house Sir Hugh Lane's magnificent art collection — Lane had offered it to the city on the condition that a proper gallery be provided, but the miserly councillors refused. For Yeats, this was not just about paintings — it was a symbol of the Irish middle class's contempt for culture.</p>
+      <p>The year 1913 was also a year of massive social unrest in Dublin: the Lockout of that year saw workers strike against employers, and poverty and deprivation were widespread. Yeats saw the middle class as oppressors of both culture and workers.</p>
+      <p>The poem is a rhetorical attack — published first in <em>The Irish Times</em>, it was written to be read and to provoke. The "you" addressed is the Catholic middle class, the target of Yeats's furious disappointment.</p>
+    </div>
+    <div class="info-card">
+      <h2>🎯 Core Themes</h2>
+      <ul>
+        <li><strong>Materialism vs. Culture:</strong> The middle class cares only for money and religion — not for art, culture, or heroism. Yeats sees this as a betrayal of Irish identity.</li>
+        <li><strong>The Heroic Past:</strong> Ireland's Romantic heroes — Wolfe Tone, Robert Emmet, Lord Edward Fitzgerald — are held up as models of selfless sacrifice that the current generation cannot understand.</li>
+        <li><strong>The Death of Romantic Ireland:</strong> The repeated refrain — "Romantic Ireland's dead and gone / It's with O'Leary in the grave" — is a funeral cry for an idealism that has been replaced by greed.</li>
+        <li><strong>Identity &amp; Culture:</strong> What does it mean to be Irish? Yeats argues that culture, heritage, and self-sacrifice — not commerce — are what define the Irish nation.</li>
+        <li><strong>Bitterness &amp; Disillusionment:</strong> This is one of Yeats's angriest poems. The irony is sharp, the contempt barely contained.</li>
+      </ul>
+    </div>
+    <div class="info-card">
+      <h2>📅 Who was John O'Leary?</h2>
+      <p>John O'Leary (1830–1907) was an Irish Nationalist and member of the Irish Republican Brotherhood, exiled for his involvement in the movement. He was passionate about Irish culture as an essential component of Irish Nationalism — "there is no literature without nationality and no nationality without literature." Yeats regarded him as the epitome of Irish patriotism. O'Leary died in 1907, and his death symbolises for Yeats the death of the whole tradition he represented.</p>
+    </div>
+    <div class="box b-exam">
+      <div class="ico">🎓</div>
+      <div><div class="box-label">Exam Tip</div>
+      <p>This is Yeats's most politically combative poem. Focus on the <em>rhetorical strategy</em>: he addresses "you" directly, uses repetition and refrain to hammer his point home, and contrasts the degraded present with a heroic past. Always discuss the refrain — "Romantic Ireland's dead and gone / It's with O'Leary in the grave" — as a funeral cry that anchors the poem's argument.</p></div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="poem">
+    <div class="poem-text">
+      <div class="stanza">
+        <div class="stanza-label">Stanza 1</div>
+        What need you, being come to sense,<br>
+        But fumble in a greasy till<br>
+        And add the halfpence to the pence<br>
+        And prayer to shivering prayer, until<br>
+        You have dried the marrow from the bone;<br>
+        For men were born to pray and save:<br>
+        <span class="refrain">Romantic Ireland's dead and gone,<br>
+        It's with O'Leary in the grave.</span>
+      </div>
+      <div class="stanza">
+        <div class="stanza-label">Stanza 2</div>
+        Yet they were of a different kind,<br>
+        The names that stilled your childish play;<br>
+        They have gone about the world like wind,<br>
+        But little time had they to pray<br>
+        For whom the hangman's rope was spun,<br>
+        Or what, God help us, could they save?<br>
+        <span class="refrain">Romantic Ireland's dead and gone,<br>
+        It's with O'Leary in the grave.</span>
+      </div>
+      <div class="stanza">
+        <div class="stanza-label">Stanza 3</div>
+        Was it for this the wild geese spread<br>
+        The grey wing upon every tide;<br>
+        For this that all that blood was shed,<br>
+        For this Edward Fitzgerald died,<br>
+        And Robert Emmet and Wolfe Tone,<br>
+        All that delirium of the brave?<br>
+        <span class="refrain">Romantic Ireland's dead and gone,<br>
+        It's with O'Leary in the grave.</span>
+      </div>
+      <div class="stanza">
+        <div class="stanza-label">Stanza 4</div>
+        Yet could we turn the years again,<br>
+        And call those exiles as they were<br>
+        In all their loneliness and pain,<br>
+        You'd cry, 'Some woman's yellow hair<br>
+        Has maddened every mother's son':<br>
+        They weighed so lightly what they gave.<br>
+        <span class="refrain">But let them be, they're dead and gone,<br>
+        They're with O'Leary in the grave.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="stanzas">
+    <span class="label">Stanza-by-Stanza Analysis</span>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>Stanza 1 — Attack on Materialism and Slavish Religion</span><span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="quote-block"><blockquote>"But fumble in a greasy till / And add the halfpence to the pence"</blockquote></div>
+      <p>Yeats opens with savage irony — "being come to sense" suggests the middle class think they have become wise, rational, practical. But Yeats means the opposite: they have come to their senses in the worst possible way, abandoning idealism for greed. The "greasy till" is a brilliant image — the grease suggests both the tainted nature of the money and the physical revulsion Yeats feels. "Halfpence to the pence" — a pitiful sum, all that small-minded calculation amounts to.</p>
+      <p>"Prayer to shivering prayer" — religion here is not genuine faith but fearful, repetitive, mechanical. The word "shivering" is telling — they pray out of cold fear, not warm devotion. Both work and prayer become equally futile, equally joyless, equally soul-destroying.</p>
+      <p>"You have dried the marrow from the bone" — a devastating physical metaphor. The marrow (the rich, living inner substance) has been sucked dry. Nothing vital remains. The nation is a hollow bone.</p>
+    </div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>Stanza 2 — The Heroes of the Past Contrasted</span><span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="quote-block"><blockquote>"The names that stilled your childish play"</blockquote></div>
+      <p>A beautiful, poignant image. The heroes of Romantic Ireland — Emmet, Tone, Fitzgerald — were names so powerful that they stopped children in their games, held them in awe. Children understood heroism instinctively. The adults these children became have forgotten it. Yeats implies that the middle class were once capable of this admiration — and have since abandoned it.</p>
+      <p>"They have gone about the world like wind" — the heroes were free, unpredictable, powerful, elemental. The simile elevates them above ordinary mortals. The middle class, by contrast, is earth-bound, counting pennies in shops. The contrast is brutal. "For whom the hangman's rope was spun" — these men accepted execution. They "weighed so lightly what they gave" — their lives meant less to them than the cause. The middle class cannot conceive of this scale of sacrifice.</p>
+    </div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>Stanza 3 — "Was it for this?" — The Wild Geese</span><span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="quote-block"><blockquote>"Was it for this the wild geese spread / The grey wing upon every tide"</blockquote></div>
+      <p>The "Wild Geese" refers to the Irish soldiers who fled abroad to fight on every front — exiled, fighting for other countries because their own had no place for them. They spread their wings "upon every tide" — an image of ceaseless, graceful, selfless movement. Their sacrifice was total and global. And for what? "For this" — Yeats's withering sarcasm: for a nation of shopkeepers.</p>
+      <p>The listing of names — "Edward Fitzgerald died, / And Robert Emmet and Wolfe Tone" — creates a roll-call of the martyred dead. The anaphora of "For this" in the preceding lines hammers home his contempt. All that blood, all that idealism, all that "delirium of the brave" — and the result is a greedy, culture-hating, church-fearing middle class. "Delirium of the brave" is magnificent: the bravery was a kind of madness, an irrational, magnificent excess of passion. The current middle class is entirely rational — and utterly without passion.</p>
+    </div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>Stanza 4 — The Final Contempt, and the Changed Refrain</span><span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="quote-block"><blockquote>"You'd cry, 'Some woman's yellow hair / Has maddened every mother's son'"</blockquote></div>
+      <p>In the final stanza, Yeats imagines the middle class meeting the exiled heroes and dismissing their sacrifice as irrational passion — as if their heroism was no more than being driven mad by a woman's beauty. "Some woman's yellow hair" is a symbol of Ireland as a beautiful woman (Cathleen Ní Houlihan) — the heroes were driven by love of Ireland. But the materialistic mind cannot see beyond the literal; it reduces noble sacrifice to foolishness.</p>
+      <p>The refrain changes in this final stanza — "But let them be, they're dead and gone" — a subtle but devastating shift. "Romantic Ireland's dead and gone" becomes "they're dead and gone." The mourning becomes more personal, more tender, as if Yeats is finally accepting what he has been lamenting throughout. The heroes deserve better than this country gave them. Let them rest.</p>
+    </div></div>
+  </div>
+
+  <div class="tab-panel" id="quotes">
+    <span class="label">Key Quotes</span>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"fumble in a greasy till" — materialism made visceral</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Imagery</span><span class="tech-pill">Verb Choice</span><span class="tech-pill">Tone</span>
+    <div class="quote-block"><div class="quote-ref">Technique: Visceral imagery of greed</div><blockquote>"fumble in a greasy till"</blockquote><div class="quote-body"><p>"Fumble" suggests clumsiness, desperation, obsession. The "greasy till" is physically revolting — the grease suggests moral contamination, the taint of commerce on everything it touches. Yeats makes us feel physical disgust at money-obsession. One of his most effective images.</p></div></div></div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"prayer to shivering prayer" — fear, not faith</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Alliteration</span><span class="tech-pill">Repetition</span><span class="tech-pill">Irony</span>
+    <div class="quote-block"><div class="quote-ref">Technique: Sibilance and repetition revealing hollow religion</div><blockquote>"prayer to shivering prayer"</blockquote><div class="quote-body"><p>"Shivering" is devastatingly precise — these prayers are born of cold fear, not warm belief. The repetition parallels "halfpence to the pence" — both work and prayer are equally mechanical, equally empty, equally joyless. Religion becomes no different from commerce: both are ways of accumulating something through repetitive, fearful effort.</p></div></div></div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"Romantic Ireland's dead and gone" — the funeral refrain</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Refrain</span><span class="tech-pill">Elegiac Tone</span><span class="tech-pill">Repetition</span>
+    <div class="quote-block"><div class="quote-ref">Technique: Refrain as funeral cry and rhetorical hammer</div><blockquote>"Romantic Ireland's dead and gone, / It's with O'Leary in the grave."</blockquote><div class="quote-body"><p>The repetition after each stanza is both lament and accusation. Each stanza builds its case, and the refrain closes it with the same verdict: this is a funeral, and the middle class is both the cause of death and the chief mourner. The rhythm is almost songlike — Yeats wants these lines to be <em>remembered</em>, to stick, to haunt.</p></div></div></div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"All that delirium of the brave" — magnificent excess</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Oxymoron</span><span class="tech-pill">Admiration</span><span class="tech-pill">Irony</span>
+    <div class="quote-block"><div class="quote-ref">Technique: Paradoxical admiration for irrational heroism</div><blockquote>"All that delirium of the brave"</blockquote><div class="quote-body"><p>"Delirium" suggests madness, irrationality, excess — and yet it is "of the brave." Yeats admires the very irrationality of the heroes' sacrifice. Their passion exceeded reason, and that was their greatness. The rational middle class cannot produce this kind of magnificent, irrational excess — they are too careful, too calculating, too sane. This line summarises what has been lost.</p></div></div></div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"They weighed so lightly what they gave" — self-sacrifice</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Metaphor</span><span class="tech-pill">Contrast</span><span class="tech-pill">Weight Imagery</span>
+    <div class="quote-block"><div class="quote-ref">Technique: Physical metaphor of weight to convey the scale of sacrifice</div><blockquote>"They weighed so lightly what they gave."</blockquote><div class="quote-body"><p>The middle class weighs everything — counting halfpence. The heroes weighed their lives so lightly that they gave them without calculation. The contrast in weighing is the contrast in values. The merchant class calculates every transaction; the heroic class gave away everything without a second thought. This is what Yeats means by Romantic Ireland — not romance as in love, but as in the Romantic ideal of passion over reason.</p></div></div></div></div>
+  </div>
+
+  <div class="tab-panel" id="techniques">
+    <span class="label">Poetic Techniques</span>
+    <div class="two-col">
+      <div class="info-card"><h2>📏 Form: Iambic Tetrameter</h2><p>Eight-line stanzas with iambic tetrameter (four beats per line) and rhyme scheme ababcdcd. The tight, controlled form reflects the rigour of Yeats's argument. But the pace also moves briskly, almost like a march or chant — the poem wants to be heard, not just read.</p></div>
+      <div class="info-card"><h2>🔁 Refrain as Rhetoric</h2><p>The refrain "Romantic Ireland's dead and gone / It's with O'Leary in the grave" is repeated after each stanza. Each repetition is a rhetorical hammer — the verdict after each indictment. It also creates a musical, incantatory quality: Yeats wants these words to be unforgettable.</p></div>
+      <div class="info-card"><h2>🎭 Direct Address</h2><p>"You," "they," "we" — the shifting pronouns are deliberate. "You" is accusatory, addressing the middle class directly. "They" elevates the heroes to a separate category. "We" in stanza 4 draws us into the scene, making us complicit. The reader cannot escape Yeats's argument.</p></div>
+      <div class="info-card"><h2>🌊 The Wild Geese Image</h2><p>The "wild geese" spread their wings "upon every tide" — an image of freedom, flight, and relentless, selfless movement. Comparable to "The Wild Swans at Coole" — in both poems, free birds flying contrast with the earthbound, static Yeats or the earthbound middle class. Flight = heroism. Earthbound = mediocrity.</p></div>
+      <div class="info-card"><h2>💬 Rhetorical Questions</h2><p>"Was it for this the wild geese spread..." — rhetorical questions force the reader to engage and to feel the absurdity of what has happened. Yeats does not need answers — the questions themselves are the answer. "What, God help us, could they save?" is also darkly ironic: nothing, of course — but the attempt was glorious.</p></div>
+      <div class="info-card"><h2>🔤 Sound: Hard Consonants</h2><p>Hard "p," "b," "d," and "g" sounds throughout stanza 1 — angry, biting, spitting consonance. The sounds of the poem are harsh where the subject is contemptible, and flowing where the heroes are described. Sound mirrors meaning throughout.</p></div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="context">
+    <span class="label">Context &amp; Exam Preparation</span>
+    <div class="box b-exam"><div class="ico">🎓</div><div><div class="box-label">Key Exam Argument</div>
+    <p>This poem is a rhetorical attack, so analyse Yeats's <em>techniques of persuasion</em>. The refrain, the direct address, the visceral imagery, the contrast between past heroes and present merchants — these are all deliberate rhetorical strategies. Also argue about the poem's tensions: is Yeats too elitist? Is he romanticising the past? The examiner rewards nuanced thinking.</p></div></div>
+    <div class="info-card"><h2>Links to Other Yeats Poems</h2><ul>
+      <li><strong>Easter 1916:</strong> The single most important link. The middle class Yeats vilified here are the very people he comes to admire after the Rising. His view shifts entirely. This pair of poems shows Yeats's growth as a political thinker.</li>
+      <li><strong>Politics:</strong> Both are "political" poems, but with very different registers. September 1913 is furious; Politics is playful and self-deprecating. An interesting contrast in tone.</li>
+      <li><strong>Wild Swans:</strong> The image of wild geese "spreading their wing upon every tide" echoes the swans. In both poems, free-flying birds contrast with earthbound, static human weakness.</li>
+    </ul></div>
+    <div class="box b-tip"><div class="ico">💡</div><div><div class="box-label">Exam Quote to Use</div>
+    <p>"All that delirium of the brave" — a perfect phrase to quote when discussing Yeats's admiration for the irrational, passionate heroism of Romantic Ireland. It captures both his admiration and his understanding that their sacrifice exceeded rational calculation.</p></div></div>
+  </div>
+</div>
+
+<script>
+function switchTab(btn,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(id).classList.add('active');}
+function toggleAcc(btn){const body=btn.nextElementSibling;const isOpen=btn.classList.contains('open');document.querySelectorAll('.acc-btn.open').forEach(b=>{b.classList.remove('open');b.nextElementSibling.classList.remove('open');});if(!isOpen){btn.classList.add('open');body.classList.add('open');}}
+</script>
+</body>
+</html>

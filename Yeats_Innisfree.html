@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yeats — The Lake Isle of Innisfree</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F7F4EF;--surface:#FFFFFF;--surface2:#F0EDE8;--border:#E2DDD7;
+  --text:#2C2825;--muted:#7A7068;
+  --c:#1a6b3a;--cl:#e8f4ec;--cd:#0d4a28;
+  --radius:14px;--shadow:0 4px 20px rgba(0,0,0,0.08);--shadow-h:0 8px 32px rgba(0,0,0,0.14);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;font-size:16px;}
+nav{position:sticky;top:0;z-index:100;background:rgba(247,244,239,0.97);backdrop-filter:blur(10px);border-bottom:2px solid var(--border);padding:8px 16px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;min-height:52px;}
+.nav-logo{font-family:'Lexend Mega',sans-serif;font-size:0.85rem;color:var(--text);margin-right:4px;text-decoration:none;white-space:nowrap;}
+.nav-logo span{color:#8B6914;}
+.nav-divider{width:1px;height:20px;background:var(--border);flex-shrink:0;}
+.nav-btn{padding:5px 11px;border-radius:18px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.72rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);text-decoration:none;white-space:nowrap;}
+.nav-btn:hover{transform:translateY(-2px);}
+.nav-btn.home:hover,.nav-btn.home.active{background:#2c2825;border-color:#2c2825;color:#fff;}
+.nav-btn.innisfree:hover,.nav-btn.innisfree.active{background:#1a6b3a;border-color:#1a6b3a;color:#fff;}
+.nav-btn.swans:hover,.nav-btn.swans.active{background:#1a3a6b;border-color:#1a3a6b;color:#fff;}
+.nav-btn.sept:hover,.nav-btn.sept.active{background:#7a1a1a;border-color:#7a1a1a;color:#fff;}
+.nav-btn.easter:hover,.nav-btn.easter.active{background:#8B6914;border-color:#8B6914;color:#fff;}
+.nav-btn.byz:hover,.nav-btn.byz.active{background:#4a1a7a;border-color:#4a1a7a;color:#fff;}
+.nav-btn.acre:hover,.nav-btn.acre.active{background:#3a5a1a;border-color:#3a5a1a;color:#fff;}
+.nav-btn.flash:hover,.nav-btn.flash.active{background:#3a3a5a;border-color:#3a3a5a;color:#fff;}
+.nav-btn.links:hover,.nav-btn.links.active{background:#5a1a3a;border-color:#5a1a3a;color:#fff;}
+.section{padding:0 16px 80px;max-width:940px;margin:0 auto;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.hero{background:linear-gradient(135deg,var(--cd),var(--c));color:#fff;padding:44px 32px 36px;text-align:center;margin-bottom:32px;}
+.hero .poem-label{font-size:0.75rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;opacity:0.75;margin-bottom:10px;}
+.hero h1{font-family:'Lexend Mega',sans-serif;font-size:clamp(1.6rem,4vw,2.6rem);line-height:1.15;margin-bottom:12px;}
+.hero p{opacity:0.88;max-width:620px;margin:0 auto;font-size:0.96rem;}
+.hero-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px;}
+.hero-chip{background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:4px 14px;border-radius:20px;font-size:0.75rem;font-weight:600;}
+.tab-bar{display:flex;gap:4px;flex-wrap:wrap;padding:22px 0 8px;border-bottom:2px solid var(--border);margin-bottom:28px;}
+.tab{padding:8px 18px;border-radius:10px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.8rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);}
+.tab:hover,.tab.active{background:var(--c);color:#fff;border-color:var(--c);}
+.tab-panel{display:none;} .tab-panel.active{display:block;animation:fadeIn 0.25s ease;}
+.info-card{background:var(--surface);border-radius:var(--radius);padding:24px 26px;margin-bottom:20px;box-shadow:var(--shadow);border-left:5px solid var(--c);}
+.info-card h2{font-size:1.1rem;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.info-card p{margin-bottom:9px;font-size:0.94rem;}
+.info-card ul{padding-left:20px;margin-bottom:9px;}
+.info-card li{margin-bottom:5px;font-size:0.93rem;}
+.quote-block{border-left:4px solid var(--c);background:var(--cl);border-radius:0 var(--radius) var(--radius) 0;padding:16px 20px;margin:16px 0;}
+.quote-block blockquote{font-family:'Lexend Mega',sans-serif;font-size:0.95rem;font-style:italic;margin-bottom:8px;line-height:1.5;}
+.quote-ref{font-size:0.73rem;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--muted);margin-bottom:10px;}
+.quote-body{font-size:0.91rem;line-height:1.75;}
+.quote-body p{margin-bottom:8px;}
+.tech-pill{display:inline-block;background:var(--c);color:#fff;font-size:0.72rem;font-weight:700;padding:2px 9px;border-radius:5px;margin:2px;}
+.box{border-radius:var(--radius);padding:14px 18px;margin:14px 0;display:flex;gap:12px;align-items:flex-start;}
+.box .ico{font-size:1.5rem;flex-shrink:0;line-height:1.2;}
+.box-label{font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;margin-bottom:4px;}
+.box p,.box li{font-size:0.91rem;} .box ul{padding-left:16px;} .box li{margin-bottom:4px;}
+.b-exam{background:#eaf4fb;border:2px solid #5dade2;} .b-exam .box-label{color:#1a6b9a;}
+.b-tip{background:#fffbf0;border:2px solid #f39c12;} .b-tip .box-label{color:#b7770d;}
+.b-green{background:#f0fff6;border:2px solid #27ae60;} .b-green .box-label{color:#1e8449;}
+.b-link{background:#e8faf6;border:2px solid #148f77;} .b-link .box-label{color:#0d6b56;}
+.acc{margin-bottom:10px;}
+.acc-btn{width:100%;text-align:left;background:var(--surface);border:2px solid var(--border);border-radius:var(--radius);padding:14px 18px;font-family:'Lexend',sans-serif;font-size:0.92rem;font-weight:600;cursor:pointer;color:var(--text);display:flex;justify-content:space-between;align-items:center;transition:background 0.15s;}
+.acc-btn:hover{background:#f8f5f0;}
+.acc-btn.open{border-radius:var(--radius) var(--radius) 0 0;border-bottom-color:transparent;}
+.acc-btn .arr{transition:transform 0.25s;margin-left:8px;flex-shrink:0;}
+.acc-btn.open .arr{transform:rotate(180deg);}
+.acc-body{display:none;background:var(--surface);border:2px solid var(--border);border-top:none;border-radius:0 0 var(--radius) var(--radius);padding:20px 22px;}
+.acc-body.open{display:block;}
+.acc-body p{font-size:0.91rem;margin-bottom:8px;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.label{font-size:0.72rem;font-weight:800;text-transform:uppercase;letter-spacing:0.8px;color:var(--muted);margin-bottom:16px;display:block;}
+.poem-text{background:var(--surface);border:2px solid var(--border);border-radius:var(--radius);padding:28px 32px;font-family:Georgia,serif;font-size:1.05rem;line-height:2;box-shadow:var(--shadow);}
+.poem-text .stanza{margin-bottom:1.6em;}
+.poem-text .stanza-label{font-family:'Lexend',sans-serif;font-size:0.65rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:6px;}
+@media(max-width:680px){.two-col{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="Yeats.html">🏆 <span>Yeats</span></a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn home" href="Yeats.html">Home</a>
+  <a class="nav-btn innisfree active" href="Yeats_Innisfree.html">Innisfree</a>
+  <a class="nav-btn swans" href="Yeats_Swans.html">Swans</a>
+  <a class="nav-btn sept" href="Yeats_September1913.html">Sept. 1913</a>
+  <a class="nav-btn easter" href="Yeats_Easter1916.html">Easter 1916</a>
+  <a class="nav-btn byz" href="Yeats_Byzantium.html">Byzantium</a>
+  <a class="nav-btn acre" href="Yeats_AcreOfGrass.html">Acre of Grass</a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn flash" href="Yeats_Flashcards.html">🃏 Flashcards</a>
+  <a class="nav-btn links" href="Yeats_Links.html">🔗 Links</a>
+</nav>
+
+<div class="hero">
+  <div class="poem-label">Poem 1 · Crossways Collection · 1889</div>
+  <h1>The Lake Isle of Innisfree</h1>
+  <p>A longing to escape from London to an idealised, pastoral peace — one of the most beloved poems in the Irish tradition.</p>
+  <div class="hero-chips">
+    <span class="hero-chip">Escapism</span>
+    <span class="hero-chip">Nature</span>
+    <span class="hero-chip">Longing</span>
+    <span class="hero-chip">Self-Sufficiency</span>
+    <span class="hero-chip">Biblical Allusion</span>
+  </div>
+</div>
+
+<div class="section">
+  <div class="tab-bar">
+    <button class="tab active" onclick="switchTab(this,'overview')">📋 Overview</button>
+    <button class="tab" onclick="switchTab(this,'poem')">📜 The Poem</button>
+    <button class="tab" onclick="switchTab(this,'stanzas')">🔍 Stanza Analysis</button>
+    <button class="tab" onclick="switchTab(this,'quotes')">💬 Key Quotes</button>
+    <button class="tab" onclick="switchTab(this,'techniques')">🎨 Techniques</button>
+    <button class="tab" onclick="switchTab(this,'context')">🎓 Exam Prep</button>
+  </div>
+
+  <div class="tab-panel active" id="overview">
+    <div class="info-card">
+      <h2>📋 Background &amp; Overview</h2>
+      <p>Yeats wrote this poem in 1890 while living in London and feeling acutely homesick. Legend has it he was standing on a busy London street when he heard a small fountain in a shop window and it triggered a vivid memory of Sligo and Innisfree, a small island on Lough Gill that he had loved since childhood.</p>
+      <p>The poem belongs to a long literary tradition of the pastoral ideal — the desire to escape from urban, modern life to a simpler, self-sufficient existence in nature. It is not a concrete plan but a <strong>longing</strong>, a daydream held at the edge of his mind even while walking on grey London pavements.</p>
+    </div>
+    <div class="info-card">
+      <h2>🎯 Core Themes</h2>
+      <ul>
+        <li><strong>Escapism &amp; Longing:</strong> The poem is driven by desire rather than action — "I will" is a wish, not a plan.</li>
+        <li><strong>Nature as Sanctuary:</strong> Nature is presented as healing, peaceful, and complete — it offers what the city cannot.</li>
+        <li><strong>Self-Sufficiency:</strong> The nine bean-rows, the hive — a life that provides for itself, independent of commerce.</li>
+        <li><strong>Memory &amp; the Imagination:</strong> Even in the city, nature can be heard "in the deep heart's core" — the imagination transcends geography.</li>
+        <li><strong>Solitude:</strong> No other people are mentioned. Yeats wants peace with nature alone.</li>
+      </ul>
+    </div>
+    <div class="box b-exam">
+      <div class="ico">🎓</div>
+      <div><div class="box-label">Exam Tip</div>
+      <p>This poem is deceptively simple. Don't just summarise it — focus on the <em>tension</em> between the vibrant, sensory world of Innisfree and the dead, grey London reality. The contrast is the engine of the poem. Always mention the Biblical echo of the opening line and the way sound devices create the dreamlike quality.</p></div>
+    </div>
+    <div class="info-card">
+      <h2>📅 Context</h2>
+      <p>In 1890 Yeats was 25, living in London, working hard as an emerging poet but isolated and homesick. His father John Butler Yeats was an artist who had moved the family there to further his career. W.B. felt cut off from Sligo — the place of his happiest childhood memories — and from the Irish cultural identity he was working to promote. The poem captures that very specific ache of an Irish person far from home.</p>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="poem">
+    <div class="poem-text">
+      <div class="stanza">
+        <div class="stanza-label">Stanza 1</div>
+        I will arise and go now, and go to Innisfree,<br>
+        And a small cabin build there, of clay and wattles made;<br>
+        Nine bean-rows will I have there, a hive for the honey-bee,<br>
+        And live alone in the bee-loud glade.
+      </div>
+      <div class="stanza">
+        <div class="stanza-label">Stanza 2</div>
+        And I shall have some peace there, for peace comes dropping slow,<br>
+        Dropping from the veils of the morning to where the cricket sings;<br>
+        There midnight's all a glimmer, and noon a purple glow,<br>
+        And evening full of the linnet's wings.
+      </div>
+      <div class="stanza">
+        <div class="stanza-label">Stanza 3</div>
+        I will arise and go now, for always night and day<br>
+        I hear lake water lapping with low sounds by the shore;<br>
+        While I stand on the roadway, or on the pavements grey,<br>
+        I hear it in the deep heart's core.
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="stanzas">
+    <span class="label">Stanza-by-Stanza Analysis</span>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>Stanza 1 — Determination and the Dream</span><span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="quote-block"><blockquote>"I will arise and go now, and go to Innisfree"</blockquote></div>
+      <p>The opening line is deliberately echoing Luke 15:18 in the Bible — the Prodigal Son declares "I will arise and go to my father." This is no casual wish; Yeats is using Biblical language to give his longing the weight and determination of a spiritual vow. The repetition of "and go" is insistent, rhythmic, unstoppable.</p>
+      <p>The "small cabin" of "clay and wattles" is deliberately humble — not luxury or escape to wealth, but a return to something ancient, elemental, Irish. The nine bean-rows and honey-bee suggest a life of simple self-sufficiency. This is the pastoral ideal: providing for oneself without the commercial treadmill of the city. Note that not a single other person is mentioned — this is solitude by choice.</p>
+      <p>The "bee-loud glade" is a beautiful compressed image. Sound dominates — we hear the place even before we see it clearly, and that sound is alive, productive, warm. The glade hums.</p>
+    </div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>Stanza 2 — Immersion in the Senses</span><span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="quote-block"><blockquote>"peace comes dropping slow, / Dropping from the veils of the morning"</blockquote></div>
+      <p>In the second stanza, Yeats is no longer planning — he is already there in imagination. The tense shifts to a present-tense daydream. "Peace comes dropping slow" is one of his most famous lines: peace is liquid, natural, gradual — it cannot be hurried. The word "dropping" is repeated, slowing us down, enacting the very peace it describes.</p>
+      <p>"Veils of the morning" gives the dawn an almost supernatural, mystical quality — as if the morning is a spirit wearing veils. The full day passes in three images: midnight (glimmer), noon (purple glow), evening (linnet's wings). These are richly sensory — visual, auditory, luminous. The world of Innisfree is self-contained and perfect through all hours.</p>
+      <p>Note the colour: "purple glow" at noon is unexpected and dreamlike. This is not realistic nature description — it is idealised, mythologised, the place as memory wants it to be.</p>
+    </div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>Stanza 3 — The Return to Reality, and the Heart</span><span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="quote-block"><blockquote>"While I stand on the roadway, or on the pavements grey, / I hear it in the deep heart's core."</blockquote></div>
+      <p>The repetition of the opening line signals a return from the daydream. Now Yeats grounds us in the grim reality he is actually in — the "roadway" and "pavements grey." The colour grey is everything Innisfree is not: lifeless, uniform, man-made. The contrast is absolute.</p>
+      <p>But the final line rescues everything. Even standing on grey London pavement, he hears the lake "in the deep heart's core." This is profound: the imagination, memory, and love of place are indestructible. They cannot be taken from him by geography. Innisfree lives inside him always. This is what the poem is ultimately about — not an escape plan, but the discovery that home is carried within.</p>
+      <p>The enjambment in this stanza rushes forward as his imagination runs away with him — before the poem snaps back to the reality of the pavement. The pace momentarily breaks the meditative calm of the first two stanzas.</p>
+    </div></div>
+  </div>
+
+  <div class="tab-panel" id="quotes">
+    <span class="label">Key Quotes</span>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"I will arise and go now" — Biblical determination</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Biblical Allusion</span><span class="tech-pill">Repetition</span><span class="tech-pill">Determination</span>
+    <div class="quote-block"><div class="quote-ref">Technique: Biblical allusion + determined rhythm</div><blockquote>"I will arise and go now, and go to Innisfree"</blockquote><div class="quote-body"><p>Echoes Luke 15:18 — the Prodigal Son's declaration "I will arise and go to my father." Yeats gives his longing the weight of a spiritual vow. The repetition of "and go" creates a rhythmic insistence. This is not a vague wish — it has the force of a resolution.</p></div></div></div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"peace comes dropping slow" — the nature of peace</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Personification</span><span class="tech-pill">Sibilance</span><span class="tech-pill">Onomatopoeia</span>
+    <div class="quote-block"><div class="quote-ref">Technique: Sound and personification to capture peace</div><blockquote>"peace comes dropping slow"</blockquote><div class="quote-body"><p>Peace is personified as something liquid that descends slowly from the morning mists. The sibilance of "peace" and the slow vowels enact the very quality they describe — the line itself slows you down as you read it. This is Yeats at his most musically precise.</p></div></div></div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"bee-loud glade" — compressed sensory image</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Compound Adjective</span><span class="tech-pill">Auditory Imagery</span><span class="tech-pill">Onomatopoeia</span>
+    <div class="quote-block"><div class="quote-ref">Technique: Compound adjective that collapses sound into place</div><blockquote>"bee-loud glade"</blockquote><div class="quote-body"><p>A three-word image that contains an entire atmosphere. The hyphenated compound adjective is Yeats's invention — "bee-loud" is not a real word, but it perfectly captures the experience of a glade alive with the hum of bees. Sound becomes the defining quality of the place. Productive, warm, alive.</p></div></div></div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"midnight's all a glimmer" — dreamlike sensory colour</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Visual Imagery</span><span class="tech-pill">Alliteration</span><span class="tech-pill">Colour</span>
+    <div class="quote-block"><div class="quote-ref">Technique: Dreamlike colour imagery spanning the full day</div><blockquote>"midnight's all a glimmer, and noon a purple glow"</blockquote><div class="quote-body"><p>Midnight "glimmers" and noon is "purple" — neither is realistic, both are magical. Yeats is not describing Innisfree as it literally is, but as memory and desire paint it: luminous, heightened, supernatural. The island glows at every hour. Alliteration of "g" in "glimmer" and "glow" creates a musical, twinkling quality.</p></div></div></div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"pavements grey" — the brutal contrast</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Contrast</span><span class="tech-pill">Colour Symbolism</span><span class="tech-pill">Setting</span>
+    <div class="quote-block"><div class="quote-ref">Technique: Colour contrast as emotional contrast</div><blockquote>"on the pavements grey"</blockquote><div class="quote-body"><p>After midnight's "glimmer" and noon's "purple glow," the single word "grey" hits like a bucket of cold water. Grey is everything Innisfree is not — uniform, lifeless, urban, man-made. It is the colour of despair. This is the world Yeats is actually standing in, and one word captures everything wrong with it.</p></div></div></div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"in the deep heart's core" — the indestructible inner world</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Metaphor</span><span class="tech-pill">Alliteration</span><span class="tech-pill">Final Line Power</span>
+    <div class="quote-block"><div class="quote-ref">Technique: Final metaphor — memory as deeper than geography</div><blockquote>"I hear it in the deep heart's core"</blockquote><div class="quote-body"><p>The most important line in the poem. Innisfree is not a plan — it is a <em>state of being</em>. It lives at the deepest level of his identity, beneath conscious thought. The alliteration of "deep" and "heart" and the hard "c" of "core" drive the line home. No amount of grey London pavement can erase what is permanently held inside.</p></div></div></div></div>
+  </div>
+
+  <div class="tab-panel" id="techniques">
+    <span class="label">Poetic Techniques</span>
+    <div class="two-col">
+      <div class="info-card"><h2>🎵 Sound Devices</h2><p>Sibilance ("some peace," "slow," "shore," "sounds") slows the poem and creates the hiss of water and wind. Alliteration of "l," "m," and "g" creates a gentle, lyrical, twinkling effect. Onomatopoeia in "lapping" physically mimics the sound of water. Sound is central — Innisfree is as much heard as seen.</p></div>
+      <div class="info-card"><h2>📏 Form &amp; Structure</h2><p>Three stanzas of four lines each — balanced, neat, complete. Alternate rhyme (ABAB) throughout gives a sense of perfect order, reflecting the perfection of the idealised island. The short, even form matches the calm, controlled longing of the poem.</p></div>
+      <div class="info-card"><h2>🎨 Colour Symbolism</h2><p>"Midnight's all a glimmer," "noon a purple glow" — dreamlike, non-realistic colour gives Innisfree a supernatural quality. In contrast, "pavements grey" is the one piece of true colour in the poem, and it strips everything away. The contrast is devastating.</p></div>
+      <div class="info-card"><h2>⏩ Enjambment</h2><p>Used in the final stanza as the imagination runs away — lines tumble forward before crashing back to the reality of the pavement. The momentary loss of control in the metre mirrors the speaker's longing breaking through his composure.</p></div>
+      <div class="info-card"><h2>📖 Biblical Allusion</h2><p>The opening echoes Luke 15:18 (the Prodigal Son). This elevates the poem from homesickness to something closer to a spiritual vow — a return to an originating home. Innisfree is not just a place but a state of grace.</p></div>
+      <div class="info-card"><h2>🔁 Repetition</h2><p>"I will arise and go now" is repeated at the start of stanza 3, reinforcing the determination. "And go" repeated twice in line 1. Repetition of "dropping" in stanza 2 creates the slow, meditative rhythm of peace arriving naturally, at its own pace.</p></div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="context">
+    <span class="label">Context &amp; Exam Preparation</span>
+    <div class="box b-exam"><div class="ico">🎓</div><div><div class="box-label">Key Exam Argument</div>
+    <p>The most important thing to argue about this poem is the <em>tension between longing and reality</em>. Yeats does not escape to Innisfree — he stands on grey pavements. The poem is about the power of the imagination to preserve what the body cannot reach. Always connect to the final line and argue that "deep heart's core" is more powerful than any physical escape.</p></div></div>
+    <div class="info-card"><h2>Links to Other Yeats Poems</h2><ul>
+      <li><strong>The Wild Swans at Coole:</strong> Both are set in nature; both involve Yeats as a solitary observer mourning what he does not have. But Innisfree is pure longing while Swans is more elegiac and bitter.</li>
+      <li><strong>Sailing to Byzantium:</strong> Both are poems of escape. Innisfree escapes to simple nature; Byzantium escapes to art and eternity. Compare as two very different answers to the same question: where do you go when the present is unbearable?</li>
+      <li><strong>An Acre of Grass:</strong> Both poems feature Yeats in a place of stillness wanting more. But where Innisfree wants peace, An Acre of Grass wants frenzy. A fascinating contrast in what the poet desires.</li>
+    </ul></div>
+    <div class="box b-tip"><div class="ico">💡</div><div><div class="box-label">Exam Quote to Use</div>
+    <p>"I hear it in the deep heart's core" — this is always worth quoting. It shows that for Yeats, home is not a place but a permanent inner state. It proves the poem is not about escapism as a plan but as a form of inner survival.</p></div></div>
+  </div>
+</div>
+
+<script>
+function switchTab(btn,id){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+function toggleAcc(btn){
+  const body=btn.nextElementSibling;
+  const isOpen=btn.classList.contains('open');
+  document.querySelectorAll('.acc-btn.open').forEach(b=>{b.classList.remove('open');b.nextElementSibling.classList.remove('open');});
+  if(!isOpen){btn.classList.add('open');body.classList.add('open');}
+}
+</script>
+</body>
+</html>

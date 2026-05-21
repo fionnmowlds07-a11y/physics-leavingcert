@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yeats — The Wild Swans at Coole</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F7F4EF;--surface:#FFFFFF;--surface2:#F0EDE8;--border:#E2DDD7;
+  --text:#2C2825;--muted:#7A7068;
+  --c:#1a3a6b;--cl:#e8ecf8;--cd:#0d2248;
+  --radius:14px;--shadow:0 4px 20px rgba(0,0,0,0.08);--shadow-h:0 8px 32px rgba(0,0,0,0.14);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;font-size:16px;}
+nav{position:sticky;top:0;z-index:100;background:rgba(247,244,239,0.97);backdrop-filter:blur(10px);border-bottom:2px solid var(--border);padding:8px 16px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;min-height:52px;}
+.nav-logo{font-family:'Lexend Mega',sans-serif;font-size:0.85rem;color:var(--text);margin-right:4px;text-decoration:none;white-space:nowrap;}
+.nav-logo span{color:#8B6914;}
+.nav-divider{width:1px;height:20px;background:var(--border);flex-shrink:0;}
+.nav-btn{padding:5px 11px;border-radius:18px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.72rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);text-decoration:none;white-space:nowrap;}
+.nav-btn:hover{transform:translateY(-2px);}
+.nav-btn.home:hover,.nav-btn.home.active{background:#2c2825;border-color:#2c2825;color:#fff;}
+.nav-btn.innisfree:hover,.nav-btn.innisfree.active{background:#1a6b3a;border-color:#1a6b3a;color:#fff;}
+.nav-btn.swans:hover,.nav-btn.swans.active{background:#1a3a6b;border-color:#1a3a6b;color:#fff;}
+.nav-btn.sept:hover,.nav-btn.sept.active{background:#7a1a1a;border-color:#7a1a1a;color:#fff;}
+.nav-btn.easter:hover,.nav-btn.easter.active{background:#8B6914;border-color:#8B6914;color:#fff;}
+.nav-btn.byz:hover,.nav-btn.byz.active{background:#4a1a7a;border-color:#4a1a7a;color:#fff;}
+.nav-btn.acre:hover,.nav-btn.acre.active{background:#3a5a1a;border-color:#3a5a1a;color:#fff;}
+.nav-btn.flash:hover,.nav-btn.flash.active{background:#3a3a5a;border-color:#3a3a5a;color:#fff;}
+.nav-btn.links:hover,.nav-btn.links.active{background:#5a1a3a;border-color:#5a1a3a;color:#fff;}
+.section{padding:0 16px 80px;max-width:940px;margin:0 auto;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.hero{background:linear-gradient(135deg,var(--cd),var(--c));color:#fff;padding:44px 32px 36px;text-align:center;margin-bottom:32px;}
+.hero .poem-label{font-size:0.75rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;opacity:0.75;margin-bottom:10px;}
+.hero h1{font-family:'Lexend Mega',sans-serif;font-size:clamp(1.6rem,4vw,2.6rem);line-height:1.15;margin-bottom:12px;}
+.hero p{opacity:0.88;max-width:620px;margin:0 auto;font-size:0.96rem;}
+.hero-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px;}
+.hero-chip{background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:4px 14px;border-radius:20px;font-size:0.75rem;font-weight:600;}
+.tab-bar{display:flex;gap:4px;flex-wrap:wrap;padding:22px 0 8px;border-bottom:2px solid var(--border);margin-bottom:28px;}
+.tab{padding:8px 18px;border-radius:10px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.8rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);}
+.tab:hover,.tab.active{background:var(--c);color:#fff;border-color:var(--c);}
+.tab-panel{display:none;} .tab-panel.active{display:block;animation:fadeIn 0.25s ease;}
+.info-card{background:var(--surface);border-radius:var(--radius);padding:24px 26px;margin-bottom:20px;box-shadow:var(--shadow);border-left:5px solid var(--c);}
+.info-card h2{font-size:1.1rem;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.info-card p{margin-bottom:9px;font-size:0.94rem;}
+.info-card ul{padding-left:20px;margin-bottom:9px;}
+.info-card li{margin-bottom:5px;font-size:0.93rem;}
+.quote-block{border-left:4px solid var(--c);background:var(--cl);border-radius:0 var(--radius) var(--radius) 0;padding:16px 20px;margin:16px 0;}
+.quote-block blockquote{font-family:'Lexend Mega',sans-serif;font-size:0.95rem;font-style:italic;margin-bottom:8px;line-height:1.5;}
+.quote-ref{font-size:0.73rem;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--muted);margin-bottom:10px;}
+.quote-body{font-size:0.91rem;line-height:1.75;}
+.quote-body p{margin-bottom:8px;}
+.tech-pill{display:inline-block;background:var(--c);color:#fff;font-size:0.72rem;font-weight:700;padding:2px 9px;border-radius:5px;margin:2px;}
+.box{border-radius:var(--radius);padding:14px 18px;margin:14px 0;display:flex;gap:12px;align-items:flex-start;}
+.box .ico{font-size:1.5rem;flex-shrink:0;line-height:1.2;}
+.box-label{font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;margin-bottom:4px;}
+.box p,.box li{font-size:0.91rem;} .box ul{padding-left:16px;} .box li{margin-bottom:4px;}
+.b-exam{background:#eaf4fb;border:2px solid #5dade2;} .b-exam .box-label{color:#1a6b9a;}
+.b-tip{background:#fffbf0;border:2px solid #f39c12;} .b-tip .box-label{color:#b7770d;}
+.b-green{background:#f0fff6;border:2px solid #27ae60;} .b-green .box-label{color:#1e8449;}
+.acc{margin-bottom:10px;}
+.acc-btn{width:100%;text-align:left;background:var(--surface);border:2px solid var(--border);border-radius:var(--radius);padding:14px 18px;font-family:'Lexend',sans-serif;font-size:0.92rem;font-weight:600;cursor:pointer;color:var(--text);display:flex;justify-content:space-between;align-items:center;transition:background 0.15s;}
+.acc-btn:hover{background:#f8f5f0;}
+.acc-btn.open{border-radius:var(--radius) var(--radius) 0 0;border-bottom-color:transparent;}
+.acc-btn .arr{transition:transform 0.25s;margin-left:8px;flex-shrink:0;}
+.acc-btn.open .arr{transform:rotate(180deg);}
+.acc-body{display:none;background:var(--surface);border:2px solid var(--border);border-top:none;border-radius:0 0 var(--radius) var(--radius);padding:20px 22px;}
+.acc-body.open{display:block;}
+.acc-body p{font-size:0.91rem;margin-bottom:8px;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.label{font-size:0.72rem;font-weight:800;text-transform:uppercase;letter-spacing:0.8px;color:var(--muted);margin-bottom:16px;display:block;}
+.poem-text{background:var(--surface);border:2px solid var(--border);border-radius:var(--radius);padding:28px 32px;font-family:Georgia,serif;font-size:1.05rem;line-height:2;box-shadow:var(--shadow);}
+.poem-text .stanza{margin-bottom:1.6em;}
+.poem-text .stanza-label{font-family:'Lexend',sans-serif;font-size:0.65rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:6px;}
+@media(max-width:680px){.two-col{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="Yeats.html">🏆 <span>Yeats</span></a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn home" href="Yeats.html">Home</a>
+  <a class="nav-btn innisfree" href="Yeats_Innisfree.html">Innisfree</a>
+  <a class="nav-btn swans active" href="Yeats_Swans.html">Swans</a>
+  <a class="nav-btn sept" href="Yeats_September1913.html">Sept. 1913</a>
+  <a class="nav-btn easter" href="Yeats_Easter1916.html">Easter 1916</a>
+  <a class="nav-btn byz" href="Yeats_Byzantium.html">Byzantium</a>
+  <a class="nav-btn acre" href="Yeats_AcreOfGrass.html">Acre of Grass</a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn flash" href="Yeats_Flashcards.html">🃏 Flashcards</a>
+  <a class="nav-btn links" href="Yeats_Links.html">🔗 Links</a>
+</nav>
+
+<div class="hero">
+  <div class="poem-label">Poem 2 · The Wild Swans at Coole · 1917</div>
+  <h1>The Wild Swans at Coole</h1>
+  <p>Fifty-nine swans at Coole Park trigger a meditation on ageing, loneliness, unrequited love, and the heartbreaking passage of nineteen years.</p>
+  <div class="hero-chips">
+    <span class="hero-chip">Ageing &amp; Mortality</span>
+    <span class="hero-chip">Loneliness</span>
+    <span class="hero-chip">Transience</span>
+    <span class="hero-chip">Nature vs Human</span>
+    <span class="hero-chip">Unrequited Love</span>
+  </div>
+</div>
+
+<div class="section">
+  <div class="tab-bar">
+    <button class="tab active" onclick="switchTab(this,'overview')">📋 Overview</button>
+    <button class="tab" onclick="switchTab(this,'poem')">📜 The Poem</button>
+    <button class="tab" onclick="switchTab(this,'stanzas')">🔍 Stanza Analysis</button>
+    <button class="tab" onclick="switchTab(this,'quotes')">💬 Key Quotes</button>
+    <button class="tab" onclick="switchTab(this,'techniques')">🎨 Techniques</button>
+    <button class="tab" onclick="switchTab(this,'context')">🎓 Exam Prep</button>
+  </div>
+
+  <div class="tab-panel active" id="overview">
+    <div class="info-card">
+      <h2>📋 Background &amp; Overview</h2>
+      <p>Yeats wrote the first version of this poem in 1916 and published it in 1917 as the title poem of a new collection. He was 51 years old at the time, and had been returning to Coole Park — the home of his patron and friend Lady Augusta Gregory in Co. Galway — for nearly twenty years.</p>
+      <p>He realises it has been 19 years since he first counted 59 swans at this lake. The swans are seemingly unchanged. He is very much changed — older, lonelier, still without the love of Maude Gonne, uncertain of his creative powers. The swans become a mirror that shows him what he is not.</p>
+    </div>
+    <div class="info-card">
+      <h2>🎯 Core Themes</h2>
+      <ul>
+        <li><strong>Ageing &amp; Transience:</strong> Yeats is painfully aware of his own ageing while the swans appear immortal and unchanged.</li>
+        <li><strong>Loneliness &amp; Unrequited Love:</strong> The swans number 59 — an odd number — meaning one is alone. This directly mirrors Yeats's own emotional situation. He has loved Maude Gonne for nearly 30 years without return.</li>
+        <li><strong>Nature vs Human Mortality:</strong> The swans are "unwearied still" — nature does not age or tire. Humans do. The contrast is the engine of the poem.</li>
+        <li><strong>The Cyclical Nature of Things:</strong> Yeats believed all things move in cycles. The swans return; the season returns; but Yeats does not return to youth.</li>
+        <li><strong>Uncertainty &amp; Loss:</strong> The poem ends with a question — there are no answers. The swans will go somewhere and delight someone else. But Yeats will be left alone.</li>
+      </ul>
+    </div>
+    <div class="box b-exam">
+      <div class="ico">🎓</div>
+      <div><div class="box-label">Key Exam Point</div>
+      <p>This is described as "a deceptively simple poem." On the surface it is a description of swans. Underneath it is a deeply personal elegy for lost youth, lost love, and lost certainty. Always discuss the symbolism of the 59 swans — the odd number is not accidental. And always connect the ending question to Yeats's emotional vulnerability.</p></div>
+    </div>
+    <div class="info-card">
+      <h2>📅 Context</h2>
+      <p>1916 was a year of personal and national upheaval for Yeats. The Easter Rising had just happened. He had again proposed to Maude Gonne and been rejected. He then proposed to her daughter Iseult, also rejected. He was 51, unmarried, and profoundly uncertain. Coole Park, where Lady Gregory had hosted him for decades, was one of the few stable points in his life. Writing this poem at Coole, he is taking stock — and what he finds is loss.</p>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="poem">
+    <div class="poem-text">
+      <div class="stanza">
+        <div class="stanza-label">Stanza 1</div>
+        The trees are in their autumn beauty,<br>
+        The woodland paths are dry,<br>
+        Under the October twilight the water<br>
+        Mirrors a still sky;<br>
+        Upon the brimming water among the stones<br>
+        Are nine-and-fifty swans.
+      </div>
+      <div class="stanza">
+        <div class="stanza-label">Stanza 2</div>
+        The nineteenth autumn has come upon me<br>
+        Since I first made my count;<br>
+        I saw, before I had well finished,<br>
+        All suddenly mount<br>
+        And scatter wheeling in great broken rings<br>
+        Upon their clamorous wings.
+      </div>
+      <div class="stanza">
+        <div class="stanza-label">Stanza 3</div>
+        I have looked upon those brilliant creatures,<br>
+        And now my heart is sore.<br>
+        All's changed since I, hearing at twilight,<br>
+        The first time on this shore,<br>
+        The bell-beat of their wings above my head,<br>
+        Trod with a lighter tread.
+      </div>
+      <div class="stanza">
+        <div class="stanza-label">Stanza 4</div>
+        Unwearied still, lover by lover,<br>
+        They paddle in the cold<br>
+        Companionable streams or climb the air;<br>
+        Their hearts have not grown old;<br>
+        Passion or conquest, wistful or in the air,<br>
+        Attend upon them still.
+      </div>
+      <div class="stanza">
+        <div class="stanza-label">Stanza 5</div>
+        But now they drift on the still water,<br>
+        Mysterious, beautiful;<br>
+        Among what rushes will they build,<br>
+        By what lake's edge or pool<br>
+        Delight men's eyes when I awake some day<br>
+        To find they have flown away?
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="stanzas">
+    <span class="label">Stanza-by-Stanza Analysis</span>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>Stanza 1 — Autumnal Beauty and the Counting</span><span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="quote-block"><blockquote>"Under the October twilight the water / Mirrors a still sky"</blockquote></div>
+      <p>The opening is tranquil, precise, composed — the scene of "autumnal beauty" is carefully observed. But autumn is never just a season in Yeats. It is the time approaching winter, approaching the end. The word "twilight" resonates with age — it is his own twilight. The water "mirrors a still sky" — the reflection is perfect, undisturbed. The world is at rest, but Yeats is not.</p>
+      <p>The final count — "nine-and-fifty swans" — lands like a quiet shock. This oddly precise number is not accidental. Swans mate for life, so an odd number means one swan is alone without a partner. One mirrors Yeats perfectly. The specificity makes it documentary, real, undeniable.</p>
+    </div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>Stanza 2 — The Nineteen Years, and Sudden Flight</span><span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="quote-block"><blockquote>"The nineteenth autumn has come upon me / Since I first made my count"</blockquote></div>
+      <p>"Has come upon me" — not "has passed" but "has come upon" him. It is ambush. Nineteen years have crept up and taken him by surprise. Nineteen is a devastating number — long enough for a child to grow to adulthood, long enough for a whole phase of life to have passed. And it has passed without resolution: no love returned, no youth preserved.</p>
+      <p>The sudden flight of the swans — "All suddenly mount / And scatter wheeling in great broken rings" — is explosive, vital, free. The enjambment rushes the lines forward as the swans rush upward. There is energy and chaos here that Yeats does not feel in himself. He stands still. They soar. "Clamorous wings" — noisy, claiming the sky, unapologetically alive.</p>
+    </div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>Stanza 3 — "All's Changed" — The Heart Laid Bare</span><span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="quote-block"><blockquote>"All's changed since I, hearing at twilight, / The first time on this shore, / The bell-beat of their wings above my head, / Trod with a lighter tread."</blockquote></div>
+      <p>This is the emotional centre of the poem. "All's changed" — two words of utter finality. Note this phrase will echo in Easter 1916: "All changed, changed utterly" — suggesting Yeats used this formulation to express radical, irreversible transformation. Here it is personal: <em>he</em> has changed.</p>
+      <p>The contrast with his younger self is heartbreaking in its simplicity. He once "trod with a lighter tread" — lighter in step, lighter in heart, lighter in burden. He was unburdened by the weight of years, by unrequited love, by the knowledge of what he would fail to achieve. "Bell-beat of their wings" is an extraordinary image: the swans' wings are musical, rhythmic, holy — like the ringing of a bell. His heart was lighter then because hope was still intact.</p>
+      <p>"My heart is sore" — Yeats does not hide his pain. The simplicity of this is its power.</p>
+    </div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>Stanza 4 — The Immortal Swans</span><span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="quote-block"><blockquote>"Their hearts have not grown old; / Passion or conquest, wistful or in the air, / Attend upon them still."</blockquote></div>
+      <p>This stanza is the direct counterpoint to stanza 3. While Yeats's heart is sore and changed, the swans' hearts "have not grown old." They are "unwearied still" — where he is weary, exhausted by longing and disappointment. "Lover by lover" — they move in companionate pairs, unlike the solitary Yeats watching from the shore.</p>
+      <p>The swans have everything he wants: "Passion or conquest" — passion in love, success in action. And they still have it. "Attend upon them still" — these qualities are faithful to the swans as they have been faithless to him. There is great bitterness here beneath the composed surface.</p>
+    </div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>Stanza 5 — "Mysterious, Beautiful" — and the Unanswered Question</span><span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="quote-block"><blockquote>"Delight men's eyes when I awake some day / To find they have flown away?"</blockquote></div>
+      <p>The poem ends with a question — characteristically, Yeats refuses to resolve his meditation. The swans "drift" on "still water" — magnificent, "mysterious, beautiful." He can admire them even through his pain. But they will one day be gone, and someone else will see them and feel what he feels now. The swans are indifferent to the individual human. They will move on and cause delight elsewhere.</p>
+      <p>The question "when I awake some day / To find they have flown away?" is open to interpretation. Is this simple — the swans will migrate? Or is this about death — will he "awake" in the afterlife to find the things of this world gone? Does "awake" carry a spiritual charge? Yeats's interest in the occult and eternity makes this reading plausible. Either way, the poem closes in loneliness and uncertainty — he does not know the answer, and neither do we.</p>
+    </div></div>
+  </div>
+
+  <div class="tab-panel" id="quotes">
+    <span class="label">Key Quotes</span>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"nine-and-fifty swans" — the symbolic number</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Symbolism</span><span class="tech-pill">Number</span><span class="tech-pill">Autobiography</span>
+    <div class="quote-block"><div class="quote-ref">Technique: Symbolic number mirroring the poet's loneliness</div><blockquote>"nine-and-fifty swans"</blockquote><div class="quote-body"><p>Swans mate for life, so 59 — an odd number — means one swan is without a partner. This directly mirrors Yeats's own emotional situation: alone, without the love he has sought for decades. The deliberate archaism "nine-and-fifty" (rather than "fifty-nine") feels ancient, like a fairy tale count. It also slows the reading, making the number land with weight.</p></div></div></div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"The nineteenth autumn has come upon me"</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Personification</span><span class="tech-pill">Verb Choice</span><span class="tech-pill">Time</span>
+    <div class="quote-block"><div class="quote-ref">Technique: "Come upon" — time as ambush</div><blockquote>"The nineteenth autumn has come upon me"</blockquote><div class="quote-body"><p>"Come upon" rather than "passed" is crucial. The phrasing suggests that time is an agent, even a predator — it has stalked him and found him. The nineteen years are not something he walked through consciously; they crept up and overwhelmed him. The passive construction ("come upon") removes his agency — time happened to him.</p></div></div></div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"All's changed" — two words of devastation</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Contrast</span><span class="tech-pill">Brevity</span><span class="tech-pill">Link to Easter 1916</span>
+    <div class="quote-block"><div class="quote-ref">Technique: Compressed devastation — maximum emotion, minimum words</div><blockquote>"All's changed since I... / Trod with a lighter tread."</blockquote><div class="quote-body"><p>Two words — "All's changed" — carry the weight of nineteen years of loss. The compression is devastating. Compare to "All changed, changed utterly" in Easter 1916 — Yeats uses this formulation to express irreversible transformation, both personal and national. The "lighter tread" of the younger Yeats is lost forever: he was unburdened by disappointment, age, and unrequited love.</p></div></div></div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"Their hearts have not grown old"</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Contrast</span><span class="tech-pill">Juxtaposition</span><span class="tech-pill">Symbolism</span>
+    <div class="quote-block"><div class="quote-ref">Technique: Direct contrast between the swans and the poet</div><blockquote>"Their hearts have not grown old"</blockquote><div class="quote-body"><p>The direct counterpoint to "my heart is sore." The swans are immortal in spirit — their hearts are always young, always passionate, always paired. Yeats is mortal in every sense: his heart has aged, grown heavy, grown sore. The swans symbolise the energy, passion, and companionship he cannot attain. They make his own condition more visible by contrast.</p></div></div></div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"Mysterious, beautiful" — final admiration</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Admiration</span><span class="tech-pill">Ambiguity</span><span class="tech-pill">Tone Shift</span>
+    <div class="quote-block"><div class="quote-ref">Technique: Tonal shift to admiration and wonder in spite of pain</div><blockquote>"Mysterious, beautiful"</blockquote><div class="quote-body"><p>Despite all his pain and envy, Yeats can still see the swans as "mysterious, beautiful." This is important — the poem does not end in bitterness. It ends in wonder, and in a question. He has not been destroyed by what he lacks; he can still perceive beauty. But the question that follows — will they have flown when he wakes? — reclaims the sadness.</p></div></div></div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"To find they have flown away?" — the final question</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Rhetorical Question</span><span class="tech-pill">Ambiguity</span><span class="tech-pill">Mortality</span>
+    <div class="quote-block"><div class="quote-ref">Technique: Open question — refusal to resolve, possible death imagery</div><blockquote>"To find they have flown away?"</blockquote><div class="quote-body"><p>Yeats ends on a question — he does not resolve the meditation. The swans will one day be gone — migrated, or observed by someone else after Yeats is dead. The word "awake" may carry a spiritual charge: if he "awakes" from death (resurrection, eternity), will the earthly beauties he loved be gone? The ambiguity is intentional. It leaves us, like Yeats, without an answer.</p></div></div></div></div>
+  </div>
+
+  <div class="tab-panel" id="techniques">
+    <span class="label">Poetic Techniques</span>
+    <div class="two-col">
+      <div class="info-card"><h2>📏 Form: abcbdd</h2><p>Five stanzas of six lines each, with the rhyme scheme abcbdd. The couplet (dd) at the end of each stanza creates a sense of returning to the swans — as if they are a constant, recurring presence. Reading just the couplets, the swans seem immortal. The structured form reflects the controlled, contained grief of the poem.</p></div>
+      <div class="info-card"><h2>🦢 Symbolism of the Swans</h2><p>The swans carry multiple meanings simultaneously: freedom, companionship, immortality, nature's indifference to human suffering. They are also a symbol of Yeats's creative energy — when they leave, will his inspiration leave too? They represent everything he desires and does not have.</p></div>
+      <div class="info-card"><h2>🎵 Sound: Alliteration &amp; Sibilance</h2><p>Alliteration of "b" and "t" in stanza 3 keeps the "bell-beat of their wings" resonating. Sibilance throughout creates a slow, soothing — but also slightly sinister — sound. The "s" sounds in "still," "swans," "scatter" are calming and desolate simultaneously.</p></div>
+      <div class="info-card"><h2>🌿 Autumn Symbolism</h2><p>Autumn is the season of this poem's setting and its emotional key. Autumn means beauty, but also approaching winter, approaching death. "October twilight" is dual: the day is ending, the year is ending, Yeats's youth has ended. The seasonal choice is never accidental in Yeats.</p></div>
+      <div class="info-card"><h2>⟶ Enjambment</h2><p>Used particularly when the swans are in flight — "All suddenly mount / And scatter wheeling" — the line rushes forward with the birds. Energy and movement contrast with the stillness and stasis of the watching Yeats. Enjambment belongs to the swans; full stops to Yeats.</p></div>
+      <div class="info-card"><h2>❓ Ending with a Question</h2><p>The poem ends on a question mark — one of Yeats's most characteristic moves. He refuses to resolve. The question forces the reader to sit with the uncertainty, just as Yeats sits with it. This is not weakness — it is honesty about the limits of what poetry can answer.</p></div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="context">
+    <span class="label">Context &amp; Exam Preparation</span>
+    <div class="box b-exam"><div class="ico">🎓</div><div><div class="box-label">Key Exam Argument</div>
+    <p>The primary argument: this poem uses the <em>contrast</em> between the eternal, paired, energetic swans and the ageing, lonely, changed Yeats to explore the themes of transience and mortality. The 59 swans are the central symbol — always anchor your analysis there. The odd number is not decoration; it is the emotional truth of the poem.</p></div></div>
+    <div class="info-card"><h2>Links to Other Yeats Poems</h2><ul>
+      <li><strong>The Lake Isle of Innisfree:</strong> Both are nature poems involving a solitary Yeats. But Innisfree expresses longing and hope; Swans expresses loss and elegy. Compare as two different stages of Yeats's life — 25 vs 51.</li>
+      <li><strong>Sailing to Byzantium:</strong> Both deal with ageing. In Swans, Yeats laments his age; in Byzantium, he tries to transcend it through art. These are two responses to the same problem.</li>
+      <li><strong>Easter 1916:</strong> The phrase "All's changed" recurs as "All changed, changed utterly" — showing Yeats uses this formula to mark irreversible transformation, both personal and historical.</li>
+    </ul></div>
+    <div class="box b-tip"><div class="ico">💡</div><div><div class="box-label">Exam Quote to Use</div>
+    <p>"Their hearts have not grown old" — place this against "my heart is sore" and you have the poem's entire argument in two short lines. The swans are immortal in spirit; Yeats is mortal in every sense. The contrast is the poem.</p></div></div>
+  </div>
+</div>
+
+<script>
+function switchTab(btn,id){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+function toggleAcc(btn){
+  const body=btn.nextElementSibling;
+  const isOpen=btn.classList.contains('open');
+  document.querySelectorAll('.acc-btn.open').forEach(b=>{b.classList.remove('open');b.nextElementSibling.classList.remove('open');});
+  if(!isOpen){btn.classList.add('open');body.classList.add('open');}
+}
+</script>
+</body>
+</html>

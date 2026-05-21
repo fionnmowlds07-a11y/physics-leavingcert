@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yeats — Easter 1916</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F7F4EF;--surface:#FFFFFF;--surface2:#F0EDE8;--border:#E2DDD7;--text:#2C2825;--muted:#7A7068;--c:#8B6914;--cl:#f8f0d8;--cd:#5a4208;--radius:14px;--shadow:0 4px 20px rgba(0,0,0,0.08);--shadow-h:0 8px 32px rgba(0,0,0,0.14);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;font-size:16px;}
+nav{position:sticky;top:0;z-index:100;background:rgba(247,244,239,0.97);backdrop-filter:blur(10px);border-bottom:2px solid var(--border);padding:8px 16px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;min-height:52px;}
+.nav-logo{font-family:'Lexend Mega',sans-serif;font-size:0.85rem;color:var(--text);margin-right:4px;text-decoration:none;white-space:nowrap;}.nav-logo span{color:#8B6914;}
+.nav-divider{width:1px;height:20px;background:var(--border);flex-shrink:0;}
+.nav-btn{padding:5px 11px;border-radius:18px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.72rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);text-decoration:none;white-space:nowrap;}
+.nav-btn:hover{transform:translateY(-2px);}
+.nav-btn.home:hover,.nav-btn.home.active{background:#2c2825;border-color:#2c2825;color:#fff;}
+.nav-btn.innisfree:hover,.nav-btn.innisfree.active{background:#1a6b3a;border-color:#1a6b3a;color:#fff;}
+.nav-btn.swans:hover,.nav-btn.swans.active{background:#1a3a6b;border-color:#1a3a6b;color:#fff;}
+.nav-btn.sept:hover,.nav-btn.sept.active{background:#7a1a1a;border-color:#7a1a1a;color:#fff;}
+.nav-btn.easter:hover,.nav-btn.easter.active{background:#8B6914;border-color:#8B6914;color:#fff;}
+.nav-btn.byz:hover,.nav-btn.byz.active{background:#4a1a7a;border-color:#4a1a7a;color:#fff;}
+.nav-btn.acre:hover,.nav-btn.acre.active{background:#3a5a1a;border-color:#3a5a1a;color:#fff;}
+.nav-btn.flash:hover,.nav-btn.flash.active{background:#3a3a5a;border-color:#3a3a5a;color:#fff;}
+.nav-btn.links:hover,.nav-btn.links.active{background:#5a1a3a;border-color:#5a1a3a;color:#fff;}
+.section{padding:0 16px 80px;max-width:940px;margin:0 auto;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.hero{background:linear-gradient(135deg,var(--cd),var(--c));color:#fff;padding:44px 32px 36px;text-align:center;margin-bottom:32px;}
+.hero .poem-label{font-size:0.75rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;opacity:0.75;margin-bottom:10px;}
+.hero h1{font-family:'Lexend Mega',sans-serif;font-size:clamp(1.6rem,4vw,2.6rem);line-height:1.15;margin-bottom:12px;}
+.hero p{opacity:0.88;max-width:620px;margin:0 auto;font-size:0.96rem;}
+.hero-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px;}
+.hero-chip{background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:4px 14px;border-radius:20px;font-size:0.75rem;font-weight:600;}
+.tab-bar{display:flex;gap:4px;flex-wrap:wrap;padding:22px 0 8px;border-bottom:2px solid var(--border);margin-bottom:28px;}
+.tab{padding:8px 18px;border-radius:10px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.8rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);}
+.tab:hover,.tab.active{background:var(--c);color:#fff;border-color:var(--c);}
+.tab-panel{display:none;}.tab-panel.active{display:block;animation:fadeIn 0.25s ease;}
+.info-card{background:var(--surface);border-radius:var(--radius);padding:24px 26px;margin-bottom:20px;box-shadow:var(--shadow);border-left:5px solid var(--c);}
+.info-card h2{font-size:1.1rem;font-weight:700;margin-bottom:12px;}
+.info-card p{margin-bottom:9px;font-size:0.94rem;}
+.info-card ul{padding-left:20px;margin-bottom:9px;}
+.info-card li{margin-bottom:5px;font-size:0.93rem;}
+.quote-block{border-left:4px solid var(--c);background:var(--cl);border-radius:0 var(--radius) var(--radius) 0;padding:16px 20px;margin:16px 0;}
+.quote-block blockquote{font-family:'Lexend Mega',sans-serif;font-size:0.95rem;font-style:italic;margin-bottom:8px;line-height:1.5;}
+.quote-ref{font-size:0.73rem;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--muted);margin-bottom:10px;}
+.quote-body{font-size:0.91rem;line-height:1.75;}
+.quote-body p{margin-bottom:8px;}
+.tech-pill{display:inline-block;background:var(--c);color:#fff;font-size:0.72rem;font-weight:700;padding:2px 9px;border-radius:5px;margin:2px;}
+.box{border-radius:var(--radius);padding:14px 18px;margin:14px 0;display:flex;gap:12px;align-items:flex-start;}
+.box .ico{font-size:1.5rem;flex-shrink:0;line-height:1.2;}
+.box-label{font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;margin-bottom:4px;}
+.box p,.box li{font-size:0.91rem;}.box ul{padding-left:16px;}.box li{margin-bottom:4px;}
+.b-exam{background:#eaf4fb;border:2px solid #5dade2;}.b-exam .box-label{color:#1a6b9a;}
+.b-tip{background:#fffbf0;border:2px solid #f39c12;}.b-tip .box-label{color:#b7770d;}
+.acc{margin-bottom:10px;}
+.acc-btn{width:100%;text-align:left;background:var(--surface);border:2px solid var(--border);border-radius:var(--radius);padding:14px 18px;font-family:'Lexend',sans-serif;font-size:0.92rem;font-weight:600;cursor:pointer;color:var(--text);display:flex;justify-content:space-between;align-items:center;transition:background 0.15s;}
+.acc-btn:hover{background:#f8f5f0;}
+.acc-btn.open{border-radius:var(--radius) var(--radius) 0 0;border-bottom-color:transparent;}
+.acc-btn .arr{transition:transform 0.25s;margin-left:8px;flex-shrink:0;}
+.acc-btn.open .arr{transform:rotate(180deg);}
+.acc-body{display:none;background:var(--surface);border:2px solid var(--border);border-top:none;border-radius:0 0 var(--radius) var(--radius);padding:20px 22px;}
+.acc-body.open{display:block;}
+.acc-body p{font-size:0.91rem;margin-bottom:8px;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.label{font-size:0.72rem;font-weight:800;text-transform:uppercase;letter-spacing:0.8px;color:var(--muted);margin-bottom:16px;display:block;}
+.poem-text{background:var(--surface);border:2px solid var(--border);border-radius:var(--radius);padding:28px 32px;font-family:Georgia,serif;font-size:1.05rem;line-height:2;box-shadow:var(--shadow);}
+.poem-text .stanza{margin-bottom:1.6em;}
+.poem-text .stanza-label{font-family:'Lexend',sans-serif;font-size:0.65rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:6px;}
+.refrain{font-style:italic;color:var(--c);font-weight:600;}
+@media(max-width:680px){.two-col{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="Yeats.html">🏆 <span>Yeats</span></a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn home" href="Yeats.html">Home</a>
+  <a class="nav-btn innisfree" href="Yeats_Innisfree.html">Innisfree</a>
+  <a class="nav-btn swans" href="Yeats_Swans.html">Swans</a>
+  <a class="nav-btn sept" href="Yeats_September1913.html">Sept. 1913</a>
+  <a class="nav-btn easter active" href="Yeats_Easter1916.html">Easter 1916</a>
+  <a class="nav-btn byz" href="Yeats_Byzantium.html">Byzantium</a>
+  <a class="nav-btn acre" href="Yeats_AcreOfGrass.html">Acre of Grass</a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn flash" href="Yeats_Flashcards.html">🃏 Flashcards</a>
+  <a class="nav-btn links" href="Yeats_Links.html">🔗 Links</a>
+</nav>
+
+<div class="hero">
+  <div class="poem-label">Poem 4 · Michael Robartes and the Dancer · 1921</div>
+  <h1>Easter 1916</h1>
+  <p>A conflicted elegy for the martyrs of the Easter Rising — ordinary people transformed into extraordinary symbols, at a terrible cost.</p>
+  <div class="hero-chips">
+    <span class="hero-chip">Easter Rising</span>
+    <span class="hero-chip">Sacrifice &amp; Martyrdom</span>
+    <span class="hero-chip">Transformation</span>
+    <span class="hero-chip">Oxymoron</span>
+    <span class="hero-chip">Conflict &amp; Doubt</span>
+  </div>
+</div>
+
+<div class="section">
+  <div class="tab-bar">
+    <button class="tab active" onclick="switchTab(this,'overview')">📋 Overview</button>
+    <button class="tab" onclick="switchTab(this,'poem')">📜 The Poem</button>
+    <button class="tab" onclick="switchTab(this,'stanzas')">🔍 Stanza Analysis</button>
+    <button class="tab" onclick="switchTab(this,'quotes')">💬 Key Quotes</button>
+    <button class="tab" onclick="switchTab(this,'techniques')">🎨 Techniques</button>
+    <button class="tab" onclick="switchTab(this,'context')">🎓 Exam Prep</button>
+  </div>
+
+  <div class="tab-panel active" id="overview">
+    <div class="info-card">
+      <h2>📋 Background &amp; Overview</h2>
+      <p>Yeats was in London when the Easter Rising took place on 24 April 1916. He had mixed, complex feelings. He was a nationalist but opposed to violence as a political tool. He knew many of the leaders personally — some he admired, some he disliked — but when the British began executing them, they became martyrs, and Yeats's feelings shifted dramatically.</p>
+      <p>He wrote the poem in 1916 but did not publish it until 1920. He said at the time: "I had no idea that any public event could so deeply move me." The poem is his attempt to process what happened — not just to celebrate the Rising, but to question it, to honour it, and to wonder whether the sacrifice was necessary or even wise.</p>
+    </div>
+    <div class="info-card">
+      <h2>🎯 Core Themes</h2>
+      <ul>
+        <li><strong>Transformation of the Ordinary:</strong> People Yeats had dismissed as ordinary, even contemptible, became heroic martyrs through their action. "All changed, changed utterly."</li>
+        <li><strong>The Oxymoron of Terrible Beauty:</strong> The Rising was both beautiful (heroic, idealistic, transforming) and terrible (violent, costly, perhaps unnecessary). The paradox cannot be resolved.</li>
+        <li><strong>The Stone in the Stream:</strong> Yeats uses the metaphor of a stone in a living stream to question whether total dedication to a cause removes one's humanity — does the revolutionary become as hard as stone?</li>
+        <li><strong>Doubt and Questioning:</strong> Unlike September 1913, Yeats is not certain here. He questions: "Was it needless death after all?" He cannot answer.</li>
+        <li><strong>Commemoration and Naming:</strong> The act of naming the dead — "I write it out in a verse" — is Yeats performing his role as national poet, preserving their memory.</li>
+      </ul>
+    </div>
+    <div class="box b-exam">
+      <div class="ico">🎓</div>
+      <div><div class="box-label">The Key Tension</div>
+      <p>The entire poem lives in the tension expressed by "a terrible beauty is born." Yeats admires the sacrifice but is troubled by it. He honours the dead but questions the necessity. He is not a propagandist — he is an honest witness to his own conflicted response. This is what makes the poem great.</p></div>
+    </div>
+    <div class="info-card">
+      <h2>👥 The Historical Figures</h2>
+      <ul>
+        <li><strong>Countess Constance Markievicz:</strong> Once a beautiful society woman, now "shrill" with political passion. Yeats regards her politics as having ruined her sweetness.</li>
+        <li><strong>Padraig Pearse ("this man"):</strong> Leader of the Rising, author of the proclamation. Yeats disliked his concept of "blood sacrifice" — Pearse believed Ireland needed to be redeemed through the shedding of blood.</li>
+        <li><strong>Thomas MacDonagh ("his helper and friend"):</strong> Poet and teacher — Yeats found him "sensitive" and "daring and sweet."</li>
+        <li><strong>Major John MacBride:</strong> Maude Gonne's ex-husband, whom Yeats had despised as a "drunken vainglorious lout." After execution, Yeats recognises his heroism despite personal dislike.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="poem">
+    <div class="poem-text">
+      <div class="stanza">
+        <div class="stanza-label">Stanza 1 (16 lines)</div>
+        I have met them at close of day<br>
+        Coming with vivid faces<br>
+        From counter or desk among grey<br>
+        Eighteenth-century houses.<br>
+        I have passed with a nod of the head<br>
+        Or polite meaningless words,<br>
+        Or have lingered awhile and said<br>
+        Polite and meaningless words,<br>
+        Or have tarried a while and said<br>
+        Polite and meaningless words,<br>
+        Or have tarried with a mocking tale<br>
+        Or with a gibe to please a companion<br>
+        Around the fire at the club,<br>
+        Being certain that they and I<br>
+        But lived where motley is worn:<br>
+        <span class="refrain">All changed, changed utterly:<br>
+        A terrible beauty is born.</span>
+      </div>
+      <div class="stanza">
+        <div class="stanza-label">Stanza 2 (16 lines)</div>
+        That woman's days were spent<br>
+        In ignorant good will,<br>
+        Her nights in argument<br>
+        Until her voice grew shrill.<br>
+        What voice more sweet than hers<br>
+        When young and beautiful,<br>
+        She rode to harriers?<br>
+        This man had kept a school<br>
+        And rode our winged horse;<br>
+        This other his helper and friend<br>
+        Was coming into his force;<br>
+        He might have won fame in the end,<br>
+        So sensitive his nature seemed,<br>
+        So daring and sweet his thought.<br>
+        This other man I had dreamed<br>
+        A drunken, vainglorious lout.<br>
+        He had done most bitter wrong<br>
+        To some who are near my heart,<br>
+        Yet I number him in the song;<br>
+        He, too, has resigned his part<br>
+        In the casual comedy;<br>
+        He, too, has been changed in the turning;<br>
+        <span class="refrain">He, too, has resigned his part<br>
+        In the casual comedy;<br>
+        Changed, changed utterly:<br>
+        A terrible beauty is born.</span>
+      </div>
+      <div class="stanza">
+        <div class="stanza-label">Stanza 3 (24 lines)</div>
+        Hearts with one purpose alone<br>
+        Through summer and winter seem<br>
+        Enchanted to a stone<br>
+        To trouble the living stream.<br>
+        The horse that comes from the road,<br>
+        The rider, the birds that range<br>
+        From cloud to tumbling cloud,<br>
+        Minute by minute they change;<br>
+        A shadow of cloud on the stream<br>
+        Changes minute by minute;<br>
+        A horse-hoof slides on the brim,<br>
+        And a horse plashes within it;<br>
+        The long-legged moor-hens dive,<br>
+        And hens to moor-hens call;<br>
+        Minute by minute they live:<br>
+        The stone's in the midst of all.
+      </div>
+      <div class="stanza">
+        <div class="stanza-label">Stanza 4 (24 lines)</div>
+        Too long a sacrifice<br>
+        Can make a stone of the heart.<br>
+        O when may it suffice?<br>
+        That is Heaven's part, our part<br>
+        To murmur name upon name,<br>
+        As a mother names her child<br>
+        When sleep at last has come<br>
+        On limbs that had run wild.<br>
+        What is it but nightfall?<br>
+        No, no, not night but death;<br>
+        Was it needless death after all?<br>
+        For England may keep faith<br>
+        For all that is done and said.<br>
+        We know their dream; enough<br>
+        To know they dreamed and are dead;<br>
+        And what if excess of love<br>
+        Bewildered them till they died?<br>
+        I write it out in a verse —<br>
+        MacDonagh and MacBride<br>
+        And Connolly and Pearse<br>
+        Now and in time to be,<br>
+        Wherever green is worn,<br>
+        <span class="refrain">Are changed, changed utterly:<br>
+        A terrible beauty is born.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="stanzas">
+    <span class="label">Stanza-by-Stanza Analysis</span>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>Stanza 1 — The Ordinary People He Dismissed</span><span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="quote-block"><blockquote>"I have passed with a nod of the head / Or polite meaningless words"</blockquote></div>
+      <p>Yeats recalls meeting the future leaders of the Rising in his daily life — coming from offices and counters, with "vivid faces." He dismissed them. His words were "polite and meaningless." Worse, he mocked them to amuse friends at the club. He saw them as clowns — "where motley is worn" is a reference to the costume of a jester. He believed Ireland was a circus and these people were its fools.</p>
+      <p>The guilt in this stanza is palpable. He is confessing his own blindness and contempt. And the refrain crashes in like a verdict: "All changed, changed utterly: / A terrible beauty is born." His error is total; his shock is total. These "fools" changed the world.</p>
+    </div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>Stanza 2 — The Individual Martyrs Re-evaluated</span><span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="quote-block"><blockquote>"This other man I had dreamed / A drunken, vainglorious lout. / He had done most bitter wrong / To some who are near my heart, / Yet I number him in the song."</blockquote></div>
+      <p>Yeats reevaluates each figure he knew. Countess Markievicz: once sweet and beautiful, now "shrill" — Yeats regrets what politics has done to her, but cannot deny her courage. Pearse: "rode our winged horse" — metaphor for poetic and intellectual ability, suggesting Yeats's reluctant respect. Thomas MacDonagh: "sensitive" and "daring and sweet" — genuine affection.</p>
+      <p>But it is MacBride who is most remarkable. Yeats had despised him as "a drunken, vainglorious lout" — his words are harsh and personal. MacBride had married Maude Gonne, the woman Yeats loved, and treated her badly. Yeats had every reason to exclude him. But he cannot: "Yet I number him in the song." The act of execution has transformed even MacBride. He too has "resigned his part / In the casual comedy" — he has stepped out of the ordinary human drama into something eternal.</p>
+    </div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>Stanza 3 — The Stone in the Stream: the Price of Dedication</span><span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="quote-block"><blockquote>"Hearts with one purpose alone / Through summer and winter seem / Enchanted to a stone / To trouble the living stream."</blockquote></div>
+      <p>This is the most complex and philosophically rich stanza. Yeats introduces the metaphor of a stone in a living stream. The stone is the revolutionary — fixed, purposeful, unchanging. The stream is life in all its variation and beauty: horses, birds, clouds, hens, water. Everything in nature changes "minute by minute." The stone does not.</p>
+      <p>Is this admirable or troubling? Yeats suggests both. The stone is steadfast, yes — but it has become less than human. "Enchanted to a stone" — there is magic in dedication, but also petrification. The revolutionaries gave up their free, spontaneous human lives to become fixed points of purpose. They cannot enjoy the living stream changing around them. Is this heroism? Or a kind of death-in-life? Yeats leaves this genuinely open.</p>
+    </div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>Stanza 4 — "Was it needless death after all?" — The Final Question</span><span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="quote-block"><blockquote>"Was it needless death after all? / For England may keep faith"</blockquote></div>
+      <p>The final stanza is Yeats's most personal and most conflicted. He asks the question no nationalist was supposed to ask: "Was it needless death after all?" Home Rule — Irish self-governance — had already been promised by the British government. If Britain kept faith and delivered Home Rule, then perhaps these deaths were unnecessary. The question is both brave and devastating.</p>
+      <p>"Too long a sacrifice / Can make a stone of the heart" — giving up everything for too long hardens the heart, removes tenderness and humanity. "As a mother names her child" — a tender, private image of love placed against the vast public violence, reminding us of the innocent life wasted.</p>
+      <p>"I write it out in a verse" — Yeats is performing his function as national poet. He names them: "MacDonagh and MacBride / And Connolly and Pearse." The naming is sacred, permanent, a monument in language. "Wherever green is worn" — they will be remembered always, in every Irish context. And the refrain for the final time — "changed, changed utterly: / A terrible beauty is born" — closes the poem without resolution, holding the terrible and the beautiful simultaneously.</p>
+    </div></div>
+  </div>
+
+  <div class="tab-panel" id="quotes">
+    <span class="label">Key Quotes</span>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"A terrible beauty is born" — the central oxymoron</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Oxymoron</span><span class="tech-pill">Paradox</span><span class="tech-pill">Refrain</span>
+    <div class="quote-block"><div class="quote-ref">Technique: Oxymoron as the irresolvable paradox of the Rising</div><blockquote>"A terrible beauty is born."</blockquote><div class="quote-body"><p>The most famous line in Irish poetry. "Terrible" and "beautiful" cannot coexist — yet they do. The Rising was beautiful in its heroism, idealism, and sacrifice; it was terrible in its violence, destruction, and cost of life. The oxymoron refuses to let us see only one side. It is Yeats's most intellectually honest moment: he will not simplify what cannot be simplified. Repeated four times — it becomes more complex with each repetition.</p></div></div></div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"All changed, changed utterly" — total transformation</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Repetition</span><span class="tech-pill">Link to Wild Swans</span><span class="tech-pill">Tone</span>
+    <div class="quote-block"><div class="quote-ref">Technique: Repetition conveying the absolute nature of change</div><blockquote>"All changed, changed utterly"</blockquote><div class="quote-body"><p>Compare to "All's changed" in The Wild Swans at Coole — Yeats uses this formulation to express total, irreversible transformation. Here it is national; in Swans it is personal. The repetition of "changed" is not redundant — it enacts the overwhelming, undeniable nature of the transformation. Nothing will be as it was. The double repetition resists being quickly passed over.</p></div></div></div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"Enchanted to a stone / To trouble the living stream"</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Extended Metaphor</span><span class="tech-pill">Ambiguity</span><span class="tech-pill">Nature Imagery</span>
+    <div class="quote-block"><div class="quote-ref">Technique: Extended metaphor exploring the cost of total dedication</div><blockquote>"Hearts with one purpose alone / Through summer and winter seem / Enchanted to a stone / To trouble the living stream."</blockquote><div class="quote-body"><p>The stone-in-the-stream metaphor is the intellectual centre of the poem. The stone is steadfast and purposeful, but it has been "enchanted" — there is magic in dedication but also a kind of petrification, a loss of the living, changing self. The stream changes minute by minute; the stone does not. Is this heroism or a form of death? Yeats refuses to judge — but the question is unmistakably asked.</p></div></div></div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"Too long a sacrifice / Can make a stone of the heart"</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Metaphor</span><span class="tech-pill">Warning</span><span class="tech-pill">Humanity</span>
+    <div class="quote-block"><div class="quote-ref">Technique: Warning about the cost of fanaticism</div><blockquote>"Too long a sacrifice / Can make a stone of the heart."</blockquote><div class="quote-body"><p>One of Yeats's most humane observations. Sacrifice sustained for too long petrifies the heart — removes tenderness, flexibility, the capacity for ordinary joy and love. This is a gentle warning about fanaticism. It echoes his thoughts on Maude Gonne — whose politics, he felt, had made her "shrill" and taken away her sweetness. The revolutionary gives up their humanity to become a cause.</p></div></div></div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"Was it needless death after all?" — the brave question</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Rhetorical Question</span><span class="tech-pill">Doubt</span><span class="tech-pill">Honesty</span>
+    <div class="quote-block"><div class="quote-ref">Technique: Rhetorical question — questioning the necessity of the sacrifice</div><blockquote>"Was it needless death after all?"</blockquote><div class="quote-body"><p>The bravest line in the poem. No nationalist propagandist would ask this. Yeats is willing to question whether the Rising was necessary — Home Rule had been promised, and perhaps Britain would have kept faith. This intellectual honesty is what elevates the poem above propaganda. Yeats does not have the answer. He names the dead and honours them, but he does not know if they died for something that could have been achieved without bloodshed.</p></div></div></div></div>
+  </div>
+
+  <div class="tab-panel" id="techniques">
+    <span class="label">Poetic Techniques</span>
+    <div class="two-col">
+      <div class="info-card"><h2>📏 Numerological Form</h2><p>The Easter Rising took place on 24 April 1916. Every stanza has either 16 or 24 lines, and there are 4 stanzas. Yeats was fascinated by numerology. This is not coincidence — it is a formal tribute encoded in the poem's structure itself.</p></div>
+      <div class="info-card"><h2>🔁 The Refrain</h2><p>"A terrible beauty is born" appears four times, slightly varied each time. With each repetition the paradox deepens — we understand more of the "terrible" and more of the "beautiful" by the final repetition. The refrain is both lament and celebration, and it grows more complex rather than simply insistent.</p></div>
+      <div class="info-card"><h2>✝️ Christian Symbolism</h2><p>Easter is the Christian feast of resurrection — Christ's sacrifice and rebirth. By titling the poem Easter 1916, Yeats deliberately parallels the martyrs with Christ: they die so that something greater might live. The "terrible beauty" of the resurrection echoes the "terrible beauty" of the Rising. The birth image in the refrain reinforces this — something new is born from death.</p></div>
+      <div class="info-card"><h2>💬 Colloquial Language</h2><p>Unlike Byzantium or The Wild Swans, this poem uses everyday, colloquial language — "nod of the head," "polite meaningless words," "close of day." This is deliberate: Yeats is telling a story about ordinary people, in ordinary language. The contrast with the extraordinary refrain is part of the poem's power.</p></div>
+      <div class="info-card"><h2>❓ Rhetorical Questions</h2><p>"Was it needless death after all?" "O when may it suffice?" Yeats uses questions to convey his genuine uncertainty. He does not provide answers — he refuses to resolve the political and moral complexity of the Rising. The questions also prevent him from being accused of making political statements: he is asking, not telling.</p></div>
+      <div class="info-card"><h2>🌊 Stone and Stream Metaphor</h2><p>The most extended metaphor in the poem — the stone in the living stream. Everything around the stone changes "minute by minute"; the stone does not. This metaphor simultaneously admires and questions the revolutionaries' dedication. It is the most philosophically complex moment in all of Yeats's political poetry.</p></div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="context">
+    <span class="label">Context &amp; Exam Preparation</span>
+    <div class="box b-exam"><div class="ico">🎓</div><div><div class="box-label">Key Exam Argument</div>
+    <p>This poem is about <em>conflict within the speaker</em>. Yeats is not a simple nationalist celebrating the Rising — he is a deeply conflicted witness who admires and questions simultaneously. Always argue that the oxymoron "terrible beauty" is the poem's intellectual core, and that Yeats's greatness lies in his refusal to simplify. The question "Was it needless death after all?" is the bravest moment in the poem.</p></div></div>
+    <div class="info-card"><h2>Links to Other Yeats Poems</h2><ul>
+      <li><strong>September 1913:</strong> The essential companion piece. The middle class Yeats attacks in 1913 are the very people he honours in 1916. His view shifts entirely. The poems together trace his political journey.</li>
+      <li><strong>The Wild Swans at Coole:</strong> "All's changed" in Swans becomes "All changed, changed utterly" here. Both poems mark irreversible transformation — one personal, one national.</li>
+      <li><strong>Politics:</strong> "Politics" was written later, when Yeats was pulling back from political engagement. Easter 1916 is his most sustained political poem; Politics is his most dismissive. Together they show the full arc of his relationship with public life.</li>
+    </ul></div>
+    <div class="box b-tip"><div class="ico">💡</div><div><div class="box-label">The Exam Key Phrase</div>
+    <p>"A terrible beauty is born" — always unpack this fully. "Terrible" = violent, costly, perhaps excessive. "Beautiful" = heroic, idealistic, transforming. "Born" = the Christian resonance of Easter, resurrection, new life from death. One phrase contains the whole poem.</p></div></div>
+  </div>
+</div>
+
+<script>
+function switchTab(btn,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(id).classList.add('active');}
+function toggleAcc(btn){const body=btn.nextElementSibling;const isOpen=btn.classList.contains('open');document.querySelectorAll('.acc-btn.open').forEach(b=>{b.classList.remove('open');b.nextElementSibling.classList.remove('open');});if(!isOpen){btn.classList.add('open');body.classList.add('open');}}
+</script>
+</body>
+</html>

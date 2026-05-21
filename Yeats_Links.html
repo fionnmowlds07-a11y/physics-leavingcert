@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yeats — Thematic Links</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F4F1EC;--surface:#FFFFFF;--surface2:#EDEAE4;--border:#DDD9D2;
+  --text:#1E1C18;--muted:#7A7568;--radius:14px;
+  --shadow:0 4px 20px rgba(0,0,0,0.08);--shadow-h:0 8px 32px rgba(0,0,0,0.14);
+  --innisfree:#1a6b3a;--swans:#1a3a6b;--sept:#7a1a1a;
+  --easter:#8B6914;--byz:#4a1a7a;--acre:#3a5a1a;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;font-size:16px;}
+nav{position:sticky;top:0;z-index:100;background:rgba(244,241,236,0.97);backdrop-filter:blur(10px);border-bottom:2px solid var(--border);padding:8px 16px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;min-height:52px;}
+.nav-logo{font-family:'Lexend Mega',sans-serif;font-size:0.85rem;color:var(--text);margin-right:4px;text-decoration:none;white-space:nowrap;}.nav-logo span{color:#8B6914;}
+.nav-divider{width:1px;height:20px;background:var(--border);flex-shrink:0;}
+.nav-btn{padding:5px 11px;border-radius:18px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.72rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);text-decoration:none;white-space:nowrap;}
+.nav-btn:hover{transform:translateY(-2px);}
+.nav-btn.home:hover,.nav-btn.home.active{background:#2c2825;border-color:#2c2825;color:#fff;}
+.nav-btn.innisfree:hover,.nav-btn.innisfree.active{background:var(--innisfree);border-color:var(--innisfree);color:#fff;}
+.nav-btn.swans:hover,.nav-btn.swans.active{background:var(--swans);border-color:var(--swans);color:#fff;}
+.nav-btn.sept:hover,.nav-btn.sept.active{background:var(--sept);border-color:var(--sept);color:#fff;}
+.nav-btn.easter:hover,.nav-btn.easter.active{background:var(--easter);border-color:var(--easter);color:#fff;}
+.nav-btn.byz:hover,.nav-btn.byz.active{background:var(--byz);border-color:var(--byz);color:#fff;}
+.nav-btn.acre:hover,.nav-btn.acre.active{background:var(--acre);border-color:var(--acre);color:#fff;}
+.nav-btn.flash:hover,.nav-btn.flash.active{background:#3a3a5a;border-color:#3a3a5a;color:#fff;}
+.nav-btn.links.active,.nav-btn.links:hover{background:#5a1a3a;border-color:#5a1a3a;color:#fff;}
+.page-hero{background:linear-gradient(135deg,#0a0810,#1a0a28,#140a04);color:#fff;padding:44px 24px 36px;text-align:center;}
+.page-hero h1{font-family:'Lexend Mega',sans-serif;font-size:clamp(1.6rem,4vw,2.4rem);margin-bottom:10px;}
+.page-hero p{opacity:0.82;max-width:600px;margin:0 auto;font-size:0.95rem;line-height:1.7;}
+.main{max-width:960px;margin:0 auto;padding:48px 20px 80px;}
+.theme-section{background:var(--surface);border-radius:var(--radius);margin-bottom:32px;box-shadow:var(--shadow);overflow:hidden;}
+.theme-header{padding:22px 28px 18px;border-bottom:2px solid var(--border);}
+.theme-header h2{font-family:'Lexend Mega',sans-serif;font-size:1.15rem;margin-bottom:6px;display:flex;align-items:center;gap:10px;}
+.theme-header p{font-size:0.9rem;color:var(--muted);line-height:1.6;}
+.theme-body{padding:24px 28px;}
+.link-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;}
+.link-card{border-radius:10px;padding:16px 18px;border:2px solid var(--border);}
+.link-card h3{font-size:0.85rem;font-weight:700;margin-bottom:6px;display:flex;align-items:center;gap:6px;}
+.link-card p{font-size:0.84rem;color:var(--muted);line-height:1.65;}
+.quote-row{background:#f8f6f2;border-left:4px solid var(--border);border-radius:0 8px 8px 0;padding:12px 16px;margin-top:4px;font-style:italic;font-size:0.88rem;}
+.exam-box{background:#eaf4fb;border:2px solid #5dade2;border-radius:var(--radius);padding:16px 20px;margin-top:16px;display:flex;gap:12px;}
+.exam-box .ico{font-size:1.4rem;flex-shrink:0;}
+.exam-box-label{font-size:0.68rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;color:#1a6b9a;margin-bottom:4px;}
+.exam-box p{font-size:0.88rem;line-height:1.65;}
+.poem-tag{display:inline-block;font-size:0.68rem;font-weight:800;padding:2px 8px;border-radius:4px;margin-right:4px;}
+.tag-innisfree{background:#e8f4ec;color:var(--innisfree);}
+.tag-swans{background:#e8ecf8;color:var(--swans);}
+.tag-sept{background:#f8e8e8;color:var(--sept);}
+.tag-easter{background:#f8f0d8;color:var(--easter);}
+.tag-byz{background:#f0e8f8;color:var(--byz);}
+.tag-acre{background:#ecf4e4;color:var(--acre);}
+.section-label{font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:0.8px;color:var(--muted);margin-bottom:20px;display:block;padding-top:4px;}
+.compare-table{width:100%;border-collapse:collapse;font-size:0.85rem;margin:16px 0;}
+.compare-table th{text-align:left;padding:10px 14px;background:var(--surface2);font-size:0.72rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;color:var(--muted);}
+.compare-table td{padding:10px 14px;border-bottom:1px solid var(--border);vertical-align:top;}
+.compare-table tr:last-child td{border-bottom:none;}
+@media(max-width:680px){.link-row{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="Yeats.html">🏆 <span>Yeats</span></a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn home" href="Yeats.html">Home</a>
+  <a class="nav-btn innisfree" href="Yeats_Innisfree.html">Innisfree</a>
+  <a class="nav-btn swans" href="Yeats_Swans.html">Swans</a>
+  <a class="nav-btn sept" href="Yeats_September1913.html">Sept. 1913</a>
+  <a class="nav-btn easter" href="Yeats_Easter1916.html">Easter 1916</a>
+  <a class="nav-btn byz" href="Yeats_Byzantium.html">Byzantium</a>
+  <a class="nav-btn acre" href="Yeats_AcreOfGrass.html">Acre of Grass</a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn flash" href="Yeats_Flashcards.html">🃏 Flashcards</a>
+  <a class="nav-btn links active" href="Yeats_Links.html">🔗 Links</a>
+</nav>
+
+<div class="page-hero">
+  <h1>🔗 Thematic Links</h1>
+  <p>How the six poems connect across Yeats's recurring tensions — time &amp; ageing, nationalism, art &amp; immortality, love &amp; loss, nature, body vs soul. Essential for comparative exam answers.</p>
+</div>
+
+<main class="main">
+<span class="section-label">Six poems — cross-poem connections</span>
+
+<!-- THEME 1: TIME AND AGEING -->
+<div class="theme-section">
+  <div class="theme-header">
+    <h2>⏳ Time, Ageing &amp; Mortality</h2>
+    <p>The most consistent theme across Yeats's work — the passing of time, the decay of the body, the loss of youth and love. It appears in different registers: elegy, defiance, transcendence, and acceptance.</p>
+  </div>
+  <div class="theme-body">
+    <div class="link-row">
+      <div class="link-card">
+        <h3><span class="poem-tag tag-swans">Wild Swans</span> Elegy for Lost Youth</h3>
+        <p>The most plaintive expression of ageing. Nineteen years have "come upon" Yeats. His heart is sore; the swans' hearts have "not grown old." Time is an ambush — passive, devastating.</p>
+        <div class="quote-row">"The nineteenth autumn has come upon me"</div>
+      </div>
+      <div class="link-card">
+        <h3><span class="poem-tag tag-byz">Byzantium</span> Transcendence Through Art</h3>
+        <p>Rather than lamenting age, Yeats fights it through art. The body is "a tattered coat upon a stick" — but the soul that sings will become the golden bird, eternal, timeless.</p>
+        <div class="quote-row">"fastened to a dying animal"</div>
+      </div>
+      <div class="link-card">
+        <h3><span class="poem-tag tag-acre">Acre of Grass</span> Defiant Creative Frenzy</h3>
+        <p>The most combative response to age. No elegy, no transcendence — just the raw prayer for passion: "Grant me an old man's frenzy." The body is diminished; the eagle mind refuses to be.</p>
+        <div class="quote-row">"An old man's eagle mind"</div>
+      </div>
+      <div class="link-card">
+        <h3><span class="poem-tag tag-innisfree">Innisfree</span> Longing Preserved in Memory</h3>
+        <p>An earlier, gentler response — time is not yet an enemy. But the poem shows Yeats already using the inner life (memory, imagination) as a refuge from the present. The pattern begins here.</p>
+        <div class="quote-row">"I hear it in the deep heart's core"</div>
+      </div>
+    </div>
+    <div class="exam-box"><div class="ico">🎓</div><div>
+      <div class="exam-box-label">Exam Comparison Sentence</div>
+      <p>Yeats's treatment of ageing ranges from the elegiac helplessness of <em>The Wild Swans at Coole</em> — where time has "come upon" him and left his heart "sore" — to the fierce defiance of <em>An Acre of Grass</em>, where he prays for "an old man's frenzy" and claims an "eagle mind" that age cannot diminish. Between these extremes, <em>Sailing to Byzantium</em> offers transcendence through art as a third response.</p>
+    </div></div>
+  </div>
+</div>
+
+<!-- THEME 2: ESCAPISM -->
+<div class="theme-section">
+  <div class="theme-header">
+    <h2>🚢 Escapism — Three Different Destinations</h2>
+    <p>Three poems are explicitly poems of escape — but the place they escape to, and the reason for escaping, are radically different in each case. This is one of the most productive comparisons in the entire set.</p>
+  </div>
+  <div class="theme-body">
+    <table class="compare-table">
+      <tr>
+        <th>Poem</th>
+        <th>Escaping FROM</th>
+        <th>Escaping TO</th>
+        <th>Key Quote</th>
+      </tr>
+      <tr>
+        <td><span class="poem-tag tag-innisfree">Innisfree</span></td>
+        <td>Grey London pavements, urban grind, homesickness</td>
+        <td>Simple nature — beans, bees, lake water — pastoral peace</td>
+        <td>"I hear it in the deep heart's core"</td>
+      </tr>
+      <tr>
+        <td><span class="poem-tag tag-byz">Byzantium</span></td>
+        <td>Mortal body, "dying animal," the sensual world that forgets intellect</td>
+        <td>Eternal art, the golden city, the "artifice of eternity"</td>
+        <td>"gather me / Into the artifice of eternity"</td>
+      </tr>
+      <tr>
+        <td><span class="poem-tag tag-acre">Acre of Grass</span></td>
+        <td>Quiet, stillness, the "temptation" of passive old age</td>
+        <td>Not escape at all — defiant earthly engagement, frenzy, creativity</td>
+        <td>"Grant me an old man's frenzy"</td>
+      </tr>
+    </table>
+    <div class="exam-box"><div class="ico">🎓</div><div>
+      <div class="exam-box-label">The Key Contrast</div>
+      <p>In <em>Innisfree</em>, Yeats longs for the peace of natural solitude — yet in <em>An Acre of Grass</em>, that same peace has arrived and he finds it intolerable: "My temptation is quiet." This reversal is one of the most striking developments across his career. He got what he wished for, and it was not enough.</p>
+    </div></div>
+  </div>
+</div>
+
+<!-- THEME 3: NATURE -->
+<div class="theme-section">
+  <div class="theme-header">
+    <h2>🌿 Nature — Healing, Mirror, and Indifferent</h2>
+    <p>Nature plays very different roles across the poems — from the longed-for paradise of Innisfree to the unsympathetic swans who represent everything Yeats is not.</p>
+  </div>
+  <div class="theme-body">
+    <div class="link-row">
+      <div class="link-card">
+        <h3><span class="poem-tag tag-innisfree">Innisfree</span> Nature as Paradise</h3>
+        <p>Nature is healing, complete, perfect. The bee-loud glade, the evening full of linnet's wings — it offers everything the city cannot. Nature is entirely positive here.</p>
+        <div class="quote-row">"bee-loud glade"</div>
+      </div>
+      <div class="link-card">
+        <h3><span class="poem-tag tag-swans">Wild Swans</span> Nature as Painful Mirror</h3>
+        <p>The swans are beautiful — but their beauty highlights what Yeats lacks. They have hearts that "have not grown old." Nature is indifferent to his suffering and more alive than he is.</p>
+        <div class="quote-row">"Their hearts have not grown old"</div>
+      </div>
+      <div class="link-card">
+        <h3><span class="poem-tag tag-sept">Sept 1913</span> Nature as Heroic Symbol</h3>
+        <p>The wild geese spread their wings "upon every tide" — nature's freedom symbolises the selfless, ceaseless sacrifice of Ireland's heroes, contrasted with the earthbound middle class.</p>
+        <div class="quote-row">"the wild geese spread / The grey wing upon every tide"</div>
+      </div>
+      <div class="link-card">
+        <h3><span class="poem-tag tag-easter">Easter 1916</span> Nature as Living Stream</h3>
+        <p>The stream changes "minute by minute" — its natural vitality and variety contrasts with the revolutionary stone that is fixed and unchanging. Nature = free life; stone = dedicated sacrifice.</p>
+        <div class="quote-row">"Minute by minute they live: / The stone's in the midst of all"</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- THEME 4: NATIONALISM AND IRELAND -->
+<div class="theme-section">
+  <div class="theme-header">
+    <h2>🇮🇪 Nationalism, Ireland &amp; Political Change</h2>
+    <p>Three poems deal directly with Irish politics, and they trace an extraordinary arc — from furious disillusionment (1913) to conflicted admiration (1916) to playful dismissal (Politics, not in this set but referenced). Together, September 1913 and Easter 1916 show Yeats's growth as a political thinker.</p>
+  </div>
+  <div class="theme-body">
+    <div class="link-row">
+      <div class="link-card">
+        <h3><span class="poem-tag tag-sept">September 1913</span> Furious Disillusionment</h3>
+        <p>The middle class is greedy, church-fearing, culture-hating. The heroes of Romantic Ireland died for nothing. The refrain is a funeral cry. Yeats is certain, contemptuous, bitter.</p>
+        <div class="quote-row">"Romantic Ireland's dead and gone"</div>
+      </div>
+      <div class="link-card">
+        <h3><span class="poem-tag tag-easter">Easter 1916</span> Conflicted Admiration</h3>
+        <p>The middle class Yeats vilified in 1913 are the very people who rose in 1916 and died for Ireland. His view shifts — but he remains conflicted: "Was it needless death after all?"</p>
+        <div class="quote-row">"A terrible beauty is born"</div>
+      </div>
+    </div>
+    <table class="compare-table">
+      <tr>
+        <th>Element</th>
+        <th><span class="poem-tag tag-sept">September 1913</span></th>
+        <th><span class="poem-tag tag-easter">Easter 1916</span></th>
+      </tr>
+      <tr>
+        <td>View of middle class</td>
+        <td>Contemptible, greedy, cultureless</td>
+        <td>Capable of heroism and sacrifice — his view reversed</td>
+      </tr>
+      <tr>
+        <td>The refrain</td>
+        <td>"Romantic Ireland's dead and gone" — despair</td>
+        <td>"A terrible beauty is born" — paradox, ambivalence</td>
+      </tr>
+      <tr>
+        <td>Tone</td>
+        <td>Certain, furious, contemptuous</td>
+        <td>Conflicted, questioning, humble</td>
+      </tr>
+      <tr>
+        <td>Form</td>
+        <td>Rigid 4×8 stanzas — ordered argument</td>
+        <td>Varied stanza length — expanding, evolving thought</td>
+      </tr>
+      <tr>
+        <td>Key heroes</td>
+        <td>O'Leary, Emmet, Fitzgerald — dead historical figures</td>
+        <td>Pearse, MacBride, Connolly — contemporaries, newly martyred</td>
+      </tr>
+    </table>
+    <div class="exam-box"><div class="ico">🎓</div><div>
+      <div class="exam-box-label">The Most Important Link in the Set</div>
+      <p>The shift from <em>September 1913</em> to <em>Easter 1916</em> is one of the most dramatic reversals in modern Irish poetry. The very people Yeats dismissed as shopkeepers — "fumbling in a greasy till" — became the martyrs he would immortalise in verse. Always discuss these two poems together. The shift reveals Yeats's intellectual honesty and willingness to change his mind.</p>
+    </div></div>
+  </div>
+</div>
+
+<!-- THEME 5: BODY VS SOUL / ART VS MORTALITY -->
+<div class="theme-section">
+  <div class="theme-header">
+    <h2>🎨 Art, Soul &amp; Immortality</h2>
+    <p>A core Yeatsian tension: the body dies, but can the soul — through art — achieve something lasting? This question runs most explicitly through Byzantium and An Acre of Grass, but touches every poem.</p>
+  </div>
+  <div class="theme-body">
+    <div class="link-row">
+      <div class="link-card">
+        <h3><span class="poem-tag tag-byz">Byzantium</span> Art as Literal Immortality</h3>
+        <p>The most explicit argument. The golden bird sings of "what is past, or passing, or to come" — it transcends time. The poem itself is an "artifice of eternity." Yeats wants to become his own greatest poem.</p>
+        <div class="quote-row">"the artifice of eternity"</div>
+      </div>
+      <div class="link-card">
+        <h3><span class="poem-tag tag-acre">Acre of Grass</span> Art as Survival in the Now</h3>
+        <p>Less philosophical than Byzantium — more urgent, earthly. He does not want to transcend time; he wants to create fiercely while still alive. Art is not eternal gold; it is the "frenzy" of the eagle mind still working.</p>
+        <div class="quote-row">"Myself must I remake"</div>
+      </div>
+      <div class="link-card">
+        <h3><span class="poem-tag tag-swans">Wild Swans</span> Art Hinted at Through Symbols</h3>
+        <p>The swans may represent Yeats's creative energy — when they leave, will his inspiration leave too? The poem's question is not just about love but about whether creativity and passion will survive his ageing.</p>
+        <div class="quote-row">"Mysterious, beautiful"</div>
+      </div>
+      <div class="link-card">
+        <h3><span class="poem-tag tag-easter">Easter 1916</span> The Poet's Duty to Name</h3>
+        <p>"I write it out in a verse" — Yeats performs his role as national poet, using art to preserve the martyrs' memory. Poetry is commemoration, monument-building, the form of immortality available to ordinary heroes.</p>
+        <div class="quote-row">"I write it out in a verse"</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- THEME 6: LOVE, LONELINESS, MAUD GONNE -->
+<div class="theme-section">
+  <div class="theme-header">
+    <h2>💔 Love, Loneliness &amp; Unrequited Desire</h2>
+    <p>Maud Gonne haunts almost every poem, even when she is not named. Yeats spent thirty years proposing to her, being rejected, loving her. The loneliness this created is the emotional underpinning of his greatest work.</p>
+  </div>
+  <div class="theme-body">
+    <div class="link-row">
+      <div class="link-card">
+        <h3><span class="poem-tag tag-swans">Wild Swans</span> Most Directly About Loneliness</h3>
+        <p>The 59 swans — one alone without a partner. The "lighter tread" of youth when love was possible. The heart "sore." This is Yeats's most plaintive expression of what unrequited love does over nineteen years.</p>
+        <div class="quote-row">"my heart is sore"</div>
+      </div>
+      <div class="link-card">
+        <h3><span class="poem-tag tag-easter">Easter 1916</span> Maud Gonne's Shadow</h3>
+        <p>Countess Markievicz stands partly for Maud Gonne — a beautiful woman whose sweetness was ruined by politics. "Her voice grew shrill." The stone metaphor may reference Maude Gonne directly — sacrificing her humanity to a cause.</p>
+        <div class="quote-row">"Her voice grew shrill"</div>
+      </div>
+      <div class="link-card">
+        <h3><span class="poem-tag tag-byz">Byzantium</span> Love as Burden on the Soul</h3>
+        <p>The heart is "sick with desire" — still longing, still aching. Yeats wants the holy fire to burn away his desires. Love itself has become a burden, something he wants to be freed from rather than fulfilled in.</p>
+        <div class="quote-row">"sick with desire"</div>
+      </div>
+      <div class="link-card">
+        <h3><span class="poem-tag tag-innisfree">Innisfree</span> Solitude by Choice</h3>
+        <p>No other person is mentioned in Innisfree — Yeats wants to be alone with nature. This may already encode the isolation of someone who has not found partnership. The poem is about peace, but it is a solitary peace.</p>
+        <div class="quote-row">"live alone in the bee-loud glade"</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- THEME 7: THE RECURRING TENSIONS -->
+<div class="theme-section">
+  <div class="theme-header">
+    <h2>⚡ Yeats's Core Tensions — An Overview</h2>
+    <p>Yeats saw the world as composed of conflicting opposites. These tensions are not resolved in the poems — they are held, explored, and left for the reader. The examiner rewards students who can name and discuss these tensions.</p>
+  </div>
+  <div class="theme-body">
+    <table class="compare-table">
+      <tr>
+        <th>Tension</th>
+        <th>Poems where it appears</th>
+        <th>The conflict</th>
+      </tr>
+      <tr>
+        <td><strong>Youth / Age</strong></td>
+        <td><span class="poem-tag tag-swans">Swans</span><span class="poem-tag tag-byz">Byz</span><span class="poem-tag tag-acre">Acre</span></td>
+        <td>The young are vibrant but dying; the old are experienced but diminished. Neither state is complete.</td>
+      </tr>
+      <tr>
+        <td><strong>Body / Soul</strong></td>
+        <td><span class="poem-tag tag-byz">Byz</span><span class="poem-tag tag-acre">Acre</span></td>
+        <td>The body decays and imprisons. The soul can sing, transcend, endure — but only if it is active and passionate.</td>
+      </tr>
+      <tr>
+        <td><strong>Nature / Art</strong></td>
+        <td><span class="poem-tag tag-innisfree">Innisfree</span><span class="poem-tag tag-byz">Byz</span><span class="poem-tag tag-swans">Swans</span></td>
+        <td>Nature is beautiful but dying. Art is artificial but eternal. Innisfree chooses nature; Byzantium chooses art.</td>
+      </tr>
+      <tr>
+        <td><strong>Personal / Public</strong></td>
+        <td><span class="poem-tag tag-sept">Sept</span><span class="poem-tag tag-easter">Easter</span><span class="poem-tag tag-swans">Swans</span></td>
+        <td>The private grief of unrequited love; the public drama of nationalism. They meet in Easter 1916 — personal dislike of MacBride overridden by public admiration for his sacrifice.</td>
+      </tr>
+      <tr>
+        <td><strong>Romantic Past / Degraded Present</strong></td>
+        <td><span class="poem-tag tag-sept">Sept 1913</span><span class="poem-tag tag-easter">Easter 1916</span></td>
+        <td>In 1913, Romantic Ireland is dead. In 1916, the present generates its own heroism. Yeats's relationship with the present changes entirely between the two poems.</td>
+      </tr>
+      <tr>
+        <td><strong>Action / Contemplation</strong></td>
+        <td><span class="poem-tag tag-easter">Easter 1916</span><span class="poem-tag tag-acre">Acre</span></td>
+        <td>The revolutionaries acted; Yeats watched and wrote. In An Acre of Grass, he insists that the creative act is also a form of passionate action — "Shake the dead in their shrouds."</td>
+      </tr>
+    </table>
+    <div class="exam-box"><div class="ico">🎓</div><div>
+      <div class="exam-box-label">The Exam Formula</div>
+      <p>When comparing poems, always name the <strong>tension</strong> first, then show how each poem approaches it differently. For example: "Both <em>Sailing to Byzantium</em> and <em>An Acre of Grass</em> address the tension between the ageing body and the creative spirit — but where Byzantium seeks transcendence and eternal art, An Acre of Grass insists on earthly, passionate engagement with life while it lasts."</p>
+    </div></div>
+  </div>
+</div>
+
+<!-- QUICK-REFERENCE TABLE -->
+<div class="theme-section">
+  <div class="theme-header">
+    <h2>📊 Quick Reference: Themes Across All Poems</h2>
+    <p>Use this table to quickly identify which poems to link for any theme in the exam.</p>
+  </div>
+  <div class="theme-body">
+    <table class="compare-table">
+      <tr>
+        <th>Theme</th>
+        <th>Primary poems</th>
+        <th>Best comparison</th>
+      </tr>
+      <tr>
+        <td>Ageing &amp; mortality</td>
+        <td><span class="poem-tag tag-swans">Swans</span><span class="poem-tag tag-byz">Byz</span><span class="poem-tag tag-acre">Acre</span></td>
+        <td>Swans (elegy) vs Byzantium (transcendence) vs Acre (defiance)</td>
+      </tr>
+      <tr>
+        <td>Escapism / longing</td>
+        <td><span class="poem-tag tag-innisfree">Innisfree</span><span class="poem-tag tag-byz">Byz</span></td>
+        <td>Nature vs eternity as two escape destinations</td>
+      </tr>
+      <tr>
+        <td>Nationalism</td>
+        <td><span class="poem-tag tag-sept">Sept</span><span class="poem-tag tag-easter">Easter</span></td>
+        <td>Disillusionment (1913) becoming conflicted admiration (1916)</td>
+      </tr>
+      <tr>
+        <td>Art &amp; immortality</td>
+        <td><span class="poem-tag tag-byz">Byz</span><span class="poem-tag tag-acre">Acre</span><span class="poem-tag tag-easter">Easter</span></td>
+        <td>Eternal golden bird vs eagle mind vs naming the dead</td>
+      </tr>
+      <tr>
+        <td>Loneliness &amp; love</td>
+        <td><span class="poem-tag tag-swans">Swans</span><span class="poem-tag tag-byz">Byz</span></td>
+        <td>Heart sore (Swans) vs sick with desire (Byzantium)</td>
+      </tr>
+      <tr>
+        <td>Nature as symbol</td>
+        <td><span class="poem-tag tag-innisfree">Innisfree</span><span class="poem-tag tag-swans">Swans</span><span class="poem-tag tag-easter">Easter</span></td>
+        <td>Paradise / mirror / living stream — three very different uses</td>
+      </tr>
+      <tr>
+        <td>Heroism &amp; sacrifice</td>
+        <td><span class="poem-tag tag-sept">Sept</span><span class="poem-tag tag-easter">Easter</span></td>
+        <td>"Delirium of the brave" vs "a terrible beauty is born"</td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+</main>
+</body>
+</html>
