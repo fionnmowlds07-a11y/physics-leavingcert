@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>W.B. Yeats — Poetry Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F8F6F2;--card:#ffffff;--text:#1a1a2e;--text-light:#555570;--border:#e0dcd4;--shadow:0 4px 20px rgba(0,0,0,0.06);--shadow-h:0 12px 30px rgba(0,0,0,0.12);--radius:16px;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);font-size:17px;line-height:1.7;min-height:100vh;display:flex;flex-direction:column;}
+.top-bar{background:white;border-bottom:2px solid var(--border);padding:14px 40px;display:flex;align-items:center;position:sticky;top:0;z-index:50;box-shadow:0 2px 10px rgba(0,0,0,0.02);}
+.top-bar h1{font-family:'Lexend Mega',sans-serif;font-size:1.1rem;color:var(--text);margin:0 auto;}
+.top-bar h1 span{color:#8B6914;}
+.back-link{position:absolute;left:40px;text-decoration:none;color:var(--text-light);font-size:14px;font-weight:600;display:flex;align-items:center;gap:6px;transition:color .2s;}
+.back-link:hover{color:#8B6914;}
+.hero{background:linear-gradient(135deg,#1a1408 0%,#3a2a08 35%,#1a0d0a 70%,#0a0810 100%);color:white;padding:80px 40px;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:'🏆';position:absolute;right:8%;top:20%;font-size:6rem;opacity:0.06;transform:rotate(-15deg);}
+.hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 60% 40%,rgba(139,105,20,0.18),transparent 60%);pointer-events:none;}
+.hero h2{font-family:'Lexend Mega',sans-serif;font-size:clamp(1.8rem,5vw,3rem);margin-bottom:16px;position:relative;z-index:1;}
+.hero p{font-size:1.1rem;color:rgba(255,255,255,0.85);max-width:680px;margin:0 auto;line-height:1.6;position:relative;z-index:1;}
+.hero-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:22px;position:relative;z-index:1;}
+.hero-chip{background:rgba(255,255,255,0.14);border:1px solid rgba(255,255,255,0.28);color:#fff;padding:5px 16px;border-radius:20px;font-size:0.78rem;font-weight:600;}
+.dashboard{flex:1;padding:60px 40px;max-width:1280px;margin:0 auto;width:100%;}
+.section-label-row{display:flex;align-items:center;gap:14px;margin-bottom:24px;}
+.section-label-row .label{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:var(--text-light);white-space:nowrap;}
+.section-label-row::after{content:'';flex:1;height:2px;background:var(--border);border-radius:4px;}
+.topics-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;margin-bottom:60px;}
+.chapter-card{background:var(--card);border:2px solid var(--border);border-radius:var(--radius);padding:32px 24px;text-decoration:none;display:flex;flex-direction:column;align-items:center;text-align:center;transition:all .3s cubic-bezier(.25,.8,.25,1);box-shadow:var(--shadow);position:relative;overflow:hidden;}
+.chapter-card::before{content:'';position:absolute;top:0;left:0;right:0;height:6px;transition:height .3s ease;}
+.chapter-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-h);border-color:transparent;}
+.chapter-card:hover::before{height:12px;}
+.card-innisfree::before{background:#1a6b3a;} .card-innisfree:hover{border-color:#1a6b3a;} .card-innisfree .mc-icon{color:#1a6b3a;background:#e8f4ec;}
+.card-swans::before{background:#1a3a6b;} .card-swans:hover{border-color:#1a3a6b;} .card-swans .mc-icon{color:#1a3a6b;background:#e8ecf8;}
+.card-sept::before{background:#7a1a1a;} .card-sept:hover{border-color:#7a1a1a;} .card-sept .mc-icon{color:#7a1a1a;background:#f8e8e8;}
+.card-easter::before{background:#8B6914;} .card-easter:hover{border-color:#8B6914;} .card-easter .mc-icon{color:#8B6914;background:#f8f0d8;}
+.card-byz::before{background:#4a1a7a;} .card-byz:hover{border-color:#4a1a7a;} .card-byz .mc-icon{color:#4a1a7a;background:#f0e8f8;}
+.card-acre::before{background:#3a5a1a;} .card-acre:hover{border-color:#3a5a1a;} .card-acre .mc-icon{color:#3a5a1a;background:#ecf4e4;}
+.card-politics::before{background:#5a3a1a;} .card-politics:hover{border-color:#5a3a1a;} .card-politics .mc-icon{color:#5a3a1a;background:#f8f0e8;}
+.card-flash::before{background:#3a3a5a;} .card-flash:hover{border-color:#3a3a5a;} .card-flash .mc-icon{color:#3a3a5a;background:#eeeef4;}
+.card-links::before{background:#5a1a3a;} .card-links:hover{border-color:#5a1a3a;} .card-links .mc-icon{color:#5a1a3a;background:#f8e8f0;}
+.mc-icon{font-size:42px;width:80px;height:80px;display:flex;align-items:center;justify-content:center;border-radius:50%;margin-bottom:20px;transition:transform .3s ease;}
+.chapter-card:hover .mc-icon{transform:scale(1.1) rotate(5deg);}
+.mc-title{font-family:'Lexend Mega',sans-serif;font-size:1rem;font-weight:700;color:var(--text);margin-bottom:8px;}
+.mc-subtitle{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--text-light);margin-bottom:10px;}
+.mc-desc{font-size:14px;color:var(--text-light);line-height:1.6;}
+.mc-action{margin-top:24px;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--text);opacity:.55;transition:opacity .2s;}
+.chapter-card:hover .mc-action{opacity:1;}
+.bottom-section{margin-top:20px;text-align:center;}
+.info-card{background:var(--card);border:2px solid var(--border);border-radius:var(--radius);padding:40px 30px;box-shadow:var(--shadow);transition:transform .3s ease;display:flex;flex-direction:column;align-items:center;max-width:800px;margin:0 auto;}
+.info-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-h);border-color:#8B6914;}
+.info-card h3{font-family:'Lexend Mega',sans-serif;font-size:1.2rem;font-weight:700;margin-bottom:12px;}
+.info-card p{font-size:16px;color:var(--text-light);line-height:1.7;margin-bottom:26px;}
+.study-btn{display:inline-block;background:#1a1a2e;color:white;padding:12px 28px;border-radius:8px;font-weight:600;text-decoration:none;transition:all .2s;}
+.study-btn:hover{background:#2e3a5a;transform:translateY(-2px);}
+@media(max-width:768px){.top-bar{padding:14px 20px;}.back-link{position:static;margin-right:auto;}.hero{padding:50px 20px;}.dashboard{padding:40px 20px;}.topics-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a href="English.html" class="back-link">← English Hub</a>
+  <h1>W.B. <span>Yeats</span></h1>
+</div>
+<div class="hero">
+  <h2>W.B. Yeats — Poetry</h2>
+  <p>Select a poem for deep in-depth notes, use the flashcard drill to test all your quotes, or explore thematic links across every poem.</p>
+  <div class="hero-chips">
+    <span class="hero-chip">1865–1939</span>
+    <span class="hero-chip">Nobel Prize 1923</span>
+    <span class="hero-chip">Abbey Theatre</span>
+    <span class="hero-chip">Irish Nationalism</span>
+    <span class="hero-chip">Mysticism &amp; Celtic Revival</span>
+  </div>
+</div>
+<main class="dashboard">
+  <div class="section-label-row"><span class="label">📖 Poem-by-Poem Study</span></div>
+  <div class="topics-grid">
+    <a href="Yeats_Innisfree.html" class="chapter-card card-innisfree">
+      <div class="mc-icon">🌿</div>
+      <div class="mc-subtitle">Poem 1 · Crossways, 1889</div>
+      <div class="mc-title">The Lake Isle of Innisfree</div>
+      <div class="mc-desc">A longing to escape to an idealised, pastoral peace. Written in London, full of homesickness — one of Ireland's most beloved poems.</div>
+      <div class="mc-action">Study in depth →</div>
+    </a>
+    <a href="Yeats_Swans.html" class="chapter-card card-swans">
+      <div class="mc-icon">🦢</div>
+      <div class="mc-subtitle">Poem 2 · The Wild Swans at Coole, 1917</div>
+      <div class="mc-title">The Wild Swans at Coole</div>
+      <div class="mc-desc">Fifty-nine swans at Coole Park trigger a meditation on ageing, loneliness, unrequited love and the painful passing of time.</div>
+      <div class="mc-action">Study in depth →</div>
+    </a>
+    <a href="Yeats_September1913.html" class="chapter-card card-sept">
+      <div class="mc-icon">✊</div>
+      <div class="mc-subtitle">Poem 3 · Responsibilities, 1914</div>
+      <div class="mc-title">September 1913</div>
+      <div class="mc-desc">A savage attack on the materialistic Irish middle class who have forgotten the heroism and sacrifice of Romantic Ireland.</div>
+      <div class="mc-action">Study in depth →</div>
+    </a>
+    <a href="Yeats_Easter1916.html" class="chapter-card card-easter">
+      <div class="mc-icon">🌹</div>
+      <div class="mc-subtitle">Poem 4 · Michael Robartes and the Dancer, 1921</div>
+      <div class="mc-title">Easter 1916</div>
+      <div class="mc-desc">Conflicted elegy for the martyrs of the Easter Rising — the ordinary people who became extraordinary through sacrifice.</div>
+      <div class="mc-action">Study in depth →</div>
+    </a>
+    <a href="Yeats_Byzantium.html" class="chapter-card card-byz">
+      <div class="mc-icon">🏛️</div>
+      <div class="mc-subtitle">Poem 5 · The Tower, 1928</div>
+      <div class="mc-title">Sailing to Byzantium</div>
+      <div class="mc-desc">An old man sails away from mortal Ireland to the eternal holy city — a meditation on art, soul, immortality and the ageing body.</div>
+      <div class="mc-action">Study in depth →</div>
+    </a>
+    <a href="Yeats_AcreOfGrass.html" class="chapter-card card-acre">
+      <div class="mc-icon">🦅</div>
+      <div class="mc-subtitle">Poem 6 · Last Poems, 1938</div>
+      <div class="mc-title">An Acre of Grass</div>
+      <div class="mc-desc">At 71, in his final home, Yeats rejects quiet decline and prays for the passionate frenzy needed to create great art in old age.</div>
+      <div class="mc-action">Study in depth →</div>
+    </a>
+  </div>
+  <div class="section-label-row"><span class="label">🛠️ Revision Tools</span></div>
+  <div class="topics-grid" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr));">
+    <a href="Yeats_Flashcards.html" class="chapter-card card-flash">
+      <div class="mc-icon">🃏</div>
+      <div class="mc-subtitle">All 6 Poems · Quote Drill</div>
+      <div class="mc-title">Flashcard Drill</div>
+      <div class="mc-desc">Test every key quote from every poem. Flip-cards organised by poem — quote on the front, technique &amp; analysis on the back.</div>
+      <div class="mc-action">Start drilling →</div>
+    </a>
+    <a href="Yeats_Links.html" class="chapter-card card-links">
+      <div class="mc-icon">🔗</div>
+      <div class="mc-subtitle">Cross-Poem Connections</div>
+      <div class="mc-title">Thematic Links</div>
+      <div class="mc-desc">How the poems connect across shared themes — time &amp; ageing, nationalism, art &amp; immortality, love, nature, and the tension between body and soul.</div>
+      <div class="mc-action">Explore links →</div>
+    </a>
+  </div>
+  <div class="bottom-section">
+    <div class="info-card">
+      <h3>Quick Tip for the Exam 📝</h3>
+      <p>Always link poems together in your answers. Examiners reward students who can see Yeats's work as a whole — his consistent tensions between youth/age, body/soul, Ireland's past/present, and personal/public life. Use the Thematic Links file to practise connecting poems across these recurring conflicts.</p>
+      <a href="English.html" class="study-btn">← Back to English Hub</a>
+    </div>
+  </div>
+</main>
+</body>
+</html>
