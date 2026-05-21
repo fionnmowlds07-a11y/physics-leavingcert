@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ní Chuilleanáin — Thematic Links</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F7F4EF;--surface:#FFFFFF;--surface2:#F0EDE8;--border:#E2DDD7;
+  --text:#2C2825;--muted:#7A7068;--radius:14px;
+  --shadow:0 4px 20px rgba(0,0,0,0.08);--shadow-h:0 8px 32px rgba(0,0,0,0.14);
+  --street:#1a6b5a;--lucina:#2e4a7a;--translation:#7a2e1a;
+  --death:#5a3a7a;--bend:#2e6b1a;--niall:#7a5a1a;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;font-size:16px;}
+nav{position:sticky;top:0;z-index:100;background:rgba(247,244,239,0.97);backdrop-filter:blur(10px);border-bottom:2px solid var(--border);padding:8px 16px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;min-height:52px;}
+.nav-logo{font-family:'Lexend Mega',sans-serif;font-size:0.85rem;color:var(--text);margin-right:4px;text-decoration:none;white-space:nowrap;}.nav-logo span{color:#6a1a4a;}
+.nav-divider{width:1px;height:20px;background:var(--border);flex-shrink:0;}
+.nav-btn{padding:5px 11px;border-radius:18px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.72rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);text-decoration:none;white-space:nowrap;}
+.nav-btn:hover{transform:translateY(-2px);}
+.nav-btn.home:hover,.nav-btn.home.active{background:#2c2825;border-color:#2c2825;color:#fff;}
+.nav-btn.street:hover,.nav-btn.street.active{background:var(--street);border-color:var(--street);color:#fff;}
+.nav-btn.lucina:hover,.nav-btn.lucina.active{background:var(--lucina);border-color:var(--lucina);color:#fff;}
+.nav-btn.translation:hover,.nav-btn.translation.active{background:var(--translation);border-color:var(--translation);color:#fff;}
+.nav-btn.death:hover,.nav-btn.death.active{background:var(--death);border-color:var(--death);color:#fff;}
+.nav-btn.bend:hover,.nav-btn.bend.active{background:var(--bend);border-color:var(--bend);color:#fff;}
+.nav-btn.niall:hover,.nav-btn.niall.active{background:var(--niall);border-color:var(--niall);color:#fff;}
+.nav-btn.flash:hover,.nav-btn.flash.active{background:#4a4a6a;border-color:#4a4a6a;color:#fff;}
+.nav-btn.links.active,.nav-btn.links:hover{background:#6a1a4a;border-color:#6a1a4a;color:#fff;}
+.section{padding:0 16px 80px;max-width:960px;margin:0 auto;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.hero{background:linear-gradient(135deg,#1a0d2e,#2e1040,#0d1a1a);color:#fff;padding:44px 32px 36px;text-align:center;margin-bottom:0;}
+.hero .poem-label{font-size:0.75rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;opacity:0.75;margin-bottom:10px;}
+.hero h1{font-family:'Lexend Mega',sans-serif;font-size:clamp(1.6rem,4vw,2.6rem);line-height:1.15;margin-bottom:12px;}
+.hero p{opacity:0.85;max-width:620px;margin:0 auto;font-size:0.96rem;}
+.hero-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px;}
+.hero-chip{background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:4px 14px;border-radius:20px;font-size:0.75rem;font-weight:600;}
+.tab-bar{display:flex;gap:4px;flex-wrap:wrap;padding:22px 0 8px;border-bottom:2px solid var(--border);margin-bottom:28px;}
+.tab{padding:8px 16px;border-radius:10px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.78rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);}
+.tab:hover,.tab.active{background:#6a1a4a;color:#fff;border-color:#6a1a4a;}
+.tab-panel{display:none;}.tab-panel.active{display:block;animation:fadeIn 0.25s ease;}
+h3.label{font-family:'Lexend Mega',sans-serif;font-size:0.95rem;font-weight:700;margin:28px 0 14px;display:flex;align-items:center;gap:8px;}
+h3.label::after{content:'';flex:1;height:2px;background:var(--border);border-radius:4px;}
+.link-card{background:var(--surface);border:2px solid var(--border);border-radius:var(--radius);padding:22px 24px;margin-bottom:16px;box-shadow:var(--shadow);}
+.link-card h3{font-size:1rem;font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+.link-card p{font-size:0.93rem;margin-bottom:10px;}
+.poem-tag{display:inline-block;font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:0.8px;padding:3px 10px;border-radius:20px;margin:2px;}
+.tag-street{background:#e8f4f0;color:#1a6b5a;}
+.tag-lucina{background:#e8ecf8;color:#2e4a7a;}
+.tag-translation{background:#f8ece8;color:#7a2e1a;}
+.tag-death{background:#f0e8f8;color:#5a3a7a;}
+.tag-bend{background:#e8f8e0;color:#2e6b1a;}
+.tag-niall{background:#f8f0e0;color:#7a5a1a;}
+.comparison-table{width:100%;border-collapse:collapse;font-size:0.89rem;margin:16px 0;}
+.comparison-table th{padding:10px 14px;text-align:left;font-weight:700;color:#fff;}
+.comparison-table td{padding:10px 14px;border-bottom:1px solid var(--border);vertical-align:top;}
+.comparison-table tr:hover td{background:var(--surface2);}
+.theme-intro{background:linear-gradient(135deg,var(--c1,#1a0d2e),var(--c2,#2e1040));color:#fff;border-radius:var(--radius);padding:20px 24px;margin-bottom:20px;}
+.theme-intro h2{font-family:'Lexend Mega',sans-serif;font-size:1.1rem;margin-bottom:8px;}
+.theme-intro p{opacity:0.88;font-size:0.93rem;}
+.quote-pair{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0;}
+@media(max-width:600px){.quote-pair{grid-template-columns:1fr;}}
+.quote-side{border-radius:var(--radius);padding:16px;border-left:4px solid;}
+.quote-side blockquote{font-style:italic;font-size:0.9rem;font-weight:600;margin-bottom:6px;}
+.quote-side .qs-label{font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;}
+.box{border-radius:var(--radius);padding:14px 18px;margin:14px 0;display:flex;gap:12px;align-items:flex-start;}
+.box .ico{font-size:1.5rem;flex-shrink:0;line-height:1.2;}.box-label{font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;margin-bottom:4px;}
+.box p{font-size:0.91rem;}
+.b-exam{background:#eaf4fb;border:2px solid #5dade2;}.b-exam .box-label{color:#1a6b9a;}
+.b-tip{background:#fffbf0;border:2px solid #f39c12;}.b-tip .box-label{color:#b7770d;}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="Eileen.html">✒️ <span>Ní Chuilleanáin</span></a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn home" href="Eileen.html">🏠 Home</a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn street" href="Eilean_Street.html">🔪 Street</a>
+  <a class="nav-btn lucina" href="Eilean_Lucina.html">🌙 Lucina</a>
+  <a class="nav-btn translation" href="Eilean_Translation.html">⛪ Translation</a>
+  <a class="nav-btn death" href="Eilean_Death.html">✈️ Death &amp; Engines</a>
+  <a class="nav-btn bend" href="Eilean_Bend.html">🌿 Bend in Road</a>
+  <a class="nav-btn niall" href="Eilean_Niall.html">🌟 To Niall Woods</a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn flash" href="Eilean_Flashcards.html">🃏 Flashcards</a>
+  <a class="nav-btn links active" href="Eilean_Links.html">🔗 Themes</a>
+</nav>
+
+<div class="hero">
+  <div class="poem-label">Cross-Poem Analysis</div>
+  <h1>🔗 Thematic Links</h1>
+  <p>How the six poems connect across shared themes — for higher-mark exam answers that show Ní Chuilleanáin's work as a whole.</p>
+  <div class="hero-chips">
+    <span class="hero-chip">7 Themes</span>
+    <span class="hero-chip">Quote Pairs</span>
+    <span class="hero-chip">Comparison Tables</span>
+    <span class="hero-chip">Exam Arguments</span>
+  </div>
+</div>
+
+<div class="section">
+  <div class="tab-bar">
+    <button class="tab active" onclick="switchTab(this,'women')">👩 Women &amp; Power</button>
+    <button class="tab" onclick="switchTab(this,'history')">🏴 History &amp; Ireland</button>
+    <button class="tab" onclick="switchTab(this,'death')">🕯️ Death &amp; Memory</button>
+    <button class="tab" onclick="switchTab(this,'mystery')">🌙 Mystery &amp; Atmosphere</button>
+    <button class="tab" onclick="switchTab(this,'folklore')">📖 Folklore &amp; Myth</button>
+    <button class="tab" onclick="switchTab(this,'family')">👨‍👩‍👧 Family</button>
+    <button class="tab" onclick="switchTab(this,'resilience')">🌊 Resilience</button>
+  </div>
+
+  <!-- WOMEN AND POWER -->
+  <div class="tab-panel active" id="women">
+    <div class="theme-intro" style="--c1:#0d2818;--c2:#1a4a2e;">
+      <h2>👩 Women's Voices &amp; Power</h2>
+      <p>Ní Chuilleanáin consistently depicts women not as victims but as powerful, autonomous figures — even within oppressive systems. Her women hold knives, survive wars, rise above institutional silence, and outlast everything.</p>
+    </div>
+    <div class="box b-exam"><div class="ico">📝</div><div><div class="box-label">Exam Argument</div><p>Ní Chuilleanáin's poetry returns repeatedly to the female experience — women marginalised, silenced, or underestimated by the social order yet ultimately depicted as its most resilient and powerful presences.</p></div></div>
+    <h3 class="label">Quote Pairs</h3>
+    <div class="quote-pair">
+      <div class="quote-side" style="background:#e8f4f0;border-color:#1a6b5a;">
+        <div class="qs-label" style="color:#1a6b5a;">Street</div>
+        <blockquote>"dangling a knife"</blockquote>
+        <p style="font-size:0.88rem;">The woman holds the weapon and all the power. The man who watches is rendered helpless and fascinated.</p>
+      </div>
+      <div class="quote-side" style="background:#f8ece8;border-color:#7a2e1a;">
+        <div class="qs-label" style="color:#7a2e1a;">Translation</div>
+        <blockquote>"rising above the shuffle and hum"</blockquote>
+        <p style="font-size:0.88rem;">The Magdalene women — silenced in life — are given a voice that rises above the noise of their oppression. The poem is itself this rising.</p>
+      </div>
+    </div>
+    <div class="quote-pair">
+      <div class="quote-side" style="background:#e8ecf8;border-color:#2e4a7a;">
+        <div class="qs-label" style="color:#2e4a7a;">Lucina Schynning</div>
+        <blockquote>"the resilient stream running"</blockquote>
+        <p style="font-size:0.88rem;">The lone woman, abandoned in a ruined house, ultimately finds renewal and resilience. She is not destroyed by the forces ranged against her.</p>
+      </div>
+      <div class="quote-side" style="background:#f8f0e0;border-color:#7a5a1a;">
+        <div class="qs-label" style="color:#7a5a1a;">To Niall Woods</div>
+        <blockquote>"a mother's blessing"</blockquote>
+        <p style="font-size:0.88rem;">The mother-speaker is the wise woman of folk tales — authoritative, prophetic, in control of the story and its ending. Her blessing makes the fairy tale real.</p>
+      </div>
+    </div>
+    <h3 class="label">How the Poems Compare</h3>
+    <table class="comparison-table">
+      <tr style="background:#1a0d2e;"><th>Poem</th><th>How Women Are Powerful</th><th>Context</th></tr>
+      <tr><td><span class="poem-tag tag-street">Street</span></td><td>She holds the knife; the man is helpless and fascinated</td><td>Gothic mystery; physical danger</td></tr>
+      <tr><td><span class="poem-tag tag-lucina">Lucina</span></td><td>Survives plague, war, abandonment; renewed by moonlight</td><td>Cromwellian Ireland; spiritual resilience</td></tr>
+      <tr><td><span class="poem-tag tag-translation">Translation</span></td><td>Their voices "rise" in the poem despite decades of silence</td><td>Magdalene laundries; political act</td></tr>
+      <tr><td><span class="poem-tag tag-niall">Niall Woods</span></td><td>The poet-mother controls the narrative and bestows the ending</td><td>Wedding poem; storytelling power</td></tr>
+    </table>
+  </div>
+
+  <!-- HISTORY & IRELAND -->
+  <div class="tab-panel" id="history">
+    <div class="theme-intro" style="--c1:#1a0a08;--c2:#3a1a10;">
+      <h2>🏴 History &amp; Irish Identity</h2>
+      <p>Ní Chuilleanáin's poetry is deeply rooted in Irish history — not as abstract fact but as something lived in bodies, houses and silences. She makes history personal by inhabiting specific moments rather than surveying them from a distance.</p>
+    </div>
+    <div class="box b-exam"><div class="ico">📝</div><div><div class="box-label">Exam Argument</div><p>Ní Chuilleanáin uses specific historical events — Cromwellian Ireland, the Magdalene laundries — to explore how history lives in individual lives and spaces. Her poetry insists that the private and the political are inseparable.</p></div></div>
+    <h3 class="label">Quote Pairs</h3>
+    <div class="quote-pair">
+      <div class="quote-side" style="background:#e8ecf8;border-color:#2e4a7a;">
+        <div class="qs-label" style="color:#2e4a7a;">Lucina Schynning</div>
+        <blockquote>"Without roast meat or music"</blockquote>
+        <p style="font-size:0.88rem;">The Cromwellian cultural suppression — music banned, food destroyed — condensed into one devastating line.</p>
+      </div>
+      <div class="quote-side" style="background:#f8ece8;border-color:#7a2e1a;">
+        <div class="qs-label" style="color:#7a2e1a;">Translation</div>
+        <blockquote>"washed clean of idiom"</blockquote>
+        <p style="font-size:0.88rem;">The Magdalene women were branded by the language of the Church. The poem reclaims their identity from that institutional language.</p>
+      </div>
+    </div>
+    <div class="quote-pair">
+      <div class="quote-side" style="background:#f8f0e0;border-color:#7a5a1a;">
+        <div class="qs-label" style="color:#7a5a1a;">To Niall Woods</div>
+        <blockquote>"the cat speaks Irish and Russian"</blockquote>
+        <p style="font-size:0.88rem;">Cultural identity is something that lives in the ordinary domestic world — in the language the cat speaks. Two cultures coexist as equally valued presences.</p>
+      </div>
+      <div class="quote-side" style="background:#e8ecf8;border-color:#2e4a7a;">
+        <div class="qs-label" style="color:#2e4a7a;">Lucina Schynning</div>
+        <blockquote>"sky growing through the hole in the roof"</blockquote>
+        <p style="font-size:0.88rem;">Destruction — of a house, a culture, a country — creates the opening through which transcendence enters. Ruin as possibility.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- DEATH AND MEMORY -->
+  <div class="tab-panel" id="death">
+    <div class="theme-intro" style="--c1:#150d20;--c2:#2a1a40;">
+      <h2>🕯️ Death &amp; Memory</h2>
+      <p>Death in Ní Chuilleanáin's poetry is never simple absence. The dead continue in nature, in hearts, in the shapes they have left on the world. She returns again and again to the question of how we carry those we have lost.</p>
+    </div>
+    <div class="box b-exam"><div class="ico">📝</div><div><div class="box-label">Exam Argument</div><p>In Ní Chuilleanáin's poetry, death is consistently presented not as erasure but as transformation — the dead remain present in the natural world, in hearts, in the traces they have left. This provides consolation without sentimentality.</p></div></div>
+    <h3 class="label">Quote Pairs</h3>
+    <div class="quote-pair">
+      <div class="quote-side" style="background:#f0e8f8;border-color:#5a3a7a;">
+        <div class="qs-label" style="color:#5a3a7a;">Death and Engines</div>
+        <blockquote>"scattered like a wreckage... lodge in the hearts"</blockquote>
+        <p style="font-size:0.88rem;">The dead are scattered but lodge — permanently — in the hearts of those who love them. Wreckage becomes presence.</p>
+      </div>
+      <div class="quote-side" style="background:#e8f8e0;border-color:#2e6b1a;">
+        <div class="qs-label" style="color:#2e6b1a;">The Bend in the Road</div>
+        <blockquote>"in the tree, in the air"</blockquote>
+        <p style="font-size:0.88rem;">The dead are not above the world or beyond it — they are inside it, woven into the living wood and every breath. Loss is not erasure.</p>
+      </div>
+    </div>
+    <div class="quote-pair">
+      <div class="quote-side" style="background:#f0e8f8;border-color:#5a3a7a;">
+        <div class="qs-label" style="color:#5a3a7a;">Death and Engines</div>
+        <blockquote>"you know how light your death is"</blockquote>
+        <p style="font-size:0.88rem;">After bleak inevitability, a tender surprise: death will be light, gentle. A gift of assurance to the dying father.</p>
+      </div>
+      <div class="quote-side" style="background:#e8f8e0;border-color:#2e6b1a;">
+        <div class="qs-label" style="color:#2e6b1a;">The Bend in the Road</div>
+        <blockquote>"piled weight of sleep"</blockquote>
+        <p style="font-size:0.88rem;">Death as an accumulation of tiredness — heavy yet softened by the "sleep" metaphor. Rest, not destruction.</p>
+      </div>
+    </div>
+    <h3 class="label">Key Contrast: the Two Approaches to Death</h3>
+    <table class="comparison-table">
+      <tr style="background:#1a0d2e;"><th>Poem</th><th>How Death Appears</th><th>Consolation Found</th></tr>
+      <tr><td><span class="poem-tag tag-death">Death &amp; Engines</span></td><td>Blunt, inevitable, machine-like — no escaping it</td><td>The dead lodge permanently in the hearts of those who love them</td></tr>
+      <tr><td><span class="poem-tag tag-bend">Bend in Road</span></td><td>Quiet, accumulated; the dead felt in nature around us</td><td>The dead are "in the tree, in the air" — loss is not erasure</td></tr>
+      <tr><td><span class="poem-tag tag-translation">Translation</span></td><td>Unjust and institutional; the Magdalene women buried in silence</td><td>The poem itself becomes their voice, their monument</td></tr>
+      <tr><td><span class="poem-tag tag-lucina">Lucina</span></td><td>A world under Cromwellian destruction; personal grief for dying father</td><td>The stream runs on; the sky enters through the ruins</td></tr>
+    </table>
+  </div>
+
+  <!-- MYSTERY -->
+  <div class="tab-panel" id="mystery">
+    <div class="theme-intro" style="--c1:#0d1a2e;--c2:#1a0d2e;">
+      <h2>🌙 Mystery &amp; Atmosphere</h2>
+      <p>Ní Chuilleanáin famously said: "As a poet I'm drawn to things which are mysterious — it is not that I make them mysterious." She consistently elevates the ordinary into the eerie and atmospheric, leaving endings unresolved and images suggestive rather than definitive.</p>
+    </div>
+    <div class="box b-tip"><div class="ico">💡</div><div><div class="box-label">Key Quote to Use</div><p>In interviews, Ní Chuilleanáin said: "I write partly because I have to write... As a poet I'm drawn to things which are mysterious." Use this in your answer about her consistent creation of atmosphere and mystery.</p></div></div>
+    <h3 class="label">Quote Pairs</h3>
+    <div class="quote-pair">
+      <div class="quote-side" style="background:#e8f4f0;border-color:#1a6b5a;">
+        <div class="qs-label" style="color:#1a6b5a;">Street</div>
+        <blockquote>"red crescent marks... fading to faintest"</blockquote>
+        <p style="font-size:0.88rem;">She becomes mythical, lunar — the bloody footprints fade like the moon waning. The poem ends with her trace disappearing, the mystery preserved.</p>
+      </div>
+      <div class="quote-side" style="background:#e8ecf8;border-color:#2e4a7a;">
+        <div class="qs-label" style="color:#2e4a7a;">Lucina Schynning</div>
+        <blockquote>"sky growing through the hole in the roof"</blockquote>
+        <p style="font-size:0.88rem;">A surreal, dreamlike image — the infinite sky "grows" inside a destroyed building. The mystery of transformation in the heart of ruin.</p>
+      </div>
+    </div>
+    <div class="quote-pair">
+      <div class="quote-side" style="background:#e8f8e0;border-color:#2e6b1a;">
+        <div class="qs-label" style="color:#2e6b1a;">Bend in Road</div>
+        <blockquote>"as silent as it ever was"</blockquote>
+        <p style="font-size:0.88rem;">The bend persists, unchanged and indifferent, while everything in the speaker's human world has altered. A mystery of continuity.</p>
+      </div>
+      <div class="quote-side" style="background:#e8f4f0;border-color:#1a6b5a;">
+        <div class="qs-label" style="color:#1a6b5a;">Street</div>
+        <blockquote>"half open door"</blockquote>
+        <p style="font-size:0.88rem;">Invitation and barrier simultaneously. The poem refuses to reveal everything — this is Ní Ch.'s method: trust the reader's imagination.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOLKLORE AND MYTH -->
+  <div class="tab-panel" id="folklore">
+    <div class="theme-intro" style="--c1:#2a1a08;--c2:#1a0d2e;">
+      <h2>📖 Folklore &amp; Myth</h2>
+      <p>Ní Chuilleanáin draws on classical mythology, Irish folklore, Russian folk tales, and the Bible to enrich her poetry. These allusions import entire stories and their moral weight into her poems in very few words.</p>
+    </div>
+    <div class="box b-exam"><div class="ico">📝</div><div><div class="box-label">Exam Argument</div><p>Ní Chuilleanáin uses allusion to Irish folklore, classical myth and the Bible to situate her personal experiences within a longer human tradition. The individual and the mythological are never far apart in her work.</p></div></div>
+    <h3 class="label">Allusions Across the Poems</h3>
+    <table class="comparison-table">
+      <tr style="background:#1a0d2e;"><th>Poem</th><th>Allusion</th><th>Effect</th></tr>
+      <tr><td><span class="poem-tag tag-lucina">Lucina</span></td><td>Lucina = Diana the Moon Goddess (classical)</td><td>Elevates the woman to mythological status; connects suffering to cosmic forces</td></tr>
+      <tr><td><span class="poem-tag tag-niall">Niall Woods</span></td><td>Book of Ruth (Bible)</td><td>Loyalty across cultural difference; love that transcends borders</td></tr>
+      <tr><td><span class="poem-tag tag-niall">Niall Woods</span></td><td>Firebird + Golden Apples (Russian folklore)</td><td>Honours Xenya's heritage; love as a quest requiring determination</td></tr>
+      <tr><td><span class="poem-tag tag-niall">Niall Woods</span></td><td>King of Ireland's Son (Irish folklore)</td><td>Pay attention to who is beside you; love requires attentiveness</td></tr>
+      <tr><td><span class="poem-tag tag-niall">Niall Woods</span></td><td>Sleeping Beauty (European fairy tale)</td><td>Struggles are the necessary precondition for the happy ending</td></tr>
+      <tr><td><span class="poem-tag tag-street">Street</span></td><td>Conrad's "The Rover" (Arlette character)</td><td>The dangerous, beautiful woman from literature brought into the Irish street</td></tr>
+    </table>
+    <div class="quote-pair">
+      <div class="quote-side" style="background:#f8f0e0;border-color:#7a5a1a;">
+        <div class="qs-label" style="color:#7a5a1a;">Niall Woods</div>
+        <blockquote>"lived happily ever after."</blockquote>
+        <p style="font-size:0.88rem;">The storyteller-mother claims the authority to deliver the fairy-tale ending. Isolated final line — earned, not clichéd, after all the allusions that preceded it.</p>
+      </div>
+      <div class="quote-side" style="background:#e8ecf8;border-color:#2e4a7a;">
+        <div class="qs-label" style="color:#2e4a7a;">Lucina Schynning</div>
+        <blockquote>"Lucina schynning in silence of the night"</blockquote>
+        <p style="font-size:0.88rem;">Archaic Scottish dialect + classical goddess: the woman is placed in an ancient, mythological frame. Her suffering is universal, timeless.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAMILY -->
+  <div class="tab-panel" id="family">
+    <div class="theme-intro" style="--c1:#0d1a08;--c2:#1a0d2e;">
+      <h2>👨‍👩‍👧 Family</h2>
+      <p>Ní Chuilleanáin's poetry ranges across the full arc of family life — from a dying father to a marrying son, from a child's illness to the dead felt "in the air." Family is never idealized; it is loss, love, and continuation intertwined.</p>
+    </div>
+    <div class="box b-exam"><div class="ico">📝</div><div><div class="box-label">Exam Argument</div><p>Ní Chuilleanáin's treatment of family is never sentimental. Whether celebrating (Niall Woods), grieving (Death and Engines), or remembering (Bend in the Road), she shows family as the source of both the deepest pain and the most lasting consolation.</p></div></div>
+    <h3 class="label">Quote Pairs</h3>
+    <div class="quote-pair">
+      <div class="quote-side" style="background:#f0e8f8;border-color:#5a3a7a;">
+        <div class="qs-label" style="color:#5a3a7a;">Death and Engines</div>
+        <blockquote>"you know how light your death is"</blockquote>
+        <p style="font-size:0.88rem;">Written as her father was dying in Rome — a tender gift of assurance. Direct address to the dying person as an act of love.</p>
+      </div>
+      <div class="quote-side" style="background:#f8f0e0;border-color:#7a5a1a;">
+        <div class="qs-label" style="color:#7a5a1a;">To Niall Woods</div>
+        <blockquote>"half a loaf and a mother's blessing"</blockquote>
+        <p style="font-size:0.88rem;">The mother lets go of her son so she can give him everything. Physical sacrifice for spiritual gift — love expressed through letting go.</p>
+      </div>
+    </div>
+    <div class="quote-pair">
+      <div class="quote-side" style="background:#e8f8e0;border-color:#2e6b1a;">
+        <div class="qs-label" style="color:#2e6b1a;">Bend in Road</div>
+        <blockquote>"in the tree, in the air"</blockquote>
+        <p style="font-size:0.88rem;">Dead parents, relatives — felt as a physical presence in the natural world around the speaker. They have not left; they have transformed.</p>
+      </div>
+      <div class="quote-side" style="background:#f0e8f8;border-color:#5a3a7a;">
+        <div class="qs-label" style="color:#5a3a7a;">Death and Engines</div>
+        <blockquote>"scattered like a wreckage... lodge in the hearts"</blockquote>
+        <p style="font-size:0.88rem;">The dying father will scatter but lodge permanently in the hearts of family. Wreckage as presence — the poem's great consolation.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESILIENCE -->
+  <div class="tab-panel" id="resilience">
+    <div class="theme-intro" style="--c1:#0d1a14;--c2:#1a2e0d;">
+      <h2>🌊 Transformation &amp; Resilience</h2>
+      <p>Suffering in Ní Chuilleanáin's poetry is rarely the end of the story. Her poems consistently find the stream that keeps running, the sky that grows through the hole in the roof, the voice that rises above the shuffle and hum.</p>
+    </div>
+    <div class="box b-exam"><div class="ico">📝</div><div><div class="box-label">Exam Argument</div><p>A consistent preoccupation in Ní Chuilleanáin's work is the possibility of transformation through suffering. Ruin creates openings; silence finds voice; death becomes presence. Her poetry is ultimately — even when bleakest — about continuation rather than ending.</p></div></div>
+    <h3 class="label">The Three Great Resilience Images</h3>
+    <table class="comparison-table">
+      <tr style="background:#0d3a1e;"><th>Poem</th><th>Image of Resilience</th><th>What It Means</th></tr>
+      <tr><td><span class="poem-tag tag-lucina">Lucina</span></td><td>"the resilient stream running"</td><td>Water continues regardless — life flows on after destruction</td></tr>
+      <tr><td><span class="poem-tag tag-translation">Translation</span></td><td>"rising above the shuffle and hum"</td><td>The voice of the silenced finally rises; the poem is this act of rising</td></tr>
+      <tr><td><span class="poem-tag tag-death">Death &amp; Engines</span></td><td>"lodge in the hearts / Of all who love you"</td><td>Death scatters but does not erase — love is permanent lodging</td></tr>
+    </table>
+    <div class="quote-pair">
+      <div class="quote-side" style="background:#e8ecf8;border-color:#2e4a7a;">
+        <div class="qs-label" style="color:#2e4a7a;">Lucina Schynning</div>
+        <blockquote>"sky growing through the hole in the roof"</blockquote>
+        <p style="font-size:0.88rem;">The paradox of Ní Ch.'s vision: the place of greatest destruction is also the opening through which the infinite enters. Ruin as transformation.</p>
+      </div>
+      <div class="quote-side" style="background:#f8f0e0;border-color:#7a5a1a;">
+        <div class="qs-label" style="color:#7a5a1a;">To Niall Woods</div>
+        <blockquote>"lived happily ever after."</blockquote>
+        <p style="font-size:0.88rem;">After all the allusions, the sorrows, the necessary leavings — the storyteller-mother delivers the ending she has the power to give. Resilience as narrative authority.</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function switchTab(btn,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(id).classList.add('active');}
+</script>
+</body>
+</html>

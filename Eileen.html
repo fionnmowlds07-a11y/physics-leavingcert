@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eiléan Ní Chuilleanáin — Poetry Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F8F6F2;--card:#ffffff;--text:#1a1a2e;--text-light:#555570;--border:#e0dcd4;--shadow:0 4px 20px rgba(0,0,0,0.06);--shadow-h:0 12px 30px rgba(0,0,0,0.12);--radius:16px;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);font-size:17px;line-height:1.7;min-height:100vh;display:flex;flex-direction:column;}
+.top-bar{background:white;border-bottom:2px solid var(--border);padding:14px 40px;display:flex;align-items:center;position:sticky;top:0;z-index:50;box-shadow:0 2px 10px rgba(0,0,0,0.02);}
+.top-bar h1{font-family:'Lexend Mega',sans-serif;font-size:1.1rem;color:var(--text);margin:0 auto;}
+.top-bar h1 span{color:#1a6b5a;}
+.back-link{position:absolute;left:40px;text-decoration:none;color:var(--text-light);font-size:14px;font-weight:600;display:flex;align-items:center;gap:6px;transition:color .2s;}
+.back-link:hover{color:#1a6b5a;}
+.hero{background:linear-gradient(135deg,#0d1a14 0%,#1a3a2a 40%,#0d1a2e 80%,#0a0d1a 100%);color:white;padding:80px 40px;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:'✒️';position:absolute;right:8%;top:20%;font-size:6rem;opacity:0.06;transform:rotate(-15deg);}
+.hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 60% 40%,rgba(26,107,90,0.15),transparent 60%);pointer-events:none;}
+.hero h2{font-family:'Lexend Mega',sans-serif;font-size:clamp(1.8rem,5vw,3rem);margin-bottom:16px;position:relative;z-index:1;}
+.hero p{font-size:1.1rem;color:rgba(255,255,255,0.85);max-width:680px;margin:0 auto;line-height:1.6;position:relative;z-index:1;}
+.dashboard{flex:1;padding:60px 40px;max-width:1280px;margin:0 auto;width:100%;}
+.section-label-row{display:flex;align-items:center;gap:14px;margin-bottom:24px;}
+.section-label-row .label{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:var(--text-light);white-space:nowrap;}
+.section-label-row::after{content:'';flex:1;height:2px;background:var(--border);border-radius:4px;}
+.topics-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;margin-bottom:60px;}
+.chapter-card{background:var(--card);border:2px solid var(--border);border-radius:var(--radius);padding:32px 24px;text-decoration:none;display:flex;flex-direction:column;align-items:center;text-align:center;transition:all .3s cubic-bezier(.25,.8,.25,1);box-shadow:var(--shadow);position:relative;overflow:hidden;}
+.chapter-card::before{content:'';position:absolute;top:0;left:0;right:0;height:6px;transition:height .3s ease;}
+.chapter-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-h);border-color:transparent;}
+.chapter-card:hover::before{height:12px;}
+.card-street::before{background:#1a6b5a;} .card-street:hover{border-color:#1a6b5a;} .card-street .mc-icon{color:#1a6b5a;background:#e8f4f0;}
+.card-lucina::before{background:#2e4a7a;} .card-lucina:hover{border-color:#2e4a7a;} .card-lucina .mc-icon{color:#2e4a7a;background:#e8ecf8;}
+.card-translation::before{background:#7a2e1a;} .card-translation:hover{border-color:#7a2e1a;} .card-translation .mc-icon{color:#7a2e1a;background:#f8ece8;}
+.card-death::before{background:#5a3a7a;} .card-death:hover{border-color:#5a3a7a;} .card-death .mc-icon{color:#5a3a7a;background:#f0e8f8;}
+.card-bend::before{background:#2e6b1a;} .card-bend:hover{border-color:#2e6b1a;} .card-bend .mc-icon{color:#2e6b1a;background:#e8f8e0;}
+.card-niall::before{background:#7a5a1a;} .card-niall:hover{border-color:#7a5a1a;} .card-niall .mc-icon{color:#7a5a1a;background:#f8f0e0;}
+.card-flash::before{background:#4a4a6a;} .card-flash:hover{border-color:#4a4a6a;} .card-flash .mc-icon{color:#4a4a6a;background:#eeeeF4;}
+.card-links::before{background:#6a1a4a;} .card-links:hover{border-color:#6a1a4a;} .card-links .mc-icon{color:#6a1a4a;background:#f8e8f0;}
+.mc-icon{font-size:42px;width:80px;height:80px;display:flex;align-items:center;justify-content:center;border-radius:50%;margin-bottom:20px;transition:transform .3s ease;}
+.chapter-card:hover .mc-icon{transform:scale(1.1) rotate(5deg);}
+.mc-title{font-family:'Lexend Mega',sans-serif;font-size:1rem;font-weight:700;color:var(--text);margin-bottom:8px;}
+.mc-subtitle{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--text-light);margin-bottom:10px;}
+.mc-desc{font-size:14px;color:var(--text-light);line-height:1.6;}
+.mc-action{margin-top:24px;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--text);opacity:.55;transition:opacity .2s;}
+.chapter-card:hover .mc-action{opacity:1;}
+.bottom-section{margin-top:20px;text-align:center;}
+.info-card{background:var(--card);border:2px solid var(--border);border-radius:var(--radius);padding:40px 30px;box-shadow:var(--shadow);transition:transform .3s ease;display:flex;flex-direction:column;align-items:center;max-width:800px;margin:0 auto;}
+.info-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-h);border-color:#1a6b5a;}
+.info-card h3{font-family:'Lexend Mega',sans-serif;font-size:1.2rem;font-weight:700;margin-bottom:12px;}
+.info-card p{font-size:16px;color:var(--text-light);line-height:1.7;margin-bottom:26px;}
+.study-btn{display:inline-block;background:#1a1a2e;color:white;padding:12px 28px;border-radius:8px;font-weight:600;text-decoration:none;transition:all .2s;}
+.study-btn:hover{background:#2e3a5a;transform:translateY(-2px);}
+@media(max-width:768px){.top-bar{padding:14px 20px;}.back-link{position:static;margin-right:auto;}.hero{padding:50px 20px;}.dashboard{padding:40px 20px;}.topics-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a href="English.html" class="back-link">← English Hub</a>
+  <h1>Eiléan <span>Ní Chuilleanáin</span></h1>
+</div>
+<div class="hero">
+  <h2>Eiléan Ní Chuilleanáin — Poetry</h2>
+  <p>Select a poem for deep in-depth notes, use the flashcard drill to test all your quotes, or explore thematic links across every poem.</p>
+</div>
+<main class="dashboard">
+  <div class="section-label-row"><span class="label">📖 Poem-by-Poem Study</span></div>
+  <div class="topics-grid">
+    <a href="Eilean_Street.html" class="chapter-card card-street" style="animation-delay:.05s">
+      <div class="mc-icon">🔪</div>
+      <div class="mc-subtitle">Poem 1 · The Magdalene Sermon, 1989</div>
+      <div class="mc-title">Street</div>
+      <div class="mc-desc">A man follows a dangerous butcher's daughter through a Gothic, atmospheric street. Power, mystery, and a deliberately unresolved ending.</div>
+      <div class="mc-action">Study in depth →</div>
+    </a>
+    <a href="Eilean_Lucina.html" class="chapter-card card-lucina" style="animation-delay:.1s">
+      <div class="mc-icon">🌙</div>
+      <div class="mc-subtitle">Poem 2 · Acts and Monuments, 1972</div>
+      <div class="mc-title">Lucina Schynning in Silence of the Night</div>
+      <div class="mc-desc">A woman seeks solace in a ruined Cromwellian house under moonlight. History, personal loss, and spiritual transformation intertwined.</div>
+      <div class="mc-action">Study in depth →</div>
+    </a>
+    <a href="Eilean_Translation.html" class="chapter-card card-translation" style="animation-delay:.15s">
+      <div class="mc-icon">⛪</div>
+      <div class="mc-subtitle">Poem 3 · The Magdalene Sermon, 1989</div>
+      <div class="mc-title">Translation</div>
+      <div class="mc-desc">Read at the reburial of Magdalene laundry women. A devastating tribute that gives voice to decades of enforced silence.</div>
+      <div class="mc-action">Study in depth →</div>
+    </a>
+    <a href="Eilean_Death.html" class="chapter-card card-death" style="animation-delay:.2s">
+      <div class="mc-icon">✈️</div>
+      <div class="mc-subtitle">Poem 4 · Acts and Monuments, 1972</div>
+      <div class="mc-title">Death and Engines</div>
+      <div class="mc-desc">A burned plane wreck at Paris airport triggers a meditation on the inevitability of death, written as her father was dying.</div>
+      <div class="mc-action">Study in depth →</div>
+    </a>
+    <a href="Eilean_Bend.html" class="chapter-card card-bend" style="animation-delay:.25s">
+      <div class="mc-icon">🌿</div>
+      <div class="mc-subtitle">Poem 5 · The Girl Who Married the Reindeer, 2001</div>
+      <div class="mc-title">The Bend in the Road</div>
+      <div class="mc-desc">A familiar bend in the road triggers memories of a sick child and loved ones who have passed. Memory preserved in nature.</div>
+      <div class="mc-action">Study in depth →</div>
+    </a>
+    <a href="Eilean_Niall.html" class="chapter-card card-niall" style="animation-delay:.3s">
+      <div class="mc-icon">🌟</div>
+      <div class="mc-subtitle">Poem 6 · The Sun Fish, 2009</div>
+      <div class="mc-title">To Niall Woods and Xenya Ostrovskaia</div>
+      <div class="mc-desc">A wedding poem for her son — weaving Irish &amp; Russian folklore, fairytale and scripture into a blessing that ends "happily ever after."</div>
+      <div class="mc-action">Study in depth →</div>
+    </a>
+  </div>
+  <div class="section-label-row"><span class="label">🛠️ Revision Tools</span></div>
+  <div class="topics-grid" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr));">
+    <a href="Eilean_Flashcards.html" class="chapter-card card-flash" style="animation-delay:.35s">
+      <div class="mc-icon">🃏</div>
+      <div class="mc-subtitle">All 6 Poems · Quote Drill</div>
+      <div class="mc-title">Flashcard Drill</div>
+      <div class="mc-desc">Test every key quote from every poem. Flip-cards organised by poem — quote on the front, technique &amp; analysis on the back.</div>
+      <div class="mc-action">Start drilling →</div>
+    </a>
+    <a href="Eilean_Links.html" class="chapter-card card-links" style="animation-delay:.4s">
+      <div class="mc-icon">🔗</div>
+      <div class="mc-subtitle">Cross-Poem Connections</div>
+      <div class="mc-title">Thematic Links</div>
+      <div class="mc-desc">How the poems connect across shared themes — women's voices, history, death, memory, folklore, and mystery.</div>
+      <div class="mc-action">Explore links →</div>
+    </a>
+  </div>
+  <div class="bottom-section">
+    <div class="info-card">
+      <h3>Quick Tip for the Exam 📝</h3>
+      <p>Always link poems together in your answers. Examiners reward students who can see Ní Chuilleanáin's work as a whole — her consistent themes of mystery, women's voices, history, and the extraordinary hidden in the ordinary. Use the Thematic Links file to practise this.</p>
+      <a href="English.html" class="study-btn">← Back to English Hub</a>
+    </div>
+  </div>
+</main>
+</body>
+</html>

@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ní Chuilleanáin — Flashcard Drill</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F4F1EC;--surface:#FFFFFF;--surface2:#EDEAE4;--border:#DDD9D2;
+  --text:#1E1C18;--muted:#7A7568;--radius:16px;
+  --shadow:0 4px 24px rgba(0,0,0,0.08);--shadow-lg:0 12px 48px rgba(0,0,0,0.14);
+  --street:#1a6b5a;--street-l:#e8f4f0;
+  --lucina:#2e4a7a;--lucina-l:#e8ecf8;
+  --translation:#7a2e1a;--translation-l:#f8ece8;
+  --death:#5a3a7a;--death-l:#f0e8f8;
+  --bend:#2e6b1a;--bend-l:#e8f8e0;
+  --niall:#7a5a1a;--niall-l:#f8f0e0;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh;}
+nav{position:sticky;top:0;z-index:100;background:rgba(244,241,236,0.97);backdrop-filter:blur(10px);border-bottom:2px solid var(--border);padding:8px 16px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;min-height:52px;}
+.nav-logo{font-family:'Lexend Mega',sans-serif;font-size:0.85rem;color:var(--text);margin-right:4px;text-decoration:none;white-space:nowrap;}.nav-logo span{color:var(--translation);}
+.nav-divider{width:1px;height:20px;background:var(--border);flex-shrink:0;}
+.nav-btn{padding:5px 11px;border-radius:18px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.72rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);text-decoration:none;white-space:nowrap;}
+.nav-btn:hover{transform:translateY(-2px);}
+.nav-btn.home:hover,.nav-btn.home.active{background:#2c2825;border-color:#2c2825;color:#fff;}
+.nav-btn.street:hover,.nav-btn.street.active{background:var(--street);border-color:var(--street);color:#fff;}
+.nav-btn.lucina:hover,.nav-btn.lucina.active{background:var(--lucina);border-color:var(--lucina);color:#fff;}
+.nav-btn.translation:hover,.nav-btn.translation.active{background:var(--translation);border-color:var(--translation);color:#fff;}
+.nav-btn.death:hover,.nav-btn.death.active{background:var(--death);border-color:var(--death);color:#fff;}
+.nav-btn.bend:hover,.nav-btn.bend.active{background:var(--bend);border-color:var(--bend);color:#fff;}
+.nav-btn.niall:hover,.nav-btn.niall.active{background:var(--niall);border-color:var(--niall);color:#fff;}
+.nav-btn.flash.active,.nav-btn.flash:hover{background:#4a4a6a;border-color:#4a4a6a;color:#fff;}
+.nav-btn.links:hover,.nav-btn.links.active{background:#6a1a4a;border-color:#6a1a4a;color:#fff;}
+.page-hero{background:linear-gradient(135deg,#1a1a2e,#2a0d40,#0a1a1a);color:#fff;padding:44px 24px 36px;text-align:center;}
+.page-hero h1{font-family:'Lexend Mega',sans-serif;font-size:clamp(1.6rem,4vw,2.4rem);margin-bottom:10px;}
+.page-hero p{opacity:0.82;max-width:560px;margin:0 auto;font-size:0.95rem;}
+.stats-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:18px;}
+.stat-pill{background:rgba(255,255,255,0.14);border:1px solid rgba(255,255,255,0.25);color:#fff;padding:5px 16px;border-radius:20px;font-size:0.78rem;font-weight:600;}
+.controls{max-width:900px;margin:28px auto 0;padding:0 16px;}
+.filter-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;align-items:center;}
+.filter-label{font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--muted);margin-right:4px;}
+.filter-btn{padding:6px 14px;border-radius:20px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.76rem;font-weight:600;cursor:pointer;transition:all 0.18s;color:var(--muted);}
+.filter-btn:hover{transform:translateY(-2px);}
+.filter-btn.all.active,.filter-btn.all:hover{background:#2c2825;border-color:#2c2825;color:#fff;}
+.filter-btn.street.active,.filter-btn.street:hover{background:var(--street);border-color:var(--street);color:#fff;}
+.filter-btn.lucina.active,.filter-btn.lucina:hover{background:var(--lucina);border-color:var(--lucina);color:#fff;}
+.filter-btn.translation.active,.filter-btn.translation:hover{background:var(--translation);border-color:var(--translation);color:#fff;}
+.filter-btn.death.active,.filter-btn.death:hover{background:var(--death);border-color:var(--death);color:#fff;}
+.filter-btn.bend.active,.filter-btn.bend:hover{background:var(--bend);border-color:var(--bend);color:#fff;}
+.filter-btn.niall.active,.filter-btn.niall:hover{background:var(--niall);border-color:var(--niall);color:#fff;}
+.progress-bar-wrap{background:var(--surface);border:2px solid var(--border);border-radius:12px;padding:14px 18px;margin-bottom:20px;display:flex;align-items:center;gap:14px;}
+.pb-label{font-size:0.78rem;font-weight:700;color:var(--muted);white-space:nowrap;}
+.pb-track{flex:1;background:var(--surface2);border-radius:8px;height:10px;overflow:hidden;}
+.pb-fill{height:10px;border-radius:8px;background:linear-gradient(90deg,#1a6b5a,#2e4a7a);transition:width 0.4s ease;}
+.pb-count{font-size:0.82rem;font-weight:700;white-space:nowrap;}
+.fc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;max-width:900px;margin:0 auto;padding:0 16px 80px;}
+.fc-wrap{perspective:1000px;}
+.fc{width:100%;min-height:190px;cursor:pointer;transform-style:preserve-3d;transition:transform 0.5s cubic-bezier(.4,.2,.2,1);border-radius:var(--radius);position:relative;}
+.fc.flipped{transform:rotateY(180deg);}
+.fc-f,.fc-b{position:absolute;inset:0;backface-visibility:hidden;border-radius:var(--radius);padding:22px 20px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;border:2px solid var(--border);min-height:190px;}
+.fc-f{background:var(--surface);}
+.fc-b{transform:rotateY(180deg);color:var(--text);}
+.fc-poem-badge{font-size:0.65rem;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;padding:3px 12px;border-radius:20px;margin-bottom:12px;}
+.fc-quote{font-style:italic;font-size:0.95rem;font-weight:600;line-height:1.55;color:var(--text);margin-bottom:10px;}
+.fc-hint{font-size:0.68rem;color:var(--muted);margin-top:auto;}
+.fc-b .fc-poem-badge{margin-bottom:8px;}
+.fc-tech{font-size:0.75rem;font-weight:800;margin-bottom:6px;}
+.fc-analysis{font-size:0.85rem;line-height:1.6;}
+.poem-section-header{max-width:900px;margin:32px auto 12px;padding:0 16px;display:flex;align-items:center;gap:12px;}
+.poem-section-header h2{font-family:'Lexend Mega',sans-serif;font-size:1rem;white-space:nowrap;}
+.scroll-top{position:fixed;bottom:24px;right:24px;background:#2c2825;color:#fff;border:none;border-radius:50%;width:44px;height:44px;font-size:1.1rem;cursor:pointer;box-shadow:var(--shadow-lg);z-index:200;}
+.fc-wrap.hidden{display:none;}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="Eileen.html">✒️ <span>Ní Chuilleanáin</span></a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn home" href="Eileen.html">🏠 Home</a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn street" href="Eilean_Street.html">🔪 Street</a>
+  <a class="nav-btn lucina" href="Eilean_Lucina.html">🌙 Lucina</a>
+  <a class="nav-btn translation" href="Eilean_Translation.html">⛪ Translation</a>
+  <a class="nav-btn death" href="Eilean_Death.html">✈️ Death &amp; Engines</a>
+  <a class="nav-btn bend" href="Eilean_Bend.html">🌿 Bend in Road</a>
+  <a class="nav-btn niall" href="Eilean_Niall.html">🌟 To Niall Woods</a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn flash active" href="Eilean_Flashcards.html">🃏 Flashcards</a>
+  <a class="nav-btn links" href="Eilean_Links.html">🔗 Themes</a>
+</nav>
+
+<div class="page-hero">
+  <h1>🃏 Quote Flashcard Drill</h1>
+  <p>Click any card to reveal the technique and analysis. Filter by poem or study all at once.</p>
+  <div class="stats-row">
+    <span class="stat-pill" id="total-count">36 cards total</span>
+    <span class="stat-pill">Click to flip</span>
+    <span class="stat-pill">Filter by poem below</span>
+  </div>
+</div>
+
+<div class="controls">
+  <div class="filter-row">
+    <span class="filter-label">Filter:</span>
+    <button class="filter-btn all active" onclick="filter('all',this)">🗂️ All Poems</button>
+    <button class="filter-btn street" onclick="filter('street',this)">🔪 Street</button>
+    <button class="filter-btn lucina" onclick="filter('lucina',this)">🌙 Lucina</button>
+    <button class="filter-btn translation" onclick="filter('translation',this)">⛪ Translation</button>
+    <button class="filter-btn death" onclick="filter('death',this)">✈️ Death &amp; Engines</button>
+    <button class="filter-btn bend" onclick="filter('bend',this)">🌿 Bend in Road</button>
+    <button class="filter-btn niall" onclick="filter('niall',this)">🌟 Niall Woods</button>
+  </div>
+  <div class="progress-bar-wrap">
+    <span class="pb-label">Visible cards:</span>
+    <div class="pb-track"><div class="pb-fill" id="pb-fill" style="width:100%;"></div></div>
+    <span class="pb-count" id="pb-count">36 / 36</span>
+  </div>
+</div>
+
+<div class="poem-section-header" data-poem="street">
+  <h2 style="color:#1a6b5a;">🔪 Street</h2>
+  <div style="flex:1;height:2px;background:#e8f4f0;border-radius:4px;"></div>
+</div>
+<div class="fc-grid" id="grid-street">
+<div class="fc-wrap" data-poem="street"><div class="fc" onclick="this.classList.toggle('flipped')">
+  <div class="fc-f" style="border-top:4px solid #1a6b5a;">
+    <div class="fc-poem-badge" style="background:#e8f4f0;color:#1a6b5a;">Street</div>
+    <div class="fc-quote">"dangling a knife"</div>
+    <div class="fc-hint">Key image · Click to flip</div>
+  </div>
+  <div class="fc-b" style="background:#e8f4f0;border-top:4px solid #1a6b5a;">
+    <div class="fc-poem-badge" style="background:rgba(0,0,0,0.08);color:#1a6b5a;">Street</div>
+    <div class="fc-tech" style="color:#1a6b5a;">Verb Choice · Power · Symbol</div>
+    <div class="fc-analysis">"Dangling" suggests complete ease with a weapon — she is totally at home with it. The knife is also a phallic symbol: by giving the woman the knife, Ní Ch. gives her the power society usually assigns to men. The man who watches is symbolically powerless.</div>
+  </div>
+</div></div>
+<div class="fc-wrap" data-poem="street"><div class="fc" onclick="this.classList.toggle('flipped')">
+  <div class="fc-f" style="border-top:4px solid #1a6b5a;">
+    <div class="fc-poem-badge" style="background:#e8f4f0;color:#1a6b5a;">Street</div>
+    <div class="fc-quote">"dark shining drops in the paving-stones"</div>
+    <div class="fc-hint">Visual imagery · Click to flip</div>
+  </div>
+  <div class="fc-b" style="background:#e8f4f0;border-top:4px solid #1a6b5a;">
+    <div class="fc-poem-badge" style="background:rgba(0,0,0,0.08);color:#1a6b5a;">Street</div>
+    <div class="fc-tech" style="color:#1a6b5a;">Paradox · Gothic Imagery</div>
+    <div class="fc-analysis">Paradoxical: "dark" and "shining" seem to contradict each other, yet combine to create a vivid, visceral image of blood catching the light on stone. Beautiful and horrifying at once — this is Gothic at its finest. We never know if the blood is animal or human.</div>
+  </div>
+</div></div>
+<div class="fc-wrap" data-poem="street"><div class="fc" onclick="this.classList.toggle('flipped')">
+  <div class="fc-f" style="border-top:4px solid #1a6b5a;">
+    <div class="fc-poem-badge" style="background:#e8f4f0;color:#1a6b5a;">Street</div>
+    <div class="fc-quote">"The shambles"</div>
+    <div class="fc-hint">Setting · Click to flip</div>
+  </div>
+  <div class="fc-b" style="background:#e8f4f0;border-top:4px solid #1a6b5a;">
+    <div class="fc-poem-badge" style="background:rgba(0,0,0,0.08);color:#1a6b5a;">Street</div>
+    <div class="fc-tech" style="color:#1a6b5a;">Symbolism · The Woman's Domain</div>
+    <div class="fc-analysis">A "shambles" is a place of carnage and slaughter. Yet the butcher's daughter is completely at home here. This is her natural world — she is not frightened by it, she inhabits it. The setting reinforces her power and the man's vulnerability as an outsider.</div>
+  </div>
+</div></div>
+<div class="fc-wrap" data-poem="street"><div class="fc" onclick="this.classList.toggle('flipped')">
+  <div class="fc-f" style="border-top:4px solid #1a6b5a;">
+    <div class="fc-poem-badge" style="background:#e8f4f0;color:#1a6b5a;">Street</div>
+    <div class="fc-quote">"red crescent marks... fading to faintest"</div>
+    <div class="fc-hint">Closing image · Click to flip</div>
+  </div>
+  <div class="fc-b" style="background:#e8f4f0;border-top:4px solid #1a6b5a;">
+    <div class="fc-poem-badge" style="background:rgba(0,0,0,0.08);color:#1a6b5a;">Street</div>
+    <div class="fc-tech" style="color:#1a6b5a;">Imagery · Lunar Symbolism · Mystery</div>
+    <div class="fc-analysis">The blood on her feet forms crescent (half-moon) shapes as she climbs the stairs. "Fading to faintest" creates a film-like dissolve — she disappears into another realm, becoming mythical. Combined with Lucina (Moon Goddess), women in Ní Ch. are often connected to lunar imagery.</div>
+  </div>
+</div></div>
+<div class="fc-wrap" data-poem="street"><div class="fc" onclick="this.classList.toggle('flipped')">
+  <div class="fc-f" style="border-top:4px solid #1a6b5a;">
+    <div class="fc-poem-badge" style="background:#e8f4f0;color:#1a6b5a;">Street</div>
+    <div class="fc-quote">"half open door"</div>
+    <div class="fc-hint">Threshold image · Click to flip</div>
+  </div>
+  <div class="fc-b" style="background:#e8f4f0;border-top:4px solid #1a6b5a;">
+    <div class="fc-poem-badge" style="background:rgba(0,0,0,0.08);color:#1a6b5a;">Street</div>
+    <div class="fc-tech" style="color:#1a6b5a;">Symbolism · Ambiguity</div>
+    <div class="fc-analysis">The half-open door is perfectly symbolic of the poem's refusal to reveal everything. An invitation and a barrier simultaneously. We can see in, but not fully. The man — and the reader — gets a glimpse, but the full picture is withheld. This is Ní Ch.'s method: respect the reader's imagination.</div>
+  </div>
+</div></div>
+<div class="fc-wrap" data-poem="street"><div class="fc" onclick="this.classList.toggle('flipped')">
+  <div class="fc-f" style="border-top:4px solid #1a6b5a;">
+    <div class="fc-poem-badge" style="background:#e8f4f0;color:#1a6b5a;">Street</div>
+    <div class="fc-quote">The ambiguous ending: no resolution</div>
+    <div class="fc-hint">Structure · Click to flip</div>
+  </div>
+  <div class="fc-b" style="background:#e8f4f0;border-top:4px solid #1a6b5a;">
+    <div class="fc-poem-badge" style="background:rgba(0,0,0,0.08);color:#1a6b5a;">Street</div>
+    <div class="fc-tech" style="color:#1a6b5a;">Open Ending · Mystery</div>
+    <div class="fc-analysis">Ní Chuilleanáin refuses to tell us what happens next. Does the man follow? Is she dangerous? This ambiguity is deliberate — the woman remains mysterious and unknowable. It preserves her power. The reader is left to decide: a rare act of trust in the audience.</div>
+  </div>
+</div></div>
+</div><!-- /grid-street -->
+
+<div class="poem-section-header" data-poem="lucina">
+  <h2 style="color:#2e4a7a;">🌙 Lucina Schynning in Silence of the Night</h2>
+  <div style="flex:1;height:2px;background:#e8ecf8;border-radius:4px;"></div>
+</div>
+<div class="fc-grid" id="grid-lucina">
+<div class="fc-wrap" data-poem="lucina"><div class="fc" onclick="this.classList.toggle('flipped')">
+  <div class="fc-f" style="border-top:4px solid #2e4a7a;">
+    <div class="fc-poem-badge" style="background:#e8ecf8;color:#2e4a7a;">Lucina</div>
+    <div class="fc-quote">"Without roast meat or music"</div>
+    <div class="fc-hint">Historical allusion · Click to flip</div>
+  </div>
+  <div class="fc-b" style="background:#e8ecf8;border-top:4px solid #2e4a7a;">
+    <div class="fc-poem-badge" style="background:rgba(0,0,0,0.08);color:#2e4a7a;">Lucina</div>
+    <div class="fc-tech" style="color:#2e4a7a;">Allusion · Dual Meaning · Deprivation</div>
+    <div class="fc-analysis">Works on two levels: historically, the Cromwellian suppression of Irish culture (music banned, food destroyed); personally, the absence of joy and sustenance. "Roast meat" = physical nourishment; "music" = spiritual nourishment. Both stripped away in one simple, devastating line.</div>
+  </div>
+</div></div>
+<div class="fc-wrap" data-poem="lucina"><div class="fc" onclick="this.classList.toggle('flipped')">
+  <div class="fc-f" style="border-top:4px solid #2e4a7a;">
+    <div class="fc-poem-badge" style="background:#e8ecf8;color:#2e4a7a;">Lucina</div>
+    <div class="fc-quote">"plague... plague"</div>
+    <div class="fc-hint">Repetition · Click to flip</div>
+  </div>
+  <div class="fc-b" style="background:#e8ecf8;border-top:4px solid #2e4a7a;">
+    <div class="fc-poem-badge" style="background:rgba(0,0,0,0.08);color:#2e4a7a;">Lucina</div>
+    <div class="fc-tech" style="color:#2e4a7a;">Repetition · Psychological Disturbance</div>
+    <div class="fc-analysis">The repetition of "plague" suggests overwhelming, inescapable suffering — not a single event but a condition that will not release her. Its biblical connotations (plagues of Egypt) add a sense of divine test. Yet the ruined house provides respite: the place of destruction is also the place of survival.</div>
+  </div>
+</div></div>
+<div class="fc-wrap" data-poem="lucina"><div class="fc" onclick="this.classList.toggle('flipped')">
+  <div class="fc-f" style="border-top:4px solid #2e4a7a;">
+    <div class="fc-poem-badge" style="background:#e8ecf8;color:#2e4a7a;">Lucina</div>
+    <div class="fc-quote">"sour candle" and "crazed window"</div>
+    <div class="fc-hint">Unsettling imagery · Click to flip</div>
+  </div>
+  <div class="fc-b" style="background:#e8ecf8;border-top:4px solid #2e4a7a;">
+    <div class="fc-poem-badge" style="background:rgba(0,0,0,0.08);color:#2e4a7a;">Lucina</div>
+    <div class="fc-tech" style="color:#2e4a7a;">Imagery · Strange Adjectives · Unease</div>
+    <div class="fc-analysis">"Sour" applied to a candle is unexpected — candles give warmth, but this one has gone rancid, wrong. "Crazed" means cracked/fractured (as in ceramics) but also carries connotations of madness. Together: a world that has broken down, where even objects of comfort have become wrong.</div>
+  </div>
+</div></div>
+<div class="fc-wrap" data-poem="lucina"><div class="fc" onclick="this.classList.toggle('flipped')">
+  <div class="fc-f" style="border-top:4px solid #2e4a7a;">
+    <div class="fc-poem-badge" style="background:#e8ecf8;color:#2e4a7a;">Lucina</div>
+    <div class="fc-quote">"sky growing through the hole in the roof"</div>
+    <div class="fc-hint">Paradox · Click to flip</div>
+  </div>
+  <div class="fc-b" style="background:#e8ecf8;border-top:4px solid #2e4a7a;">
+    <div class="fc-poem-badge" style="background:rgba(0,0,0,0.08);color:#2e4a7a;">Lucina</div>
+    <div class="fc-tech" style="color:#2e4a7a;">Paradox · Symbolism · Transcendence</div>
+    <div class="fc-analysis">The "hole in the roof" is a sign of ruin — yet through it, the vast, infinite sky "grows." The very place of destruction becomes the opening through which something transcendent enters. Ruin as gateway: transformation comes through suffering, not despite it. Central to the poem's message.</div>
+  </div>
+</div></div>
+<div class="fc-wrap" data-poem="lucina"><div class="fc" onclick="this.classList.toggle('flipped')">
+  <div class="fc-f" style="border-top:4px solid #2e4a7a;">
+    <div class="fc-poem-badge" style="background:#e8ecf8;color:#2e4a7a;">Lucina</div>
+    <div class="fc-quote">"the resilient stream running"</div>
+    <div class="fc-hint">Closing image · Click to flip</div>
+  </div>
+  <div class="fc-b" style="background:#e8ecf8;border-top:4px solid #2e4a7a;">
+    <div class="fc-poem-badge" style="background:rgba(0,0,0,0.08);color:#2e4a7a;">Lucina</div>
+    <div class="fc-tech" style="color:#2e4a7a;">Water Symbolism · Resilience</div>
+    <div class="fc-analysis">The stream keeps flowing regardless — it is unstoppable. Water is a traditional symbol of cleansing and rebirth, and here its "resilience" carries the whole poem's argument: life, like water, continues. Despite plague, destruction, and suffering, the stream runs on. Alliteration of "resilient/running" adds quiet confidence.</div>
+  </div>
+</div></div>
+<div class="fc-wrap" data-poem="lucina"><div class="fc" onclick="this.classList.toggle('flipped')">
+  <div class="fc-f" style="border-top:4px solid #2e4a7a;">
+    <div class="fc-poem-badge" style="background:#e8ecf8;color:#2e4a7a;">Lucina</div>
+    <div class="fc-quote">Lucina = Moon Goddess (Diana)</div>
+    <div class="fc-hint">Title · Click to flip</div>
+  </div>
+  <div class="fc-b" style="background:#e8ecf8;border-top:4px solid #2e4a7a;">
+    <div class="fc-poem-badge" style="background:rgba(0,0,0,0.08);color:#2e4a7a;">Lucina</div>
+    <div class="fc-tech" style="color:#2e4a7a;">Classical Allusion · Archaic Diction · Setting</div>
+    <div class="fc-analysis">The title uses archaic Scottish dialect ("schynning" = shining) to create an ancient, timeless quality. Lucina is Diana, the Moon Goddess — powerful, female, associated with transformation. The Moon watches over the suffering woman, a divine feminine presence that cleanses and transforms her.</div>
+  </div>
+</div></div>
+</div><!-- /grid-lucina -->
+
+<div class="poem-section-header" data-poem="translation">
+  <h2 style="color:#7a2e1a;">⛪ Translation</h2>
+  <div style="flex:1;height:2px;background:#f8ece8;border-radius:4px;"></div>
+</div>
+<div class="fc-grid" id="grid-translation">
+<div class="fc-wrap" data-poem="translation"><div class="fc" onclick="this.classList.toggle('flipped')">
+  <div class="fc-f" style="border-top:4px solid #7a2e1a;">
+    <div class="fc-poem-badge" style="background:#f8ece8;color:#7a2e1a;">Translation</div>
+    <div class="fc-quote">"where steam danced / around stones and giggled and slipped"</div>
+    <div class="fc-hint">Contrast · Click to flip</div>
+  </div>
+  <div class="fc-b" style="background:#f8ece8;border-top:4px solid #7a2e1a;">
+    <div class="fc-poem-badge" style="background:rgba(0,0,0,0.08);color:#7a2e1a;">Translation</div>
+    <div class="fc-tech" style="color:#7a2e1a;">Personification · Devastating Contrast</div>
+    <div class="fc-analysis">The steam is personified as joyful — it "dances," "giggles," "slips." But the women cannot do any of these things. They are forbidden to laugh, play or communicate freely. The cruelest irony: the very steam of their labour is more free than they are. Enjambment mimics the endless, continuous work.</div>
+  </div>
+</div></div>
+<div class="fc-wrap" data-poem="translation"><div class="fc" onclick="this.classList.toggle('flipped')">
+  <div class="fc-f" style="border-top:4px solid #7a2e1a;">
+    <div class="fc-poem-badge" style="background:#f8ece8;color:#7a2e1a;">Translation</div>
+    <div class="fc-quote">"ridges under the veil"</div>
+    <div class="fc-hint">Visual imagery · Click to flip</div>
+  </div>
+  <div class="fc-b" style="background:#f8ece8;border-top:4px solid #7a2e1a;">
+    <div class="fc-poem-badge" style="background:rgba(0,0,0,0.08);color:#7a2e1a;">Translation</div>
+    <div class="fc-tech" style="color:#7a2e1a;">Imagery · Multiple Meanings</div>
+    <div class="fc-analysis">The "ridges" may be the bones visible through the thin fabric covering exhumed remains, or it may evoke the ridges of a forehead under a nun's veil — suggesting the institution that imprisoned them. The veil evokes both a wedding veil (joy denied) and the secrecy that hid these women from society.</div>
+  </div>
+</div></div>
+<div class="fc-wrap" data-poem="translation"><div class="fc" onclick="this.classList.toggle('flipped')">
+  <div class="fc-f" style="border-top:4px solid #7a2e1a;">
+    <div class="fc-poem-badge" style="background:#f8ece8;color:#7a2e1a;">Translation</div>
+    <div class="fc-quote">"sharp edges of words"</div>
+    <div class="fc-hint">Language · Click to flip</div>
+  </div>
+  <div class="fc-b" style="background:#f8ece8;border-top:4px solid #7a2e1a;">
+    <div class="fc-poem-badge" style="background:rgba(0,0,0,0.08);color:#7a2e1a;">Translation</div>
+    <div class="fc-tech" style="color:#7a2e1a;">Metaphor · Language as Weapon</div>
+    <div class="fc-analysis">The metaphor makes language physically dangerous. Words like "fallen," "sinful," "unclean" cut and wound. The same sharp words branded these women, stripped their humanity and, likely, commanded their secret burial. Ní Ch. uses the poem to blunt those sharp edges — to reclaim language for these women.</div>
+  </div>
+</div></div>
+<div class="fc-wrap" data-poem="translation"><div class="fc" onclick="this.classList.toggle('flipped')">
+  <div class="fc-f" style="border-top:4px solid #7a2e1a;">
+    <div class="fc-poem-badge" style="background:#f8ece8;color:#7a2e1a;">Translation</div>
+    <div class="fc-quote">"rising above the shuffle and hum"</div>
+    <div class="fc-hint">Voice · Click to flip</div>
+  </div>
+  <div class="fc-b" style="background:#f8ece8;border-top:4px solid #7a2e1a;">
+    <div class="fc-poem-badge" style="background:rgba(0,0,0,0.08);color:#7a2e1a;">Translation</div>
+    <div class="fc-tech" style="color:#7a2e1a;">Auditory Imagery · The Rising Voice</div>
+    <div class="fc-analysis">The "shuffle and hum" is the relentless sound of the laundry — feet shuffling, machinery humming, prayers droning. "Rising above" captures both the difficulty and the aspiration. The voice strains upward, against the weight of noise and routine. The poem itself is this rising voice.</div>
+  </div>
+</div></div>
+<div class="fc-wrap" data-poem="translation"><div class="fc" onclick="this.classList.toggle('flipped')">
+  <div class="fc-f" style="border-top:4px solid #7a2e1a;">
+    <div class="fc-poem-badge" style="background:#f8ece8;color:#7a2e1a;">Translation</div>
+    <div class="fc-quote">"washed clean of idiom"</div>
+    <div class="fc-hint">Final stanza · Click to flip</div>
+  </div>
+  <div class="fc-b" style="background:#f8ece8;border-top:4px solid #7a2e1a;">
+    <div class="fc-poem-badge" style="background:rgba(0,0,0,0.08);color:#7a2e1a;">Translation</div>
+    <div class="fc-tech" style="color:#7a2e1a;">Metaphor · Irony · Liberation</div>
+    <div class="fc-analysis">To be "washed clean of idiom" = freed from the institutional language that branded women as "fallen." The irony is devastating: the laundry used washing as punishment; here washing represents liberation. The same action that oppressed becomes the action that frees. The poem performs what the title promises.</div>
+  </div>
+</div></div>
+<div class="fc-wrap" data-poem="translation"><div class="fc" onclick="this.classList.toggle('flipped')">
+  <div class="fc-f" style="border-top:4px solid #7a2e1a;">
+    <div class="fc-poem-badge" style="background:#f8ece8;color:#7a2e1a;">Translation</div>
+    <div class="fc-quote">"the bunched keys I bore"</div>
+    <div class="fc-hint">The nun speaker · Click to flip</div>
+  </div>
+  <div class="fc-b" style="background:#f8ece8;border-top:4px solid #7a2e1a;">
+    <div class="fc-poem-badge" style="background:rgba(0,0,0,0.08);color:#7a2e1a;">Translation</div>
+    <div class="fc-tech" style="color:#7a2e1a;">Symbol · Power · Guilt</div>
+    <div class="fc-analysis">Keys symbolise control — the power to lock and unlock. In the nun reading, the speaker acknowledges that she "bore" these keys — she was the one who locked the women in. The ceremony at which this poem was read is the moment those keys "slacken and fall." Power is finally, literally, relinquished.</div>
+  </div>
+</div></div>
+</div><!-- /grid-translation -->
+
+<div class="poem-section-header" data-poem="death">
+  <h2 style="color:#5a3a7a;">✈️ Death and Engines</h2>
+  <div style="flex:1;height:2px;background:#f0e8f8;border-radius:4px;"></div>
+</div>
+<div class="fc-grid" id="grid-death">
+<div class="fc-wrap" data-poem="death"><div class="fc" onclick="this.classList.toggle('flipped')">
+  <div class="fc-f" style="border-top:4px solid #5a3a7a;">
+    <div class="fc-poem-badge" style="background:#f0e8f8;color:#5a3a7a;">Death & Engines</div>
+    <div class="fc-quote">"Soon you will need wings of your own"</div>
+    <div class="fc-hint">Direct address · Click to flip</div>
+  </div>
+  <div class="fc-b" style="background:#f0e8f8;border-top:4px solid #5a3a7a;">
+    <div class="fc-poem-badge" style="background:rgba(0,0,0,0.08);color:#5a3a7a;">Death & Engines</div>
+    <div class="fc-tech" style="color:#5a3a7a;">Extended Metaphor · Direct Address</div>
+    <div class="fc-analysis">Fuses the poem's two subjects: the plane and her dying father. When the plane fails, the passenger must fly on without it. "You" makes this universal — she speaks to her father, to us, to all humans. "Soon" adds urgency without cruelty. The extended plane metaphor runs throughout the poem.</div>
+  </div>
+</div></div>
+<div class="fc-wrap" data-poem="death"><div class="fc" onclick="this.classList.toggle('flipped')">
+  <div class="fc-f" style="border-top:4px solid #5a3a7a;">
+    <div class="fc-poem-badge" style="background:#f0e8f8;color:#5a3a7a;">Death & Engines</div>
+    <div class="fc-quote">"Time and life like a knife and fork cross"</div>
+    <div class="fc-hint">Simile · Click to flip</div>
+  </div>
+  <div class="fc-b" style="background:#f0e8f8;border-top:4px solid #5a3a7a;">
+    <div class="fc-poem-badge" style="background:rgba(0,0,0,0.08);color:#5a3a7a;">Death & Engines</div>
+    <div class="fc-tech" style="color:#5a3a7a;">Domestic Simile · Inevitability</div>
+    <div class="fc-analysis">By using the image of a knife and fork, Ní Ch. brings death into the ordinary domestic world. A knife and fork will always cross at some point — inevitable, unremarkable. This is her argument about death: not a special event but a natural crossing. The assonance of "life/like/knife" accelerates the line.</div>
+  </div>
+</div></div>
+<div class="fc-wrap" data-poem="death"><div class="fc" onclick="this.classList.toggle('flipped')">
+  <div class="fc-f" style="border-top:4px solid #5a3a7a;">
+    <div class="fc-poem-badge" style="background:#f0e8f8;color:#5a3a7a;">Death & Engines</div>
+    <div class="fc-quote">"images of relief... will fail you some time"</div>
+    <div class="fc-hint">Central message · Click to flip</div>
+  </div>
+  <div class="fc-b" style="background:#f0e8f8;border-top:4px solid #5a3a7a;">
+    <div class="fc-poem-badge" style="background:rgba(0,0,0,0.08);color:#5a3a7a;">Death & Engines</div>
+    <div class="fc-tech" style="color:#5a3a7a;">Tone · Inevitability · Honesty</div>
+    <div class="fc-analysis">The "images of relief" are all our near-misses — the accidents we walked away from, the illnesses we survived. Ní Ch. says: these cannot protect you forever. At some point, relief will not come. The bluntest statement in the poem. The honesty is a form of respect for the dying person.</div>
+  </div>
+</div></div>
+<div class="fc-wrap" data-poem="death"><div class="fc" onclick="this.classList.toggle('flipped')">
+  <div class="fc-f" style="border-top:4px solid #5a3a7a;">
+    <div class="fc-poem-badge" style="background:#f0e8f8;color:#5a3a7a;">Death & Engines</div>
+    <div class="fc-quote">"you know how light your death is"</div>
+    <div class="fc-hint">Tone shift · Click to flip</div>
+  </div>
+  <div class="fc-b" style="background:#f0e8f8;border-top:4px solid #5a3a7a;">
+    <div class="fc-poem-badge" style="background:rgba(0,0,0,0.08);color:#5a3a7a;">Death & Engines</div>
+    <div class="fc-tech" style="color:#5a3a7a;">Tone Shift · Tenderness · Comfort</div>
+    <div class="fc-analysis">After the bleakness, this line arrives as a tender surprise. "Light" contrasts with the heaviness of everything else. The moment of death will be gentle, swift. This is a gift: an assurance that the moment itself will not be heavy or terrible. "Know" is not a question or hope — it is certainty.</div>
+  </div>
+</div></div>
+<div class="fc-wrap" data-poem="death"><div class="fc" onclick="this.classList.toggle('flipped')">
+  <div class="fc-f" style="border-top:4px solid #5a3a7a;">
+    <div class="fc-poem-badge" style="background:#f0e8f8;color:#5a3a7a;">Death & Engines</div>
+    <div class="fc-quote">"scattered like a wreckage... lodge in the hearts"</div>
+    <div class="fc-hint">Closing image · Click to flip</div>
+  </div>
+  <div class="fc-b" style="background:#f0e8f8;border-top:4px solid #5a3a7a;">
+    <div class="fc-poem-badge" style="background:rgba(0,0,0,0.08);color:#5a3a7a;">Death & Engines</div>
+    <div class="fc-tech" style="color:#5a3a7a;">Simile · Memory · Consolation</div>
+    <div class="fc-analysis">The plane metaphor returns: death scatters us like wreckage. Yet the pieces don't disappear — they "lodge in the hearts / Of all who love you." Wreckage usually means waste; here it becomes continuing presence. "Lodge" suggests permanence. The poem ends with love, not loss.</div>
+  </div>
+</div></div>
+<div class="fc-wrap" data-poem="death"><div class="fc" onclick="this.classList.toggle('flipped')">
+  <div class="fc-f" style="border-top:4px solid #5a3a7a;">
+    <div class="fc-poem-badge" style="background:#f0e8f8;color:#5a3a7a;">Death & Engines</div>
+    <div class="fc-quote">Change of tense: past → present</div>
+    <div class="fc-hint">Structure · Click to flip</div>
+  </div>
+  <div class="fc-b" style="background:#f0e8f8;border-top:4px solid #5a3a7a;">
+    <div class="fc-poem-badge" style="background:rgba(0,0,0,0.08);color:#5a3a7a;">Death & Engines</div>
+    <div class="fc-tech" style="color:#5a3a7a;">Tense Shift · Drama · Immediacy</div>
+    <div class="fc-analysis">The poem moves from past tense (describing the plane wreck) to present tense (addressing death directly). A dramatic, deliberate shift. Death is not historical — it is happening now. The present tense creates an uncomfortable immediacy that the reader cannot escape.</div>
+  </div>
+</div></div>
+</div><!-- /grid-death -->
+
+<div class="poem-section-header" data-poem="bend">
+  <h2 style="color:#2e6b1a;">🌿 The Bend in the Road</h2>
+  <div style="flex:1;height:2px;background:#e8f8e0;border-radius:4px;"></div>
+</div>
+<div class="fc-grid" id="grid-bend">
+<div class="fc-wrap" data-poem="bend"><div class="fc" onclick="this.classList.toggle('flipped')">
+  <div class="fc-f" style="border-top:4px solid #2e6b1a;">
+    <div class="fc-poem-badge" style="background:#e8f8e0;color:#2e6b1a;">Bend in Road</div>
+    <div class="fc-quote">"tree like a cat's tail"</div>
+    <div class="fc-hint">Simile · Click to flip</div>
+  </div>
+  <div class="fc-b" style="background:#e8f8e0;border-top:4px solid #2e6b1a;">
+    <div class="fc-poem-badge" style="background:rgba(0,0,0,0.08);color:#2e6b1a;">Bend in Road</div>
+    <div class="fc-tech" style="color:#2e6b1a;">Simile · Animating Nature</div>
+    <div class="fc-analysis">Surprising and slightly playful: a cat's tail is flexible, self-willed, alive. The tree has grown as it chooses, without human direction, arching over the road. By giving the tree personality, Ní Ch. suggests that nature is active, not passive — it absorbs and holds the lives of those who pass by it.</div>
+  </div>
+</div></div>
+<div class="fc-wrap" data-poem="bend"><div class="fc" onclick="this.classList.toggle('flipped')">
+  <div class="fc-f" style="border-top:4px solid #2e6b1a;">
+    <div class="fc-poem-badge" style="background:#e8f8e0;color:#2e6b1a;">Bend in Road</div>
+    <div class="fc-quote">"green creeper"</div>
+    <div class="fc-hint">Sound · Click to flip</div>
+  </div>
+  <div class="fc-b" style="background:#e8f8e0;border-top:4px solid #2e6b1a;">
+    <div class="fc-poem-badge" style="background:rgba(0,0,0,0.08);color:#2e6b1a;">Bend in Road</div>
+    <div class="fc-tech" style="color:#2e6b1a;">Assonance · Time Passing</div>
+    <div class="fc-analysis">The repeated "ee" sounds create a slow, insidious quality — mimicking the plant's quiet, persistent growth: unobserved, unannounced. A metaphor for time: it accumulates while we're not watching. When we look back, everything has changed.</div>
+  </div>
+</div></div>
+<div class="fc-wrap" data-poem="bend"><div class="fc" onclick="this.classList.toggle('flipped')">
+  <div class="fc-f" style="border-top:4px solid #2e6b1a;">
+    <div class="fc-poem-badge" style="background:#e8f8e0;color:#2e6b1a;">Bend in Road</div>
+    <div class="fc-quote">"as silent as it ever was"</div>
+    <div class="fc-hint">Tone · Click to flip</div>
+  </div>
+  <div class="fc-b" style="background:#e8f8e0;border-top:4px solid #2e6b1a;">
+    <div class="fc-poem-badge" style="background:rgba(0,0,0,0.08);color:#2e6b1a;">Bend in Road</div>
+    <div class="fc-tech" style="color:#2e6b1a;">Comparison · Permanence vs. Change</div>
+    <div class="fc-analysis">The bend is exactly as it has always been — unchanged by years, by deaths, by the child's illness. This permanence is contrasted with the radical changes in the speaker's human world. The bend does not mourn; it simply persists. The world carries on regardless of our suffering.</div>
+  </div>
+</div></div>
+<div class="fc-wrap" data-poem="bend"><div class="fc" onclick="this.classList.toggle('flipped')">
+  <div class="fc-f" style="border-top:4px solid #2e6b1a;">
+    <div class="fc-poem-badge" style="background:#e8f8e0;color:#2e6b1a;">Bend in Road</div>
+    <div class="fc-quote">"in the tree, in the air"</div>
+    <div class="fc-hint">Memory · Click to flip</div>
+  </div>
+  <div class="fc-b" style="background:#e8f8e0;border-top:4px solid #2e6b1a;">
+    <div class="fc-poem-badge" style="background:rgba(0,0,0,0.08);color:#2e6b1a;">Bend in Road</div>
+    <div class="fc-tech" style="color:#2e6b1a;">Imagery · Death in Nature · Consolation</div>
+    <div class="fc-analysis">Repetition of "in" places the dead physically inside the natural world — not above it or beyond it but within it. "In the tree" = within living wood. "In the air" = in every breath. The people we have lost are woven into the places we share with them. Loss is not erasure.</div>
+  </div>
+</div></div>
+<div class="fc-wrap" data-poem="bend"><div class="fc" onclick="this.classList.toggle('flipped')">
+  <div class="fc-f" style="border-top:4px solid #2e6b1a;">
+    <div class="fc-poem-badge" style="background:#e8f8e0;color:#2e6b1a;">Bend in Road</div>
+    <div class="fc-quote">"wrapped and sealed"</div>
+    <div class="fc-hint">Death imagery · Click to flip</div>
+  </div>
+  <div class="fc-b" style="background:#e8f8e0;border-top:4px solid #2e6b1a;">
+    <div class="fc-poem-badge" style="background:rgba(0,0,0,0.08);color:#2e6b1a;">Bend in Road</div>
+    <div class="fc-tech" style="color:#2e6b1a;">Precision · Care</div>
+    <div class="fc-analysis">Almost commercial in its precision — yet it carries a sense of care: they have been carefully preserved. The phrase is both clinical (the reality of burial) and tender (the care taken). The poem refuses melodrama: the dead are treated with the same quiet attention as everything else in the poem.</div>
+  </div>
+</div></div>
+<div class="fc-wrap" data-poem="bend"><div class="fc" onclick="this.classList.toggle('flipped')">
+  <div class="fc-f" style="border-top:4px solid #2e6b1a;">
+    <div class="fc-poem-badge" style="background:#e8f8e0;color:#2e6b1a;">Bend in Road</div>
+    <div class="fc-quote">"piled weight of sleep"</div>
+    <div class="fc-hint">Death metaphor · Click to flip</div>
+  </div>
+  <div class="fc-b" style="background:#e8f8e0;border-top:4px solid #2e6b1a;">
+    <div class="fc-poem-badge" style="background:rgba(0,0,0,0.08);color:#2e6b1a;">Bend in Road</div>
+    <div class="fc-tech" style="color:#2e6b1a;">Metaphor · Weight and Softness</div>
+    <div class="fc-analysis">"Piled weight" suggests heaviness, accumulation, pressing down. Yet "sleep" softens this — death as rest, not destruction. The "piling" suggests layers of tiredness accumulating over time: death comes not as a single blow but as a slow gathering. Tender and unusual.</div>
+  </div>
+</div></div>
+</div><!-- /grid-bend -->
+
+<div class="poem-section-header" data-poem="niall">
+  <h2 style="color:#7a5a1a;">🌟 To Niall Woods and Xenya Ostrovskaia</h2>
+  <div style="flex:1;height:2px;background:#f8f0e0;border-radius:4px;"></div>
+</div>
+<div class="fc-grid" id="grid-niall">
+<div class="fc-wrap" data-poem="niall"><div class="fc" onclick="this.classList.toggle('flipped')">
+  <div class="fc-f" style="border-top:4px solid #7a5a1a;">
+    <div class="fc-poem-badge" style="background:#f8f0e0;color:#7a5a1a;">Niall Woods</div>
+    <div class="fc-quote">"You see the same star"</div>
+    <div class="fc-hint">Opening line · Click to flip</div>
+  </div>
+  <div class="fc-b" style="background:#f8f0e0;border-top:4px solid #7a5a1a;">
+    <div class="fc-poem-badge" style="background:rgba(0,0,0,0.08);color:#7a5a1a;">Niall Woods</div>
+    <div class="fc-tech" style="color:#7a5a1a;">Symbolism · Fate</div>
+    <div class="fc-analysis">From different countries, different cultures, both Niall and Xenya look up and see the same star. The star is a symbol of fate and destiny — something universal, shared without knowing, connecting them across distance. The marriage is cosmically ordained. The simplicity of the image gives it power.</div>
+  </div>
+</div></div>
+<div class="fc-wrap" data-poem="niall"><div class="fc" onclick="this.classList.toggle('flipped')">
+  <div class="fc-f" style="border-top:4px solid #7a5a1a;">
+    <div class="fc-poem-badge" style="background:#f8f0e0;color:#7a5a1a;">Niall Woods</div>
+    <div class="fc-quote">"leave behind... leave behind"</div>
+    <div class="fc-hint">Repetition · Click to flip</div>
+  </div>
+  <div class="fc-b" style="background:#f8f0e0;border-top:4px solid #7a5a1a;">
+    <div class="fc-poem-badge" style="background:rgba(0,0,0,0.08);color:#7a5a1a;">Niall Woods</div>
+    <div class="fc-tech" style="color:#7a5a1a;">Repetition · Necessary Loss</div>
+    <div class="fc-analysis">The repetition insists on the necessary losses of marriage: old places, old ways, old identities. What is left behind is not abandoned — it is carried forward in memory and culture. The repetition makes this act of leaving feel significant, deliberate, not casual.</div>
+  </div>
+</div></div>
+<div class="fc-wrap" data-poem="niall"><div class="fc" onclick="this.classList.toggle('flipped')">
+  <div class="fc-f" style="border-top:4px solid #7a5a1a;">
+    <div class="fc-poem-badge" style="background:#f8f0e0;color:#7a5a1a;">Niall Woods</div>
+    <div class="fc-quote">"the cat speaks Irish and Russian"</div>
+    <div class="fc-hint">Cultural identity · Click to flip</div>
+  </div>
+  <div class="fc-b" style="background:#f8f0e0;border-top:4px solid #7a5a1a;">
+    <div class="fc-poem-badge" style="background:rgba(0,0,0,0.08);color:#7a5a1a;">Niall Woods</div>
+    <div class="fc-tech" style="color:#7a5a1a;">Symbolism · Cultural Identity · Humour</div>
+    <div class="fc-analysis">Gently funny — a bilingual cat — but seriously meaningful. Culture lives in the ordinary domestic world. Their languages and traditions don't disappear when they become one household; they coexist. The cat — always independent, never fully domesticated — represents the living, untamed spirit of their cultures.</div>
+  </div>
+</div></div>
+<div class="fc-wrap" data-poem="niall"><div class="fc" onclick="this.classList.toggle('flipped')">
+  <div class="fc-f" style="border-top:4px solid #7a5a1a;">
+    <div class="fc-poem-badge" style="background:#f8f0e0;color:#7a5a1a;">Niall Woods</div>
+    <div class="fc-quote">"half a loaf and a mother's blessing"</div>
+    <div class="fc-hint">Sacrifice · Click to flip</div>
+  </div>
+  <div class="fc-b" style="background:#f8f0e0;border-top:4px solid #7a5a1a;">
+    <div class="fc-poem-badge" style="background:rgba(0,0,0,0.08);color:#7a5a1a;">Niall Woods</div>
+    <div class="fc-tech" style="color:#7a5a1a;">Folk Saying · Sacrifice · Blessing</div>
+    <div class="fc-analysis">A folk saying: the mother gives up material support ("half a loaf") to give the most valuable gift: her blessing. She lets her son go so she can give him everything. Physical sacrifice becomes spiritual gift. The simplicity of "bread and blessing" grounds an enormous emotional act in the everyday.</div>
+  </div>
+</div></div>
+<div class="fc-wrap" data-poem="niall"><div class="fc" onclick="this.classList.toggle('flipped')">
+  <div class="fc-f" style="border-top:4px solid #7a5a1a;">
+    <div class="fc-poem-badge" style="background:#f8f0e0;color:#7a5a1a;">Niall Woods</div>
+    <div class="fc-quote">"You will... you will... you will"</div>
+    <div class="fc-hint">Anaphora · Click to flip</div>
+  </div>
+  <div class="fc-b" style="background:#f8f0e0;border-top:4px solid #7a5a1a;">
+    <div class="fc-poem-badge" style="background:rgba(0,0,0,0.08);color:#7a5a1a;">Niall Woods</div>
+    <div class="fc-tech" style="color:#7a5a1a;">Anaphora · Prophecy · Authority</div>
+    <div class="fc-analysis">"You will" is the language of a prophet or fairy godmother — not a hope or wish, but a certainty. Repeated throughout, it gives the speaker the authority of someone who knows how the story ends. She is the storyteller who controls the narrative. Her certainty is the poem's greatest gift to the couple.</div>
+  </div>
+</div></div>
+<div class="fc-wrap" data-poem="niall"><div class="fc" onclick="this.classList.toggle('flipped')">
+  <div class="fc-f" style="border-top:4px solid #7a5a1a;">
+    <div class="fc-poem-badge" style="background:#f8f0e0;color:#7a5a1a;">Niall Woods</div>
+    <div class="fc-quote">"lived happily ever after."</div>
+    <div class="fc-hint">Final isolated line · Click to flip</div>
+  </div>
+  <div class="fc-b" style="background:#f8f0e0;border-top:4px solid #7a5a1a;">
+    <div class="fc-poem-badge" style="background:rgba(0,0,0,0.08);color:#7a5a1a;">Niall Woods</div>
+    <div class="fc-tech" style="color:#7a5a1a;">Allusion · Isolated Line · Blessing</div>
+    <div class="fc-analysis">By isolating this line, Ní Ch. gives it the weight of a genuine blessing, not a cliché. In the context of all the allusions — the Firebird, Ruth, the King of Ireland's Son — this ending has been earned. The storyteller-mother is not offering a platitude but a real conclusion. The full stop is definitive.</div>
+  </div>
+</div></div>
+</div><!-- /grid-niall -->
+<button class="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+let currentFilter = 'all';
+function filter(poem, btn) {
+  currentFilter = poem;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const allCards = document.querySelectorAll('.fc-wrap');
+  let visible = 0;
+  allCards.forEach(card => {
+    if (poem === 'all' || card.dataset.poem === poem) { card.classList.remove('hidden'); visible++; }
+    else card.classList.add('hidden');
+  });
+  document.querySelectorAll('.poem-section-header').forEach(h => {
+    const p = h.dataset.poem;
+    h.style.display = (poem === 'all' || poem === p) ? 'flex' : 'none';
+  });
+  const total = allCards.length;
+  document.getElementById('pb-fill').style.width = (visible/total*100) + '%';
+  document.getElementById('pb-count').textContent = visible + ' / ' + total;
+  document.getElementById('total-count').textContent = visible + ' cards' + (poem !== 'all' ? ' shown' : ' total');
+}
+document.addEventListener('keydown', e => {
+  if (e.key === ' ' || e.key === 'Enter') {
+    const focused = document.activeElement;
+    if (focused && focused.classList.contains('fc')) focused.classList.toggle('flipped');
+  }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ní Chuilleanáin — Death and Engines</title><link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F7F4EF;--surface:#FFFFFF;--surface2:#F0EDE8;--border:#E2DDD7;--text:#2C2825;--muted:#7A7068;--c:#5a3a7a;--cl:#f0e8f8;--cd:#2a1a4a;--radius:14px;--shadow:0 4px 20px rgba(0,0,0,0.08);}
+*{margin:0;padding:0;box-sizing:border-box;}body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;font-size:16px;}
+nav{position:sticky;top:0;z-index:100;background:rgba(247,244,239,0.97);backdrop-filter:blur(10px);border-bottom:2px solid var(--border);padding:8px 16px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;min-height:52px;}
+.nav-logo{font-family:'Lexend Mega',sans-serif;font-size:0.85rem;color:var(--text);margin-right:4px;text-decoration:none;white-space:nowrap;}.nav-logo span{color:var(--c);}
+.nav-divider{width:1px;height:20px;background:var(--border);flex-shrink:0;}
+.nav-btn{padding:5px 11px;border-radius:18px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.72rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);text-decoration:none;white-space:nowrap;}
+.nav-btn:hover{transform:translateY(-2px);}
+.nav-btn.home:hover,.nav-btn.home.active{background:#2c2825;border-color:#2c2825;color:#fff;}
+.nav-btn.street:hover,.nav-btn.street.active{background:#1a6b5a;border-color:#1a6b5a;color:#fff;}
+.nav-btn.lucina:hover,.nav-btn.lucina.active{background:#2e4a7a;border-color:#2e4a7a;color:#fff;}
+.nav-btn.translation:hover,.nav-btn.translation.active{background:#7a2e1a;border-color:#7a2e1a;color:#fff;}
+.nav-btn.death:hover,.nav-btn.death.active{background:#5a3a7a;border-color:#5a3a7a;color:#fff;}
+.nav-btn.bend:hover,.nav-btn.bend.active{background:#2e6b1a;border-color:#2e6b1a;color:#fff;}
+.nav-btn.niall:hover,.nav-btn.niall.active{background:#7a5a1a;border-color:#7a5a1a;color:#fff;}
+.nav-btn.flash:hover,.nav-btn.flash.active{background:#4a4a6a;border-color:#4a4a6a;color:#fff;}
+.nav-btn.links:hover,.nav-btn.links.active{background:#6a1a4a;border-color:#6a1a4a;color:#fff;}
+.section{padding:0 16px 80px;max-width:940px;margin:0 auto;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.hero{background:linear-gradient(135deg,var(--cd),var(--c));color:#fff;padding:44px 32px 36px;text-align:center;margin-bottom:32px;}
+.hero .poem-label{font-size:0.75rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;opacity:0.75;margin-bottom:10px;}
+.hero h1{font-family:'Lexend Mega',sans-serif;font-size:clamp(1.6rem,4vw,2.8rem);line-height:1.15;margin-bottom:12px;}
+.hero p{opacity:0.88;max-width:620px;margin:0 auto;font-size:0.96rem;}
+.hero-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px;}
+.hero-chip{background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:4px 14px;border-radius:20px;font-size:0.75rem;font-weight:600;}
+.tab-bar{display:flex;gap:4px;flex-wrap:wrap;padding:22px 0 8px;border-bottom:2px solid var(--border);margin-bottom:28px;}
+.tab{padding:8px 18px;border-radius:10px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.8rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);}
+.tab:hover,.tab.active{background:var(--c);color:#fff;border-color:var(--c);}
+.tab-panel{display:none;}.tab-panel.active{display:block;animation:fadeIn 0.25s ease;}
+.info-card{background:var(--surface);border-radius:var(--radius);padding:24px 26px;margin-bottom:20px;box-shadow:var(--shadow);border-left:5px solid var(--c);}
+.info-card h2{font-size:1.1rem;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.info-card p{margin-bottom:9px;font-size:0.94rem;}.info-card ul{padding-left:20px;margin-bottom:9px;}.info-card li{margin-bottom:5px;font-size:0.93rem;}
+.quote-block{border-left:4px solid var(--c);background:var(--cl);border-radius:0 var(--radius) var(--radius) 0;padding:16px 20px;margin:16px 0;}
+.quote-block blockquote{font-family:'Lexend Mega',sans-serif;font-size:0.95rem;font-style:italic;margin-bottom:8px;line-height:1.5;}
+.quote-ref{font-size:0.73rem;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--muted);margin-bottom:10px;}
+.quote-body{font-size:0.91rem;line-height:1.75;}.quote-body p{margin-bottom:8px;}
+.tech-pill{display:inline-block;background:var(--c);color:#fff;font-size:0.72rem;font-weight:700;padding:2px 9px;border-radius:5px;margin:2px;}
+.box{border-radius:var(--radius);padding:14px 18px;margin:14px 0;display:flex;gap:12px;align-items:flex-start;}
+.box .ico{font-size:1.5rem;flex-shrink:0;line-height:1.2;}.box-label{font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;margin-bottom:4px;}
+.box p,.box li{font-size:0.91rem;}.box ul{padding-left:16px;}.box li{margin-bottom:4px;}
+.b-exam{background:#eaf4fb;border:2px solid #5dade2;}.b-exam .box-label{color:#1a6b9a;}
+.b-tip{background:#fffbf0;border:2px solid #f39c12;}.b-tip .box-label{color:#b7770d;}
+.acc{margin-bottom:10px;}
+.acc-btn{width:100%;text-align:left;background:var(--surface);border:2px solid var(--border);border-radius:var(--radius);padding:14px 18px;font-family:'Lexend',sans-serif;font-size:0.92rem;font-weight:600;cursor:pointer;color:var(--text);display:flex;justify-content:space-between;align-items:center;transition:background 0.15s;}
+.acc-btn:hover{background:#f8f5f0;}.acc-btn.open{border-radius:var(--radius) var(--radius) 0 0;border-bottom-color:transparent;}
+.acc-btn .arr{transition:transform 0.25s;margin-left:8px;flex-shrink:0;}.acc-btn.open .arr{transform:rotate(180deg);}
+.acc-body{display:none;background:var(--surface);border:2px solid var(--border);border-top:none;border-radius:0 0 var(--radius) var(--radius);padding:20px 22px;}.acc-body.open{display:block;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:14px 0;}@media(max-width:600px){.two-col{grid-template-columns:1fr;}}
+.stanza-block{background:var(--surface);border:2px solid var(--border);border-radius:var(--radius);padding:22px 24px;margin-bottom:18px;border-top:4px solid var(--c);}
+.stanza-block .stanza-label{font-size:0.72rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+.stanza-block .poem-text{font-style:italic;font-size:0.9rem;line-height:1.8;background:var(--cl);border-radius:0 8px 8px 0;padding:10px 14px;margin-bottom:14px;border-left:3px solid var(--c);}
+.stanza-block h3{font-size:1rem;font-weight:700;margin:12px 0 8px;}.stanza-block p{font-size:0.92rem;margin-bottom:8px;}
+h3.label{font-family:'Lexend Mega',sans-serif;font-size:0.95rem;font-weight:700;margin:28px 0 14px;display:flex;align-items:center;gap:8px;}
+h3.label::after{content:'';flex:1;height:2px;background:var(--border);border-radius:4px;}
+table{width:100%;border-collapse:collapse;font-size:0.9rem;margin:12px 0;}
+th{background:#2c2825;color:#fff;padding:10px 14px;text-align:left;font-weight:600;}
+td{padding:9px 14px;border-bottom:1px solid var(--border);}tr:hover td{background:var(--surface2);}
+</style></head><body><nav><a class="nav-logo" href="Eileen.html">✒️ <span>Ní Chuilleanáin</span></a><div class="nav-divider"></div>
+  <a class="nav-btn home" href="Eileen.html">🏠 Home</a><div class="nav-divider"></div>
+  <a class="nav-btn street" href="Eilean_Street.html">🔪 Street</a>
+  <a class="nav-btn lucina" href="Eilean_Lucina.html">🌙 Lucina</a>
+  <a class="nav-btn translation" href="Eilean_Translation.html">⛪ Translation</a>
+  <a class="nav-btn death active" href="Eilean_Death.html">✈️ Death &amp; Engines</a>
+  <a class="nav-btn bend" href="Eilean_Bend.html">🌿 Bend in Road</a>
+  <a class="nav-btn niall" href="Eilean_Niall.html">🌟 To Niall Woods</a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn flash" href="Eilean_Flashcards.html">🃏 Flashcards</a>
+  <a class="nav-btn links" href="Eilean_Links.html">🔗 Themes</a></nav>
+<div class="hero">
+  <div class="poem-label">Acts and Monuments · 1972</div>
+  <h1>Death and Engines</h1>
+  <p>A bleak meditation on the inevitability of death. Landing at Paris airport, the poet sees a burned plane wreck in the snow — and thinks of her dying father. The machine and the human body are one.</p>
+  <div class="hero-chips">
+    <span class="hero-chip">Bleak / Resigned Tone</span><span class="hero-chip">5 Stanzas · Unrhymed</span>
+    <span class="hero-chip">Orly Airport</span><span class="hero-chip">Death · Family</span>
+  </div>
+</div>
+<div class="section">
+  <div class="tab-bar">
+    <button class="tab active" onclick="switchTab(this,'overview')">📋 Overview</button>
+    <button class="tab" onclick="switchTab(this,'analysis')">🔬 Stanza by Stanza</button>
+    <button class="tab" onclick="switchTab(this,'quotes')">💬 Key Quotes</button>
+    <button class="tab" onclick="switchTab(this,'techniques')">🎨 Techniques</button>
+    <button class="tab" onclick="switchTab(this,'context')">🎓 Context &amp; Exam</button>
+  </div>
+  <div class="tab-panel active" id="overview">
+    <h3 class="label">The Simple Version</h3>
+    <div class="info-card"><p>The speaker is landing at Orly Airport in Paris in poor weather. She sees the burned-out wreckage of a plane sitting in the snow. This sight triggers a meditation on the inevitability of death — specifically, her father's death, which is happening at this moment (he was dying in Rome). The poem moves from the description of the plane wreck, to a universal statement about death, to the aftermath of losing a loved one. <strong>Key insight: the plane and the human being merge — both are machines that will eventually fail and fall.</strong></p></div>
+    <h3 class="label">Two Real Incidents</h3>
+    <div class="two-col">
+      <div class="info-card"><h2>✈️ Incident 1: Paris Airport</h2><p>Landing in Paris in poor weather, Ní Ch. saw the wreckage of a plane at Orly Airport. She was on her way back from Rome where her father was dying. The burned black plane sitting in white snow became the central image of the poem.</p></div>
+      <div class="info-card"><h2>🚗 Incident 2: The Overturned Car</h2><p>She also saw an overturned car belonging to friends of hers. She was relieved to discover they were recovering in hospital. Both incidents form the basis for her explorations of relief, fear, and the ultimate unreliability of that relief.</p></div>
+    </div>
+    <h3 class="label">At a Glance</h3>
+    <div class="info-card"><table>
+      <tr><th>Element</th><th>Detail</th></tr>
+      <tr><td><strong>Collection</strong></td><td>Acts and Monuments (1972) — first collection</td></tr>
+      <tr><td><strong>Form</strong></td><td>5 unrhymed stanzas of varying length — random, uneasy</td></tr>
+      <tr><td><strong>Tense</strong></td><td>Past → present: dramatic shift in stanza 3</td></tr>
+      <tr><td><strong>Central conceit</strong></td><td>The plane and the human body as parallel machines</td></tr>
+      <tr><td><strong>Tone</strong></td><td>Bleak, starkly honest, eventually resigned and tender</td></tr>
+      <tr><td><strong>Key symbol</strong></td><td>Snow = life (temporary); burned black plane = death</td></tr>
+      <tr><td><strong>Central message</strong></td><td>Death is not a matter of if, but when</td></tr>
+    </table></div>
+  </div>
+  <div class="tab-panel" id="analysis">
+    <h3 class="label">Stanza-by-Stanza Analysis</h3>
+    <div class="stanza-block">
+      <div class="stanza-label">Stanzas 1 &amp; 2 — The Wreck</div>
+      <div class="poem-text">Burned plane in the snow... sighs of the lonely pilot...</div>
+      <h3>Begins mid-narrative — like dreams do</h3>
+      <p>We are dropped into the action immediately. Dramatic language creates a serious, stark tone. The punctuation — dashes and commas — shows the speaker registering individual pieces of information without yet fully processing them. The airport should be noisy — yet she experiences it as eerily quiet. The sense of alienation is powerful.</p>
+    </div>
+    <div class="stanza-block">
+      <div class="stanza-label">Stanzas 3 &amp; 4 — The Universal Lesson</div>
+      <div class="poem-text">"Soon you will need wings of your own... Time and life like a knife and fork cross..."</div>
+      <h3>Change of tense to present — death is NOW</h3>
+      <p>She is now speaking directly to us, or to her father, about death in the present tense. Death is not history; it is happening now. "Soon you will need wings of your own" — linking the plane to the person. The domestic simile "like a knife and fork cross" — a mundane image for an enormous truth. The knife and fork will inevitably cross — their paths must intersect. There is no avoiding it.</p>
+      <h3>"The images of relief... will fail you some time"</h3>
+      <p>The moments of escape, the lucky breaks — they will eventually run out. Relief is temporary; death is not. This is the bluntest statement in the poem and its emotional core.</p>
+    </div>
+    <div class="stanza-block">
+      <div class="stanza-label">Stanza 5 — The Moment of Death and Aftermath</div>
+      <div class="poem-text">"you know how light your death is... scattered like a wreckage... lodge in the hearts of all who love you"</div>
+      <h3>"You know how light your death is" — unexpected tenderness</h3>
+      <p>After the bleakness, this line arrives as a tender surprise. "Light" contrasts with the heaviness and darkness of everything else. The actual moment of death will be light, gentle. This is a gift from the poet to her dying father: an assurance that the moment itself will not be heavy or terrible.</p>
+      <h3>"Scattered like a wreckage... lodge in the hearts"</h3>
+      <p>The plane metaphor returns: death scatters a person like the wreckage of a plane crash. Yet the pieces "lodge in the hearts / Of all who love you." Wreckage is usually waste; here it becomes a form of continuing presence. The word "lodge" suggests permanence — the fragments will not be dislodged. The poem ends with love, not with loss.</p>
+    </div>
+  </div>
+  <div class="tab-panel" id="quotes">
+    <h3 class="label">Key Quotes</h3>
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"Soon you will need wings of your own"</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Extended Metaphor</span><span class="tech-pill">Direct Address</span><span class="tech-pill">Death</span>
+    <div class="quote-block"><div class="quote-ref">Technique: Extended metaphor — plane as human; direct address</div><blockquote>"Soon you will need wings of your own"</blockquote><div class="quote-body"><p>This line fuses the poem's two central subjects: the plane and her dying father. A plane has wings; when it fails, the passenger must somehow fly on without it. The "you" makes this address universal — she speaks to her father, to us, to all humans. "Soon" adds urgency and inevitability without being cruel.</p></div></div></div></div>
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"Time and life like a knife and fork cross"</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Simile</span><span class="tech-pill">Inevitability</span><span class="tech-pill">Domestic Image</span>
+    <div class="quote-block"><div class="quote-ref">Technique: Domestic simile for a universal truth</div><blockquote>"Time and life like a knife and fork cross"</blockquote><div class="quote-body"><p>By using the image of a knife and fork on a plate, Ní Ch. brings death into the ordinary, domestic world. A knife and fork will always cross at some point — it is inevitable, unremarkable. This is her argument about death: it is not a special event but a natural, inevitable crossing. The assonance of "life/like/knife" speeds up the line, giving the impression of something accelerating, unstoppable.</p></div></div></div></div>
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"images of relief... will fail you some time"</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Tone</span><span class="tech-pill">Inevitability</span><span class="tech-pill">Honesty</span>
+    <div class="quote-block"><div class="quote-ref">Technique: Blunt, honest statement of mortality</div><blockquote>"The images of relief... will fail you some time"</blockquote><div class="quote-body"><p>The "images of relief" are all the times we narrowly avoid death — the accident we walked away from, the illness we survived. Ní Ch. is saying: these cannot protect you forever. At some point, the relief will not come. This is the bluntest statement in the poem and its emotional core. The honesty is a kind of respect for the dying person.</p></div></div></div></div>
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"you know how light your death is" — tenderness</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Tone Shift</span><span class="tech-pill">Comfort</span><span class="tech-pill">Emotional Climax</span>
+    <div class="quote-block"><div class="quote-ref">Technique: Unexpected comfort — shift to tenderness</div><blockquote>"you know how light your death is"</blockquote><div class="quote-body"><p>After the bleakness, this line arrives as a tender surprise. "Light" contrasts with the heaviness and darkness of everything else. The actual moment of death will be gentle, swift. This is a gift: an assurance that the moment itself will not be heavy or terrible. "Know" is significant: this is not a question or a hope, but a certainty.</p></div></div></div></div>
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"scattered like a wreckage" / "lodge in the hearts"</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Simile</span><span class="tech-pill">Memory &amp; Love</span><span class="tech-pill">Consolation</span>
+    <div class="quote-block"><div class="quote-ref">Technique: Returning to the plane metaphor; consoling ending</div><blockquote>"scattered like a wreckage... lodge in the hearts / Of all who love you"</blockquote><div class="quote-body"><p>The plane metaphor returns: death scatters a person like the wreckage of a crash. Yet the pieces do not disappear; they "lodge in the hearts / Of all who love you." Wreckage is usually waste; here it becomes a form of continuing presence. The poem ends with love, not with loss. "Lodge" suggests permanence — the fragments will not be dislodged.</p></div></div></div></div>
+  </div>
+  <div class="tab-panel" id="techniques">
+    <h3 class="label">Poetic Techniques</h3>
+    <div class="two-col">
+      <div class="info-card"><h2>📐 Form: 5 Unrhymed Stanzas</h2><p>Random, uneasy lengths mirror the fragmented nature of grief and shock. The poem is almost "assembled from the wreckage of its own parts" — like the plane on the runway, the poem itself is scattered and uneven.</p></div>
+      <div class="info-card"><h2>⏱️ Change of Tense: Past → Present</h2><p>A dramatic move from past (describing the wreck) to present (addressing death directly). The present tense makes death immediate and unavoidable — it is not a historical event but one happening now.</p></div>
+      <div class="info-card"><h2>🗣️ Repetition of "You"</h2><p>The direct address to "you" gives the poem authority and universality. It is both intimate (speaking to her father) and universal (speaking to all of us). It creates an uncomfortable directness about mortality that the reader cannot escape.</p></div>
+      <div class="info-card"><h2>⬛⬜ Snow and Black Plane Contrast</h2><p>The white snow vs. the burned black plane — life (white, pure) and death (burned, dark). Snow melts eventually, just as life fades. Both are temporary states.</p></div>
+      <div class="info-card"><h2>❄️ Cold, Mechanical Imagery</h2><p>"Frozen," "snow," "metal wings" — cold imagery creates an atmosphere of lifelessness. The mechanical language (engines, metal, wings) makes death feel inevitable rather than personal.</p></div>
+      <div class="info-card"><h2>⟶ Enjambment</h2><p>Gives the sense of powerlessness in the face of destiny. The lines cannot stop themselves; neither can life. Punctuation in stanza 1 becomes more controlled as the poem progresses — she is moving from shock to acceptance.</p></div>
+    </div>
+  </div>
+  <div class="tab-panel" id="context">
+    <h3 class="label">Context &amp; Exam Preparation</h3>
+    <div class="box b-exam"><div class="ico">🎓</div><div><div class="box-label">Exam Tip</div><p>The key move is the <em>change of tense</em> from past to present — always discuss this as a dramatic and meaningful choice. Also note the plane as extended metaphor: the poem is not just about a plane crash, it is about every life trajectory heading toward its inevitable end.</p></div></div>
+    <div class="info-card"><h2>Links to Other Poems</h2><ul>
+      <li><strong>The Bend in the Road:</strong> Both explore the deaths of family members. In Bend, the dead live on "in the air"; here they are "lodged in hearts." Both find consolation in the continuing presence of the dead.</li>
+      <li><strong>Lucina Schynning:</strong> Both written at times of the father's dying. Both move from raw shock/suffering to a form of acceptance and peace.</li>
+      <li><strong>To Niall Woods:</strong> Both address a family member directly. Death and Engines addresses the dying father; Niall Woods addresses the marrying son.</li>
+    </ul></div>
+    <div class="box b-tip"><div class="ico">💡</div><div><div class="box-label">Key Argument</div><p>In "Death and Engines," Ní Chuilleanáin uses the extended metaphor of the broken-down plane to explore the inevitability of death with brutal honesty but also unexpected tenderness. The poem refuses comfortable euphemism while still arriving at genuine consolation: we are "scattered like wreckage," but we lodge permanently in the hearts of those who love us.</p></div></div>
+  </div>
+</div><script>
+function switchTab(btn,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(id).classList.add('active');}
+function toggleAcc(btn){const body=btn.nextElementSibling;const isOpen=btn.classList.contains('open');document.querySelectorAll('.acc-btn.open').forEach(b=>{b.classList.remove('open');b.nextElementSibling.classList.remove('open');});if(!isOpen){btn.classList.add('open');body.classList.add('open');}}
+</script></body></html>

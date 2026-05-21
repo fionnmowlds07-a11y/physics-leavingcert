@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ní Chuilleanáin — Lucina Schynning in Silence of the Night</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F7F4EF;--surface:#FFFFFF;--surface2:#F0EDE8;--border:#E2DDD7;--text:#2C2825;--muted:#7A7068;--c:#2e4a7a;--cl:#e8ecf8;--cd:#1a2f5a;--radius:14px;--shadow:0 4px 20px rgba(0,0,0,0.08);--shadow-h:0 8px 32px rgba(0,0,0,0.14);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;font-size:16px;}
+nav{position:sticky;top:0;z-index:100;background:rgba(247,244,239,0.97);backdrop-filter:blur(10px);border-bottom:2px solid var(--border);padding:8px 16px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;min-height:52px;}
+.nav-logo{font-family:'Lexend Mega',sans-serif;font-size:0.85rem;color:var(--text);margin-right:4px;text-decoration:none;white-space:nowrap;}.nav-logo span{color:var(--c);}
+.nav-divider{width:1px;height:20px;background:var(--border);flex-shrink:0;}
+.nav-btn{padding:5px 11px;border-radius:18px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.72rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);text-decoration:none;white-space:nowrap;}
+.nav-btn:hover{transform:translateY(-2px);}
+.nav-btn.home:hover,.nav-btn.home.active{background:#2c2825;border-color:#2c2825;color:#fff;}
+.nav-btn.street:hover,.nav-btn.street.active{background:#1a6b5a;border-color:#1a6b5a;color:#fff;}
+.nav-btn.lucina:hover,.nav-btn.lucina.active{background:#2e4a7a;border-color:#2e4a7a;color:#fff;}
+.nav-btn.translation:hover,.nav-btn.translation.active{background:#7a2e1a;border-color:#7a2e1a;color:#fff;}
+.nav-btn.death:hover,.nav-btn.death.active{background:#5a3a7a;border-color:#5a3a7a;color:#fff;}
+.nav-btn.bend:hover,.nav-btn.bend.active{background:#2e6b1a;border-color:#2e6b1a;color:#fff;}
+.nav-btn.niall:hover,.nav-btn.niall.active{background:#7a5a1a;border-color:#7a5a1a;color:#fff;}
+.nav-btn.flash:hover,.nav-btn.flash.active{background:#4a4a6a;border-color:#4a4a6a;color:#fff;}
+.nav-btn.links:hover,.nav-btn.links.active{background:#6a1a4a;border-color:#6a1a4a;color:#fff;}
+.section{padding:0 16px 80px;max-width:940px;margin:0 auto;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.hero{background:linear-gradient(135deg,var(--cd),var(--c));color:#fff;padding:44px 32px 36px;text-align:center;margin-bottom:32px;}
+.hero .poem-label{font-size:0.75rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;opacity:0.75;margin-bottom:10px;}
+.hero h1{font-family:'Lexend Mega',sans-serif;font-size:clamp(1.6rem,4vw,2.8rem);line-height:1.15;margin-bottom:12px;}
+.hero p{opacity:0.88;max-width:620px;margin:0 auto;font-size:0.96rem;}
+.hero-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px;}
+.hero-chip{background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:4px 14px;border-radius:20px;font-size:0.75rem;font-weight:600;}
+.tab-bar{display:flex;gap:4px;flex-wrap:wrap;padding:22px 0 8px;border-bottom:2px solid var(--border);margin-bottom:28px;}
+.tab{padding:8px 18px;border-radius:10px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.8rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);}
+.tab:hover,.tab.active{background:var(--c);color:#fff;border-color:var(--c);}
+.tab-panel{display:none;}.tab-panel.active{display:block;animation:fadeIn 0.25s ease;}
+.info-card{background:var(--surface);border-radius:var(--radius);padding:24px 26px;margin-bottom:20px;box-shadow:var(--shadow);border-left:5px solid var(--c);}
+.info-card h2{font-size:1.1rem;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.info-card p{margin-bottom:9px;font-size:0.94rem;}.info-card ul{padding-left:20px;margin-bottom:9px;}.info-card li{margin-bottom:5px;font-size:0.93rem;}
+.quote-block{border-left:4px solid var(--c);background:var(--cl);border-radius:0 var(--radius) var(--radius) 0;padding:16px 20px;margin:16px 0;}
+.quote-block blockquote{font-family:'Lexend Mega',sans-serif;font-size:0.95rem;font-style:italic;margin-bottom:8px;line-height:1.5;}
+.quote-ref{font-size:0.73rem;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--muted);margin-bottom:10px;}
+.quote-body{font-size:0.91rem;line-height:1.75;}.quote-body p{margin-bottom:8px;}
+.tech-pill{display:inline-block;background:var(--c);color:#fff;font-size:0.72rem;font-weight:700;padding:2px 9px;border-radius:5px;margin:2px;}
+.box{border-radius:var(--radius);padding:14px 18px;margin:14px 0;display:flex;gap:12px;align-items:flex-start;}
+.box .ico{font-size:1.5rem;flex-shrink:0;line-height:1.2;}.box-label{font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;margin-bottom:4px;}
+.box p,.box li{font-size:0.91rem;}.box ul{padding-left:16px;}.box li{margin-bottom:4px;}
+.b-exam{background:#eaf4fb;border:2px solid #5dade2;}.b-exam .box-label{color:#1a6b9a;}
+.b-tip{background:#fffbf0;border:2px solid #f39c12;}.b-tip .box-label{color:#b7770d;}
+.acc{margin-bottom:10px;}
+.acc-btn{width:100%;text-align:left;background:var(--surface);border:2px solid var(--border);border-radius:var(--radius);padding:14px 18px;font-family:'Lexend',sans-serif;font-size:0.92rem;font-weight:600;cursor:pointer;color:var(--text);display:flex;justify-content:space-between;align-items:center;transition:background 0.15s;}
+.acc-btn:hover{background:#f8f5f0;}.acc-btn.open{border-radius:var(--radius) var(--radius) 0 0;border-bottom-color:transparent;}
+.acc-btn .arr{transition:transform 0.25s;margin-left:8px;flex-shrink:0;}.acc-btn.open .arr{transform:rotate(180deg);}
+.acc-body{display:none;background:var(--surface);border:2px solid var(--border);border-top:none;border-radius:0 0 var(--radius) var(--radius);padding:20px 22px;}.acc-body.open{display:block;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:14px 0;}@media(max-width:600px){.two-col{grid-template-columns:1fr;}}
+.stanza-block{background:var(--surface);border:2px solid var(--border);border-radius:var(--radius);padding:22px 24px;margin-bottom:18px;border-top:4px solid var(--c);}
+.stanza-block .stanza-label{font-size:0.72rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+.stanza-block .poem-text{font-style:italic;font-size:0.9rem;line-height:1.8;background:var(--cl);border-radius:0 8px 8px 0;padding:10px 14px;margin-bottom:14px;border-left:3px solid var(--c);}
+.stanza-block h3{font-size:1rem;font-weight:700;margin:12px 0 8px;}.stanza-block p{font-size:0.92rem;margin-bottom:8px;}
+h3.label{font-family:'Lexend Mega',sans-serif;font-size:0.95rem;font-weight:700;margin:28px 0 14px;display:flex;align-items:center;gap:8px;}
+h3.label::after{content:'';flex:1;height:2px;background:var(--border);border-radius:4px;}
+table{width:100%;border-collapse:collapse;font-size:0.9rem;margin:12px 0;}
+th{background:#2c2825;color:#fff;padding:10px 14px;text-align:left;font-weight:600;}
+td{padding:9px 14px;border-bottom:1px solid var(--border);}tr:hover td{background:var(--surface2);}
+</style>
+</head>
+<body><nav>
+  <a class="nav-logo" href="Eileen.html">✒️ <span>Ní Chuilleanáin</span></a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn home" href="Eileen.html">🏠 Home</a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn street" href="Eilean_Street.html">🔪 Street</a>
+  <a class="nav-btn lucina active" href="Eilean_Lucina.html">🌙 Lucina</a>
+  <a class="nav-btn translation" href="Eilean_Translation.html">⛪ Translation</a>
+  <a class="nav-btn death" href="Eilean_Death.html">✈️ Death &amp; Engines</a>
+  <a class="nav-btn bend" href="Eilean_Bend.html">🌿 Bend in Road</a>
+  <a class="nav-btn niall" href="Eilean_Niall.html">🌟 To Niall Woods</a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn flash" href="Eilean_Flashcards.html">🃏 Flashcards</a>
+  <a class="nav-btn links" href="Eilean_Links.html">🔗 Themes</a>
+</nav>
+<div class="hero">
+  <div class="poem-label">Acts and Monuments · 1972</div>
+  <h1>Lucina Schynning<br>in Silence of the Night</h1>
+  <p>A haunting poem of spiritual transformation set in Cromwellian Ireland. A woman finds solace and renewal in a ruined house under moonlight — history, personal suffering and rebirth intertwined.</p>
+  <div class="hero-chips">
+    <span class="hero-chip">Atmospheric</span><span class="hero-chip">5 Stanzas · Unrhymed</span>
+    <span class="hero-chip">1649 Ireland</span><span class="hero-chip">Transformation</span>
+  </div>
+</div>
+<div class="section">
+  <div class="tab-bar">
+    <button class="tab active" onclick="switchTab(this,'overview')">📋 Overview</button>
+    <button class="tab" onclick="switchTab(this,'readings')">🔍 Multiple Readings</button>
+    <button class="tab" onclick="switchTab(this,'analysis')">🔬 Stanza by Stanza</button>
+    <button class="tab" onclick="switchTab(this,'quotes')">💬 Key Quotes</button>
+    <button class="tab" onclick="switchTab(this,'techniques')">🎨 Techniques</button>
+    <button class="tab" onclick="switchTab(this,'context')">🎓 Context &amp; Exam</button>
+  </div>
+  <div class="tab-panel active" id="overview">
+    <h3 class="label">The Simple Version</h3>
+    <div class="info-card"><p>The title comes from archaic Scottish dialect — "Lucina" is another name for Diana, the Moon Goddess. The poem is set in a ruined Irish house in the aftermath of Cromwell's devastating campaign in Ireland (1649). A woman takes shelter in the ruined house, suffering and alone. Over the course of the poem, she is cleansed by moonlight and rain, and undergoes a spiritual transformation. <strong>The poem can be read on multiple levels: as Irish history, as a woman's personal suffering, and as the poet's own experience as her father lay dying.</strong></p></div>
+    <h3 class="label">At a Glance</h3>
+    <div class="info-card"><table>
+      <tr><th>Element</th><th>Detail</th></tr>
+      <tr><td><strong>Collection</strong></td><td>Acts and Monuments (1972) — first collection</td></tr>
+      <tr><td><strong>Form</strong></td><td>5 unrhymed stanzas of varying length — reflects turmoil</td></tr>
+      <tr><td><strong>Title</strong></td><td>Archaic Scottish dialect — mysterious and timeless quality</td></tr>
+      <tr><td><strong>Setting</strong></td><td>A ruined Irish house, post-Cromwellian Ireland (1649)</td></tr>
+      <tr><td><strong>Tone</strong></td><td>Eerie, dreamlike, haunting — becomes calm and resolved</td></tr>
+      <tr><td><strong>Central image</strong></td><td>Lucina / the Moon — transformation, femininity, hope</td></tr>
+      <tr><td><strong>Key symbol</strong></td><td>Water/rain — cleansing; the stream — resilience</td></tr>
+    </table></div>
+  </div>
+  <div class="tab-panel" id="readings">
+    <h3 class="label">Four Ways to Read This Poem</h3>
+    <div class="two-col">
+      <div class="info-card"><h2>🏴 Reading 1: Irish History</h2><p>Cromwell's brutal campaign devastated Ireland — massacres, forced displacement, famine. The ruined house is the ruins of Irish culture and life. "Without roast meat or music" — cultural deprivation at the hands of the English. The woman's survival and renewal mirrors Ireland's eventual resilience.</p></div>
+      <div class="info-card"><h2>👩 Reading 2: A Woman's Suffering</h2><p>The lone woman, displaced and suffering, speaks to the experiences of all women throughout Irish history — evicted from their homes, dispossessed, forced to endure. Her transformation is a feminist act of survival and renewal.</p></div>
+      <div class="info-card"><h2>💔 Reading 3: Personal Loss</h2><p>Ní Ch. spent three days in a derelict cottage as her father lay dying in Rome. The poem draws on this experience — the surreal suffering, the strange consolation of nature, and eventual acceptance. The "waves of darkness" are her own emotional turmoil.</p></div>
+      <div class="info-card"><h2>🌙 Reading 4: Spiritual Transformation</h2><p>The moonlight (Lucina) acts as a transformative presence. The woman is cleansed by rain, consoled by the chapel floor, and ultimately at peace. The poem charts a journey from trauma to spiritual renewal and acceptance.</p></div>
+    </div>
+  </div>
+  <div class="tab-panel" id="analysis">
+    <h3 class="label">Stanza-by-Stanza Analysis</h3>
+    <div class="stanza-block">
+      <div class="stanza-label">Stanza 1 — The Beautiful Opening / The Suffering Begins</div>
+      <div class="poem-text">Lucina shines in silence of the night... without roast meat or music...</div>
+      <h3>Lucina is the Moon Goddess (Diana)</h3>
+      <p>The poem opens with a captivating, fairytale-like setting — the moon and stars. Calm for the first three lines.</p>
+      <h3>"Without roast meat or music" — sudden change of tone</h3>
+      <p>A likely reference to Cromwellian cultural deprivation (the banning of music, the destruction of food and culture), but for the speaker it means an absence of sustenance, joy and comfort. Recovery begins immediately: the moonlight shines on her head, the rain cleanses her.</p>
+    </div>
+    <div class="stanza-block">
+      <div class="stanza-label">Stanzas 2–4 — The Darkness and Consolation</div>
+      <div class="poem-text">Imagery of hardship... plague... plague... sky growing through the hole in the roof...</div>
+      <h3>Repetition of "plague" — overwhelming suffering</h3>
+      <p>The word carries connotations of disease, corruption, biblical punishment and communal suffering. Its repetition mimics the relentless nature of the speaker's trauma. Yet "she sleeps safely" — the ruined house provides respite. The place of ruin is also the place of survival.</p>
+      <h3>"Sky growing through the hole in the roof"</h3>
+      <p>Where the roof has collapsed (the destruction), the sky (the infinite, the divine) enters. Destruction creates an opening for transcendence — one of the most powerful paradoxes in the poem.</p>
+    </div>
+    <div class="stanza-block">
+      <div class="stanza-label">Stanza 5 — Transformation Complete</div>
+      <div class="poem-text">She looks back at thorny hedges... the resilient stream running...</div>
+      <h3>"The resilient stream running" — the final image</h3>
+      <p>Water keeps flowing regardless of everything — it is resilient, unstoppable. The speaker has found her own resilience. Like the stream, she continues. The alliteration of "resilient/running" adds quiet confidence to the final image.</p>
+    </div>
+  </div>
+  <div class="tab-panel" id="quotes">
+    <h3 class="label">Key Quotes</h3>
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"Without roast meat or music" — cultural deprivation</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Historical Allusion</span><span class="tech-pill">Dual Meaning</span><span class="tech-pill">Suffering</span>
+    <div class="quote-block"><div class="quote-ref">Technique: Historical allusion / dual meaning</div><blockquote>"Without roast meat or music"</blockquote><div class="quote-body"><p>This line works on two levels simultaneously. Historically, it refers to Cromwell's brutal suppression of Irish culture — music was banned, food was scarce. Personally, it represents the absence of joy, warmth and sustenance in the speaker's life. "Roast meat" = physical nourishment; "music" = spiritual and emotional nourishment. Both have been stripped away. The simplicity of the phrase makes the loss feel enormous.</p></div></div></div></div>
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>Repetition of "plague" — overwhelming suffering</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Repetition</span><span class="tech-pill">Psychological Disturbance</span>
+    <div class="quote-block"><div class="quote-ref">Technique: Repetition for emphasis</div><blockquote>"plague... plague"</blockquote><div class="quote-body"><p>The repetition of "plague" suggests that this is not a single instance of suffering but an overwhelming, inescapable condition. Its repetition mimics the relentless nature of the speaker's trauma — it will not let her go. Surreally, it also evokes the plagues of Egypt — suffering as divine test.</p></div></div></div></div>
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"sour candle" / "crazed window" — unsettling imagery</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Imagery</span><span class="tech-pill">Atmosphere</span><span class="tech-pill">Strange Adjectives</span>
+    <div class="quote-block"><div class="quote-ref">Technique: Unexpected adjectives creating unease</div><blockquote>"sour candle" and "crazed window"</blockquote><div class="quote-body"><p>"Sour" applied to a candle is unexpected — candles give light and warmth, but this one has gone rancid, wrong, unpleasant. "Crazed" means cracked or fractured (as in ceramics), but also carries connotations of madness. Together, these images suggest a world that has broken down — where even the objects of comfort and light have become wrong and untrustworthy.</p></div></div></div></div>
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"sky growing through the hole in the roof"</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Symbolism</span><span class="tech-pill">Paradox</span><span class="tech-pill">Transcendence</span>
+    <div class="quote-block"><div class="quote-ref">Technique: Paradoxical image — destruction becomes opening</div><blockquote>"sky growing through the hole in the roof"</blockquote><div class="quote-body"><p>The "hole in the roof" is a sign of ruin and destruction — yet through it, the sky "grows." The vast, infinite sky enters the destroyed house. The very place of destruction becomes the opening through which something transcendent and divine enters. This paradox — ruin as gateway — is central to the poem's message: that transformation comes through suffering, not despite it.</p></div></div></div></div>
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"the resilient stream running" — final image</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Imagery</span><span class="tech-pill">Resilience</span><span class="tech-pill">Water Symbolism</span>
+    <div class="quote-block"><div class="quote-ref">Technique: Closing symbol — water as resilience</div><blockquote>"the resilient stream running"</blockquote><div class="quote-body"><p>The poem ends with the image of a stream that keeps flowing. Water is a traditional symbol of cleansing and rebirth, and here the stream's "resilience" carries the weight of the whole poem's argument: life, like water, continues. Despite the plague, the destruction, the suffering, the stream runs on. The alliteration of "resilient/running" adds a quiet confidence to the final image.</p></div></div></div></div>
+  </div>
+  <div class="tab-panel" id="techniques">
+    <h3 class="label">Poetic Techniques</h3>
+    <div class="two-col">
+      <div class="info-card"><h2>🌙 Personification of the Moon</h2><p>Lucina (the Moon) is personified as a powerful female presence. The moon acts as a guide, cleansing agent and transformative force. This gives an uneasy, supernatural atmosphere while establishing a feminine power watching over the speaker.</p></div>
+      <div class="info-card"><h2>⟶ Enjambment</h2><p>Lines run into each other, suggesting the passage of time — the slow, continuous nature of the speaker's suffering and, eventually, her recovery. The poem flows like the stream in its final image.</p></div>
+      <div class="info-card"><h2>🎵 Sibilance &amp; Sound</h2><p>Sibilance throughout — threatening at first, then the sound of the stream running. Assonance (long vowel sounds) mimics the lingering, echoing nature of the ruined space — emptiness amplified.</p></div>
+      <div class="info-card"><h2>🌿 Nature &amp; Animals</h2><p>She finds solace in the natural world, away from people and cities. The animals on the floor, the sky through the roof, the stream — nature provides what human society cannot. This is a resetting, a rebirth.</p></div>
+      <div class="info-card"><h2>📐 Form: 5 Unrhymed Stanzas</h2><p>Varying lengths represent the turmoil and fragmentation of the speaker's experience. The lack of regular rhyme means there is no predictable comfort — just as there is none in the speaker's situation.</p></div>
+      <div class="info-card"><h2>🔑 Symbolism</h2><p>Moon = woman/goddess/transformation. Book and candle = education and civilisation. Water = cleansing. Ruins = historical destruction. Plague = corruption/turmoil. Stream = resilience and continuation.</p></div>
+    </div>
+  </div>
+  <div class="tab-panel" id="context">
+    <h3 class="label">Context &amp; Exam Preparation</h3>
+    <div class="box b-exam"><div class="ico">🎓</div><div><div class="box-label">Exam Tip</div><p>Questions will often ask about the "dreamlike" or "atmospheric" quality. Focus on: the Moon personification, the surreal images of plague and crazed windows, the strange juxtaposition of beauty and ruin, and how the past tense creates the sense of recollection rather than immediate experience.</p></div></div>
+    <div class="info-card"><h2>Historical Context: Cromwell in Ireland</h2><p>Cromwell's campaign in Ireland (1649–50) was one of the most brutal episodes in Irish history. Over one million people died and two million more emigrated. Music was suppressed. Land was seized. Irish culture was systematically undermined. The poem's ruined house is not just personal but national.</p></div>
+    <div class="info-card"><h2>Links to Other Poems</h2><ul>
+      <li><strong>Translation:</strong> Both deal with dark periods of Irish history. Both show women surviving and enduring institutional suffering.</li>
+      <li><strong>Death and Engines:</strong> Both deal with personal loss (father dying). Both chart a movement from raw shock to eventual acceptance.</li>
+      <li><strong>Street:</strong> Both feature lone women in threatening atmospheric settings who are ultimately powerful and resilient rather than victims.</li>
+    </ul></div>
+    <div class="box b-tip"><div class="ico">💡</div><div><div class="box-label">Key Argument</div><p>In "Lucina Schynning," Ní Chuilleanáin uses the historical devastation of Cromwellian Ireland as a backdrop for a deeply personal exploration of suffering and spiritual renewal. The ruined house becomes simultaneously a symbol of national trauma and individual transformation — where destruction creates the very opening through which healing enters.</p></div></div>
+  </div>
+</div><script>
+function switchTab(btn,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(id).classList.add('active');}
+function toggleAcc(btn){const body=btn.nextElementSibling;const isOpen=btn.classList.contains('open');document.querySelectorAll('.acc-btn.open').forEach(b=>{b.classList.remove('open');b.nextElementSibling.classList.remove('open');});if(!isOpen){btn.classList.add('open');body.classList.add('open');}}
+</script></body></html>

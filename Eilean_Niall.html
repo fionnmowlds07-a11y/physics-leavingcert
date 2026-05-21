@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ní Chuilleanáin — To Niall Woods and Xenya Ostrovskaia</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#F7F4EF; --surface:#FFFFFF; --surface2:#F0EDE8; --border:#E2DDD7;
+  --text:#2C2825; --muted:#7A7068;
+  --c:#7a5a1a; --cl:#f8f0e0; --cd:#5a3e0a;
+  --radius:14px; --shadow:0 4px 20px rgba(0,0,0,0.08); --shadow-h:0 8px 32px rgba(0,0,0,0.14);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;font-size:16px;}
+
+nav{position:sticky;top:0;z-index:100;background:rgba(247,244,239,0.97);backdrop-filter:blur(10px);border-bottom:2px solid var(--border);padding:8px 16px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;min-height:52px;}
+.nav-logo{font-family:'Lexend Mega',sans-serif;font-size:0.85rem;color:var(--text);margin-right:4px;text-decoration:none;white-space:nowrap;}
+.nav-logo span{color:var(--c);}
+.nav-divider{width:1px;height:20px;background:var(--border);flex-shrink:0;}
+.nav-btn{padding:5px 11px;border-radius:18px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.72rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);text-decoration:none;white-space:nowrap;}
+.nav-btn:hover,.nav-btn.active{transform:translateY(-2px);}
+.nav-btn.home:hover,.nav-btn.home.active{background:#2c2825;border-color:#2c2825;color:#fff;}
+.nav-btn.street:hover,.nav-btn.street.active{background:#1a6b5a;border-color:#1a6b5a;color:#fff;}
+.nav-btn.lucina:hover,.nav-btn.lucina.active{background:#2e4a7a;border-color:#2e4a7a;color:#fff;}
+.nav-btn.translation:hover,.nav-btn.translation.active{background:#7a2e1a;border-color:#7a2e1a;color:#fff;}
+.nav-btn.death:hover,.nav-btn.death.active{background:#5a3a7a;border-color:#5a3a7a;color:#fff;}
+.nav-btn.bend:hover,.nav-btn.bend.active{background:#2e6b1a;border-color:#2e6b1a;color:#fff;}
+.nav-btn.niall:hover,.nav-btn.niall.active{background:#7a5a1a;border-color:#7a5a1a;color:#fff;}
+.nav-btn.flash:hover,.nav-btn.flash.active{background:#4a4a6a;border-color:#4a4a6a;color:#fff;}
+.nav-btn.links:hover,.nav-btn.links.active{background:#6a1a4a;border-color:#6a1a4a;color:#fff;}
+
+.section{padding:0 16px 80px;max-width:940px;margin:0 auto;}
+
+.hero{background:linear-gradient(135deg,var(--cd),var(--c));color:#fff;padding:44px 32px 36px;text-align:center;margin-bottom:32px;}
+.hero .poem-label{font-size:0.75rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;opacity:0.75;margin-bottom:10px;}
+.hero h1{font-family:'Lexend Mega',sans-serif;font-size:clamp(1.4rem,4vw,2.4rem);line-height:1.15;margin-bottom:12px;}
+.hero p{opacity:0.88;max-width:620px;margin:0 auto;font-size:0.96rem;}
+.hero-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px;}
+.hero-chip{background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:4px 14px;border-radius:20px;font-size:0.75rem;font-weight:600;}
+
+.tab-bar{display:flex;gap:4px;flex-wrap:wrap;padding:22px 0 8px;border-bottom:2px solid var(--border);margin-bottom:28px;}
+.tab{padding:8px 18px;border-radius:10px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.8rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);}
+.tab:hover,.tab.active{background:var(--c);color:#fff;border-color:var(--c);}
+.tab-panel{display:none;} .tab-panel.active{display:block;animation:fadeIn 0.25s ease;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+.info-card{background:var(--surface);border-radius:var(--radius);padding:24px 26px;margin-bottom:20px;box-shadow:var(--shadow);border-left:5px solid var(--c);}
+.info-card h2{font-size:1.1rem;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.info-card p{margin-bottom:9px;font-size:0.94rem;}
+.info-card ul{padding-left:20px;margin-bottom:9px;}
+.info-card li{margin-bottom:5px;font-size:0.93rem;}
+
+.quote-block{border-left:4px solid var(--c);background:var(--cl);border-radius:0 var(--radius) var(--radius) 0;padding:16px 20px;margin:16px 0;}
+.quote-block blockquote{font-family:'Lexend Mega',sans-serif;font-size:0.95rem;font-style:italic;margin-bottom:8px;line-height:1.5;}
+.quote-ref{font-size:0.73rem;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--muted);margin-bottom:10px;}
+.quote-body{font-size:0.91rem;line-height:1.75;}
+.quote-body p{margin-bottom:8px;}
+
+.tech-pill{display:inline-block;background:var(--c);color:#fff;font-size:0.72rem;font-weight:700;padding:2px 9px;border-radius:5px;margin:2px;}
+.kw{display:inline-block;background:rgba(0,0,0,0.07);font-weight:700;font-size:0.85rem;padding:1px 8px;border-radius:4px;margin:1px;}
+
+.box{border-radius:var(--radius);padding:14px 18px;margin:14px 0;display:flex;gap:12px;align-items:flex-start;}
+.box .ico{font-size:1.5rem;flex-shrink:0;line-height:1.2;}
+.box-label{font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;margin-bottom:4px;}
+.box p,.box li{font-size:0.91rem;} .box ul{padding-left:16px;} .box li{margin-bottom:4px;}
+.b-gold{background:#fffbf0;border:2px solid #d4a017;} .b-gold .box-label{color:#7a5a1a;}
+.b-exam{background:#eaf4fb;border:2px solid #5dade2;} .b-exam .box-label{color:#1a6b9a;}
+.b-green{background:#f0fff6;border:2px solid #27ae60;} .b-green .box-label{color:#1e8449;}
+.b-link{background:#f8f0e0;border:2px solid #c8a040;} .b-link .box-label{color:#7a5a1a;}
+
+.acc{margin-bottom:10px;}
+.acc-btn{width:100%;text-align:left;background:var(--surface);border:2px solid var(--border);border-radius:var(--radius);padding:14px 18px;font-family:'Lexend',sans-serif;font-size:0.92rem;font-weight:600;cursor:pointer;color:var(--text);display:flex;justify-content:space-between;align-items:center;transition:background 0.15s;}
+.acc-btn:hover{background:#f8f5f0;}
+.acc-btn.open{border-radius:var(--radius) var(--radius) 0 0;border-bottom-color:transparent;}
+.acc-btn .arr{transition:transform 0.25s;margin-left:8px;flex-shrink:0;}
+.acc-btn.open .arr{transform:rotate(180deg);}
+.acc-body{display:none;background:var(--surface);border:2px solid var(--border);border-top:none;border-radius:0 0 var(--radius) var(--radius);padding:20px 22px;}
+.acc-body.open{display:block;}
+
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:14px 0;}
+@media(max-width:600px){.two-col{grid-template-columns:1fr;}}
+
+.stanza-block{background:var(--surface);border:2px solid var(--border);border-radius:var(--radius);padding:22px 24px;margin-bottom:18px;border-top:4px solid var(--c);}
+.stanza-block .stanza-label{font-size:0.72rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+.stanza-block .poem-text{font-style:italic;font-size:0.9rem;line-height:1.8;border-left:3px solid var(--cl);background:var(--cl);border-radius:0 8px 8px 0;padding:10px 14px;margin-bottom:14px;}
+.stanza-block h3{font-size:1rem;font-weight:700;margin:12px 0 8px;}
+.stanza-block p{font-size:0.92rem;margin-bottom:8px;}
+
+h3.label{font-family:'Lexend Mega',sans-serif;font-size:0.95rem;font-weight:700;margin:28px 0 14px;display:flex;align-items:center;gap:8px;}
+h3.label::after{content:'';flex:1;height:2px;background:var(--border);border-radius:4px;}
+
+.allusion-card{background:var(--surface);border:2px solid var(--border);border-radius:var(--radius);padding:18px 20px;margin-bottom:12px;border-left:4px solid var(--c);}
+.allusion-card .a-tag{font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:0.8px;color:var(--c);margin-bottom:6px;}
+.allusion-card h4{font-size:0.98rem;font-weight:700;margin-bottom:8px;}
+.allusion-card p{font-size:0.91rem;color:var(--muted);}
+
+table{width:100%;border-collapse:collapse;font-size:0.9rem;margin:12px 0;}
+th{background:#2c2825;color:#fff;padding:10px 14px;text-align:left;font-weight:600;}
+td{padding:9px 14px;border-bottom:1px solid var(--border);}
+tr:hover td{background:var(--surface2);}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="Eileen.html">✒️ <span>Ní Chuilleanáin</span></a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn home" href="Eileen.html">🏠 Home</a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn street" href="Eilean_Street.html">🔪 Street</a>
+  <a class="nav-btn lucina" href="Eilean_Lucina.html">🌙 Lucina</a>
+  <a class="nav-btn translation" href="Eilean_Translation.html">⛪ Translation</a>
+  <a class="nav-btn death" href="Eilean_Death.html">✈️ Death &amp; Engines</a>
+  <a class="nav-btn bend" href="Eilean_Bend.html">🌿 Bend in Road</a>
+  <a class="nav-btn niall active" href="Eilean_Niall.html">🌟 To Niall Woods</a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn flash" href="Eilean_Flashcards.html">🃏 Flashcards</a>
+  <a class="nav-btn links" href="Eilean_Links.html">🔗 Themes</a>
+</nav>
+
+<div class="hero">
+  <div class="poem-label">The Sun Fish · 2009</div>
+  <h1>To Niall Woods and<br>Xenya Ostrovskaia</h1>
+  <p>A wedding poem for her son — a blessing woven from Irish and Russian folklore, fairytale, and scripture. The poet as wise storyteller gives the couple a fairy-tale ending.</p>
+  <div class="hero-chips">
+    <span class="hero-chip">Wedding Poem / Blessing</span>
+    <span class="hero-chip">Uneven Stanzas</span>
+    <span class="hero-chip">Allusion Throughout</span>
+    <span class="hero-chip">Family · Folklore · Love</span>
+  </div>
+</div>
+
+<div class="section">
+  <div class="tab-bar">
+    <button class="tab active" onclick="switchTab(this,'overview')">📋 Overview</button>
+    <button class="tab" onclick="switchTab(this,'analysis')">🔬 Stanza by Stanza</button>
+    <button class="tab" onclick="switchTab(this,'allusions')">📖 Allusions</button>
+    <button class="tab" onclick="switchTab(this,'quotes')">💬 Key Quotes</button>
+    <button class="tab" onclick="switchTab(this,'techniques')">🎨 Techniques</button>
+    <button class="tab" onclick="switchTab(this,'context')">🎓 Context &amp; Exam</button>
+  </div>
+
+  <!-- OVERVIEW -->
+  <div class="tab-panel active" id="overview">
+    <h3 class="label">The Simple Version</h3>
+    <div class="info-card">
+      <p>This poem was written by Ní Chuilleanáin for her son Niall's wedding to Xenya Ostrovskaia. It was added so late to the collection <em>The Sun Fish</em> that it appears as a dedication, not in the contents page. The speaker adopts the voice of a <strong>wise old woman from folk tales</strong> — the kind who imparts wisdom at the start of a hero's journey. She moves from past → present → future, drawing on Irish and Russian folklore and the Bible (Book of Ruth) to bless the couple. The poem ends with the most famous fairy-tale ending of all: "lived happily ever after." <strong>The poet is not just mother of the groom — she is the storyteller who makes the ending possible.</strong></p>
+    </div>
+
+    <h3 class="label">At a Glance</h3>
+    <div class="info-card">
+      <table>
+        <tr><th>Element</th><th>Detail</th></tr>
+        <tr><td><strong>Collection</strong></td><td>The Sun Fish (2009) — dedication, not in contents</td></tr>
+        <tr><td><strong>Form</strong></td><td>Uneven stanzas; one powerful isolated final line</td></tr>
+        <tr><td><strong>Speaker</strong></td><td>Wise woman of folk tales — imparting wisdom and blessing</td></tr>
+        <tr><td><strong>Time</strong></td><td>Moves past → present → future</td></tr>
+        <tr><td><strong>Tone</strong></td><td>Warm, authoritative, storyteller-like, celebratory</td></tr>
+        <tr><td><strong>Key technique</strong></td><td>Allusion — Irish folklore, Russian folklore, Book of Ruth</td></tr>
+        <tr><td><strong>Final line</strong></td><td>"lived happily ever after" — isolated for maximum impact</td></tr>
+      </table>
+    </div>
+
+    <h3 class="label">Central Themes</h3>
+    <div class="two-col">
+      <div class="info-card">
+        <h2>📖 Folklore &amp; Storytelling</h2>
+        <p>The poem is saturated with allusion — Irish and Russian folk tales, the Bible, fairy stories. Ní Ch. presents herself as the storyteller who gives the couple their fairy-tale ending. Love, the poem argues, is itself a story — one that requires determination, loyalty, and faith.</p>
+      </div>
+      <div class="info-card">
+        <h2>🌍 Cultural Identity</h2>
+        <p>Niall is Irish; Xenya is Russian. The poem honours both cultures — Irish folk tales and Russian folk tales coexist. The cat speaks "Irish and Russian." Rather than choosing one identity, the poem celebrates the union of two. Culture is not a barrier but a gift to share.</p>
+      </div>
+      <div class="info-card">
+        <h2>👨‍👩‍👦 Family &amp; Legacy</h2>
+        <p>Written by a mother for her son, this is also a poem about what we pass on. The poet's voice carries the weight of Irish and family tradition — she is giving Niall and Xenya not just a blessing but a story to inhabit, an identity to carry forward together.</p>
+      </div>
+      <div class="info-card">
+        <h2>⭐ Fate &amp; Love</h2>
+        <p>"You see the same star" — the marriage is fate, written in the universe. The couple are destined. This cosmic perspective elevates the wedding from a human ceremony to something mythological, timeless — the kind of union that appears in every culture's greatest stories.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- STANZA BY STANZA -->
+  <div class="tab-panel" id="analysis">
+    <h3 class="label">Stanza-by-Stanza Analysis</h3>
+
+    <div class="stanza-block">
+      <div class="stanza-label">Stanzas 1 &amp; 2 — Fate and Leaving</div>
+      <div class="poem-text">"You see the same star... You will leave behind..."</div>
+      <h3>They are fated for each other</h3>
+      <p>"You see the same star" — from different countries, different cultures, different worlds, they look up and see the same star. Their marriage is written in the cosmos. Fate has brought them to this point.</p>
+      <h3>Leaving behind old places but carrying identity</h3>
+      <p>The repetition of <strong>"You will"</strong> throughout gives the poem authority and certainty — the speaker is prophesying, not guessing. "Leave behind" is repeated — they must let go of past places and attachments. Yet what they carry <em>with</em> them is everything: culture, family, memory, identity.</p>
+      <p>"Half a loaf and a mother's blessing" — the speaker gives up the practical support (half a loaf) in order to give the full spiritual blessing. It is an act of generous sacrifice: letting go of the child to give them everything.</p>
+    </div>
+
+    <div class="stanza-block">
+      <div class="stanza-label">Stanzas 3 &amp; 4 — The Cat, the Allusions</div>
+      <div class="poem-text">"The cat speaks Irish and Russian... does not know the Book of Ruth..."</div>
+      <h3>Cultural backgrounds as living presences</h3>
+      <p>The cat speaks "Irish and Russian" — their cultural backgrounds are alive in the house, in the ordinary domestic world. The cat is a domestic animal: culture lives in the everyday, not just in books or ceremonies.</p>
+      <h3>The Book of Ruth — the civil ceremony</h3>
+      <p>The cat <strong>does not know</strong> the Book of Ruth — a reference to the fact that this was a civil ceremony, not a religious one. Ruth is the biblical model for loyalty and love across cultural difference. Ní Ch. includes the allusion anyway: the couple live out Ruth's story even without the formal religious framework.</p>
+      <h3>Sleeping Beauty — struggles lead to true love</h3>
+      <p>The fairy tale allusion suggests that the difficulties they have faced — and will face — are the necessary part of the story. True love, in every tradition, requires the struggle before the ending.</p>
+    </div>
+
+    <div class="stanza-block">
+      <div class="stanza-label">Final Stanzas — Firebird, Golden Apples, the Ending</div>
+      <div class="poem-text">"...and lived happily ever after."</div>
+      <h3>Russian folklore: Firebird and Golden Apples</h3>
+      <p>Russian folk tales about the Firebird and golden apples require determination and attentiveness — qualities the couple must bring to their marriage. Love requires effort and vigilance. The Russian allusions honour Xenya's heritage and show that her culture's wisdom is as valued as Ireland's.</p>
+      <h3>King of Ireland's Son — be attentive</h3>
+      <p>The Irish tale warns: pay attention to what you have. Don't be so distracted by what's ahead that you fail to appreciate who is beside you. This is practical relationship wisdom wrapped in fairy-tale form.</p>
+      <h3>The isolated final line</h3>
+      <p>The final line — "lived happily ever after" — stands entirely alone. By isolating it, Ní Ch. gives it extraordinary weight. This is not a throwaway ending but a genuine blessing, delivered with full authority by the storyteller-mother. She has the power to make the fairy-tale ending real through the poem itself.</p>
+    </div>
+  </div>
+
+  <!-- ALLUSIONS -->
+  <div class="tab-panel" id="allusions">
+    <h3 class="label">The Six Key Allusions</h3>
+    <div class="box b-exam"><div class="ico">📝</div><div><div class="box-label">Exam Tip</div><p>Allusion is the most important technique in this poem. You need to know at least 3–4 of these allusions and what they mean for the poem's argument about love, loyalty and cultural identity.</p></div></div>
+
+    <div class="allusion-card">
+      <div class="a-tag">Allusion 1 — Biblical</div>
+      <h4>📖 The Book of Ruth</h4>
+      <p>Ruth was a Moabite woman (a foreigner) who chose to remain loyal to her mother-in-law Naomi after her husband's death, travelling to a foreign land and eventually finding love and security through her loyalty and integrity. Ruth says the famous words: "Where you go, I will go; where you die, I will die." This mirrors Niall and Xenya — different tribes, perseverance, happiness found through loyalty. The fact that the cat doesn't know this book (because it's a civil ceremony) doesn't matter: they live it anyway.</p>
+    </div>
+
+    <div class="allusion-card">
+      <div class="a-tag">Allusion 2 — Russian Folklore</div>
+      <h4>🔥 The Firebird</h4>
+      <p>In Russian fairy tales, the Firebird is a magical creature whose feathers glow and whose capture requires extraordinary effort and cunning. The hero must be determined and resourceful. The allusion suggests that love — like the Firebird — is worth the effort of pursuit, and that Xenya brings the magic of her tradition into the marriage.</p>
+    </div>
+
+    <div class="allusion-card">
+      <div class="a-tag">Allusion 3 — Russian Folklore</div>
+      <h4>🍎 The Golden Apples</h4>
+      <p>Golden apples appear in Russian folk tales as objects of magical value that require great quests to obtain. Their presence links the marriage to the great Russian tradition of the fairy-tale quest — love as something worth journeying for, worth the hardship.</p>
+    </div>
+
+    <div class="allusion-card">
+      <div class="a-tag">Allusion 4 — Irish Folklore</div>
+      <h4>👑 The King of Ireland's Son</h4>
+      <p>In the Irish tale, the hero must be attentive and present — he must appreciate what he has rather than always seeking the next adventure. The lesson: pay attention to who is beside you. This is practical wisdom for a marriage: notice your partner, appreciate the ordinary, don't take the extraordinary person beside you for granted.</p>
+    </div>
+
+    <div class="allusion-card">
+      <div class="a-tag">Allusion 5 — Irish Folklore</div>
+      <h4>🧙 The Enchanter's Daughter</h4>
+      <p>The Irish tale of the King of Ireland's Son also features the Enchanter's Daughter — a woman of great power who chooses her partner through tests of loyalty and perception. The woman is not passive but actively tests and chooses. This reflects Ní Ch.'s consistent interest in women who hold power and agency.</p>
+    </div>
+
+    <div class="allusion-card">
+      <div class="a-tag">Allusion 6 — European Fairy Tale</div>
+      <h4>💤 Sleeping Beauty</h4>
+      <p>The Sleeping Beauty story is referenced as a reminder that difficulties and obstacles — the "long sleep," the tests — are the necessary precondition for the happy ending. Every couple faces their own Sleeping Beauty moment: the struggle before the awakening. The allusion assures the couple that their difficulties have purpose.</p>
+    </div>
+  </div>
+
+  <!-- KEY QUOTES -->
+  <div class="tab-panel" id="quotes">
+    <h3 class="label">Key Quotes</h3>
+
+    <div class="acc">
+      <button class="acc-btn" onclick="toggleAcc(this)">
+        <span>"You see the same star" — fate</span><span class="arr">▼</span>
+      </button>
+      <div class="acc-body">
+        <span class="tech-pill">Symbolism</span><span class="tech-pill">Universality</span>
+        <div class="quote-block">
+          <div class="quote-ref">Technique: Cosmic symbol — fate written in the stars</div>
+          <blockquote>"You see the same star"</blockquote>
+          <div class="quote-body"><p>From entirely different countries and cultures, both Niall and Xenya look up and see the same star. The star is a traditional symbol of fate and destiny — something universal, shared without knowing, that connects them across distance. This opening establishes the marriage as more than a social arrangement: it is cosmically ordained. The simplicity of the image gives it enormous power.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc">
+      <button class="acc-btn" onclick="toggleAcc(this)">
+        <span>"leave behind" — repetition</span><span class="arr">▼</span>
+      </button>
+      <div class="acc-body">
+        <span class="tech-pill">Repetition</span><span class="tech-pill">Transition</span>
+        <div class="quote-block">
+          <div class="quote-ref">Technique: Repetition — emphasis on what must be relinquished</div>
+          <blockquote>"leave behind... leave behind"</blockquote>
+          <div class="quote-body"><p>The repetition of "leave behind" insists on the necessary losses of marriage: old places, old ways, old identities. But what is being left behind is not abandoned — it is carried forward in memory, culture, and identity. The poem uses repetition to make this act of leaving feel significant, not casual.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc">
+      <button class="acc-btn" onclick="toggleAcc(this)">
+        <span>"cat speaks Irish and Russian" — cultural identity</span><span class="arr">▼</span>
+      </button>
+      <div class="acc-body">
+        <span class="tech-pill">Symbolism</span><span class="tech-pill">Cultural Identity</span><span class="tech-pill">Humour</span>
+        <div class="quote-block">
+          <div class="quote-ref">Technique: Whimsical image carrying serious meaning</div>
+          <blockquote>"the cat speaks Irish and Russian"</blockquote>
+          <div class="quote-body"><p>The image is gently funny — a cat that speaks two languages — but its meaning is serious. Culture lives in the ordinary domestic world. Their languages, traditions, and identities don't disappear because they are now one household; they coexist, equally valued. The cat — always independent, never fully domesticated — represents the living spirit of their respective cultures: untamed, authentic, present.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc">
+      <button class="acc-btn" onclick="toggleAcc(this)">
+        <span>"half a loaf and a mother's blessing" — sacrifice</span><span class="arr">▼</span>
+      </button>
+      <div class="acc-body">
+        <span class="tech-pill">Allusion (Folklore)</span><span class="tech-pill">Sacrifice</span><span class="tech-pill">Blessing</span>
+        <div class="quote-block">
+          <div class="quote-ref">Technique: Folk saying — sacrifice and generosity</div>
+          <blockquote>"half a loaf and a mother's blessing"</blockquote>
+          <div class="quote-body"><p>A folk saying about giving something up in order to give the best gift. The mother sacrifices the material support ("half a loaf") so that she can give the most valuable thing: her blessing. For Ní Ch. this is both literally true (she lets her son go, go live his life) and metaphorically powerful: love requires letting go. The simplicity of the image — bread and blessing — grounds an enormous emotional act in the everyday.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc">
+      <button class="acc-btn" onclick="toggleAcc(this)">
+        <span>"You will" — repetition, certainty</span><span class="arr">▼</span>
+      </button>
+      <div class="acc-body">
+        <span class="tech-pill">Anaphora</span><span class="tech-pill">Authority</span><span class="tech-pill">Prophecy</span>
+        <div class="quote-block">
+          <div class="quote-ref">Technique: Anaphora — the storyteller's prophetic voice</div>
+          <blockquote>"You will... you will... you will"</blockquote>
+          <div class="quote-body"><p>The repetition of "You will" gives the speaker the authority of a prophet or a fairy godmother. This is not a hope or a wish — it is a certainty, delivered by someone who knows how the story ends. The speaker is the storyteller who controls the narrative. Her confidence is the poem's greatest gift to the couple: someone with the wisdom and authority to promise them the ending.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc">
+      <button class="acc-btn" onclick="toggleAcc(this)">
+        <span>"lived happily ever after" — the isolated final line</span><span class="arr">▼</span>
+      </button>
+      <div class="acc-body">
+        <span class="tech-pill">Allusion (Fairy Tale)</span><span class="tech-pill">Form</span><span class="tech-pill">Isolated Line</span>
+        <div class="quote-block">
+          <div class="quote-ref">Technique: Isolated line — maximum weight and finality</div>
+          <blockquote>"lived happily ever after."</blockquote>
+          <div class="quote-body"><p>By isolating this line from the rest of the poem, Ní Ch. gives it the weight of a genuine blessing, not a cliché. In the context of all the allusions that have preceded it — the determination of the Firebird quest, the loyalty of Ruth, the attentiveness of the Irish tales — this ending has been earned. The storyteller-mother is not offering a platitude but a real narrative conclusion: she has told the full story, and this is its ending. The full stop after "after" is definitive.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TECHNIQUES -->
+  <div class="tab-panel" id="techniques">
+    <h3 class="label">Poetic Techniques</h3>
+    <div class="two-col">
+      <div class="info-card">
+        <h2>📖 Allusion Throughout</h2>
+        <p>Six major allusions spanning Irish folklore, Russian folklore, and the Bible. Allusion allows Ní Ch. to say an enormous amount in very few words — each reference imports an entire story and its moral into the poem. Together they form a tradition-rich blessing for the couple.</p>
+      </div>
+      <div class="info-card">
+        <h2>🔁 Anaphora: "You will"</h2>
+        <p>The repeated "You will" gives the speaker prophetic authority. It is the language of the wise woman who knows the future, who delivers fate rather than wishes. This differentiates the poem from a conventional wedding toast and makes it a genuine folk blessing.</p>
+      </div>
+      <div class="info-card">
+        <h2>🔁 Repetition: "leave behind"</h2>
+        <p>The repetition insists on necessary loss as part of growth. You cannot gain without also leaving something behind. The repetition makes this act solemn and intentional, not casual.</p>
+      </div>
+      <div class="info-card">
+        <h2>📐 Uneven Stanzas</h2>
+        <p>The uneven stanza lengths reflect the organic, uncontrolled nature of a story — folk tales don't have regular forms. The poem's structure mimics the structure of a told tale: some parts are longer, some shorter, depending on what needs to be said.</p>
+      </div>
+      <div class="info-card">
+        <h2>✂️ Isolated Final Line</h2>
+        <p>"Lived happily ever after." The physical isolation of this line on the page gives it maximum weight. In performance, it would come after a long pause. It is the fairy-tale ending delivered with full authority.</p>
+      </div>
+      <div class="info-card">
+        <h2>🔊 Slant Rhyme</h2>
+        <p>"more/tower," "fared/afraid" — the poem uses slant rhyme rather than full rhyme. This gives it a folk-tale musicality without feeling rigid or formal. The near-rhymes create a sense of things almost connecting — which is also the experience of two cultures meeting.</p>
+      </div>
+      <div class="info-card">
+        <h2>🌟 Religious Imagery</h2>
+        <p>The star, the steeple, the blessing, the Book of Ruth — religious imagery runs through the poem even though the ceremony is civil. Ní Ch. makes the case that love itself is sacred, regardless of the formal religious framework.</p>
+      </div>
+      <div class="info-card">
+        <h2>⏳ Time Imagery</h2>
+        <p>The poem moves from past tales to present blessings to a promised future. This temporal arc — from the stories of the past, through the present moment of the wedding, to the future happiness — reflects the poem's core argument: that love exists in time, drawing on tradition and pointing toward possibility.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTEXT & EXAM -->
+  <div class="tab-panel" id="context">
+    <h3 class="label">Context &amp; Exam Preparation</h3>
+
+    <div class="box b-exam"><div class="ico">🎓</div><div><div class="box-label">Exam Tip</div><p>This poem is N í Ch.'s most explicitly joyful — a counterweight to the grief in Death and Engines and Bend in the Road. Exam questions often ask about <em>her range of tone</em>: don't forget this poem shows warmth, celebration and playfulness. Always mention: (1) the allusions and what they mean, (2) the isolated final line, (3) the speaker as storyteller/wise woman.</p></div></div>
+
+    <div class="info-card">
+      <h2>Links to Other Poems</h2>
+      <ul>
+        <li><strong>Death and Engines:</strong> Both address a family member directly ("you"). Death and Engines addresses the dying father; this addresses the marrying son. Together they show the full arc of family love — from loss to celebration.</li>
+        <li><strong>The Bend in the Road:</strong> Both involve family and the passage of time. Bend looks back; this looks forward. Both find consolation — in nature (Bend) and in story (Niall Woods).</li>
+        <li><strong>Lucina Schynning:</strong> Both poems draw on myth and tradition to understand a major life event. Lucina draws on Irish/Cromwellian history; this draws on folk tales from two cultures.</li>
+        <li><strong>Translation:</strong> Both involve women's voices, cultural identity, and the power of naming. Translation gives back identity to silenced women; this celebrates the cultural identity of two people coming together.</li>
+      </ul>
+    </div>
+
+    <div class="box b-gold"><div class="ico">💡</div><div><div class="box-label">Key Argument for Exam</div><p>In "To Niall Woods and Xenya Ostrovskaia," Ní Chuilleanáin adopts the persona of the wise woman of folk tales to deliver a blessing that reaches across two cultures and three literary traditions. By ending with "lived happily ever after" — isolated on its own line — she insists that the fairy-tale ending is not a cliché but a genuine human possibility, earned through loyalty, attentiveness, and love.</p></div></div>
+
+    <div class="info-card">
+      <h2>Common Exam Questions</h2>
+      <ul>
+        <li>"Ní Chuilleanáin's poetry is rich in allusion." Discuss. → This is the best poem for demonstrating allusion — 6 major allusions in one poem.</li>
+        <li>"Her work celebrates love and family as well as exploring loss." → This poem alongside Death and Engines shows her full emotional range.</li>
+        <li>"The storyteller's voice is central to her work." → This poem's speaker is explicitly a storyteller — wise woman, fairy godmother, narrator.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script>
+function switchTab(btn, id) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+function toggleAcc(btn) {
+  const body = btn.nextElementSibling;
+  const isOpen = btn.classList.contains('open');
+  document.querySelectorAll('.acc-btn.open').forEach(b => { b.classList.remove('open'); b.nextElementSibling.classList.remove('open'); });
+  if (!isOpen) { btn.classList.add('open'); body.classList.add('open'); }
+}
+</script>
+</body>
+</html>
