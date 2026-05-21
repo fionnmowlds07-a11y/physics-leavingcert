@@ -19,9 +19,7 @@
     --shadow-hover: 0 12px 30px rgba(0,0,0,0.12);
     --radius: 16px;
   }
-
   * { box-sizing: border-box; margin: 0; padding: 0; }
-
   body {
     font-family: 'Lexend', sans-serif;
     background: var(--bg);
@@ -32,7 +30,6 @@
     display: flex;
     flex-direction: column;
   }
-
   .top-bar {
     background: white;
     border-bottom: 2px solid var(--border);
@@ -55,7 +52,6 @@
     transition: color 0.2s;
   }
   .back-link:hover { color: var(--accent-main); }
-
   .hero {
     background: linear-gradient(135deg, #1a1a2e 0%, #2a0a3a 50%, #1a0b2e 100%);
     color: white; padding: 80px 40px; text-align: center;
@@ -68,12 +64,9 @@
   }
   .hero h2 { font-size: 48px; font-weight: 700; margin-bottom: 16px; animation: slideDown 0.6s ease-out; }
   .hero p { font-size: 20px; color: rgba(255,255,255,0.85); max-width: 700px; margin: 0 auto; line-height: 1.6; animation: fadeIn 1s ease-out; }
-
   .dashboard { flex: 1; padding: 60px 40px; max-width: 1200px; margin: 0 auto; width: 100%; }
   .section-title { font-size: 24px; font-weight: 700; color: var(--text); margin-bottom: 30px; text-align: center; text-transform: uppercase; letter-spacing: 0.05em; }
-
   .topics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; justify-content: center; }
-
   .chapter-card {
     background: var(--card); border: 2px solid var(--border); border-radius: var(--radius);
     padding: 32px 24px; text-decoration: none; display: flex; flex-direction: column;
@@ -85,30 +78,27 @@
   .chapter-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 6px; transition: height 0.3s ease; }
   .chapter-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-hover); border-color: transparent; }
   .chapter-card:hover::before { height: 12px; }
-
   .card-theory::before { background: var(--accent-main); }
   .card-theory:hover { border-color: var(--accent-main); }
   .card-theory .mc-icon { color: var(--accent-main); background: #e8eaf6; }
-
   .card-logic::before { background: var(--accent-secondary); }
   .card-logic:hover { border-color: var(--accent-secondary); }
   .card-logic .mc-icon { color: #f57f17; background: #fff8e1; }
-
   .card-poetry::before { background: var(--accent-tertiary); }
   .card-poetry:hover { border-color: var(--accent-tertiary); }
   .card-poetry .mc-icon { color: #2e7d32; background: #e8f5e9; }
-
+  .card-eilean::before { background: #1a6b5a; }
+  .card-eilean:hover { border-color: #1a6b5a; }
+  .card-eilean .mc-icon { color: #1a6b5a; background: #e8f4f0; }
   .card-ai::before { background: #9c27b0; }
   .card-ai:hover { border-color: #9c27b0; }
   .card-ai .mc-icon { color: #8e24aa; background: #f3e5f5; }
-
   .mc-icon { font-size: 42px; width: 80px; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 50%; margin-bottom: 20px; transition: transform 0.3s ease; }
   .chapter-card:hover .mc-icon { transform: scale(1.1) rotate(5deg); }
   .mc-title { font-size: 20px; font-weight: 700; color: var(--text); margin-bottom: 10px; }
   .mc-desc { font-size: 14px; color: var(--text-light); line-height: 1.6; }
   .mc-action { margin-top: 24px; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text); opacity: 0.6; transition: opacity 0.2s; }
   .chapter-card:hover .mc-action { opacity: 1; }
-
   .bottom-section { margin-top: 80px; text-align: center; animation: fadeIn 1.2s ease-out; }
   .info-card {
     background: var(--card); border: 2px solid var(--border); border-radius: var(--radius);
@@ -125,7 +115,7 @@
   }
   .study-btn:hover { background: #283593; transform: translateY(-2px); box-shadow: 0 6px 16px rgba(57, 73, 171, 0.4); }
 
-  /* ── PASSWORD OVERLAY ── */
+  /* PASSWORD OVERLAY */
   #pw-overlay {
     position: fixed; inset: 0; z-index: 9999;
     background: linear-gradient(135deg, #1a1a2e 0%, #0d0d1a 100%);
@@ -137,16 +127,9 @@
     width: 100%; max-width: 420px; text-align: center;
     box-shadow: 0 24px 80px rgba(0,0,0,0.4); animation: pwFadeIn 0.4s ease-out;
   }
-  @keyframes pwFadeIn {
-    from { opacity: 0; transform: translateY(24px) scale(0.97); }
-    to   { opacity: 1; transform: translateY(0) scale(1); }
-  }
+  @keyframes pwFadeIn { from { opacity: 0; transform: translateY(24px) scale(0.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
   #pw-lock-icon { font-size: 52px; margin-bottom: 16px; display: block; animation: pwBounce 0.6s ease-out 0.2s both; }
-  @keyframes pwBounce {
-    0%   { transform: scale(0); opacity: 0; }
-    60%  { transform: scale(1.15); opacity: 1; }
-    100% { transform: scale(1); }
-  }
+  @keyframes pwBounce { 0% { transform: scale(0); opacity: 0; } 60% { transform: scale(1.15); opacity: 1; } 100% { transform: scale(1); } }
   #pw-box h2 { font-size: 22px; font-weight: 700; color: #1a1a2e; margin-bottom: 6px; }
   #pw-box p  { font-size: 14px; color: #555570; margin-bottom: 28px; }
   #pw-input {
@@ -156,13 +139,7 @@
   }
   #pw-input:focus { border-color: #3949ab; box-shadow: 0 0 0 4px #3949ab22; }
   #pw-input.shake { animation: pwShake 0.4s ease; border-color: #ef4444; box-shadow: 0 0 0 4px #ef444422; }
-  @keyframes pwShake {
-    0%,100% { transform: translateX(0); }
-    20%     { transform: translateX(-8px); }
-    40%     { transform: translateX(8px); }
-    60%     { transform: translateX(-5px); }
-    80%     { transform: translateX(5px); }
-  }
+  @keyframes pwShake { 0%,100% { transform: translateX(0); } 20% { transform: translateX(-8px); } 40% { transform: translateX(8px); } 60% { transform: translateX(-5px); } 80% { transform: translateX(5px); } }
   #pw-btn {
     margin-top: 16px; width: 100%; padding: 14px; background: #3949ab; color: white;
     border: none; border-radius: 10px; font-family: 'Lexend', sans-serif;
@@ -212,13 +189,11 @@
     }
     document.body.classList.add('pw-locked');
   })();
-
   document.getElementById('pw-input') && document.getElementById('pw-input').addEventListener('keydown', function(e) {
     if (e.key === 'Enter') checkPw();
     document.getElementById('pw-error').textContent = '';
     this.classList.remove('shake');
   });
-
   function checkPw() {
     const val = document.getElementById('pw-input').value;
     if (val === 'MrTwomey') {
@@ -250,31 +225,38 @@
 
   <main class="dashboard">
     <div class="section-title">Select a topic</div>
-    
+
     <div class="topics-grid">
-      
-      <a href="Macbeth characters.html" class="chapter-card card-theory">
+
+      <a href="Macbeth characters.html" class="chapter-card card-theory" style="animation-delay:0.05s">
         <div class="mc-icon">🎭</div>
         <div class="mc-title">Macbeth Characters</div>
         <div class="mc-desc">Deep dive into the motivations, flaws, and development of Macbeth, Lady Macbeth, Macduff, and the Witches.</div>
         <div class="mc-action">Start analysis →</div>
       </a>
 
-      <a href="Macbeth themes.html" class="chapter-card card-logic">
+      <a href="Macbeth themes.html" class="chapter-card card-logic" style="animation-delay:0.1s">
         <div class="mc-icon">📖</div>
-        <div class="mc-title">Themes & Symbolism</div>
+        <div class="mc-title">Macbeth Themes &amp; Symbolism</div>
         <div class="mc-desc">Explore ambition, guilt, fate versus free will, and the recurring imagery of blood, sleep, and nature.</div>
         <div class="mc-action">View notes →</div>
       </a>
 
-      <a href="Bishop.html" class="chapter-card card-poetry">
+      <a href="Bishop.html" class="chapter-card card-poetry" style="animation-delay:0.15s">
         <div class="mc-icon">✒️</div>
         <div class="mc-title">Elizabeth Bishop Poetry</div>
         <div class="mc-desc">Explore the precise imagery, themes of loss, travel, and observation in Elizabeth Bishop's celebrated poems.</div>
         <div class="mc-action">Read poems →</div>
       </a>
 
-      <a href="English corrector.html" class="chapter-card card-ai">
+      <a href="eilean/Eileen.html" class="chapter-card card-eilean" style="animation-delay:0.2s">
+        <div class="mc-icon">🌿</div>
+        <div class="mc-title">Eiléan Ní Chuilleanáin Poetry</div>
+        <div class="mc-desc">Explore mystery, women's voices, Irish history, and folklore across six poems — from Street to To Niall Woods.</div>
+        <div class="mc-action">Read poems →</div>
+      </a>
+
+      <a href="English corrector.html" class="chapter-card card-ai" style="animation-delay:0.25s">
         <div class="mc-icon">🤖</div>
         <div class="mc-title">AI Answer Corrector</div>
         <div class="mc-desc">Submit your essays and responses for instant AI feedback, grading, and structural corrections.</div>
