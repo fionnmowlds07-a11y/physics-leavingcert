@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yeats — An Acre of Grass</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F7F4EF;--surface:#FFFFFF;--surface2:#F0EDE8;--border:#E2DDD7;--text:#2C2825;--muted:#7A7068;--c:#3a5a1a;--cl:#ecf4e4;--cd:#1e3408;--radius:14px;--shadow:0 4px 20px rgba(0,0,0,0.08);--shadow-h:0 8px 32px rgba(0,0,0,0.14);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;font-size:16px;}
+nav{position:sticky;top:0;z-index:100;background:rgba(247,244,239,0.97);backdrop-filter:blur(10px);border-bottom:2px solid var(--border);padding:8px 16px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;min-height:52px;}
+.nav-logo{font-family:'Lexend Mega',sans-serif;font-size:0.85rem;color:var(--text);margin-right:4px;text-decoration:none;white-space:nowrap;}.nav-logo span{color:#8B6914;}
+.nav-divider{width:1px;height:20px;background:var(--border);flex-shrink:0;}
+.nav-btn{padding:5px 11px;border-radius:18px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.72rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);text-decoration:none;white-space:nowrap;}
+.nav-btn:hover{transform:translateY(-2px);}
+.nav-btn.home:hover,.nav-btn.home.active{background:#2c2825;border-color:#2c2825;color:#fff;}
+.nav-btn.innisfree:hover,.nav-btn.innisfree.active{background:#1a6b3a;border-color:#1a6b3a;color:#fff;}
+.nav-btn.swans:hover,.nav-btn.swans.active{background:#1a3a6b;border-color:#1a3a6b;color:#fff;}
+.nav-btn.sept:hover,.nav-btn.sept.active{background:#7a1a1a;border-color:#7a1a1a;color:#fff;}
+.nav-btn.easter:hover,.nav-btn.easter.active{background:#8B6914;border-color:#8B6914;color:#fff;}
+.nav-btn.byz:hover,.nav-btn.byz.active{background:#4a1a7a;border-color:#4a1a7a;color:#fff;}
+.nav-btn.acre:hover,.nav-btn.acre.active{background:#3a5a1a;border-color:#3a5a1a;color:#fff;}
+.nav-btn.flash:hover,.nav-btn.flash.active{background:#3a3a5a;border-color:#3a3a5a;color:#fff;}
+.nav-btn.links:hover,.nav-btn.links.active{background:#5a1a3a;border-color:#5a1a3a;color:#fff;}
+.section{padding:0 16px 80px;max-width:940px;margin:0 auto;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.hero{background:linear-gradient(135deg,var(--cd),var(--c));color:#fff;padding:44px 32px 36px;text-align:center;margin-bottom:32px;}
+.hero .poem-label{font-size:0.75rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;opacity:0.75;margin-bottom:10px;}
+.hero h1{font-family:'Lexend Mega',sans-serif;font-size:clamp(1.6rem,4vw,2.6rem);line-height:1.15;margin-bottom:12px;}
+.hero p{opacity:0.88;max-width:620px;margin:0 auto;font-size:0.96rem;}
+.hero-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px;}
+.hero-chip{background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:4px 14px;border-radius:20px;font-size:0.75rem;font-weight:600;}
+.tab-bar{display:flex;gap:4px;flex-wrap:wrap;padding:22px 0 8px;border-bottom:2px solid var(--border);margin-bottom:28px;}
+.tab{padding:8px 18px;border-radius:10px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.8rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);}
+.tab:hover,.tab.active{background:var(--c);color:#fff;border-color:var(--c);}
+.tab-panel{display:none;}.tab-panel.active{display:block;animation:fadeIn 0.25s ease;}
+.info-card{background:var(--surface);border-radius:var(--radius);padding:24px 26px;margin-bottom:20px;box-shadow:var(--shadow);border-left:5px solid var(--c);}
+.info-card h2{font-size:1.1rem;font-weight:700;margin-bottom:12px;}
+.info-card p{margin-bottom:9px;font-size:0.94rem;}
+.info-card ul{padding-left:20px;margin-bottom:9px;}
+.info-card li{margin-bottom:5px;font-size:0.93rem;}
+.quote-block{border-left:4px solid var(--c);background:var(--cl);border-radius:0 var(--radius) var(--radius) 0;padding:16px 20px;margin:16px 0;}
+.quote-block blockquote{font-family:'Lexend Mega',sans-serif;font-size:0.95rem;font-style:italic;margin-bottom:8px;line-height:1.5;}
+.quote-ref{font-size:0.73rem;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--muted);margin-bottom:10px;}
+.quote-body{font-size:0.91rem;line-height:1.75;}
+.quote-body p{margin-bottom:8px;}
+.tech-pill{display:inline-block;background:var(--c);color:#fff;font-size:0.72rem;font-weight:700;padding:2px 9px;border-radius:5px;margin:2px;}
+.box{border-radius:var(--radius);padding:14px 18px;margin:14px 0;display:flex;gap:12px;align-items:flex-start;}
+.box .ico{font-size:1.5rem;flex-shrink:0;line-height:1.2;}
+.box-label{font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;margin-bottom:4px;}
+.box p,.box li{font-size:0.91rem;}.box ul{padding-left:16px;}.box li{margin-bottom:4px;}
+.b-exam{background:#eaf4fb;border:2px solid #5dade2;}.b-exam .box-label{color:#1a6b9a;}
+.b-tip{background:#fffbf0;border:2px solid #f39c12;}.b-tip .box-label{color:#b7770d;}
+.acc{margin-bottom:10px;}
+.acc-btn{width:100%;text-align:left;background:var(--surface);border:2px solid var(--border);border-radius:var(--radius);padding:14px 18px;font-family:'Lexend',sans-serif;font-size:0.92rem;font-weight:600;cursor:pointer;color:var(--text);display:flex;justify-content:space-between;align-items:center;transition:background 0.15s;}
+.acc-btn:hover{background:#f8f5f0;}
+.acc-btn.open{border-radius:var(--radius) var(--radius) 0 0;border-bottom-color:transparent;}
+.acc-btn .arr{transition:transform 0.25s;margin-left:8px;flex-shrink:0;}
+.acc-btn.open .arr{transform:rotate(180deg);}
+.acc-body{display:none;background:var(--surface);border:2px solid var(--border);border-top:none;border-radius:0 0 var(--radius) var(--radius);padding:20px 22px;}
+.acc-body.open{display:block;}
+.acc-body p{font-size:0.91rem;margin-bottom:8px;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.label{font-size:0.72rem;font-weight:800;text-transform:uppercase;letter-spacing:0.8px;color:var(--muted);margin-bottom:16px;display:block;}
+.poem-text{background:var(--surface);border:2px solid var(--border);border-radius:var(--radius);padding:28px 32px;font-family:Georgia,serif;font-size:1.05rem;line-height:2;box-shadow:var(--shadow);}
+.poem-text .stanza{margin-bottom:1.6em;}
+.poem-text .stanza-label{font-family:'Lexend',sans-serif;font-size:0.65rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:6px;}
+@media(max-width:680px){.two-col{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="Yeats.html">🏆 <span>Yeats</span></a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn home" href="Yeats.html">Home</a>
+  <a class="nav-btn innisfree" href="Yeats_Innisfree.html">Innisfree</a>
+  <a class="nav-btn swans" href="Yeats_Swans.html">Swans</a>
+  <a class="nav-btn sept" href="Yeats_September1913.html">Sept. 1913</a>
+  <a class="nav-btn easter" href="Yeats_Easter1916.html">Easter 1916</a>
+  <a class="nav-btn byz" href="Yeats_Byzantium.html">Byzantium</a>
+  <a class="nav-btn acre active" href="Yeats_AcreOfGrass.html">Acre of Grass</a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn flash" href="Yeats_Flashcards.html">🃏 Flashcards</a>
+  <a class="nav-btn links" href="Yeats_Links.html">🔗 Links</a>
+</nav>
+<div class="hero">
+  <div class="poem-label">Poem 6 — Last Poems — 1936</div>
+  <h1>An Acre of Grass</h1>
+  <p>At 71, in his last home, Yeats rejects quiet decline and prays for the passionate frenzy that great art demands — even in old age.</p>
+  <div class="hero-chips">
+    <span class="hero-chip">Old Age</span><span class="hero-chip">Creative Frenzy</span><span class="hero-chip">Rejection of Stillness</span><span class="hero-chip">Eagle Mind</span><span class="hero-chip">Allusions</span>
+  </div>
+</div>
+<div class="section">
+  <div class="tab-bar">
+    <button class="tab active" onclick="switchTab(this,'overview')">📋 Overview</button>
+    <button class="tab" onclick="switchTab(this,'poem')">📜 The Poem</button>
+    <button class="tab" onclick="switchTab(this,'stanzas')">🔍 Stanza Analysis</button>
+    <button class="tab" onclick="switchTab(this,'quotes')">💬 Key Quotes</button>
+    <button class="tab" onclick="switchTab(this,'techniques')">🎨 Techniques</button>
+    <button class="tab" onclick="switchTab(this,'context')">🎓 Exam Prep</button>
+  </div>
+
+  <div class="tab-panel active" id="overview">
+    <div class="info-card"><h2>📋 Background &amp; Overview</h2>
+      <p>Written in 1936 when Yeats was 71, set in Riversdale — his final home in Rathfarnham, Dublin. Published posthumously in <em>Last Poems</em>. He was an old man in a quiet house, knowing this would be his last residence. The poem takes stock and then explodes against what it finds.</p>
+      <p>Instead of accepting the gentle decline his circumstances suggest, Yeats prays for "frenzy" — passionate, even mad, creative intensity. He invokes Blake, Michelangelo, Lear, and Timon as models of old men who raged magnificently and created powerfully right to the end.</p>
+    </div>
+    <div class="info-card"><h2>🎯 Core Themes</h2><ul>
+      <li><strong>Rejection of Passive Old Age:</strong> The quiet still life of stanza 1 is not contentment — it is death-in-life. Yeats refuses it.</li>
+      <li><strong>The Need for Frenzy:</strong> Creativity requires passion, intensity, even a little madness. "Frenzy" is essential, not frightening.</li>
+      <li><strong>Art as Remaking the Self:</strong> "Myself must I remake" — to create is simultaneously to transform oneself.</li>
+      <li><strong>The Eagle Mind:</strong> The body is diminished; the mind can still be eagle-sharp — far-seeing, powerful, defiant.</li>
+      <li><strong>Heroic Old Age:</strong> Blake, Michelangelo, Lear, Timon — figures of magnificent, passionate old age that Yeats aspires to join.</li>
+    </ul></div>
+    <div class="box b-exam"><div class="ico">🎓</div><div><div class="box-label">Key Contrast to Know</div>
+    <p>This poem is a fascinating reversal of <em>Innisfree</em>. As a young man Yeats longed for peace and quiet solitude. Now that quiet has arrived, it is intolerable: "My temptation is quiet." He got what he wished for — and it is not enough. This reversal across a lifetime is one of the most striking developments in his work.</p></div></div>
+    <div class="info-card"><h2>📚 The Four Allusions</h2><ul>
+      <li><strong>William Blake (1757–1827):</strong> Poet, artist, mystic — created radical, visionary work until death at 70. "Beat upon the wall / Till Truth obeyed his call."</li>
+      <li><strong>Michelangelo (1475–1564):</strong> Painted Sistine Chapel ceiling in his 30s; designed St Peter's Basilica in his 80s. Worked with ferocious energy to nearly 90.</li>
+      <li><strong>King Lear:</strong> Shakespeare's old king who raged magnificently — "Blow, winds, and crack your cheeks!" — before descending into glorious madness.</li>
+      <li><strong>Timon of Athens:</strong> Shakespeare's noble who became a passionate misanthrope, raging against ingratitude. Passionate even in bitterness.</li>
+    </ul></div>
+  </div>
+
+  <div class="tab-panel" id="poem">
+    <div class="poem-text">
+      <div class="stanza"><div class="stanza-label">Stanza 1</div>
+        Picture and book remain,<br>An acre of green grass<br>For air and exercise,<br>Now strength of body goes;<br>Midnight, an old house<br>Where nothing stirs but a mouse.
+      </div>
+      <div class="stanza"><div class="stanza-label">Stanza 2</div>
+        My temptation is quiet.<br>Here at life's end<br>Neither loose imagination,<br>Nor the mill of the mind<br>Consuming its rag and bone,<br>Can make the truth known.
+      </div>
+      <div class="stanza"><div class="stanza-label">Stanza 3</div>
+        Grant me an old man's frenzy,<br>Myself must I remake<br>Till I am Timon and Lear<br>Or that William Blake<br>Who beat upon the wall<br>Till Truth obeyed his call;
+      </div>
+      <div class="stanza"><div class="stanza-label">Stanza 4</div>
+        A mind Michael Angelo knew<br>That can pierce the clouds,<br>Or inspired by frenzy<br>Shake the dead in their shrouds;<br>Forgotten else by mankind,<br>An old man's eagle mind.
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="stanzas">
+    <span class="label">Stanza-by-Stanza Analysis</span>
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>Stanza 1 — The Still, Reduced Life</span><span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="quote-block"><blockquote>"Midnight, an old house / Where nothing stirs but a mouse."</blockquote></div>
+      <p>A bare inventory: one picture, one book, one acre of grass. Everything singular, everything shrinking. "Now strength of body goes" — stated plainly, without self-pity. The closing image is almost comic in its desolation: midnight, an old house, and the only movement is a mouse. This bathetic image establishes the urgency of what follows. This is what Yeats is fighting against.</p>
+      <p>Crucially, Yeats is aware that this is what he once longed for — Innisfree promised "nine bean-rows" and solitude in nature. Now he has the solitude and finds it intolerable. The reversal is the poem's secret irony.</p>
+    </div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>Stanza 2 — Diagnosing the Problem: "My temptation is quiet"</span><span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="quote-block"><blockquote>"Neither loose imagination, / Nor the mill of the mind / Consuming its rag and bone, / Can make the truth known."</blockquote></div>
+      <p>"My temptation is quiet" — an extraordinarily honest line. Yeats is tempted not by vice but by surrender, by rest, by letting go. He recognises this as the enemy of creation.</p>
+      <p>He then diagnoses two inadequate mental states. "Loose imagination" is unfocused, drifting — it generates daydreams, not truth. The "mill of the mind" is the other extreme: grinding, obsessive, consuming its own "rag and bone" — the disordered scraps of thought and emotion — without producing anything of value. Neither passivity nor anxious churning will create great work. What is needed is something else: frenzy.</p>
+    </div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>Stanza 3 — "Grant me an old man's frenzy"</span><span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="quote-block"><blockquote>"Grant me an old man's frenzy, / Myself must I remake / Till I am Timon and Lear / Or that William Blake / Who beat upon the wall / Till Truth obeyed his call"</blockquote></div>
+      <p>"Grant me" — a formal prayer. Yeats asks for what he cannot generate alone: passionate intensity, the gift of frenzy. "Frenzy" is not a negative word here — it is what great art demands.</p>
+      <p>"Myself must I remake" — the inverted syntax gives this archaic force. Creating great poetry at 71 requires first transforming oneself — refusing the quiet old man he currently is. The models he invokes are extraordinary: Lear and Timon both raged magnificently against injustice. Blake "beat upon the wall / Till Truth obeyed his call" — truth does not come easily; it must be beaten out of the universe. The rhyme "wall/call" drives home the relentlessness required.</p>
+    </div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>Stanza 4 — "An old man's eagle mind"</span><span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="quote-block"><blockquote>"Shake the dead in their shrouds; / Forgotten else by mankind, / An old man's eagle mind."</blockquote></div>
+      <p>The final stanza reaches the poem's resolution. A mind like Michelangelo's can "pierce the clouds" — transcend ordinary limitation. Inspired by frenzy, art so powerful it can "Shake the dead in their shrouds" — disturb even the dead with its power. This is the highest possible ambition for a poem.</p>
+      <p>"Forgotten else by mankind" — without this frenzy, he will simply be forgotten. He is in his last home with his mouse. But with "an old man's eagle mind" — the resolution arrives in four words. The eagle: sharp, far-seeing, powerful, predatory. Age cannot take the eagle's sight or its power to soar. The body is old; the mind can still be eagle. The poem ends not in surrender but in absolute defiance.</p>
+    </div></div>
+  </div>
+
+  <div class="tab-panel" id="quotes">
+    <span class="label">Key Quotes</span>
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"Where nothing stirs but a mouse" — life at its most reduced</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Bathos</span><span class="tech-pill">Setting</span><span class="tech-pill">Contrast</span>
+    <div class="quote-block"><div class="quote-ref">Technique: Bathetic image — the urgent need for frenzy made visible</div><blockquote>"Midnight, an old house / Where nothing stirs but a mouse."</blockquote><div class="quote-body"><p>Almost comic in its quiet desolation. This single image — a mouse as the only movement — establishes everything. The reader immediately understands why frenzy is needed. The bathos is entirely deliberate: Yeats is staring at the abyss of insignificance and refusing it.</p></div></div></div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"My temptation is quiet" — the poem's bravest admission</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Honest Confession</span><span class="tech-pill">Tone</span><span class="tech-pill">Self-Awareness</span>
+    <div class="quote-block"><div class="quote-ref">Technique: Startling self-revelation — naming the real enemy</div><blockquote>"My temptation is quiet."</blockquote><div class="quote-body"><p>Not tempted by vice or excess — tempted by quiet itself. This is the most honest line in the late poems. Part of him wants to give in, to rest, to stop. He names this temptation precisely because he refuses to yield to it. The poem is the act of resistance against this very temptation.</p></div></div></div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"Grant me an old man's frenzy" — prayer for passion</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Prayer</span><span class="tech-pill">Tone Shift</span><span class="tech-pill">Defiance</span>
+    <div class="quote-block"><div class="quote-ref">Technique: Formal prayer — the emotional pivot of the poem</div><blockquote>"Grant me an old man's frenzy"</blockquote><div class="quote-body"><p>"Grant me" is a formal petitionary prayer — humble yet urgent. "Frenzy" is not a word normally associated with prayer, yet Yeats prays for it because rational, controlled thinking cannot produce great art. The poem's tone shifts entirely at this line: from quiet inventory to passionate demand.</p></div></div></div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"Myself must I remake" — art as self-transformation</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Inverted Syntax</span><span class="tech-pill">Alliteration</span><span class="tech-pill">Determination</span>
+    <div class="quote-block"><div class="quote-ref">Technique: Inverted syntax giving archaic, forceful authority</div><blockquote>"Myself must I remake"</blockquote><div class="quote-body"><p>Inverted syntax — "Myself must I" not "I must remake myself" — gives the line an Old Testament force, as if it is an ancient command rather than a personal resolution. Alliteration of "m" hammers it home. To create great art, Yeats must first transform the person he currently is. Creation is self-transformation.</p></div></div></div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"Blake / Who beat upon the wall / Till Truth obeyed his call"</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Allusion</span><span class="tech-pill">Physical Metaphor</span><span class="tech-pill">Rhyme</span>
+    <div class="quote-block"><div class="quote-ref">Technique: Violent physical metaphor for creative relentlessness</div><blockquote>"that William Blake / Who beat upon the wall / Till Truth obeyed his call"</blockquote><div class="quote-body"><p>Blake "beats" — a violent, physical verb for creative work. Truth does not come willingly; it must be hammered out of the universe through relentless effort. The rhyme of "wall/call" drives home the determination. This is Yeats's model: not gentle inspiration but furious, physical insistence on truth.</p></div></div></div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"An old man's eagle mind" — the final image</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Symbol</span><span class="tech-pill">Resolution</span><span class="tech-pill">Defiance</span>
+    <div class="quote-block"><div class="quote-ref">Technique: Eagle as symbol of power that age cannot diminish</div><blockquote>"An old man's eagle mind."</blockquote><div class="quote-body"><p>The poem's resolution in four words. Eagles: sharp, far-seeing, powerful, predatory, soaring. "Old man's" acknowledges the body's limitations — but "eagle mind" insists the mind can transcend them. Age is in the body; transcendence is in the mind. The poem ends not in acceptance but in absolute defiance — the eagle does not apologise for its age.</p></div></div></div></div>
+  </div>
+
+  <div class="tab-panel" id="techniques">
+    <span class="label">Poetic Techniques</span>
+    <div class="two-col">
+      <div class="info-card"><h2>📏 Form: Six-line Stanzas</h2><p>Four stanzas of six lines each, rhyming approximately abcbdd. The compact, structured form reflects the building argument — from diagnosis to resolution. The closing couplet drives home each stage. Slant rhyme in stanza 1 mirrors the unsatisfactory situation; full rhyme develops as his resolution hardens.</p></div>
+      <div class="info-card"><h2>💪 Active Physical Verbs</h2><p>In the second half: "beat," "shake," "pierce." These are the verbs of passion and action, contrasting with the stillness of the opening. Yeats uses verbs to enact the frenzy he is praying for — the language becomes what it describes.</p></div>
+      <div class="info-card"><h2>📚 Four Allusions</h2><p>Blake, Michelangelo, Lear, Timon — all models of passionate, raging old age. The allusions elevate the poem from personal complaint to a universal statement about the dignity of the creative spirit. They also show Yeats as deeply learned, placing himself in a great tradition.</p></div>
+      <div class="info-card"><h2>🔊 Alliteration as Chant</h2><p>"Myself must I remake," "Blake / Who beat," "Shake the dead in their shrouds" — the alliteration creates a hammer-beat rhythm, almost like a chant or incantation. The sound enacts the frenzy the words describe. The poem performs its own argument.</p></div>
+      <div class="info-card"><h2>🦅 Eagle Symbol</h2><p>Eagles: power, vision, the bird of Zeus. Associated with divine authority, far sight, predatory power. An eagle remains an eagle even when old. "Eagle mind" makes the crucial argument: intellectual and creative power are not subject to physical decline. The mind can still soar.</p></div>
+      <div class="info-card"><h2>⚡ Contrast: Stanza 1 vs Stanza 4</h2><p>The mouse of stanza 1 versus the eagle of stanza 4 — the poem's entire arc in two images. From the most diminished creature of domestic stillness to the most powerful symbol of soaring vision. The journey between these two images is the journey of the poem.</p></div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="context">
+    <span class="label">Context &amp; Exam Preparation</span>
+    <div class="box b-exam"><div class="ico">🎓</div><div><div class="box-label">Key Exam Arguments</div>
+    <p>Two main angles: (1) <strong>Contrast with earlier poems:</strong> Yeats once longed for Innisfree's quiet. Now quiet is the enemy. This shows his development across a lifetime. (2) <strong>Defiance of age:</strong> Where Wild Swans laments, An Acre of Grass fights. Always use the eagle image as the poem's resolution and contrast it with the mouse of stanza 1. The poem's entire argument lives in those two images.</p></div></div>
+    <div class="info-card"><h2>Links to Other Yeats Poems</h2><ul>
+      <li><strong>The Lake Isle of Innisfree:</strong> The reversal. Young Yeats longed for peace and quiet solitude. Old Yeats finds that quiet intolerable — "My temptation is quiet." He got what he wished for, and it was not enough.</li>
+      <li><strong>Sailing to Byzantium:</strong> Both are late poems about old age and art. Byzantium seeks transcendence and eternal art; An Acre of Grass insists on fierce earthly creative passion. One looks to eternity; the other insists on now.</li>
+      <li><strong>The Wild Swans at Coole:</strong> Both are poems of old age. Swans laments what cannot be changed; Acre of Grass refuses to accept diminishment and fights back. Two different emotional responses to the same predicament.</li>
+    </ul></div>
+    <div class="box b-tip"><div class="ico">💡</div><div><div class="box-label">The Essential Quote Pair</div>
+    <p>Open with "My temptation is quiet" — the poem's most honest admission. Close with "an old man's eagle mind" — its resolution and triumph. The entire argument of the poem lives in the distance between these two phrases: from temptation to acceptance of quiet, to the defiant assertion that the mind can still soar like an eagle.</p></div></div>
+  </div>
+</div>
+<script>
+function switchTab(btn,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(id).classList.add('active');}
+function toggleAcc(btn){const body=btn.nextElementSibling;const isOpen=btn.classList.contains('open');document.querySelectorAll('.acc-btn.open').forEach(b=>{b.classList.remove('open');b.nextElementSibling.classList.remove('open');});if(!isOpen){btn.classList.add('open');body.classList.add('open');}}
+</script>
+</body>
+</html>

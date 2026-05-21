@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yeats — Flashcard Drill</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F4F1EC;--surface:#FFFFFF;--surface2:#EDEAE4;--border:#DDD9D2;
+  --text:#1E1C18;--muted:#7A7568;--radius:16px;
+  --shadow:0 4px 24px rgba(0,0,0,0.08);--shadow-lg:0 12px 48px rgba(0,0,0,0.14);
+  --innisfree:#1a6b3a;--innisfree-l:#e8f4ec;
+  --swans:#1a3a6b;--swans-l:#e8ecf8;
+  --sept:#7a1a1a;--sept-l:#f8e8e8;
+  --easter:#8B6914;--easter-l:#f8f0d8;
+  --byz:#4a1a7a;--byz-l:#f0e8f8;
+  --acre:#3a5a1a;--acre-l:#ecf4e4;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh;}
+nav{position:sticky;top:0;z-index:100;background:rgba(244,241,236,0.97);backdrop-filter:blur(10px);border-bottom:2px solid var(--border);padding:8px 16px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;min-height:52px;}
+.nav-logo{font-family:'Lexend Mega',sans-serif;font-size:0.85rem;color:var(--text);margin-right:4px;text-decoration:none;white-space:nowrap;}.nav-logo span{color:#8B6914;}
+.nav-divider{width:1px;height:20px;background:var(--border);flex-shrink:0;}
+.nav-btn{padding:5px 11px;border-radius:18px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.72rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);text-decoration:none;white-space:nowrap;}
+.nav-btn:hover{transform:translateY(-2px);}
+.nav-btn.home:hover,.nav-btn.home.active{background:#2c2825;border-color:#2c2825;color:#fff;}
+.nav-btn.innisfree:hover,.nav-btn.innisfree.active{background:var(--innisfree);border-color:var(--innisfree);color:#fff;}
+.nav-btn.swans:hover,.nav-btn.swans.active{background:var(--swans);border-color:var(--swans);color:#fff;}
+.nav-btn.sept:hover,.nav-btn.sept.active{background:var(--sept);border-color:var(--sept);color:#fff;}
+.nav-btn.easter:hover,.nav-btn.easter.active{background:var(--easter);border-color:var(--easter);color:#fff;}
+.nav-btn.byz:hover,.nav-btn.byz.active{background:var(--byz);border-color:var(--byz);color:#fff;}
+.nav-btn.acre:hover,.nav-btn.acre.active{background:var(--acre);border-color:var(--acre);color:#fff;}
+.nav-btn.flash.active,.nav-btn.flash:hover{background:#3a3a5a;border-color:#3a3a5a;color:#fff;}
+.nav-btn.links:hover,.nav-btn.links.active{background:#5a1a3a;border-color:#5a1a3a;color:#fff;}
+.page-hero{background:linear-gradient(135deg,#1a1408,#3a2008,#0a0818);color:#fff;padding:44px 24px 36px;text-align:center;}
+.page-hero h1{font-family:'Lexend Mega',sans-serif;font-size:clamp(1.6rem,4vw,2.4rem);margin-bottom:10px;}
+.page-hero p{opacity:0.82;max-width:560px;margin:0 auto;font-size:0.95rem;}
+.stats-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:18px;}
+.stat-pill{background:rgba(255,255,255,0.14);border:1px solid rgba(255,255,255,0.25);color:#fff;padding:5px 16px;border-radius:20px;font-size:0.78rem;font-weight:600;}
+.controls{max-width:900px;margin:28px auto 0;padding:0 16px;}
+.filter-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;align-items:center;}
+.filter-label{font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--muted);margin-right:4px;}
+.filter-btn{padding:6px 14px;border-radius:20px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.76rem;font-weight:600;cursor:pointer;transition:all 0.18s;color:var(--muted);}
+.filter-btn:hover{transform:translateY(-2px);}
+.filter-btn.all.active,.filter-btn.all:hover{background:#2c2825;border-color:#2c2825;color:#fff;}
+.filter-btn.innisfree.active,.filter-btn.innisfree:hover{background:var(--innisfree);border-color:var(--innisfree);color:#fff;}
+.filter-btn.swans.active,.filter-btn.swans:hover{background:var(--swans);border-color:var(--swans);color:#fff;}
+.filter-btn.sept.active,.filter-btn.sept:hover{background:var(--sept);border-color:var(--sept);color:#fff;}
+.filter-btn.easter.active,.filter-btn.easter:hover{background:var(--easter);border-color:var(--easter);color:#fff;}
+.filter-btn.byz.active,.filter-btn.byz:hover{background:var(--byz);border-color:var(--byz);color:#fff;}
+.filter-btn.acre.active,.filter-btn.acre:hover{background:var(--acre);border-color:var(--acre);color:#fff;}
+.progress-bar-wrap{background:var(--surface);border:2px solid var(--border);border-radius:12px;padding:14px 18px;margin-bottom:20px;display:flex;align-items:center;gap:14px;}
+.pb-label{font-size:0.78rem;font-weight:700;color:var(--muted);white-space:nowrap;}
+.pb-track{flex:1;background:var(--surface2);border-radius:8px;height:10px;overflow:hidden;}
+.pb-fill{height:10px;border-radius:8px;background:linear-gradient(90deg,#1a6b3a,#8B6914);transition:width 0.4s ease;}
+.pb-count{font-size:0.82rem;font-weight:700;white-space:nowrap;}
+.fc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;max-width:900px;margin:0 auto;padding:0 16px 80px;}
+.fc-wrap{perspective:1000px;}
+.fc{width:100%;min-height:190px;cursor:pointer;transform-style:preserve-3d;transition:transform 0.5s cubic-bezier(.4,.2,.2,1);border-radius:var(--radius);position:relative;}
+.fc.flipped{transform:rotateY(180deg);}
+.fc-f,.fc-b{position:absolute;inset:0;backface-visibility:hidden;border-radius:var(--radius);padding:22px 20px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;border:2px solid var(--border);min-height:190px;}
+.fc-f{background:var(--surface);}
+.fc-b{transform:rotateY(180deg);color:var(--text);}
+.fc-poem-badge{font-size:0.65rem;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;padding:3px 12px;border-radius:20px;margin-bottom:12px;}
+.fc-quote{font-style:italic;font-size:0.95rem;font-weight:600;line-height:1.55;color:var(--text);margin-bottom:10px;}
+.fc-hint{font-size:0.68rem;color:var(--muted);margin-top:auto;}
+.fc-b .fc-poem-badge{margin-bottom:8px;}
+.fc-tech{font-size:0.75rem;font-weight:800;margin-bottom:6px;}
+.fc-analysis{font-size:0.85rem;line-height:1.6;}
+.poem-section-header{max-width:900px;margin:32px auto 12px;padding:0 16px;display:flex;align-items:center;gap:12px;}
+.poem-section-header h2{font-family:'Lexend Mega',sans-serif;font-size:1rem;white-space:nowrap;}
+.scroll-top{position:fixed;bottom:24px;right:24px;background:#2c2825;color:#fff;border:none;border-radius:50%;width:44px;height:44px;font-size:1.1rem;cursor:pointer;box-shadow:var(--shadow-lg);z-index:200;}
+.fc-wrap.hidden{display:none;}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="Yeats.html">🏆 <span>Yeats</span></a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn home" href="Yeats.html">Home</a>
+  <a class="nav-btn innisfree" href="Yeats_Innisfree.html">Innisfree</a>
+  <a class="nav-btn swans" href="Yeats_Swans.html">Swans</a>
+  <a class="nav-btn sept" href="Yeats_September1913.html">Sept. 1913</a>
+  <a class="nav-btn easter" href="Yeats_Easter1916.html">Easter 1916</a>
+  <a class="nav-btn byz" href="Yeats_Byzantium.html">Byzantium</a>
+  <a class="nav-btn acre" href="Yeats_AcreOfGrass.html">Acre of Grass</a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn flash active" href="Yeats_Flashcards.html">🃏 Flashcards</a>
+  <a class="nav-btn links" href="Yeats_Links.html">🔗 Links</a>
+</nav>
+
+<div class="page-hero">
+  <h1>🃏 Flashcard Drill</h1>
+  <p>Click any card to reveal the technique and analysis. Filter by poem. Track your progress with the bar below.</p>
+  <div class="stats-row">
+    <span class="stat-pill">6 Poems</span>
+    <span class="stat-pill" id="total-count">36 Cards</span>
+    <span class="stat-pill">Click to flip</span>
+  </div>
+</div>
+
+<div class="controls">
+  <div class="filter-row">
+    <span class="filter-label">Filter:</span>
+    <button class="filter-btn all active" onclick="filterCards('all',this)">All Poems</button>
+    <button class="filter-btn innisfree" onclick="filterCards('innisfree',this)">🌿 Innisfree</button>
+    <button class="filter-btn swans" onclick="filterCards('swans',this)">🦢 Swans</button>
+    <button class="filter-btn sept" onclick="filterCards('sept',this)">✊ Sept 1913</button>
+    <button class="filter-btn easter" onclick="filterCards('easter',this)">🌹 Easter 1916</button>
+    <button class="filter-btn byz" onclick="filterCards('byz',this)">🏛️ Byzantium</button>
+    <button class="filter-btn acre" onclick="filterCards('acre',this)">🦅 Acre of Grass</button>
+  </div>
+  <div class="progress-bar-wrap">
+    <span class="pb-label">Flipped</span>
+    <div class="pb-track"><div class="pb-fill" id="pb-fill" style="width:0%"></div></div>
+    <span class="pb-count" id="pb-count">0 / <span id="pb-total">36</span></span>
+  </div>
+</div>
+
+<!-- INNISFREE CARDS -->
+<div class="poem-section-header" data-poem="innisfree">
+  <h2 style="color:var(--innisfree)">🌿 The Lake Isle of Innisfree</h2>
+</div>
+<div class="fc-grid" id="grid-innisfree">
+
+  <div class="fc-wrap" data-poem="innisfree">
+    <div class="fc" onclick="flip(this)">
+      <div class="fc-f">
+        <span class="fc-poem-badge" style="background:var(--innisfree-l);color:var(--innisfree)">Innisfree</span>
+        <div class="fc-quote">"I will arise and go now, and go to Innisfree"</div>
+        <div class="fc-hint">Tap to reveal technique →</div>
+      </div>
+      <div class="fc-b" style="background:var(--innisfree-l)">
+        <span class="fc-poem-badge" style="background:var(--innisfree);color:#fff">Innisfree</span>
+        <div class="fc-tech">Biblical Allusion + Repetition</div>
+        <div class="fc-analysis">Echoes Luke 15:18 (Prodigal Son). The repeated "and go" gives the longing the force of a spiritual vow. Not a casual wish — a determined declaration.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fc-wrap" data-poem="innisfree">
+    <div class="fc" onclick="flip(this)">
+      <div class="fc-f">
+        <span class="fc-poem-badge" style="background:var(--innisfree-l);color:var(--innisfree)">Innisfree</span>
+        <div class="fc-quote">"peace comes dropping slow"</div>
+        <div class="fc-hint">Tap to reveal technique →</div>
+      </div>
+      <div class="fc-b" style="background:var(--innisfree-l)">
+        <span class="fc-poem-badge" style="background:var(--innisfree);color:#fff">Innisfree</span>
+        <div class="fc-tech">Personification + Sibilance + Onomatopoeia</div>
+        <div class="fc-analysis">Peace is a liquid thing descending slowly. The sibilance and long vowels slow the reader physically — the line enacts the peace it describes. One of Yeats's most musically precise moments.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fc-wrap" data-poem="innisfree">
+    <div class="fc" onclick="flip(this)">
+      <div class="fc-f">
+        <span class="fc-poem-badge" style="background:var(--innisfree-l);color:var(--innisfree)">Innisfree</span>
+        <div class="fc-quote">"bee-loud glade"</div>
+        <div class="fc-hint">Tap to reveal technique →</div>
+      </div>
+      <div class="fc-b" style="background:var(--innisfree-l)">
+        <span class="fc-poem-badge" style="background:var(--innisfree);color:#fff">Innisfree</span>
+        <div class="fc-tech">Compound Adjective + Auditory Imagery</div>
+        <div class="fc-analysis">Yeats invents "bee-loud" — a hyphenated compound capturing a whole atmosphere. Sound defines the place: it hums with life and productivity. Three words contain an entire world.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fc-wrap" data-poem="innisfree">
+    <div class="fc" onclick="flip(this)">
+      <div class="fc-f">
+        <span class="fc-poem-badge" style="background:var(--innisfree-l);color:var(--innisfree)">Innisfree</span>
+        <div class="fc-quote">"on the pavements grey"</div>
+        <div class="fc-hint">Tap to reveal technique →</div>
+      </div>
+      <div class="fc-b" style="background:var(--innisfree-l)">
+        <span class="fc-poem-badge" style="background:var(--innisfree);color:#fff">Innisfree</span>
+        <div class="fc-tech">Colour Symbolism + Contrast</div>
+        <div class="fc-analysis">After midnight's "glimmer" and noon's "purple glow," the single word "grey" lands like a verdict. It is the colour of everything Innisfree is not: uniform, lifeless, urban. The contrast is devastating in its simplicity.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fc-wrap" data-poem="innisfree">
+    <div class="fc" onclick="flip(this)">
+      <div class="fc-f">
+        <span class="fc-poem-badge" style="background:var(--innisfree-l);color:var(--innisfree)">Innisfree</span>
+        <div class="fc-quote">"I hear it in the deep heart's core"</div>
+        <div class="fc-hint">Tap to reveal technique →</div>
+      </div>
+      <div class="fc-b" style="background:var(--innisfree-l)">
+        <span class="fc-poem-badge" style="background:var(--innisfree);color:#fff">Innisfree</span>
+        <div class="fc-tech">Metaphor + Alliteration + Final Line Power</div>
+        <div class="fc-analysis">The poem's most important line. Innisfree is not a plan but a permanent inner state — home is carried within. Alliteration of "deep/heart/core" drives it home. The imagination transcends geography.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fc-wrap" data-poem="innisfree">
+    <div class="fc" onclick="flip(this)">
+      <div class="fc-f">
+        <span class="fc-poem-badge" style="background:var(--innisfree-l);color:var(--innisfree)">Innisfree</span>
+        <div class="fc-quote">"midnight's all a glimmer, and noon a purple glow"</div>
+        <div class="fc-hint">Tap to reveal technique →</div>
+      </div>
+      <div class="fc-b" style="background:var(--innisfree-l)">
+        <span class="fc-poem-badge" style="background:var(--innisfree);color:#fff">Innisfree</span>
+        <div class="fc-tech">Dreamlike Colour Imagery + Full Day Structure</div>
+        <div class="fc-analysis">Not realistic — the colours are magical, mythological. Midnight "glimmers"; noon glows purple. Innisfree is described as memory and desire paint it: luminous, heightened, supernatural. The island is perfect at every hour.</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end innisfree -->
+
+<!-- SWANS CARDS -->
+<div class="poem-section-header" data-poem="swans">
+  <h2 style="color:var(--swans)">🦢 The Wild Swans at Coole</h2>
+</div>
+<div class="fc-grid" id="grid-swans">
+
+  <div class="fc-wrap" data-poem="swans">
+    <div class="fc" onclick="flip(this)">
+      <div class="fc-f">
+        <span class="fc-poem-badge" style="background:var(--swans-l);color:var(--swans)">Wild Swans</span>
+        <div class="fc-quote">"nine-and-fifty swans"</div>
+        <div class="fc-hint">Tap to reveal technique →</div>
+      </div>
+      <div class="fc-b" style="background:var(--swans-l)">
+        <span class="fc-poem-badge" style="background:var(--swans);color:#fff">Wild Swans</span>
+        <div class="fc-tech">Symbolism + Number</div>
+        <div class="fc-analysis">Swans mate for life — 59 means one is alone without a partner. Directly mirrors Yeats's own loneliness. The archaism "nine-and-fifty" (not "fifty-nine") slows the reading, giving the number weight and a fairy-tale quality.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fc-wrap" data-poem="swans">
+    <div class="fc" onclick="flip(this)">
+      <div class="fc-f">
+        <span class="fc-poem-badge" style="background:var(--swans-l);color:var(--swans)">Wild Swans</span>
+        <div class="fc-quote">"The nineteenth autumn has come upon me"</div>
+        <div class="fc-hint">Tap to reveal technique →</div>
+      </div>
+      <div class="fc-b" style="background:var(--swans-l)">
+        <span class="fc-poem-badge" style="background:var(--swans);color:#fff">Wild Swans</span>
+        <div class="fc-tech">Personification of Time + Verb Choice</div>
+        <div class="fc-analysis">"Come upon" — not "passed" — makes time an ambush, a predator. Nineteen years have crept up and overwhelmed him. The phrasing removes his agency: time happened to him. This is one of Yeats's most honest admissions of vulnerability.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fc-wrap" data-poem="swans">
+    <div class="fc" onclick="flip(this)">
+      <div class="fc-f">
+        <span class="fc-poem-badge" style="background:var(--swans-l);color:var(--swans)">Wild Swans</span>
+        <div class="fc-quote">"All's changed since I... Trod with a lighter tread"</div>
+        <div class="fc-hint">Tap to reveal technique →</div>
+      </div>
+      <div class="fc-b" style="background:var(--swans-l)">
+        <span class="fc-poem-badge" style="background:var(--swans);color:#fff">Wild Swans</span>
+        <div class="fc-tech">Contrast + Compression + Link to Easter 1916</div>
+        <div class="fc-analysis">"All's changed" — two words carrying nineteen years of loss. Compare to "All changed, changed utterly" in Easter 1916. The "lighter tread" of the younger Yeats is gone: he was unburdened by disappointment, age, and unrequited love.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fc-wrap" data-poem="swans">
+    <div class="fc" onclick="flip(this)">
+      <div class="fc-f">
+        <span class="fc-poem-badge" style="background:var(--swans-l);color:var(--swans)">Wild Swans</span>
+        <div class="fc-quote">"Their hearts have not grown old"</div>
+        <div class="fc-hint">Tap to reveal technique →</div>
+      </div>
+      <div class="fc-b" style="background:var(--swans-l)">
+        <span class="fc-poem-badge" style="background:var(--swans);color:#fff">Wild Swans</span>
+        <div class="fc-tech">Juxtaposition + Symbolism</div>
+        <div class="fc-analysis">Direct counterpoint to "my heart is sore." The swans are immortal in spirit — always paired, always passionate. Yeats's heart has aged and grown heavy. The swans represent everything he desires and cannot attain.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fc-wrap" data-poem="swans">
+    <div class="fc" onclick="flip(this)">
+      <div class="fc-f">
+        <span class="fc-poem-badge" style="background:var(--swans-l);color:var(--swans)">Wild Swans</span>
+        <div class="fc-quote">"To find they have flown away?"</div>
+        <div class="fc-hint">Tap to reveal technique →</div>
+      </div>
+      <div class="fc-b" style="background:var(--swans-l)">
+        <span class="fc-poem-badge" style="background:var(--swans);color:#fff">Wild Swans</span>
+        <div class="fc-tech">Rhetorical Question + Ambiguity</div>
+        <div class="fc-analysis">The poem ends on a question — no resolution. The swans will leave; someone else will see them. "Awake" may carry a spiritual charge: if he wakes from death, the earthly beauties will be gone. Yeats refuses to answer — the uncertainty is the honesty.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fc-wrap" data-poem="swans">
+    <div class="fc" onclick="flip(this)">
+      <div class="fc-f">
+        <span class="fc-poem-badge" style="background:var(--swans-l);color:var(--swans)">Wild Swans</span>
+        <div class="fc-quote">"the bell-beat of their wings above my head"</div>
+        <div class="fc-hint">Tap to reveal technique →</div>
+      </div>
+      <div class="fc-b" style="background:var(--swans-l)">
+        <span class="fc-poem-badge" style="background:var(--swans);color:#fff">Wild Swans</span>
+        <div class="fc-tech">Auditory Imagery + Compound Noun</div>
+        <div class="fc-analysis">"Bell-beat" — the wings are musical, rhythmic, almost sacred. Like the ringing of a church bell. This was the sound of Yeats's youth and hope. Now he hears it differently — as a reminder of what he has lost. The memory is beautiful and painful simultaneously.</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end swans -->
+
+<!-- SEPTEMBER 1913 CARDS -->
+<div class="poem-section-header" data-poem="sept">
+  <h2 style="color:var(--sept)">✊ September 1913</h2>
+</div>
+<div class="fc-grid" id="grid-sept">
+
+  <div class="fc-wrap" data-poem="sept">
+    <div class="fc" onclick="flip(this)">
+      <div class="fc-f">
+        <span class="fc-poem-badge" style="background:var(--sept-l);color:var(--sept)">Sept 1913</span>
+        <div class="fc-quote">"fumble in a greasy till"</div>
+        <div class="fc-hint">Tap to reveal technique →</div>
+      </div>
+      <div class="fc-b" style="background:var(--sept-l)">
+        <span class="fc-poem-badge" style="background:var(--sept);color:#fff">Sept 1913</span>
+        <div class="fc-tech">Visceral Imagery + Verb Choice</div>
+        <div class="fc-analysis">"Fumble" = desperate, obsessive. "Greasy till" = physically revolting — moral contamination by commerce. Yeats makes us feel physical disgust at money-obsession. One of his most effective single images.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fc-wrap" data-poem="sept">
+    <div class="fc" onclick="flip(this)">
+      <div class="fc-f">
+        <span class="fc-poem-badge" style="background:var(--sept-l);color:var(--sept)">Sept 1913</span>
+        <div class="fc-quote">"prayer to shivering prayer"</div>
+        <div class="fc-hint">Tap to reveal technique →</div>
+      </div>
+      <div class="fc-b" style="background:var(--sept-l)">
+        <span class="fc-poem-badge" style="background:var(--sept);color:#fff">Sept 1913</span>
+        <div class="fc-tech">Sibilance + Repetition + Irony</div>
+        <div class="fc-analysis">"Shivering" reveals these prayers are born of cold fear, not warm faith. Parallel to "halfpence to the pence" — both work and prayer are equally mechanical, futile, joyless. Religion becomes no different from commerce.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fc-wrap" data-poem="sept">
+    <div class="fc" onclick="flip(this)">
+      <div class="fc-f">
+        <span class="fc-poem-badge" style="background:var(--sept-l);color:var(--sept)">Sept 1913</span>
+        <div class="fc-quote">"Romantic Ireland's dead and gone, / It's with O'Leary in the grave"</div>
+        <div class="fc-hint">Tap to reveal technique →</div>
+      </div>
+      <div class="fc-b" style="background:var(--sept-l)">
+        <span class="fc-poem-badge" style="background:var(--sept);color:#fff">Sept 1913</span>
+        <div class="fc-tech">Refrain + Elegiac Tone + Rhetoric</div>
+        <div class="fc-analysis">The funeral cry of the poem — repeated after each stanza like a verdict. Each repetition is a hammer-blow. The rhythm is almost chant-like, ensuring the words stick. Lament AND accusation simultaneously.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fc-wrap" data-poem="sept">
+    <div class="fc" onclick="flip(this)">
+      <div class="fc-f">
+        <span class="fc-poem-badge" style="background:var(--sept-l);color:var(--sept)">Sept 1913</span>
+        <div class="fc-quote">"All that delirium of the brave"</div>
+        <div class="fc-hint">Tap to reveal technique →</div>
+      </div>
+      <div class="fc-b" style="background:var(--sept-l)">
+        <span class="fc-poem-badge" style="background:var(--sept);color:#fff">Sept 1913</span>
+        <div class="fc-tech">Oxymoron + Admiration</div>
+        <div class="fc-analysis">"Delirium" = madness, irrationality — yet it is "of the brave." Yeats admires the very irrationality of the heroes' sacrifice. The rational middle class cannot produce this magnificent, irrational excess. The phrase captures exactly what has been lost.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fc-wrap" data-poem="sept">
+    <div class="fc" onclick="flip(this)">
+      <div class="fc-f">
+        <span class="fc-poem-badge" style="background:var(--sept-l);color:var(--sept)">Sept 1913</span>
+        <div class="fc-quote">"Was it for this the wild geese spread / The grey wing upon every tide"</div>
+        <div class="fc-hint">Tap to reveal technique →</div>
+      </div>
+      <div class="fc-b" style="background:var(--sept-l)">
+        <span class="fc-poem-badge" style="background:var(--sept);color:#fff">Sept 1913</span>
+        <div class="fc-tech">Rhetorical Question + Wild Geese Symbol</div>
+        <div class="fc-analysis">The Wild Geese = Irish exiles who fought on every front. "Every tide" = ceaseless, selfless movement. The rhetorical question is withering sarcasm — all that sacrifice, for THIS? The image connects to Wild Swans: free birds vs earthbound humans.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fc-wrap" data-poem="sept">
+    <div class="fc" onclick="flip(this)">
+      <div class="fc-f">
+        <span class="fc-poem-badge" style="background:var(--sept-l);color:var(--sept)">Sept 1913</span>
+        <div class="fc-quote">"They weighed so lightly what they gave"</div>
+        <div class="fc-hint">Tap to reveal technique →</div>
+      </div>
+      <div class="fc-b" style="background:var(--sept-l)">
+        <span class="fc-poem-badge" style="background:var(--sept);color:#fff">Sept 1913</span>
+        <div class="fc-tech">Weight Metaphor + Contrast</div>
+        <div class="fc-analysis">The middle class weighs every halfpenny. The heroes weighed their lives so lightly they gave them without calculation. The contrast in weighing is the contrast in values. Self-sacrifice vs. self-interest. Passion vs. calculation.</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end sept -->
+
+<!-- EASTER 1916 CARDS -->
+<div class="poem-section-header" data-poem="easter">
+  <h2 style="color:var(--easter)">🌹 Easter 1916</h2>
+</div>
+<div class="fc-grid" id="grid-easter">
+
+  <div class="fc-wrap" data-poem="easter">
+    <div class="fc" onclick="flip(this)">
+      <div class="fc-f">
+        <span class="fc-poem-badge" style="background:var(--easter-l);color:var(--easter)">Easter 1916</span>
+        <div class="fc-quote">"A terrible beauty is born"</div>
+        <div class="fc-hint">Tap to reveal technique →</div>
+      </div>
+      <div class="fc-b" style="background:var(--easter-l)">
+        <span class="fc-poem-badge" style="background:var(--easter);color:#fff">Easter 1916</span>
+        <div class="fc-tech">Oxymoron + Refrain + Paradox</div>
+        <div class="fc-analysis">The most famous line in Irish poetry. "Terrible" = violent, costly, destructive. "Beautiful" = heroic, idealistic, transforming. The oxymoron refuses to let us see only one side. Repeated 4 times, growing more complex each time. The poem's irresolvable heart.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fc-wrap" data-poem="easter">
+    <div class="fc" onclick="flip(this)">
+      <div class="fc-f">
+        <span class="fc-poem-badge" style="background:var(--easter-l);color:var(--easter)">Easter 1916</span>
+        <div class="fc-quote">"All changed, changed utterly"</div>
+        <div class="fc-hint">Tap to reveal technique →</div>
+      </div>
+      <div class="fc-b" style="background:var(--easter-l)">
+        <span class="fc-poem-badge" style="background:var(--easter);color:#fff">Easter 1916</span>
+        <div class="fc-tech">Repetition + Link to Wild Swans</div>
+        <div class="fc-analysis">Double repetition of "changed" enacts the overwhelming, undeniable transformation. Compare to "All's changed" in Wild Swans — Yeats uses this formula for total, irreversible change. Here it is national; in Swans it is personal.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fc-wrap" data-poem="easter">
+    <div class="fc" onclick="flip(this)">
+      <div class="fc-f">
+        <span class="fc-poem-badge" style="background:var(--easter-l);color:var(--easter)">Easter 1916</span>
+        <div class="fc-quote">"Enchanted to a stone / To trouble the living stream"</div>
+        <div class="fc-hint">Tap to reveal technique →</div>
+      </div>
+      <div class="fc-b" style="background:var(--easter-l)">
+        <span class="fc-poem-badge" style="background:var(--easter);color:#fff">Easter 1916</span>
+        <div class="fc-tech">Extended Metaphor + Ambiguity</div>
+        <div class="fc-analysis">The stone = the revolutionary: fixed, purposeful, unchanging. The stream = life in all its beautiful variation. "Enchanted" = magic AND petrification. Is total dedication heroism or a loss of humanity? Yeats deliberately refuses to judge.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fc-wrap" data-poem="easter">
+    <div class="fc" onclick="flip(this)">
+      <div class="fc-f">
+        <span class="fc-poem-badge" style="background:var(--easter-l);color:var(--easter)">Easter 1916</span>
+        <div class="fc-quote">"Too long a sacrifice / Can make a stone of the heart"</div>
+        <div class="fc-hint">Tap to reveal technique →</div>
+      </div>
+      <div class="fc-b" style="background:var(--easter-l)">
+        <span class="fc-poem-badge" style="background:var(--easter);color:#fff">Easter 1916</span>
+        <div class="fc-tech">Metaphor + Warning against Fanaticism</div>
+        <div class="fc-analysis">Sustained sacrifice petrifies the heart — removes tenderness and humanity. A gentle warning about fanaticism. Echoes his thoughts on Maude Gonne, whose politics made her "shrill." The revolutionary gives up their humanity to become a cause.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fc-wrap" data-poem="easter">
+    <div class="fc" onclick="flip(this)">
+      <div class="fc-f">
+        <span class="fc-poem-badge" style="background:var(--easter-l);color:var(--easter)">Easter 1916</span>
+        <div class="fc-quote">"Was it needless death after all?"</div>
+        <div class="fc-hint">Tap to reveal technique →</div>
+      </div>
+      <div class="fc-b" style="background:var(--easter-l)">
+        <span class="fc-poem-badge" style="background:var(--easter);color:#fff">Easter 1916</span>
+        <div class="fc-tech">Rhetorical Question + Intellectual Courage</div>
+        <div class="fc-analysis">The bravest line in the poem. No nationalist propagandist would ask this. Home Rule had been promised — perhaps it was achievable without violence. Yeats does not answer. His refusal to simplify is what makes the poem great rather than merely political.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fc-wrap" data-poem="easter">
+    <div class="fc" onclick="flip(this)">
+      <div class="fc-f">
+        <span class="fc-poem-badge" style="background:var(--easter-l);color:var(--easter)">Easter 1916</span>
+        <div class="fc-quote">"polite meaningless words"</div>
+        <div class="fc-hint">Tap to reveal technique →</div>
+      </div>
+      <div class="fc-b" style="background:var(--easter-l)">
+        <span class="fc-poem-badge" style="background:var(--easter);color:#fff">Easter 1916</span>
+        <div class="fc-tech">Confession + Colloquial Language</div>
+        <div class="fc-analysis">Yeats confesses his own blindness and contempt. He dismissed the future martyrs as circus performers, mocked them at the club. The colloquial language makes the confession personal and specific. His guilt is the emotional starting point of the entire poem.</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end easter -->
+
+<!-- BYZANTIUM CARDS -->
+<div class="poem-section-header" data-poem="byz">
+  <h2 style="color:var(--byz)">🏛️ Sailing to Byzantium</h2>
+</div>
+<div class="fc-grid" id="grid-byz">
+
+  <div class="fc-wrap" data-poem="byz">
+    <div class="fc" onclick="flip(this)">
+      <div class="fc-f">
+        <span class="fc-poem-badge" style="background:var(--byz-l);color:var(--byz)">Byzantium</span>
+        <div class="fc-quote">"A tattered coat upon a stick"</div>
+        <div class="fc-hint">Tap to reveal technique →</div>
+      </div>
+      <div class="fc-b" style="background:var(--byz-l)">
+        <span class="fc-poem-badge" style="background:var(--byz);color:#fff">Byzantium</span>
+        <div class="fc-tech">Dehumanising Metaphor + Body/Soul</div>
+        <div class="fc-analysis">The body of an old man reduced to a scarecrow — no life, no soul, no use. "Tattered" = literally falling apart. But this is followed immediately by "unless / Soul clap its hands and sing" — the metaphor sets up the argument for art as transcendence.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fc-wrap" data-poem="byz">
+    <div class="fc" onclick="flip(this)">
+      <div class="fc-f">
+        <span class="fc-poem-badge" style="background:var(--byz-l);color:var(--byz)">Byzantium</span>
+        <div class="fc-quote">"Soul clap its hands and sing, and louder sing"</div>
+        <div class="fc-hint">Tap to reveal technique →</div>
+      </div>
+      <div class="fc-b" style="background:var(--byz-l)">
+        <span class="fc-poem-badge" style="background:var(--byz);color:#fff">Byzantium</span>
+        <div class="fc-tech">Personification + Repetition + Defiance</div>
+        <div class="fc-analysis">The soul claps its hands — exuberant, joyful, physical. It must sing "louder" the more the body decays. The worse the physical decline, the more urgent the creative response. Physical decay drives spiritual intensity. Art compensates for — and transcends — mortality.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fc-wrap" data-poem="byz">
+    <div class="fc" onclick="flip(this)">
+      <div class="fc-f">
+        <span class="fc-poem-badge" style="background:var(--byz-l);color:var(--byz)">Byzantium</span>
+        <div class="fc-quote">"fastened to a dying animal"</div>
+        <div class="fc-hint">Tap to reveal technique →</div>
+      </div>
+      <div class="fc-b" style="background:var(--byz-l)">
+        <span class="fc-poem-badge" style="background:var(--byz);color:#fff">Byzantium</span>
+        <div class="fc-tech">Metaphor + Entrapment + Body as Prison</div>
+        <div class="fc-analysis">"Fastened" = chained, imprisoned. The body is not a home but a dying prison. "Dying animal" is brutally graphic — bodies die messily, slowly. The soul is attached to this process. Yeats's most visceral expression of the desire to escape physical existence.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fc-wrap" data-poem="byz">
+    <div class="fc" onclick="flip(this)">
+      <div class="fc-f">
+        <span class="fc-poem-badge" style="background:var(--byz-l);color:var(--byz)">Byzantium</span>
+        <div class="fc-quote">"the artifice of eternity"</div>
+        <div class="fc-hint">Tap to reveal technique →</div>
+      </div>
+      <div class="fc-b" style="background:var(--byz-l)">
+        <span class="fc-poem-badge" style="background:var(--byz);color:#fff">Byzantium</span>
+        <div class="fc-tech">Paradox + Art as Immortality</div>
+        <div class="fc-analysis">"Artifice" = made, artificial. "Eternity" = uncreated, infinite. Together: art is the human-made equivalent of divine permanence. Natural things die; made things endure. The poem itself is an "artifice of eternity" — it outlives Yeats's body. It has.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fc-wrap" data-poem="byz">
+    <div class="fc" onclick="flip(this)">
+      <div class="fc-f">
+        <span class="fc-poem-badge" style="background:var(--byz-l);color:var(--byz)">Byzantium</span>
+        <div class="fc-quote">"Of what is past, or passing, or to come"</div>
+        <div class="fc-hint">Tap to reveal technique →</div>
+      </div>
+      <div class="fc-b" style="background:var(--byz-l)">
+        <span class="fc-poem-badge" style="background:var(--byz);color:#fff">Byzantium</span>
+        <div class="fc-tech">Tricolon + Prophecy + Final Line</div>
+        <div class="fc-analysis">The golden bird sings of past, present, and future simultaneously — transcending time entirely. The poet as prophet, omniscient, eternal. The three-part structure is complete and elegant. If his soul becomes this bird, his poetry outlasts his body — and it has.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fc-wrap" data-poem="byz">
+    <div class="fc" onclick="flip(this)">
+      <div class="fc-f">
+        <span class="fc-poem-badge" style="background:var(--byz-l);color:var(--byz)">Byzantium</span>
+        <div class="fc-quote">"Those dying generations"</div>
+        <div class="fc-hint">Tap to reveal technique →</div>
+      </div>
+      <div class="fc-b" style="background:var(--byz-l)">
+        <span class="fc-poem-badge" style="background:var(--byz);color:#fff">Byzantium</span>
+        <div class="fc-tech">Irony + Contrast</div>
+        <div class="fc-analysis">Ireland is vibrant — young lovers, birds in trees, salmon-falls. Yet everything in this living world is dying. The irony is devastating: the most alive-seeming things are the most mortal. This sets up the entire argument for seeking eternity in Byzantium.</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end byz -->
+
+<!-- ACRE OF GRASS CARDS -->
+<div class="poem-section-header" data-poem="acre">
+  <h2 style="color:var(--acre)">🦅 An Acre of Grass</h2>
+</div>
+<div class="fc-grid" id="grid-acre">
+
+  <div class="fc-wrap" data-poem="acre">
+    <div class="fc" onclick="flip(this)">
+      <div class="fc-f">
+        <span class="fc-poem-badge" style="background:var(--acre-l);color:var(--acre)">Acre of Grass</span>
+        <div class="fc-quote">"Where nothing stirs but a mouse"</div>
+        <div class="fc-hint">Tap to reveal technique →</div>
+      </div>
+      <div class="fc-b" style="background:var(--acre-l)">
+        <span class="fc-poem-badge" style="background:var(--acre);color:#fff">Acre of Grass</span>
+        <div class="fc-tech">Bathetic Imagery + Setting</div>
+        <div class="fc-analysis">Almost comic in its quiet desolation — the only vitality in his world is a mouse. The bathos is deliberate: this is what Yeats is trying to escape. It sets up the urgency of the prayer that follows. The reader immediately understands why frenzy is needed.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fc-wrap" data-poem="acre">
+    <div class="fc" onclick="flip(this)">
+      <div class="fc-f">
+        <span class="fc-poem-badge" style="background:var(--acre-l);color:var(--acre)">Acre of Grass</span>
+        <div class="fc-quote">"My temptation is quiet"</div>
+        <div class="fc-hint">Tap to reveal technique →</div>
+      </div>
+      <div class="fc-b" style="background:var(--acre-l)">
+        <span class="fc-poem-badge" style="background:var(--acre);color:#fff">Acre of Grass</span>
+        <div class="fc-tech">Honest Self-Revelation + Tone</div>
+        <div class="fc-analysis">Yeats is not tempted by vice — he is tempted by quiet. Part of him wants to give in, to rest, to accept. He recognises this as the enemy of creativity. The poem is a battle against this very temptation. The most honest admission in all his late work.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fc-wrap" data-poem="acre">
+    <div class="fc" onclick="flip(this)">
+      <div class="fc-f">
+        <span class="fc-poem-badge" style="background:var(--acre-l);color:var(--acre)">Acre of Grass</span>
+        <div class="fc-quote">"Grant me an old man's frenzy"</div>
+        <div class="fc-hint">Tap to reveal technique →</div>
+      </div>
+      <div class="fc-b" style="background:var(--acre-l)">
+        <span class="fc-poem-badge" style="background:var(--acre);color:#fff">Acre of Grass</span>
+        <div class="fc-tech">Prayer + Tone Shift + Passion</div>
+        <div class="fc-analysis">"Grant me" = formal prayer. "Frenzy" = not a normal prayer request. Yeats prays for something beyond rational control — passionate intensity that the quiet mind cannot generate. The prayer is the poem's emotional pivot from diagnosis to defiance.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fc-wrap" data-poem="acre">
+    <div class="fc" onclick="flip(this)">
+      <div class="fc-f">
+        <span class="fc-poem-badge" style="background:var(--acre-l);color:var(--acre)">Acre of Grass</span>
+        <div class="fc-quote">"Myself must I remake"</div>
+        <div class="fc-hint">Tap to reveal technique →</div>
+      </div>
+      <div class="fc-b" style="background:var(--acre-l)">
+        <span class="fc-poem-badge" style="background:var(--acre);color:#fff">Acre of Grass</span>
+        <div class="fc-tech">Inverted Syntax + Alliteration + Theme</div>
+        <div class="fc-analysis">Inverted syntax ("Myself must I" not "I must remake myself") gives the line archaic, forceful authority. To create great art at 71, he cannot accept who he is — he must transform himself. Art is not just expression; it is self-transformation. One of his most demanding self-declarations.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fc-wrap" data-poem="acre">
+    <div class="fc" onclick="flip(this)">
+      <div class="fc-f">
+        <span class="fc-poem-badge" style="background:var(--acre-l);color:var(--acre)">Acre of Grass</span>
+        <div class="fc-quote">"Blake / Who beat upon the wall / Till Truth obeyed his call"</div>
+        <div class="fc-hint">Tap to reveal technique →</div>
+      </div>
+      <div class="fc-b" style="background:var(--acre-l)">
+        <span class="fc-poem-badge" style="background:var(--acre);color:#fff">Acre of Grass</span>
+        <div class="fc-tech">Allusion + Physical Violence Metaphor</div>
+        <div class="fc-analysis">Blake as model of relentless, passionate creativity in old age. "Beat upon the wall" is almost violent — truth must be beaten out of the universe; it does not come willingly. The rhyme "wall/call" drives home the determination. Art requires this intensity.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fc-wrap" data-poem="acre">
+    <div class="fc" onclick="flip(this)">
+      <div class="fc-f">
+        <span class="fc-poem-badge" style="background:var(--acre-l);color:var(--acre)">Acre of Grass</span>
+        <div class="fc-quote">"An old man's eagle mind"</div>
+        <div class="fc-hint">Tap to reveal technique →</div>
+      </div>
+      <div class="fc-b" style="background:var(--acre-l)">
+        <span class="fc-poem-badge" style="background:var(--acre);color:#fff">Acre of Grass</span>
+        <div class="fc-tech">Symbol + Resolution + Defiance</div>
+        <div class="fc-analysis">The eagle: sharp, far-seeing, powerful, a predator. "Old man's eagle mind" argues that the body ages but the mind — if fed by frenzy — can still soar. Age is in the body; transcendence is in the mind. The poem ends not in surrender but in defiant assertion.</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end acre -->
+
+<button class="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+let flippedSet = new Set();
+let currentFilter = 'all';
+
+function flip(fc) {
+  fc.classList.toggle('flipped');
+  const wrap = fc.parentElement;
+  const id = wrap.dataset.poem + Array.from(wrap.parentElement.children).indexOf(wrap);
+  if (fc.classList.contains('flipped')) { flippedSet.add(id); } else { flippedSet.delete(id); }
+  updateProgress();
+}
+
+function updateProgress() {
+  const visible = document.querySelectorAll('.fc-wrap:not(.hidden)');
+  const total = visible.length;
+  const flippedVisible = Array.from(visible).filter(w => w.querySelector('.fc').classList.contains('flipped')).length;
+  const pct = total > 0 ? (flippedVisible / total) * 100 : 0;
+  document.getElementById('pb-fill').style.width = pct + '%';
+  document.getElementById('pb-count').textContent = flippedVisible + ' / ';
+  document.getElementById('pb-total').textContent = total;
+}
+
+function filterCards(poem, btn) {
+  currentFilter = poem;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.fc-wrap').forEach(w => {
+    w.classList.toggle('hidden', poem !== 'all' && w.dataset.poem !== poem);
+  });
+  document.querySelectorAll('.poem-section-header').forEach(h => {
+    const p = h.dataset.poem;
+    h.style.display = (poem === 'all' || poem === p) ? '' : 'none';
+  });
+  updateProgress();
+}
+
+updateProgress();
+</script>
+</body>
+</html>
