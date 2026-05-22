@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ga">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caibideal 4 — Iascach na mBradán</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F5F0E8;--surface:#fff;--border:#ddd8ce;--text:#2a2820;--muted:#6a6860;--c:#5a3a1a;--cl:#f0e8dc;--cd:#2e1a08;--radius:14px;--shadow:0 4px 20px rgba(0,0,0,0.08);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;font-size:16px;}
+nav{position:sticky;top:0;z-index:100;background:rgba(245,240,232,0.97);backdrop-filter:blur(10px);border-bottom:2px solid var(--border);padding:8px 16px;display:flex;align-items:center;gap:5px;flex-wrap:wrap;min-height:52px;}
+.nav-logo{font-family:'Lexend Mega',sans-serif;font-size:0.82rem;color:var(--text);margin-right:4px;text-decoration:none;white-space:nowrap;}.nav-logo span{color:#5a6e3a;}
+.nav-divider{width:1px;height:20px;background:var(--border);flex-shrink:0;}
+.nav-btn{padding:5px 10px;border-radius:18px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.7rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);text-decoration:none;white-space:nowrap;}
+.nav-btn.home:hover,.nav-btn.home.active{background:#2a2820;border-color:#2a2820;color:#fff;}
+.nb1:hover,.nb1.active{background:#5a6e3a;border-color:#5a6e3a;color:#fff;}
+.nb2:hover,.nb2.active{background:#3a5a6e;border-color:#3a5a6e;color:#fff;}
+.nb3:hover,.nb3.active{background:#6e3a5a;border-color:#6e3a5a;color:#fff;}
+.nb4:hover,.nb4.active{background:#5a3a1a;border-color:#5a3a1a;color:#fff;}
+.nb5:hover,.nb5.active{background:#1a5a3a;border-color:#1a5a3a;color:#fff;}
+.nb6:hover,.nb6.active{background:#6e5a1a;border-color:#6e5a1a;color:#fff;}
+.nb7:hover,.nb7.active{background:#3a1a6e;border-color:#3a1a6e;color:#fff;}
+.nb8:hover,.nb8.active{background:#6e1a1a;border-color:#6e1a1a;color:#fff;}
+.section{padding:0 16px 80px;max-width:940px;margin:0 auto;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.hero{background:linear-gradient(135deg,var(--cd),var(--c));color:#fff;padding:44px 32px 36px;text-align:center;margin-bottom:32px;}
+.hero .chap-label{font-size:0.74rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;opacity:0.75;margin-bottom:10px;}
+.hero h1{font-family:'Lexend Mega',sans-serif;font-size:clamp(1.5rem,4vw,2.4rem);line-height:1.2;margin-bottom:12px;}
+.hero p{opacity:0.88;max-width:620px;margin:0 auto;font-size:0.94rem;}
+.hero-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px;}
+.hero-chip{background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:4px 14px;border-radius:20px;font-size:0.74rem;font-weight:600;}
+.tab-bar{display:flex;gap:4px;flex-wrap:wrap;padding:22px 0 8px;border-bottom:2px solid var(--border);margin-bottom:28px;}
+.tab{padding:8px 16px;border-radius:10px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.78rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);}
+.tab:hover,.tab.active{background:var(--c);color:#fff;border-color:var(--c);}
+.tab-panel{display:none;}.tab-panel.active{display:block;animation:fadeIn 0.25s ease;}
+.info-card{background:var(--surface);border-radius:var(--radius);padding:22px 24px;margin-bottom:18px;box-shadow:var(--shadow);border-left:5px solid var(--c);}
+.info-card h2{font-size:1.05rem;font-weight:700;margin-bottom:10px;}
+.info-card p{margin-bottom:8px;font-size:0.92rem;}
+.info-card ul{padding-left:18px;margin-bottom:8px;}
+.info-card li{margin-bottom:6px;font-size:0.91rem;}
+.scene-card{background:var(--surface);border-radius:var(--radius);padding:0;margin-bottom:20px;box-shadow:var(--shadow);border:2px solid var(--border);overflow:hidden;}
+.scene-header{background:var(--cd);color:#fff;padding:12px 20px;font-family:'Lexend Mega',sans-serif;font-size:0.88rem;}
+.scene-quote{background:var(--cl);border-left:5px solid var(--c);padding:16px 20px;}
+.scene-quote .ga{font-weight:700;font-size:0.95rem;color:var(--cd);margin-bottom:4px;}
+.scene-quote .en{font-size:0.85rem;color:var(--muted);font-style:italic;}
+.scene-analysis{padding:16px 20px;border-top:2px solid var(--border);}
+.scene-analysis h4{font-size:0.75rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;color:var(--muted);margin-bottom:8px;}
+.scene-analysis p{font-size:0.91rem;color:var(--text);line-height:1.75;}
+.scene-phrases{padding:14px 20px;background:#f9f7f3;border-top:2px solid var(--border);}
+.scene-phrases h4{font-size:0.72rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;color:var(--c);margin-bottom:10px;}
+.phrase-row{display:flex;gap:10px;align-items:flex-start;margin-bottom:8px;flex-wrap:wrap;}
+.phrase-ga{background:var(--c);color:#fff;border-radius:6px;padding:4px 10px;font-size:0.8rem;font-weight:600;}
+.phrase-en{font-size:0.8rem;color:var(--muted);font-style:italic;padding-top:3px;}
+.box{border-radius:var(--radius);padding:14px 18px;margin:14px 0;display:flex;gap:12px;align-items:flex-start;}
+.box .ico{font-size:1.4rem;flex-shrink:0;line-height:1.2;}
+.box-label{font-size:0.68rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;margin-bottom:4px;}
+.box p,.box li{font-size:0.9rem;}.box ul{padding-left:16px;}.box li{margin-bottom:4px;}
+.b-exam{background:#eaf4fb;border:2px solid #5dade2;}.b-exam .box-label{color:#1a6b9a;}
+.b-tip{background:#fffbf0;border:2px solid #f39c12;}.b-tip .box-label{color:#b7770d;}
+.b-sad{background:#fdf0f5;border:2px solid #c0396e;}.b-sad .box-label{color:#8a1a48;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.label{font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:0.8px;color:var(--muted);margin-bottom:16px;display:block;}
+@media(max-width:680px){.two-col{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="ATNTO_Home.html">🏡 <span>A Thig Ná Tit Orm</span></a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn home" href="ATNTO_Home.html">Baile</a>
+  <a class="nav-btn nb1" href="ATNTO_Caibideal1.html">C.1</a>
+  <a class="nav-btn nb2" href="ATNTO_Caibideal2.html">C.2</a>
+  <a class="nav-btn nb3" href="ATNTO_Caibideal3.html">C.3</a>
+  <a class="nav-btn nb4 active" href="ATNTO_Caibideal4.html">C.4</a>
+  <a class="nav-btn nb5" href="ATNTO_Caibideal5.html">C.5</a>
+  <a class="nav-btn nb6" href="ATNTO_Caibideal6.html">C.6</a>
+  <a class="nav-btn nb7" href="ATNTO_Caibideal7.html">C.7</a>
+  <a class="nav-btn nb8" href="ATNTO_Caibideal8.html">C.8</a>
+</nav>
+
+<div class="hero">
+  <div class="chap-label">Caibideal 4 · Caitheamh Aimsire · Iascaireacht</div>
+  <h1>Iascach na mBradán</h1>
+  <p>Illegal salmon fishing on the border river, Dainín falling into the water, and the first bad word Maidhc ever heard from his father — poverty, humour and family life all in one river.</p>
+  <div class="hero-chips">
+    <span class="hero-chip">Iascaireacht / Fishing</span>
+    <span class="hero-chip">Bochtanas / Poverty</span>
+    <span class="hero-chip">Athair / Father</span>
+    <span class="hero-chip">Greann / Humour</span>
+    <span class="hero-chip">Mídhleathach / Illegal</span>
+  </div>
+</div>
+
+<div class="section">
+  <div class="tab-bar">
+    <button class="tab active" onclick="switchTab(this,'overview')">📋 Overview</button>
+    <button class="tab" onclick="switchTab(this,'events')">📅 Key Scenes</button>
+    <button class="tab" onclick="switchTab(this,'quotes')">💬 Key Quotes</button>
+    <button class="tab" onclick="switchTab(this,'themes')">🎯 Themes</button>
+    <button class="tab" onclick="switchTab(this,'exam')">🎓 Exam Prep</button>
+  </div>
+
+  <!-- OVERVIEW -->
+  <div class="tab-panel active" id="overview">
+    <div class="info-card">
+      <h2>📋 Background &amp; Overview</h2>
+      <p>Chapter 4 centres on salmon fishing in the river on the border between Carrahan and Baile Gainín. The chapter opens with a vivid, detailed description of the river and its abundance of fish. Because money was scarce, <strong>illegal fishing</strong> (<em>iascaireacht mhídhleathach</em>) was widespread and accepted as a necessary part of life.</p>
+      <p>The centrepiece of the chapter is a <strong>brilliantly funny scene</strong> where Maidhc sees a salmon tail in the water, runs home to tell his father Dainín, and when they return and find it again — a sudden movement by the fish startles Dainín so badly that he falls into the river. This is the first time Maidhc ever hears his father swear.</p>
+    </div>
+    <div class="info-card">
+      <h2>🎯 Core Themes in this Chapter</h2>
+      <ul>
+        <li><strong>Pastimes (Caitheamh Aimsire):</strong> Fishing is one of the central pastimes — and economic lifelines — of the community. Maidhc's enthusiasm for it comes through clearly.</li>
+        <li><strong>Poverty (An Bochtanas):</strong> The need to fish illegally because money was scarce is a direct result of poverty. Selling fish to inns in Dingle gave Maidhc pocket money.</li>
+        <li><strong>Father-Son Relationship:</strong> This chapter offers a rare, human glimpse of Dainín as a comical, fallible figure — the usually serious father tumbling into a river.</li>
+        <li><strong>Humour (An Greann):</strong> The fall in the river is pure comedy — timing, surprise, and the delicious detail that this is the first time Maidhc hears his father use bad language.</li>
+      </ul>
+    </div>
+    <div class="box b-exam">
+      <div class="ico">🎓</div>
+      <div><div class="box-label">Exam Approach</div>
+      <p>Chapter 4 is strongest for questions about <strong>pastimes</strong>, <strong>poverty</strong>, <strong>humour</strong>, and the <strong>father-son relationship</strong>. The river-fall scene is one of the book's most famous moments — make sure you can describe it vividly and explain <em>why</em> it is funny.</p></div>
+    </div>
+  </div>
+
+  <!-- KEY SCENES -->
+  <div class="tab-panel" id="events">
+    <span class="label">Key Scenes — Analysis + Irish Phrases to Use</span>
+
+    <div class="scene-card">
+      <div class="scene-header">Scene 1 — Poverty and Illegal Fishing</div>
+      <div class="scene-quote">
+        <div class="ga">Bhí ganntanas airgid ann ag an am agus bhí iascaireacht mhídhleathach go forleathan. Toisc go raibh airgead gann, chuaigh muintir na háite go dtí an Daingean leis an iasc a dhíol leis na tithe ósta.</div>
+        <div class="en">There was a shortage of money at the time and illegal fishing was widespread. Because money was scarce, the locals went to Dingle to sell the fish to the inns.</div>
+      </div>
+      <div class="scene-analysis">
+        <h4>Analysis (English)</h4>
+        <p>These two sentences say a great deal about life in the Gaeltacht in the 1940s. Illegal fishing is described without judgement — it was simply what people did to survive and generate income. The detail of travelling to Dingle to sell fish to the hotels and inns shows the ingenuity of the community in turning a natural resource into income. For Maidhc, it meant pocket money. This chapter shows poverty not as something shameful, but as a practical reality that the community navigated with resourcefulness and resilience.</p>
+      </div>
+      <div class="scene-phrases">
+        <h4>✍️ Irish Phrases to Use in Your Answer</h4>
+        <div class="phrase-row"><span class="phrase-ga">Bhí ganntanas airgid ann ag an am</span><span class="phrase-en">There was a shortage of money at the time</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Bhí iascaireacht mhídhleathach go forleathan</span><span class="phrase-en">Illegal fishing was widespread</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Bhí Maidhc in ann airgead póca a dhéanamh as seo</span><span class="phrase-en">Maidhc was able to make pocket money from this</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Léiríonn sé seo an bochtanas a bhí forleathan i gCorca Dhuibhne</span><span class="phrase-en">This shows the poverty that was widespread in Corca Dhuibhne</span></div>
+      </div>
+    </div>
+
+    <div class="scene-card">
+      <div class="scene-header">Scene 2 — Dainín Falls in the River</div>
+      <div class="scene-quote">
+        <div class="ga">Rinne sé gluaiseacht tobann agus bhain sé an méid sin de gheit as Dainín gur thit sé isteach san abhainn. Níor chuala Maidhc drochfhocal ó bhéal a athar go dtí an lá sin.</div>
+        <div class="en">It made a sudden movement and startled Dainín so much that he fell into the river. Maidhc had never heard a bad word from his father's mouth until that day.</div>
+      </div>
+      <div class="scene-analysis">
+        <h4>Analysis (English)</h4>
+        <p>This is one of the most celebrated comic scenes in the entire book. The comedy works on multiple levels: the salmon's sudden movement, Dainín's undignified tumble into the river, and — best of all — the revelation that the dignified, serious father suddenly starts swearing. The fact that this is the first time Maidhc ever hears his father use bad language makes it completely unforgettable. It humanises Dainín, showing us that even the most serious adults can be caught off guard and reduced to very human reactions. Maidhc tells this story with obvious delight.</p>
+      </div>
+      <div class="scene-phrases">
+        <h4>✍️ Irish Phrases to Use in Your Answer</h4>
+        <div class="phrase-row"><span class="phrase-ga">Thit athair Mhaidhc isteach san abhainn</span><span class="phrase-en">Maidhc's father fell into the river</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Níor chuala Maidhc drochfhocal ó bhéal a athar go dtí an lá sin</span><span class="phrase-en">Maidhc had never heard a bad word from his father until that day</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Taispeánadh taobh difriúil d'athair Mhaidhc don léitheoir</span><span class="phrase-en">A different side of Maidhc's father was shown to the reader</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Bhí Maidhc é féin sna trithí gáire</span><span class="phrase-en">Maidhc himself was in fits of laughter</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Mhéadaíonn sé seo greann na heachtra</span><span class="phrase-en">This increases the humour of the event</span></div>
+      </div>
+    </div>
+
+    <div class="scene-card">
+      <div class="scene-header">Scene 3 — Catching the Salmon</div>
+      <div class="scene-quote">
+        <div class="ga">Chonaic siad sruthán fola san abhainn agus ghabh siad ar an mbradán breá mór chun é a thógaint abhaile.</div>
+        <div class="en">They saw a stream of blood in the river and caught the fine large salmon to take it home.</div>
+      </div>
+      <div class="scene-analysis">
+        <h4>Analysis (English)</h4>
+        <p>After all the comedy of the fall, the story comes to a satisfying conclusion — they catch the salmon. The image of the stream of blood in the water is vivid and almost cinematic, showing Maidhc's skill as a writer of descriptive prose. There is a real sense of triumph and satisfaction here — father and son, despite everything, succeed in their mission. The salmon then goes on to generate income when sold in Dingle. It is a complete, well-structured story within a chapter.</p>
+      </div>
+      <div class="scene-phrases">
+        <h4>✍️ Irish Phrases to Use in Your Answer</h4>
+        <div class="phrase-row"><span class="phrase-ga">Ghabh siad ar an mbradán breá mór</span><span class="phrase-en">They caught the fine large salmon</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Bhí scil speisialta ann chun píce iascaireachta a úsáid</span><span class="phrase-en">There was a special skill to using a fishing pike</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Is sampla é seo den chaitheamh aimsire a bhí ag Maidhc agus a athair</span><span class="phrase-en">This is an example of the pastime Maidhc and his father shared</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KEY QUOTES -->
+  <div class="tab-panel" id="quotes">
+    <span class="label">Key Quotes — with Analysis and Irish Phrases</span>
+
+    <div class="scene-card">
+      <div class="scene-header">Quote 1 — Poverty Driving Illegal Fishing</div>
+      <div class="scene-quote">
+        <div class="ga">Maidir leis an iascaireacht mar chaitheamh aimsire, ní raibh go leor airgid ag teaghlach Mhaidhc agus bhí ganntanas bia ann uaireanta.</div>
+        <div class="en">Regarding fishing as a pastime, Maidhc's family didn't have enough money and there was sometimes a shortage of food.</div>
+      </div>
+      <div class="scene-analysis">
+        <h4>Analysis (English)</h4>
+        <p>This sentence from the sample answers neatly frames fishing not just as a fun pastime but as a genuine economic necessity. For Maidhc's family, the river was not just a place of recreation — it was a food source and a way to earn money. This dual nature of fishing (enjoyment and survival) is what makes the chapter so rich. It is both a joyful coming-of-age story and a document of real economic hardship.</p>
+      </div>
+      <div class="scene-phrases">
+        <h4>✍️ Irish Phrases to Use</h4>
+        <div class="phrase-row"><span class="phrase-ga">Maidir leis an iascaireacht mar chaitheamh aimsire</span><span class="phrase-en">Regarding fishing as a pastime</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Is léir go raibh dea-chuimhní ag Maidhc ón gcaitheamh aimsire seo</span><span class="phrase-en">It is clear that Maidhc has good memories from this pastime</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Bhí an-chuid suime ag Maidhc san iascaireacht</span><span class="phrase-en">Maidhc had a great interest in fishing</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- THEMES -->
+  <div class="tab-panel" id="themes">
+    <span class="label">Themes in Chapter 4</span>
+    <div class="two-col">
+      <div class="info-card">
+        <h2>🎣 Pastimes (Caitheamh Aimsire)</h2>
+        <p>Fishing is central to both the economy and the social fabric of life in the Gaeltacht. Maidhc and his father fish together — it is a bonding activity as much as a practical one. The chapter shows <em>is léir go raibh dea-chuimhní ag Maidhc ón gcaitheamh aimsire seo.</em></p>
+      </div>
+      <div class="info-card">
+        <h2>💸 Poverty (An Bochtanas)</h2>
+        <p>Illegal fishing happens because money is scarce. The family has to travel to Dingle to sell their catch. Maidhc makes pocket money from it. Poverty is not abstract here — it shapes every action in the chapter.</p>
+      </div>
+      <div class="info-card">
+        <h2>👨‍👦 Father and Son</h2>
+        <p>This chapter offers a rare, warm, funny glimpse of the relationship between Maidhc and Dainín. The usually serious father becomes human and comic when he falls in the river. This shared adventure and shared laughter is a precious memory for Maidhc.</p>
+      </div>
+      <div class="info-card">
+        <h2>😂 Humour (An Greann)</h2>
+        <p>The river fall is perfectly timed and perfectly told. The detail that it is the first bad language Maidhc hears from his father elevates it from a simple accident to a genuinely memorable comic moment that reveals character.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXAM PREP -->
+  <div class="tab-panel" id="exam">
+    <span class="label">Exam Preparation</span>
+    <div class="box b-exam">
+      <div class="ico">🎓</div>
+      <div><div class="box-label">Which Essay Questions Suit Chapter 4?</div>
+      <ul>
+        <li><strong>Pastimes essay</strong> — Fishing as both recreation and economic necessity. The special skill needed, the joint venture with his father, selling in Dingle.</li>
+        <li><strong>"Tá greann agus brón araon le feiceáil"</strong> — Greann: Dainín in the river, first bad language. Brón: poverty forcing illegal fishing, shortage of food.</li>
+        <li><strong>Family life essay</strong> — Maidhc and Dainín fishing together; Dainín's human side revealed; shared laughter.</li>
+        <li><strong>"Tugann Maidhc cuntas suimiúil ar shaol na Gaeltachta"</strong> — Illegal fishing and selling fish in Dingle paints a vivid picture of economic life at the time.</li>
+      </ul>
+      </div>
+    </div>
+    <div class="info-card">
+      <h2>📝 Model Paragraph — Humour in Chapter 4</h2>
+      <p>Taispeánadh taobh difriúil d'athair Mhaidhc don léitheoir sa chaibidil seo. <em>(A different side of Maidhc's father was shown to the reader in this chapter.)</em> Rinne an bradán gluaiseacht tobann agus bhain sé an méid sin de gheit as Dainín gur thit sé isteach san abhainn. <em>(The salmon made a sudden movement and startled Dainín so much that he fell into the river.)</em> Níor chuala Maidhc drochfhocal ó bhéal a athar go dtí an lá sin <em>(Maidhc had never heard a bad word from his father until that day)</em> — rud a mhéadaíonn greann na heachtra. <em>(— a thing which increases the humour of the event.)</em> Bhí Maidhc é féin sna trithí gáire. <em>(Maidhc himself was in fits of laughter.)</em> Léiríonn sé seo go bhfuil greann bríomhar le fáil ar fud na dírbheathaisnéise. <em>(This shows that lively humour can be found throughout the autobiography.)</em></p>
+    </div>
+    <div class="box b-tip">
+      <div class="ico">💡</div>
+      <div><div class="box-label">Top Exam Tip</div>
+      <p>Always explain <strong>why the river fall is funny</strong>, not just <em>what</em> happens. The key is the combination: the sudden undignified fall + the first ever bad language from a stern father + Maidhc's helpless laughter. These three elements together make it unforgettable. Mentioning all three in your answer shows analytical depth.</p></div>
+    </div>
+  </div>
+</div>
+
+<script>
+function switchTab(btn,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(id).classList.add('active');}
+</script>
+</body>
+</html>

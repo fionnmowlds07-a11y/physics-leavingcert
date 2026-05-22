@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ga">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caibideal 2 — Tá an Cigire Tagaithe</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F5F0E8;--surface:#fff;--border:#ddd8ce;--text:#2a2820;--muted:#6a6860;--c:#3a5a6e;--cl:#e2eaf0;--cd:#1a2e3a;--radius:14px;--shadow:0 4px 20px rgba(0,0,0,0.08);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;font-size:16px;}
+nav{position:sticky;top:0;z-index:100;background:rgba(245,240,232,0.97);backdrop-filter:blur(10px);border-bottom:2px solid var(--border);padding:8px 16px;display:flex;align-items:center;gap:5px;flex-wrap:wrap;min-height:52px;}
+.nav-logo{font-family:'Lexend Mega',sans-serif;font-size:0.82rem;color:var(--text);margin-right:4px;text-decoration:none;white-space:nowrap;}.nav-logo span{color:#5a6e3a;}
+.nav-divider{width:1px;height:20px;background:var(--border);flex-shrink:0;}
+.nav-btn{padding:5px 10px;border-radius:18px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.7rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);text-decoration:none;white-space:nowrap;}
+.nav-btn.home:hover,.nav-btn.home.active{background:#2a2820;border-color:#2a2820;color:#fff;}
+.nb1:hover,.nb1.active{background:#5a6e3a;border-color:#5a6e3a;color:#fff;}
+.nb2:hover,.nb2.active{background:#3a5a6e;border-color:#3a5a6e;color:#fff;}
+.nb3:hover,.nb3.active{background:#6e3a5a;border-color:#6e3a5a;color:#fff;}
+.nb4:hover,.nb4.active{background:#5a3a1a;border-color:#5a3a1a;color:#fff;}
+.nb5:hover,.nb5.active{background:#1a5a3a;border-color:#1a5a3a;color:#fff;}
+.nb6:hover,.nb6.active{background:#6e5a1a;border-color:#6e5a1a;color:#fff;}
+.nb7:hover,.nb7.active{background:#3a1a6e;border-color:#3a1a6e;color:#fff;}
+.nb8:hover,.nb8.active{background:#6e1a1a;border-color:#6e1a1a;color:#fff;}
+.section{padding:0 16px 80px;max-width:940px;margin:0 auto;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.hero{background:linear-gradient(135deg,var(--cd),var(--c));color:#fff;padding:44px 32px 36px;text-align:center;margin-bottom:32px;}
+.hero .chap-label{font-size:0.74rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;opacity:0.75;margin-bottom:10px;}
+.hero h1{font-family:'Lexend Mega',sans-serif;font-size:clamp(1.5rem,4vw,2.4rem);line-height:1.2;margin-bottom:12px;}
+.hero p{opacity:0.88;max-width:620px;margin:0 auto;font-size:0.94rem;}
+.hero-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px;}
+.hero-chip{background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:4px 14px;border-radius:20px;font-size:0.74rem;font-weight:600;}
+.tab-bar{display:flex;gap:4px;flex-wrap:wrap;padding:22px 0 8px;border-bottom:2px solid var(--border);margin-bottom:28px;}
+.tab{padding:8px 16px;border-radius:10px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.78rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);}
+.tab:hover,.tab.active{background:var(--c);color:#fff;border-color:var(--c);}
+.tab-panel{display:none;}.tab-panel.active{display:block;animation:fadeIn 0.25s ease;}
+.info-card{background:var(--surface);border-radius:var(--radius);padding:22px 24px;margin-bottom:18px;box-shadow:var(--shadow);border-left:5px solid var(--c);}
+.info-card h2{font-size:1.05rem;font-weight:700;margin-bottom:10px;}
+.info-card p{margin-bottom:8px;font-size:0.92rem;}
+.info-card ul{padding-left:18px;margin-bottom:8px;}
+.info-card li{margin-bottom:6px;font-size:0.91rem;}
+.scene-card{background:var(--surface);border-radius:var(--radius);padding:0;margin-bottom:20px;box-shadow:var(--shadow);border:2px solid var(--border);overflow:hidden;}
+.scene-header{background:var(--cd);color:#fff;padding:12px 20px;font-family:'Lexend Mega',sans-serif;font-size:0.88rem;}
+.scene-quote{background:var(--cl);border-left:5px solid var(--c);padding:16px 20px;}
+.scene-quote .ga{font-weight:700;font-size:0.95rem;color:var(--cd);margin-bottom:4px;}
+.scene-quote .en{font-size:0.85rem;color:var(--muted);font-style:italic;}
+.scene-analysis{padding:16px 20px;border-top:2px solid var(--border);}
+.scene-analysis h4{font-size:0.75rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;color:var(--muted);margin-bottom:8px;}
+.scene-analysis p{font-size:0.91rem;color:var(--text);line-height:1.75;}
+.scene-phrases{padding:14px 20px;background:#f9f7f3;border-top:2px solid var(--border);}
+.scene-phrases h4{font-size:0.72rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;color:var(--c);margin-bottom:10px;}
+.phrase-row{display:flex;gap:10px;align-items:flex-start;margin-bottom:8px;flex-wrap:wrap;}
+.phrase-ga{background:var(--c);color:#fff;border-radius:6px;padding:4px 10px;font-size:0.8rem;font-weight:600;}
+.phrase-en{font-size:0.8rem;color:var(--muted);font-style:italic;padding-top:3px;}
+.box{border-radius:var(--radius);padding:14px 18px;margin:14px 0;display:flex;gap:12px;align-items:flex-start;}
+.box .ico{font-size:1.4rem;flex-shrink:0;line-height:1.2;}
+.box-label{font-size:0.68rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;margin-bottom:4px;}
+.box p,.box li{font-size:0.9rem;}.box ul{padding-left:16px;}.box li{margin-bottom:4px;}
+.b-exam{background:#eaf4fb;border:2px solid #5dade2;}.b-exam .box-label{color:#1a6b9a;}
+.b-tip{background:#fffbf0;border:2px solid #f39c12;}.b-tip .box-label{color:#b7770d;}
+.b-sad{background:#fdf0f5;border:2px solid #c0396e;}.b-sad .box-label{color:#8a1a48;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.label{font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:0.8px;color:var(--muted);margin-bottom:16px;display:block;}
+@media(max-width:680px){.two-col{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="ATNTO_Home.html">🏡 <span>A Thig Ná Tit Orm</span></a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn home" href="ATNTO_Home.html">Baile</a>
+  <a class="nav-btn nb1" href="ATNTO_Caibideal1.html">C.1</a>
+  <a class="nav-btn nb2 active" href="ATNTO_Caibideal2.html">C.2</a>
+  <a class="nav-btn nb3" href="ATNTO_Caibideal3.html">C.3</a>
+  <a class="nav-btn nb4" href="ATNTO_Caibideal4.html">C.4</a>
+  <a class="nav-btn nb5" href="ATNTO_Caibideal5.html">C.5</a>
+  <a class="nav-btn nb6" href="ATNTO_Caibideal6.html">C.6</a>
+  <a class="nav-btn nb7" href="ATNTO_Caibideal7.html">C.7</a>
+  <a class="nav-btn nb8" href="ATNTO_Caibideal8.html">C.8</a>
+</nav>
+
+<div class="hero">
+  <div class="chap-label">Caibideal 2 · An Scoil · An Cigire</div>
+  <h1>Tá an Cigire Tagaithe</h1>
+  <p>The inspector's visit to school, Vincent's unfiltered answers to the proverbs question, and the hilarious tinker incident — innocence and mischief at their finest.</p>
+  <div class="hero-chips">
+    <span class="hero-chip">Soineantacht / Innocence</span>
+    <span class="hero-chip">Na Tincéirí / The Tinkers</span>
+    <span class="hero-chip">Seanfhocail / Proverbs</span>
+    <span class="hero-chip">Dlúthpháirtíocht / Solidarity</span>
+  </div>
+</div>
+
+<div class="section">
+  <div class="tab-bar">
+    <button class="tab active" onclick="switchTab(this,'overview')">📋 Overview</button>
+    <button class="tab" onclick="switchTab(this,'events')">📅 Key Scenes</button>
+    <button class="tab" onclick="switchTab(this,'quotes')">💬 Key Quotes</button>
+    <button class="tab" onclick="switchTab(this,'themes')">🎯 Themes</button>
+    <button class="tab" onclick="switchTab(this,'exam')">🎓 Exam Prep</button>
+  </div>
+
+  <!-- OVERVIEW -->
+  <div class="tab-panel active" id="overview">
+    <div class="info-card">
+      <h2>📋 Background &amp; Overview</h2>
+      <p>Chapter 2 contains two memorable events. First, the school inspector's visit — a major event at the time, as inspectors held significant power over schools and teachers. Maidhc describes how the whole class prepared for the visit, and then focuses on two classmates: himself, a girl, and <strong>Uinseann Ó Grifín (Vincent Griffin)</strong>, whose father was a <em>seanchaí</em> (traditional storyteller).</p>
+      <p>Second, Maidhc describes the <strong>tinker incident</strong> — the funniest set piece in the early chapters. A classmate throws a stone into the tinker woman's saucepan of mackerel, causing chaos and earning every boy in the school four blows of the ash rod.</p>
+    </div>
+    <div class="info-card">
+      <h2>🎯 Core Themes in this Chapter</h2>
+      <ul>
+        <li><strong>Innocence of Youth (Soineantacht na hÓige):</strong> Vincent's raw, unfiltered answer to the proverb shows a child's innocent honesty — he simply says what he knows without any filter.</li>
+        <li><strong>Humour (An Greann):</strong> The tinker incident is brilliant slapstick — fish flying everywhere, children running, the woman storming into the school.</li>
+        <li><strong>Solidarity (Dlúthpháirtíocht):</strong> Not one boy admits to throwing the stone — a strong code of silence and loyalty among the children.</li>
+        <li><strong>Corporal Punishment (Pionós Corpartha):</strong> Every boy gets four blows, guilty or not — a harsh collective punishment that feels deeply unfair to a modern reader.</li>
+        <li><strong>Community &amp; Culture:</strong> The proverb scene shows the richness of oral culture in the Gaeltacht — even children were expected to know traditional sayings.</li>
+      </ul>
+    </div>
+    <div class="box b-exam">
+      <div class="ico">🎓</div>
+      <div><div class="box-label">Exam Approach</div>
+      <p>Chapter 2 is excellent for questions on <strong>humour</strong> (the tinker incident), <strong>school life</strong> (the inspector, the ash rod), <strong>innocence of youth</strong> (Vincent's answer), and <strong>friends' mischief</strong>. It is often used alongside Chapter 1 to show a consistent picture of school life.</p></div>
+    </div>
+  </div>
+
+  <!-- KEY SCENES -->
+  <div class="tab-panel" id="events">
+    <span class="label">Key Scenes — Analysis + Irish Phrases to Use</span>
+
+    <div class="scene-card">
+      <div class="scene-header">Scene 1 — Uinseann and the Proverb</div>
+      <div class="scene-quote">
+        <div class="ga">Ba sheanchaí é a athair agus thug an cigire roinnt seanfhocal d'Uinseann le freagairt. Ní mó ná sásta a bhí an cigire lena fhreagra áfach mar nach raibh sé ag súil le freagraí chomh garbh ón mbuachaill ar an gceist "Is fearr paiste ná poll."</div>
+        <div class="en">His father was a traditional storyteller and the inspector gave Vincent some proverbs to answer. The inspector was far from happy with his answer however, as he wasn't expecting such rough answers from the boy to the question "A patch is better than a hole."</div>
+      </div>
+      <div class="scene-analysis">
+        <h4>Analysis (English)</h4>
+        <p>This is a gem of a scene that perfectly captures the innocence of youth. Vincent's father is a <em>seanchaí</em>, so Vincent genuinely knows his proverbs — but his answer is too raw and unpolished for the inspector's taste. The inspector had expected a neat, school-appropriate answer, but Vincent gives a real, earthy Gaeltacht response. The teacher ends up furious at poor Vincent, even though he was simply answering honestly. It is both funny and a little sad — punished for being authentic. It is one of the best examples in the whole book of a child's innocent worldview clashing with adult expectations.</p>
+      </div>
+      <div class="scene-phrases">
+        <h4>✍️ Irish Phrases to Use in Your Answer</h4>
+        <div class="phrase-row"><span class="phrase-ga">Feicimid soineantacht na hóige san eachtra seo</span><span class="phrase-en">We see the innocence of youth in this event</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Chuir an cigire ceisteanna ar Uinseann maidir lena athair</span><span class="phrase-en">The inspector asked Vincent questions about his father</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Bhí an múinteoir an-chrosta le hUinseann bocht</span><span class="phrase-en">The teacher was very angry with poor Vincent</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Níor chuir an cigire seanfhocal eile ina dhiaidh sin</span><span class="phrase-en">The inspector didn't quote another proverb after that</span></div>
+      </div>
+    </div>
+
+    <div class="scene-card">
+      <div class="scene-header">Scene 2 — The Tinker Incident</div>
+      <div class="scene-quote">
+        <div class="ga">Thóg buachaill amháin píosa mór as an gclaí lena bhróg agus chaith sé i dtreo na dtincéirí é agus isteach sa sáspan leis. Chuaigh uisce agus an t-iasc i ngach áit. Theith na páistí agus chuaigh bean an tincéara díreach isteach sa scoil.</div>
+        <div class="en">One boy took a large piece from the fence with his shoe and threw it towards the tinkers and into the saucepan. Water and fish went everywhere. The children fled and the tinker woman went straight into the school.</div>
+      </div>
+      <div class="scene-analysis">
+        <h4>Analysis (English)</h4>
+        <p>This is the most purely funny scene in the early chapters — a wonderful piece of slapstick comedy. The detail of using the shoe to throw the stone is a brilliantly observed, absurd touch. The image of fish and water flying everywhere, followed by the mass panic of children running, is vividly cinematic. Maidhc builds the tension perfectly, showing the tinker woman storming into the school, the principal interrogating every boy, and — crucially — nobody breaking ranks. The collective punishment that follows (four blows each) is unfair by any standard, which adds a bitter-sweet note beneath all the humour.</p>
+      </div>
+      <div class="scene-phrases">
+        <h4>✍️ Irish Phrases to Use in Your Answer</h4>
+        <div class="phrase-row"><span class="phrase-ga">Bhí na buachaillí ag pleidhcíocht</span><span class="phrase-en">The boys were messing / mischief-making</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Chuaigh uisce agus an t-iasc ar fud na háite</span><span class="phrase-en">Water and fish went all over the place</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Theith na buachaillí an áit agus rith siad ar ais go dtí an scoil</span><span class="phrase-en">The boys fled from the place and ran back to school</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Chuaigh bean an tincéara go dtí an scoil agus labhair sí leis an bpríomhoide</span><span class="phrase-en">The tinker woman went to the school and spoke to the principal</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Bhain siad úsáid as drochimeacht faoi na buachaillí nuair a bhí siad le chéile</span><span class="phrase-en">The boys were up to no good when they were together</span></div>
+      </div>
+    </div>
+
+    <div class="scene-card">
+      <div class="scene-header">Scene 3 — The Code of Silence</div>
+      <div class="scene-quote">
+        <div class="ga">Níor sceith aon duine mar dá ndéanfaí, leanfadh an "murder squad" tú agus bheifeá in uisce fiúchaigh leo. Fuair gach buachaill ceithre buille ón slat fuinseoige de bharr na heachtra seo.</div>
+        <div class="en">Nobody snitched because if they did, the "murder squad" would follow you and you'd be in boiling water with them. Every boy got four blows from the ash rod as a result of this incident.</div>
+      </div>
+      <div class="scene-analysis">
+        <h4>Analysis (English)</h4>
+        <p>The "murder squad" is a brilliantly funny detail — the children's own terrifying nickname for what would happen if anyone told on them. It shows how seriously the children took their code of loyalty to one another. The collective punishment is striking: every boy is beaten, even those who had nothing to do with the stone. For a modern reader this collective punishment feels deeply unjust, which is a source of genuine sadness beneath the humour. It is also evidence of the extraordinary power teachers and principals held over children at the time.</p>
+      </div>
+      <div class="scene-phrases">
+        <h4>✍️ Irish Phrases to Use in Your Answer</h4>
+        <div class="phrase-row"><span class="phrase-ga">Níor admhaigh aon duine</span><span class="phrase-en">Nobody admitted (to it)</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Bhí ceisteanna curtha ar na buachaillí faoin eachtra</span><span class="phrase-en">The boys were questioned about the event</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Mar thoradh ar an eachtra sin, fuair gach buachaill ceithre bhuille ón slat fuinseoige</span><span class="phrase-en">As a result of that event, every boy got four blows from the ash rod</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Is léir go raibh dlúthpháirtíocht idir na buachaillí</span><span class="phrase-en">It is clear there was solidarity between the boys</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KEY QUOTES -->
+  <div class="tab-panel" id="quotes">
+    <span class="label">Key Quotes — with Analysis and Irish Phrases</span>
+
+    <div class="scene-card">
+      <div class="scene-header">Quote 1 — Innocence of Youth (Vincent)</div>
+      <div class="scene-quote">
+        <div class="ga">Feicimid soineantacht na hóige san eachtra seo.</div>
+        <div class="en">We see the innocence of youth in this event.</div>
+      </div>
+      <div class="scene-analysis">
+        <h4>Analysis (English)</h4>
+        <p>This phrase from the sample answers is one of the most useful in the whole text. It applies perfectly to the proverb scene with Vincent. He is not trying to be funny or difficult — he simply answers with the knowledge he has, in the raw, earthy style of his father the <em>seanchaí</em>. His innocence and authenticity are exactly what get him into trouble. The irony is sharp: being honest and culturally knowledgeable earns him a telling-off.</p>
+      </div>
+      <div class="scene-phrases">
+        <h4>✍️ Irish Phrases to Use</h4>
+        <div class="phrase-row"><span class="phrase-ga">Feicimid soineantacht na hóige san eachtra seo</span><span class="phrase-en">We see the innocence of youth in this event</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Léiríonn sé seo dearcadh na hóige go soiléir</span><span class="phrase-en">This clearly shows the outlook/perspective of youth</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Freagra macánta, neamhchoinsiasach a thug sé</span><span class="phrase-en">He gave an honest, unfiltered answer</span></div>
+      </div>
+    </div>
+
+    <div class="scene-card">
+      <div class="scene-header">Quote 2 — Collective Punishment</div>
+      <div class="scene-quote">
+        <div class="ga">Fuair gach buachaill ceithre bhuille ón slat fuinseoige de bharr na heachtra seo.</div>
+        <div class="en">Every boy got four blows from the ash rod as a result of this event.</div>
+      </div>
+      <div class="scene-analysis">
+        <h4>Analysis (English)</h4>
+        <p>The repetition of the ash rod punishment (we saw it in Chapter 1 too) is significant. It builds up a picture of a school system where physical punishment was automatic and often unjust. Here, children who may not have even been involved are punished simply because no one will confess. This is a very real sadness underneath all the comedy of the chapter — children suffering collectively for the act of one.</p>
+      </div>
+      <div class="scene-phrases">
+        <h4>✍️ Irish Phrases to Use</h4>
+        <div class="phrase-row"><span class="phrase-ga">Is foinse bróin don léitheoir an pionós corpartha seo</span><span class="phrase-en">This corporal punishment is a source of sadness for the reader</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Bhí na buachaillí i dtrioblóid</span><span class="phrase-en">The boys were in trouble</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Is léir go raibh saol crua ag páistí scoile ag an am</span><span class="phrase-en">It is clear that school children had a hard life at the time</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- THEMES -->
+  <div class="tab-panel" id="themes">
+    <span class="label">Themes in Chapter 2</span>
+    <div class="two-col">
+      <div class="info-card">
+        <h2>😂 Slapstick Humour</h2>
+        <p>The tinker incident is one of the funniest scenes in the whole book. Fish and water flying everywhere, children running in panic, the woman storming into school — Maidhc's storytelling is cinematic and perfectly timed. This is <em>greann rancáis</em> (slapstick) at its best.</p>
+      </div>
+      <div class="info-card">
+        <h2>🧒 Innocence of Youth</h2>
+        <p>Vincent's unfiltered proverb answer is a perfect illustration of the child's world colliding with adult expectations. He is not cheeky — he is simply genuine, and that genuineness is what gets him in trouble. Maidhc tells this with great empathy.</p>
+      </div>
+      <div class="info-card">
+        <h2>🤝 Solidarity Among Children</h2>
+        <p>Not one boy breaks the code of silence, despite the threat of collective punishment. The "murder squad" nickname reveals how seriously the children took loyalty to each other. This solidarity is a recurring feature of Maidhc's friendships throughout the book.</p>
+      </div>
+      <div class="info-card">
+        <h2>😢 Sadness — Unjust Punishment</h2>
+        <p>Every boy is punished regardless of guilt. For a modern reader this is deeply unfair — collective punishment for the act of one. It is a quiet but important sadness running beneath the comedy, showing how powerless children were in the school system of the time.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXAM PREP -->
+  <div class="tab-panel" id="exam">
+    <span class="label">Exam Preparation</span>
+    <div class="box b-exam">
+      <div class="ico">🎓</div>
+      <div><div class="box-label">Which Essay Questions Suit Chapter 2?</div>
+      <ul>
+        <li><strong>"Tá spraoi agus dearcadh na hóige léirithe go mór chun tosaigh"</strong> — Use Vincent's proverb answer and the tinker incident.</li>
+        <li><strong>"Tugann Maidhc Dainín cuntas taitneamhach ar a chuid scolaíochta"</strong> — Use the inspector visit and the tinker incident.</li>
+        <li><strong>"Tá greann agus brón araon le feiceáil"</strong> — Greann: the fish flying everywhere; Brón: collective punishment, innocent boys beaten.</li>
+        <li><strong>"Bhí tionchar ag cairde Mhaidhc ar a shaol"</strong> — The boys' collective mischief and solidarity shows the bond between them.</li>
+      </ul>
+      </div>
+    </div>
+
+    <div class="info-card">
+      <h2>📝 Model Paragraph — Humour in Chapter 2</h2>
+      <p>Déanann Maidhc cur síos ar eachtra ghreannmhar ag baint leis na tincéirí a bhí suite in aice na scoile. <em>(Maidhc describes a funny event involving the tinkers who were located beside the school.)</em> Bhí na buachaillí ag pleidhcíocht <em>(the boys were messing)</em> agus chaith duine acu píosa cloiche isteach sa sáspan leis an maicréil. Chuaigh uisce agus an t-iasc ar fud na háite. <em>(Water and fish went all over the place.)</em> Theith na buachaillí an áit agus rith siad ar ais go dtí an scoil. <em>(The boys fled from the place and ran back to school.)</em> Mar thoradh ar an eachtra sin, fuair gach buachaill ceithre bhuille ón slat fuinseoige. <em>(As a result of that event, every boy got four blows from the ash rod.)</em> Bhí na buachaillí i dtrioblóid <em>(the boys were in trouble)</em> ach ní sceitheadh aon duine — léirítear dlúthpháirtíocht láidir idir na cairde. <em>(it shows the strong solidarity between the friends.)</em></p>
+    </div>
+
+    <div class="box b-tip">
+      <div class="ico">💡</div>
+      <div><div class="box-label">Top Exam Tip</div>
+      <p>The tinker incident and the Vincent proverb scene are two of the most frequently cited scenes in exam answers on this text. Learn at least two Irish quotes from each and practise weaving them into your paragraph. The contrast between <strong>the humour of the fish flying</strong> and the <strong>sadness of collective punishment</strong> is the perfect balance examiners love to reward.</p></div>
+    </div>
+  </div>
+</div>
+
+<script>
+function switchTab(btn,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(id).classList.add('active');}
+</script>
+</body>
+</html>

@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ga">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caibideal 1 — An Scriosadh ar an Luan</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F5F0E8;--surface:#fff;--border:#ddd8ce;--text:#2a2820;--muted:#6a6860;--c:#5a6e3a;--cl:#eaf0e2;--cd:#2d4018;--radius:14px;--shadow:0 4px 20px rgba(0,0,0,0.08);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;font-size:16px;}
+nav{position:sticky;top:0;z-index:100;background:rgba(245,240,232,0.97);backdrop-filter:blur(10px);border-bottom:2px solid var(--border);padding:8px 16px;display:flex;align-items:center;gap:5px;flex-wrap:wrap;min-height:52px;}
+.nav-logo{font-family:'Lexend Mega',sans-serif;font-size:0.82rem;color:var(--text);margin-right:4px;text-decoration:none;white-space:nowrap;}.nav-logo span{color:#5a6e3a;}
+.nav-divider{width:1px;height:20px;background:var(--border);flex-shrink:0;}
+.nav-btn{padding:5px 10px;border-radius:18px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.7rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);text-decoration:none;white-space:nowrap;}
+.nav-btn.home:hover,.nav-btn.home.active{background:#2a2820;border-color:#2a2820;color:#fff;}
+.nb1:hover,.nb1.active{background:#5a6e3a;border-color:#5a6e3a;color:#fff;}
+.nb2:hover,.nb2.active{background:#3a5a6e;border-color:#3a5a6e;color:#fff;}
+.nb3:hover,.nb3.active{background:#6e3a5a;border-color:#6e3a5a;color:#fff;}
+.nb4:hover,.nb4.active{background:#5a3a1a;border-color:#5a3a1a;color:#fff;}
+.nb5:hover,.nb5.active{background:#1a5a3a;border-color:#1a5a3a;color:#fff;}
+.nb6:hover,.nb6.active{background:#6e5a1a;border-color:#6e5a1a;color:#fff;}
+.nb7:hover,.nb7.active{background:#3a1a6e;border-color:#3a1a6e;color:#fff;}
+.nb8:hover,.nb8.active{background:#6e1a1a;border-color:#6e1a1a;color:#fff;}
+.section{padding:0 16px 80px;max-width:940px;margin:0 auto;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.hero{background:linear-gradient(135deg,var(--cd),var(--c));color:#fff;padding:44px 32px 36px;text-align:center;margin-bottom:32px;}
+.hero .chap-label{font-size:0.74rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;opacity:0.75;margin-bottom:10px;}
+.hero h1{font-family:'Lexend Mega',sans-serif;font-size:clamp(1.5rem,4vw,2.4rem);line-height:1.2;margin-bottom:12px;}
+.hero p{opacity:0.88;max-width:620px;margin:0 auto;font-size:0.94rem;}
+.hero-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px;}
+.hero-chip{background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:4px 14px;border-radius:20px;font-size:0.74rem;font-weight:600;}
+.tab-bar{display:flex;gap:4px;flex-wrap:wrap;padding:22px 0 8px;border-bottom:2px solid var(--border);margin-bottom:28px;}
+.tab{padding:8px 16px;border-radius:10px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.78rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);}
+.tab:hover,.tab.active{background:var(--c);color:#fff;border-color:var(--c);}
+.tab-panel{display:none;}.tab-panel.active{display:block;animation:fadeIn 0.25s ease;}
+.info-card{background:var(--surface);border-radius:var(--radius);padding:22px 24px;margin-bottom:18px;box-shadow:var(--shadow);border-left:5px solid var(--c);}
+.info-card h2{font-size:1.05rem;font-weight:700;margin-bottom:10px;}
+.info-card p{margin-bottom:8px;font-size:0.92rem;}
+.info-card ul{padding-left:18px;margin-bottom:8px;}
+.info-card li{margin-bottom:6px;font-size:0.91rem;}
+/* Scene card: quote top, analysis middle, irish phrases bottom */
+.scene-card{background:var(--surface);border-radius:var(--radius);padding:0;margin-bottom:20px;box-shadow:var(--shadow);border:2px solid var(--border);overflow:hidden;}
+.scene-header{background:var(--cd);color:#fff;padding:12px 20px;font-family:'Lexend Mega',sans-serif;font-size:0.88rem;}
+.scene-quote{background:var(--cl);border-left:5px solid var(--c);padding:16px 20px;}
+.scene-quote .ga{font-weight:700;font-size:0.95rem;color:var(--cd);margin-bottom:4px;}
+.scene-quote .en{font-size:0.85rem;color:var(--muted);font-style:italic;}
+.scene-analysis{padding:16px 20px;border-top:2px solid var(--border);}
+.scene-analysis h4{font-size:0.75rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;color:var(--muted);margin-bottom:8px;}
+.scene-analysis p{font-size:0.91rem;color:var(--text);line-height:1.75;}
+.scene-phrases{padding:14px 20px;background:#f9f7f3;border-top:2px solid var(--border);}
+.scene-phrases h4{font-size:0.72rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;color:var(--c);margin-bottom:10px;}
+.phrase-row{display:flex;gap:10px;align-items:flex-start;margin-bottom:8px;flex-wrap:wrap;}
+.phrase-ga{background:var(--c);color:#fff;border-radius:6px;padding:4px 10px;font-size:0.8rem;font-weight:600;white-space:nowrap;}
+.phrase-en{font-size:0.8rem;color:var(--muted);font-style:italic;padding-top:3px;}
+.tech-pill{display:inline-block;background:var(--c);color:#fff;font-size:0.7rem;font-weight:700;padding:2px 9px;border-radius:5px;margin:2px;}
+.box{border-radius:var(--radius);padding:14px 18px;margin:14px 0;display:flex;gap:12px;align-items:flex-start;}
+.box .ico{font-size:1.4rem;flex-shrink:0;line-height:1.2;}
+.box-label{font-size:0.68rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;margin-bottom:4px;}
+.box p,.box li{font-size:0.9rem;}.box ul{padding-left:16px;}.box li{margin-bottom:4px;}
+.b-exam{background:#eaf4fb;border:2px solid #5dade2;}.b-exam .box-label{color:#1a6b9a;}
+.b-tip{background:#fffbf0;border:2px solid #f39c12;}.b-tip .box-label{color:#b7770d;}
+.b-sad{background:#fdf0f5;border:2px solid #c0396e;}.b-sad .box-label{color:#8a1a48;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.label{font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:0.8px;color:var(--muted);margin-bottom:16px;display:block;}
+@media(max-width:680px){.two-col{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="ATNTO_Home.html">🏡 <span>A Thig Ná Tit Orm</span></a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn home" href="ATNTO_Home.html">Baile</a>
+  <a class="nav-btn nb1 active" href="ATNTO_Caibideal1.html">C.1</a>
+  <a class="nav-btn nb2" href="ATNTO_Caibideal2.html">C.2</a>
+  <a class="nav-btn nb3" href="ATNTO_Caibideal3.html">C.3</a>
+  <a class="nav-btn nb4" href="ATNTO_Caibideal4.html">C.4</a>
+  <a class="nav-btn nb5" href="ATNTO_Caibideal5.html">C.5</a>
+  <a class="nav-btn nb6" href="ATNTO_Caibideal6.html">C.6</a>
+  <a class="nav-btn nb7" href="ATNTO_Caibideal7.html">C.7</a>
+  <a class="nav-btn nb8" href="ATNTO_Caibideal8.html">C.8</a>
+</nav>
+
+<div class="hero">
+  <div class="chap-label">Caibideal 1 · An Scoil · 1ú Meán Fómhair 1947</div>
+  <h1>An Scriosadh ar an Luan</h1>
+  <p>Maidhc's first day at school, the fight with Tomás, and the chaotic football game — the autobiography opens with humour, mischief and the unmistakable spirit of youth.</p>
+  <div class="hero-chips">
+    <span class="hero-chip">Spraoi na hÓige / Fun of Youth</span>
+    <span class="hero-chip">Pionós Corpartha / Punishment</span>
+    <span class="hero-chip">Peil / Football</span>
+    <span class="hero-chip">Leasainmneacha / Nicknames</span>
+  </div>
+</div>
+
+<div class="section">
+  <div class="tab-bar">
+    <button class="tab active" onclick="switchTab(this,'overview')">📋 Overview</button>
+    <button class="tab" onclick="switchTab(this,'events')">📅 Key Scenes</button>
+    <button class="tab" onclick="switchTab(this,'quotes')">💬 Key Quotes</button>
+    <button class="tab" onclick="switchTab(this,'themes')">🎯 Themes</button>
+    <button class="tab" onclick="switchTab(this,'exam')">🎓 Exam Prep</button>
+  </div>
+
+  <!-- OVERVIEW -->
+  <div class="tab-panel active" id="overview">
+    <div class="info-card">
+      <h2>📋 Background &amp; Overview</h2>
+      <p><strong>Setting:</strong> The 1st Monday of September 1947 — Maidhc's first day at school, aged just five years old.</p>
+      <p>In this chapter Maidhc describes his first day at school and honestly admits he had very little interest in school throughout his life. He focuses on the events that made the biggest impression on him during his school years — the fight with Tomás, the rough football game, and the system of nicknames in the parish.</p>
+      <p>The chapter is full of <strong>humour and the outlook of youth</strong>. Maidhc can look back on these early childhood events with laughter and warmth, creating a vivid, entertaining opening to the autobiography.</p>
+    </div>
+    <div class="info-card">
+      <h2>🎯 Core Themes in this Chapter</h2>
+      <ul>
+        <li><strong>Fun and the Outlook of Youth (Spraoi agus Dearcadh na hÓige):</strong> Maidhc's innocence and mischievousness are on display from the very first day of school.</li>
+        <li><strong>School Life (Saol na Scoile):</strong> A vivid picture of schooling in rural Kerry in the 1940s — rough football, fights, and corporal punishment.</li>
+        <li><strong>Poverty (An Bochtanas):</strong> The football game using stones as goalposts shows that children had to make do without proper equipment.</li>
+        <li><strong>Community Life (Saol an Phobail):</strong> The nickname system shows how tightly-knit and interconnected the parish community was.</li>
+        <li><strong>Humour and Sadness:</strong> Maidhc presents corporal punishment in a humorous light, though modern readers can see the sadness behind it.</li>
+      </ul>
+    </div>
+    <div class="box b-exam">
+      <div class="ico">🎓</div>
+      <div><div class="box-label">Exam Approach</div>
+      <p>Use Chapter 1 to answer questions about <strong>school life</strong>, <strong>the fun and outlook of youth</strong>, <strong>humour in the memoir</strong>, or <strong>friends' influence on Maidhc's life</strong>. The fight with Tomás is your go-to for humour; the football game for the carefree spirit of youth and poverty; the ash rod for sadness.</p></div>
+    </div>
+  </div>
+
+  <!-- KEY SCENES -->
+  <div class="tab-panel" id="events">
+    <span class="label">Key Scenes — Analysis + Irish Phrases to Use</span>
+
+    <!-- SCENE 1 -->
+    <div class="scene-card">
+      <div class="scene-header">Scene 1 — The First Day of School</div>
+      <div class="scene-quote">
+        <div class="ga">Ghlan a mháthair go maith é agus ghléas sí é i mbríste glan agus léine. Cheap Maidhc bocht go raibh sé ag dul go dtí an siopa.</div>
+        <div class="en">His mother cleaned him well and dressed him in clean trousers and a shirt. Poor Maidhc thought he was going to the shop.</div>
+      </div>
+      <div class="scene-analysis">
+        <h4>Analysis (English)</h4>
+        <p>This opening image is both funny and touching. The mother dressing Maidhc up carefully — not knowing that he thinks he is simply going to the shop — perfectly captures the innocence of a five-year-old. The word <em>"bocht"</em> (poor) is affectionate, showing how Maidhc looks back on his younger self with warmth and gentle humour. It immediately establishes the tone of the autobiography: the voice of an adult looking back with fondness on his childhood self's naivety.</p>
+      </div>
+      <div class="scene-phrases">
+        <h4>✍️ Irish Phrases to Use in Your Answer</h4>
+        <div class="phrase-row"><span class="phrase-ga">Léiríonn an eachtra seo soineantacht na hóige</span><span class="phrase-en">This event shows the innocence of youth</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Tugann Maidhc cuntas greannmhar don léitheoir</span><span class="phrase-en">Maidhc gives the reader a funny account</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Feicimid dearcadh na hóige san eachtra seo</span><span class="phrase-en">We see the outlook of youth in this event</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Bhí Maidhc cúig bliana d'aois ag an am</span><span class="phrase-en">Maidhc was five years old at the time</span></div>
+      </div>
+    </div>
+
+    <!-- SCENE 2 -->
+    <div class="scene-card">
+      <div class="scene-header">Scene 2 — The Fight with Tomás</div>
+      <div class="scene-quote">
+        <div class="ga">Bhí plean ag Maidhc Tomás a bhogadh isteach i díog ionas go mbeidh an bua aige ach faraor ní mar sin a tharla. Thit sé féin isteach sa díog agus léim Tomás air agus é á bhualadh le dorn.</div>
+        <div class="en">Maidhc had a plan to move Tomás into a ditch so he could win, but unfortunately that's not what happened. He himself fell into the ditch and Tomás jumped on him and punched him.</div>
+      </div>
+      <div class="scene-analysis">
+        <h4>Analysis (English)</h4>
+        <p>This is classic slapstick humour — Maidhc's clever plan backfires spectacularly on himself. The word <em>"faraor"</em> (unfortunately) is brilliantly placed: Maidhc uses it with mock sorrow, as if he is retelling a great tragedy, when in fact it's just a schoolyard tumble. This ability to laugh at himself is one of Maidhc's most likeable qualities as a narrator. After the fight, both boys receive four blows of the ash rod — the humour quickly gives way to a reminder of the harsh reality of school discipline at the time.</p>
+      </div>
+      <div class="scene-phrases">
+        <h4>✍️ Irish Phrases to Use in Your Answer</h4>
+        <div class="phrase-row"><span class="phrase-ga">Sampla amháin ná an cur síos greannmhar ar an troid</span><span class="phrase-en">One example is the funny description of the fight</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Chaill sé an troid an lá sin</span><span class="phrase-en">He lost the fight that day</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Is léir ón eachtra seo gur rógaire é Maidhc</span><span class="phrase-en">It is clear from this event that Maidhc was a rascal</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Fuair Maidhc agus Tomás ceithre buille den slat fuinseoige ar na méireanta</span><span class="phrase-en">Maidhc and Tomás got four blows of the ash rod on their fingers</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Chonaic an múinteoir na buachaillí agus bhí sí feargach leo</span><span class="phrase-en">The teacher saw the boys and she was angry with them</span></div>
+      </div>
+    </div>
+
+    <!-- SCENE 3 -->
+    <div class="scene-card">
+      <div class="scene-header">Scene 3 — The Football Game on the Road</div>
+      <div class="scene-quote">
+        <div class="ga">D'imríodh na buachaillí ó rang a 3 síos le chéile ar bhóthar Baile an Mhúraigh. Bhain siad úsáid as clocha mar chuaillí. Ní raibh rialacha ar bith sa chluiche agus bhí a scór féin ag gach duine.</div>
+        <div class="en">The boys from 3rd class down played together on the Moorestown road. They used stones as goalposts. There were no rules in the game and everyone kept their own score.</div>
+      </div>
+      <div class="scene-analysis">
+        <h4>Analysis (English)</h4>
+        <p>This scene wonderfully captures the carefree spirit of childhood. The children have no proper equipment — stones serve as goalposts, there are no referees, no rules, and everyone keeps their own score — yet they are completely absorbed in their fun. This shows both the <strong>poverty</strong> of the area (no money for real equipment) and the <strong>inventiveness and freedom</strong> of youth. The game sounds more like a rugby match with everyone chasing the ball. It is a joyful, chaotic image that makes the reader smile.</p>
+      </div>
+      <div class="scene-phrases">
+        <h4>✍️ Irish Phrases to Use in Your Answer</h4>
+        <div class="phrase-row"><span class="phrase-ga">Ní féidir a shéanadh gur chluiche eachtrach a bhí i gceist</span><span class="phrase-en">It cannot be denied that it was an eventful game</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Bhí an cluiche sin taitneamhach</span><span class="phrase-en">That game was very enjoyable</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Is sampla iontach é den spraoi agus dearcadh na hóige</span><span class="phrase-en">It is a great example of the fun and outlook of youth</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Roinneadh gach duine ar an dá fhoireann</span><span class="phrase-en">Everyone was divided into two teams</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Ní raibh áit faoi leith ag éinne ar an bpáirc imeartha</span><span class="phrase-en">Nobody had a specific position on the pitch</span></div>
+      </div>
+    </div>
+
+    <!-- SCENE 4 -->
+    <div class="scene-card">
+      <div class="scene-header">Scene 4 — The Nickname System</div>
+      <div class="scene-quote">
+        <div class="ga">San am sin, bhí leasainm ag gach duine óna chlann féin nó ó na páistí ar scoil. Bhí an leasainm 'Siúit' ar Mhaidhc óna athair, Dainín.</div>
+        <div class="en">At that time, everyone had a nickname from their own family or from the children at school. Maidhc had the nickname 'Jute' from his father, Dainín.</div>
+      </div>
+      <div class="scene-analysis">
+        <h4>Analysis (English)</h4>
+        <p>The nickname system is a small but revealing detail about the close-knit community Maidhc grew up in. In a small Gaeltacht parish everyone knows everyone else — nicknames are a sign of belonging, familiarity, and community identity. The fact that Maidhc received his nickname from his own father shows how the tradition ran through families. It is a warm, humanising detail that grounds the autobiography in a specific time and place.</p>
+      </div>
+      <div class="scene-phrases">
+        <h4>✍️ Irish Phrases to Use in Your Answer</h4>
+        <div class="phrase-row"><span class="phrase-ga">Tugann sé seo léargas ar chultúr an pharóiste ag an am</span><span class="phrase-en">This gives us an insight into the culture of the parish at the time</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Léiríonn sé dlúthpháirtíocht an phobail</span><span class="phrase-en">It shows the closeness/solidarity of the community</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Bhí leasainm ag gach duine sa pharóiste</span><span class="phrase-en">Everyone in the parish had a nickname</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KEY QUOTES -->
+  <div class="tab-panel" id="quotes">
+    <span class="label">Key Quotes — with Analysis and Irish Phrases</span>
+
+    <div class="scene-card">
+      <div class="scene-header">Quote 1 — Maidhc's Honesty About School</div>
+      <div class="scene-quote">
+        <div class="ga">Admhaíonn sé féin nach raibh mórán suime aige i gcúrsaí scoile in aon chor.</div>
+        <div class="en">He admits himself that he had very little interest in school matters at all.</div>
+      </div>
+      <div class="scene-analysis">
+        <h4>Analysis (English)</h4>
+        <p>Maidhc's blunt self-honesty is one of his most appealing traits as a narrator. He makes no excuses and does not try to present himself in a flattering light. This directness runs through the whole autobiography and makes it feel authentic and personal. It also sets up the reader's sympathy for him — we like him precisely because he doesn't pretend to be something he wasn't.</p>
+      </div>
+      <div class="scene-phrases">
+        <h4>✍️ Irish Phrases to Use</h4>
+        <div class="phrase-row"><span class="phrase-ga">Admhaíonn Maidhc go hoscailte nach raibh suim aige sa scoil</span><span class="phrase-en">Maidhc openly admits he had no interest in school</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Cuireann sé seo leis an gcuntas macánta, pearsanta atá sa leabhar</span><span class="phrase-en">This adds to the honest, personal account in the book</span></div>
+      </div>
+    </div>
+
+    <div class="scene-card">
+      <div class="scene-header">Quote 2 — The Ash Rod (Corporal Punishment)</div>
+      <div class="scene-quote">
+        <div class="ga">Fuair siad ceithre buille den slat fuinseoige ar na méireanta agus ní dhearna siad a leithéid arís.</div>
+        <div class="en">They got four blows of the ash rod on their fingers and they never did the like again.</div>
+      </div>
+      <div class="scene-analysis">
+        <h4>Analysis (English)</h4>
+        <p>The ash rod appears repeatedly throughout the autobiography and represents the harsh discipline of school life in 1940s Ireland. For a modern reader this is a source of sadness — children being beaten for fighting in a schoolyard. However, Maidhc presents it matter-of-factly, even with a touch of dark humour in the final phrase. The repetition of punishment across different chapters underlines how normal it was considered at the time.</p>
+      </div>
+      <div class="scene-phrases">
+        <h4>✍️ Irish Phrases to Use</h4>
+        <div class="phrase-row"><span class="phrase-ga">Is foinse bróin don léitheoir an pionós corpartha seo</span><span class="phrase-en">This corporal punishment is a source of sadness for the reader</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Bhí an pionós corpartha coitianta sna scoileanna ag an am</span><span class="phrase-en">Corporal punishment was common in schools at the time</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Tá nasc láidir idir an chleasaíocht agus an pionós corpartha</span><span class="phrase-en">There is a strong link between mischief and corporal punishment</span></div>
+      </div>
+    </div>
+
+    <div class="scene-card">
+      <div class="scene-header">Quote 3 — The Football Game</div>
+      <div class="scene-quote">
+        <div class="ga">Ba chosúil le cluiche rugbaí a bhí sé mar ba chluiche an-gharbh é.</div>
+        <div class="en">It was like a rugby match because it was a very rough game.</div>
+      </div>
+      <div class="scene-analysis">
+        <h4>Analysis (English)</h4>
+        <p>This comparison to rugby is a brilliantly observed detail — Maidhc captures how wild and uncontrolled the game was without any rules or referee. The use of comparison here also shows Maidhc's colourful, descriptive writing style. He brings the chaos of the game to life for the reader with just one image, which is characteristic of his vivid, energetic prose throughout the autobiography.</p>
+      </div>
+      <div class="scene-phrases">
+        <h4>✍️ Irish Phrases to Use</h4>
+        <div class="phrase-row"><span class="phrase-ga">Caitheamh aimsire a bhíodh acu gach aon lá ná cluiche peile</span><span class="phrase-en">Their pastime every day was a game of football</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Léiríonn sé seo spraoi agus saoirse na hóige</span><span class="phrase-en">This shows the fun and freedom of youth</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Bhain siad úsáid as clocha mar chuaillí</span><span class="phrase-en">They used stones as goalposts</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- THEMES -->
+  <div class="tab-panel" id="themes">
+    <span class="label">Themes in Chapter 1</span>
+    <div class="two-col">
+      <div class="info-card">
+        <h2>😂 Humour (An Greann)</h2>
+        <p>The whole chapter is delivered with warmth and humour. Maidhc's plan falling apart in the ditch, the chaotic football game, the matter-of-fact tone about punishment — these all show an author who can look back at his younger self with genuine amusement. <em>Greann rancáis</em> (slapstick humour) is the dominant mode here.</p>
+      </div>
+      <div class="info-card">
+        <h2>🧒 The Outlook of Youth (Dearcadh na hÓige)</h2>
+        <p>The innocence of not knowing what school was, the naivety of fighting in a ditch, the joy of a football game with no rules — all of these show the authentic perspective of a child discovering the world. The reader is charmed by this innocent viewpoint throughout.</p>
+      </div>
+      <div class="info-card">
+        <h2>📚 School Life (Saol na Scoile)</h2>
+        <p>A realistic and vivid portrait of schooling in 1940s Kerry — rough, physical, with corporal punishment as a constant. School is not a place Maidhc loves, but it is where his most memorable stories come from. It shapes his character.</p>
+      </div>
+      <div class="info-card">
+        <h2>😢 Sadness (An Brón)</h2>
+        <p>Beneath the humour lies sadness — children beaten with an ash rod for fighting; children with no proper football equipment because of poverty. Maidhc does not dwell on this, but the modern reader recognises the hardship behind the laughter.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXAM PREP -->
+  <div class="tab-panel" id="exam">
+    <span class="label">Exam Preparation</span>
+    <div class="box b-exam">
+      <div class="ico">🎓</div>
+      <div><div class="box-label">Which Essay Questions Suit Chapter 1?</div>
+      <ul>
+        <li><strong>"Tá spraoi agus dearcadh na hóige léirithe go mór chun tosaigh"</strong> — Use the fight with Tomás and the football game.</li>
+        <li><strong>"Tugann Maidhc Dainín cuntas taitneamhach ar a chuid scolaíochta"</strong> — Use the first day, the fight, and the ash rod.</li>
+        <li><strong>"Tá greann agus brón araon le feiceáil sa dírbheathaisnéis"</strong> — Greann: the ditch plan; Brón: the ash rod/poverty.</li>
+        <li><strong>"Bhí tionchar ag cairde Mhaidhc ar a shaol"</strong> — Use the fight with Tomás and the football game with classmates.</li>
+      </ul>
+      </div>
+    </div>
+
+    <div class="info-card">
+      <h2>📝 Model Paragraph — Humour in Chapter 1</h2>
+      <p>Tugann Maidhc cuntas greannmhar don léitheoir ar an troid idir é agus Tomás. <em>(Maidhc gives the reader a funny account of the fight between him and Tomás.)</em> Bhí plean ag Maidhc Tomás a bhogadh isteach i díog ionas go mbeidh an bua aige ach faraor ní mar sin a tharla. <em>(Maidhc had a plan to move Tomás into a ditch so he could win but unfortunately that is not what happened.)</em> Is léir ón eachtra seo gur rógaire é Maidhc <em>(it is clear from this event that Maidhc was a rascal)</em> agus go bhfuil dearcadh na hóige soiléir san eachtra seo. <em>(and that the outlook of youth is clear in this event.)</em></p>
+    </div>
+
+    <div class="box b-tip">
+      <div class="ico">💡</div>
+      <div><div class="box-label">Top Exam Tip</div>
+      <p>Always give your Irish quote first, then its English translation in brackets. This shows you can work with the text directly. Aim for at least two quotes from each chapter you discuss. The ash rod quote and the football quote together make a strong contrast: <strong>hardship + joy</strong> = the true picture of Maidhc's childhood.</p></div>
+    </div>
+
+    <div class="box b-sad">
+      <div class="ico">😢</div>
+      <div><div class="box-label">Don't Forget the Sadness</div>
+      <p>Even in a funny chapter, acknowledge the sadness too. Corporal punishment (<em>pionós corpartha</em>), poverty (stones as goalposts), and the absence of proper resources are all present here. A balanced answer that mentions both humour and sadness will score higher.</p></div>
+    </div>
+  </div>
+</div>
+
+<script>
+function switchTab(btn,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(id).classList.add('active');}
+</script>
+</body>
+</html>

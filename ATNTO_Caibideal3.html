@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ga">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caibideal 3 — An Bhothántaíocht</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F5F0E8;--surface:#fff;--border:#ddd8ce;--text:#2a2820;--muted:#6a6860;--c:#6e3a5a;--cl:#f0e2ea;--cd:#3a1a2e;--radius:14px;--shadow:0 4px 20px rgba(0,0,0,0.08);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;font-size:16px;}
+nav{position:sticky;top:0;z-index:100;background:rgba(245,240,232,0.97);backdrop-filter:blur(10px);border-bottom:2px solid var(--border);padding:8px 16px;display:flex;align-items:center;gap:5px;flex-wrap:wrap;min-height:52px;}
+.nav-logo{font-family:'Lexend Mega',sans-serif;font-size:0.82rem;color:var(--text);margin-right:4px;text-decoration:none;white-space:nowrap;}.nav-logo span{color:#5a6e3a;}
+.nav-divider{width:1px;height:20px;background:var(--border);flex-shrink:0;}
+.nav-btn{padding:5px 10px;border-radius:18px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.7rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);text-decoration:none;white-space:nowrap;}
+.nav-btn.home:hover,.nav-btn.home.active{background:#2a2820;border-color:#2a2820;color:#fff;}
+.nb1:hover,.nb1.active{background:#5a6e3a;border-color:#5a6e3a;color:#fff;}
+.nb2:hover,.nb2.active{background:#3a5a6e;border-color:#3a5a6e;color:#fff;}
+.nb3:hover,.nb3.active{background:#6e3a5a;border-color:#6e3a5a;color:#fff;}
+.nb4:hover,.nb4.active{background:#5a3a1a;border-color:#5a3a1a;color:#fff;}
+.nb5:hover,.nb5.active{background:#1a5a3a;border-color:#1a5a3a;color:#fff;}
+.nb6:hover,.nb6.active{background:#6e5a1a;border-color:#6e5a1a;color:#fff;}
+.nb7:hover,.nb7.active{background:#3a1a6e;border-color:#3a1a6e;color:#fff;}
+.nb8:hover,.nb8.active{background:#6e1a1a;border-color:#6e1a1a;color:#fff;}
+.section{padding:0 16px 80px;max-width:940px;margin:0 auto;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.hero{background:linear-gradient(135deg,var(--cd),var(--c));color:#fff;padding:44px 32px 36px;text-align:center;margin-bottom:32px;}
+.hero .chap-label{font-size:0.74rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;opacity:0.75;margin-bottom:10px;}
+.hero h1{font-family:'Lexend Mega',sans-serif;font-size:clamp(1.5rem,4vw,2.4rem);line-height:1.2;margin-bottom:12px;}
+.hero p{opacity:0.88;max-width:620px;margin:0 auto;font-size:0.94rem;}
+.hero-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px;}
+.hero-chip{background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:4px 14px;border-radius:20px;font-size:0.74rem;font-weight:600;}
+.tab-bar{display:flex;gap:4px;flex-wrap:wrap;padding:22px 0 8px;border-bottom:2px solid var(--border);margin-bottom:28px;}
+.tab{padding:8px 16px;border-radius:10px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.78rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);}
+.tab:hover,.tab.active{background:var(--c);color:#fff;border-color:var(--c);}
+.tab-panel{display:none;}.tab-panel.active{display:block;animation:fadeIn 0.25s ease;}
+.info-card{background:var(--surface);border-radius:var(--radius);padding:22px 24px;margin-bottom:18px;box-shadow:var(--shadow);border-left:5px solid var(--c);}
+.info-card h2{font-size:1.05rem;font-weight:700;margin-bottom:10px;}
+.info-card p{margin-bottom:8px;font-size:0.92rem;}
+.info-card ul{padding-left:18px;margin-bottom:8px;}
+.info-card li{margin-bottom:6px;font-size:0.91rem;}
+.scene-card{background:var(--surface);border-radius:var(--radius);padding:0;margin-bottom:20px;box-shadow:var(--shadow);border:2px solid var(--border);overflow:hidden;}
+.scene-header{background:var(--cd);color:#fff;padding:12px 20px;font-family:'Lexend Mega',sans-serif;font-size:0.88rem;}
+.scene-quote{background:var(--cl);border-left:5px solid var(--c);padding:16px 20px;}
+.scene-quote .ga{font-weight:700;font-size:0.95rem;color:var(--cd);margin-bottom:4px;}
+.scene-quote .en{font-size:0.85rem;color:var(--muted);font-style:italic;}
+.scene-analysis{padding:16px 20px;border-top:2px solid var(--border);}
+.scene-analysis h4{font-size:0.75rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;color:var(--muted);margin-bottom:8px;}
+.scene-analysis p{font-size:0.91rem;color:var(--text);line-height:1.75;}
+.scene-phrases{padding:14px 20px;background:#f9f7f3;border-top:2px solid var(--border);}
+.scene-phrases h4{font-size:0.72rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;color:var(--c);margin-bottom:10px;}
+.phrase-row{display:flex;gap:10px;align-items:flex-start;margin-bottom:8px;flex-wrap:wrap;}
+.phrase-ga{background:var(--c);color:#fff;border-radius:6px;padding:4px 10px;font-size:0.8rem;font-weight:600;}
+.phrase-en{font-size:0.8rem;color:var(--muted);font-style:italic;padding-top:3px;}
+.box{border-radius:var(--radius);padding:14px 18px;margin:14px 0;display:flex;gap:12px;align-items:flex-start;}
+.box .ico{font-size:1.4rem;flex-shrink:0;line-height:1.2;}
+.box-label{font-size:0.68rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;margin-bottom:4px;}
+.box p,.box li{font-size:0.9rem;}.box ul{padding-left:16px;}.box li{margin-bottom:4px;}
+.b-exam{background:#eaf4fb;border:2px solid #5dade2;}.b-exam .box-label{color:#1a6b9a;}
+.b-tip{background:#fffbf0;border:2px solid #f39c12;}.b-tip .box-label{color:#b7770d;}
+.b-sad{background:#fdf0f5;border:2px solid #c0396e;}.b-sad .box-label{color:#8a1a48;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.label{font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:0.8px;color:var(--muted);margin-bottom:16px;display:block;}
+@media(max-width:680px){.two-col{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="ATNTO_Home.html">🏡 <span>A Thig Ná Tit Orm</span></a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn home" href="ATNTO_Home.html">Baile</a>
+  <a class="nav-btn nb1" href="ATNTO_Caibideal1.html">C.1</a>
+  <a class="nav-btn nb2" href="ATNTO_Caibideal2.html">C.2</a>
+  <a class="nav-btn nb3 active" href="ATNTO_Caibideal3.html">C.3</a>
+  <a class="nav-btn nb4" href="ATNTO_Caibideal4.html">C.4</a>
+  <a class="nav-btn nb5" href="ATNTO_Caibideal5.html">C.5</a>
+  <a class="nav-btn nb6" href="ATNTO_Caibideal6.html">C.6</a>
+  <a class="nav-btn nb7" href="ATNTO_Caibideal7.html">C.7</a>
+  <a class="nav-btn nb8" href="ATNTO_Caibideal8.html">C.8</a>
+</nav>
+
+<div class="hero">
+  <div class="chap-label">Caibideal 3 · Caitheamh Aimsire · Saol an Phobail</div>
+  <h1>An Bhothántaíocht</h1>
+  <p>No electricity, two radios in the whole parish, a woman who thought a ghost spoke to her, and a man called Grae with a very colourful fishing story — community life in the Gaeltacht at its most vivid.</p>
+  <div class="hero-chips">
+    <span class="hero-chip">An Raidió / The Radio</span>
+    <span class="hero-chip">Bothántaíocht / Visiting</span>
+    <span class="hero-chip">Greann / Humour</span>
+    <span class="hero-chip">Bochtanas / Poverty</span>
+    <span class="hero-chip">Grae</span>
+  </div>
+</div>
+
+<div class="section">
+  <div class="tab-bar">
+    <button class="tab active" onclick="switchTab(this,'overview')">📋 Overview</button>
+    <button class="tab" onclick="switchTab(this,'events')">📅 Key Scenes</button>
+    <button class="tab" onclick="switchTab(this,'quotes')">💬 Key Quotes</button>
+    <button class="tab" onclick="switchTab(this,'themes')">🎯 Themes</button>
+    <button class="tab" onclick="switchTab(this,'exam')">🎓 Exam Prep</button>
+  </div>
+
+  <!-- OVERVIEW -->
+  <div class="tab-panel active" id="overview">
+    <div class="info-card">
+      <h2>📋 Background &amp; Overview</h2>
+      <p>Chapter 3 moves away from school and into the <strong>social and domestic life</strong> of Maidhc's community. There was no electricity in the parish at the time — no television, no computers. The radio was a rare luxury: Maidhc's family had one, and so did the schoolmaster — just two in the whole parish.</p>
+      <p>The chapter centres on <strong>bothántaíocht</strong> — the tradition of neighbours visiting one another's houses in the evenings to socialise, share stories, and listen to the radio. Two key events stand out: the woman who mistook the radio for a ghost, and the colourful wanderer Grae, who told stories in exchange for food.</p>
+    </div>
+    <div class="info-card">
+      <h2>🎯 Core Themes in this Chapter</h2>
+      <ul>
+        <li><strong>Pastimes and Community Life (Caitheamh Aimsire agus Saol an Phobail):</strong> Bothántaíocht was the social glue of the community — how people entertained themselves without television or the internet.</li>
+        <li><strong>Poverty (An Bochtanas):</strong> Only two radios in the whole parish; people depending on others' hospitality; Grae surviving on what neighbours gave him.</li>
+        <li><strong>Humour (An Greann):</strong> The ghost/radio incident is one of the funniest moments in the book; Grae's fishing story is darkly funny and shows a different side of Maidhc's father.</li>
+        <li><strong>Oral Culture and Tradition:</strong> Grae's storytelling tradition mirrors the old Gaeltacht culture of <em>seanchaí</em> and communal storytelling.</li>
+      </ul>
+    </div>
+    <div class="box b-exam">
+      <div class="ico">🎓</div>
+      <div><div class="box-label">Exam Approach</div>
+      <p>Chapter 3 is excellent for questions about <strong>pastimes</strong>, <strong>humour</strong>, <strong>community life</strong>, and <strong>poverty</strong>. The ghost/radio scene and Grae's fishing story are memorable, quotable, and analytically rich. Use this chapter when discussing how Maidhc brings his community vividly to life.</p></div>
+    </div>
+  </div>
+
+  <!-- KEY SCENES -->
+  <div class="tab-panel" id="events">
+    <span class="label">Key Scenes — Analysis + Irish Phrases to Use</span>
+
+    <div class="scene-card">
+      <div class="scene-header">Scene 1 — The Radio and the Whole Parish</div>
+      <div class="scene-quote">
+        <div class="ga">Bhí dhá raidió sa pharóiste, ceann acu ag muintir Mhaidhc agus ceann eile ag máistir scoile. Toisc an-suim mhuintir na háite i gcúrsaí peile, thagadh muintir an pharóiste chuig teach Maidhc chun éisteacht leis.</div>
+        <div class="en">There were two radios in the parish, one belonging to Maidhc's family and one to the schoolmaster. Due to the great interest of the locals in football matters, the people of the parish used to come to Maidhc's house to listen.</div>
+      </div>
+      <div class="scene-analysis">
+        <h4>Analysis (English)</h4>
+        <p>This opening detail perfectly establishes the poverty and simplicity of the time. The fact that an entire parish had only two radios is remarkable — and yet rather than feeling sad about it, Maidhc presents it as a source of warmth and community. His house becomes a gathering point for the whole neighbourhood. The All-Ireland Final broadcast would bring everyone together, inside the house and outside in the yard. This is a beautiful image of community life that no longer exists in the same way.</p>
+      </div>
+      <div class="scene-phrases">
+        <h4>✍️ Irish Phrases to Use in Your Answer</h4>
+        <div class="phrase-row"><span class="phrase-ga">Ní raibh aon leictreachas sa cheantar ag an am sin</span><span class="phrase-en">There was no electricity in the area at that time</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Ní raibh ach dhá raidió sa pharóiste</span><span class="phrase-en">There were only two radios in the parish</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Thagadh muintir an pharóiste chuig teach Maidhc chun éisteacht leis</span><span class="phrase-en">The people of the parish used to come to Maidhc's house to listen</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Léiríonn sé seo bochtanas agus dlúthpháirtíocht an phobail</span><span class="phrase-en">This shows the poverty and closeness of the community</span></div>
+      </div>
+    </div>
+
+    <div class="scene-card">
+      <div class="scene-header">Scene 2 — The Woman Who Thought the Radio Was a Ghost</div>
+      <div class="scene-quote">
+        <div class="ga">Bhí bean amháin ag iarraidh éisteacht le dráma a bhí le tosnú. Bhí sí á bogadh féin níos cóngaraí don raidió toisc nach raibh aon fhuaim le chloisteáil as. "You are near enough now" an chéad líne sa dráma. Baineadh geit uafásach as an mbean agus d'imigh sí chomh tapaidh as an teach. Cheap sí go raibh taibhse ann.</div>
+        <div class="en">One woman wanted to listen to a play that was about to begin. She was moving closer and closer to the radio because no sound could be heard from it. "You are near enough now" was the first line in the play. The woman got an awful fright and left the house as fast as she could. She thought there was a ghost.</div>
+      </div>
+      <div class="scene-analysis">
+        <h4>Analysis (English)</h4>
+        <p>This is one of the funniest scenes in the entire autobiography — perfectly constructed comic timing. The comedy builds slowly: the silence of the radio, the woman leaning in closer and closer, and then the opening line of the play speaking directly to her. The reader can picture the scene exactly. What makes it particularly rich is that it shows how <strong>new and unfamiliar</strong> radio technology was to these people — a woman who has never heard a play on the radio genuinely cannot tell the difference between it and a supernatural voice. It is funny, but it also reveals the cultural gap between the Gaeltacht community and the modern world at the time.</p>
+      </div>
+      <div class="scene-phrases">
+        <h4>✍️ Irish Phrases to Use in Your Answer</h4>
+        <div class="phrase-row"><span class="phrase-ga">Sampla greannmhar is ea eachtra na mná agus an raidió</span><span class="phrase-en">The woman and the radio incident is a funny example</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Baineadh geit uafásach as an mbean</span><span class="phrase-en">The woman got an awful fright</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Cheap sí go raibh taibhse ann</span><span class="phrase-en">She thought there was a ghost there</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Cuireann an cur síos ar an eachtra seo ag gáire mé</span><span class="phrase-en">The description of this incident makes me laugh</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Léiríonn sé seo an saol simplí a bhí ag muintir na háite ag an am</span><span class="phrase-en">This shows the simple life the local people had at the time</span></div>
+      </div>
+    </div>
+
+    <div class="scene-card">
+      <div class="scene-header">Scene 3 — Grae and the Fishing Story</div>
+      <div class="scene-quote">
+        <div class="ga">Bhí fear darbh ainm 'Grae' ag dul ó theach go teach ag insint scéalta faoi chogadh Choiréa. B'fhear bocht é — tugadh morán tae, aráin agus éisc dó ó mhuintir Mhaidhc.</div>
+        <div class="en">There was a man called 'Grae' who used to go from house to house telling stories about the Korean War. He was a poor man — he was given lots of tea, bread and fish by Maidhc's family.</div>
+      </div>
+      <div class="scene-analysis">
+        <h4>Analysis (English)</h4>
+        <p>Grae is one of the most memorable characters in the book. He is a wandering storyteller — a figure who belongs to the old tradition of the <em>seanchaí</em> — surviving on the hospitality of neighbours. Maidhc's family's kindness to him (tea, bread, fish) reveals their generosity despite their own poverty. Grae's fishing story — in which he tricks a pompous man by telling him the cup he's drinking from was used as a toilet — is a gloriously crude piece of humour. It also shows a different, more human side to Maidhc's father, who laughs along with the story.</p>
+      </div>
+      <div class="scene-phrases">
+        <h4>✍️ Irish Phrases to Use in Your Answer</h4>
+        <div class="phrase-row"><span class="phrase-ga">Bhíodh fear darbh ainm Grae ag dul ó theach go teach ag insint scéalta</span><span class="phrase-en">A man called Grae used to go from house to house telling stories</span></div>
+        <div class="phrase-row"><span class="phrase-ga">B'fhear bocht é</span><span class="phrase-en">He was a poor man</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Tugadh morán tae, aráin agus éisc dó ó mhuintir Mhaidhc</span><span class="phrase-en">He was given lots of tea, bread and fish by Maidhc's family</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Bhí an scéal iascaireachta a d'inis sé thar a bheith greannmhar</span><span class="phrase-en">The fishing story he told was extremely funny</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Taispéanann sé seo carthanacht mhuintir Mhaidhc</span><span class="phrase-en">This shows the generosity of Maidhc's family</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KEY QUOTES -->
+  <div class="tab-panel" id="quotes">
+    <span class="label">Key Quotes — with Analysis and Irish Phrases</span>
+
+    <div class="scene-card">
+      <div class="scene-header">Quote 1 — No Electricity</div>
+      <div class="scene-quote">
+        <div class="ga">Ní raibh aon leictreachas sa cheantar ag an am sin, mar sin ní raibh aon teilifís nó ríomhairí.</div>
+        <div class="en">There was no electricity in the area at that time, so there was no television or computers.</div>
+      </div>
+      <div class="scene-analysis">
+        <h4>Analysis (English)</h4>
+        <p>This simple statement does a lot of work in establishing the world of the autobiography. Without electricity, without television, the community had to create its own entertainment — visits, stories, the radio, singing and music. This is not presented as hardship but as a different, arguably richer, way of life. The absence of technology forced people together in ways that modern life rarely does. When read today, this detail makes the whole world of the autobiography feel genuinely distant from the modern reader's experience.</p>
+      </div>
+      <div class="scene-phrases">
+        <h4>✍️ Irish Phrases to Use</h4>
+        <div class="phrase-row"><span class="phrase-ga">Léiríonn sé seo an saol simplí a bhí ag an gcomhphobal</span><span class="phrase-en">This shows the simple life the community had</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Bhí orthu siamsaíocht a chruthú dóibh féin</span><span class="phrase-en">They had to create entertainment for themselves</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Is sampla den bhochtanas é seo a bhí coitianta i gCorca Dhuibhne ag an am</span><span class="phrase-en">This is an example of the poverty that was common in Corca Dhuibhne at the time</span></div>
+      </div>
+    </div>
+
+    <div class="scene-card">
+      <div class="scene-header">Quote 2 — Grae's Fishing Story (Humour)</div>
+      <div class="scene-quote">
+        <div class="ga">Bhí Maidhc é féin sna trithí gáire nuair a thit a athair isteach san abhainn agus iad ag iascaireacht, agus níor chuala sé riamh ina shaol drochfhocal óna athair go dtí an lá sin.</div>
+        <div class="en">Maidhc himself was in fits of laughter when his father fell into the river while fishing, and he had never in his life heard a bad word from his father until that day.</div>
+      </div>
+      <div class="scene-analysis">
+        <h4>Analysis (English)</h4>
+        <p>This quote (from Chapter 4 but often referenced alongside Chapter 3) reveals a surprisingly human and funny side of Maidhc's father. Dainín is usually portrayed as a serious, even intimidating figure — but here, covered in river water and losing his dignity, he becomes suddenly and hilariously human. The fact that this is the first time Maidhc ever hears his father swear makes it even funnier. Maidhc's laughter at his father's expense is the natural reaction of a child — and the warmth of the memory is clear.</p>
+      </div>
+      <div class="scene-phrases">
+        <h4>✍️ Irish Phrases to Use</h4>
+        <div class="phrase-row"><span class="phrase-ga">Taispeánadh taobh difriúil d'athair Mhaidhc don léitheoir</span><span class="phrase-en">A different side of Maidhc's father was shown to the reader</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Bhí Maidhc é féin sna trithí gáire</span><span class="phrase-en">Maidhc himself was in fits of laughter</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Mhéadaíonn sé seo greann na heachtra</span><span class="phrase-en">This increases the humour of the event</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- THEMES -->
+  <div class="tab-panel" id="themes">
+    <span class="label">Themes in Chapter 3</span>
+    <div class="two-col">
+      <div class="info-card">
+        <h2>🏠 Pastimes (Caitheamh Aimsire)</h2>
+        <p>Bothántaíocht — visiting neighbours — was the primary social activity of the community. The radio, storytelling, and communal gatherings replaced television and the internet. Maidhc presents this world with nostalgia and warmth, not with regret.</p>
+      </div>
+      <div class="info-card">
+        <h2>😂 Humour</h2>
+        <p>The ghost/radio scene is perfectly timed slapstick — one of the funniest moments in the book. Grae's fishing story is darker, more adult humour. Together they show the range of Maidhc's comic storytelling ability.</p>
+      </div>
+      <div class="info-card">
+        <h2>💸 Poverty (An Bochtanas)</h2>
+        <p>Two radios in an entire parish. Grae surviving on whatever neighbours give him. A community that cannot afford its own entertainment technology. Poverty underlies everything in this chapter, though Maidhc never dwells on it bitterly.</p>
+      </div>
+      <div class="info-card">
+        <h2>🗣️ Oral Culture</h2>
+        <p>Grae's storytelling is rooted in a tradition of oral culture — stories shared by the fire, passed from person to person. Maidhc's autobiography is itself part of this tradition, now written down for future generations. The chapter celebrates a way of life that was already disappearing.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXAM PREP -->
+  <div class="tab-panel" id="exam">
+    <span class="label">Exam Preparation</span>
+    <div class="box b-exam">
+      <div class="ico">🎓</div>
+      <div><div class="box-label">Which Essay Questions Suit Chapter 3?</div>
+      <ul>
+        <li><strong>"Tugann Maidhc cuntas suimiúil ar chaitheamh aimsire"</strong> — Bothántaíocht, the radio, Grae's stories.</li>
+        <li><strong>"Tá greann agus brón araon le feiceáil"</strong> — Greann: ghost/radio, Grae's story. Brón: poverty (only 2 radios), Grae as a poor wanderer.</li>
+        <li><strong>"Tá spraoi agus dearcadh na hóige léirithe"</strong> — The radio ghost scene shows children and adults equally bewildered by the new technology.</li>
+        <li><strong>Pastimes essay</strong> — Use bothántaíocht, listening to the All-Ireland on the radio, and Grae's visits as examples of how the community entertained itself.</li>
+      </ul>
+      </div>
+    </div>
+    <div class="info-card">
+      <h2>📝 Model Paragraph — Humour in Chapter 3</h2>
+      <p>Sa tríú caibidil, d'inis Maidhc Dainín Ó Sé scéal greannmhar faoin mbothántaíocht. <em>(In the third chapter, Maidhc Dainín Ó Sé tells a funny story about the tradition of visiting neighbours.)</em> Bhí bean amháin ag iarraidh éisteacht le dráma ar an raidió. Bhí sí á bogadh féin níos cóngaraí don raidió toisc nach raibh aon fhuaim le chloisteáil as. <em>(She was moving closer and closer to the radio because no sound could be heard from it.)</em> Baineadh geit uafásach as an mbean <em>(the woman got an awful fright)</em> agus cheap sí go raibh taibhse ann. <em>(and she thought there was a ghost.)</em> Cuireann an cur síos ar an eachtra seo ag gáire mé <em>(the description of this incident makes me laugh)</em> agus léiríonn sé spraoi agus soineantacht na hóige sa chaibidil seo. <em>(and it shows the fun and innocence of youth in this chapter.)</em></p>
+    </div>
+    <div class="box b-tip">
+      <div class="ico">💡</div>
+      <div><div class="box-label">Top Exam Tip</div>
+      <p>The ghost/radio scene is one of the most memorable in the book and is easy to describe vividly. Make sure you mention <strong>why</strong> it is funny — the comic timing, the woman's genuine belief in a ghost, and what it reveals about how unfamiliar radio technology was. This shows deeper understanding than just retelling what happened.</p></div>
+    </div>
+  </div>
+</div>
+
+<script>
+function switchTab(btn,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(id).classList.add('active');}
+</script>
+</body>
+</html>

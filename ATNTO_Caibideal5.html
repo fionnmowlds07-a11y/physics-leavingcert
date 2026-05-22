@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ga">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caibideal 5 — Fiacha na Toitíní</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F5F0E8;--surface:#fff;--border:#ddd8ce;--text:#2a2820;--muted:#6a6860;--c:#1a5a3a;--cl:#ddf0ea;--cd:#0a2e1e;--radius:14px;--shadow:0 4px 20px rgba(0,0,0,0.08);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;font-size:16px;}
+nav{position:sticky;top:0;z-index:100;background:rgba(245,240,232,0.97);backdrop-filter:blur(10px);border-bottom:2px solid var(--border);padding:8px 16px;display:flex;align-items:center;gap:5px;flex-wrap:wrap;min-height:52px;}
+.nav-logo{font-family:'Lexend Mega',sans-serif;font-size:0.82rem;color:var(--text);margin-right:4px;text-decoration:none;white-space:nowrap;}.nav-logo span{color:#5a6e3a;}
+.nav-divider{width:1px;height:20px;background:var(--border);flex-shrink:0;}
+.nav-btn{padding:5px 10px;border-radius:18px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.7rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);text-decoration:none;white-space:nowrap;}
+.nav-btn.home:hover,.nav-btn.home.active{background:#2a2820;border-color:#2a2820;color:#fff;}
+.nb1:hover,.nb1.active{background:#5a6e3a;border-color:#5a6e3a;color:#fff;}
+.nb2:hover,.nb2.active{background:#3a5a6e;border-color:#3a5a6e;color:#fff;}
+.nb3:hover,.nb3.active{background:#6e3a5a;border-color:#6e3a5a;color:#fff;}
+.nb4:hover,.nb4.active{background:#5a3a1a;border-color:#5a3a1a;color:#fff;}
+.nb5:hover,.nb5.active{background:#1a5a3a;border-color:#1a5a3a;color:#fff;}
+.nb6:hover,.nb6.active{background:#6e5a1a;border-color:#6e5a1a;color:#fff;}
+.nb7:hover,.nb7.active{background:#3a1a6e;border-color:#3a1a6e;color:#fff;}
+.nb8:hover,.nb8.active{background:#6e1a1a;border-color:#6e1a1a;color:#fff;}
+.section{padding:0 16px 80px;max-width:940px;margin:0 auto;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.hero{background:linear-gradient(135deg,var(--cd),var(--c));color:#fff;padding:44px 32px 36px;text-align:center;margin-bottom:32px;}
+.hero .chap-label{font-size:0.74rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;opacity:0.75;margin-bottom:10px;}
+.hero h1{font-family:'Lexend Mega',sans-serif;font-size:clamp(1.5rem,4vw,2.4rem);line-height:1.2;margin-bottom:12px;}
+.hero p{opacity:0.88;max-width:620px;margin:0 auto;font-size:0.94rem;}
+.hero-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px;}
+.hero-chip{background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:4px 14px;border-radius:20px;font-size:0.74rem;font-weight:600;}
+.tab-bar{display:flex;gap:4px;flex-wrap:wrap;padding:22px 0 8px;border-bottom:2px solid var(--border);margin-bottom:28px;}
+.tab{padding:8px 16px;border-radius:10px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.78rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);}
+.tab:hover,.tab.active{background:var(--c);color:#fff;border-color:var(--c);}
+.tab-panel{display:none;}.tab-panel.active{display:block;animation:fadeIn 0.25s ease;}
+.info-card{background:var(--surface);border-radius:var(--radius);padding:22px 24px;margin-bottom:18px;box-shadow:var(--shadow);border-left:5px solid var(--c);}
+.info-card h2{font-size:1.05rem;font-weight:700;margin-bottom:10px;}
+.info-card p{margin-bottom:8px;font-size:0.92rem;}
+.info-card ul{padding-left:18px;margin-bottom:8px;}
+.info-card li{margin-bottom:6px;font-size:0.91rem;}
+.scene-card{background:var(--surface);border-radius:var(--radius);padding:0;margin-bottom:20px;box-shadow:var(--shadow);border:2px solid var(--border);overflow:hidden;}
+.scene-header{background:var(--cd);color:#fff;padding:12px 20px;font-family:'Lexend Mega',sans-serif;font-size:0.88rem;}
+.scene-quote{background:var(--cl);border-left:5px solid var(--c);padding:16px 20px;}
+.scene-quote .ga{font-weight:700;font-size:0.95rem;color:var(--cd);margin-bottom:4px;}
+.scene-quote .en{font-size:0.85rem;color:var(--muted);font-style:italic;}
+.scene-analysis{padding:16px 20px;border-top:2px solid var(--border);}
+.scene-analysis h4{font-size:0.75rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;color:var(--muted);margin-bottom:8px;}
+.scene-analysis p{font-size:0.91rem;color:var(--text);line-height:1.75;}
+.scene-phrases{padding:14px 20px;background:#f9f7f3;border-top:2px solid var(--border);}
+.scene-phrases h4{font-size:0.72rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;color:var(--c);margin-bottom:10px;}
+.phrase-row{display:flex;gap:10px;align-items:flex-start;margin-bottom:8px;flex-wrap:wrap;}
+.phrase-ga{background:var(--c);color:#fff;border-radius:6px;padding:4px 10px;font-size:0.8rem;font-weight:600;}
+.phrase-en{font-size:0.8rem;color:var(--muted);font-style:italic;padding-top:3px;}
+.box{border-radius:var(--radius);padding:14px 18px;margin:14px 0;display:flex;gap:12px;align-items:flex-start;}
+.box .ico{font-size:1.4rem;flex-shrink:0;line-height:1.2;}
+.box-label{font-size:0.68rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;margin-bottom:4px;}
+.box p,.box li{font-size:0.9rem;}.box ul{padding-left:16px;}.box li{margin-bottom:4px;}
+.b-exam{background:#eaf4fb;border:2px solid #5dade2;}.b-exam .box-label{color:#1a6b9a;}
+.b-tip{background:#fffbf0;border:2px solid #f39c12;}.b-tip .box-label{color:#b7770d;}
+.b-sad{background:#fdf0f5;border:2px solid #c0396e;}.b-sad .box-label{color:#8a1a48;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.label{font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:0.8px;color:var(--muted);margin-bottom:16px;display:block;}
+@media(max-width:680px){.two-col{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="ATNTO_Home.html">🏡 <span>A Thig Ná Tit Orm</span></a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn home" href="ATNTO_Home.html">Baile</a>
+  <a class="nav-btn nb1" href="ATNTO_Caibideal1.html">C.1</a>
+  <a class="nav-btn nb2" href="ATNTO_Caibideal2.html">C.2</a>
+  <a class="nav-btn nb3" href="ATNTO_Caibideal3.html">C.3</a>
+  <a class="nav-btn nb4" href="ATNTO_Caibideal4.html">C.4</a>
+  <a class="nav-btn nb5 active" href="ATNTO_Caibideal5.html">C.5</a>
+  <a class="nav-btn nb6" href="ATNTO_Caibideal6.html">C.6</a>
+  <a class="nav-btn nb7" href="ATNTO_Caibideal7.html">C.7</a>
+  <a class="nav-btn nb8" href="ATNTO_Caibideal8.html">C.8</a>
+</nav>
+
+<div class="hero">
+  <div class="chap-label">Caibideal 5 · Caitheamh Aimsire · Maidhc ag 12</div>
+  <h1>Fiacha na Toitíní</h1>
+  <p>Twelve-year-old Maidhc, addicted to cigarettes, collecting tobacco from cigarette butts, stealing eggs to fund the habit, and a dead-chick disaster that brings Dainín's fury — mischief with real consequences.</p>
+  <div class="hero-chips">
+    <span class="hero-chip">Toitíní / Cigarettes</span>
+    <span class="hero-chip">Eddie Hutch</span>
+    <span class="hero-chip">Cleasaíocht / Trickery</span>
+    <span class="hero-chip">Bochtanas / Poverty</span>
+    <span class="hero-chip">Athair / Father</span>
+  </div>
+</div>
+
+<div class="section">
+  <div class="tab-bar">
+    <button class="tab active" onclick="switchTab(this,'overview')">📋 Overview</button>
+    <button class="tab" onclick="switchTab(this,'events')">📅 Key Scenes</button>
+    <button class="tab" onclick="switchTab(this,'quotes')">💬 Key Quotes</button>
+    <button class="tab" onclick="switchTab(this,'themes')">🎯 Themes</button>
+    <button class="tab" onclick="switchTab(this,'exam')">🎓 Exam Prep</button>
+  </div>
+
+  <!-- OVERVIEW -->
+  <div class="tab-panel active" id="overview">
+    <div class="info-card">
+      <h2>📋 Background &amp; Overview</h2>
+      <p>Maidhc is <strong>twelve years old</strong> in this chapter. At the bottom of a bog, the local boys gathered every evening to smoke. Smoking publicly was seen as a rite of passage — you were considered grown-up enough when you were sixteen. But Maidhc and his friends couldn't wait that long.</p>
+      <p>His friend <strong>Eddie Hutch</strong> always had cigarettes from his uncle. Maidhc visited Eddie's house regularly to get them, and the chapter tells the story of his growing addiction and increasingly desperate schemes to fund his habit — including collecting tobacco from discarded cigarette butts in the Parish Hall, cutting hair from horses' tails to sell, and eventually <strong>stealing eggs from a hen</strong>. The egg theft backfires spectacularly when the creamery manager arrives at the house to report that the eggs contained dead chicks.</p>
+    </div>
+    <div class="info-card">
+      <h2>🎯 Core Themes in this Chapter</h2>
+      <ul>
+        <li><strong>The Outlook of Youth (Dearcadh na hÓige):</strong> Smoking at twelve, stealing eggs, and hiding tobacco — all show the boldness and recklessness of youth.</li>
+        <li><strong>Friends' Influence (Tionchar Cairde):</strong> Eddie Hutch is directly responsible for Maidhc's addiction to cigarettes — a clear example of how friends influenced Maidhc's life.</li>
+        <li><strong>Poverty (An Bochtanas):</strong> The lengths Maidhc goes to in order to get money for cigarettes — collecting butts, selling horse hair, stealing — all reflect a world where children had almost no money.</li>
+        <li><strong>Consequences of Mischief:</strong> Unlike earlier chapters, the mischief here has real consequences — Dainín is furious, Maidhc has to flee the house.</li>
+        <li><strong>Humour (An Greann):</strong> The egg/dead chicks story is brilliantly funny — Maidhc's scheme collapsing in the most unexpected way.</li>
+      </ul>
+    </div>
+    <div class="box b-exam">
+      <div class="ico">🎓</div>
+      <div><div class="box-label">Exam Approach</div>
+      <p>Chapter 5 is one of the most frequently used chapters in exam answers. It is excellent for: <strong>friends' influence</strong> (Eddie Hutch directly causing the addiction), <strong>humour</strong> (the dead chicks disaster), <strong>the outlook of youth</strong> (smoking at twelve, the cigarette but collecting), and <strong>mischief and its consequences</strong>. It also shows the poverty of the time clearly.</p></div>
+    </div>
+  </div>
+
+  <!-- KEY SCENES -->
+  <div class="tab-panel" id="events">
+    <span class="label">Key Scenes — Analysis + Irish Phrases to Use</span>
+
+    <div class="scene-card">
+      <div class="scene-header">Scene 1 — Eddie Hutch and the Cigarette Addiction</div>
+      <div class="scene-quote">
+        <div class="ga">Bhíodh Maidhc ag fáil toitíní ó uncail Eddie Hutch. Fuair andúil ag Maidhc le toitíní agus sin mar thoradh ar an gcairdeas a bhí aige le hEddie.</div>
+        <div class="en">Maidhc used to get cigarettes from Eddie Hutch's uncle. Maidhc got addicted to cigarettes and that is a result of the friendship he had with Eddie.</div>
+      </div>
+      <div class="scene-analysis">
+        <h4>Analysis (English)</h4>
+        <p>This is the most direct example in the entire book of a friend having a negative influence on Maidhc's life. Eddie Hutch's uncle is the source of the cigarettes, but it is the friendship with Eddie that puts Maidhc in the position to access them. The word <em>andúil</em> (addiction) is striking — Maidhc frames this as a genuine addiction, not just casual experimentation. What starts as an exciting, adult-feeling activity leads to sickness, theft, and his father's fury. Eddie's influence is pivotal to everything that follows in this chapter.</p>
+      </div>
+      <div class="scene-phrases">
+        <h4>✍️ Irish Phrases to Use in Your Answer</h4>
+        <div class="phrase-row"><span class="phrase-ga">Ceann eile de chairde Mhaidhc ná Eddie Hutch</span><span class="phrase-en">Another of Maidhc's friends is Eddie Hutch</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Fuair andúil ag Maidhc le toitíní</span><span class="phrase-en">Maidhc got an addiction to cigarettes</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Sin mar thoradh ar an gcairdeas a bhí aige le hEddie</span><span class="phrase-en">That is a result of the friendship he had with Eddie</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Is léir go raibh tionchar mór ag Eddie ar shaol Mhaidhc</span><span class="phrase-en">It is clear that Eddie had a big influence on Maidhc's life</span></div>
+      </div>
+    </div>
+
+    <div class="scene-card">
+      <div class="scene-header">Scene 2 — Maidhc Gets Sick from Smoking</div>
+      <div class="scene-quote">
+        <div class="ga">Bhraith sé an-aosta leis na toitíní ach d'éirigh sé breoite. D'imigh sé abhaile ach ag boithrín bheag chaith sé gach rud suas. Cheap sé go raibh sé chun bás a fháil.</div>
+        <div class="en">He felt very grown-up with the cigarettes but he became ill. He went home but at a small lane he vomited everything up. He thought he was going to die.</div>
+      </div>
+      <div class="scene-analysis">
+        <h4>Analysis (English)</h4>
+        <p>This is a wonderfully comic and relatable scene — the twelve-year-old trying to feel grown-up, only for his body to immediately and dramatically refuse. The contrast between how he felt (<em>an-aosta</em> — very mature) and what actually happened (vomiting on a lane, convinced he was dying) is perfectly funny. It is also a very human moment — almost every reader can relate to the experience of trying something that was supposed to make you seem older and immediately regretting it. Maidhc tells the story against himself with characteristic honesty and humour.</p>
+      </div>
+      <div class="scene-phrases">
+        <h4>✍️ Irish Phrases to Use in Your Answer</h4>
+        <div class="phrase-row"><span class="phrase-ga">Bhraith sé an-aosta leis na toitíní ach d'éirigh sé breoite</span><span class="phrase-en">He felt very grown-up with the cigarettes but he became ill</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Cheap sé go raibh sé chun bás a fháil</span><span class="phrase-en">He thought he was going to die</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Léiríonn sé seo dearcadh na hóige — an fonn a bheith fásta suas</span><span class="phrase-en">This shows the outlook of youth — the desire to be grown up</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Tugann Maidhc cuntas greannmhar don léitheoir faoin eachtra seo</span><span class="phrase-en">Maidhc gives the reader a funny account of this event</span></div>
+      </div>
+    </div>
+
+    <div class="scene-card">
+      <div class="scene-header">Scene 3 — Collecting Butts in the Parish Hall</div>
+      <div class="scene-quote">
+        <div class="ga">Gach Luan rachadh Maidhc agus Eddie go dtí Halla an Pharóiste chun an tobac as na buiteanna a bhailiú agus a chur i bhfolach i mbosca stain sa chlaí.</div>
+        <div class="en">Every Monday Maidhc and Eddie used to go to the Parish Hall to collect the tobacco from the cigarette butts and hide it in a tin box in the fence.</div>
+      </div>
+      <div class="scene-analysis">
+        <h4>Analysis (English)</h4>
+        <p>This detail perfectly captures the desperation and ingenuity of the boys' situation. They have no money to buy cigarettes, so they collect the leftover tobacco from discarded butts in the parish hall — carefully hiding their stash in a tin box in a fence. The fact that this happens every Monday shows it was a regular, organised operation, not a one-off event. It reveals both the poverty of the time and the extraordinary lengths that boys will go to for something they are obsessed with.</p>
+      </div>
+      <div class="scene-phrases">
+        <h4>✍️ Irish Phrases to Use in Your Answer</h4>
+        <div class="phrase-row"><span class="phrase-ga">Gach Luan rachadh Maidhc agus Eddie go dtí Halla an Pharóiste</span><span class="phrase-en">Every Monday Maidhc and Eddie would go to the Parish Hall</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Bhailigh siad an tobac as na buiteanna</span><span class="phrase-en">They collected the tobacco from the cigarette butts</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Faightear amach nach raibh mórán airgid ag go leor daoine sa dírbheathaisnéis</span><span class="phrase-en">It is found out that many people did not have much money in the autobiography</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Bhí roinnt seifteanna ag na daoine chun airgead a fháil</span><span class="phrase-en">People had some tricks/schemes to get money</span></div>
+      </div>
+    </div>
+
+    <div class="scene-card">
+      <div class="scene-header">Scene 4 — Stealing Eggs and the Dead Chicks Disaster</div>
+      <div class="scene-quote">
+        <div class="ga">Bhí Maidhc i ngort lá áirithe nuair a tháinig cearc amach as sceach. Ghoid sé na huibheacha agus dhíol sé iad leis an uachtarlann. Cúpla lá ina dhiaidh sin, thug bainisteoir na huachtarlainne cuairt ar tigh Mhaidhc — sicíní a bhí sna huibheacha agus bhíodar go léir marbh.</div>
+        <div class="en">Maidhc was in a field one day when a hen came out of a hedge. He stole the eggs and sold them to the creamery. A few days later, the creamery manager visited Maidhc's house — the eggs were fertilised and all the chicks were dead.</div>
+      </div>
+      <div class="scene-analysis">
+        <h4>Analysis (English)</h4>
+        <p>This is the comic climax of the chapter and one of the funniest stories in the book. Maidhc's scheme — stealing eggs to sell for cigarette money — seems clever enough. What he doesn't know is that the eggs were fertilised. When the creamery manager arrives at the door to report that all the "eggs" turned out to be dead chicks, Maidhc's elaborate scheme collapses in the most absurd way possible. The scene is funny because of the sheer unexpectedness of the consequence — who could have anticipated <em>that</em> particular outcome? Dainín is furious, and Maidhc is forced to flee the house.</p>
+      </div>
+      <div class="scene-phrases">
+        <h4>✍️ Irish Phrases to Use in Your Answer</h4>
+        <div class="phrase-row"><span class="phrase-ga">Ghoid sé na huibheacha agus dhíol sé iad leis an uachtarlann</span><span class="phrase-en">He stole the eggs and sold them to the creamery</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Sicíní a bhí sna huibheacha agus bhíodar go léir marbh</span><span class="phrase-en">The eggs were chicks and they were all dead</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Bhí Dainín ar buile leis agus theith Maidhc ón tigh</span><span class="phrase-en">Dainín was furious with him and Maidhc fled from the house</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Is léir nach mbíonn rath ar chleasaíocht Mhaidhc ró-mhinic</span><span class="phrase-en">It is clear that Maidhc's trickery doesn't succeed very often</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Thit an tóin as a chuid cleasaíochta</span><span class="phrase-en">His trickery fell apart / collapsed</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KEY QUOTES -->
+  <div class="tab-panel" id="quotes">
+    <span class="label">Key Quotes — with Analysis and Irish Phrases</span>
+
+    <div class="scene-card">
+      <div class="scene-header">Quote 1 — The Cigarette Debt (Fiacha na Toitíní)</div>
+      <div class="scene-quote">
+        <div class="ga">Ba mhinic a ghearr siad an ghruaig ó eireaball na gcapall nó ghoid siad uibheacha chun díol le haghaidh airgead.</div>
+        <div class="en">It was often that they cut the hair from horses' tails or stole eggs to sell for money.</div>
+      </div>
+      <div class="scene-analysis">
+        <h4>Analysis (English)</h4>
+        <p>This list of schemes — cutting horse-tail hair, stealing eggs — captures the inventive desperation of twelve-year-olds with no pocket money. Each scheme is more outlandish than the last, and together they build a picture of boys who are genuinely creative in their mischief. The list also implicitly shows the poverty of the time: if the boys had any money, none of this would be necessary. The detail about horse-tail hair is particularly memorable and specific — it is the kind of vivid, unexpected detail that makes Maidhc's storytelling so distinctive.</p>
+      </div>
+      <div class="scene-phrases">
+        <h4>✍️ Irish Phrases to Use</h4>
+        <div class="phrase-row"><span class="phrase-ga">Ba mhinic a ghearr siad an ghruaig ó eireaball na gcapall</span><span class="phrase-en">It was often that they cut the hair from horses' tails</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Chuaigh siad i gcoinne an dlí chun airgead a fháil do na toitíní</span><span class="phrase-en">They went against the law to get money for cigarettes</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Léiríonn sé seo an méid a bhí na buachaillí sásta a dhéanamh ar son na toitíní</span><span class="phrase-en">This shows how much the boys were willing to do for cigarettes</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- THEMES -->
+  <div class="tab-panel" id="themes">
+    <span class="label">Themes in Chapter 5</span>
+    <div class="two-col">
+      <div class="info-card">
+        <h2>👬 Friends' Influence</h2>
+        <p>Eddie Hutch is the single most important influence in this chapter — without him, Maidhc would never have had access to cigarettes or developed his addiction. The chapter is a clear, sustained example of how a friend can lead you astray. <em>Tá an-tionchar ag cairde Mhaidhc ar a shaol.</em></p>
+      </div>
+      <div class="info-card">
+        <h2>🧒 Outlook of Youth</h2>
+        <p>Trying to feel grown-up by smoking; hiding tobacco in a tin box; thinking you're dying after your first cigarette — all of this is perfectly captured adolescent behaviour. The gap between how mature Maidhc wants to feel and how his body actually reacts is the heart of the chapter's humour.</p>
+      </div>
+      <div class="info-card">
+        <h2>💸 Poverty</h2>
+        <p>Every scheme in this chapter is driven by the same root cause: no money. Collecting butts, selling horse hair, stealing eggs — these are the actions of children with absolutely no financial resources. The poverty of the era is never more clearly shown than through the cigarette debt schemes.</p>
+      </div>
+      <div class="info-card">
+        <h2>😂 Humour with Consequences</h2>
+        <p>Unlike earlier chapters where mischief is punished at school, here the consequences come from Dainín at home. The dead chicks disaster is brilliantly funny precisely because the consequence was so unpredictable — and Maidhc's flight from the house to avoid his father's fury is a perfect comic ending.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXAM PREP -->
+  <div class="tab-panel" id="exam">
+    <span class="label">Exam Preparation</span>
+    <div class="box b-exam">
+      <div class="ico">🎓</div>
+      <div><div class="box-label">Which Essay Questions Suit Chapter 5?</div>
+      <ul>
+        <li><strong>"Bhí tionchar ag cairde Mhaidhc ar a shaol"</strong> — Eddie Hutch and the cigarette addiction is the strongest example in the book. Use it with direct Irish quotes.</li>
+        <li><strong>"Tá spraoi agus dearcadh na hóige léirithe"</strong> — Smoking at twelve, the sickness, the schemes — all show the reckless boldness of youth.</li>
+        <li><strong>"Tá greann agus brón araon le feiceáil"</strong> — Greann: the dead chicks; the sickness on the lane. Brón: poverty forcing the boys to steal; Dainín's fury.</li>
+        <li><strong>"Cuntas taitneamhach ar chuid scolaíochta agus a chuid cleasaíochta"</strong> — This chapter is the richest in cleasaíocht (trickery) — use all four schemes.</li>
+      </ul>
+      </div>
+    </div>
+    <div class="info-card">
+      <h2>📝 Model Paragraph — Friends' Influence (Eddie Hutch)</h2>
+      <p>Ceann eile de chairde Mhaidhc ná Eddie Hutch. <em>(Another of Maidhc's friends is Eddie Hutch.)</em> Bhíodh Maidhc agus Eddie ag fáil toitíní ó uncail Eddie. <em>(Maidhc and Eddie used to get cigarettes from Eddie's uncle.)</em> Fuair andúil ag Maidhc le toitíní agus sin mar thoradh ar an gcairdeas a bhí aige le hEddie. <em>(Maidhc got an addiction to cigarettes and that is a result of his friendship with Eddie.)</em> Oíche amháin, chaith sé toitín agus tháinig tinneas air — chaith sé suas agus cheap sé go raibh sé ag fáil bháis. <em>(One night he smoked a cigarette and became sick — he threw up and thought he was dying.)</em> Chomh maith leis sin, gach Luan rachadh Maidhc agus Eddie go dtí Halla an Pharóiste chun an tobac as na buiteanna a bhailiú. <em>(As well as that, every Monday Maidhc and Eddie would go to the Parish Hall to collect the tobacco from the butts.)</em> Mar fhocail scoir, is léir go raibh tionchar mór ag Eddie Hutch ar shaol Mhaidhc. <em>(To conclude, it is clear that Eddie Hutch had a big influence on Maidhc's life.)</em></p>
+    </div>
+    <div class="box b-tip">
+      <div class="ico">💡</div>
+      <div><div class="box-label">Top Exam Tip — Chapter 5</div>
+      <p>Chapter 5 contains the <strong>most Irish phrases worth learning</strong> in the whole book because so many questions can be answered using it. Learn the Eddie Hutch paragraph above by heart — it covers friendship influence, the outlook of youth, humour, and poverty all in one go. The dead chicks story is your stand-out comic anecdote for any humour question.</p></div>
+    </div>
+    <div class="box b-sad">
+      <div class="ico">😢</div>
+      <div><div class="box-label">The Sadness in Chapter 5</div>
+      <p>Behind the comedy, poverty forces twelve-year-old children to steal and to collect tobacco from the ground. Maidhc flees his own home in fear of his father. For a modern reader, the image of a child hiding from a parent's anger is quietly sad, even if Maidhc presents it with humour. Don't forget to acknowledge this in your answer for a balanced response.</p></div>
+    </div>
+  </div>
+</div>
+
+<script>
+function switchTab(btn,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(id).classList.add('active');}
+</script>
+</body>
+</html>
