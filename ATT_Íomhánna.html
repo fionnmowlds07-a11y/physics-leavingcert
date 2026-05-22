@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ga">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Íomhánna — An tEarrach Thiar</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#EEF4F0;--surface:#fff;--border:#ccdacc;--text:#1a2e1a;--muted:#4a5f4a;--c:#5a3a1a;--cl:#f5ece0;--cd:#2a1a0e;--radius:14px;--shadow:0 4px 20px rgba(0,0,0,0.08);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;font-size:16px;}
+nav{position:sticky;top:0;z-index:100;background:rgba(238,244,240,0.97);backdrop-filter:blur(10px);border-bottom:2px solid var(--border);padding:8px 16px;display:flex;align-items:center;gap:5px;flex-wrap:wrap;min-height:52px;}
+.nav-logo{font-family:'Lexend Mega',sans-serif;font-size:.8rem;color:var(--text);margin-right:4px;text-decoration:none;white-space:nowrap;}.nav-logo span{color:#1a6b5a;}
+.nav-divider{width:1px;height:20px;background:var(--border);flex-shrink:0;}
+.nav-btn{padding:5px 10px;border-radius:18px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:.68rem;font-weight:600;cursor:pointer;transition:all .2s;color:var(--muted);text-decoration:none;white-space:nowrap;}
+.nav-btn.home:hover{background:#1a2e1a;border-color:#1a2e1a;color:#fff;}
+.nb-v:hover{background:#1a6b5a;border-color:#1a6b5a;color:#fff;}
+.nb-t:hover{background:#1a3a5a;border-color:#1a3a5a;color:#fff;}
+.t-active,.t-active:hover{background:var(--c);border-color:var(--c);color:#fff;}
+.nb-f:hover{background:#4a1a5a;border-color:#4a1a5a;color:#fff;}
+.nb-m:hover{background:#1a5a3a;border-color:#1a5a3a;color:#fff;}
+.section{padding:0 16px 80px;max-width:960px;margin:0 auto;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.hero{background:linear-gradient(135deg,var(--cd),var(--c));color:#fff;padding:44px 32px 36px;text-align:center;margin-bottom:32px;}
+.hero .chap-label{font-size:.73rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;opacity:.75;margin-bottom:10px;}
+.hero h1{font-family:'Lexend Mega',sans-serif;font-size:clamp(1.5rem,4vw,2.3rem);line-height:1.2;margin-bottom:12px;}
+.hero p{opacity:.88;max-width:640px;margin:0 auto;font-size:.92rem;}
+.hero-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px;}
+.hero-chip{background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:4px 14px;border-radius:20px;font-size:.73rem;font-weight:600;}
+.tab-bar{display:flex;gap:4px;flex-wrap:wrap;padding:22px 0 8px;border-bottom:2px solid var(--border);margin-bottom:28px;}
+.tab{padding:8px 16px;border-radius:10px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:.77rem;font-weight:600;cursor:pointer;transition:all .2s;color:var(--muted);}
+.tab:hover,.tab.active{background:var(--c);color:#fff;border-color:var(--c);}
+.tab-panel{display:none;}.tab-panel.active{display:block;animation:fadeIn .25s ease;}
+.img-card{background:var(--surface);border-radius:var(--radius);margin-bottom:22px;box-shadow:var(--shadow);border:2px solid var(--border);overflow:hidden;}
+.img-header{background:var(--cd);color:#fff;padding:12px 20px;}
+.img-header h2{font-family:'Lexend Mega',sans-serif;font-size:.9rem;}
+.img-body{padding:18px 22px;}
+.img-body p{font-size:.9rem;margin-bottom:10px;line-height:1.78;}
+.img-body h3{font-size:.85rem;font-weight:700;margin:14px 0 8px;color:var(--cd);}
+.example{background:var(--cl);border-left:4px solid var(--c);border-radius:0 var(--radius) var(--radius) 0;padding:12px 16px;margin:10px 0;}
+.example .ga{font-weight:700;font-size:.9rem;color:var(--cd);margin-bottom:3px;}
+.example .en{font-size:.81rem;color:var(--muted);font-style:italic;margin-bottom:5px;}
+.example .effect{font-size:.85rem;color:var(--text);}
+.phrases{padding:14px 20px;background:#faf5f0;border-top:2px solid var(--border);}
+.phrases h4{font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.7px;color:var(--c);margin-bottom:10px;}
+.phrase-row{display:flex;gap:10px;align-items:flex-start;margin-bottom:9px;flex-wrap:wrap;}
+.phrase-ga{background:var(--c);color:#fff;border-radius:6px;padding:4px 10px;font-size:.78rem;font-weight:600;line-height:1.5;}
+.phrase-en{font-size:.78rem;color:var(--muted);font-style:italic;padding-top:3px;}
+.box{border-radius:var(--radius);padding:14px 18px;margin:14px 0;display:flex;gap:12px;align-items:flex-start;}
+.box .ico{font-size:1.4rem;flex-shrink:0;line-height:1.2;}
+.box-label{font-size:.67rem;font-weight:800;text-transform:uppercase;letter-spacing:.7px;margin-bottom:4px;}
+.box p{font-size:.88rem;}
+.b-exam{background:#eaf4fb;border:2px solid #5dade2;}.b-exam .box-label{color:#1a6b9a;}
+.b-tip{background:#fffbf0;border:2px solid #f39c12;}.b-tip .box-label{color:#b7770d;}
+.b-rep{background:var(--cl);border:2px solid var(--c);}.b-rep .box-label{color:var(--cd);}
+.label{font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);margin-bottom:16px;display:block;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+@media(max-width:680px){.two-col{grid-template-columns:1fr;}}
+.tech-row{display:flex;gap:14px;margin-bottom:16px;background:var(--cl);border-radius:var(--radius);padding:14px 16px;border:2px solid #e0c8a0;}
+.tech-label{background:var(--c);color:#fff;border-radius:8px;padding:6px 12px;font-size:.75rem;font-weight:700;min-width:100px;text-align:center;flex-shrink:0;}
+.tech-content{font-size:.87rem;}
+.tech-content strong{color:var(--cd);}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="ATT_Home.html">🌊 <span>An tEarrach Thiar</span></a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn home" href="ATT_Home.html">Baile</a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn nb-v" href="ATT_Versanna.html">📖 Véarsaí</a>
+  <a class="nav-btn nb-t" href="ATT_Teamaí.html">🏝️ Téamaí</a>
+  <a class="nav-btn t-active" href="ATT_Íomhánna.html">🎨 Íomhánna</a>
+  <a class="nav-btn nb-f" href="ATT_File.html">✍️ An File</a>
+  <a class="nav-btn nb-m" href="ATT_Freagraí.html">📝 Freagraí</a>
+</nav>
+
+<div class="hero">
+  <div class="chap-label">Íomhánna · Imagery &amp; Techniques</div>
+  <h1>Íomhánna agus Teicníochtaí</h1>
+  <p>Visual imagery, sound imagery, colour, repetition, and more — every poetic device in An tEarrach Thiar explained with examples, effects, and ready-to-use Irish exam phrases.</p>
+  <div class="hero-chips">
+    <span class="hero-chip">Íomhánna Radhairc / Visual Images</span>
+    <span class="hero-chip">Fuaimeanna / Sound</span>
+    <span class="hero-chip">Dathanna / Colours</span>
+    <span class="hero-chip">Athrá / Repetition</span>
+  </div>
+</div>
+
+<div class="section">
+  <div class="tab-bar">
+    <button class="tab active" onclick="switchTab(this,'img')">🖼️ Íomhánna Soiléire</button>
+    <button class="tab" onclick="switchTab(this,'rep')">🔁 An tAthrá</button>
+    <button class="tab" onclick="switchTab(this,'tech')">🔧 Teicníochtaí Eile</button>
+  </div>
+
+  <!-- IMAGERY -->
+  <div class="tab-panel active" id="img">
+    <span class="label">Clear Images — Íomhánna Soiléire</span>
+
+    <div class="img-card">
+      <div class="img-header"><h2>🖼️ What Are Clear Images? — Cad is Íomhánna Soiléire Ann?</h2></div>
+      <div class="img-body">
+        <p>A <strong>clear image</strong> (íomhá shoiléir) is a description so vivid and precise that the reader can picture the scene exactly. Ó Direáin is a master of clear imagery — in just a few words, he places us on the rocky shore of Inis Mór on a spring afternoon.</p>
+        <p><em>Ní féidir a shéanadh go mbaineann an file úsáid éifeachtach as íomhánna soiléire chun a ghrá don oileán a léiriú dúinn</em> — it cannot be denied that the poet makes effective use of clear images to portray his love for the island to us.</p>
+        <p><em>Tá íomhánna soiléire i ngach véarsa ag baint le saol an oileáin in óige an fhile</em> — there are clear images in every verse associated with life on the island in the poet's youth.</p>
+      </div>
+    </div>
+
+    <div class="img-card">
+      <div class="img-header"><h2>👁️ Visual Images — Íomhánna Radhairc</h2></div>
+      <div class="img-body">
+        <h3>The Four Key Visual Images</h3>
+        <div class="example">
+          <div class="ga">Fear ag glanadh cré de ghimseán spáide</div>
+          <div class="en">A man cleaning clay from the heel of a spade</div>
+          <div class="effect">→ We see the farmer bent over his spade, the grey limestone clay clinging to the blade. A totally precise, realistic image of agricultural work on Aran.</div>
+        </div>
+        <div class="example">
+          <div class="ga">An fheamainn dhearg ag lonrú ar dhuirling bháin</div>
+          <div class="en">The red seaweed shining on a white rocky shore</div>
+          <div class="effect">→ The most visually vivid image in the poem: a contrast of deep red and brilliant white, with the sun's light ("lonrú") making it glow. We can see this like a painting.</div>
+        </div>
+        <div class="example">
+          <div class="ga">Mná i locháin, a gcótaí craptha, scáileanna fúthu ag rince ar ghainimh</div>
+          <div class="en">Women in pools, their skirts tucked up, shadows beneath them dancing on the sand</div>
+          <div class="effect">→ A moving image: the women's shadows (scáileanna) dance even as the women work — beauty hidden in ordinary labour.</div>
+        </div>
+        <div class="example">
+          <div class="ga">Currach lán éisc ag teacht chun cladaigh ar órmhuir mhall i ndeireadh lae</div>
+          <div class="en">A currach full of fish coming to shore on a slow golden sea at day's end</div>
+          <div class="effect">→ The most atmospheric image: the golden light of evening on the sea, the loaded boat returning home. Peace, abundance, and beauty in one sentence.</div>
+        </div>
+      </div>
+      <div class="phrases">
+        <h4>✍️ Phrases for Visual Imagery</h4>
+        <div class="phrase-row"><span class="phrase-ga">Ní féidir a shéanadh go mbaineann an file úsáid éifeachtach as íomhánna soiléire</span><span class="phrase-en">It cannot be denied that the poet makes effective use of clear images</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Faightear léargas iontach ar shaol an oileáin trí shúile an fhile</span><span class="phrase-en">A wonderful insight into the life of the island is obtained through the eyes of the poet</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Tá íomhánna soiléire i ngach véarsa ag baint le saol an oileáin</span><span class="phrase-en">There are clear images in every verse associated with life on the island</span></div>
+      </div>
+    </div>
+
+    <div class="img-card">
+      <div class="img-header"><h2>🔊 Sound Images — Íomhánna Fuaime</h2></div>
+      <div class="img-body">
+        <p>The poem does not rely on visual imagery alone. The poet also gives us sounds — the scraping of the spade, the quiet of the fields, the lapping of oars on water. These sound images make the poem come alive in a different, more intimate way.</p>
+        <div class="example">
+          <div class="ga">Binn an fhuaim — "Sweet is the sound"</div>
+          <div class="effect">→ The sound of the spade on clay is described as "binn" (sweet/melodious). This is an extraordinary claim — farm work is not usually musical — but through the lens of love and longing, even the most ordinary sound becomes precious.</div>
+        </div>
+        <div class="example">
+          <div class="ga">Sa gciúnas séimh — "In the gentle quiet"</div>
+          <div class="effect">→ The stillness of the fields is itself a sound image — the absence of city noise, replaced by soft natural silence. "Séimh" (gentle, soft) makes this quiet almost tender.</div>
+        </div>
+        <div class="box b-tip">
+          <div class="ico">🎵</div>
+          <div><div class="box-label">Sight AND Sound — A Key Exam Point</div><p>A high-scoring answer notes that the poet uses BOTH visual and auditory imagery — he sees the island AND he hears it. <em>Is cinnte go dtugann an file cuntas dúinn ar na radhairc agus ar na fuaimeanna araon a bhain le saol an oileáin</em> — it is certain that the poet gives us an account of both the sights and the sounds associated with life on the island.</p></div>
+        </div>
+      </div>
+      <div class="phrases">
+        <h4>✍️ Phrases for Sound Imagery</h4>
+        <div class="phrase-row"><span class="phrase-ga">Is cinnte go dtugann an file cuntas dúinn ar na radhairc agus ar na fuaimeanna araon</span><span class="phrase-en">It is certain that the poet gives us an account of both the sights and the sounds</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Tá fuaim álainn ag baint leis an íomha seo</span><span class="phrase-en">There is a beautiful sound associated with this image</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Mar léitheoir, táim beagnach ábalta fuaimeanna na hoibre sin a chloisteáil</span><span class="phrase-en">As a reader, I am almost able to hear the sounds of that work</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REPETITION -->
+  <div class="tab-panel" id="rep">
+    <span class="label">An tAthrá — The Repetition of "San Earrach Thiar"</span>
+
+    <div class="img-card">
+      <div class="img-header"><h2>🔁 An tAthrá — Repetition</h2></div>
+      <div class="img-body">
+        <p>Every verse ends with the same line: <strong>"San Earrach Thiar"</strong> (In the Western Spring). This repetition is the most important structural feature of the poem, and it does many things simultaneously.</p>
+        <div class="box b-rep">
+          <div class="ico">📌</div>
+          <div><div class="box-label">Why Repetition Matters</div><p><em>Is teicníc filíochta choitianta í an t-athrá</em> — repetition is a very common poetic technique — but the way Ó Direáin uses it here is particularly powerful. Each repetition of "San Earrach Thiar" deepens the poem's emotional impact, like a refrain in music.</p></div>
+        </div>
+        <h3>Five Effects of the Repetition</h3>
+        <div class="tech-row"><div class="tech-label">Béim / Emphasis</div><div class="tech-content"><strong>Emphasises the importance of spring on the island.</strong> By ending every verse with this line, the poet is saying: all these memories — farmer, seaweed, women, fishermen — are all part of the same thing: the western spring. <em>Cuireann sé béim ar cé chomh álainn is atá an t-Earrach in iarthar na hÉireann</em> — it emphasises how beautiful spring is in the west of Ireland.</div></div>
+        <div class="tech-row"><div class="tech-label">Cumha / Longing</div><div class="tech-content"><strong>Expresses the poet's nostalgia and longing.</strong> Each repetition is a sigh — a return to the same ache of missing. <em>Cuireann an t-athrá cumha an fhile in iúl don léitheoir</em> — the repetition conveys the poet's nostalgia to the reader. Is léir go bhfuil sé brónach agus gur mhaith leis filleadh ar an seansaol.</div></div>
+        <div class="tech-row"><div class="tech-label">Aonad / Unity</div><div class="tech-content"><strong>Unifies the four separate verses.</strong> Without the repeated line, the four verses might seem like four unrelated snapshots. The refrain ties them together into a single coherent meditation on island life. <em>Cuireann an t-athrá go mór leis an dán</em> — the repetition adds greatly to the poem.</div></div>
+        <div class="tech-row"><div class="tech-label">Rithim / Rhythm</div><div class="tech-content"><strong>Creates a musical rhythm like a song or lament.</strong> The poem was written to be heard as well as read. The returning refrain gives it the quality of a folk song or a keen (caoin), both traditional Irish forms.</div></div>
+        <div class="tech-row"><div class="tech-label">Suíomh / Setting</div><div class="tech-content"><strong>"Thiar" (western) is geographically precise.</strong> The Aran Islands are in the far west of Ireland, on the edge of the Atlantic. The word "thiar" (western) carries connotations of remoteness, wildness, and ancient Gaelic culture. It is not just any spring — it is the WESTERN spring, the most Irish, most authentic spring of all.</div></div>
+      </div>
+      <div class="phrases">
+        <h4>✍️ Phrases for the Repetition Question</h4>
+        <div class="phrase-row"><span class="phrase-ga">Cuireann an t-athrá béim ar thábhacht chuimhní an fhile ar a áit dúchais san earrach</span><span class="phrase-en">The repetition emphasises the importance of the poet's memories of his native place in spring</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Cuireann an t-athrá go mór leis an dán</span><span class="phrase-en">The repetition adds greatly to the poem</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Cuireann sé béim ar cé chomh álainn is atá an t-Earrach in iarthar na hÉireann</span><span class="phrase-en">It emphasises how beautiful spring is in the west of Ireland</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Cuireann an t-athrá cumha an fhile in iúl don léitheoir</span><span class="phrase-en">The repetition conveys the poet's nostalgia to the reader</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Mhothaigh sé ar a shuaimhneas ann agus ba é an t-Earrach an t-am ab fhearr leis</span><span class="phrase-en">He felt at peace there and spring was the time he liked best</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Rugadh agus tógadh an file ar oileán Árainn "thiar" agus ba bhreá leis a bheith ann</span><span class="phrase-en">The poet was born and raised on Aran island "in the west" and he would have loved to be there</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OTHER TECHNIQUES -->
+  <div class="tab-panel" id="tech">
+    <span class="label">Other Poetic Techniques — Teicníochtaí Eile</span>
+
+    <div class="img-card">
+      <div class="img-header"><h2>🔧 Further Techniques Worth Knowing</h2></div>
+      <div class="img-body">
+        <h3>Aidiachtaí — Adjectives</h3>
+        <p>Ó Direáin is selective with his adjectives but when he uses them, they are precise and powerful:</p>
+        <div class="two-col">
+          <div class="example">
+            <div class="ga">Séimh — gentle, soft</div>
+            <div class="effect">→ Describes the quiet of the fields. Implies tenderness, not just silence.</div>
+          </div>
+          <div class="example">
+            <div class="ga">Binn — sweet, melodious</div>
+            <div class="effect">→ Describes the sound of the spade. Transforms work into music.</div>
+          </div>
+          <div class="example">
+            <div class="ga">Niamhrach — wondrous, radiant</div>
+            <div class="effect">→ Describes the view of the seaweed. The island is almost magical.</div>
+          </div>
+          <div class="example">
+            <div class="ga">Mall — slow, unhurried</div>
+            <div class="effect">→ Describes the sea at evening. Peace, not danger or urgency.</div>
+          </div>
+        </div>
+        <h3>Dathanna — Colours as Imagery</h3>
+        <p>The poem uses three colours to paint the island: <strong>dearg</strong> (red seaweed), <strong>bán</strong> (white shore), and <strong>ór</strong> (gold — the sea at sunset). These form a complete palette representing the natural world of Aran in spring. <em>Baineann an file sárúsáid as dathanna sa dán</em> — the poet makes superb use of colours in the poem.</p>
+        <h3>Briathra Láithreacha — Present Tense Verbs</h3>
+        <p>All the action in the poem is in the present tense: the man IS cleaning, the seaweed IS shining, the currach IS coming home. But these are memories — the poet is not on the island. The use of the present tense creates a powerful immediacy: the memory feels as vivid and real as the present moment. The past is alive in the poet's mind.</p>
+        <div class="box b-exam">
+          <div class="ico">🎓</div>
+          <div><div class="box-label">Advanced Exam Point — Present Tense</div><p>Mentioning the use of the present tense for memories is an advanced point that will impress examiners: <em>"Úsáideann an file an aimsir láithreach chun cur síos a dhéanamh ar chuimhní — cruthaíonn sé seo íomhá bheomhar, nithiúil de shaol an oileáin"</em> — the poet uses the present tense to describe memories — this creates a vivid, concrete image of island life.</p></div>
+        </div>
+      </div>
+      <div class="phrases">
+        <h4>✍️ Phrases for Techniques</h4>
+        <div class="phrase-row"><span class="phrase-ga">Baintear úsáid as aidiachtaí cumhachtacha ar nós "niamhrach" agus "séimh"</span><span class="phrase-en">Powerful adjectives such as "wondrous" and "gentle" are used</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Baineann an file sárúsáid as dathanna — dearg, bán agus ór</span><span class="phrase-en">The poet makes superb use of colours — red, white and gold</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Mólann an file an t-oileán sna haidiachtaí a úsáideann sé</span><span class="phrase-en">The poet praises the island in the adjectives he uses</span></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<script>
+function switchTab(btn,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(id).classList.add('active');}
+</script>
+</body>
+</html>

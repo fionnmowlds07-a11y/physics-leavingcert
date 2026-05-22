@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ga">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>An File — Máirtín Ó Direáin</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#EEF4F0;--surface:#fff;--border:#ccdacc;--text:#1a2e1a;--muted:#4a5f4a;--c:#4a1a5a;--cl:#efe0f5;--cd:#1a0a2e;--radius:14px;--shadow:0 4px 20px rgba(0,0,0,0.08);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;font-size:16px;}
+nav{position:sticky;top:0;z-index:100;background:rgba(238,244,240,0.97);backdrop-filter:blur(10px);border-bottom:2px solid var(--border);padding:8px 16px;display:flex;align-items:center;gap:5px;flex-wrap:wrap;min-height:52px;}
+.nav-logo{font-family:'Lexend Mega',sans-serif;font-size:.8rem;color:var(--text);margin-right:4px;text-decoration:none;white-space:nowrap;}.nav-logo span{color:#1a6b5a;}
+.nav-divider{width:1px;height:20px;background:var(--border);flex-shrink:0;}
+.nav-btn{padding:5px 10px;border-radius:18px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:.68rem;font-weight:600;cursor:pointer;transition:all .2s;color:var(--muted);text-decoration:none;white-space:nowrap;}
+.nav-btn.home:hover{background:#1a2e1a;border-color:#1a2e1a;color:#fff;}
+.nb-v:hover{background:#1a6b5a;border-color:#1a6b5a;color:#fff;}
+.nb-t:hover{background:#1a3a5a;border-color:#1a3a5a;color:#fff;}
+.nb-i:hover{background:#5a3a1a;border-color:#5a3a1a;color:#fff;}
+.t-active,.t-active:hover{background:var(--c);border-color:var(--c);color:#fff;}
+.nb-m:hover{background:#1a5a3a;border-color:#1a5a3a;color:#fff;}
+.section{padding:0 16px 80px;max-width:960px;margin:0 auto;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.hero{background:linear-gradient(135deg,var(--cd),var(--c));color:#fff;padding:44px 32px 36px;text-align:center;margin-bottom:32px;}
+.hero .chap-label{font-size:.73rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;opacity:.75;margin-bottom:10px;}
+.hero h1{font-family:'Lexend Mega',sans-serif;font-size:clamp(1.5rem,4vw,2.3rem);line-height:1.2;margin-bottom:12px;}
+.hero p{opacity:.88;max-width:640px;margin:0 auto;font-size:.92rem;}
+.hero-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px;}
+.hero-chip{background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:4px 14px;border-radius:20px;font-size:.73rem;font-weight:600;}
+.info-card{background:var(--surface);border-radius:var(--radius);padding:22px 24px;margin-bottom:18px;box-shadow:var(--shadow);border-left:5px solid var(--c);}
+.info-card h2{font-size:1rem;font-weight:700;margin-bottom:10px;color:var(--cd);}
+.info-card p{margin-bottom:8px;font-size:.9rem;}
+.timeline{margin:24px 0;}
+.tl-item{display:flex;gap:16px;margin-bottom:18px;align-items:flex-start;}
+.tl-year{background:var(--c);color:#fff;border-radius:8px;padding:5px 12px;font-family:'Lexend Mega',sans-serif;font-size:.78rem;font-weight:700;min-width:70px;text-align:center;flex-shrink:0;margin-top:2px;}
+.tl-content{flex:1;}
+.tl-content h3{font-size:.88rem;font-weight:700;margin-bottom:4px;color:var(--cd);}
+.tl-content p{font-size:.84rem;color:var(--muted);line-height:1.65;}
+.works-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin:16px 0;}
+.work-card{background:var(--cl);border:2px solid #d0b0e0;border-radius:var(--radius);padding:14px 16px;}
+.work-card .year{font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:var(--c);margin-bottom:4px;}
+.work-card .title{font-family:'Lexend Mega',sans-serif;font-size:.82rem;margin-bottom:5px;}
+.work-card .desc{font-size:.8rem;color:var(--muted);line-height:1.55;}
+.phrases{padding:14px 20px;background:#f5f0fa;border-top:2px solid var(--border);border-radius:0 0 var(--radius) var(--radius);}
+.phrases h4{font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.7px;color:var(--c);margin-bottom:10px;}
+.phrase-row{display:flex;gap:10px;align-items:flex-start;margin-bottom:9px;flex-wrap:wrap;}
+.phrase-ga{background:var(--c);color:#fff;border-radius:6px;padding:4px 10px;font-size:.78rem;font-weight:600;line-height:1.5;}
+.phrase-en{font-size:.78rem;color:var(--muted);font-style:italic;padding-top:3px;}
+.box{border-radius:var(--radius);padding:14px 18px;margin:14px 0;display:flex;gap:12px;align-items:flex-start;}
+.box .ico{font-size:1.4rem;flex-shrink:0;line-height:1.2;}
+.box-label{font-size:.67rem;font-weight:800;text-transform:uppercase;letter-spacing:.7px;margin-bottom:4px;}
+.box p{font-size:.88rem;}
+.b-exam{background:#eaf4fb;border:2px solid #5dade2;}.b-exam .box-label{color:#1a6b9a;}
+.full-answer{background:var(--surface);border:2px solid var(--border);border-radius:var(--radius);padding:22px 24px;margin-bottom:18px;box-shadow:var(--shadow);}
+.full-answer h2{font-family:'Lexend Mega',sans-serif;font-size:.92rem;margin-bottom:14px;color:var(--cd);}
+.full-answer p{font-size:.88rem;margin-bottom:10px;line-height:1.78;}
+.full-answer em{color:var(--c);font-style:italic;}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="ATT_Home.html">🌊 <span>An tEarrach Thiar</span></a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn home" href="ATT_Home.html">Baile</a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn nb-v" href="ATT_Versanna.html">📖 Véarsaí</a>
+  <a class="nav-btn nb-t" href="ATT_Teamaí.html">🏝️ Téamaí</a>
+  <a class="nav-btn nb-i" href="ATT_Íomhánna.html">🎨 Íomhánna</a>
+  <a class="nav-btn t-active" href="ATT_File.html">✍️ An File</a>
+  <a class="nav-btn nb-m" href="ATT_Freagraí.html">📝 Freagraí</a>
+</nav>
+
+<div class="hero">
+  <div class="chap-label">An File · The Poet</div>
+  <h1>Máirtín Ó Direáin</h1>
+  <p>Born on Inis Mór in 1910, Ó Direáin left the island at 18 and spent the rest of his life longing to return. His poetry is shaped entirely by that loss — and by his profound love for the Aran Islands.</p>
+  <div class="hero-chips">
+    <span class="hero-chip">1910–1988</span>
+    <span class="hero-chip">Inis Mór · Oileáin Árann</span>
+    <span class="hero-chip">Filíocht / Poetry</span>
+    <span class="hero-chip">Gaeilge Árann</span>
+  </div>
+</div>
+
+<div class="section">
+
+  <div class="info-card">
+    <h2>👤 Who Was Máirtín Ó Direáin?</h2>
+    <p>Máirtín Ó Direáin is widely regarded as one of the greatest Irish-language poets of the twentieth century. He was born and raised on the island of Inis Mór in the Aran Islands — <em>Rugadh é ar Inis Mór sna hOileáin Árann sa bhliain 1910</em> (He was born on Inis Mór in the Aran Islands in 1910) — and his entire literary output was shaped by his relationship with that island and the loss of the simple, communal life it represented.</p>
+    <p>His poetry is characterised by <em>maoithneachas</em> (sentimentality / deep feeling) — he was, as one student answer notes, <em>"saghas maoithneach i gcuid dá dánta"</em> (somewhat sentimental in some of his poems). This emotional intensity, rooted in personal loss, gives his work a lasting power.</p>
+  </div>
+
+  <div class="info-card">
+    <h2>📅 Timeline — Líne Ama</h2>
+    <div class="timeline">
+      <div class="tl-item"><div class="tl-year">1910</div><div class="tl-content"><h3>Breitheanna / Born</h3><p>Rugadh Máirtín Ó Direáin ar Inis Mór sna hOileáin Árann. He grew up speaking Irish as his first language, immersed in the traditional island culture of farming, fishing, and community.</p></div></div>
+      <div class="tl-item"><div class="tl-year">1928</div><div class="tl-content"><h3>D'fhág sé an t-oileán / Left the Island</h3><p>Nuair a bhí sé ocht mbliana déag d'aois, d'fhág sé an t-oileán chun dul ag obair (When he was eighteen, he left the island to go to work). He got a post in the GPO (Ard-Oifig an Phoist) in Galway city — a dramatic change from the wild Aran Islands.</p></div></div>
+      <div class="tl-item"><div class="tl-year">1930s</div><div class="tl-content"><h3>Baile Átha Cliath / Dublin</h3><p>He moved to Dublin to work in the civil service. Ní raibh sé tógtha le saol sa chathair (He was not taken with life in the city). The grey, bureaucratic urban world stood in sharp contrast to everything he had known and loved on Inis Mór.</p></div></div>
+      <div class="tl-item"><div class="tl-year">1942</div><div class="tl-content"><h3>Céad Chnuasach / First Collection</h3><p>Published <em>Coinnle Geala</em> (1942) and <em>Dánta Aniar</em> (1943) — his first poetry collections. The island and the longing for it are central themes.</p></div></div>
+      <div class="tl-item"><div class="tl-year">1957</div><div class="tl-content"><h3>Ó Mórna agus Dánta Eile</h3><p>Published one of his most celebrated collections. His island themes deepen and mature. He is now recognised as one of the leading voices in modern Irish-language poetry.</p></div></div>
+      <div class="tl-item"><div class="tl-year">1961</div><div class="tl-content"><h3>Feamainn Bhealtaine</h3><p>His only prose work — a novel. The title itself (<em>Feamainn Bhealtaine</em> — May Seaweed) reflects the island world he never stopped writing about.</p></div></div>
+      <div class="tl-item"><div class="tl-year">1962</div><div class="tl-content"><h3>Ár Ré Dearóil agus Dánta Eile</h3><p>Another major collection. The title translates as "Our Wretched Age" — the poet's disillusionment with the modern world is increasingly evident.</p></div></div>
+      <div class="tl-item"><div class="tl-year">1988</div><div class="tl-content"><h3>Fuair sé bás / He Died</h3><p>Fuair sé bás sa bhliain 1988 (He died in 1988). He spent most of his adult life away from Inis Mór but never forgot it — his last collections still return to the same island themes.</p></div></div>
+    </div>
+  </div>
+
+  <div class="info-card">
+    <h2>📚 His Works — A Shaothair</h2>
+    <div class="works-grid">
+      <div class="work-card"><div class="year">1942</div><div class="title">Coinnle Geala</div><div class="desc">His debut collection — "Bright Candles". Early poems of island life and loss.</div></div>
+      <div class="work-card"><div class="year">1943</div><div class="title">Dánta Aniar</div><div class="desc">"Poems from the West" — the title says everything about his artistic identity.</div></div>
+      <div class="work-card"><div class="year">1957</div><div class="title">Ó Mórna agus Dánta Eile</div><div class="desc">"Ó Mórna and Other Poems" — one of his most celebrated collections.</div></div>
+      <div class="work-card"><div class="year">1961</div><div class="title">Feamainn Bhealtaine</div><div class="desc">His only novel — "May Seaweed". The island world in prose.</div></div>
+      <div class="work-card"><div class="year">1962</div><div class="title">Ár Ré Dearóil agus Dánta Eile</div><div class="desc">"Our Wretched Age and Other Poems" — later, more critical work.</div></div>
+    </div>
+  </div>
+
+  <div class="box b-exam">
+    <div class="ico">🎓</div>
+    <div><div class="box-label">Model Biography Answer — What to Include</div><p>A full marks biography answer covers: (1) Born on Inis Mór in 1910. (2) Left the island at 18 to work in Galway/Dublin. (3) Was not happy in the city — missed island life. (4) His longing for the island shaped his poetry — he was quite sentimental. (5) Named at least two works with dates. (6) Died in 1988. Six facts, written fluently in Irish with translations.</p></div>
+  </div>
+
+  <div class="full-answer">
+    <h2>📝 Model Biography Answer — Freagra Samhail</h2>
+    <p><em>Scríobh Máirtín Ó Direáin an dán seo.</em> (Máirtín Ó Direáin wrote this poem.) <em>Rugadh é ar Inis Mór sna hOileáin Árann sa bhliain 1910.</em> (He was born on Inis Mór in the Aran Islands in 1910.) <em>Nuair a bhí sé ocht mbliana déag d'aois, d'fhág sé an t-oileán chun dul ag obair sa chathair.</em> (When he was eighteen years old, he left the island to go working in the city.) <em>Fuair sé post in Ard-Oifig an Phoist i gcathair na Gaillimhe mar fhear óg.</em> (He got a post in the GPO in Galway city as a young man.)</p>
+    <p><em>Ní raibh sé tógtha le saol sa chathair.</em> (He was not taken with life in the city.) <em>D'fhéach sé ar an oileán mar áit cosúil le neamh agus bhí uaigneas air i ndiaidh an bhaile.</em> (He looked at the island as a place like heaven and he was homesick.) <em>Mar thoradh ar sin, bíonn sé saghas maoithneach i gcuid dá dánta.</em> (As a result, he is quite sentimental in some of his poems.)</p>
+    <p><em>"Coinnle Geala"</em> (1942), <em>"Dánta Aniar"</em> (1943), <em>"Ó Mórna agus Dánta Eile"</em> (1957) agus <em>"Ár Ré Dearóil agus Dánta Eile"</em> (1962) cuid dá chuid litríochta. (Some of his literature.) <em>Scríobh sé úrscéal amháin freisin: "Feamainn Bhealtaine"</em> (1961). (He also wrote one novel: "May Seaweed".) <em>Fuair sé bás sa bhliain 1988.</em> (He died in 1988.)</p>
+  </div>
+
+  <div class="phrases">
+    <h4>✍️ Key Phrases for the Poet Biography</h4>
+    <div class="phrase-row"><span class="phrase-ga">Chum / Scríobh Máirtín Ó Direáin an dán seo</span><span class="phrase-en">Máirtín Ó Direáin composed / wrote this poem</span></div>
+    <div class="phrase-row"><span class="phrase-ga">Rugadh agus tógadh é ar Inis Mór sna hOileáin Árann sa bhliain 1910</span><span class="phrase-en">He was born and raised on Inis Mór in the Aran Islands in 1910</span></div>
+    <div class="phrase-row"><span class="phrase-ga">D'fhág sé an t-oileán nuair a bhí sé ocht mbliana déag d'aois</span><span class="phrase-en">He left the island when he was eighteen years old</span></div>
+    <div class="phrase-row"><span class="phrase-ga">Ní raibh sé tógtha le saol sa chathair — bhí uaigneas air i ndiaidh an bhaile</span><span class="phrase-en">He was not taken with city life — he was homesick</span></div>
+    <div class="phrase-row"><span class="phrase-ga">Is é an t-oileán ceann de na téamaí is mó ina chuid filíochta</span><span class="phrase-en">The island is one of the most important themes in his poetry</span></div>
+    <div class="phrase-row"><span class="phrase-ga">Fuair sé bás sa bhliain 1988</span><span class="phrase-en">He died in 1988</span></div>
+  </div>
+
+</div>
+</body>
+</html>

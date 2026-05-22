@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ga">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Na Véarsaí — An tEarrach Thiar</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#EEF4F0;--surface:#fff;--border:#ccdacc;--text:#1a2e1a;--muted:#4a5f4a;--c:#1a6b5a;--cl:#e0f4ef;--cd:#071a12;--radius:14px;--shadow:0 4px 20px rgba(0,0,0,0.08);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;font-size:16px;}
+nav{position:sticky;top:0;z-index:100;background:rgba(238,244,240,0.97);backdrop-filter:blur(10px);border-bottom:2px solid var(--border);padding:8px 16px;display:flex;align-items:center;gap:5px;flex-wrap:wrap;min-height:52px;}
+.nav-logo{font-family:'Lexend Mega',sans-serif;font-size:.8rem;color:var(--text);margin-right:4px;text-decoration:none;white-space:nowrap;}.nav-logo span{color:var(--c);}
+.nav-divider{width:1px;height:20px;background:var(--border);flex-shrink:0;}
+.nav-btn{padding:5px 10px;border-radius:18px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:.68rem;font-weight:600;cursor:pointer;transition:all .2s;color:var(--muted);text-decoration:none;white-space:nowrap;}
+.nav-btn.home:hover,.nav-btn.home.active{background:#1a2e1a;border-color:#1a2e1a;color:#fff;}
+.t-active,.t-active:hover{background:var(--c);border-color:var(--c);color:#fff;}
+.nb-t:hover{background:#1a3a5a;border-color:#1a3a5a;color:#fff;}
+.nb-i:hover{background:#5a3a1a;border-color:#5a3a1a;color:#fff;}
+.nb-f:hover{background:#4a1a5a;border-color:#4a1a5a;color:#fff;}
+.nb-m:hover{background:#1a5a3a;border-color:#1a5a3a;color:#fff;}
+.section{padding:0 16px 80px;max-width:960px;margin:0 auto;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.hero{background:linear-gradient(135deg,var(--cd),var(--c));color:#fff;padding:44px 32px 36px;text-align:center;margin-bottom:32px;}
+.hero .chap-label{font-size:.73rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;opacity:.75;margin-bottom:10px;}
+.hero h1{font-family:'Lexend Mega',sans-serif;font-size:clamp(1.5rem,4vw,2.3rem);line-height:1.2;margin-bottom:12px;}
+.hero p{opacity:.88;max-width:640px;margin:0 auto;font-size:.92rem;}
+.hero-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px;}
+.hero-chip{background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:4px 14px;border-radius:20px;font-size:.73rem;font-weight:600;}
+.tab-bar{display:flex;gap:4px;flex-wrap:wrap;padding:22px 0 8px;border-bottom:2px solid var(--border);margin-bottom:28px;}
+.tab{padding:8px 16px;border-radius:10px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:.77rem;font-weight:600;cursor:pointer;transition:all .2s;color:var(--muted);}
+.tab:hover,.tab.active{background:var(--c);color:#fff;border-color:var(--c);}
+.tab-panel{display:none;}.tab-panel.active{display:block;animation:fadeIn .25s ease;}
+.verse-card{background:var(--surface);border-radius:var(--radius);margin-bottom:24px;box-shadow:var(--shadow);border:2px solid var(--border);overflow:hidden;}
+.verse-header{background:var(--cd);color:#fff;padding:12px 20px;display:flex;align-items:center;gap:12px;}
+.verse-num{background:var(--c);color:#fff;border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;font-family:'Lexend Mega',sans-serif;font-size:.75rem;flex-shrink:0;}
+.verse-header h2{font-family:'Lexend Mega',sans-serif;font-size:.92rem;}
+.verse-body{padding:20px 22px;}
+.poem-quote{background:var(--cl);border-left:5px solid var(--c);padding:14px 18px;border-radius:0 var(--radius) var(--radius) 0;margin-bottom:16px;}
+.poem-quote .ga{font-weight:700;font-size:.95rem;color:var(--cd);line-height:2;}
+.poem-quote .en{font-size:.82rem;color:var(--muted);font-style:italic;margin-top:6px;line-height:1.65;}
+.analysis-block{margin-bottom:16px;}
+.analysis-block h3{font-size:.88rem;font-weight:700;margin-bottom:8px;color:var(--cd);display:flex;align-items:center;gap:6px;}
+.analysis-block p{font-size:.9rem;margin-bottom:8px;line-height:1.78;}
+.phrases{padding:14px 20px;background:#f4faf6;border-top:2px solid var(--border);}
+.phrases h4{font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.7px;color:var(--c);margin-bottom:10px;}
+.phrase-row{display:flex;gap:10px;align-items:flex-start;margin-bottom:9px;flex-wrap:wrap;}
+.phrase-ga{background:var(--c);color:#fff;border-radius:6px;padding:4px 10px;font-size:.78rem;font-weight:600;line-height:1.5;}
+.phrase-en{font-size:.78rem;color:var(--muted);font-style:italic;padding-top:3px;}
+.box{border-radius:var(--radius);padding:14px 18px;margin:14px 0;display:flex;gap:12px;align-items:flex-start;}
+.box .ico{font-size:1.4rem;flex-shrink:0;line-height:1.2;}
+.box-label{font-size:.67rem;font-weight:800;text-transform:uppercase;letter-spacing:.7px;margin-bottom:4px;}
+.box p,.box li{font-size:.88rem;}.box ul{padding-left:16px;}.box li{margin-bottom:5px;}
+.b-exam{background:#eaf4fb;border:2px solid #5dade2;}.b-exam .box-label{color:#1a6b9a;}
+.b-tip{background:#fffbf0;border:2px solid #f39c12;}.b-tip .box-label{color:#b7770d;}
+.b-sound{background:#f0faf5;border:2px solid var(--c);}.b-sound .box-label{color:var(--cd);}
+.label{font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);margin-bottom:16px;display:block;}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="ATT_Home.html">🌊 <span>An tEarrach Thiar</span></a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn home" href="ATT_Home.html">Baile</a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn t-active" href="ATT_Versanna.html">📖 Véarsaí</a>
+  <a class="nav-btn nb-t" href="ATT_Teamaí.html">🏝️ Téamaí</a>
+  <a class="nav-btn nb-i" href="ATT_Íomhánna.html">🎨 Íomhánna</a>
+  <a class="nav-btn nb-f" href="ATT_File.html">✍️ An File</a>
+  <a class="nav-btn nb-m" href="ATT_Freagraí.html">📝 Freagraí</a>
+</nav>
+
+<div class="hero">
+  <div class="chap-label">Anailís · Verse by Verse</div>
+  <h1>Na Véarsaí Ceann ar Cheann</h1>
+  <p>Each of the four verses of An tEarrach Thiar paints a distinct scene from spring life on Inis Mór. Here we break down each verse image by image, sound by sound, with key Irish phrases for your exam answer.</p>
+  <div class="hero-chips">
+    <span class="hero-chip">Véarsa 1 · An Feirmeoir</span>
+    <span class="hero-chip">Véarsa 2 · An Fheamainn</span>
+    <span class="hero-chip">Véarsa 3 · Na Mná</span>
+    <span class="hero-chip">Véarsa 4 · Na hIascairí</span>
+  </div>
+</div>
+
+<div class="section">
+  <div class="tab-bar">
+    <button class="tab active" onclick="switchTab(this,'v1')">Véarsa 1 — An Feirmeoir</button>
+    <button class="tab" onclick="switchTab(this,'v2')">Véarsa 2 — An Fheamainn</button>
+    <button class="tab" onclick="switchTab(this,'v3')">Véarsa 3 — Na Mná</button>
+    <button class="tab" onclick="switchTab(this,'v4')">Véarsa 4 — Na hIascairí</button>
+  </div>
+
+  <!-- VERSE 1 -->
+  <div class="tab-panel active" id="v1">
+    <div class="verse-card">
+      <div class="verse-header"><div class="verse-num">1</div><h2>Véarsa 1 — The Farmer Digging</h2></div>
+      <div class="verse-body">
+        <div class="poem-quote">
+          <div class="ga">Fear ag glanadh cré<br>De ghimseán spáide<br>Sa gciúnas séimh,<br>Binn an fhuaim,<br>San Earrach Thiar.</div>
+          <div class="en">A man cleaning clay / From the heel of a spade / In the gentle quiet, / Sweet is the sound, / In the Western Spring.</div>
+        </div>
+        <div class="analysis-block">
+          <h3>🖼️ The Central Image</h3>
+          <p>The poet opens the poem with a single, still image: a lone farmer cleaning clay from the heel of his spade. This is a snapshot of traditional agricultural life on the island — <em>obair traidisiúnta</em> (traditional work) that the poet witnessed as a young man. The image is deceptively simple but carries enormous emotional weight for someone looking back from exile in the city.</p>
+          <p>Tuigimid ón aidiacht (we understand from the adjective) <strong>"séimh"</strong> (gentle/soft) go dtaitníonn ciúnas an atmaisféar sa pháirc go mór leis an bhfile — the calmness of the scene clearly delights the poet. The farmer is working at his own pace, <em>saor ó bhuairt</em> (free from worry).</p>
+        </div>
+        <div class="analysis-block">
+          <h3>🔊 Sound Imagery — Binn an Fhuaim</h3>
+          <p>The line <strong>"Binn an fhuaim"</strong> (sweet is the sound) is one of the most important lines in the poem. It tells us the poet does not just see this scene — he hears it too. The scraping sound of the spade on clay, which might seem mundane, is described as <em>binn</em> (sweet, melodious). This shows the depth of the poet's love: even the everyday sounds of island work are precious to him.</p>
+        </div>
+        <div class="box b-sound">
+          <div class="ico">🎵</div>
+          <div><div class="box-label">Sound vs. Sight</div><p>Verse 1 is unique in combining both hearing and sight — "sa gciúnas séimh" (in the gentle quiet) evokes atmosphere, while "binn an fhuaim" highlights a specific sound. As a reader, you feel you can almost hear the scene yourself. Mention this duality in your exam answer for extra marks.</p></div>
+        </div>
+        <div class="analysis-block">
+          <h3>🌱 Traditional Work / Obair Thraidisiúnta</h3>
+          <p>Digging and tending land was the foundation of survival on Inis Mór. The rocky limestone soil of the Aran Islands required enormous effort to cultivate — small plots called "garraí" were worked by hand, with seaweed used as fertiliser. When the poet recalls this image, he is recalling not just a moment, but an entire way of life that stood in sharp contrast to his office job in Dublin city.</p>
+        </div>
+      </div>
+      <div class="phrases">
+        <h4>✍️ Phrases to Use in Your Answer</h4>
+        <div class="phrase-row"><span class="phrase-ga">Sa chéad véarsa, cuimhníonn an file ar fhear ag saothrú na talún</span><span class="phrase-en">In the first verse, the poet remembers a man farming the land</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Is léir gur bhain an fear taitneamh as an obair agus go raibh sé ar a shuaimhneas</span><span class="phrase-en">It is clear the man enjoyed the work and was at peace</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Tá íomhá den gciúnas agus den tsíocháin le feiceáil sa véarsa seo</span><span class="phrase-en">An image of quietness and peace is visible in this verse</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Is sampla é d'obair thraidisiúnta a bhain le saol an oileáin</span><span class="phrase-en">This is an example of traditional work associated with life on the island</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Mar léitheoir, táim beagnach ábalta fuaimeanna na hoibre sin a chloisteáil</span><span class="phrase-en">As a reader, I am almost able to hear the sounds of that work</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VERSE 2 -->
+  <div class="tab-panel" id="v2">
+    <div class="verse-card">
+      <div class="verse-header"><div class="verse-num">2</div><h2>Véarsa 2 — The Red Seaweed Shining</h2></div>
+      <div class="verse-body">
+        <div class="poem-quote">
+          <div class="ga">Fear ag caitheamh<br>Cliabh dhá dhroim,<br>Is an fheamainn dhearg<br>Ag lonrú<br>Ar dhuirling bháin,<br>Niamhrach an radharc,<br>San Earrach Thiar.</div>
+          <div class="en">A man throwing / A basket from his back, / And the red seaweed / Shining / On a white rocky shore, / Wondrous the sight, / In the Western Spring.</div>
+        </div>
+        <div class="analysis-block">
+          <h3>🎨 Colour Imagery — Dathanna</h3>
+          <p>Verse 2 is the most visually rich verse in the poem. The poet contrasts two vibrant colours: <strong>the red of the seaweed</strong> (<em>an fheamainn dhearg</em>) against <strong>the white of the rocky shore</strong> (<em>duirling bháin</em>). This colour contrast creates a vivid, almost painterly image of the island landscape. <em>Baineann an file sárúsáid as dathanna sa véarsa seo</em> — the poet makes superb use of colours in this verse.</p>
+        </div>
+        <div class="analysis-block">
+          <h3>✨ Niamhrach — Wondrous, Radiant</h3>
+          <p>The word <strong>"niamhrach"</strong> (wondrous, radiant, dazzling) is one of the most powerful adjectives in the entire poem. It describes the sight of the red seaweed shining on the white shore. This single word tells us that for the poet, the island is not just beautiful — it is almost otherworldly, magical, a place of wonder. The use of "niamhrach" elevates the description above mere observation into genuine awe.</p>
+          <p><em>Creideann an file féin go bhfuil an radharc seo go hálainn</em> — the poet himself believes this sight is beautiful. The word "niamhrach" carries a note of wonder and reverence.</p>
+        </div>
+        <div class="analysis-block">
+          <h3>⚓ Seaweed Gathering — Obair an Chladaigh</h3>
+          <p>The <em>cliabh</em> (basket/creel) was used to carry seaweed from the shore up to the fields, where it was spread as fertiliser on the rocky limestone soil. This was essential, back-breaking work on the Aran Islands. The image of a man lowering this heavy basket from his back is also a metaphor: <em>de réir mar a íslíonn an fear an cliabh dá dhroim, scaoileann sé leis an ualach meafarach</em> — as the man lowers the basket, he releases a metaphorical burden. The rest and beauty of the island work as restorative.</p>
+        </div>
+        <div class="box b-tip">
+          <div class="ico">💡</div>
+          <div><div class="box-label">Exam Tip — Colour in Verse 2</div><p>When writing about imagery in this poem, always mention the colour contrast in Verse 2 specifically: red seaweed against a white shore, under the golden sun. The word "lonrú" (shining) adds light to this image, making it even more vivid. A high-scoring answer mentions all three elements: colour, light, and the adjective "niamhrach".</p></div>
+        </div>
+      </div>
+      <div class="phrases">
+        <h4>✍️ Phrases to Use in Your Answer</h4>
+        <div class="phrase-row"><span class="phrase-ga">Sa dara véarsa, tá cuimhní an fhile ag baint leis an bhfeamainn dhearg ag lonrú ar dhuirling bháin</span><span class="phrase-en">In the second verse, the poet's memories are associated with the red seaweed shining on a white rocky shore</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Baintear úsáid as an aidiacht "niamhrach" chun cur síos a dhéanamh ar an íomha seo</span><span class="phrase-en">The adjective "wondrous/radiant" is used to describe this image</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Baineann an file sárúsáid as dathanna sa véarsa seo</span><span class="phrase-en">The poet makes superb use of colours in this verse</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Is léir go bhfuil radharcanna álainn ar an oileán</span><span class="phrase-en">It is clear that there are beautiful views on the island</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Táim ábalta samhlú cé chomh geal is atá an fheamainn dhearg ar an trá</span><span class="phrase-en">I can picture just how vibrant the red seaweed is on the beach</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VERSE 3 -->
+  <div class="tab-panel" id="v3">
+    <div class="verse-card">
+      <div class="verse-header"><div class="verse-num">3</div><h2>Véarsa 3 — Women at the Shore</h2></div>
+      <div class="verse-body">
+        <div class="poem-quote">
+          <div class="ga">Mná i locháin<br>In íochtar diaidh-thrá,<br>A gcótaí craptha,<br>Scáileanna fúthu<br>Ag rince ar ghainimh,<br>San Earrach Thiar.</div>
+          <div class="en">Women in pools / At the ebb of the tide, / Their skirts tucked up, / Shadows beneath them / Dancing on the sand, / In the Western Spring.</div>
+        </div>
+        <div class="analysis-block">
+          <h3>👩 Community Spirit — Spiorad Pobail</h3>
+          <p>For the first time in the poem, we move from a lone individual to a group. The women working together at the shore embodies the <em>spiorad pobail</em> (community spirit) that was central to life on the island. The poet shows that island life was not merely individual labour but a shared, communal endeavour.</p>
+          <p><em>Léiríonn an file an spiorad pobail a bhain le saol an oileáin sa tríú véarsa</em> — the poet illustrates the community spirit associated with island life in the third verse.</p>
+        </div>
+        <div class="analysis-block">
+          <h3>💃 Scáileanna ag Rince — Shadows Dancing</h3>
+          <p>The most beautiful detail in this verse is the image of the women's shadows dancing on the sand beneath them: <strong>"scáileanna fúthu ag rince ar ghainimh"</strong>. This transforms an ordinary work scene into something almost magical. The shadows appear to dance — an involuntary, unself-conscious beauty in ordinary labour. This is a moment of unexpected poetry hidden in everyday life on the island.</p>
+          <p><em>Éiríonn le Máirtín ciúine agus sáimhe a chur sa phictiúr de na mná ag obair san fharraige</em> — Máirtín succeeds in placing quietness and calmness into the picture of the women working in the sea.</p>
+        </div>
+        <div class="analysis-block">
+          <h3>🌊 The Tide — An Taoide</h3>
+          <p>The phrase <strong>"in íochtar diaidh-thrá"</strong> (at the ebb of the tide) sets the time precisely: the tide has gone out, revealing the rock pools where shellfish and seaweed could be gathered. This kind of careful, tide-dependent work required knowledge of the sea — it was passed down through generations. The "gcótaí craptha" (skirts tucked up) gives us a vivid, realistic detail of the women at work in the water.</p>
+        </div>
+        <div class="box b-sound">
+          <div class="ico">✨</div>
+          <div><div class="box-label">The Dancing Shadows — A Key Poetic Detail</div><p>The shadows dancing on the sand is the most cited image from Verse 3 in exam answers. It transforms work into art — the women are not conscious of their dancing shadows, but the poet notices them and finds beauty in them. This reflects his deep love for even the smallest details of island life. Always quote "scáileanna fúthu ag rince ar ghainimh" in your answer on imagery.</p></div>
+        </div>
+      </div>
+      <div class="phrases">
+        <h4>✍️ Phrases to Use in Your Answer</h4>
+        <div class="phrase-row"><span class="phrase-ga">Sa tríú véarsa, tá na mná ag baint feamainne ar an trá nuair atá an taoide imithe amach</span><span class="phrase-en">In the third verse, the women are collecting seaweed on the beach when the tide has gone out</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Tá íomhá ann de na mná san uisce le cótaí craptha</span><span class="phrase-en">There is an image of the women in the water with skirts tucked up</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Léiríonn an file an spiorad pobail a bhain le saol an oileáin</span><span class="phrase-en">The poet illustrates the community spirit associated with island life</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Cruthaíonn an file atmaisféar socair agus suaimhneach ar an oileán</span><span class="phrase-en">The poet creates a calm and peaceful atmosphere on the island</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Is é "scáileanna fúthu ag rince ar ghainimh" an t-íomhá is deise sa véarsa seo</span><span class="phrase-en">"Shadows beneath them dancing on the sand" is the most beautiful image in this verse</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VERSE 4 -->
+  <div class="tab-panel" id="v4">
+    <div class="verse-card">
+      <div class="verse-header"><div class="verse-num">4</div><h2>Véarsa 4 — The Fishermen Return</h2></div>
+      <div class="verse-body">
+        <div class="poem-quote">
+          <div class="ga">Currach lán éisc<br>Ag teacht chun cladaigh<br>Ar órmhuir mhall<br>I ndeireadh lae,<br>San Earrach Thiar.</div>
+          <div class="en">A currach full of fish / Coming to shore / On a slow, golden sea / At the end of day, / In the Western Spring.</div>
+        </div>
+        <div class="analysis-block">
+          <h3>🌅 Ór-Mhuir Mhall — The Golden Sea at Day's End</h3>
+          <p>The final verse is many students' favourite, and for good reason. The phrase <strong>"ar órmhuir mhall"</strong> (on a slow, golden sea) is one of the most beautiful in the entire poem. <em>Ór</em> means gold — the sea reflects the setting sun. <em>Mall</em> means slow — the sea is calm, gentle. Together they create an image of profound peace and beauty as the day draws to a close.</p>
+          <p><em>Is aoibheann liom an tsíocháin a bhaineann le dul faoi na gréine órga ag dathú na spéire</em> — I love the peace associated with the golden sun going down and colouring the sky.</p>
+        </div>
+        <div class="analysis-block">
+          <h3>🚣 The Currach — Symbol of Island Life</h3>
+          <p>The <em>currach</em> (traditional Aran canoe made of canvas stretched over a wooden frame) is one of the most iconic symbols of life on the Aran Islands. The image of a <strong>currach lán éisc</strong> (currach full of fish) coming home at dusk represents a successful day's work — not just survival, but abundance. <em>Cuairtear saibhreas sa bhreis leis an véarsa seo le híomhá den fhlúirse éisc ar bord na curaí</em> — great wealth is added to this verse with an image of an abundance of fish on board the currach.</p>
+        </div>
+        <div class="analysis-block">
+          <h3>🕊️ Peace and Completion — Síocháin agus Críoch</h3>
+          <p>The final verse brings the poem to a gentle close. The day is ending, the fishermen are returning home, the sea is golden and calm. The repetition of "San Earrach Thiar" here carries its full emotional weight — this is the western spring the poet has been longing for throughout his years in the city. The verse is both beautiful and melancholy: it is a memory of something lost, a world the poet can no longer inhabit.</p>
+          <p><em>Tugtar an léargas dúinn go bhfuil saol an oileáin síochánta, cé go mbíonn muintir an oileáin an-ghnóthach ag obair</em> — we are given the insight that island life is serene, even though the islanders are very busy working.</p>
+        </div>
+        <div class="box b-exam">
+          <div class="ico">🎓</div>
+          <div><div class="box-label">Exam Favourite</div><p>The fourth verse is the one exam candidates most often choose as their personal favourite. The "órmhuir mhall" (golden slow sea) image is vivid and memorable. You can write: <em>"Is é an ceathrú véarsa is mó a thaitníonn liom"</em> (The fourth verse is the one I like most) and then explain why — the beauty of the sunset, the abundance of the catch, and the peace of the end of day all combine to create an unforgettable final image.</p></div>
+        </div>
+      </div>
+      <div class="phrases">
+        <h4>✍️ Phrases to Use in Your Answer</h4>
+        <div class="phrase-row"><span class="phrase-ga">Sa ceathrú véarsa, tá íomhá de na hiascairí ag filleadh abhaile tar éis lá ag iascadh</span><span class="phrase-en">In the fourth verse, there is an image of the fishermen returning home after a day fishing</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Tá an fharraige "órmhuir mhall" — cur síos álainn ar an bhfarraige ag lonrú mar gheall ar luí na gréine</span><span class="phrase-en">The sea is "a slow golden sea" — a beautiful description of the shining sea because of the sunset</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Is é an ceathrú véarsa is mó a thaitníonn liomsa</span><span class="phrase-en">It is the fourth verse that I like the most</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Cuairtear saibhreas sa bhreis leis an véarsa seo le híomhá den fhlúirse éisc</span><span class="phrase-en">Great wealth is added to this verse with an image of an abundance of fish</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Is aoibheann liom fuaim lapadáil bhog na dtonnta ag teacht chun cladaigh</span><span class="phrase-en">I love the sound of the gentle lapping of the waves coming to shore</span></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<script>
+function switchTab(btn,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(id).classList.add('active');}
+</script>
+</body>
+</html>

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ga">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Téamaí — An tEarrach Thiar</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#EEF4F0;--surface:#fff;--border:#ccdacc;--text:#1a2e1a;--muted:#4a5f4a;--c:#1a3a5a;--cl:#dce8f5;--cd:#0a1a2e;--radius:14px;--shadow:0 4px 20px rgba(0,0,0,0.08);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;font-size:16px;}
+nav{position:sticky;top:0;z-index:100;background:rgba(238,244,240,0.97);backdrop-filter:blur(10px);border-bottom:2px solid var(--border);padding:8px 16px;display:flex;align-items:center;gap:5px;flex-wrap:wrap;min-height:52px;}
+.nav-logo{font-family:'Lexend Mega',sans-serif;font-size:.8rem;color:var(--text);margin-right:4px;text-decoration:none;white-space:nowrap;}.nav-logo span{color:#1a6b5a;}
+.nav-divider{width:1px;height:20px;background:var(--border);flex-shrink:0;}
+.nav-btn{padding:5px 10px;border-radius:18px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:.68rem;font-weight:600;cursor:pointer;transition:all .2s;color:var(--muted);text-decoration:none;white-space:nowrap;}
+.nav-btn.home:hover{background:#1a2e1a;border-color:#1a2e1a;color:#fff;}
+.nb-v:hover{background:#1a6b5a;border-color:#1a6b5a;color:#fff;}
+.t-active,.t-active:hover{background:var(--c);border-color:var(--c);color:#fff;}
+.nb-i:hover{background:#5a3a1a;border-color:#5a3a1a;color:#fff;}
+.nb-f:hover{background:#4a1a5a;border-color:#4a1a5a;color:#fff;}
+.nb-m:hover{background:#1a5a3a;border-color:#1a5a3a;color:#fff;}
+.section{padding:0 16px 80px;max-width:960px;margin:0 auto;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.hero{background:linear-gradient(135deg,var(--cd),var(--c));color:#fff;padding:44px 32px 36px;text-align:center;margin-bottom:32px;}
+.hero .chap-label{font-size:.73rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;opacity:.75;margin-bottom:10px;}
+.hero h1{font-family:'Lexend Mega',sans-serif;font-size:clamp(1.5rem,4vw,2.3rem);line-height:1.2;margin-bottom:12px;}
+.hero p{opacity:.88;max-width:640px;margin:0 auto;font-size:.92rem;}
+.hero-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px;}
+.hero-chip{background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:4px 14px;border-radius:20px;font-size:.73rem;font-weight:600;}
+.tab-bar{display:flex;gap:4px;flex-wrap:wrap;padding:22px 0 8px;border-bottom:2px solid var(--border);margin-bottom:28px;}
+.tab{padding:8px 16px;border-radius:10px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:.77rem;font-weight:600;cursor:pointer;transition:all .2s;color:var(--muted);}
+.tab:hover,.tab.active{background:var(--c);color:#fff;border-color:var(--c);}
+.tab-panel{display:none;}.tab-panel.active{display:block;animation:fadeIn .25s ease;}
+.theme-card{background:var(--surface);border-radius:var(--radius);margin-bottom:22px;box-shadow:var(--shadow);border:2px solid var(--border);overflow:hidden;}
+.theme-header{padding:14px 20px;display:flex;align-items:center;gap:14px;}
+.theme-icon{font-size:2rem;flex-shrink:0;}
+.theme-header-text h2{font-family:'Lexend Mega',sans-serif;font-size:.9rem;margin-bottom:3px;}
+.theme-header-text .sub{font-size:.75rem;color:var(--muted);font-style:italic;}
+.theme-body{padding:18px 22px;border-top:2px solid var(--border);}
+.theme-body p{font-size:.9rem;margin-bottom:10px;line-height:1.78;}
+.theme-body h3{font-size:.85rem;font-weight:700;margin:14px 0 8px;color:var(--cd);}
+.example{background:var(--cl);border-left:4px solid var(--c);border-radius:0 var(--radius) var(--radius) 0;padding:12px 16px;margin:10px 0;}
+.example .ga{font-weight:700;font-size:.88rem;color:var(--cd);margin-bottom:3px;}
+.example .en{font-size:.81rem;color:var(--muted);font-style:italic;margin-bottom:5px;}
+.example .note{font-size:.84rem;color:var(--text);}
+.phrases{padding:14px 20px;background:#f2f8f4;border-top:2px solid var(--border);}
+.phrases h4{font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.7px;color:var(--c);margin-bottom:10px;}
+.phrase-row{display:flex;gap:10px;align-items:flex-start;margin-bottom:9px;flex-wrap:wrap;}
+.phrase-ga{background:var(--c);color:#fff;border-radius:6px;padding:4px 10px;font-size:.78rem;font-weight:600;line-height:1.5;}
+.phrase-en{font-size:.78rem;color:var(--muted);font-style:italic;padding-top:3px;}
+.box{border-radius:var(--radius);padding:14px 18px;margin:14px 0;display:flex;gap:12px;align-items:flex-start;}
+.box .ico{font-size:1.4rem;flex-shrink:0;line-height:1.2;}
+.box-label{font-size:.67rem;font-weight:800;text-transform:uppercase;letter-spacing:.7px;margin-bottom:4px;}
+.box p{font-size:.88rem;}
+.b-exam{background:#eaf4fb;border:2px solid #5dade2;}.b-exam .box-label{color:#1a6b9a;}
+.b-tip{background:#fffbf0;border:2px solid #f39c12;}.b-tip .box-label{color:#b7770d;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+@media(max-width:680px){.two-col{grid-template-columns:1fr;}}
+.label{font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);margin-bottom:16px;display:block;}
+/* theme card header colours */
+.th-1 .theme-header{background:linear-gradient(90deg,#0d2e1a,#1a5a3a);color:white;}.th-1 .theme-header-text .sub{color:rgba(255,255,255,.6);}
+.th-2 .theme-header{background:linear-gradient(90deg,#0a1a2e,#1a3a5a);color:white;}.th-2 .theme-header-text .sub{color:rgba(255,255,255,.6);}
+.th-3 .theme-header{background:linear-gradient(90deg,#2a1a0e,#5a3a1a);color:white;}.th-3 .theme-header-text .sub{color:rgba(255,255,255,.6);}
+.th-4 .theme-header{background:linear-gradient(90deg,#1a0a2e,#4a1a5a);color:white;}.th-4 .theme-header-text .sub{color:rgba(255,255,255,.6);}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="ATT_Home.html">🌊 <span>An tEarrach Thiar</span></a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn home" href="ATT_Home.html">Baile</a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn nb-v" href="ATT_Versanna.html">📖 Véarsaí</a>
+  <a class="nav-btn t-active" href="ATT_Teamaí.html">🏝️ Téamaí</a>
+  <a class="nav-btn nb-i" href="ATT_Íomhánna.html">🎨 Íomhánna</a>
+  <a class="nav-btn nb-f" href="ATT_File.html">✍️ An File</a>
+  <a class="nav-btn nb-m" href="ATT_Freagraí.html">📝 Freagraí</a>
+</nav>
+
+<div class="hero">
+  <div class="chap-label">Téamaí · Themes &amp; Emotions</div>
+  <h1>Téamaí agus Mothúcháin</h1>
+  <p>The four central themes of An tEarrach Thiar — love of place, nostalgia, traditional island life, and nature's beauty — explored in depth with supporting quotes and exam phrases.</p>
+  <div class="hero-chips">
+    <span class="hero-chip">Grá Áite / Love of Place</span>
+    <span class="hero-chip">Cumha / Nostalgia</span>
+    <span class="hero-chip">Saol Traidisiúnta / Traditional Life</span>
+    <span class="hero-chip">Áilleacht / Beauty</span>
+  </div>
+</div>
+
+<div class="section">
+  <div class="tab-bar">
+    <button class="tab active" onclick="switchTab(this,'t1')">🏠 Grá Áite</button>
+    <button class="tab" onclick="switchTab(this,'t2')">💔 Cumha &amp; Uaigneas</button>
+    <button class="tab" onclick="switchTab(this,'t3')">⚓ Saol Traidisiúnta</button>
+    <button class="tab" onclick="switchTab(this,'t4')">🌿 Áilleacht an Dúlra</button>
+  </div>
+
+  <!-- THEME 1 -->
+  <div class="tab-panel active" id="t1">
+    <span class="label">Téama 1 — The Central Theme</span>
+    <div class="theme-card th-1">
+      <div class="theme-header">
+        <div class="theme-icon">🏠</div>
+        <div class="theme-header-text"><h2>Grá Áite — Love of Place</h2><span class="sub">The most important theme in the poem</span></div>
+      </div>
+      <div class="theme-body">
+        <p><strong>Grá áite</strong> (love of place / love of one's native place) is without question the primary theme of An tEarrach Thiar. <em>Is é grá áite téama an dáin seo</em> — love of the home place is the theme of this poem. Every image, every sound, every detail in the four verses is coloured by the poet's deep and abiding love for Inis Mór.</p>
+        <p>The poet left the island at age 18 and spent the rest of his adult life working in offices in Galway and Dublin. He never truly felt at home in the city. His love for Inis Mór was not a passing sentiment — it was a <em>cumhacht intinne</em> (force of mind) that shaped everything he wrote. This poem is his most direct, most personal expression of that love.</p>
+        <h3>Evidence of Grá Áite — Fianaise</h3>
+        <div class="example">
+          <div class="ga">Niamhrach an radharc — "Wondrous the sight"</div>
+          <div class="note">→ The word "niamhrach" (wondrous, radiant) shows the poet sees the island as almost magical. Ordinary seaweed on a shore is elevated to the level of wonder. Only someone who loves a place deeply can see it this way.</div>
+        </div>
+        <div class="example">
+          <div class="ga">Binn an fhuaim — "Sweet is the sound"</div>
+          <div class="note">→ Even the mundane sound of a spade scraping clay is described as "sweet" (binn). The poet's love transforms ordinary work sounds into music. This is grá áite at its most intimate.</div>
+        </div>
+        <div class="example">
+          <div class="ga">Ar órmhuir mhall i ndeireadh lae — "On a slow golden sea at end of day"</div>
+          <div class="note">→ The golden sea at sunset is the poet's vision of paradise — a perfect, eternal spring evening on Inis Mór. This is the place he loved and lost.</div>
+        </div>
+        <div class="box b-tip">
+          <div class="ico">💡</div>
+          <div><div class="box-label">Key Point about Grá Áite</div><p>The love of place in this poem is not sentimental or false — it comes from a specific loss. The poet left Inis Mór and knew he could not return to the life he remembered. The beauty of the images is sharpened by that loss. <em>Cruthaíonn sé íomhánna éagsúla den saol ar an oileán dár thug sé a chroí</em> — he creates various images of life on the island to which he gave his heart.</p></div>
+        </div>
+      </div>
+      <div class="phrases">
+        <h4>✍️ Phrases for Grá Áite</h4>
+        <div class="phrase-row"><span class="phrase-ga">Is é grá áite téama an dáin seo</span><span class="phrase-en">Love of the home place is the theme of this poem</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Is léir dúinn go bhfuil grá mór ag an bhfile d'áit dhúchais</span><span class="phrase-en">It is clear to us that the poet has a great love for his native place</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Cruthaíonn sé íomhánna den saol ar an oileán dár thug sé a chroí</span><span class="phrase-en">He creates images of life on the island to which he gave his heart</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Gan amhras, tá Inis Mór speisialta don fhile</span><span class="phrase-en">Without a doubt, Inis Mór is special to the poet</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Mothaím grá áite nuair a léim an dán seo</span><span class="phrase-en">I feel love of place when I read this poem</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- THEME 2 -->
+  <div class="tab-panel" id="t2">
+    <span class="label">Téama 2 — Nostalgia and Longing</span>
+    <div class="theme-card th-2">
+      <div class="theme-header">
+        <div class="theme-icon">💔</div>
+        <div class="theme-header-text"><h2>Cumha agus Uaigneas — Nostalgia &amp; Longing</h2><span class="sub">The emotion beneath every image</span></div>
+      </div>
+      <div class="theme-body">
+        <p>All four verses of An tEarrach Thiar are written in the present tense — the farmer is cleaning clay, the seaweed is shining, the women are working. But the poem is actually a series of <strong>memories</strong>. The poet is not on the island; he is in the city, looking back. This creates an ache of longing beneath every beautiful image.</p>
+        <p><em>Feicimid na cuimhní atá aige ar an mbealach a gcaitheadh muintir an oileáin laethanta an earraigh</em> — we see the memories he has of the way the islanders spent spring days.</p>
+        <h3>Cumha — Homesickness / Yearning</h3>
+        <p>The poet experienced profound <em>cumha</em> (homesickness/longing) for Inis Mór throughout his life in the city. He described the island as a kind of heaven — <em>d'fhéach sé ar an oileán mar áit cosúil le neamh</em> (he looked at the island as a place like heaven). This is not exaggeration — for a man raised on the wild, beautiful Aran Islands, the grey streets of Dublin must have felt like exile.</p>
+        <div class="example">
+          <div class="ga">Ba bhreá leis an bhfile a bheith ar an oileáin seachas bheith i mBaile Átha Cliath</div>
+          <div class="en">The poet would have loved to be on the island rather than being in Dublin</div>
+          <div class="note">→ This context helps us understand why every image is described with such intense beauty and longing.</div>
+        </div>
+        <h3>The Repetition as Longing — An tAthrá mar Chumha</h3>
+        <p>The repeated line "San Earrach Thiar" (In the Western Spring) functions partly as an expression of longing. Each time the poet writes it, he is reaching back towards something he cannot have. <em>Cuireann an t-athrá cumha an fhile in iúl don léitheoir</em> — the repetition conveys the poet's nostalgia to the reader.</p>
+        <div class="box b-exam">
+          <div class="ico">🎓</div>
+          <div><div class="box-label">For the "How did the poem affect you?" question</div><p>This is the perfect theme for the personal response question. Write: <em>"Chuaigh an dán seo go mór i bhfeidhm orm"</em> (This poem really affected me). Explain that you feel the poet's longing and that reading the poem made you appreciate your own home and country more. <em>"Táim bródúil a bheith i mo chónaí in Éirinn mar is tír álainn í"</em> — I am proud to live in Ireland because it is a beautiful country.</p></div>
+        </div>
+      </div>
+      <div class="phrases">
+        <h4>✍️ Phrases for Cumha</h4>
+        <div class="phrase-row"><span class="phrase-ga">Chuaigh an dán seo go mór i bhfeidhm orm</span><span class="phrase-en">This poem really affected me</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Is léir go bhfuil sé brónach agus gur mhaith leis filleadh ar an seansaol</span><span class="phrase-en">It is clear he is sad and would like to return to the old life</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Mhothaigh sé ar a shuaimhneas ar an oileán</span><span class="phrase-en">He felt at peace / at ease on the island</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Cuireann an t-athrá cumha an fhile in iúl don léitheoir</span><span class="phrase-en">The repetition conveys the poet's nostalgia to the reader</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Táim bródúil a bheith i mo chónaí in Éirinn mar is tír álainn í</span><span class="phrase-en">I am proud to live in Ireland because it is a beautiful country</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- THEME 3 -->
+  <div class="tab-panel" id="t3">
+    <span class="label">Téama 3 — Traditional Island Life</span>
+    <div class="theme-card th-3">
+      <div class="theme-header">
+        <div class="theme-icon">⚓</div>
+        <div class="theme-header-text"><h2>Saol Traidisiúnta — Traditional Island Life</h2><span class="sub">Work, community, and the rhythm of the seasons</span></div>
+      </div>
+      <div class="theme-body">
+        <p>Each of the four verses captures a different aspect of traditional island life in spring: <strong>farming</strong> (Verse 1), <strong>seaweed gathering</strong> (Verse 2), <strong>shellfish collecting</strong> (Verse 3), and <strong>fishing</strong> (Verse 4). Together they give a comprehensive picture of the island economy and way of life that the poet knew as a child.</p>
+        <p><em>Déantar tagairtí d'obair thraidisiúnta ag baint le saol ar Inis Mór</em> — references are made to traditional work associated with life on Inis Mór.</p>
+        <div class="two-col">
+          <div class="example">
+            <div class="ga">Véarsa 1 — Fear ag glanadh cré de ghimseán spáide</div>
+            <div class="en">Farming the land — traditional agriculture</div>
+            <div class="note">→ Working the rocky limestone soil of Aran</div>
+          </div>
+          <div class="example">
+            <div class="ga">Véarsa 2 — Fear ag caitheamh cliabh dhá dhroim</div>
+            <div class="en">Carrying seaweed in a basket — fertilising fields</div>
+            <div class="note">→ Kelp used as fertiliser, back-breaking work</div>
+          </div>
+          <div class="example">
+            <div class="ga">Véarsa 3 — Mná i locháin in íochtar diaidh-thrá</div>
+            <div class="en">Women collecting shellfish at the ebb tide</div>
+            <div class="note">→ Communal work, knowledge of tides</div>
+          </div>
+          <div class="example">
+            <div class="ga">Véarsa 4 — Currach lán éisc ag teacht chun cladaigh</div>
+            <div class="en">Fishing — currach returning with a full catch</div>
+            <div class="note">→ The sea as provider, the currach as symbol</div>
+          </div>
+        </div>
+        <h3>Why This Theme Matters</h3>
+        <p>The traditional ways of life depicted in this poem were already changing when the poet wrote it. Emigration, modernisation, and the decline of Irish-speaking communities meant that the world the poet remembered was disappearing. His poem is a kind of <em>cuimhneachán</em> (memorial) — a way of preserving and honouring a way of life that was being lost.</p>
+      </div>
+      <div class="phrases">
+        <h4>✍️ Phrases for Saol Traidisiúnta</h4>
+        <div class="phrase-row"><span class="phrase-ga">Is sampla é d'obair thraidisiúnta a bhain le saol an oileáin</span><span class="phrase-en">It is an example of traditional work associated with the life of the island</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Tugtar léargas dúinn ar shaol an oileáin sa tseanaimsir</span><span class="phrase-en">We are given an insight into life on the island in the old days</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Feicimid na cuimhní atá aige ar bhealach a gcaitheadh muintir an oileáin laethanta an earraigh</span><span class="phrase-en">We see his memories of how the islanders spent the spring days</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Bhí muintir an oileáin an-ghnóthach ag obair, ach bhí saol an oileáin síochánta</span><span class="phrase-en">The islanders were very busy working, but island life was serene</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- THEME 4 -->
+  <div class="tab-panel" id="t4">
+    <span class="label">Téama 4 — Beauty of Nature</span>
+    <div class="theme-card th-4">
+      <div class="theme-header">
+        <div class="theme-icon">🌿</div>
+        <div class="theme-header-text"><h2>Áilleacht an Dúlra — Beauty of Nature</h2><span class="sub">Colour, light, and peace in the western world</span></div>
+      </div>
+      <div class="theme-body">
+        <p>An tEarrach Thiar is saturated with natural beauty. From the quiet of the first verse to the golden sea of the last, nature is not just a backdrop — it is the subject of the poem. The Aran Islands in spring are portrayed as a place of almost supernatural beauty.</p>
+        <p><em>Tá go leor radharcanna álainn nach bhfeictear in aon áit eile sa domhain</em> — there are many beautiful views that would not be seen anywhere else in the world.</p>
+        <h3>Colours in the Poem — Na Dathanna</h3>
+        <p>The poem is remarkably rich in colour: the red seaweed (<em>an fheamainn dhearg</em>), the white shore (<em>duirling bháin</em>), the golden sea (<em>órmhuir</em>). These colours are not decorative — they are precise observations of a real landscape, remembered with loving accuracy.</p>
+        <div class="example">
+          <div class="ga">Dearg — Bán — Ór (Red — White — Gold)</div>
+          <div class="note">→ The three colours of the poem form a natural palette: the deep red of Atlantic kelp, the bleached white of limestone shoreline, the gold of sunset over the Atlantic. Together they paint a complete picture.</div>
+        </div>
+        <h3>The Seasons — Na Séasúir</h3>
+        <p>The title itself is significant: <em>An tEarrach Thiar</em> — the Western Spring. Spring (<em>an t-earrach</em>) on the Aran Islands was the most beautiful and most hopeful time of year — the end of the hard winter, the return of warmth, the beginning of the fishing and farming season. The poet has chosen this season deliberately. <em>Ba é an t-Earrach an t-am den bhliain ab fhearr leis ann</em> — Spring was the time of year he liked best there.</p>
+        <div class="box b-tip">
+          <div class="ico">🌊</div>
+          <div><div class="box-label">Peace and Tranquillity — Síocháin</div><p>Throughout the poem, the natural world is described as peaceful: <em>"sa gciúnas séimh"</em> (in the gentle quiet), <em>"ar órmhuir mhall"</em> (on a slow golden sea). The island is a place of peace and rest — the opposite of the busy, noisy city. This contrast between island peace and city noise is implicit throughout the poem and makes the beauty even more poignant.</p></div>
+        </div>
+      </div>
+      <div class="phrases">
+        <h4>✍️ Phrases for Áilleacht an Dúlra</h4>
+        <div class="phrase-row"><span class="phrase-ga">Tá na dathanna go hálainn sa dán — dearg, bán agus ór</span><span class="phrase-en">The colours are lovely in the poem — red, white and gold</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Cruthaíonn an file atmaisféar álainn síochánta ar feadh an dáin</span><span class="phrase-en">The poet creates a beautiful, peaceful atmosphere throughout the poem</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Ba é an t-Earrach an t-am den bhliain ab fhearr leis ann</span><span class="phrase-en">Spring was the time of year he liked best there</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Cuireann solas na gréine leis an áilleacht sa dán</span><span class="phrase-en">The sunlight adds to the beauty in the poem</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Is léir go bhfuil áilleacht an oileáin i gceist ar feadh an dáin</span><span class="phrase-en">It is clear that the beauty of the island is evident throughout the poem</span></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<script>
+function switchTab(btn,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(id).classList.add('active');}
+</script>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ga">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>An tEarrach Thiar — Lárionad Staidéir</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#EEF4F0;--card:#ffffff;--text:#1a2e1a;--text-light:#4a5f4a;--border:#ccdacc;--shadow:0 4px 20px rgba(0,0,0,0.07);--shadow-h:0 12px 30px rgba(0,0,0,0.13);--radius:16px;--teal:#1a6b5a;--gold:#b8860b;--ocean:#1a3a5a;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);font-size:16px;line-height:1.7;min-height:100vh;display:flex;flex-direction:column;}
+.top-bar{background:white;border-bottom:2px solid var(--border);padding:14px 40px;display:flex;align-items:center;position:sticky;top:0;z-index:50;box-shadow:0 2px 10px rgba(0,0,0,0.03);}
+.top-bar h1{font-family:'Lexend Mega',sans-serif;font-size:1rem;color:var(--text);margin:0 auto;}
+.top-bar h1 span{color:var(--teal);}
+.back-link{position:absolute;left:40px;text-decoration:none;color:var(--text-light);font-size:13px;font-weight:700;display:flex;align-items:center;gap:5px;transition:color .2s;}
+.back-link:hover{color:var(--teal);}
+.hero{background:linear-gradient(135deg,#071a12 0%,#0d3320 35%,#061e15 70%,#020e08 100%);color:white;padding:80px 40px;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:'🌊';position:absolute;right:6%;top:15%;font-size:8rem;opacity:0.06;transform:rotate(-12deg);}
+.hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 40%,rgba(26,107,90,0.18),transparent 65%);pointer-events:none;}
+.hero h2{font-family:'Lexend Mega',sans-serif;font-size:clamp(1.8rem,5vw,3.2rem);margin-bottom:10px;position:relative;z-index:1;}
+.hero h3{font-size:1rem;opacity:0.75;margin-bottom:18px;font-weight:400;position:relative;z-index:1;letter-spacing:.05em;}
+.hero p{font-size:.95rem;color:rgba(255,255,255,0.82);max-width:680px;margin:0 auto;line-height:1.65;position:relative;z-index:1;}
+.hero-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:22px;position:relative;z-index:1;}
+.hero-chip{background:rgba(255,255,255,0.13);border:1px solid rgba(255,255,255,0.28);color:#fff;padding:5px 16px;border-radius:20px;font-size:.75rem;font-weight:600;}
+.dashboard{flex:1;padding:60px 40px;max-width:1280px;margin:0 auto;width:100%;}
+.section-label-row{display:flex;align-items:center;gap:14px;margin-bottom:24px;}
+.section-label-row .label{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:var(--text-light);white-space:nowrap;}
+.section-label-row::after{content:'';flex:1;height:2px;background:var(--border);border-radius:4px;}
+.topics-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px;margin-bottom:60px;}
+.chapter-card{background:var(--card);border:2px solid var(--border);border-radius:var(--radius);padding:28px 22px;text-decoration:none;display:flex;flex-direction:column;align-items:center;text-align:center;transition:all .3s cubic-bezier(.25,.8,.25,1);box-shadow:var(--shadow);position:relative;overflow:hidden;}
+.chapter-card::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;transition:height .3s ease;}
+.chapter-card:hover{transform:translateY(-7px);box-shadow:var(--shadow-h);border-color:transparent;}
+.chapter-card:hover::before{height:11px;}
+/* card colours */
+.ca::before{background:#1a6b5a;}.ca:hover{border-color:#1a6b5a;}.ca .mc-icon{color:#1a6b5a;background:#e0f4ef;}
+.cb::before{background:#1a3a5a;}.cb:hover{border-color:#1a3a5a;}.cb .mc-icon{color:#1a3a5a;background:#dce8f5;}
+.cc::before{background:#5a3a1a;}.cc:hover{border-color:#5a3a1a;}.cc .mc-icon{color:#5a3a1a;background:#f5ece0;}
+.cd::before{background:#4a1a5a;}.cd:hover{border-color:#4a1a5a;}.cd .mc-icon{color:#4a1a5a;background:#efe0f5;}
+.ce::before{background:#1a5a3a;}.ce:hover{border-color:#1a5a3a;}.ce .mc-icon{color:#1a5a3a;background:#ddf0ea;}
+.mc-icon{font-size:38px;width:74px;height:74px;display:flex;align-items:center;justify-content:center;border-radius:50%;margin-bottom:18px;transition:transform .3s ease;}
+.chapter-card:hover .mc-icon{transform:scale(1.1) rotate(4deg);}
+.mc-title{font-family:'Lexend Mega',sans-serif;font-size:.88rem;font-weight:700;color:var(--text);margin-bottom:7px;}
+.mc-subtitle{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--text-light);margin-bottom:9px;}
+.mc-desc{font-size:13px;color:var(--text-light);line-height:1.6;}
+.mc-action{margin-top:22px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--text);opacity:.5;transition:opacity .2s;}
+.chapter-card:hover .mc-action{opacity:1;}
+.info-card{background:var(--card);border:2px solid var(--border);border-radius:var(--radius);padding:38px 30px;box-shadow:var(--shadow);max-width:820px;margin:0 auto;text-align:center;}
+.info-card h3{font-family:'Lexend Mega',sans-serif;font-size:1.1rem;margin-bottom:10px;}
+.info-card p{color:var(--text-light);font-size:15px;line-height:1.7;margin-bottom:20px;}
+.poem-box{background:linear-gradient(135deg,#071a12,#0d3320);color:white;border-radius:var(--radius);padding:40px;max-width:800px;margin:0 auto 60px;box-shadow:0 8px 30px rgba(0,0,0,0.15);}
+.poem-box h3{font-family:'Lexend Mega',sans-serif;font-size:1rem;margin-bottom:22px;opacity:.8;text-align:center;letter-spacing:.05em;}
+.verse{margin-bottom:24px;padding-bottom:24px;border-bottom:1px solid rgba(255,255,255,0.12);}
+.verse:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+.verse-label{font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;opacity:.55;margin-bottom:8px;}
+.verse-ga{font-size:1rem;line-height:2;font-weight:500;}
+.verse-ga em{color:#7dd9c0;font-style:normal;font-weight:700;}
+.verse-en{font-size:.82rem;opacity:.65;font-style:italic;margin-top:6px;line-height:1.7;}
+@media(max-width:768px){.top-bar{padding:14px 20px;}.back-link{position:static;margin-right:auto;}.hero{padding:50px 20px;}.dashboard{padding:36px 18px;}.topics-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a href="Irish.html" class="back-link">← Gaeilge Hub</a>
+  <h1>An tEarrach Thiar — <span>Lárionad Staidéir</span></h1>
+</div>
+
+<div class="hero">
+  <h2>An tEarrach Thiar</h2>
+  <h3>Máirtín Ó Direáin — Filíocht (Poetry)</h3>
+  <p>Dán cumhachtach faoi ghrá áite, cuimhní óige, agus áilleacht oileán Árann. A powerful poem about love of home, childhood memories, and the breathtaking beauty of the Aran Islands in spring.</p>
+  <div class="hero-chips">
+    <span class="hero-chip">Inis Mór · Oileáin Árann</span>
+    <span class="hero-chip">Grá Áite / Love of Place</span>
+    <span class="hero-chip">Cuimhní Óige / Childhood Memories</span>
+    <span class="hero-chip">Athrá / Repetition</span>
+    <span class="hero-chip">Íomhánna Soiléire / Clear Images</span>
+  </div>
+</div>
+
+<main class="dashboard">
+
+  <div class="section-label-row"><span class="label">📜 An Dán / The Poem</span></div>
+  <div class="poem-box">
+    <h3>An tEarrach Thiar · Máirtín Ó Direáin</h3>
+    <div class="verse">
+      <div class="verse-label">Véarsa 1 · Verse 1</div>
+      <div class="verse-ga">Fear ag <em>glanadh cré</em><br>De <em>ghimseán spáide</em><br>Sa <em>gciúnas séimh</em>,<br><em>Binn an fhuaim</em>,<br>San Earrach Thiar.</div>
+      <div class="verse-en">A man cleaning clay / From the heel of a spade / In the gentle quiet, / Sweet is the sound, / In the Western Spring.</div>
+    </div>
+    <div class="verse">
+      <div class="verse-label">Véarsa 2 · Verse 2</div>
+      <div class="verse-ga">Fear ag <em>caitheamh</em><br><em>Cliabh dhá dhroim</em>,<br>Is an <em>fheamainn dhearg</em><br>Ag <em>lonrú</em><br>Ar <em>dhuirling bháin</em>,<br><em>Niamhrach an radharc</em>,<br>San Earrach Thiar.</div>
+      <div class="verse-en">A man throwing / A basket from his back, / And the red seaweed / Shining / On a white rocky shore, / Wondrous the sight, / In the Western Spring.</div>
+    </div>
+    <div class="verse">
+      <div class="verse-label">Véarsa 3 · Verse 3</div>
+      <div class="verse-ga"><em>Mná i locháin</em><br>In <em>íochtar diaidh-thrá</em>,<br>A <em>gcótaí craptha</em>,<br><em>Scáileanna fúthu</em><br>Ag <em>rince ar ghainimh</em>,<br>San Earrach Thiar.</div>
+      <div class="verse-en">Women in pools / At the ebb of the tide, / Their skirts tucked up, / Shadows beneath them / Dancing on the sand, / In the Western Spring.</div>
+    </div>
+    <div class="verse">
+      <div class="verse-label">Véarsa 4 · Verse 4</div>
+      <div class="verse-ga"><em>Currach lán éisc</em><br>Ag <em>teacht chun cladaigh</em><br>Ar <em>órmhuir mhall</em><br>I <em>ndeireadh lae</em>,<br>San Earrach Thiar.</div>
+      <div class="verse-en">A currach full of fish / Coming to shore / On a slow, golden sea / At the end of day, / In the Western Spring.</div>
+    </div>
+  </div>
+
+  <div class="section-label-row"><span class="label">🎯 Ábhair Staidéir / Study Topics</span></div>
+  <div class="topics-grid">
+    <a href="ATT_Versanna.html" class="chapter-card ca">
+      <div class="mc-icon">📖</div>
+      <div class="mc-subtitle">Anailís · Verse by Verse</div>
+      <div class="mc-title">Na Véarsaí Ceann ar Cheann</div>
+      <div class="mc-desc">Deep-dive analysis of all four verses — the images, sounds, colours, and emotions in each, with key Irish phrases to use in your exam.</div>
+      <div class="mc-action">Staidéar →</div>
+    </a>
+    <a href="ATT_Teamaí.html" class="chapter-card cb">
+      <div class="mc-icon">🏝️</div>
+      <div class="mc-subtitle">Téamaí · Themes</div>
+      <div class="mc-title">Téamaí agus Mothúcháin</div>
+      <div class="mc-desc">Love of place, nostalgia, traditional island life, peace and beauty — all the key themes explored with supporting quotes and phrases.</div>
+      <div class="mc-action">Staidéar →</div>
+    </a>
+    <a href="ATT_Íomhánna.html" class="chapter-card cc">
+      <div class="mc-icon">🎨</div>
+      <div class="mc-subtitle">Íomhánna · Imagery</div>
+      <div class="mc-title">Íomhánna agus Teicníochtaí</div>
+      <div class="mc-desc">Visual and auditory imagery, colours, the use of repetition (athrá), and other poetic techniques explained and illustrated with model phrases.</div>
+      <div class="mc-action">Staidéar →</div>
+    </a>
+    <a href="ATT_File.html" class="chapter-card cd">
+      <div class="mc-icon">✍️</div>
+      <div class="mc-subtitle">An File · The Poet</div>
+      <div class="mc-title">Máirtín Ó Direáin — A Shaol</div>
+      <div class="mc-desc">Born on Inis Mór in 1910, left for the city at 18, spent a lifetime longing for the island. His life, his works, and why this poem matters.</div>
+      <div class="mc-action">Staidéar →</div>
+    </a>
+    <a href="ATT_Freagraí.html" class="chapter-card ce">
+      <div class="mc-icon">📝</div>
+      <div class="mc-subtitle">Freagraí Samhail · Model Answers</div>
+      <div class="mc-title">Freagraí Scrúdaithe</div>
+      <div class="mc-desc">Full model answers to all three exam question types — imagery, repetition, and poet biography — with handy phrases and exam tips throughout.</div>
+      <div class="mc-action">Staidéar →</div>
+    </a>
+  </div>
+
+  <div style="text-align:center;margin-top:10px;">
+    <div class="info-card">
+      <h3>💡 Leid don Scrúdú / Exam Tip</h3>
+      <p>Is dán é seo faoi <strong>ghrá áite</strong> — grá an fhile d'Inis Mór. Bain úsáid as nathanna Gaeilge ó na véarsaí i do fhreagra agus tabhair an t-aistriúchán eatarthu sna lúibíní. Déan tagairt don <strong>athrá</strong> "San Earrach Thiar" ag deireadh gach véarsa agus mínigh cén fáth a bhfuil sé cumhachtach.</p>
+      <p style="font-size:13px;color:#888;margin-top:8px;margin-bottom:0;"><em>This poem is about love of place — the poet's love for Inis Mór. Use Irish phrases from the verses in your answer and give the translation in brackets. Always mention the repetition "San Earrach Thiar" and explain its effect.</em></p>
+    </div>
+  </div>
+
+</main>
+</body>
+</html>
