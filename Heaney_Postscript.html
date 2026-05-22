@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Heaney — Postscript</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F6F3EE;--surface:#FFFFFF;--surface2:#EEE9E2;--border:#E2DDD7;--text:#2C2825;--muted:#7A7068;--c:#1a4a5a;--cl:#ddeef5;--cd:#080e12;--radius:14px;--shadow:0 4px 20px rgba(0,0,0,0.08);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;font-size:16px;}
+nav{position:sticky;top:0;z-index:100;background:rgba(246,243,238,0.97);backdrop-filter:blur(10px);border-bottom:2px solid var(--border);padding:8px 16px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;min-height:52px;}
+.nav-logo{font-family:'Lexend Mega',sans-serif;font-size:0.85rem;color:var(--text);margin-right:4px;text-decoration:none;white-space:nowrap;}.nav-logo span{color:#5a6e3a;}
+.nav-divider{width:1px;height:20px;background:var(--border);flex-shrink:0;}
+.nav-btn{padding:5px 11px;border-radius:18px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.72rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);text-decoration:none;white-space:nowrap;}
+.nav-btn:hover{transform:translateY(-2px);}
+.nav-btn.home:hover,.nav-btn.home.active{background:#2c2825;border-color:#2c2825;color:#fff;}
+.nav-btn.forge:hover,.nav-btn.forge.active{background:#8B4513;border-color:#8B4513;color:#fff;}
+.nav-btn.bogland:hover,.nav-btn.bogland.active{background:#4a6741;border-color:#4a6741;color:#fff;}
+.nav-btn.tollund:hover,.nav-btn.tollund.active{background:#5a4a2a;border-color:#5a4a2a;color:#fff;}
+.nav-btn.constable:hover,.nav-btn.constable.active{background:#2a3a5a;border-color:#2a3a5a;color:#fff;}
+.nav-btn.sunlight:hover,.nav-btn.sunlight.active{background:#b07a10;border-color:#b07a10;color:#fff;}
+.nav-btn.pitchfork:hover,.nav-btn.pitchfork.active{background:#5a3a1a;border-color:#5a3a1a;color:#fff;}
+.nav-btn.postscript:hover,.nav-btn.postscript.active{background:#1a4a5a;border-color:#1a4a5a;color:#fff;}
+.nav-btn.flash:hover,.nav-btn.flash.active{background:#3a3a5a;border-color:#3a3a5a;color:#fff;}
+.nav-btn.links:hover,.nav-btn.links.active{background:#5a1a3a;border-color:#5a1a3a;color:#fff;}
+.section{padding:0 16px 80px;max-width:940px;margin:0 auto;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.hero{background:linear-gradient(135deg,var(--cd),var(--c));color:#fff;padding:44px 32px 36px;text-align:center;margin-bottom:32px;}
+.hero .poem-label{font-size:0.75rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;opacity:0.75;margin-bottom:10px;}
+.hero h1{font-family:'Lexend Mega',sans-serif;font-size:clamp(1.6rem,4vw,2.6rem);line-height:1.15;margin-bottom:12px;}
+.hero p{opacity:0.88;max-width:620px;margin:0 auto;font-size:0.96rem;}
+.hero-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px;}
+.hero-chip{background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:4px 14px;border-radius:20px;font-size:0.75rem;font-weight:600;}
+.tab-bar{display:flex;gap:4px;flex-wrap:wrap;padding:22px 0 8px;border-bottom:2px solid var(--border);margin-bottom:28px;}
+.tab{padding:8px 18px;border-radius:10px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.8rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);}
+.tab:hover,.tab.active{background:var(--c);color:#fff;border-color:var(--c);}
+.tab-panel{display:none;}.tab-panel.active{display:block;animation:fadeIn 0.25s ease;}
+.info-card{background:var(--surface);border-radius:var(--radius);padding:24px 26px;margin-bottom:20px;box-shadow:var(--shadow);border-left:5px solid var(--c);}
+.info-card h2{font-size:1.1rem;font-weight:700;margin-bottom:12px;}
+.info-card p{margin-bottom:9px;font-size:0.94rem;}
+.info-card ul{padding-left:20px;margin-bottom:9px;}
+.info-card li{margin-bottom:5px;font-size:0.93rem;}
+.quote-block{border-left:4px solid var(--c);background:var(--cl);border-radius:0 var(--radius) var(--radius) 0;padding:16px 20px;margin:16px 0;}
+.quote-block blockquote{font-family:'Lexend Mega',sans-serif;font-size:0.95rem;font-style:italic;margin-bottom:8px;line-height:1.5;}
+.quote-ref{font-size:0.73rem;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--muted);margin-bottom:10px;}
+.quote-body{font-size:0.91rem;line-height:1.75;}.quote-body p{margin-bottom:8px;}
+.tech-pill{display:inline-block;background:var(--c);color:#fff;font-size:0.72rem;font-weight:700;padding:2px 9px;border-radius:5px;margin:2px;}
+.box{border-radius:var(--radius);padding:14px 18px;margin:14px 0;display:flex;gap:12px;align-items:flex-start;}
+.box .ico{font-size:1.5rem;flex-shrink:0;line-height:1.2;}
+.box-label{font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;margin-bottom:4px;}
+.box p{font-size:0.91rem;}
+.b-exam{background:#eaf4fb;border:2px solid #5dade2;}.b-exam .box-label{color:#1a6b9a;}
+.b-tip{background:#fffbf0;border:2px solid #f39c12;}.b-tip .box-label{color:#b7770d;}
+.acc{margin-bottom:10px;}
+.acc-btn{width:100%;text-align:left;background:var(--surface);border:2px solid var(--border);border-radius:var(--radius);padding:14px 18px;font-family:'Lexend',sans-serif;font-size:0.92rem;font-weight:600;cursor:pointer;color:var(--text);display:flex;justify-content:space-between;align-items:center;transition:background 0.15s;}
+.acc-btn:hover{background:#f5f0e8;}.acc-btn.open{border-radius:var(--radius) var(--radius) 0 0;border-bottom-color:transparent;}
+.acc-btn .arr{transition:transform 0.25s;margin-left:8px;flex-shrink:0;}.acc-btn.open .arr{transform:rotate(180deg);}
+.acc-body{display:none;background:var(--surface);border:2px solid var(--border);border-top:none;border-radius:0 0 var(--radius) var(--radius);padding:20px 22px;}
+.acc-body.open{display:block;}.acc-body p{font-size:0.91rem;margin-bottom:8px;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.label{font-size:0.72rem;font-weight:800;text-transform:uppercase;letter-spacing:0.8px;color:var(--muted);margin-bottom:16px;display:block;}
+.poem-text{background:var(--surface);border:2px solid var(--border);border-radius:var(--radius);padding:28px 32px;font-family:Georgia,serif;font-size:1.05rem;line-height:2.1;box-shadow:var(--shadow);}
+.poem-text .stanza-label{font-family:'Lexend',sans-serif;font-size:0.65rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:10px;display:block;}
+@media(max-width:680px){.two-col{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="Heaney.html">✒️ <span>Heaney</span></a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn home" href="Heaney.html">Home</a>
+  <a class="nav-btn forge" href="Heaney_Forge.html">The Forge</a>
+  <a class="nav-btn bogland" href="Heaney_Bogland.html">Bogland</a>
+  <a class="nav-btn tollund" href="Heaney_TollundMan.html">Tollund Man</a>
+  <a class="nav-btn constable" href="Heaney_ConstableCalls.html">Constable</a>
+  <a class="nav-btn sunlight" href="Heaney_Sunlight.html">Sunlight</a>
+  <a class="nav-btn pitchfork" href="Heaney_Pitchfork.html">Pitchfork</a>
+  <a class="nav-btn postscript active" href="Heaney_Postscript.html">Postscript</a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn flash" href="Heaney_Flashcards.html">🃏 Flashcards</a>
+  <a class="nav-btn links" href="Heaney_Links.html">🔗 Links</a>
+</nav>
+<div class="hero">
+  <div class="poem-label">Poem 7 · The Spirit Level · 1996</div>
+  <h1>Postscript</h1>
+  <p>A drive along the Flaggy Shore in County Clare captures a fleeting, overwhelming moment of beauty — wind, light, swans, and the realisation that some experiences can only catch us off guard.</p>
+  <div class="hero-chips">
+    <span class="hero-chip">Wonder &amp; Beauty</span><span class="hero-chip">Transience</span><span class="hero-chip">Nature</span><span class="hero-chip">Memory &amp; Presence</span><span class="hero-chip">After the Ceasefire</span>
+  </div>
+</div>
+<div class="section">
+  <div class="tab-bar">
+    <button class="tab active" onclick="switchTab(this,'overview')">📋 Overview</button>
+    <button class="tab" onclick="switchTab(this,'poem')">📜 The Poem</button>
+    <button class="tab" onclick="switchTab(this,'stanzas')">🔍 Line Analysis</button>
+    <button class="tab" onclick="switchTab(this,'quotes')">💬 Key Quotes</button>
+    <button class="tab" onclick="switchTab(this,'techniques')">🎨 Techniques</button>
+    <button class="tab" onclick="switchTab(this,'context')">🎓 Exam Prep</button>
+  </div>
+
+  <div class="tab-panel active" id="overview">
+    <div class="info-card"><h2>📋 Background &amp; Overview</h2>
+      <p>"Postscript" is the final poem in <em>The Spirit Level</em> (1996), published after twenty years of Troubles violence had ended with the 1994 IRA ceasefire. Its title suggests an afterthought — something added at the end of a letter, after the main argument is over. It reads like a small, private moment of happiness after the long storm of public discord.</p>
+      <p>The poem describes a specific drive out west along the Flaggy Shore in County Clare — a real place on the Atlantic coast of Ireland. The speaker is driving, and the experience — wind, lake, ocean, swans — happens too fast to stop and fully absorb. He cannot park the car and own the moment. It simply passes.</p>
+      <p>And yet the poem itself captures what the moment could not be captured doing. The poem is the postscript: the thing added after the event, the record of what the drive could not hold.</p>
+    </div>
+    <div class="info-card"><h2>🎯 Core Themes</h2><ul>
+      <li><strong>Transience and Beauty:</strong> The moment is beautiful precisely because it cannot be held or owned. You cannot stop the car. It passes. This is both its sadness and its glory.</li>
+      <li><strong>The Heart Caught Off Guard:</strong> The most important experiences are those that surprise us — that "catch the heart off guard and blow it open." Planned spiritual experiences rarely move us; the unplanned ones do.</li>
+      <li><strong>Nature as Transcendence:</strong> The elements — wind, water, light, swans — briefly lift the speaker out of the ordinary and into something larger than himself.</li>
+      <li><strong>The Journey as Metaphor:</strong> The drive west is both literal and metaphorical — a journey through life, through the landscape of Ireland, and through the spiritual possibilities of an open, attentive mind.</li>
+      <li><strong>After Violence — Peace:</strong> Published after the ceasefire, the poem registers a new possibility: that after the weight of the Troubles, moments of pure, uncomplicated beauty can exist again.</li>
+    </ul></div>
+    <div class="box b-exam"><div class="ico">🎓</div><div><div class="box-label">Key Exam Insight</div>
+    <p>The poem is written as a single, unbroken block — one sentence of advice, one sentence of reflection. This form enacts its meaning: a single uninterrupted moment, a snapshot. The lack of stanza breaks mirrors the inability to pause or interrupt the experience. Always discuss the irony that a poem about the impossibility of capturing a moment IS the capture of that moment.</p></div></div>
+    <div class="info-card"><h2>🦢 The Yeats Connection</h2><p>The Flaggy Shore in County Clare is approximately 15 miles from Coole Park — where W.B. Yeats wrote "The Wild Swans at Coole." The swans in Postscript echo and answer Yeats's famous swans. Where Yeats's swans represent timelessness and the poet's aging, Heaney's swans are physically immediate — roughed and ruffling in real wind, "white on white," between earth and sky. Heaney brings the swans back from symbol to flesh.</p></div>
+  </div>
+
+  <div class="tab-panel" id="poem">
+    <div class="poem-text">
+      <span class="stanza-label">One block · One sentence · One moment</span>
+      And some time make the time to drive out west<br>
+      Into County Clare, along the Flaggy Shore,<br>
+      In September or October, when the wind<br>
+      And the light are working off each other<br>
+      So that the ocean on one side is wild<br>
+      With foam and glitter, and inland among stones<br>
+      The surface of a slate-grey lake is lit<br>
+      By the earthed lightning of a flock of swans,<br>
+      Their feathers roughed and ruffling, white on white,<br>
+      Their fully grown headstrong-looking heads<br>
+      Tucked or cresting or busy underwater.<br>
+      Useless to think you'll park and capture it<br>
+      More thoroughly. You are neither here nor there,<br>
+      A hurry through which known and strange things pass<br>
+      As big soft buffetings come at you and go,<br>
+      And tighten and catch the heart off guard and blow it open.
+    </div>
+  </div>
+
+  <div class="tab-panel" id="stanzas">
+    <span class="label">Line-by-Line Analysis</span>
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>Lines 1–4 — "And some time make the time" — the invitation</span><span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="quote-block"><blockquote>"And some time make the time to drive out west / Into County Clare, along the Flaggy Shore, / In September or October, when the wind / And the light are working off each other"</blockquote></div>
+      <p>The poem opens with "And" — as if it is a continuation of a conversation already in progress. This is what "postscript" means: an addition at the end. The tone is immediately casual, intimate, conversational — a friend giving advice. "Some time make the time" — the slight repetition and the gentle command together urge the reader to prioritise this experience, to carve time out for beauty.</p>
+      <p>"The wind / And the light are working off each other" — a marvellous image of dynamic interplay. Wind and light are not static; they respond to each other, create each other's effects, are in dialogue. This is exactly what the poem is doing: each element (wind, lake, ocean, swans) works off the others to create something more than any single element could achieve alone. The season (September/October) is specific — this is a real place, a real time.</p>
+    </div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>Lines 5–11 — The Scene: Ocean, Lake, Swans</span><span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="quote-block"><blockquote>"the ocean on one side is wild / With foam and glitter, and inland among stones / The surface of a slate-grey lake is lit / By the earthed lightning of a flock of swans"</blockquote></div>
+      <p>The poem presents a contrast between two bodies of water: the ocean is "wild with foam and glitter" — energetic, brilliant, turbulent. The lake is "slate-grey" — still, heavy, interior, Irish. Between these two bodies of water, the swans appear.</p>
+      <p>"The earthed lightning of a flock of swans" — one of the great images in Heaney's late work. Lightning is dramatic, vertical, brief, brilliant. But these swans are "earthed" lightning — they bring the electricity of lightning down to the level of the lake's surface, make it horizontal, sustained, physical. The swans are simultaneously dramatic (lightning) and grounded (earthed). They live between sky and water, between the spectacular and the ordinary.</p>
+      <p>"Their feathers roughed and ruffling, white on white" — tactile and visual at once. The feathers are disturbed by the wind — "roughed" is an unusual, physical verb. "White on white" — the swans against the pale sky or pale water: pure, undifferentiated, luminous. "Their fully grown headstrong-looking heads / Tucked or cresting or busy underwater" — the swans are not posed or symbolic; they are living animals, preoccupied with their own purposes, indifferent to the watching driver.</p>
+    </div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>Lines 12–16 — "Useless to think you'll park" — the impossibility</span><span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="quote-block"><blockquote>"Useless to think you'll park and capture it / More thoroughly. You are neither here nor there, / A hurry through which known and strange things pass"</blockquote></div>
+      <p>"Useless to think you'll park and capture it / More thoroughly" — the turning point of the poem. The impulse is real and human: we want to stop, absorb, photograph, own the experience. But Heaney insists this is useless. The experience belongs to the passing, to the movement. Stopping would kill it. You cannot own beauty; you can only be passed through by it.</p>
+      <p>"You are neither here nor there" — a beautiful image of the transient condition. The driver is between origin and destination, between the known and the unknown, in a state of suspension. This "neither/nor" is the perfect human condition for receiving unexpected grace: when we are between things, between identities, between purposes, we are most vulnerable to beauty.</p>
+      <p>"A hurry through which known and strange things pass" — the driver is not the subject but the medium, the conduit. Known things (familiar landscape, ordinary life) and strange things (the unexpected swans, the lightning on the lake) flow through the moving car. You are the space through which the world passes, not the point of perception.</p>
+    </div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>Final Line — "catches the heart off guard and blows it open"</span><span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="quote-block"><blockquote>"And tighten and catch the heart off guard and blow it open."</blockquote></div>
+      <p>The most famous line in the poem and one of the most beautiful in Heaney's late work. The "big soft buffetings" of wind, light, and beauty "tighten" — there is a moment of gathering, of compression — and then they "catch the heart off guard." The heart is not prepared, not defended. Then they "blow it open" — the heart is opened by the experience, expanded, made larger, made capable of more.</p>
+      <p>"Blow it open" — the verb is physical and decisive. The heart is not gently touched; it is blown. The experience has real force. But it is also a liberation — the heart is opened, not broken. After the ceasefire, after years of the Troubles, the heart needs to be blown open to admit the possibility of peace, beauty, and wonder again. This is the poem's deepest argument: that moments of unexpected natural beauty can restore and expand the heart that the long years of violence have closed.</p>
+    </div></div>
+  </div>
+
+  <div class="tab-panel" id="quotes">
+    <span class="label">Key Quotes</span>
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"the wind / And the light are working off each other"</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Personification</span><span class="tech-pill">Dynamic Energy</span><span class="tech-pill">Natural World</span>
+    <div class="quote-block"><div class="quote-ref">Wind and light as active, collaborative forces</div><blockquote>"the wind / And the light are working off each other"</blockquote><div class="quote-body"><p>"Working off each other" — a wonderfully physical phrase usually used of people or musicians improvising together. Wind and light collaborate, respond to each other, create effects neither could achieve alone. This establishes the poem's key idea: that the most significant experiences come from dynamic interplay, not from single, isolated elements.</p></div></div></div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"the earthed lightning of a flock of swans"</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Metaphor</span><span class="tech-pill">Surprise</span><span class="tech-pill">Natural Wonder</span>
+    <div class="quote-block"><div class="quote-ref">The poem's central visual image — dramatic yet grounded</div><blockquote>"the earthed lightning of a flock of swans"</blockquote><div class="quote-body"><p>The most striking image in the poem. Lightning is brilliant, brief, electric, vertical. "Earthed" lightning is controlled, grounded, brought to earth level. The swans are both spectacular (lightning) and physical (earthed, real, on the surface of the lake). The image captures the poem's central tension: the extraordinary lives within the ordinary; transcendence is grounded in the physical world.</p></div></div></div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"Their feathers roughed and ruffling, white on white"</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Tactile Imagery</span><span class="tech-pill">Consonance</span><span class="tech-pill">Visual</span>
+    <div class="quote-block"><div class="quote-ref">The swans — physical, living, wind-disturbed</div><blockquote>"Their feathers roughed and ruffling, white on white"</blockquote><div class="quote-body"><p>"Roughed and ruffling" — the consonance of "r" and "f" creates a ruffling sound, mimicking the physical disturbance of feathers in wind. The swans are not symbols here — they are creatures, affected by the weather, indifferent to the watching driver. "White on white" — the swans against a pale sky or pale water, pure and undifferentiated, a visual intensity that approaches abstraction.</p></div></div></div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"You are neither here nor there"</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Paradox</span><span class="tech-pill">Identity</span><span class="tech-pill">Transience</span>
+    <div class="quote-block"><div class="quote-ref">The driver as conduit — in between is where grace finds us</div><blockquote>"You are neither here nor there, / A hurry through which known and strange things pass"</blockquote><div class="quote-body"><p>A brilliant description of the human condition in moments of unexpected beauty. We are "neither here nor there" — between destinations, between selves, between the known and the unknown. This in-between state is precisely when we are most open to being moved. "A hurry through which things pass" — we are the medium, not the point. The world passes through us, not the other way around.</p></div></div></div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"catch the heart off guard and blow it open"</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Final Line</span><span class="tech-pill">Surprise</span><span class="tech-pill">Expansion</span>
+    <div class="quote-block"><div class="quote-ref">The poem's — and the collection's — most resonant conclusion</div><blockquote>"catch the heart off guard and blow it open."</blockquote><div class="quote-body"><p>The most quoted line in late Heaney. "Off guard" — the heart is not defended, not prepared. "Blow it open" — forceful, liberating, expansive. The heart that has been closed by years of violence, grief, and ordinary living is blown open by an unexpected encounter with beauty. This is what poetry, like unexpected natural beauty, does: catches us when our defences are down and opens us to more than we thought we could feel.</p></div></div></div></div>
+  </div>
+
+  <div class="tab-panel" id="techniques">
+    <span class="label">Poetic Techniques</span>
+    <div class="two-col">
+      <div class="info-card"><h2>📐 One Block = One Moment</h2><p>The entire poem is a single unbroken block of 16 lines — no stanza breaks. This form enacts the poem's meaning: a single, continuous, unpaused experience. You cannot stop; the poem cannot stop. The lack of stanza breaks mirrors the impossibility of "parking and capturing" the moment more thoroughly.</p></div>
+      <div class="info-card"><h2>💬 Conversational Register</h2><p>"And some time make the time to drive out west" — the opening is casual, direct, intimate. Heaney speaks to the reader as a friend. "You are neither here nor there" — the second person brings the reader into the experience. This is not a performance; it is advice from one person to another about how to live.</p></div>
+      <div class="info-card"><h2>🌊 Sibilance and Sound</h2><p>Sibilance throughout mimics the sounds of sea and wind: "some side," "stones / The surface of a slate," "swans," "strange things pass." The sibilance is notably absent from the final line — "catch the heart off guard and blow it open" — which is dominated by hard consonants. The shift in sound marks the shift from gentle movement to sudden impact.</p></div>
+      <div class="info-card"><h2>🎨 Colour and Light</h2><p>The poem is full of light imagery: "foam and glitter," "earthed lightning," "lit," "white on white." These create an almost blinding brightness — the scene is dazzling. The contrast with "slate-grey lake" grounds the brilliance. Implicit colours: ocean blue, stone grey, white, the gold of autumn light.</p></div>
+      <div class="info-card"><h2>⟶ Enjambment Throughout</h2><p>Every line runs into the next — enjambment throughout the poem enacts the continuous forward movement of the drive. Nothing stops. The poem moves at the speed of a car on a coastal road. The final line arrives without warning, just as the moment of beauty arrives without warning.</p></div>
+      <div class="info-card"><h2>🔁 No Rhyme = Freedom</h2><p>The poem has no regular rhyme scheme — it is entirely free verse. This mirrors the poem's argument: the most important experiences are unplanned, unstructured, free. Rhyme would impose an order that the experience refuses. Freedom of form = the freedom of genuine experience.</p></div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="context">
+    <span class="label">Context &amp; Exam Preparation</span>
+    <div class="box b-exam"><div class="ico">🎓</div><div><div class="box-label">Key Exam Argument</div>
+    <p>Postscript argues that <em>the most significant experiences are those that cannot be planned or possessed</em> — they catch us "off guard." The poem is also a statement about the limits of art: the experience is richer than any poem can capture. But by acknowledging this — by saying "Useless to think you'll park and capture it" — Heaney creates a poem that is all the more honest and all the more moving. The poem's form (one unbroken block) and its final line ("blows it open") are essential to any exam answer.</p></div></div>
+    <div class="info-card"><h2>Links to Other Heaney Poems</h2><ul>
+      <li><strong>Bogland:</strong> Both poems use landscape as the ground for a deeper meditation on identity, experience, and Ireland. Bogland goes inward and downward; Postscript goes westward and upward — from depth to light.</li>
+      <li><strong>Mossbawn: Sunlight:</strong> Both capture a single moment of beauty — the sunlit farmyard, the shore drive — with precise attention. Both argue that the ordinary world contains extraordinary grace for those who attend to it.</li>
+      <li><strong>The Tollund Man:</strong> Both poems involve journeys (a pilgrimage to Aarhus; a drive west) that become spiritual revelations. The Tollund Man's journey ends in disturbing recognition; Postscript's ends in joy. Together they show the two poles of Heaney's world.</li>
+      <li><strong>Yeats — Wild Swans at Coole:</strong> Postscript's swans directly echo Yeats's famous poem, written 15 miles away. Where Yeats's swans are symbols of timelessness and the poet's aging, Heaney's swans are physically present — "roughed and ruffling." Heaney brings the swans from symbol back to flesh.</li>
+    </ul></div>
+    <div class="box b-tip"><div class="ico">💡</div><div><div class="box-label">Essential Exam Quote</div>
+    <p>"catch the heart off guard and blow it open" — the poem's final line and its central argument. Use it to show how Heaney believes the most important experiences are those that arrive without warning, finding us between things, off guard, open. The heart must be surprised into expansion — it cannot be opened by effort or intention.</p></div></div>
+  </div>
+</div>
+<script>
+function switchTab(btn,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(id).classList.add('active');}
+function toggleAcc(btn){const body=btn.nextElementSibling;const isOpen=btn.classList.contains('open');document.querySelectorAll('.acc-btn.open').forEach(b=>{b.classList.remove('open');b.nextElementSibling.classList.remove('open');});if(!isOpen){btn.classList.add('open');body.classList.add('open');}}
+</script>
+</body>
+</html>

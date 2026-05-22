@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Heaney — Flashcard Drill</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F6F3EE;--surface:#fff;--border:#E2DDD7;--text:#2C2825;--muted:#7A7068;--radius:14px;--shadow:0 4px 20px rgba(0,0,0,0.08);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:16px;}
+nav{position:sticky;top:0;z-index:100;background:rgba(246,243,238,0.97);backdrop-filter:blur(10px);border-bottom:2px solid var(--border);padding:8px 16px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;min-height:52px;}
+.nav-logo{font-family:'Lexend Mega',sans-serif;font-size:0.85rem;color:var(--text);margin-right:4px;text-decoration:none;white-space:nowrap;}.nav-logo span{color:#5a6e3a;}
+.nav-divider{width:1px;height:20px;background:var(--border);flex-shrink:0;}
+.nav-btn{padding:5px 11px;border-radius:18px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.72rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);text-decoration:none;white-space:nowrap;}
+.nav-btn:hover{transform:translateY(-2px);}
+.nav-btn.home:hover{background:#2c2825;border-color:#2c2825;color:#fff;}
+.nav-btn.forge:hover{background:#8B4513;border-color:#8B4513;color:#fff;}
+.nav-btn.bogland:hover{background:#4a6741;border-color:#4a6741;color:#fff;}
+.nav-btn.tollund:hover{background:#5a4a2a;border-color:#5a4a2a;color:#fff;}
+.nav-btn.constable:hover{background:#2a3a5a;border-color:#2a3a5a;color:#fff;}
+.nav-btn.sunlight:hover{background:#b07a10;border-color:#b07a10;color:#fff;}
+.nav-btn.pitchfork:hover{background:#5a3a1a;border-color:#5a3a1a;color:#fff;}
+.nav-btn.postscript:hover{background:#1a4a5a;border-color:#1a4a5a;color:#fff;}
+.nav-btn.flash.active{background:#3a3a5a;border-color:#3a3a5a;color:#fff;}
+.nav-btn.links:hover{background:#5a1a3a;border-color:#5a1a3a;color:#fff;}
+.page{max-width:980px;margin:0 auto;padding:40px 20px 80px;}
+.hero{text-align:center;padding:40px 20px 30px;}
+.hero h1{font-family:'Lexend Mega',sans-serif;font-size:1.9rem;margin-bottom:10px;}
+.hero p{color:var(--muted);font-size:0.95rem;max-width:500px;margin:0 auto;}
+.filter-bar{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:24px 0 32px;}
+.f-btn{padding:7px 16px;border-radius:20px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.78rem;font-weight:700;cursor:pointer;transition:all 0.2s;color:var(--muted);}
+.f-btn.active{color:#fff;}
+.f-btn[data-f="all"].active{background:#2c2825;border-color:#2c2825;}
+.f-btn[data-f="forge"].active{background:#8B4513;border-color:#8B4513;}
+.f-btn[data-f="bogland"].active{background:#4a6741;border-color:#4a6741;}
+.f-btn[data-f="tollund"].active{background:#5a4a2a;border-color:#5a4a2a;}
+.f-btn[data-f="constable"].active{background:#2a3a5a;border-color:#2a3a5a;}
+.f-btn[data-f="sunlight"].active{background:#b07a10;border-color:#b07a10;}
+.f-btn[data-f="pitchfork"].active{background:#5a3a1a;border-color:#5a3a1a;}
+.f-btn[data-f="postscript"].active{background:#1a4a5a;border-color:#1a4a5a;}
+.progress-bar-wrap{background:#e5e0d8;border-radius:10px;height:10px;margin:0 auto 8px;max-width:500px;}
+.progress-bar{height:10px;border-radius:10px;background:linear-gradient(90deg,#4a6741,#8B4513);transition:width .4s;}
+.progress-label{text-align:center;font-size:0.78rem;color:var(--muted);margin-bottom:30px;}
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;}
+.card-outer{perspective:900px;height:220px;cursor:pointer;}
+.card-inner{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform .55s cubic-bezier(.4,0,.2,1);}
+.card-outer.flipped .card-inner{transform:rotateY(180deg);}
+.card-face{position:absolute;inset:0;border-radius:var(--radius);backface-visibility:hidden;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:20px;box-shadow:var(--shadow);}
+.card-front{background:var(--surface);border:3px solid var(--border);}
+.card-back{background:var(--surface);border:3px solid var(--border);transform:rotateY(180deg);}
+.card-outer.done .card-front{opacity:.55;}
+.card-poem-tag{font-size:0.65rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;padding:3px 10px;border-radius:12px;color:#fff;margin-bottom:12px;}
+.card-quote{font-family:'Lexend Mega',sans-serif;font-size:0.92rem;text-align:center;line-height:1.4;color:var(--text);}
+.card-tech{font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;}
+.card-analysis{font-size:0.82rem;text-align:center;line-height:1.55;color:var(--text);}
+.card-hint{font-size:0.72rem;color:var(--muted);margin-top:12px;display:flex;align-items:center;gap:4px;}
+.done-btn{position:absolute;top:10px;right:10px;background:none;border:none;cursor:pointer;font-size:1.1rem;opacity:.5;transition:opacity .2s;}
+.done-btn:hover{opacity:1;}
+.stats-row{text-align:center;margin:14px 0 28px;font-size:0.86rem;color:var(--muted);}
+.tag-forge{background:#8B4513;}.tag-bogland{background:#4a6741;}.tag-tollund{background:#5a4a2a;}.tag-constable{background:#2a3a5a;}.tag-sunlight{background:#b07a10;}.tag-pitchfork{background:#5a3a1a;}.tag-postscript{background:#1a4a5a;}
+.card-outer[data-poem="forge"]{--cc:#8B4513;}.card-outer[data-poem="forge"] .card-front{border-color:#8B4513;}
+.card-outer[data-poem="bogland"]{--cc:#4a6741;}.card-outer[data-poem="bogland"] .card-front{border-color:#4a6741;}
+.card-outer[data-poem="tollund"]{--cc:#5a4a2a;}.card-outer[data-poem="tollund"] .card-front{border-color:#5a4a2a;}
+.card-outer[data-poem="constable"]{--cc:#2a3a5a;}.card-outer[data-poem="constable"] .card-front{border-color:#2a3a5a;}
+.card-outer[data-poem="sunlight"]{--cc:#b07a10;}.card-outer[data-poem="sunlight"] .card-front{border-color:#b07a10;}
+.card-outer[data-poem="pitchfork"]{--cc:#5a3a1a;}.card-outer[data-poem="pitchfork"] .card-front{border-color:#5a3a1a;}
+.card-outer[data-poem="postscript"]{--cc:#1a4a5a;}.card-outer[data-poem="postscript"] .card-front{border-color:#1a4a5a;}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="Heaney.html">✒️ <span>Heaney</span></a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn home" href="Heaney.html">Home</a>
+  <a class="nav-btn forge" href="Heaney_Forge.html">The Forge</a>
+  <a class="nav-btn bogland" href="Heaney_Bogland.html">Bogland</a>
+  <a class="nav-btn tollund" href="Heaney_TollundMan.html">Tollund Man</a>
+  <a class="nav-btn constable" href="Heaney_ConstableCalls.html">Constable</a>
+  <a class="nav-btn sunlight" href="Heaney_Sunlight.html">Sunlight</a>
+  <a class="nav-btn pitchfork" href="Heaney_Pitchfork.html">Pitchfork</a>
+  <a class="nav-btn postscript" href="Heaney_Postscript.html">Postscript</a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn flash active" href="Heaney_Flashcards.html">🃏 Flashcards</a>
+  <a class="nav-btn links" href="Heaney_Links.html">🔗 Links</a>
+</nav>
+<div class="page">
+  <div class="hero">
+    <h1>🃏 Flashcard Drill</h1>
+    <p>Click any card to reveal the analysis. Mark cards done when you know them. Filter by poem to focus your revision.</p>
+  </div>
+  <div class="filter-bar">
+    <button class="f-btn active" data-f="all" onclick="filter('all',this)">All Poems (42)</button>
+    <button class="f-btn" data-f="forge" onclick="filter('forge',this)">🔨 The Forge</button>
+    <button class="f-btn" data-f="bogland" onclick="filter('bogland',this)">🌿 Bogland</button>
+    <button class="f-btn" data-f="tollund" onclick="filter('tollund',this)">⚰️ Tollund Man</button>
+    <button class="f-btn" data-f="constable" onclick="filter('constable',this)">🚔 Constable</button>
+    <button class="f-btn" data-f="sunlight" onclick="filter('sunlight',this)">☀️ Sunlight</button>
+    <button class="f-btn" data-f="pitchfork" onclick="filter('pitchfork',this)">🌾 Pitchfork</button>
+    <button class="f-btn" data-f="postscript" onclick="filter('postscript',this)">🌊 Postscript</button>
+  </div>
+  <div class="progress-bar-wrap"><div class="progress-bar" id="pbar" style="width:0%"></div></div>
+  <div class="progress-label" id="plabel">0 / 42 done</div>
+  <div class="stats-row" id="statsRow">Showing 42 cards</div>
+  <div class="cards-grid" id="grid"></div>
+</div>
+<script>
+const cards=[
+  // THE FORGE (6)
+  {p:"forge",q:"All I know is a door into the dark.",t:"Symbol · Threshold",a:"The forge's 'dark' is also the imagination — the mysterious interior where creative work begins. 'All I know' shows honest humility at the threshold of art."},
+  {p:"forge",q:"The unpredictable fantail of sparks",t:"Metaphor · Imagery",a:"'Fantail' (a bird's fan of feathers) makes the sparks organic and alive. The sparks are unpredictable like creative inspiration itself — scattering, beautiful, beyond control."},
+  {p:"forge",q:"Horned as a unicorn... an altar",t:"Simile + Metaphor",a:"Unicorn = mythical, imaginative, pure. Altar = sacred, devoted, religious. Together they place the anvil at the intersection of myth and reverence — craft as sacred act."},
+  {p:"forge",q:"leather-aproned, hairs in his nose",t:"Precise Detail · Ordinary",a:"Unglamorous specificity makes the smith fully real. Heaney's characteristic technique: the earthy, unglamorous detail that makes a person more admirable, not less. Ordinary yet heroic."},
+  {p:"forge",q:"traffic is flashing in rows",t:"Contrast · Modernity",a:"'Flashing' = brilliant but superficial. 'Rows' = rigid, mechanical, soulless. The modern world is spectacular but empty compared to the 'real iron' of the forge. The smith rejects it."},
+  {p:"forge",q:"Then grunts and goes in, with a slam and flick / To beat real iron out",t:"Onomatopoeia · Defiance",a:"'Grunts' — animal, contemptuous, magnificent. 'Slam' — rejection of modernity. 'Real iron' — against the flashy superficiality of traffic, the smith's work has genuine weight and substance. This is Heaney's statement about authentic art."},
+  // BOGLAND (6)
+  {p:"bogland",q:"We have no prairies",t:"Contrast · National Voice",a:"'We' immediately establishes communal, national voice. The prairie is freedom and openness; Ireland is different. The opening absence defines what Ireland is not, and what it is."},
+  {p:"bogland",q:"an astounding crate full of air",t:"Paradox · Imagery",a:"The Great Irish Elk's skeleton: 'astounding' (the bog's power to preserve is miraculous) but 'full of air' (only the skeleton remains — empty where life was). Wonder and emptiness simultaneously."},
+  {p:"bogland",q:"The ground itself is kind, black butter / Melting and opening underfoot",t:"Metaphor · Ambivalence",a:"'Kind' but 'black' — nurturing and sinister. 'Melting underfoot' — the ground absorbs you. The past can swallow you as well as preserve you. Ireland's history: beautiful and consuming."},
+  {p:"bogland",q:"Our pioneers keep striking / Inwards and downwards",t:"Observation · Criticism",a:"American pioneers go outward and westward. Ireland's go inward and downward — into history, into the past. Both admirable (we have extraordinary depth) and limiting (we may be too fixed on the past to progress)."},
+  {p:"bogland",q:"Atlantic seepage",t:"Metaphor · Emigration",a:"The bogholes connect to the Atlantic — the ocean across which millions of Irish emigrants have sailed. Ireland bleeds its people, its identity, its future into the sea. Identity seeps away."},
+  {p:"bogland",q:"The wet centre is bottomless.",t:"Final Image · Endless Depth",a:"Irish history and identity have no final definition, no bottom. You can dig forever and never resolve what it means to be Irish. Stated as fact, not lament — simply true. The poem's most resonant conclusion."},
+  // TOLLUND MAN (6)
+  {p:"tollund",q:"The mild pods of his eye-lids",t:"Metaphor · Tenderness",a:"'Pods' — botanical, suggesting seeds, potential for growth. The murdered man described with extraordinary gentleness. His serene expression despite violent death: the poem's first paradox of the sacred and the violent."},
+  {p:"tollund",q:"Bridegroom to the goddess",t:"Metaphor · Ritual",a:"A bridegroom enters a permanent bond. The Tollund Man is forever married to his sacrifice — to the Earth Goddess and to what he represents. This elevates victim to sacred figure, parallel to Irish 'martyrs' for Mother Ireland."},
+  {p:"tollund",q:"a saint's kept body",t:"Religious Language · Sanctification",a:"The bog's preservation is a form of canonisation — the earth itself has sanctified the victim. Heavy religious language throughout Section I frames the killing as ritual rather than mere murder."},
+  {p:"tollund",q:"scattered, ambushed / Flesh of labourers",t:"Violent Imagery · The Troubles",a:"The explicit connection to the Troubles. 'Flesh' is shocking and reductive; 'labourers' emphasises their ordinary status — not soldiers, just working people. The graphic violence makes the parallel with ancient Jutland unavoidable."},
+  {p:"tollund",q:"In the old man-killing parishes",t:"Irony · Connection",a:"'Parishes' sounds Irish; 'man-killing' is brutally factual. Jutland and Northern Ireland share the same vocabulary of communal violence. The word 'old' suggests this has always been happening. Distance collapses."},
+  {p:"tollund",q:"I will feel lost, / Unhappy and at home.",t:"Oxymoron · Identity",a:"The poem's most disturbing line. Foreign (Jutland), yet the violence is familiar — it reminds him of home. He recognises the killing parishes because he has always lived with this. Violence has become a definition of home."},
+  // CONSTABLE CALLS (6)
+  {p:"constable",q:"Arithmetic and fear.",t:"Juxtaposition · Compression",a:"Two words that contain the entire Catholic experience under RUC scrutiny. Arithmetic = routine bureaucracy; fear = what saturates every interaction with the hostile state. The juxtaposition is the poem's entire argument in three words."},
+  {p:"constable",q:"the domesday book",t:"Allusion · Symbolism",a:"William the Conqueror's Domesday Book recorded all England for purposes of conquest and control. The constable's crop ledger becomes this: the colonial state recording and controlling Catholic land and livelihood."},
+  {p:"constable",q:"I knew / There were turnips in the field.",t:"Dramatic Irony · Guilt",a:"The boy's terrible knowledge. The father has lied; the boy knows it. A trivial deception (undeclared turnips) becomes enormous under armed scrutiny. The guilt of Catholic complicity in evading the hostile state."},
+  {p:"constable",q:"polished holster / With its buttoned flap, the braid cord / Looped into the revolver butt",t:"Symbolism · Fear",a:"The constable's equipment as symbols of state power. Every piece of the uniform is noted — holster, revolver, baton, cap, ledger — accumulating into an overwhelming representation of state violence in a domestic space."},
+  {p:"constable",q:"He looked at me as he said goodbye.",t:"Paranoia · Surveillance",a:"The boy is drawn into the scene — noticed. Is this the watchful eye of the state seeing all, or is it the boy's guilt-induced paranoia? Either way, there is no escape. The Catholic is always under surveillance."},
+  {p:"constable",q:"the bicycle ticked, ticked, ticked.",t:"Onomatopoeia · Repetition",a:"The poem's most resonant final image. Mechanical bicycle sound + triple repetition = time-bomb. The Troubles are ticking forward. Tension does not end when the constable leaves; it continues, rhythmic, unstoppable, building toward explosion."},
+  // SUNLIGHT (6)
+  {p:"sunlight",q:"There was a sunlit absence.",t:"Oxymoron · Peace",a:"The farmyard is empty — no people — yet full of golden light. Absence is not emptiness here but peace. Mossbawn as sanctuary, Eden, private world untouched by the Troubles raging outside."},
+  {p:"sunlight",q:"water honeyed / in the slung bucket",t:"Metaphor · Transformation",a:"Plain water becomes honey — golden, precious, sweet — simply by catching sunlight. The ordinary (water in a bucket) becomes extraordinary through the quality of attention. This is the Nobel Prize citation in miniature."},
+  {p:"sunlight",q:"the sun stood / like a griddle cooling",t:"Simile · Domestication",a:"The sun is compared to a domestic cooking object. Heaney brings the cosmic down to kitchen level — where his aunt lives and works. The universe is domesticated, made warm, useful, personal."},
+  {p:"sunlight",q:"in a floury apron",t:"Precise Detail · Character",a:"Three words that make Aunt Mary wholly present. No flattery — just the specific, unglamorous mark of her work. Like the smith's 'hairs in his nose' — specificity is Heaney's form of reverence."},
+  {p:"sunlight",q:"now she dusts... / now sits",t:"Present Tense · Frozen Moment",a:"The repeated 'now' freezes the aunt in the poem's present tense forever. Heaney preserves her as the bog preserves bodies — with love and permanence. She will always be 'now' in this poem."},
+  {p:"sunlight",q:"And here is love / like a tinsmith's scoop / sunk past its gleam / in the meal-bin.",t:"Simile · Hidden Love",a:"The poem's destination. Love, like the scoop in the flour, is invisible — but always present, always doing its work. Not dramatic but constant; not visible but real. The ordinary act of baking is love."},
+  // PITCHFORK (6)
+  {p:"pitchfork",q:"came near to an imagined perfection",t:"Key Phrase · Art",a:"'Near to' — not perfect, but approaching it. 'Imagined perfection' — the ideal exists in the imagination; the tool can only approach it. Also Heaney's definition of great poetry: reaching toward an ideal it can never fully realise."},
+  {p:"pitchfork",q:"It felt like a javelin, accurate and light.",t:"Simile · Elevation",a:"The domestic farm tool becomes an Olympian's weapon. The father becomes a warrior-athlete. The transformation is achieved through skill — 'accurate and light' describes not the pitchfork but the mastery of the person using it."},
+  {p:"pitchfork",q:"He loved its grain of ash",t:"Intimacy · Craft",a:"'Loved' — this is a love poem. The father's intimate knowledge of the pitchfork's material (ash wood, with its specific grain) mirrors Heaney's intimate knowledge of words. Both craft-workers love their materials."},
+  {p:"pitchfork",q:"Sweat-cured, sharpened, balanced, tested, fitted.",t:"List · Five Stages of Mastery",a:"Five past participles, each a stage in perfecting the tool. 'Sweat-cured' — the handle conditioned by the father's own body. 'Fitted' — made for one specific hand. Mastery is about fit, about the right tool for the right person."},
+  {p:"pitchfork",q:"The brightness of the pitched note",t:"Musical Metaphor",a:"The pitchfork's expert use becomes a musical performance — 'pitched' means both to throw and to sound a musical note. Skilled manual work = music. Both The Pitchfork and The Forge see craft as musical creation."},
+  {p:"pitchfork",q:"The undiminished, given, luminous / Opening of his hands.",t:"Final Image · Release",a:"The father opens his hands — releases the pitchfork at the perfect moment. 'Undiminished' (unchanged by death), 'given' (a gift), 'luminous' (glowing, sacred). Mastery is release, not possession. The open hands are both skill and grace."},
+  // POSTSCRIPT (6)
+  {p:"postscript",q:"And some time make the time to drive out west",t:"Tone · Invitation",a:"Opens with 'And' — a postscript to a conversation. Casual, intimate, like a friend's advice. 'Make the time' — gently insists that beauty deserves our deliberate attention. The poem is addressed directly to the reader."},
+  {p:"postscript",q:"the wind / And the light are working off each other",t:"Personification · Dynamic",a:"Wind and light as collaborating musicians — improvising together, creating effects neither could achieve alone. This dynamic interplay is the poem's model: the significant experience comes from elements in active dialogue, not from any single force."},
+  {p:"postscript",q:"the earthed lightning of a flock of swans",t:"Metaphor · Central Image",a:"Lightning = dramatic, brilliant, brief. 'Earthed' = grounded, physical, real. The swans bring sky-drama down to the lake surface. The extraordinary is always grounded in the physical. Transcendence lives within the earthly."},
+  {p:"postscript",q:"Their feathers roughed and ruffling, white on white",t:"Tactile · Sound",a:"'Roughed and ruffling' — the consonance of 'r' and 'f' creates the sound and feel of feathers in wind. The swans are not symbols here — they are living creatures, indifferent to the watching driver. Physical, immediate, real."},
+  {p:"postscript",q:"You are neither here nor there, / A hurry through which known and strange things pass",t:"Paradox · Identity",a:"The driver as conduit, not subject. We are most open to beauty when between things, between selves, between destinations. 'A hurry through which things pass' — we are the medium, not the point."},
+  {p:"postscript",q:"catch the heart off guard and blow it open.",t:"Final Line · Key Quote",a:"The poem's most famous line. 'Off guard' — the heart is not defended. 'Blow it open' — forceful liberation. The heart closed by years of violence and ordinary life is blown open by unexpected beauty. Cannot be planned — only received."},
+];
+
+let done=new Set();
+let current="all";
+
+function render(){
+  const grid=document.getElementById("grid");
+  const filtered=cards.filter(c=>current==="all"||c.p===current);
+  grid.innerHTML="";
+  filtered.forEach((c,i)=>{
+    const idx=cards.indexOf(c);
+    const outer=document.createElement("div");
+    outer.className="card-outer"+(done.has(idx)?" done":"");
+    outer.dataset.poem=c.p;
+    outer.onclick=()=>{outer.classList.toggle("flipped");};
+    outer.innerHTML=`
+      <div class="card-inner">
+        <div class="card-face card-front">
+          <span class="card-poem-tag tag-${c.p}">${poemLabel(c.p)}</span>
+          <div class="card-quote">"${c.q}"</div>
+          <div class="card-hint">👆 Click to reveal</div>
+        </div>
+        <div class="card-face card-back">
+          <span class="card-poem-tag tag-${c.p}">${c.t}</span>
+          <div class="card-analysis">${c.a}</div>
+        </div>
+      </div>
+      <button class="done-btn" title="Mark done" onclick="event.stopPropagation();toggleDone(${idx},this);">${done.has(idx)?"✅":"⬜"}</button>`;
+    grid.appendChild(outer);
+  });
+  updateProgress();
+  document.getElementById("statsRow").textContent=`Showing ${filtered.length} cards`;
+}
+
+function poemLabel(p){const m={forge:"🔨 The Forge",bogland:"🌿 Bogland",tollund:"⚰️ Tollund Man",constable:"🚔 Constable",sunlight:"☀️ Sunlight",pitchfork:"🌾 Pitchfork",postscript:"🌊 Postscript"};return m[p]||p;}
+function toggleDone(idx,btn){done.has(idx)?done.delete(idx):done.add(idx);render();}
+function filter(f,btn){current=f;document.querySelectorAll(".f-btn").forEach(b=>b.classList.remove("active"));btn.classList.add("active");render();}
+function updateProgress(){const tot=cards.length;const d=done.size;const pct=tot?Math.round(d/tot*100):0;document.getElementById("pbar").style.width=pct+"%";document.getElementById("plabel").textContent=`${d} / ${tot} done (${pct}%)`;}
+
+render();
+</script>
+</body>
+</html>

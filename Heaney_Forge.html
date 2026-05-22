@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Heaney — The Forge</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F6F3EE;--surface:#FFFFFF;--surface2:#EEE9E2;--border:#E2DDD7;--text:#2C2825;--muted:#7A7068;--c:#8B4513;--cl:#f5ebe3;--cd:#5a2a08;--radius:14px;--shadow:0 4px 20px rgba(0,0,0,0.08);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;font-size:16px;}
+nav{position:sticky;top:0;z-index:100;background:rgba(246,243,238,0.97);backdrop-filter:blur(10px);border-bottom:2px solid var(--border);padding:8px 16px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;min-height:52px;}
+.nav-logo{font-family:'Lexend Mega',sans-serif;font-size:0.85rem;color:var(--text);margin-right:4px;text-decoration:none;white-space:nowrap;}.nav-logo span{color:#5a6e3a;}
+.nav-divider{width:1px;height:20px;background:var(--border);flex-shrink:0;}
+.nav-btn{padding:5px 11px;border-radius:18px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.72rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);text-decoration:none;white-space:nowrap;}
+.nav-btn:hover{transform:translateY(-2px);}
+.nav-btn.home:hover,.nav-btn.home.active{background:#2c2825;border-color:#2c2825;color:#fff;}
+.nav-btn.forge:hover,.nav-btn.forge.active{background:#8B4513;border-color:#8B4513;color:#fff;}
+.nav-btn.bogland:hover,.nav-btn.bogland.active{background:#4a6741;border-color:#4a6741;color:#fff;}
+.nav-btn.tollund:hover,.nav-btn.tollund.active{background:#5a4a2a;border-color:#5a4a2a;color:#fff;}
+.nav-btn.constable:hover,.nav-btn.constable.active{background:#2a3a5a;border-color:#2a3a5a;color:#fff;}
+.nav-btn.sunlight:hover,.nav-btn.sunlight.active{background:#b07a10;border-color:#b07a10;color:#fff;}
+.nav-btn.pitchfork:hover,.nav-btn.pitchfork.active{background:#5a3a1a;border-color:#5a3a1a;color:#fff;}
+.nav-btn.postscript:hover,.nav-btn.postscript.active{background:#1a4a5a;border-color:#1a4a5a;color:#fff;}
+.nav-btn.flash:hover,.nav-btn.flash.active{background:#3a3a5a;border-color:#3a3a5a;color:#fff;}
+.nav-btn.links:hover,.nav-btn.links.active{background:#5a1a3a;border-color:#5a1a3a;color:#fff;}
+.section{padding:0 16px 80px;max-width:940px;margin:0 auto;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.hero{background:linear-gradient(135deg,var(--cd),var(--c));color:#fff;padding:44px 32px 36px;text-align:center;margin-bottom:32px;}
+.hero .poem-label{font-size:0.75rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;opacity:0.75;margin-bottom:10px;}
+.hero h1{font-family:'Lexend Mega',sans-serif;font-size:clamp(1.6rem,4vw,2.6rem);line-height:1.15;margin-bottom:12px;}
+.hero p{opacity:0.88;max-width:620px;margin:0 auto;font-size:0.96rem;}
+.hero-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px;}
+.hero-chip{background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:4px 14px;border-radius:20px;font-size:0.75rem;font-weight:600;}
+.tab-bar{display:flex;gap:4px;flex-wrap:wrap;padding:22px 0 8px;border-bottom:2px solid var(--border);margin-bottom:28px;}
+.tab{padding:8px 18px;border-radius:10px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.8rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);}
+.tab:hover,.tab.active{background:var(--c);color:#fff;border-color:var(--c);}
+.tab-panel{display:none;}.tab-panel.active{display:block;animation:fadeIn 0.25s ease;}
+.info-card{background:var(--surface);border-radius:var(--radius);padding:24px 26px;margin-bottom:20px;box-shadow:var(--shadow);border-left:5px solid var(--c);}
+.info-card h2{font-size:1.1rem;font-weight:700;margin-bottom:12px;}
+.info-card p{margin-bottom:9px;font-size:0.94rem;}
+.info-card ul{padding-left:20px;margin-bottom:9px;}
+.info-card li{margin-bottom:5px;font-size:0.93rem;}
+.quote-block{border-left:4px solid var(--c);background:var(--cl);border-radius:0 var(--radius) var(--radius) 0;padding:16px 20px;margin:16px 0;}
+.quote-block blockquote{font-family:'Lexend Mega',sans-serif;font-size:0.95rem;font-style:italic;margin-bottom:8px;line-height:1.5;}
+.quote-ref{font-size:0.73rem;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--muted);margin-bottom:10px;}
+.quote-body{font-size:0.91rem;line-height:1.75;}.quote-body p{margin-bottom:8px;}
+.tech-pill{display:inline-block;background:var(--c);color:#fff;font-size:0.72rem;font-weight:700;padding:2px 9px;border-radius:5px;margin:2px;}
+.box{border-radius:var(--radius);padding:14px 18px;margin:14px 0;display:flex;gap:12px;align-items:flex-start;}
+.box .ico{font-size:1.5rem;flex-shrink:0;line-height:1.2;}
+.box-label{font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;margin-bottom:4px;}
+.box p,.box li{font-size:0.91rem;}.box ul{padding-left:16px;}.box li{margin-bottom:4px;}
+.b-exam{background:#eaf4fb;border:2px solid #5dade2;}.b-exam .box-label{color:#1a6b9a;}
+.b-tip{background:#fffbf0;border:2px solid #f39c12;}.b-tip .box-label{color:#b7770d;}
+.acc{margin-bottom:10px;}
+.acc-btn{width:100%;text-align:left;background:var(--surface);border:2px solid var(--border);border-radius:var(--radius);padding:14px 18px;font-family:'Lexend',sans-serif;font-size:0.92rem;font-weight:600;cursor:pointer;color:var(--text);display:flex;justify-content:space-between;align-items:center;transition:background 0.15s;}
+.acc-btn:hover{background:#f5f0e8;}
+.acc-btn.open{border-radius:var(--radius) var(--radius) 0 0;border-bottom-color:transparent;}
+.acc-btn .arr{transition:transform 0.25s;margin-left:8px;flex-shrink:0;}
+.acc-btn.open .arr{transform:rotate(180deg);}
+.acc-body{display:none;background:var(--surface);border:2px solid var(--border);border-top:none;border-radius:0 0 var(--radius) var(--radius);padding:20px 22px;}
+.acc-body.open{display:block;}
+.acc-body p{font-size:0.91rem;margin-bottom:8px;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.label{font-size:0.72rem;font-weight:800;text-transform:uppercase;letter-spacing:0.8px;color:var(--muted);margin-bottom:16px;display:block;}
+.poem-text{background:var(--surface);border:2px solid var(--border);border-radius:var(--radius);padding:28px 32px;font-family:Georgia,serif;font-size:1.05rem;line-height:2;box-shadow:var(--shadow);}
+.poem-text .stanza{margin-bottom:1.6em;}
+.poem-text .stanza-label{font-family:'Lexend',sans-serif;font-size:0.65rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:6px;}
+@media(max-width:680px){.two-col{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="Heaney.html">✒️ <span>Heaney</span></a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn home" href="Heaney.html">Home</a>
+  <a class="nav-btn forge active" href="Heaney_Forge.html">The Forge</a>
+  <a class="nav-btn bogland" href="Heaney_Bogland.html">Bogland</a>
+  <a class="nav-btn tollund" href="Heaney_TollundMan.html">Tollund Man</a>
+  <a class="nav-btn constable" href="Heaney_ConstableCalls.html">Constable</a>
+  <a class="nav-btn sunlight" href="Heaney_Sunlight.html">Sunlight</a>
+  <a class="nav-btn pitchfork" href="Heaney_Pitchfork.html">Pitchfork</a>
+  <a class="nav-btn postscript" href="Heaney_Postscript.html">Postscript</a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn flash" href="Heaney_Flashcards.html">🃏 Flashcards</a>
+  <a class="nav-btn links" href="Heaney_Links.html">🔗 Links</a>
+</nav>
+
+<div class="hero">
+  <div class="poem-label">Poem 1 · Door into the Dark · 1969</div>
+  <h1>The Forge</h1>
+  <p>A blacksmith's forge becomes a symbol of creative mystery — the dark interior where tradition, craft, and artistic imagination are hammered into shape.</p>
+  <div class="hero-chips">
+    <span class="hero-chip">Craft &amp; Creativity</span>
+    <span class="hero-chip">Tradition vs Modernity</span>
+    <span class="hero-chip">Imagination</span>
+    <span class="hero-chip">Sonnet Form</span>
+    <span class="hero-chip">Symbol of Poetry</span>
+  </div>
+</div>
+
+<div class="section">
+  <div class="tab-bar">
+    <button class="tab active" onclick="switchTab(this,'overview')">📋 Overview</button>
+    <button class="tab" onclick="switchTab(this,'poem')">📜 The Poem</button>
+    <button class="tab" onclick="switchTab(this,'stanzas')">🔍 Line Analysis</button>
+    <button class="tab" onclick="switchTab(this,'quotes')">💬 Key Quotes</button>
+    <button class="tab" onclick="switchTab(this,'techniques')">🎨 Techniques</button>
+    <button class="tab" onclick="switchTab(this,'context')">🎓 Exam Prep</button>
+  </div>
+
+  <div class="tab-panel active" id="overview">
+    <div class="info-card">
+      <h2>📋 Background &amp; Overview</h2>
+      <p>This poem is from Heaney's second collection <em>Door into the Dark</em> (1969) — and the collection's title is taken directly from the poem's opening line. As a child, Heaney was fascinated by the local forge at Hillhead: "I was thinking of Barney Devlin's forge… where you had the noise of myth in the anvil."</p>
+      <p>The poem is a <strong>sonnet</strong> (14 lines: 8+6) and operates on two levels simultaneously. On the surface, it is a precise, vivid description of a blacksmith at work. Below the surface, it is a meditation on <strong>poetry itself</strong> — the forge is the imagination, the anvil is the poem, the smith is the poet.</p>
+      <p>Heaney described the dark as "a positive element… in which poetry originates" and "something that you need to traverse in order to arrive at some kind of reliable light or reality." The poem enacts this idea: we begin outside in the light (the decayed, static world) and are drawn toward the mysterious, vital darkness within.</p>
+    </div>
+    <div class="info-card">
+      <h2>🎯 Core Themes</h2>
+      <ul>
+        <li><strong>Craft and Creativity:</strong> Both the blacksmith and the poet work with raw materials in darkness to create something new. The forge symbolises the creative process itself.</li>
+        <li><strong>Tradition vs Modernity:</strong> The smith's ancient craft is being overtaken by the modern world — "traffic is flashing in rows." He turns his back on it and slams the door.</li>
+        <li><strong>Imagination and the Dark:</strong> The "door into the dark" is the threshold of the imagination — the mysterious interior from which all creative work emerges.</li>
+        <li><strong>Lament for Lost Crafts:</strong> The poem mourns the passing of traditional ways of working, which are being rendered obsolete by the modern, mechanical world.</li>
+        <li><strong>The Outsider Artist:</strong> Heaney, like the boy at the door, is drawn to the forge but remains outside — the curious observer who watches and writes, but does not fully enter.</li>
+      </ul>
+    </div>
+    <div class="box b-exam">
+      <div class="ico">🎓</div>
+      <div><div class="box-label">Key Exam Approach</div>
+      <p>Always discuss the poem on <em>two levels</em>: the literal (a blacksmith, a forge, a real trade) and the symbolic (the poet, the imagination, the creative process). The examiner rewards students who can move fluently between these levels. The contrast between the exterior (dead, modern, light) and interior (alive, ancient, dark) is the poem's structural engine.</p></div>
+    </div>
+    <div class="info-card">
+      <h2>📐 Sonnet Form</h2>
+      <p>The poem has 14 lines divided 8+6, mirroring the Petrarchan sonnet — the octave presents a problem or situation; the sestet shifts perspective and moves towards resolution. In The Forge, the octave describes the exterior and interior of the forge; the sestet focuses on the smith himself, his defiant return to ancient work. The tight, compressed form mirrors the hard, precise craft of the blacksmith.</p>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="poem">
+    <div class="poem-text">
+      <div class="stanza">
+        <div class="stanza-label">Octave (Lines 1–8)</div>
+        All I know is a door into the dark.<br>
+        Outside, old axles and iron hoops rusting;<br>
+        Inside, the hammered anvil's short-pitched ring,<br>
+        The unpredictable fantail of sparks<br>
+        Or hiss when a new shoe toughens in water.<br>
+        Heaney. He expends himself in shape and music.<br>
+        Horned as a unicorn, at one end and square,<br>
+        Set there immoveable: an altar
+      </div>
+      <div class="stanza">
+        <div class="stanza-label">Sestet (Lines 9–14)</div>
+        Where he expends himself in shape and music.<br>
+        Sometimes, leather-aproned, hairs in his nose,<br>
+        He leans out on the jamb, recalls a clatter<br>
+        Of hooves where traffic is flashing in rows;<br>
+        Then grunts and goes in, with a slam and flick<br>
+        To beat real iron out, to work the bellows.
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="stanzas">
+    <span class="label">Line-by-Line Analysis</span>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>Lines 1–2 — "All I know is a door into the dark"</span><span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="quote-block"><blockquote>"All I know is a door into the dark. / Outside, old axles and iron hoops rusting"</blockquote></div>
+      <p>The opening line is one of the most memorable in Irish poetry. As a child, Heaney stands at the threshold — the door is all he knows of the forge. This is honest: he does not claim full understanding. The dark beyond the door is the unknown creative interior — the imagination that he can sense but not yet fully enter.</p>
+      <p>Outside, everything is decay: "old axles and iron hoops rusting." These remnants of past work lie abandoned, static, silent. The exterior world is the past made useless — discarded objects that once served a purpose. The contrast with the living, noisy interior is immediate and deliberate. Note the hard consonants: "axles," "iron," "rusting" — heavy, grinding sounds appropriate to metal and decay.</p>
+    </div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>Lines 3–5 — Inside the Forge: Sound and Energy</span><span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="quote-block"><blockquote>"Inside, the hammered anvil's short-pitched ring, / The unpredictable fantail of sparks / Or hiss when a new shoe toughens in water."</blockquote></div>
+      <p>The poem enters the forge and the language comes alive. "Short-pitched ring" is precisely sonic — the ringing is real, you can hear it. The "fantail of sparks" is a brilliant visual image: a "fantail" is a fan-shaped spread of feathers on a bird, so the sparks are alive, organic, bird-like — unpredictable and beautiful. This is imagination made visible: sparks as creative energy, scattering in all directions.</p>
+      <p>"Hiss when a new shoe toughens in water" — the onomatopoeia is exact. Something is being created: a new shoe is being forged, made stronger by heat and water. This is the creative process — raw material subjected to fire and force to emerge as something new and useful. The "hiss" of the hot iron becoming hard mirrors the compression and discipline of good poetry.</p>
+    </div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>Lines 6–8 — The Anvil: Sacred and Mythical</span><span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="quote-block"><blockquote>"Horned as a unicorn, at one end and square, / Set there immoveable: an altar"</blockquote></div>
+      <p>The anvil is described as "somewhere in the centre" — in the darkness of imagination, there must be a fixed point, something immoveable and reliable, to craft against. The anvil must exist even if you cannot see it.</p>
+      <p>"Horned as a unicorn" — a simile that elevates the anvil to the mythical. The unicorn is a symbol of purity, of the imagination, of things rare and otherworldly. But the anvil is also "immoveable" and square — firmly rooted in material reality. This is Heaney's double vision: the forge/poem lives at the intersection of the mythical and the real. Without the grounded anvil, no work is possible; without the unicorn horn of imagination, no art is possible.</p>
+      <p>"An altar" — the metaphor is religious. The forge is a sacred space; the act of making is a devotion. Heaney shows deep respect for craft and for the tradition it embodies. The smith is not merely a worker — he is a priest at an altar.</p>
+    </div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>Lines 9–11 — The Smith: "leather-aproned, hairs in his nose"</span><span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="quote-block"><blockquote>"Sometimes, leather-aproned, hairs in his nose, / He leans out on the jamb, recalls a clatter / Of hooves where traffic is flashing in rows"</blockquote></div>
+      <p>The poem pivots to the smith himself in the sestet. He is described with vivid, unglamorous precision: "leather-aproned, hairs in his nose." This is no heroic figure — he is real, physical, ordinary. The detail of the hairs in his nose is deliberately earthy. Yet this ordinary man creates extraordinary things.</p>
+      <p>He "leans out on the jamb" — the door frame — and looks at the modern world passing. "Recalls a clatter / Of hooves" — he remembers when horses filled these streets and his trade was essential. Now "traffic is flashing in rows" — the world has moved on, mechanised, left him behind. "Flashing" is exactly right: cars move faster than horses, they are brilliant and indifferent. The word "rows" suggests the rigid order of modernity — no longer the organic rhythm of hooves.</p>
+    </div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>Lines 12–14 — "Then grunts and goes in" — Defiance</span><span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="quote-block"><blockquote>"Then grunts and goes in, with a slam and flick / To beat real iron out, to work the bellows."</blockquote></div>
+      <p>The smith's response to modernity is magnificent in its brevity: "grunts." A single animal sound of contempt or determination. Then he goes back in, slamming the door on the modern world. The word "slam" is both onomatopoeic and defiant — a rejection of the traffic, the speed, the irrelevance of his trade in modern eyes.</p>
+      <p>"To beat real iron out" — the word "real" is crucial. Against the flashing, superficial modernity, what the smith creates is <em>real</em>. His iron has substance, permanence, weight. "To work the bellows" — to fan the fire that feeds the creative process. The poem ends with the smith back at work, the poet left outside — curious, respectful, watching from the threshold, not yet fully inside the dark.</p>
+      <p>The final line has a decisive rhythm — strong stresses, hard consonants — that enacts the hammering, physical work being described. The poem's sound is its meaning.</p>
+    </div></div>
+  </div>
+
+  <div class="tab-panel" id="quotes">
+    <span class="label">Key Quotes for Exam</span>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"All I know is a door into the dark"</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Symbol</span><span class="tech-pill">Threshold</span><span class="tech-pill">Honesty</span>
+    <div class="quote-block"><div class="quote-ref">Opening line — the threshold of imagination</div><blockquote>"All I know is a door into the dark."</blockquote><div class="quote-body"><p>The most famous opening in Heaney's early work. The dark is the forge, but also the imagination — the mysterious interior from which all creative work emerges. "All I know" is disarmingly honest: the poet is not omniscient but curious. The door is a threshold — between outside and inside, between the ordinary and the creative, between the known and the unknown. The collection is named after this line.</p></div></div></div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"The unpredictable fantail of sparks"</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Metaphor</span><span class="tech-pill">Visual Imagery</span><span class="tech-pill">Creativity</span>
+    <div class="quote-block"><div class="quote-ref">Sparks as creative inspiration — organic and unpredictable</div><blockquote>"The unpredictable fantail of sparks"</blockquote><div class="quote-body"><p>"Fantail" is a fan of feathers — bird-like, alive, organic. The sparks are unpredictable, like inspiration itself. You cannot control exactly where they fall. This is Heaney's vision of the creative imagination: not a mechanical process, but something alive, scattering, beautiful, and beyond full control. The image also introduces the idea of the forge as a living, energetic space — the opposite of the dead, static exterior.</p></div></div></div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"Horned as a unicorn... an altar"</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Simile</span><span class="tech-pill">Metaphor</span><span class="tech-pill">Sacred/Mythical</span>
+    <div class="quote-block"><div class="quote-ref">The anvil — where myth meets reality, imagination meets craft</div><blockquote>"Horned as a unicorn... an altar"</blockquote><div class="quote-body"><p>Two of the poem's richest images compressed together. The unicorn simile gives the anvil a mythical, imaginative quality — it points beyond the ordinary. The altar metaphor makes the forge sacred — creation is a form of devotion. Together, they express Heaney's core belief: good craft operates where the mythical and the real intersect, and it deserves reverence.</p></div></div></div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"leather-aproned, hairs in his nose"</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Specificity</span><span class="tech-pill">Ordinary Detail</span><span class="tech-pill">Character</span>
+    <div class="quote-block"><div class="quote-ref">The smith as ordinary yet extraordinary — detail making him real</div><blockquote>"leather-aproned, hairs in his nose"</blockquote><div class="quote-body"><p>One of Heaney's most characteristic moves: the unglamorous, specific detail that makes a character fully real. No hero has hairs in his nose — but this man does, and it makes him more human, more present, more admirable because he is so precisely ordinary. This is exactly what Heaney said poetry should do: "celebrate the ordinary while enriching it through imagination."</p></div></div></div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"traffic is flashing in rows"</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Contrast</span><span class="tech-pill">Modernity</span><span class="tech-pill">Verb Choice</span>
+    <div class="quote-block"><div class="quote-ref">The modern world as shallow, mechanical, indifferent</div><blockquote>"traffic is flashing in rows"</blockquote><div class="quote-body"><p>"Flashing" — brilliant, fast, superficial. "Rows" — rigid, mechanical, ordered. Compare this to the unpredictable fantail of sparks, the organic clatter of hooves. The modern world has speed and order but no soul. The smith looks at it and turns away. His work, by contrast, is real, weighty, purposeful — "real iron."</p></div></div></div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"Then grunts and goes in, with a slam and flick / To beat real iron out"</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Onomatopoeia</span><span class="tech-pill">Defiance</span><span class="tech-pill">Alliteration</span>
+    <div class="quote-block"><div class="quote-ref">The final defiant return — craft as resistance</div><blockquote>"Then grunts and goes in, with a slam and flick / To beat real iron out"</blockquote><div class="quote-body"><p>The monosyllabic sounds enact the action: "slam," "flick," "beat" — percussive, physical, decisive. The "grunt" is animal, contemptuous, magnificent in its simplicity. "Real iron" is the poem's key word: against the flashy unreality of modernity, the smith creates something with genuine weight and substance. This is also Heaney's statement about poetry — it should have the weight and reality of beaten iron, not the flash of traffic.</p></div></div></div></div>
+  </div>
+
+  <div class="tab-panel" id="techniques">
+    <span class="label">Poetic Techniques</span>
+    <div class="two-col">
+      <div class="info-card"><h2>📐 Sonnet Form (8+6)</h2><p>A Petrarchan-influenced sonnet: 8-line octave setting up the forge's world; 6-line sestet shifting to the smith himself. The tight form mirrors the tight, controlled craft of the blacksmith. The compressed structure forces every word to work hard — much like the forge itself.</p></div>
+      <div class="info-card"><h2>🔊 Sound: Consonance &amp; Onomatopoeia</h2><p>Hard, short consonants throughout: "dark," "ring," "sparks," "grunts," "slam," "flick," "beat" — they hammer like the smith himself. Onomatopoeia in "hiss," "ring," "slam," "grunt" makes the forge physically present and audible. The poem's sound IS its meaning.</p></div>
+      <div class="info-card"><h2>🌓 Contrast: Exterior / Interior</h2><p>Outside: dead, rusting, static, silent. Inside: alive, ringing, sparking, active. The contrast structures the entire poem and enacts Heaney's argument: the dark interior of imagination is where true creative work lives, not in the bright, decayed exterior of the modern world.</p></div>
+      <div class="info-card"><h2>⟶ Enjambment</h2><p>Used three times at key moments: the sparks and hiss (showing energy and movement), the smith expending himself (showing continuous effort), and the hooves outside (recreating the rhythm of horses). Enjambment gives movement; punctuation creates deliberate pauses — like the forge alternating between the hammer's swing and its rest.</p></div>
+      <div class="info-card"><h2>🦄 Dual Symbolism</h2><p>The forge = the imagination/poetry. The anvil = the poem/the fixed point of reality. The smith = the poet. The dark = the creative unconscious. "Real iron" = authentic, weighty poetry. Every element of the poem carries this double meaning, but the literal level is so vivid it never feels merely allegorical.</p></div>
+      <div class="info-card"><h2>🎭 Sibilance &amp; Assonance</h2><p>Sibilance: "hiss when a new shoe toughens," "expends himself in shape and music" — these slow the poem, draw out the sounds of work. Broad assonance in "o" sounds create deliberate, weighty movement. Contrast with the short, sharp vowels of action: "ring," "flick," "slam."</p></div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="context">
+    <span class="label">Context &amp; Exam Preparation</span>
+    <div class="box b-exam"><div class="ico">🎓</div><div><div class="box-label">Key Exam Argument</div>
+    <p>This poem argues that <em>genuine craft — whether forging iron or writing poetry — requires entering a dark, mysterious, imaginative space and doing real, weighty work</em>. Always discuss the forge as a dual symbol (real forge AND creative imagination), the contrast between dead exterior and living interior, and the defiant "real iron" as a statement about authentic art. Connect to The Pitchfork — both poems celebrate craftsmanship as a form of devotion.</p></div></div>
+    <div class="info-card"><h2>Links to Other Heaney Poems</h2><ul>
+      <li><strong>The Pitchfork:</strong> Both poems celebrate a traditional craft object (forge/pitchfork) and use it as a symbol of creative devotion. Both pay meticulous attention to the physical details of the tool and the skilled person who uses it.</li>
+      <li><strong>Bogland:</strong> Both poems use a physical landscape/space as a metaphor — the forge's dark interior mirrors the bog's depth as a symbol for the mysterious, layered territory of Irish identity and imagination.</li>
+      <li><strong>Mossbawn: Sunlight:</strong> Both poems elevate the ordinary through precise sensory detail and show deep admiration for skilled, traditional work. The aunt baking = the smith forging = the poet writing.</li>
+    </ul></div>
+    <div class="box b-tip"><div class="ico">💡</div><div><div class="box-label">Essential Exam Quote</div>
+    <p>Use "All I know is a door into the dark" to introduce the poem's central symbol, then "to beat real iron out" to close your analysis — showing the movement from humble unknowing at the threshold to the confident, defiant assertion of craft. The journey between these two phrases is the poem's entire argument.</p></div></div>
+  </div>
+</div>
+
+<script>
+function switchTab(btn,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(id).classList.add('active');}
+function toggleAcc(btn){const body=btn.nextElementSibling;const isOpen=btn.classList.contains('open');document.querySelectorAll('.acc-btn.open').forEach(b=>{b.classList.remove('open');b.nextElementSibling.classList.remove('open');});if(!isOpen){btn.classList.add('open');body.classList.add('open');}}
+</script>
+</body>
+</html>

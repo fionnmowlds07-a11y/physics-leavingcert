@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Heaney — The Pitchfork</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F6F3EE;--surface:#FFFFFF;--surface2:#EEE9E2;--border:#E2DDD7;--text:#2C2825;--muted:#7A7068;--c:#5a3a1a;--cl:#f0e8dc;--cd:#2a1808;--radius:14px;--shadow:0 4px 20px rgba(0,0,0,0.08);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;font-size:16px;}
+nav{position:sticky;top:0;z-index:100;background:rgba(246,243,238,0.97);backdrop-filter:blur(10px);border-bottom:2px solid var(--border);padding:8px 16px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;min-height:52px;}
+.nav-logo{font-family:'Lexend Mega',sans-serif;font-size:0.85rem;color:var(--text);margin-right:4px;text-decoration:none;white-space:nowrap;}.nav-logo span{color:#5a6e3a;}
+.nav-divider{width:1px;height:20px;background:var(--border);flex-shrink:0;}
+.nav-btn{padding:5px 11px;border-radius:18px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.72rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);text-decoration:none;white-space:nowrap;}
+.nav-btn:hover{transform:translateY(-2px);}
+.nav-btn.home:hover,.nav-btn.home.active{background:#2c2825;border-color:#2c2825;color:#fff;}
+.nav-btn.forge:hover,.nav-btn.forge.active{background:#8B4513;border-color:#8B4513;color:#fff;}
+.nav-btn.bogland:hover,.nav-btn.bogland.active{background:#4a6741;border-color:#4a6741;color:#fff;}
+.nav-btn.tollund:hover,.nav-btn.tollund.active{background:#5a4a2a;border-color:#5a4a2a;color:#fff;}
+.nav-btn.constable:hover,.nav-btn.constable.active{background:#2a3a5a;border-color:#2a3a5a;color:#fff;}
+.nav-btn.sunlight:hover,.nav-btn.sunlight.active{background:#b07a10;border-color:#b07a10;color:#fff;}
+.nav-btn.pitchfork:hover,.nav-btn.pitchfork.active{background:#5a3a1a;border-color:#5a3a1a;color:#fff;}
+.nav-btn.postscript:hover,.nav-btn.postscript.active{background:#1a4a5a;border-color:#1a4a5a;color:#fff;}
+.nav-btn.flash:hover,.nav-btn.flash.active{background:#3a3a5a;border-color:#3a3a5a;color:#fff;}
+.nav-btn.links:hover,.nav-btn.links.active{background:#5a1a3a;border-color:#5a1a3a;color:#fff;}
+.section{padding:0 16px 80px;max-width:940px;margin:0 auto;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.hero{background:linear-gradient(135deg,var(--cd),var(--c));color:#fff;padding:44px 32px 36px;text-align:center;margin-bottom:32px;}
+.hero .poem-label{font-size:0.75rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;opacity:0.75;margin-bottom:10px;}
+.hero h1{font-family:'Lexend Mega',sans-serif;font-size:clamp(1.6rem,4vw,2.6rem);line-height:1.15;margin-bottom:12px;}
+.hero p{opacity:0.88;max-width:620px;margin:0 auto;font-size:0.96rem;}
+.hero-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px;}
+.hero-chip{background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:4px 14px;border-radius:20px;font-size:0.75rem;font-weight:600;}
+.tab-bar{display:flex;gap:4px;flex-wrap:wrap;padding:22px 0 8px;border-bottom:2px solid var(--border);margin-bottom:28px;}
+.tab{padding:8px 18px;border-radius:10px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.8rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);}
+.tab:hover,.tab.active{background:var(--c);color:#fff;border-color:var(--c);}
+.tab-panel{display:none;}.tab-panel.active{display:block;animation:fadeIn 0.25s ease;}
+.info-card{background:var(--surface);border-radius:var(--radius);padding:24px 26px;margin-bottom:20px;box-shadow:var(--shadow);border-left:5px solid var(--c);}
+.info-card h2{font-size:1.1rem;font-weight:700;margin-bottom:12px;}
+.info-card p{margin-bottom:9px;font-size:0.94rem;}
+.info-card ul{padding-left:20px;margin-bottom:9px;}
+.info-card li{margin-bottom:5px;font-size:0.93rem;}
+.quote-block{border-left:4px solid var(--c);background:var(--cl);border-radius:0 var(--radius) var(--radius) 0;padding:16px 20px;margin:16px 0;}
+.quote-block blockquote{font-family:'Lexend Mega',sans-serif;font-size:0.95rem;font-style:italic;margin-bottom:8px;line-height:1.5;}
+.quote-ref{font-size:0.73rem;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--muted);margin-bottom:10px;}
+.quote-body{font-size:0.91rem;line-height:1.75;}.quote-body p{margin-bottom:8px;}
+.tech-pill{display:inline-block;background:var(--c);color:#fff;font-size:0.72rem;font-weight:700;padding:2px 9px;border-radius:5px;margin:2px;}
+.box{border-radius:var(--radius);padding:14px 18px;margin:14px 0;display:flex;gap:12px;align-items:flex-start;}
+.box .ico{font-size:1.5rem;flex-shrink:0;line-height:1.2;}
+.box-label{font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;margin-bottom:4px;}
+.box p{font-size:0.91rem;}
+.b-exam{background:#eaf4fb;border:2px solid #5dade2;}.b-exam .box-label{color:#1a6b9a;}
+.b-tip{background:#fffbf0;border:2px solid #f39c12;}.b-tip .box-label{color:#b7770d;}
+.acc{margin-bottom:10px;}
+.acc-btn{width:100%;text-align:left;background:var(--surface);border:2px solid var(--border);border-radius:var(--radius);padding:14px 18px;font-family:'Lexend',sans-serif;font-size:0.92rem;font-weight:600;cursor:pointer;color:var(--text);display:flex;justify-content:space-between;align-items:center;transition:background 0.15s;}
+.acc-btn:hover{background:#f5f0e8;}.acc-btn.open{border-radius:var(--radius) var(--radius) 0 0;border-bottom-color:transparent;}
+.acc-btn .arr{transition:transform 0.25s;margin-left:8px;flex-shrink:0;}.acc-btn.open .arr{transform:rotate(180deg);}
+.acc-body{display:none;background:var(--surface);border:2px solid var(--border);border-top:none;border-radius:0 0 var(--radius) var(--radius);padding:20px 22px;}
+.acc-body.open{display:block;}.acc-body p{font-size:0.91rem;margin-bottom:8px;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.label{font-size:0.72rem;font-weight:800;text-transform:uppercase;letter-spacing:0.8px;color:var(--muted);margin-bottom:16px;display:block;}
+.poem-text{background:var(--surface);border:2px solid var(--border);border-radius:var(--radius);padding:28px 32px;font-family:Georgia,serif;font-size:1.05rem;line-height:2;box-shadow:var(--shadow);}
+.poem-text .stanza{margin-bottom:1.6em;}
+.poem-text .stanza-label{font-family:'Lexend',sans-serif;font-size:0.65rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:6px;}
+@media(max-width:680px){.two-col{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="Heaney.html">✒️ <span>Heaney</span></a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn home" href="Heaney.html">Home</a>
+  <a class="nav-btn forge" href="Heaney_Forge.html">The Forge</a>
+  <a class="nav-btn bogland" href="Heaney_Bogland.html">Bogland</a>
+  <a class="nav-btn tollund" href="Heaney_TollundMan.html">Tollund Man</a>
+  <a class="nav-btn constable" href="Heaney_ConstableCalls.html">Constable</a>
+  <a class="nav-btn sunlight" href="Heaney_Sunlight.html">Sunlight</a>
+  <a class="nav-btn pitchfork active" href="Heaney_Pitchfork.html">Pitchfork</a>
+  <a class="nav-btn postscript" href="Heaney_Postscript.html">Postscript</a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn flash" href="Heaney_Flashcards.html">🃏 Flashcards</a>
+  <a class="nav-btn links" href="Heaney_Links.html">🔗 Links</a>
+</nav>
+<div class="hero">
+  <div class="poem-label">Poem 6 · Seeing Things · 1991</div>
+  <h1>The Pitchfork</h1>
+  <p>An ordinary farm tool becomes a tribute to his father, to honest labour, and to the idea that perfection lies not in the tool but in the skilled human hand that wields it.</p>
+  <div class="hero-chips">
+    <span class="hero-chip">Father &amp; Heritage</span><span class="hero-chip">Craft &amp; Skill</span><span class="hero-chip">The Ordinary Elevated</span><span class="hero-chip">Tribute</span><span class="hero-chip">Imagination</span>
+  </div>
+</div>
+<div class="section">
+  <div class="tab-bar">
+    <button class="tab active" onclick="switchTab(this,'overview')">📋 Overview</button>
+    <button class="tab" onclick="switchTab(this,'poem')">📜 The Poem</button>
+    <button class="tab" onclick="switchTab(this,'stanzas')">🔍 Stanza Analysis</button>
+    <button class="tab" onclick="switchTab(this,'quotes')">💬 Key Quotes</button>
+    <button class="tab" onclick="switchTab(this,'techniques')">🎨 Techniques</button>
+    <button class="tab" onclick="switchTab(this,'context')">🎓 Exam Prep</button>
+  </div>
+
+  <div class="tab-panel active" id="overview">
+    <div class="info-card"><h2>📋 Background &amp; Overview</h2>
+      <p>From <em>Seeing Things</em> (1991), a collection that "celebrates marvels" and was written partly in response to the death of Heaney's father Patrick Heaney in 1986. The pitchfork is never named as his father's directly, but critics widely agree this is an indirect tribute — the father depicted as the perfect craftsman, the skilled wielder of the tool.</p>
+      <p>Heaney loved farm tools from childhood: "I loved handling the fork and the rake, their lightness and rightness in the hand, the perfect suitedness to the jobs they had to do." This is not just about nostalgia — it is about the relationship between the tool, the skill, and the person. The pitchfork is perfect; but its perfection is only realised by the person who uses it with mastery.</p>
+      <p>The poem is a meditation on craft, skill, and love — exploring how an ordinary object becomes extraordinary in the hands of someone who truly knows how to use it. This applies to the pitchfork, to farming, and to poetry.</p>
+    </div>
+    <div class="info-card"><h2>🎯 Core Themes</h2><ul>
+      <li><strong>Tribute to the Father:</strong> Though never named, the father's skill with the pitchfork is the poem's true subject. The pitchfork is a vehicle for admiration and love.</li>
+      <li><strong>Craft and Mastery:</strong> Like The Forge, the poem celebrates expert skill — the ability to use a tool with such mastery that it transcends its ordinary function.</li>
+      <li><strong>The Ordinary Made Extraordinary:</strong> A pitchfork is a common farm tool; Heaney describes it as a work of art, a javelin, a thing of beauty.</li>
+      <li><strong>Perfection Lies in the Person:</strong> The poem's central argument — perfection is not in the object itself, but "in the opening hand" that wields it. The person gives the tool its meaning.</li>
+      <li><strong>Memory and Loss:</strong> The poem is suffused with the tenderness of a son remembering and honouring a dead father through the most specific, intimate details of his work.</li>
+    </ul></div>
+    <div class="box b-exam"><div class="ico">🎓</div><div><div class="box-label">Key Exam Insight</div>
+    <p>Connect this poem to The Forge: both celebrate a traditional tool as a symbol of creative mastery. But where The Forge celebrates the blacksmith as a symbol of the poet, The Pitchfork celebrates the farmer as a symbol of the father. Both argue that skill and devotion — whether with iron or with a pitchfork — are forms of art.</p></div></div>
+  </div>
+
+  <div class="tab-panel" id="poem">
+    <div class="poem-text">
+      <div class="stanza"><div class="stanza-label">Stanza 1</div>
+        Of all implements, the pitchfork was the one<br>That came near to an imagined perfection:<br>When he tightened his raised hand and aimed with it,<br>It felt like a javelin, accurate and light.
+      </div>
+      <div class="stanza"><div class="stanza-label">Stanza 2</div>
+        So whether he played the warrior or the athlete<br>Or worked in earnest in the chaff and sweat,<br>He loved its grain of ash, the hinged cleft<br>It opened in the air, unwinnowed wheat.
+      </div>
+      <div class="stanza"><div class="stanza-label">Stanza 3</div>
+        Now it is spring and again I see him<br>Riveted steel, turned timber, burnish<br>And grain, to be lifted clean and sprung<br>On the tines as they hit the bales —
+      </div>
+      <div class="stanza"><div class="stanza-label">Stanza 4</div>
+        Dark-flecked ash and a sharpened
+        tine,<br>Sweat-cured, sharpened, balanced, tested, fitted.<br>The springiness, the giving and taking back<br>Of its springiness — what he'd wanted.
+      </div>
+      <div class="stanza"><div class="stanza-label">Stanza 5</div>
+        But then when he began to move the bales,<br>And moved first one, then one and one and one<br>And picked up tempo where the rhythm called for it<br>Capped and uncapped it in the not-in-hand,
+      </div>
+      <div class="stanza"><div class="stanza-label">Stanza 6 (conclusion)</div>
+        Worked in tine and ash and the air itself<br>As if he could recover it or make it<br>Renovate, and soar again out past the sweat<br>And the bales' friable dust:<br><br>
+        The perfection of the thing and more than the thing,<br>The brightness of the pitched note,<br>The undiminished, given, luminous<br>Opening of his hands.
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="stanzas">
+    <span class="label">Stanza-by-Stanza Analysis</span>
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>Stanza 1 — "Near to an imagined perfection"</span><span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="quote-block"><blockquote>"Of all implements, the pitchfork was the one / That came near to an imagined perfection: / When he tightened his raised hand and aimed with it, / It felt like a javelin, accurate and light."</blockquote></div>
+      <p>"Of all implements" — Heaney begins with a considered ranking. Among all farm tools, the pitchfork is the one that approaches perfection. "Imagined perfection" — not quite perfect, but near the perfection that imagination can conceive. This is also Heaney's definition of great art: it comes near to an imagined perfection; it reaches for an ideal it can approach but never fully realise.</p>
+      <p>"It felt like a javelin, accurate and light" — the domestic tool becomes an athletic weapon. The javelin is thrown by a warrior or an Olympian; the pitchfork, in skilled hands, has that same quality of precision and flight. The father is immediately elevated from farmer to warrior, from the ordinary to the heroic. Note "when he tightened his raised hand" — the action is precise, controlled, purposeful. The skill is in the hand, not the tool.</p>
+    </div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>Stanzas 2–3 — "He loved its grain of ash"</span><span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="quote-block"><blockquote>"He loved its grain of ash, the hinged cleft / It opened in the air, unwinnowed wheat."</blockquote></div>
+      <p>"He loved" — this is a love poem as much as a tribute. The father loved the pitchfork the way Heaney loves words — intimately, specifically, physically. "Grain of ash" — the wooden handle is ash (the tree), and its grain is beautiful: a natural texture, the physical identity of the wood. He knows it not just as a tool but as a living material with its own character.</p>
+      <p>The pitchfork "opened" a "hinged cleft" in the air — as if the air itself parted for it, as if the tool had the authority to divide space. This extraordinary image makes the pitchfork seem magical, purposeful, claiming its territory in the air. "Unwinnowed wheat" — wheat not yet separated from chaff, suggestive of potential, of the unresolved and the hopeful.</p>
+    </div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>Stanzas 3–5 — "Sweat-cured, sharpened, balanced, tested, fitted"</span><span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="quote-block"><blockquote>"Sweat-cured, sharpened, balanced, tested, fitted."</blockquote></div>
+      <p>This line is perhaps the most technically dense in the poem — five past participles that describe the pitchfork's preparation with the same care as a craftsman's inventory. The pitchfork has been treated by sweat, sharpened to a point, balanced precisely, tested for quality, and fitted (to the hand, to the work). Each word is a stage of mastery. The accumulation creates a sense of the immense care and attention that has gone into the tool's preparation.</p>
+      <p>The repeated description of its "springiness" — "the giving and taking back / Of its springiness — what he'd wanted" — captures something essential about the father's relationship with the tool: it responds to him. It gives and takes back. This is the reciprocal quality of mastery: the tool responds to the skilled hand, and the skilled hand is formed by the tool. They make each other.</p>
+    </div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>Final Stanza — "The Opening of his Hands"</span><span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="quote-block"><blockquote>"The perfection of the thing and more than the thing, / The brightness of the pitched note, / The undiminished, given, luminous / Opening of his hands."</blockquote></div>
+      <p>The poem's climax and conclusion. "The perfection of the thing and more than the thing" — the pitchfork is perfect; but perfection is not only in the tool, it is in something beyond it. "The brightness of the pitched note" — a musical metaphor: the pitchfork becomes a musical instrument, its use a performance. "Pitched" here is a wonderful double meaning: the act of throwing/pitching the fork, and the musical pitch of a perfect note.</p>
+      <p>"The undiminished, given, luminous / Opening of his hands" — the father releases the pitchfork, opens his hands, and this opening is "undiminished" (fully itself, nothing lost), "given" (a gift, a grace), and "luminous" (glowing, beautiful, almost sacred). The perfection is in the act of release — not in holding the tool but in letting it go at the perfect moment. This is the poem's central argument: mastery is not about clutching the tool but about the skilled, open hand that uses it and releases it. The father's skill is complete; his hands are the poem's final image — open, generous, luminous.</p>
+    </div></div>
+  </div>
+
+  <div class="tab-panel" id="quotes">
+    <span class="label">Key Quotes</span>
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"came near to an imagined perfection"</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Key Phrase</span><span class="tech-pill">Art &amp; Craft</span><span class="tech-pill">Aspiration</span>
+    <div class="quote-block"><div class="quote-ref">Perfection as aspiration — tool as art</div><blockquote>"came near to an imagined perfection"</blockquote><div class="quote-body"><p>"Near to" is important — not perfect, but approaching it. "Imagined perfection" — the ideal exists in the imagination; the tool comes as close as any physical object can. This is also Heaney's definition of great art: it reaches toward an ideal it can approach but never fully achieve. The pitchfork aspires; so does the poem.</p></div></div></div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"It felt like a javelin, accurate and light"</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Simile</span><span class="tech-pill">Elevation</span><span class="tech-pill">Heroism</span>
+    <div class="quote-block"><div class="quote-ref">The domestic tool as athlete's weapon — ordinary elevated to heroic</div><blockquote>"It felt like a javelin, accurate and light."</blockquote><div class="quote-body"><p>The farmer becomes an Olympian through skill. The pitchfork, in skilled hands, has the accuracy and lightness of a javelin. The simile elevates the ordinary to the extraordinary — but it does so through the person's skill, not through any inherent quality of the tool. The father's mastery is what makes this transformation possible.</p></div></div></div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"Sweat-cured, sharpened, balanced, tested, fitted"</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">List</span><span class="tech-pill">Craft</span><span class="tech-pill">Alliteration</span>
+    <div class="quote-block"><div class="quote-ref">Five stages of mastery — the pitchfork's perfection earned through care</div><blockquote>"Sweat-cured, sharpened, balanced, tested, fitted."</blockquote><div class="quote-body"><p>Five precise past participles, each a stage in the preparation of a perfect tool. The accumulation is almost incantatory. "Sweat-cured" — the handle has been conditioned by the father's own sweat, making it literally part of him. "Fitted" is last and most important: the tool has been made to fit a specific hand, a specific purpose. Mastery is about fit — the right tool for the right person, perfected through use.</p></div></div></div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"The undiminished, given, luminous / Opening of his hands"</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Final Image</span><span class="tech-pill">Release</span><span class="tech-pill">Tribute</span>
+    <div class="quote-block"><div class="quote-ref">The poem's culminating image — perfection as generous release</div><blockquote>"The undiminished, given, luminous / Opening of his hands."</blockquote><div class="quote-body"><p>The most beautiful moment in the poem. The father opens his hands — releases the pitchfork at the perfect moment. "Undiminished" (not diminished by time or death), "given" (a gift, an act of generosity), "luminous" (glowing, sacred, beautiful). The opening hand is also the father's death — the releasing of life's grip — and Heaney is at peace with this. The hands are open, not clutching. Mastery and grace.</p></div></div></div></div>
+  </div>
+
+  <div class="tab-panel" id="techniques">
+    <span class="label">Poetic Techniques</span>
+    <div class="two-col">
+      <div class="info-card"><h2>📐 Form: 5×4-line Stanzas + Final 8-line</h2><p>Five regular quatrains followed by an expanded final stanza — the poem literally opens up, like the father's hands. The consistent form suggests certainty and care; the expanding final stanza reflects the poem reaching its emotional and thematic peak.</p></div>
+      <div class="info-card"><h2>🎵 Rhyme and Slant-Rhyme</h2><p>Rhyme and slant-rhyme throughout — "one/light," "cleft/wheat," "burnish/sprung" — give an upbeat, positive quality. The rhymes are not perfect, like the pitchfork's perfection is "imagined" rather than achieved. This tonal lightness reflects Heaney's pleasure in and admiration for his father's work.</p></div>
+      <div class="info-card"><h2>🏃 Kinetic Verbs</h2><p>"Tightened," "aimed," "opened," "lifted," "sprung," "worked," "soar" — the poem is full of movement and action. The pitchfork and the father are never still; the poem captures the energy and skill of expert physical work in motion.</p></div>
+      <div class="info-card"><h2>🔊 Sound Devices in Stanza 3</h2><p>"Riveted steel, turned timber, burnish / And grain" — alliteration, consonance, and sibilance combine here to create a dense, precise sound texture that mirrors the precision of the pitchfork itself. The sound of the poem in this stanza is as carefully crafted as the tool it describes.</p></div>
+      <div class="info-card"><h2>🎸 Musical Metaphor</h2><p>"The brightness of the pitched note" — the pitchfork's use becomes a musical performance, the skilled movement a pitched note struck perfectly. This connects The Pitchfork to The Forge ("expends himself in shape and music") — both see skilled manual work as a form of musical creation.</p></div>
+      <div class="info-card"><h2>💫 The Elevated Ordinary</h2><p>The pitchfork is described in language more appropriate to a work of art: "dark-fleshed ash," "satiny," "natural polish," "imagined perfection," "luminous." This elevation of a humble farm tool is Heaney's artistic argument made visible: ordinary objects, in the right hands and with the right attention, become extraordinary.</p></div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="context">
+    <span class="label">Context &amp; Exam Preparation</span>
+    <div class="box b-exam"><div class="ico">🎓</div><div><div class="box-label">Key Exam Argument</div>
+    <p>The pitchfork is a symbol of the father, of honest labour, and of craft as devotion. Always argue that the poem's central insight — "the perfection of the thing and more than the thing" — is that perfection lies not in the tool but in the skilled, loving, open hands that use it. This applies to farming, to poetry, and to parenthood. The opening hands at the end are simultaneously the father's mastery and his graceful departure from life.</p></div></div>
+    <div class="info-card"><h2>Links to Other Heaney Poems</h2><ul>
+      <li><strong>The Forge:</strong> The most direct companion — both poems celebrate a traditional craft tool (pitchfork/forge) used with mastery. Both argue that skilled manual work is a form of art, and that the tool is only as good as the person who uses it.</li>
+      <li><strong>Mossbawn: Sunlight:</strong> Both are tributes to family members doing skilled, devoted work. The aunt baking = the father pitchforking. Both show Heaney's conviction that the ordinary done with love is extraordinary.</li>
+      <li><strong>Postscript:</strong> Both are poems of wonder and elevation — the pitchfork soaring like a javelin; the swans soaring between sky and water. Both show Heaney's capacity for moments of transcendent beauty from ordinary experience.</li>
+    </ul></div>
+    <div class="box b-tip"><div class="ico">💡</div><div><div class="box-label">Essential Exam Quote</div>
+    <p>"The undiminished, given, luminous / Opening of his hands" — the poem's final and most beautiful image. Use it to show how Heaney elevates his father's mastery to something almost sacred: the skilled, open, generous hand is "luminous" — it glows, it gives light. Mastery is not possession but release.</p></div></div>
+  </div>
+</div>
+<script>
+function switchTab(btn,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(id).classList.add('active');}
+function toggleAcc(btn){const body=btn.nextElementSibling;const isOpen=btn.classList.contains('open');document.querySelectorAll('.acc-btn.open').forEach(b=>{b.classList.remove('open');b.nextElementSibling.classList.remove('open');});if(!isOpen){btn.classList.add('open');body.classList.add('open');}}
+</script>
+</body>
+</html>

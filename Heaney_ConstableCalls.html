@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Heaney — A Constable Calls</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F6F3EE;--surface:#FFFFFF;--surface2:#EEE9E2;--border:#E2DDD7;--text:#2C2825;--muted:#7A7068;--c:#2a3a5a;--cl:#e0e6f0;--cd:#0d1828;--radius:14px;--shadow:0 4px 20px rgba(0,0,0,0.08);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;font-size:16px;}
+nav{position:sticky;top:0;z-index:100;background:rgba(246,243,238,0.97);backdrop-filter:blur(10px);border-bottom:2px solid var(--border);padding:8px 16px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;min-height:52px;}
+.nav-logo{font-family:'Lexend Mega',sans-serif;font-size:0.85rem;color:var(--text);margin-right:4px;text-decoration:none;white-space:nowrap;}.nav-logo span{color:#5a6e3a;}
+.nav-divider{width:1px;height:20px;background:var(--border);flex-shrink:0;}
+.nav-btn{padding:5px 11px;border-radius:18px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.72rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);text-decoration:none;white-space:nowrap;}
+.nav-btn:hover{transform:translateY(-2px);}
+.nav-btn.home:hover,.nav-btn.home.active{background:#2c2825;border-color:#2c2825;color:#fff;}
+.nav-btn.forge:hover,.nav-btn.forge.active{background:#8B4513;border-color:#8B4513;color:#fff;}
+.nav-btn.bogland:hover,.nav-btn.bogland.active{background:#4a6741;border-color:#4a6741;color:#fff;}
+.nav-btn.tollund:hover,.nav-btn.tollund.active{background:#5a4a2a;border-color:#5a4a2a;color:#fff;}
+.nav-btn.constable:hover,.nav-btn.constable.active{background:#2a3a5a;border-color:#2a3a5a;color:#fff;}
+.nav-btn.sunlight:hover,.nav-btn.sunlight.active{background:#b07a10;border-color:#b07a10;color:#fff;}
+.nav-btn.pitchfork:hover,.nav-btn.pitchfork.active{background:#5a3a1a;border-color:#5a3a1a;color:#fff;}
+.nav-btn.postscript:hover,.nav-btn.postscript.active{background:#1a4a5a;border-color:#1a4a5a;color:#fff;}
+.nav-btn.flash:hover,.nav-btn.flash.active{background:#3a3a5a;border-color:#3a3a5a;color:#fff;}
+.nav-btn.links:hover,.nav-btn.links.active{background:#5a1a3a;border-color:#5a1a3a;color:#fff;}
+.section{padding:0 16px 80px;max-width:940px;margin:0 auto;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.hero{background:linear-gradient(135deg,var(--cd),var(--c));color:#fff;padding:44px 32px 36px;text-align:center;margin-bottom:32px;}
+.hero .poem-label{font-size:0.75rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;opacity:0.75;margin-bottom:10px;}
+.hero h1{font-family:'Lexend Mega',sans-serif;font-size:clamp(1.6rem,4vw,2.6rem);line-height:1.15;margin-bottom:12px;}
+.hero p{opacity:0.88;max-width:620px;margin:0 auto;font-size:0.96rem;}
+.hero-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px;}
+.hero-chip{background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:4px 14px;border-radius:20px;font-size:0.75rem;font-weight:600;}
+.tab-bar{display:flex;gap:4px;flex-wrap:wrap;padding:22px 0 8px;border-bottom:2px solid var(--border);margin-bottom:28px;}
+.tab{padding:8px 18px;border-radius:10px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.8rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);}
+.tab:hover,.tab.active{background:var(--c);color:#fff;border-color:var(--c);}
+.tab-panel{display:none;}.tab-panel.active{display:block;animation:fadeIn 0.25s ease;}
+.info-card{background:var(--surface);border-radius:var(--radius);padding:24px 26px;margin-bottom:20px;box-shadow:var(--shadow);border-left:5px solid var(--c);}
+.info-card h2{font-size:1.1rem;font-weight:700;margin-bottom:12px;}
+.info-card p{margin-bottom:9px;font-size:0.94rem;}
+.info-card ul{padding-left:20px;margin-bottom:9px;}
+.info-card li{margin-bottom:5px;font-size:0.93rem;}
+.quote-block{border-left:4px solid var(--c);background:var(--cl);border-radius:0 var(--radius) var(--radius) 0;padding:16px 20px;margin:16px 0;}
+.quote-block blockquote{font-family:'Lexend Mega',sans-serif;font-size:0.95rem;font-style:italic;margin-bottom:8px;line-height:1.5;}
+.quote-ref{font-size:0.73rem;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--muted);margin-bottom:10px;}
+.quote-body{font-size:0.91rem;line-height:1.75;}.quote-body p{margin-bottom:8px;}
+.tech-pill{display:inline-block;background:var(--c);color:#fff;font-size:0.72rem;font-weight:700;padding:2px 9px;border-radius:5px;margin:2px;}
+.box{border-radius:var(--radius);padding:14px 18px;margin:14px 0;display:flex;gap:12px;align-items:flex-start;}
+.box .ico{font-size:1.5rem;flex-shrink:0;line-height:1.2;}
+.box-label{font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;margin-bottom:4px;}
+.box p{font-size:0.91rem;}
+.b-exam{background:#eaf4fb;border:2px solid #5dade2;}.b-exam .box-label{color:#1a6b9a;}
+.b-tip{background:#fffbf0;border:2px solid #f39c12;}.b-tip .box-label{color:#b7770d;}
+.acc{margin-bottom:10px;}
+.acc-btn{width:100%;text-align:left;background:var(--surface);border:2px solid var(--border);border-radius:var(--radius);padding:14px 18px;font-family:'Lexend',sans-serif;font-size:0.92rem;font-weight:600;cursor:pointer;color:var(--text);display:flex;justify-content:space-between;align-items:center;transition:background 0.15s;}
+.acc-btn:hover{background:#f5f0e8;}.acc-btn.open{border-radius:var(--radius) var(--radius) 0 0;border-bottom-color:transparent;}
+.acc-btn .arr{transition:transform 0.25s;margin-left:8px;flex-shrink:0;}.acc-btn.open .arr{transform:rotate(180deg);}
+.acc-body{display:none;background:var(--surface);border:2px solid var(--border);border-top:none;border-radius:0 0 var(--radius) var(--radius);padding:20px 22px;}
+.acc-body.open{display:block;}.acc-body p{font-size:0.91rem;margin-bottom:8px;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.label{font-size:0.72rem;font-weight:800;text-transform:uppercase;letter-spacing:0.8px;color:var(--muted);margin-bottom:16px;display:block;}
+.poem-text{background:var(--surface);border:2px solid var(--border);border-radius:var(--radius);padding:28px 32px;font-family:Georgia,serif;font-size:1.05rem;line-height:2;box-shadow:var(--shadow);}
+.poem-text .stanza{margin-bottom:1.6em;}
+.poem-text .stanza-label{font-family:'Lexend',sans-serif;font-size:0.65rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:6px;}
+@media(max-width:680px){.two-col{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="Heaney.html">✒️ <span>Heaney</span></a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn home" href="Heaney.html">Home</a>
+  <a class="nav-btn forge" href="Heaney_Forge.html">The Forge</a>
+  <a class="nav-btn bogland" href="Heaney_Bogland.html">Bogland</a>
+  <a class="nav-btn tollund" href="Heaney_TollundMan.html">Tollund Man</a>
+  <a class="nav-btn constable active" href="Heaney_ConstableCalls.html">Constable</a>
+  <a class="nav-btn sunlight" href="Heaney_Sunlight.html">Sunlight</a>
+  <a class="nav-btn pitchfork" href="Heaney_Pitchfork.html">Pitchfork</a>
+  <a class="nav-btn postscript" href="Heaney_Postscript.html">Postscript</a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn flash" href="Heaney_Flashcards.html">🃏 Flashcards</a>
+  <a class="nav-btn links" href="Heaney_Links.html">🔗 Links</a>
+</nav>
+<div class="hero">
+  <div class="poem-label">Poem 4 · North · 1975</div>
+  <h1>A Constable Calls</h1>
+  <p>A young Catholic boy watches an armed RUC constable visit his family — every observed detail charged with the fear, power imbalance, and sectarian tension of the Troubles.</p>
+  <div class="hero-chips">
+    <span class="hero-chip">The Troubles</span><span class="hero-chip">Power &amp; Fear</span><span class="hero-chip">Catholic Experience</span><span class="hero-chip">Childhood Memory</span><span class="hero-chip">Symbolism of Authority</span>
+  </div>
+</div>
+<div class="section">
+  <div class="tab-bar">
+    <button class="tab active" onclick="switchTab(this,'overview')">📋 Overview</button>
+    <button class="tab" onclick="switchTab(this,'poem')">📜 The Poem</button>
+    <button class="tab" onclick="switchTab(this,'stanzas')">🔍 Stanza Analysis</button>
+    <button class="tab" onclick="switchTab(this,'quotes')">💬 Key Quotes</button>
+    <button class="tab" onclick="switchTab(this,'techniques')">🎨 Techniques</button>
+    <button class="tab" onclick="switchTab(this,'context')">🎓 Exam Prep</button>
+  </div>
+
+  <div class="tab-panel active" id="overview">
+    <div class="info-card"><h2>📋 Background &amp; Overview</h2>
+      <p>Written in 1975, this is the second poem in a sequence of six called "Singing School" — autobiographical poems highlighting key moments that helped shape Heaney as a person and a poet. It is written from the viewpoint of the young Heaney as a boy, watching an event unfold with the intense, fearful attention of a child who understands more than he can articulate.</p>
+      <p>The Heaney family were Catholic nationalists in Northern Ireland. The Royal Ulster Constabulary (RUC), disbanded in 2001, was the armed police force of Northern Ireland — predominantly Protestant and widely regarded by the Catholic community as an instrument of state oppression. They could stop, question, and detain without the usual legal protections. "We knew," Heaney said, "that Ulster wasn't meant for us."</p>
+      <p>The constable calls to check the family's "tillage return" — a record of what crops they have grown. The father lies about some turnips. The boy knows. And the tension of that knowledge — of a small lie told to an armed representative of a hostile state — fills the poem.</p>
+    </div>
+    <div class="info-card"><h2>🎯 Core Themes</h2><ul>
+      <li><strong>Power and Fear:</strong> The constable's weapons, uniform, and authority create overwhelming fear in the Catholic household. Every detail is charged with threat.</li>
+      <li><strong>Catholic Alienation:</strong> The Catholic nationalist community experienced the state as hostile, intrusive, threatening. This poem captures that experience from the inside, through a child's eyes.</li>
+      <li><strong>Guilt and Complicity:</strong> The boy's guilt at knowing his father has lied — and imagining the consequences — is the emotional heart of the poem's second half.</li>
+      <li><strong>Childhood Perception:</strong> The poem's power comes from the child's intense, detailed, fearful observation — every object noted and weighted with menace.</li>
+      <li><strong>Doomsday Symbolism:</strong> The ledger of crop records becomes the "domesday book" — the ultimate book of reckoning. The state has the power of judgement over Catholic lives.</li>
+    </ul></div>
+    <div class="box b-exam"><div class="ico">🎓</div><div><div class="box-label">Key Exam Insight</div>
+    <p>The poem creates tension not through dramatic violence but through intense, meticulous observation. Every detail of the constable's equipment — holster, baton, cap, ledger — is noted with fearful precision. The tension builds through accumulation. Always discuss the symbolism of the constable's weapons and uniform as instruments of state power, and the child's position as fearful, powerless observer.</p></div></div>
+  </div>
+
+  <div class="tab-panel" id="poem">
+    <div class="poem-text">
+      <div class="stanza"><div class="stanza-label">Stanzas 1–2: The Bicycle</div>
+        His bicycle stood at the window-sill,<br>The rubber cowl of a mud-splasher<br>Skirting the front mudguard,<br>Its fat black handlegrips<br><br>
+        On its fat black handlegrips.<br>He had unstrapped<br>The heavy ledger, and my father<br>Was making tillage returns
+      </div>
+      <div class="stanza"><div class="stanza-label">Stanzas 3–4: The Constable Observed</div>
+        In acres, roods, and perches.<br>Arithmetic and fear.<br>I sat staring at<br>The polished holster<br><br>
+        With its buttoned flap, the braid cord<br>Looped into the revolver butt.<br>His cap was upside down<br>On the floor, beside his chair.
+      </div>
+      <div class="stanza"><div class="stanza-label">Stanzas 5–6: The Questioning</div>
+        The line of force<br>The black boot of the law.<br>On the strip of ledger<br>All his equipment.<br><br>
+        'Any other root crops?<br>Mangolds? Marrowfat? Anything else?'<br>'No.' But was there? I knew<br>There were turnips in the field.
+      </div>
+      <div class="stanza"><div class="stanza-label">Stanzas 7–8: Guilt and Departure</div>
+        I recalled<br>A shadow bobbing in the lane,<br>Dragging his boot,<br>The domesday book<br><br>
+        His pale face towered<br>Over the barracks' roof.<br>He stood up, shifted the baton-case<br>Further round on his belt,<br><br>
+        Closed the domesday book,<br>Fitted his cap back with two hands,<br>And looked at me as he said goodbye.<br>A shadow bobbed in the window.<br><br>
+        He was snapping the carrier spring<br>Over the ledger. His boot pushed off<br>And the bicycle ticked, ticked, ticked.
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="stanzas">
+    <span class="label">Stanza-by-Stanza Analysis</span>
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>Stanzas 1–2: The Bicycle — Power from the Start</span><span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="quote-block"><blockquote>"His bicycle stood at the window-sill, / The rubber cowl of a mud-splasher / Skirting the front mudguard"</blockquote></div>
+      <p>The poem begins with the constable's bicycle, described in precise, almost threatening detail. The bicycle stands — present, dominant, watching. "Stood at the window-sill" — as if on guard, watching the household. The "spud of the light generator" gleaming and "cocked back" like a weapon. Even the bicycle is threatening.</p>
+      <p>The "fat black handlegrips" — the repetition of "fat black" has a heavy, suffocating quality. Black throughout the poem is the colour of authority, threat, and the law. The bicycle is personified as an extension of the constable's power. "The boot of the law" — even the vehicle embodies the weight and oppression of the legal system.</p>
+    </div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>Stanzas 3–4: "Arithmetic and Fear" — The Boy Watches</span><span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="quote-block"><blockquote>"Arithmetic and fear. / I sat staring at / The polished holster / With its buttoned flap, the braid cord / Looped into the revolver butt."</blockquote></div>
+      <p>"Arithmetic and fear" — perhaps the most compressed and brilliant phrase in the poem. The tillage return is arithmetic — numbers, facts, recorded information. But the act of giving this information to an armed constable is fear. The two words together capture the entire experience of the Catholic community under the RUC: ordinary bureaucratic life saturated with terror.</p>
+      <p>The boy stares at the holster, the revolver, the braid cord. His observation is fearful and precise. The constable's cap lies upside down on the floor — a subtle image: the law is not the right way up here; it is inverted, wrong, not functioning as it should. Or perhaps the officer's bevel mark shows his own pressure. The equipment is described as "symbols of power" — holster, cap, ledger, revolver, baton all become instruments of state authority in this Catholic kitchen.</p>
+    </div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>Stanzas 5–7: The Lie and the Guilt</span><span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="quote-block"><blockquote>"'Any other root crops? / Mangolds? Marrowfat? Anything else?' / 'No.' But was there? I knew / There were turnips in the field."</blockquote></div>
+      <p>The dialogue arrives — four questions fired rapidly by the constable, overwhelming the father's monosyllabic "No." The father has lied. He has not declared the turnips. In itself this is trivial. But the boy knows, and the knowledge opens a chasm of fear.</p>
+      <p>The boy imagines the consequences: a "jail cell in the barracks," a "black hole" — the gravity of the situation is immense for a Catholic child who knows that the barracks and the law are not his friends. "Black hole" suggests both the cell itself and the sense of total powerlessness — being swallowed by the state. The guilt of knowing his father has lied to the representative of a hostile state is the most precise rendering of what it felt like to be Catholic in Northern Ireland: always on the wrong side of the law, always slightly guilty, always at risk.</p>
+    </div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>Final Stanzas: Departure and the Ticking</span><span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="quote-block"><blockquote>"He was snapping the carrier spring / Over the ledger. His boot pushed off / And the bicycle ticked, ticked, ticked."</blockquote></div>
+      <p>The constable packs up his "domesday book" — the ledger has been given a name resonant with judgement and finality. The Domesday Book was William the Conqueror's record of England's population — a book of reckoning, of ownership, of power over land and people. The tillage ledger becomes this: the state recording and controlling the Catholic farmer's land.</p>
+      <p>As he leaves, "he looked at me as he said goodbye" — the boy is noticed. Maybe paranoia brought on by guilt; maybe a real moment of contact. Either way, the constable's eye falls on the child. There is no escaping the watchful eye of the state.</p>
+      <p>The final image is unforgettable: "the bicycle ticked, ticked, ticked." The ticking is both the bicycle's mechanical sound and the sound of a time-bomb — the Troubles ticking forward, the tension that will eventually explode. The repetition of "ticked" creates an ominous, unstoppable rhythm. The poem ends not with relief but with danger quietly continuing.</p>
+    </div></div>
+  </div>
+
+  <div class="tab-panel" id="quotes">
+    <span class="label">Key Quotes</span>
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"Arithmetic and fear"</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Juxtaposition</span><span class="tech-pill">Compression</span><span class="tech-pill">Theme</span>
+    <div class="quote-block"><div class="quote-ref">The poem's most compressed and powerful phrase</div><blockquote>"Arithmetic and fear."</blockquote><div class="quote-body"><p>Two words separated by "and" that contain the entire experience of Catholic life under RUC scrutiny. Arithmetic = ordinary bureaucratic data. Fear = the terror that saturates even the most ordinary interaction with the state. Together they define the poem's argument: that for the Catholic community, even filling in a form is an act of fear.</p></div></div></div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"the domesday book"</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Allusion</span><span class="tech-pill">Symbolism</span><span class="tech-pill">Power</span>
+    <div class="quote-block"><div class="quote-ref">The ledger as ultimate book of reckoning — state power over Catholic lives</div><blockquote>"the domesday book"</blockquote><div class="quote-body"><p>William the Conqueror's Domesday Book recorded everything owned in England — an instrument of conquest and control. The constable's tillage ledger becomes this: the conquering state's record of Catholic land and livelihood. The allusion elevates a routine bureaucratic visit to something historically charged and threatening — the English colonial relationship with Ireland encoded in a crop register.</p></div></div></div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"the bicycle ticked, ticked, ticked"</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Onomatopoeia</span><span class="tech-pill">Repetition</span><span class="tech-pill">Ominous Tone</span>
+    <div class="quote-block"><div class="quote-ref">The poem's closing image — tension as time-bomb</div><blockquote>"the bicycle ticked, ticked, ticked."</blockquote><div class="quote-body"><p>The most resonant final image in Heaney's political poetry. A bicycle ticking as it rolls away is mechanical, ordinary — but the triple repetition and the context make it sinister. It sounds like a time-bomb. The Troubles are ticking forward. The tension does not end when the constable leaves; it continues, rhythmic, unstoppable, building towards explosion. The poem ends not with relief but with danger quietly persisting.</p></div></div></div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"I knew / There were turnips in the field"</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Guilt</span><span class="tech-pill">Dramatic Irony</span><span class="tech-pill">Childhood</span>
+    <div class="quote-block"><div class="quote-ref">The boy's terrible knowledge — guilt and the complicity of silence</div><blockquote>"I knew / There were turnips in the field."</blockquote><div class="quote-body"><p>The poem's pivot. The father has lied; the boy knows it. This tiny domestic secret — a few undeclared turnips — becomes enormous in the context of the armed constable, the domesday book, the revolver. The boy is now complicit in his father's deception of the state. His guilt, and his fear of imagined consequences, shows the constant psychological burden borne by the Catholic community under RUC scrutiny.</p></div></div></div></div>
+  </div>
+
+  <div class="tab-panel" id="techniques">
+    <span class="label">Poetic Techniques</span>
+    <div class="two-col">
+      <div class="info-card"><h2>📐 Form: 8 Stanzas of 4 Lines</h2><p>The regimental, rigid structure mirrors the constable's authority — controlled, disciplined, formal. Short, snappy statements add to the tension. The consistent form suggests a state machine that grinds forward without deviation or mercy.</p></div>
+      <div class="info-card"><h2>👁️ Observational Precision</h2><p>The poem's power comes from precise, fearful detail: the rubber cowl, the braid cord, the polished holster, the slightly sweating hair. The boy notices everything because fear makes you hyperaware. This clinical, detailed observation is the poem's primary technique — it enacts the terror by making everything visible and threatening.</p></div>
+      <div class="info-card"><h2>🔊 Cacophony: Hard "B" and "CK" Sounds</h2><p>"Buttoned flap, the braid cord, looped into the revolver butt" — the harsh "b" sounds are cacophonous, heavy, physically intrusive. The sounds of the poem enter the quiet Catholic home like the constable himself — hard, uncomfortable, impossible to ignore.</p></div>
+      <div class="info-card"><h2>⚖️ Symbolism of Equipment</h2><p>Every piece of the constable's equipment is a symbol of state power: the holster = violence; the ledger/domesday book = recording and control; the cap = authority; the baton = physical force; the boot = oppression. The accumulation of these symbols makes the constable less a person and more an embodiment of state power.</p></div>
+      <div class="info-card"><h2>⟶ Enjambment &amp; Tension</h2><p>Enjambment speeds the poem forward in moments of action and tension; full stops create sudden pauses that heighten the threat. The juxtaposition of flow and pause creates the poem's distinctive rhythm of anxiety — moments of apparent calm punctuated by jolts of fear.</p></div>
+      <div class="info-card"><h2>💬 Dialogue</h2><p>The constable's four rapid questions ("Any other root crops? Mangolds? Marrowfat? Anything else?") overwhelm the father's single monosyllabic "No." The imbalance of language mirrors the imbalance of power. The constable speaks; the Catholic farmer is reduced to bare denial. Dialogue here is an instrument of authority.</p></div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="context">
+    <span class="label">Context &amp; Exam Preparation</span>
+    <div class="box b-exam"><div class="ico">🎓</div><div><div class="box-label">Key Exam Argument</div>
+    <p>This poem shows how <em>the Troubles invaded even the most ordinary domestic moments</em>. The constable's visit is routine bureaucracy — but in the context of armed sectarian policing, it becomes a scene of oppression and fear. Always discuss the child's perspective (innocent but observant, fearful but precise), the symbolism of the equipment (holster, domesday book, bicycle), and the ticking ending as an image of the ongoing tension of the Troubles.</p></div></div>
+    <div class="info-card"><h2>Links to Other Heaney Poems</h2><ul>
+      <li><strong>The Tollund Man:</strong> Both are political poems about violence and its context. Tollund Man approaches through mythology and history; Constable Calls through intimate domestic observation. Together they show the Troubles operating on every scale — mythological and mundane.</li>
+      <li><strong>Mossbawn: Sunlight:</strong> A perfect companion — both are set in the same Catholic rural world, at roughly the same time. Sunlight is peace; Constable Calls is threat. They are the twin faces of Heaney's childhood: the private sanctuary and the public danger.</li>
+      <li><strong>Bogland:</strong> Both deal with the instability and complexity of Irish/Northern Irish identity. Bogland works through landscape metaphor; Constable Calls through a specific human encounter.</li>
+    </ul></div>
+    <div class="box b-tip"><div class="ico">💡</div><div><div class="box-label">Essential Exam Quote</div>
+    <p>"Arithmetic and fear" — use this to introduce the poem's central argument: that for the Catholic community in Northern Ireland, no interaction with the state was ever merely routine. Even filling in a form was an act saturated with the fear of a community under hostile policing.</p></div></div>
+  </div>
+</div>
+<script>
+function switchTab(btn,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(id).classList.add('active');}
+function toggleAcc(btn){const body=btn.nextElementSibling;const isOpen=btn.classList.contains('open');document.querySelectorAll('.acc-btn.open').forEach(b=>{b.classList.remove('open');b.nextElementSibling.classList.remove('open');});if(!isOpen){btn.classList.add('open');body.classList.add('open');}}
+</script>
+</body>
+</html>

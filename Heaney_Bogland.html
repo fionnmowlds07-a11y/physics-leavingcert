@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Heaney — Bogland</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F6F3EE;--surface:#FFFFFF;--surface2:#EEE9E2;--border:#E2DDD7;--text:#2C2825;--muted:#7A7068;--c:#4a6741;--cl:#e8f0e4;--cd:#243620;--radius:14px;--shadow:0 4px 20px rgba(0,0,0,0.08);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;font-size:16px;}
+nav{position:sticky;top:0;z-index:100;background:rgba(246,243,238,0.97);backdrop-filter:blur(10px);border-bottom:2px solid var(--border);padding:8px 16px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;min-height:52px;}
+.nav-logo{font-family:'Lexend Mega',sans-serif;font-size:0.85rem;color:var(--text);margin-right:4px;text-decoration:none;white-space:nowrap;}.nav-logo span{color:#5a6e3a;}
+.nav-divider{width:1px;height:20px;background:var(--border);flex-shrink:0;}
+.nav-btn{padding:5px 11px;border-radius:18px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.72rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);text-decoration:none;white-space:nowrap;}
+.nav-btn:hover{transform:translateY(-2px);}
+.nav-btn.home:hover,.nav-btn.home.active{background:#2c2825;border-color:#2c2825;color:#fff;}
+.nav-btn.forge:hover,.nav-btn.forge.active{background:#8B4513;border-color:#8B4513;color:#fff;}
+.nav-btn.bogland:hover,.nav-btn.bogland.active{background:#4a6741;border-color:#4a6741;color:#fff;}
+.nav-btn.tollund:hover,.nav-btn.tollund.active{background:#5a4a2a;border-color:#5a4a2a;color:#fff;}
+.nav-btn.constable:hover,.nav-btn.constable.active{background:#2a3a5a;border-color:#2a3a5a;color:#fff;}
+.nav-btn.sunlight:hover,.nav-btn.sunlight.active{background:#b07a10;border-color:#b07a10;color:#fff;}
+.nav-btn.pitchfork:hover,.nav-btn.pitchfork.active{background:#5a3a1a;border-color:#5a3a1a;color:#fff;}
+.nav-btn.postscript:hover,.nav-btn.postscript.active{background:#1a4a5a;border-color:#1a4a5a;color:#fff;}
+.nav-btn.flash:hover,.nav-btn.flash.active{background:#3a3a5a;border-color:#3a3a5a;color:#fff;}
+.nav-btn.links:hover,.nav-btn.links.active{background:#5a1a3a;border-color:#5a1a3a;color:#fff;}
+.section{padding:0 16px 80px;max-width:940px;margin:0 auto;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.hero{background:linear-gradient(135deg,var(--cd),var(--c));color:#fff;padding:44px 32px 36px;text-align:center;margin-bottom:32px;}
+.hero .poem-label{font-size:0.75rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;opacity:0.75;margin-bottom:10px;}
+.hero h1{font-family:'Lexend Mega',sans-serif;font-size:clamp(1.6rem,4vw,2.6rem);line-height:1.15;margin-bottom:12px;}
+.hero p{opacity:0.88;max-width:620px;margin:0 auto;font-size:0.96rem;}
+.hero-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px;}
+.hero-chip{background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:4px 14px;border-radius:20px;font-size:0.75rem;font-weight:600;}
+.tab-bar{display:flex;gap:4px;flex-wrap:wrap;padding:22px 0 8px;border-bottom:2px solid var(--border);margin-bottom:28px;}
+.tab{padding:8px 18px;border-radius:10px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.8rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);}
+.tab:hover,.tab.active{background:var(--c);color:#fff;border-color:var(--c);}
+.tab-panel{display:none;}.tab-panel.active{display:block;animation:fadeIn 0.25s ease;}
+.info-card{background:var(--surface);border-radius:var(--radius);padding:24px 26px;margin-bottom:20px;box-shadow:var(--shadow);border-left:5px solid var(--c);}
+.info-card h2{font-size:1.1rem;font-weight:700;margin-bottom:12px;}
+.info-card p{margin-bottom:9px;font-size:0.94rem;}
+.info-card ul{padding-left:20px;margin-bottom:9px;}
+.info-card li{margin-bottom:5px;font-size:0.93rem;}
+.quote-block{border-left:4px solid var(--c);background:var(--cl);border-radius:0 var(--radius) var(--radius) 0;padding:16px 20px;margin:16px 0;}
+.quote-block blockquote{font-family:'Lexend Mega',sans-serif;font-size:0.95rem;font-style:italic;margin-bottom:8px;line-height:1.5;}
+.quote-ref{font-size:0.73rem;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--muted);margin-bottom:10px;}
+.quote-body{font-size:0.91rem;line-height:1.75;}.quote-body p{margin-bottom:8px;}
+.tech-pill{display:inline-block;background:var(--c);color:#fff;font-size:0.72rem;font-weight:700;padding:2px 9px;border-radius:5px;margin:2px;}
+.box{border-radius:var(--radius);padding:14px 18px;margin:14px 0;display:flex;gap:12px;align-items:flex-start;}
+.box .ico{font-size:1.5rem;flex-shrink:0;line-height:1.2;}
+.box-label{font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;margin-bottom:4px;}
+.box p{font-size:0.91rem;}
+.b-exam{background:#eaf4fb;border:2px solid #5dade2;}.b-exam .box-label{color:#1a6b9a;}
+.b-tip{background:#fffbf0;border:2px solid #f39c12;}.b-tip .box-label{color:#b7770d;}
+.acc{margin-bottom:10px;}
+.acc-btn{width:100%;text-align:left;background:var(--surface);border:2px solid var(--border);border-radius:var(--radius);padding:14px 18px;font-family:'Lexend',sans-serif;font-size:0.92rem;font-weight:600;cursor:pointer;color:var(--text);display:flex;justify-content:space-between;align-items:center;transition:background 0.15s;}
+.acc-btn:hover{background:#f5f0e8;}.acc-btn.open{border-radius:var(--radius) var(--radius) 0 0;border-bottom-color:transparent;}
+.acc-btn .arr{transition:transform 0.25s;margin-left:8px;flex-shrink:0;}.acc-btn.open .arr{transform:rotate(180deg);}
+.acc-body{display:none;background:var(--surface);border:2px solid var(--border);border-top:none;border-radius:0 0 var(--radius) var(--radius);padding:20px 22px;}
+.acc-body.open{display:block;}.acc-body p{font-size:0.91rem;margin-bottom:8px;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.label{font-size:0.72rem;font-weight:800;text-transform:uppercase;letter-spacing:0.8px;color:var(--muted);margin-bottom:16px;display:block;}
+.poem-text{background:var(--surface);border:2px solid var(--border);border-radius:var(--radius);padding:28px 32px;font-family:Georgia,serif;font-size:1.05rem;line-height:2;box-shadow:var(--shadow);}
+.poem-text .stanza{margin-bottom:1.6em;}
+.poem-text .stanza-label{font-family:'Lexend',sans-serif;font-size:0.65rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:6px;}
+@media(max-width:680px){.two-col{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="Heaney.html">✒️ <span>Heaney</span></a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn home" href="Heaney.html">Home</a>
+  <a class="nav-btn forge" href="Heaney_Forge.html">The Forge</a>
+  <a class="nav-btn bogland active" href="Heaney_Bogland.html">Bogland</a>
+  <a class="nav-btn tollund" href="Heaney_TollundMan.html">Tollund Man</a>
+  <a class="nav-btn constable" href="Heaney_ConstableCalls.html">Constable</a>
+  <a class="nav-btn sunlight" href="Heaney_Sunlight.html">Sunlight</a>
+  <a class="nav-btn pitchfork" href="Heaney_Pitchfork.html">Pitchfork</a>
+  <a class="nav-btn postscript" href="Heaney_Postscript.html">Postscript</a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn flash" href="Heaney_Flashcards.html">🃏 Flashcards</a>
+  <a class="nav-btn links" href="Heaney_Links.html">🔗 Links</a>
+</nav>
+<div class="hero">
+  <div class="poem-label">Poem 2 · Door into the Dark · 1969</div>
+  <h1>Bogland</h1>
+  <p>Ireland's bogland becomes a rich metaphor for the complexity, depth, and instability of Irish national identity — preserving the past while providing no firm ground on which to build the future.</p>
+  <div class="hero-chips">
+    <span class="hero-chip">Irish Identity</span><span class="hero-chip">History &amp; Memory</span><span class="hero-chip">Landscape as Metaphor</span><span class="hero-chip">Past vs Future</span><span class="hero-chip">National Consciousness</span>
+  </div>
+</div>
+<div class="section">
+  <div class="tab-bar">
+    <button class="tab active" onclick="switchTab(this,'overview')">📋 Overview</button>
+    <button class="tab" onclick="switchTab(this,'poem')">📜 The Poem</button>
+    <button class="tab" onclick="switchTab(this,'stanzas')">🔍 Stanza Analysis</button>
+    <button class="tab" onclick="switchTab(this,'quotes')">💬 Key Quotes</button>
+    <button class="tab" onclick="switchTab(this,'techniques')">🎨 Techniques</button>
+    <button class="tab" onclick="switchTab(this,'context')">🎓 Exam Prep</button>
+  </div>
+
+  <div class="tab-panel active" id="overview">
+    <div class="info-card"><h2>📋 Background &amp; Overview</h2>
+      <p>The final poem in <em>Door into the Dark</em> (1969), Bogland is widely regarded as one of Heaney's most important early works and a pivotal moment in Irish poetry. Heaney called it "something like a symbol. I felt the poem was a promise of something else… it represented a free place for me."</p>
+      <p>The poem was inspired by a formative childhood memory: when Heaney was in school, a preserved Great Irish Elk was pulled from a nearby bog and photographed in the local papers. He began to understand the bog as "the memory of the landscape, or as a landscape that remembered everything that happened to it."</p>
+      <p>He compares Ireland's boggy landscape to the wide open prairies of America — and finds that while we lack those open horizons, our bog offers something different: depth, preservation, and a complex, bottomless history. This is both a comfort and a burden.</p>
+    </div>
+    <div class="info-card"><h2>🎯 Core Themes</h2><ul>
+      <li><strong>Irish National Identity:</strong> The bog is a metaphor for Irishness itself — complex, layered, without firm foundation, but endlessly deep and preserving.</li>
+      <li><strong>Memory and History:</strong> The bog preserves the past (elk, butter, bodies) but the past can also drag us down, prevent progress, leave us "striking inwards and downwards" rather than outward.</li>
+      <li><strong>Ireland vs America:</strong> The wide prairies represent freedom, openness, a future-facing horizon. Ireland's enclosed, boggy landscape reflects its inward, history-obsessed, complex national psyche.</li>
+      <li><strong>No Bottom to History:</strong> "The wet centre is bottomless" — Irish history and identity have no final, defining answer. You can keep digging indefinitely.</li>
+      <li><strong>Emigration and Loss:</strong> "Atlantic seepage" — Ireland loses its people and its identity to emigration, and that loss can never be fully recovered.</li>
+    </ul></div>
+    <div class="box b-exam"><div class="ico">🎓</div><div><div class="box-label">Key Exam Insight</div>
+    <p>Heaney speaks as "we" and "our" throughout — he identifies with and speaks on behalf of the Irish people. This is his first major political poem, and it is both a celebration of Irish identity (the amazing things preserved in the bog) and a warning (the bog is not solid ground; constant backward digging prevents forward progress). Always discuss the ambivalence — he does not simply lament or simply celebrate.</p></div></div>
+  </div>
+
+  <div class="tab-panel" id="poem">
+    <div class="poem-text">
+      <div class="stanza"><div class="stanza-label">Stanza 1</div>We have no prairies<br>To slice a big sun at evening —<br>Everywhere the eye concedes to<br>Encroaching horizon,</div>
+      <div class="stanza"><div class="stanza-label">Stanza 2</div>Is wooed into the cyclops' eye<br>Of a tarn. Our unfenced country<br>Is bog that keeps crusting<br>Between the sights of the sun.</div>
+      <div class="stanza"><div class="stanza-label">Stanza 3</div>They've taken the skeleton<br>Of the Great Irish Elk<br>Out of the peat, set it up<br>An astounding crate full of air.</div>
+      <div class="stanza"><div class="stanza-label">Stanza 4</div>Butter sunk under<br>More than a hundred years<br>Was recovered salty and white.<br>The ground itself is kind, black butter</div>
+      <div class="stanza"><div class="stanza-label">Stanza 5</div>Melting and opening underfoot,<br>Missing its last definition<br>By millions of years.<br>They'll never dig coal here,</div>
+      <div class="stanza"><div class="stanza-label">Stanza 6</div>Only the waterlogged trunks<br>Of great firs, soft as pulp.<br>Our pioneers keep striking<br>Inwards and downwards,</div>
+      <div class="stanza"><div class="stanza-label">Stanza 7</div>Every layer they strip<br>Seems camped on before.<br>The bogholes might be Atlantic seepage.<br>The wet centre is bottomless.</div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="stanzas">
+    <span class="label">Stanza-by-Stanza Analysis</span>
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>Stanzas 1–2 — "We have no prairies" — Ireland vs America</span><span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="quote-block"><blockquote>"We have no prairies / To slice a big sun at evening — / Everywhere the eye concedes to / Encroaching horizon"</blockquote></div>
+      <p>Heaney opens by establishing what Ireland is <em>not</em>. The American prairie offers an unobstructed, freedom-filled horizon — the sun can be "sliced" cleanly at the edge of the earth. In Ireland, no such cleanness exists. Our horizon "encroaches" — moves towards us, closes us in. The word "concedes" is significant: the eye gives in, surrenders. Irish landscape is not expansive but enclosing.</p>
+      <p>The tarn — a small mountain lake — is described as a "cyclops' eye." The Cyclops (one-eyed giant of Greek mythology) is both mythical (connecting Ireland to ancient tradition) and threatening (one-eyed, limited vision, monstrous). Ireland has one eye fixed on its own interior rather than the wide open future. The bog "keeps crusting" — periodically hardening in good times, but always soft and unstable underneath.</p>
+    </div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>Stanzas 3–4 — The Elk and the Butter: What the Bog Preserves</span><span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="quote-block"><blockquote>"They've taken the skeleton / Of the Great Irish Elk / Out of the peat, set it up / An astounding crate full of air."</blockquote></div>
+      <p>The Great Irish Elk is capitalised — given the status of a proper noun, a monument. Its skeleton preserved in the peat for thousands of years is displayed in a museum: "an astounding crate full of air." This image is simultaneously wonderful (the bog's power to preserve; the animal's grandeur) and melancholy (only the skeleton remains; the living creature is gone; the crate is full of air — emptiness where life once was).</p>
+      <p>Bog butter — found in real archaeological excavations, preserved for over a hundred years, still "salty and white" — demonstrates the bog's extraordinary preserving power. And then: "The ground itself is kind, black butter / Melting and opening underfoot." The bog as black butter is a profound and unsettling image. It is soft, yielding, consuming — beautiful and dangerous. Walking on this land, you sink. The past is always underfoot, always threatening to swallow you.</p>
+    </div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>Stanzas 5–6 — "They'll never dig coal here" — What Ireland Lacks</span><span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="quote-block"><blockquote>"They'll never dig coal here, / Only the waterlogged trunks / Of great firs, soft as pulp. / Our pioneers keep striking / Inwards and downwards"</blockquote></div>
+      <p>Coal is the resource that powered the Industrial Revolution and built the wealth of Britain and the United States. Ireland cannot produce it — the bog never fully compressed into coal, "missing its last definition by millions of years." This is a metaphor for Ireland's failure to fully industrialise, to develop, to reach economic "definition." We are always close to coal but never quite there.</p>
+      <p>Instead, the pioneers find "waterlogged trunks of great firs" — evidence of ancient forests, ancient life, ancient Ireland. They are beautiful but useless for industry. "Our pioneers keep striking / Inwards and downwards" — this is Heaney's central critical observation. Instead of striking outwards and upwards (westward, forward, into the future), Irish people are obsessively digging inward — into history, into the past, into the bog of their own identity. It is fascinating but it may not be progressive.</p>
+    </div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>Stanza 7 — "The wet centre is bottomless" — The Final Image</span><span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="quote-block"><blockquote>"The bogholes might be Atlantic seepage. / The wet centre is bottomless."</blockquote></div>
+      <p>"Every layer they strip / Seems camped on before" — every aspect of Irish history has already been explored, already fought over, already occupied. There is no virgin territory left. History has been here before us at every level. This is both humbling and exhausting.</p>
+      <p>"The bogholes might be Atlantic seepage" — the holes in the bog may connect to the Atlantic Ocean itself, the body of water across which millions of Irish emigrants have sailed and been lost. The Atlantic takes Ireland's people, its identity, its future — and the bog absorbs this loss. The seepage is both physical and metaphorical: Ireland leaks its population, its vitality, its potential, into the ocean.</p>
+      <p>"The wet centre is bottomless" — the poem's final, definitive image. Irish history, Irish identity — you can dig forever and never reach the bottom. This is stated as a fact, not a lament. It is simply true. The bog has no end. Ireland's complexity has no end. You will never fully resolve or define what it means to be Irish.</p>
+    </div></div>
+  </div>
+
+  <div class="tab-panel" id="quotes">
+    <span class="label">Key Quotes</span>
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"We have no prairies" — the defining absence</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Contrast</span><span class="tech-pill">Direct Address</span><span class="tech-pill">National Identity</span>
+    <div class="quote-block"><div class="quote-ref">Opening contrast: American freedom vs Irish enclosure</div><blockquote>"We have no prairies"</blockquote><div class="quote-body"><p>Three words that open a vast argument. "We" immediately establishes communal, national voice — Heaney speaks for Ireland. The prairie is freedom, openness, a future to explore. Its absence in Ireland is not mourned but observed. What Ireland has instead — bog — is different, not necessarily inferior, but limiting in specific ways.</p></div></div></div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"an astounding crate full of air"</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Imagery</span><span class="tech-pill">Ambiguity</span><span class="tech-pill">Preservation</span>
+    <div class="quote-block"><div class="quote-ref">The Great Irish Elk — wonder and emptiness simultaneously</div><blockquote>"an astounding crate full of air"</blockquote><div class="quote-body"><p>A wonderful paradox. "Astounding" — genuinely amazing, the bog's power to preserve is miraculous. But "a crate full of air" — what remains is only the skeleton, an empty outline of the living creature. The bog preserves the form but not the life. This is Heaney's ambivalence about Irish history: it is extraordinary, but it is also dead. We dig up forms and outlines, not living things.</p></div></div></div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"The ground itself is kind, black butter"</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Metaphor</span><span class="tech-pill">Ambivalence</span><span class="tech-pill">Landscape</span>
+    <div class="quote-block"><div class="quote-ref">The bog as both nourishing and consuming</div><blockquote>"The ground itself is kind, black butter / Melting and opening underfoot"</blockquote><div class="quote-body"><p>"Kind" and "black butter" are unexpected. Butter is warm, domestic, nourishing — yet "black" makes it sinister, rich with decay. The ground is both nurturing and consuming. "Melting and opening underfoot" — you sink into it. It absorbs you. This is the danger of Ireland's obsession with its past: it can swallow you. The kindness is genuine but it is the kindness of something that will also take you down.</p></div></div></div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"Our pioneers keep striking / Inwards and downwards"</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Observation</span><span class="tech-pill">Criticism</span><span class="tech-pill">National Character</span>
+    <div class="quote-block"><div class="quote-ref">The central critique — Ireland's inward obsession with its past</div><blockquote>"Our pioneers keep striking / Inwards and downwards"</blockquote><div class="quote-body"><p>Heaney's most precise and potentially critical observation. "Pioneers" in the American sense go west, outward, forward — they claim new territory. Ireland's pioneers go inward and downward — into the past, into the bog, into history and identity. This is both our strength (we have extraordinary historical depth) and our limitation (we may be too fixed on the past to build a future). The word "keep" suggests this is endless, habitual, perhaps compulsive.</p></div></div></div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"The wet centre is bottomless"</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Final Image</span><span class="tech-pill">Ambiguity</span><span class="tech-pill">Endless Depth</span>
+    <div class="quote-block"><div class="quote-ref">The poem's closing declaration — Irish identity has no final answer</div><blockquote>"The wet centre is bottomless."</blockquote><div class="quote-body"><p>The poem's most resonant final line. "Bottomless" — no end, no resolution, no final definition. Irish identity and history cannot be fully excavated or understood. This is stated without judgement: it is simply true. You can dig forever and never reach solid ground. The "wet centre" is both Ireland's geographical bogland and its national psyche — soft, deep, yielding, and without bottom.</p></div></div></div></div>
+  </div>
+
+  <div class="tab-panel" id="techniques">
+    <span class="label">Poetic Techniques</span>
+    <div class="two-col">
+      <div class="info-card"><h2>📏 Form: Seven 4-Line Stanzas</h2><p>Seven quatrains mirror the layers of the bog — "every layer they strip." The consistent four-line stanzas give a sense of measured excavation, one layer at a time. Free verse (no regular rhyme or metre) mirrors the fluid, soft, undefined nature of the bog itself — and of Irish identity.</p></div>
+      <div class="info-card"><h2>🔤 Slant Rhyme</h2><p>"Skeleton/elk," "peat/crate," "years/here" — imperfect rhymes throughout suggest things are not defined, not resolved. There is no definitive answer to the endless digging. Full rhyme would suggest closure; slant rhyme keeps everything open and uncertain.</p></div>
+      <div class="info-card"><h2>🗣️ Collective Voice: "We" and "Our"</h2><p>Heaney speaks throughout as "we" and "our" — he identifies with and speaks on behalf of the Irish people. This gives the poem an authoritative, communal weight. He is not observing Ireland from outside; he is inside it, part of it, speaking from within the collective identity.</p></div>
+      <div class="info-card"><h2>🎵 Sound Devices</h2><p>Assonance of broad "o" sounds in early stanzas creates wide, open sound-space. Sibilance slows the poem, mimics the sinking, squelching bog. Hard "k" sounds ("black," "struck," "back") are uncomfortable, unresolved. Sound tracks meaning throughout.</p></div>
+      <div class="info-card"><h2>🌊 Extended Metaphor: Bog = Ireland</h2><p>The bog is sustained throughout as the poem's central metaphor for Irish national identity: preserving the past (elk, butter), providing no stable foundation (black butter melting underfoot), yielding wonders but not industrial wealth (coal), and being ultimately bottomless. Every element of the bog's nature maps onto Ireland's historical situation.</p></div>
+      <div class="info-card"><h2>⟶ Enjambment &amp; Punctuation</h2><p>Enjambment mimics the process of digging — one layer flows into the next without completion. Punctuation creates pauses for reflection, like the moment when a dig reveals something new. The poem moves between fluidity and pause, much like excavation itself.</p></div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="context">
+    <span class="label">Context &amp; Exam Preparation</span>
+    <div class="box b-exam"><div class="ico">🎓</div><div><div class="box-label">Key Exam Argument</div>
+    <p>Bogland is Heaney's first major statement on Irish national identity. Argue that the bog is <em>simultaneously a source of wonder and a warning</em>: it preserves Ireland's extraordinary history, but it also provides no stable ground for the future, and the compulsion to dig inward ("Our pioneers keep striking / Inwards and downwards") may prevent Ireland from moving forward. Always discuss the ambivalence — Heaney both admires and questions the Irish relationship with its past.</p></div></div>
+    <div class="info-card"><h2>Links to Other Heaney Poems</h2><ul>
+      <li><strong>The Tollund Man:</strong> The most natural companion piece. Both poems use the bog as a space that preserves the past and connects to violent history. The Tollund Man takes the excavation idea further, using a specific bog body to explore the violence of the Troubles.</li>
+      <li><strong>The Forge:</strong> Both poems use a physical space (forge/bogland) as a metaphor for something deeper — creative imagination (Forge) / national identity (Bogland). Heaney consistently reads landscape as meaning.</li>
+      <li><strong>A Constable Calls:</strong> Both are political poems dealing with the complexity of Irish/Northern Irish identity. Bogland approaches this through landscape; Constable Calls through a specific moment of sectarian tension.</li>
+    </ul></div>
+    <div class="box b-tip"><div class="ico">💡</div><div><div class="box-label">Essential Exam Quote</div>
+    <p>Always end with "The wet centre is bottomless" — it is the poem's most resonant declaration and contains the entire argument in five words. Irish history has no bottom: no final definition, no resolved identity. This is Heaney's most honest and most open statement about what it means to be Irish.</p></div></div>
+  </div>
+</div>
+<script>
+function switchTab(btn,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(id).classList.add('active');}
+function toggleAcc(btn){const body=btn.nextElementSibling;const isOpen=btn.classList.contains('open');document.querySelectorAll('.acc-btn.open').forEach(b=>{b.classList.remove('open');b.nextElementSibling.classList.remove('open');});if(!isOpen){btn.classList.add('open');body.classList.add('open');}}
+</script>
+</body>
+</html>

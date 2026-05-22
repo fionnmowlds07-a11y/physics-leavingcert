@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Heaney — The Tollund Man</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F6F3EE;--surface:#FFFFFF;--surface2:#EEE9E2;--border:#E2DDD7;--text:#2C2825;--muted:#7A7068;--c:#5a4a2a;--cl:#f0ebe0;--cd:#2a2010;--radius:14px;--shadow:0 4px 20px rgba(0,0,0,0.08);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;font-size:16px;}
+nav{position:sticky;top:0;z-index:100;background:rgba(246,243,238,0.97);backdrop-filter:blur(10px);border-bottom:2px solid var(--border);padding:8px 16px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;min-height:52px;}
+.nav-logo{font-family:'Lexend Mega',sans-serif;font-size:0.85rem;color:var(--text);margin-right:4px;text-decoration:none;white-space:nowrap;}.nav-logo span{color:#5a6e3a;}
+.nav-divider{width:1px;height:20px;background:var(--border);flex-shrink:0;}
+.nav-btn{padding:5px 11px;border-radius:18px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.72rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);text-decoration:none;white-space:nowrap;}
+.nav-btn:hover{transform:translateY(-2px);}
+.nav-btn.home:hover,.nav-btn.home.active{background:#2c2825;border-color:#2c2825;color:#fff;}
+.nav-btn.forge:hover,.nav-btn.forge.active{background:#8B4513;border-color:#8B4513;color:#fff;}
+.nav-btn.bogland:hover,.nav-btn.bogland.active{background:#4a6741;border-color:#4a6741;color:#fff;}
+.nav-btn.tollund:hover,.nav-btn.tollund.active{background:#5a4a2a;border-color:#5a4a2a;color:#fff;}
+.nav-btn.constable:hover,.nav-btn.constable.active{background:#2a3a5a;border-color:#2a3a5a;color:#fff;}
+.nav-btn.sunlight:hover,.nav-btn.sunlight.active{background:#b07a10;border-color:#b07a10;color:#fff;}
+.nav-btn.pitchfork:hover,.nav-btn.pitchfork.active{background:#5a3a1a;border-color:#5a3a1a;color:#fff;}
+.nav-btn.postscript:hover,.nav-btn.postscript.active{background:#1a4a5a;border-color:#1a4a5a;color:#fff;}
+.nav-btn.flash:hover,.nav-btn.flash.active{background:#3a3a5a;border-color:#3a3a5a;color:#fff;}
+.nav-btn.links:hover,.nav-btn.links.active{background:#5a1a3a;border-color:#5a1a3a;color:#fff;}
+.section{padding:0 16px 80px;max-width:940px;margin:0 auto;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.hero{background:linear-gradient(135deg,var(--cd),var(--c));color:#fff;padding:44px 32px 36px;text-align:center;margin-bottom:32px;}
+.hero .poem-label{font-size:0.75rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;opacity:0.75;margin-bottom:10px;}
+.hero h1{font-family:'Lexend Mega',sans-serif;font-size:clamp(1.6rem,4vw,2.6rem);line-height:1.15;margin-bottom:12px;}
+.hero p{opacity:0.88;max-width:620px;margin:0 auto;font-size:0.96rem;}
+.hero-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px;}
+.hero-chip{background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:4px 14px;border-radius:20px;font-size:0.75rem;font-weight:600;}
+.tab-bar{display:flex;gap:4px;flex-wrap:wrap;padding:22px 0 8px;border-bottom:2px solid var(--border);margin-bottom:28px;}
+.tab{padding:8px 18px;border-radius:10px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.8rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);}
+.tab:hover,.tab.active{background:var(--c);color:#fff;border-color:var(--c);}
+.tab-panel{display:none;}.tab-panel.active{display:block;animation:fadeIn 0.25s ease;}
+.info-card{background:var(--surface);border-radius:var(--radius);padding:24px 26px;margin-bottom:20px;box-shadow:var(--shadow);border-left:5px solid var(--c);}
+.info-card h2{font-size:1.1rem;font-weight:700;margin-bottom:12px;}
+.info-card p{margin-bottom:9px;font-size:0.94rem;}
+.info-card ul{padding-left:20px;margin-bottom:9px;}
+.info-card li{margin-bottom:5px;font-size:0.93rem;}
+.quote-block{border-left:4px solid var(--c);background:var(--cl);border-radius:0 var(--radius) var(--radius) 0;padding:16px 20px;margin:16px 0;}
+.quote-block blockquote{font-family:'Lexend Mega',sans-serif;font-size:0.95rem;font-style:italic;margin-bottom:8px;line-height:1.5;}
+.quote-ref{font-size:0.73rem;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--muted);margin-bottom:10px;}
+.quote-body{font-size:0.91rem;line-height:1.75;}.quote-body p{margin-bottom:8px;}
+.tech-pill{display:inline-block;background:var(--c);color:#fff;font-size:0.72rem;font-weight:700;padding:2px 9px;border-radius:5px;margin:2px;}
+.box{border-radius:var(--radius);padding:14px 18px;margin:14px 0;display:flex;gap:12px;align-items:flex-start;}
+.box .ico{font-size:1.5rem;flex-shrink:0;line-height:1.2;}
+.box-label{font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;margin-bottom:4px;}
+.box p{font-size:0.91rem;}
+.b-exam{background:#eaf4fb;border:2px solid #5dade2;}.b-exam .box-label{color:#1a6b9a;}
+.b-tip{background:#fffbf0;border:2px solid #f39c12;}.b-tip .box-label{color:#b7770d;}
+.acc{margin-bottom:10px;}
+.acc-btn{width:100%;text-align:left;background:var(--surface);border:2px solid var(--border);border-radius:var(--radius);padding:14px 18px;font-family:'Lexend',sans-serif;font-size:0.92rem;font-weight:600;cursor:pointer;color:var(--text);display:flex;justify-content:space-between;align-items:center;transition:background 0.15s;}
+.acc-btn:hover{background:#f5f0e8;}.acc-btn.open{border-radius:var(--radius) var(--radius) 0 0;border-bottom-color:transparent;}
+.acc-btn .arr{transition:transform 0.25s;margin-left:8px;flex-shrink:0;}.acc-btn.open .arr{transform:rotate(180deg);}
+.acc-body{display:none;background:var(--surface);border:2px solid var(--border);border-top:none;border-radius:0 0 var(--radius) var(--radius);padding:20px 22px;}
+.acc-body.open{display:block;}.acc-body p{font-size:0.91rem;margin-bottom:8px;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.label{font-size:0.72rem;font-weight:800;text-transform:uppercase;letter-spacing:0.8px;color:var(--muted);margin-bottom:16px;display:block;}
+.poem-text{background:var(--surface);border:2px solid var(--border);border-radius:var(--radius);padding:28px 32px;font-family:Georgia,serif;font-size:1.05rem;line-height:2;box-shadow:var(--shadow);}
+.poem-text .stanza{margin-bottom:1.6em;}
+.poem-text .stanza-label{font-family:'Lexend',sans-serif;font-size:0.65rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:6px;}
+@media(max-width:680px){.two-col{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="Heaney.html">✒️ <span>Heaney</span></a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn home" href="Heaney.html">Home</a>
+  <a class="nav-btn forge" href="Heaney_Forge.html">The Forge</a>
+  <a class="nav-btn bogland" href="Heaney_Bogland.html">Bogland</a>
+  <a class="nav-btn tollund active" href="Heaney_TollundMan.html">Tollund Man</a>
+  <a class="nav-btn constable" href="Heaney_ConstableCalls.html">Constable</a>
+  <a class="nav-btn sunlight" href="Heaney_Sunlight.html">Sunlight</a>
+  <a class="nav-btn pitchfork" href="Heaney_Pitchfork.html">Pitchfork</a>
+  <a class="nav-btn postscript" href="Heaney_Postscript.html">Postscript</a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn flash" href="Heaney_Flashcards.html">🃏 Flashcards</a>
+  <a class="nav-btn links" href="Heaney_Links.html">🔗 Links</a>
+</nav>
+<div class="hero">
+  <div class="poem-label">Poem 3 · Wintering Out · 1972</div>
+  <h1>The Tollund Man</h1>
+  <p>An Iron Age bog body in Denmark becomes a lens through which Heaney examines the ritual violence of the Troubles — connecting ancient sacrifice to modern sectarian killing.</p>
+  <div class="hero-chips">
+    <span class="hero-chip">The Troubles</span><span class="hero-chip">Sacrifice &amp; Violence</span><span class="hero-chip">Religion &amp; Ritual</span><span class="hero-chip">Past &amp; Present</span><span class="hero-chip">Personal &amp; Political</span>
+  </div>
+</div>
+<div class="section">
+  <div class="tab-bar">
+    <button class="tab active" onclick="switchTab(this,'overview')">📋 Overview</button>
+    <button class="tab" onclick="switchTab(this,'poem')">📜 The Poem</button>
+    <button class="tab" onclick="switchTab(this,'stanzas')">🔍 Section Analysis</button>
+    <button class="tab" onclick="switchTab(this,'quotes')">💬 Key Quotes</button>
+    <button class="tab" onclick="switchTab(this,'techniques')">🎨 Techniques</button>
+    <button class="tab" onclick="switchTab(this,'context')">🎓 Exam Prep</button>
+  </div>
+
+  <div class="tab-panel active" id="overview">
+    <div class="info-card"><h2>📋 Background &amp; Overview</h2>
+      <p>From <em>Wintering Out</em> (1972), this poem was written in direct response to the violence of the Northern Irish Troubles. Heaney found a framework for processing this violence in P.V. Glob's archaeological book <em>The Bog People</em>, which described preserved Iron Age bodies found in the bogs of Jutland, Denmark — many ritually killed and sacrificed to the Mother Goddess of the Earth.</p>
+      <p>The Tollund Man, discovered in 1950, is one of the best-preserved bog bodies in the world. He was hanged — his face serene, his last meal of grain porridge in his stomach. Glob argued these were sacrificial victims married to the goddess of the ground.</p>
+      <p>For Heaney, the parallel was inescapable: bodies found in Irish bogs; the victims of the Troubles; sacrifices made to "Mother Ireland." The poem makes this connection explicit — ancient Jutland ritual killing = modern Northern Irish sectarian killing. The senselessness of both is his conclusion.</p>
+    </div>
+    <div class="info-card"><h2>🎯 Core Themes</h2><ul>
+      <li><strong>Violence and Sacrifice:</strong> Both the ancient ritual killing and the modern Troubles are forms of sacrifice — human lives offered to a cause or a goddess. Heaney questions whether either has meaning.</li>
+      <li><strong>The Personal and the Political:</strong> The poem begins as a personal act of devotion (a pilgrimage to see the body) and expands to encompass the public horror of the Troubles.</li>
+      <li><strong>Religion and Sanctity:</strong> Heavy religious language (blasphemy, consecrate, holy ground, pray) surrounds both the Tollund Man and the Troubles victims — Heaney treats violence with the seriousness of a sacred act.</li>
+      <li><strong>Home and Alienation:</strong> In Section III, Heaney imagines feeling "lost" in Jutland, yet "unhappy and at home" — the violence there is familiar. It reminds him of home. This is deeply disturbing.</li>
+      <li><strong>The Futility of Sacrifice:</strong> Neither the ritual killing nor the Troubles produces redemption. Heaney prays for new life from the bodies but wonders if it is blasphemous to look for meaning in senseless death.</li>
+    </ul></div>
+    <div class="box b-exam"><div class="ico">🎓</div><div><div class="box-label">Key Exam Insight</div>
+    <p>This poem is described as "a personal poem about public events." The power lies in Heaney never directly naming the Troubles — instead, he works by parallel, by association, by implication. The effect is more powerful than direct statement would be. Always discuss the three-section structure: the body (devotion) → the violence (horror) → the connection (alienated belonging).</p></div></div>
+    <div class="info-card"><h2>🏺 The Historical Context</h2><p>The Tollund Man was found in 1950 in a Danish bog, perfectly preserved, wearing only a leather cap and a belt. He was hanged — a noose of plaited leather still around his neck. His last meal was a ritual grain porridge. P.V. Glob's 1969 book argued he was sacrificed to Nerthus, the Earth Mother goddess. Heaney read the book and immediately connected it to the bodies of Irish victims — found in bogs, killed on roadsides, sacrificed to political causes rather than goddesses. The parallel gave him a way to speak about the Troubles obliquely, through myth and archaeology.</p></div>
+  </div>
+
+  <div class="tab-panel" id="poem">
+    <div class="poem-text">
+      <div class="stanza"><div class="stanza-label">Section I — The Body</div>
+        Some day I will go to Aarhus<br>To see his peat-brown head,<br>The mild pods of his eye-lids,<br>His pointed skin cap.<br><br>
+        In the flat country nearby<br>Where they dug him out,<br>His last gruel of winter seeds<br>Caked in his stomach,<br><br>
+        Naked except for<br>The cap, noose and girdle,<br>I will stand a long time.<br>Bridegroom to the goddess,<br><br>
+        She tightened her torc on him<br>And opened her fen,<br>Those dark juices working<br>Him to a saint's kept body,<br><br>
+        Trove of the turfcutters'<br>Honeyed archives, he lies<br>Peat-brown forever,<br>Naked except for the cap.
+      </div>
+      <div class="stanza"><div class="stanza-label">Section II — The Violence</div>
+        Tell me: who will say Aarhus<br>On the day of his Requiem<br>That we pray, mouth-fill<br>Of seeded ground,<br><br>
+        To consecrate and resurrect<br>The scattered, ambushed<br>Flesh of labourers,<br>Stockinged corpses<br><br>
+        Laid out in the farmyards,<br>Tell-tale skin and teeth<br>Flecking the sleepers<br>Of four young brothers, trailed<br><br>
+        For miles along the lines?
+      </div>
+      <div class="stanza"><div class="stanza-label">Section III — The Journey</div>
+        Something of his sad freedom<br>As he rode the tumbril<br>Should come to me, driving,<br>Saying the names<br><br>
+        Tollund, Grauballe, Nebelgard,<br>Watching the pointing hands<br>Of country people,<br>Not knowing their tongue.<br><br>
+        Out here in Jutland<br>In the old man-killing parishes<br>I will feel lost,<br>Unhappy and at home.
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="stanzas">
+    <span class="label">Section-by-Section Analysis</span>
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>Section I — The Body: Pilgrimage and Devotion</span><span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="quote-block"><blockquote>"Some day I will go to Aarhus / To see his peat-brown head, / The mild pods of his eye-lids"</blockquote></div>
+      <p>"Some day I will go" — a determined, future-tense declaration. This is a pilgrimage. The tone is calm, respectful, quiet. "Mild pods of his eye-lids" — tender, gentle. "Pods" suggests something natural, botanical — as if the eyelids are seeds waiting to grow. The Tollund Man is described with extraordinary gentleness for someone who was murdered.</p>
+      <p>"Bridegroom to the goddess" — the man is permanently married to his sacrifice. His death was not random murder but a ritual union with the Earth Goddess. Heaney treats this with profound seriousness. "She tightened her torc on him / And opened her fen" — the goddess claimed him, the bog received him. His body has been transformed from victim to "saint's kept body" — the bog's preservation is a form of sanctification, as if the earth itself canonised him.</p>
+      <p>"I will stand a long time" — contemplation, reverence. Heaney places himself at the museum, standing before the body, understanding that this man and the goddess are now one — permanently joined in a bond that transcends time.</p>
+    </div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>Section II — The Violence: Connecting to the Troubles</span><span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="quote-block"><blockquote>"The scattered, ambushed / Flesh of labourers, / Stockinged corpses / Laid out in the farmyards"</blockquote></div>
+      <p>The register shifts dramatically. Dense religious language — "Requiem," "pray," "consecrate," "resurrect" — frames the violence in sacred terms. Heaney wonders if it would be blasphemous to pray that new life might grow from the broken bodies of the Troubles' victims, as seeds germinate from the ground.</p>
+      <p>The language becomes violently specific: "scattered, ambushed flesh of labourers," "stockinged corpses laid out in the farmyards," "tell-tale skin and teeth / Flecking the sleepers / Of four young brothers, trailed / For miles along the lines." These are real events: the four young brothers is a reference to a 1920s atrocity where four brothers were killed by police and their bodies dragged along railway lines. The graphic violence — flesh, skin, teeth — makes this impossible to aestheticise or distance.</p>
+      <p>The question "Tell me: will he not say a prayer…" is left syntactically unresolved — the sentence trails into the violence. This formal disruption enacts the disruption of the violence itself: language, like the bodies, is broken.</p>
+    </div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>Section III — The Journey: "Unhappy and at Home"</span><span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="quote-block"><blockquote>"Out here in Jutland / In the old man-killing parishes / I will feel lost, / Unhappy and at home."</blockquote></div>
+      <p>Heaney imagines driving through Jutland, the Danish landscape where the Tollund Man was found. He does not speak the language — he is a foreigner, lost. The place names — "Tollund, Grauballe, Nebelgard" — are foreign, uncomfortable, slightly threatening sounds on an Irish tongue. He is genuinely alien here.</p>
+      <p>And yet: "Unhappy and at home." The violence of this place — "the old man-killing parishes" — is familiar. It reminds him of home. The parishes of Northern Ireland are also man-killing; the violence of ancient Jutland is no different from the violence of contemporary Belfast or Derry. This is Heaney's most disturbing and honest conclusion: he recognises the violence here because he has lived with it all his life. Ireland and Jutland are not so different. Home is a place of violence too.</p>
+      <p>"Something of his sad freedom" — the Tollund Man rode to his death on a farm cart. He was, in a terrible way, free — he had accepted his fate. Heaney wants some of that acceptance, that dignified resignation, that "sad freedom." He is not free; he is trapped between identifying with Ireland and being horrified by its violence.</p>
+    </div></div>
+  </div>
+
+  <div class="tab-panel" id="quotes">
+    <span class="label">Key Quotes</span>
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"The mild pods of his eye-lids"</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Metaphor</span><span class="tech-pill">Tenderness</span><span class="tech-pill">Nature Imagery</span>
+    <div class="quote-block"><div class="quote-ref">The body described with botanical tenderness</div><blockquote>"The mild pods of his eye-lids"</blockquote><div class="quote-body"><p>"Pods" — a botanical metaphor, as if the eyelids contain seeds. The word is gentle, natural, organic. Heaney approaches this murdered man with extraordinary tenderness, refusing to see him as a mere victim. The mildness of his expression suggests peace, even in violent death. This is the paradox at the poem's heart: a murdered man who appears serene, preserved, almost sacred.</p></div></div></div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"Bridegroom to the goddess"</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Metaphor</span><span class="tech-pill">Ritual</span><span class="tech-pill">Marriage</span>
+    <div class="quote-block"><div class="quote-ref">Sacrifice as sacred marriage — permanent union with the earth</div><blockquote>"Bridegroom to the goddess"</blockquote><div class="quote-body"><p>A bridegroom enters a permanent, life-long bond. The Tollund Man is now permanently married to his sacrifice — to the goddess and to the bog. His death was not meaningless murder but a ritual union. Heaney uses the language of marriage to elevate the victim's status. This is also implicitly a comment on those who die for Ireland — are they also "bridegrooms" to the goddess of Ireland? The question hangs over the poem.</p></div></div></div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"scattered, ambushed / Flesh of labourers"</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Violent Imagery</span><span class="tech-pill">Alliteration</span><span class="tech-pill">The Troubles</span>
+    <div class="quote-block"><div class="quote-ref">The explicit connection to the Troubles — graphic and unavoidable</div><blockquote>"The scattered, ambushed / Flesh of labourers"</blockquote><div class="quote-body"><p>The violence becomes explicit and graphic. "Ambushed flesh" is deliberately shocking — flesh reduced to scattered pieces. "Labourers" — these are ordinary working people, not soldiers. Their ordinariness makes the violence more horrifying. This is the moment Heaney connects the Tollund Man's ancient ritual death to the contemporary, random, senseless killing of the Troubles.</p></div></div></div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"In the old man-killing parishes"</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Irony</span><span class="tech-pill">Place</span><span class="tech-pill">Connection</span>
+    <div class="quote-block"><div class="quote-ref">Jutland as Northern Ireland — the violence is the same</div><blockquote>"In the old man-killing parishes"</blockquote><div class="quote-body"><p>"Parishes" — religious, community, Irish-sounding. "Man-killing" — brutally factual. Heaney takes a Danish landscape and makes it sound Irish by using the word "parishes." The connection is explicit: the parishes of Jutland and the parishes of Northern Ireland are both "man-killing." Violence is not confined to one place or one time — it is universal and recurring. The word "old" suggests this killing has always been happening.</p></div></div></div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"I will feel lost, / Unhappy and at home."</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Oxymoron</span><span class="tech-pill">Honesty</span><span class="tech-pill">Identity</span>
+    <div class="quote-block"><div class="quote-ref">The poem's most disturbing conclusion — violence as familiar</div><blockquote>"I will feel lost, / Unhappy and at home."</blockquote><div class="quote-body"><p>The most powerful line of the poem. "Unhappy and at home" is an oxymoron that perfectly captures Heaney's position: he is a foreigner in Jutland (lost, unhappy) but the violence here is so familiar it feels like home. He recognises it. He has lived with it. This is a profoundly honest and disturbing admission — that for someone from Northern Ireland, violence feels like home.</p></div></div></div></div>
+  </div>
+
+  <div class="tab-panel" id="techniques">
+    <span class="label">Poetic Techniques</span>
+    <div class="two-col">
+      <div class="info-card"><h2>📐 Three-Part Structure</h2><p>The poem moves from devotion (Section I: the body, pilgrimage, tender description) to horror (Section II: the violence, graphic imagery, broken syntax) to connection (Section III: the journey, foreign familiarity, disturbing self-recognition). The three sections enact the emotional journey from admiration to anger to painful self-knowledge.</p></div>
+      <div class="info-card"><h2>✝️ Religious Language</h2><p>Section II is saturated with religious vocabulary: "Requiem," "pray," "consecrate," "resurrect," "holy ground." This places the Troubles' violence in a sacred frame — Heaney treats the dead with the seriousness of martyrs. He wonders if praying for meaning from these deaths is blasphemous, or the only appropriate response.</p></div>
+      <div class="info-card"><h2>📐 Short Four-Line Stanzas</h2><p>Short, clipped stanzas — "maybe reminiscent of the layers of digging in Bogland." Each stanza excavates a little further. The form forces precision, prevents excess, creates pauses for reflection between each revelation. The brevity mirrors the controlled grief of the poem.</p></div>
+      <div class="info-card"><h2>🔊 Consonance &amp; Sibilance</h2><p>Harsh sibilance in Section II — "scattered, ambushed," "stockinged corpses," "skin and teeth" — forces the reader to slow down, to sit with the violent images. The sounds of violence are physically uncomfortable to produce in the mouth, making the reader complicit in speaking them.</p></div>
+      <div class="info-card"><h2>🗺️ Place Names</h2><p>"Tollund, Grauballe, Nebelgard" — foreign names that create discomfort in an Irish mouth. They are deliberately alien, emphasising Heaney's foreignness in Jutland. Yet the word "parishes" immediately localises the landscape — making it Irish. The juxtaposition creates the poem's central tension: foreign yet familiar, alien yet at home.</p></div>
+      <div class="info-card"><h2>🌿 Contrast: Sacred/Violent</h2><p>The poem moves between the sacred (saint, altar, bridegroom, goddess) and the violently physical (flesh, teeth, corpses, trailed bodies). The contrast is deliberate: Heaney refuses to choose between seeing violence as sacred sacrifice and seeing it as mere murder. Both are true simultaneously, and that is the horror.</p></div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="context">
+    <span class="label">Context &amp; Exam Preparation</span>
+    <div class="box b-exam"><div class="ico">🎓</div><div><div class="box-label">Key Exam Argument</div>
+    <p>This poem works by <em>analogy and association</em> — Heaney never directly names the Troubles, but uses the Tollund Man as a mythological parallel that allows him to approach the violence obliquely. Always discuss the three-section structure, the religious language framing violence as sacrifice, and the devastating final oxymoron "unhappy and at home." The poem argues that ritual killing — ancient or modern — is ultimately senseless.</p></div></div>
+    <div class="info-card"><h2>Links to Other Heaney Poems</h2><ul>
+      <li><strong>Bogland:</strong> The most direct companion — both poems use the Irish/Danish bog as a space that preserves bodies and connects past violence to present. Bogland establishes the symbolic geography that Tollund Man inhabits.</li>
+      <li><strong>A Constable Calls:</strong> Both are political poems dealing with the Troubles. Constable Calls is intimate and domestic; Tollund Man is mythological and historical. Together they show the Troubles invading both private homes and ancient landscapes.</li>
+      <li><strong>Postscript:</strong> Both poems involve journeys — a pilgrimage of sorts — where the physical landscape triggers profound emotional and spiritual revelation.</li>
+    </ul></div>
+    <div class="box b-tip"><div class="ico">💡</div><div><div class="box-label">Essential Exam Quote</div>
+    <p>"Unhappy and at home" — the poem's most disturbing and most honest line. Use it to argue that for Heaney, violence is not an aberration in Irish/Northern Irish experience but a familiar presence, woven into the landscape of everyday life.</p></div></div>
+  </div>
+</div>
+<script>
+function switchTab(btn,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(id).classList.add('active');}
+function toggleAcc(btn){const body=btn.nextElementSibling;const isOpen=btn.classList.contains('open');document.querySelectorAll('.acc-btn.open').forEach(b=>{b.classList.remove('open');b.nextElementSibling.classList.remove('open');});if(!isOpen){btn.classList.add('open');body.classList.add('open');}}
+</script>
+</body>
+</html>

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Heaney — Mossbawn: Sunlight</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F6F3EE;--surface:#FFFFFF;--surface2:#EEE9E2;--border:#E2DDD7;--text:#2C2825;--muted:#7A7068;--c:#b07a10;--cl:#fdf3dc;--cd:#6a4808;--radius:14px;--shadow:0 4px 20px rgba(0,0,0,0.08);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;font-size:16px;}
+nav{position:sticky;top:0;z-index:100;background:rgba(246,243,238,0.97);backdrop-filter:blur(10px);border-bottom:2px solid var(--border);padding:8px 16px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;min-height:52px;}
+.nav-logo{font-family:'Lexend Mega',sans-serif;font-size:0.85rem;color:var(--text);margin-right:4px;text-decoration:none;white-space:nowrap;}.nav-logo span{color:#5a6e3a;}
+.nav-divider{width:1px;height:20px;background:var(--border);flex-shrink:0;}
+.nav-btn{padding:5px 11px;border-radius:18px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.72rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);text-decoration:none;white-space:nowrap;}
+.nav-btn:hover{transform:translateY(-2px);}
+.nav-btn.home:hover,.nav-btn.home.active{background:#2c2825;border-color:#2c2825;color:#fff;}
+.nav-btn.forge:hover,.nav-btn.forge.active{background:#8B4513;border-color:#8B4513;color:#fff;}
+.nav-btn.bogland:hover,.nav-btn.bogland.active{background:#4a6741;border-color:#4a6741;color:#fff;}
+.nav-btn.tollund:hover,.nav-btn.tollund.active{background:#5a4a2a;border-color:#5a4a2a;color:#fff;}
+.nav-btn.constable:hover,.nav-btn.constable.active{background:#2a3a5a;border-color:#2a3a5a;color:#fff;}
+.nav-btn.sunlight:hover,.nav-btn.sunlight.active{background:#b07a10;border-color:#b07a10;color:#fff;}
+.nav-btn.pitchfork:hover,.nav-btn.pitchfork.active{background:#5a3a1a;border-color:#5a3a1a;color:#fff;}
+.nav-btn.postscript:hover,.nav-btn.postscript.active{background:#1a4a5a;border-color:#1a4a5a;color:#fff;}
+.nav-btn.flash:hover,.nav-btn.flash.active{background:#3a3a5a;border-color:#3a3a5a;color:#fff;}
+.nav-btn.links:hover,.nav-btn.links.active{background:#5a1a3a;border-color:#5a1a3a;color:#fff;}
+.section{padding:0 16px 80px;max-width:940px;margin:0 auto;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.hero{background:linear-gradient(135deg,var(--cd),var(--c));color:#fff;padding:44px 32px 36px;text-align:center;margin-bottom:32px;}
+.hero .poem-label{font-size:0.75rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;opacity:0.75;margin-bottom:10px;}
+.hero h1{font-family:'Lexend Mega',sans-serif;font-size:clamp(1.6rem,4vw,2.6rem);line-height:1.15;margin-bottom:12px;}
+.hero p{opacity:0.88;max-width:620px;margin:0 auto;font-size:0.96rem;}
+.hero-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px;}
+.hero-chip{background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:4px 14px;border-radius:20px;font-size:0.75rem;font-weight:600;}
+.tab-bar{display:flex;gap:4px;flex-wrap:wrap;padding:22px 0 8px;border-bottom:2px solid var(--border);margin-bottom:28px;}
+.tab{padding:8px 18px;border-radius:10px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.8rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);}
+.tab:hover,.tab.active{background:var(--c);color:#fff;border-color:var(--c);}
+.tab-panel{display:none;}.tab-panel.active{display:block;animation:fadeIn 0.25s ease;}
+.info-card{background:var(--surface);border-radius:var(--radius);padding:24px 26px;margin-bottom:20px;box-shadow:var(--shadow);border-left:5px solid var(--c);}
+.info-card h2{font-size:1.1rem;font-weight:700;margin-bottom:12px;}
+.info-card p{margin-bottom:9px;font-size:0.94rem;}
+.info-card ul{padding-left:20px;margin-bottom:9px;}
+.info-card li{margin-bottom:5px;font-size:0.93rem;}
+.quote-block{border-left:4px solid var(--c);background:var(--cl);border-radius:0 var(--radius) var(--radius) 0;padding:16px 20px;margin:16px 0;}
+.quote-block blockquote{font-family:'Lexend Mega',sans-serif;font-size:0.95rem;font-style:italic;margin-bottom:8px;line-height:1.5;}
+.quote-ref{font-size:0.73rem;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--muted);margin-bottom:10px;}
+.quote-body{font-size:0.91rem;line-height:1.75;}.quote-body p{margin-bottom:8px;}
+.tech-pill{display:inline-block;background:var(--c);color:#fff;font-size:0.72rem;font-weight:700;padding:2px 9px;border-radius:5px;margin:2px;}
+.box{border-radius:var(--radius);padding:14px 18px;margin:14px 0;display:flex;gap:12px;align-items:flex-start;}
+.box .ico{font-size:1.5rem;flex-shrink:0;line-height:1.2;}
+.box-label{font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;margin-bottom:4px;}
+.box p{font-size:0.91rem;}
+.b-exam{background:#eaf4fb;border:2px solid #5dade2;}.b-exam .box-label{color:#1a6b9a;}
+.b-tip{background:#fffbf0;border:2px solid #f39c12;}.b-tip .box-label{color:#b7770d;}
+.acc{margin-bottom:10px;}
+.acc-btn{width:100%;text-align:left;background:var(--surface);border:2px solid var(--border);border-radius:var(--radius);padding:14px 18px;font-family:'Lexend',sans-serif;font-size:0.92rem;font-weight:600;cursor:pointer;color:var(--text);display:flex;justify-content:space-between;align-items:center;transition:background 0.15s;}
+.acc-btn:hover{background:#f5f0e8;}.acc-btn.open{border-radius:var(--radius) var(--radius) 0 0;border-bottom-color:transparent;}
+.acc-btn .arr{transition:transform 0.25s;margin-left:8px;flex-shrink:0;}.acc-btn.open .arr{transform:rotate(180deg);}
+.acc-body{display:none;background:var(--surface);border:2px solid var(--border);border-top:none;border-radius:0 0 var(--radius) var(--radius);padding:20px 22px;}
+.acc-body.open{display:block;}.acc-body p{font-size:0.91rem;margin-bottom:8px;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.label{font-size:0.72rem;font-weight:800;text-transform:uppercase;letter-spacing:0.8px;color:var(--muted);margin-bottom:16px;display:block;}
+.poem-text{background:var(--surface);border:2px solid var(--border);border-radius:var(--radius);padding:28px 32px;font-family:Georgia,serif;font-size:1.05rem;line-height:2;box-shadow:var(--shadow);}
+.poem-text .stanza{margin-bottom:1.6em;}
+.poem-text .stanza-label{font-family:'Lexend',sans-serif;font-size:0.65rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:6px;}
+@media(max-width:680px){.two-col{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="Heaney.html">✒️ <span>Heaney</span></a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn home" href="Heaney.html">Home</a>
+  <a class="nav-btn forge" href="Heaney_Forge.html">The Forge</a>
+  <a class="nav-btn bogland" href="Heaney_Bogland.html">Bogland</a>
+  <a class="nav-btn tollund" href="Heaney_TollundMan.html">Tollund Man</a>
+  <a class="nav-btn constable" href="Heaney_ConstableCalls.html">Constable</a>
+  <a class="nav-btn sunlight active" href="Heaney_Sunlight.html">Sunlight</a>
+  <a class="nav-btn pitchfork" href="Heaney_Pitchfork.html">Pitchfork</a>
+  <a class="nav-btn postscript" href="Heaney_Postscript.html">Postscript</a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn flash" href="Heaney_Flashcards.html">🃏 Flashcards</a>
+  <a class="nav-btn links" href="Heaney_Links.html">🔗 Links</a>
+</nav>
+<div class="hero">
+  <div class="poem-label">Poem 5 · North · 1975</div>
+  <h1>Mossbawn: Sunlight</h1>
+  <p>A luminous portrait of Aunt Mary baking in the sunlit farmyard kitchen — a warm, tender poem of love, memory, and the extraordinary beauty of the ordinary.</p>
+  <div class="hero-chips">
+    <span class="hero-chip">Love &amp; Memory</span><span class="hero-chip">Childhood</span><span class="hero-chip">The Ordinary Elevated</span><span class="hero-chip">Nostalgia</span><span class="hero-chip">Domestic Beauty</span>
+  </div>
+</div>
+<div class="section">
+  <div class="tab-bar">
+    <button class="tab active" onclick="switchTab(this,'overview')">📋 Overview</button>
+    <button class="tab" onclick="switchTab(this,'poem')">📜 The Poem</button>
+    <button class="tab" onclick="switchTab(this,'stanzas')">🔍 Section Analysis</button>
+    <button class="tab" onclick="switchTab(this,'quotes')">💬 Key Quotes</button>
+    <button class="tab" onclick="switchTab(this,'techniques')">🎨 Techniques</button>
+    <button class="tab" onclick="switchTab(this,'context')">🎓 Exam Prep</button>
+  </div>
+
+  <div class="tab-panel active" id="overview">
+    <div class="info-card"><h2>📋 Background &amp; Overview</h2>
+      <p>"Sunlight" opens the collection <em>North</em> (1975) — a collection dealing largely with the violence of the Troubles. It is striking that Heaney chooses to begin this collection of violence with a poem of warmth, peace, and love. The contrast is both aesthetic and political: this is what is being destroyed by the violence outside.</p>
+      <p>The poem is dedicated to Mary Heaney — his Aunt Mary, who lived at Mossbawn (the family farm) and was effectively a second mother to him. He described her as "always there as a kind of second mother" and "a tower of emotional strength… I loved her dearly." The poem is set in the farmyard and kitchen, which was for Heaney his own version of Eden — "portrayed beautifully, peacefully, basked in sunlight — almost glowing."</p>
+      <p>This is a warm poem about love and nourishment — Heaney observes his aunt baking, and concludes simply and profoundly: "this is love." The word "love" is the poem's destination, its entire argument delivered in three words at the close.</p>
+    </div>
+    <div class="info-card"><h2>🎯 Core Themes</h2><ul>
+      <li><strong>Love and Nourishment:</strong> Aunt Mary's baking is an act of love — she feeds the family literally and metaphorically. The poem ends by naming this explicitly: "this is love."</li>
+      <li><strong>The Ordinary Made Extraordinary:</strong> Baking scones, dusting a board, sitting by a fire — these are the most ordinary actions, yet Heaney's attention makes them glow. This is the Nobel Prize citation: "exalt everyday miracles."</li>
+      <li><strong>Memory and Nostalgia:</strong> The poem recreates a remembered scene — past tense would suggest memory, but Heaney uses present tense, as if freezing the moment forever in the poem.</li>
+      <li><strong>The Private World as Sanctuary:</strong> Mossbawn is untouched by the Troubles — it is a private, enclosed, sunlit world. This makes it all the more precious and all the more precarious.</li>
+      <li><strong>Hidden Love:</strong> Love, like the tinsmith's scoop buried in the flour, is not always visible — but it is always there.</li>
+    </ul></div>
+    <div class="box b-exam"><div class="ico">🎓</div><div><div class="box-label">Nobel Prize Connection</div>
+    <p>Heaney was awarded the Nobel Prize for literature "for works of lyrical beauty and ethical depth, which exalt everyday miracles and the living past." This poem is the perfect illustration — an absolutely ordinary act (baking scones) rendered in language of such precise beauty that it becomes miraculous. Always quote the Nobel citation in relation to this poem.</p></div></div>
+  </div>
+
+  <div class="tab-panel" id="poem">
+    <div class="poem-text">
+      <div class="stanza"><div class="stanza-label">Lines 1–9: The Farmyard</div>
+        There was a sunlit absence.<br>The helmeted pump in the yard<br>heated its iron,<br>water honeyed<br><br>
+        in the slung bucket<br>and the sun stood<br>like a griddle cooling<br>against the wall<br><br>
+        of each long afternoon.
+      </div>
+      <div class="stanza"><div class="stanza-label">Lines 10–16: The Aunt Arrives</div>
+        So, her hands scuffled<br>over the bakeboard,<br>the reddening stove<br>sent its plaque of heat<br><br>
+        against her where she stood<br>in a floury apron<br>by the window.
+      </div>
+      <div class="stanza"><div class="stanza-label">Lines 17–21: The Portrait</div>
+        Now she dusts the board<br>with a goose's wing,<br>now sits, broad-lapped,<br>with whitened nails<br><br>
+        and measling shins:<br>here is a space<br>again, the scone rising<br>to the tick of two clocks.
+      </div>
+      <div class="stanza"><div class="stanza-label">Lines 22–24: The Conclusion</div>
+        And here is love<br>like a tinsmith's scoop<br>sunk past its gleam<br>in the meal-bin.
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="stanzas">
+    <span class="label">Section-by-Section Analysis</span>
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>Lines 1–9: The Farmyard — A Sunlit Absence</span><span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="quote-block"><blockquote>"There was a sunlit absence. / The helmeted pump in the yard / heated its iron, / water honeyed / in the slung bucket"</blockquote></div>
+      <p>"A sunlit absence" — one of the most beautiful opening images in Heaney's work. The farmyard is empty — no people, no activity — yet the sunlight fills it completely. The absence is not empty: it is full of light, warmth, peace. There is no stress here, no pressure, no constable. The absence of people is itself a kind of presence — the presence of peace.</p>
+      <p>"The helmeted pump in the yard" — the pump is personified, wearing a helmet. This is gently militaristic, but warmly so — the pump stands guard like a sentinel, but a benign one. Contrast this with the constable's actual helmet and weapons: the pump's "helmet" is safe, domestic, friendly. "Water honeyed / in the slung bucket" — water becomes honey, golden, sweet. The transformation of the ordinary (water) into the precious (honey) is exactly what the poem performs throughout: the ordinary becomes extraordinary.</p>
+      <p>"The sun stood / like a griddle cooling" — the sun is compared to a domestic cooking object. The metaphor brings the sun into the kitchen, domesticates it, makes it warm and useful. This is Heaney's genius: he does not look upward to the sun as cosmic symbol, but brings it down to kitchen level, where his aunt lives and works.</p>
+    </div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>Lines 10–16: Aunt Mary — "In a floury apron"</span><span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="quote-block"><blockquote>"her hands scuffled / over the bakeboard, / the reddening stove / sent its plaque of heat / against her where she stood / in a floury apron"</blockquote></div>
+      <p>The aunt is introduced through action — her hands scuffling over the bakeboard, the stove sending heat against her. She is not glamorous; she is real. "Floury apron" is the precise, unglamorous, specific detail that makes her present and human. "A plaque of heat" — the stove's warmth is like a medal being awarded to her, a recognition of her work and her devotion.</p>
+      <p>The movement from the farmyard (empty, sunlit) to the kitchen (active, warm, productive) mirrors the poem's movement from absence to presence, from stillness to the living human being at its centre. Heaney's technique is characteristic: he always moves from place/object to person, from the exterior to the interior of a life.</p>
+    </div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>Lines 17–21: "Now she dusts... now sits" — Frozen in Time</span><span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="quote-block"><blockquote>"Now she dusts the board / with a goose's wing, / now sits, broad-lapped, / with whitened nails / and measling shins"</blockquote></div>
+      <p>The repeated "now" creates a freeze-frame effect — Heaney is encasing his aunt forever in this moment of the poem. She will always be "now" dusting, "now" sitting. The present tense preserves her in the poem as the bog preserves bodies — permanently, lovingly, faithfully.</p>
+      <p>"Broad-lapped" — her lap is wide, generous, maternal. "Whitened nails" from the flour; "measling shins" reddened from the fire's heat. These are the marks of her work — physical evidence of her craft and devotion written on her body. Heaney described his aunt as having "white hair and a fair rosy face" — the poem gives her these colours. White is pure, reverential; red is vital, alive. Together they make her real and precious.</p>
+      <p>"The scone rising / to the tick of two clocks" — the baking proceeds in time, measured by clocks. The ticking here is warm and domestic — contrast it with the ominous ticking of the constable's bicycle in the companion poem. Same sound, entirely different meaning depending on context.</p>
+    </div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>Lines 22–24: "And here is love" — The Conclusion</span><span class="arr">▼</span></button>
+    <div class="acc-body">
+      <div class="quote-block"><blockquote>"And here is love / like a tinsmith's scoop / sunk past its gleam / in the meal-bin."</blockquote></div>
+      <p>The poem's destination. Three words: "And here is love." After all the precise, loving observation — the sunlit absence, the honeyed water, the floury apron, the whitened nails — this is the conclusion. Not a metaphor, not an argument — simply a declaration. This is love. The ordinary acts of a woman baking for her family are love. Nothing else needs to be said.</p>
+      <p>But Heaney cannot resist the perfect final simile: love is "like a tinsmith's scoop / sunk past its gleam / in the meal-bin." The scoop is buried in the flour — you cannot see it. Its gleam is hidden. But it is there, always, doing its work. His aunt's love is like this: not visible, not performed, not declared — but permanently present, permanently working, permanently nourishing. The scoop's gleam "sunk past" — it has gone below the surface of the ordinary, but it is there. This is what love is: not dramatic but constant; not visible but real.</p>
+    </div></div>
+  </div>
+
+  <div class="tab-panel" id="quotes">
+    <span class="label">Key Quotes</span>
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"There was a sunlit absence"</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Oxymoron</span><span class="tech-pill">Setting</span><span class="tech-pill">Peace</span>
+    <div class="quote-block"><div class="quote-ref">The poem's beautiful opening — emptiness as fullness</div><blockquote>"There was a sunlit absence."</blockquote><div class="quote-body"><p>An oxymoron of warmth: absence is emptiness, but here it is "sunlit" — filled with golden light. The farmyard is empty of people yet full of peace, warmth, beauty. This immediately establishes Mossbawn as a sanctuary — a place where absence is not loneliness but a kind of bliss. The contrast with the stressful, populated world outside is implicit and immediate.</p></div></div></div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"water honeyed / in the slung bucket"</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Metaphor</span><span class="tech-pill">Sensory Imagery</span><span class="tech-pill">Transformation</span>
+    <div class="quote-block"><div class="quote-ref">The ordinary made precious — water as honey</div><blockquote>"water honeyed / in the slung bucket"</blockquote><div class="quote-body"><p>Plain water becomes honey — golden, sweet, precious — simply by being held in sunlight in a bucket at Mossbawn. This is the poem's characteristic move: the most ordinary thing (water in a bucket) becomes extraordinary through the quality of Heaney's attention. The word "slung" is precise and physical — the bucket hangs carelessly, naturally, without ceremony, which makes the honey all the more remarkable.</p></div></div></div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"in a floury apron"</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Precise Detail</span><span class="tech-pill">Character</span><span class="tech-pill">Ordinary</span>
+    <div class="quote-block"><div class="quote-ref">The aunt made real through unglamorous, precise detail</div><blockquote>"in a floury apron"</blockquote><div class="quote-body"><p>Three words that make Aunt Mary wholly present. No flattery, no idealisation — just the plain, specific detail of a woman who has been working with flour. This is Heaney's most characteristic technique: the unglamorous detail that makes someone more real, more loveable, more human than any praise could. Compare to the blacksmith's "hairs in his nose" — specificity is reverence.</p></div></div></div></div>
+
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>"And here is love / like a tinsmith's scoop / sunk past its gleam"</span><span class="arr">▼</span></button>
+    <div class="acc-body"><span class="tech-pill">Simile</span><span class="tech-pill">Revelation</span><span class="tech-pill">Hidden Love</span>
+    <div class="quote-block"><div class="quote-ref">The poem's final declaration — love as invisible but permanent</div><blockquote>"And here is love / like a tinsmith's scoop / sunk past its gleam / in the meal-bin."</blockquote><div class="quote-body"><p>The poem's perfect conclusion. The scoop is hidden in the flour, its gleam invisible — but it is there, always there, always doing its work. Love is like this: not dramatic or visible, but constant, practical, nourishing, permanent. The domestic simplicity of the image (a kitchen scoop in a flour bin) is exactly right — this is where love lives: not in grand gestures but in the daily act of baking for your family.</p></div></div></div></div>
+  </div>
+
+  <div class="tab-panel" id="techniques">
+    <span class="label">Poetic Techniques</span>
+    <div class="two-col">
+      <div class="info-card"><h2>📐 Short Four-Line Stanzas</h2><p>Simple, compact form reflects the simple life the poem celebrates. The poem is deliberately long (for short stanzas) because Heaney wants to linger in this moment of peace — to slow down, to stay. The length mirrors his refusal to leave the scene quickly. He dwells, as he says his aunt dwelt.</p></div>
+      <div class="info-card"><h2>🎵 Sound: Sibilance and Warmth</h2><p>Sibilance throughout is calming rather than sinister: "here is a space again / the scone rising," "water honeyed in the slung bucket." The "s" and "h" sounds create warmth — the sounds of exhaling, of breath, of relaxation. Every sound device in this poem works toward peace and warmth, in deliberate contrast to the harsh consonants of A Constable Calls.</p></div>
+      <div class="info-card"><h2>⏸️ Present Tense: "Now"</h2><p>Heaney uses present tense and the repeated "now" to freeze his aunt in time — she will always be in this moment, always dusting, always sitting. The poem preserves her as the bog preserves bodies: with love and permanence. Present tense gives the poem an immediacy that past tense would diminish.</p></div>
+      <div class="info-card"><h2>🌡️ Warmth Imagery Throughout</h2><p>"Heated its iron," "sun stood like a griddle," "reddening stove," "plaque of heat," "shins" reddened by fire — warmth is the poem's dominant physical quality. This warmth is both literal (a farmyard kitchen) and emotional (love, safety, memory). The poem glows because Heaney wants it to glow.</p></div>
+      <div class="info-card"><h2>🔄 Structure: Place → Object → Person</h2><p>The poem moves characteristically from the farmyard setting (absence, pump, water) to domestic objects (bakeboard, stove, apron) to the person (aunt's hands, shins, nails) to the abstraction (love). This layered approach is typical Heaney: grounding everything in the physical before reaching the emotional truth.</p></div>
+      <div class="info-card"><h2>⏱️ The Ticking Clocks</h2><p>"The scone rising / to the tick of two clocks" — the ticking here is domestic and warm, entirely different from the ominous "ticked, ticked, ticked" of the constable's bicycle. The contrast is deliberate and powerful: the same sound, opposite meanings. In the kitchen, time moves peacefully; outside, it counts down to violence.</p></div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="context">
+    <span class="label">Context &amp; Exam Preparation</span>
+    <div class="box b-exam"><div class="ico">🎓</div><div><div class="box-label">Key Exam Argument</div>
+    <p>This poem perfectly illustrates Heaney's Nobel Prize citation: it "exalts everyday miracles." A woman baking scones is an everyday act; Heaney makes it miraculous through the precision and warmth of his attention. Always discuss the poem's position at the start of <em>North</em> — opening a collection about violence with a poem of peace is a deliberate political and aesthetic choice. Connect to A Constable Calls as the darker twin of the same world.</p></div></div>
+    <div class="info-card"><h2>Links to Other Heaney Poems</h2><ul>
+      <li><strong>A Constable Calls:</strong> The perfect companion — same world, same time, opposite register. Sunlight is the private sanctuary (warm, safe, loving); Constable Calls is the public intrusion (cold, threatening, powerful). Together they show the two faces of Heaney's Catholic childhood.</li>
+      <li><strong>The Pitchfork:</strong> Both celebrate skilled, devoted labour — the aunt baking, the father wielding the pitchfork. Both argue that the ordinary work of ordinary people, done with care and love, is worthy of the highest artistic attention.</li>
+      <li><strong>The Forge:</strong> Both elevate a working person's craft to something sacred. The aunt baking = the blacksmith forging = the poet writing. All three are forms of creative devotion.</li>
+    </ul></div>
+    <div class="box b-tip"><div class="ico">💡</div><div><div class="box-label">Essential Exam Quote</div>
+    <p>"And here is love / like a tinsmith's scoop / sunk past its gleam / in the meal-bin" — the poem's conclusion and its central argument. Use this to show how Heaney finds the extraordinary in the ordinary: love is not visible or dramatic, but it is always there, always present, always nourishing — like a scoop in a flour bin.</p></div></div>
+  </div>
+</div>
+<script>
+function switchTab(btn,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(id).classList.add('active');}
+function toggleAcc(btn){const body=btn.nextElementSibling;const isOpen=btn.classList.contains('open');document.querySelectorAll('.acc-btn.open').forEach(b=>{b.classList.remove('open');b.nextElementSibling.classList.remove('open');});if(!isOpen){btn.classList.add('open');body.classList.add('open');}}
+</script>
+</body>
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Heaney — Thematic Links</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F6F3EE;--surface:#fff;--border:#E2DDD7;--text:#2C2825;--muted:#7A7068;--radius:14px;--shadow:0 4px 20px rgba(0,0,0,0.08);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;font-size:16px;}
+nav{position:sticky;top:0;z-index:100;background:rgba(246,243,238,0.97);backdrop-filter:blur(10px);border-bottom:2px solid var(--border);padding:8px 16px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;min-height:52px;}
+.nav-logo{font-family:'Lexend Mega',sans-serif;font-size:0.85rem;color:var(--text);margin-right:4px;text-decoration:none;white-space:nowrap;}.nav-logo span{color:#5a6e3a;}
+.nav-divider{width:1px;height:20px;background:var(--border);flex-shrink:0;}
+.nav-btn{padding:5px 11px;border-radius:18px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.72rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);text-decoration:none;white-space:nowrap;}
+.nav-btn:hover{transform:translateY(-2px);}
+.nav-btn.home:hover{background:#2c2825;border-color:#2c2825;color:#fff;}
+.nav-btn.forge:hover{background:#8B4513;border-color:#8B4513;color:#fff;}
+.nav-btn.bogland:hover{background:#4a6741;border-color:#4a6741;color:#fff;}
+.nav-btn.tollund:hover{background:#5a4a2a;border-color:#5a4a2a;color:#fff;}
+.nav-btn.constable:hover{background:#2a3a5a;border-color:#2a3a5a;color:#fff;}
+.nav-btn.sunlight:hover{background:#b07a10;border-color:#b07a10;color:#fff;}
+.nav-btn.pitchfork:hover{background:#5a3a1a;border-color:#5a3a1a;color:#fff;}
+.nav-btn.postscript:hover{background:#1a4a5a;border-color:#1a4a5a;color:#fff;}
+.nav-btn.flash:hover{background:#3a3a5a;border-color:#3a3a5a;color:#fff;}
+.nav-btn.links.active{background:#5a1a3a;border-color:#5a1a3a;color:#fff;}
+.page{max-width:980px;margin:0 auto;padding:40px 20px 80px;}
+.hero{text-align:center;padding:36px 20px 28px;}
+.hero h1{font-family:'Lexend Mega',sans-serif;font-size:1.9rem;margin-bottom:10px;}
+.hero p{color:var(--muted);font-size:0.95rem;max-width:580px;margin:0 auto;}
+.section-label{font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--muted);display:flex;align-items:center;gap:12px;margin:40px 0 20px;}
+.section-label::after{content:'';flex:1;height:2px;background:var(--border);border-radius:4px;}
+.theme-card{background:var(--surface);border-radius:var(--radius);padding:26px 28px;margin-bottom:18px;box-shadow:var(--shadow);}
+.theme-card h2{font-size:1.05rem;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+.theme-card p{font-size:0.92rem;color:var(--muted);margin-bottom:14px;line-height:1.7;}
+.poem-pills{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;}
+.pill{font-size:0.72rem;font-weight:700;padding:3px 11px;border-radius:12px;color:#fff;}
+.pill-forge{background:#8B4513;}.pill-bogland{background:#4a6741;}.pill-tollund{background:#5a4a2a;}.pill-constable{background:#2a3a5a;}.pill-sunlight{background:#b07a10;}.pill-pitchfork{background:#5a3a1a;}.pill-postscript{background:#1a4a5a;}
+.compare-table{width:100%;border-collapse:collapse;font-size:0.86rem;margin-top:12px;}
+.compare-table th{background:#f5f0e8;padding:9px 12px;text-align:left;font-weight:700;border:1px solid var(--border);}
+.compare-table td{padding:9px 12px;border:1px solid var(--border);vertical-align:top;line-height:1.55;}
+.compare-table tr:nth-child(even) td{background:#fafaf8;}
+.exam-sentence{background:#eaf4fb;border-left:4px solid #5dade2;border-radius:0 var(--radius) var(--radius) 0;padding:12px 16px;margin:10px 0;font-size:0.88rem;line-height:1.65;}
+.exam-sentence strong{color:#1a6b9a;font-size:0.7rem;text-transform:uppercase;letter-spacing:.5px;display:block;margin-bottom:4px;}
+.tension-table{width:100%;border-collapse:collapse;font-size:0.86rem;margin-top:12px;}
+.tension-table th{padding:10px 14px;text-align:center;font-weight:700;border:1px solid var(--border);background:#f5f0e8;}
+.tension-table td{padding:10px 14px;border:1px solid var(--border);text-align:center;font-size:0.84rem;}
+.tension-table tr:nth-child(even) td{background:#fafaf8;}
+.quick-ref-table{width:100%;border-collapse:collapse;font-size:0.86rem;}
+.quick-ref-table th{background:#2c2825;color:#fff;padding:9px 12px;text-align:left;}
+.quick-ref-table td{padding:9px 12px;border:1px solid var(--border);vertical-align:top;}
+.quick-ref-table tr:nth-child(even) td{background:#fafaf8;}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="Heaney.html">✒️ <span>Heaney</span></a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn home" href="Heaney.html">Home</a>
+  <a class="nav-btn forge" href="Heaney_Forge.html">The Forge</a>
+  <a class="nav-btn bogland" href="Heaney_Bogland.html">Bogland</a>
+  <a class="nav-btn tollund" href="Heaney_TollundMan.html">Tollund Man</a>
+  <a class="nav-btn constable" href="Heaney_ConstableCalls.html">Constable</a>
+  <a class="nav-btn sunlight" href="Heaney_Sunlight.html">Sunlight</a>
+  <a class="nav-btn pitchfork" href="Heaney_Pitchfork.html">Pitchfork</a>
+  <a class="nav-btn postscript" href="Heaney_Postscript.html">Postscript</a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn flash" href="Heaney_Flashcards.html">🃏 Flashcards</a>
+  <a class="nav-btn links active" href="Heaney_Links.html">🔗 Links</a>
+</nav>
+<div class="page">
+  <div class="hero">
+    <h1>🔗 Thematic Links</h1>
+    <p>How the seven poems connect across shared themes — with comparison tables and ready-to-use exam sentences for every major link.</p>
+  </div>
+
+  <div class="section-label">🔨 Theme 1 — Craft, Skill &amp; Creativity</div>
+  <div class="theme-card">
+    <h2>🔨 The Ordinary as Art: Craft, Skill, and Creative Devotion</h2>
+    <div class="poem-pills"><span class="pill pill-forge">The Forge</span><span class="pill pill-pitchfork">The Pitchfork</span><span class="pill pill-sunlight">Mossbawn: Sunlight</span></div>
+    <p>Three of Heaney's poems celebrate skilled, devoted, ordinary work as a form of art. The blacksmith, the father with the pitchfork, and the aunt baking — all are elevated by Heaney's attention from the mundane to the extraordinary. Each poem argues that craft requires imagination, dedication, and love — the same qualities as poetry.</p>
+    <table class="compare-table">
+      <tr><th>Poem</th><th>The Craft / Tool</th><th>Key Image</th><th>Argument</th></tr>
+      <tr><td><strong>The Forge</strong></td><td>Blacksmithing / forge &amp; anvil</td><td>"All I know is a door into the dark"</td><td>The forge IS the imagination; entering the dark is the creative act</td></tr>
+      <tr><td><strong>The Pitchfork</strong></td><td>Farming / pitchfork</td><td>"The undiminished, luminous / Opening of his hands"</td><td>Perfection is in the person, not the tool; mastery is release</td></tr>
+      <tr><td><strong>Mossbawn: Sunlight</strong></td><td>Baking / kitchen</td><td>"love / like a tinsmith's scoop / sunk past its gleam"</td><td>Domestic craft done with love is the highest form of art</td></tr>
+    </table>
+    <div class="exam-sentence"><strong>Exam Sentence</strong>"In 'The Forge', 'The Pitchfork', and 'Mossbawn: Sunlight', Heaney consistently elevates ordinary craft to something sacred — the blacksmith's anvil becomes 'an altar', the pitchfork achieves 'imagined perfection', and the aunt's baking is simply 'love'. All three poems argue that devoted skill, whether with iron, wood, or flour, is a form of devotion equal to poetry itself."</div>
+  </div>
+
+  <div class="section-label">⚔️ Theme 2 — The Troubles: Violence, Power &amp; Fear</div>
+  <div class="theme-card">
+    <h2>⚔️ The Troubles and the Burden of Violence</h2>
+    <div class="poem-pills"><span class="pill pill-tollund">The Tollund Man</span><span class="pill pill-constable">A Constable Calls</span><span class="pill pill-bogland">Bogland</span></div>
+    <p>Three poems deal directly with the violence and politics of Northern Ireland, each from a different angle. Tollund Man uses myth and archaeology as a lens; A Constable Calls uses domestic intimacy; Bogland uses landscape as metaphor. Together they show Heaney's range in approaching the Troubles — always oblique, always honest.</p>
+    <table class="compare-table">
+      <tr><th>Poem</th><th>Approach</th><th>Key Image</th><th>Conclusion</th></tr>
+      <tr><td><strong>Tollund Man</strong></td><td>Mythological / archaeological</td><td>"Unhappy and at home"</td><td>The violence of the Troubles is as senseless as ancient ritual killing — but no less real</td></tr>
+      <tr><td><strong>A Constable Calls</strong></td><td>Domestic / childhood memory</td><td>"the bicycle ticked, ticked, ticked"</td><td>State power invades even the most private, ordinary Catholic home</td></tr>
+      <tr><td><strong>Bogland</strong></td><td>Landscape / national identity</td><td>"Our pioneers keep striking / Inwards and downwards"</td><td>Ireland's violent history is built into the landscape itself — bottomless, inescapable</td></tr>
+    </table>
+    <div class="exam-sentence"><strong>Exam Sentence</strong>"Where Heaney uses the figure of the Tollund Man to place the Troubles in mythological context — connecting modern Ulster to 'the old man-killing parishes' of ancient Jutland — A Constable Calls brings the same violence into the kitchen of a Catholic home, where 'the bicycle ticked, ticked, ticked' like an approaching explosion. Together, they show how the Troubles existed simultaneously in the largest historical frames and in the smallest domestic moments."</div>
+  </div>
+
+  <div class="section-label">🌿 Theme 3 — Irish Identity &amp; Landscape</div>
+  <div class="theme-card">
+    <h2>🌿 Landscape as Identity: Ireland Written in the Earth</h2>
+    <div class="poem-pills"><span class="pill pill-bogland">Bogland</span><span class="pill pill-tollund">The Tollund Man</span><span class="pill pill-postscript">Postscript</span></div>
+    <p>Heaney consistently reads landscape as meaning — the land is not merely scenery but a record of identity, history, and feeling. The bog, the Jutland plain, and the Flaggy Shore are all charged with significance beyond the geographical.</p>
+    <table class="compare-table">
+      <tr><th>Poem</th><th>Landscape</th><th>What It Represents</th><th>Key Quote</th></tr>
+      <tr><td><strong>Bogland</strong></td><td>Irish bogland</td><td>Irish national identity — preserving the past but providing no firm ground</td><td>"The wet centre is bottomless"</td></tr>
+      <tr><td><strong>The Tollund Man</strong></td><td>Jutland, Denmark</td><td>The universal landscape of sacrifice — all man-killing parishes are the same</td><td>"In the old man-killing parishes"</td></tr>
+      <tr><td><strong>Postscript</strong></td><td>Flaggy Shore, County Clare</td><td>The Irish west as a place of unexpected spiritual revelation</td><td>"the earthed lightning of a flock of swans"</td></tr>
+    </table>
+    <div class="exam-sentence"><strong>Exam Sentence</strong>"Landscape is never merely scenery in Heaney — it is always freighted with meaning. In 'Bogland', the bog is Ireland itself — complex, bottomless, preserving the past while offering no firm ground for the future. In 'Postscript', the Flaggy Shore becomes the site of an unexpected spiritual revelation: beauty that 'catches the heart off guard and blows it open.'"</div>
+  </div>
+
+  <div class="section-label">👨‍👩‍👦 Theme 4 — Memory, Childhood &amp; Family</div>
+  <div class="theme-card">
+    <h2>👨‍👩‍👦 The Personal World: Memory, Family, and Love</h2>
+    <div class="poem-pills"><span class="pill pill-sunlight">Mossbawn: Sunlight</span><span class="pill pill-constable">A Constable Calls</span><span class="pill pill-pitchfork">The Pitchfork</span></div>
+    <p>Three poems are rooted in intensely personal memory — childhood at Mossbawn, the family kitchen, the father's work. In each, love, fear, or admiration is conveyed through precise physical observation rather than direct statement.</p>
+    <table class="compare-table">
+      <tr><th>Poem</th><th>Memory / Relationship</th><th>Emotion</th><th>Key Image</th></tr>
+      <tr><td><strong>Mossbawn: Sunlight</strong></td><td>Aunt Mary baking</td><td>Love, warmth, nostalgia</td><td>"love / like a tinsmith's scoop"</td></tr>
+      <tr><td><strong>A Constable Calls</strong></td><td>Boy watching constable</td><td>Fear, guilt, alienation</td><td>"Arithmetic and fear"</td></tr>
+      <tr><td><strong>The Pitchfork</strong></td><td>Father working on farm</td><td>Admiration, tribute, grief</td><td>"luminous / Opening of his hands"</td></tr>
+    </table>
+    <div class="exam-sentence"><strong>Exam Sentence</strong>"Heaney's poetry of family memory works through precise, unglamorous physical detail — the aunt's 'floury apron', the constable's 'polished holster', the father's 'grain of ash'. He never states emotion directly; instead, the emotion is carried entirely by the accumulation of observed detail, so that by the end of 'Mossbawn: Sunlight', three words — 'And here is love' — can carry the weight of an entire childhood."</div>
+  </div>
+
+  <div class="section-label">✨ Theme 5 — The Ordinary Made Extraordinary</div>
+  <div class="theme-card">
+    <h2>✨ Nobel Prize Theme: Exalting Everyday Miracles</h2>
+    <div class="poem-pills"><span class="pill pill-forge">The Forge</span><span class="pill pill-sunlight">Mossbawn: Sunlight</span><span class="pill pill-pitchfork">The Pitchfork</span><span class="pill pill-postscript">Postscript</span><span class="pill pill-bogland">Bogland</span></div>
+    <p>Heaney won the Nobel Prize "for works of lyrical beauty and ethical depth, which exalt everyday miracles and the living past." This is perhaps the most universal theme connecting all seven poems. In each, an ordinary thing — a forge, a bucket of water, a pitchfork, a drive along the coast, a bog — is looked at so precisely and with such care that it becomes extraordinary.</p>
+    <div class="exam-sentence"><strong>Exam Sentence</strong>"The Nobel Prize was awarded to Heaney for works that 'exalt everyday miracles and the living past' — a citation that could stand as the epigraph to his entire work. Whether he is looking at a blacksmith's forge, a bucket of water honeyed by sunlight, or a flock of swans on a lake, his method is always the same: intense, precise, loving attention to the ordinary, until it yields its extraordinary interior."</div>
+  </div>
+
+  <div class="section-label">🔄 Theme 6 — Private World vs Public World</div>
+  <div class="theme-card">
+    <h2>🔄 The Private Sanctuary vs The Public Violence</h2>
+    <div class="poem-pills"><span class="pill pill-sunlight">Mossbawn: Sunlight</span><span class="pill pill-constable">A Constable Calls</span></div>
+    <p>Sunlight and A Constable Calls are twin poems from the same world — both set in Heaney's Catholic rural childhood, both from the collection <em>North</em>. One is the private sanctuary (the warm kitchen, Aunt Mary, love); the other is the public intrusion (the armed constable, the domesday book, fear). Together they show the two faces of Catholic Northern Irish life: the interior world of family love, and the exterior world of state violence.</p>
+    <table class="compare-table">
+      <tr><th></th><th>Mossbawn: Sunlight</th><th>A Constable Calls</th></tr>
+      <tr><td><strong>Setting</strong></td><td>Kitchen / farmyard</td><td>Kitchen / living room</td></tr>
+      <tr><td><strong>Atmosphere</strong></td><td>Warm, sunlit, peaceful</td><td>Tense, threatening, cold</td></tr>
+      <tr><td><strong>Central Figure</strong></td><td>Aunt Mary — loving</td><td>RUC Constable — threatening</td></tr>
+      <tr><td><strong>Sound</strong></td><td>"scone rising / to the tick of two clocks"</td><td>"the bicycle ticked, ticked, ticked"</td></tr>
+      <tr><td><strong>Conclusion</strong></td><td>"And here is love"</td><td>Danger continues after departure</td></tr>
+    </table>
+    <div class="exam-sentence"><strong>Exam Sentence</strong>"In 'Mossbawn: Sunlight' and 'A Constable Calls', Heaney presents the two faces of his Catholic childhood in direct counterpoint. Both poems even share the image of ticking — the scones rising 'to the tick of two clocks' in one; 'the bicycle ticked, ticked, ticked' in the other. In Sunlight, ticking is domestic and warm; in Constable Calls, it is ominous, like a time-bomb. The same sound carries opposite meanings — a precise image of how the Troubles invaded every corner of ordinary Catholic life."</div>
+  </div>
+
+  <div class="section-label">⚡ Theme 7 — Past &amp; Present: History as Living Force</div>
+  <div class="theme-card">
+    <h2>⚡ The Living Past: History Preserved and Repeated</h2>
+    <div class="poem-pills"><span class="pill pill-bogland">Bogland</span><span class="pill pill-tollund">The Tollund Man</span><span class="pill pill-forge">The Forge</span></div>
+    <p>Heaney is obsessed with the relationship between past and present — not as a nostalgic lament but as a living, urgent connection. The past is never over; it is preserved in bogs, re-enacted in violence, present in the dark of the forge.</p>
+    <div class="exam-sentence"><strong>Exam Sentence</strong>"For Heaney, the past is never merely history — it is alive, present, pressing. In 'Bogland', the past is literally preserved underfoot ('Every layer they strip / Seems camped on before'). In 'The Tollund Man', an Iron Age killing is indistinguishable from a modern Troubles murder. And in 'The Forge', the smith's ancient craft persists despite 'traffic flashing in rows'. The past refuses to stay in the past."</div>
+  </div>
+
+  <div class="section-label">🧭 Heaney's Core Tensions</div>
+  <div class="theme-card">
+    <h2>🧭 Heaney's Core Tensions — Quick Reference</h2>
+    <table class="tension-table">
+      <tr><th>Tension</th><th>Poems where PERSONAL dominates</th><th>Poems where PUBLIC dominates</th></tr>
+      <tr><td><strong>Personal / Political</strong></td><td>Mossbawn: Sunlight · The Pitchfork</td><td>Bogland · Tollund Man · Constable Calls</td></tr>
+      <tr><td><strong>Past / Present</strong></td><td>The Forge · Bogland</td><td>Tollund Man · Constable Calls</td></tr>
+      <tr><td><strong>Ordinary / Extraordinary</strong></td><td>All seven poems</td><td>—</td></tr>
+      <tr><td><strong>Private / Public</strong></td><td>Mossbawn: Sunlight · Pitchfork</td><td>Constable Calls · Tollund Man · Bogland</td></tr>
+      <tr><td><strong>Rural/Traditional / Modern</strong></td><td>The Forge · Pitchfork · Sunlight</td><td>The Forge (traffic) · Bogland (no coal)</td></tr>
+      <tr><td><strong>Dark / Light</strong></td><td>The Forge (dark interior) · Tollund Man</td><td>Mossbawn: Sunlight · Postscript</td></tr>
+    </table>
+  </div>
+
+  <div class="section-label">📋 Quick Reference Table</div>
+  <div class="theme-card">
+    <h2>📋 Theme → Poem → Best Comparison</h2>
+    <table class="quick-ref-table">
+      <tr><th>Exam Theme</th><th>Best Poem(s)</th><th>Key Quote</th><th>Best Comparison</th></tr>
+      <tr><td>Craft &amp; creativity</td><td>The Forge / The Pitchfork</td><td>"a door into the dark" / "imagined perfection"</td><td>Both use a craft tool as symbol of art</td></tr>
+      <tr><td>The Troubles / violence</td><td>Tollund Man / Constable Calls</td><td>"unhappy and at home" / "ticked, ticked, ticked"</td><td>Mythological vs domestic approaches</td></tr>
+      <tr><td>Irish identity</td><td>Bogland / Postscript</td><td>"bottomless" / "earthed lightning"</td><td>Identity as depth (bog) vs revelation (shore)</td></tr>
+      <tr><td>Memory &amp; childhood</td><td>Sunlight / Constable Calls</td><td>"here is love" / "Arithmetic and fear"</td><td>Same world — love vs fear, sanctuary vs intrusion</td></tr>
+      <tr><td>Ordinary made extraordinary</td><td>All seven poems</td><td>Nobel citation</td><td>Every poem performs this act</td></tr>
+      <tr><td>Family &amp; tribute</td><td>Sunlight / Pitchfork</td><td>"floury apron" / "opening of his hands"</td><td>Both celebrate devoted family work as love</td></tr>
+      <tr><td>Nature &amp; landscape</td><td>Bogland / Postscript</td><td>"wet centre is bottomless" / "earthed lightning"</td><td>Landscape as burden vs landscape as revelation</td></tr>
+      <tr><td>Past &amp; present</td><td>Tollund Man / Bogland</td><td>"parishes" / "every layer"</td><td>History preserved (bog) vs history re-enacted (Troubles)</td></tr>
+    </table>
+  </div>
+</div>
+</body>
+</html>
