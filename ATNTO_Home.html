@@ -12,6 +12,13 @@ body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);font
 .top-bar{background:white;border-bottom:2px solid var(--border);padding:14px 40px;display:flex;align-items:center;position:sticky;top:0;z-index:50;box-shadow:0 2px 10px rgba(0,0,0,0.03);}
 .top-bar h1{font-family:'Lexend Mega',sans-serif;font-size:1rem;color:var(--text);margin:0 auto;}
 .top-bar h1 span{color:var(--green);}
+.back-link {
+  position: absolute; left: 40px;
+  text-decoration: none; color: var(--text-light);
+  font-size: 14px; font-weight: 600;
+  display: flex; align-items: center; gap: 6px;
+  transition: color 0.2s;
+}
 .hero{background:linear-gradient(135deg,#0d2008 0%,#1a3a08 35%,#0a1a04 70%,#060b02 100%);color:white;padding:80px 40px;text-align:center;position:relative;overflow:hidden;}
 .hero::before{content:'🏡';position:absolute;right:8%;top:20%;font-size:7rem;opacity:0.05;transform:rotate(-10deg);}
 .hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 55% 40%,rgba(45,90,27,0.2),transparent 65%);pointer-events:none;}
@@ -58,6 +65,7 @@ body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);font
 </head>
 <body>
 <div class="top-bar">
+  <a href="English.html" class="back-link">← Irish Hub</a>
   <h1>A Thig Ná Tit Orm — <span>Lárionad Staidéir</span></h1>
 </div>
 <div class="hero">
