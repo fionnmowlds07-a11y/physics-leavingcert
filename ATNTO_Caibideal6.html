@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ga">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caibideal 6 — Draíocht an Cheoil</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F5F0E8;--surface:#fff;--border:#ddd8ce;--text:#2a2820;--muted:#6a6860;--c:#6e5a1a;--cl:#f0ece2;--cd:#3a2e08;--radius:14px;--shadow:0 4px 20px rgba(0,0,0,0.08);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;font-size:16px;}
+nav{position:sticky;top:0;z-index:100;background:rgba(245,240,232,0.97);backdrop-filter:blur(10px);border-bottom:2px solid var(--border);padding:8px 16px;display:flex;align-items:center;gap:5px;flex-wrap:wrap;min-height:52px;}
+.nav-logo{font-family:'Lexend Mega',sans-serif;font-size:0.82rem;color:var(--text);margin-right:4px;text-decoration:none;white-space:nowrap;}.nav-logo span{color:#5a6e3a;}
+.nav-divider{width:1px;height:20px;background:var(--border);flex-shrink:0;}
+.nav-btn{padding:5px 10px;border-radius:18px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.7rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);text-decoration:none;white-space:nowrap;}
+.nav-btn.home:hover,.nav-btn.home.active{background:#2a2820;border-color:#2a2820;color:#fff;}
+.nb1:hover,.nb1.active{background:#5a6e3a;border-color:#5a6e3a;color:#fff;}
+.nb2:hover,.nb2.active{background:#3a5a6e;border-color:#3a5a6e;color:#fff;}
+.nb3:hover,.nb3.active{background:#6e3a5a;border-color:#6e3a5a;color:#fff;}
+.nb4:hover,.nb4.active{background:#5a3a1a;border-color:#5a3a1a;color:#fff;}
+.nb5:hover,.nb5.active{background:#1a5a3a;border-color:#1a5a3a;color:#fff;}
+.nb6:hover,.nb6.active{background:#6e5a1a;border-color:#6e5a1a;color:#fff;}
+.nb7:hover,.nb7.active{background:#3a1a6e;border-color:#3a1a6e;color:#fff;}
+.nb8:hover,.nb8.active{background:#6e1a1a;border-color:#6e1a1a;color:#fff;}
+.section{padding:0 16px 80px;max-width:940px;margin:0 auto;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.hero{background:linear-gradient(135deg,var(--cd),var(--c));color:#fff;padding:44px 32px 36px;text-align:center;margin-bottom:32px;}
+.hero .chap-label{font-size:0.74rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;opacity:0.75;margin-bottom:10px;}
+.hero h1{font-family:'Lexend Mega',sans-serif;font-size:clamp(1.5rem,4vw,2.4rem);line-height:1.2;margin-bottom:12px;}
+.hero p{opacity:0.88;max-width:620px;margin:0 auto;font-size:0.94rem;}
+.hero-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px;}
+.hero-chip{background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:4px 14px;border-radius:20px;font-size:0.74rem;font-weight:600;}
+.tab-bar{display:flex;gap:4px;flex-wrap:wrap;padding:22px 0 8px;border-bottom:2px solid var(--border);margin-bottom:28px;}
+.tab{padding:8px 16px;border-radius:10px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.78rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);}
+.tab:hover,.tab.active{background:var(--c);color:#fff;border-color:var(--c);}
+.tab-panel{display:none;}.tab-panel.active{display:block;animation:fadeIn 0.25s ease;}
+.info-card{background:var(--surface);border-radius:var(--radius);padding:22px 24px;margin-bottom:18px;box-shadow:var(--shadow);border-left:5px solid var(--c);}
+.info-card h2{font-size:1.05rem;font-weight:700;margin-bottom:10px;}
+.info-card p{margin-bottom:8px;font-size:0.92rem;}
+.info-card ul{padding-left:18px;margin-bottom:8px;}
+.info-card li{margin-bottom:6px;font-size:0.91rem;}
+.scene-card{background:var(--surface);border-radius:var(--radius);padding:0;margin-bottom:20px;box-shadow:var(--shadow);border:2px solid var(--border);overflow:hidden;}
+.scene-header{background:var(--cd);color:#fff;padding:12px 20px;font-family:'Lexend Mega',sans-serif;font-size:0.88rem;}
+.scene-quote{background:var(--cl);border-left:5px solid var(--c);padding:16px 20px;}
+.scene-quote .ga{font-weight:700;font-size:0.95rem;color:var(--cd);margin-bottom:4px;}
+.scene-quote .en{font-size:0.85rem;color:var(--muted);font-style:italic;}
+.scene-analysis{padding:16px 20px;border-top:2px solid var(--border);}
+.scene-analysis h4{font-size:0.75rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;color:var(--muted);margin-bottom:8px;}
+.scene-analysis p{font-size:0.91rem;color:var(--text);line-height:1.75;}
+.scene-phrases{padding:14px 20px;background:#f9f7f3;border-top:2px solid var(--border);}
+.scene-phrases h4{font-size:0.72rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;color:var(--c);margin-bottom:10px;}
+.phrase-row{display:flex;gap:10px;align-items:flex-start;margin-bottom:8px;flex-wrap:wrap;}
+.phrase-ga{background:var(--c);color:#fff;border-radius:6px;padding:4px 10px;font-size:0.8rem;font-weight:600;}
+.phrase-en{font-size:0.8rem;color:var(--muted);font-style:italic;padding-top:3px;}
+.box{border-radius:var(--radius);padding:14px 18px;margin:14px 0;display:flex;gap:12px;align-items:flex-start;}
+.box .ico{font-size:1.4rem;flex-shrink:0;line-height:1.2;}
+.box-label{font-size:0.68rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;margin-bottom:4px;}
+.box p,.box li{font-size:0.9rem;}.box ul{padding-left:16px;}.box li{margin-bottom:4px;}
+.b-exam{background:#eaf4fb;border:2px solid #5dade2;}.b-exam .box-label{color:#1a6b9a;}
+.b-tip{background:#fffbf0;border:2px solid #f39c12;}.b-tip .box-label{color:#b7770d;}
+.b-sad{background:#fdf0f5;border:2px solid #c0396e;}.b-sad .box-label{color:#8a1a48;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.label{font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:0.8px;color:var(--muted);margin-bottom:16px;display:block;}
+@media(max-width:680px){.two-col{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="ATNTO_Home.html">🏡 <span>A Thig Ná Tit Orm</span></a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn home" href="ATNTO_Home.html">Baile</a>
+  <a class="nav-btn nb1" href="ATNTO_Caibideal1.html">C.1</a>
+  <a class="nav-btn nb2" href="ATNTO_Caibideal2.html">C.2</a>
+  <a class="nav-btn nb3" href="ATNTO_Caibideal3.html">C.3</a>
+  <a class="nav-btn nb4" href="ATNTO_Caibideal4.html">C.4</a>
+  <a class="nav-btn nb5" href="ATNTO_Caibideal5.html">C.5</a>
+  <a class="nav-btn nb6 active" href="ATNTO_Caibideal6.html">C.6</a>
+  <a class="nav-btn nb7" href="ATNTO_Caibideal7.html">C.7</a>
+  <a class="nav-btn nb8" href="ATNTO_Caibideal8.html">C.8</a>
+</nav>
+
+<div class="hero">
+  <div class="chap-label">Caibideal 6 · Caitheamh Aimsire · Ceol</div>
+  <h1>Draíocht an Cheoil</h1>
+  <p>Maidhc's passion for the accordion, a letter to Cox of Kilcock, and the stunning revelation that his quiet father Dainín had learned to play music in Chicago — a chapter full of warmth and family surprise.</p>
+  <div class="hero-chips">
+    <span class="hero-chip">Bosca Ceoil / Accordion</span>
+    <span class="hero-chip">Cox of Kilcock</span>
+    <span class="hero-chip">Athair / Father</span>
+    <span class="hero-chip">Teaghlach / Family</span>
+    <span class="hero-chip">Chicago</span>
+  </div>
+</div>
+
+<div class="section">
+  <div class="tab-bar">
+    <button class="tab active" onclick="switchTab(this,'overview')">📋 Overview</button>
+    <button class="tab" onclick="switchTab(this,'events')">📅 Key Scenes</button>
+    <button class="tab" onclick="switchTab(this,'quotes')">💬 Key Quotes</button>
+    <button class="tab" onclick="switchTab(this,'themes')">🎯 Themes</button>
+    <button class="tab" onclick="switchTab(this,'exam')">🎓 Exam Prep</button>
+  </div>
+
+  <div class="tab-panel active" id="overview">
+    <div class="info-card">
+      <h2>📋 Background &amp; Overview</h2>
+      <p>Chapter 6 is one of the warmest chapters in the autobiography. Maidhc had a deep love of music — particularly the <em>bosca ceoil</em> (accordion). There was a weekly radio programme sponsored by <strong>Cox of Kilcock</strong>, a music shop that sold Hohner-made instruments. Maidhc and his brother Páidí wrote a letter asking for a catalogue, chose an accordion, and persuaded their mother to give them two pounds as a deposit.</p>
+      <p>The chapter's emotional peak is the arrival of the parcel at the post office — and the extraordinary revelation that Dainín, the usually reserved father, had learned to play music from Seán Coughlan when he lived in <strong>Chicago</strong>. Nobody in the family had known this.</p>
+    </div>
+    <div class="info-card">
+      <h2>🎯 Core Themes in this Chapter</h2>
+      <ul>
+        <li><strong>Pastimes (Caitheamh Aimsire):</strong> Music was a central pastime — the accordion becomes Maidhc's great talent and a source of income in Chapter 8.</li>
+        <li><strong>Family Life (Saol an Teaghlaigh):</strong> The parcel arrival brings the whole family together; Dainín's hidden talent is a moment of genuine family discovery and warmth.</li>
+        <li><strong>A Different Side of Dainín:</strong> The revelation that Dainín learned music in Chicago shows he had a whole life before his family knew him — he becomes more rounded and human.</li>
+        <li><strong>Community and Tradition:</strong> Music was the social glue of the Gaeltacht — céilí, dancing, communal evenings. Maidhc's love of music connects him to that tradition.</li>
+      </ul>
+    </div>
+    <div class="box b-exam">
+      <div class="ico">🎓</div>
+      <div><div class="box-label">Exam Approach</div>
+      <p>Use Chapter 6 for questions about <strong>pastimes</strong> (music as a lifelong passion), <strong>family life</strong> (the parcel scene, Dainín's revelation), and <strong>a different/surprising side of characters</strong>. The Chicago revelation is particularly strong for showing the depth and complexity of family relationships in the book.</p></div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="events">
+    <span class="label">Key Scenes — Analysis + Irish Phrases to Use</span>
+
+    <div class="scene-card">
+      <div class="scene-header">Scene 1 — The Letter to Cox of Kilcock</div>
+      <div class="scene-quote">
+        <div class="ga">Chuir Maidhc agus a dheartháir Páidí litir chucu ag iarraidh leabhar uirlisí a fháil uathu. Bhí an mháthair i ngiúmar maith agus thug sí dhá phunt dóibh mar chur síos.</div>
+        <div class="en">Maidhc and his brother Páidí sent them a letter asking to get an instrument catalogue. The mother was in a good mood and gave them two pounds as a deposit.</div>
+      </div>
+      <div class="scene-analysis">
+        <h4>Analysis (English)</h4>
+        <p>This scene is charming in its detail — two boys writing a formal letter to a music shop, carefully choosing an instrument from a catalogue, and then working on their mother at the right moment to secure a deposit. The phrase <em>"bhí an mháthair i ngiúmar maith"</em> (the mother was in a good mood) is a delightful, knowing detail — Maidhc understood exactly how to time a request. It also shows the mother in a warm, generous light. The effort involved — the letter, the wait, the negotiation — makes the eventual arrival of the accordion all the more exciting.</p>
+      </div>
+      <div class="scene-phrases">
+        <h4>✍️ Irish Phrases to Use in Your Answer</h4>
+        <div class="phrase-row"><span class="phrase-ga">Bhí an-suim ag Maidhc sa cheol, go háirithe sa bhosca ceoil</span><span class="phrase-en">Maidhc had a great interest in music, especially the accordion</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Chuir Maidhc agus Páidí litir chuig Cox of Kilcock</span><span class="phrase-en">Maidhc and Páidí sent a letter to Cox of Kilcock</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Bhí an mháthair i ngiúmar maith agus thug sí dhá phunt dóibh</span><span class="phrase-en">The mother was in a good mood and gave them two pounds</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Léiríonn sé seo an grá a bhí ag Maidhc don cheol</span><span class="phrase-en">This shows the love Maidhc had for music</span></div>
+      </div>
+    </div>
+
+    <div class="scene-card">
+      <div class="scene-header">Scene 2 — The Parcel Arrives</div>
+      <div class="scene-quote">
+        <div class="ga">Tháinig beart bhreá mhór go dtí oifig an phoist Baile na nGall. Bhí gach duine sa teach bailithe timpeall.</div>
+        <div class="en">A fine large parcel arrived at the Baile na nGall post office. Everyone in the house was gathered around.</div>
+      </div>
+      <div class="scene-analysis">
+        <h4>Analysis (English)</h4>
+        <p>This is a beautiful domestic scene — the whole family crowded around a parcel. In an era before online shopping or instant delivery, receiving a parcel by post was genuinely exciting. The image of everyone gathered around it captures the warmth of family life perfectly. In a house with no television, no computers, and very little money, the arrival of a new accordion was a major event. Maidhc paints this moment with real affection, and the reader can feel the excitement and anticipation in the room.</p>
+      </div>
+      <div class="scene-phrases">
+        <h4>✍️ Irish Phrases to Use in Your Answer</h4>
+        <div class="phrase-row"><span class="phrase-ga">Bhí gach duine sa teach bailithe timpeall</span><span class="phrase-en">Everyone in the house was gathered around</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Léiríonn sé seo teas agus dlúthpháirtíocht an teaghlaigh</span><span class="phrase-en">This shows the warmth and closeness of the family</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Is léir gur thug an ceol a theaghlach le chéile i mbealach deas</span><span class="phrase-en">It is clear that music brought his family together in a nice way</span></div>
+      </div>
+    </div>
+
+    <div class="scene-card">
+      <div class="scene-header">Scene 3 — Dainín's Secret: Music from Chicago</div>
+      <div class="scene-quote">
+        <div class="ga">Sheinn athair Mhaidhc cúpla port ar an mbosca nua agus ní raibh fhios ag éinne sa chlann go raibh ceol aige. Dúirt sé gur fhoghlaim sé a chuid ceoil ó Seán Coughlan nuair a bhí sé i Chicago.</div>
+        <div class="en">Maidhc's father played a few tunes on the new box and nobody in the family knew he had music. He said he had learned his music from Seán Coughlan when he was in Chicago.</div>
+      </div>
+      <div class="scene-analysis">
+        <h4>Analysis (English)</h4>
+        <p>This is the emotional centrepiece of the chapter and one of the most surprising and touching moments in the entire book. Dainín — the usually quiet, stern, serious father — picks up the new accordion and plays. Nobody knew he could play a note. This single moment completely reframes how the reader and family see him: here is a man who lived a whole life before his family, who emigrated to Chicago, who learned music there, and who carried that secret talent silently for years. It humanises Dainín in a profound way. It also suggests that the love of music Maidhc inherited came directly from his father — a hidden legacy finally revealed.</p>
+      </div>
+      <div class="scene-phrases">
+        <h4>✍️ Irish Phrases to Use in Your Answer</h4>
+        <div class="phrase-row"><span class="phrase-ga">Sheinn athair Mhaidhc cúpla port ar an mbosca nua</span><span class="phrase-en">Maidhc's father played a few tunes on the new box</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Ní raibh fhios ag éinne sa chlann go raibh ceol aige</span><span class="phrase-en">Nobody in the family knew he had music (talent)</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Dúirt sé gur fhoghlaim sé a chuid ceoil ó Seán Coughlan nuair a bhí sé i Chicago</span><span class="phrase-en">He said he learned his music from Seán Coughlan when he was in Chicago</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Taispeánadh taobh difriúil d'athair Mhaidhc don léitheoir</span><span class="phrase-en">A different side of Maidhc's father was shown to the reader</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Léiríonn sé seo go raibh saol eile ag Dainín roimh an gclann</span><span class="phrase-en">This shows that Dainín had another life before the family</span></div>
+      </div>
+    </div>
+
+    <div class="scene-card">
+      <div class="scene-header">Scene 4 — Seán Coughlan's Visit and Maidhc Learns</div>
+      <div class="scene-quote">
+        <div class="ga">Lá amháin tháinig Seán go dtí an teach agus sheinn sé ceol. Thug sé roinnt nodanna do Mhaidhc faoi sheinnt an bhosca. Chaith Maidhc a am saor á sheinnt.</div>
+        <div class="en">One day Seán came to the house and played music. He gave Maidhc some tips on playing the accordion. Maidhc spent his free time playing it.</div>
+      </div>
+      <div class="scene-analysis">
+        <h4>Analysis (English)</h4>
+        <p>This scene completes the musical circle: Dainín learned from Seán Coughlan in Chicago, and now Seán comes to the house and passes that knowledge on to Maidhc. Music is shown as something that travels across generations and across the Atlantic, connecting the Gaeltacht community in Kerry to the Irish emigrant community in Chicago. Maidhc spending all his free time playing the accordion shows a genuine, deep passion — and it sets up the crucial role music will play in Chapter 8, when he plays for the céilís and meets Eibhlín.</p>
+      </div>
+      <div class="scene-phrases">
+        <h4>✍️ Irish Phrases to Use in Your Answer</h4>
+        <div class="phrase-row"><span class="phrase-ga">Thug Seán roinnt nodanna do Mhaidhc faoi sheinnt an bhosca</span><span class="phrase-en">Seán gave Maidhc some tips on playing the accordion</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Chaith Maidhc a am saor á sheinnt</span><span class="phrase-en">Maidhc spent his free time playing it</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Is léir go raibh an ceol rí-thábhachtach do Mhaidhc mar chaitheamh aimsire</span><span class="phrase-en">It is clear that music was extremely important to Maidhc as a pastime</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="quotes">
+    <span class="label">Key Quotes — with Analysis and Irish Phrases</span>
+
+    <div class="scene-card">
+      <div class="scene-header">Quote 1 — Music Bringing the Family Together</div>
+      <div class="scene-quote">
+        <div class="ga">Is léir gur thug an ceol a theaghlach le chéile i mbealach deas.</div>
+        <div class="en">It is clear that music brought his family together in a nice way.</div>
+      </div>
+      <div class="scene-analysis">
+        <h4>Analysis (English)</h4>
+        <p>This phrase from the sample answers perfectly captures the emotional heart of Chapter 6. The parcel, the gathering around it, Dainín's surprise performance, Seán Coughlan's visit — all of these are moments of family togetherness generated by music. In a household with very few luxuries, music becomes one of the main sources of warmth, joy, and connection. This is in sharp contrast to the more tense or punitive aspects of family life shown in other chapters.</p>
+      </div>
+      <div class="scene-phrases">
+        <h4>✍️ Irish Phrases to Use</h4>
+        <div class="phrase-row"><span class="phrase-ga">Is léir gur thug an ceol a theaghlach le chéile i mbealach deas</span><span class="phrase-en">It is clear that music brought his family together in a nice way</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Bhí féith an cheoil ag athair Mhaidhc — ní raibh fhios ag éinne</span><span class="phrase-en">Maidhc's father had a talent for music — nobody knew</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Caibideal thábhachtach is ea é seo maidir le saol an teaghlaigh</span><span class="phrase-en">This is an important chapter regarding family life</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="themes">
+    <span class="label">Themes in Chapter 6</span>
+    <div class="two-col">
+      <div class="info-card">
+        <h2>🎵 Music as Pastime</h2>
+        <p>Music was not just entertainment — it was a central part of Gaeltacht life, tying people together at céilís, in houses, and across generations. Maidhc's passion for the accordion defines him and leads directly to employment and romance in Chapter 8.</p>
+      </div>
+      <div class="info-card">
+        <h2>👨‍👩‍👦 Family Life</h2>
+        <p>The parcel scene is the warmest image of family life in the book — everyone gathered around in excitement. Dainín's secret musical talent adds depth to the family portrait. The mother's generous deposit shows her support for her children's passions.</p>
+      </div>
+      <div class="info-card">
+        <h2>🌍 Emigration (Imirce)</h2>
+        <p>Dainín's Chicago connection is a reminder that emigration was woven into the fabric of life in the Gaeltacht. He went to America, worked, learned music, and returned — carrying that experience silently within him. The connection between Kerry and Chicago through music is quietly moving.</p>
+      </div>
+      <div class="info-card">
+        <h2>💛 Warmth and Positivity</h2>
+        <p>Unlike many other chapters, Chapter 6 is almost entirely warm and positive. There is no punishment, no poverty-driven desperation, no mischief with consequences. It is a chapter about passion, discovery, family, and the joy that music brings — a welcome breath of pure warmth.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="exam">
+    <span class="label">Exam Preparation</span>
+    <div class="box b-exam">
+      <div class="ico">🎓</div>
+      <div><div class="box-label">Which Essay Questions Suit Chapter 6?</div>
+      <ul>
+        <li><strong>Pastimes essay</strong> — Music as Maidhc's greatest passion; the accordion; the weekly radio programme; Seán Coughlan's tips.</li>
+        <li><strong>Family life essay</strong> — The parcel scene; Dainín's hidden talent; the mother's generosity; music bringing the family together.</li>
+        <li><strong>"Interesting account of the Gaeltacht"</strong> — The Chicago connection shows the emigration experience woven into local life.</li>
+        <li><strong>Style/humour essay</strong> — The surprise of Dainín's talent is a gentle, warm surprise rather than slapstick — shows range in Maidhc's storytelling.</li>
+      </ul>
+      </div>
+    </div>
+    <div class="info-card">
+      <h2>📝 Model Paragraph — Music as Pastime and Family Life</h2>
+      <p>Tá ról lárnach ag an gceol mar chaitheamh aimsire sa dírbheathaisnéis. <em>(Music has a central role as a pastime in the autobiography.)</em> Bhí an-suim ag Maidhc sa cheol, go háirithe sa bhosca ceoil. <em>(Maidhc had a great interest in music, especially the accordion.)</em> Chuir Maidhc agus Páidí litir chuig Cox of Kilcock ag iarraidh bosca ceoil. <em>(Maidhc and Páidí sent a letter to Cox of Kilcock asking for an accordion.)</em> Nuair a tháinig an beart, bhí gach duine sa teach bailithe timpeall. <em>(When the parcel arrived, everyone in the house was gathered around.)</em> Is léir gur thug an ceol a theaghlach le chéile i mbealach deas. <em>(It is clear that music brought his family together in a nice way.)</em> Thairis sin, sheinn athair Mhaidhc cúpla port ar an mbosca nua agus ní raibh fhios ag éinne sa chlann go raibh ceol aige. <em>(Furthermore, Maidhc's father played a few tunes on the new box and nobody in the family knew he had music.)</em> Taispeánadh taobh difriúil d'athair Mhaidhc don léitheoir — fear a raibh saol eile aige i Chicago. <em>(A different side of Maidhc's father was shown to the reader — a man who had another life in Chicago.)</em></p>
+    </div>
+    <div class="box b-tip">
+      <div class="ico">💡</div>
+      <div><div class="box-label">Top Exam Tip</div>
+      <p>The Dainín/Chicago revelation is a unique moment in the book — nothing quite like it happens anywhere else. Use it specifically when you want to show the <strong>depth and complexity of family relationships</strong>, or when discussing how Maidhc reveals character through surprising, unexpected details. It is the kind of specific, memorable detail that lifts an exam answer above the ordinary.</p></div>
+    </div>
+  </div>
+</div>
+<script>
+function switchTab(btn,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(id).classList.add('active');}
+</script>
+</body>
+</html>

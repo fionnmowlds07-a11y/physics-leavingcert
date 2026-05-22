@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ga">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caibideal 7 — Bóthar mo Leasa</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F5F0E8;--surface:#fff;--border:#ddd8ce;--text:#2a2820;--muted:#6a6860;--c:#3a1a6e;--cl:#e8e2f0;--cd:#1a0838;--radius:14px;--shadow:0 4px 20px rgba(0,0,0,0.08);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;font-size:16px;}
+nav{position:sticky;top:0;z-index:100;background:rgba(245,240,232,0.97);backdrop-filter:blur(10px);border-bottom:2px solid var(--border);padding:8px 16px;display:flex;align-items:center;gap:5px;flex-wrap:wrap;min-height:52px;}
+.nav-logo{font-family:'Lexend Mega',sans-serif;font-size:0.82rem;color:var(--text);margin-right:4px;text-decoration:none;white-space:nowrap;}.nav-logo span{color:#5a6e3a;}
+.nav-divider{width:1px;height:20px;background:var(--border);flex-shrink:0;}
+.nav-btn{padding:5px 10px;border-radius:18px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.7rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);text-decoration:none;white-space:nowrap;}
+.nav-btn.home:hover,.nav-btn.home.active{background:#2a2820;border-color:#2a2820;color:#fff;}
+.nb1:hover,.nb1.active{background:#5a6e3a;border-color:#5a6e3a;color:#fff;}
+.nb2:hover,.nb2.active{background:#3a5a6e;border-color:#3a5a6e;color:#fff;}
+.nb3:hover,.nb3.active{background:#6e3a5a;border-color:#6e3a5a;color:#fff;}
+.nb4:hover,.nb4.active{background:#5a3a1a;border-color:#5a3a1a;color:#fff;}
+.nb5:hover,.nb5.active{background:#1a5a3a;border-color:#1a5a3a;color:#fff;}
+.nb6:hover,.nb6.active{background:#6e5a1a;border-color:#6e5a1a;color:#fff;}
+.nb7:hover,.nb7.active{background:#3a1a6e;border-color:#3a1a6e;color:#fff;}
+.nb8:hover,.nb8.active{background:#6e1a1a;border-color:#6e1a1a;color:#fff;}
+.section{padding:0 16px 80px;max-width:940px;margin:0 auto;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.hero{background:linear-gradient(135deg,var(--cd),var(--c));color:#fff;padding:44px 32px 36px;text-align:center;margin-bottom:32px;}
+.hero .chap-label{font-size:0.74rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;opacity:0.75;margin-bottom:10px;}
+.hero h1{font-family:'Lexend Mega',sans-serif;font-size:clamp(1.5rem,4vw,2.4rem);line-height:1.2;margin-bottom:12px;}
+.hero p{opacity:0.88;max-width:620px;margin:0 auto;font-size:0.94rem;}
+.hero-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px;}
+.hero-chip{background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:4px 14px;border-radius:20px;font-size:0.74rem;font-weight:600;}
+.tab-bar{display:flex;gap:4px;flex-wrap:wrap;padding:22px 0 8px;border-bottom:2px solid var(--border);margin-bottom:28px;}
+.tab{padding:8px 16px;border-radius:10px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.78rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);}
+.tab:hover,.tab.active{background:var(--c);color:#fff;border-color:var(--c);}
+.tab-panel{display:none;}.tab-panel.active{display:block;animation:fadeIn 0.25s ease;}
+.info-card{background:var(--surface);border-radius:var(--radius);padding:22px 24px;margin-bottom:18px;box-shadow:var(--shadow);border-left:5px solid var(--c);}
+.info-card h2{font-size:1.05rem;font-weight:700;margin-bottom:10px;}
+.info-card p{margin-bottom:8px;font-size:0.92rem;}
+.info-card ul{padding-left:18px;margin-bottom:8px;}
+.info-card li{margin-bottom:6px;font-size:0.91rem;}
+.scene-card{background:var(--surface);border-radius:var(--radius);padding:0;margin-bottom:20px;box-shadow:var(--shadow);border:2px solid var(--border);overflow:hidden;}
+.scene-header{background:var(--cd);color:#fff;padding:12px 20px;font-family:'Lexend Mega',sans-serif;font-size:0.88rem;}
+.scene-quote{background:var(--cl);border-left:5px solid var(--c);padding:16px 20px;}
+.scene-quote .ga{font-weight:700;font-size:0.95rem;color:var(--cd);margin-bottom:4px;}
+.scene-quote .en{font-size:0.85rem;color:var(--muted);font-style:italic;}
+.scene-analysis{padding:16px 20px;border-top:2px solid var(--border);}
+.scene-analysis h4{font-size:0.75rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;color:var(--muted);margin-bottom:8px;}
+.scene-analysis p{font-size:0.91rem;color:var(--text);line-height:1.75;}
+.scene-phrases{padding:14px 20px;background:#f9f7f3;border-top:2px solid var(--border);}
+.scene-phrases h4{font-size:0.72rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;color:var(--c);margin-bottom:10px;}
+.phrase-row{display:flex;gap:10px;align-items:flex-start;margin-bottom:8px;flex-wrap:wrap;}
+.phrase-ga{background:var(--c);color:#fff;border-radius:6px;padding:4px 10px;font-size:0.8rem;font-weight:600;}
+.phrase-en{font-size:0.8rem;color:var(--muted);font-style:italic;padding-top:3px;}
+.box{border-radius:var(--radius);padding:14px 18px;margin:14px 0;display:flex;gap:12px;align-items:flex-start;}
+.box .ico{font-size:1.4rem;flex-shrink:0;line-height:1.2;}
+.box-label{font-size:0.68rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;margin-bottom:4px;}
+.box p,.box li{font-size:0.9rem;}.box ul{padding-left:16px;}.box li{margin-bottom:4px;}
+.b-exam{background:#eaf4fb;border:2px solid #5dade2;}.b-exam .box-label{color:#1a6b9a;}
+.b-tip{background:#fffbf0;border:2px solid #f39c12;}.b-tip .box-label{color:#b7770d;}
+.b-pos{background:#f0fdf4;border:2px solid #27ae60;}.b-pos .box-label{color:#1a6e3a;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.label{font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:0.8px;color:var(--muted);margin-bottom:16px;display:block;}
+@media(max-width:680px){.two-col{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="ATNTO_Home.html">🏡 <span>A Thig Ná Tit Orm</span></a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn home" href="ATNTO_Home.html">Baile</a>
+  <a class="nav-btn nb1" href="ATNTO_Caibideal1.html">C.1</a>
+  <a class="nav-btn nb2" href="ATNTO_Caibideal2.html">C.2</a>
+  <a class="nav-btn nb3" href="ATNTO_Caibideal3.html">C.3</a>
+  <a class="nav-btn nb4" href="ATNTO_Caibideal4.html">C.4</a>
+  <a class="nav-btn nb5" href="ATNTO_Caibideal5.html">C.5</a>
+  <a class="nav-btn nb6" href="ATNTO_Caibideal6.html">C.6</a>
+  <a class="nav-btn nb7 active" href="ATNTO_Caibideal7.html">C.7</a>
+  <a class="nav-btn nb8" href="ATNTO_Caibideal8.html">C.8</a>
+</nav>
+
+<div class="hero">
+  <div class="chap-label">Caibideal 7 · An Scoil · Ceardscoil an Daingin</div>
+  <h1>Bóthar mo Leasa</h1>
+  <p>Dingle Vocational School — the two best years of Maidhc's life. Practical work, currach racing, a county championship in football, and the Group Certificate — school finally suits him.</p>
+  <div class="hero-chips">
+    <span class="hero-chip">Ceardscoil / Vocational School</span>
+    <span class="hero-chip">Peil / Football</span>
+    <span class="hero-chip">Naomhóg / Currach</span>
+    <span class="hero-chip">Grúptheastas / Group Cert</span>
+    <span class="hero-chip">Craobh / Championship</span>
+  </div>
+</div>
+
+<div class="section">
+  <div class="tab-bar">
+    <button class="tab active" onclick="switchTab(this,'overview')">📋 Overview</button>
+    <button class="tab" onclick="switchTab(this,'events')">📅 Key Scenes</button>
+    <button class="tab" onclick="switchTab(this,'quotes')">💬 Key Quotes</button>
+    <button class="tab" onclick="switchTab(this,'themes')">🎯 Themes</button>
+    <button class="tab" onclick="switchTab(this,'exam')">🎓 Exam Prep</button>
+  </div>
+
+  <div class="tab-panel active" id="overview">
+    <div class="info-card">
+      <h2>📋 Background &amp; Overview</h2>
+      <p>After primary school, Maidhc attended <strong>Ceardscoil an Daingin</strong> (Dingle Vocational School) — and it transformed his relationship with education. His mother told him plainly: go to the vocational school or go to work for a farmer for very little pay. He chose the school.</p>
+      <p>Unlike primary school, the vocational school suited Maidhc perfectly because it was <strong>practical and hands-on</strong> — woodworking, craft, and physical activity rather than books and rote learning. He thrived. The chapter describes two major achievements: competing in <strong>naomhóg (currach) races</strong> and winning the <strong>county football championship</strong> for the very first time. He also passed the Group Certificate exam with the rest of his class.</p>
+    </div>
+    <div class="info-card">
+      <h2>🎯 Core Themes in this Chapter</h2>
+      <ul>
+        <li><strong>School Life (Saol na Scoile):</strong> The vocational school is the positive counterpoint to the difficult primary school experience — showing Maidhc can thrive when education matches his abilities.</li>
+        <li><strong>Pastimes (Caitheamh Aimsire):</strong> Football and naomhóg racing are central — both competitive, both physical, both bringing the community together.</li>
+        <li><strong>Achievement and Pride (Éacht agus Bród):</strong> Winning the county championship for the first time ever is a genuine landmark — a moment of collective pride and joy.</li>
+        <li><strong>Practical Intelligence:</strong> Maidhc is not an academic learner — he is a practical, physical, skilled person. The vocational school recognises and rewards this.</li>
+      </ul>
+    </div>
+    <div class="box b-pos">
+      <div class="ico">🏆</div>
+      <div><div class="box-label">The Most Positive School Chapter</div>
+      <p>This is the most uplifting school chapter in the book. After years of not fitting in academically and being punished, Maidhc finally finds a school that suits him. The county championship win is one of the high points of the entire autobiography — a collective triumph that Maidhc clearly remembers with immense pride.</p></div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="events">
+    <span class="label">Key Scenes — Analysis + Irish Phrases to Use</span>
+
+    <div class="scene-card">
+      <div class="scene-header">Scene 1 — The Mother's Ultimatum</div>
+      <div class="scene-quote">
+        <div class="ga">Dúirt a mháthair leis go mbeadh air freastal ar Cheardscoil an Daingin nó dul amach ag obair d'fheirmeoir ar bheagán pá. Ní raibh suim ar bith aige sna leabhair ach thaitin an scoil nua leis mar bhí sé ag obair lena lámha don chuid is mó.</div>
+        <div class="en">His mother told him he would have to attend Dingle Vocational School or go out to work for a farmer for little pay. He had no interest at all in books but he liked the new school because he was working with his hands for the most part.</div>
+      </div>
+      <div class="scene-analysis">
+        <h4>Analysis (English)</h4>
+        <p>This moment is a turning point in the autobiography. The mother's pragmatic offer — school or low-paid farm labour — reflects both the limited options available to young people in the area and her determination that her son will not waste himself. Maidhc's response to the vocational school is immediate and genuine: he loves it because it plays to his strengths. The contrast with primary school could not be sharper — there, he was bored and punished; here, he thrives. It is also a moment that shows his mother's practical wisdom and care for his future.</p>
+      </div>
+      <div class="scene-phrases">
+        <h4>✍️ Irish Phrases to Use in Your Answer</h4>
+        <div class="phrase-row"><span class="phrase-ga">D'fhreastail Maidhc ar Cheardscoil an Daingin</span><span class="phrase-en">Maidhc attended Dingle Vocational School</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Thaitin an scoil nua leis mar bhí sé ag obair lena lámha</span><span class="phrase-en">He liked the new school because he was working with his hands</span></div>
+        <div class="phrase-row"><span class="phrase-ga">B'iad an dá bhliain ab fhearr a bhí ag Maidhc riamh</span><span class="phrase-en">They were the two best years Maidhc ever had</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Spreag a mháthair é — bhí sí ciallmhar agus ceanúil</span><span class="phrase-en">His mother encouraged him — she was wise and caring</span></div>
+      </div>
+    </div>
+
+    <div class="scene-card">
+      <div class="scene-header">Scene 2 — Naomhóg Racing</div>
+      <div class="scene-quote">
+        <div class="ga">Bhí sé mar chuid de chriú naomhóige faoi 18. Fuaireadar naomhóg iascaigh ar iasacht chun traenáil a dhéanamh. Sa rang adhmadóireachta, rinne siad a naomhóg féin agus d'úsáideadar é sa chéad rás eile. Faraor, thánadar san áit deireannach.</div>
+        <div class="en">He was part of an under-18 currach crew. They borrowed a fishing currach to train. In woodworking class, they made their own currach and used it in the next race. Unfortunately, they came last.</div>
+      </div>
+      <div class="scene-analysis">
+        <h4>Analysis (English)</h4>
+        <p>The naomhóg racing story has a beautifully honest ending — after the effort of building their own currach in woodworking class, they come last in the race. Maidhc reports this with the same honesty and lack of self-pity that characterises his whole approach to the autobiography. The detail that they built their own currach in class is lovely — showing the integration of practical education with real-life activity. The word <em>"faraor"</em> (unfortunately) appears again, just as it did with the ditch fight in Chapter 1 — Maidhc has a gift for self-deprecating humour.</p>
+      </div>
+      <div class="scene-phrases">
+        <h4>✍️ Irish Phrases to Use in Your Answer</h4>
+        <div class="phrase-row"><span class="phrase-ga">Bhí sé mar chuid de chriú naomhóige faoi 18</span><span class="phrase-en">He was part of an under-18 currach crew</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Sa rang adhmadóireachta, rinne siad a naomhóg féin</span><span class="phrase-en">In woodworking class, they made their own currach</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Faraor, thánadar san áit deireannach</span><span class="phrase-en">Unfortunately, they came in last place</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Léiríonn sé seo go raibh caitheamh aimsire ilghnéitheach ag Maidhc</span><span class="phrase-en">This shows that Maidhc had a varied range of pastimes</span></div>
+      </div>
+    </div>
+
+    <div class="scene-card">
+      <div class="scene-header">Scene 3 — Winning the County Football Championship</div>
+      <div class="scene-quote">
+        <div class="ga">Bhí comórtas peile do na ceardscoileanna. Bhuadar an 3ú cluiche i gcoinne An Tóchar agus bhí craobh an chontae buaite acu don chéad uair riamh.</div>
+        <div class="en">There was a football competition for the vocational schools. They won the 3rd game against An Tóchar and they had won the county championship for the very first time ever.</div>
+      </div>
+      <div class="scene-analysis">
+        <h4>Analysis (English)</h4>
+        <p>This is one of the genuine high points of the entire autobiography — a moment of collective triumph and historic achievement. The phrase <em>"don chéad uair riamh"</em> (for the very first time ever) gives the moment its full weight. These are schoolboys who had never won anything together before, and now they are county champions. Maidhc's quiet pride is evident in how he describes the three-game journey to the title — he remembers every opponent. This is the positive culmination of years of rough football on roads and in bogs, now channelled into organised competition and real achievement.</p>
+      </div>
+      <div class="scene-phrases">
+        <h4>✍️ Irish Phrases to Use in Your Answer</h4>
+        <div class="phrase-row"><span class="phrase-ga">Bhí craobh an chontae buaite acu don chéad uair riamh</span><span class="phrase-en">They had won the county championship for the very first time ever</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Éacht iontach a bhí ann</span><span class="phrase-en">It was a wonderful achievement</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Is cinnte go bhfuil dea-chuimhní ag Maidhc ón gceardscoil</span><span class="phrase-en">It is certain that Maidhc has good memories from the vocational school</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Bhí taithí dhearfach aige ar scoil ar an iomlán</span><span class="phrase-en">He had a positive experience of school on the whole</span></div>
+      </div>
+    </div>
+
+    <div class="scene-card">
+      <div class="scene-header">Scene 4 — Passing the Group Certificate</div>
+      <div class="scene-quote">
+        <div class="ga">Dhein sé scrúdú an Grúptheastais agus d'éirigh le gach duine. B'iad an dá bhliain is fearr a bhí ag Maidhc riamh.</div>
+        <div class="en">He sat the Group Certificate exam and everyone passed. They were the best two years Maidhc ever had.</div>
+      </div>
+      <div class="scene-analysis">
+        <h4>Analysis (English)</h4>
+        <p>The final sentence of this chapter — <em>"b'iad an dá bhliain is fearr a bhí ag Maidhc riamh"</em> — is one of the most powerful lines in the book because of its simplicity and sincerity. After years of not fitting in, of being punished, of hating books, Maidhc found a school that suited him, excelled, won a county championship, built a currach, and passed his exams. The Group Certificate success completes the picture of a young man who was never unintelligent — just mismatched with the system he was put into.</p>
+      </div>
+      <div class="scene-phrases">
+        <h4>✍️ Irish Phrases to Use in Your Answer</h4>
+        <div class="phrase-row"><span class="phrase-ga">Dhein sé scrúdú an Grúptheastais agus d'éirigh le gach duine</span><span class="phrase-en">He sat the Group Certificate and everyone passed</span></div>
+        <div class="phrase-row"><span class="phrase-ga">B'iad an dá bhliain is fearr a bhí ag Maidhc riamh</span><span class="phrase-en">They were the best two years Maidhc ever had</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Bhí obair níos praiticiúla i gceist sa scoil seo a bhí níos oiriúnaí dó</span><span class="phrase-en">There was more practical work in this school which was more suitable for him</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="quotes">
+    <span class="label">Key Quotes — with Analysis and Irish Phrases</span>
+    <div class="scene-card">
+      <div class="scene-header">Quote 1 — Positive School Experience</div>
+      <div class="scene-quote">
+        <div class="ga">Is cinnte go bhfuil dea-chuimhní ag Maidhc ón gceardscoil agus go raibh taithí dhearfach aige ar scoil ar an iomlán.</div>
+        <div class="en">It is certain that Maidhc has good memories from the vocational school and that he had a positive experience of school on the whole.</div>
+      </div>
+      <div class="scene-analysis">
+        <h4>Analysis (English)</h4>
+        <p>This summary phrase from the sample answers is ideal for concluding a discussion of Maidhc's school life. It acknowledges the full arc: the difficult, punishing primary school years followed by the liberating, successful vocational school years. The word <em>"ar an iomlán"</em> (on the whole) is careful and honest — it doesn't pretend primary school was good, but recognises that the overall experience of schooling ended positively. This kind of nuanced conclusion impresses examiners.</p>
+      </div>
+      <div class="scene-phrases">
+        <h4>✍️ Irish Phrases to Use</h4>
+        <div class="phrase-row"><span class="phrase-ga">Is cinnte go bhfuil dea-chuimhní ag Maidhc ón gceardscoil</span><span class="phrase-en">It is certain that Maidhc has good memories from the vocational school</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Bhí taithí dhearfach aige ar scoil ar an iomlán</span><span class="phrase-en">He had a positive experience of school on the whole</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Tá ról lárnach ag an scolaíocht sa dírbheathaisnéis seo</span><span class="phrase-en">Schooling has a central role in this autobiography</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="themes">
+    <span class="label">Themes in Chapter 7</span>
+    <div class="two-col">
+      <div class="info-card">
+        <h2>📚 School Life — Positive</h2>
+        <p>Chapter 7 provides the crucial positive counterpoint to the difficult school experiences of Chapters 1 and 2. Maidhc was never unintelligent — he was mismatched with academic schooling. The vocational school recognised and rewarded his practical intelligence.</p>
+      </div>
+      <div class="info-card">
+        <h2>⚽ Pastimes — Football &amp; Racing</h2>
+        <p>Football reaches its competitive peak here — from rough games on a road with no rules to winning an organised county championship. Naomhóg racing adds another dimension, showing the breadth of Maidhc's active, physical life.</p>
+      </div>
+      <div class="info-card">
+        <h2>🏆 Achievement and Pride</h2>
+        <p>The county championship win and the Group Certificate pass are moments of genuine collective and personal achievement. Maidhc's quiet pride in describing them — especially the championship — is one of the most touching aspects of the chapter.</p>
+      </div>
+      <div class="info-card">
+        <h2>👩 Mother's Role</h2>
+        <p>The mother's clear-eyed decision to send Maidhc to the vocational school rather than let him drift into low-paid farm work is a moment of practical parental wisdom. She sees what her son needs and acts on it — a quiet but important act of love.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="exam">
+    <span class="label">Exam Preparation</span>
+    <div class="box b-exam">
+      <div class="ico">🎓</div>
+      <div><div class="box-label">Which Essay Questions Suit Chapter 7?</div>
+      <ul>
+        <li><strong>"Tugann Maidhc cuntas taitneamhach ar a chuid scolaíochta"</strong> — This chapter is your most positive school evidence. Use it to show the full arc from difficult primary school to triumphant vocational school.</li>
+        <li><strong>Pastimes essay</strong> — Football at a competitive level (county championship); naomhóg racing; woodworking as a practical skill.</li>
+        <li><strong>Family life essay</strong> — Mother's wisdom in directing Maidhc to the right school; her encouragement.</li>
+        <li><strong>"An interesting account of growing up in the Gaeltacht"</strong> — The vocational school, naomhóg racing, and county football all paint a specific, vivid picture of Kerry life.</li>
+      </ul>
+      </div>
+    </div>
+    <div class="info-card">
+      <h2>📝 Model Paragraph — Positive School Experience</h2>
+      <p>I ndiaidh na bunscoile, d'fhreastail Maidhc ar Cheardscoil an Daingin. <em>(After primary school, Maidhc attended Dingle Vocational School.)</em> Bhí obair níos praiticiúla i gceist sa scoil seo a bhí níos oiriúnaí dó. <em>(There was more practical work in this school which was more suitable for him.)</em> Thaitin an scoil nua leis mar bhí sé ag obair lena lámha. <em>(He liked the new school because he was working with his hands.)</em> Bhí sé fós in ann peil a imirt agus bhuaigh siad craobh an chontae don chéad uair riamh — éacht iontach a bhí ann. <em>(He was still able to play football and they won the county championship for the first time ever — it was a wonderful achievement.)</em> Dhein sé scrúdú an Grúptheastais agus d'éirigh le gach duine. <em>(He sat the Group Certificate and everyone passed.)</em> B'iad an dá bhliain is fearr a bhí ag Maidhc riamh. <em>(They were the best two years Maidhc ever had.)</em> Is cinnte go bhfuil dea-chuimhní ag Maidhc ón gceardscoil agus go raibh taithí dhearfach aige ar scoil ar an iomlán. <em>(It is certain that Maidhc has good memories from the vocational school and a positive experience of school overall.)</em></p>
+    </div>
+    <div class="box b-tip">
+      <div class="ico">💡</div>
+      <div><div class="box-label">Top Exam Tip</div>
+      <p>Always use Chapter 7 to <strong>balance</strong> your school life answer. If you discuss the punishments of Chapters 1 and 2 (brón), then Chapter 7 gives you the positive ending (dea-chuimhní). The contrast between the two school experiences is the most powerful structural move you can make in a school life essay — it shows both breadth and analytical thinking.</p></div>
+    </div>
+  </div>
+</div>
+<script>
+function switchTab(btn,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(id).classList.add('active');}
+</script>
+</body>
+</html>

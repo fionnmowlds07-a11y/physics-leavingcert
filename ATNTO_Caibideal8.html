@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ga">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caibideal 8 — B'in é an Samhradh</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F5F0E8;--surface:#fff;--border:#ddd8ce;--text:#2a2820;--muted:#6a6860;--c:#6e1a1a;--cl:#f0e2e2;--cd:#380808;--radius:14px;--shadow:0 4px 20px rgba(0,0,0,0.08);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;font-size:16px;}
+nav{position:sticky;top:0;z-index:100;background:rgba(245,240,232,0.97);backdrop-filter:blur(10px);border-bottom:2px solid var(--border);padding:8px 16px;display:flex;align-items:center;gap:5px;flex-wrap:wrap;min-height:52px;}
+.nav-logo{font-family:'Lexend Mega',sans-serif;font-size:0.82rem;color:var(--text);margin-right:4px;text-decoration:none;white-space:nowrap;}.nav-logo span{color:#5a6e3a;}
+.nav-divider{width:1px;height:20px;background:var(--border);flex-shrink:0;}
+.nav-btn{padding:5px 10px;border-radius:18px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.7rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);text-decoration:none;white-space:nowrap;}
+.nav-btn.home:hover,.nav-btn.home.active{background:#2a2820;border-color:#2a2820;color:#fff;}
+.nb1:hover,.nb1.active{background:#5a6e3a;border-color:#5a6e3a;color:#fff;}
+.nb2:hover,.nb2.active{background:#3a5a6e;border-color:#3a5a6e;color:#fff;}
+.nb3:hover,.nb3.active{background:#6e3a5a;border-color:#6e3a5a;color:#fff;}
+.nb4:hover,.nb4.active{background:#5a3a1a;border-color:#5a3a1a;color:#fff;}
+.nb5:hover,.nb5.active{background:#1a5a3a;border-color:#1a5a3a;color:#fff;}
+.nb6:hover,.nb6.active{background:#6e5a1a;border-color:#6e5a1a;color:#fff;}
+.nb7:hover,.nb7.active{background:#3a1a6e;border-color:#3a1a6e;color:#fff;}
+.nb8:hover,.nb8.active{background:#6e1a1a;border-color:#6e1a1a;color:#fff;}
+.section{padding:0 16px 80px;max-width:940px;margin:0 auto;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.hero{background:linear-gradient(135deg,var(--cd),var(--c));color:#fff;padding:44px 32px 36px;text-align:center;margin-bottom:32px;}
+.hero .chap-label{font-size:0.74rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;opacity:0.75;margin-bottom:10px;}
+.hero h1{font-family:'Lexend Mega',sans-serif;font-size:clamp(1.5rem,4vw,2.4rem);line-height:1.2;margin-bottom:12px;}
+.hero p{opacity:0.88;max-width:620px;margin:0 auto;font-size:0.94rem;}
+.hero-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px;}
+.hero-chip{background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:4px 14px;border-radius:20px;font-size:0.74rem;font-weight:600;}
+.tab-bar{display:flex;gap:4px;flex-wrap:wrap;padding:22px 0 8px;border-bottom:2px solid var(--border);margin-bottom:28px;}
+.tab{padding:8px 16px;border-radius:10px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.78rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);}
+.tab:hover,.tab.active{background:var(--c);color:#fff;border-color:var(--c);}
+.tab-panel{display:none;}.tab-panel.active{display:block;animation:fadeIn 0.25s ease;}
+.info-card{background:var(--surface);border-radius:var(--radius);padding:22px 24px;margin-bottom:18px;box-shadow:var(--shadow);border-left:5px solid var(--c);}
+.info-card h2{font-size:1.05rem;font-weight:700;margin-bottom:10px;}
+.info-card p{margin-bottom:8px;font-size:0.92rem;}
+.info-card ul{padding-left:18px;margin-bottom:8px;}
+.info-card li{margin-bottom:6px;font-size:0.91rem;}
+.scene-card{background:var(--surface);border-radius:var(--radius);padding:0;margin-bottom:20px;box-shadow:var(--shadow);border:2px solid var(--border);overflow:hidden;}
+.scene-header{background:var(--cd);color:#fff;padding:12px 20px;font-family:'Lexend Mega',sans-serif;font-size:0.88rem;}
+.scene-quote{background:var(--cl);border-left:5px solid var(--c);padding:16px 20px;}
+.scene-quote .ga{font-weight:700;font-size:0.95rem;color:var(--cd);margin-bottom:4px;}
+.scene-quote .en{font-size:0.85rem;color:var(--muted);font-style:italic;}
+.scene-analysis{padding:16px 20px;border-top:2px solid var(--border);}
+.scene-analysis h4{font-size:0.75rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;color:var(--muted);margin-bottom:8px;}
+.scene-analysis p{font-size:0.91rem;color:var(--text);line-height:1.75;}
+.scene-phrases{padding:14px 20px;background:#f9f7f3;border-top:2px solid var(--border);}
+.scene-phrases h4{font-size:0.72rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;color:var(--c);margin-bottom:10px;}
+.phrase-row{display:flex;gap:10px;align-items:flex-start;margin-bottom:8px;flex-wrap:wrap;}
+.phrase-ga{background:var(--c);color:#fff;border-radius:6px;padding:4px 10px;font-size:0.8rem;font-weight:600;}
+.phrase-en{font-size:0.8rem;color:var(--muted);font-style:italic;padding-top:3px;}
+.box{border-radius:var(--radius);padding:14px 18px;margin:14px 0;display:flex;gap:12px;align-items:flex-start;}
+.box .ico{font-size:1.4rem;flex-shrink:0;line-height:1.2;}
+.box-label{font-size:0.68rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;margin-bottom:4px;}
+.box p,.box li{font-size:0.9rem;}.box ul{padding-left:16px;}.box li{margin-bottom:4px;}
+.b-exam{background:#eaf4fb;border:2px solid #5dade2;}.b-exam .box-label{color:#1a6b9a;}
+.b-tip{background:#fffbf0;border:2px solid #f39c12;}.b-tip .box-label{color:#b7770d;}
+.b-star{background:#fdf5dc;border:2px solid #b8860b;}.b-star .box-label{color:#7a5a00;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.label{font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:0.8px;color:var(--muted);margin-bottom:16px;display:block;}
+@media(max-width:680px){.two-col{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="ATNTO_Home.html">🏡 <span>A Thig Ná Tit Orm</span></a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn home" href="ATNTO_Home.html">Baile</a>
+  <a class="nav-btn nb1" href="ATNTO_Caibideal1.html">C.1</a>
+  <a class="nav-btn nb2" href="ATNTO_Caibideal2.html">C.2</a>
+  <a class="nav-btn nb3" href="ATNTO_Caibideal3.html">C.3</a>
+  <a class="nav-btn nb4" href="ATNTO_Caibideal4.html">C.4</a>
+  <a class="nav-btn nb5" href="ATNTO_Caibideal5.html">C.5</a>
+  <a class="nav-btn nb6" href="ATNTO_Caibideal6.html">C.6</a>
+  <a class="nav-btn nb7" href="ATNTO_Caibideal7.html">C.7</a>
+  <a class="nav-btn nb8 active" href="ATNTO_Caibideal8.html">C.8</a>
+</nav>
+
+<div class="hero">
+  <div class="chap-label">Caibideal 8 · Samhradh 1958 · An Chaibideal Dheireanach</div>
+  <h1>B'in é an Samhradh</h1>
+  <p>Summer 1958 — Maidhc playing accordion at the céilís, catching the eye of Eibhlín from Limerick, a ladder at a window, a woman with a brush, and a first love never forgotten.</p>
+  <div class="hero-chips">
+    <span class="hero-chip">Samhradh 1958</span>
+    <span class="hero-chip">Céilí</span>
+    <span class="hero-chip">Eibhlín Ní Shúilleabháin</span>
+    <span class="hero-chip">Seán Mór</span>
+    <span class="hero-chip">Grá na hÓige / First Love</span>
+  </div>
+</div>
+
+<div class="section">
+  <div class="tab-bar">
+    <button class="tab active" onclick="switchTab(this,'overview')">📋 Overview</button>
+    <button class="tab" onclick="switchTab(this,'events')">📅 Key Scenes</button>
+    <button class="tab" onclick="switchTab(this,'quotes')">💬 Key Quotes</button>
+    <button class="tab" onclick="switchTab(this,'themes')">🎯 Themes</button>
+    <button class="tab" onclick="switchTab(this,'exam')">🎓 Exam Prep</button>
+  </div>
+
+  <div class="tab-panel active" id="overview">
+    <div class="info-card">
+      <h2>📋 Background &amp; Overview</h2>
+      <p>Chapter 8 is set in <strong>Summer 1958</strong>, when Maidhc is fifteen and a half. The Irish language courses (<em>cúrsaí Gaeilge</em>) were running in the area, and Maidhc was hired to play accordion at the small céilís in the Maritime Hall. He earned £30 for the summer and free admission to the big céilís.</p>
+      <p>From the stage he notices <strong>Eibhlín Ní Shúilleabháin</strong> from Limerick city. They dance together, walk home together, and fall for each other. On the last night, Maidhc and his friend <strong>Seán Mór</strong> devise a plan to use a ladder to reach Eibhlín's window — only for the landlady to appear and chase Maidhc away with a brush. The chapter ends with the bittersweet memory of a first love.</p>
+    </div>
+    <div class="info-card">
+      <h2>🎯 Core Themes in this Chapter</h2>
+      <ul>
+        <li><strong>Fun and Outlook of Youth (Spraoi agus Dearcadh na hÓige):</strong> The chapter is the fullest expression of the book's central theme — the joy, boldness, and innocence of young life.</li>
+        <li><strong>Friends' Influence (Tionchar Cairde):</strong> Seán Mór helps with the ladder plan — friends enabling mischief to the last.</li>
+        <li><strong>Music as Pastime and Income:</strong> The accordion now earns Maidhc real money and brings him into a social world he would never otherwise access.</li>
+        <li><strong>First Love (Grá na hÓige):</strong> Eibhlín is Maidhc's first love — remembered with clear fondness and a touch of nostalgia throughout.</li>
+        <li><strong>Humour and Consequences:</strong> The ladder plan is slapstick at its finest — and the landlady with the brush is the book's perfect comic ending.</li>
+      </ul>
+    </div>
+    <div class="box b-star">
+      <div class="ico">⭐</div>
+      <div><div class="box-label">The Most Important Chapter for the Exam</div>
+      <p>Chapter 8 is the most frequently cited chapter in exam answers on this text. It contains rich material for <strong>every</strong> major essay question: humour, youth, friends, pastimes, style, and the bittersweet note of first love. The ladder scene is the book's comic masterpiece. Learn it thoroughly.</p></div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="events">
+    <span class="label">Key Scenes — Analysis + Irish Phrases to Use</span>
+
+    <div class="scene-card">
+      <div class="scene-header">Scene 1 — Playing at the Céilís</div>
+      <div class="scene-quote">
+        <div class="ga">Bhíodh Maidhc ag seinnt do na céilithe beaga don samhradh sin agus é ag fáil £30 agus cead isteach saor do na céilithe móra. Bhíodh sé á ní féin agus á gléasadh féin ina chuid éadaí Domhnaigh don chéad oíche.</div>
+        <div class="en">Maidhc used to play for the small céilís that summer and was getting £30 and free admission to the big céilís. He used to wash himself and dress in his Sunday clothes for the first night.</div>
+      </div>
+      <div class="scene-analysis">
+        <h4>Analysis (English)</h4>
+        <p>The image of Maidhc carefully washing and putting on his best Sunday clothes for his first night performing is endearing and funny — the same serious preparation a professional musician might make, applied by a fifteen-year-old going to a village hall céilí. The detail of the Sunday clothes is perfect: it shows both his excitement and his innocence. Music has now become not just a passion but a source of income and a gateway to a social world. The passion that began with a letter to Cox of Kilcock has led him here — to the stage, to the girls in the crowd, and to Eibhlín.</p>
+      </div>
+      <div class="scene-phrases">
+        <h4>✍️ Irish Phrases to Use in Your Answer</h4>
+        <div class="phrase-row"><span class="phrase-ga">Nuair a bhí na cúrsaí Gaeltachta ar siúl sa cheantar, bhíodh Maidhc ag seinm ceoil ag na céilithe</span><span class="phrase-en">When the Gaeltacht courses were on in the area, Maidhc used to play music at the céilís</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Bhí sé ag fáil £30 agus cead isteach saor do na céilithe móra</span><span class="phrase-en">He was getting £30 and free admission to the big céilís</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Léiríonn sé seo go raibh an ceol ina fhoinse ioncaim do Mhaidhc freisin</span><span class="phrase-en">This shows that music was also a source of income for Maidhc</span></div>
+      </div>
+    </div>
+
+    <div class="scene-card">
+      <div class="scene-header">Scene 2 — Seán Mór and the Goat-Eaten Shirt</div>
+      <div class="scene-quote">
+        <div class="ga">Bhí cara le Maidhc ann, Seán Mór, agus é gléasta fíor-néata. Bhí an t-allas fuar ag stealladh uaidh ach níor bhain sé de a gheansaí — bhí carbhat air agus léine ach ní droim an léine ar fad ann mar bhí sé ite ag gabhar aige!</div>
+        <div class="en">There was a friend of Maidhc's there, Seán Mór, dressed very neatly. Cold sweat was pouring from him but he wouldn't take off his jumper — he was wearing a tie and shirt but not the whole back of the shirt because a goat had eaten it!</div>
+      </div>
+      <div class="scene-analysis">
+        <h4>Analysis (English)</h4>
+        <p>This is one of the funniest one-off details in the entire book. Seán Mór, trying to look his best at the céilí, is roasting in his jumper because if he takes it off everyone will see that a goat ate the back of his shirt. The image is absurd, perfectly observed, and brilliantly told — the cold sweat, the determined refusal to remove the jumper, the hidden disaster underneath. It is a classic piece of Maidhc's humour: the mundane colliding with the ridiculous to produce something unforgettable. It also shows Maidhc's warmth towards his friends — he tells the story with obvious affection rather than mockery.</p>
+      </div>
+      <div class="scene-phrases">
+        <h4>✍️ Irish Phrases to Use in Your Answer</h4>
+        <div class="phrase-row"><span class="phrase-ga">Bhí cara le Maidhc ann, Seán Mór, agus é gléasta fíor-néata</span><span class="phrase-en">There was a friend of Maidhc's there, Seán Mór, dressed very neatly</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Ní droim an léine ar fad ann mar bhí sé ite ag gabhar</span><span class="phrase-en">Not the full back of the shirt was there because a goat had eaten it</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Cuireann soineantas agus rógaireacht an pháiste i gcuimhne dom</span><span class="phrase-en">It reminds me of a child's innocence and devilment</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Sampla den ghrá agus den ghreann atá le feiceáil idir na cairde</span><span class="phrase-en">An example of the love and humour visible between the friends</span></div>
+      </div>
+    </div>
+
+    <div class="scene-card">
+      <div class="scene-header">Scene 3 — Meeting Eibhlín</div>
+      <div class="scene-quote">
+        <div class="ga">Bhíodh radharc breá ag Maidhc ar na cailíní ón stáitse agus bhíodh na cailíní ag caitheamh súile ina threo. Thug Maidhc suntas d'Eibhlín Ní Shúilleabháin ó chathair Luimní. Chaith siad an chéad oíche eile ag damhsa le chéile agus d'éirigh siad an-cheanúil ar a chéile.</div>
+        <div class="en">Maidhc had a great view of the girls from the stage and the girls were glancing in his direction. Maidhc noticed Eibhlín Ní Shúilleabháin from Limerick city. They spent the next night dancing together and they became very fond of each other.</div>
+      </div>
+      <div class="scene-analysis">
+        <h4>Analysis (English)</h4>
+        <p>The image of Maidhc watching from the stage — the musician with a perfect vantage point over the crowd — is charming. He spots Eibhlín from Limerick and is immediately drawn to her. What follows is a sweet, innocent summer romance: dancing together, walking home together. The phrase <em>"d'éirigh siad an-cheanúil ar a chéile"</em> (they became very fond of each other) captures the gentleness of first love beautifully. There is nothing dramatic or complicated about the falling-in-love — it happens naturally, in the warm atmosphere of a summer céilí, which makes it all the more genuine and touching.</p>
+      </div>
+      <div class="scene-phrases">
+        <h4>✍️ Irish Phrases to Use in Your Answer</h4>
+        <div class="phrase-row"><span class="phrase-ga">Thug Maidhc suntas d'Eibhlín ón stáitse</span><span class="phrase-en">Eibhlín caught Maidhc's eye from the stage</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Chaith siad an chéad oíche eile ag damhsa le chéile</span><span class="phrase-en">They spent the next night dancing together</span></div>
+        <div class="phrase-row"><span class="phrase-ga">D'éirigh siad an-cheanúil ar a chéile</span><span class="phrase-en">They became very fond of each other</span></div>
+        <div class="phrase-row"><span class="phrase-ga">B'í seo chéad ghrá Mhaidhc agus is léir nach bhfuil dearmad déanta aige uirthi</span><span class="phrase-en">This was Maidhc's first love and it is clear he has not forgotten her</span></div>
+      </div>
+    </div>
+
+    <div class="scene-card">
+      <div class="scene-header">Scene 4 — The Ladder Plan and the Brush</div>
+      <div class="scene-quote">
+        <div class="ga">Chabhraigh Seán Mór leis an bplean — chuir siad dréimire in airde d'fhuinneog na gcailín. Thosaigh Eibhlín ar a slí amach as an bhfuinneog ach tháinig bean an tí amach. Lean sí Maidhc agus thug buille sa droim dó leis an scuab.</div>
+        <div class="en">Seán Mór helped with the plan — they put a ladder up to the girls' window. Eibhlín began making her way out of the window but the landlady came out. She followed Maidhc and gave him a blow in the back with the brush.</div>
+      </div>
+      <div class="scene-analysis">
+        <h4>Analysis (English)</h4>
+        <p>This is the comic masterpiece of the entire autobiography — the perfect ending. The plan is bold, romantic, and completely predictable in how it goes wrong. The ladder at the window is like something from a pantomime. Eibhlín gamely starts climbing out, but the landlady appears — and instead of a romantic ending, Maidhc gets a smack in the back with a brush as he flees into the night. The scene perfectly encapsulates the whole spirit of the book: ambition, mischief, joy, and inevitable comic failure. The fact that this is also the ending of the autobiography gives it a bittersweet, nostalgic quality — the last image of young Maidhc is him running away from an angry landlady, which is exactly as it should be.</p>
+      </div>
+      <div class="scene-phrases">
+        <h4>✍️ Irish Phrases to Use in Your Answer</h4>
+        <div class="phrase-row"><span class="phrase-ga">Chabhraigh Seán Mór leis an bplean sin</span><span class="phrase-en">Seán Mór helped with that plan</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Chuir siad dréimire in airde d'fhuinneog na gcailín</span><span class="phrase-en">They put a ladder up to the girls' window</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Lean bean an tí Maidhc agus fuair sé buille sa droim leis an scuab</span><span class="phrase-en">The landlady followed Maidhc and he got a blow in the back with the brush</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Greann rancáis a bhí i gceist le plean Mhaidhc</span><span class="phrase-en">Slapstick humour was involved in Maidhc's plan</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Cuireadh deireadh siamsúil agus greannmhar leis an scéal</span><span class="phrase-en">The story was concluded in an entertaining and funny way</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Is léir nach mbíonn rath ar chleasaíocht Mhaidhc ró-mhinic</span><span class="phrase-en">It is clear that Maidhc's trickery doesn't succeed very often</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="quotes">
+    <span class="label">Key Quotes — with Analysis and Irish Phrases</span>
+    <div class="scene-card">
+      <div class="scene-header">Quote 1 — First Love, Never Forgotten</div>
+      <div class="scene-quote">
+        <div class="ga">B'í seo chéad ghrá Mhaidhc agus is léir nach bhfuil dearmad déanta aige uirthi.</div>
+        <div class="en">This was Maidhc's first love and it is clear he has not forgotten her.</div>
+      </div>
+      <div class="scene-analysis">
+        <h4>Analysis (English)</h4>
+        <p>This quiet, understated line is one of the most emotionally resonant in the book. After all the comedy of the ladder and the brush, Maidhc steps back and acknowledges with simple sincerity that Eibhlín was his first love and that he still remembers her clearly. The phrase <em>"is léir nach bhfuil dearmad déanta aige uirthi"</em> gives the end of the chapter — and the book — a gentle, bittersweet quality. The humour never disappears, but underneath it is real feeling. This is what makes the autobiography more than just a collection of funny stories.</p>
+      </div>
+      <div class="scene-phrases">
+        <h4>✍️ Irish Phrases to Use</h4>
+        <div class="phrase-row"><span class="phrase-ga">B'í seo chéad ghrá Mhaidhc</span><span class="phrase-en">This was Maidhc's first love</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Is léir nach bhfuil dearmad déanta aige uirthi</span><span class="phrase-en">It is clear he has not forgotten her</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Tugann Maidhc cuntas taitneamhach don léitheoir faoin am a bhí a chroí agus a anam istigh in Eibhlín</span><span class="phrase-en">Maidhc gives the reader an enjoyable account of the time he was head over heels for Eibhlín</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Tá an brón agus an greann fite fuaite le chéile sa chaibidil dheireanach seo</span><span class="phrase-en">Sadness and humour are woven together in this final chapter</span></div>
+      </div>
+    </div>
+
+    <div class="scene-card">
+      <div class="scene-header">Quote 2 — Maidhc Shaving (Growing Up)</div>
+      <div class="scene-quote">
+        <div class="ga">Bhí Maidhc 15 bliana go leith d'aois agus é á bhearradh féin — rud a thaispeánann fearúlacht agus ag dul in aois.</div>
+        <div class="en">Maidhc was 15 and a half years old and shaving himself — a thing that shows manliness and growing up.</div>
+      </div>
+      <div class="scene-analysis">
+        <h4>Analysis (English)</h4>
+        <p>The opening detail of the chapter — Maidhc shaving for the first time — immediately establishes that we have moved from childhood into early adolescence. It is a rite of passage moment, signalling that this chapter will deal with more grown-up themes: romance, earning money, and independence. The detail is typical of Maidhc's precise, observational writing style — one small, specific image that tells the reader everything about where the character is in his life.</p>
+      </div>
+      <div class="scene-phrases">
+        <h4>✍️ Irish Phrases to Use</h4>
+        <div class="phrase-row"><span class="phrase-ga">Bhí Maidhc 15 bliana go leith d'aois agus é á bhearradh féin</span><span class="phrase-en">Maidhc was 15 and a half shaving himself</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Taispeánann sé seo go raibh sé ag dul in aois</span><span class="phrase-en">This shows he was growing up / maturing</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Is seoid iontach luachmhar í caibidil 8 maidir le greann an scéil</span><span class="phrase-en">Chapter 8 is a real gem regarding the humour of the story</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="themes">
+    <span class="label">Themes in Chapter 8</span>
+    <div class="two-col">
+      <div class="info-card">
+        <h2>😂 Humour — The Best Chapter</h2>
+        <p>Chapter 8 contains the book's funniest moments back-to-back: Seán Mór's goat-eaten shirt, the ladder at the window, the landlady with the brush. It is slapstick, warm, and perfectly timed. <em>Is seoid iontach luachmhar í caibidil 8 maidir le greann an scéil.</em></p>
+      </div>
+      <div class="info-card">
+        <h2>🎵 Music — Passion Becomes Independence</h2>
+        <p>Music earns Maidhc £30 and free access to the céilís — it has become both a pastime and a source of real independence. The accordion, which arrived as a family parcel in Chapter 6, now gives Maidhc a stage and a life of his own.</p>
+      </div>
+      <div class="info-card">
+        <h2>💛 First Love (Grá na hÓige)</h2>
+        <p>Eibhlín Ní Shúilleabháin is the book's most tender figure. Their summer romance — dancing, walking, the ladder plan — is innocent, genuine, and clearly still treasured by the older Maidhc who writes about it. The ending is bittersweet: funny on the surface, quietly poignant beneath.</p>
+      </div>
+      <div class="info-card">
+        <h2>👬 Friends — To the End</h2>
+        <p>Seán Mór's involvement in the ladder plan shows that the pattern of the whole book — friends encouraging and enabling Maidhc's mischief — continues right to the final pages. <em>Sin iad na fir agat!</em> (Boys will be boys!) — as the sample answers put it.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="exam">
+    <span class="label">Exam Preparation</span>
+    <div class="box b-exam">
+      <div class="ico">🎓</div>
+      <div><div class="box-label">Which Essay Questions Suit Chapter 8?</div>
+      <ul>
+        <li><strong>Every single essay question</strong> — Chapter 8 is the most versatile chapter in the book. It covers humour, youth, friends, pastimes (music, céilís), first love, and growing up. Always use at least one scene from it.</li>
+        <li><strong>"Tá greann agus brón araon le feiceáil"</strong> — Greann: goat shirt, ladder, brush. Brón: first love ending, nostalgia, Eibhlín not forgotten.</li>
+        <li><strong>"Bhí tionchar ag cairde Mhaidhc ar a shaol"</strong> — Seán Mór helps with the ladder plan; friends enabling mischief to the last.</li>
+        <li><strong>Pastimes essay</strong> — Music as income and social life; the céilís; dancing.</li>
+        <li><strong>Style essay</strong> — The ladder scene is the perfect example of Maidhc's slapstick storytelling style; the final line about Eibhlín shows his emotional depth.</li>
+      </ul>
+      </div>
+    </div>
+    <div class="info-card">
+      <h2>📝 Model Paragraph — Humour in Chapter 8</h2>
+      <p>I mo thuairim, is seoid iontach luachmhar í caibidil 8 maidir le greann an scéil. <em>(In my opinion, chapter 8 is a real gem regarding the humour of the story.)</em> Bhí a chara, Seán Mór, ag cabhrú leis lena chaidreamh le hEibhlín ar an oíche dheireanach. <em>(His friend Seán Mór was helping him with his relationship with Eibhlín on the last night.)</em> Greann rancáis a bhí i gceist le plean Mhaidhc — chuir siad dréimire in airde d'fhuinneog na gcailín. <em>(Slapstick humour was involved in Maidhc's plan — they put a ladder up to the girls' window.)</em> Áfach, chonaic bean an tí Maidhc taobh amuigh den fhuinneog — lean sí Maidhc agus fuair sé buille sa droim leis an scuab. <em>(However, the landlady saw Maidhc outside the window — she followed Maidhc and he got a blow in the back with the brush.)</em> Cuireadh deireadh siamsúil agus greannmhar leis an scéal. <em>(The story was concluded in an entertaining and funny way.)</em> Ach thar gach rud eile, is léir nach bhfuil dearmad déanta ag Maidhc ar Eibhlín — b'í seo chéad ghrá Mhaidhc. <em>(But above all else, it is clear that Maidhc has not forgotten Eibhlín — this was Maidhc's first love.)</em></p>
+    </div>
+    <div class="box b-tip">
+      <div class="ico">💡</div>
+      <div><div class="box-label">Top Exam Tip — The Perfect Ending</div>
+      <p>In any answer about humour or youth, always end your Chapter 8 paragraph with the final line about Eibhlín: <em>"B'í seo chéad ghrá Mhaidhc agus is léir nach bhfuil dearmad déanta aige uirthi."</em> It shows that you understand the emotional depth beneath the comedy, and that the autobiography is not just funny stories but a genuine, heartfelt memoir. Examiners consistently reward this kind of insight.</p></div>
+    </div>
+  </div>
+</div>
+<script>
+function switchTab(btn,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(id).classList.add('active');}
+</script>
+</body>
+</html>

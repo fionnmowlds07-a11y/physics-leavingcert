@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ga">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Téama — Saol na Scoile</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F5F0E8;--surface:#fff;--border:#ddd8ce;--text:#2a2820;--muted:#6a6860;--c:#2d5a1b;--cl:#e4f0de;--cd:#122808;--radius:14px;--shadow:0 4px 20px rgba(0,0,0,0.08);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;font-size:16px;}
+nav{position:sticky;top:0;z-index:100;background:rgba(245,240,232,0.97);backdrop-filter:blur(10px);border-bottom:2px solid var(--border);padding:8px 16px;display:flex;align-items:center;gap:5px;flex-wrap:wrap;min-height:52px;}
+.nav-logo{font-family:'Lexend Mega',sans-serif;font-size:0.82rem;color:var(--text);margin-right:4px;text-decoration:none;white-space:nowrap;}.nav-logo span{color:#5a6e3a;}
+.nav-divider{width:1px;height:20px;background:var(--border);flex-shrink:0;}
+.nav-btn{padding:5px 10px;border-radius:18px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.7rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);text-decoration:none;white-space:nowrap;}
+.nav-btn:hover{transform:translateY(-1px);}
+.nav-btn.home:hover,.nav-btn.home.active{background:#2a2820;border-color:#2a2820;color:#fff;}
+.t-active,.t-active:hover{background:var(--c);border-color:var(--c);color:#fff;}
+.nb-fam:hover{background:#b8860b;border-color:#b8860b;color:#fff;}
+.nb-ca:hover{background:#1a4a5a;border-color:#1a4a5a;color:#fff;}
+.nb-st:hover{background:#5a1a4a;border-color:#5a1a4a;color:#fff;}
+.section{padding:0 16px 80px;max-width:940px;margin:0 auto;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.hero{background:linear-gradient(135deg,var(--cd),var(--c));color:#fff;padding:44px 32px 36px;text-align:center;margin-bottom:32px;}
+.hero .chap-label{font-size:0.74rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;opacity:0.75;margin-bottom:10px;}
+.hero h1{font-family:'Lexend Mega',sans-serif;font-size:clamp(1.5rem,4vw,2.4rem);line-height:1.2;margin-bottom:12px;}
+.hero p{opacity:0.88;max-width:640px;margin:0 auto;font-size:0.94rem;}
+.hero-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px;}
+.hero-chip{background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:4px 14px;border-radius:20px;font-size:0.74rem;font-weight:600;}
+.tab-bar{display:flex;gap:4px;flex-wrap:wrap;padding:22px 0 8px;border-bottom:2px solid var(--border);margin-bottom:28px;}
+.tab{padding:8px 16px;border-radius:10px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.78rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);}
+.tab:hover,.tab.active{background:var(--c);color:#fff;border-color:var(--c);}
+.tab-panel{display:none;}.tab-panel.active{display:block;animation:fadeIn 0.25s ease;}
+.info-card{background:var(--surface);border-radius:var(--radius);padding:22px 24px;margin-bottom:18px;box-shadow:var(--shadow);border-left:5px solid var(--c);}
+.info-card h2{font-size:1.05rem;font-weight:700;margin-bottom:10px;}
+.info-card p{margin-bottom:8px;font-size:0.92rem;}
+.info-card ul{padding-left:18px;margin-bottom:8px;}
+.info-card li{margin-bottom:7px;font-size:0.91rem;}
+.point-card{background:var(--surface);border-radius:var(--radius);padding:0;margin-bottom:18px;box-shadow:var(--shadow);border:2px solid var(--border);overflow:hidden;}
+.point-header{background:var(--cd);color:#fff;padding:10px 18px;font-family:'Lexend Mega',sans-serif;font-size:0.82rem;display:flex;align-items:center;gap:10px;}
+.point-body{padding:16px 20px;}
+.point-body p{font-size:0.91rem;margin-bottom:8px;line-height:1.75;}
+.point-body ul{padding-left:18px;}
+.point-body li{font-size:0.91rem;margin-bottom:6px;}
+.phrases{padding:14px 20px;background:#f9f7f3;border-top:2px solid var(--border);}
+.phrases h4{font-size:0.72rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;color:var(--c);margin-bottom:10px;}
+.phrase-row{display:flex;gap:10px;align-items:flex-start;margin-bottom:8px;flex-wrap:wrap;}
+.phrase-ga{background:var(--c);color:#fff;border-radius:6px;padding:4px 10px;font-size:0.8rem;font-weight:600;}
+.phrase-en{font-size:0.8rem;color:var(--muted);font-style:italic;padding-top:3px;}
+.box{border-radius:var(--radius);padding:14px 18px;margin:14px 0;display:flex;gap:12px;align-items:flex-start;}
+.box .ico{font-size:1.4rem;flex-shrink:0;line-height:1.2;}
+.box-label{font-size:0.68rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;margin-bottom:4px;}
+.box p,.box li{font-size:0.9rem;}.box ul{padding-left:16px;}.box li{margin-bottom:5px;}
+.b-exam{background:#eaf4fb;border:2px solid #5dade2;}.b-exam .box-label{color:#1a6b9a;}
+.b-tip{background:#fffbf0;border:2px solid #f39c12;}.b-tip .box-label{color:#b7770d;}
+.label{font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:0.8px;color:var(--muted);margin-bottom:16px;display:block;}
+.chap-tag{display:inline-block;background:var(--cl);color:var(--cd);border:1px solid var(--c);border-radius:5px;font-size:0.72rem;font-weight:700;padding:2px 8px;margin-right:4px;}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="ATNTO_Home.html">🏡 <span>A Thig Ná Tit Orm</span></a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn home" href="ATNTO_Home.html">Baile</a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn t-active" href="ATNTO_Scoil.html">📚 Scoil</a>
+  <a class="nav-btn nb-fam" href="ATNTO_Teaghlach.html">👨‍👩‍👦 Teaghlach</a>
+  <a class="nav-btn nb-ca" href="ATNTO_CaithAmh.html">⚽ Caitheamh Aimsire</a>
+  <a class="nav-btn nb-st" href="ATNTO_Stil.html">✍️ Stíl</a>
+</nav>
+
+<div class="hero">
+  <div class="chap-label">Téama 1 · Caibidil 1, 2 &amp; 7</div>
+  <h1>Saol na Scoile</h1>
+  <p>From his reluctant first day in 1947 to winning the county championship at Dingle Vocational School — school shapes Maidhc's whole youth, for better and for worse.</p>
+  <div class="hero-chips">
+    <span class="hero-chip">Bunscoil / Primary School</span>
+    <span class="hero-chip">Ceardscoil / Vocational School</span>
+    <span class="hero-chip">Pionós Corpartha</span>
+    <span class="hero-chip">Craobh Contae</span>
+    <span class="hero-chip">Grúptheastas</span>
+  </div>
+</div>
+
+<div class="section">
+  <div class="tab-bar">
+    <button class="tab active" onclick="switchTab(this,'overview')">📋 Overview</button>
+    <button class="tab" onclick="switchTab(this,'primary')">🏫 Primary School</button>
+    <button class="tab" onclick="switchTab(this,'voc')">🔨 Vocational School</button>
+    <button class="tab" onclick="switchTab(this,'phrases')">✍️ Key Phrases</button>
+    <button class="tab" onclick="switchTab(this,'exam')">🎓 Model Answer</button>
+  </div>
+
+  <div class="tab-panel active" id="overview">
+    <div class="info-card">
+      <h2>📋 The Full Arc of Maidhc's School Life</h2>
+      <p>Maidhc's experience of school spans the entire autobiography and goes through two very distinct phases. <strong>Primary school</strong> (Chapters 1 &amp; 2) is characterised by boredom, mischief, and corporal punishment. <strong>Vocational school</strong> (Chapter 7) is the complete opposite — practical, physical, and triumphant. Together they tell the story of a boy who was never unintelligent, just mismatched with academic learning.</p>
+    </div>
+    <div class="info-card">
+      <h2>🎯 Key Points to Cover in an Essay</h2>
+      <ul>
+        <li>First day at school — innocence, not knowing where he was going (C.1)</li>
+        <li>The fight with Tomás and four blows of the ash rod (C.1)</li>
+        <li>The rough football game on the road with no rules (C.1)</li>
+        <li>The inspector's visit — Vincent's proverb, the tinker incident, collective punishment (C.2)</li>
+        <li>Maidhc's admission that he had no interest in school (C.1)</li>
+        <li>Vocational school — practical work, fits his abilities (C.7)</li>
+        <li>Naomhóg racing — coming last despite building their own currach (C.7)</li>
+        <li>County football championship — first time ever (C.7)</li>
+        <li>Group Certificate — everyone passes (C.7)</li>
+      </ul>
+    </div>
+    <div class="box b-exam">
+      <div class="ico">🎓</div>
+      <div><div class="box-label">Essay Questions This Theme Answers</div>
+      <ul>
+        <li>"Tugann Maidhc Dainín cuntas taitneamhach ar a chuid scolaíochta agus ar a chuid cleasaíochta"</li>
+        <li>"Tugann Maidhc Dainín cuntas suimiúil ar scoil agus ar chaitheamh aimsire sa Ghaeltacht"</li>
+        <li>"Tá greann agus brón araon le feiceáil sa dírbheathaisnéis seo"</li>
+        <li>"Tá spraoi agus dearcadh na hóige léirithe go mór chun tosaigh"</li>
+      </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="primary">
+    <span class="label">Primary School — Chapters 1 &amp; 2</span>
+
+    <div class="point-card">
+      <div class="point-header"><span class="chap-tag">C.1</span> The First Day — Innocence</div>
+      <div class="point-body">
+        <p>Maidhc's mother dressed him in his best clothes and he thought he was going to the shop. This perfectly captures the innocence of a five-year-old on his first day — he has no concept of what school even is. From this moment on, Maidhc honestly admits he had little interest in school.</p>
+      </div>
+      <div class="phrases">
+        <h4>✍️ Phrases to Use</h4>
+        <div class="phrase-row"><span class="phrase-ga">Ar chéad lá na scoile, bhí drogall air a bheith ar scoil gan a mháthair</span><span class="phrase-en">On the first day of school, he was reluctant to be at school without his mother</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Admhaíonn sé féin nach raibh mórán suime aige i gcúrsaí scoile in aon chor</span><span class="phrase-en">He himself admits he had very little interest in school matters at all</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Feicimid soineantacht na hóige san eachtra seo</span><span class="phrase-en">We see the innocence of youth in this event</span></div>
+      </div>
+    </div>
+
+    <div class="point-card">
+      <div class="point-header"><span class="chap-tag">C.1</span> The Fight &amp; The Ash Rod</div>
+      <div class="point-body">
+        <p>Maidhc planned to push Tomás into a ditch to win a fight, but fell in himself — classic slapstick. The teacher's punishment (four blows of the ash rod) shows the harsh discipline of the era. This is the book's first example of corporal punishment, and it recurs throughout the primary school chapters.</p>
+      </div>
+      <div class="phrases">
+        <h4>✍️ Phrases to Use</h4>
+        <div class="phrase-row"><span class="phrase-ga">Fuair Maidhc agus Tomás ceithre buille den slat fuinseoige ar na méireanta</span><span class="phrase-en">Maidhc and Tomás got four blows of the ash rod on their fingers</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Tá nasc láidir idir an chleasaíocht agus an pionós corpartha</span><span class="phrase-en">There is a strong link between mischief and corporal punishment</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Is foinse bróin don léitheoir an pionós corpartha</span><span class="phrase-en">Corporal punishment is a source of sadness for the reader</span></div>
+      </div>
+    </div>
+
+    <div class="point-card">
+      <div class="point-header"><span class="chap-tag">C.2</span> The Inspector &amp; The Tinker Incident</div>
+      <div class="point-body">
+        <p>The inspector's visit brings out the innocence of youth in Vincent's proverb answer. The tinker incident shows collective mischief and collective punishment — every boy beaten, nobody told. Together these scenes show that primary school is both memorable and unjust, funny and painful.</p>
+      </div>
+      <div class="phrases">
+        <h4>✍️ Phrases to Use</h4>
+        <div class="phrase-row"><span class="phrase-ga">Feicimid soineantacht na hóige san eachtra seo leis an gcigire</span><span class="phrase-en">We see the innocence of youth in this event with the inspector</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Mar thoradh ar an eachtra sin, fuair gach buachaill ceithre bhuille ón slat fuinseoige</span><span class="phrase-en">As a result of that event, every boy got four blows from the ash rod</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Níor admhaigh aon duine — léirítear dlúthpháirtíocht idir na cairde</span><span class="phrase-en">Nobody admitted — the solidarity between friends is shown</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="voc">
+    <span class="label">Vocational School — Chapter 7</span>
+
+    <div class="point-card">
+      <div class="point-header"><span class="chap-tag">C.7</span> Why Vocational School Suited Maidhc</div>
+      <div class="point-body">
+        <p>His mother gave him a clear choice: vocational school or low-paid farm work. At the vocational school Maidhc finally thrived because the work was practical and hands-on — woodworking, building, physical activity. He was never unintelligent; he just needed a different kind of education.</p>
+      </div>
+      <div class="phrases">
+        <h4>✍️ Phrases to Use</h4>
+        <div class="phrase-row"><span class="phrase-ga">Bhí obair níos praiticiúla i gceist sa scoil seo a bhí níos oiriúnaí dó</span><span class="phrase-en">There was more practical work in this school which was more suitable for him</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Thaitin an scoil nua leis mar bhí sé ag obair lena lámha</span><span class="phrase-en">He liked the new school because he was working with his hands</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Níor dhuine acadúil é Maidhc Dainín dar leis féin</span><span class="phrase-en">Maidhc Dainín was not an academic person according to himself</span></div>
+      </div>
+    </div>
+
+    <div class="point-card">
+      <div class="point-header"><span class="chap-tag">C.7</span> County Championship &amp; Group Certificate</div>
+      <div class="point-body">
+        <p>Winning the county football championship for the first time ever, and passing the Group Certificate, are the twin peaks of Maidhc's school career. Both achievements show a young man who, in the right environment, can excel. The best two years of his life — his own words.</p>
+      </div>
+      <div class="phrases">
+        <h4>✍️ Phrases to Use</h4>
+        <div class="phrase-row"><span class="phrase-ga">Bhí craobh an chontae buaite acu don chéad uair riamh — éacht iontach</span><span class="phrase-en">They had won the county championship for the first time ever — a wonderful achievement</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Dhein sé scrúdú an Grúptheastais agus d'éirigh le gach duine</span><span class="phrase-en">He sat the Group Certificate and everyone passed</span></div>
+        <div class="phrase-row"><span class="phrase-ga">B'iad an dá bhliain is fearr a bhí ag Maidhc riamh</span><span class="phrase-en">They were the best two years Maidhc ever had</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Is cinnte go bhfuil dea-chuimhní ag Maidhc ón gceardscoil</span><span class="phrase-en">It is certain that Maidhc has good memories from the vocational school</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="phrases">
+    <span class="label">Master Phrase Bank — School Life</span>
+    <div class="info-card">
+      <h2>🔑 Opening &amp; Closing Phrases</h2>
+      <div class="phrase-row"><span class="phrase-ga">Is cuid thábhachtach den dírbheathaisnéis í scolaíocht Mhaidhc Dainín</span><span class="phrase-en">Maidhc Dainín's schooling is an important part of the autobiography</span></div>
+      <div class="phrase-row"><span class="phrase-ga">Tá ról lárnach ag an scolaíocht sa dírbheathaisnéis seo</span><span class="phrase-en">Schooling has a central role in this autobiography</span></div>
+      <div class="phrase-row"><span class="phrase-ga">Bhí taithí dhearfach aige ar scoil ar an iomlán</span><span class="phrase-en">He had a positive experience of school on the whole</span></div>
+      <div class="phrase-row"><span class="phrase-ga">Mar fhocail scoir, is léir go raibh tionchar mór ag an scoil ar shaol Mhaidhc</span><span class="phrase-en">To conclude, it is clear that school had a big influence on Maidhc's life</span></div>
+    </div>
+    <div class="info-card">
+      <h2>😢 Sadness / Corporal Punishment</h2>
+      <div class="phrase-row"><span class="phrase-ga">Bhí an pionós corpartha coitianta sna scoileanna ag an am</span><span class="phrase-en">Corporal punishment was common in schools at the time</span></div>
+      <div class="phrase-row"><span class="phrase-ga">Is foinse bróin don léitheoir an pionós corpartha seo</span><span class="phrase-en">This corporal punishment is a source of sadness for the reader</span></div>
+      <div class="phrase-row"><span class="phrase-ga">Bhí eagla ar Mhaidhc roimh an gcleasaíocht agus a hiarmhairtí</span><span class="phrase-en">Maidhc was afraid of mischief and its consequences</span></div>
+    </div>
+    <div class="info-card">
+      <h2>😂 Humour / Youth</h2>
+      <div class="phrase-row"><span class="phrase-ga">Bhí drochimeacht faoi na buachaillí nuair a bhí siad le chéile</span><span class="phrase-en">The boys were up to no good when they were together</span></div>
+      <div class="phrase-row"><span class="phrase-ga">Sin iad na fir agat!</span><span class="phrase-en">Boys will be boys!</span></div>
+      <div class="phrase-row"><span class="phrase-ga">Is léir ón eachtra seo gur rógaire é Maidhc</span><span class="phrase-en">It is clear from this event that Maidhc was a rascal</span></div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="exam">
+    <span class="label">Model Essay Answer — School Life</span>
+    <div class="info-card">
+      <h2>📝 Full Model Paragraph Structure</h2>
+      <p><strong>Paragraph 1 — Primary School Introduction:</strong><br>
+      Is cuid thábhachtach den dírbheathaisnéis í scolaíocht Mhaidhc Dainín. <em>(Maidhc Dainín's schooling is an important part of the autobiography.)</em> Insítear dom nár thaitin scoil go mór le Maidhc mar pháiste. <em>(I am told that Maidhc didn't really like school as a child.)</em> Admhaíonn sé féin nach raibh mórán suime aige i gcúrsaí scoile in aon chor. <em>(He himself admits he had very little interest in school matters at all.)</em></p>
+      <p><strong>Paragraph 2 — The Fight &amp; Punishment:</strong><br>
+      Sampla amháin ná an cur síos greannmhar a thugann sé ar an troid idir é agus Tomás. <em>(One example is the funny description he gives of the fight between him and Tomás.)</em> Fuair Maidhc agus Tomás ceithre buille den slat fuinseoige ar na méireanta. <em>(Maidhc and Tomás got four blows of the ash rod on their fingers.)</em> Is foinse bróin don léitheoir an pionós corpartha seo, ach cuireann an t-údar i láthair é ar bhealach greannmhar. <em>(This corporal punishment is a source of sadness for the reader, but the author presents it in a funny way.)</em></p>
+      <p><strong>Paragraph 3 — Vocational School:</strong><br>
+      I ndiaidh na bunscoile, d'fhreastail Maidhc ar Cheardscoil an Daingin. <em>(After primary school, Maidhc attended Dingle Vocational School.)</em> Thaitin an scoil nua leis mar bhí sé ag obair lena lámha. <em>(He liked the new school because he was working with his hands.)</em> Bhí craobh an chontae buaite acu don chéad uair riamh — éacht iontach a bhí ann. <em>(They won the county championship for the first time ever — it was a wonderful achievement.)</em> B'iad an dá bhliain is fearr a bhí ag Maidhc riamh. <em>(They were the best two years Maidhc ever had.)</em></p>
+      <p><strong>Conclusion:</strong><br>
+      Mar fhocail scoir, is cinnte go bhfuil dea-chuimhní ag Maidhc ón gceardscoil agus go raibh taithí dhearfach aige ar scoil ar an iomlán. <em>(To conclude, it is certain that Maidhc has good memories from the vocational school and a positive experience of school on the whole.)</em></p>
+    </div>
+    <div class="box b-tip">
+      <div class="ico">💡</div>
+      <div><div class="box-label">Key Strategy for School Life Essays</div>
+      <p>Always show the <strong>contrast</strong> between primary school (difficult, punishing, academic) and vocational school (practical, successful, joyful). This contrast is the most powerful structural move in a school life essay — it shows breadth across the text and analytical thinking. Start with the hardship; end with the triumph.</p></div>
+    </div>
+  </div>
+</div>
+<script>
+function switchTab(btn,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(id).classList.add('active');}
+</script>
+</body>
+</html>

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ga">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Téama — Saol an Teaghlaigh</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F5F0E8;--surface:#fff;--border:#ddd8ce;--text:#2a2820;--muted:#6a6860;--c:#b8860b;--cl:#fdf5dc;--cd:#5a3e00;--radius:14px;--shadow:0 4px 20px rgba(0,0,0,0.08);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;font-size:16px;}
+nav{position:sticky;top:0;z-index:100;background:rgba(245,240,232,0.97);backdrop-filter:blur(10px);border-bottom:2px solid var(--border);padding:8px 16px;display:flex;align-items:center;gap:5px;flex-wrap:wrap;min-height:52px;}
+.nav-logo{font-family:'Lexend Mega',sans-serif;font-size:0.82rem;color:var(--text);margin-right:4px;text-decoration:none;white-space:nowrap;}.nav-logo span{color:#5a6e3a;}
+.nav-divider{width:1px;height:20px;background:var(--border);flex-shrink:0;}
+.nav-btn{padding:5px 10px;border-radius:18px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.7rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);text-decoration:none;white-space:nowrap;}
+.nav-btn.home:hover,.nav-btn.home.active{background:#2a2820;border-color:#2a2820;color:#fff;}
+.t-active,.t-active:hover{background:var(--c);border-color:var(--c);color:#fff;}
+.nb-sc:hover{background:#2d5a1b;border-color:#2d5a1b;color:#fff;}
+.nb-ca:hover{background:#1a4a5a;border-color:#1a4a5a;color:#fff;}
+.nb-st:hover{background:#5a1a4a;border-color:#5a1a4a;color:#fff;}
+.section{padding:0 16px 80px;max-width:940px;margin:0 auto;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.hero{background:linear-gradient(135deg,var(--cd),var(--c));color:#fff;padding:44px 32px 36px;text-align:center;margin-bottom:32px;}
+.hero .chap-label{font-size:0.74rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;opacity:0.75;margin-bottom:10px;}
+.hero h1{font-family:'Lexend Mega',sans-serif;font-size:clamp(1.5rem,4vw,2.4rem);line-height:1.2;margin-bottom:12px;}
+.hero p{opacity:0.88;max-width:640px;margin:0 auto;font-size:0.94rem;}
+.hero-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px;}
+.hero-chip{background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:4px 14px;border-radius:20px;font-size:0.74rem;font-weight:600;}
+.tab-bar{display:flex;gap:4px;flex-wrap:wrap;padding:22px 0 8px;border-bottom:2px solid var(--border);margin-bottom:28px;}
+.tab{padding:8px 16px;border-radius:10px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.78rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);}
+.tab:hover,.tab.active{background:var(--c);color:#fff;border-color:var(--c);}
+.tab-panel{display:none;}.tab-panel.active{display:block;animation:fadeIn 0.25s ease;}
+.info-card{background:var(--surface);border-radius:var(--radius);padding:22px 24px;margin-bottom:18px;box-shadow:var(--shadow);border-left:5px solid var(--c);}
+.info-card h2{font-size:1.05rem;font-weight:700;margin-bottom:10px;}
+.info-card p{margin-bottom:8px;font-size:0.92rem;}
+.info-card ul{padding-left:18px;margin-bottom:8px;}
+.info-card li{margin-bottom:7px;font-size:0.91rem;}
+.point-card{background:var(--surface);border-radius:var(--radius);padding:0;margin-bottom:18px;box-shadow:var(--shadow);border:2px solid var(--border);overflow:hidden;}
+.point-header{background:var(--cd);color:#fff;padding:10px 18px;font-family:'Lexend Mega',sans-serif;font-size:0.82rem;display:flex;align-items:center;gap:10px;}
+.point-body{padding:16px 20px;}
+.point-body p{font-size:0.91rem;margin-bottom:8px;line-height:1.75;}
+.phrases{padding:14px 20px;background:#f9f7f3;border-top:2px solid var(--border);}
+.phrases h4{font-size:0.72rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;color:var(--c);margin-bottom:10px;}
+.phrase-row{display:flex;gap:10px;align-items:flex-start;margin-bottom:8px;flex-wrap:wrap;}
+.phrase-ga{background:var(--c);color:#fff;border-radius:6px;padding:4px 10px;font-size:0.8rem;font-weight:600;}
+.phrase-en{font-size:0.8rem;color:var(--muted);font-style:italic;padding-top:3px;}
+.box{border-radius:var(--radius);padding:14px 18px;margin:14px 0;display:flex;gap:12px;align-items:flex-start;}
+.box .ico{font-size:1.4rem;flex-shrink:0;line-height:1.2;}
+.box-label{font-size:0.68rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;margin-bottom:4px;}
+.box p,.box li{font-size:0.9rem;}.box ul{padding-left:16px;}.box li{margin-bottom:5px;}
+.b-exam{background:#eaf4fb;border:2px solid #5dade2;}.b-exam .box-label{color:#1a6b9a;}
+.b-tip{background:#fffbf0;border:2px solid #f39c12;}.b-tip .box-label{color:#b7770d;}
+.label{font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:0.8px;color:var(--muted);margin-bottom:16px;display:block;}
+.chap-tag{display:inline-block;background:var(--cl);color:var(--cd);border:1px solid var(--c);border-radius:5px;font-size:0.72rem;font-weight:700;padding:2px 8px;margin-right:4px;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+@media(max-width:680px){.two-col{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="ATNTO_Home.html">🏡 <span>A Thig Ná Tit Orm</span></a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn home" href="ATNTO_Home.html">Baile</a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn nb-sc" href="ATNTO_Scoil.html">📚 Scoil</a>
+  <a class="nav-btn t-active" href="ATNTO_Teaghlach.html">👨‍👩‍👦 Teaghlach</a>
+  <a class="nav-btn nb-ca" href="ATNTO_CaithAmh.html">⚽ Caitheamh Aimsire</a>
+  <a class="nav-btn nb-st" href="ATNTO_Stil.html">✍️ Stíl</a>
+</nav>
+
+<div class="hero">
+  <div class="chap-label">Téama 2 · Caibidil 4, 5 &amp; 6</div>
+  <h1>Saol an Teaghlaigh</h1>
+  <p>Dainín the stern father who falls in rivers and hides his Chicago music; a mother who is wise, warm, and generous; poverty as a constant backdrop — family life in all its complexity.</p>
+  <div class="hero-chips">
+    <span class="hero-chip">Dainín — An tAthair</span>
+    <span class="hero-chip">An Mháthair</span>
+    <span class="hero-chip">Bochtanas / Poverty</span>
+    <span class="hero-chip">Chicago</span>
+    <span class="hero-chip">Grá Teaghlaigh</span>
+  </div>
+</div>
+
+<div class="section">
+  <div class="tab-bar">
+    <button class="tab active" onclick="switchTab(this,'overview')">📋 Overview</button>
+    <button class="tab" onclick="switchTab(this,'dainín')">👨 Dainín</button>
+    <button class="tab" onclick="switchTab(this,'máthair')">👩 An Mháthair</button>
+    <button class="tab" onclick="switchTab(this,'phrases')">✍️ Key Phrases</button>
+    <button class="tab" onclick="switchTab(this,'exam')">🎓 Model Answer</button>
+  </div>
+
+  <div class="tab-panel active" id="overview">
+    <div class="info-card">
+      <h2>📋 Family Life in the Autobiography</h2>
+      <p>Family is the backdrop against which every event in the autobiography takes place. Maidhc's family is poor but close-knit. His father Dainín is a complex figure — strict and intimidating, but capable of surprising warmth and hidden depth. His mother is the practical, encouraging force who shapes Maidhc's future. Poverty runs through every chapter, affecting what the family can do, eat, and afford.</p>
+    </div>
+    <div class="two-col">
+      <div class="info-card">
+        <h2>👨 Dainín — Key Moments</h2>
+        <ul>
+          <li>Falls in the river while salmon fishing (C.4) — first time Maidhc hears him swear</li>
+          <li>Furious when Maidhc brings dead chicks instead of eggs (C.5)</li>
+          <li>Reveals hidden accordion talent from Chicago (C.6)</li>
+          <li>Grae's fishing story shows a different, lighter side of Dainín (C.3)</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <h2>👩 Máthair — Key Moments</h2>
+        <ul>
+          <li>Dresses Maidhc for his first day — he thinks he's going to the shop (C.1)</li>
+          <li>Gives two pounds deposit for the accordion (C.6)</li>
+          <li>Tells Maidhc: vocational school or farm work (C.7)</li>
+          <li>Practical, caring, always encouraging</li>
+        </ul>
+      </div>
+    </div>
+    <div class="box b-exam">
+      <div class="ico">🎓</div>
+      <div><div class="box-label">Essay Questions This Theme Answers</div>
+      <ul>
+        <li>"Tá greann agus brón araon le feiceáil sa dírbheathaisnéis"</li>
+        <li>"Tugann Maidhc cuntas suimiúil ar shaol na Gaeltachta"</li>
+        <li>"Tá spraoi agus dearcadh na hóige léirithe go mór chun tosaigh"</li>
+        <li>Any question about the importance of people in Maidhc's life</li>
+      </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="dainín">
+    <span class="label">Dainín — A Complex Father</span>
+
+    <div class="point-card">
+      <div class="point-header"><span class="chap-tag">C.4</span> Falling in the River — His Human Side</div>
+      <div class="point-body">
+        <p>Dainín is startled by a salmon's sudden movement while fishing and falls into the river. This is the first time Maidhc ever hears his father use bad language. The usually composed, serious father is suddenly reduced to a dripping, swearing figure — and Maidhc is in fits of laughter. This moment humanises Dainín completely, showing that even the most dignified adults are human underneath.</p>
+      </div>
+      <div class="phrases">
+        <h4>✍️ Phrases to Use</h4>
+        <div class="phrase-row"><span class="phrase-ga">Taispeánadh taobh difriúil d'athair Mhaidhc don léitheoir</span><span class="phrase-en">A different side of Maidhc's father was shown to the reader</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Níor chuala Maidhc drochfhocal ó bhéal a athar go dtí an lá sin</span><span class="phrase-en">Maidhc had never heard a bad word from his father's mouth until that day</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Mhéadaíonn sé seo greann na heachtra</span><span class="phrase-en">This increases the humour of the event</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Bhí Maidhc é féin sna trithí gáire</span><span class="phrase-en">Maidhc himself was in fits of laughter</span></div>
+      </div>
+    </div>
+
+    <div class="point-card">
+      <div class="point-header"><span class="chap-tag">C.5</span> Dainín's Anger — Maidhc Flees the House</div>
+      <div class="point-body">
+        <p>When the creamery manager arrives to report that the eggs Maidhc sold were actually dead chicks, Dainín is furious and Maidhc has to flee the house. This shows the fear and respect Maidhc had for his father's anger. Dainín could be genuinely intimidating — the humour of the situation doesn't hide the underlying tension in the father-son relationship.</p>
+      </div>
+      <div class="phrases">
+        <h4>✍️ Phrases to Use</h4>
+        <div class="phrase-row"><span class="phrase-ga">Bhí Dainín ar buile leis agus theith Maidhc ón tigh</span><span class="phrase-en">Dainín was furious with him and Maidhc fled from the house</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Bhí eagla ar Mhaidhc roimh fhearg a athar</span><span class="phrase-en">Maidhc was afraid of his father's anger</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Is foinse bróin don léitheoir na mothúcháin seo</span><span class="phrase-en">These feelings are a source of sadness for the reader</span></div>
+      </div>
+    </div>
+
+    <div class="point-card">
+      <div class="point-header"><span class="chap-tag">C.6</span> Dainín's Chicago Secret — Hidden Talent</div>
+      <div class="point-body">
+        <p>When the accordion arrives, Dainín picks it up and plays. Nobody in the family knew he could play a note. He reveals that he learned music from Seán Coughlan in Chicago. This is one of the most surprising and touching moments in the whole book — showing that this quiet man had a whole rich life before his family knew him.</p>
+      </div>
+      <div class="phrases">
+        <h4>✍️ Phrases to Use</h4>
+        <div class="phrase-row"><span class="phrase-ga">Sheinn athair Mhaidhc cúpla port ar an mbosca nua</span><span class="phrase-en">Maidhc's father played a few tunes on the new box</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Ní raibh fhios ag éinne sa chlann go raibh ceol aige</span><span class="phrase-en">Nobody in the family knew he had music (talent)</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Dúirt sé gur fhoghlaim sé a chuid ceoil i Chicago</span><span class="phrase-en">He said he learned his music in Chicago</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Léiríonn sé seo go raibh saol eile ag Dainín roimh an gclann</span><span class="phrase-en">This shows that Dainín had another life before the family</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="máthair">
+    <span class="label">An Mháthair — Warm, Wise, Practical</span>
+
+    <div class="point-card">
+      <div class="point-header"><span class="chap-tag">C.1</span> First Day of School</div>
+      <div class="point-body">
+        <p>The mother carefully dresses Maidhc for his first day — clean trousers and shirt — while he innocently thinks he is going to the shop. This small scene establishes her care and attention. She wants the best for her son from the very beginning.</p>
+      </div>
+      <div class="phrases">
+        <h4>✍️ Phrases to Use</h4>
+        <div class="phrase-row"><span class="phrase-ga">Ghlan a mháthair go maith é agus ghléas sí é i mbríste glan agus léine</span><span class="phrase-en">His mother cleaned him well and dressed him in clean trousers and a shirt</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Léiríonn sé seo an grá agus an cúram a bhí ag a mháthair dó</span><span class="phrase-en">This shows the love and care his mother had for him</span></div>
+      </div>
+    </div>
+
+    <div class="point-card">
+      <div class="point-header"><span class="chap-tag">C.6</span> Two Pounds for the Accordion</div>
+      <div class="point-body">
+        <p>Maidhc and Páidí chose the right moment — when the mother was in a good mood — to ask for a deposit on the accordion. She gave them two pounds. In a household with very little money, this was a generous act of faith in her sons' passion. The accordion went on to become central to Maidhc's life.</p>
+      </div>
+      <div class="phrases">
+        <h4>✍️ Phrases to Use</h4>
+        <div class="phrase-row"><span class="phrase-ga">Bhí an mháthair i ngiúmar maith agus thug sí dhá phunt dóibh</span><span class="phrase-en">The mother was in a good mood and gave them two pounds</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Léiríonn sé seo flaithiúlacht agus tacaíocht a mháthar</span><span class="phrase-en">This shows his mother's generosity and support</span></div>
+      </div>
+    </div>
+
+    <div class="point-card">
+      <div class="point-header"><span class="chap-tag">C.7</span> The Vocational School Decision</div>
+      <div class="point-body">
+        <p>The mother's clear-eyed decision to direct Maidhc to the vocational school rather than farm work is one of the most important acts in the book. She saw what her son needed — practical education — and acted on it. Without this decision, Maidhc would never have had his best two years.</p>
+      </div>
+      <div class="phrases">
+        <h4>✍️ Phrases to Use</h4>
+        <div class="phrase-row"><span class="phrase-ga">Spreag a mháthair é go minic le léamh agus le bheith ag obair go dian</span><span class="phrase-en">His mother often encouraged him to read and to work hard</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Bhí a mháthair ciallmhar agus ceanúil — bhí grá aici dó</span><span class="phrase-en">His mother was wise and caring — she loved him</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Bhí ról lárnach ag a mháthair i saol Mhaidhc</span><span class="phrase-en">His mother had a central role in Maidhc's life</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="phrases">
+    <span class="label">Master Phrase Bank — Family Life</span>
+    <div class="info-card">
+      <h2>🔑 Opening &amp; Closing Phrases</h2>
+      <div class="phrase-row"><span class="phrase-ga">Tá ról lárnach ag an teaghlach sa dírbheathaisnéis seo</span><span class="phrase-en">The family has a central role in this autobiography</span></div>
+      <div class="phrase-row"><span class="phrase-ga">Bhí gaol casta idir Maidhc agus a athair</span><span class="phrase-en">There was a complex relationship between Maidhc and his father</span></div>
+      <div class="phrase-row"><span class="phrase-ga">Is léir gur thug an ceol a theaghlach le chéile i mbealach deas</span><span class="phrase-en">It is clear that music brought his family together in a nice way</span></div>
+      <div class="phrase-row"><span class="phrase-ga">Mar fhocail scoir, bhí tionchar mór ag a theaghlach ar shaol Mhaidhc</span><span class="phrase-en">To conclude, his family had a big influence on Maidhc's life</span></div>
+    </div>
+    <div class="info-card">
+      <h2>💸 Poverty in Family Life</h2>
+      <div class="phrase-row"><span class="phrase-ga">Bhí ganntanas airgid ann ag an am</span><span class="phrase-en">There was a shortage of money at the time</span></div>
+      <div class="phrase-row"><span class="phrase-ga">Chuaigh formhór dheartháireacha Mhaidhc ar imirce</span><span class="phrase-en">Most of Maidhc's brothers emigrated</span></div>
+      <div class="phrase-row"><span class="phrase-ga">Bhí muintir na Gaeltachta in am an ghátair</span><span class="phrase-en">The people of the Gaeltacht were in particularly desperate times</span></div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="exam">
+    <span class="label">Model Essay Answer — Family Life</span>
+    <div class="info-card">
+      <h2>📝 Full Model Paragraph Structure</h2>
+      <p><strong>Paragraph 1 — Introducing the Family:</strong><br>
+      Tá ról lárnach ag an teaghlach sa dírbheathaisnéis seo. <em>(The family has a central role in this autobiography.)</em> Bhí ganntanas airgid ann ag an am agus bhí an bochtanas forleathan i gCorca Dhuibhne. <em>(There was a shortage of money at the time and poverty was widespread in Corca Dhuibhne.)</em></p>
+      <p><strong>Paragraph 2 — Dainín:</strong><br>
+      Taispeánadh taobh difriúil d'athair Mhaidhc don léitheoir nuair a thit sé isteach san abhainn agus iad ag iascaireacht. <em>(A different side of Maidhc's father was shown to the reader when he fell into the river while fishing.)</em> Níor chuala Maidhc drochfhocal ó bhéal a athar go dtí an lá sin — mhéadaíonn sé seo greann na heachtra. <em>(Maidhc had never heard a bad word from his father until that day — this increases the humour of the event.)</em> Chomh maith leis sin, sheinn athair Mhaidhc cúpla port ar an mbosca nua agus ní raibh fhios ag éinne sa chlann go raibh ceol aige. <em>(Furthermore, Maidhc's father played a few tunes on the new box and nobody in the family knew he had music.)</em></p>
+      <p><strong>Paragraph 3 — An Mháthair:</strong><br>
+      Bhí ról lárnach ag a mháthair i saol Mhaidhc freisin. <em>(His mother also had a central role in Maidhc's life.)</em> Bhí an mháthair i ngiúmar maith agus thug sí dhá phunt dóibh le bosca ceoil a cheannach. <em>(The mother was in a good mood and gave them two pounds to buy an accordion.)</em> Spreag sí Maidhc go minic agus dhírigh sí é i dtreo Cheardscoil an Daingin. <em>(She often encouraged Maidhc and directed him towards Dingle Vocational School.)</em></p>
+    </div>
+    <div class="box b-tip">
+      <div class="ico">💡</div>
+      <div><div class="box-label">Key Strategy for Family Life Essays</div>
+      <p>Always discuss <strong>both parents</strong> — Dainín and the mother — and show how each reveals different aspects of family life. Dainín provides the humour (the river, the anger) and the depth (the Chicago secret). The mother provides the warmth, encouragement, and practical wisdom. Together they give a rounded picture of a real family under real pressures.</p></div>
+    </div>
+  </div>
+</div>
+<script>
+function switchTab(btn,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(id).classList.add('active');}
+</script>
+</body>
+</html>

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ga">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Téama — Stíl an Údair</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F5F0E8;--surface:#fff;--border:#ddd8ce;--text:#2a2820;--muted:#6a6860;--c:#5a1a4a;--cl:#f5ddee;--cd:#2a0820;--radius:14px;--shadow:0 4px 20px rgba(0,0,0,0.08);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;font-size:16px;}
+nav{position:sticky;top:0;z-index:100;background:rgba(245,240,232,0.97);backdrop-filter:blur(10px);border-bottom:2px solid var(--border);padding:8px 16px;display:flex;align-items:center;gap:5px;flex-wrap:wrap;min-height:52px;}
+.nav-logo{font-family:'Lexend Mega',sans-serif;font-size:0.82rem;color:var(--text);margin-right:4px;text-decoration:none;white-space:nowrap;}.nav-logo span{color:#5a6e3a;}
+.nav-divider{width:1px;height:20px;background:var(--border);flex-shrink:0;}
+.nav-btn{padding:5px 10px;border-radius:18px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.7rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);text-decoration:none;white-space:nowrap;}
+.nav-btn.home:hover,.nav-btn.home.active{background:#2a2820;border-color:#2a2820;color:#fff;}
+.t-active,.t-active:hover{background:var(--c);border-color:var(--c);color:#fff;}
+.nb-sc:hover{background:#2d5a1b;border-color:#2d5a1b;color:#fff;}
+.nb-fam:hover{background:#b8860b;border-color:#b8860b;color:#fff;}
+.nb-ca:hover{background:#1a4a5a;border-color:#1a4a5a;color:#fff;}
+.section{padding:0 16px 80px;max-width:940px;margin:0 auto;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.hero{background:linear-gradient(135deg,var(--cd),var(--c));color:#fff;padding:44px 32px 36px;text-align:center;margin-bottom:32px;}
+.hero .chap-label{font-size:0.74rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;opacity:0.75;margin-bottom:10px;}
+.hero h1{font-family:'Lexend Mega',sans-serif;font-size:clamp(1.5rem,4vw,2.4rem);line-height:1.2;margin-bottom:12px;}
+.hero p{opacity:0.88;max-width:640px;margin:0 auto;font-size:0.94rem;}
+.hero-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px;}
+.hero-chip{background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:4px 14px;border-radius:20px;font-size:0.74rem;font-weight:600;}
+.tab-bar{display:flex;gap:4px;flex-wrap:wrap;padding:22px 0 8px;border-bottom:2px solid var(--border);margin-bottom:28px;}
+.tab{padding:8px 16px;border-radius:10px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.78rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);}
+.tab:hover,.tab.active{background:var(--c);color:#fff;border-color:var(--c);}
+.tab-panel{display:none;}.tab-panel.active{display:block;animation:fadeIn 0.25s ease;}
+.info-card{background:var(--surface);border-radius:var(--radius);padding:22px 24px;margin-bottom:18px;box-shadow:var(--shadow);border-left:5px solid var(--c);}
+.info-card h2{font-size:1.05rem;font-weight:700;margin-bottom:10px;}
+.info-card p{margin-bottom:8px;font-size:0.92rem;}
+.info-card ul{padding-left:18px;margin-bottom:8px;}
+.info-card li{margin-bottom:7px;font-size:0.91rem;}
+.style-card{background:var(--surface);border-radius:var(--radius);padding:0;margin-bottom:18px;box-shadow:var(--shadow);border:2px solid var(--border);overflow:hidden;}
+.style-header{background:var(--cd);color:#fff;padding:10px 18px;font-family:'Lexend Mega',sans-serif;font-size:0.85rem;}
+.style-body{padding:16px 20px;}
+.style-body p{font-size:0.91rem;margin-bottom:8px;line-height:1.75;}
+.style-body ul{padding-left:18px;}.style-body li{font-size:0.91rem;margin-bottom:6px;}
+.example{background:var(--cl);border-left:4px solid var(--c);border-radius:0 var(--radius) var(--radius) 0;padding:12px 16px;margin:10px 0;}
+.example .ga{font-weight:700;font-size:0.9rem;color:var(--cd);margin-bottom:3px;}
+.example .en{font-size:0.83rem;color:var(--muted);font-style:italic;margin-bottom:5px;}
+.example .note{font-size:0.85rem;color:var(--text);}
+.phrases{padding:14px 20px;background:#f9f7f3;border-top:2px solid var(--border);}
+.phrases h4{font-size:0.72rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;color:var(--c);margin-bottom:10px;}
+.phrase-row{display:flex;gap:10px;align-items:flex-start;margin-bottom:8px;flex-wrap:wrap;}
+.phrase-ga{background:var(--c);color:#fff;border-radius:6px;padding:4px 10px;font-size:0.8rem;font-weight:600;}
+.phrase-en{font-size:0.8rem;color:var(--muted);font-style:italic;padding-top:3px;}
+.box{border-radius:var(--radius);padding:14px 18px;margin:14px 0;display:flex;gap:12px;align-items:flex-start;}
+.box .ico{font-size:1.4rem;flex-shrink:0;line-height:1.2;}
+.box-label{font-size:0.68rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;margin-bottom:4px;}
+.box p,.box li{font-size:0.9rem;}.box ul{padding-left:16px;}.box li{margin-bottom:5px;}
+.b-exam{background:#eaf4fb;border:2px solid #5dade2;}.b-exam .box-label{color:#1a6b9a;}
+.b-tip{background:#fffbf0;border:2px solid #f39c12;}.b-tip .box-label{color:#b7770d;}
+.label{font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:0.8px;color:var(--muted);margin-bottom:16px;display:block;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+@media(max-width:680px){.two-col{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="ATNTO_Home.html">🏡 <span>A Thig Ná Tit Orm</span></a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn home" href="ATNTO_Home.html">Baile</a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn nb-sc" href="ATNTO_Scoil.html">📚 Scoil</a>
+  <a class="nav-btn nb-fam" href="ATNTO_Teaghlach.html">👨‍👩‍👦 Teaghlach</a>
+  <a class="nav-btn nb-ca" href="ATNTO_CaithAmh.html">⚽ Caitheamh Aimsire</a>
+  <a class="nav-btn t-active" href="ATNTO_Stil.html">✍️ Stíl</a>
+</nav>
+
+<div class="hero">
+  <div class="chap-label">Téama 4 · Ar fud an tsaothair</div>
+  <h1>Stíl an Údair</h1>
+  <p>How Maidhc Dainín Ó Sé writes — his slapstick humour, his bittersweet sadness, his honest self-deprecation, his vivid storytelling, and his ability to capture a whole world in one perfectly chosen detail.</p>
+  <div class="hero-chips">
+    <span class="hero-chip">Greann Rancáis / Slapstick</span>
+    <span class="hero-chip">Brón / Sadness</span>
+    <span class="hero-chip">Soineantacht / Innocence</span>
+    <span class="hero-chip">Macántacht / Honesty</span>
+    <span class="hero-chip">Cuimhní Órga / Golden Memories</span>
+  </div>
+</div>
+
+<div class="section">
+  <div class="tab-bar">
+    <button class="tab active" onclick="switchTab(this,'overview')">📋 Overview</button>
+    <button class="tab" onclick="switchTab(this,'humour')">😂 Greann</button>
+    <button class="tab" onclick="switchTab(this,'sadness')">😢 Brón</button>
+    <button class="tab" onclick="switchTab(this,'features')">✍️ Style Features</button>
+    <button class="tab" onclick="switchTab(this,'exam')">🎓 Model Answer</button>
+  </div>
+
+  <div class="tab-panel active" id="overview">
+    <div class="info-card">
+      <h2>📋 What Makes Maidhc's Style Unique?</h2>
+      <p>Maidhc Dainín Ó Sé is a natural storyteller. His autobiography reads like a series of vivid anecdotes told by a man who has spent decades remembering, refining, and enjoying his own best stories. His style has several defining characteristics:</p>
+      <ul>
+        <li><strong>Slapstick Humour (Greann Rancáis):</strong> Plans going wrong in the most ridiculous ways — the ditch fight, the dead chicks, the ladder.</li>
+        <li><strong>Self-deprecating Honesty:</strong> He laughs at himself as readily as anyone else — <em>"faraor ní mar sin a tharla"</em>.</li>
+        <li><strong>Vivid, Specific Detail:</strong> A goat eating a shirt, cold sweat pouring, a stream of blood in a river — one precise image that brings the whole scene alive.</li>
+        <li><strong>Bittersweet Tone:</strong> The humour is never just humour — underneath is real feeling, real poverty, real loss, and real love.</li>
+        <li><strong>Warmth Towards All Characters:</strong> Even when describing mischief, Maidhc never mocks — he remembers with affection.</li>
+      </ul>
+    </div>
+    <div class="box b-exam">
+      <div class="ico">🎓</div>
+      <div><div class="box-label">Essay Questions This Theme Answers</div>
+      <ul>
+        <li>"Tá greann agus brón araon le feiceáil sa dírbheathaisnéis seo"</li>
+        <li>"Tá spraoi agus dearcadh na hóige léirithe go mór chun tosaigh"</li>
+        <li>Any question about Maidhc's style, voice, or approach to his material</li>
+        <li>"Molaim an t-údar as an gcuntas álainn dá óige" (I commend the author for the beautiful account of his youth)</li>
+      </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="humour">
+    <span class="label">Humour — How Maidhc Makes Us Laugh</span>
+
+    <div class="style-card">
+      <div class="style-header">😂 Technique 1 — Slapstick: Plans Backfiring</div>
+      <div class="style-body">
+        <p>Maidhc's funniest moments all follow the same pattern: a plan, confidence, and then spectacular failure — usually on himself. This is classic slapstick comedy and it runs from Chapter 1 to Chapter 8.</p>
+        <div class="example">
+          <div class="ga">Bhí plean ag Maidhc Tomás a bhogadh isteach i díog — faraor, thit sé féin isteach.</div>
+          <div class="en">Maidhc had a plan to push Tomás into a ditch — unfortunately, he himself fell in.</div>
+          <div class="note">→ Chapter 1: The ditch fight. His plan fails perfectly on himself.</div>
+        </div>
+        <div class="example">
+          <div class="ga">Sicíní a bhí sna huibheacha agus bhíodar go léir marbh.</div>
+          <div class="en">The eggs were chicks and they were all dead.</div>
+          <div class="note">→ Chapter 5: The egg scheme collapses in the most unexpected way.</div>
+        </div>
+        <div class="example">
+          <div class="ga">Lean bean an tí Maidhc agus fuair sé buille sa droim leis an scuab.</div>
+          <div class="en">The landlady followed Maidhc and he got a blow in the back with the brush.</div>
+          <div class="note">→ Chapter 8: The romantic ladder plan ends with a brush.</div>
+        </div>
+      </div>
+      <div class="phrases">
+        <h4>✍️ Phrases to Use</h4>
+        <div class="phrase-row"><span class="phrase-ga">Greann rancáis a bhí i gceist</span><span class="phrase-en">Slapstick humour was involved</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Is léir nach mbíonn rath ar chleasaíocht Mhaidhc ró-mhinic</span><span class="phrase-en">It is clear that Maidhc's trickery doesn't succeed very often</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Cuireann an cur síos ar an eachtra seo ag gáire mé</span><span class="phrase-en">The description of this event makes me laugh</span></div>
+      </div>
+    </div>
+
+    <div class="style-card">
+      <div class="style-header">😂 Technique 2 — The Perfect Comic Detail</div>
+      <div class="style-body">
+        <p>Maidhc has a gift for finding the one specific, unexpected detail that makes a scene unforgettable. These details are funny precisely because they are so precisely observed and so particular.</p>
+        <div class="example">
+          <div class="ga">Ní droim an léine ar fad ann mar bhí sé ite ag gabhar.</div>
+          <div class="en">Not the whole back of the shirt was there because a goat had eaten it.</div>
+          <div class="note">→ Chapter 8: Seán Mór's goat-eaten shirt — the single funniest detail in the book.</div>
+        </div>
+        <div class="example">
+          <div class="ga">Níor chuala Maidhc drochfhocal ó bhéal a athar go dtí an lá sin.</div>
+          <div class="en">Maidhc had never heard a bad word from his father until that day.</div>
+          <div class="note">→ Chapter 4: This one sentence transforms Dainín falling in the river from accident to comedy gold.</div>
+        </div>
+      </div>
+      <div class="phrases">
+        <h4>✍️ Phrases to Use</h4>
+        <div class="phrase-row"><span class="phrase-ga">Taispeánadh taobh difriúil don léitheoir</span><span class="phrase-en">A different side was shown to the reader</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Mhéadaíonn sé seo greann na heachtra</span><span class="phrase-en">This increases the humour of the event</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Is sampla iontach é d'eachtra ghreannmhar sa dírbheathaisnéis</span><span class="phrase-en">It is a wonderful example of a funny event in the autobiography</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="sadness">
+    <span class="label">Sadness — What Lies Beneath the Laughter</span>
+
+    <div class="style-card">
+      <div class="style-header">😢 Source 1 — Poverty (An Bochtanas)</div>
+      <div class="style-body">
+        <p>Poverty is never announced dramatically — it is simply there in every detail. Only two radios in the parish. Stones as goalposts. Children collecting cigarette butts. Illegal fishing for survival. The poverty is real, constant, and quietly sad, but Maidhc never wallows in it. He presents it matter-of-factly, which makes it more affecting, not less.</p>
+        <div class="example">
+          <div class="ga">Ní raibh ach dhá raidió sa pharóiste.</div>
+          <div class="en">There were only two radios in the parish.</div>
+          <div class="note">→ Chapter 3: The whole community's poverty in one quiet detail.</div>
+        </div>
+      </div>
+      <div class="phrases">
+        <h4>✍️ Phrases to Use</h4>
+        <div class="phrase-row"><span class="phrase-ga">Tá an bochtanas le feiceáil ar fud na dírbheathaisnéise</span><span class="phrase-en">Poverty is visible throughout the autobiography</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Bhí muintir na Gaeltachta ag fulaingt leis an gcúlú eacnamaíochta</span><span class="phrase-en">The people of the Gaeltacht were suffering with the economic downturn</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Léiríonn sé seo saol crua na linne sin</span><span class="phrase-en">This shows the hard life of that era</span></div>
+      </div>
+    </div>
+
+    <div class="style-card">
+      <div class="style-header">😢 Source 2 — Corporal Punishment</div>
+      <div class="style-body">
+        <p>The ash rod appears in Chapter 1 and again in Chapter 2. Children are beaten for fighting, for collective mischief, for being in the wrong place. Maidhc presents this without melodrama — it was simply part of life. But for a modern reader the image of children's hands being beaten is a genuine source of sadness.</p>
+        <div class="example">
+          <div class="ga">Fuair gach buachaill ceithre bhuille ón slat fuinseoige.</div>
+          <div class="en">Every boy got four blows from the ash rod.</div>
+          <div class="note">→ Chapters 1 &amp; 2: Collective punishment — guilty and innocent alike.</div>
+        </div>
+      </div>
+      <div class="phrases">
+        <h4>✍️ Phrases to Use</h4>
+        <div class="phrase-row"><span class="phrase-ga">Is foinse bróin don léitheoir an pionós corpartha seo</span><span class="phrase-en">This corporal punishment is a source of sadness for the reader</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Bhí trua agam do Mhaidhc nuair a buaileadh é go minic</span><span class="phrase-en">I pitied Maidhc when he was beaten often</span></div>
+      </div>
+    </div>
+
+    <div class="style-card">
+      <div class="style-header">😢 Source 3 — First Love and Nostalgia</div>
+      <div class="style-body">
+        <p>The autobiography ends with Maidhc's first love — and a quiet acknowledgement that she has never been forgotten. After all the comedy of the ladder and the brush, this single line gives the ending a beautiful bittersweet quality. The laughter and the loss exist side by side.</p>
+        <div class="example">
+          <div class="ga">B'í seo chéad ghrá Mhaidhc agus is léir nach bhfuil dearmad déanta aige uirthi.</div>
+          <div class="en">This was Maidhc's first love and it is clear he has not forgotten her.</div>
+          <div class="note">→ Chapter 8: The final note of the autobiography — funny surface, tender heart underneath.</div>
+        </div>
+      </div>
+      <div class="phrases">
+        <h4>✍️ Phrases to Use</h4>
+        <div class="phrase-row"><span class="phrase-ga">Tá an brón agus an greann fite fuaite le chéile sa dírbheathaisnéis</span><span class="phrase-en">Sadness and humour are woven together in the autobiography</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Mar léitheoir, bhí brón an domhain orm corruair</span><span class="phrase-en">As a reader, I was very sad at times</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Ach é sin ráite, bhí mé sna trithí gáire ag amanntaí eile</span><span class="phrase-en">But that being said, I was in fits of laughter at other times</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="features">
+    <span class="label">Key Style Features</span>
+    <div class="two-col">
+      <div class="info-card">
+        <h2>📖 Dírbheathaisnéis (Autobiography)</h2>
+        <p>Maidhc writes from personal memory — <em>cuimhní órga</em> (golden memories). This gives the text warmth and authenticity. He is not inventing characters or events; he is remembering real people he loved and real things that happened to him.</p>
+        <div class="phrase-row"><span class="phrase-ga">Tá an dírbheathaisnéis seo bunaithe ar a chuimhní órga</span><span class="phrase-en">This autobiography is based on his golden memories</span></div>
+      </div>
+      <div class="info-card">
+        <h2>🤝 Self-Deprecating Honesty</h2>
+        <p>Maidhc laughs at himself as readily as he laughs at others. <em>"Faraor ní mar sin a tharla"</em> — "unfortunately that's not what happened." He never pretends to be heroic; his plans always fail; and he finds this as funny as the reader does.</p>
+        <div class="phrase-row"><span class="phrase-ga">Insíonn sé an fhírinne go macánta, fiú nuair atá sé in aghaidh é féin</span><span class="phrase-en">He tells the truth honestly, even when it is against himself</span></div>
+      </div>
+      <div class="info-card">
+        <h2>😊 Soineantacht (Innocence)</h2>
+        <p>The voice of the child is always present, even though the adult Maidhc is the narrator. We see the world through young eyes — thinking a first day at school is a trip to the shop; thinking a cigarette might kill you; being convinced a radio is a ghost.</p>
+        <div class="phrase-row"><span class="phrase-ga">Feicimid soineantacht na hóige ar fud an leabhair</span><span class="phrase-en">We see the innocence of youth throughout the book</span></div>
+      </div>
+      <div class="info-card">
+        <h2>💛 Warmth Towards Community</h2>
+        <p>Maidhc never mocks the people he grew up with. Grae the wanderer, Vincent Griffin, Seán Mór in his goat-eaten shirt — all are described with affection and gentle humour, never contempt. This warmth is what gives the autobiography its lasting appeal.</p>
+        <div class="phrase-row"><span class="phrase-ga">Molaim an t-údar as an gcuntas álainn dá óige</span><span class="phrase-en">I commend the author for the beautiful account of his youth</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="exam">
+    <span class="label">Model Essay Answer — Humour and Sadness</span>
+    <div class="info-card">
+      <h2>📝 Full Model Response — "Tá greann agus brón araon le feiceáil"</h2>
+      <p><strong>Introduction:</strong><br>
+      Aontaím go huile is go hiomlán leis an ráiteas atá thuasluaite. <em>(I completely agree with the above statement.)</em> Is cinnte go bhfuil an brón agus an greann araon le feiceáil sa dírbheathaisnéis seo. <em>(It is certain that both sadness and humour are visible in this autobiography.)</em> Tá an dírbheathaisnéis seo bunaithe ar a chuimhní órga ag baint lena shaol nuair a bhí sé ag fás aníos i gcontae Chiarraí sna caogaidí. <em>(This autobiography is based on his golden memories associated with his life when he was growing up in County Kerry in the fifties.)</em></p>
+      <p><strong>Paragraph 1 — Humour:</strong><br>
+      Ar an gcéad dul síos, tá go leor grinn i ngach caibidil. <em>(Firstly, there is plenty of humour in every chapter.)</em> Sa chaibidil dheireanach, is seoid iontach luachmhar í maidir le greann an scéil. <em>(In the final chapter, it is a real gem regarding the humour of the story.)</em> Greann rancáis a bhí i gceist le plean Mhaidhc chun buaileadh le hEibhlín — chuir siad dréimire in airde d'fhuinneog na gcailín. <em>(Slapstick humour was involved in Maidhc's plan to meet Eibhlín — they put a ladder up to the girls' window.)</em> Lean bean an tí Maidhc agus fuair sé buille sa droim leis an scuab. <em>(The landlady followed Maidhc and he got a blow in the back with the brush.)</em></p>
+      <p><strong>Paragraph 2 — Sadness:</strong><br>
+      Ar an dara dul síos, tá go leor bróin i gceist freisin. <em>(Secondly, there is plenty of sadness involved too.)</em> I mo thuairim, tagann an mothúchán sin go príomha ón mbochtanas atá le feiceáil ar fud an scéil. <em>(In my opinion, that feeling comes mainly from the poverty visible throughout the story.)</em> Ní raibh ach dhá raidió sa pharóiste ar fad — léiríonn sé seo an bochtanas a bhí coitianta. <em>(There were only two radios in the whole parish — this shows the poverty that was common.)</em> Chomh maith leis sin, is foinse bróin don léitheoir an pionós corpartha nuair a fuair gach buachaill ceithre bhuille ón slat fuinseoige. <em>(Furthermore, the corporal punishment is a source of sadness for the reader when every boy got four blows from the ash rod.)</em></p>
+      <p><strong>Conclusion:</strong><br>
+      Mar fhocal scoir, molaim Maidhc Dainín Ó Sé as an gcuntas álainn dá óige a raibh an brón agus an greann fite fuaite leis. <em>(To conclude, I commend Maidhc Dainín Ó Sé for the beautiful account of his youth which was interlaced with sadness and humour.)</em></p>
+    </div>
+    <div class="box b-tip">
+      <div class="ico">💡</div>
+      <div><div class="box-label">The Most Important Skill: Balancing Greann and Brón</div>
+      <p>Every high-scoring answer on this text shows awareness that the book is <strong>both funny and sad</strong>. Never write only about humour without acknowledging the sadness underneath (poverty, punishment, emigration). And never write only about sadness without acknowledging the warmth, laughter, and joy that runs through every chapter. The phrase <em>"tá an brón agus an greann fite fuaite leis"</em> — sadness and humour are woven together — is the single most powerful thing you can say about Maidhc's style.</p></div>
+    </div>
+  </div>
+</div>
+<script>
+function switchTab(btn,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(id).classList.add('active');}
+</script>
+</body>
+</html>

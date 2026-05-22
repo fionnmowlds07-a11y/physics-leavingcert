@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ga">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Téama — Caitheamh Aimsire</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F5F0E8;--surface:#fff;--border:#ddd8ce;--text:#2a2820;--muted:#6a6860;--c:#1a4a5a;--cl:#ddeef5;--cd:#091e28;--radius:14px;--shadow:0 4px 20px rgba(0,0,0,0.08);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;font-size:16px;}
+nav{position:sticky;top:0;z-index:100;background:rgba(245,240,232,0.97);backdrop-filter:blur(10px);border-bottom:2px solid var(--border);padding:8px 16px;display:flex;align-items:center;gap:5px;flex-wrap:wrap;min-height:52px;}
+.nav-logo{font-family:'Lexend Mega',sans-serif;font-size:0.82rem;color:var(--text);margin-right:4px;text-decoration:none;white-space:nowrap;}.nav-logo span{color:#5a6e3a;}
+.nav-divider{width:1px;height:20px;background:var(--border);flex-shrink:0;}
+.nav-btn{padding:5px 10px;border-radius:18px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.7rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);text-decoration:none;white-space:nowrap;}
+.nav-btn.home:hover,.nav-btn.home.active{background:#2a2820;border-color:#2a2820;color:#fff;}
+.t-active,.t-active:hover{background:var(--c);border-color:var(--c);color:#fff;}
+.nb-sc:hover{background:#2d5a1b;border-color:#2d5a1b;color:#fff;}
+.nb-fam:hover{background:#b8860b;border-color:#b8860b;color:#fff;}
+.nb-st:hover{background:#5a1a4a;border-color:#5a1a4a;color:#fff;}
+.section{padding:0 16px 80px;max-width:940px;margin:0 auto;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.hero{background:linear-gradient(135deg,var(--cd),var(--c));color:#fff;padding:44px 32px 36px;text-align:center;margin-bottom:32px;}
+.hero .chap-label{font-size:0.74rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;opacity:0.75;margin-bottom:10px;}
+.hero h1{font-family:'Lexend Mega',sans-serif;font-size:clamp(1.5rem,4vw,2.4rem);line-height:1.2;margin-bottom:12px;}
+.hero p{opacity:0.88;max-width:640px;margin:0 auto;font-size:0.94rem;}
+.hero-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px;}
+.hero-chip{background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:4px 14px;border-radius:20px;font-size:0.74rem;font-weight:600;}
+.tab-bar{display:flex;gap:4px;flex-wrap:wrap;padding:22px 0 8px;border-bottom:2px solid var(--border);margin-bottom:28px;}
+.tab{padding:8px 16px;border-radius:10px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.78rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);}
+.tab:hover,.tab.active{background:var(--c);color:#fff;border-color:var(--c);}
+.tab-panel{display:none;}.tab-panel.active{display:block;animation:fadeIn 0.25s ease;}
+.info-card{background:var(--surface);border-radius:var(--radius);padding:22px 24px;margin-bottom:18px;box-shadow:var(--shadow);border-left:5px solid var(--c);}
+.info-card h2{font-size:1.05rem;font-weight:700;margin-bottom:10px;}
+.info-card p{margin-bottom:8px;font-size:0.92rem;}
+.info-card ul{padding-left:18px;margin-bottom:8px;}
+.info-card li{margin-bottom:7px;font-size:0.91rem;}
+.pastime-card{background:var(--surface);border-radius:var(--radius);padding:0;margin-bottom:18px;box-shadow:var(--shadow);border:2px solid var(--border);overflow:hidden;}
+.pastime-header{color:#fff;padding:10px 18px;font-family:'Lexend Mega',sans-serif;font-size:0.85rem;display:flex;align-items:center;gap:10px;}
+.ph-football{background:#2d5a1b;}.ph-fishing{background:#5a3a1a;}.ph-music{background:#6e5a1a;}.ph-visiting{background:#6e3a5a;}.ph-smoking{background:#1a5a3a;}
+.pastime-body{padding:16px 20px;}
+.pastime-body p{font-size:0.91rem;margin-bottom:8px;line-height:1.75;}
+.phrases{padding:14px 20px;background:#f9f7f3;border-top:2px solid var(--border);}
+.phrases h4{font-size:0.72rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;color:var(--c);margin-bottom:10px;}
+.phrase-row{display:flex;gap:10px;align-items:flex-start;margin-bottom:8px;flex-wrap:wrap;}
+.phrase-ga{background:var(--c);color:#fff;border-radius:6px;padding:4px 10px;font-size:0.8rem;font-weight:600;}
+.phrase-en{font-size:0.8rem;color:var(--muted);font-style:italic;padding-top:3px;}
+.box{border-radius:var(--radius);padding:14px 18px;margin:14px 0;display:flex;gap:12px;align-items:flex-start;}
+.box .ico{font-size:1.4rem;flex-shrink:0;line-height:1.2;}
+.box-label{font-size:0.68rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;margin-bottom:4px;}
+.box p,.box li{font-size:0.9rem;}.box ul{padding-left:16px;}.box li{margin-bottom:5px;}
+.b-exam{background:#eaf4fb;border:2px solid #5dade2;}.b-exam .box-label{color:#1a6b9a;}
+.b-tip{background:#fffbf0;border:2px solid #f39c12;}.b-tip .box-label{color:#b7770d;}
+.label{font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:0.8px;color:var(--muted);margin-bottom:16px;display:block;}
+.chap-tag{display:inline-block;background:var(--cl);color:var(--cd);border:1px solid var(--c);border-radius:5px;font-size:0.72rem;font-weight:700;padding:2px 8px;margin-right:4px;}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="ATNTO_Home.html">🏡 <span>A Thig Ná Tit Orm</span></a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn home" href="ATNTO_Home.html">Baile</a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn nb-sc" href="ATNTO_Scoil.html">📚 Scoil</a>
+  <a class="nav-btn nb-fam" href="ATNTO_Teaghlach.html">👨‍👩‍👦 Teaghlach</a>
+  <a class="nav-btn t-active" href="ATNTO_CaithAmh.html">⚽ Caitheamh Aimsire</a>
+  <a class="nav-btn nb-st" href="ATNTO_Stil.html">✍️ Stíl</a>
+</nav>
+
+<div class="hero">
+  <div class="chap-label">Téama 3 · Caibidil 1, 3, 4, 6, 7 &amp; 8</div>
+  <h1>Caitheamh Aimsire</h1>
+  <p>Football on a road with no rules, illegal salmon fishing, collecting cigarette butts, the accordion, bothántaíocht, and céilís — the full richness of how Maidhc and his community spent their time.</p>
+  <div class="hero-chips">
+    <span class="hero-chip">Peil / Football</span>
+    <span class="hero-chip">Iascach / Fishing</span>
+    <span class="hero-chip">Ceol / Music</span>
+    <span class="hero-chip">Bothántaíocht</span>
+    <span class="hero-chip">Céilí</span>
+  </div>
+</div>
+
+<div class="section">
+  <div class="tab-bar">
+    <button class="tab active" onclick="switchTab(this,'overview')">📋 Overview</button>
+    <button class="tab" onclick="switchTab(this,'pastimes')">⚽ All Pastimes</button>
+    <button class="tab" onclick="switchTab(this,'phrases')">✍️ Key Phrases</button>
+    <button class="tab" onclick="switchTab(this,'exam')">🎓 Model Answer</button>
+  </div>
+
+  <div class="tab-panel active" id="overview">
+    <div class="info-card">
+      <h2>📋 Pastimes in the Autobiography</h2>
+      <p>Caitheamh aimsire (pastimes) is one of the richest themes in the book. Because there was no electricity, no television, and very little money, the people of the Gaeltacht had to create their own entertainment — and they did so with remarkable energy and creativity. The pastimes in this book range from the organised (céilís, football championships) to the spontaneous (rough road football, illegal fishing) to the obsessive (cigarette collecting).</p>
+      <p>A key insight for the exam: many of Maidhc's pastimes also had a <strong>practical/economic</strong> dimension — fishing and selling the catch, playing accordion for £30, selling horse-tail hair. Pastimes and survival are often intertwined.</p>
+    </div>
+    <div class="box b-exam">
+      <div class="ico">🎓</div>
+      <div><div class="box-label">Essay Questions This Theme Answers</div>
+      <ul>
+        <li>"Tugann Maidhc Dainín cuntas suimiúil ar scoil agus ar chaitheamh aimsire sa Ghaeltacht"</li>
+        <li>"Tá spraoi agus dearcadh na hóige léirithe go mór chun tosaigh"</li>
+        <li>Any question about Maidhc's life growing up in the Gaeltacht</li>
+      </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="pastimes">
+    <span class="label">Every Pastime — Analysis + Phrases</span>
+
+    <div class="pastime-card">
+      <div class="pastime-header ph-football">⚽ Football — Chapters 1 &amp; 7</div>
+      <div class="pastime-body">
+        <p><strong>Primary school:</strong> The boys played on the road using stones as goalposts, with no rules, no referee, and everyone keeping their own score. It was more like rugby than football — rough, chaotic, and joyful. It shows both the poverty of the time (no proper equipment) and the spirit of youth.</p>
+        <p><strong>Vocational school:</strong> Football reaches its peak in Chapter 7 — organised competition, proper positions, a real coach (Micheál Ó hIarnáin), and ultimately the county championship win. Football runs as a thread through the whole autobiography, from rough road game to county glory.</p>
+      </div>
+      <div class="phrases">
+        <h4>✍️ Phrases to Use</h4>
+        <div class="phrase-row"><span class="phrase-ga">Caitheamh aimsire a bhíodh acu gach aon lá ná cluiche peile</span><span class="phrase-en">Their pastime every day was a game of football</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Bhain siad úsáid as clocha mar chuaillí</span><span class="phrase-en">They used stones as goalposts</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Ní raibh rialacha nó réiteoir sa chluiche peile</span><span class="phrase-en">There were no rules or referee in the football game</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Bhí craobh an chontae buaite acu don chéad uair riamh — éacht iontach</span><span class="phrase-en">They had won the county championship for the first time ever — a wonderful achievement</span></div>
+      </div>
+    </div>
+
+    <div class="pastime-card">
+      <div class="pastime-header ph-fishing">🐟 Fishing — Chapter 4</div>
+      <div class="pastime-body">
+        <p>Illegal salmon fishing in the river on the border was both a pastime and an economic necessity. Maidhc and his father fished together — a bonding activity. The salmon were sold in Dingle for pocket money. The chapter contains the famous scene of Dainín falling in the river, showing that even the most serious activities can produce comedy.</p>
+      </div>
+      <div class="phrases">
+        <h4>✍️ Phrases to Use</h4>
+        <div class="phrase-row"><span class="phrase-ga">Bhí ganntanas airgid ann agus bhí iascaireacht mhídhleathach go forleathan</span><span class="phrase-en">There was a shortage of money and illegal fishing was widespread</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Bhí scil speisialta ann chun píce iascaireachta a úsáid</span><span class="phrase-en">There was a special skill to using a fishing pike</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Bhí an-chuid suime ag Maidhc san iascaireacht</span><span class="phrase-en">Maidhc had a great interest in fishing</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Is léir go raibh dea-chuimhní ag Maidhc ón gcaitheamh aimsire seo</span><span class="phrase-en">It is clear that Maidhc has good memories from this pastime</span></div>
+      </div>
+    </div>
+
+    <div class="pastime-card">
+      <div class="pastime-header ph-music">🎵 Music — Chapters 6 &amp; 8</div>
+      <div class="pastime-body">
+        <p>Music is Maidhc's greatest and most enduring passion. It begins with a letter to Cox of Kilcock and the surprise of Dainín's hidden talent. By Chapter 8 the accordion earns Maidhc £30 a summer and a stage at the céilís from which he meets Eibhlín. Music is simultaneously pastime, income, and gateway to love.</p>
+      </div>
+      <div class="phrases">
+        <h4>✍️ Phrases to Use</h4>
+        <div class="phrase-row"><span class="phrase-ga">Bhí an-suim ag Maidhc sa cheol, go háirithe sa bhosca ceoil</span><span class="phrase-en">Maidhc had a great interest in music, especially the accordion</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Chaith Maidhc a am saor á sheinnt</span><span class="phrase-en">Maidhc spent his free time playing it</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Is léir go raibh an ceol rí-thábhachtach do Mhaidhc mar chaitheamh aimsire</span><span class="phrase-en">It is clear that music was extremely important to Maidhc as a pastime</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Bhí sé ag fáil £30 agus cead isteach saor do na céilithe móra</span><span class="phrase-en">He was getting £30 and free admission to the big céilís</span></div>
+      </div>
+    </div>
+
+    <div class="pastime-card">
+      <div class="pastime-header ph-visiting">🏠 Bothántaíocht — Chapter 3</div>
+      <div class="pastime-body">
+        <p>With no electricity or television, the main social activity was <em>bothántaíocht</em> — visiting neighbours in the evenings. The All-Ireland Final on the radio brought the whole parish to Maidhc's house. Grae the storyteller went from house to house sharing stories. This tradition was the social glue of the community.</p>
+      </div>
+      <div class="phrases">
+        <h4>✍️ Phrases to Use</h4>
+        <div class="phrase-row"><span class="phrase-ga">Thagadh muintir an pharóiste chuig teach Maidhc chun éisteacht leis an raidió</span><span class="phrase-en">The people of the parish used to come to Maidhc's house to listen to the radio</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Bhíodh fear darbh ainm Grae ag dul ó theach go teach ag insint scéalta</span><span class="phrase-en">A man called Grae used to go from house to house telling stories</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Bhí orthu siamsaíocht a chruthú dóibh féin</span><span class="phrase-en">They had to create entertainment for themselves</span></div>
+      </div>
+    </div>
+
+    <div class="pastime-card">
+      <div class="pastime-header ph-smoking">🚬 Cigarettes — Chapter 5</div>
+      <div class="pastime-body">
+        <p>Smoking was the forbidden pastime — Maidhc was twelve, publicly smoking was considered grown-up at sixteen. The lengths he and Eddie went to — collecting butts, selling horse-tail hair, stealing eggs — show both poverty and the obsessive energy of youth. Though not presented as admirable, it is honestly and humorously told.</p>
+      </div>
+      <div class="phrases">
+        <h4>✍️ Phrases to Use</h4>
+        <div class="phrase-row"><span class="phrase-ga">Fuair andúil ag Maidhc le toitíní mar thoradh ar a chairdeas le hEddie</span><span class="phrase-en">Maidhc got addicted to cigarettes as a result of his friendship with Eddie</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Gach Luan rachadh siad go Halla an Pharóiste chun an tobac a bhailiú</span><span class="phrase-en">Every Monday they would go to the Parish Hall to collect the tobacco</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Léiríonn sé seo dearcadh na hóige — an fonn a bheith fásta suas</span><span class="phrase-en">This shows the outlook of youth — the desire to be grown up</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="phrases">
+    <span class="label">Master Phrase Bank — Pastimes</span>
+    <div class="info-card">
+      <h2>🔑 Opening &amp; Connecting Phrases</h2>
+      <div class="phrase-row"><span class="phrase-ga">Chomh maith le cúrsaí scolaíochta, faighim léargas suimiúil den chaitheamh aimsire a bhí ag Maidhc</span><span class="phrase-en">As well as schooling matters, I get an interesting insight into the pastimes Maidhc had</span></div>
+      <div class="phrase-row"><span class="phrase-ga">Léiríonn sé seo saol bríomhar, gníomhach a bhí ag Maidhc</span><span class="phrase-en">This shows the lively, active life Maidhc had</span></div>
+      <div class="phrase-row"><span class="phrase-ga">Mar fhocail scoir, is léir go raibh caitheamh aimsire ilghnéitheach ag Maidhc</span><span class="phrase-en">To conclude, it is clear that Maidhc had a varied range of pastimes</span></div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="exam">
+    <span class="label">Model Essay Answer — Pastimes</span>
+    <div class="info-card">
+      <h2>📝 Full Model Paragraph Structure</h2>
+      <p><strong>Paragraph 1 — Football:</strong><br>
+      Chomh maith le cúrsaí scolaíochta, faighim léargas suimiúil den chaitheamh aimsire a bhí ag Maidhc. <em>(As well as schooling matters, I get an interesting insight into the pastimes Maidhc had.)</em> Caitheamh aimsire a bhíodh acu gach aon lá ná cluiche peile. <em>(Their pastime every day was a game of football.)</em> Bhain siad úsáid as clocha mar chuaillí agus ní raibh rialacha nó réiteoir sa chluiche. <em>(They used stones as goalposts and there were no rules or referee in the game.)</em> Is sampla iontach é den spraoi agus dearcadh na hóige. <em>(It is a great example of the fun and outlook of youth.)</em></p>
+      <p><strong>Paragraph 2 — Fishing:</strong><br>
+      Maidir leis an iascaireacht mar chaitheamh aimsire, bhí ganntanas airgid ann agus bhí iascaireacht mhídhleathach go forleathan. <em>(Regarding fishing as a pastime, there was a shortage of money and illegal fishing was widespread.)</em> Bhí Maidhc in ann airgead póca a dhéanamh as seo. <em>(Maidhc was able to make pocket money from this.)</em></p>
+      <p><strong>Paragraph 3 — Music:</strong><br>
+      Tá ról lárnach ag an gceol mar chaitheamh aimsire sa dírbheathaisnéis. <em>(Music has a central role as a pastime in the autobiography.)</em> Is léir go raibh an ceol rí-thábhachtach do Mhaidhc. <em>(It is clear that music was extremely important to Maidhc.)</em> Faoin am a bhí na cúrsaí Gaeltachta ar siúl, bhí sé ag seinm ag na céilithe agus ag fáil £30. <em>(By the time the Gaeltacht courses were on, he was playing at the céilís and getting £30.)</em></p>
+      <p><strong>Conclusion:</strong><br>
+      Mar fhocail scoir, is léir go raibh caitheamh aimsire ilghnéitheach ag Maidhc agus gur léirigh gach ceann acu dearcadh bríomhar na hóige. <em>(To conclude, it is clear that Maidhc had a varied range of pastimes and each one showed the lively outlook of youth.)</em></p>
+    </div>
+    <div class="box b-tip">
+      <div class="ico">💡</div>
+      <div><div class="box-label">Key Strategy — Cover at Least Three Pastimes</div>
+      <p>In a pastimes essay, aim to cover <strong>at least three</strong>: football, fishing, and music are the strongest. If you can also mention bothántaíocht (community visiting), you show real breadth. Each pastime should have its own Irish quote and brief analysis — don't just list them, show what each one reveals about Maidhc's character and the community he lived in.</p></div>
+    </div>
+  </div>
+</div>
+<script>
+function switchTab(btn,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(id).classList.add('active');}
+</script>
+</body>
+</html>
