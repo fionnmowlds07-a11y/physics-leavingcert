@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="ga">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Íomhánna & Teicnící — Mo Ghrá-sa (idir lúibíní)</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F0F8F2;--surface:#fff;--border:#d4e4d8;--text:#2a2820;--muted:#5a6860;--c:#2e7a3c;--cl:#e2f5e6;--cd:#0a2010;--radius:14px;--shadow:0 4px 20px rgba(0,0,0,0.08);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;font-size:16px;}
+nav{position:sticky;top:0;z-index:100;background:rgba(240,248,242,0.97);backdrop-filter:blur(10px);border-bottom:2px solid var(--border);padding:8px 16px;display:flex;align-items:center;gap:5px;flex-wrap:wrap;min-height:52px;}
+.nav-logo{font-family:'Lexend Mega',sans-serif;font-size:0.78rem;color:var(--text);margin-right:4px;text-decoration:none;white-space:nowrap;}.nav-logo span{color:#8b2252;}
+.nav-divider{width:1px;height:20px;background:var(--border);flex-shrink:0;}
+.nav-btn{padding:5px 10px;border-radius:18px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.7rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);text-decoration:none;white-space:nowrap;}
+.nav-btn.home:hover{background:#2a2820;border-color:#2a2820;color:#fff;}
+.t-active,.t-active:hover{background:var(--c);border-color:var(--c);color:#fff;}
+.nb-poem:hover{background:#8b2252;border-color:#8b2252;color:#fff;}
+.nb-theme:hover{background:#2d5a8b;border-color:#2d5a8b;color:#fff;}
+.nb-poet:hover{background:#5a2a8b;border-color:#5a2a8b;color:#fff;}
+.section{padding:0 16px 80px;max-width:940px;margin:0 auto;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.hero{background:linear-gradient(135deg,var(--cd),var(--c));color:#fff;padding:44px 32px 36px;text-align:center;margin-bottom:32px;}
+.hero .chap-label{font-size:0.74rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;opacity:0.75;margin-bottom:10px;}
+.hero h1{font-family:'Lexend Mega',sans-serif;font-size:clamp(1.5rem,4vw,2.4rem);line-height:1.2;margin-bottom:12px;}
+.hero p{opacity:0.88;max-width:640px;margin:0 auto;font-size:0.94rem;}
+.hero-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px;}
+.hero-chip{background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:4px 14px;border-radius:20px;font-size:0.74rem;font-weight:600;}
+.tab-bar{display:flex;gap:4px;flex-wrap:wrap;padding:22px 0 8px;border-bottom:2px solid var(--border);margin-bottom:28px;}
+.tab{padding:8px 16px;border-radius:10px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.78rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);}
+.tab:hover,.tab.active{background:var(--c);color:#fff;border-color:var(--c);}
+.tab-panel{display:none;}.tab-panel.active{display:block;animation:fadeIn 0.25s ease;}
+.img-card{background:var(--surface);border-radius:var(--radius);padding:0;margin-bottom:20px;box-shadow:var(--shadow);border:2px solid var(--border);overflow:hidden;}
+.img-header{background:var(--cd);color:#fff;padding:12px 20px;font-family:'Lexend Mega',sans-serif;font-size:0.88rem;}
+.img-body{padding:18px 22px;}
+.analysis-p{font-size:0.91rem;line-height:1.8;margin-bottom:8px;}
+.example{background:var(--cl);border-left:4px solid var(--c);border-radius:0 var(--radius) var(--radius) 0;padding:12px 16px;margin:10px 0;}
+.example .ga{font-weight:700;font-size:0.9rem;color:var(--cd);margin-bottom:3px;}
+.example .en{font-size:0.83rem;color:var(--muted);font-style:italic;margin-bottom:5px;}
+.example .note{font-size:0.85rem;color:var(--text);}
+.phrases{padding:14px 20px;background:#f0f8f2;border-top:2px solid var(--border);}
+.phrases h4{font-size:0.72rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;color:var(--c);margin-bottom:10px;}
+.phrase-row{display:flex;gap:10px;align-items:flex-start;margin-bottom:8px;flex-wrap:wrap;}
+.phrase-ga{background:var(--c);color:#fff;border-radius:6px;padding:4px 10px;font-size:0.8rem;font-weight:600;}
+.phrase-en{font-size:0.8rem;color:var(--muted);font-style:italic;padding-top:3px;}
+.box{border-radius:var(--radius);padding:14px 18px;margin:14px 0;display:flex;gap:12px;align-items:flex-start;}
+.box .ico{font-size:1.4rem;flex-shrink:0;line-height:1.2;}
+.box-label{font-size:0.68rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;margin-bottom:4px;}
+.box p,.box li{font-size:0.9rem;}.box ul{padding-left:16px;}.box li{margin-bottom:5px;}
+.b-exam{background:#eaf4fb;border:2px solid #5dade2;}.b-exam .box-label{color:#1a6b9a;}
+.b-tip{background:#fffbf0;border:2px solid #f39c12;}.b-tip .box-label{color:#b7770d;}
+.label{font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:0.8px;color:var(--muted);margin-bottom:16px;display:block;}
+.info-card{background:var(--surface);border-radius:var(--radius);padding:22px 24px;margin-bottom:18px;box-shadow:var(--shadow);border-left:5px solid var(--c);}
+.info-card h2{font-size:1.05rem;font-weight:700;margin-bottom:10px;}
+.info-card p{margin-bottom:8px;font-size:0.92rem;}
+.info-card ul{padding-left:18px;}.info-card li{font-size:0.91rem;margin-bottom:6px;}
+.nature-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:0.88rem;}
+.nature-table th{background:var(--cd);color:#fff;padding:10px 14px;text-align:left;font-family:'Lexend Mega',sans-serif;font-size:0.78rem;}
+.nature-table td{padding:10px 14px;border-bottom:1px solid var(--border);}
+.nature-table tr:nth-child(even) td{background:#f0f8f2;}
+.nature-table .ga-text{font-weight:600;color:var(--cd);}
+.nature-table .en-text{color:var(--muted);font-style:italic;}
+.nature-table .meaning{color:var(--text);}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="MGSA_Home.html">💕 <span>Mo Ghrá-sa</span></a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn home" href="MGSA_Home.html">Baile</a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn nb-poem" href="MGSA_Anailís.html">📝 Anailís</a>
+  <a class="nav-btn nb-theme" href="MGSA_Téamaí.html">💡 Téamaí</a>
+  <a class="nav-btn t-active" href="MGSA_Íomhánna.html">🌿 Íomhánna</a>
+  <a class="nav-btn nb-poet" href="MGSA_File.html">✍️ An File</a>
+</nav>
+
+<div class="hero">
+  <div class="chap-label">Cuid 3 · Íomhánna & Teicnící Filíochta</div>
+  <h1>Íomhánna & Teicnící</h1>
+  <p>Every image from nature, every poetic technique, every piece of literary craft — analysed and explained with Irish phrases to use in your exam answers.</p>
+  <div class="hero-chips">
+    <span class="hero-chip">Íomhánna Nádúir</span>
+    <span class="hero-chip">Meafar</span>
+    <span class="hero-chip">Aoir / Satire</span>
+    <span class="hero-chip">Saor-Véarsaíocht</span>
+    <span class="hero-chip">Rím</span>
+  </div>
+</div>
+
+<div class="section">
+  <div class="tab-bar">
+    <button class="tab active" onclick="switchTab(this,'nature')">🌿 Íomhánna Nádúir</button>
+    <button class="tab" onclick="switchTab(this,'techniques')">✍️ Teicnící</button>
+    <button class="tab" onclick="switchTab(this,'brackets-tech')">( ) Na Lúibíní</button>
+    <button class="tab" onclick="switchTab(this,'lines')">📌 Línte Tábhachtacha</button>
+    <button class="tab" onclick="switchTab(this,'exam')">🎓 Freagra Samplach</button>
+  </div>
+
+  <!-- NATURE IMAGERY -->
+  <div class="tab-panel active" id="nature">
+    <span class="label">Íomhánna Nádúir — Nature Imagery</span>
+
+    <div class="info-card">
+      <h2>🌿 Why Nature Imagery?</h2>
+      <p>In the old Irish love-song tradition (<em>na hamhráin grá</em>), nature was used to describe the beloved in glowing terms — her eyes like a mountain stream, her hair like golden barley. Ní Dhomhnaill knows this tradition perfectly and uses its exact language — but subverts it completely, using nature images to show her partner's <em>flaws</em> rather than his beauty.</p>
+      <p><em>"D'aiteoinn go mbaineann an file sár-úsáid as íomhanna ón nadúr chun cuma agus tréithe an fhir a chur in iúl dúinn."</em> (I would argue that the poet uses excellent images from nature to portray the appearance and characteristics of the man to us.)</p>
+    </div>
+
+    <table class="nature-table">
+      <thead>
+        <tr>
+          <th>Íomhá / Image</th>
+          <th>Aistriúchán</th>
+          <th>Céard is brí leis?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="ga-text">Níl mo ghrá-sa mar bhláth na n-airní</td>
+          <td class="en-text">My love is not like the blackthorn flower</td>
+          <td class="meaning">Denies the most common traditional compliment — her lover's appearance is not delicate or beautiful like a blossom</td>
+        </tr>
+        <tr>
+          <td class="ga-text">ná mar eala uaigneach ag seoladh ar an loch</td>
+          <td class="en-text">nor like a lonely swan sailing on the lake</td>
+          <td class="meaning">Denies grace and elegance — swans were the ultimate symbol of beauty in tradition</td>
+        </tr>
+        <tr>
+          <td class="ga-text">Níl a ghnúis mar ghrian an mheán lae</td>
+          <td class="en-text">His face is not like the midday sun</td>
+          <td class="meaning">His face does not radiate warmth and light — another traditional comparison denied</td>
+        </tr>
+        <tr>
+          <td class="ga-text">ná mar ghealaigh ag éirí thar chnoic na tíre seo</td>
+          <td class="en-text">nor like the moon rising over the hills of this land</td>
+          <td class="meaning">Not luminous or romantic — the moonrise over hills was one of the most common beautiful images in Irish poetry</td>
+        </tr>
+        <tr>
+          <td class="ga-text">Tá a chuid gruaige mar a bheadh sreang dheilgneach ann</td>
+          <td class="en-text">His hair is as if there were barbed wire in it</td>
+          <td class="meaning">Barbed wire — harsh, sharp, ugly. The ultimate anti-romantic nature image. Brilliant comic reversal.</td>
+        </tr>
+        <tr>
+          <td class="ga-text">Is má tá aon ghaol aige le nóiníní, is as a chluasa a fhásfaidh siad</td>
+          <td class="en-text">If he has any relation to daisies, they'll grow from his ears</td>
+          <td class="meaning">Absurdist, comic image. Instead of being compared to a flower, he might grow them — from his ears. Humorous exaggeration.</td>
+        </tr>
+        <tr>
+          <td class="ga-text">Tugann sé dom úlla agus caora finiúna</td>
+          <td class="en-text">He gives me apples and grapes</td>
+          <td class="meaning">Metaphor: apples = necessities of life; grapes = small luxuries. Nature finally used positively — to show his generosity.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="img-card">
+      <div class="img-header">🌿 The Final Nature Images — The Turnaround</div>
+      <div class="img-body">
+        <p class="analysis-p">The apple and grape images in the final verse are the poem's most important nature images — and the most positive. After six nature images used negatively (denials or comic insults), the fruit images are warm and generous.</p>
+        <div class="example">
+          <div class="ga">Sa véarsa deireanach, úsáideann an file dhá mheafar. Seasann an úlla do riachtanais an tsaoil a thugann sé di, agus seasann na caora finiúna do sónna an tsaoil.</div>
+          <div class="en">In the last verse, the poet uses two metaphors. The apple stands for the necessities of life that he gives her, and the grapes stand for the luxuries of life.</div>
+          <div class="note">→ From the teacher's notes — this is the key analysis of the final images.</div>
+        </div>
+        <p class="analysis-p"><em>"Tá an file ag rá gur féidir léi brath air agus go bhfuil an pictiúir níos tábhachtaí ná an fráma."</em> (The poet is saying that she can depend on him and that the picture is more important than the frame.) This is a beautiful final metaphor — his inner self (the picture) is more important than his external appearance (the frame).</p>
+      </div>
+      <div class="phrases">
+        <h4>✍️ Phrases for Nature Imagery</h4>
+        <div class="phrase-row"><span class="phrase-ga">D'aiteoinn go mbaineann an file sár-úsáid as íomhanna ón nadúr</span><span class="phrase-en">I would argue the poet makes excellent use of images from nature</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Úsáideann an file an teicníc chéanna le na seandánta, ach ar bhealach an-difriúil</span><span class="phrase-en">The poet uses the same technique as the old poems, but in a very different way</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Is meafar cumhachtach iad na húlla agus na caora finiúna</span><span class="phrase-en">The apples and grapes are powerful metaphors</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Déanann an file comparáid idir a fear agus nóiníní — comparáid ghreannmhar</span><span class="phrase-en">The poet compares her man to daisies — a funny comparison</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TECHNIQUES -->
+  <div class="tab-panel" id="techniques">
+    <span class="label">Teicnící Filíochta — Poetic Techniques</span>
+
+    <div class="img-card">
+      <div class="img-header">✍️ Teicníc 1 — Saor-Véarsaíocht (Free Verse)</div>
+      <div class="img-body">
+        <p class="analysis-p">The poem is written in <strong>free verse</strong> (<em>saor-véarsaíocht</em>) — there is no regular metre or rhyme scheme. This is significant:</p>
+        <ul style="padding-left:18px;font-size:0.91rem;line-height:1.9;">
+          <li>Free verse allows the poet to sound conversational, natural, spontaneous — like she is speaking directly to you.</li>
+          <li>It breaks free from the formal structure of traditional love poetry, reinforcing the poem's message that real love doesn't follow prescribed patterns.</li>
+          <li>The length of lines varies dramatically, from the single word <em>"úlla"</em> (apples — standing alone on its own line) to longer flowing lines — creating rhythm through contrast.</li>
+        </ul>
+        <div class="example">
+          <div class="ga">Is í an tsaor-véarsaíocht atá mar mheadaracht an dáin. Tugann sé seo saoirse don fhile a cuid a rá, gan aon srian.</div>
+          <div class="en">Free verse is the metre of the poem. This gives the poet freedom to say her piece, without any constraints.</div>
+          <div class="note">→ From the teacher's notes — use "gan aon srian" (without any constraints) about the metre.</div>
+        </div>
+      </div>
+      <div class="phrases">
+        <h4>✍️ Free Verse Phrases</h4>
+        <div class="phrase-row"><span class="phrase-ga">Is í an tsaor-véarsaíocht atá mar mheadaracht an dáin</span><span class="phrase-en">Free verse is the metre of the poem</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Tugann sé seo saoirse don fhile a cuid a rá gan aon srian</span><span class="phrase-en">This gives the poet freedom to say her piece without constraint</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Tá fuaim cheolmhar álainn ag an dán ainneoin na saor-véarsaíochta</span><span class="phrase-en">The poem has a beautiful musical sound despite the free verse</span></div>
+      </div>
+    </div>
+
+    <div class="img-card">
+      <div class="img-header">✍️ Teicníc 2 — Rím Dheiridh (End Rhyme)</div>
+      <div class="img-body">
+        <p class="analysis-p">While the poem is primarily free verse, Ní Dhomhnaill includes occasional examples of <strong>end rhyme</strong> (<em>rím dheiridh</em>) which create a subtle musicality:</p>
+        <div class="example">
+          <div class="ga">airní / nóiníní</div>
+          <div class="en">blackthorn / daisies</div>
+          <div class="note">→ A playful rhyme linking the first "denied" comparison to the comic daisy image later.</div>
+        </div>
+        <div class="example">
+          <div class="ga">shúile / chéile</div>
+          <div class="en">eyes / each other / together</div>
+          <div class="note">→ "His eyes are too close together" — the rhyme of shúile and chéile creates a comic echo effect.</div>
+        </div>
+      </div>
+      <div class="phrases">
+        <h4>✍️ Rhyme Phrases</h4>
+        <div class="phrase-row"><span class="phrase-ga">Tá cúpla sampla de rím dheiridh sa dán</span><span class="phrase-en">There are a few examples of end rhyme in the poem</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Cruthaíonn an rím fuaim cheolmhar</span><span class="phrase-en">The rhyme creates a musical sound</span></div>
+      </div>
+    </div>
+
+    <div class="img-card">
+      <div class="img-header">✍️ Teicníc 3 — Meafaranna (Metaphors)</div>
+      <div class="img-body">
+        <p class="analysis-p">There are several key metaphors in the poem:</p>
+        <div class="example">
+          <div class="ga">Tá a chuid gruaige mar a bheadh sreang dheilgneach ann</div>
+          <div class="en">His hair is as if there were barbed wire in it</div>
+          <div class="note">→ Extended simile becoming metaphor — his hair compared to barbed wire, suggesting it is rough, sharp, unruly and unattractive.</div>
+        </div>
+        <div class="example">
+          <div class="ga">Tugann sé dom úlla agus caora finiúna</div>
+          <div class="en">He gives me apples and grapes</div>
+          <div class="note">→ The most important metaphor: apples = daily necessities; grapes = life's small luxuries. Together they represent a complete, caring relationship.</div>
+        </div>
+        <div class="example">
+          <div class="ga">Tá an pictiúr níos tábhachtaí ná an fráma</div>
+          <div class="en">The picture is more important than the frame</div>
+          <div class="note">→ From the teacher's notes — the picture (his inner self) matters more than the frame (outer appearance). A beautiful closing metaphor for the poem's message.</div>
+        </div>
+      </div>
+      <div class="phrases">
+        <h4>✍️ Metaphor Phrases</h4>
+        <div class="phrase-row"><span class="phrase-ga">Úsáideann an file meafar chun tréithe an fhir a léiriú</span><span class="phrase-en">The poet uses metaphor to portray the characteristics of the man</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Is meafar cumhachtach iad na húlla — seasann siad do riachtanais an tsaoil</span><span class="phrase-en">The apples are a powerful metaphor — they stand for the necessities of life</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Tá an pictiúr (pearsantacht) níos tábhachtaí ná an fráma (cuma)</span><span class="phrase-en">The picture (personality) is more important than the frame (appearance)</span></div>
+      </div>
+    </div>
+
+    <div class="img-card">
+      <div class="img-header">✍️ Teicníc 4 — Aibhéil (Hyperbole/Exaggeration)</div>
+      <div class="img-body">
+        <p class="analysis-p">The poem uses deliberate exaggeration (<em>aibhéil</em>) for comic effect. Saying someone's eyes are "too close together" is a mild observation — but saying that if he's related to daisies, they'll grow from his ears is pure absurdist comedy.</p>
+        <p class="analysis-p"><em>"Is léir go bhfuil cur síos scigmhagúil agus aibhéalach ann ó thús deireadh."</em> (It is clear that there is a mocking and exaggerated description throughout.)</p>
+        <div class="example">
+          <div class="ga">Is má tá aon ghaol aige le nóiníní, is as a chluasa a fhásfaidh siad</div>
+          <div class="en">If he has any relation to daisies, they'll grow from his ears</div>
+          <div class="note">→ Classic hyperbole — absurdly comic but also memorably vivid. The image sticks in the reader's mind.</div>
+        </div>
+      </div>
+      <div class="phrases">
+        <h4>✍️ Exaggeration Phrases</h4>
+        <div class="phrase-row"><span class="phrase-ga">Baineann an file úsáid as aibhéil go cliste chun greann a chruthú</span><span class="phrase-en">The poet cleverly uses exaggeration to create humour</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Is léir go bhfuil cur síos aibhéalach ann ón tús go dtí an deireadh</span><span class="phrase-en">It is clear there is an exaggerated description from beginning to end</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BRACKETS TECHNIQUE -->
+  <div class="tab-panel" id="brackets-tech">
+    <span class="label">Na Lúibíní mar Theicníc Liteartha</span>
+
+    <div class="info-card">
+      <h2>( ) The Brackets as a Literary Technique</h2>
+      <p>The brackets in this poem are not just a formatting choice — they are the poem's central literary technique. No other poem in the Leaving Cert Irish course uses this device in the same way. They are Ní Dhomhnaill's most original contribution in this poem.</p>
+    </div>
+
+    <div class="img-card">
+      <div class="img-header">( ) Feidhmeanna na Lúibíní — Functions of the Brackets</div>
+      <div class="img-body">
+        <div class="example">
+          <div class="ga">1. Teideal an Dáin</div>
+          <div class="en">The Title of the Poem</div>
+          <div class="note">The title itself — <em>Mo Ghrá-sa (idir lúibíní)</em> — prepares us. "My love (in brackets)" hints that this love comes with reservations, qualifications, and a knowing wink. It is a pun: her love is literally written in brackets.</div>
+        </div>
+        <div class="example">
+          <div class="ga">2. Cur isteach ar an gcanúint thraidisiúnta</div>
+          <div class="en">Interrupting the traditional voice</div>
+          <div class="note">Each time a traditional poetic comparison begins, the brackets interrupt and undercut it. They are the poet's real voice breaking through the formal language of the tradition she is mocking.</div>
+        </div>
+        <div class="example">
+          <div class="ga">3. Scigmhagadh — an "fhírinne lom" á nochtadh</div>
+          <div class="en">Mockery — revealing the "bare truth"</div>
+          <div class="note">The brackets contain the blunt reality — his eyes too close, his hair like wire. <em>"Sna lúibíní, tá scigmhagadh ar siúl."</em> (In the brackets, caricaturing is taking place.)</div>
+        </div>
+        <div class="example">
+          <div class="ga">4. An moladh deireanach — sa lúibín is fearr</div>
+          <div class="en">The final praise — in the most important bracket</div>
+          <div class="note"><em>"(is nuair a bhíonn sé i ndea-ghiúmar / caora finiúna)"</em> — the grapes, the most loving image in the poem, appear inside a bracket. This makes the tenderest moment technically parenthetical, but in fact central.</div>
+        </div>
+      </div>
+      <div class="phrases">
+        <h4>✍️ Advanced Bracket Phrases</h4>
+        <div class="phrase-row"><span class="phrase-ga">Caithfidh mé a rá go bhfuil ról lárnach ag na lúibíní sa dán seo</span><span class="phrase-en">I must say the brackets have a central role in this poem</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Is é an teideal féin an chéad lúibín — "idir lúibíní"</span><span class="phrase-en">The title itself is the first bracket — "in brackets"</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Sna lúibíní, tá scigmhagadh ar siúl</span><span class="phrase-en">In the brackets, caricaturing/mockery is taking place</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Faighimid an fhírinne faoin a chuma ar dtús, ansin faoin a phearsantacht</span><span class="phrase-en">We get the truth about his appearance first, then about his personality</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HANDY LINES -->
+  <div class="tab-panel" id="lines">
+    <span class="label">Línte Tábhachtacha — Key Lines to Know</span>
+
+    <div class="box b-tip">
+      <div class="ico">💡</div>
+      <div><div class="box-label">Exam Strategy</div>
+      <p>In your answers, quote directly from the poem in Irish and provide the translation in brackets — exactly as shown here. Examiners award marks for accurate quotation and translation. Learn these lines by heart.</p>
+      </div>
+    </div>
+
+    <div class="img-card">
+      <div class="img-header">📌 Línte Tábhachtacha — All Key Lines with Translations</div>
+      <div class="img-body">
+        <div class="example">
+          <div class="ga">"Níl mo ghrá-sa mar bhláth na n-airní"</div>
+          <div class="en">My love is not like the blackthorn flower</div>
+          <div class="note">→ Opening line. Establishes the anti-traditional approach. First denial of nature comparison.</div>
+        </div>
+        <div class="example">
+          <div class="ga">"ná mar eala uaigneach ag seoladh ar an loch"</div>
+          <div class="en">nor like a lonely swan sailing on the lake</div>
+          <div class="note">→ Denies grace and beauty — the swan is the ultimate traditional symbol of elegance.</div>
+        </div>
+        <div class="example">
+          <div class="ga">"Tá a shúile ró-chóngarach dá chéile / (is é féin a dúirt liom é)"</div>
+          <div class="en">His eyes are too close together / (he himself told me so)</div>
+          <div class="note">→ Most comic line. The bracket is brilliant — he admitted it himself!</div>
+        </div>
+        <div class="example">
+          <div class="ga">"tá a chuid gruaige mar a bheadh sreang dheilgneach ann"</div>
+          <div class="en">his hair is as if there were barbed wire in it</div>
+          <div class="note">→ The anti-traditional nature image. Rough, sharp, ugly — the opposite of golden barley.</div>
+        </div>
+        <div class="example">
+          <div class="ga">"Is má tá aon ghaol aige le nóiníní, is as a chluasa a fhásfaidh siad"</div>
+          <div class="en">If he has any relation to daisies, they'll grow from his ears</div>
+          <div class="note">→ Peak absurdist humour. The funniest line in the poem.</div>
+        </div>
+        <div class="example">
+          <div class="ga">"Ach is cuma sin"</div>
+          <div class="en">But none of that matters</div>
+          <div class="note">→ The pivot. Three words that change the entire poem. Most important line.</div>
+        </div>
+        <div class="example">
+          <div class="ga">"tugann sé dom úlla / (is nuair a bhíonn sé i ndea-ghiúmar) / caora finiúna"</div>
+          <div class="en">he gives me apples / (and when he is in good humour) / grapes</div>
+          <div class="note">→ The heart of the poem. Apples = necessities. Grapes = small luxuries. Real love.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXAM -->
+  <div class="tab-panel" id="exam">
+    <span class="label">Freagra Samplach — Model Answer on Imagery</span>
+
+    <div class="img-card">
+      <div class="img-header">🎓 Question: Discuss the images from nature in the poem.</div>
+      <div class="img-body">
+        <div class="example">
+          <div class="ga">Aontaím go huile is go hiomlán. D'aiteoinn go mbaineann an file sár-úsáid as íomhanna áille ón nadúr chun cuma agus tréithe an fhir a chur in iúl dúinn. Chun an cheist a chíoradh níos faide, féachaímis ar na híomhanna suimiúla i rith an dáin.</div>
+          <div class="en">I totally agree. I would argue that the poet makes excellent use of beautiful images from nature to portray the appearance and characteristics of the man to us. To examine this further, let us look at the interesting images throughout the poem.</div>
+        </div>
+        <div class="example">
+          <div class="ga">Osclaítear an dán agus feictear na híomhanna nádúrtha láithreach bonn. Is léir gur aoir é an dán seo ar na seandánta grá. Mar chodarsnacht iomlán, tosaíonn Ní Dhomhnaill ag rá nach bhfuil craiceann a leannán "mar bhláth na n-airní." Feictear mídháthúlacht an fhir le cabhair ó na híomhanna nádúrtha.</div>
+          <div class="en">The poem opens and the natural images are seen immediately. It is clear this poem is a satire of the old love poems. As a total contrast, Ní Dhomhnaill begins by saying her partner's skin is not "like the blackthorn flower." The bad looks of the man are seen with help from the natural images.</div>
+        </div>
+        <div class="example">
+          <div class="ga">Pé scéal é, athraíonn atmaisféar an dáin sa véarsa deireanach. Tugann sé di bronntanais nádúrtha ar nós "úlla" agus "caora finiúna." Bheinn den tuairim go ndéanann sí ceiliúradh as lochtanna a stóirín le cabhair ó na híomhanna nádúrtha.</div>
+          <div class="en">However, the atmosphere changes in the last verse. He gives her natural presents like "apples" and "grapes." I would be of the opinion that she celebrates her dear's faults with help from the different images from nature.</div>
+        </div>
+        <div class="example">
+          <div class="ga">Mar fhocail scoir, éiríonn go géal leis an bhfile an teachtaireacht seo a léiriú — "is é an rud is tábhachtaí ná pearsantacht an fhir."</div>
+          <div class="en">Finally, the poet successfully portrays this message — "the most important thing is the personality of the man."</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function switchTab(btn, id) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+</script>
+</body>
+</html>

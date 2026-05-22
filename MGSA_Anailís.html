@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="ga">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anailís — Mo Ghrá-sa (idir lúibíní)</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F5F0F8;--surface:#fff;--border:#ddd8e4;--text:#2a2820;--muted:#6a6068;--c:#8b2252;--cl:#fce8f0;--cd:#3a0820;--radius:14px;--shadow:0 4px 20px rgba(0,0,0,0.08);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;font-size:16px;}
+nav{position:sticky;top:0;z-index:100;background:rgba(245,240,248,0.97);backdrop-filter:blur(10px);border-bottom:2px solid var(--border);padding:8px 16px;display:flex;align-items:center;gap:5px;flex-wrap:wrap;min-height:52px;}
+.nav-logo{font-family:'Lexend Mega',sans-serif;font-size:0.78rem;color:var(--text);margin-right:4px;text-decoration:none;white-space:nowrap;}.nav-logo span{color:#8b2252;}
+.nav-divider{width:1px;height:20px;background:var(--border);flex-shrink:0;}
+.nav-btn{padding:5px 10px;border-radius:18px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.7rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);text-decoration:none;white-space:nowrap;}
+.nav-btn.home:hover,.nav-btn.home.active{background:#2a2820;border-color:#2a2820;color:#fff;}
+.t-active,.t-active:hover{background:var(--c);border-color:var(--c);color:#fff;}
+.nb-theme:hover{background:#2d5a8b;border-color:#2d5a8b;color:#fff;}
+.nb-imagery:hover{background:#2e7a3c;border-color:#2e7a3c;color:#fff;}
+.nb-poet:hover{background:#5a2a8b;border-color:#5a2a8b;color:#fff;}
+.section{padding:0 16px 80px;max-width:940px;margin:0 auto;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.hero{background:linear-gradient(135deg,var(--cd),var(--c));color:#fff;padding:44px 32px 36px;text-align:center;margin-bottom:32px;}
+.hero .chap-label{font-size:0.74rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;opacity:0.75;margin-bottom:10px;}
+.hero h1{font-family:'Lexend Mega',sans-serif;font-size:clamp(1.5rem,4vw,2.4rem);line-height:1.2;margin-bottom:12px;}
+.hero p{opacity:0.88;max-width:640px;margin:0 auto;font-size:0.94rem;}
+.hero-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px;}
+.hero-chip{background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:4px 14px;border-radius:20px;font-size:0.74rem;font-weight:600;}
+.tab-bar{display:flex;gap:4px;flex-wrap:wrap;padding:22px 0 8px;border-bottom:2px solid var(--border);margin-bottom:28px;}
+.tab{padding:8px 16px;border-radius:10px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.78rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);}
+.tab:hover,.tab.active{background:var(--c);color:#fff;border-color:var(--c);}
+.tab-panel{display:none;}.tab-panel.active{display:block;animation:fadeIn 0.25s ease;}
+.info-card{background:var(--surface);border-radius:var(--radius);padding:22px 24px;margin-bottom:18px;box-shadow:var(--shadow);border-left:5px solid var(--c);}
+.info-card h2{font-size:1.05rem;font-weight:700;margin-bottom:10px;}
+.info-card p{margin-bottom:8px;font-size:0.92rem;}
+.info-card ul{padding-left:18px;margin-bottom:8px;}
+.info-card li{margin-bottom:7px;font-size:0.91rem;}
+.verse-card{background:var(--surface);border-radius:var(--radius);padding:0;margin-bottom:20px;box-shadow:var(--shadow);border:2px solid var(--border);overflow:hidden;}
+.verse-header{background:var(--cd);color:#fff;padding:12px 20px;font-family:'Lexend Mega',sans-serif;font-size:0.88rem;display:flex;align-items:center;gap:10px;}
+.verse-body{padding:18px 22px;}
+.poem-lines{font-family:'Georgia',serif;font-size:1rem;line-height:2.2;color:var(--text);margin-bottom:14px;border-left:3px solid var(--c);padding-left:16px;}
+.poem-lines .bracket{color:var(--c);font-style:italic;}
+.analysis-p{font-size:0.91rem;line-height:1.8;margin-bottom:8px;}
+.example{background:var(--cl);border-left:4px solid var(--c);border-radius:0 var(--radius) var(--radius) 0;padding:12px 16px;margin:10px 0;}
+.example .ga{font-weight:700;font-size:0.9rem;color:var(--cd);margin-bottom:3px;}
+.example .en{font-size:0.83rem;color:var(--muted);font-style:italic;margin-bottom:5px;}
+.example .note{font-size:0.85rem;color:var(--text);}
+.phrases{padding:14px 20px;background:#fdf5f8;border-top:2px solid var(--border);}
+.phrases h4{font-size:0.72rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;color:var(--c);margin-bottom:10px;}
+.phrase-row{display:flex;gap:10px;align-items:flex-start;margin-bottom:8px;flex-wrap:wrap;}
+.phrase-ga{background:var(--c);color:#fff;border-radius:6px;padding:4px 10px;font-size:0.8rem;font-weight:600;}
+.phrase-en{font-size:0.8rem;color:var(--muted);font-style:italic;padding-top:3px;}
+.box{border-radius:var(--radius);padding:14px 18px;margin:14px 0;display:flex;gap:12px;align-items:flex-start;}
+.box .ico{font-size:1.4rem;flex-shrink:0;line-height:1.2;}
+.box-label{font-size:0.68rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;margin-bottom:4px;}
+.box p,.box li{font-size:0.9rem;}.box ul{padding-left:16px;}.box li{margin-bottom:5px;}
+.b-exam{background:#eaf4fb;border:2px solid #5dade2;}.b-exam .box-label{color:#1a6b9a;}
+.b-tip{background:#fffbf0;border:2px solid #f39c12;}.b-tip .box-label{color:#b7770d;}
+.b-key{background:#f0e8fc;border:2px solid #9b59b6;}.b-key .box-label{color:#6c3483;}
+.label{font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:0.8px;color:var(--muted);margin-bottom:16px;display:block;}
+.bracket-explainer{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0;}
+.bracket-box{border-radius:var(--radius);padding:14px 16px;border:2px solid var(--border);}
+.bracket-box h4{font-size:0.8rem;font-weight:700;margin-bottom:8px;}
+.bracket-box.outside{background:#fdf5f8;border-color:var(--c);}
+.bracket-box.inside{background:#e8f8ec;border-color:#2e7a3c;}
+.bracket-box p{font-size:0.87rem;line-height:1.7;}
+@media(max-width:680px){.bracket-explainer{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="MGSA_Home.html">💕 <span>Mo Ghrá-sa</span></a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn home" href="MGSA_Home.html">Baile</a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn t-active" href="MGSA_Anailís.html">📝 Anailís</a>
+  <a class="nav-btn nb-theme" href="MGSA_Téamaí.html">💡 Téamaí</a>
+  <a class="nav-btn nb-imagery" href="MGSA_Íomhánna.html">🌿 Íomhánna</a>
+  <a class="nav-btn nb-poet" href="MGSA_File.html">✍️ An File</a>
+</nav>
+
+<div class="hero">
+  <div class="chap-label">Cuid 1 · Anailís an Dáin</div>
+  <h1>Plé & Anailís</h1>
+  <p>A verse-by-verse breakdown of Mo Ghrá-sa (idir lúibíní) — understanding what the poem says, how the brackets work, and what Ní Dhomhnaill is really doing with this unusual love poem.</p>
+  <div class="hero-chips">
+    <span class="hero-chip">Aoir · Satire</span>
+    <span class="hero-chip">Lúibíní · Brackets</span>
+    <span class="hero-chip">Trí Véarsa</span>
+    <span class="hero-chip">Casadh sa Deireadh</span>
+  </div>
+</div>
+
+<div class="section">
+  <div class="tab-bar">
+    <button class="tab active" onclick="switchTab(this,'overview')">📋 Overview</button>
+    <button class="tab" onclick="switchTab(this,'brackets')">( ) Na Lúibíní</button>
+    <button class="tab" onclick="switchTab(this,'verses')">📖 Véarsa ar Véarsa</button>
+    <button class="tab" onclick="switchTab(this,'satire')">🎭 An Aoir</button>
+    <button class="tab" onclick="switchTab(this,'exam')">🎓 Freagra Samplach</button>
+  </div>
+
+  <!-- OVERVIEW -->
+  <div class="tab-panel active" id="overview">
+    <div class="info-card">
+      <h2>📋 Cad é an Dán Seo?</h2>
+      <p><strong>Is dán grá neamhghnáthach é seo.</strong> (This is an unusual love poem.) At first glance, it reads like an insult — the poet describes her partner's eyes as too close together, his hair like barbed wire, and his appearance so bad that if he is related to daisies, they'll grow from his ears. But the final twist changes everything.</p>
+      <p>The poem is structured as a deliberate <strong>inversion</strong> of the old Irish love-song tradition (<em>na hamhráin grá</em>), where women were compared to flowers, swans, and moonlight. Ní Dhomhnaill turns this tradition on its head, using the same nature images — but to mock rather than praise.</p>
+      <ul>
+        <li><strong>Véarsa 1–2:</strong> What her love is NOT — the denial of traditional beauty comparisons</li>
+        <li><strong>Véarsa 3:</strong> Specific, comic physical flaws — eyes too close, hair like wire</li>
+        <li><strong>An casadh (the turn):</strong> "Ach is cuma sin" — but none of that matters</li>
+        <li><strong>An deireadh:</strong> He gives her apples and grapes — simple kindness is everything</li>
+      </ul>
+    </div>
+    <div class="box b-key">
+      <div class="ico">🔑</div>
+      <div><div class="box-label">The Core Message</div>
+      <p><em>Is é bun agus barr an dáin ná go bhfuil sí i ngrá le gnáthfhear le pearsantacht chineálta.</em> (The top and bottom of the poem is that she is in love with a normal man with a kind personality.) Physical beauty is irrelevant — what matters is who a person is inside, what they do, and how they make you feel.</p>
+      </div>
+    </div>
+    <div class="box b-tip">
+      <div class="ico">💡</div>
+      <div><div class="box-label">Key Phrase for Your Exam</div>
+      <p><em>"Is cinnte gur dán grámhar é seo, cé nach gceapfá é sin ar an gcéad léamh."</em><br>
+      (It is certain that this is a love poem, even though you would not think that on the first read.) — Use this to open any answer about the poem's theme.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- BRACKETS -->
+  <div class="tab-panel" id="brackets">
+    <span class="label">Na Lúibíní — The Role of the Brackets</span>
+
+    <div class="info-card">
+      <h2>( ) Cén fáth a bhfuil lúibíní sa teideal?</h2>
+      <p>The brackets appear in the very title — <em>Mo Ghrá-sa (idir lúibíní)</em> — which immediately signals to the reader that this is not a conventional love poem. The phrase "idir lúibíní" literally means "in brackets" or "between brackets," but also carries the idiomatic sense of "with reservations" or "not quite." This title is a pun — her love is literally written in brackets.</p>
+    </div>
+
+    <div class="bracket-explainer">
+      <div class="bracket-box outside">
+        <h4>📤 Text Outside the Brackets</h4>
+        <p>Contains the traditional, poetic statements you would expect in an old-style love poem — comparisons with flowers, swans, the moon. But here they are all <strong>negative</strong>: <em>"Níl mo ghrá-sa mar bhláth na n-airní..."</em> (My love is not like the flower of the blackthorn...)</p>
+      </div>
+      <div class="bracket-box inside">
+        <h4>📥 Text Inside the Brackets</h4>
+        <p>Contains the real, unfiltered, often comic truth. The brackets deliver the <em>"fírinne lom"</em> (bare truth) — both the insults about his appearance AND, at the end, the genuine praise for his kindness. The brackets are where reality lives.</p>
+      </div>
+    </div>
+
+    <div class="verse-card">
+      <div class="verse-header">🔑 Trí Fheidhm na Lúibíní — Three Functions of the Brackets</div>
+      <div class="verse-body">
+        <div class="example">
+          <div class="ga">1. Scigmhagadh ar na sean-dánta grá</div>
+          <div class="en">Mocking the old love poems</div>
+          <div class="note">The brackets interrupt the "flowery" language and undercut it with reality. Every grand poetic statement is immediately qualified or undermined by what comes next in brackets.</div>
+        </div>
+        <div class="example">
+          <div class="ga">2. Fiosracht an léitheora a mhúscailt</div>
+          <div class="en">Awakening the reader's curiosity</div>
+          <div class="note">The brackets create a kind of whispered aside — like the poet is pulling you close to tell you the real story. They create intimacy, humour, and suspense throughout the poem.</div>
+        </div>
+        <div class="example">
+          <div class="ga">3. An fhírinne dheireanach a nochtadh</div>
+          <div class="en">Revealing the final truth</div>
+          <div class="note">The most important bracket of all: <em>"(is nuair a bhíonn sé i ndea-ghiúmar / caora finiúna)"</em> — the grapes appear inside a bracket, making the most loving moment of the poem technically parenthetical. And yet it is the heart of everything.</div>
+        </div>
+      </div>
+      <div class="phrases">
+        <h4>✍️ Phrases to Use About the Brackets</h4>
+        <div class="phrase-row"><span class="phrase-ga">Caithfidh mé a rá go bhfuil ról lárnach ag na lúibíní sa dán seo</span><span class="phrase-en">I must say that the brackets have a central role in this poem</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Feictear na lúibíní i dteideal an dáin láithreach bonn</span><span class="phrase-en">The brackets are seen in the title of the poem immediately</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Cuireann siad in iúl dom nach gnáthdhán grá é seo</span><span class="phrase-en">They portray to me that this is not a normal love poem</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Is cinnte go bhfuil go leor grinn le feiceáil sna lúibíní</span><span class="phrase-en">It is clear that a lot of humour is seen in the brackets</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Éiríonn go géal leis an bhfile fiosracht an léitheora a mhúscailt le cabhair ó na lúibíní</span><span class="phrase-en">The poet successfully evokes the curiosity of the reader with help from the brackets</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VERSES -->
+  <div class="tab-panel" id="verses">
+    <span class="label">Véarsa ar Véarsa — Verse by Verse</span>
+
+    <div class="verse-card">
+      <div class="verse-header">📖 Véarsaí 1 & 2 — The Negative Comparisons</div>
+      <div class="verse-body">
+        <div class="poem-lines">Níl mo ghrá-sa mar bhláth na n-airní<br>
+<span class="bracket">(atá ag fás ar an gclai)</span><br>
+ná mar eala uaigneach,<br>
+<span class="bracket">(ag seoladh ar an loch.)</span><br><br>
+Níl a ghnúis mar ghrian an mheán lae<br>
+<span class="bracket">(is é ag taitneamh ar an gcoill,)</span><br>
+ná mar ghealaigh ag éirí<br>
+<span class="bracket">(thar chnoic na tíre seo.)</span></div>
+        <p class="analysis-p">These opening verses are a direct parody of the traditional Irish love-song (<em>amhrán grá</em>). In the old tradition, a woman's skin was compared to flowers, her movement to a swan, her face to the sun and moon. Here, Ní Dhomhnaill uses the exact same comparisons — <strong>but negates every single one.</strong></p>
+        <p class="analysis-p"><em>"Mar chodarsnacht iomlán, tosaíonn Ní Dhomhnaill ag rá nach bhfuil a leannán 'mar bhláth na n-airní'."</em> (As a total contrast, Ní Dhomhnaill begins by saying her lover is not like the blackthorn flower.)</p>
+        <p class="analysis-p">The brackets in these verses contain beautiful natural images — the hedgerow, the lonely swan on the lake, the midday sun, the moon rising over hills. By placing beauty inside brackets while negating it in the main text, she shows that traditional poetic beauty is a kind of afterthought — in parentheses — to real love.</p>
+      </div>
+      <div class="phrases">
+        <h4>✍️ Phrases for Véarsaí 1 & 2</h4>
+        <div class="phrase-row"><span class="phrase-ga">Osclaítear an dán agus is amhlaidh gur aoir é ar na seandánta grá</span><span class="phrase-en">The poem opens and it is clear it is a satire of old love poems</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Cuirtear béim mhór ar áilleacht fhisiciúil na sean-dánta, ach ní mar sin anseo</span><span class="phrase-en">Great emphasis is put on physical beauty in old poems, but not so here</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Úsáideann an file tagairtí don dúlra ar bhealach aiteach</span><span class="phrase-en">The poet uses references to nature in an unusual way</span></div>
+      </div>
+    </div>
+
+    <div class="verse-card">
+      <div class="verse-header">📖 Véarsa 3 — The Comic Physical Description</div>
+      <div class="verse-body">
+        <div class="poem-lines">Tá a shúile ró-chóngarach dá chéile<br>
+<span class="bracket">(is é féin a dúirt liom é,)</span><br>
+is tá a chuid gruaige<br>
+<span class="bracket">(mar a bheadh sreang dheilgneach ann.)</span><br><br>
+Is má tá aon ghaol aige le nóiníní,<br>
+<span class="bracket">(is as a chluasa a fhásfaidh siad.)</span></div>
+        <p class="analysis-p">This is the comic heart of the poem. The description becomes increasingly absurd — his eyes are too close together (and he admitted it himself, she points out in brackets), his hair is like barbed wire, and if he has any connection to daisies, they'll grow from his ears.</p>
+        <p class="analysis-p">The bracket <em>"(is é féin a dúirt liom é)"</em> — "he himself told me" — is brilliantly comic. The poet isn't even being cruel — she's just repeating what he said about himself. This detail humanises the man and shows he has self-awareness and humour.</p>
+        <p class="analysis-p"><em>"D'fhéadfá a rá gur íomha chumhachtach í seo mar gur féidir linn a chuma gránna a shamhlú."</em> (One could say this is a powerful image because we can imagine his horrible appearance.)</p>
+      </div>
+      <div class="phrases">
+        <h4>✍️ Phrases for Véarsa 3</h4>
+        <div class="phrase-row"><span class="phrase-ga">Sonraíonn sí na lochtanna ar a aghaidh, ar a shúile agus ar a chuid gruaige</span><span class="phrase-en">She specifies the faults on his face, his eyes and his hair</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Ag an bpointe seo, éiríonn go géal leis an bhfile fiosracht an léitheora a mhúscailt</span><span class="phrase-en">At this point, the poet successfully evokes the curiosity of the reader</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Déantar cur síos greannmhar agus saghas maslach ar a stóirín</span><span class="phrase-en">A funny and somewhat insulting description is made of her dear</span></div>
+      </div>
+    </div>
+
+    <div class="verse-card">
+      <div class="verse-header">📖 An Casadh — "Ach is cuma sin" (The Turn)</div>
+      <div class="verse-body">
+        <div class="poem-lines">Ach is cuma sin;<br>
+tugann sé dom<br>
+úlla<br>
+<span class="bracket">(is nuair a bhíonn sé i ndea-ghiúmar)</span><br>
+caora finiúna.</div>
+        <p class="analysis-p"><strong>"Ach is cuma sin"</strong> — three words that flip the entire poem. "But none of that matters." After two and a half verses of comic mockery, this single line pivots everything. The poet acknowledges all his flaws — and dismisses them completely.</p>
+        <p class="analysis-p">What does matter? He gives her apples. And when he is in good humour — <em>(is nuair a bhíonn sé i ndea-ghiúmar)</em> — grapes. These are not grand romantic gestures. They are small, everyday acts of generosity and care.</p>
+        <p class="analysis-p"><em>"Is meafar iad na húlla agus na caora finiúna don ghrá agus don chineáltacht."</em> (The apples and the grapes are a metaphor for love and kindness.) The apples represent the necessities of life he provides; the grapes represent the small luxuries — given when he is in good spirits, which makes them feel more genuine and spontaneous than any forced grand gesture.</p>
+        <p class="analysis-p"><em>"D'aithin sí an seanfhocal 'ní bhíonn saoi gan locht'."</em> (She recognises the proverb "nobody is perfect.")</p>
+      </div>
+      <div class="phrases">
+        <h4>✍️ Phrases for the Turn</h4>
+        <div class="phrase-row"><span class="phrase-ga">Athraíonn atmaisféar an dáin ó cheann a bheith aibhéalach go ceann a bheith grámhar sa véarsa deireanach</span><span class="phrase-en">The atmosphere of the poem changes from sarcastic to loving in the last verse</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Is é bun agus barr an dáin ná go bhfuil sí i ngrá le gnáthfhear le pearsantacht chineálta</span><span class="phrase-en">The top and bottom of the poem is that she is in love with a normal man with a kind personality</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Is cuma léi nach bhfuil a leannán dathúil — tá an grá dall</span><span class="phrase-en">She doesn't care that her lover is not handsome — love is blind</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Tugann sé aire di agus is féidir léi brath air</span><span class="phrase-en">He looks after her and she can depend on him</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SATIRE -->
+  <div class="tab-panel" id="satire">
+    <span class="label">An Aoir — The Satire</span>
+
+    <div class="info-card">
+      <h2>🎭 Cad é an t-aoir? What is a Satire?</h2>
+      <p>An <strong>aoir</strong> (satire) is a piece of writing that mocks or criticises something through humour, irony, and exaggeration. Ní Dhomhnaill is satirising the tradition of <em>na hamhráin grá</em> — the love-song tradition that was dominant in Ireland in the 17th century. These songs described the beloved in impossibly perfect, idealised terms, using nature imagery (flowers, swans, moonlight) to create an image of flawless beauty.</p>
+    </div>
+
+    <div class="verse-card">
+      <div class="verse-header">🎭 The Old Tradition vs. This Poem</div>
+      <div class="verse-body">
+        <p class="analysis-p">In the old songs, you would expect to find:</p>
+        <div class="example">
+          <div class="ga">Súile chomh soléir le sruthán cnoic</div>
+          <div class="en">Eyes as clear as a mountain stream</div>
+          <div class="note">Traditional comparison — clear, beautiful, natural</div>
+        </div>
+        <div class="example">
+          <div class="ga">Gruaig chomh buí le heorna</div>
+          <div class="en">Hair as golden as barley</div>
+          <div class="note">Traditional comparison — golden, natural beauty</div>
+        </div>
+        <div class="example">
+          <div class="ga">Leicne chomh dearg leis an rós</div>
+          <div class="en">Cheeks as red as the rose</div>
+          <div class="note">Traditional comparison — rosy, perfect complexion</div>
+        </div>
+        <p class="analysis-p" style="margin-top:12px;">Ní Dhomhnaill uses <strong>the same structure</strong> — comparisons with nature — but delivers the opposite results:</p>
+        <div class="example">
+          <div class="ga">Tá a shúile ró-chóngarach dá chéile</div>
+          <div class="en">His eyes are too close together</div>
+          <div class="note">Anti-traditional — specific, comic, unflattering</div>
+        </div>
+        <div class="example">
+          <div class="ga">Tá a chuid gruaige mar a bheadh sreang dheilgneach ann</div>
+          <div class="en">His hair is like barbed wire</div>
+          <div class="note">Anti-traditional — rough, harsh, ugly</div>
+        </div>
+      </div>
+      <div class="phrases">
+        <h4>✍️ Key Satire Phrases</h4>
+        <div class="phrase-row"><span class="phrase-ga">Is léir gur aoir é an dán seo ar na seandánta grá</span><span class="phrase-en">It is clear that this poem is a satire of the old love poems</span></div>
+        <div class="phrase-row"><span class="phrase-ga">D'aithin sí nach bhfuil na seandánta seo réalaíoch</span><span class="phrase-en">She recognises that these old poems are not realistic</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Ceapann an file go gcuirtear an iomarca béime ar áilleacht sheachtrach sa lá atá inniu</span><span class="phrase-en">The poet thinks too much emphasis is put on external beauty today</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Déanann an file tagairt le Shakespeare agus a shoinéad 130</span><span class="phrase-en">The poet makes a reference to Shakespeare and his Sonnet 130</span></div>
+      </div>
+    </div>
+
+    <div class="box b-exam">
+      <div class="ico">🎓</div>
+      <div><div class="box-label">Shakespeare Connection — Bonus Point!</div>
+      <p>Sonnet 130 by Shakespeare follows the exact same structure: <em>"My mistress' eyes are nothing like the sun..."</em> — Shakespeare also mocks the tradition of idealising women through nature comparisons, concluding that real love doesn't need false flattery. Ní Dhomhnaill and Shakespeare both celebrate genuine, imperfect human love over poetic fantasy. Mentioning this in your exam answer shows sophisticated knowledge.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXAM -->
+  <div class="tab-panel" id="exam">
+    <span class="label">Freagra Samplach — Model Answer</span>
+
+    <div class="verse-card">
+      <div class="verse-header">🎓 Question: Discuss the main theme of this poem</div>
+      <div class="verse-body">
+        <p class="analysis-p"><strong>Tús / Introduction:</strong></p>
+        <div class="example">
+          <div class="ga">Is cinnte gur dán grámhar é seo, cé nach gceapfá é sin ar an gcéad léamh. Tá sé suntasach gurb é buntéama an dáin seo ná an tábhacht a bhaineann le cineáltacht agus le tuiscint sa chaidreamh a bhíonn idir leannáin.</div>
+          <div class="en">It is certain that this is a love poem, even though you would not think that on the first read. It is significant that the main theme of this poem is the importance of kindness and understanding in the relationship between lovers.</div>
+        </div>
+        <p class="analysis-p"><strong>Forbairt / Development:</strong></p>
+        <div class="example">
+          <div class="ga">Osclaítear an dán agus is amhlaidh gur aoir é ar na seandánta grá ina gcuirtear béim mhór ar áilleacht fhisiciúil an duine. Mar chodarsnacht iomlán, tosaíonn Ní Dhomhnaill ag rá nach bhfuil a leannán "mar bhláth na n-airní."</div>
+          <div class="en">The poem opens and it is clear that it is a satire of old love poems in which a large emphasis was placed on the physical beauty of the person. As a complete contrast, Ní Dhomhnaill starts by saying her lover is not "like the blackthorn flower."</div>
+        </div>
+        <p class="analysis-p"><strong>An casadh / The turn:</strong></p>
+        <div class="example">
+          <div class="ga">Pé scéal é, sa véarsa deireanach athraíonn atmaisféar an dáin ó cheann a bheith aibhéalach go ceann a bheith grámhar. Is é an chloch is mó ar a paidrín ná pearsantacht an fhir. Tugann sé di úlla agus "nuair a bhíonn sé i ndea-ghiúmar, caora finiúna." Is meafar iad na húlla agus na caora finiúna don ghrá agus don chineáltacht.</div>
+          <div class="en">However, in the last verse, the atmosphere of the poem changes from sarcastic to loving. The most important thing to her is the personality of the man. He gives her apples and "when he is in good humour, grapes." The apples and the grapes are a metaphor for love and kindness.</div>
+        </div>
+        <p class="analysis-p"><strong>Conclúid / Conclusion:</strong></p>
+        <div class="example">
+          <div class="ga">Mar fhocail scoir, ní féidir a shéanadh gurb é príomhthéama an dáin seo ná an tábhacht a bhaineann le cineáltacht agus le tuiscint sa chaidreamh. Déanann Ní Dhomhnaill ceiliúradh ar lochtanna a stóirín. Tá an grá dall.</div>
+          <div class="en">Finally, there is no denying that the main theme of this poem is the importance of kindness and understanding in the relationship. Ní Dhomhnaill celebrates her dear's faults. Love is blind.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function switchTab(btn, id) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+</script>
+</body>
+</html>

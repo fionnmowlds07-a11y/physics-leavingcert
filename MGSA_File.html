@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="ga">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nuala Ní Dhomhnaill — Mo Ghrá-sa (idir lúibíní)</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F5F0FC;--surface:#fff;--border:#ddd4e8;--text:#2a2820;--muted:#685a70;--c:#5a2a8b;--cl:#f0e8fc;--cd:#1a0830;--radius:14px;--shadow:0 4px 20px rgba(0,0,0,0.08);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;font-size:16px;}
+nav{position:sticky;top:0;z-index:100;background:rgba(245,240,252,0.97);backdrop-filter:blur(10px);border-bottom:2px solid var(--border);padding:8px 16px;display:flex;align-items:center;gap:5px;flex-wrap:wrap;min-height:52px;}
+.nav-logo{font-family:'Lexend Mega',sans-serif;font-size:0.78rem;color:var(--text);margin-right:4px;text-decoration:none;white-space:nowrap;}.nav-logo span{color:#8b2252;}
+.nav-divider{width:1px;height:20px;background:var(--border);flex-shrink:0;}
+.nav-btn{padding:5px 10px;border-radius:18px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.7rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);text-decoration:none;white-space:nowrap;}
+.nav-btn.home:hover{background:#2a2820;border-color:#2a2820;color:#fff;}
+.t-active,.t-active:hover{background:var(--c);border-color:var(--c);color:#fff;}
+.nb-poem:hover{background:#8b2252;border-color:#8b2252;color:#fff;}
+.nb-theme:hover{background:#2d5a8b;border-color:#2d5a8b;color:#fff;}
+.nb-imagery:hover{background:#2e7a3c;border-color:#2e7a3c;color:#fff;}
+.section{padding:0 16px 80px;max-width:940px;margin:0 auto;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.hero{background:linear-gradient(135deg,var(--cd),var(--c));color:#fff;padding:44px 32px 36px;text-align:center;margin-bottom:32px;}
+.hero .chap-label{font-size:0.74rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;opacity:0.75;margin-bottom:10px;}
+.hero h1{font-family:'Lexend Mega',sans-serif;font-size:clamp(1.5rem,4vw,2.4rem);line-height:1.2;margin-bottom:12px;}
+.hero p{opacity:0.88;max-width:640px;margin:0 auto;font-size:0.94rem;}
+.hero-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px;}
+.hero-chip{background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:4px 14px;border-radius:20px;font-size:0.74rem;font-weight:600;}
+.tab-bar{display:flex;gap:4px;flex-wrap:wrap;padding:22px 0 8px;border-bottom:2px solid var(--border);margin-bottom:28px;}
+.tab{padding:8px 16px;border-radius:10px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.78rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);}
+.tab:hover,.tab.active{background:var(--c);color:#fff;border-color:var(--c);}
+.tab-panel{display:none;}.tab-panel.active{display:block;animation:fadeIn 0.25s ease;}
+.poet-card{background:var(--surface);border-radius:var(--radius);padding:0;margin-bottom:20px;box-shadow:var(--shadow);border:2px solid var(--border);overflow:hidden;}
+.poet-header{background:var(--cd);color:#fff;padding:12px 20px;font-family:'Lexend Mega',sans-serif;font-size:0.88rem;}
+.poet-body{padding:18px 22px;}
+.analysis-p{font-size:0.91rem;line-height:1.8;margin-bottom:8px;}
+.example{background:var(--cl);border-left:4px solid var(--c);border-radius:0 var(--radius) var(--radius) 0;padding:12px 16px;margin:10px 0;}
+.example .ga{font-weight:700;font-size:0.9rem;color:var(--cd);margin-bottom:3px;}
+.example .en{font-size:0.83rem;color:var(--muted);font-style:italic;margin-bottom:5px;}
+.example .note{font-size:0.85rem;color:var(--text);}
+.phrases{padding:14px 20px;background:#f5f0fc;border-top:2px solid var(--border);}
+.phrases h4{font-size:0.72rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;color:var(--c);margin-bottom:10px;}
+.phrase-row{display:flex;gap:10px;align-items:flex-start;margin-bottom:8px;flex-wrap:wrap;}
+.phrase-ga{background:var(--c);color:#fff;border-radius:6px;padding:4px 10px;font-size:0.8rem;font-weight:600;}
+.phrase-en{font-size:0.8rem;color:var(--muted);font-style:italic;padding-top:3px;}
+.box{border-radius:var(--radius);padding:14px 18px;margin:14px 0;display:flex;gap:12px;align-items:flex-start;}
+.box .ico{font-size:1.4rem;flex-shrink:0;line-height:1.2;}
+.box-label{font-size:0.68rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;margin-bottom:4px;}
+.box p,.box li{font-size:0.9rem;}.box ul{padding-left:16px;}.box li{margin-bottom:5px;}
+.b-exam{background:#eaf4fb;border:2px solid #5dade2;}.b-exam .box-label{color:#1a6b9a;}
+.b-tip{background:#fffbf0;border:2px solid #f39c12;}.b-tip .box-label{color:#b7770d;}
+.label{font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:0.8px;color:var(--muted);margin-bottom:16px;display:block;}
+.info-card{background:var(--surface);border-radius:var(--radius);padding:22px 24px;margin-bottom:18px;box-shadow:var(--shadow);border-left:5px solid var(--c);}
+.info-card h2{font-size:1.05rem;font-weight:700;margin-bottom:10px;}
+.info-card p{margin-bottom:8px;font-size:0.92rem;}
+.timeline{position:relative;padding-left:28px;margin:14px 0;}
+.timeline::before{content:'';position:absolute;left:8px;top:0;bottom:0;width:2px;background:var(--c);opacity:0.3;}
+.timeline-item{margin-bottom:18px;position:relative;}
+.timeline-item::before{content:'';position:absolute;left:-24px;top:6px;width:10px;height:10px;border-radius:50%;background:var(--c);}
+.timeline-year{font-family:'Lexend Mega',sans-serif;font-size:0.78rem;color:var(--c);margin-bottom:2px;}
+.timeline-text{font-size:0.91rem;line-height:1.7;}
+.works-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0;}
+.work-box{background:var(--cl);border:2px solid var(--c);border-radius:var(--radius);padding:14px 16px;}
+.work-box h4{font-family:'Lexend Mega',sans-serif;font-size:0.82rem;color:var(--cd);margin-bottom:4px;}
+.work-box p{font-size:0.85rem;color:var(--muted);line-height:1.6;}
+@media(max-width:680px){.works-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="MGSA_Home.html">💕 <span>Mo Ghrá-sa</span></a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn home" href="MGSA_Home.html">Baile</a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn nb-poem" href="MGSA_Anailís.html">📝 Anailís</a>
+  <a class="nav-btn nb-theme" href="MGSA_Téamaí.html">💡 Téamaí</a>
+  <a class="nav-btn nb-imagery" href="MGSA_Íomhánna.html">🌿 Íomhánna</a>
+  <a class="nav-btn t-active" href="MGSA_File.html">✍️ An File</a>
+</nav>
+
+<div class="hero">
+  <div class="chap-label">Cuid 4 · An File</div>
+  <h1>Nuala Ní Dhomhnaill</h1>
+  <p>Life, works, and context. Everything you need to answer the poet biography question in the Leaving Cert exam — with model answers and Irish phrases.</p>
+  <div class="hero-chips">
+    <span class="hero-chip">1952 — Lancashire</span>
+    <span class="hero-chip">Corca Dhuibhne</span>
+    <span class="hero-chip">Ollscoil Chorcaí</span>
+    <span class="hero-chip">Aosdána</span>
+    <span class="hero-chip">Pharaoh's Daughter</span>
+  </div>
+</div>
+
+<div class="section">
+  <div class="tab-bar">
+    <button class="tab active" onclick="switchTab(this,'life')">👤 Saol / Life</button>
+    <button class="tab" onclick="switchTab(this,'works')">📚 Saothar / Works</button>
+    <button class="tab" onclick="switchTab(this,'context')">🌍 Comhthéacs</button>
+    <button class="tab" onclick="switchTab(this,'exam')">🎓 Freagra Samplach</button>
+  </div>
+
+  <!-- LIFE -->
+  <div class="tab-panel active" id="life">
+    <span class="label">Saol Nuala Ní Dhomhnaill — Life of the Poet</span>
+
+    <div class="info-card">
+      <h2>👤 Cé hí Nuala Ní Dhomhnaill?</h2>
+      <p>Nuala Ní Dhomhnaill is one of the most celebrated Irish-language poets of the 20th century. Her work is notable for its wit, its use of mythology, its frank treatment of female experience, and its deep rootedness in the Irish language and its traditions — even while subverting those traditions from within.</p>
+    </div>
+
+    <div class="poet-card">
+      <div class="poet-header">📅 Amlíne — Timeline of Key Life Events</div>
+      <div class="poet-body">
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-year">1952</div>
+            <div class="timeline-text"><strong>Rugadh í i Lancashire, Sasana</strong> (She was born in Lancashire, England) — <em>Rugadh Nuala Ní Dhomhnaill i Lancashire, Sasana sa bhliain 1952.</em> Her parents were Irish.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">Óige / Childhood</div>
+            <div class="timeline-text"><strong>Tógadh í i gCorca Dhuibhne</strong> (She was raised in Corca Dhuibhne, Co. Kerry) — the heartland of the Kerry Gaeltacht. This immersion in the living Irish language shaped everything about her poetry.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">Ollscoil</div>
+            <div class="timeline-text"><strong>Bhain sí céim amach i nGaeilge agus Béarla in Ollscoil Chorcaí</strong> (She graduated with a degree in Irish and English from University College Cork) — though some notes indicate a degree in the arts. She excelled in both languages.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">Pósta</div>
+            <div class="timeline-text"><strong>Tá sí pósta le fear ón Tuirce</strong> (She is married to a man from Turkey). <strong>Tá ceathrar clainne aici</strong> (She has four children).</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">Gairm</div>
+            <div class="timeline-text"><strong>D'oibrigh sí mar iriseoir agus léitheoir nuachta le RTÉ</strong> (She worked as a journalist and newsreader with RTÉ). She also lived for a time in the Netherlands and Turkey.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">Aosdána</div>
+            <div class="timeline-text"><strong>Is ball í d'Aosdána</strong> (She is a member of Aosdána) — the Irish state academy for creative artists, membership of which is the highest official recognition of artistic achievement in Ireland.</div>
+          </div>
+        </div>
+      </div>
+      <div class="phrases">
+        <h4>✍️ Key Life Phrases — Learn These Off!</h4>
+        <div class="phrase-row"><span class="phrase-ga">Scríobh Nuala Ní Dhomhnaill an dán seo</span><span class="phrase-en">Nuala Ní Dhomhnaill wrote this poem</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Rugadh í i Lancashire, Sasana sa bhliain 1952</span><span class="phrase-en">She was born in Lancashire, England in the year 1952</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Tógadh i gCorca Dhuibhne í</span><span class="phrase-en">She was raised in Corca Dhuibhne</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Bhain sí céim amach sa Ghaeilge agus sa Bhéarla in Ollscoil Chorcaí</span><span class="phrase-en">She got a degree in Irish and English in Cork University</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Tá ceathrar clainne aici</span><span class="phrase-en">She has four children</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Tá sí pósta le fear ón Tuirce</span><span class="phrase-en">She is married to a man from Turkey</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Is ball í d'Aosdána</span><span class="phrase-en">She is a member of Aosdána</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WORKS -->
+  <div class="tab-panel" id="works">
+    <span class="label">Saothar — Works & Collections</span>
+
+    <div class="works-grid">
+      <div class="work-box">
+        <h4>Féar Suaithinseach (1984)</h4>
+        <p>Her breakthrough collection. The title means "Miraculous Grass." Established her as a major voice in Irish-language poetry. Rich with mythology and female perspective.</p>
+      </div>
+      <div class="work-box">
+        <h4>Pharaoh's Daughter (1990)</h4>
+        <p>A bilingual collection featuring translations of her Irish poems by leading English-language poets including Seamus Heaney, Paul Muldoon, and Medbh McGuckian.</p>
+      </div>
+      <div class="work-box">
+        <h4>Cead Aighnis</h4>
+        <p>Another significant collection. The title translates as "Permission to Speak" — reflecting her belief in the right to express the full range of female experience in Irish.</p>
+      </div>
+      <div class="work-box">
+        <h4>Iriseoireacht / Journalism</h4>
+        <p>D'oibrigh sí mar iriseoir agus léitheoir nuachta le RTÉ. She has also written plays, essays, and literary criticism throughout her career.</p>
+      </div>
+    </div>
+
+    <div class="poet-card">
+      <div class="poet-header">📚 Cén fáth go bhfuil sí tábhachtach?</div>
+      <div class="poet-body">
+        <p class="analysis-p">Ní Dhomhnaill is celebrated for several reasons that are worth mentioning in an exam:</p>
+        <div class="example">
+          <div class="ga">Is file cáiliúil í agus tá an-chuid cnuasach filíochta foilsithe aici.</div>
+          <div class="en">She is a famous poet and has published many collections of poetry.</div>
+          <div class="note">→ Good general statement about her status.</div>
+        </div>
+        <div class="example">
+          <div class="ga">Scríobhann sí go hiomlán i nGaeilge, cé gur tógadh sa Bhéarla í ar dtús.</div>
+          <div class="en">She writes entirely in Irish, even though she was raised in English first.</div>
+          <div class="note">→ Important — she chose Irish as her creative language despite being born in England.</div>
+        </div>
+        <div class="example">
+          <div class="ga">Léiríonn sí gur féidir an Ghaeilge a úsáid chun ceisteanna an tsaoil nua-aimseartha a phlé.</div>
+          <div class="en">She demonstrates that Irish can be used to discuss questions of modern life.</div>
+          <div class="note">→ She modernises the Irish language tradition rather than just preserving it.</div>
+        </div>
+      </div>
+      <div class="phrases">
+        <h4>✍️ Works Phrases</h4>
+        <div class="phrase-row"><span class="phrase-ga">Scríobh sí "Féar Suaithinseach" (1984) agus "Pharaoh's Daughter" (1990)</span><span class="phrase-en">She wrote "Féar Suaithinseach" (1984) and "Pharaoh's Daughter" (1990)</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Oibríonn sí mar iriseoir agus léitheoir nuachta le RTÉ chomh maith</span><span class="phrase-en">She also works as a journalist and newsreader with RTÉ</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Is ball í d'Aosdána — an t-ardú is mó in Éirinn do lucht cruthaitheachta</span><span class="phrase-en">She is a member of Aosdána — the highest honour in Ireland for creative artists</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTEXT -->
+  <div class="tab-panel" id="context">
+    <span class="label">Comhthéacs — Context & Background</span>
+
+    <div class="info-card">
+      <h2>🌍 Cén comhthéacs a scríobh sí an dán seo?</h2>
+      <p>Understanding the background helps explain why Ní Dhomhnaill chose to write a satirical love poem. She came of age in a period when Irish literature was re-examining its own traditions critically, and she was specifically interested in the role of women in Irish poetry — both as subjects and as authors.</p>
+    </div>
+
+    <div class="poet-card">
+      <div class="poet-header">🌍 Na Hamhráin Grá — The Love-Song Tradition She Subverts</div>
+      <div class="poet-body">
+        <p class="analysis-p">The <em>amhrán grá</em> (love song) tradition in Irish was dominated by songs written by men, describing women in idealised, often impossible terms. Women were objects of beauty rather than subjects with their own voice.</p>
+        <div class="example">
+          <div class="ga">Sa traidisiún sin, déantar cur síos ar mhná le tagairtí don dúlra — súile mar sruthán, gruaig mar eorna, leicne mar rós.</div>
+          <div class="en">In that tradition, women are described with references to nature — eyes like a stream, hair like barley, cheeks like a rose.</div>
+          <div class="note">→ Ní Dhomhnaill reverses this by describing a man using the same nature images — but negatively.</div>
+        </div>
+        <p class="analysis-p">By writing a woman's perspective on a man's appearance — using the same nature-comparison formula but for comic mockery — Ní Dhomhnaill takes ownership of the tradition from the female side. She is both celebrating and gently mocking one of Irish literature's most beloved genres.</p>
+      </div>
+    </div>
+
+    <div class="poet-card">
+      <div class="poet-header">🌍 An Nasc le Shakespeare — The Shakespeare Connection</div>
+      <div class="poet-body">
+        <p class="analysis-p"><em>"Déanann an file tagairt le Shakespeare agus a shoinéad 130."</em> (The poet makes reference to Shakespeare and his Sonnet 130.) This is one of the most significant contextual connections you can make in an exam answer.</p>
+        <p class="analysis-p">In Sonnet 130, Shakespeare writes: "My mistress' eyes are nothing like the sun... I have seen roses damasked red and white, but no such roses see I in her cheeks..." — the exact same satirical move. Both poets argue that idealized comparisons do a disservice to real love.</p>
+        <div class="example">
+          <div class="ga">Gan dabht, aontaíonn Nuala Ní Dhomhnaill le Shakespeare — ní gá moladh bréagach chun grá fíor a léiriú.</div>
+          <div class="en">Without doubt, Nuala Ní Dhomhnaill agrees with Shakespeare — false flattery is not needed to show true love.</div>
+          <div class="note">→ Mentioning this connection earns you extra marks for sophisticated literary knowledge.</div>
+        </div>
+      </div>
+      <div class="phrases">
+        <h4>✍️ Context Phrases</h4>
+        <div class="phrase-row"><span class="phrase-ga">Is file nua-aimseartha Ghaeilge í a scríobhann faoin ngrá fíor, réalaíoch</span><span class="phrase-en">She is a modern Irish-language poet who writes about real, realistic love</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Ceapann sí gur dán frith-ghrá é — in aghaidh an ghrá mhíréalaíigh</span><span class="phrase-en">She sees it as an anti-love poem — against unrealistic love</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Déanann sí tagairt do Shakespeare agus a shoinéad 130</span><span class="phrase-en">She makes reference to Shakespeare and his Sonnet 130</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXAM -->
+  <div class="tab-panel" id="exam">
+    <span class="label">Freagra Samplach — Model Answer</span>
+
+    <div class="box b-tip">
+      <div class="ico">💡</div>
+      <div><div class="box-label">How to Answer the Poet Question</div>
+      <p>The poet question is one of the most predictable in the exam. You need: (1) who wrote it, (2) birth year and place, (3) where raised, (4) education, (5) personal life (spouse, children), (6) Aosdána membership, (7) two or three works. Keep it concise but include all key facts.</p>
+      </div>
+    </div>
+
+    <div class="poet-card">
+      <div class="poet-header">🎓 Full Model Answer: Life and Works of the Poet</div>
+      <div class="poet-body">
+        <div class="example">
+          <div class="ga">Scríobh Nuala Ní Dhomhnaill an dán seo. Rugadh í i Lancashire, Sasana sa bhliain 1952. Bhí tuismitheoirí Éireannacha aici. Tógadh i gCorca Dhuibhne í dá bharr sin.</div>
+          <div class="en">Nuala Ní Dhomhnaill wrote this poem. She was born in Lancashire, England in the year 1952. She had Irish parents. As a result, she was raised in Corca Dhuibhne.</div>
+        </div>
+        <div class="example">
+          <div class="ga">Nuair a chríochnaigh sí an ardteist, d'fhreastail sí ar Choláiste na hOllscoile, Corcaigh agus bhain sí céim amach sa Ghaeilge agus sa Bhéarla.</div>
+          <div class="en">When she finished the Leaving Cert, she attended University College Cork and graduated with a degree in Irish and English.</div>
+        </div>
+        <div class="example">
+          <div class="ga">Tá sí pósta le fear ón Tuirce. Tá ceathrar clainne aici. Oibríonn sí mar iriseoir agus léitheoir nuachta le RTÉ. Is ball í d'Aosdána.</div>
+          <div class="en">She is married to a man from Turkey. She has four children. She works as a journalist and newsreader with RTÉ. She is a member of Aosdána.</div>
+        </div>
+        <div class="example">
+          <div class="ga">Is file cáiliúil í agus tá an-chuid cnuasach filíochta foilsithe aici, ina measc tá "Féar Suaithinseach" (1984) agus "Pharaoh's Daughter" (1990). Tá clú agus cáil uirthi ar fud na hÉireann agus thar lear.</div>
+          <div class="en">She is a famous poet and has published many collections of poetry, among them "Féar Suaithinseach" (1984) and "Pharaoh's Daughter" (1990). She is renowned throughout Ireland and abroad.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="poet-card">
+      <div class="poet-header">🎓 Short-note Model Answer (for "Write a short note on the life and work of the poet")</div>
+      <div class="poet-body">
+        <div class="example">
+          <div class="ga">Scríobh Nuala Ní Dhomhnaill an dán seo. Rugadh í i Sasana sa bhliain 1952. Tógadh i gCorca Dhuibhne í. Bhain sí céim amach sa Ghaeilge agus sa Bhéarla in Ollscoil Chorcaí. Tá ceathrar clainne aici. Tá sí pósta le fear ón Tuirce. Is ball í d'Aosdána. Scríobh sí "Féar Suaithinseach" (1984) agus "Pharaoh's Daughter" (1990).</div>
+          <div class="en">Nuala Ní Dhomhnaill wrote this poem. She was born in England in 1952. She was raised in Corca Dhuibhne. She graduated with a degree in Irish and English from Cork University. She has four children. She is married to a man from Turkey. She is a member of Aosdána. She wrote "Féar Suaithinseach" (1984) and "Pharaoh's Daughter" (1990).</div>
+          <div class="note">→ This compact answer covers every fact the examiner is looking for. Learn it word-for-word.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function switchTab(btn, id) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+</script>
+</body>
+</html>

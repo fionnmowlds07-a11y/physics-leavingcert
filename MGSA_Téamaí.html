@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="ga">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Téamaí & Mothúcháin — Mo Ghrá-sa (idir lúibíní)</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F0F4F8;--surface:#fff;--border:#d8dce4;--text:#2a2820;--muted:#606870;--c:#2d5a8b;--cl:#e0eaf8;--cd:#0a1a30;--radius:14px;--shadow:0 4px 20px rgba(0,0,0,0.08);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;font-size:16px;}
+nav{position:sticky;top:0;z-index:100;background:rgba(240,244,248,0.97);backdrop-filter:blur(10px);border-bottom:2px solid var(--border);padding:8px 16px;display:flex;align-items:center;gap:5px;flex-wrap:wrap;min-height:52px;}
+.nav-logo{font-family:'Lexend Mega',sans-serif;font-size:0.78rem;color:var(--text);margin-right:4px;text-decoration:none;white-space:nowrap;}.nav-logo span{color:#8b2252;}
+.nav-divider{width:1px;height:20px;background:var(--border);flex-shrink:0;}
+.nav-btn{padding:5px 10px;border-radius:18px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.7rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);text-decoration:none;white-space:nowrap;}
+.nav-btn.home:hover{background:#2a2820;border-color:#2a2820;color:#fff;}
+.t-active,.t-active:hover{background:var(--c);border-color:var(--c);color:#fff;}
+.nb-poem:hover{background:#8b2252;border-color:#8b2252;color:#fff;}
+.nb-imagery:hover{background:#2e7a3c;border-color:#2e7a3c;color:#fff;}
+.nb-poet:hover{background:#5a2a8b;border-color:#5a2a8b;color:#fff;}
+.section{padding:0 16px 80px;max-width:940px;margin:0 auto;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.hero{background:linear-gradient(135deg,var(--cd),var(--c));color:#fff;padding:44px 32px 36px;text-align:center;margin-bottom:32px;}
+.hero .chap-label{font-size:0.74rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;opacity:0.75;margin-bottom:10px;}
+.hero h1{font-family:'Lexend Mega',sans-serif;font-size:clamp(1.5rem,4vw,2.4rem);line-height:1.2;margin-bottom:12px;}
+.hero p{opacity:0.88;max-width:640px;margin:0 auto;font-size:0.94rem;}
+.hero-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px;}
+.hero-chip{background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:4px 14px;border-radius:20px;font-size:0.74rem;font-weight:600;}
+.tab-bar{display:flex;gap:4px;flex-wrap:wrap;padding:22px 0 8px;border-bottom:2px solid var(--border);margin-bottom:28px;}
+.tab{padding:8px 16px;border-radius:10px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.78rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);}
+.tab:hover,.tab.active{background:var(--c);color:#fff;border-color:var(--c);}
+.tab-panel{display:none;}.tab-panel.active{display:block;animation:fadeIn 0.25s ease;}
+.theme-card{background:var(--surface);border-radius:var(--radius);padding:0;margin-bottom:20px;box-shadow:var(--shadow);border:2px solid var(--border);overflow:hidden;}
+.theme-header{padding:12px 20px;font-family:'Lexend Mega',sans-serif;font-size:0.88rem;display:flex;align-items:center;gap:10px;color:#fff;}
+.th-1{background:#8b2252;}.th-2{background:#2d5a8b;}.th-3{background:#2e7a3c;}.th-4{background:#8b6a10;}.th-5{background:#5a2a8b;}
+.theme-body{padding:18px 22px;}
+.analysis-p{font-size:0.91rem;line-height:1.8;margin-bottom:8px;}
+.example{background:var(--cl);border-left:4px solid var(--c);border-radius:0 var(--radius) var(--radius) 0;padding:12px 16px;margin:10px 0;}
+.example .ga{font-weight:700;font-size:0.9rem;color:var(--cd);margin-bottom:3px;}
+.example .en{font-size:0.83rem;color:var(--muted);font-style:italic;margin-bottom:5px;}
+.example .note{font-size:0.85rem;color:var(--text);}
+.phrases{padding:14px 20px;background:#f0f4f8;border-top:2px solid var(--border);}
+.phrases h4{font-size:0.72rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;color:var(--c);margin-bottom:10px;}
+.phrase-row{display:flex;gap:10px;align-items:flex-start;margin-bottom:8px;flex-wrap:wrap;}
+.phrase-ga{background:var(--c);color:#fff;border-radius:6px;padding:4px 10px;font-size:0.8rem;font-weight:600;}
+.phrase-en{font-size:0.8rem;color:var(--muted);font-style:italic;padding-top:3px;}
+.box{border-radius:var(--radius);padding:14px 18px;margin:14px 0;display:flex;gap:12px;align-items:flex-start;}
+.box .ico{font-size:1.4rem;flex-shrink:0;line-height:1.2;}
+.box-label{font-size:0.68rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;margin-bottom:4px;}
+.box p,.box li{font-size:0.9rem;}.box ul{padding-left:16px;}.box li{margin-bottom:5px;}
+.b-exam{background:#eaf4fb;border:2px solid #5dade2;}.b-exam .box-label{color:#1a6b9a;}
+.b-tip{background:#fffbf0;border:2px solid #f39c12;}.b-tip .box-label{color:#b7770d;}
+.emotion-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0;}
+.emotion-box{border-radius:var(--radius);padding:16px 18px;border:2px solid var(--border);background:var(--surface);}
+.emotion-box h4{font-size:0.85rem;font-weight:700;margin-bottom:6px;}
+.emotion-box p{font-size:0.85rem;line-height:1.7;color:var(--muted);}
+.label{font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:0.8px;color:var(--muted);margin-bottom:16px;display:block;}
+.info-card{background:var(--surface);border-radius:var(--radius);padding:22px 24px;margin-bottom:18px;box-shadow:var(--shadow);border-left:5px solid var(--c);}
+.info-card h2{font-size:1.05rem;font-weight:700;margin-bottom:10px;}
+.info-card p{margin-bottom:8px;font-size:0.92rem;}
+@media(max-width:680px){.emotion-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="MGSA_Home.html">💕 <span>Mo Ghrá-sa</span></a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn home" href="MGSA_Home.html">Baile</a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn nb-poem" href="MGSA_Anailís.html">📝 Anailís</a>
+  <a class="nav-btn t-active" href="MGSA_Téamaí.html">💡 Téamaí</a>
+  <a class="nav-btn nb-imagery" href="MGSA_Íomhánna.html">🌿 Íomhánna</a>
+  <a class="nav-btn nb-poet" href="MGSA_File.html">✍️ An File</a>
+</nav>
+
+<div class="hero">
+  <div class="chap-label">Cuid 2 · Téamaí & Mothúcháin</div>
+  <h1>Téamaí & Mothúcháin</h1>
+  <p>The themes, emotions and deeper meanings running through Mo Ghrá-sa. From the central theme of realistic love to the emotion of satisfaction — everything you need for exam questions on this poem.</p>
+  <div class="hero-chips">
+    <span class="hero-chip">Grá Réalaíoch</span>
+    <span class="hero-chip">Cineáltacht</span>
+    <span class="hero-chip">Áilleacht Inmheánach</span>
+    <span class="hero-chip">Sásamh</span>
+    <span class="hero-chip">Aoir</span>
+  </div>
+</div>
+
+<div class="section">
+  <div class="tab-bar">
+    <button class="tab active" onclick="switchTab(this,'themes')">💡 Téamaí</button>
+    <button class="tab" onclick="switchTab(this,'emotions')">❤️ Mothúcháin</button>
+    <button class="tab" onclick="switchTab(this,'message')">📢 An Teachtaireacht</button>
+    <button class="tab" onclick="switchTab(this,'exam')">🎓 Freagra Samplach</button>
+  </div>
+
+  <!-- THEMES -->
+  <div class="tab-panel active" id="themes">
+    <span class="label">Príomhthéamaí — Main Themes</span>
+
+    <div class="theme-card">
+      <div class="theme-header th-1">❤️ Téama 1 — Grá Réalaíoch (Realistic Love)</div>
+      <div class="theme-body">
+        <p class="analysis-p">This is the central theme of the entire poem. Unlike the idealised, fantasy love depicted in the old song tradition, Ní Dhomhnaill presents a love that is messy, honest, imperfect — and all the more real for it.</p>
+        <p class="analysis-p"><em>"Tá sé ar intinn agam an téama sin a chíoradh agus a scagadh go cúramach."</em> (I intend to dissect and examine this theme carefully.) She does not pretend her partner is handsome, or perfect, or like a figure from a romantic poem. She loves the actual man in front of her.</p>
+        <div class="example">
+          <div class="ga">Tá a fhios ag an bhfile nach bhfuil a grá foirfe. Ní chuireann a lochtanna agus a laigí isteach ná amach uirthi.</div>
+          <div class="en">The poet knows her love is not perfect. His faults and failings don't bother her at all.</div>
+          <div class="note">→ From the notes: "mionrudaí iad" — they are small things, not worth worrying about.</div>
+        </div>
+        <div class="example">
+          <div class="ga">Tá an caidreamh sin bunaithe ar chomhmheas agus chomhoibriú.</div>
+          <div class="en">That relationship is based on mutual respect and cooperation.</div>
+          <div class="note">→ The notes emphasise this as the foundation of the real relationship.</div>
+        </div>
+      </div>
+      <div class="phrases">
+        <h4>✍️ Phrases for Grá Réalaíoch</h4>
+        <div class="phrase-row"><span class="phrase-ga">Tá sé suntasach gurb é buntéama an dáin ná an tábhacht a bhaineann le cineáltacht</span><span class="phrase-en">It is significant that the main theme of the poem is the importance of kindness</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Ceapann an file gur dán frith-ghrá é — dán in aghaidh an ghrá mhíréalaígh</span><span class="phrase-en">The poet sees it as an anti-love poem — a poem against unrealistic love</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Is amhlaidh go bhfuil grá réalaíoch, cneasta á mholadh ag an bhfile</span><span class="phrase-en">It is the case that the poet praises a realistic, honest love</span></div>
+      </div>
+    </div>
+
+    <div class="theme-card">
+      <div class="theme-header th-2">💙 Téama 2 — Cineáltacht & Tuiscint (Kindness & Understanding)</div>
+      <div class="theme-body">
+        <p class="analysis-p">Kindness is presented as far more valuable than physical beauty. What does her partner actually do? He gives her apples — everyday necessities. And when he is in good form, he gives her grapes — small luxuries. These are not grand gestures. They are the texture of a caring relationship, day by day.</p>
+        <p class="analysis-p"><em>"Tá sé soléir go bhfuil an file an-bhuíoch as na gnáthrudaí a thugann sé di."</em> (It is clear that the poet is very grateful for the normal things he gives her.) The warmth she feels is not born of passionate idealism but of quiet, genuine care.</p>
+        <div class="example">
+          <div class="ga">Is duine flaithiúil, caoin agus cneasta é. Tugann sé riachtanais an tsaoil di agus tá siad an-cheanúil ar a chéile.</div>
+          <div class="en">He is a generous, gentle and kind person. He gives her the necessities of life and they are very fond of each other.</div>
+          <div class="note">→ From the teacher's notes — "sin sách maith di" (that is good enough for her).</div>
+        </div>
+      </div>
+      <div class="phrases">
+        <h4>✍️ Phrases for Cineáltacht</h4>
+        <div class="phrase-row"><span class="phrase-ga">De réir dealraimh, tuigeann sí nach bhfuil a leannán dathúil sa bhealach nósmhar</span><span class="phrase-en">As it appears, she understands her partner is not good-looking in the traditional way</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Faraor, is é an chloch is mó ar a paidrín ná pearsantacht an fhir</span><span class="phrase-en">However, the most important thing to her is the personality of the man</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Tugann sé aire di agus is féidir léi brath air i gcónaí</span><span class="phrase-en">He looks after her and she can always depend on him</span></div>
+      </div>
+    </div>
+
+    <div class="theme-card">
+      <div class="theme-header th-3">💚 Téama 3 — Áilleacht Inmheánach vs. Áilleacht Sheachtrach</div>
+      <div class="theme-body">
+        <p class="analysis-p">One of the poem's most modern and enduring messages is that inner beauty — personality, generosity, kindness — matters far more than outer appearance. The poet uses the structure of the traditional love poem (which obsessed over outer beauty) to make exactly the opposite point.</p>
+        <p class="analysis-p"><em>"Ceapaim go bhfuil an file ag aoradh dearcaidh na coitiantachta sa lá atá inniú, nuair a chuirtear an iomarca béime ar áilleacht sheachtrach agus déantar faillí ar áilleacht inmheánach."</em> (I think the poet is satirising the common view today, when too much emphasis is placed on external beauty and inner beauty is neglected.)</p>
+        <div class="example">
+          <div class="ga">Ní pictiúr ealaíonta é a leannán, ach tá a phearsantacht i bhfad Éireann níos tábhachtaí.</div>
+          <div class="en">Her lover is not an oil painting, but his personality is far more important.</div>
+          <div class="note">→ Teacher's notes: "pictiúr ealaíonta" (oil painting) — great phrase for the exam.</div>
+        </div>
+      </div>
+      <div class="phrases">
+        <h4>✍️ Phrases for Inner vs. Outer Beauty</h4>
+        <div class="phrase-row"><span class="phrase-ga">Dar léi, tá pearsantacht níos tábhachtaí ná cuma</span><span class="phrase-en">According to her, personality is more important than appearance</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Is í an fhírinne shearbh ná go ndéanann Ní Dhomhnaill ceiliúradh ar lochtanna a stóirín</span><span class="phrase-en">The bitter truth is that Ní Dhomhnaill celebrates her dear's faults</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Tosaíonn sí le pictiúr diúltach ach athraíonn gach rud</span><span class="phrase-en">She starts with a negative picture but everything changes</span></div>
+      </div>
+    </div>
+
+    <div class="theme-card">
+      <div class="theme-header th-4">🟡 Téama 4 — An Aoir ar na Sean-Dánta Grá</div>
+      <div class="theme-body">
+        <p class="analysis-p">The entire poem is structured as a satire of the 17th-century Irish love-song tradition. In those songs, women were routinely compared to flowers, swans, moonlight, and sunlight in their physical perfection. Ní Dhomhnaill takes this tradition apart, showing it to be unrealistic and even misleading about what love actually is.</p>
+        <div class="example">
+          <div class="ga">D'fheadfá a rá gur dán frith-ghrá é! Ar lámh amháin tá an file ag magadh faoi na 'hamhráin grá' a bhí an-choitianta in Éireann sa seachtú haois déag.</div>
+          <div class="en">One could say it is an anti-love poem! On one hand the poet is mocking the 'love songs' that were very common in Ireland in the 17th century.</div>
+          <div class="note">→ From the teacher's notes — excellent framing for a satire question.</div>
+        </div>
+        <p class="analysis-p">She also connects implicitly to Shakespeare's Sonnet 130, which performs the same satirical move in English — both poets agreeing that fake, flowery praise does a disservice to real human love.</p>
+      </div>
+      <div class="phrases">
+        <h4>✍️ Phrases for the Satire Theme</h4>
+        <div class="phrase-row"><span class="phrase-ga">Taitníonn an grá míréalaíoch le muintir na seandánta — ach ní mar sin do Ní Dhomhnaill</span><span class="phrase-en">Unrealistic love appeals to the people of the old poems — but not so for Ní Dhomhnaill</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Ní dán traidisiúnta, grámhar é seo ar chor ar bith</span><span class="phrase-en">This is not a traditional, romantic poem at all</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Déanann an file ceap magaidh dá céile — ach tá grá fíor faoina bhun</span><span class="phrase-en">The poet makes a laughing stock of her partner — but there is real love beneath it</span></div>
+      </div>
+    </div>
+
+    <div class="theme-card">
+      <div class="theme-header th-5">💜 Téama 5 — An Grá Dall (Love is Blind)</div>
+      <div class="theme-body">
+        <p class="analysis-p">The concept that "love is blind" — <em>tá an grá dall</em> — runs through the whole poem. She sees every one of his flaws perfectly clearly and describes them with comic precision. And yet she loves him entirely. The ability to see someone's imperfections and love them anyway is presented as a mature, realistic, and ultimately beautiful form of love.</p>
+        <div class="example">
+          <div class="ga">Cé nach bhfuil sé dathúil sa bhealach traidisiúnta, tá an grá dall. D'aithin sí an seanfhocal "ní bhíonn saoi gan locht."</div>
+          <div class="en">Even though he is not good-looking in the traditional way, love is blind. She recognises the proverb "nobody is perfect."</div>
+          <div class="note">→ Use <em>"ní bhíonn saoi gan locht"</em> as a closing phrase — it's a proverb that exam markers love.</div>
+        </div>
+      </div>
+      <div class="phrases">
+        <h4>✍️ Phrases for An Grá Dall</h4>
+        <div class="phrase-row"><span class="phrase-ga">Cé nach bhfuil sé dathúil, is cuma sin — tá an grá dall</span><span class="phrase-en">Even though he is not handsome, it doesn't matter — love is blind</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Tuigeann sí go bhfuil lochtanna nádúrtha i ngach duine</span><span class="phrase-en">She understands that everyone has natural faults</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Ní bhíonn saoi gan locht</span><span class="phrase-en">Nobody is perfect (famous Irish proverb)</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EMOTIONS -->
+  <div class="tab-panel" id="emotions">
+    <span class="label">Mothúcháin — Emotions in the Poem</span>
+
+    <div class="info-card">
+      <h2>❤️ Príomhmhothúcháin</h2>
+      <p>The dominant emotion in this poem shifts dramatically. It opens in a tone of comic mockery and seemingly cold observation, but the poem's emotional journey ends somewhere much warmer. Here are the key emotions to discuss:</p>
+    </div>
+
+    <div class="emotion-grid">
+      <div class="emotion-box" style="border-color:#8b2252;">
+        <h4 style="color:#8b2252;">😄 Greann — Humour</h4>
+        <p>The dominant emotion for much of the poem. The comic comparisons (barbed wire hair, daisies from ears) create a tone of affectionate mockery. This is not cruel — it is the kind of teasing that exists in genuinely loving relationships.</p>
+      </div>
+      <div class="emotion-box" style="border-color:#2d5a8b;">
+        <h4 style="color:#2d5a8b;">😊 Sásamh — Satisfaction</h4>
+        <p><em>"I mo thuairim, is é sásamh an mothúchán is láidre sa dán greannmhar seo."</em> The poet is deeply content with her relationship. Despite everything she has noted, she is happy. This satisfaction is the poem's emotional conclusion.</p>
+      </div>
+      <div class="emotion-box" style="border-color:#2e7a3c;">
+        <h4 style="color:#2e7a3c;">🙏 Buíochas — Gratitude</h4>
+        <p>She is grateful for the simple things he gives her — the apples, the grapes. This ordinary gratitude for ordinary gifts is depicted as the foundation of a real, lasting relationship.</p>
+      </div>
+      <div class="emotion-box" style="border-color:#8b6a10;">
+        <h4 style="color:#8b6a10;">💛 Cion — Affection/Fondness</h4>
+        <p><em>"Tá siad an-cheanúil ar a chéile."</em> (They are very fond of each other.) Beneath all the mockery is a warm, quiet fondness — the everyday love of two people who genuinely like each other.</p>
+      </div>
+    </div>
+
+    <div class="theme-card">
+      <div class="theme-header th-1">🎭 An Athrú Mothúcháin — The Emotional Shift</div>
+      <div class="theme-body">
+        <p class="analysis-p">One of the most powerful structural features of this poem is the dramatic emotional shift at "Ach is cuma sin." Everything before this line is comic, even cutting. Everything after it is tender.</p>
+        <div class="example">
+          <div class="ga">Ag tús an dáin, cuireann sí i gcéill go bhfuil sí míshásta lena grá. Ach ar deireadh thiar thall, tagaimid ar an bhfírinne.</div>
+          <div class="en">At the start of the poem, she pretends she is unhappy with her love. But eventually, we arrive at the truth.</div>
+          <div class="note">→ From the teacher's notes — use "ar deireadh thiar thall" for "eventually/finally."</div>
+        </div>
+        <div class="example">
+          <div class="ga">Is cuma léi nach bhfuil a leannán tarraingteach. Ag deireadh an lae, tá an-chion aige uirthi agus tá sí an-tógtha leis freisin.</div>
+          <div class="en">She doesn't care that her lover is not attractive. At the end of the day, he is very fond of her and she is very taken with him too.</div>
+          <div class="note">→ "An-tógtha leis" — very taken with him — excellent phrase.</div>
+        </div>
+      </div>
+      <div class="phrases">
+        <h4>✍️ Phrases for the Emotional Shift</h4>
+        <div class="phrase-row"><span class="phrase-ga">Pé scéal é, athraíonn atmaisféar an dáin go hiomlán sa véarsa deireanach</span><span class="phrase-en">However, the atmosphere of the poem changes completely in the last verse</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Tugann sí neamhaird ar a lochtanna agus na rudaí beaga</span><span class="phrase-en">She ignores his faults and the small things</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Dírigh isteach ar bhuaicphointí a charachtair agus beidh tú níos sásta</span><span class="phrase-en">Focus on the highlights of his character and you will be happier</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MESSAGE -->
+  <div class="tab-panel" id="message">
+    <span class="label">An Teachtaireacht — The Message</span>
+
+    <div class="info-card">
+      <h2>📢 Cad é teachtaireacht an dáin?</h2>
+      <p>Ní Dhomhnaill has several connected messages running through the poem. Together they form a philosophy of love that is honest, mature, and quietly radical.</p>
+    </div>
+
+    <div class="box b-exam">
+      <div class="ico">🎓</div>
+      <div><div class="box-label">The 5 Messages — Learn These</div>
+      <ul>
+        <li><strong>Love is not what the old songs say it is.</strong> The traditional Irish love-song created an impossible, unrealistic ideal. Real love is something else entirely.</li>
+        <li><strong>Inner beauty is more important than outer beauty.</strong> <em>Áilleacht inmheánach &gt; áilleacht sheachtrach.</em></li>
+        <li><strong>Everyone has flaws — and that's fine.</strong> <em>Ní bhíonn saoi gan locht.</em> Accepting someone's imperfections is part of loving them.</li>
+        <li><strong>Small acts of kindness are the foundation of love.</strong> Apples and grapes, given consistently and freely, matter more than grand romantic gestures.</li>
+        <li><strong>Love is blind.</strong> <em>Tá an grá dall.</em> Seeing someone's faults clearly — and choosing to love them anyway — is the most honest form of love.</li>
+      </ul>
+      </div>
+    </div>
+
+    <div class="theme-card">
+      <div class="theme-header th-2">📢 Cén fáth go bhfuil an teachtaireacht seo tábhachtach?</div>
+      <div class="theme-body">
+        <p class="analysis-p">Ní Dhomhnaill wrote this poem in the 20th century but its message feels more relevant than ever in an age of social media perfection and impossible beauty standards. She is arguing — with wit, humour, and genuine warmth — that the love worth having is not the love in the songs, but the love in the kitchen: simple, imperfect, kind, and real.</p>
+        <div class="example">
+          <div class="ga">Ceapaim go bhfuil an file ag aoradh dearcaidh na coitiantachta sa lá atá inniu, nuair a chuirtear an iomarca béime ar áilleacht sheachtrach agus déantar faillí ar áilleacht inmheánach.</div>
+          <div class="en">I think the poet is satirising the common view today, when too much emphasis is placed on external beauty and inner beauty is neglected.</div>
+          <div class="note">→ From the teacher's notes — a great point about contemporary relevance.</div>
+        </div>
+      </div>
+      <div class="phrases">
+        <h4>✍️ Key Message Phrases</h4>
+        <div class="phrase-row"><span class="phrase-ga">Is cinnte gur dán grámhar é seo, cé nach gceapfá é sin ar an gcéad léamh</span><span class="phrase-en">It is certain this is a love poem, even though you wouldn't think so on first reading</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Ní féidir a shéanadh gurb é príomhthéama an dáin ná an tábhacht a bhaineann le cineáltacht</span><span class="phrase-en">There's no denying the main theme is the importance of kindness</span></div>
+        <div class="phrase-row"><span class="phrase-ga">Tá an teachtaireacht fíor-ábhartha sa lá atá inniu</span><span class="phrase-en">The message is very relevant today</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXAM -->
+  <div class="tab-panel" id="exam">
+    <span class="label">Freagra Samplach — Model Answer</span>
+
+    <div class="theme-card">
+      <div class="theme-header th-2">🎓 Question: Discuss the main theme and what you like about this poem.</div>
+      <div class="theme-body">
+        <div class="example">
+          <div class="ga">Aontaím go huile is go hiomlán leis an raiteas thuasluaite. Is cinnte gur dán grámhar é seo, cé nach gceapfá é sin ar an gcéad léamh. Is léir go bhfuil cur síos scigmhagúil agus aibhéalach ann ó thús deireadh a chabhraíonn leis an téama sin a léiriú — tá an grá dall.</div>
+          <div class="en">I totally agree with the above statement. It is certain that this is a love poem, even though you would not think that on first reading. It is clear that there is a derisive and exaggerated description throughout that helps portray that theme — love is blind.</div>
+        </div>
+        <div class="example">
+          <div class="ga">Forbraítear an dán agus leanann an file ar aghaidh go scigmhagúil. Sonraíonn sí na lochtanna ar a aghaidh, ar a shúile agus ar a chuid gruaige — "tá a shúile ró-chóngarach dá chéile" agus "mar a bheadh sreang dheilgneach ann." Ag an bpointe seo, éiríonn go géal leis an bhfile fiosracht an léitheora a mhúscailt.</div>
+          <div class="en">The poem develops and the poet continues in a mocking tone. She notes the faults on his face, his eyes and his hair — "his eyes are too close together" and "like barbed wire." At this point, the poet successfully evokes the curiosity of the reader.</div>
+        </div>
+        <div class="example">
+          <div class="ga">Sa véarsa deireanach, athraíonn gach rud. "Ach is cuma sin" — is cuma léi a lochtanna. Tugann sé di úlla agus caora finiúna. Is meafar iad seo don ghrá agus don chineáltacht. Dar léi, tá pearsantacht níos tábhachtaí ná cuma.</div>
+          <div class="en">In the last verse, everything changes. "But none of that matters" — his faults don't matter to her. He gives her apples and grapes. These are a metaphor for love and kindness. According to her, personality is more important than appearance.</div>
+        </div>
+        <div class="example">
+          <div class="ga">Mar fhocail scoir, ní féidir a shéanadh gurb é príomhthéama an dáin seo ná an tábhacht a bhaineann le cineáltacht. D'aithin sí an seanfhocal "ní bhíonn saoi gan locht." Sin an fhírinne atá ag croí an dáin seo.</div>
+          <div class="en">Finally, there is no denying that the main theme of this poem is the importance of kindness. She recognises the proverb "nobody is perfect." That is the truth at the heart of this poem.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function switchTab(btn, id) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+</script>
+</body>
+</html>
