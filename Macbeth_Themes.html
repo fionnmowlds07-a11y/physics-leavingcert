@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Macbeth — Themes &amp; Exam Preparation</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F6F3EE;--surface:#FFFFFF;--surface2:#EEE9E2;--border:#E2DDD7;--text:#2C2825;--muted:#7A7068;--c:#1a4a1a;--cl:#eaf5ea;--cd:#0d2a0d;--radius:14px;--shadow:0 4px 20px rgba(0,0,0,0.08);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;font-size:16px;}
+nav{position:sticky;top:0;z-index:100;background:rgba(246,243,238,0.97);backdrop-filter:blur(10px);border-bottom:2px solid var(--border);padding:8px 16px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;min-height:52px;}
+.nav-logo{font-family:'Lexend Mega',sans-serif;font-size:0.85rem;color:var(--text);margin-right:4px;text-decoration:none;white-space:nowrap;}.nav-logo span{color:#8B0000;}
+.nav-divider{width:1px;height:20px;background:var(--border);flex-shrink:0;}
+.nav-btn{padding:5px 11px;border-radius:18px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.72rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);text-decoration:none;white-space:nowrap;}
+.nav-btn:hover{transform:translateY(-2px);}
+.nav-btn.home:hover,.nav-btn.home.active{background:#2c2825;border-color:#2c2825;color:#fff;}
+.nav-btn.macbeth:hover,.nav-btn.macbeth.active{background:#8B0000;border-color:#8B0000;color:#fff;}
+.nav-btn.lady:hover,.nav-btn.lady.active{background:#4a0a5a;border-color:#4a0a5a;color:#fff;}
+.nav-btn.duncan:hover,.nav-btn.duncan.active{background:#b07a10;border-color:#b07a10;color:#fff;}
+.nav-btn.banquo:hover,.nav-btn.banquo.active{background:#1a3a5a;border-color:#1a3a5a;color:#fff;}
+.nav-btn.witches:hover,.nav-btn.witches.active{background:#2a1a3a;border-color:#2a1a3a;color:#fff;}
+.nav-btn.themes:hover,.nav-btn.themes.active{background:#1a4a1a;border-color:#1a4a1a;color:#fff;}
+.section{padding:0 16px 80px;max-width:960px;margin:0 auto;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.hero{background:linear-gradient(135deg,var(--cd),var(--c));color:#fff;padding:44px 32px 36px;text-align:center;margin-bottom:32px;}
+.hero .char-label{font-size:0.75rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;opacity:0.75;margin-bottom:10px;}
+.hero h1{font-family:'Lexend Mega',sans-serif;font-size:clamp(1.6rem,4vw,2.4rem);line-height:1.15;margin-bottom:12px;}
+.hero p{opacity:0.88;max-width:640px;margin:0 auto;font-size:0.96rem;}
+.hero-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px;}
+.hero-chip{background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:4px 14px;border-radius:20px;font-size:0.75rem;font-weight:600;}
+.tab-bar{display:flex;gap:4px;flex-wrap:wrap;padding:22px 0 8px;border-bottom:2px solid var(--border);margin-bottom:28px;}
+.tab{padding:8px 14px;border-radius:10px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.78rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);}
+.tab:hover,.tab.active{background:var(--c);color:#fff;border-color:var(--c);}
+.tab-panel{display:none;}.tab-panel.active{display:block;animation:fadeIn 0.25s ease;}
+.info-card{background:var(--surface);border-radius:var(--radius);padding:22px 24px;margin-bottom:18px;box-shadow:var(--shadow);border-left:5px solid var(--c);}
+.info-card h2{font-size:1.05rem;font-weight:700;margin-bottom:10px;}
+.info-card p{margin-bottom:8px;font-size:0.93rem;}
+.info-card ul{padding-left:18px;margin-bottom:8px;}
+.info-card li{margin-bottom:5px;font-size:0.92rem;}
+/* PAST QUESTIONS */
+.pq-card{background:var(--surface);border-radius:var(--radius);padding:18px 22px;margin-bottom:14px;box-shadow:var(--shadow);border-left:5px solid var(--c);}
+.pq-year{font-size:0.68rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:6px;}
+.pq-q{font-size:0.93rem;font-style:italic;color:var(--text);margin-bottom:6px;line-height:1.6;}
+.pq-hint{font-size:0.82rem;color:var(--muted);padding:8px 12px;background:var(--cl);border-radius:8px;margin-top:6px;}
+.pq-hint strong{color:var(--cd);}
+/* THEME QUOTE ROW */
+.theme-quote{display:flex;gap:14px;align-items:flex-start;background:var(--bg);border-radius:10px;padding:14px 16px;margin-bottom:12px;border:1px solid var(--border);}
+.tq-char{min-width:80px;text-align:center;}
+.char-badge{display:inline-block;font-size:0.65rem;font-weight:800;padding:3px 8px;border-radius:6px;color:#fff;margin-bottom:4px;}
+.tq-content blockquote{font-family:'Lexend Mega',sans-serif;font-size:0.88rem;font-style:italic;margin-bottom:4px;line-height:1.45;}
+.tq-content .tq-analysis{font-size:0.86rem;color:var(--text);}
+.tq-content .tq-ref{font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--muted);}
+/* ESSAY STRUCTURE */
+.essay-step{background:var(--surface);border-radius:var(--radius);padding:18px 20px;margin-bottom:14px;box-shadow:var(--shadow);display:flex;gap:16px;align-items:flex-start;}
+.step-num{font-family:'Lexend Mega',sans-serif;font-size:1.4rem;font-weight:800;color:var(--c);flex-shrink:0;line-height:1.1;width:36px;}
+.step-content h3{font-size:0.95rem;font-weight:700;margin-bottom:6px;}
+.step-content p,.step-content li{font-size:0.9rem;}
+.step-content ul{padding-left:16px;}
+.step-content li{margin-bottom:4px;}
+.box{border-radius:var(--radius);padding:14px 18px;margin:14px 0;display:flex;gap:12px;align-items:flex-start;}
+.box .ico{font-size:1.5rem;flex-shrink:0;line-height:1.2;}
+.box-label{font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;margin-bottom:4px;}
+.box p,.box li{font-size:0.91rem;}.box ul{padding-left:16px;}.box li{margin-bottom:4px;}
+.b-exam{background:#eaf4fb;border:2px solid #5dade2;}.b-exam .box-label{color:#1a6b9a;}
+.b-tip{background:#fffbf0;border:2px solid #f39c12;}.b-tip .box-label{color:#b7770d;}
+.b-theme{background:#f0f8f0;border:2px solid #2e8b57;}.b-theme .box-label{color:#1a5c35;}
+.b-warn{background:#fff4f4;border:2px solid #e74c3c;}.b-warn .box-label{color:#c0392b;}
+.label{font-size:0.72rem;font-weight:800;text-transform:uppercase;letter-spacing:0.8px;color:var(--muted);margin-bottom:16px;display:block;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.technique-card{background:var(--surface);border-radius:var(--radius);padding:16px 18px;box-shadow:var(--shadow);}
+.technique-card h3{font-size:0.9rem;font-weight:700;margin-bottom:8px;color:var(--cd);}
+.technique-card p{font-size:0.86rem;margin-bottom:6px;}
+.technique-card .example{font-family:'Lexend Mega',sans-serif;font-size:0.8rem;font-style:italic;background:var(--cl);padding:6px 10px;border-radius:6px;margin-top:6px;}
+@media(max-width:680px){.two-col{grid-template-columns:1fr;}.theme-quote{flex-direction:column;gap:8px;}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="Macbeth.html">🗡️ <span>Macbeth</span></a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn home" href="Macbeth.html">Home</a>
+  <a class="nav-btn macbeth" href="Macbeth_Character_Macbeth.html">Macbeth</a>
+  <a class="nav-btn lady" href="Macbeth_Character_LadyMacbeth.html">Lady Macbeth</a>
+  <a class="nav-btn duncan" href="Macbeth_Character_Duncan.html">Duncan</a>
+  <a class="nav-btn banquo" href="Macbeth_Character_Banquo.html">Banquo</a>
+  <a class="nav-btn witches" href="Macbeth_Character_Witches.html">The Witches</a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn themes active" href="Macbeth_Themes.html">📜 Themes &amp; Exam</a>
+</nav>
+
+<div class="hero">
+  <div class="char-label">Themes · Past Questions · Essay Structure</div>
+  <h1>Themes &amp; Exam Preparation</h1>
+  <p>Every past question categorised, every major theme with cross-character quotes, and a complete essay structure guide — everything you need to walk into the exam with confidence.</p>
+  <div class="hero-chips">
+    <span class="hero-chip">17 Past Questions</span>
+    <span class="hero-chip">Ambition</span>
+    <span class="hero-chip">Guilt</span>
+    <span class="hero-chip">Leadership</span>
+    <span class="hero-chip">Appearance vs Reality</span>
+    <span class="hero-chip">The Supernatural</span>
+    <span class="hero-chip">Essay Structure</span>
+  </div>
+</div>
+
+<div class="section">
+  <div class="tab-bar">
+    <button class="tab active" onclick="switchTab(this,'questions')">📋 Past Questions</button>
+    <button class="tab" onclick="switchTab(this,'ambition')">🔥 Ambition</button>
+    <button class="tab" onclick="switchTab(this,'guilt')">😰 Guilt</button>
+    <button class="tab" onclick="switchTab(this,'leadership')">👑 Leadership</button>
+    <button class="tab" onclick="switchTab(this,'avr')">🎭 Appearance vs Reality</button>
+    <button class="tab" onclick="switchTab(this,'supernatural')">🧙 Supernatural</button>
+    <button class="tab" onclick="switchTab(this,'essay')">✍️ Essay Structure</button>
+  </div>
+
+  <!-- PAST QUESTIONS TAB -->
+  <div class="tab-panel active" id="questions">
+    <span class="label">All 17 Past Exam Questions — Categorised &amp; Annotated</span>
+
+    <div class="box b-tip">
+      <div class="ico">💡</div>
+      <div><div class="box-label">How to Use This Section</div>
+      <p>Read each question carefully. The hint below each one tells you which themes and characters to focus on, and which quotes from the character pages will work best. Every question listed here can be answered using the quotes and analysis on this site.</p></div>
+    </div>
+
+    <span class="label" style="margin-top:20px;">2026 Questions</span>
+
+    <div class="pq-card">
+      <div class="pq-year">2026 — Mock Paper 2, Option A</div>
+      <div class="pq-q">(i) "In his play, Macbeth, William Shakespeare presents a world where guilt cannot be suppressed." Discuss this statement.</div>
+      <div class="pq-hint"><strong>Focus:</strong> Guilt in Macbeth (dagger, murder sleep, scorpions), Lady Macbeth (a little water → damned spot), Banquo's ghost. Argue guilt operates differently at each stage but can never be eliminated — only delayed until it becomes madness.</div>
+    </div>
+
+    <div class="pq-card">
+      <div class="pq-year">2026 — Mock Paper 2, Option A</div>
+      <div class="pq-q">(ii) Discuss how Shakespeare uses characters to explore the consequences of both flawed and virtuous leadership.</div>
+      <div class="pq-hint"><strong>Focus:</strong> Duncan (virtuous — plant thee, sainted king), Macbeth (flawed — tyranny, scorpions, tomorrow), Malcolm (restoration). The question is asking for both sides — spend equal time on each. Use Banquo and Macduff as additional virtuous foils.</div>
+    </div>
+
+    <div class="pq-card">
+      <div class="pq-year">2026 — Mock Paper 2, Option B</div>
+      <div class="pq-q">(i) How do Macbeth's actions and behaviour reveal his internal conflict with ambition and guilt in his pursuit of power?</div>
+      <div class="pq-hint"><strong>Focus:</strong> The tension between ambition and conscience. Show the arc: vaulting ambition (1.7), murder sleep (2.2), scorpions (3.2), stepped in blood (3.4), tomorrow (5.5). Each quote shows a different stage of this conflict resolving in ambition's favour — until ambition burns everything away.</div>
+    </div>
+
+    <div class="pq-card">
+      <div class="pq-year">2026 — Mock Paper 2, Option B</div>
+      <div class="pq-q">(ii) How does Shakespeare use language and imagery to intensify the portrayal of Scotland under Macbeth's rule?</div>
+      <div class="pq-hint"><strong>Focus:</strong> Blood imagery (stepped in blood), sleep imagery (murder sleep), clothing imagery ("borrowed robes"), darkness/light (stars hide your fires). Also: what other characters say about Macbeth's Scotland — "new widows howl, new orphans cry" (Macduff, Act 4.3). Great opportunity to mention trochaic tetrameter of witches = disorder in language itself.</div>
+    </div>
+
+    <span class="label" style="margin-top:20px;">2023 Questions</span>
+
+    <div class="pq-card">
+      <div class="pq-year">2023 — Leaving Cert Paper 2</div>
+      <div class="pq-q">(i) "Macbeth's unstable and tragic identity is shaped by a variety of ambiguities and complexities in his character." Discuss this statement.</div>
+      <div class="pq-hint"><strong>Focus:</strong> Show the five stages of Macbeth's arc. "Unstable" = show how drastically he changes. "Tragic" = he is aware of his own moral failure (vaulting ambition, virtues will plead like angels). "Complexities" = he is simultaneously the most evil and most self-aware character in the play. Use the arc tab on Macbeth's page.</div>
+    </div>
+
+    <div class="pq-card">
+      <div class="pq-year">2023 — Leaving Cert Paper 2</div>
+      <div class="pq-q">(ii) "Shakespeare makes effective use of Lady Macbeth and the Witches to heighten the dramatic impact of his play Macbeth in a variety of ways."</div>
+      <div class="pq-hint"><strong>Focus:</strong> Lady Macbeth: dramatic impact through the reversal (strongest → first destroyed). Witches: dramatic impact through equivocation, paradox, and the second meeting (Act 4). Compare their methods — one works by prophecy/equivocation; one by direct psychological manipulation. Both are catalysts; neither fully controls Macbeth.</div>
+    </div>
+
+    <div class="pq-card">
+      <div class="pq-year">2023 — Deferred Exam</div>
+      <div class="pq-q">(i) Identify what you believe to be the three most important choices or decisions Macbeth makes. Discuss why these choices are important.</div>
+      <div class="pq-hint"><strong>Focus:</strong> Suggested choices: (1) Deciding to murder Duncan despite his own reasoning (Act 1.7 — vaulting ambition). (2) Ordering Banquo's murder (Act 3 — scorpions — the step from reactive to proactive evil). (3) Visiting the witches again in Act 4 (choosing to deepen his involvement with dark powers rather than retreat). Each choice shows a different stage of deterioration.</div>
+    </div>
+
+    <div class="pq-card">
+      <div class="pq-year">2023 — Deferred Exam</div>
+      <div class="pq-q">(ii) Identify aspects of the play that lead us to draw disturbing conclusions about evil.</div>
+      <div class="pq-hint"><strong>Focus:</strong> The most disturbing aspect: Macbeth is fully aware of his own evil (vaulting ambition, virtues will plead like angels) and acts anyway. Evil requires a willing participant, not an unwilling victim. Lady Macbeth inviting dark spirits — she has to work to become evil. The witches never commanding — evil emerges from within, not from without.</div>
+    </div>
+
+    <div class="pq-card">
+      <div class="pq-year">2023 — Mock Paper A</div>
+      <div class="pq-q">(i) "Shakespeare uses a variety of techniques to create a world of deception in Macbeth."</div>
+      <div class="pq-hint"><strong>Focus:</strong> This is an Appearance vs Reality question framed as technique. Name the techniques: dramatic irony (Duncan at Inverness), equivocation (witches — none of woman born), aside (stars hide your fires), soliloquy (private truth vs public performance). The serpent/flower quote from Lady Macbeth is your anchor.</div>
+    </div>
+
+    <div class="pq-card">
+      <div class="pq-year">2023 — Mock Paper A</div>
+      <div class="pq-q">(ii) "Both Macbeth and Lady Macbeth display a variety of character traits and values that contribute to the dramatic and tragic outcome."</div>
+      <div class="pq-hint"><strong>Focus:</strong> Compare their traits: Macbeth — moral awareness, guilt, deterioration into nihilism. Lady Macbeth — decisiveness, suppression of conscience, early collapse. The "dramatic and tragic" framing means you should discuss both what they do (dramatic) and what they lose (tragic). Their reversed dynamic is the heart of this answer.</div>
+    </div>
+
+    <div class="pq-card">
+      <div class="pq-year">2023 — Mock Paper B</div>
+      <div class="pq-q">(i) "The play Macbeth presents us with an entirely pessimistic view of the theme of justice."</div>
+      <div class="pq-hint"><strong>Focus:</strong> Agree or disagree — the best approach is nuanced: <em>partly</em> pessimistic (Duncan is murdered; Banquo is murdered; Lady Macduff and her children are slaughtered). But justice is restored in Act 5: Macbeth is killed; Malcolm is crowned; natural order is restored. The play is pessimistic about justice in the short term but optimistic about its eventual restoration.</div>
+    </div>
+
+    <div class="pq-card">
+      <div class="pq-year">2023 — Mock Paper B</div>
+      <div class="pq-q">(ii) "Both Banquo and Macduff fulfil important dramatic functions in the play Macbeth."</div>
+      <div class="pq-hint"><strong>Focus:</strong> Banquo's function: moral foil (proves free will), his ghost (externalises guilt), his descendants (the restored order). Macduff's function: loyal subject, avenger, the man who kills Macbeth, the voice of Scotland's suffering ("new widows howl"). Together they represent Scotland's integrity — everything Macbeth tried to destroy.</div>
+    </div>
+
+    <span class="label" style="margin-top:20px;">Earlier Questions</span>
+
+    <div class="pq-card">
+      <div class="pq-year">2019 — Leaving Cert Paper 2</div>
+      <div class="pq-q">(i) Discuss the reasons why Shakespeare's use of horrific, bizarre and unbelievable elements does or does not heighten the tragic intensity.</div>
+      <div class="pq-hint"><strong>Focus:</strong> The horrific elements — witches, ghost, sleepwalking, cauldron, hallucinated dagger — all serve psychological purposes. They externalise inner states: the dagger is guilt before the act; the ghost is guilt after. The sleepwalking is guilt breaking through. The horrific is not gratuitous; it is the language of the unconscious made visible.</div>
+    </div>
+
+    <div class="pq-card">
+      <div class="pq-year">2019 — Mock Paper 2</div>
+      <div class="pq-q">(i) "The values evident in the play, Macbeth, have a profound influence on the tragic outcomes."</div>
+      <div class="pq-hint"><strong>Focus:</strong> Values = honour, loyalty, ambition, guilt, justice. Show how each value drives outcomes: Macbeth's ambition drives the murders; his honour makes him feel guilty; his guilt destroys him. Lady Macbeth's suppression of guilt fails. Banquo's honour keeps him loyal. Duncan's trust makes him vulnerable. Each character embodies a value that leads directly to their outcome.</div>
+    </div>
+
+    <div class="pq-card">
+      <div class="pq-year">2014 — Leaving Cert</div>
+      <div class="pq-q">(i) "Macbeth's relationships with other characters can be seen primarily as power struggles which prove crucial to the outcome."</div>
+      <div class="pq-hint"><strong>Focus:</strong> Macbeth vs Duncan (king vs subject, usurped), Macbeth vs Lady Macbeth (control shifts from her to him), Macbeth vs Banquo (rival for legitimacy), Macbeth vs Macduff (nemesis, eventual killer). Each relationship is a power dynamic that shifts — and the shifts drive the plot.</div>
+    </div>
+
+    <div class="pq-card">
+      <div class="pq-year">2014 — Mock Paper 2</div>
+      <div class="pq-q">(i) "Lady Macbeth's strengths and weaknesses lead to her downfall."</div>
+      <div class="pq-hint"><strong>Focus:</strong> Her strength: decisive, controlled, manipulative (unsex me, screw your courage). Her weakness: she suppresses rather than resolves guilt (a little water). Her downfall: Act 5 sleepwalking — the suppressed guilt returns amplified. The argument: her strengths are the mechanism of her weakness. Her decisiveness prevents her from processing what she has done.</div>
+    </div>
+
+    <div class="pq-card">
+      <div class="pq-year">2013 — Leaving Cert</div>
+      <div class="pq-q">(i) "Macbeth, despite the influence of the witches and Lady Macbeth, is responsible for his own downfall."</div>
+      <div class="pq-hint"><strong>Focus:</strong> The strongest possible Leaving Cert answer. Three-point structure: (1) Banquo receives same prophecy and resists — proves free will. (2) Macbeth's own Act 1.7 soliloquy — he reasons himself to the right answer then reverses. (3) Stepped in blood (Act 3.4) — he explicitly chooses to continue when he could stop. Conclusion: the witches and Lady Macbeth are catalysts; the choices are his.</div>
+    </div>
+
+    <div class="pq-card">
+      <div class="pq-year">2007 — Leaving Cert</div>
+      <div class="pq-q">(i) "The relationship between Macbeth and Lady Macbeth undergoes significant change during the course of the play."</div>
+      <div class="pq-hint"><strong>Focus:</strong> Three stages: Act 1 (she leads — screw your courage, look like the innocent flower), Act 3 (he acts without her — "be innocent of the knowledge"), Act 5 (she collapses; he receives news with nihilism). Show the complete power reversal. Quote their language to each other at each stage to show how the tone changes.</div>
+    </div>
+  </div>
+
+  <!-- AMBITION TAB -->
+  <div class="tab-panel" id="ambition">
+    <span class="label">Theme: Ambition</span>
+    <div class="info-card">
+      <h2>🔥 The Central Argument</h2>
+      <p>Macbeth is a play about unchecked ambition. But Shakespeare is making a specific, sophisticated argument: <strong>ambition is not simply bad — it is self-defeating.</strong> Macbeth desires the crown and destroys everything that would make wearing it worthwhile. By the time he achieves his ambition, he has lost his wife, his peace of mind, his allies, his honour, and ultimately his sense that life means anything at all.</p>
+      <p>The key distinction: ambition guided by honour (Banquo has ambition for his descendants but never acts dishonourably) vs ambition freed from all moral constraint (Macbeth). The play argues the second type destroys the person who pursues it.</p>
+    </div>
+
+    <span class="label">Cross-Character Quotes for Ambition</span>
+
+    <div class="theme-quote">
+      <div class="tq-char"><span class="char-badge" style="background:#8B0000;">Macbeth</span></div>
+      <div class="tq-content">
+        <blockquote>"I have no spur... but only / Vaulting ambition."</blockquote>
+        <div class="tq-ref">Act 1.7</div>
+        <div class="tq-analysis">He names his own flaw. The metaphor predicts his arc — reach too high, fall hard. He knows this and acts anyway. That is what makes him tragic.</div>
+      </div>
+    </div>
+
+    <div class="theme-quote">
+      <div class="tq-char"><span class="char-badge" style="background:#8B0000;">Macbeth</span></div>
+      <div class="tq-content">
+        <blockquote>"Stars, hide your fires; / Let not light see my black and deep desires."</blockquote>
+        <div class="tq-ref">Act 1.4</div>
+        <div class="tq-analysis">His ambition pre-dates the witches. These are his desires — possessive. The witches don't create his ambition; they name it.</div>
+      </div>
+    </div>
+
+    <div class="theme-quote">
+      <div class="tq-char"><span class="char-badge" style="background:#4a0a5a;">Lady M.</span></div>
+      <div class="tq-content">
+        <blockquote>"Nought's had, all's spent, / Where our desire is got without content."</blockquote>
+        <div class="tq-ref">Act 3.2</div>
+        <div class="tq-analysis">They have achieved their ambition and feel nothing from it. Achieved desire without satisfaction. This is Shakespeare's verdict on unchecked ambition: it cannot satisfy.</div>
+      </div>
+    </div>
+
+    <div class="theme-quote">
+      <div class="tq-char"><span class="char-badge" style="background:#8B0000;">Macbeth</span></div>
+      <div class="tq-content">
+        <blockquote>"Tomorrow, and tomorrow, and tomorrow, / Creeps in this petty pace from day to day."</blockquote>
+        <div class="tq-ref">Act 5.5</div>
+        <div class="tq-analysis">The ultimate cost of ambition: he has gained everything and found life meaningless. Nihilism is the end point of unchecked desire.</div>
+      </div>
+    </div>
+
+    <div class="theme-quote">
+      <div class="tq-char"><span class="char-badge" style="background:#1a3a5a;">Banquo</span></div>
+      <div class="tq-content">
+        <blockquote>"Lesser than Macbeth, and greater. / Not so happy, yet much happier."</blockquote>
+        <div class="tq-ref">Act 1.3</div>
+        <div class="tq-analysis">The witches' paradox turns out to be true: Banquo never sought the crown and dies with more peace than Macbeth has as king. Choosing honour over ambition leads to the greater life.</div>
+      </div>
+    </div>
+
+    <div class="box b-tip">
+      <div class="ico">💡</div>
+      <div><div class="box-label">Ambition Essay Argument</div>
+      <p>Structure your answer around three stages: (1) Ambition desired — what Macbeth wants and why (stars, hide your fires; vaulting ambition). (2) Ambition achieved — immediate cost (scorpions, murder sleep). (3) Ambition's endpoint — nihilism (tomorrow). Then use Banquo as contrast — same prophecy, no unchecked action, dies with honour intact. The comparison proves the argument.</p></div>
+    </div>
+  </div>
+
+  <!-- GUILT TAB -->
+  <div class="tab-panel" id="guilt">
+    <span class="label">Theme: Guilt</span>
+    <div class="info-card">
+      <h2>😰 The Central Argument</h2>
+      <p>Guilt in Macbeth is not a passing emotion — it is a <strong>progressive, inescapable force</strong> that operates differently at different stages but always deepens. Shakespeare shows that guilt cannot be suppressed: Lady Macbeth tries hardest to suppress it and is the first destroyed by it. The play argues that a conscience, once violated, cannot be restored — only drowned deeper, until it surfaces as madness.</p>
+    </div>
+
+    <span class="label">Cross-Character Quotes for Guilt</span>
+
+    <div class="theme-quote">
+      <div class="tq-char"><span class="char-badge" style="background:#8B0000;">Macbeth</span></div>
+      <div class="tq-content">
+        <blockquote>"Methought I heard a voice cry, 'Sleep no more! / Macbeth does murder sleep.'"</blockquote>
+        <div class="tq-ref">Act 2.2</div>
+        <div class="tq-analysis">Guilt arrives immediately — before anyone suspects him, before any consequences. The hallucinated voice is his own conscience. Guilt is internal and instantaneous.</div>
+      </div>
+    </div>
+
+    <div class="theme-quote">
+      <div class="tq-char"><span class="char-badge" style="background:#4a0a5a;">Lady M.</span></div>
+      <div class="tq-content">
+        <blockquote>"A little water clears us of this deed: / How easy is it then!"</blockquote>
+        <div class="tq-ref">Act 2.2</div>
+        <div class="tq-analysis">Dramatic irony — she is wrong. This line sets up the most powerful contrast in the play: her Act 2 dismissal of guilt vs her Act 5 inability to wash it away. Water does not clear the deed.</div>
+      </div>
+    </div>
+
+    <div class="theme-quote">
+      <div class="tq-char"><span class="char-badge" style="background:#8B0000;">Macbeth</span></div>
+      <div class="tq-content">
+        <blockquote>"Thou canst not say I did it: never shake / Thy gory locks at me."</blockquote>
+        <div class="tq-ref">Act 3.4</div>
+        <div class="tq-analysis">Banquo's ghost is guilt made visible. Macbeth's denial ("thou canst not say I did it") is addressed to a ghost only he can see — the private guilt breaking into the public space.</div>
+      </div>
+    </div>
+
+    <div class="theme-quote">
+      <div class="tq-char"><span class="char-badge" style="background:#4a0a5a;">Lady M.</span></div>
+      <div class="tq-content">
+        <blockquote>"Out, damned spot! out, I say!"</blockquote>
+        <div class="tq-ref">Act 5.1</div>
+        <div class="tq-analysis">The guilt she suppressed in Act 2 returns amplified, inescapable, sensory. She can see and smell blood that isn't there. The sleepwalking is guilt breaking through the sleep she denied Macbeth.</div>
+      </div>
+    </div>
+
+    <div class="theme-quote">
+      <div class="tq-char"><span class="char-badge" style="background:#4a0a5a;">Lady M.</span></div>
+      <div class="tq-content">
+        <blockquote>"All the perfumes of Arabia will not sweeten this little hand."</blockquote>
+        <div class="tq-ref">Act 5.1</div>
+        <div class="tq-analysis">The scale of guilt has expanded from "a little water" to "all the perfumes of Arabia." Guilt does not diminish — it grows. Nothing in the world is large enough to cancel what she has done.</div>
+      </div>
+    </div>
+
+    <div class="box b-tip">
+      <div class="ico">💡</div>
+      <div><div class="box-label">Guilt Essay Argument — The Best Structure</div>
+      <p>Show guilt in three stages: (1) <strong>Immediate</strong> — Macbeth's hallucinations immediately after the murder (murder sleep, dagger). (2) <strong>Suppressed</strong> — Lady Macbeth's "a little water" — she denies it; it goes underground. (3) <strong>Returned and amplified</strong> — both are destroyed: Banquo's ghost (Macbeth), sleepwalking (Lady Macbeth). The argument: <em>guilt cannot be suppressed — suppression only makes the eventual reckoning more devastating.</em></p></div>
+    </div>
+  </div>
+
+  <!-- LEADERSHIP TAB -->
+  <div class="tab-panel" id="leadership">
+    <span class="label">Theme: Leadership &amp; Kingship</span>
+    <div class="info-card">
+      <h2>👑 The Central Argument</h2>
+      <p>Macbeth is a play about what good and bad leadership look like. Shakespeare presents two models: Duncan — generous, trusting, loved — and Macbeth — paranoid, murderous, feared. The play argues strongly that <strong>legitimate authority comes from virtue, not power</strong>. Macbeth has the crown but not the legitimacy. His reign destroys Scotland; Duncan's death is mourned by everyone including Macbeth himself.</p>
+      <p>Malcolm's speech listing "king-becoming graces" (justice, verity, temperance, stableness) is the play's explicit statement of what good leadership requires — and it is the qualities Macbeth lacks entirely.</p>
+    </div>
+
+    <span class="label">Cross-Character Quotes for Leadership</span>
+
+    <div class="theme-quote">
+      <div class="tq-char"><span class="char-badge" style="background:#b07a10;">Duncan</span></div>
+      <div class="tq-content">
+        <blockquote>"I have begun to plant thee, and will labour / To make thee full of growing."</blockquote>
+        <div class="tq-ref">Act 1.4</div>
+        <div class="tq-analysis">The ideal king as gardener — nurturing, investing in subjects, thinking of the future. Duncan's leadership is generative, not self-serving.</div>
+      </div>
+    </div>
+
+    <div class="theme-quote">
+      <div class="tq-char"><span class="char-badge" style="background:#b07a10;">Duncan</span></div>
+      <div class="tq-content">
+        <blockquote>"There's no art / To find the mind's construction in the face."</blockquote>
+        <div class="tq-ref">Act 1.4</div>
+        <div class="tq-analysis">His fatal vulnerability: he cannot see through appearances. Trust is his virtue and his downfall. Shakespeare shows that virtuous leadership can be exploited by the unvirtuous.</div>
+      </div>
+    </div>
+
+    <div class="theme-quote">
+      <div class="tq-char"><span class="char-badge" style="background:#8B0000;">Macbeth</span></div>
+      <div class="tq-content">
+        <blockquote>"O, full of scorpions is my mind, dear wife!"</blockquote>
+        <div class="tq-ref">Act 3.2</div>
+        <div class="tq-analysis">The mind of a tyrant: not justice or temperance but paranoia and fear. A king who rules by fear rather than respect has already failed at leadership.</div>
+      </div>
+    </div>
+
+    <div class="theme-quote">
+      <div class="tq-char"><span class="char-badge" style="background:#8B0000;">Macbeth</span></div>
+      <div class="tq-content">
+        <blockquote>"Tomorrow, and tomorrow, and tomorrow / Creeps in this petty pace from day to day."</blockquote>
+        <div class="tq-ref">Act 5.5</div>
+        <div class="tq-analysis">A king who finds life meaningless has completely abandoned his duty to Scotland. Leadership requires purpose; Macbeth has none. This is the complete failure of leadership expressed as nihilism.</div>
+      </div>
+    </div>
+
+    <div class="theme-quote">
+      <div class="tq-char"><span class="char-badge" style="background:#b07a10;">Duncan</span></div>
+      <div class="tq-content">
+        <blockquote>"...the most sainted king."</blockquote>
+        <div class="tq-ref">Act 4.3 (Malcolm about Duncan)</div>
+        <div class="tq-analysis">In death, Duncan has become the model against which Macbeth's tyranny is measured. His memory is the standard Scotland will return to through Malcolm's restoration.</div>
+      </div>
+    </div>
+
+    <div class="box b-tip">
+      <div class="ico">💡</div>
+      <div><div class="box-label">Leadership Essay Argument</div>
+      <p>Structure: (1) Duncan as the ideal — plant thee, sainted king, trust. (2) Macbeth as its opposite — scorpions, tyranny, nihilism. (3) The consequences for Scotland — Macduff: "new widows howl, new orphans cry." (4) Malcolm's restoration as the return of Duncanesque values. The play argues that kingship divorced from virtue destroys both king and kingdom.</p></div>
+    </div>
+  </div>
+
+  <!-- APPEARANCE VS REALITY TAB -->
+  <div class="tab-panel" id="avr">
+    <span class="label">Theme: Appearance vs Reality / Deception</span>
+    <div class="info-card">
+      <h2>🎭 The Central Argument</h2>
+      <p>"Fair is foul, and foul is fair" — this paradox is the play's thesis statement, delivered in its very first line. Appearance vs Reality is not just a theme in Macbeth; it is the structural principle of the entire play. Almost every scene contains a gap between how things appear and what they really are: the gracious king is about to be murdered by his loyal subject; the beautiful castle is a death-trap; the brave warrior is plotting regicide; the confident queen is disintegrating internally.</p>
+    </div>
+
+    <span class="label">Cross-Character Quotes for Appearance vs Reality</span>
+
+    <div class="theme-quote">
+      <div class="tq-char"><span class="char-badge" style="background:#2a1a3a;">Witches</span></div>
+      <div class="tq-content">
+        <blockquote>"Fair is foul, and foul is fair."</blockquote>
+        <div class="tq-ref">Act 1.1</div>
+        <div class="tq-analysis">The play's thesis, stated before any human character speaks. Everything that follows is an exploration of this inversion. Macbeth himself echoes it ("so foul and fair a day") without realising he's speaking the witches' language.</div>
+      </div>
+    </div>
+
+    <div class="theme-quote">
+      <div class="tq-char"><span class="char-badge" style="background:#4a0a5a;">Lady M.</span></div>
+      <div class="tq-content">
+        <blockquote>"Look like the innocent flower, / But be the serpent under't."</blockquote>
+        <div class="tq-ref">Act 1.5</div>
+        <div class="tq-analysis">The theme stated as direct instruction. Lady Macbeth teaches Macbeth to perform appearance while hiding reality. She is the play's greatest practitioner of this — until Act 5, when the practice destroys her.</div>
+      </div>
+    </div>
+
+    <div class="theme-quote">
+      <div class="tq-char"><span class="char-badge" style="background:#b07a10;">Duncan</span></div>
+      <div class="tq-content">
+        <blockquote>"There's no art / To find the mind's construction in the face."</blockquote>
+        <div class="tq-ref">Act 1.4</div>
+        <div class="tq-analysis">Duncan's confession that he cannot read reality from appearance. He is the primary victim of the gap between face and mind. His trust is his goodness — and his fatal vulnerability.</div>
+      </div>
+    </div>
+
+    <div class="theme-quote">
+      <div class="tq-char"><span class="char-badge" style="background:#2a1a3a;">Witches</span></div>
+      <div class="tq-content">
+        <blockquote>"None of woman born / Shall harm Macbeth."</blockquote>
+        <div class="tq-ref">Act 4.1</div>
+        <div class="tq-analysis">The witches' equivocation — technically true, fatally misleading. Macbeth hears invincibility; the witches know about Macduff. This is the most deadly gap between apparent and real meaning in the play.</div>
+      </div>
+    </div>
+
+    <div class="theme-quote">
+      <div class="tq-char"><span class="char-badge" style="background:#4a0a5a;">Lady M.</span></div>
+      <div class="tq-content">
+        <blockquote>"Out, damned spot! out, I say!"</blockquote>
+        <div class="tq-ref">Act 5.1</div>
+        <div class="tq-analysis">In the sleepwalking scene, the gap collapses. Lady Macbeth's performed composure — maintained through Acts 1–4 — is shattered. Reality breaks through her appearance in the one state she cannot control: sleep. The doctor sees what she hid. Appearance and reality merge in destruction.</div>
+      </div>
+    </div>
+
+    <div class="box b-tip">
+      <div class="ico">💡</div>
+      <div><div class="box-label">Appearance vs Reality Essay Argument</div>
+      <p>Three layers: (1) The witches create it — equivocation means truth conceals falsehood. (2) The characters practise it — Lady Macbeth coaches Macbeth to deceive; both maintain public composure while privately disintegrating. (3) It destroys them — Lady Macbeth's sleepwalking is the gap collapsing; Macbeth's ghost-seeing at the banquet is the gap collapsing. The play argues you cannot maintain the gap between appearance and reality indefinitely — it always collapses.</p></div>
+    </div>
+  </div>
+
+  <!-- SUPERNATURAL TAB -->
+  <div class="tab-panel" id="supernatural">
+    <span class="label">Theme: The Supernatural</span>
+    <div class="info-card">
+      <h2>🧙 The Central Argument</h2>
+      <p>The supernatural in Macbeth serves three functions: (1) It creates atmosphere — thunder, darkness, witches, ghosts; (2) It externalises internal states — the dagger, Banquo's ghost, and Lady Macbeth's sleepwalking are hallucinations of guilty conscience made visible; (3) It raises the free will vs fate question — if the witches can predict the future, is Macbeth fated? The answer the play gives: no. Banquo proves this.</p>
+    </div>
+
+    <span class="label">Key Supernatural Quotes</span>
+
+    <div class="theme-quote">
+      <div class="tq-char"><span class="char-badge" style="background:#2a1a3a;">Witches</span></div>
+      <div class="tq-content">
+        <blockquote>"Fair is foul, and foul is fair."</blockquote>
+        <div class="tq-ref">Act 1.1</div>
+        <div class="tq-analysis">The supernatural announces itself through moral inversion. The witches don't just predict evil — they embody the inversion of natural order that Macbeth's reign will produce.</div>
+      </div>
+    </div>
+
+    <div class="theme-quote">
+      <div class="tq-char"><span class="char-badge" style="background:#1a3a5a;">Banquo</span></div>
+      <div class="tq-content">
+        <blockquote>"The instruments of darkness tell us truths, / Win us with honest trifles, to betray's / In deepest consequence."</blockquote>
+        <div class="tq-ref">Act 1.3</div>
+        <div class="tq-analysis">The most important analysis of the witches' method in the play — spoken by the man who resists them. The supernatural works through partial truths, not outright lies. This is their danger.</div>
+      </div>
+    </div>
+
+    <div class="theme-quote">
+      <div class="tq-char"><span class="char-badge" style="background:#4a0a5a;">Lady M.</span></div>
+      <div class="tq-content">
+        <blockquote>"Come, you spirits / That tend on mortal thoughts, unsex me here."</blockquote>
+        <div class="tq-ref">Act 1.5</div>
+        <div class="tq-analysis">Lady Macbeth invites the supernatural into herself. The parallel with the witches is deliberate: both she and the witches call on dark forces; she wants to become what they are.</div>
+      </div>
+    </div>
+
+    <div class="theme-quote">
+      <div class="tq-char"><span class="char-badge" style="background:#8B0000;">Macbeth</span></div>
+      <div class="tq-content">
+        <blockquote>"Methought I heard a voice cry, 'Sleep no more! / Macbeth does murder sleep.'"</blockquote>
+        <div class="tq-ref">Act 2.2</div>
+        <div class="tq-analysis">The hallucinated voice is the supernatural as conscience. Whether real or imagined, its effect is identical — it tells Macbeth what he already knows. The supernatural externalises his own moral awareness.</div>
+      </div>
+    </div>
+
+    <div class="box b-tip">
+      <div class="ico">💡</div>
+      <div><div class="box-label">The Examiner's Favourite Point About the Supernatural</div>
+      <p>Ask whether the supernatural events are "real" or psychological. The dagger, the voice, and Banquo's ghost may all be hallucinations — products of Macbeth's guilty imagination. Lady Macbeth's sleepwalking is definitely psychological. <strong>It doesn't matter whether they are "real" — their function is the same either way: they externalise guilt.</strong> This is a sophisticated point that shows you're engaging with the text analytically, not just retelling it.</p></div>
+    </div>
+  </div>
+
+  <!-- ESSAY STRUCTURE TAB -->
+  <div class="tab-panel" id="essay">
+    <span class="label">How to Write a High-Scoring Macbeth Essay</span>
+
+    <div class="box b-warn">
+      <div class="ico">⚠️</div>
+      <div><div class="box-label">The Most Common Mistake</div>
+      <p>Retelling the plot instead of analysing the text. Every sentence in your essay should be analytical — you should be answering "how does Shakespeare show this?" not "what happens next?" If you find yourself writing "then Macbeth kills Duncan," stop and ask: what technique is Shakespeare using here, and what does it show?</p></div>
+    </div>
+
+    <span class="label" style="margin-top:20px;">The Paragraph Formula — PEE+</span>
+
+    <div class="essay-step">
+      <div class="step-num">P</div>
+      <div class="step-content">
+        <h3>Point — Your Argument</h3>
+        <p>State your analytical claim clearly. Don't start with a quote — start with what you're going to prove. Example: <em>"Shakespeare presents Macbeth as a character who makes his choices with full moral awareness, making his tragedy entirely self-chosen."</em></p>
+      </div>
+    </div>
+
+    <div class="essay-step">
+      <div class="step-num">E</div>
+      <div class="step-content">
+        <h3>Evidence — Quote + Technique</h3>
+        <p>Give a short, accurate quote and name the technique. Example: <em>"In his Act 1.7 soliloquy, Macbeth uses an extended equestrian metaphor — 'vaulting ambition, which o'erleaps itself / And falls on th' other' — to diagnose his own fatal flaw."</em></p>
+        <p>Short quotes are better than long ones. Two or three carefully chosen words are better than half a speech misquoted.</p>
+      </div>
+    </div>
+
+    <div class="essay-step">
+      <div class="step-num">E</div>
+      <div class="step-content">
+        <h3>Explanation — Effect on Audience + Link to Theme</h3>
+        <p>This is the most important part. Explain what the quote does — how it makes the audience feel, what it reveals about character, how it develops the theme. Example: <em>"The metaphor of the rider who over-vaults and falls is prophetic of his entire arc. Shakespeare creates an unsettling dramatic irony: Macbeth sees his own downfall clearly, names it, and then ignores it. This develops the theme of ambition as self-defeating — the very intelligence that might save him becomes the mechanism of his fall."</em></p>
+      </div>
+    </div>
+
+    <div class="essay-step">
+      <div class="step-num">+</div>
+      <div class="step-content">
+        <h3>Extension — Link to Another Character or Scene</h3>
+        <p>Connect to a contrasting or parallel moment. Example: <em>"This self-awareness distinguishes Macbeth from Lady Macbeth, who invokes supernatural forces to suppress her conscience rather than reason with it — suggesting Shakespeare sees Macbeth as the more complex tragic figure."</em></p>
+      </div>
+    </div>
+
+    <span class="label" style="margin-top:20px;">Introduction Formula</span>
+
+    <div class="info-card">
+      <h2>✍️ How to Open Your Essay</h2>
+      <p>Three sentences: (1) Name the text, author, and central argument of the play. (2) State your response to the question directly — agree, disagree, or nuance. (3) Briefly signal your structure (which three or four aspects you'll discuss).</p>
+      <p><strong>Example:</strong> <em>"In William Shakespeare's tragedy Macbeth, the central argument is that unchecked ambition is self-defeating — it destroys not only those around the ambitious person but the person themselves. The statement that 'guilt cannot be suppressed' in the play is entirely accurate: both Macbeth and Lady Macbeth are destroyed by guilt, but by different mechanisms and at different speeds. In this essay, I will examine how Shakespeare shows guilt operating through hallucination, paranoia, and finally madness to demonstrate that a violated conscience cannot be permanently suppressed."</em></p>
+    </div>
+
+    <span class="label" style="margin-top:20px;">Key Techniques to Name and Use</span>
+
+    <div class="two-col">
+      <div class="technique-card">
+        <h3>Soliloquy</h3>
+        <p>When a character speaks alone on stage. It reveals their true thoughts — the gap between public and private self. Macbeth's soliloquies show his moral awareness; Lady Macbeth's show her hidden collapse.</p>
+        <div class="example">"I have no spur... but only / Vaulting ambition." (1.7)</div>
+      </div>
+      <div class="technique-card">
+        <h3>Dramatic Irony</h3>
+        <p>When the audience knows something a character doesn't. Duncan praises Inverness not knowing it's a death-trap. Lady Macbeth says "a little water" not knowing she'll spend Act 5 washing hands obsessively.</p>
+        <div class="example">"This castle hath a pleasant seat." (1.6)</div>
+      </div>
+      <div class="technique-card">
+        <h3>Equivocation</h3>
+        <p>Using technically true statements to deceive. The witches' specialty. "None of woman born shall harm Macbeth" — true, but not the truth Macbeth thinks he's hearing.</p>
+        <div class="example">"None of woman born / Shall harm Macbeth." (4.1)</div>
+      </div>
+      <div class="technique-card">
+        <h3>Blood Imagery</h3>
+        <p>Blood appears throughout as a symbol of guilt, crime, and consequence. It is both literal (on Macbeth's hands) and symbolic (the guilt that stains his soul and cannot be washed away).</p>
+        <div class="example">"I am in blood / Stepped in so far..." (3.4)</div>
+      </div>
+      <div class="technique-card">
+        <h3>Sleep Symbolism</h3>
+        <p>Sleep represents innocence and peace. Macbeth "murders sleep" — and both he and Lady Macbeth lose all peace. Duncan is murdered sleeping; Lady Macbeth's guilt erupts in sleep. Sleep connects Duncan's murder to both murderers' punishment.</p>
+        <div class="example">"Macbeth does murder sleep." (2.2)</div>
+      </div>
+      <div class="technique-card">
+        <h3>Light / Dark Imagery</h3>
+        <p>Light = goodness, truth, natural order. Dark = evil, concealment, ambition. Macbeth and Lady Macbeth both invoke darkness to hide their plans. The witches operate in fog and filthy air.</p>
+        <div class="example">"Stars, hide your fires." (1.4)</div>
+      </div>
+      <div class="technique-card">
+        <h3>Antithesis / Paradox</h3>
+        <p>Stating opposites together. The play is built on paradoxes: fair/foul, lost/won, lesser/greater. Shakespeare uses antithesis to show how moral inversions operate throughout the play.</p>
+        <div class="example">"Fair is foul, and foul is fair." (1.1)</div>
+      </div>
+      <div class="technique-card">
+        <h3>Repetition / Anaphora</h3>
+        <p>Repeating a word or structure for emphasis. "Tomorrow, and tomorrow, and tomorrow" — the triple repetition enacts the monotonous, hopeless passage of time Macbeth is describing.</p>
+        <div class="example">"Tomorrow, and tomorrow, and tomorrow." (5.5)</div>
+      </div>
+    </div>
+
+    <div class="box b-tip" style="margin-top:20px;">
+      <div class="ico">💡</div>
+      <div><div class="box-label">The Golden Rule for Every Paragraph</div>
+      <p><strong>Technique → Quote → Effect → Theme.</strong> Name the technique Shakespeare uses. Give a short accurate quote. Explain what effect this creates for the audience. Link to the theme the question is asking about. Do this consistently for every paragraph and you will score very well regardless of which question you choose.</p></div>
+    </div>
+
+    <div class="box b-theme">
+      <div class="ico">🔗</div>
+      <div><div class="box-label">Conclusion Formula</div>
+      <p>Three sentences: (1) Restate your answer to the question directly — don't introduce new points. (2) Summarise what Shakespeare has achieved overall. (3) Give your own genuine response to the play — why it still matters, what it reveals about human nature. Examiners reward students who engage personally with the text.</p></div>
+    </div>
+  </div>
+</div>
+
+<script>
+function switchTab(btn, id) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+</script>
+</body>
+</html>

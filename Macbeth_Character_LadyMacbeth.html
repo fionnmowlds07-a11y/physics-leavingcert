@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Macbeth — Character Study: Lady Macbeth</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F6F3EE;--surface:#FFFFFF;--surface2:#EEE9E2;--border:#E2DDD7;--text:#2C2825;--muted:#7A7068;--c:#4a0a5a;--cl:#f5eafc;--cd:#2d0038;--radius:14px;--shadow:0 4px 20px rgba(0,0,0,0.08);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;font-size:16px;}
+nav{position:sticky;top:0;z-index:100;background:rgba(246,243,238,0.97);backdrop-filter:blur(10px);border-bottom:2px solid var(--border);padding:8px 16px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;min-height:52px;}
+.nav-logo{font-family:'Lexend Mega',sans-serif;font-size:0.85rem;color:var(--text);margin-right:4px;text-decoration:none;white-space:nowrap;}.nav-logo span{color:#8B0000;}
+.nav-divider{width:1px;height:20px;background:var(--border);flex-shrink:0;}
+.nav-btn{padding:5px 11px;border-radius:18px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.72rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);text-decoration:none;white-space:nowrap;}
+.nav-btn:hover{transform:translateY(-2px);}
+.nav-btn.home:hover,.nav-btn.home.active{background:#2c2825;border-color:#2c2825;color:#fff;}
+.nav-btn.macbeth:hover,.nav-btn.macbeth.active{background:#8B0000;border-color:#8B0000;color:#fff;}
+.nav-btn.lady:hover,.nav-btn.lady.active{background:#4a0a5a;border-color:#4a0a5a;color:#fff;}
+.nav-btn.duncan:hover,.nav-btn.duncan.active{background:#b07a10;border-color:#b07a10;color:#fff;}
+.nav-btn.banquo:hover,.nav-btn.banquo.active{background:#1a3a5a;border-color:#1a3a5a;color:#fff;}
+.nav-btn.witches:hover,.nav-btn.witches.active{background:#2a1a3a;border-color:#2a1a3a;color:#fff;}
+.nav-btn.themes:hover,.nav-btn.themes.active{background:#1a4a1a;border-color:#1a4a1a;color:#fff;}
+.section{padding:0 16px 80px;max-width:940px;margin:0 auto;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.hero{background:linear-gradient(135deg,var(--cd),var(--c));color:#fff;padding:44px 32px 36px;text-align:center;margin-bottom:32px;}
+.hero .char-label{font-size:0.75rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;opacity:0.75;margin-bottom:10px;}
+.hero h1{font-family:'Lexend Mega',sans-serif;font-size:clamp(1.6rem,4vw,2.6rem);line-height:1.15;margin-bottom:12px;}
+.hero p{opacity:0.88;max-width:620px;margin:0 auto;font-size:0.96rem;}
+.hero-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px;}
+.hero-chip{background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:4px 14px;border-radius:20px;font-size:0.75rem;font-weight:600;}
+.tab-bar{display:flex;gap:4px;flex-wrap:wrap;padding:22px 0 8px;border-bottom:2px solid var(--border);margin-bottom:28px;}
+.tab{padding:8px 18px;border-radius:10px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.8rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);}
+.tab:hover,.tab.active{background:var(--c);color:#fff;border-color:var(--c);}
+.tab-panel{display:none;}.tab-panel.active{display:block;animation:fadeIn 0.25s ease;}
+.info-card{background:var(--surface);border-radius:var(--radius);padding:24px 26px;margin-bottom:20px;box-shadow:var(--shadow);border-left:5px solid var(--c);}
+.info-card h2{font-size:1.1rem;font-weight:700;margin-bottom:12px;}
+.info-card p{margin-bottom:9px;font-size:0.94rem;}
+.info-card ul{padding-left:20px;margin-bottom:9px;}
+.info-card li{margin-bottom:6px;font-size:0.93rem;}
+.quote-block{background:var(--surface);border-radius:var(--radius);padding:22px 24px;margin:18px 0;box-shadow:var(--shadow);border-top:4px solid var(--c);}
+.quote-header{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+.quote-number{display:inline-flex;align-items:center;justify-content:center;background:var(--c);color:#fff;font-family:'Lexend Mega',sans-serif;font-size:0.72rem;font-weight:800;width:28px;height:28px;border-radius:50%;flex-shrink:0;}
+.quote-title{font-size:0.95rem;font-weight:700;color:var(--cd);}
+.quote-box{background:var(--cl);border-left:4px solid var(--c);border-radius:0 8px 8px 0;padding:14px 18px;margin-bottom:16px;}
+.quote-box blockquote{font-family:'Lexend Mega',sans-serif;font-size:1.05rem;font-style:italic;color:var(--cd);line-height:1.5;margin-bottom:6px;}
+.quote-ref{font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--muted);}
+.analysis-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;}
+.analysis-point{background:var(--bg);border-radius:10px;padding:12px 16px;border:1px solid var(--border);}
+.analysis-point.full{grid-column:1/-1;}
+.ap-label{font-size:0.67rem;font-weight:800;text-transform:uppercase;letter-spacing:0.8px;color:var(--muted);margin-bottom:5px;}
+.analysis-point p{font-size:0.9rem;line-height:1.7;margin:0;}
+.analysis-point strong{color:var(--cd);}
+.pill-row{display:flex;flex-wrap:wrap;gap:5px;margin-top:12px;padding-top:12px;border-top:1px solid var(--border);}
+.tech-pill{display:inline-block;background:var(--c);color:#fff;font-size:0.7rem;font-weight:700;padding:2px 10px;border-radius:5px;}
+.theme-pill{display:inline-block;background:#1a4a1a;color:#fff;font-size:0.7rem;font-weight:700;padding:2px 10px;border-radius:5px;}
+.box{border-radius:var(--radius);padding:14px 18px;margin:14px 0;display:flex;gap:12px;align-items:flex-start;}
+.box .ico{font-size:1.5rem;flex-shrink:0;line-height:1.2;}
+.box-label{font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;margin-bottom:4px;}
+.box p,.box li{font-size:0.91rem;}.box ul{padding-left:16px;}.box li{margin-bottom:4px;}
+.b-exam{background:#eaf4fb;border:2px solid #5dade2;}.b-exam .box-label{color:#1a6b9a;}
+.b-tip{background:#fffbf0;border:2px solid #f39c12;}.b-tip .box-label{color:#b7770d;}
+.b-theme{background:#f0f8f0;border:2px solid #2e8b57;}.b-theme .box-label{color:#1a5c35;}
+.arc-bar{display:flex;gap:0;margin:20px 0;border-radius:10px;overflow:hidden;border:2px solid var(--border);}
+.arc-step{flex:1;padding:12px 8px;text-align:center;font-size:0.72rem;font-weight:700;line-height:1.3;}
+.arc-step .arc-label{font-size:0.65rem;text-transform:uppercase;letter-spacing:0.5px;opacity:0.75;margin-top:4px;}
+.label{font-size:0.72rem;font-weight:800;text-transform:uppercase;letter-spacing:0.8px;color:var(--muted);margin-bottom:16px;display:block;}
+@media(max-width:680px){.arc-bar{flex-direction:column;}.analysis-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="Macbeth.html">🗡️ <span>Macbeth</span></a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn home" href="Macbeth.html">Home</a>
+  <a class="nav-btn macbeth" href="Macbeth_Character_Macbeth.html">Macbeth</a>
+  <a class="nav-btn lady active" href="Macbeth_Character_LadyMacbeth.html">Lady Macbeth</a>
+  <a class="nav-btn duncan" href="Macbeth_Character_Duncan.html">Duncan</a>
+  <a class="nav-btn banquo" href="Macbeth_Character_Banquo.html">Banquo</a>
+  <a class="nav-btn witches" href="Macbeth_Character_Witches.html">The Witches</a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn themes" href="Macbeth_Themes.html">📜 Themes &amp; Exam</a>
+</nav>
+
+<div class="hero">
+  <div class="char-label">Antagonist · Co-Conspirator · The Great Reversal</div>
+  <h1>Lady Macbeth</h1>
+  <p>The strongest character at the start of the play and the first to be destroyed by guilt — Shakespeare's most compelling study of ambition and its psychological cost in a woman who tries to make herself inhuman.</p>
+  <div class="hero-chips">
+    <span class="hero-chip">Ambition</span>
+    <span class="hero-chip">Manipulation</span>
+    <span class="hero-chip">Gender &amp; Power</span>
+    <span class="hero-chip">Guilt</span>
+    <span class="hero-chip">The Great Reversal</span>
+    <span class="hero-chip">Appearance vs Reality</span>
+  </div>
+</div>
+
+<div class="section">
+  <div class="tab-bar">
+    <button class="tab active" onclick="switchTab(this,'overview')">📋 Overview</button>
+    <button class="tab" onclick="switchTab(this,'quotes')">💬 Key Quotes</button>
+    <button class="tab" onclick="switchTab(this,'arc')">📈 Character Arc</button>
+    <button class="tab" onclick="switchTab(this,'exam')">🎓 Exam Angles</button>
+  </div>
+
+  <!-- OVERVIEW -->
+  <div class="tab-panel active" id="overview">
+    <span class="label">Who Is Lady Macbeth?</span>
+    <div class="info-card">
+      <h2>🔥 The Dominant Force</h2>
+      <p>When we first meet Lady Macbeth, she is reading her husband's letter about the witches' prophecy — and immediately planning murder. She does not deliberate like Macbeth does. She does not weigh consequences. She decides, and then she goes about making it happen. In Act 1, she is the stronger character in every way: more decisive, more ruthless, more controlled.</p>
+      <p>Her call to be "unsexed" — to have her feminine compassion stripped away — is one of the play's most chilling speeches. She understands that to do what she plans, she needs to destroy the part of herself capable of feeling guilt.</p>
+    </div>
+    <div class="info-card">
+      <h2>⚡ The Central Irony — The Great Reversal</h2>
+      <p>Here is the most important structural fact about Lady Macbeth: <strong>she is the strongest character early in the play and the first to be destroyed.</strong> In Act 2, when Macbeth is crumbling after the murder, she is steady: "A little water clears us of this deed." By Act 3, Macbeth has moved ahead of her in ruthlessness and no longer confides in her. By Act 5, she is walking in her sleep, compulsively washing imaginary blood from her hands. She tried to suppress guilt — and it destroyed her from the inside.</p>
+    </div>
+    <div class="info-card">
+      <h2>🧠 Why She Is So Important to the Exam</h2>
+      <p>Lady Macbeth appears in almost every exam question, even those nominally about Macbeth. She is essential for: the theme of ambition (she shares it fully), gender and power (she challenges Jacobean expectations of women), guilt (she is its most dramatic victim), and the relationship between the two protagonists (which reverses completely over the play).</p>
+    </div>
+    <div class="box b-tip">
+      <div class="ico">💡</div>
+      <div><div class="box-label">The Argument Examiners Love</div>
+      <p>Lady Macbeth fails precisely because she tries to extinguish her conscience rather than reason with it. She asks to be "unsexed" and have "compunctious visitings of nature" stopped. But you cannot simply switch off a conscience — it returns, amplified, as madness. <strong>Her attempt to suppress guilt is exactly what makes it destroy her.</strong></p></div>
+    </div>
+  </div>
+
+  <!-- QUOTES TAB -->
+  <div class="tab-panel" id="quotes">
+    <span class="label">7 Key Quotes — Short, Learnable, Deeply Analysed</span>
+
+    <!-- Q1 -->
+    <div class="quote-block">
+      <div class="quote-header">
+        <span class="quote-number">1</span>
+        <div class="quote-title">Unsex me here</div>
+      </div>
+      <div class="quote-box">
+        <blockquote>"Come, you spirits / That tend on mortal thoughts, unsex me here."</blockquote>
+        <div class="quote-ref">Act 1, Scene 5 — Lady Macbeth alone, after reading Macbeth's letter</div>
+      </div>
+      <div class="analysis-grid">
+        <div class="analysis-point">
+          <div class="ap-label">📍 Context — What's happening</div>
+          <p>She has read Macbeth's letter describing the prophecy. She immediately decides Duncan must die. But she recognises that to do this she must eliminate her own capacity for compassion — she must be "unsexed."</p>
+        </div>
+        <div class="analysis-point">
+          <div class="ap-label">🔍 Technique — What Shakespeare does</div>
+          <p><strong>Invocation / dark prayer.</strong> She calls to supernatural "spirits" just as Macbeth will be drawn to the witches. The imperative "unsex me" is a violent, desperate command, not a request.</p>
+        </div>
+        <div class="analysis-point full">
+          <div class="ap-label">💡 Key Insight — What this really means</div>
+          <p>This speech reveals something crucial: <strong>Lady Macbeth knows she is not naturally capable of murder.</strong> If she were simply cold and evil, she would have no need to call on spirits to remove her conscience. The fact that she has to invoke supernatural forces to suppress her human feeling proves that the human feeling is there. She is not a monster — she is a person trying to make herself into one. This is what makes her so tragic: the cruelty she performs is the result of effort, not nature. And the effort ultimately fails.</p>
+        </div>
+        <div class="analysis-point">
+          <div class="ap-label">🎭 Effect on Audience</div>
+          <p>The speech is both horrifying and pitiable. We watch someone try to destroy the best part of themselves for the sake of ambition. The prayer to dark spirits also links her to the supernatural world of the witches — appearance vs reality.</p>
+        </div>
+        <div class="analysis-point">
+          <div class="ap-label">📝 Use In Exam For</div>
+          <p>Ambition (she is as driven as Macbeth), Gender and power (she has to override her "femaleness" to act), The supernatural, Appearance vs Reality (she creates a false self).</p>
+        </div>
+      </div>
+      <div class="pill-row">
+        <span class="tech-pill">Invocation / Dark Prayer</span><span class="tech-pill">Imperative</span><span class="tech-pill">Supernatural Imagery</span>
+        <span class="theme-pill">Ambition</span><span class="theme-pill">Gender &amp; Power</span><span class="theme-pill">The Supernatural</span>
+      </div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="quote-block">
+      <div class="quote-header">
+        <span class="quote-number">2</span>
+        <div class="quote-title">Look like the innocent flower</div>
+      </div>
+      <div class="quote-box">
+        <blockquote>"Look like the innocent flower, / But be the serpent under't."</blockquote>
+        <div class="quote-ref">Act 1, Scene 5 — Lady Macbeth to Macbeth, advising him how to behave before Duncan</div>
+      </div>
+      <div class="analysis-grid">
+        <div class="analysis-point">
+          <div class="ap-label">📍 Context — What's happening</div>
+          <p>Duncan is about to arrive at their castle. Lady Macbeth is coaching Macbeth on how to hide his intentions — look innocent, think murderous. She is directing him like an actor in a play.</p>
+        </div>
+        <div class="analysis-point">
+          <div class="ap-label">🔍 Technique — What Shakespeare does</div>
+          <p><strong>Antithesis and natural imagery.</strong> Flower vs serpent — beauty concealing danger. This is the play's central paradox ("fair is foul") made into a command. The serpent also echoes the Garden of Eden: Lady Macbeth as temptress.</p>
+        </div>
+        <div class="analysis-point full">
+          <div class="ap-label">💡 Key Insight — What this really means</div>
+          <p>This is the play's central theme — <strong>Appearance vs Reality</strong> — expressed as direct instruction. Lady Macbeth is teaching Macbeth to deceive. But notice: she has to tell him this because he is not naturally a deceiver. Macbeth is bad at pretending; Lady Macbeth is brilliant at it. This quote also shows her in the dominant role: she is instructing her husband, coaching and directing him. She has the plan; he has the hand. <strong>She is the architect of the murder.</strong></p>
+        </div>
+        <div class="analysis-point">
+          <div class="ap-label">📝 Use In Exam For</div>
+          <p>Appearance vs Reality (the play's central theme, stated here explicitly), Lady Macbeth's role (she is the architect and planner), Dramatic irony (we know what she means when she says this to Macbeth in front of Duncan later).</p>
+        </div>
+      </div>
+      <div class="pill-row">
+        <span class="tech-pill">Antithesis</span><span class="tech-pill">Natural Imagery</span><span class="tech-pill">Biblical Allusion (Eden)</span>
+        <span class="theme-pill">Appearance vs Reality</span><span class="theme-pill">Ambition</span><span class="theme-pill">Deception</span>
+      </div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="quote-block">
+      <div class="quote-header">
+        <span class="quote-number">3</span>
+        <div class="quote-title">When you durst do it, then you were a man</div>
+      </div>
+      <div class="quote-box">
+        <blockquote>"When you durst do it, then you were a man."</blockquote>
+        <div class="quote-ref">Act 1, Scene 7 — Lady Macbeth to Macbeth, after he says he will not kill Duncan</div>
+      </div>
+      <div class="analysis-grid">
+        <div class="analysis-point">
+          <div class="ap-label">📍 Context — What's happening</div>
+          <p>Macbeth has just told her he has decided not to go through with the murder: "We will proceed no further in this business." She attacks him immediately — targeting his masculinity, his courage, his love for her.</p>
+        </div>
+        <div class="analysis-point">
+          <div class="ap-label">🔍 Technique — What Shakespeare does</div>
+          <p><strong>Manipulation through gender.</strong> She equates manhood with willingness to kill. The conditional "when you durst" suggests she questions whether he was ever truly a man. This is precise, targeted psychological pressure.</p>
+        </div>
+        <div class="analysis-point full">
+          <div class="ap-label">💡 Key Insight — What this really means</div>
+          <p>This is the moment the murder is actually decided. Macbeth had talked himself out of it (Act 1.7 soliloquy). Lady Macbeth talks him back in. Her weapon is <strong>shame about masculinity</strong> — she knows exactly what Macbeth cares about: being seen as brave, decisive, worthy. This is the play's most disturbing example of manipulation: she does not reason with him, she attacks his sense of identity. And it works. By the end of this conversation, Macbeth says "I am settled." The manipulation succeeds. <strong>But note: the choice is still Macbeth's.</strong> He could have held firm. He doesn't.</p>
+        </div>
+        <div class="analysis-point">
+          <div class="ap-label">🎭 Effect on Audience</div>
+          <p>Uncomfortable and compelling. We see that Lady Macbeth understands her husband perfectly. She knows exactly which lever to pull. The audience may feel she is the true driving force of the murder.</p>
+        </div>
+        <div class="analysis-point">
+          <div class="ap-label">📝 Use In Exam For</div>
+          <p>Lady Macbeth's role and influence, Gender and power, Macbeth's culpability — he is manipulated but still chooses, The relationship between the two protagonists.</p>
+        </div>
+      </div>
+      <div class="pill-row">
+        <span class="tech-pill">Manipulation</span><span class="tech-pill">Conditional Syntax</span><span class="tech-pill">Gender Imagery</span>
+        <span class="theme-pill">Gender &amp; Power</span><span class="theme-pill">Ambition</span><span class="theme-pill">Macbeth &amp; Lady Macbeth</span>
+      </div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="quote-block">
+      <div class="quote-header">
+        <span class="quote-number">4</span>
+        <div class="quote-title">A little water clears us of this deed</div>
+      </div>
+      <div class="quote-box">
+        <blockquote>"A little water clears us of this deed: / How easy is it then!"</blockquote>
+        <div class="quote-ref">Act 2, Scene 2 — Lady Macbeth to Macbeth, just after the murder</div>
+      </div>
+      <div class="analysis-grid">
+        <div class="analysis-point">
+          <div class="ap-label">📍 Context — What's happening</div>
+          <p>Macbeth is shattered after the murder, horrified by the blood on his hands. Lady Macbeth is practical and brisk — she takes the daggers he has carried back by mistake, plants them on the guards herself, and returns telling him to simply wash his hands.</p>
+        </div>
+        <div class="analysis-point">
+          <div class="ap-label">🔍 Technique — What Shakespeare does</div>
+          <p><strong>Dramatic irony</strong> — the audience knows (and will see) that this claim is devastatingly wrong. Her sleepwalking scene directly echoes this speech. <strong>Water will not clear her.</strong></p>
+        </div>
+        <div class="analysis-point full">
+          <div class="ap-label">💡 Key Insight — What this really means</div>
+          <p>This is Lady Macbeth at her most dangerously controlled. She is brisk, dismissive, almost contemptuous of her husband's guilt. "How easy is it then!" — as if the moral horror is a trivial inconvenience. But the dramatic irony is devastating: in Act 5, she will stand at the same spot mentally washing her hands with the words "Out, damned spot!" and "Here's the smell of the blood still." <strong>The guilt she denies here has gone underground, where it grows into something that destroys her sanity.</strong> The contrast between Act 2 Lady Macbeth and Act 5 Lady Macbeth is the most powerful demonstration of guilt in the entire play.</p>
+        </div>
+        <div class="analysis-point">
+          <div class="ap-label">📝 Use In Exam For</div>
+          <p>Guilt (the irony of this speech vs her Act 5 collapse), The consequences of suppressing guilt, Lady Macbeth's strength early vs weakness later — the reversal.</p>
+        </div>
+      </div>
+      <div class="pill-row">
+        <span class="tech-pill">Dramatic Irony</span><span class="tech-pill">Foreshadowing</span><span class="tech-pill">Contrast (Acts 2 &amp; 5)</span>
+        <span class="theme-pill">Guilt</span><span class="theme-pill">Appearance vs Reality</span><span class="theme-pill">The Great Reversal</span>
+      </div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="quote-block">
+      <div class="quote-header">
+        <span class="quote-number">5</span>
+        <div class="quote-title">Nought's had, all's spent</div>
+      </div>
+      <div class="quote-box">
+        <blockquote>"Nought's had, all's spent, / Where our desire is got without content."</blockquote>
+        <div class="quote-ref">Act 3, Scene 2 — Lady Macbeth, alone, before Macbeth enters</div>
+      </div>
+      <div class="analysis-grid">
+        <div class="analysis-point">
+          <div class="ap-label">📍 Context — What's happening</div>
+          <p>They are now king and queen but deeply unhappy. Macbeth is planning Banquo's murder (without telling her). In a rare aside, Lady Macbeth drops her composed mask and admits the truth to herself.</p>
+        </div>
+        <div class="analysis-point">
+          <div class="ap-label">🔍 Technique — What Shakespeare does</div>
+          <p><strong>Chiasmus</strong> — "nought's had, all's spent" reverses subject and object to create a paradox. To have spent everything and gained nothing. The compressed language has a bitter, reflective tone completely different from her earlier commands.</p>
+        </div>
+        <div class="analysis-point full">
+          <div class="ap-label">💡 Key Insight — What this really means</div>
+          <p>This is the first crack in Lady Macbeth's armour. She is alone — she only says this when no one is watching — and she admits that achieving their ambition has left them with nothing. "Desire got without content" — they have what they wanted and feel nothing good from it. This is the first moment she resembles the Act 5 Lady Macbeth. She immediately composes herself when Macbeth enters, but <strong>the audience has now seen the real person beneath the mask.</strong> This quote is essential because it proves she is not simply cold — she can feel the hollowness of what they have done.</p>
+        </div>
+        <div class="analysis-point">
+          <div class="ap-label">📝 Use In Exam For</div>
+          <p>Consequences of ambition (success brings nothing), The Great Reversal beginning, Lady Macbeth's inner life (she hides her guilt even from Macbeth), Appearance vs Reality.</p>
+        </div>
+      </div>
+      <div class="pill-row">
+        <span class="tech-pill">Chiasmus</span><span class="tech-pill">Aside</span><span class="tech-pill">Paradox</span>
+        <span class="theme-pill">Ambition — Its Cost</span><span class="theme-pill">Guilt</span><span class="theme-pill">The Great Reversal</span>
+      </div>
+    </div>
+
+    <!-- Q6 -->
+    <div class="quote-block">
+      <div class="quote-header">
+        <span class="quote-number">6</span>
+        <div class="quote-title">Out, damned spot</div>
+      </div>
+      <div class="quote-box">
+        <blockquote>"Out, damned spot! out, I say!"</blockquote>
+        <div class="quote-ref">Act 5, Scene 1 — Lady Macbeth, sleepwalking</div>
+      </div>
+      <div class="analysis-grid">
+        <div class="analysis-point">
+          <div class="ap-label">📍 Context — What's happening</div>
+          <p>A doctor and gentlewoman observe Lady Macbeth sleepwalking. She rubs her hands as if washing them, reliving the night of Duncan's murder. She talks aloud — confessing without realising she is being overheard.</p>
+        </div>
+        <div class="analysis-point">
+          <div class="ap-label">🔍 Technique — What Shakespeare does</div>
+          <p><strong>Repetition and imperative — but now directed at herself.</strong> In Act 1, she commanded Macbeth ("screw your courage"). Now she commands a stain that cannot be removed. The imperative has turned inward and become futile.</p>
+        </div>
+        <div class="analysis-point full">
+          <div class="ap-label">💡 Key Insight — What this really means</div>
+          <p>This scene is the complete reversal of Act 2's "a little water clears us of this deed." The blood will not wash off. Shakespeare makes the guilt <strong>literally visible as a physical stain</strong> in her mind — she can see it, smell it ("all the perfumes of Arabia will not sweeten this little hand"), feel it. The guilt she suppressed has broken through her sleep — the one time she cannot maintain her controlled performance. Sleep symbolism ties back to "Macbeth does murder sleep": she too has lost all peace. <strong>The woman who tried to suppress her conscience is now destroyed by it.</strong> This is the most powerful demonstration in the play that guilt cannot be eliminated, only delayed.</p>
+        </div>
+        <div class="analysis-point">
+          <div class="ap-label">🎭 Effect on Audience</div>
+          <p>Deeply tragic. We feel pity for her — she is suffering enormously. The doctor who watches says "More needs she the divine than the physician." Even he recognises this is a spiritual crisis, not a medical one.</p>
+        </div>
+        <div class="analysis-point">
+          <div class="ap-label">📝 Use In Exam For</div>
+          <p>Guilt (its ultimate form — madness), The Great Reversal (from strength to collapse), Consequences of ambition, Sleep symbolism, Contrast with "a little water clears us."</p>
+        </div>
+      </div>
+      <div class="pill-row">
+        <span class="tech-pill">Repetition</span><span class="tech-pill">Imperative (futile)</span><span class="tech-pill">Blood Symbolism</span><span class="tech-pill">Dramatic Irony</span>
+        <span class="theme-pill">Guilt</span><span class="theme-pill">Consequences of Ambition</span><span class="theme-pill">The Great Reversal</span>
+      </div>
+    </div>
+
+    <!-- Q7 -->
+    <div class="quote-block">
+      <div class="quote-header">
+        <span class="quote-number">7</span>
+        <div class="quote-title">All the perfumes of Arabia</div>
+      </div>
+      <div class="quote-box">
+        <blockquote>"All the perfumes of Arabia will not sweeten this little hand."</blockquote>
+        <div class="quote-ref">Act 5, Scene 1 — Lady Macbeth, sleepwalking</div>
+      </div>
+      <div class="analysis-grid">
+        <div class="analysis-point">
+          <div class="ap-label">📍 Context — What's happening</div>
+          <p>Continuing the sleepwalking scene. She brings her hand to her face, as if smelling blood that isn't there. The reference to Arabia — richest, most exotic perfumes in the Jacobean world — emphasises the scale of the contamination.</p>
+        </div>
+        <div class="analysis-point">
+          <div class="ap-label">🔍 Technique — What Shakespeare does</div>
+          <p><strong>Hyperbole and sensory imagery.</strong> The greatest abundance of sweetness in the world cannot overcome her guilt. Notice the contrast: Act 1, she called on darkness; Act 5, she wishes for sweetness and light. The reversal is complete.</p>
+        </div>
+        <div class="analysis-point full">
+          <div class="ap-label">💡 Key Insight — What this really means</div>
+          <p>This quote is often paired with "Out, damned spot" but it adds something different: <strong>her sense of smell is involved now.</strong> She doesn't just see the blood — she smells it. The guilt has invaded every sense. The woman who said "a little water" could fix everything now understands that no luxury, no quantity of sweetness in the world can purge what she has done. <strong>The scale has shifted from a drop of water to all the perfumes of Arabia.</strong> This is Shakespeare showing that guilt compounds over time — it does not diminish, it grows. Her final despair (she dies off-stage, apparently by suicide) is the logical endpoint of this overwhelming guilt.</p>
+        </div>
+        <div class="analysis-point">
+          <div class="ap-label">📝 Use In Exam For</div>
+          <p>Guilt as inescapable and growing, Contrast with Act 2 ("a little water"), Consequences of ambition — the cost falls hardest on Lady Macbeth, Sensory imagery.</p>
+        </div>
+      </div>
+      <div class="pill-row">
+        <span class="tech-pill">Hyperbole</span><span class="tech-pill">Sensory Imagery</span><span class="tech-pill">Contrast with Act 2</span>
+        <span class="theme-pill">Guilt</span><span class="theme-pill">Consequences of Ambition</span><span class="theme-pill">The Great Reversal</span>
+      </div>
+    </div>
+
+    <div class="box b-tip">
+      <div class="ico">💡</div>
+      <div><div class="box-label">The Essential Contrast to Know</div>
+      <p>The most powerful thing you can do with Lady Macbeth quotes is <strong>pair them as contrasts</strong>: Q4 (a little water, Act 2) vs Q6/Q7 (damned spot/perfumes, Act 5). Same image — blood on hands, water as solution — completely reversed outcome. This contrast shows you understand the arc, not just individual quotes, and will impress any examiner.</p></div>
+    </div>
+  </div>
+
+  <!-- ARC TAB -->
+  <div class="tab-panel" id="arc">
+    <span class="label">Lady Macbeth's Character Arc — The Great Reversal</span>
+    <div class="arc-bar">
+      <div class="arc-step" style="background:#4a0a5a;color:#fff;">🔥 Cold Architect<div class="arc-label">Act 1</div></div>
+      <div class="arc-step" style="background:#6a1a8a;color:#fff;">🩸 Controlled Manager<div class="arc-label">Act 2</div></div>
+      <div class="arc-step" style="background:#8a3aaa;color:#fff;">😔 Hollow Queen<div class="arc-label">Act 3</div></div>
+      <div class="arc-step" style="background:#aa5acc;color:#fff;">👻 Isolated Stranger<div class="arc-label">Act 4</div></div>
+      <div class="arc-step" style="background:#ccaaee;color:#2d0038;">💔 Shattered Soul<div class="arc-label">Act 5</div></div>
+    </div>
+    <div class="info-card">
+      <h2>📈 Act 1 — Cold Architect</h2>
+      <p>Reads the letter, immediately plans murder, summons dark spirits to strip away her conscience. She is decisive where Macbeth is uncertain. She coaches him, instructs him, directs him. She is in total control — or appears to be. The key word is "appears": she has to call on external forces to achieve this control, which means the control is performed, not natural.</p>
+    </div>
+    <div class="info-card">
+      <h2>📈 Act 2 — Controlled Manager</h2>
+      <p>After the murder, Macbeth is falling apart. Lady Macbeth is brisk and practical: she takes the daggers back, plants them on the guards, tells Macbeth "a little water clears us of this deed." She holds their world together through sheer will. But she cannot look at the sleeping guards because they remind her of her father. <strong>One tiny crack: the smallest human feeling she could not fully suppress.</strong></p>
+    </div>
+    <div class="info-card">
+      <h2>📈 Act 3 — Hollow Queen</h2>
+      <p>"Nought's had, all's spent." She says this in a rare private moment of honesty. She is queen but empty. She tries to comfort Macbeth at the banquet when Banquo's ghost appears — but he no longer confides in her, and she is left managing a situation she doesn't understand. She is no longer his partner; she is becoming a stranger to him.</p>
+    </div>
+    <div class="info-card">
+      <h2>📈 Acts 4–5 — Shattered Soul</h2>
+      <p>Lady Macbeth disappears from the main action of Acts 4–5 until the sleepwalking scene. When we see her again, she is completely broken: sleepwalking, reliving the night of the murder, washing hands that cannot be cleaned. She dies off-stage — implied suicide. The doctor says her troubles are beyond medicine. Macbeth receives the news with the "tomorrow" speech — not grief, not love, just nihilism. She is already gone from his world before she physically dies.</p>
+    </div>
+  </div>
+
+  <!-- EXAM TAB -->
+  <div class="tab-panel" id="exam">
+    <span class="label">Past Exam Questions &amp; Strategies</span>
+
+    <div class="box b-exam">
+      <div class="ico">📝</div>
+      <div><div class="box-label">2023 — Lady Macbeth &amp; the Witches Heighten Dramatic Impact</div>
+      <p>Lady Macbeth's dramatic impact comes from her reversal: she is the source of strength in Act 1 and the source of pathos in Act 5. The contrast of "a little water" (Act 2) vs "damned spot" (Act 5) is your strongest dramatic argument. Pair her with the witches: both are female forces that push Macbeth toward murder, but the witches predict while Lady Macbeth acts.</p></div>
+    </div>
+
+    <div class="box b-exam">
+      <div class="ico">📝</div>
+      <div><div class="box-label">2014 Mock — Lady Macbeth's Strengths and Weaknesses Lead to Her Downfall</div>
+      <p>Her <strong>strength</strong>: decisiveness, manipulation, control (Act 1 quotes). Her <strong>weakness</strong>: she suppresses guilt rather than processing it (Act 2: "a little water"), which means the guilt accumulates rather than resolving. The "nought's had" speech shows the hollowness beginning. The sleepwalking scene is the complete collapse. Her strengths become weaknesses: her determination means she will not surrender to her conscience until it's too late.</p></div>
+    </div>
+
+    <div class="box b-exam">
+      <div class="ico">📝</div>
+      <div><div class="box-label">2007 — The Relationship Undergoes Significant Change</div>
+      <p>Structure this as three stages. <strong>Act 1</strong>: she leads, he follows. <strong>Act 3</strong>: he acts without her ("be innocent of the knowledge"). <strong>Act 5</strong>: she is destroyed; he barely registers her death. Show how the power dynamic shifts completely — she begins as his architect and ends as a stranger to him. This is one of the most dramatically interesting relationships in all of Shakespeare.</p></div>
+    </div>
+
+    <div class="box b-theme">
+      <div class="ico">🔗</div>
+      <div><div class="box-label">Essential Cross-Character Links</div>
+      <ul>
+        <li><strong>Lady Macbeth vs Macbeth (guilt):</strong> He collapses immediately after the murder; she holds firm. But she collapses first (Act 5) while he has hardened into a tyrant. Different speeds of destruction.</li>
+        <li><strong>Lady Macbeth vs the Witches:</strong> Both female, both supernatural-adjacent, both push Macbeth toward murder. But the witches speak in riddles; Lady Macbeth acts directly. The witches predict; she executes.</li>
+        <li><strong>Lady Macbeth vs Lady Macduff:</strong> Brief but powerful contrast. Lady Macduff is a devoted wife and mother, killed for that loyalty. Lady Macbeth abandons all maternal feeling ("I have given suck..."). One represents natural order; the other its destruction.</li>
+      </ul></div>
+    </div>
+  </div>
+</div>
+
+<script>
+function switchTab(btn, id) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+</script>
+</body>
+</html>

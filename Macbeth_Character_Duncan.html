@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Macbeth — Character Study: Duncan</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F6F3EE;--surface:#FFFFFF;--surface2:#EEE9E2;--border:#E2DDD7;--text:#2C2825;--muted:#7A7068;--c:#b07a10;--cl:#fdf5e0;--cd:#6e4c00;--radius:14px;--shadow:0 4px 20px rgba(0,0,0,0.08);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;font-size:16px;}
+nav{position:sticky;top:0;z-index:100;background:rgba(246,243,238,0.97);backdrop-filter:blur(10px);border-bottom:2px solid var(--border);padding:8px 16px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;min-height:52px;}
+.nav-logo{font-family:'Lexend Mega',sans-serif;font-size:0.85rem;color:var(--text);margin-right:4px;text-decoration:none;white-space:nowrap;}.nav-logo span{color:#8B0000;}
+.nav-divider{width:1px;height:20px;background:var(--border);flex-shrink:0;}
+.nav-btn{padding:5px 11px;border-radius:18px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.72rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);text-decoration:none;white-space:nowrap;}
+.nav-btn:hover{transform:translateY(-2px);}
+.nav-btn.home:hover,.nav-btn.home.active{background:#2c2825;border-color:#2c2825;color:#fff;}
+.nav-btn.macbeth:hover,.nav-btn.macbeth.active{background:#8B0000;border-color:#8B0000;color:#fff;}
+.nav-btn.lady:hover,.nav-btn.lady.active{background:#4a0a5a;border-color:#4a0a5a;color:#fff;}
+.nav-btn.duncan:hover,.nav-btn.duncan.active{background:#b07a10;border-color:#b07a10;color:#fff;}
+.nav-btn.banquo:hover,.nav-btn.banquo.active{background:#1a3a5a;border-color:#1a3a5a;color:#fff;}
+.nav-btn.witches:hover,.nav-btn.witches.active{background:#2a1a3a;border-color:#2a1a3a;color:#fff;}
+.nav-btn.themes:hover,.nav-btn.themes.active{background:#1a4a1a;border-color:#1a4a1a;color:#fff;}
+.section{padding:0 16px 80px;max-width:940px;margin:0 auto;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.hero{background:linear-gradient(135deg,var(--cd),var(--c));color:#fff;padding:44px 32px 36px;text-align:center;margin-bottom:32px;}
+.hero .char-label{font-size:0.75rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;opacity:0.75;margin-bottom:10px;}
+.hero h1{font-family:'Lexend Mega',sans-serif;font-size:clamp(1.6rem,4vw,2.6rem);line-height:1.15;margin-bottom:12px;}
+.hero p{opacity:0.88;max-width:620px;margin:0 auto;font-size:0.96rem;}
+.hero-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px;}
+.hero-chip{background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:4px 14px;border-radius:20px;font-size:0.75rem;font-weight:600;}
+.tab-bar{display:flex;gap:4px;flex-wrap:wrap;padding:22px 0 8px;border-bottom:2px solid var(--border);margin-bottom:28px;}
+.tab{padding:8px 18px;border-radius:10px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.8rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);}
+.tab:hover,.tab.active{background:var(--c);color:#fff;border-color:var(--c);}
+.tab-panel{display:none;}.tab-panel.active{display:block;animation:fadeIn 0.25s ease;}
+.info-card{background:var(--surface);border-radius:var(--radius);padding:24px 26px;margin-bottom:20px;box-shadow:var(--shadow);border-left:5px solid var(--c);}
+.info-card h2{font-size:1.1rem;font-weight:700;margin-bottom:12px;}
+.info-card p{margin-bottom:9px;font-size:0.94rem;}
+.info-card ul{padding-left:20px;margin-bottom:9px;}
+.info-card li{margin-bottom:6px;font-size:0.93rem;}
+.quote-block{background:var(--surface);border-radius:var(--radius);padding:22px 24px;margin:18px 0;box-shadow:var(--shadow);border-top:4px solid var(--c);}
+.quote-header{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+.quote-number{display:inline-flex;align-items:center;justify-content:center;background:var(--c);color:#fff;font-family:'Lexend Mega',sans-serif;font-size:0.72rem;font-weight:800;width:28px;height:28px;border-radius:50%;flex-shrink:0;}
+.quote-title{font-size:0.95rem;font-weight:700;color:var(--cd);}
+.quote-box{background:var(--cl);border-left:4px solid var(--c);border-radius:0 8px 8px 0;padding:14px 18px;margin-bottom:16px;}
+.quote-box blockquote{font-family:'Lexend Mega',sans-serif;font-size:1.05rem;font-style:italic;color:var(--cd);line-height:1.5;margin-bottom:6px;}
+.quote-ref{font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--muted);}
+.analysis-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;}
+.analysis-point{background:var(--bg);border-radius:10px;padding:12px 16px;border:1px solid var(--border);}
+.analysis-point.full{grid-column:1/-1;}
+.ap-label{font-size:0.67rem;font-weight:800;text-transform:uppercase;letter-spacing:0.8px;color:var(--muted);margin-bottom:5px;}
+.analysis-point p{font-size:0.9rem;line-height:1.7;margin:0;}
+.analysis-point strong{color:var(--cd);}
+.pill-row{display:flex;flex-wrap:wrap;gap:5px;margin-top:12px;padding-top:12px;border-top:1px solid var(--border);}
+.tech-pill{display:inline-block;background:var(--c);color:#fff;font-size:0.7rem;font-weight:700;padding:2px 10px;border-radius:5px;}
+.theme-pill{display:inline-block;background:#1a4a1a;color:#fff;font-size:0.7rem;font-weight:700;padding:2px 10px;border-radius:5px;}
+.box{border-radius:var(--radius);padding:14px 18px;margin:14px 0;display:flex;gap:12px;align-items:flex-start;}
+.box .ico{font-size:1.5rem;flex-shrink:0;line-height:1.2;}
+.box-label{font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;margin-bottom:4px;}
+.box p,.box li{font-size:0.91rem;}.box ul{padding-left:16px;}.box li{margin-bottom:4px;}
+.b-exam{background:#eaf4fb;border:2px solid #5dade2;}.b-exam .box-label{color:#1a6b9a;}
+.b-tip{background:#fffbf0;border:2px solid #f39c12;}.b-tip .box-label{color:#b7770d;}
+.b-theme{background:#f0f8f0;border:2px solid #2e8b57;}.b-theme .box-label{color:#1a5c35;}
+.label{font-size:0.72rem;font-weight:800;text-transform:uppercase;letter-spacing:0.8px;color:var(--muted);margin-bottom:16px;display:block;}
+@media(max-width:680px){.analysis-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="Macbeth.html">🗡️ <span>Macbeth</span></a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn home" href="Macbeth.html">Home</a>
+  <a class="nav-btn macbeth" href="Macbeth_Character_Macbeth.html">Macbeth</a>
+  <a class="nav-btn lady" href="Macbeth_Character_LadyMacbeth.html">Lady Macbeth</a>
+  <a class="nav-btn duncan active" href="Macbeth_Character_Duncan.html">Duncan</a>
+  <a class="nav-btn banquo" href="Macbeth_Character_Banquo.html">Banquo</a>
+  <a class="nav-btn witches" href="Macbeth_Character_Witches.html">The Witches</a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn themes" href="Macbeth_Themes.html">📜 Themes &amp; Exam</a>
+</nav>
+
+<div class="hero">
+  <div class="char-label">Virtuous King · Symbolic Victim · The Moral Measure</div>
+  <h1>King Duncan</h1>
+  <p>A gracious, generous king whose virtues make his murder the central crime against God, nature, and order — Duncan is not just a victim but the moral standard by which everything in the play is judged.</p>
+  <div class="hero-chips">
+    <span class="hero-chip">Virtuous Leadership</span>
+    <span class="hero-chip">Natural Order</span>
+    <span class="hero-chip">Trust &amp; Betrayal</span>
+    <span class="hero-chip">Good vs Evil</span>
+    <span class="hero-chip">Kingship</span>
+  </div>
+</div>
+
+<div class="section">
+  <div class="tab-bar">
+    <button class="tab active" onclick="switchTab(this,'overview')">📋 Overview</button>
+    <button class="tab" onclick="switchTab(this,'quotes')">💬 Key Quotes</button>
+    <button class="tab" onclick="switchTab(this,'exam')">🎓 Exam Angles</button>
+  </div>
+
+  <!-- OVERVIEW -->
+  <div class="tab-panel active" id="overview">
+    <span class="label">Duncan's Role in the Play</span>
+    <div class="info-card">
+      <h2>👑 The Ideal King</h2>
+      <p>Duncan represents everything a king should be according to Jacobean values: he is generous ("I have begun to plant thee, and will labour to make thee full of growing"), grateful to his soldiers, trusting of his subjects, and loved by his people. He is associated throughout with natural images of growth, planting, and nurturing.</p>
+      <p>He is murdered in Act 2 — early, suddenly — but his presence echoes throughout the rest of the play. Every character who speaks of him after his death (Malcolm, Macduff, even Macbeth himself) does so with reverence.</p>
+    </div>
+    <div class="info-card">
+      <h2>⚠️ His Fatal Flaw</h2>
+      <p>Duncan is not naive — but he is trusting. His famous line "There's no art to find the mind's construction in the face" (spoken about the first Thane of Cawdor, a traitor) is immediately followed by his meeting with Macbeth, the second Thane of Cawdor — and another traitor. Shakespeare places this irony deliberately: Duncan has just admitted he cannot read people's intentions — and then trusts Macbeth completely.</p>
+    </div>
+    <div class="info-card">
+      <h2>📐 His Dramatic Function</h2>
+      <p>Duncan's most important role is as a <strong>moral standard</strong>. His virtues define the magnitude of Macbeth's crime. His generous kingship defines how catastrophically bad Macbeth's tyranny is by contrast. Every quality Macbeth destroys — trust, natural order, the sacred guest relationship — is embodied in Duncan. He is the positive against which everything else is measured.</p>
+    </div>
+    <div class="box b-tip">
+      <div class="ico">💡</div>
+      <div><div class="box-label">Exam Tip — Duncan is a Foil</div>
+      <p>Duncan is best used as a contrast to Macbeth. In any question about leadership, justice, or the consequences of ambition, one paragraph on Duncan as the virtuous model gives you the contrast you need to show how far Macbeth has fallen.</p></div>
+    </div>
+  </div>
+
+  <!-- QUOTES TAB -->
+  <div class="tab-panel" id="quotes">
+    <span class="label">6 Key Quotes — Short, Learnable, Deeply Analysed</span>
+
+    <!-- Q1 -->
+    <div class="quote-block">
+      <div class="quote-header">
+        <span class="quote-number">1</span>
+        <div class="quote-title">No art to find the mind's construction</div>
+      </div>
+      <div class="quote-box">
+        <blockquote>"There's no art / To find the mind's construction in the face."</blockquote>
+        <div class="quote-ref">Act 1, Scene 4 — Duncan, speaking about the executed Thane of Cawdor</div>
+      </div>
+      <div class="analysis-grid">
+        <div class="analysis-point">
+          <div class="ap-label">📍 Context — What's happening</div>
+          <p>Duncan has just had the traitorous first Thane of Cawdor executed. He reflects that he completely trusted the man and had no idea of his treachery. Immediately after saying this, Macbeth — the new Thane of Cawdor — walks in.</p>
+        </div>
+        <div class="analysis-point">
+          <div class="ap-label">🔍 Technique — What Shakespeare does</div>
+          <p><strong>Dramatic irony</strong> — the audience knows that Duncan is about to repeat exactly the same mistake he is confessing to. The timing is precise and devastating.</p>
+        </div>
+        <div class="analysis-point full">
+          <div class="ap-label">💡 Key Insight — What this really means</div>
+          <p>This is the play's most powerful example of dramatic irony. Duncan says <strong>he cannot read people's true intentions from their faces</strong> — and then immediately trusts the man who will murder him. Shakespeare is not showing that Duncan is stupid. He is showing that <strong>trust is the quality of a good king, and it is also his vulnerability.</strong> Duncan's fatal flaw is inseparable from his virtue. He cannot imagine that someone he loves and rewards could want to kill him. This connects directly to Lady Macbeth's instruction: "Look like the innocent flower, but be the serpent under't." Duncan is the innocent flower — and he cannot see the serpent beside him.</p>
+        </div>
+        <div class="analysis-point">
+          <div class="ap-label">📝 Use In Exam For</div>
+          <p>Leadership (trust as both virtue and vulnerability), Appearance vs Reality (Duncan cannot read faces), Dramatic irony.</p>
+        </div>
+      </div>
+      <div class="pill-row">
+        <span class="tech-pill">Dramatic Irony</span><span class="tech-pill">Foreshadowing</span>
+        <span class="theme-pill">Leadership</span><span class="theme-pill">Appearance vs Reality</span><span class="theme-pill">Trust &amp; Betrayal</span>
+      </div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="quote-block">
+      <div class="quote-header">
+        <span class="quote-number">2</span>
+        <div class="quote-title">I have begun to plant thee</div>
+      </div>
+      <div class="quote-box">
+        <blockquote>"I have begun to plant thee, and will labour / To make thee full of growing."</blockquote>
+        <div class="quote-ref">Act 1, Scene 4 — Duncan to Macbeth, after rewarding him</div>
+      </div>
+      <div class="analysis-grid">
+        <div class="analysis-point">
+          <div class="ap-label">📍 Context — What's happening</div>
+          <p>Duncan is rewarding Macbeth for his bravery in battle — naming him Thane of Cawdor and promising future favour. The metaphor is from horticulture: a king as gardener, nurturing his subjects.</p>
+        </div>
+        <div class="analysis-point">
+          <div class="ap-label">🔍 Technique — What Shakespeare does</div>
+          <p><strong>Extended metaphor — kingship as gardening.</strong> The king plants, nurtures, grows. This is associated with the natural order, cycles of life, and benevolent care. It is the complete opposite of Macbeth's later tyranny.</p>
+        </div>
+        <div class="analysis-point full">
+          <div class="ap-label">💡 Key Insight — What this really means</div>
+          <p>Duncan's generosity here makes the betrayal more horrifying. He is literally promising to help Macbeth grow and flourish. In return, Macbeth murders him. The garden metaphor also sets up the contrast with Macbeth as king: <strong>Macbeth does not plant and nurture — he murders and destroys.</strong> Malcolm at the end describes restoring Scotland in terms of "this dead butcher" — the garden has been devastated and must be rebuilt. The image of natural growth is the play's ideal of good kingship; Macbeth represents its polar opposite.</p>
+        </div>
+        <div class="analysis-point">
+          <div class="ap-label">📝 Use In Exam For</div>
+          <p>Leadership (Duncan = ideal king), Nature imagery, Contrast with Macbeth's tyranny, Betrayal — Duncan's trust makes the murder worse.</p>
+        </div>
+      </div>
+      <div class="pill-row">
+        <span class="tech-pill">Extended Metaphor (gardening)</span><span class="tech-pill">Natural Imagery</span>
+        <span class="theme-pill">Leadership</span><span class="theme-pill">Good vs Evil</span><span class="theme-pill">Natural Order</span>
+      </div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="quote-block">
+      <div class="quote-header">
+        <span class="quote-number">3</span>
+        <div class="quote-title">This castle hath a pleasant seat</div>
+      </div>
+      <div class="quote-box">
+        <blockquote>"This castle hath a pleasant seat; the air / Nimbly and sweetly recommends itself."</blockquote>
+        <div class="quote-ref">Act 1, Scene 6 — Duncan, arriving at Macbeth's castle</div>
+      </div>
+      <div class="analysis-grid">
+        <div class="analysis-point">
+          <div class="ap-label">📍 Context — What's happening</div>
+          <p>Duncan and his court arrive at Inverness — the castle where he will be murdered that night. He comments on how pleasant and welcoming the place feels. Banquo agrees, noting that the martin birds nest here, which is a sign of a good place.</p>
+        </div>
+        <div class="analysis-point">
+          <div class="ap-label">🔍 Technique — What Shakespeare does</div>
+          <p><strong>Dramatic irony at its most devastating.</strong> The "pleasant seat" is a death trap. The "nimbly and sweetly" air is about to host murder. Every compliment Duncan pays the castle the audience hears as a signal of his vulnerability.</p>
+        </div>
+        <div class="analysis-point full">
+          <div class="ap-label">💡 Key Insight — What this really means</div>
+          <p>This moment is one of the most uncomfortable in the play. The audience knows Lady Macbeth has just been planning the murder in this very castle. Duncan arrives calling it pleasant and welcoming. This is Shakespeare's sustained use of dramatic irony as a tool of horror: <strong>the more comfortable and trusting Duncan appears, the more terrible his vulnerability.</strong> It also reinforces the play's central theme of Appearance vs Reality — the castle looks safe, smells good, has nesting birds — and is a trap. Lady Macbeth is the "serpent" beneath the "innocent flower" of Inverness.</p>
+        </div>
+        <div class="analysis-point">
+          <div class="ap-label">📝 Use In Exam For</div>
+          <p>Appearance vs Reality (the castle is not what it seems), Dramatic irony, Trust — Duncan's trusting nature, Natural imagery (birds as symbols of peace and order).</p>
+        </div>
+      </div>
+      <div class="pill-row">
+        <span class="tech-pill">Dramatic Irony</span><span class="tech-pill">Natural Imagery</span><span class="tech-pill">Light/Dark contrast</span>
+        <span class="theme-pill">Appearance vs Reality</span><span class="theme-pill">Trust &amp; Betrayal</span>
+      </div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="quote-block">
+      <div class="quote-header">
+        <span class="quote-number">4</span>
+        <div class="quote-title">His virtues will plead like angels</div>
+      </div>
+      <div class="quote-box">
+        <blockquote>"His virtues / Will plead like angels, trumpet-tongued, against / The deep damnation of his taking-off."</blockquote>
+        <div class="quote-ref">Act 1, Scene 7 — Macbeth, in his own soliloquy listing reasons not to kill Duncan</div>
+      </div>
+      <div class="analysis-grid">
+        <div class="analysis-point">
+          <div class="ap-label">📍 Context — What's happening</div>
+          <p>This is spoken by Macbeth — not Duncan. In his Act 1.7 soliloquy, reasoning against the murder, Macbeth himself acknowledges how virtuous Duncan is. The description of his virtues as "angels" pleading is Macbeth's own conscience speaking.</p>
+        </div>
+        <div class="analysis-point">
+          <div class="ap-label">🔍 Technique — What Shakespeare does</div>
+          <p><strong>Religious imagery and personification.</strong> Duncan's virtues become trumpet-voiced angels prosecuting the case against his murder. "Deep damnation" is theological: Macbeth knows this is not just a crime but a sin.</p>
+        </div>
+        <div class="analysis-point full">
+          <div class="ap-label">💡 Key Insight — What this really means</div>
+          <p>This quote is used by Macbeth but tells us about Duncan — through his enemy's eyes. The fact that <strong>even Macbeth acknowledges Duncan's virtues in the act of planning his murder</strong> is extraordinarily powerful. It shows that Macbeth is not deceiving himself about what Duncan is. He knows. He knows Duncan is a "most sainted king." He murders him anyway. This makes the crime worse and the tragedy deeper. For the exam: quoting Macbeth's own description of Duncan's virtues is a sophisticated move that shows you understand the interplay between characters.</p>
+        </div>
+        <div class="analysis-point">
+          <div class="ap-label">📝 Use In Exam For</div>
+          <p>Duncan's virtuous leadership, Macbeth's awareness of his own crime (free will), Religious imagery, Good vs Evil — angels vs damnation.</p>
+        </div>
+      </div>
+      <div class="pill-row">
+        <span class="tech-pill">Religious Imagery</span><span class="tech-pill">Personification</span><span class="tech-pill">Dramatic Irony</span>
+        <span class="theme-pill">Leadership</span><span class="theme-pill">Good vs Evil</span><span class="theme-pill">Macbeth's Guilt</span>
+      </div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="quote-block">
+      <div class="quote-header">
+        <span class="quote-number">5</span>
+        <div class="quote-title">Duncan is in his grave — sleeps well</div>
+      </div>
+      <div class="quote-box">
+        <blockquote>"Duncan is in his grave; / After life's fitful fever he sleeps well."</blockquote>
+        <div class="quote-ref">Act 3, Scene 2 — Macbeth to Lady Macbeth, envying the dead king</div>
+      </div>
+      <div class="analysis-grid">
+        <div class="analysis-point">
+          <div class="ap-label">📍 Context — What's happening</div>
+          <p>Macbeth and Lady Macbeth are both miserable as king and queen. Macbeth compares his own tormented state to Duncan's — dead but peaceful. He envies the murdered man.</p>
+        </div>
+        <div class="analysis-point">
+          <div class="ap-label">🔍 Technique — What Shakespeare does</div>
+          <p><strong>Sleep symbolism and irony.</strong> Duncan — murdered in his sleep — is now sleeping the permanent sleep of death, free from "life's fitful fever." Macbeth, who murdered sleep, cannot sleep at all. The victim rests; the murderer cannot.</p>
+        </div>
+        <div class="analysis-point full">
+          <div class="ap-label">💡 Key Insight — What this really means</div>
+          <p>This is one of the most ironic moments in the play. <strong>Macbeth murdered Duncan specifically because Duncan had what Macbeth wanted — the crown.</strong> Now, from within his torment as king, Macbeth envies Duncan for having what he himself cannot have: peace. The murder didn't bring him contentment; it destroyed it. Duncan's sleep is the peace Macbeth will never know again. This connects directly to the "murder sleep" speech in Act 2: the prophecy has come true. Macbeth cannot rest, cannot be at peace, cannot enjoy the crown he killed for. Duncan, the victim, is more at peace than his murderer.</p>
+        </div>
+        <div class="analysis-point">
+          <div class="ap-label">📝 Use In Exam For</div>
+          <p>Consequences of ambition (Macbeth envies his own victim), Sleep symbolism (Duncan sleeps well; Macbeth cannot), Guilt, Duncan as moral counterpoint even in death.</p>
+        </div>
+      </div>
+      <div class="pill-row">
+        <span class="tech-pill">Sleep Symbolism</span><span class="tech-pill">Irony</span><span class="tech-pill">Contrast</span>
+        <span class="theme-pill">Consequences of Ambition</span><span class="theme-pill">Guilt</span><span class="theme-pill">Leadership</span>
+      </div>
+    </div>
+
+    <!-- Q6 -->
+    <div class="quote-block">
+      <div class="quote-header">
+        <span class="quote-number">6</span>
+        <div class="quote-title">Most sainted king</div>
+      </div>
+      <div class="quote-box">
+        <blockquote>"...the most sainted king."</blockquote>
+        <div class="quote-ref">Act 4, Scene 3 — Malcolm, describing his father Duncan to Macduff in England</div>
+      </div>
+      <div class="analysis-grid">
+        <div class="analysis-point">
+          <div class="ap-label">📍 Context — What's happening</div>
+          <p>Malcolm, in England, is describing his father to Macduff. He uses the word "sainted" — as if Duncan were a holy figure. Duncan has been transformed in memory from a king into something almost divine.</p>
+        </div>
+        <div class="analysis-point">
+          <div class="ap-label">🔍 Technique — What Shakespeare does</div>
+          <p><strong>Religious elevation.</strong> "Sainted" moves Duncan from the political to the spiritual realm. His murder was not just regicide but near-sacrilege — an act against something holy.</p>
+        </div>
+        <div class="analysis-point full">
+          <div class="ap-label">💡 Key Insight — What this really means</div>
+          <p>Duncan in death has become a <strong>symbol of everything good that Scotland has lost.</strong> The further the play goes from Act 2, the more sanctified Duncan becomes in everyone's memory. This is deliberate: Shakespeare is showing that Macbeth's crime did not just kill a man — it killed an ideal. Scotland under Macbeth is compared to hell: "new widows howl, new orphans cry." The restoration of order at the end of the play is partly the restoration of what Duncan represented — natural kingship, generosity, trust. Malcolm's return is, symbolically, Duncan's values returning to Scotland.</p>
+        </div>
+        <div class="analysis-point">
+          <div class="ap-label">📝 Use In Exam For</div>
+          <p>Leadership (Duncan as the ideal, saintly king), Consequences of Macbeth's ambition for Scotland, Religious imagery, Good vs Evil.</p>
+        </div>
+      </div>
+      <div class="pill-row">
+        <span class="tech-pill">Religious Imagery</span><span class="tech-pill">Epithets</span>
+        <span class="theme-pill">Leadership</span><span class="theme-pill">Good vs Evil</span><span class="theme-pill">Natural Order</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXAM TAB -->
+  <div class="tab-panel" id="exam">
+    <span class="label">Using Duncan in Exam Answers</span>
+
+    <div class="box b-exam">
+      <div class="ico">📝</div>
+      <div><div class="box-label">Leadership Questions</div>
+      <p>Duncan is your virtuous model. Use Q2 (plant thee — nurturing) and Q6 (sainted king — posthumous reputation). Contrast with Macbeth's paranoid, murderous rule. Show that Shakespeare defines good leadership through Duncan and bad leadership through Macbeth — and that the play argues ambition corrupts leadership.</p></div>
+    </div>
+
+    <div class="box b-exam">
+      <div class="ico">📝</div>
+      <div><div class="box-label">Appearance vs Reality Questions</div>
+      <p>Use Q1 (no art to find the mind's construction) and Q3 (pleasant seat). Duncan literally cannot see through appearances. He is the ultimate victim of deception — he arrives at a beautiful castle and is murdered there. His trust is virtuous but fatal.</p></div>
+    </div>
+
+    <div class="box b-exam">
+      <div class="ico">📝</div>
+      <div><div class="box-label">Consequences of Ambition Questions</div>
+      <p>Use Q5 (Duncan sleeps well — Macbeth envies him). Macbeth killed Duncan for peace and power; now he envies Duncan's peace. This is the most concise demonstration of ambition's hollowness: the murderer envies his victim.</p></div>
+    </div>
+
+    <div class="box b-theme">
+      <div class="ico">🔗</div>
+      <div><div class="box-label">Cross-Character Connections</div>
+      <ul>
+        <li><strong>Duncan vs Macbeth:</strong> Every quality Duncan has as king — trust, generosity, grace — Macbeth destroys. Duncan plants; Macbeth murders. Duncan is the moral baseline.</li>
+        <li><strong>Duncan vs Banquo:</strong> Both are virtuous characters associated with natural imagery and natural order. Both are murdered by Macbeth. Their deaths together represent the destruction of everything good in Scotland.</li>
+        <li><strong>Duncan and sleep:</strong> Murdered asleep (most innocent state) → his "murder sleep" has broader consequences → Lady Macbeth sleepwalks → both murderers lose their peace. Sleep ties Duncan's death to the guilt of both murderers.</li>
+      </ul></div>
+    </div>
+  </div>
+</div>
+
+<script>
+function switchTab(btn, id) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+</script>
+</body>
+</html>

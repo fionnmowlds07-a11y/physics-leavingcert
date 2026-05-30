@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Macbeth — Character Study: Macbeth</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F6F3EE;--surface:#FFFFFF;--surface2:#EEE9E2;--border:#E2DDD7;--text:#2C2825;--muted:#7A7068;--c:#8B0000;--cl:#fce8e8;--cd:#5a0000;--radius:14px;--shadow:0 4px 20px rgba(0,0,0,0.08);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;font-size:16px;}
+nav{position:sticky;top:0;z-index:100;background:rgba(246,243,238,0.97);backdrop-filter:blur(10px);border-bottom:2px solid var(--border);padding:8px 16px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;min-height:52px;}
+.nav-logo{font-family:'Lexend Mega',sans-serif;font-size:0.85rem;color:var(--text);margin-right:4px;text-decoration:none;white-space:nowrap;}.nav-logo span{color:#8B0000;}
+.nav-divider{width:1px;height:20px;background:var(--border);flex-shrink:0;}
+.nav-btn{padding:5px 11px;border-radius:18px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.72rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);text-decoration:none;white-space:nowrap;}
+.nav-btn:hover{transform:translateY(-2px);}
+.nav-btn.home:hover,.nav-btn.home.active{background:#2c2825;border-color:#2c2825;color:#fff;}
+.nav-btn.macbeth:hover,.nav-btn.macbeth.active{background:#8B0000;border-color:#8B0000;color:#fff;}
+.nav-btn.lady:hover,.nav-btn.lady.active{background:#4a0a5a;border-color:#4a0a5a;color:#fff;}
+.nav-btn.duncan:hover,.nav-btn.duncan.active{background:#b07a10;border-color:#b07a10;color:#fff;}
+.nav-btn.banquo:hover,.nav-btn.banquo.active{background:#1a3a5a;border-color:#1a3a5a;color:#fff;}
+.nav-btn.witches:hover,.nav-btn.witches.active{background:#2a1a3a;border-color:#2a1a3a;color:#fff;}
+.nav-btn.themes:hover,.nav-btn.themes.active{background:#1a4a1a;border-color:#1a4a1a;color:#fff;}
+.section{padding:0 16px 80px;max-width:940px;margin:0 auto;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.hero{background:linear-gradient(135deg,var(--cd),var(--c));color:#fff;padding:44px 32px 36px;text-align:center;margin-bottom:32px;}
+.hero .char-label{font-size:0.75rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;opacity:0.75;margin-bottom:10px;}
+.hero h1{font-family:'Lexend Mega',sans-serif;font-size:clamp(1.6rem,4vw,2.6rem);line-height:1.15;margin-bottom:12px;}
+.hero p{opacity:0.88;max-width:620px;margin:0 auto;font-size:0.96rem;}
+.hero-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px;}
+.hero-chip{background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:4px 14px;border-radius:20px;font-size:0.75rem;font-weight:600;}
+.tab-bar{display:flex;gap:4px;flex-wrap:wrap;padding:22px 0 8px;border-bottom:2px solid var(--border);margin-bottom:28px;}
+.tab{padding:8px 18px;border-radius:10px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.8rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);}
+.tab:hover,.tab.active{background:var(--c);color:#fff;border-color:var(--c);}
+.tab-panel{display:none;}.tab-panel.active{display:block;animation:fadeIn 0.25s ease;}
+.info-card{background:var(--surface);border-radius:var(--radius);padding:24px 26px;margin-bottom:20px;box-shadow:var(--shadow);border-left:5px solid var(--c);}
+.info-card h2{font-size:1.1rem;font-weight:700;margin-bottom:12px;}
+.info-card p{margin-bottom:9px;font-size:0.94rem;}
+.info-card ul{padding-left:20px;margin-bottom:9px;}
+.info-card li{margin-bottom:6px;font-size:0.93rem;}
+.quote-block{background:var(--surface);border-radius:var(--radius);padding:22px 24px;margin:18px 0;box-shadow:var(--shadow);border-top:4px solid var(--c);}
+.quote-header{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+.quote-number{display:inline-flex;align-items:center;justify-content:center;background:var(--c);color:#fff;font-family:'Lexend Mega',sans-serif;font-size:0.72rem;font-weight:800;width:28px;height:28px;border-radius:50%;flex-shrink:0;}
+.quote-title{font-size:0.95rem;font-weight:700;color:var(--cd);}
+.quote-box{background:var(--cl);border-left:4px solid var(--c);border-radius:0 8px 8px 0;padding:14px 18px;margin-bottom:16px;}
+.quote-box blockquote{font-family:'Lexend Mega',sans-serif;font-size:1.05rem;font-style:italic;color:var(--cd);line-height:1.5;margin-bottom:6px;}
+.quote-ref{font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--muted);}
+.analysis-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;}
+.analysis-point{background:var(--bg);border-radius:10px;padding:12px 16px;border:1px solid var(--border);}
+.analysis-point.full{grid-column:1/-1;}
+.ap-label{font-size:0.67rem;font-weight:800;text-transform:uppercase;letter-spacing:0.8px;color:var(--muted);margin-bottom:5px;}
+.analysis-point p{font-size:0.9rem;line-height:1.7;margin:0;}
+.analysis-point strong{color:var(--cd);}
+.pill-row{display:flex;flex-wrap:wrap;gap:5px;margin-top:12px;padding-top:12px;border-top:1px solid var(--border);}
+.tech-pill{display:inline-block;background:var(--c);color:#fff;font-size:0.7rem;font-weight:700;padding:2px 10px;border-radius:5px;}
+.theme-pill{display:inline-block;background:#1a4a1a;color:#fff;font-size:0.7rem;font-weight:700;padding:2px 10px;border-radius:5px;}
+.box{border-radius:var(--radius);padding:14px 18px;margin:14px 0;display:flex;gap:12px;align-items:flex-start;}
+.box .ico{font-size:1.5rem;flex-shrink:0;line-height:1.2;}
+.box-label{font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;margin-bottom:4px;}
+.box p,.box li{font-size:0.91rem;}.box ul{padding-left:16px;}.box li{margin-bottom:4px;}
+.b-exam{background:#eaf4fb;border:2px solid #5dade2;}.b-exam .box-label{color:#1a6b9a;}
+.b-tip{background:#fffbf0;border:2px solid #f39c12;}.b-tip .box-label{color:#b7770d;}
+.b-theme{background:#f0f8f0;border:2px solid #2e8b57;}.b-theme .box-label{color:#1a5c35;}
+.arc-bar{display:flex;gap:0;margin:20px 0;border-radius:10px;overflow:hidden;border:2px solid var(--border);}
+.arc-step{flex:1;padding:12px 8px;text-align:center;font-size:0.72rem;font-weight:700;line-height:1.3;}
+.arc-step .arc-label{font-size:0.65rem;text-transform:uppercase;letter-spacing:0.5px;opacity:0.75;margin-top:4px;}
+.label{font-size:0.72rem;font-weight:800;text-transform:uppercase;letter-spacing:0.8px;color:var(--muted);margin-bottom:16px;display:block;}
+@media(max-width:680px){.arc-bar{flex-direction:column;}.analysis-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="Macbeth.html">🗡️ <span>Macbeth</span></a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn home" href="Macbeth.html">Home</a>
+  <a class="nav-btn macbeth active" href="Macbeth_Character_Macbeth.html">Macbeth</a>
+  <a class="nav-btn lady" href="Macbeth_Character_LadyMacbeth.html">Lady Macbeth</a>
+  <a class="nav-btn duncan" href="Macbeth_Character_Duncan.html">Duncan</a>
+  <a class="nav-btn banquo" href="Macbeth_Character_Banquo.html">Banquo</a>
+  <a class="nav-btn witches" href="Macbeth_Character_Witches.html">The Witches</a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn themes" href="Macbeth_Themes.html">📜 Themes &amp; Exam</a>
+</nav>
+
+<div class="hero">
+  <div class="char-label">Protagonist · Tragic Hero · Acts 1–5</div>
+  <h1>Macbeth</h1>
+  <p>A courageous general whose unchecked ambition propels him from honour to tyranny — Shakespeare's most complete portrait of a man who chooses evil with full awareness of what he is doing.</p>
+  <div class="hero-chips">
+    <span class="hero-chip">Ambition</span>
+    <span class="hero-chip">Guilt &amp; Conscience</span>
+    <span class="hero-chip">Masculinity</span>
+    <span class="hero-chip">Fate vs Free Will</span>
+    <span class="hero-chip">Tyranny</span>
+    <span class="hero-chip">Tragic Hero</span>
+  </div>
+</div>
+
+<div class="section">
+  <div class="tab-bar">
+    <button class="tab active" onclick="switchTab(this,'overview')">📋 Overview</button>
+    <button class="tab" onclick="switchTab(this,'quotes')">💬 Key Quotes</button>
+    <button class="tab" onclick="switchTab(this,'arc')">📈 Character Arc</button>
+    <button class="tab" onclick="switchTab(this,'exam')">🎓 Exam Angles</button>
+  </div>
+
+  <!-- OVERVIEW TAB -->
+  <div class="tab-panel active" id="overview">
+    <span class="label">Who Is Macbeth?</span>
+    <div class="info-card">
+      <h2>🛡️ His Starting Point</h2>
+      <p>We never actually see the noble Macbeth — we only hear about him. The Captain calls him "brave Macbeth" and Duncan calls him his "valiant cousin, worthy gentleman." This matters: Shakespeare builds his greatness through other characters' admiration so that his fall feels all the more devastating.</p>
+      <p>He is a talented general with a conscience. When the witches give him their prophecy, he is immediately tempted — but he is also immediately horrified by his own temptation. He knows what ambition could lead him to, and for a while, he resists.</p>
+    </div>
+    <div class="info-card">
+      <h2>⚡ The Central Conflict</h2>
+      <p>Macbeth's tragedy is not that he is a simple villain. It is that he is a moral person who makes an immoral choice — and keeps making it. His great soliloquy in Act 1.7 shows him reasoning through every argument against murdering Duncan and concluding he has "no spur" to do it. Then Lady Macbeth walks in, and he does it anyway.</p>
+      <p>This is Shakespeare's devastating insight: people can fully understand that something is wrong and still be swept along by desire. Macbeth's tragedy is a tragedy of free will, not fate.</p>
+    </div>
+    <div class="info-card">
+      <h2>📉 The Deterioration</h2>
+      <p>What makes Macbeth uniquely compelling is the speed and completeness of his moral collapse. By Act 3, he is ordering murders without the anguished deliberation of Act 1. By Act 5, he has reached nihilism — life "signifies nothing." Shakespeare shows us not just a man who commits evil but a man destroyed by it from the inside out.</p>
+    </div>
+    <div class="box b-tip">
+      <div class="ico">💡</div>
+      <div><div class="box-label">Leaving Cert Angle</div>
+      <p>The key argument about Macbeth: <strong>he is responsible for his own downfall</strong>. The witches give him a prophecy, Lady Macbeth manipulates him — but Banquo receives the same prophecy and resists. Macbeth chooses. This is the most important thing to establish in any exam answer.</p></div>
+    </div>
+  </div>
+
+  <!-- QUOTES TAB -->
+  <div class="tab-panel" id="quotes">
+    <span class="label">7 Key Quotes — Short, Learnable, Deeply Analysed</span>
+
+    <!-- Q1 -->
+    <div class="quote-block">
+      <div class="quote-header">
+        <span class="quote-number">1</span>
+        <div class="quote-title">Stars, hide your fires</div>
+      </div>
+      <div class="quote-box">
+        <blockquote>"Stars, hide your fires; / Let not light see my black and deep desires."</blockquote>
+        <div class="quote-ref">Act 1, Scene 4 — Macbeth, aside, after Duncan names Malcolm as heir</div>
+      </div>
+      <div class="analysis-grid">
+        <div class="analysis-point">
+          <div class="ap-label">📍 Context — What's happening</div>
+          <p>Duncan has just announced his son Malcolm will inherit the throne. Macbeth had expected to be next in line. In this one aside, all his secret ambition surfaces.</p>
+        </div>
+        <div class="analysis-point">
+          <div class="ap-label">🔍 Technique — What Shakespeare does</div>
+          <p><strong>Personification and apostrophe</strong> — Macbeth addresses the stars directly. Darkness and light are used throughout the play to represent evil and goodness.</p>
+        </div>
+        <div class="analysis-point full">
+          <div class="ap-label">💡 Key Insight — What this really means</div>
+          <p>This quote proves that <strong>Macbeth's ambition exists before the witches, before Lady Macbeth.</strong> He calls them his own "black and deep desires" — possessive, personal. He is already thinking about murder. But he wants darkness to hide what he is about to feel. His conscience is still alive; he is ashamed of his own desires. This is the last moment we see him trying to suppress what he has become.</p>
+        </div>
+        <div class="analysis-point">
+          <div class="ap-label">🎭 Effect on Audience</div>
+          <p>The aside creates dramatic irony — we know what Macbeth is thinking while Duncan stands beside him. We become unwilling witnesses to murder being planned.</p>
+        </div>
+        <div class="analysis-point">
+          <div class="ap-label">📝 Use In Exam For</div>
+          <p>Ambition (his own, not externally caused), Free will vs fate, Appearance vs Reality (he hides his thoughts from Duncan).</p>
+        </div>
+      </div>
+      <div class="pill-row">
+        <span class="tech-pill">Personification</span><span class="tech-pill">Apostrophe</span><span class="tech-pill">Light/Dark Imagery</span><span class="tech-pill">Aside / Dramatic Irony</span>
+        <span class="theme-pill">Ambition</span><span class="theme-pill">Appearance vs Reality</span><span class="theme-pill">Free Will</span>
+      </div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="quote-block">
+      <div class="quote-header">
+        <span class="quote-number">2</span>
+        <div class="quote-title">Vaulting ambition</div>
+      </div>
+      <div class="quote-box">
+        <blockquote>"I have no spur / To prick the sides of my intent, but only / Vaulting ambition."</blockquote>
+        <div class="quote-ref">Act 1, Scene 7 — Macbeth's soliloquy, just before the murder</div>
+      </div>
+      <div class="analysis-grid">
+        <div class="analysis-point">
+          <div class="ap-label">📍 Context — What's happening</div>
+          <p>Macbeth is alone before the royal banquet. He spends the whole soliloquy arguing himself out of killing Duncan — Duncan is his king, kinsman, and guest. He finally concludes he has no justified reason to act.</p>
+        </div>
+        <div class="analysis-point">
+          <div class="ap-label">🔍 Technique — What Shakespeare does</div>
+          <p><strong>Extended metaphor from horse-riding:</strong> a rider who vaults too high overshoots the saddle and falls. The image predicts Macbeth's entire arc — reach too far, fall hard.</p>
+        </div>
+        <div class="analysis-point full">
+          <div class="ap-label">💡 Key Insight — What this really means</div>
+          <p>This is the most important speech in the play for the theme of <strong>free will</strong>. Macbeth goes through careful moral reasoning and arrives at the right answer — "I'll proceed no further in this business." Then Lady Macbeth enters, manipulates him, and he reverses his decision. Shakespeare is showing that he could have chosen differently. The fact that he arrives at "I should not do this" and then does it anyway makes his guilt entirely self-chosen. <strong>He is not a victim of fate or manipulation — he is a man who knows better and acts anyway.</strong></p>
+        </div>
+        <div class="analysis-point">
+          <div class="ap-label">🎭 Effect on Audience</div>
+          <p>The soliloquy is deeply uncomfortable. We see his full moral awareness and then watch it collapse. It makes him simultaneously more understandable and more culpable.</p>
+        </div>
+        <div class="analysis-point">
+          <div class="ap-label">📝 Use In Exam For</div>
+          <p>Ambition, Free will vs fate, Macbeth's complexity, Tragic hero — his awareness of his own flaw makes him tragic, not simply villainous.</p>
+        </div>
+      </div>
+      <div class="pill-row">
+        <span class="tech-pill">Extended Metaphor</span><span class="tech-pill">Soliloquy</span><span class="tech-pill">Alliteration</span>
+        <span class="theme-pill">Ambition</span><span class="theme-pill">Free Will</span><span class="theme-pill">Tragic Hero</span>
+      </div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="quote-block">
+      <div class="quote-header">
+        <span class="quote-number">3</span>
+        <div class="quote-title">Macbeth does murder sleep</div>
+      </div>
+      <div class="quote-box">
+        <blockquote>"Methought I heard a voice cry, 'Sleep no more! / Macbeth does murder sleep.'"</blockquote>
+        <div class="quote-ref">Act 2, Scene 2 — Macbeth immediately after killing Duncan</div>
+      </div>
+      <div class="analysis-grid">
+        <div class="analysis-point">
+          <div class="ap-label">📍 Context — What's happening</div>
+          <p>Macbeth has just returned from murdering the sleeping king. He is shaking, still holding the daggers. He tells Lady Macbeth he heard a voice — real or imagined — proclaiming his guilt.</p>
+        </div>
+        <div class="analysis-point">
+          <div class="ap-label">🔍 Technique — What Shakespeare does</div>
+          <p><strong>Personification and hallucination.</strong> Sleep is given human qualities — it is "innocent," it "knits up the ravell'd sleeve of care." The hallucination of the voice is Macbeth's conscience speaking aloud.</p>
+        </div>
+        <div class="analysis-point full">
+          <div class="ap-label">💡 Key Insight — What this really means</div>
+          <p>Sleep is one of the play's most powerful symbols. It represents <strong>innocence, peace of conscience, and the natural order of life</strong>. Duncan was literally asleep when murdered — defenceless in the most innocent human state. By killing him, Macbeth has destroyed his own capacity for peace. This becomes a prophecy: Lady Macbeth later walks in her sleep compulsively washing her hands; Macbeth sees ghosts. <strong>Neither sleeps peacefully again.</strong> The murder of sleep is not just poetic — it is literally what happens to both of them.</p>
+        </div>
+        <div class="analysis-point">
+          <div class="ap-label">🎭 Effect on Audience</div>
+          <p>Macbeth's horror here is genuine and immediate. The guilt has arrived faster and more powerfully than he expected. This is not the cold killer he thought he could be.</p>
+        </div>
+        <div class="analysis-point">
+          <div class="ap-label">📝 Use In Exam For</div>
+          <p>Guilt (immediate, overwhelming), Consequences of ambition, Sleep symbolism, Imagery and its dramatic effect.</p>
+        </div>
+      </div>
+      <div class="pill-row">
+        <span class="tech-pill">Personification</span><span class="tech-pill">Hallucination</span><span class="tech-pill">Sleep Symbolism</span><span class="tech-pill">Dramatic Irony</span>
+        <span class="theme-pill">Guilt</span><span class="theme-pill">Consequences of Ambition</span><span class="theme-pill">The Supernatural</span>
+      </div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="quote-block">
+      <div class="quote-header">
+        <span class="quote-number">4</span>
+        <div class="quote-title">Full of scorpions is my mind</div>
+      </div>
+      <div class="quote-box">
+        <blockquote>"O, full of scorpions is my mind, dear wife!"</blockquote>
+        <div class="quote-ref">Act 3, Scene 2 — Macbeth to Lady Macbeth, before ordering Banquo's murder</div>
+      </div>
+      <div class="analysis-grid">
+        <div class="analysis-point">
+          <div class="ap-label">📍 Context — What's happening</div>
+          <p>Macbeth is king but miserable. He knows Banquo suspects him and knows the witches' prophecy says Banquo's sons will be kings — making his own crown pointless. He is planning Banquo's murder.</p>
+        </div>
+        <div class="analysis-point">
+          <div class="ap-label">🔍 Technique — What Shakespeare does</div>
+          <p><strong>Visceral metaphor.</strong> Scorpions are creatures of pain and poison — not one torment but a swarm, multiplying, each capable of fatal sting. This is a mind of constant, swarming anxiety.</p>
+        </div>
+        <div class="analysis-point full">
+          <div class="ap-label">💡 Key Insight — What this really means</div>
+          <p>Notice that what fills his mind is not guilt but <strong>fear and paranoia</strong>. In Act 2, he felt horror and remorse after Duncan's murder. Now in Act 3, the dominant emotion is calculation and anxiety about threats. This shows the <strong>deterioration of his character</strong>: the moral anguish of a guilty conscience has been replaced by the cold paranoia of a tyrant. He is also now keeping Lady Macbeth in the dark ("Be innocent of the knowledge, dearest chuck") — he has outgrown his need for her and moved beyond her morally.</p>
+        </div>
+        <div class="analysis-point">
+          <div class="ap-label">🎭 Effect on Audience</div>
+          <p>We see that achieving his ambition has made Macbeth more miserable than before. The crown has brought him only more fear. This is Shakespeare showing that ambition can never be satisfied.</p>
+        </div>
+        <div class="analysis-point">
+          <div class="ap-label">📝 Use In Exam For</div>
+          <p>Consequences of ambition (kingship doesn't bring happiness), Moral deterioration, The changing relationship with Lady Macbeth.</p>
+        </div>
+      </div>
+      <div class="pill-row">
+        <span class="tech-pill">Metaphor (scorpions)</span><span class="tech-pill">Imagery</span>
+        <span class="theme-pill">Guilt &amp; Paranoia</span><span class="theme-pill">Consequences of Ambition</span><span class="theme-pill">Ambition</span>
+      </div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="quote-block">
+      <div class="quote-header">
+        <span class="quote-number">5</span>
+        <div class="quote-title">I am in blood stepped in so far</div>
+      </div>
+      <div class="quote-box">
+        <blockquote>"I am in blood / Stepped in so far that, should I wade no more."</blockquote>
+        <div class="quote-ref">Act 3, Scene 4 — Macbeth after seeing Banquo's ghost at the banquet</div>
+      </div>
+      <div class="analysis-grid">
+        <div class="analysis-point">
+          <div class="ap-label">📍 Context — What's happening</div>
+          <p>Banquo's ghost has just disrupted the royal banquet. Macbeth has raged and hallucinated in front of all his nobles. After the guests leave, he settles into cold calculation — and decides to press forward.</p>
+        </div>
+        <div class="analysis-point">
+          <div class="ap-label">🔍 Technique — What Shakespeare does</div>
+          <p><strong>Extended metaphor — wading through blood.</strong> The image of blood as a deep river captures the relentless, self-sustaining momentum of his crimes. Blood is both literal (his murders) and symbolic (guilt).</p>
+        </div>
+        <div class="analysis-point full">
+          <div class="ap-label">💡 Key Insight — What this really means</div>
+          <p>This is the <strong>point of moral no-return</strong>. The most telling word is "tedious" — not agonising, not impossible, just inconvenient. Macbeth has reached a stage where returning to virtue feels like too much effort. He has fully crossed from tragic hero into tyrant. This is also the moment he chooses to visit the witches again — not to be tempted by them, but to <strong>demand</strong> answers. He now treats them as servants, not as mysterious powers. The man who feared a dagger vision in Act 2 now actively seeks out dark magic.</p>
+        </div>
+        <div class="analysis-point">
+          <div class="ap-label">🎭 Effect on Audience</div>
+          <p>We feel the horror of watching a person choose to stop choosing. He is no longer fighting his ambition — he has surrendered to it completely. The audience may feel pity, disgust, or both.</p>
+        </div>
+        <div class="analysis-point">
+          <div class="ap-label">📝 Use In Exam For</div>
+          <p>Moral deterioration, Consequences of ambition, Blood imagery, Macbeth's responsibility for his own downfall — he could turn back. He chooses not to.</p>
+        </div>
+      </div>
+      <div class="pill-row">
+        <span class="tech-pill">Extended Metaphor</span><span class="tech-pill">Blood Symbolism</span>
+        <span class="theme-pill">Ambition</span><span class="theme-pill">Guilt</span><span class="theme-pill">Moral Deterioration</span>
+      </div>
+    </div>
+
+    <!-- Q6 -->
+    <div class="quote-block">
+      <div class="quote-header">
+        <span class="quote-number">6</span>
+        <div class="quote-title">Tomorrow and tomorrow and tomorrow</div>
+      </div>
+      <div class="quote-box">
+        <blockquote>"Tomorrow, and tomorrow, and tomorrow, / Creeps in this petty pace from day to day."</blockquote>
+        <div class="quote-ref">Act 5, Scene 5 — Macbeth on hearing of Lady Macbeth's death</div>
+      </div>
+      <div class="analysis-grid">
+        <div class="analysis-point">
+          <div class="ap-label">📍 Context — What's happening</div>
+          <p>A servant tells Macbeth that the Queen is dead. Rather than grieve, he reflects that she would have died at some point anyway — then delivers this meditation on the meaninglessness of life.</p>
+        </div>
+        <div class="analysis-point">
+          <div class="ap-label">🔍 Technique — What Shakespeare does</div>
+          <p><strong>Anaphora (repetition)</strong> — the triple "tomorrow" mimics the monotonous, endless passage of time. The word "creeps" gives time a physical quality: slow, exhausting, joyless.</p>
+        </div>
+        <div class="analysis-point full">
+          <div class="ap-label">💡 Key Insight — What this really means</div>
+          <p>This speech is the final, devastating cost of Macbeth's ambition. He gained everything he wanted — the crown — and found it to be a <strong>"tale / Told by an idiot, full of sound and fury, / Signifying nothing."</strong> Nihilism: life itself has become meaningless to him. He cannot even grieve for his wife. Notice that he refers to her death as something that "should have been" later — he is not even surprised. The man who murdered for power has arrived at the conclusion that power, and all of life, means nothing. <strong>The ambition that drove him has burned away everything that made life worth living.</strong> This is the complete portrait of ambition's cost.</p>
+        </div>
+        <div class="analysis-point">
+          <div class="ap-label">🎭 Effect on Audience</div>
+          <p>Even at this point, the speech generates pathos. We feel pity for a man so emptied by his own choices. Shakespeare never allows us to simply hate Macbeth — we also mourn what he could have been.</p>
+        </div>
+        <div class="analysis-point">
+          <div class="ap-label">📝 Use In Exam For</div>
+          <p>Ambition — its ultimate cost (gains everything, finds it worthless), Guilt — he cannot feel grief, Leadership — a king who finds life meaningless has failed Scotland, Tragic hero — the final collapse.</p>
+        </div>
+      </div>
+      <div class="pill-row">
+        <span class="tech-pill">Anaphora / Repetition</span><span class="tech-pill">Extended Metaphor (life as play)</span><span class="tech-pill">Nihilism</span><span class="tech-pill">Pathos</span>
+        <span class="theme-pill">Ambition — Its Cost</span><span class="theme-pill">Tragic Hero</span><span class="theme-pill">Leadership</span>
+      </div>
+    </div>
+
+    <!-- Q7 -->
+    <div class="quote-block">
+      <div class="quote-header">
+        <span class="quote-number">7</span>
+        <div class="quote-title">Yet I will try the last</div>
+      </div>
+      <div class="quote-box">
+        <blockquote>"Yet I will try the last. Before my body / I throw my warlike shield."</blockquote>
+        <div class="quote-ref">Act 5, Scene 8 — Macbeth's final words before the fight with Macduff</div>
+      </div>
+      <div class="analysis-grid">
+        <div class="analysis-point">
+          <div class="ap-label">📍 Context — What's happening</div>
+          <p>Macduff reveals he was "from his mother's womb / Untimely ripped" — the prophecy is broken. Macbeth knows he will die. He chooses to fight anyway, not surrender.</p>
+        </div>
+        <div class="analysis-point">
+          <div class="ap-label">🔍 Technique — What Shakespeare does</div>
+          <p><strong>Defiant declarative.</strong> The monosyllabic "Yet I will try" is simple, resolute, final. The image of throwing a warlike shield before him is a soldier's act — he dies as he began, a warrior.</p>
+        </div>
+        <div class="analysis-point full">
+          <div class="ap-label">💡 Key Insight — What this really means</div>
+          <p>This quote is crucial for the <strong>tragic hero debate</strong>. Macduff at the end calls him a "dead butcher" — but is that the whole truth? At the last moment, Macbeth rejects surrender and fights. There is something in him — pride, courage, the warrior he was at the start — that refuses to yield. <strong>Shakespeare doesn't let him simply die as a coward.</strong> This ambiguity is essential: the audience is invited to weigh "dead butcher" against the complex, suffering, self-aware man we have followed for five acts. The tragic hero is redeemed not morally but dramatically — he meets death with the same defiance that defined him at his best.</p>
+        </div>
+        <div class="analysis-point">
+          <div class="ap-label">📝 Use In Exam For</div>
+          <p>Tragic hero (does he retain any nobility?), Ambition vs courage — he was always a warrior, Complexity of character — not simply a "butcher."</p>
+        </div>
+      </div>
+      <div class="pill-row">
+        <span class="tech-pill">Defiant Declarative</span><span class="tech-pill">Warrior Imagery</span>
+        <span class="theme-pill">Tragic Hero</span><span class="theme-pill">Ambition</span><span class="theme-pill">Complexity of Character</span>
+      </div>
+    </div>
+
+    <div class="box b-tip">
+      <div class="ico">💡</div>
+      <div><div class="box-label">Quote Strategy for the Exam</div>
+      <p>You don't need all 7. Pick <strong>4–5 that fit your question.</strong> Quote 2 (vaulting ambition) and Quote 6 (tomorrow) are your anchors for almost every theme. Quote 3 (murder sleep) is your guilt quote. Quote 5 (stepped in blood) is your moral deterioration quote. Quote 1 (stars hide) proves ambition is self-generated, not caused by the witches.</p></div>
+    </div>
+  </div>
+
+  <!-- ARC TAB -->
+  <div class="tab-panel" id="arc">
+    <span class="label">Macbeth's Character Arc</span>
+    <div class="arc-bar">
+      <div class="arc-step" style="background:#2a5a2a;color:#fff;">🛡️ Noble Warrior<div class="arc-label">Act 1 (Start)</div></div>
+      <div class="arc-step" style="background:#7a3a00;color:#fff;">🗡️ Tempted Schemer<div class="arc-label">Act 1 (End)</div></div>
+      <div class="arc-step" style="background:#8B0000;color:#fff;">😰 Guilt-Ridden Murderer<div class="arc-label">Act 2</div></div>
+      <div class="arc-step" style="background:#5a0000;color:#fff;">👹 Paranoid Tyrant<div class="arc-label">Acts 3–4</div></div>
+      <div class="arc-step" style="background:#1a0000;color:#fff;">💀 Nihilistic Ruin<div class="arc-label">Act 5</div></div>
+    </div>
+
+    <div class="info-card">
+      <h2>📈 Stage 1 — The Noble Warrior (Act 1, opening)</h2>
+      <p>We never see this Macbeth — only hear about him. The Captain: <em>"brave Macbeth — well he deserves that name."</em> Duncan: <em>"valiant cousin, worthy gentleman."</em> This is deliberate. Shakespeare establishes what he was so the fall is more devastating. He is introduced through other people's admiration, which means the audience has to hold two Macbeths in their head simultaneously throughout the play.</p>
+    </div>
+    <div class="info-card">
+      <h2>📈 Stage 2 — Temptation Activated (Act 1, after witches)</h2>
+      <p>The witches don't create his ambition — they find it already there ("black and deep desires"). His moral struggle in Act 1.7 is his last genuine chance to choose otherwise. He reasons himself out of the murder and then lets Lady Macbeth reason him back in. This is free choice, not fate.</p>
+    </div>
+    <div class="info-card">
+      <h2>📈 Stage 3 — Guilt-Ridden Murderer (Act 2)</h2>
+      <p>Immediately after the murder: shaking, hearing voices, carrying the daggers back by accident, unable to say "Amen," horrified by his own bloodied hands. <em>"Will all great Neptune's ocean wash this blood / Clean from my hand?"</em> Lady Macbeth is still in control practically, but Macbeth's inner world has already begun to crack. Guilt arrives faster and harder than he expected.</p>
+    </div>
+    <div class="info-card">
+      <h2>📈 Stage 4 — Paranoid Tyrant (Acts 3–4)</h2>
+      <p>He orders Banquo's murder without the moral anguish of Act 1 — quickly, secretly, alone. He massacres Macduff's entire family when Macduff is not even there. The anguished man of Act 2 has become the cold tyrant. He now visits the witches to demand answers, not to be led by them. His relationship with Lady Macbeth is severed — he no longer needs or confides in her.</p>
+    </div>
+    <div class="info-card">
+      <h2>📈 Stage 5 — Nihilistic Ruin (Act 5)</h2>
+      <p>By Act 5, he has lost allies, purpose, wife, and meaning. The "tomorrow" speech is the complete portrait of ambition's cost. Yet his final act is defiant — he fights and dies as a warrior. Malcolm calls him a "dead butcher," but the audience has witnessed something far more complex. Shakespeare's final gift to Macbeth is this ambiguity.</p>
+    </div>
+  </div>
+
+  <!-- EXAM TAB -->
+  <div class="tab-panel" id="exam">
+    <span class="label">Past Exam Questions &amp; Strategies</span>
+
+    <div class="box b-exam">
+      <div class="ico">📝</div>
+      <div><div class="box-label">2026 Mock — Guilt Cannot Be Suppressed</div>
+      <p>Show guilt operating at every stage: Q3 (murder sleep — immediate guilt after the act), Q4 (scorpions — paranoia replacing guilt), Q6 (tomorrow — nihilism as the end point of guilt). Lady Macbeth's sleepwalking is your strongest supporting evidence. Guilt destroys both characters, just at different speeds.</p></div>
+    </div>
+
+    <div class="box b-exam">
+      <div class="ico">📝</div>
+      <div><div class="box-label">2026 Mock — Macbeth's Internal Conflict with Ambition and Guilt</div>
+      <p>This question is asking you to trace the tension between wanting power and knowing it is wrong. Use Q2 (he reasons against it, then acts), Q3 (guilt arrives immediately), Q5 (he decides to stop reasoning and just continue). Show how the tension resolves: guilt loses, ambition wins, and then both are burned away by the time of Q6.</p></div>
+    </div>
+
+    <div class="box b-exam">
+      <div class="ico">📝</div>
+      <div><div class="box-label">2023 — Unstable and Tragic Identity</div>
+      <p>Structure your answer around the arc: he is not one thing but five. Noble warrior → tempted schemer → guilt-ridden murderer → paranoid tyrant → nihilistic ruin. The "complexity" comes from Q2 — he is never unaware of his own evil. He knows, and acts anyway. That is what makes him tragic rather than simply villainous.</p></div>
+    </div>
+
+    <div class="box b-exam">
+      <div class="ico">📝</div>
+      <div><div class="box-label">2013 — Responsible for His Own Downfall</div>
+      <p>The key: Banquo receives the same prophecy. Banquo resists. Macbeth chooses to act. Q2 (vaulting ambition) is the proof — he arrives at the right conclusion himself and reverses it. Use Q1 (stars hide) to show the desire is his own. Use Q5 (stepped in blood) to show he chooses to continue at every opportunity. Free will, not fate.</p></div>
+    </div>
+
+    <div class="box b-tip">
+      <div class="ico">💡</div>
+      <div><div class="box-label">The Examiner's Formula — Never Forget This</div>
+      <p><strong>Name the technique → Give the quote → Explain the effect on the audience → Link to the theme.</strong> Every paragraph. Four steps. A student who does all four consistently will score very high marks even with imperfect quotes.</p></div>
+    </div>
+
+    <div class="box b-theme">
+      <div class="ico">🔗</div>
+      <div><div class="box-label">Cross-Character Links (Always Include These)</div>
+      <ul>
+        <li><strong>Macbeth vs Banquo:</strong> Same witches' prophecy, different choices. Banquo proves free will. Macbeth's choice is self-made.</li>
+        <li><strong>Macbeth &amp; Lady Macbeth:</strong> She begins stronger; he surpasses her in ruthlessness by Act 3. Both destroyed, differently — he by paranoia, she by guilt.</li>
+        <li><strong>Macbeth vs Duncan:</strong> Everything Duncan represents as a king — trust, generosity, natural order — Macbeth destroys. Duncan's virtue makes Macbeth's crime worse.</li>
+      </ul></div>
+    </div>
+  </div>
+</div>
+
+<script>
+function switchTab(btn, id) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Macbeth — Character Study: The Witches</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F6F3EE;--surface:#FFFFFF;--surface2:#EEE9E2;--border:#E2DDD7;--text:#2C2825;--muted:#7A7068;--c:#2a1a3a;--cl:#f0eaf8;--cd:#150a20;--radius:14px;--shadow:0 4px 20px rgba(0,0,0,0.08);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;font-size:16px;}
+nav{position:sticky;top:0;z-index:100;background:rgba(246,243,238,0.97);backdrop-filter:blur(10px);border-bottom:2px solid var(--border);padding:8px 16px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;min-height:52px;}
+.nav-logo{font-family:'Lexend Mega',sans-serif;font-size:0.85rem;color:var(--text);margin-right:4px;text-decoration:none;white-space:nowrap;}.nav-logo span{color:#8B0000;}
+.nav-divider{width:1px;height:20px;background:var(--border);flex-shrink:0;}
+.nav-btn{padding:5px 11px;border-radius:18px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.72rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);text-decoration:none;white-space:nowrap;}
+.nav-btn:hover{transform:translateY(-2px);}
+.nav-btn.home:hover,.nav-btn.home.active{background:#2c2825;border-color:#2c2825;color:#fff;}
+.nav-btn.macbeth:hover,.nav-btn.macbeth.active{background:#8B0000;border-color:#8B0000;color:#fff;}
+.nav-btn.lady:hover,.nav-btn.lady.active{background:#4a0a5a;border-color:#4a0a5a;color:#fff;}
+.nav-btn.duncan:hover,.nav-btn.duncan.active{background:#b07a10;border-color:#b07a10;color:#fff;}
+.nav-btn.banquo:hover,.nav-btn.banquo.active{background:#1a3a5a;border-color:#1a3a5a;color:#fff;}
+.nav-btn.witches:hover,.nav-btn.witches.active{background:#2a1a3a;border-color:#2a1a3a;color:#fff;}
+.nav-btn.themes:hover,.nav-btn.themes.active{background:#1a4a1a;border-color:#1a4a1a;color:#fff;}
+.section{padding:0 16px 80px;max-width:940px;margin:0 auto;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.hero{background:linear-gradient(135deg,var(--cd),var(--c));color:#fff;padding:44px 32px 36px;text-align:center;margin-bottom:32px;}
+.hero .char-label{font-size:0.75rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;opacity:0.75;margin-bottom:10px;}
+.hero h1{font-family:'Lexend Mega',sans-serif;font-size:clamp(1.6rem,4vw,2.6rem);line-height:1.15;margin-bottom:12px;}
+.hero p{opacity:0.88;max-width:620px;margin:0 auto;font-size:0.96rem;}
+.hero-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px;}
+.hero-chip{background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:4px 14px;border-radius:20px;font-size:0.75rem;font-weight:600;}
+.tab-bar{display:flex;gap:4px;flex-wrap:wrap;padding:22px 0 8px;border-bottom:2px solid var(--border);margin-bottom:28px;}
+.tab{padding:8px 18px;border-radius:10px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.8rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);}
+.tab:hover,.tab.active{background:var(--c);color:#fff;border-color:var(--c);}
+.tab-panel{display:none;}.tab-panel.active{display:block;animation:fadeIn 0.25s ease;}
+.info-card{background:var(--surface);border-radius:var(--radius);padding:24px 26px;margin-bottom:20px;box-shadow:var(--shadow);border-left:5px solid var(--c);}
+.info-card h2{font-size:1.1rem;font-weight:700;margin-bottom:12px;}
+.info-card p{margin-bottom:9px;font-size:0.94rem;}
+.info-card ul{padding-left:20px;margin-bottom:9px;}
+.info-card li{margin-bottom:6px;font-size:0.93rem;}
+.quote-block{background:var(--surface);border-radius:var(--radius);padding:22px 24px;margin:18px 0;box-shadow:var(--shadow);border-top:4px solid var(--c);}
+.quote-header{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+.quote-number{display:inline-flex;align-items:center;justify-content:center;background:var(--c);color:#fff;font-family:'Lexend Mega',sans-serif;font-size:0.72rem;font-weight:800;width:28px;height:28px;border-radius:50%;flex-shrink:0;}
+.quote-title{font-size:0.95rem;font-weight:700;color:var(--cd);}
+.quote-box{background:var(--cl);border-left:4px solid var(--c);border-radius:0 8px 8px 0;padding:14px 18px;margin-bottom:16px;}
+.quote-box blockquote{font-family:'Lexend Mega',sans-serif;font-size:1.05rem;font-style:italic;color:var(--cd);line-height:1.5;margin-bottom:6px;}
+.quote-ref{font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--muted);}
+.analysis-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;}
+.analysis-point{background:var(--bg);border-radius:10px;padding:12px 16px;border:1px solid var(--border);}
+.analysis-point.full{grid-column:1/-1;}
+.ap-label{font-size:0.67rem;font-weight:800;text-transform:uppercase;letter-spacing:0.8px;color:var(--muted);margin-bottom:5px;}
+.analysis-point p{font-size:0.9rem;line-height:1.7;margin:0;}
+.analysis-point strong{color:var(--cd);}
+.pill-row{display:flex;flex-wrap:wrap;gap:5px;margin-top:12px;padding-top:12px;border-top:1px solid var(--border);}
+.tech-pill{display:inline-block;background:var(--c);color:#fff;font-size:0.7rem;font-weight:700;padding:2px 10px;border-radius:5px;}
+.theme-pill{display:inline-block;background:#1a4a1a;color:#fff;font-size:0.7rem;font-weight:700;padding:2px 10px;border-radius:5px;}
+.box{border-radius:var(--radius);padding:14px 18px;margin:14px 0;display:flex;gap:12px;align-items:flex-start;}
+.box .ico{font-size:1.5rem;flex-shrink:0;line-height:1.2;}
+.box-label{font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;margin-bottom:4px;}
+.box p,.box li{font-size:0.91rem;}.box ul{padding-left:16px;}.box li{margin-bottom:4px;}
+.b-exam{background:#eaf4fb;border:2px solid #5dade2;}.b-exam .box-label{color:#1a6b9a;}
+.b-tip{background:#fffbf0;border:2px solid #f39c12;}.b-tip .box-label{color:#b7770d;}
+.b-theme{background:#f0f8f0;border:2px solid #2e8b57;}.b-theme .box-label{color:#1a5c35;}
+.label{font-size:0.72rem;font-weight:800;text-transform:uppercase;letter-spacing:0.8px;color:var(--muted);margin-bottom:16px;display:block;}
+@media(max-width:680px){.analysis-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="Macbeth.html">🗡️ <span>Macbeth</span></a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn home" href="Macbeth.html">Home</a>
+  <a class="nav-btn macbeth" href="Macbeth_Character_Macbeth.html">Macbeth</a>
+  <a class="nav-btn lady" href="Macbeth_Character_LadyMacbeth.html">Lady Macbeth</a>
+  <a class="nav-btn duncan" href="Macbeth_Character_Duncan.html">Duncan</a>
+  <a class="nav-btn banquo" href="Macbeth_Character_Banquo.html">Banquo</a>
+  <a class="nav-btn witches active" href="Macbeth_Character_Witches.html">The Witches</a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn themes" href="Macbeth_Themes.html">📜 Themes &amp; Exam</a>
+</nav>
+
+<div class="hero">
+  <div class="char-label">Tempters · Agents of Chaos · The Supernatural Force</div>
+  <h1>The Weird Sisters</h1>
+  <p>Three witches who set the play's events in motion — not by forcing anyone to act, but by revealing desires that were already there. They are tempters, not puppet-masters, and the debate about their role is one of the most important in the play.</p>
+  <div class="hero-chips">
+    <span class="hero-chip">The Supernatural</span>
+    <span class="hero-chip">Fate vs Free Will</span>
+    <span class="hero-chip">Equivocation</span>
+    <span class="hero-chip">Appearance vs Reality</span>
+    <span class="hero-chip">Chaos &amp; Disorder</span>
+  </div>
+</div>
+
+<div class="section">
+  <div class="tab-bar">
+    <button class="tab active" onclick="switchTab(this,'overview')">📋 Overview</button>
+    <button class="tab" onclick="switchTab(this,'quotes')">💬 Key Quotes</button>
+    <button class="tab" onclick="switchTab(this,'exam')">🎓 Exam Angles</button>
+  </div>
+
+  <!-- OVERVIEW -->
+  <div class="tab-panel active" id="overview">
+    <span class="label">Who Are the Witches?</span>
+    <div class="info-card">
+      <h2>🧙 Tempters, Not Controllers</h2>
+      <p>The most important thing to understand about the witches: <strong>they never make Macbeth do anything.</strong> They tell him he will be king. They do not tell him to murder Duncan. They give him information and leave. What he does with that information is entirely his own choice. This is the key to the free will argument — and it is proven by Banquo, who receives the same style of prophecy and never acts on it.</p>
+    </div>
+    <div class="info-card">
+      <h2>⚡ The Technique of Equivocation</h2>
+      <p>The witches speak in half-truths and paradoxes. They tell Macbeth he "shalt be king hereafter" — true — but they never mention what it will cost him. They tell him "none of woman born shall harm Macbeth" — technically true of Macduff who was caesarean-born — but mortally misleading. They give Macbeth what he wants to hear in ways that conceal the full truth. This is equivocation: using technically true statements to deceive.</p>
+    </div>
+    <div class="info-card">
+      <h2>🌍 Jacobean Context — Why They Mattered</h2>
+      <p>King James I (on the throne when Shakespeare wrote Macbeth in 1606) was fascinated by and terrified of witchcraft — he had written a book about it, <em>Daemonologie</em>. The witches in Macbeth would have been understood by a Jacobean audience as genuinely satanic figures with real power. This makes the question of their influence vs Macbeth's free will even more interesting for a 1606 audience than for us.</p>
+    </div>
+    <div class="box b-tip">
+      <div class="ico">💡</div>
+      <div><div class="box-label">The Argument That Scores Highest</div>
+      <p>Don't just say "the witches caused Macbeth to murder." The better argument: <strong>the witches reveal desires already present in Macbeth and give them a shape — they are catalysts, not causes.</strong> Quote Banquo as proof. Quote Macbeth's Act 1.4 aside ("stars, hide your fires") — his ambition pre-dates the witches. This nuanced reading impresses examiners far more than a simple cause-and-effect account.</p></div>
+    </div>
+  </div>
+
+  <!-- QUOTES TAB -->
+  <div class="tab-panel" id="quotes">
+    <span class="label">6 Key Quotes — Short, Learnable, Deeply Analysed</span>
+
+    <!-- Q1 -->
+    <div class="quote-block">
+      <div class="quote-header">
+        <span class="quote-number">1</span>
+        <div class="quote-title">Fair is foul, and foul is fair</div>
+      </div>
+      <div class="quote-box">
+        <blockquote>"Fair is foul, and foul is fair: / Hover through the fog and filthy air."</blockquote>
+        <div class="quote-ref">Act 1, Scene 1 — The Witches, the very first words of the play</div>
+      </div>
+      <div class="analysis-grid">
+        <div class="analysis-point">
+          <div class="ap-label">📍 Context — What's happening</div>
+          <p>The play opens in thunder and lightning. Three witches meet briefly, announce they will meet Macbeth, and disappear. These are the play's very first lines — before any human character speaks.</p>
+        </div>
+        <div class="analysis-point">
+          <div class="ap-label">🔍 Technique — What Shakespeare does</div>
+          <p><strong>Chiasmus and paradox.</strong> "Fair is foul, and foul is fair" reverses the normal moral order — good is bad, bad is good. The chiasmus (mirror structure) enacts the reversal in its very form. This is also a rhyming couplet, giving the witches a distinctive, ritual speech style.</p>
+        </div>
+        <div class="analysis-point full">
+          <div class="ap-label">💡 Key Insight — What this really means</div>
+          <p>This is the play's thesis statement, delivered before the plot has even begun. Everything that follows is built on this inversion of values: the brave soldier becomes a murderous tyrant; the gracious queen becomes a guilt-ridden sleepwalker; the beautiful castle is a death-trap; the "most sainted king" is killed in his sleep. <strong>The entire play is an exploration of this single paradox.</strong> Macbeth himself later echoes this phrase — "So foul and fair a day I have not seen" — without realising he is repeating the witches' words. This shows how thoroughly their moral inversion has already entered his thinking before he even meets them properly.</p>
+        </div>
+        <div class="analysis-point">
+          <div class="ap-label">📝 Use In Exam For</div>
+          <p>Appearance vs Reality (the play's central theme, stated in line 1), The witches' nature, Dramatic atmosphere, Macbeth echoing the witches' language (Act 1.3).</p>
+        </div>
+      </div>
+      <div class="pill-row">
+        <span class="tech-pill">Chiasmus</span><span class="tech-pill">Paradox</span><span class="tech-pill">Rhyming Couplet</span><span class="tech-pill">In medias res</span>
+        <span class="theme-pill">Appearance vs Reality</span><span class="theme-pill">The Supernatural</span><span class="theme-pill">Disorder</span>
+      </div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="quote-block">
+      <div class="quote-header">
+        <span class="quote-number">2</span>
+        <div class="quote-title">All hail, Macbeth, that shalt be king hereafter</div>
+      </div>
+      <div class="quote-box">
+        <blockquote>"All hail, Macbeth! that shalt be king hereafter."</blockquote>
+        <div class="quote-ref">Act 1, Scene 3 — Third Witch, the final part of the triple prophecy</div>
+      </div>
+      <div class="analysis-grid">
+        <div class="analysis-point">
+          <div class="ap-label">📍 Context — What's happening</div>
+          <p>The three witches greet Macbeth in a triple prophecy: Thane of Glamis (already true), Thane of Cawdor (about to be true), and King hereafter. Each step escalates. The final "king hereafter" is the one that ignites Macbeth's ambition completely.</p>
+        </div>
+        <div class="analysis-point">
+          <div class="ap-label">🔍 Technique — What Shakespeare does</div>
+          <p><strong>Tricolon and gradation.</strong> Three greetings, each greater than the last. The structure builds anticipation and makes the final prophecy feel inevitable. "All hail" echoes the Roman imperial greeting — and, ominously, Judas's greeting of Jesus ("Hail, master").</p>
+        </div>
+        <div class="analysis-point full">
+          <div class="ap-label">💡 Key Insight — What this really means</div>
+          <p>The prophecy does not say "murder the king to become king." It says Macbeth <em>will</em> be king. This is crucial: the witches never instruct Macbeth to act. They give him a future fact. <strong>The decision to make that future happen by murder is entirely Macbeth's own.</strong> This is also why the prophecy is so insidious: it gives him a destination without a route, and his ambition fills in the route. The "hereafter" is deliberately vague — it could mean years away. But Macbeth interprets it as a call to immediate action. That interpretation is his choice, not the witches' instruction.</p>
+        </div>
+        <div class="analysis-point">
+          <div class="ap-label">📝 Use In Exam For</div>
+          <p>Free will vs fate (the prophecy doesn't command — Macbeth chooses the method), The witches as tempters not controllers, Dramatic structure (the play's central conflict is ignited here).</p>
+        </div>
+      </div>
+      <div class="pill-row">
+        <span class="tech-pill">Tricolon / Gradation</span><span class="tech-pill">Biblical Allusion</span><span class="tech-pill">Equivocation</span>
+        <span class="theme-pill">Free Will vs Fate</span><span class="theme-pill">The Supernatural</span><span class="theme-pill">Ambition</span>
+      </div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="quote-block">
+      <div class="quote-header">
+        <span class="quote-number">3</span>
+        <div class="quote-title">Something wicked this way comes</div>
+      </div>
+      <div class="quote-box">
+        <blockquote>"By the pricking of my thumbs, / Something wicked this way comes."</blockquote>
+        <div class="quote-ref">Act 4, Scene 1 — Second Witch, as Macbeth approaches</div>
+      </div>
+      <div class="analysis-grid">
+        <div class="analysis-point">
+          <div class="ap-label">📍 Context — What's happening</div>
+          <p>Macbeth is approaching the witches' cauldron for the second time — this time to demand answers. He comes uninvited and in command. The witch identifies him approaching as "something wicked."</p>
+        </div>
+        <div class="analysis-point">
+          <div class="ap-label">🔍 Technique — What Shakespeare does</div>
+          <p><strong>Character reversal through labelling.</strong> In Act 1, Macbeth was a brave general approaching mysterious, wicked figures. Now <em>he</em> is the wicked thing approaching them. The witches' own language labels his transformation.</p>
+        </div>
+        <div class="analysis-point full">
+          <div class="ap-label">💡 Key Insight — What this really means</div>
+          <p>This is one of the most quietly devastating lines in the play. In Act 1, the witches were the "instruments of darkness" — Macbeth was their victim, their target. By Act 4, <strong>Macbeth is the wicked thing.</strong> He has become what they represent. The transformation is complete. And crucially, he is now coming to them — demanding prophecies, ordering them to answer him. He has moved from seduced victim to willing master of dark powers. The word "wicked" is the witches' own judgment on him — and coming from them, that is damning. If the embodiments of evil call you wicked, you have descended very far indeed.</p>
+        </div>
+        <div class="analysis-point">
+          <div class="ap-label">📝 Use In Exam For</div>
+          <p>Macbeth's moral deterioration (from victim to wicked), The witches as moral commentators, Dramatic structure (the parallel between Act 1 and Act 4 meetings).</p>
+        </div>
+      </div>
+      <div class="pill-row">
+        <span class="tech-pill">Character Reversal</span><span class="tech-pill">Labelling</span><span class="tech-pill">Dramatic Irony</span>
+        <span class="theme-pill">Moral Deterioration</span><span class="theme-pill">The Supernatural</span><span class="theme-pill">Good vs Evil</span>
+      </div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="quote-block">
+      <div class="quote-header">
+        <span class="quote-number">4</span>
+        <div class="quote-title">None of woman born shall harm Macbeth</div>
+      </div>
+      <div class="quote-box">
+        <blockquote>"...none of woman born / Shall harm Macbeth."</blockquote>
+        <div class="quote-ref">Act 4, Scene 1 — Second Apparition, summoned by the Witches</div>
+      </div>
+      <div class="analysis-grid">
+        <div class="analysis-point">
+          <div class="ap-label">📍 Context — What's happening</div>
+          <p>Macbeth has demanded the witches show him apparitions. The second apparition — a bloody child — delivers this prophecy. Macbeth takes it as meaning he is invincible. It turns out Macduff was delivered by caesarean section and is technically not "of woman born."</p>
+        </div>
+        <div class="analysis-point">
+          <div class="ap-label">🔍 Technique — What Shakespeare does</div>
+          <p><strong>Equivocation — the witches' central technique.</strong> The statement is technically true; the implication (invincibility) is false. The witches use the literal meaning to imply a broader meaning that they know to be untrue. This is "honest trifles" used to betray "in deepest consequence."</p>
+        </div>
+        <div class="analysis-point full">
+          <div class="ap-label">💡 Key Insight — What this really means</div>
+          <p>This prophecy is the most perfect example of the witches' method. They tell Macbeth a fact — technically true — in a way they know he will misinterpret. <strong>He hears "you cannot be killed." They mean "you cannot be killed by a natural birth."</strong> The difference is life and death. This is also what Banquo warned about in Act 1: "The instruments of darkness tell us truths, win us with honest trifles, to betray's in deepest consequence." The witches' equivocation fulfils Banquo's warning exactly. Macbeth, who heard that warning, ignores it and is destroyed by exactly the mechanism Banquo described.</p>
+        </div>
+        <div class="analysis-point">
+          <div class="ap-label">📝 Use In Exam For</div>
+          <p>Equivocation (the witches' defining technique), Appearance vs Reality (the prophecy means the opposite of what it appears to mean), Free will — Macbeth interprets the prophecy incorrectly and dies for it, Banquo's warning fulfilled.</p>
+        </div>
+      </div>
+      <div class="pill-row">
+        <span class="tech-pill">Equivocation</span><span class="tech-pill">Dramatic Irony</span><span class="tech-pill">Foreshadowing</span>
+        <span class="theme-pill">Appearance vs Reality</span><span class="theme-pill">Free Will vs Fate</span><span class="theme-pill">The Supernatural</span>
+      </div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="quote-block">
+      <div class="quote-header">
+        <span class="quote-number">5</span>
+        <div class="quote-title">Double, double toil and trouble</div>
+      </div>
+      <div class="quote-box">
+        <blockquote>"Double, double toil and trouble; / Fire burn, and cauldron bubble."</blockquote>
+        <div class="quote-ref">Act 4, Scene 1 — All Three Witches, the cauldron scene</div>
+      </div>
+      <div class="analysis-grid">
+        <div class="analysis-point">
+          <div class="ap-label">📍 Context — What's happening</div>
+          <p>The witches are brewing their cauldron, adding grotesque ingredients. They chant in a ritual pattern as Macbeth approaches. This is the most theatrical scene in the play — designed for spectacle and horror.</p>
+        </div>
+        <div class="analysis-point">
+          <div class="ap-label">🔍 Technique — What Shakespeare does</div>
+          <p><strong>Ritual incantation and trochaic tetrameter.</strong> The witches speak in a deliberately different rhythm to all other characters — short, percussive, inverted stress (DUM-da instead of da-DUM). This marks them as outside normal human order.</p>
+        </div>
+        <div class="analysis-point full">
+          <div class="ap-label">💡 Key Insight — What this really means</div>
+          <p>"Double, double" — the word "double" itself is an act of equivocation. Things that are doubled are doubled in meaning: toil and trouble for Macbeth, yes, but also doubled back — their "toil and trouble" returns to him. The cauldron scene is theatrically designed to show the witches' power at its height, but also at its most revealing: the ingredients are chaos, disorder, natural things perverted (liver of a blaspheming Jew, finger of birth-strangled babe). <strong>The witches embody everything that violates natural order</strong> — which is exactly what Macbeth's reign does to Scotland. Their cauldron is a mirror of his kingdom.</p>
+        </div>
+        <div class="analysis-point">
+          <div class="ap-label">📝 Use In Exam For</div>
+          <p>The supernatural atmosphere, Imagery and its dramatic effect, Natural order violated, Macbeth's relationship with dark powers becoming active rather than passive.</p>
+        </div>
+      </div>
+      <div class="pill-row">
+        <span class="tech-pill">Trochaic Tetrameter</span><span class="tech-pill">Ritual Incantation</span><span class="tech-pill">Imagery (grotesque)</span>
+        <span class="theme-pill">The Supernatural</span><span class="theme-pill">Disorder</span><span class="theme-pill">Dramatic Atmosphere</span>
+      </div>
+    </div>
+
+    <!-- Q6 -->
+    <div class="quote-block">
+      <div class="quote-header">
+        <span class="quote-number">6</span>
+        <div class="quote-title">When the battle's lost and won</div>
+      </div>
+      <div class="quote-box">
+        <blockquote>"When the battle's lost and won."</blockquote>
+        <div class="quote-ref">Act 1, Scene 1 — Second Witch, the play's opening scene</div>
+      </div>
+      <div class="analysis-grid">
+        <div class="analysis-point">
+          <div class="ap-label">📍 Context — What's happening</div>
+          <p>The witches are deciding when to meet — they agree to meet when the current battle is "lost and won." This paradox sums up the condition of the play's world before Macbeth has even appeared.</p>
+        </div>
+        <div class="analysis-point">
+          <div class="ap-label">🔍 Technique — What Shakespeare does</div>
+          <p><strong>Oxymoron and paradox.</strong> A battle cannot be both lost and won simultaneously — except it can for the witches, for whom normal logic doesn't apply. This compressed paradox in six words sets the tone for every ambiguity that follows.</p>
+        </div>
+        <div class="analysis-point full">
+          <div class="ap-label">💡 Key Insight — What this really means</div>
+          <p>By the end of the play, this phrase describes Macbeth's entire story perfectly. He <strong>wins</strong> the battle of ambition — he becomes king. He <strong>loses</strong> everything that makes the crown worthwhile: peace, conscience, his wife, his allies, and finally his life. The battle is simultaneously lost and won. <strong>This paradox in the opening scene is a prophecy of the play's entire arc</strong>, compressed into six words. It is also the witches demonstrating, before the action begins, that they see the complete picture — the full truth of what Macbeth's choices will produce — while he can only see one half of it at a time.</p>
+        </div>
+        <div class="analysis-point">
+          <div class="ap-label">📝 Use In Exam For</div>
+          <p>Consequences of ambition (gained the crown, lost everything else), The witches' omniscience, Dramatic foreshadowing, The play's central paradox — success that is also failure.</p>
+        </div>
+      </div>
+      <div class="pill-row">
+        <span class="tech-pill">Oxymoron</span><span class="tech-pill">Paradox</span><span class="tech-pill">Foreshadowing</span>
+        <span class="theme-pill">Appearance vs Reality</span><span class="theme-pill">Consequences of Ambition</span><span class="theme-pill">The Supernatural</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXAM TAB -->
+  <div class="tab-panel" id="exam">
+    <span class="label">Using the Witches in Exam Answers</span>
+
+    <div class="box b-exam">
+      <div class="ico">📝</div>
+      <div><div class="box-label">2026 Mock — Language and Imagery (Scotland Under Macbeth)</div>
+      <p>The witches' language itself mirrors the disordered Scotland of Macbeth's reign: paradox, inversion, grotesque imagery. Use Q1 (fair is foul — moral inversion), Q5 (double double — chaos ritual), Q3 (something wicked — Macbeth has become what they represent). Show that the witches' disordered language is a template for Macbeth's disordered kingdom.</p></div>
+    </div>
+
+    <div class="box b-exam">
+      <div class="ico">📝</div>
+      <div><div class="box-label">2023 — Lady Macbeth &amp; the Witches Heighten Dramatic Impact</div>
+      <p>Compare their methods: the witches work through prophecy and equivocation (external, mysterious); Lady Macbeth works through direct psychological manipulation (internal, intimate). Both are female forces that push Macbeth toward murder. But Lady Macbeth acts on him directly; the witches plant the idea and step back. One is catalyst; the other is engine.</p></div>
+    </div>
+
+    <div class="box b-exam">
+      <div class="ico">📝</div>
+      <div><div class="box-label">Free Will vs Fate — The Key Argument</div>
+      <p>Structure: (1) The witches seem to control fate — Q2 (the prophecy is fulfilled). (2) But Banquo proves they don't — he heard the same prophecy and resisted. (3) The witches' equivocation (Q4 — none of woman born) shows they use truth to mislead, not to control. (4) Conclusion: the witches are catalysts. Macbeth's desires were his own; the witches just named them.</p></div>
+    </div>
+
+    <div class="box b-tip">
+      <div class="ico">💡</div>
+      <div><div class="box-label">Technique to Know: Equivocation</div>
+      <p>Equivocation = saying something technically true in a way designed to mislead. The witches use it constantly. If an exam question asks about deception, language, or the supernatural, equivocation is your key technical term. Name it, define it briefly, then apply Q4 (none of woman born) as your example. This is a high-level technical point that will impress any examiner.</p></div>
+    </div>
+
+    <div class="box b-theme">
+      <div class="ico">🔗</div>
+      <div><div class="box-label">Cross-Character Links</div>
+      <ul>
+        <li><strong>Witches vs Lady Macbeth:</strong> Both female, both supernatural-adjacent, both catalysts for murder. Lady Macbeth actually asks to be "unsexed" — to become more like the witches. The witches represent the outer supernatural world; Lady Macbeth brings it indoors.</li>
+        <li><strong>Witches vs Banquo:</strong> He correctly identifies them as "instruments of darkness" (Act 1.3). His warning, ignored by Macbeth, is the moral compass of the play — and is proven exactly right by the equivocation of Act 4.</li>
+        <li><strong>Witches as mirror:</strong> What they say and do reflects what Scotland becomes under Macbeth — disordered, inverted, morally corrupt, ruled by paradox. They are not just characters; they are symbols of what Macbeth's ambition produces.</li>
+      </ul></div>
+    </div>
+  </div>
+</div>
+
+<script>
+function switchTab(btn, id) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+</script>
+</body>
+</html>

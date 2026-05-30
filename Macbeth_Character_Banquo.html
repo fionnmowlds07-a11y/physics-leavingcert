@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Macbeth — Character Study: Banquo</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F6F3EE;--surface:#FFFFFF;--surface2:#EEE9E2;--border:#E2DDD7;--text:#2C2825;--muted:#7A7068;--c:#1a3a5a;--cl:#e8f0f8;--cd:#0a1e38;--radius:14px;--shadow:0 4px 20px rgba(0,0,0,0.08);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;font-size:16px;}
+nav{position:sticky;top:0;z-index:100;background:rgba(246,243,238,0.97);backdrop-filter:blur(10px);border-bottom:2px solid var(--border);padding:8px 16px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;min-height:52px;}
+.nav-logo{font-family:'Lexend Mega',sans-serif;font-size:0.85rem;color:var(--text);margin-right:4px;text-decoration:none;white-space:nowrap;}.nav-logo span{color:#8B0000;}
+.nav-divider{width:1px;height:20px;background:var(--border);flex-shrink:0;}
+.nav-btn{padding:5px 11px;border-radius:18px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.72rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);text-decoration:none;white-space:nowrap;}
+.nav-btn:hover{transform:translateY(-2px);}
+.nav-btn.home:hover,.nav-btn.home.active{background:#2c2825;border-color:#2c2825;color:#fff;}
+.nav-btn.macbeth:hover,.nav-btn.macbeth.active{background:#8B0000;border-color:#8B0000;color:#fff;}
+.nav-btn.lady:hover,.nav-btn.lady.active{background:#4a0a5a;border-color:#4a0a5a;color:#fff;}
+.nav-btn.duncan:hover,.nav-btn.duncan.active{background:#b07a10;border-color:#b07a10;color:#fff;}
+.nav-btn.banquo:hover,.nav-btn.banquo.active{background:#1a3a5a;border-color:#1a3a5a;color:#fff;}
+.nav-btn.witches:hover,.nav-btn.witches.active{background:#2a1a3a;border-color:#2a1a3a;color:#fff;}
+.nav-btn.themes:hover,.nav-btn.themes.active{background:#1a4a1a;border-color:#1a4a1a;color:#fff;}
+.section{padding:0 16px 80px;max-width:940px;margin:0 auto;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.hero{background:linear-gradient(135deg,var(--cd),var(--c));color:#fff;padding:44px 32px 36px;text-align:center;margin-bottom:32px;}
+.hero .char-label{font-size:0.75rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;opacity:0.75;margin-bottom:10px;}
+.hero h1{font-family:'Lexend Mega',sans-serif;font-size:clamp(1.6rem,4vw,2.6rem);line-height:1.15;margin-bottom:12px;}
+.hero p{opacity:0.88;max-width:620px;margin:0 auto;font-size:0.96rem;}
+.hero-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px;}
+.hero-chip{background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:4px 14px;border-radius:20px;font-size:0.75rem;font-weight:600;}
+.tab-bar{display:flex;gap:4px;flex-wrap:wrap;padding:22px 0 8px;border-bottom:2px solid var(--border);margin-bottom:28px;}
+.tab{padding:8px 18px;border-radius:10px;border:2px solid var(--border);background:var(--surface);font-family:'Lexend',sans-serif;font-size:0.8rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);}
+.tab:hover,.tab.active{background:var(--c);color:#fff;border-color:var(--c);}
+.tab-panel{display:none;}.tab-panel.active{display:block;animation:fadeIn 0.25s ease;}
+.info-card{background:var(--surface);border-radius:var(--radius);padding:24px 26px;margin-bottom:20px;box-shadow:var(--shadow);border-left:5px solid var(--c);}
+.info-card h2{font-size:1.1rem;font-weight:700;margin-bottom:12px;}
+.info-card p{margin-bottom:9px;font-size:0.94rem;}
+.info-card ul{padding-left:20px;margin-bottom:9px;}
+.info-card li{margin-bottom:6px;font-size:0.93rem;}
+.quote-block{background:var(--surface);border-radius:var(--radius);padding:22px 24px;margin:18px 0;box-shadow:var(--shadow);border-top:4px solid var(--c);}
+.quote-header{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+.quote-number{display:inline-flex;align-items:center;justify-content:center;background:var(--c);color:#fff;font-family:'Lexend Mega',sans-serif;font-size:0.72rem;font-weight:800;width:28px;height:28px;border-radius:50%;flex-shrink:0;}
+.quote-title{font-size:0.95rem;font-weight:700;color:var(--cd);}
+.quote-box{background:var(--cl);border-left:4px solid var(--c);border-radius:0 8px 8px 0;padding:14px 18px;margin-bottom:16px;}
+.quote-box blockquote{font-family:'Lexend Mega',sans-serif;font-size:1.05rem;font-style:italic;color:var(--cd);line-height:1.5;margin-bottom:6px;}
+.quote-ref{font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--muted);}
+.analysis-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;}
+.analysis-point{background:var(--bg);border-radius:10px;padding:12px 16px;border:1px solid var(--border);}
+.analysis-point.full{grid-column:1/-1;}
+.ap-label{font-size:0.67rem;font-weight:800;text-transform:uppercase;letter-spacing:0.8px;color:var(--muted);margin-bottom:5px;}
+.analysis-point p{font-size:0.9rem;line-height:1.7;margin:0;}
+.analysis-point strong{color:var(--cd);}
+.pill-row{display:flex;flex-wrap:wrap;gap:5px;margin-top:12px;padding-top:12px;border-top:1px solid var(--border);}
+.tech-pill{display:inline-block;background:var(--c);color:#fff;font-size:0.7rem;font-weight:700;padding:2px 10px;border-radius:5px;}
+.theme-pill{display:inline-block;background:#1a4a1a;color:#fff;font-size:0.7rem;font-weight:700;padding:2px 10px;border-radius:5px;}
+.box{border-radius:var(--radius);padding:14px 18px;margin:14px 0;display:flex;gap:12px;align-items:flex-start;}
+.box .ico{font-size:1.5rem;flex-shrink:0;line-height:1.2;}
+.box-label{font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;margin-bottom:4px;}
+.box p,.box li{font-size:0.91rem;}.box ul{padding-left:16px;}.box li{margin-bottom:4px;}
+.b-exam{background:#eaf4fb;border:2px solid #5dade2;}.b-exam .box-label{color:#1a6b9a;}
+.b-tip{background:#fffbf0;border:2px solid #f39c12;}.b-tip .box-label{color:#b7770d;}
+.b-theme{background:#f0f8f0;border:2px solid #2e8b57;}.b-theme .box-label{color:#1a5c35;}
+.label{font-size:0.72rem;font-weight:800;text-transform:uppercase;letter-spacing:0.8px;color:var(--muted);margin-bottom:16px;display:block;}
+@media(max-width:680px){.analysis-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="Macbeth.html">🗡️ <span>Macbeth</span></a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn home" href="Macbeth.html">Home</a>
+  <a class="nav-btn macbeth" href="Macbeth_Character_Macbeth.html">Macbeth</a>
+  <a class="nav-btn lady" href="Macbeth_Character_LadyMacbeth.html">Lady Macbeth</a>
+  <a class="nav-btn duncan" href="Macbeth_Character_Duncan.html">Duncan</a>
+  <a class="nav-btn banquo active" href="Macbeth_Character_Banquo.html">Banquo</a>
+  <a class="nav-btn witches" href="Macbeth_Character_Witches.html">The Witches</a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn themes" href="Macbeth_Themes.html">📜 Themes &amp; Exam</a>
+</nav>
+
+<div class="hero">
+  <div class="char-label">Moral Foil · Proof of Free Will · Voice of Conscience</div>
+  <h1>Banquo</h1>
+  <p>The character who proves Macbeth's downfall is self-chosen — Banquo hears the same prophecy, faces the same temptation, and resists. His presence (living and as a ghost) is the conscience of the play.</p>
+  <div class="hero-chips">
+    <span class="hero-chip">Free Will vs Fate</span>
+    <span class="hero-chip">Moral Foil</span>
+    <span class="hero-chip">Integrity</span>
+    <span class="hero-chip">Guilt (via Ghost)</span>
+    <span class="hero-chip">The Supernatural</span>
+  </div>
+</div>
+
+<div class="section">
+  <div class="tab-bar">
+    <button class="tab active" onclick="switchTab(this,'overview')">📋 Overview</button>
+    <button class="tab" onclick="switchTab(this,'quotes')">💬 Key Quotes</button>
+    <button class="tab" onclick="switchTab(this,'exam')">🎓 Exam Angles</button>
+  </div>
+
+  <!-- OVERVIEW -->
+  <div class="tab-panel active" id="overview">
+    <span class="label">Banquo's Role in the Play</span>
+    <div class="info-card">
+      <h2>⚖️ The Moral Foil</h2>
+      <p>Banquo is Macbeth's closest friend and fellow general. He stands beside Macbeth when the witches make their prophecies in Act 1 — and receives a prophecy of his own: that his descendants will be kings, though he himself will not. This is the same temptation Macbeth faces, delivered at the same moment. But Banquo resists. He is suspicious of the witches ("instruments of darkness"), troubled by his own tempted thoughts, and never acts on them.</p>
+      <p>He is the proof that Macbeth's choices are free choices.</p>
+    </div>
+    <div class="info-card">
+      <h2>👻 His Role After Death</h2>
+      <p>Macbeth has him murdered in Act 3 because the witches' prophecy says Banquo's descendants will inherit the throne — threatening Macbeth's legacy. But the murder backfires: Banquo's ghost appears at the royal banquet, visible only to Macbeth, and destroys his composure in front of the entire court. In death, Banquo becomes an even more powerful force — the embodiment of Macbeth's guilt made visible.</p>
+    </div>
+    <div class="info-card">
+      <h2>🎭 Why Banquo Matters for Every Exam Question</h2>
+      <p>Banquo appears in questions about free will (same prophecy, different choice), about guilt (the ghost), about the witches (he evaluates them critically), and about Macbeth's character (Banquo is his mirror — who he could have been). You can introduce Banquo usefully into almost any Macbeth essay.</p>
+    </div>
+    <div class="box b-tip">
+      <div class="ico">💡</div>
+      <div><div class="box-label">The Golden Point About Banquo</div>
+      <p>The most powerful argument Banquo enables: <strong>Macbeth cannot blame the witches for his downfall, because Banquo received the same prophecy and resisted.</strong> If the witches were truly irresistible forces, Banquo would have acted too. He didn't. This proves free will. This proves Macbeth chose his fate.</p></div>
+    </div>
+  </div>
+
+  <!-- QUOTES TAB -->
+  <div class="tab-panel" id="quotes">
+    <span class="label">6 Key Quotes — Short, Learnable, Deeply Analysed</span>
+
+    <!-- Q1 -->
+    <div class="quote-block">
+      <div class="quote-header">
+        <span class="quote-number">1</span>
+        <div class="quote-title">Instruments of darkness</div>
+      </div>
+      <div class="quote-box">
+        <blockquote>"The instruments of darkness tell us truths, / Win us with honest trifles, to betray's / In deepest consequence."</blockquote>
+        <div class="quote-ref">Act 1, Scene 3 — Banquo to Macbeth, after the witches' first prophecy</div>
+      </div>
+      <div class="analysis-grid">
+        <div class="analysis-point">
+          <div class="ap-label">📍 Context — What's happening</div>
+          <p>The witches have just disappeared after their prophecy. Macbeth is already tempted; Banquo is warning him. He is telling Macbeth that dark forces often use small truths to lure people into bigger traps.</p>
+        </div>
+        <div class="analysis-point">
+          <div class="ap-label">🔍 Technique — What Shakespeare does</div>
+          <p><strong>Prophetic warning.</strong> Banquo sees exactly what the witches are doing — using truth (the prophecy of Thane of Cawdor, which was already happening) to make larger lies more believable. He identifies the method before it works.</p>
+        </div>
+        <div class="analysis-point full">
+          <div class="ap-label">💡 Key Insight — What this really means</div>
+          <p>This speech is one of the most dramatically important in the play because <strong>Banquo correctly identifies the witches' technique in real time.</strong> He understands they are "instruments of darkness" — tools of evil, not true prophets. He sees the trap. And Macbeth, standing beside him hearing the exact same words, ignores the warning and walks into the trap anyway. This is Shakespeare's clearest statement on <strong>free will vs temptation</strong>: both men are warned; only one is destroyed. The warning makes Macbeth's choice inexcusable.</p>
+        </div>
+        <div class="analysis-point">
+          <div class="ap-label">📝 Use In Exam For</div>
+          <p>Free will vs fate (Banquo sees the danger; Macbeth ignores it), The witches' nature (instruments of darkness, not forces of fate), Macbeth's responsibility for his own downfall.</p>
+        </div>
+      </div>
+      <div class="pill-row">
+        <span class="tech-pill">Metaphor (instruments)</span><span class="tech-pill">Warning / Foreshadowing</span>
+        <span class="theme-pill">Free Will vs Fate</span><span class="theme-pill">The Supernatural</span><span class="theme-pill">Appearance vs Reality</span>
+      </div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="quote-block">
+      <div class="quote-header">
+        <span class="quote-number">2</span>
+        <div class="quote-title">Merciful powers, restrain in me the cursed thoughts</div>
+      </div>
+      <div class="quote-box">
+        <blockquote>"Merciful powers, restrain in me the cursed thoughts / That nature gives way to in repose!"</blockquote>
+        <div class="quote-ref">Act 2, Scene 1 — Banquo alone at night, before the murder</div>
+      </div>
+      <div class="analysis-grid">
+        <div class="analysis-point">
+          <div class="ap-label">📍 Context — What's happening</div>
+          <p>It is the night of Duncan's murder. Banquo cannot sleep. He meets Macbeth in the courtyard and tells him he has been troubled by dreams of the witches. This speech is the key to understanding Banquo's humanity.</p>
+        </div>
+        <div class="analysis-point">
+          <div class="ap-label">🔍 Technique — What Shakespeare does</div>
+          <p><strong>Prayer / invocation.</strong> Like Lady Macbeth's "unsex me here," Banquo calls on supernatural powers — but to resist temptation, not to embrace it. The contrast with Lady Macbeth's invocation is exact and deliberate.</p>
+        </div>
+        <div class="analysis-point full">
+          <div class="ap-label">💡 Key Insight — What this really means</div>
+          <p>This quote proves that <strong>Banquo is tempted.</strong> He admits he has "cursed thoughts" — thoughts about the prophecy, about what he could do, about ambition. He is not simply a saint who feels nothing. He faces the same darkness Macbeth faces. The difference is what he does with it: he <strong>prays for help resisting</strong> rather than calling on dark powers to remove his conscience. Both men call on supernatural forces; one to enable evil, one to resist it. This is Shakespeare's most precise comparison of the two characters, and it absolutely proves that Macbeth's failure is a choice, not a destiny.</p>
+        </div>
+        <div class="analysis-point">
+          <div class="ap-label">📝 Use In Exam For</div>
+          <p>Free will (Banquo feels temptation but resists), Contrast with Lady Macbeth's invocation, Banquo's humanity — he is not simply virtuous, he chooses virtue, Macbeth's culpability.</p>
+        </div>
+      </div>
+      <div class="pill-row">
+        <span class="tech-pill">Prayer / Invocation</span><span class="tech-pill">Contrast with Lady Macbeth</span>
+        <span class="theme-pill">Free Will vs Fate</span><span class="theme-pill">Integrity</span><span class="theme-pill">The Supernatural</span>
+      </div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="quote-block">
+      <div class="quote-header">
+        <span class="quote-number">3</span>
+        <div class="quote-title">Thou play'dst most foully for't</div>
+      </div>
+      <div class="quote-box">
+        <blockquote>"Thou hast it now... and I fear / Thou play'dst most foully for't."</blockquote>
+        <div class="quote-ref">Act 3, Scene 1 — Banquo, alone, after Macbeth has been crowned king</div>
+      </div>
+      <div class="analysis-grid">
+        <div class="analysis-point">
+          <div class="ap-label">📍 Context — What's happening</div>
+          <p>Macbeth has been crowned. Banquo is alone and voices his suspicion: Macbeth has what the witches promised, but got it by foul means. He is the only character who knows both the prophecy and Macbeth well enough to suspect the truth.</p>
+        </div>
+        <div class="analysis-point">
+          <div class="ap-label">🔍 Technique — What Shakespeare does</div>
+          <p><strong>Dramatic irony and understatement.</strong> "Play'dst most foully" is almost conversational — but it is an accusation of murder. Banquo knows. The audience watches him sitting with this knowledge, alone, deciding what to do with it.</p>
+        </div>
+        <div class="analysis-point full">
+          <div class="ap-label">💡 Key Insight — What this really means</div>
+          <p>This moment is morally complex. Banquo knows — or strongly suspects — that Macbeth murdered Duncan. And he... does nothing. Why? Some argue he stays silent because he hopes his descendants will still inherit the throne (if Macbeth is king, the witches' prophecy for Banquo's line still stands). Others argue he lacks evidence. But Shakespeare leaves this deliberately ambiguous. <strong>Banquo is not perfect.</strong> He is virtuous compared to Macbeth, but he is not heroic. He sits on his knowledge and is eventually killed for it. His silence — and its possible motivation — is one of the most interesting moral questions in the play.</p>
+        </div>
+        <div class="analysis-point">
+          <div class="ap-label">📝 Use In Exam For</div>
+          <p>Banquo's moral complexity, Free will (Banquo knew and didn't act — is that a choice?), Guilt and consequences, Macbeth's culpability vs Banquo's passivity.</p>
+        </div>
+      </div>
+      <div class="pill-row">
+        <span class="tech-pill">Dramatic Irony</span><span class="tech-pill">Understatement</span><span class="tech-pill">Aside</span>
+        <span class="theme-pill">Moral Ambiguity</span><span class="theme-pill">Free Will</span><span class="theme-pill">Guilt</span>
+      </div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="quote-block">
+      <div class="quote-header">
+        <span class="quote-number">4</span>
+        <div class="quote-title">Lesser than Macbeth, and greater</div>
+      </div>
+      <div class="quote-box">
+        <blockquote>"Lesser than Macbeth, and greater. / Not so happy, yet much happier."</blockquote>
+        <div class="quote-ref">Act 1, Scene 3 — The Witches' prophecy to Banquo</div>
+      </div>
+      <div class="analysis-grid">
+        <div class="analysis-point">
+          <div class="ap-label">📍 Context — What's happening</div>
+          <p>The witches are giving Banquo his prophecy. They speak in deliberate paradoxes: lesser/greater, not happy/happier. These contradictions define the witches' language style throughout the play.</p>
+        </div>
+        <div class="analysis-point">
+          <div class="ap-label">🔍 Technique — What Shakespeare does</div>
+          <p><strong>Antithesis and paradox.</strong> The witches speak in opposites, reflecting the play's central paradox ("fair is foul"). Each prophecy contains a truth that can only be understood later — lesser in rank, greater in virtue; not happy (kingship) yet happier (free conscience).</p>
+        </div>
+        <div class="analysis-point full">
+          <div class="ap-label">💡 Key Insight — What this really means</div>
+          <p>By the end of the play, this prophecy is proven accurate. <strong>Banquo is lesser than Macbeth</strong> — he never becomes king, he is murdered. <strong>But he is greater</strong> — he dies with his honour and conscience intact. Macbeth becomes king but is consumed by paranoia and nihilism. <strong>Banquo is "not so happy" but "much happier"</strong> — he lacks kingship but has peace of mind, the thing Macbeth murders to gain but never achieves. The prophecy is a judgment on both men: Macbeth chooses the lesser greatness (political power) and loses the greater (peace, honour, meaning). Banquo embodies the greater greatness by not seeking the lesser.</p>
+        </div>
+        <div class="analysis-point">
+          <div class="ap-label">📝 Use In Exam For</div>
+          <p>Free will vs fate (the prophecy comes true but not how anyone expected), Banquo vs Macbeth as foils, The witches' equivocation — true and deceptive at the same time.</p>
+        </div>
+      </div>
+      <div class="pill-row">
+        <span class="tech-pill">Antithesis</span><span class="tech-pill">Paradox</span><span class="tech-pill">Equivocation</span>
+        <span class="theme-pill">Free Will vs Fate</span><span class="theme-pill">Banquo vs Macbeth</span><span class="theme-pill">The Supernatural</span>
+      </div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="quote-block">
+      <div class="quote-header">
+        <span class="quote-number">5</span>
+        <div class="quote-title">Never shake thy gory locks at me</div>
+      </div>
+      <div class="quote-box">
+        <blockquote>"Thou canst not say I did it: never shake / Thy gory locks at me."</blockquote>
+        <div class="quote-ref">Act 3, Scene 4 — Macbeth to Banquo's ghost at the banquet</div>
+      </div>
+      <div class="analysis-grid">
+        <div class="analysis-point">
+          <div class="ap-label">📍 Context — What's happening</div>
+          <p>At Macbeth's royal banquet, a ghost appears sitting in his chair. Only Macbeth can see it. He rages at it in front of all his nobles, ruining the banquet and revealing his disturbed state to everyone.</p>
+        </div>
+        <div class="analysis-point">
+          <div class="ap-label">🔍 Technique — What Shakespeare does</div>
+          <p><strong>Hallucination and dramatic irony.</strong> Macbeth protests "thou canst not say I did it" — but of course he did do it. He ordered the murder. His denial is addressed to a ghost only he can see, making it pitiful as well as horrifying.</p>
+        </div>
+        <div class="analysis-point full">
+          <div class="ap-label">💡 Key Insight — What this really means</div>
+          <p>The ghost is Macbeth's guilt made visible — and only he can see it. Banquo dead is more powerful than Banquo alive, because now Macbeth cannot escape him. The fact that he rages "thou canst not say I did it" while denying to his assembled court that anything is wrong is the perfect encapsulation of the play's central irony: <strong>Macbeth knows he is guilty, denies it publicly, and is destroyed by it privately.</strong> The ghost forces the private guilt into the public space. Banquo, dead, achieves what he could not living — he confronts Macbeth directly with what he has done. This scene marks the beginning of Macbeth's public collapse.</p>
+        </div>
+        <div class="analysis-point">
+          <div class="ap-label">📝 Use In Exam For</div>
+          <p>Guilt (it cannot be suppressed), The supernatural (is the ghost real or hallucinated?), Appearance vs Reality (Macbeth's composed king vs his inner terror), Banquo's power after death.</p>
+        </div>
+      </div>
+      <div class="pill-row">
+        <span class="tech-pill">Hallucination / Ghost</span><span class="tech-pill">Dramatic Irony</span><span class="tech-pill">Supernatural Imagery</span>
+        <span class="theme-pill">Guilt</span><span class="theme-pill">The Supernatural</span><span class="theme-pill">Appearance vs Reality</span>
+      </div>
+    </div>
+
+    <!-- Q6 -->
+    <div class="quote-block">
+      <div class="quote-header">
+        <span class="quote-number">6</span>
+        <div class="quote-title">Royalty of nature</div>
+      </div>
+      <div class="quote-box">
+        <blockquote>"...there is none but he / Whose being I do fear: and under him / My Genius is rebuked."</blockquote>
+        <div class="quote-ref">Act 3, Scene 1 — Macbeth, in soliloquy, about Banquo</div>
+      </div>
+      <div class="analysis-grid">
+        <div class="analysis-point">
+          <div class="ap-label">📍 Context — What's happening</div>
+          <p>Macbeth is alone before ordering Banquo's murder. He describes his fear of Banquo — calling him a man of "royalty of nature" and "wisdom that doth guide his valour." He says his own "Genius" (guiding spirit) is "rebuked" — silenced — by Banquo's presence.</p>
+        </div>
+        <div class="analysis-point">
+          <div class="ap-label">🔍 Technique — What Shakespeare does</div>
+          <p><strong>Admiring description from an enemy.</strong> Just as Macbeth described Duncan's virtues in his Act 1.7 soliloquy, here he describes Banquo's greatness in the speech that precedes ordering his murder. The effect is the same: the murder is made worse by Macbeth's full awareness of what he is destroying.</p>
+        </div>
+        <div class="analysis-point full">
+          <div class="ap-label">💡 Key Insight — What this really means</div>
+          <p>This is one of the most powerful characterisations of Banquo in the play — <strong>spoken by his murderer.</strong> Macbeth calls Banquo's nature "royal" — not his rank, but his quality. His courage is guided by wisdom; his character is great. The fact that Macbeth recognises this and murders him anyway shows how completely Macbeth has deteriorated: he is now killing greatness, not just obstacles. And his admission that Banquo's presence "rebukes" his own spirit is key — <strong>Banquo is the living reminder of who Macbeth should have been.</strong> Removing Banquo removes his last mirror.</p>
+        </div>
+        <div class="analysis-point">
+          <div class="ap-label">📝 Use In Exam For</div>
+          <p>Banquo as moral foil (described in contrast to Macbeth's own corruption), Macbeth's awareness of his own decline, Consequences of ambition — he destroys the good to protect the corrupt.</p>
+        </div>
+      </div>
+      <div class="pill-row">
+        <span class="tech-pill">Admiring Tone (from enemy)</span><span class="tech-pill">Soliloquy</span>
+        <span class="theme-pill">Moral Foil</span><span class="theme-pill">Ambition</span><span class="theme-pill">Banquo vs Macbeth</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXAM TAB -->
+  <div class="tab-panel" id="exam">
+    <span class="label">Using Banquo in Exam Answers</span>
+
+    <div class="box b-exam">
+      <div class="ico">📝</div>
+      <div><div class="box-label">2023 Mock — Banquo &amp; Macduff Fulfil Important Dramatic Functions</div>
+      <p>Banquo's dramatic function: he proves free will (same prophecy, resists); his ghost externalises Macbeth's guilt dramatically; his descendants' eventual kingship fulfils the witches' prophecy outside Macbeth's control. Structure your answer around these three functions — Banquo alive, Banquo as ghost, Banquo's legacy.</p></div>
+    </div>
+
+    <div class="box b-exam">
+      <div class="ico">📝</div>
+      <div><div class="box-label">Free Will vs Fate Questions</div>
+      <p>Q1 (instruments of darkness — he warns Macbeth) + Q2 (merciful powers — he prays to resist temptation) + Q4 (lesser/greater paradox — the prophecy proves that character, not fate, determines worth). These three quotes together make a complete argument about free will.</p></div>
+    </div>
+
+    <div class="box b-exam">
+      <div class="ico">📝</div>
+      <div><div class="box-label">Guilt Cannot Be Suppressed</div>
+      <p>Banquo's ghost (Q5) is one of the strongest examples of guilt in the play. It is visible only to Macbeth — the audience cannot know if the ghost is real or a projection of guilty conscience. Either way, the effect is the same: <strong>guilt erupts into the public space at exactly the wrong moment.</strong> Use this alongside Lady Macbeth's sleepwalking to argue that guilt is inescapable in the play.</p></div>
+    </div>
+
+    <div class="box b-theme">
+      <div class="ico">🔗</div>
+      <div><div class="box-label">Banquo vs Every Other Character</div>
+      <ul>
+        <li><strong>Banquo vs Macbeth:</strong> Same prophecy, different choices. The most important contrast in the play for free will.</li>
+        <li><strong>Banquo vs Lady Macbeth:</strong> Both call on supernatural powers in Act 2.1 / Act 1.5 — but she invites dark spirits in; he prays for protection from temptation.</li>
+        <li><strong>Banquo vs Duncan:</strong> Both virtuous characters destroyed by Macbeth. Together they represent everything good about Scotland that Macbeth's ambition demolishes.</li>
+      </ul></div>
+    </div>
+  </div>
+</div>
+
+<script>
+function switchTab(btn, id) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+</script>
+</body>
+</html>
